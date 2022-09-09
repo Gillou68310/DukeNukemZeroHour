@@ -1,0 +1,15 @@
+baserom.us.z64
+undefined_funcs_auto.txt
+undefined_syms_auto.txt
+asm/
+build/
+assets/
+marioparty.ld
+ctx.c
+.vscode/configurationCache.log
+.vscode/dryrun.log
+.vscode/targets.log
+.vscode/tasks.json
+.vscode/settings.json
+__pycache__/
+.DS_Store
