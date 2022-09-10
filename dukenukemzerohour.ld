@@ -209,7 +209,7 @@ SECTIONS
         build/src/BB5A0.c.o(.text);
         build/src/BB670.c.o(.text);
         build/src/BB6A0.c.o(.text);
-        build/src/BB710.c.o(.text);
+        build/asm/BB710.s.o(.text);
         build/src/BB980.c.o(.text);
         build/src/BBC40.c.o(.text);
         build/src/BBD40.c.o(.text);
@@ -559,8 +559,8 @@ SECTIONS
         build/src/BB670.c.o(.data);
         BB6A0_c = .;
         build/src/BB6A0.c.o(.data);
-        BB710_c = .;
-        build/src/BB710.c.o(.data);
+        BB710_s = .;
+        build/asm/BB710.s.o(.data);
         BB980_c = .;
         build/src/BB980.c.o(.data);
         BBC40_c = .;
@@ -739,7 +739,7 @@ SECTIONS
         build/src/BB5A0.c.o(.rodata);
         build/src/BB670.c.o(.rodata);
         build/src/BB6A0.c.o(.rodata);
-        build/src/BB710.c.o(.rodata);
+        build/asm/BB710.s.o(.rodata);
         build/src/BB980.c.o(.rodata);
         build/src/BBC40.c.o(.rodata);
         build/src/BBD40.c.o(.rodata);
@@ -917,7 +917,7 @@ SECTIONS
         build/src/BB5A0.c.o(.bss);
         build/src/BB670.c.o(.bss);
         build/src/BB6A0.c.o(.bss);
-        build/src/BB710.c.o(.bss);
+        build/asm/BB710.s.o(.bss);
         build/src/BB980.c.o(.bss);
         build/src/BBC40.c.o(.bss);
         build/src/BBD40.c.o(.bss);
