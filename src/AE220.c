@@ -1,9 +1,0 @@
-#include "common.h"
-
-INCLUDE_ASM(s32, "AE220", func_800AD620);
-
-INCLUDE_ASM(s32, "AE220", func_800AD670);
-
-INCLUDE_ASM(s32, "AE220", func_800AD798);
-
-INCLUDE_ASM(s32, "AE220", func_800AD850);
