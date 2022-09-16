@@ -1,0 +1,22 @@
+{
+    "version": 4,
+    "configurations": [
+        {
+            "name": "dukenukemzerohour",
+            "includePath": [
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/libreultra/include/2.0I",
+                "${workspaceFolder}/libreultra/include/2.0I/PR"
+            ],
+            "defines": [
+                "F3DEX_GBI_2",
+                "_LANGUAGE_C",
+                "_MIPS_SZLONG=32",
+                "_FINALROM"
+            ],
+            "cStandard": "c89",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "${default}"
+        }
+    ]
+}

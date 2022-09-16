@@ -15,13 +15,17 @@ CPP_FLAGS = [
     "-Iinclude",
     "-Isrc",
     "-Ibuild/include",
+    "-Ilibreultra/include/2.0I",
+    "-Ilibreultra/include/2.0I/PR",
     "-D_LANGUAGE_C",
     "-DF3DEX_GBI_2",
+    #"-DF3DEX_GBI_2x",
     "-D_MIPS_SZLONG=32",
-    "-D__attribute__(...)=",
-    "-D__asm__(...)=",
+    #"-D__attribute__(...)=",
+    #"-D__asm__(...)=",
     "-ffreestanding",
-    "-DM2CTX",
+    "-D__CTX__",
+
 ]
 
 def import_c_file(in_file) -> str:

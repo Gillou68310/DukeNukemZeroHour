@@ -4,6 +4,7 @@
 #define FALSE 0
 #define TRUE 1
 
+#include "ultra64.h"
 #include "types.h"
 // #include "common_structs.h"
 // #include "functions.us.h"

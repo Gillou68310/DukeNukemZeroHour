@@ -1,0 +1,45 @@
+/*libreultra/src/os/timerintr.c*/
+__osBaseTimer = 0x80199530;
+__osCurrentTime = 0x80138600;
+__osBaseCounter = 0x800FF3E4;
+__osViIntrCount = 0x80119A90;
+__osTimerCounter = 0x80199644;
+
+/*libreultra/src/io/controller.c*/
+__osContPifRam = 0x80117DF0;
+__osContLastCmd = 0x80197DE4;
+__osMaxControllers = 0x8012FD84;
+__osEepromTimer = 0x801A6AD8;
+__osEepromTimerQ = 0x801AEA18;
+__osEepromTimerMsg = 0x80199100;
+
+/*libreultra/src/io/cartrominit.c*/
+__CartRomHandle = 0x801386A0;
+
+/*libreultra/src/io/conteepread.c*/
+__osEepPifRam = 0x801387D0;
+
+/*libreultra/src/io/pimgr.c*/
+__Dom1SpeedParam = 0x8013B208;
+__Dom2SpeedParam = 0x801181D0;
+
+/*libreultra/src/os/initialize.c*/
+__osFinalrom = 0x801AE8EC;
+
+/*libreultra/src/os/seteventmesg.c*/
+__osEventStateTab = 0x801ACBE8;
+
+/*libreultra/src/io/siacs.c*/
+__osSiAccessQueue = 0x801C0D40;
+
+/*libreultra/src/io/piacs.c*/
+__osPiAccessQueue = 0x80138838;
+
+/*libreultra/src/io/pfsisplug.c*/
+__osPfsPifRam = 0x801AE980;
+
+/*libreultra/src/io/contpfs.c*/
+__osPfsInodeCache = 0x801ACA00;
+
+/*libreultra/src/os/kdebugserver.c*/
+__osThreadSave = 0x80105558;

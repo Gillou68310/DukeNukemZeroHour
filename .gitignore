@@ -1,10 +1,12 @@
 baserom.us.z64
 undefined_funcs_auto.txt
 undefined_syms_auto.txt
-asm/
+nonmatchings/
 build/
 assets/
-marioparty.ld
+gen/
+data/
+dukenukemzerohour.ld
 ctx.c
 .vscode/configurationCache.log
 .vscode/dryrun.log
@@ -13,3 +15,4 @@ ctx.c
 .vscode/settings.json
 __pycache__/
 .DS_Store
+*.idb

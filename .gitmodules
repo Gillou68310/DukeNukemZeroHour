@@ -1,3 +1,6 @@
 [submodule "tools/splat"]
 	path = tools/splat
 	url = https://github.com/ethteck/splat
+[submodule "libreultra"]
+	path = libreultra
+	url = https://github.com/Gillou68310/libreultra.git

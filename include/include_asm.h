@@ -14,7 +14,7 @@
         "\t.type "#NAME", @function\n" \
         "\t.ent\t"#NAME"\n" \
         #NAME ":\n" \
-        "\t.include \"asm/nonmatchings/"FOLDER"/"#NAME".s\"\n" \
+        "\t.include \"nonmatchings/"FOLDER"/"#NAME".s\"\n" \
         "\t.set reorder\n" \
         "\t.set at\n" \
         "\t.end\t"#NAME"\n" \

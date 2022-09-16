@@ -41,11 +41,12 @@ endif
 
 ### Output ###
 
-BUILD_DIR := build
-ROM       := $(BUILD_DIR)/$(TARGET).z64
-ELF       := $(BUILD_DIR)/$(TARGET).elf
-LD_SCRIPT := $(TARGET).ld
-LD_MAP    := $(BUILD_DIR)/$(TARGET).map
+BUILD_DIR    := build
+LIBULTRA_DIR := libreultra
+ROM          := $(BUILD_DIR)/$(TARGET).z64
+ELF          := $(BUILD_DIR)/$(TARGET).elf
+LD_SCRIPT    := $(TARGET).ld
+LD_MAP       := $(BUILD_DIR)/$(TARGET).map
 
 
 ### Tools ###
@@ -58,14 +59,14 @@ EMULATOR   := mupen64plus
 DIFF       := diff
 
 CROSS    := mips-linux-gnu-
-AS       := $(CROSS)as
+AS       := tools/gcc_2.7.2/$(DETECTED_OS)/as
 LD       := $(CROSS)ld
 OBJCOPY  := $(CROSS)objcopy
 STRIP    := $(CROSS)strip
+CPP      := $(CROSS)cpp
 
 CC       := tools/gcc_2.7.2/$(DETECTED_OS)/gcc
 CC_HOST  := gcc
-CPP      := cpp -P
 
 PRINT := printf '
  ENDCOLOR := \033[0m
@@ -83,10 +84,10 @@ ENDLINE := \n'
 
 ### Compiler Options ###
 
-ASFLAGS        := -G 0 -I include -mips2 -mabi=32
-CFLAGS         := -G0 -mips3 -mgp32 -mfp32 -Wa,--vr4300mul-off
-CPPFLAGS       := -I include -I $(BUILD_DIR)/include -I src -DF3DEX_GBI_2
-LDFLAGS        := -T symbol_addrs.txt -T undefined_syms.txt -T undefined_funcs.txt -T undefined_funcs_auto.txt -T undefined_syms_auto.txt -T $(LD_SCRIPT) -Map $(LD_MAP) --no-check-sections
+ASFLAGS        := -G0 -mips3 -I include
+CFLAGS         := -G0 -mips3 -mgp32 -mfp32 #-Wa,--vr4300mul-off #-save-temps
+CPPFLAGS       := -I include -I $(BUILD_DIR)/include -I src -I $(LIBULTRA_DIR)/include/2.0I -I $(LIBULTRA_DIR)/include/2.0I/PR -D_LANGUAGE_C -DF3DEX_GBI_2 -D_MIPS_SZLONG=32 -D_FINALROM #-DF3DEX_GBI_2x
+LDFLAGS        := -T undefined_syms.txt -T undefined_funcs.txt -T undefined_funcs_auto.txt -T undefined_syms_auto.txt -T $(LD_SCRIPT) -Map $(LD_MAP) --no-check-sections
 CHECK_WARNINGS := -Wall -Wextra -Wno-format-security -Wno-unused-parameter -Wno-unused-variable -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -m32
 CFLAGS_CHECK   := -fsyntax-only -fsigned-char -nostdinc -fno-builtin -D CC_CHECK -std=gnu90 $(CHECK_WARNINGS)
 
@@ -104,9 +105,7 @@ DEPENDS := $(OBJECTS:=.d)
 
 ### Targets ###
 
-#build/src/libultra/os/%.o: CFLAGS := -O2 $(CFLAGSCOMMON)
-#build/src/libultra/libc/%.o: CFLAGS := -O2 $(CFLAGSCOMMON)
-#build/src/lib/%.o: CFLAGS := -O2 $(CFLAGSCOMMON)
+build/$(LIBULTRA_DIR)/src/%.o: OPTFLAGS := -O3 -g0 -funsigned-char
 
 all: $(ROM)
 
@@ -114,14 +113,16 @@ all: $(ROM)
 
 clean:
 	$(V)rm -rf build
-	$(V)rm -rf asm
 
 distclean: clean
-	$(V)rm -rf asm
-	$(V)rm -rf assets
+	$(V)rm -rf assets/
 	$(V)rm -f *auto.txt
 	$(V)rm -f dukenukemzerohour.ld
 	$(V)rm -f include/ld_addrs.h
+	$(V)rm -rf nonmatchings/
+	$(V)rm -rf gen/
+	$(V)rm -rf data/
+	$(V)rm -f ctx.c
 
 setup: distclean split
 
@@ -131,21 +132,33 @@ split:
 test: $(ROM)
 	$(V)$(EMULATOR) $<
 
-# Flags for individual files. TODO: move these to a common directory and make this a directory thing instead
+context:
+	@$(PRINT)$(GREEN)Creating context file...$(ENDLINE)
+	$(V)rm -f ctx.c ctx_includes.c
+	$(V)find include/ src/ -type f -name "*.h" | sed -e 's/.*/#include "\0"/' > ctx_includes.c
+	$(V)$(PYTHON) tools/m2ctx.py ctx_includes.c
+	$(V)sed -i 's/sizeof(long)/4/g' ctx.c
+	$(V)rm -f ctx_includes.c
 
-# Compile .c files with kmc gcc (use strip to fix objects so that they can be linked with modern gnu ld) 
-$(BUILD_DIR)/src/%.c.o: src/%.c
+compare:
+	$(V)$(PYTHON) tools/first_diff.py
+
+# Compile .c files with kmc gcc but preprocessed by modern gnu cpp (use strip to fix objects so that they can be linked with modern gnu ld)
+$(BUILD_DIR)/%.c.o: %.c
 	@$(PRINT)$(GREEN)Compiling C file: $(ENDGREEN)$(BLUE)$<$(ENDBLUE)$(ENDLINE)
 	@mkdir -p $(shell dirname $@)
 	@$(CC_HOST) $(CFLAGS_CHECK) $(CPPFLAGS) -MMD -MP -MT $@ -MF $@.d $<
-	$(V)export COMPILER_PATH=tools/gcc_2.7.2/$(DETECTED_OS) && $(CC) $(OPTFLAGS) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
+	$(V)$(CPP) $(CFLAGS) $(CPPFLAGS) -U__mips -D__FILE__=\"$(notdir $<)\" -Wno-builtin-macro-redefined $< -o $@.i
+	$(V)export COMPILER_PATH=tools/gcc_2.7.2/$(DETECTED_OS) && $(CC) $(OPTFLAGS) $(CFLAGS) -c -o $@ $@.i
 	@$(STRIP) $@ -N dummy-symbol-name
 
-# Assemble .s files with modern gnu as
-$(BUILD_DIR)/asm/%.s.o: asm/%.s
+# Compile .s files with kmc as but preprocessed by modern gnu cpp (use strip to fix objects so that they can be linked with modern gnu ld)
+$(BUILD_DIR)/%.s.o: %.s
 	@$(PRINT)$(GREEN)Assembling asm file: $(ENDGREEN)$(BLUE)$<$(ENDBLUE)$(ENDLINE)
 	@mkdir -p $(shell dirname $@)
-	$(V)$(AS) $(ASFLAGS) -o $@ $<
+	$(V)$(CPP) $(ASFLAGS) $(CPPFLAGS) -U_LANGUAGE_C $< -o $@.i
+	$(V)$(AS) $(ASFLAGS) -o $@ $@.i
+	@$(STRIP) $@ -N dummy-symbol-name
 
 # Create .o files from .bin files.
 $(BUILD_DIR)/%.bin.o: %.bin
