@@ -42,7 +42,7 @@ endif
 ### Output ###
 
 BUILD_DIR    := build
-LIBULTRA_DIR := libreultra
+LIBULTRA_DIR := libs/libultra
 ROM          := $(BUILD_DIR)/$(TARGET).z64
 ELF          := $(BUILD_DIR)/$(TARGET).elf
 LD_SCRIPT    := $(TARGET).ld
@@ -84,18 +84,17 @@ ENDLINE := \n'
 
 ### Compiler Options ###
 
+OPTFLAGS       := -O2 -g2
 ASFLAGS        := -G0 -mips3 -I include
-CFLAGS         := -G0 -mips3 -mgp32 -mfp32 #-Wa,--vr4300mul-off #-save-temps
-CPPFLAGS       := -I include -I $(BUILD_DIR)/include -I src -I $(LIBULTRA_DIR)/include/2.0I -I $(LIBULTRA_DIR)/include/2.0I/PR -D_LANGUAGE_C -DF3DEX_GBI_2 -D_MIPS_SZLONG=32 -D_FINALROM #-DF3DEX_GBI_2x
+CFLAGS         := -G0 -mips3 -mgp32 -mfp32 #-save-temps #-Wa,--vr4300mul-off
+CPPFLAGS       := -I include -I $(LIBULTRA_DIR)/include/2.0I -D_LANGUAGE_C -DF3DEX_GBI_2 -DF3DEX_GBI_2x -D_MIPS_SZLONG=32 -D_FINALROM
 LDFLAGS        := -T undefined_syms.txt -T undefined_funcs.txt -T undefined_funcs_auto.txt -T undefined_syms_auto.txt -T $(LD_SCRIPT) -Map $(LD_MAP) --no-check-sections
-CHECK_WARNINGS := -Wall -Wextra -Wno-format-security -Wno-unused-parameter -Wno-unused-variable -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -m32
+CHECK_WARNINGS := -Wall -Wextra -Wno-missing-braces -Wno-format-security -Wno-unused-parameter -Wno-unused-variable -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -m32
 CFLAGS_CHECK   := -fsyntax-only -fsigned-char -nostdinc -fno-builtin -D CC_CHECK -std=gnu90 $(CHECK_WARNINGS)
 
 ifneq ($(CHECK),1)
 CFLAGS_CHECK += -w
 endif
-
-OPTFLAGS := -O2 -g2
 
 ### Sources ###
 
@@ -105,7 +104,10 @@ DEPENDS := $(OBJECTS:=.d)
 
 ### Targets ###
 
-build/$(LIBULTRA_DIR)/src/%.o: OPTFLAGS := -O3 -g0 -funsigned-char
+build/src/codeseg0/common0.c.o: CPPFLAGS += -I libs -I $(LIBULTRA_DIR)/include/2.0I/PR
+build/$(LIBULTRA_DIR)/src/%.o: OPTFLAGS := -O3 -g0
+build/$(LIBULTRA_DIR)/src/%.o: CFLAGS += -funsigned-char
+build/$(LIBULTRA_DIR)/src/%.o: CPPFLAGS += -I $(LIBULTRA_DIR)/src -I $(LIBULTRA_DIR)/include/2.0I/PR
 
 all: $(ROM)
 
@@ -137,28 +139,25 @@ context:
 	$(V)rm -f ctx.c ctx_includes.c
 	$(V)find include/ src/ -type f -name "*.h" | sed -e 's/.*/#include "\0"/' > ctx_includes.c
 	$(V)$(PYTHON) tools/m2ctx.py ctx_includes.c
-	$(V)sed -i 's/sizeof(long)/4/g' ctx.c
 	$(V)rm -f ctx_includes.c
 
 compare:
 	$(V)$(PYTHON) tools/first_diff.py
 
-# Compile .c files with kmc gcc but preprocessed by modern gnu cpp (use strip to fix objects so that they can be linked with modern gnu ld)
+# Compile .c files with kmc gcc but preprocessed by modern gnu cpp
 $(BUILD_DIR)/%.c.o: %.c
 	@$(PRINT)$(GREEN)Compiling C file: $(ENDGREEN)$(BLUE)$<$(ENDBLUE)$(ENDLINE)
 	@mkdir -p $(shell dirname $@)
 	@$(CC_HOST) $(CFLAGS_CHECK) $(CPPFLAGS) -MMD -MP -MT $@ -MF $@.d $<
 	$(V)$(CPP) $(CFLAGS) $(CPPFLAGS) -U__mips -D__FILE__=\"$(notdir $<)\" -Wno-builtin-macro-redefined $< -o $@.i
 	$(V)export COMPILER_PATH=tools/gcc_2.7.2/$(DETECTED_OS) && $(CC) $(OPTFLAGS) $(CFLAGS) -c -o $@ $@.i
-	@$(STRIP) $@ -N dummy-symbol-name
 
-# Compile .s files with kmc as but preprocessed by modern gnu cpp (use strip to fix objects so that they can be linked with modern gnu ld)
+# Compile .s files with kmc as but preprocessed by modern gnu cpp
 $(BUILD_DIR)/%.s.o: %.s
 	@$(PRINT)$(GREEN)Assembling asm file: $(ENDGREEN)$(BLUE)$<$(ENDBLUE)$(ENDLINE)
 	@mkdir -p $(shell dirname $@)
 	$(V)$(CPP) $(ASFLAGS) $(CPPFLAGS) -U_LANGUAGE_C $< -o $@.i
 	$(V)$(AS) $(ASFLAGS) -o $@ $@.i
-	@$(STRIP) $@ -N dummy-symbol-name
 
 # Create .o files from .bin files.
 $(BUILD_DIR)/%.bin.o: %.bin

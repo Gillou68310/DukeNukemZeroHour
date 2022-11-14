@@ -5,11 +5,13 @@
             "name": "dukenukemzerohour",
             "includePath": [
                 "${workspaceFolder}/include",
-                "${workspaceFolder}/libreultra/include/2.0I",
-                "${workspaceFolder}/libreultra/include/2.0I/PR"
+                "${workspaceFolder}/libs/libultra/src",
+                "${workspaceFolder}/libs/libultra/include/2.0I",
+                "${workspaceFolder}/libs/libultra/include/2.0I/PR"
             ],
             "defines": [
                 "F3DEX_GBI_2",
+                "F3DEX_GBI_2x",
                 "_LANGUAGE_C",
                 "_MIPS_SZLONG=32",
                 "_FINALROM"

@@ -1,4 +1,7 @@
-#include "utils/graphics.h"
+#include "common.h"
+#include "codeseg0/graphics.h"
+
+/*.text*/
 
 void grPositionF(float mf[4][4], float r, float p, float h, float s,
                float x, float y, float z)
@@ -46,9 +49,6 @@ void grPosition(Mtx *m, float r, float p, float h, float s,
     grPositionF(mf, r, p, h, s, x, y, z);
     grMtxF2L(mf, m);
 }
-
-/*Hack for missing section when using -g1/2/3*/
-__asm__(".section .text\n");
 
 void grPerspectiveF(float mf[4][4], u16 *perspNorm, float fovy, float aspect, float near, float far, float scale)
 {
@@ -380,9 +380,6 @@ void grLookAtReflectF(float mf[4][4], LookAt *l,
     mf[2][3] = 0;
     mf[3][3] = 1;
 }
-
-/*Hack for missing section when using -g1/2/3*/
-__asm__(".section .text\n");
 
 void grLookAtReflect(Mtx *m, LookAt *l, float xEye, float yEye, float zEye,
                    float xAt, float yAt, float zAt,
