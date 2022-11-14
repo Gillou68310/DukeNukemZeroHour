@@ -3,6 +3,7 @@
 #include "libultra/src/os/osint.h"
 #include "libultra/src/io/controller.h"
 #include "libultra/src/io/piint.h"
+#include "libkmc/include/errno.h"
 
 extern OSThread __osThreadSave;
 extern OSPiHandle __Dom1SpeedParam;

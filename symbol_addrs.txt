@@ -456,6 +456,7 @@ D_80106D50                  = 0x80106D50; // type:data     size:0xBB8           
 D_8010A938                  = 0x8010A938; // type:data     size:0x4               (.comm)   (src/codeseg0/common0.c)
 D_8010A940                  = 0x8010A940; // type:data     size:0x68              (.comm)   (src/codeseg0/common0.c)
 __osContPifRam              = 0x80117DF0; // type:data     size:0x40              (.comm)   (src/codeseg0/common0.c)
+errno                       = 0x80117ED0; // type:data     size:0x4               (.comm)   (src/codeseg0/common0.c)
 D_80117ED8                  = 0x80117ED8; // type:data     size:0x270             (.comm)   (src/codeseg0/common0.c)
 D_80118148                  = 0x80118148; // type:data     size:0x1               (.comm)   (src/codeseg0/common0.c)
 D_80118160                  = 0x80118160; // type:data     size:0x4               (.comm)   (src/codeseg0/common0.c)

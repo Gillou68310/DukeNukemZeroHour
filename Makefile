@@ -43,6 +43,7 @@ endif
 
 BUILD_DIR    := build
 LIBULTRA_DIR := libs/libultra
+LIBKMC_DIR   := libs/libkmc
 ROM          := $(BUILD_DIR)/$(TARGET).z64
 ELF          := $(BUILD_DIR)/$(TARGET).elf
 LD_SCRIPT    := $(TARGET).ld
@@ -105,9 +106,14 @@ DEPENDS := $(OBJECTS:=.d)
 ### Targets ###
 
 build/src/codeseg0/common0.c.o: CPPFLAGS += -I libs -I $(LIBULTRA_DIR)/include/2.0I/PR
+
 build/$(LIBULTRA_DIR)/src/%.o: OPTFLAGS := -O3 -g0
 build/$(LIBULTRA_DIR)/src/%.o: CFLAGS += -funsigned-char
 build/$(LIBULTRA_DIR)/src/%.o: CPPFLAGS += -I $(LIBULTRA_DIR)/src -I $(LIBULTRA_DIR)/include/2.0I/PR
+
+build/$(LIBKMC_DIR)/src/%.o: OPTFLAGS := -O1 -g1
+build/$(LIBKMC_DIR)/src/%.o: CPPFLAGS += -I $(LIBKMC_DIR)/src -I $(LIBKMC_DIR)/include/
+build/$(LIBKMC_DIR)/src/%.o: ASFLAGS += -I $(LIBKMC_DIR)/src
 
 all: $(ROM)
 
@@ -148,7 +154,7 @@ compare:
 $(BUILD_DIR)/%.c.o: %.c
 	@$(PRINT)$(GREEN)Compiling C file: $(ENDGREEN)$(BLUE)$<$(ENDBLUE)$(ENDLINE)
 	@mkdir -p $(shell dirname $@)
-	@$(CC_HOST) $(CFLAGS_CHECK) $(CPPFLAGS) -MMD -MP -MT $@ -MF $@.d $<
+#	@$(CC_HOST) $(CFLAGS_CHECK) $(CPPFLAGS) -MMD -MP -MT $@ -MF $@.d $<
 	$(V)$(CPP) $(CFLAGS) $(CPPFLAGS) -U__mips -D__FILE__=\"$(notdir $<)\" -Wno-builtin-macro-redefined $< -o $@.i
 	$(V)export COMPILER_PATH=tools/gcc_2.7.2/$(DETECTED_OS) && $(CC) $(OPTFLAGS) $(CFLAGS) -c -o $@ $@.i
 

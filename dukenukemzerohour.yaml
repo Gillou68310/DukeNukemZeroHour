@@ -251,15 +251,15 @@ segments:
       - [0xBA3E0, c,        libs/libultra/src/libc/xlitob]
       - [0xBA630, c,        libs/libultra/src/libc/xldtob]
       - [0xBB0B0, c,        libs/libultra/src/libc/ldiv]
-      - [0xBB270, c,        gen/libkmc/src/sqrt]
-      - [0xBB490, c,        gen/libkmc/src/strcmp]
-      - [0xBB5A0, c,        gen/libkmc/src/strcpy]
-      - [0xBB670, c,        gen/libkmc/src/toupper]
-      - [0xBB6A0, c,        gen/libkmc/src/_matherr]
-      - [0xBB710, hasm,     gen/libkmc/src/mcmpl]
-      - [0xBB780, hasm,     gen/libkmc/src/mmuldi3]
-      - [0xBBB50, hasm,     gen/libkmc/src/mcvtls]
-      - [0xBBD40, c,        gen/libkmc/src/matherr]
+      - [0xBB270, c,        libs/libkmc/src/sqrt]
+      - [0xBB490, c,        libs/libkmc/src/strcmp]
+      - [0xBB5A0, c,        libs/libkmc/src/strcpy]
+      - [0xBB670, c,        libs/libkmc/src/toupper]
+      - [0xBB6A0, c,        libs/libkmc/src/_matherr]
+      - [0xBB710, hasm,     libs/libkmc/src/mcmpl]
+      - [0xBB780, hasm,     libs/libkmc/src/mmuldi3]
+      - [0xBBB50, hasm,     libs/libkmc/src/mcvtls]
+      - [0xBBD40, c,        libs/libkmc/src/matherr]
       - [0xBBD50, bin,      ucode/rspboot.text]
       - [0xBBE20, bin,      ucode/gspF3DEX2.NoN.fifo.text]
       - [0xBD1B0, bin,      ucode/aspMain.text]
@@ -339,7 +339,7 @@ segments:
       - [0xE47D0, .data,    libs/libultra/src/io/contpfs]
       - [0xE47E0, .data,    libs/libultra/src/io/contramread]
       - [0xE47F0, .data,    libs/libultra/src/libc/xlitob]
-      - [0xE4820, data,     libkmc/src/all]
+      - [0xE4820, .data,    libs/libkmc/src/toupper]
       - [0xE4920, bin,      ucode/gspF3DEX2.NoN.fifo.data]
       - [0xE4D40, bin,      ucode/aspMain.data]
     #.rodata section
@@ -392,7 +392,7 @@ segments:
       - [0xEB248, .rodata,  libs/libultra/src/io/devmgr]
       - [0xEB268, bin,      codeseg0/EB268.rodata.pad] #Padding
       - [0xEB270, .rodata,  libs/libultra/src/libc/xldtob]
-      - [0xEB2E0, rodata,   libkmc/src/all]
+      - [0xEB2E0, .rodata,  libs/libkmc/src/sqrt]
     #.bss section
       - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/codeseg0/main}
       - {start: 0xEB300, type:  bss, vram: 0x800F7040, name: codeseg0/24610}
