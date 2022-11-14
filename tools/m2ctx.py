@@ -11,30 +11,34 @@ root_dir = os.path.abspath(os.path.join(script_dir, ".."))
 src_dir = root_dir + "src/"
 
 # Project-specific
+CFLAGS = [
+    "-G0",
+    "-mips3",
+    "-mgp32",
+    "-mfp32",
+]
+
 CPP_FLAGS = [
     "-Iinclude",
-    "-Isrc",
-    "-Ibuild/include",
+    "-Ilibreultra/src",
     "-Ilibreultra/include/2.0I",
     "-Ilibreultra/include/2.0I/PR",
     "-D_LANGUAGE_C",
     "-DF3DEX_GBI_2",
-    #"-DF3DEX_GBI_2x",
+    "-DF3DEX_GBI_2x",
     "-D_MIPS_SZLONG=32",
-    #"-D__attribute__(...)=",
-    #"-D__asm__(...)=",
-    "-ffreestanding",
+    "-D_FINALROM",
+    "-U__mips",
     "-D__CTX__",
-
 ]
 
 def import_c_file(in_file) -> str:
     in_file = os.path.relpath(in_file, root_dir)
-    cpp_command = ["gcc", "-E", "-P", "-dM", *CPP_FLAGS, in_file]
-    cpp_command2 = ["gcc", "-E", "-P", *CPP_FLAGS, in_file]
+    cpp_command = ["mips-linux-gnu-cpp", "-P", "-dM", *CFLAGS, *CPP_FLAGS, in_file]
+    cpp_command2 = ["mips-linux-gnu-cpp", "-P", *CFLAGS, *CPP_FLAGS, in_file]
 
     with tempfile.NamedTemporaryFile(suffix=".c") as tmp:
-        stock_macros = subprocess.check_output(["gcc", "-E", "-P", "-dM", tmp.name], cwd=root_dir, encoding="utf-8")
+        stock_macros = subprocess.check_output(["mips-linux-gnu-cpp", "-P", "-dM", tmp.name], cwd=root_dir, encoding="utf-8")
 
     out_text = ""
     try:
@@ -54,7 +58,21 @@ def import_c_file(in_file) -> str:
 
     for line in stock_macros.strip().splitlines():
         out_text = out_text.replace(line + "\n", "")
-    return out_text
+
+    out_text_ = ""
+    for line in out_text.strip().splitlines():
+        if "#ident" in line:
+            continue
+        if "#define va_end" in line:
+            continue
+        if line.startswith(";"):
+            continue
+        if "sizeof(long)" in line:
+            line = line.replace("sizeof(long)", "4")
+
+        out_text_ += line + "\n"
+            
+    return out_text_
 
 def main():
     parser = argparse.ArgumentParser(
