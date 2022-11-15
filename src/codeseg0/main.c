@@ -22,12 +22,12 @@
 #include "codeseg0/8EFE0.h"
 #include "codeseg0/95500.h"
 #include "codeseg0/A06F0.h"
-#include "codeseg0/A5580.h"
 #include "codeseg0/common0.h"
 #include "codeseg0/main.h"
 #include "codeseg1/EB300.h"
 #include "codeseg1/common1.h"
 #include "spseg1/spinit.h"
+#include "libmus.h"
 
 #define IDLELOOP_STACKSIZE 0x1000
 #define MAINLOOP_STACKSIZE 0x8000
@@ -510,7 +510,7 @@ static void func_80001038(void)
 
         if ((D_800E1748 > 0) && (--D_800E1748 == 0))
         {
-            func_800A51A8(3, 0);
+            MusStop(MUSFLAG_EFFECTS|MUSFLAG_SONGS, 0);
             D_800E1748 = -1;
             D_8012FC90 = 0;
             switch (D_80118148)
@@ -704,7 +704,7 @@ static void func_80001D44(void)
     s16 height;
 
     func_8002AAC0();
-    func_800A51A8(3, 0);
+    MusStop(MUSFLAG_EFFECTS|MUSFLAG_SONGS, 0);
     switch (D_801CE5AC)
     {
     case 0:

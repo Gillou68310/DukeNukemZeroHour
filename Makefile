@@ -44,6 +44,7 @@ endif
 BUILD_DIR    := build
 LIBULTRA_DIR := libs/libultra
 LIBKMC_DIR   := libs/libkmc
+LIBMUS_DIR   := libs/libmus
 ROM          := $(BUILD_DIR)/$(TARGET).z64
 ELF          := $(BUILD_DIR)/$(TARGET).elf
 LD_SCRIPT    := $(TARGET).ld
@@ -88,7 +89,7 @@ ENDLINE := \n'
 OPTFLAGS       := -O2 -g2
 ASFLAGS        := -G0 -mips3 -I include
 CFLAGS         := -G0 -mips3 -mgp32 -mfp32 #-save-temps #-Wa,--vr4300mul-off
-CPPFLAGS       := -I include -I $(LIBULTRA_DIR)/include/2.0I -D_LANGUAGE_C -DF3DEX_GBI_2 -DF3DEX_GBI_2x -D_MIPS_SZLONG=32 -D_FINALROM
+CPPFLAGS       := -I include -I $(LIBULTRA_DIR)/include/2.0I -I $(LIBMUS_DIR)/include -D_LANGUAGE_C -DF3DEX_GBI_2 -DF3DEX_GBI_2x -D_MIPS_SZLONG=32 -D_FINALROM
 LDFLAGS        := -T undefined_syms.txt -T undefined_funcs.txt -T undefined_funcs_auto.txt -T undefined_syms_auto.txt -T $(LD_SCRIPT) -Map $(LD_MAP) --no-check-sections
 CHECK_WARNINGS := -Wall -Wextra -Wno-missing-braces -Wno-format-security -Wno-unused-parameter -Wno-unused-variable -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -m32
 CFLAGS_CHECK   := -fsyntax-only -fsigned-char -nostdinc -fno-builtin -D CC_CHECK -std=gnu90 $(CHECK_WARNINGS)
@@ -114,6 +115,10 @@ build/$(LIBULTRA_DIR)/src/%.o: CPPFLAGS += -I $(LIBULTRA_DIR)/src -I $(LIBULTRA_
 build/$(LIBKMC_DIR)/src/%.o: OPTFLAGS := -O1 -g1
 build/$(LIBKMC_DIR)/src/%.o: CPPFLAGS += -I $(LIBKMC_DIR)/src -I $(LIBKMC_DIR)/include/
 build/$(LIBKMC_DIR)/src/%.o: ASFLAGS += -I $(LIBKMC_DIR)/src
+
+build/$(LIBMUS_DIR)/src/%.o: OPTFLAGS := -O3 -g0
+build/$(LIBMUS_DIR)/src/%.o: CFLAGS += -D_OLD_AUDIO_LIBRARY
+build/$(LIBMUS_DIR)/src/%.o: CPPFLAGS += -I $(LIBULTRA_DIR)/include/2.0I/PR
 
 all: $(ROM)
 

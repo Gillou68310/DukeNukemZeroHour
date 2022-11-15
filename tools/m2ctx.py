@@ -20,7 +20,8 @@ CFLAGS = [
 
 CPP_FLAGS = [
     "-Iinclude",
-    "-Ilibreultra/include/2.0I",
+    "-Ilibs/libultra/include/2.0I",
+    "-Ilibs/libmus/include",
     "-D_LANGUAGE_C",
     "-DF3DEX_GBI_2",
     "-DF3DEX_GBI_2x",

@@ -89,10 +89,13 @@ segments:
       - [0x8EFE0, c,        gen/codeseg0/8EFE0]
       - [0x95500, c,        gen/codeseg0/95500]
       - [0xA06F0, c,        gen/codeseg0/A06F0]
-      - [0xA5580, c,        gen/codeseg0/A5580]
-      - [0xA8E80, c,        gen/codeseg0/A8E80]
-      - [0xA9D60, c,        gen/codeseg0/A9D60]
-      - [0xAA020, c,        gen/codeseg0/AA020]
+      - [0xA5580, c,        libs/libmus/src/player]
+      - [0xA8E80, c,        libs/libmus/src/player_fx]
+      - [0xA9760, c,        libs/libmus/src/aud_dma]
+      - [0xA9BB0, c,        libs/libmus/src/aud_sched]
+      - [0xA9D60, c,        libs/libmus/src/aud_thread]
+      - [0xAA020, c,        libs/libmus/src/lib_memory]
+      - [0xAA160, c,        libs/libmus/src/aud_samples]
       - [0xAA220, hasm,     libs/libultra/src/gu/sqrtf]
       - [0xAA230, c,        libs/libultra/src/gu/cosf]
       - [0xAA380, c,        libs/libultra/src/gu/coss]
@@ -292,9 +295,10 @@ segments:
       - [0xE2350, data,     codeseg0/8EFE0]
       - [0xE2370, data,     codeseg0/95500]
       - [0xE24D0, data,     codeseg0/A06F0]
-      - [0xE2580, data,     codeseg0/A5580]
-      - [0xE2640, data,     codeseg0/A8E80]
-      - [0xE2860, data,     codeseg0/A9D60]
+      - [0xE2580, .data,    libs/libmus/src/player]
+      - [0xE2640, .data,    libs/libmus/src/player_fx]
+      - [0xE2850, .data,    libs/libmus/src/aud_sched]
+      - [0xE2860, .data,    libs/libmus/src/aud_thread]
       - [0xE2870, .data,    libs/libultra/src/gu/rotateRPY]
       - [0xE2880, .data,    libs/libultra/src/gu/sins]
       - [0xE3080, .data,    libs/libultra/src/gu/position]
@@ -370,8 +374,8 @@ segments:
       - [0xEA330, rodata,   codeseg0/8EFE0]
       - [0xEA760, rodata,   codeseg0/95500]
       - [0xEA9C0, rodata,   codeseg0/A06F0]
-      - [0xEABB0, rodata,   codeseg0/A5580]
-      - [0xEAC90, rodata,   codeseg0/A8E80]
+      - [0xEABB0, .rodata,  libs/libmus/src/player]
+      - [0xEAC90, .rodata,  libs/libmus/src/player_fx]
       - [0xEACA0, .rodata,  libs/libultra/src/gu/cosf]
       - [0xEAD00, .rodata,  libs/libultra/src/gu/lookat]
       - [0xEAD20, .rodata,  libs/libultra/src/gu/lookatref]
@@ -400,10 +404,12 @@ segments:
       - {start: 0xEB300, type:  bss, vram: 0x800F9CC0, name: codeseg0/609D0}
       - {start: 0xEB300, type:  bss, vram: 0x800F9CD0, name: codeseg0/64530}
       - {start: 0xEB300, type:  bss, vram: 0x800F9CE0, name: codeseg0/88690}
-      - {start: 0xEB300, type:  bss, vram: 0x800FA3B0, name: codeseg0/A5580}
-      - {start: 0xEB300, type:  bss, vram: 0x800FA420, name: codeseg0/A8E80}
-      - {start: 0xEB300, type:  bss, vram: 0x800FA470, name: codeseg0/A9D60}
-      - {start: 0xEB300, type:  bss, vram: 0x800FA630, name: codeseg0/AA020}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA3B0, name: libs/libmus/src/player}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA420, name: libs/libmus/src/aud_dma}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA460, name: libs/libmus/src/aud_sched}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA470, name: libs/libmus/src/aud_thread}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA630, name: libs/libmus/src/lib_memory}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libmus/src/aud_samples}
       - {start: 0xEB300, type: .bss, vram: 0x800FA650, name: libs/libultra/src/io/motor}
       - {start: 0xEB300, type: .bss, vram: 0x800FA750, name: libs/libultra/src/io/pimgr}
       - {start: 0xEB300, type: .bss, vram: 0x800FB920, name: libs/libultra/src/io/vimgr}
