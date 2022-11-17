@@ -1,5 +1,5 @@
 #include "common.h"
-#include "codeseg0/71F0.h"
+#include "codeseg0/audio.h"
 #include "codeseg0/9410.h"
 #include "codeseg0/4590.h"
 #include "codeseg0/17B30.h"
@@ -280,7 +280,7 @@ static void idleLoop(void *arg)
 /*80000A6C*/
 void readRom(char *segStart, char *romStart, s32 size)
 {
-    return dmaRead(romStart, segStart, size);
+    return dmaRomToRam(romStart, segStart, size);
 }
 
 /*80000A94*/

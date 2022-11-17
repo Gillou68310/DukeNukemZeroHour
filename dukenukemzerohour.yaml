@@ -50,7 +50,7 @@ segments:
       - [0x4590,  c,        gen/codeseg0/4590]
       - [0x4600,  c,        gen/codeseg0/4600]
       - [0x5D50,  c,        src/codeseg0/graphics]
-      - [0x71F0,  c,        src/codeseg0/71F0]
+      - [0x71F0,  c,        src/codeseg0/audio]
       - [0x9410,  c,        gen/codeseg0/9410]
       - [0x16DF0, c,        gen/codeseg0/16DF0]
       - [0x16FF0, c,        gen/codeseg0/16FF0]
@@ -273,7 +273,7 @@ segments:
       - [0xBDFD0, .data,    src/codeseg0/main]
       - [0xBE030, data,     codeseg0/4600]
       - [0xBE050, .data,    src/codeseg0/graphics]
-      - [0xBE060, data,     codeseg0/71F0]
+      - [0xBE060, data,     codeseg0/audio]
       - [0xBE310, data,     codeseg0/9410]
       - [0xD8D20, data,     codeseg0/17B30]
       - [0xDD600, data,     codeseg0/1A7C0]
@@ -353,7 +353,7 @@ segments:
       - [0xE5000, .rodata,  src/codeseg0/main]
       - [0xE5080, rodata,   codeseg0/4600]
       - [0xE50D0, .rodata,  src/codeseg0/graphics]
-      - [0xE5110, rodata,   codeseg0/71F0]
+      - [0xE5110, rodata,   codeseg0/audio]
       - [0xE5150, rodata,   codeseg0/9410]
       - [0xE5310, rodata,   codeseg0/17B30]
       - [0xE55D0, rodata,   codeseg0/1A7C0]
@@ -448,12 +448,81 @@ segments:
       - [0xF85D0, .data,      src/spseg1/spinit]
       - [0xF8670, bin,        spseg1/F8670]
 
-  - type: bin
-    name: unknown
-    start: 0x11FC80
+  #EDL compressed files
+  - [0x11FC80,  bin,        files/all]
 
-  - type: bin
-    name: trailer #FF to the end
-    start: 0x1FCB220
+  #sounds
+  - [0x1191A00, bin,        sounds/bank0.ptr]
+  - [0x11BA850, bin,        sounds/bank0.wbk]
+  - [0x1A7E270, bin,        sounds/sfx.bfx]
 
+  - [0x1A8B5D0, bin,        sounds/training_base]
+  
+  - [0x1A8BEF0, bin,        sounds/bank1.ptr]
+  - [0x1A8DC60, bin,        sounds/bank1.wbk]
+  - [0x1B066D0, bin,        sounds/western1]
+  - [0x1B08180, bin,        sounds/western2]
+
+  - [0x1B08830, bin,        sounds/bank2.ptr]
+  - [0x1B092E0, bin,        sounds/bank2.wbk]
+  - [0x1B484C0, bin,        sounds/western_mine_cart]
+
+  - [0x1B48CD0, bin,        sounds/bank3.ptr]
+  - [0x1B4CB30, bin,        sounds/bank3.wbk]
+  - [0x1D2A400, bin,        sounds/present_day2]
+  - [0x1D2C2D0, bin,        sounds/present_day1]
+  - [0x1D2DC30, bin,        sounds/title_screen]
+  - [0x1D2FB20, bin,        sounds/present_day_boss_hog]
+
+  - [0x1D30E60, bin,        sounds/bank4.ptr]
+  - [0x1D31F40, bin,        sounds/bank4.wbk]
+  - [0x1DAA180, bin,        sounds/victorian1]
+  - [0x1DAA7F0, bin,        sounds/victorian2]
+
+  - [0x1DAB450, bin,        sounds/bank5.ptr]
+  - [0x1DAB7D0, bin,        sounds/bank5.wbk]
+  - [0x1E71960, bin,        sounds/boss]
+
+  - [0x1E71A30, bin,        sounds/bank6.ptr]
+  - [0x1E71FB0, bin,        sounds/bank6.wbk]
+  - [0x1F05500, bin,        sounds/final_alien_mother]
+
+  - [0x1F05630, bin,        sounds/bank7.ptr]
+  - [0x1F06580, bin,        sounds/bank7.wbk]
+  - [0x1F3B390, bin,        sounds/ambient1]
+
+  - [0x1F3BD90, bin,        sounds/bank8.ptr]
+  - [0x1F3C4F0, bin,        sounds/bank8.wbk]
+  - [0x1F5AC70, bin,        sounds/ambient2]
+
+  - [0x1F5B310, bin,        sounds/bank9.ptr]
+  - [0x1F5BB50, bin,        sounds/bank9.wbk]
+  - [0x1F799B0, bin,        sounds/ambient3]
+
+  - [0x1F7AF60, bin,        sounds/bank10.ptr]
+  - [0x1F7B5E0, bin,        sounds/bank10.wbk]
+  - [0x1F8C510, bin,        sounds/ambient4]
+
+  - [0x1F8CD20, bin,        sounds/bank11.ptr]
+  - [0x1F8CF50, bin,        sounds/bank11.wbk]
+  - [0x1F90FE0, bin,        sounds/ambient5]
+
+  - [0x1F911C0, bin,        sounds/bank12.ptr]
+  - [0x1F91840, bin,        sounds/bank12.wbk]
+  - [0x1FAA460, bin,        sounds/ambient6]  #waterworld
+
+  - [0x1FAAD40, bin,        sounds/bank13.ptr]
+  - [0x1FAAF20, bin,        sounds/bank13.wbk]
+  - [0x1FB52F0, bin,        sounds/ambient7]
+
+  - [0x1FB58A0, bin,        sounds/bank14.ptr]
+  - [0x1FB5A80, bin,        sounds/bank14.wbk]
+  - [0x1FC4990, bin,        sounds/ambient8]
+
+  - [0x1FC56B0, bin,        sounds/bank15.ptr]
+  - [0x1FC57C0, bin,        sounds/bank15.wbk]
+  - [0x1FCB1B0, bin,        sounds/ambient9]
+
+  #0xFF to the end
+  - [0x1FCB220, bin,        trailer]
   - [0x2000000]
