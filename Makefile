@@ -54,7 +54,7 @@ LD_MAP       := $(BUILD_DIR)/$(TARGET).map
 ### Tools ###
 
 PYTHON     := python3
-N64CKSUM   := $(PYTHON) tools/n64cksum.py
+N64CKSUM   := $(PYTHON) tools/scripts/n64cksum.py
 SPLAT_YAML := dukenukemzerohour.yaml
 SPLAT      := $(PYTHON) tools/splat/split.py $(SPLAT_YAML)
 EMULATOR   := mupen64plus
@@ -146,11 +146,11 @@ context:
 	@$(PRINT)$(GREEN)Creating context file...$(ENDLINE)
 	$(V)rm -f ctx.c ctx_includes.c
 	$(V)find include/ src/ -type f -name "*.h" | sed -e 's/.*/#include "\0"/' > ctx_includes.c
-	$(V)$(PYTHON) tools/m2ctx.py ctx_includes.c
+	$(V)$(PYTHON) tools/scripts/m2ctx.py ctx_includes.c
 	$(V)rm -f ctx_includes.c
 
 compare:
-	$(V)$(PYTHON) tools/first_diff.py
+	$(V)$(PYTHON) tools/scripts/first_diff.py
 
 # Compile .c files with kmc gcc but preprocessed by modern gnu cpp
 $(BUILD_DIR)/%.c.o: %.c
