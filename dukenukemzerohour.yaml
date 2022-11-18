@@ -43,6 +43,7 @@ segments:
     bss_size: 0xD6680
     subsegments:
     #.text section
+      - [0x1000,  c,        src/codeseg0/common0]
       - [0x1000,  hasm,     src/codeseg0/entrypoint]
       - [0x1040,  bin,      codeseg0/1040.text.pad] #Padding
       - [0x1050,  c,        src/codeseg0/main]
@@ -96,6 +97,7 @@ segments:
       - [0xA9D60, c,        libs/libmus/src/aud_thread]
       - [0xAA020, c,        libs/libmus/src/lib_memory]
       - [0xAA160, c,        libs/libmus/src/aud_samples]
+      - [0xAA220, c,        libs/libultra/src/os/kdebugserver]
       - [0xAA220, hasm,     libs/libultra/src/gu/sqrtf]
       - [0xAA230, c,        libs/libultra/src/gu/cosf]
       - [0xAA380, c,        libs/libultra/src/gu/coss]
@@ -254,6 +256,7 @@ segments:
       - [0xBA3E0, c,        libs/libultra/src/libc/xlitob]
       - [0xBA630, c,        libs/libultra/src/libc/xldtob]
       - [0xBB0B0, c,        libs/libultra/src/libc/ldiv]
+      - [0xBB270, c,        libs/libkmc/src/errno]
       - [0xBB270, c,        libs/libkmc/src/sqrt]
       - [0xBB490, c,        libs/libkmc/src/strcmp]
       - [0xBB5A0, c,        libs/libkmc/src/strcpy]
@@ -426,6 +429,7 @@ segments:
     subalign: 8
     subsegments:
     #.text section
+      - [0xEB300,  c,        src/codeseg1/common1]
       - [0xEB300,  c,        src/codeseg1/EB300]
     #.data section?
       - [0xF46C0,  data,     codeseg1/EB300]

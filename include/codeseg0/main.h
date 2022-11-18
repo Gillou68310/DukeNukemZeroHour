@@ -2,6 +2,7 @@
 #define _MAIN_H_
 
 #include "common.h"
+#include "codeseg0/common0.h"
 
 void func_80000450(void);
 void func_80000610(void);

@@ -35,41 +35,56 @@
 #define PHYSICAL_SEGMENT 0
 #define STATIC_SEGMENT 1
 #define FRAMEBUFFER_SEGMENT 2
+#define OUTPUT_BUFFER_SIZE 65536
 
 /*.data*/
 static s32 D_800BD3D0 = 2;
-s32 gScreenWidth = SCREEN_WIDTH;   /*800BD3D4*/
+s32 gScreenWidth = SCREEN_WIDTH; /*800BD3D4*/
 s32 gScreenHeight = SCREEN_HEIGHT; /*800BD3D8*/
-static s64 D_800BD3E0 = 0LL;       /*800BD3E0*/
-s32 D_800BD3E8 = 0;                /*800BD3E8*/
-static u8 r = 0;                   /*800BD3EC*/
-static u8 g = 0;                   /*800BD3ED*/
-static u8 b = 0;                   /*800BD3EE*/
-static s32 D_800BD3F0 = 0;         /*800BD3F0*/
-static s32 D_800BD3F4 = 0;         /*800BD3F4*/
+static s64 D_800BD3E0 = 0LL; /*800BD3E0*/
+s32 D_800BD3E8 = 0; /*800BD3E8*/
+static u8 r = 0; /*800BD3EC*/
+static u8 g = 0; /*800BD3ED*/
+static u8 b = 0; /*800BD3EE*/
+static s32 D_800BD3F0 = 0; /*800BD3F0*/
+static s32 D_800BD3F4 = 0; /*800BD3F4*/
 u8 D_800BD3F8 = 0;
-s8 D_800BD3F9 = 1;                  /*800BD3F9*/
-static s32 D_800BD3FC = 0;          /*800BD3FC*/
+s8 D_800BD3F9 = 1; /*800BD3F9*/
+static s32 D_800BD3FC = 0; /*800BD3FC*/
 static OSScMsg replyMsg = {2, {0}}; /*800BD400*/
-static s32 framebufferIndex = 0;    /*800BD420*/
-s32 gGfxTaskIndex = 0;              /*800BD424*/
+static s32 framebufferIndex = 0; /*800BD420*/
+s32 gGfxTaskIndex = 0; /*800BD424*/
 static s32 D_800BD428 = 0;
 static u8 D_800BD42C = 1; /*800BD42C*/
 static u8 D_800BD42D = 0; /*800BD42D*/
 static u16 D_800BD42E = 0;
 
 /*.bss*/
-static OSThread idleLoopThread;                                   /*800EA700*/
+static OSThread idleLoopThread; /*800EA700*/
 static u64 idleLoopThreadStack[IDLELOOP_STACKSIZE / sizeof(u64)]; /*800EA8B0*/
-static OSThread mainLoopThread;                                   /*800EB8B0*/
+static OSThread mainLoopThread; /*800EB8B0*/
 static u64 mainLoopThreadStack[MAINLOOP_STACKSIZE / sizeof(u64)]; /*800EBA60*/
-static u8 D_800F3A60[0x11B0];
-static u8 D_800F4C10[0x2000];
-static u8 D_800F6C10[0x08];
-static u8 D_800F6C18[0x08];
+/*auto*/ static u8 D_800F3A60[0x11B0];
+/*auto*/ static u8 D_800F4C10[0x2000];
+/*auto*/ static u8 D_800F6C10[0x08];
+/*auto*/ static u8 D_800F6C18[0x08];
 static OSMesg piMessages[NUM_PI_MSGS]; /*800F6C20*/
-static OSMesgQueue piMessageQ;         /*800F7020*/
-static s8 viMode;                      /*800F7038*/
+static OSMesgQueue piMessageQ; /*800F7020*/
+static s8 viMode; /*800F7038*/
+
+/*.comm*/
+void *gFramebuffer[3]; /*800FF530*/
+s32 gGfxDebugTime; /*80118160*/
+s32 D_80119A5C; /*80119A5C*/
+OSMesgQueue D_80119A78; /*80119A78*/
+Dynamic gDynamic[GFX_TASKS]; /*8011BC60*/
+OSViMode *D_8012E158; /*8012E158*/
+u64 gfxYieldBuf[OS_YIELD_DATA_SIZE / sizeof(u64)]; /*801A1A20*/
+OSMesgQueue gfxFrameMsgQ; /*801AC8B8*/
+OSScTask gGfxTask[GFX_TASKS]; /*801ACB00*/
+s64 D_801AE498; /*801AE498*/
+u64 gDramStack[SP_DRAM_STACK_SIZE64]; /*801AEA40*/
+u64 gOutputBuffer[OUTPUT_BUFFER_SIZE / sizeof(u64)]; /*801B0D40*/
 
 /*.text*/
 static void idleLoop(void *);
@@ -683,8 +698,8 @@ static void createGfxTask(void)
     t->msg = &replyMsg;
     t->framebuffer = gFramebuffer[framebufferIndex];
     osWritebackDCacheAll();
-    osSendMesg(osScGetCmdQ(&D_801A6AF8), t, 0);
-    D_80118160 = gGfxTask[gGfxTaskIndex].totalTime;
+    osSendMesg(osScGetCmdQ(&gScheduler), t, 0);
+    gGfxDebugTime = gGfxTask[gGfxTaskIndex].totalTime;
 }
 
 /*80001CFC*/

@@ -2,6 +2,16 @@
 #include "codeseg0/2ABE0.h"
 #include "codeseg0/common0.h"
 
+typedef struct
+{
+    s32 unk_00;
+    s32 unk_04;
+    u8 *unk_08;
+}unkStruct1;
+
+/*.comm*/
+unkStruct1 D_800FF540[2048]; /*800FF540*/
+
 /*.text*/
 
 INCLUDE_ASM(s32, "src/codeseg0/2ABE0", func_80029FE0);

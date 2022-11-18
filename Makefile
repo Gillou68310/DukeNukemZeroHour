@@ -105,9 +105,6 @@ OBJECTS := $(shell grep -E 'build.+\.o' dukenukemzerohour.ld -o)
 DEPENDS := $(OBJECTS:=.d) 
 
 ### Targets ###
-
-build/src/codeseg0/common0.c.o: CPPFLAGS += -I libs -I $(LIBULTRA_DIR)/include/2.0I/PR
-
 build/$(LIBULTRA_DIR)/src/%.o: OPTFLAGS := -O3 -g0
 build/$(LIBULTRA_DIR)/src/%.o: CFLAGS += -funsigned-char
 build/$(LIBULTRA_DIR)/src/%.o: CPPFLAGS += -I $(LIBULTRA_DIR)/src -I $(LIBULTRA_DIR)/include/2.0I/PR

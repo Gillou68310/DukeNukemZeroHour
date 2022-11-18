@@ -19,11 +19,11 @@ void dmaRead(char* romStart, char* segStart, s32 size) {
             if (size > CHUNK_SIZE) {
                 chunkSize = CHUNK_SIZE;
             }
-            osPiStartDma(&dmaIOMessageBuf, OS_MESG_PRI_NORMAL, OS_READ, (u32)romStart, segStart, chunkSize, &dmaMessageQ);
+            osPiStartDma(&dmaIOMessageBuf, OS_MESG_PRI_NORMAL, OS_READ, (u32)romStart, segStart, chunkSize, &gDmaMessageQ);
             romStart += chunkSize;
             segStart += chunkSize;
             size -= chunkSize;
-            osRecvMesg(&dmaMessageQ, NULL, 1);
+            osRecvMesg(&gDmaMessageQ, NULL, 1);
         } while (size != 0);
     }
 }
