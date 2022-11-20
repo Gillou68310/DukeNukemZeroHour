@@ -174,6 +174,7 @@ typedef struct
 /*80138688*/ _extern OSTime D_80138688;
 /*80138864*/ _extern void *gDepthBuffer;
 /*80168D0C*/ _extern s16 D_80168D0C;
+/*80168D10*/ _extern s32 D_80168D10;
 /*80168D18*/ _extern s32 D_80168D18;
 /*8016D170*/ _extern Vtx *gpVertex;
 /*8016D174*/ _extern u8 D_8016D174[4];
@@ -181,6 +182,8 @@ typedef struct
 /*80197D58*/ _extern OSMesgQueue gDmaMessageQ;
 /*80197DE0*/ _extern s32 D_80197DE0;
 /*80199524*/ _extern s32 D_80199524;
+/*80199528*/ _extern s32 D_80199528;
+/*80199750*/ _extern s32 D_80199750;
 /*8019B940*/ _extern common0UnkStruct3 D_8019B940[150];
 /*801A1958*/ _extern common0UnkStruct4 D_801A1958;
 /*801A1970*/ _extern s32 D_801A1970;

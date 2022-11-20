@@ -51,7 +51,7 @@ segments:
       - [0x4600,  c,        src/codeseg0/4600]
       - [0x5D50,  c,        src/codeseg0/graphics]
       - [0x71F0,  c,        src/codeseg0/audio]
-      - [0x9410,  c,        gen/codeseg0/9410]
+      - [0x9410,  c,        src/codeseg0/9410]
       - [0x16DF0, c,        gen/codeseg0/16DF0]
       - [0x16FF0, c,        gen/codeseg0/16FF0]
       - [0x17B30, c,        gen/codeseg0/17B30]
@@ -446,9 +446,11 @@ segments:
     vram: 0x01000000 #0x801CF720
     subalign: 8
     subsegments:
-      - [0xF6D70, bin,        spseg1/F6D70]
-      - [0xF85D0, .data,      src/spseg1/spinit]
-      - [0xF8670, bin,        spseg1/F8670]
+      - [0xF6D70,  data,       spseg1/F6D70]
+      - [0xF85D0,  .data,      src/spseg1/spinit]
+      - [0xF8670,  data,       spseg1/F8670]
+      - [0xF8730,  .data,      src/spseg1/tileinfo]
+      - [0x105F50, data,       spseg1/105F50]
 
   #EDL compressed files
   - [0x11FC80,  bin,        files/all]

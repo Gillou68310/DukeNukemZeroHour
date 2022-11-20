@@ -2,11 +2,15 @@
 #define _9410_H_
 
 #include "common.h"
+#include "spseg1/tileinfo.h"
 
 void func_80008810(s16);
 void func_80008E3C(void);
+void func_8000E04C(void);
 void func_8000EA0C(u8, s16, s16, s16, s32);
 void func_8000EB4C(u8, s16, s16, s16, s32);
+u16 getTileId(u16 tilenum);
+u8 *tileLoad(u16 tileid);
 
 typedef struct
 {
@@ -17,5 +21,6 @@ typedef struct
 } _9410unkStruct1;
 
 /*800BD710*/ extern _9410unkStruct1 D_800BD710[5];
+/*801AC9F0*/ extern TileInfo *gpTileInfo;
 
 #endif
