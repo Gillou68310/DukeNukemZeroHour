@@ -27,6 +27,7 @@ CPP_FLAGS = [
     "-DF3DEX_GBI_2x",
     "-D_MIPS_SZLONG=32",
     "-D_FINALROM",
+    "-DTARGET_N64",
     "-U__mips",
     "-D__CTX__",
 ]

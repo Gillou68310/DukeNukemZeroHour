@@ -48,7 +48,7 @@ segments:
       - [0x1040,  bin,      codeseg0/1040.text.pad] #Padding
       - [0x1050,  c,        src/codeseg0/main]
       - [0x4590,  c,        gen/codeseg0/4590]
-      - [0x4600,  c,        gen/codeseg0/4600]
+      - [0x4600,  c,        src/codeseg0/4600]
       - [0x5D50,  c,        src/codeseg0/graphics]
       - [0x71F0,  c,        src/codeseg0/audio]
       - [0x9410,  c,        gen/codeseg0/9410]

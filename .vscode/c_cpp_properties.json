@@ -18,7 +18,8 @@
                 "F3DEX_GBI_2x",
                 "_LANGUAGE_C",
                 "_MIPS_SZLONG=32",
-                "_FINALROM"
+                "_FINALROM",
+                "TARGET_N64"
             ],
             "cStandard": "c89",
             "cppStandard": "c++17",
