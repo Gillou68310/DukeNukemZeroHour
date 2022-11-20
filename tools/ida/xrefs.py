@@ -14,7 +14,7 @@ def xrefs(segment, section):
     ea = s.start_ea
     while ea < s.end_ea:
         name = ida_name.get_ea_name(ea)
-        if name != '':
+        if name != '' and not name.startswith('loc_') and not name.startswith('locret_'):
             f.write(name + ';')
             f.write(f'{ea:08X}' + ';')
             rom_addr = ea - segment.vram_start + segment.rom_start
@@ -44,6 +44,7 @@ options.initialize(config, 'dukenukemzerohour.yaml', None, None)
 all_segments = initialize_segments(config["segments"])
 for segment in all_segments:
     if segment.name == 'codeseg0' or segment.name == 'codeseg1':
+        xrefs(segment, 'text')
         xrefs(segment, 'data')
         xrefs(segment, 'rodata')
         xrefs(segment, 'bss')

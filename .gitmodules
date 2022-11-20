@@ -10,3 +10,18 @@
 [submodule "libs/libmus"]
 	path = libs/libmus
 	url = https://github.com/Gillou68310/libmus.git
+[submodule "tools/asm-differ"]
+	path = tools/asm-differ
+	url = C:/Projects/GSI/N64/decomp/DukeNukemZeroHour/tools/asm-differ
+[submodule "tools/decomp-permuter"]
+	path = tools/decomp-permuter
+	url = C:/Projects/GSI/N64/decomp/DukeNukemZeroHour/tools/decomp-permuter
+[submodule "tools/mips-binutils-2.6"]
+	path = tools/mips-binutils-2.6
+	url = C:/Projects/GSI/N64/decomp/DukeNukemZeroHour/tools/mips-binutils-2.6
+[submodule "tools/mips-gcc-2.7.2"]
+	path = tools/mips-gcc-2.7.2
+	url = C:/Projects/GSI/N64/decomp/DukeNukemZeroHour/tools/mips-gcc-2.7.2
+[submodule "tools/m2c"]
+	path = tools/m2c
+	url = C:/Projects/GSI/N64/decomp/DukeNukemZeroHour/tools/m2c

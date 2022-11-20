@@ -31,10 +31,15 @@ CPP_FLAGS = [
     "-D__CTX__",
 ]
 
-def import_c_file(in_file, macro) -> str:
+def import_c_file(in_file, macro, linemarker) -> str:
     in_file = os.path.relpath(in_file, root_dir)
+    
     cpp_command = ["mips-linux-gnu-cpp", "-P", "-dM", *CFLAGS, *CPP_FLAGS, in_file]
-    cpp_command2 = ["mips-linux-gnu-cpp", "-P", *CFLAGS, *CPP_FLAGS, in_file]
+
+    if linemarker:
+        cpp_command2 = ["mips-linux-gnu-cpp", *CFLAGS, *CPP_FLAGS, in_file]
+    else:
+        cpp_command2 = ["mips-linux-gnu-cpp", "-P", *CFLAGS, *CPP_FLAGS, in_file]
 
     if macro:
         with tempfile.NamedTemporaryFile(suffix=".c") as tmp:
@@ -60,10 +65,13 @@ def import_c_file(in_file, macro) -> str:
     out_text_ = ""
     for line in out_text.strip().splitlines():
         if "#ident" in line:
+            out_text_ += "\n"
             continue
         if "#define va_end" in line:
+            out_text_ += "\n"
             continue
         if line.startswith(";"):
+            out_text_ += "\n"
             continue
         if "sizeof(long)" in line:
             line = line.replace("sizeof(long)", "4")
@@ -82,7 +90,7 @@ def main():
     )
     args = parser.parse_args()
 
-    output = import_c_file(args.c_file, True)
+    output = import_c_file(args.c_file, True, False)
 
     with open(os.path.join(root_dir, "ctx.c"), "w", encoding="UTF-8") as f:
         f.write(output)

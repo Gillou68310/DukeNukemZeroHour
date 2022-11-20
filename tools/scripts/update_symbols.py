@@ -5,12 +5,11 @@ import argparse
 import glob
 import sys
 import os
-sys.path.append("./tools/misc")
 import m2ctx
 
 class SYMBOL:
     def __init__(self, name: str = None, addr: int = 0, type: str = None, \
-                 size: int = 0, static: bool = False, source: str = None, section: str = None):
+                 size: int = 0, static: bool = False, source: str = None, section: str = None, exclude: bool = False):
          self.name: str = name
          self.addr: int = addr
          self.type: str = type
@@ -18,6 +17,7 @@ class SYMBOL:
          self.static: bool = static
          self.source: str = source
          self.section: str = section
+         self.exclude: bool = exclude
     def __lt__(self, other):
          return self.addr < other.addr
 
@@ -75,7 +75,7 @@ class SYMBOLS:
 
     def update(self, symbol: SYMBOL) -> None:
         index = self.names.get(symbol.name)
-        if index != None:
+        if index != None and not self.symbols[index].exclude:
             if symbol.size != 0:
                 self.symbols[index].size = symbol.size
             if symbol.type != None:
@@ -85,6 +85,7 @@ class SYMBOLS:
                 self.symbols[index].section = symbol.section
             if symbol.source != None:
                 self.symbols[index].source = symbol.source
+            self.symbols[index].exclude = symbol.exclude
 
 def parse_symbols_from_config(file: str, symbols: SYMBOLS) -> None:
     f = open(file, 'r')
@@ -125,26 +126,30 @@ def parse_addrs_from_source(file: str, coord: dict, symbols: SYMBOLS) -> None:
     for i in range(0, len(lines)):
         if '/*' in lines[i]:
             # Look for symbol addrs
-            sp = lines[i].split('/*')[1]
-            sp = sp.split('*/')[0]
-            try:
-                addr = int(sp, 16)
-            except:
-                continue
+            addr = 0
+            elmts = lines[i].split('/*')
+            for elmt in elmts:
+                try:
+                    addr = int(elmt.split('*/')[0], 16)
+                except:
+                    continue
 
             if addr < 0x01000000:
                 continue
-            
+
+            name = coord.get(i+1)
             # Is symbol on next line?
-            if lines[i].strip().startswith('/*'):
+            if name == None:
                 name = coord.get(i+2)
-            else:
-                name = coord.get(i+1)
             if name == None:
                 continue
 
             sym = SYMBOL(name=name, addr=addr)
             symbols.add(sym, True)
+        elif lines[i].startswith('INCLUDE_ASM'):
+             name = lines[i].split(',')[2].split(')')[0].strip()
+             sym = SYMBOL(name=name, exclude=True)
+             symbols.update(sym)
 
 def parse_object_file(file: str, symbols: SYMBOLS) -> None:
     result = subprocess.run(['mips-linux-gnu-nm', '--defined-only', '--print-size', '--print-file-name', file], \
@@ -200,7 +205,7 @@ class Visitor(c_ast.NodeVisitor):
             self.coord[node.coord.line] = node.declname
 
 def parse_source_file(file: str, symbols: SYMBOLS) -> None:            
-    out_text = m2ctx.import_c_file(file, False)
+    out_text = m2ctx.import_c_file(file, False, True)
     parser = c_parser.CParser()
     try:
         ast = parser.parse(out_text, filename='<stdin>')
@@ -229,7 +234,13 @@ if len(args.Path) == 0:
     h_files = [y for x in os.walk('include') for y in glob.glob(os.path.join(x[0], '*.h'))]
     files = c_files + h_files
 else:
+    h_files = []
     files = args.Path
+    for file in files:
+        if '.c' in file:
+            h = file.replace('src/', 'include/').replace('.c', '.h')
+            h_files.append(h)
+    files += h_files
 
 for file in files:
     parse_source_file(file, symbols)
