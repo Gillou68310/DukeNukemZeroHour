@@ -5,7 +5,7 @@
 #include "codeseg0/17B30.h"
 #include "codeseg0/1E7A0.h"
 #include "codeseg0/20490.h"
-#include "codeseg0/2ABE0.h"
+#include "codeseg0/cache1d.h"
 #include "codeseg0/35EA0.h"
 #include "codeseg0/37090.h"
 #include "codeseg0/3FAD0.h"
@@ -419,7 +419,7 @@ static void func_80001038(void)
         D_80197DE0 += 4;
         D_80168D0C = RAND(0x7FFF);
         D_801A1958.unk_0C++;
-        func_8002AC70();
+        agecache();
         if (D_801AD470 != 0)
         {
             func_8008DE14();
