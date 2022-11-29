@@ -1,6 +1,9 @@
 #include "common.h"
+#include "codeseg0/main.h"
+#include "codeseg0/4600.h"
 #include "codeseg0/cache1d.h"
 #include "codeseg0/edl.h"
+#include "codeseg1/common1.h"
 
 typedef struct
 {
@@ -14,11 +17,20 @@ typedef struct
   s32 result;
 } EDLInfo;
 
+typedef struct
+{
+  u8 *romstart;
+  u8 *romend;
+  u8 **handle;
+  u8 *unkC;
+} unkFileInfo;
+
 /*data*/
 /*800E0B40*/ extern /*static*/ u8 D_800E0B40[32];
 /*800E0B60*/ extern /*static*/ u8 D_800E0B60[32];
 /*800E0B80*/ extern /*static*/ u16 D_800E0B80[30];
 /*800E0BBC*/ extern /*static*/ u8 D_800E0BBC[32];
+/*800E0D18*/ extern /*static*/ unkFileInfo D_800E0D18[32];
 
 /*comm*/
 /*8012CD90*/ u32 D_8012CD90[288];
@@ -165,8 +177,56 @@ void allocacheEDL(u8 **handle, s32 size)
   allocache(handle, size + 16, &gCacheLock[1]);
 }
 
-INCLUDE_ASM(s32, "src/codeseg0/edl", func_80081688);
+/*80081688*/
+void func_80081688(u8 **handle, s32 id)
+{
+  s32 size;
+  unkFileInfo *info;
 
-INCLUDE_ASM(s32, "src/codeseg0/edl", func_80081760);
+  info = &D_800E0D18[id];
+  size = info->romend - info->romstart;
+  if (size > 0x5B108)
+  {
+    while (1)
+      ;
+  }
+  readRom(D_801CD96C, info->romstart, size);
+  if (isEDL(D_801CD96C) != 0)
+  {
+    _decompressEDL(handle, D_801CD96C, NULL);
+    info->handle = handle;
+  }
+  else
+  {
+    allocache(handle, size, gCacheLock + 1);
+    Bmemcpy(*handle, D_801CD96C, size);
+    info->handle = handle;
+  }
+}
+
+/*80081760*/
+void func_80081760(u8 **handle, s32 id, u8 *dst)
+{
+  s32 size;
+  unkFileInfo *info;
+
+  info = &D_800E0D18[id];
+  size = info->romend - info->romstart;
+  if (size > 0x5B108)
+  {
+    while (1)
+      ;
+  }
+  readRom(D_801CD96C, info->romstart, size);
+  if (isEDL(D_801CD96C) != 0)
+  {
+    _decompressEDL(handle, D_801CD96C, dst);
+    info->handle = handle;
+    return;
+  }
+  allocache(handle, size, gCacheLock + 1);
+  Bmemcpy(*handle, D_801CD96C, size);
+  info->handle = handle;
+}
 
 INCLUDE_ASM(s32, "src/codeseg0/edl", func_80081840);
