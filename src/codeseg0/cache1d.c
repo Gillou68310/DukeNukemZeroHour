@@ -12,7 +12,7 @@ typedef struct
 } cactype;
 
 /*data*/
-/*800DD3F0*/ u8 gCacheLock[2] = { 200, 200 };
+/*800DD3F0*/ u8 gCacheLock[2] = {200, 200};
 /*800DD3F4*/ static s32 cachesize = 0;
 /*800DD3F8*/ static s32 cachecount = 0;
 /*800DD3FC*/ static u8 zerochar = 0;
@@ -36,7 +36,7 @@ void initcache(u8 *dacachestart, s32 dacachesize)
             *gCac[i].hand = NULL;
         gCac[i].hand = NULL;
         gCac[i].lock = &zerochar;
-        gCac[i].leng = NULL;
+        gCac[i].leng = 0;
     }
 
     for (i = 1; i < 200; i++)
@@ -59,29 +59,30 @@ INCLUDE_ASM(s32, "src/codeseg0/cache1d", _allocache);
 /*8002A7BC*/
 void suckcache(u8 **suckptr)
 {
-	s32 i;
+    s32 i;
 
-	for(i=0;i<gCacNum;i++)
+    for (i = 0; i < gCacNum; i++)
     {
-		if (gCac[i].hand == suckptr)
-		{
-			if (*gCac[i].lock) *gCac[i].hand = 0;
-			gCac[i].lock = &zerochar;
-			gCac[i].hand = 0;
+        if (gCac[i].hand == suckptr)
+        {
+            if (*gCac[i].lock)
+                *gCac[i].hand = 0;
+            gCac[i].lock = &zerochar;
+            gCac[i].hand = 0;
 
-			if ((i > 0) && (*gCac[i-1].lock == 0))
-			{
-				gCac[i-1].leng += gCac[i].leng;
-				gCacNum--;
-                Bmemcpy(&gCac[i],&gCac[i+1],(gCacNum-i)*sizeof(cactype));
-			}
-			else if ((i < gCacNum-1) && (*gCac[i+1].lock == 0))
-			{
-				gCac[i+1].leng += gCac[i].leng;
-				gCacNum--;
-                Bmemcpy(&gCac[i],&gCac[i+1],(gCacNum-i)*sizeof(cactype));
-			}
-		}
+            if ((i > 0) && (*gCac[i - 1].lock == 0))
+            {
+                gCac[i - 1].leng += gCac[i].leng;
+                gCacNum--;
+                Bmemcpy(&gCac[i], &gCac[i + 1], (gCacNum - i) * sizeof(cactype));
+            }
+            else if ((i < gCacNum - 1) && (*gCac[i + 1].lock == 0))
+            {
+                gCac[i + 1].leng += gCac[i].leng;
+                gCacNum--;
+                Bmemcpy(&gCac[i], &gCac[i + 1], (gCacNum - i) * sizeof(cactype));
+            }
+        }
     }
 }
 
@@ -114,8 +115,28 @@ void allocache(u8 **newhandle, u32 newbytes, u8 *newlockptr)
     }
 }
 
-INCLUDE_ASM(s32, "src/codeseg0/cache1d", func_8002AD3C);
+/*8002AD3C*/
+static void reportandexit(char *errormessage)
+{
+    printf("Cachesize = %ld\n", cachesize);
+    printf("Cacnum = %ld\n", gCacNum);
+    printf("ERROR: %s", errormessage);
+    exit(0);
+}
 
-INCLUDE_ASM(s32, "src/codeseg0/cache1d", func_8002ADB8);
+/*8002AD44*/
+s32 func_8002AD44(void)
+{
+    s32 i;
+    s32 size;
 
-INCLUDE_ASM(s32, "src/codeseg0/cache1d", func_8002AE4C);
+    size = cachesize;
+
+    for (i = 0; i < gCacNum; i++)
+    {
+        if (gCac[i].lock != &zerochar)
+            size -= gCac[i].leng;
+    }
+
+    return size;
+}
