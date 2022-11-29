@@ -11,6 +11,6 @@ void func_800698E8(void);
 void func_80069E50(void);
 void func_80079560(void);
 
-extern s8 D_800DF585;   /*800DF585*/
+/*800DF585*/ extern s8 D_800DF585;
 
 #endif

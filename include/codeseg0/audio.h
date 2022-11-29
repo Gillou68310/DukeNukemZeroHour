@@ -3,7 +3,7 @@
 
 #include "common.h"
 
-void dmaRomToRam(char *rom, char *ram, s32 size);
+void dmaRomToRam(u8 *rom, u8 *ram, s32 size);
 void initAudio(void);
 void func_80006838(s32, s32);
 void func_80006CC0(void);

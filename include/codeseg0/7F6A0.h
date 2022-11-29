@@ -15,7 +15,7 @@ typedef struct
 void func_8007EF70(void);
 void func_8007F050(void);
 
-extern _7F6A0UnkStruct1 D_800DFA90; /*800DFA90*/
-extern _7F6A0UnkStruct1 D_800DFB08; /*800DFB08*/
+/*800DFA90*/ extern _7F6A0UnkStruct1 D_800DFA90;
+/*800DFB08*/ extern _7F6A0UnkStruct1 D_800DFB08;
 
 #endif

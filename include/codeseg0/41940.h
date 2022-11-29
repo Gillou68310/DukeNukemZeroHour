@@ -14,8 +14,8 @@ void func_800504F4(void);
 void func_8005087C(void);
 void func_800514C8(void);
 
-extern s32 D_800DEEA0;  /*800DEEA0*/
-extern s32 D_800DF1A8;  /*800DF1A8*/
-extern s16 D_800DF1AC[4];   /*800DF1AC*/
+/*800DEEA0*/ extern s32 D_800DEEA0;
+/*800DF1A8*/ extern s32 D_800DF1A8;
+/*800DF1AC*/ extern s16 D_800DF1AC[4];
 
 #endif

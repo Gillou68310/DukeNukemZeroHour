@@ -5,6 +5,6 @@
 
 void func_8008DE14(void);
 
-extern s32 D_800E1748;  /*800E1748*/
+/*800E1748*/ extern s32 D_800E1748;
 
 #endif

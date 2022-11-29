@@ -30,16 +30,16 @@ void grMtxL2F(float mf[4][4], Mtx *m);
 void grMtxIdentF(float mf[4][4]);
 
 void grLookAtF(float mf[4][4], float xEye, float yEye, float zEye,
-             float xAt, float yAt, float zAt,
-             float xUp, float yUp, float zUp);
+               float xAt, float yAt, float zAt,
+               float xUp, float yUp, float zUp);
 
 void grLookAtReflectF(float mf[4][4], LookAt *l,
-                    float xEye, float yEye, float zEye,
-                    float xAt, float yAt, float zAt,
-                    float xUp, float yUp, float zUp);
+                      float xEye, float yEye, float zEye,
+                      float xAt, float yAt, float zAt,
+                      float xUp, float yUp, float zUp);
 
 void grLookAtReflect(Mtx *m, LookAt *l, float xEye, float yEye, float zEye,
-                   float xAt, float yAt, float zAt,
-                   float xUp, float yUp, float zUp);
+                     float xAt, float yAt, float zAt,
+                     float xUp, float yUp, float zUp);
 
 #endif

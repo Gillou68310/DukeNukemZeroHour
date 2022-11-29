@@ -16,6 +16,6 @@ typedef struct
     u8 unk_03;
 } _9410unkStruct1;
 
-extern _9410unkStruct1 D_800BD710[5];   /*800BD710*/
+/*800BD710*/ extern _9410unkStruct1 D_800BD710[5];
 
 #endif

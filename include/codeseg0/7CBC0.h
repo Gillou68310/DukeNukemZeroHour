@@ -3,6 +3,6 @@
 
 #include "common.h"
 
-extern s16 D_800DF950;  /*800DF950*/
+/*800DF950*/ extern s16 D_800DF950;
 
 #endif

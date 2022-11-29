@@ -3,7 +3,7 @@
 
 #include "common.h"
 
-extern Gfx rspInitDl[];
-extern Gfx rdpInitDl[];
+/*01001860*/ extern Gfx rspInitDl[];
+/*01001888*/ extern Gfx rdpInitDl[];
 
 #endif

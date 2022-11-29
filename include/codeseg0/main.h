@@ -2,14 +2,13 @@
 #define _MAIN_H_
 
 #include "common.h"
-#include "codeseg0/common0.h"
 
 void func_80000450(void);
 void func_80000610(void);
 void func_80000624(ProcPointer proc);
 void func_80000C74(void);
 void boot(void);
-void readRom(char *segStart, char *romStart, s32 size);
+void readRom(u8 *segStart, u8 *romStart, s32 size);
 void func_80000A94(void);
 void func_80000C74(void);
 void func_80001CFC(void);

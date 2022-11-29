@@ -10,7 +10,7 @@ typedef struct
 }unkStruct1;
 
 /*.comm*/
-unkStruct1 D_800FF540[2048]; /*800FF540*/
+/*800FF540*/ unkStruct1 D_800FF540[2048];
 
 /*.text*/
 

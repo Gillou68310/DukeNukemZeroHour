@@ -8,8 +8,6 @@
 #define SCREEN_HEIGHT 240
 #define GFX_TASKS 2
 
-typedef void (*ProcPointer)(void);
-
 typedef struct
 {
     u8 pad1[512];
@@ -30,9 +28,9 @@ typedef struct
     s32 unk_00;
     s32 unk_04;
     s32 unk_08;
-    s32 unk_0C; /*XV*/
-    s32 unk_10; /*YV*/
-    s32 unk_14[3];  /*ZV*/
+    s32 unk_0C;    /*XV*/
+    s32 unk_10;    /*YV*/
+    s32 unk_14[3]; /*ZV*/
     s32 unk_20;
     s32 unk_24;
     s32 unk_28;
@@ -44,7 +42,7 @@ typedef struct
     s16 unk_3C;
     s16 unk_3E;
     s32 unk_40;
-    u8 unk_44;  /*JF*/
+    u8 unk_44; /*JF*/
     u8 unk_45;
     s16 unk_46;
     s16 unk_48;
@@ -55,10 +53,10 @@ typedef struct
     s16 unk_52;
     u8 unk_54;
     u8 unk_55;
-    u8 unk_56;  /*OW*/
+    u8 unk_56; /*OW*/
     u8 unk_57;
     u8 unk_58;
-    u8 unk_59;  /*OF*/
+    u8 unk_59; /*OF*/
     u8 unk_5A;
     u8 unk_5B;
     u8 unk_5C;
@@ -158,43 +156,43 @@ typedef struct
 #define _extern extern
 #endif
 
-_extern s32 D_800FE3F4;                      /*800FE3F4*/
-_extern s16 D_800FE416;                      /*800FE416*/
-_extern s64 D_800FE9E0;                      /*800FE9E0*/
-_extern ProcPointer D_800FF53C;              /*800FF53C*/
-_extern u8 D_80106D30[4];                    /*80106D30*/
-_extern s16 D_80106D50[1500];                /*80106D50*/
-_extern s32 D_8010A938;                      /*8010A938*/
-_extern common0UnkStruct2 D_8010A940[4];     /*8010A940*/
-_extern common0UnkStruct1 D_80117ED8[4];     /*80117ED8*/
-_extern u8 D_80118148;                       /*80118148*/
-_extern Gfx* D_801297E0[8];                  /*801297E0*/
-_extern s16 D_8012C470;                      /*8012C470*/
-_extern s32 D_8012FC90;                      /*8012FC90*/
-_extern Gfx *gDisplaylist[GFX_TASKS];        /*8012FD78*/
-_extern char *gStaticSegment;                /*80138684*/
-_extern OSTime D_80138688;                   /*80138688*/
-_extern void *gDepthBuffer;                  /*80138864*/
-_extern s16 D_80168D0C;                      /*80168D0C*/
-_extern s32 D_80168D18;                      /*80168D18*/
-_extern Vtx *gpVertex;                       /*8016D170*/
-_extern u8 D_8016D174[4];                    /*8016D174*/
-_extern Vtx *gVertex[GFX_TASKS];             /*8016D184*/
-_extern OSMesgQueue gDmaMessageQ;            /*80197D58*/
-_extern s32 D_80197DE0;                      /*80197DE0*/
-_extern s32 D_80199524;                      /*80199524*/
-_extern common0UnkStruct3 D_8019B940[150];   /*8019B940*/
-_extern common0UnkStruct4 D_801A1958;        /*801A1958*/
-_extern s32 D_801A1970;                      /*801A1970*/
-_extern u8 D_801A19EC;                       /*801A19EC*/
-_extern OSSched gScheduler;                  /*801A6AF8*/
-_extern u8 D_801AD470;                       /*801AD470*/
-_extern s32 D_801AE528;                      /*801AE528*/
-_extern s32 D_801AE8B8;                      /*801AE8B8*/
-_extern s32 D_801AE8FC;                      /*801AE8FC*/
-_extern s32 D_801AE914;                      /*801AE914*/
-_extern Gfx *gpDisplaylist;                  /*801B0808*/
-_extern Dynamic *gpDynamic;                  /*801C0D60*/
+/*800FE3F4*/ _extern s32 D_800FE3F4;
+/*800FE416*/ _extern s16 D_800FE416;
+/*800FE9E0*/ _extern s64 D_800FE9E0;
+/*800FF53C*/ _extern ProcPointer D_800FF53C;
+/*80106D30*/ _extern u8 D_80106D30[4];
+/*80106D50*/ _extern s16 D_80106D50[1500];
+/*8010A938*/ _extern s32 D_8010A938;
+/*8010A940*/ _extern common0UnkStruct2 D_8010A940[4];
+/*80117ED8*/ _extern common0UnkStruct1 D_80117ED8[4];
+/*80118148*/ _extern u8 D_80118148;
+/*801297E0*/ _extern Gfx *D_801297E0[8];
+/*8012C470*/ _extern s16 D_8012C470;
+/*8012FC90*/ _extern s32 D_8012FC90;
+/*8012FD78*/ _extern Gfx *gDisplaylist[GFX_TASKS];
+/*80138684*/ _extern char *gStaticSegment;
+/*80138688*/ _extern OSTime D_80138688;
+/*80138864*/ _extern void *gDepthBuffer;
+/*80168D0C*/ _extern s16 D_80168D0C;
+/*80168D18*/ _extern s32 D_80168D18;
+/*8016D170*/ _extern Vtx *gpVertex;
+/*8016D174*/ _extern u8 D_8016D174[4];
+/*8016D184*/ _extern Vtx *gVertex[GFX_TASKS];
+/*80197D58*/ _extern OSMesgQueue gDmaMessageQ;
+/*80197DE0*/ _extern s32 D_80197DE0;
+/*80199524*/ _extern s32 D_80199524;
+/*8019B940*/ _extern common0UnkStruct3 D_8019B940[150];
+/*801A1958*/ _extern common0UnkStruct4 D_801A1958;
+/*801A1970*/ _extern s32 D_801A1970;
+/*801A19EC*/ _extern u8 D_801A19EC;
+/*801A6AF8*/ _extern OSSched gScheduler;
+/*801AD470*/ _extern u8 D_801AD470;
+/*801AE528*/ _extern s32 D_801AE528;
+/*801AE8B8*/ _extern s32 D_801AE8B8;
+/*801AE8FC*/ _extern s32 D_801AE8FC;
+/*801AE914*/ _extern s32 D_801AE914;
+/*801B0808*/ _extern Gfx *gpDisplaylist;
+/*801C0D60*/ _extern Dynamic *gpDynamic;
 
 #undef _extern
 

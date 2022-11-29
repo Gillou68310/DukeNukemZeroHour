@@ -22,13 +22,13 @@ typedef struct
 #define _extern extern
 #endif
 
-_extern s16 D_801CC8CA;      /*801CC8CA*/
-_extern s32 D_801CDB4C;      /*801CDB4C*/
-_extern u8 D_801CDC65;       /*801CDC65*/
-_extern u16 D_801CE4C6[4];   /*801CE4C6*/
-_extern u16 gPerspNorm;      /*801CE4EA*/
-_extern u16 D_801CE5AC;      /*801CE5AC*/
-_extern Position gPosition;  /*801CE5B0*/
+/*801CC8CA*/ _extern s16 D_801CC8CA;
+/*801CDB4C*/ _extern s32 D_801CDB4C;
+/*801CDC65*/ _extern u8 D_801CDC65;
+/*801CE4C6*/ _extern u16 D_801CE4C6[4];
+/*801CE4EA*/ _extern u16 gPerspNorm;
+/*801CE5AC*/ _extern u16 D_801CE5AC;
+/*801CE5B0*/ _extern Position gPosition;
 
 #undef _extern
 

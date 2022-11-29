@@ -13,11 +13,11 @@
 
 typedef struct
 {
-    char *wbank_start;
-    char *pbank_start;
-    char *pbank_end;
-    char *music_start;
-    char *music_end;
+    u8 *wbank_start;
+    u8 *pbank_start;
+    u8 *pbank_end;
+    u8 *music_start;
+    u8 *music_end;
 } MusicInfo;
 
 #define PBANK0_START pbank0SegmentRomStart
@@ -27,28 +27,28 @@ typedef struct
 #define SFX_BANK_START sfxBankSegmentRomStart
 #define SFX_BANK_END sfxBankSegmentRomEnd
 
-extern char PBANK0_START[];
-extern char PBANK0_END[];
-extern char WBANK0_START[];
-extern char WBANK0_END[];
-extern char SFX_BANK_START[];
-extern char SFX_BANK_END[];
+extern u8 PBANK0_START[];
+extern u8 PBANK0_END[];
+extern u8 WBANK0_START[];
+extern u8 WBANK0_END[];
+extern u8 SFX_BANK_START[];
+extern u8 SFX_BANK_END[];
 
 /*data*/
-/*static*/ extern MusicInfo musicInfo[MUSIC_COUNT]; /*800BD460*/
-/*static*/ extern s8 D_800BD618;
+/*800BD460*/ extern /*static*/ MusicInfo musicInfo[MUSIC_COUNT];
+extern /*static*/ s8 D_800BD618;
 
 /*.comm*/
-u8 gSfxBankBuffer[SFX_BANK_SIZE]; /*8010A9C0*/
-u8 gSfxPbankBuffer[SFX_PBANK_SIZE]; /*8013F960*/
-u8 gAudioMemory[AUDIO_HEAP_SIZE]; /*8016D190*/
-u8 gMusicPbankBuffer[MUSIC_PBANK_SIZE]; /*801A2840*/
-s16 gSfxCount; /*801B0D3C*/
+/*8010A9C0*/ u8 gSfxBankBuffer[SFX_BANK_SIZE];
+/*8013F960*/ u8 gSfxPbankBuffer[SFX_PBANK_SIZE];
+/*8016D190*/ u8 gAudioMemory[AUDIO_HEAP_SIZE];
+/*801A2840*/ u8 gMusicPbankBuffer[MUSIC_PBANK_SIZE];
+/*801B0D3C*/ s16 gSfxCount;
 
 /*.text*/
 
 /*800065F0*/
-void dmaRomToRam(char *rom, char *ram, s32 size)
+void dmaRomToRam(u8 *rom, u8 *ram, s32 size)
 {
     OSIoMesg dmaIOMessageBuf;
     s32 len;
@@ -98,22 +98,22 @@ static void initMusicDriver(void)
 }
 
 /*80006760*/
-static void initBank(char *pbank_rom, s32 size, char *wbank, char *pbank_ram)
+static void initBank(u8 *pbank_rom, s32 size, u8 *wbank, u8 *pbank_ram)
 {
     readRom(pbank_ram, pbank_rom, size);
     MusPtrBankInitialize(pbank_ram, wbank);
 }
 
 /*800067B4*/
-static void initSfxBank(char *sfx_bank_rom, s32 size)
+static void initSfxBank(u8 *sfx_bank_rom, s32 size)
 {
-  readRom(gSfxBankBuffer, sfx_bank_rom, size);
-  MusFxBankInitialize(gSfxBankBuffer);
-  gSfxCount = MusFxBankNumberOfEffects(gSfxBankBuffer);
+    readRom(gSfxBankBuffer, sfx_bank_rom, size);
+    MusFxBankInitialize(gSfxBankBuffer);
+    gSfxCount = MusFxBankNumberOfEffects(gSfxBankBuffer);
 }
 
 /*80006808*/
-static void readMusic(char *rom, s32 size, char *ram)
+static void readMusic(u8 *rom, s32 size, u8 *ram)
 {
     readRom(ram, rom, size);
 }
