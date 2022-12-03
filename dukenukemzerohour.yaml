@@ -440,13 +440,15 @@ segments:
     vram: 0x01000000 #0x801CF720
     subalign: 8
     subsegments:
-      - [0xF6D70,  data,       static/F6D70]
-      - [0xF85D0,  .data,      src/static/spinit]
-      - [0xF8670,  data,       static/F8670]
-      - [0xF8730,  .data,      src/static/tileinfo]
-      - [0x105F50, data,       static/105F50]
+    - {start: 0xF6D70,  type:  data,  vram: 0x01000000, name: static/F6D70}
+    - {start: 0xF85D0,  type:  .data, vram: 0x01001860, name: src/static/spinit}
+    - {start: 0xF8670,  type:  data,  vram: 0x01001900, name: static/F8670}
+    - {start: 0xF8730,  type:  .data, vram: 0x010019C0, name: src/static/tileinfo}
+    - {start: 0x105F50, type:  data,  vram: 0x0100F1E0, name: static/105F50}
+    - {start: 0x119900, type:  .data, vram: 0x01022B90, name: src/static/sintable}
+    - {start: 0x11A900, type:  data,  vram: 0x01023B90, name: static/11A900}
 
-  #EDL compressed files
+  #files
   - [0x11FC80,  bin,        files/all]
 
   #sounds

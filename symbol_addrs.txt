@@ -2,6 +2,7 @@ staticSegment                      = 0x01000000; // ignore:true   size:0x28F10
 rspInitDl                          = 0x01001860; // type:data     size:0x28              (.data)   (src/static/spinit.c)
 rdpInitDl                          = 0x01001888; // type:data     size:0x78              (.data)   (src/static/spinit.c)
 tileInfo                           = 0x010019C0; // type:data     size:0xD820            (.data)   (src/static/tileinfo.c)
+gSinTable                          = 0x01022B90; // type:data     size:0x1000            (.data)   (src/static/sintable.c)
 D_0102578C                         = 0x0102578C; // type:data     size:0x15C             (.comm)   (src/static/static.c)
 leoBootID                          = 0x800001A0;
 osTvType                           = 0x80000300;
