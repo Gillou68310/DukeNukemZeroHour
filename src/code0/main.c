@@ -25,6 +25,7 @@
 #include "code0/main.h"
 #include "code1/EB300.h"
 #include "static/spinit.h"
+#include "static/mapinfo.h"
 #include "libmus.h"
 
 #include "code0/code0.h"
@@ -85,6 +86,7 @@ static u8 D_800F6C18[0x08];
 /*801AC8B8*/ OSMesgQueue gfxFrameMsgQ;
 /*801ACB00*/ OSScTask gGfxTask[GFX_TASKS];
 /*801AE498*/ s64 D_801AE498;
+/*801AEA14*/ MapInfo *gpMapInfo;
 /*801AEA40*/ u64 gDramStack[SP_DRAM_STACK_SIZE64];
 /*801B0D40*/ u64 gOutputBuffer[OUTPUT_BUFFER_SIZE / sizeof(u64)];
 
