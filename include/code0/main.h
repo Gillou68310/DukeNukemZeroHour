@@ -36,7 +36,6 @@ extern s8 D_800BD3F9;
 extern s32 gGfxTaskIndex;
 
 extern char ***gpKeyStrInfo;
-extern s16 *gpRadaRang;
 extern _11B300UnkStruct1 *D_8012F6E4;
 extern Gfx *gDisplaylist[GFX_TASKS];
 extern char **gpWeaponStrInfo;
@@ -48,7 +47,6 @@ extern Vtx *gVertex[GFX_TASKS];
 extern char **gpActionStrInfo;
 extern OSMesgQueue gDmaMessageQ;
 extern MsgStrInfo *gpMsgStrInfo;
-extern s16 *gpSinTable;
 extern char **gpMapStrInfo;
 extern OSSched gScheduler;
 extern TileInfo *gpTileInfo;

@@ -43,6 +43,8 @@ class SYMBOLS:
                 self.rename(self.symbols[index].splat.name, symbol.splat.name)
             return
         
+        #TODO: check symbol colision (new symbol between start/end of existing symbol)
+
         self.symbols.append(symbol)
         self.names[symbol.splat.name] = len(self.symbols)-1
         self.addrs[symbol.splat.vram_start] = len(self.symbols)-1
@@ -142,6 +144,8 @@ def parse_addrs_from_source(file: str, coord: dict, symbols: SYMBOLS, forced: li
             # Is symbol on next line?
             if name == None:
                 name = coord.get(i+2)
+            if name == None and lines[i+1].startswith('INCLUDE_ASM'):
+                name = lines[i+1].split(',')[2].split(')')[0].strip()
             if name == None:
                 continue
 
@@ -149,12 +153,18 @@ def parse_addrs_from_source(file: str, coord: dict, symbols: SYMBOLS, forced: li
             symbols.add(sym, True)
         if lines[i].startswith('INCLUDE_ASM'):
             name = lines[i].split(',')[2].split(')')[0].strip()
-            sym = SYMBOL(splat=split.symbols.Symbol(given_name=name, given_size=-1, vram_start=0))
+            sym = SYMBOL(splat=split.symbols.Symbol(given_name=name, given_size=0, vram_start=0, type='function'), \
+                         source=file, section='.text')
             forced.append(sym)
-        if 'EXTERN' in lines[i]:
+        if 'EXTERN_DATA' in lines[i]:
             name = coord.get(i+1)
             sym = SYMBOL(splat=split.symbols.Symbol(given_name=name, given_size=0, vram_start=0), \
                          section='.data')
+            forced.append(sym)
+        if 'EXTERN_BSS' in lines[i]:
+            name = coord.get(i+1)
+            sym = SYMBOL(splat=split.symbols.Symbol(given_name=name, given_size=0, vram_start=0), \
+                         section='.bss')
             forced.append(sym)
         if 'STATIC' in lines[i]:
             name = coord.get(i+1)
@@ -336,9 +346,11 @@ for i in range(0, len(symbols.symbols)):
             line += (f"{' dont_allow_addend:true':<23}")
         else:
             line += (f"{'':<23}")
-        if symbols.symbols[i].source != None and symbols.symbols[i].visibility != None \
-            and symbols.symbols[i].section != None:
-            visibility = symbols.symbols[i].visibility + ', '
+        if symbols.symbols[i].source != None and symbols.symbols[i].section != None:
+            if symbols.symbols[i].visibility != None:
+                visibility = symbols.symbols[i].visibility + ', '
+            else:
+                visibility = 'global, '
             section = symbols.symbols[i].section + ', '
             line += ' (' + f"{visibility:<8}"
             line += f"{section:<9}"

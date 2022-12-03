@@ -179,7 +179,6 @@ typedef struct
 /*80168D04*/ _extern u8 *D_80168D04;
 /*80168D18*/ _extern s32 D_80168D18;
 /*8016D174*/ _extern u8 D_8016D174[4];
-/*80197DE0*/ _extern s32 D_80197DE0;
 /*80197DE8*/ _extern u8 *D_80197DE8;
 /*80199524*/ _extern s32 D_80199524;
 /*80199528*/ _extern s32 D_80199528;

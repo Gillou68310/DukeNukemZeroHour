@@ -488,7 +488,7 @@ static void _decompressEDL(u8 **handle, u8 *src, u8 *dst)
     }
     else
     {
-        allocache(handle, dsize, &gCacheLock[1]);
+        alloCache(handle, dsize, &gCacheLock[1]);
     }
     info.dst = *handle;
     info.sys_endian = BYTE_ORDER;
@@ -498,7 +498,7 @@ static void _decompressEDL(u8 **handle, u8 *src, u8 *dst)
 /*80081660*/
 void allocacheEDL(u8 **handle, s32 size)
 {
-    allocache(handle, size + 16, &gCacheLock[1]);
+    alloCache(handle, size + 16, &gCacheLock[1]);
 }
 
 /*80081688*/
@@ -522,7 +522,7 @@ void func_80081688(u8 **handle, s32 id)
     }
     else
     {
-        allocache(handle, size, gCacheLock + 1);
+        alloCache(handle, size, gCacheLock + 1);
         Bmemcpy(*handle, D_801CD96C, size);
         info->handle = handle;
     }
@@ -548,7 +548,7 @@ void func_80081760(u8 **handle, s32 id, u8 *dst)
         info->handle = handle;
         return;
     }
-    allocache(handle, size, gCacheLock + 1);
+    alloCache(handle, size, gCacheLock + 1);
     Bmemcpy(*handle, D_801CD96C, size);
     info->handle = handle;
 }

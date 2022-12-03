@@ -23,7 +23,7 @@ s32 divscale24(s64 arg0, s64 arg1);
 s32 divscale30(s64 arg0, s64 arg1);
 s32 scale(s32 arg0, s32 arg1, s32 arg2);
 s32 nsqrtasm(s32 arg0);
-s32 klabs(s32 arg0);
-s32 func_8002B674(s32 arg0);
+s32 labs(s32 arg0);
+s32 ksgn(s32 arg0);
 
 #endif

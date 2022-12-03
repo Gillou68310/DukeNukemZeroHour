@@ -20,7 +20,8 @@
                 "_MIPS_SZLONG=32",
                 "_FINALROM",
                 "TARGET_N64",
-                "EXTERN=extern",
+                "EXTERN_DATA=extern",
+                "EXTERN_BSS=extern",
                 "STATIC="
             ],
             "cStandard": "c89",

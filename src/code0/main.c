@@ -6,8 +6,8 @@
 #include "code0/17B30.h"
 #include "code0/1E7A0.h"
 #include "code0/20490.h"
-#include "code0/2C280.h"
 #include "code0/cache1d.h"
+#include "code0/engine.h"
 #include "code0/35EA0.h"
 #include "code0/37090.h"
 #include "code0/3FAD0.h"
@@ -138,7 +138,6 @@ extern u8 static_ROM_END[];
 /*80119A78*/ OSMesgQueue gRetraceMsgQ ALIGNED(8);
 /*8011BC60*/ Dynamic gDynamic[GFX_TASKS] ALIGNED(16);
 /*8012C990*/ OSMesg gGfxMessages[NUM_DMA_MSGS] ALIGNED(16);
-/*8012D33C*/ s16 *gpRadaRang;
 /*8012E158*/ OSViMode *D_8012E158;
 /*8012F6E4*/ _11B300UnkStruct1 *D_8012F6E4;
 /*8012FD78*/ Gfx *gDisplaylist[GFX_TASKS];
@@ -155,7 +154,6 @@ extern u8 static_ROM_END[];
 /*80197D58*/ OSMesgQueue gDmaMessageQ ALIGNED(8);
 /*80199120*/ OSMesg gRetraceMessages[NUM_DMA_MSGS] ALIGNED(16);
 /*801A196C*/ MsgStrInfo *gpMsgStrInfo;
-/*801A197C*/ s16 *gpSinTable;
 /*801A1A20*/ u64 gfxYieldBuf[OS_YIELD_DATA_SIZE / sizeof(u64)] ALIGNED(16);
 /*801A68CC*/ char **gpMapStrInfo;
 /*801A6AF8*/ OSSched gScheduler;
@@ -504,10 +502,10 @@ static void func_80001038(void)
         }
         func_80040AA0(1, "SM");
         func_80040B2C(1);
-        D_80197DE0 += 4;
+        gTotalClockLock += 4;
         D_80168D0C = RAND(0x7FFF);
         D_801A1958.unk_0C++;
-        agecache();
+        ageCache();
         if (D_801AD470 != 0)
         {
             func_8008DE14();
@@ -797,7 +795,7 @@ void func_80001CFC(void)
     D_800FE9E0 = 0LL;
     D_801AE498 = 0LL;
     D_800BD3E0 = 0LL;
-    D_80197DE0 = 0;
+    gTotalClockLock = 0;
 }
 
 /*80001D44*/

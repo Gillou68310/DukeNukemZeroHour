@@ -97,9 +97,9 @@ CFLAGS_CHECK += -w
 endif
 
 ifeq ($(EXTERN),1)
-CPPFLAGS += -DEXTERN=extern
+CPPFLAGS += -DEXTERN_DATA=extern -DEXTERN_BSS=extern
 else
-CPPFLAGS += -DEXTERN=
+CPPFLAGS += -DEXTERN_DATA= -DEXTERN_BSS= -D__CTX__
 endif
 
 ifeq ($(NON_MATCHING),1)

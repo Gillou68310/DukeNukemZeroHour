@@ -9,7 +9,7 @@
 #define MAXTILESIZE 32832
 
 /*.data*/
-/*800BD724*/ EXTERN STATIC u8 *_tileROMAddr;
+/*800BD724*/ EXTERN_DATA STATIC u8 *_tileROMAddr;
 
 /*.comm*/
 /*80107910*/ s16 gTilemap[MAXTILES] ALIGNED(16);
@@ -178,7 +178,7 @@ u8 *tileLoad(u16 tileid)
     if (size <= MAXTILESIZE)
     {
         D_80169580[tileid] = 0x82;
-        allocache(&gpTileInfo[tileid].ramaddr, size, &D_80169580[tileid]);
+        alloCache(&gpTileInfo[tileid].ramaddr, size, &D_80169580[tileid]);
         romAddr = _tileROMAddr;
         romAddr = romAddr + gpTileInfo[tileid].fileoff;
         readRom(gTileBuffer, romAddr, (gpTileInfo[tileid].filesize + 1) & ~1);
