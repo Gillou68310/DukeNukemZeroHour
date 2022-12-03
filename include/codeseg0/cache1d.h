@@ -3,7 +3,7 @@
 
 #include "common.h"
 
-void initcache(u8* dacachestart, s32 dacachesize);
+void initcache(u8 *dacachestart, s32 dacachesize);
 void suckcache(u8 **suckptr);
 void func_8002AAC0(void);
 void agecache(void);

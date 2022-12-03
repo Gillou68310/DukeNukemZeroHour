@@ -29,7 +29,7 @@ typedef struct
 /*801CE4EA*/ _extern u16 gPerspNorm;
 /*801CE5AC*/ _extern u16 D_801CE5AC;
 /*801CE5B0*/ _extern Position gPosition;
-/*801CD96C*/ _extern u8* D_801CD96C;
+/*801CD96C*/ _extern u8 *D_801CD96C;
 
 #undef _extern
 
