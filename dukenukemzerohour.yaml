@@ -446,7 +446,8 @@ segments:
     - {start: 0xF8730,  type:  .data, vram: 0x010019C0, name: src/static/tileinfo}
     - {start: 0x105F50, type:  data,  vram: 0x0100F1E0, name: static/105F50}
     - {start: 0x119900, type:  .data, vram: 0x01022B90, name: src/static/sintable}
-    - {start: 0x11A900, type:  data,  vram: 0x01023B90, name: static/11A900}
+    - {start: 0x11A900, type:  .data, vram: 0x01023B90, name: src/static/radarang}
+    - {start: 0x11B300, type:  data,  vram: 0x01024590, name: static/11B300}
 
   #files
   - [0x11FC80,  bin,        files/all]
