@@ -43,7 +43,7 @@ with open('dukenukemzerohour.yaml') as f:
 options.initialize(config, 'dukenukemzerohour.yaml', None, None)
 all_segments = initialize_segments(config["segments"])
 for segment in all_segments:
-    if segment.name == 'codeseg0' or segment.name == 'codeseg1':
+    if segment.name == 'code0' or segment.name == 'code1':
         xrefs(segment, 'text')
         xrefs(segment, 'data')
         xrefs(segment, 'rodata')

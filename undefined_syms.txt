@@ -1,5 +1,5 @@
-codeseg0BssStart = 0x800EA700;
-codeseg0BssEnd = 0x801C0D80;
+code0SegmentBssStart = 0x800EA700;
+code0SegmentBssEnd = 0x801C0D80;
 bootStack = 0x80119A30;
 rspbootTextEnd = 0x800BB220;
 gspF3DLX2_NoN_fifoTextEnd = 0x800BC5B0;

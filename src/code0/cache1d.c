@@ -1,6 +1,6 @@
 #include "common.h"
-#include "codeseg0/4600.h"
-#include "codeseg0/cache1d.h"
+#include "code0/4600.h"
+#include "code0/cache1d.h"
 
 #define MAXCACHEOBJECTS 2048
 
@@ -54,7 +54,7 @@ void initcache(u8 *dacachestart, s32 dacachesize)
 
 /*8002A3A0*/
 static s8 _allocache(u8 **newhandle, u32 newbytes, u8 *newlockptr);
-INCLUDE_ASM(s32, "src/codeseg0/cache1d", _allocache);
+INCLUDE_ASM(s32, "src/code0/cache1d", _allocache);
 
 /*8002A7BC*/
 void suckcache(u8 **suckptr)
@@ -86,11 +86,11 @@ void suckcache(u8 **suckptr)
     }
 }
 
-INCLUDE_ASM(s32, "src/codeseg0/cache1d", func_8002A9A0);
+INCLUDE_ASM(s32, "src/code0/cache1d", func_8002A9A0);
 
-INCLUDE_ASM(s32, "src/codeseg0/cache1d", func_8002AAC0);
+INCLUDE_ASM(s32, "src/code0/cache1d", func_8002AAC0);
 
-INCLUDE_ASM(s32, "src/codeseg0/cache1d", func_8002AAEC);
+INCLUDE_ASM(s32, "src/code0/cache1d", func_8002AAEC);
 
 /*8002AC70*/
 void agecache(void)

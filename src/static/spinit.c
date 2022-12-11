@@ -1,5 +1,5 @@
 #include "common.h"
-#include "codeseg0/20490.h"
+#include "code0/20490.h"
 
 /*.text*/
 

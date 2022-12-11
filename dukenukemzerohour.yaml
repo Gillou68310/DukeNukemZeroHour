@@ -35,7 +35,7 @@ segments:
     type: bin
     start: 0x40
 
-  - name: codeseg0
+  - name: code0
     type: code
     start: 0x1000
     vram: 0x80000400
@@ -43,50 +43,50 @@ segments:
     bss_size: 0xD6680
     subsegments:
     #.text section
-      - [0x1000,  c,        src/codeseg0/common0]
-      - [0x1000,  hasm,     src/codeseg0/entrypoint]
-      - [0x1040,  bin,      codeseg0/1040.text.pad] #Padding
-      - [0x1050,  c,        src/codeseg0/main]
-      - [0x4590,  c,        gen/codeseg0/4590]
-      - [0x4600,  c,        src/codeseg0/4600]
-      - [0x5D50,  c,        src/codeseg0/graphics]
-      - [0x71F0,  c,        src/codeseg0/audio]
-      - [0x9410,  c,        src/codeseg0/9410]
-      - [0x16DF0, c,        gen/codeseg0/16DF0]
-      - [0x16FF0, c,        gen/codeseg0/16FF0]
-      - [0x17B30, c,        gen/codeseg0/17B30]
-      - [0x1A7C0, c,        gen/codeseg0/1A7C0]
-      - [0x1E7A0, c,        gen/codeseg0/1E7A0]
-      - [0x20490, c,        gen/codeseg0/20490]
-      - [0x21500, c,        gen/codeseg0/21500]
-      - [0x24610, c,        gen/codeseg0/24610]
-      - [0x2ABE0, c,        gen/codeseg0/2ABE0]
-      - [0x2AEB0, c,        src/codeseg0/cache1d]
-      - [0x2B9B0, c,        src/codeseg0/pragmas]
-      - [0x2C280, c,        gen/codeseg0/2C280]
-      - [0x35D90, c,        gen/codeseg0/35D90]
-      - [0x35EA0, c,        gen/codeseg0/35EA0]
-      - [0x36410, c,        gen/codeseg0/36410]
-      - [0x37090, c,        gen/codeseg0/37090]
-      - [0x3FAD0, c,        gen/codeseg0/3FAD0]
-      - [0x41940, c,        gen/codeseg0/41940]
-      - [0x59D40, c,        gen/codeseg0/59D40]
-      - [0x609D0, c,        gen/codeseg0/609D0]
-      - [0x64530, c,        gen/codeseg0/64530]
-      - [0x7A430, c,        gen/codeseg0/7A430]
-      - [0x7BA50, c,        gen/codeseg0/7BA50]
-      - [0x7CBC0, c,        gen/codeseg0/7CBC0]
-      - [0x7F6A0, c,        gen/codeseg0/7F6A0]
-      - [0x7FCE0, c,        gen/codeseg0/7FCE0]
-      - [0x814D0, c,        src/codeseg0/edl]
-      - [0x82480, c,        gen/codeseg0/82480]
-      - [0x84490, c,        gen/codeseg0/84490]
-      - [0x87010, c,        gen/codeseg0/87010]
-      - [0x88690, c,        gen/codeseg0/88690]
-      - [0x8E670, c,        gen/codeseg0/8E670]
-      - [0x8EFE0, c,        gen/codeseg0/8EFE0]
-      - [0x95500, c,        gen/codeseg0/95500]
-      - [0xA06F0, c,        gen/codeseg0/A06F0]
+      - [0x1000,  c,        src/code0/common0]
+      - [0x1000,  hasm,     src/code0/entrypoint]
+      - [0x1040,  bin,      code0/1040.text.pad] #Padding
+      - [0x1050,  c,        src/code0/main]
+      - [0x4590,  c,        gen/code0/4590]
+      - [0x4600,  c,        src/code0/4600]
+      - [0x5D50,  c,        src/code0/graphics]
+      - [0x71F0,  c,        src/code0/audio]
+      - [0x9410,  c,        src/code0/9410]
+      - [0x16DF0, c,        gen/code0/16DF0]
+      - [0x16FF0, c,        gen/code0/16FF0]
+      - [0x17B30, c,        gen/code0/17B30]
+      - [0x1A7C0, c,        gen/code0/1A7C0]
+      - [0x1E7A0, c,        gen/code0/1E7A0]
+      - [0x20490, c,        gen/code0/20490]
+      - [0x21500, c,        gen/code0/21500]
+      - [0x24610, c,        gen/code0/24610]
+      - [0x2ABE0, c,        gen/code0/2ABE0]
+      - [0x2AEB0, c,        src/code0/cache1d]
+      - [0x2B9B0, c,        src/code0/pragmas]
+      - [0x2C280, c,        gen/code0/2C280]
+      - [0x35D90, c,        gen/code0/35D90]
+      - [0x35EA0, c,        gen/code0/35EA0]
+      - [0x36410, c,        gen/code0/36410]
+      - [0x37090, c,        gen/code0/37090]
+      - [0x3FAD0, c,        gen/code0/3FAD0]
+      - [0x41940, c,        gen/code0/41940]
+      - [0x59D40, c,        gen/code0/59D40]
+      - [0x609D0, c,        gen/code0/609D0]
+      - [0x64530, c,        gen/code0/64530]
+      - [0x7A430, c,        gen/code0/7A430]
+      - [0x7BA50, c,        gen/code0/7BA50]
+      - [0x7CBC0, c,        gen/code0/7CBC0]
+      - [0x7F6A0, c,        gen/code0/7F6A0]
+      - [0x7FCE0, c,        gen/code0/7FCE0]
+      - [0x814D0, c,        src/code0/edl]
+      - [0x82480, c,        gen/code0/82480]
+      - [0x84490, c,        gen/code0/84490]
+      - [0x87010, c,        gen/code0/87010]
+      - [0x88690, c,        gen/code0/88690]
+      - [0x8E670, c,        gen/code0/8E670]
+      - [0x8EFE0, c,        gen/code0/8EFE0]
+      - [0x95500, c,        gen/code0/95500]
+      - [0xA06F0, c,        gen/code0/A06F0]
       - [0xA5580, c,        libs/libmus/src/player]
       - [0xA8E80, c,        libs/libmus/src/player_fx]
       - [0xA9760, c,        libs/libmus/src/aud_dma]
@@ -113,7 +113,7 @@ segments:
       - [0xAC4C0, c,        libs/libultra/src/gu/random]
       - [0xAC4F0, hasm,     libs/libultra/src/os/invaldcache]
       - [0xAC5A0, hasm,     libs/libultra/src/os/invalicache]
-      - [0xAC620, bin,      codeseg0/AC620.text.pad] #Padding
+      - [0xAC620, bin,      code0/AC620.text.pad] #Padding
       - [0xAC680, hasm,     libs/libultra/src/os/writebackdcacheall]
       - [0xAC6B0, c,        libs/libultra/src/os/createmesgqueue]
       - [0xAC6E0, c,        libs/libultra/src/os/createthread]
@@ -207,7 +207,7 @@ segments:
       - [0xB6370, c,        libs/libultra/src/os/getthreadpri]
       - [0xB6390, c,        libs/libultra/src/os/jammesg]
       - [0xB64D0, c,        libs/libultra/src/os/settimer]
-      - [0xB6570, c,        src/codeseg0/assert]
+      - [0xB6570, c,        src/code0/assert]
       - [0xB6580, c,        libs/libultra/src/audio/synallocfx]
       - [0xB6620, c,        libs/libultra/src/io/ai]
       - [0xB6640, c,        libs/libultra/src/io/dpsetnextbuf]
@@ -267,35 +267,35 @@ segments:
       - [0xBBE20, bin,      ucode/gspF3DEX2.NoN.fifo.text]
       - [0xBD1B0, bin,      ucode/aspMain.text]
     #.data section
-      - [0xBDFD0, .data,    src/codeseg0/main]
-      - [0xBE030, data,     codeseg0/4600]
-      - [0xBE050, .data,    src/codeseg0/graphics]
-      - [0xBE060, data,     codeseg0/audio]
-      - [0xBE310, data,     codeseg0/9410]
-      - [0xD8D20, data,     codeseg0/17B30]
-      - [0xDD600, data,     codeseg0/1A7C0]
-      - [0xDD620, data,     codeseg0/1E7A0]
-      - [0xDD710, data,     codeseg0/20490]
-      - [0xDD7E0, data,     codeseg0/2ABE0]
-      - [0xDDFF0, .data,    src/codeseg0/cache1d]
-      - [0xDE010, data,     codeseg0/2C1C0]
-      - [0xDE050, data,     codeseg0/36410]
-      - [0xDF9C0, data,     codeseg0/37090]
-      - [0xDFA70, data,     codeseg0/41940]
-      - [0xDFEE0, data,     codeseg0/59D40]
-      - [0xDFEF0, data,     codeseg0/64530]
-      - [0xE0280, data,     codeseg0/7A430]
-      - [0xE0540, data,     codeseg0/7BA50]
-      - [0xE0550, data,     codeseg0/7CBC0]
-      - [0xE05A0, data,     codeseg0/7F6A0]
-      - [0xE14B0, data,     codeseg0/7FCE0]
-      - [0xE1740, data,     codeseg0/edl]
-      - [0xE1B20, data,     codeseg0/84490]
-      - [0xE1B60, data,     codeseg0/88690]
-      - [0xE22A0, data,     codeseg0/8E670]
-      - [0xE2350, data,     codeseg0/8EFE0]
-      - [0xE2370, data,     codeseg0/95500]
-      - [0xE24D0, data,     codeseg0/A06F0]
+      - [0xBDFD0, .data,    src/code0/main]
+      - [0xBE030, data,     code0/4600]
+      - [0xBE050, .data,    src/code0/graphics]
+      - [0xBE060, data,     code0/audio]
+      - [0xBE310, data,     code0/9410]
+      - [0xD8D20, data,     code0/17B30]
+      - [0xDD600, data,     code0/1A7C0]
+      - [0xDD620, data,     code0/1E7A0]
+      - [0xDD710, data,     code0/20490]
+      - [0xDD7E0, data,     code0/2ABE0]
+      - [0xDDFF0, .data,    src/code0/cache1d]
+      - [0xDE010, data,     code0/2C1C0]
+      - [0xDE050, data,     code0/36410]
+      - [0xDF9C0, data,     code0/37090]
+      - [0xDFA70, data,     code0/41940]
+      - [0xDFEE0, data,     code0/59D40]
+      - [0xDFEF0, data,     code0/64530]
+      - [0xE0280, data,     code0/7A430]
+      - [0xE0540, data,     code0/7BA50]
+      - [0xE0550, data,     code0/7CBC0]
+      - [0xE05A0, data,     code0/7F6A0]
+      - [0xE14B0, data,     code0/7FCE0]
+      - [0xE1740, data,     code0/edl]
+      - [0xE1B20, data,     code0/84490]
+      - [0xE1B60, data,     code0/88690]
+      - [0xE22A0, data,     code0/8E670]
+      - [0xE2350, data,     code0/8EFE0]
+      - [0xE2370, data,     code0/95500]
+      - [0xE24D0, data,     code0/A06F0]
       - [0xE2580, .data,    libs/libmus/src/player]
       - [0xE2640, .data,    libs/libmus/src/player_fx]
       - [0xE2850, .data,    libs/libmus/src/aud_sched]
@@ -348,33 +348,33 @@ segments:
       - [0xE4920, bin,      ucode/gspF3DEX2.NoN.fifo.data]
       - [0xE4D40, bin,      ucode/aspMain.data]
     #.rodata section
-      - [0xE5000, .rodata,  src/codeseg0/main]
-      - [0xE5080, rodata,   codeseg0/4600]
-      - [0xE50D0, .rodata,  src/codeseg0/graphics]
-      - [0xE5110, rodata,   codeseg0/audio]
-      - [0xE5150, rodata,   codeseg0/9410]
-      - [0xE5310, rodata,   codeseg0/17B30]
-      - [0xE55D0, rodata,   codeseg0/1A7C0]
-      - [0xE5AD0, rodata,   codeseg0/1E7A0]
-      - [0xE5B00, rodata,   codeseg0/20490]
-      - [0xE5B20, rodata,   codeseg0/24610]
-      - [0xE5B90, rodata,   codeseg0/2ABE0]
-      - [0xE5BC0, rodata,   codeseg0/2C1C0]
-      - [0xE5BD0, rodata,   codeseg0/37090]
-      - [0xE5DB0, rodata,   codeseg0/3FAD0]
-      - [0xE5E00, rodata,   codeseg0/41940]
-      - [0xE9230, rodata,   codeseg0/59D40]
-      - [0xE92F0, rodata,   codeseg0/609D0]
-      - [0xE9460, rodata,   codeseg0/64530]
-      - [0xE9990, rodata,   codeseg0/7A430]
-      - [0xE99D0, rodata,   codeseg0/7CBC0]
-      - [0xE9D10, rodata,   codeseg0/7FCE0]
-      - [0xE9D20, rodata,   codeseg0/82480]
-      - [0xE9D60, rodata,   codeseg0/87010]
-      - [0xE9D70, rodata,   codeseg0/88690]
-      - [0xEA330, rodata,   codeseg0/8EFE0]
-      - [0xEA760, rodata,   codeseg0/95500]
-      - [0xEA9C0, rodata,   codeseg0/A06F0]
+      - [0xE5000, .rodata,  src/code0/main]
+      - [0xE5080, rodata,   code0/4600]
+      - [0xE50D0, .rodata,  src/code0/graphics]
+      - [0xE5110, rodata,   code0/audio]
+      - [0xE5150, rodata,   code0/9410]
+      - [0xE5310, rodata,   code0/17B30]
+      - [0xE55D0, rodata,   code0/1A7C0]
+      - [0xE5AD0, rodata,   code0/1E7A0]
+      - [0xE5B00, rodata,   code0/20490]
+      - [0xE5B20, rodata,   code0/24610]
+      - [0xE5B90, rodata,   code0/2ABE0]
+      - [0xE5BC0, rodata,   code0/2C1C0]
+      - [0xE5BD0, rodata,   code0/37090]
+      - [0xE5DB0, rodata,   code0/3FAD0]
+      - [0xE5E00, rodata,   code0/41940]
+      - [0xE9230, rodata,   code0/59D40]
+      - [0xE92F0, rodata,   code0/609D0]
+      - [0xE9460, rodata,   code0/64530]
+      - [0xE9990, rodata,   code0/7A430]
+      - [0xE99D0, rodata,   code0/7CBC0]
+      - [0xE9D10, rodata,   code0/7FCE0]
+      - [0xE9D20, rodata,   code0/82480]
+      - [0xE9D60, rodata,   code0/87010]
+      - [0xE9D70, rodata,   code0/88690]
+      - [0xEA330, rodata,   code0/8EFE0]
+      - [0xEA760, rodata,   code0/95500]
+      - [0xEA9C0, rodata,   code0/A06F0]
       - [0xEABB0, .rodata,  libs/libmus/src/player]
       - [0xEAC90, .rodata,  libs/libmus/src/player_fx]
       - [0xEACA0, .rodata,  libs/libultra/src/gu/cosf]
@@ -395,16 +395,16 @@ segments:
       - [0xEB050, .rodata,  libs/libultra/src/os/setintmask]
       - [0xEB0D0, .rodata,  libs/libultra/src/libc/xprintf]
       - [0xEB248, .rodata,  libs/libultra/src/io/devmgr]
-      - [0xEB268, bin,      codeseg0/EB268.rodata.pad] #Padding
+      - [0xEB268, bin,      code0/EB268.rodata.pad] #Padding
       - [0xEB270, .rodata,  libs/libultra/src/libc/xldtob]
       - [0xEB2E0, .rodata,  libs/libkmc/src/sqrt]
     #.bss section
-      - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/codeseg0/main}
-      - {start: 0xEB300, type:  bss, vram: 0x800F7040, name: codeseg0/24610}
-      - {start: 0xEB300, type:  bss, vram: 0x800F7060, name: codeseg0/2C1C0}
-      - {start: 0xEB300, type:  bss, vram: 0x800F9CC0, name: codeseg0/609D0}
-      - {start: 0xEB300, type:  bss, vram: 0x800F9CD0, name: codeseg0/64530}
-      - {start: 0xEB300, type:  bss, vram: 0x800F9CE0, name: codeseg0/88690}
+      - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/main}
+      - {start: 0xEB300, type:  bss, vram: 0x800F7040, name: code0/24610}
+      - {start: 0xEB300, type:  bss, vram: 0x800F7060, name: code0/2C1C0}
+      - {start: 0xEB300, type:  bss, vram: 0x800F9CC0, name: code0/609D0}
+      - {start: 0xEB300, type:  bss, vram: 0x800F9CD0, name: code0/64530}
+      - {start: 0xEB300, type:  bss, vram: 0x800F9CE0, name: code0/88690}
       - {start: 0xEB300, type: .bss, vram: 0x800FA3B0, name: libs/libmus/src/player}
       - {start: 0xEB300, type: .bss, vram: 0x800FA420, name: libs/libmus/src/aud_dma}
       - {start: 0xEB300, type: .bss, vram: 0x800FA460, name: libs/libmus/src/aud_sched}
@@ -417,9 +417,9 @@ segments:
       - {start: 0xEB300, type: .bss, vram: 0x800FCB40, name: libs/libultra/src/io/sptask}
       - {start: 0xEB300, type: .bss, vram: 0x800FCB80, name: libs/libultra/src/io/siacs}
       - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/piacs}
-      - {start: 0xEB300, type:  bss, vram: 0x800FCBA0, name: codeseg0/common0}
+      - {start: 0xEB300, type:  bss, vram: 0x800FCBA0, name: code0/common0}
 
-  - name: codeseg1
+  - name: code1
     type: code
     start: 0xEB300
     vram: 0x801C0D80
@@ -427,26 +427,26 @@ segments:
     subalign: 8
     subsegments:
     #.text section
-      - [0xEB300,  c,        src/codeseg1/common1]
-      - [0xEB300,  c,        src/codeseg1/EB300]
+      - [0xEB300,  c,        src/code1/common1]
+      - [0xEB300,  c,        src/code1/EB300]
     #.data section?
-      - [0xF46C0,  data,     codeseg1/EB300]
+      - [0xF46C0,  data,     code1/EB300]
     #.rodata section?
-      - [0xF64B0,  rodata,   codeseg1/EB300]
+      - [0xF64B0,  rodata,   code1/EB300]
     #.bss section
-      - {start: 0xF6D70, type:  bss, vram: 0x801CC7F0, name: codeseg1/common1}
+      - {start: 0xF6D70, type:  bss, vram: 0x801CC7F0, name: code1/common1}
 
-  - name: spseg1
+  - name: static
     type: code
     start: 0xF6D70
     vram: 0x01000000 #0x801CF720
     subalign: 8
     subsegments:
-      - [0xF6D70,  data,       spseg1/F6D70]
-      - [0xF85D0,  .data,      src/spseg1/spinit]
-      - [0xF8670,  data,       spseg1/F8670]
-      - [0xF8730,  .data,      src/spseg1/tileinfo]
-      - [0x105F50, data,       spseg1/105F50]
+      - [0xF6D70,  data,       static/F6D70]
+      - [0xF85D0,  .data,      src/static/spinit]
+      - [0xF8670,  data,       static/F8670]
+      - [0xF8730,  .data,      src/static/tileinfo]
+      - [0x105F50, data,       static/105F50]
 
   #EDL compressed files
   - [0x11FC80,  bin,        files/all]

@@ -6,7 +6,7 @@
 .set noreorder
 .text
 LEAF(start)
-    la         t0, codeseg0BssStart
+    la         t0, code0SegmentBssStart
     lui        t1, (BSS_SIZE >> 16)
     addiu      t1, (BSS_SIZE & 0xFFFF)
 .loop:

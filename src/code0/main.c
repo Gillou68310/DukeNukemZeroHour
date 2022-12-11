@@ -1,32 +1,32 @@
 #include "common.h"
-#include "codeseg0/audio.h"
-#include "codeseg0/9410.h"
-#include "codeseg0/4590.h"
-#include "codeseg0/17B30.h"
-#include "codeseg0/1E7A0.h"
-#include "codeseg0/20490.h"
-#include "codeseg0/cache1d.h"
-#include "codeseg0/35EA0.h"
-#include "codeseg0/37090.h"
-#include "codeseg0/3FAD0.h"
-#include "codeseg0/41940.h"
-#include "codeseg0/64530.h"
-#include "codeseg0/7A430.h"
-#include "codeseg0/7BA50.h"
-#include "codeseg0/7CBC0.h"
-#include "codeseg0/7F6A0.h"
-#include "codeseg0/7FCE0.h"
-#include "codeseg0/87010.h"
-#include "codeseg0/88690.h"
-#include "codeseg0/8E670.h"
-#include "codeseg0/8EFE0.h"
-#include "codeseg0/95500.h"
-#include "codeseg0/A06F0.h"
-#include "codeseg0/common0.h"
-#include "codeseg0/main.h"
-#include "codeseg1/EB300.h"
-#include "codeseg1/common1.h"
-#include "spseg1/spinit.h"
+#include "code0/audio.h"
+#include "code0/9410.h"
+#include "code0/4590.h"
+#include "code0/17B30.h"
+#include "code0/1E7A0.h"
+#include "code0/20490.h"
+#include "code0/cache1d.h"
+#include "code0/35EA0.h"
+#include "code0/37090.h"
+#include "code0/3FAD0.h"
+#include "code0/41940.h"
+#include "code0/64530.h"
+#include "code0/7A430.h"
+#include "code0/7BA50.h"
+#include "code0/7CBC0.h"
+#include "code0/7F6A0.h"
+#include "code0/7FCE0.h"
+#include "code0/87010.h"
+#include "code0/88690.h"
+#include "code0/8E670.h"
+#include "code0/8EFE0.h"
+#include "code0/95500.h"
+#include "code0/A06F0.h"
+#include "code0/common0.h"
+#include "code0/main.h"
+#include "code1/EB300.h"
+#include "code1/common1.h"
+#include "static/spinit.h"
 #include "libmus.h"
 
 #define IDLELOOP_STACKSIZE 0x1000
@@ -801,7 +801,7 @@ void func_80001FAC(void)
     D_800DEDE0 = 4;
 }
 
-INCLUDE_ASM(s32, "src/codeseg0/main", func_80002014);
+INCLUDE_ASM(s32, "src/code0/main", func_80002014);
 
 /*80002390*/
 void func_80002390(void)
@@ -880,9 +880,9 @@ static void func_80002494(void)
 /*.rodata*/
 const char D_800E4468[] = "DUKE ZERO HOUR.A";
 
-INCLUDE_ASM(s32, "src/codeseg0/main", mainLoop);
+INCLUDE_ASM(s32, "src/code0/main", mainLoop);
 
-INCLUDE_ASM(s32, "src/codeseg0/main", func_800031F8);
+INCLUDE_ASM(s32, "src/code0/main", func_800031F8);
 
 /*800034F4*/
 static void func_800034F4(void)
@@ -953,4 +953,4 @@ static void func_800036DC(void)
     func_8007EF70();
 }
 
-INCLUDE_ASM(s32, "src/codeseg0/main", func_80003940);
+INCLUDE_ASM(s32, "src/code0/main", func_80003940);

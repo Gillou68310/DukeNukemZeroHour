@@ -2,7 +2,7 @@
 #define _9410_H_
 
 #include "common.h"
-#include "spseg1/tileinfo.h"
+#include "static/tileinfo.h"
 
 void func_80008810(s16);
 void func_80008E3C(void);

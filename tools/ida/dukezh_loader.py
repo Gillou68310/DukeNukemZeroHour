@@ -49,19 +49,19 @@ def load_file(fd, neflags, format):
     ida_segment.add_segm(0, 0x80000000, 0x80000400, '.ivt', 'CODE', ida_segment.ADDSEG_SPARSE)
 
     # Create Code Segment 0
-    ida_segment.add_segm(0, 0x80000400, 0x800BD3D0, '.codeseg0.text', 'CODE', ida_segment.ADDSEG_SPARSE)
-    ida_segment.add_segm(0, 0x800BD3D0, 0x800E4400, '.codeseg0.data', 'DATA', ida_segment.ADDSEG_SPARSE)
-    ida_segment.add_segm(0, 0x800E4400, 0x800EA700, '.codeseg0.rodata', 'CONST', ida_segment.ADDSEG_SPARSE)
-    ida_segment.add_segm(0, 0x800EA700, 0x801C0D80, '.codeseg0.bss', 'BSS', ida_segment.ADDSEG_SPARSE)
+    ida_segment.add_segm(0, 0x80000400, 0x800BD3D0, '.code0.text', 'CODE', ida_segment.ADDSEG_SPARSE)
+    ida_segment.add_segm(0, 0x800BD3D0, 0x800E4400, '.code0.data', 'DATA', ida_segment.ADDSEG_SPARSE)
+    ida_segment.add_segm(0, 0x800E4400, 0x800EA700, '.code0.rodata', 'CONST', ida_segment.ADDSEG_SPARSE)
+    ida_segment.add_segm(0, 0x800EA700, 0x801C0D80, '.code0.bss', 'BSS', ida_segment.ADDSEG_SPARSE)
 
     # Create Code Segment 1
-    ida_segment.add_segm(0, 0x801C0D80, 0x801CA140, '.codeseg1.text', 'CODE', ida_segment.ADDSEG_SPARSE)
-    ida_segment.add_segm(0, 0x801CA140, 0x801CBF30, '.codeseg1.data', 'DATA', ida_segment.ADDSEG_SPARSE)
-    ida_segment.add_segm(0, 0x801CBF30, 0x801CC7F0, '.codeseg1.rodata', 'CONST', ida_segment.ADDSEG_SPARSE)
-    ida_segment.add_segm(0, 0x801CC7F0, 0x801CF720, '.codeseg1.bss', 'BSS', ida_segment.ADDSEG_SPARSE)
+    ida_segment.add_segm(0, 0x801C0D80, 0x801CA140, '.code1.text', 'CODE', ida_segment.ADDSEG_SPARSE)
+    ida_segment.add_segm(0, 0x801CA140, 0x801CBF30, '.code1.data', 'DATA', ida_segment.ADDSEG_SPARSE)
+    ida_segment.add_segm(0, 0x801CBF30, 0x801CC7F0, '.code1.rodata', 'CONST', ida_segment.ADDSEG_SPARSE)
+    ida_segment.add_segm(0, 0x801CC7F0, 0x801CF720, '.code1.bss', 'BSS', ida_segment.ADDSEG_SPARSE)
 
     # Create SP Segment 1
-    ida_segment.add_segm(0, 0x01000000, 0x01000000+0x28F10, '.spseg1.data', 'DATA', ida_segment.ADDSEG_SPARSE)
+    ida_segment.add_segm(0, 0x01000000, 0x01000000+0x28F10, '.static.data', 'DATA', ida_segment.ADDSEG_SPARSE)
 
     # Update Segments permissions
     for n in range(ida_segment.get_segm_qty()):

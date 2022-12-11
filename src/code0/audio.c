@@ -1,7 +1,7 @@
 #include "common.h"
-#include "codeseg0/main.h"
-#include "codeseg0/audio.h"
-#include "codeseg0/common0.h"
+#include "code0/main.h"
+#include "code0/audio.h"
+#include "code0/common0.h"
 #include "libmus.h"
 
 #define DMA_LEN 16384
@@ -118,7 +118,7 @@ static void readMusic(u8 *rom, s32 size, u8 *ram)
     readRom(ram, rom, size);
 }
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_80006838);
+INCLUDE_ASM(s32, "src/code0/audio", func_80006838);
 
 /*80006938*/
 void initAudio(void)
@@ -132,50 +132,50 @@ void initAudio(void)
     MusFxBankSetPtrBank(gSfxBankBuffer, gSfxPbankBuffer);
 }
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_800069D8);
+INCLUDE_ASM(s32, "src/code0/audio", func_800069D8);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_80006BA0);
+INCLUDE_ASM(s32, "src/code0/audio", func_80006BA0);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_80006CC0);
+INCLUDE_ASM(s32, "src/code0/audio", func_80006CC0);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_80006E60);
+INCLUDE_ASM(s32, "src/code0/audio", func_80006E60);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_80006F08);
+INCLUDE_ASM(s32, "src/code0/audio", func_80006F08);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_80007084);
+INCLUDE_ASM(s32, "src/code0/audio", func_80007084);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_80007170);
+INCLUDE_ASM(s32, "src/code0/audio", func_80007170);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_80007218);
+INCLUDE_ASM(s32, "src/code0/audio", func_80007218);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_8000730C);
+INCLUDE_ASM(s32, "src/code0/audio", func_8000730C);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_80007418);
+INCLUDE_ASM(s32, "src/code0/audio", func_80007418);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_80007510);
+INCLUDE_ASM(s32, "src/code0/audio", func_80007510);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_800075EC);
+INCLUDE_ASM(s32, "src/code0/audio", func_800075EC);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_800077F4);
+INCLUDE_ASM(s32, "src/code0/audio", func_800077F4);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_80007820);
+INCLUDE_ASM(s32, "src/code0/audio", func_80007820);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_8000784C);
+INCLUDE_ASM(s32, "src/code0/audio", func_8000784C);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_80007A44);
+INCLUDE_ASM(s32, "src/code0/audio", func_80007A44);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_80007A80);
+INCLUDE_ASM(s32, "src/code0/audio", func_80007A80);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_80007AB8);
+INCLUDE_ASM(s32, "src/code0/audio", func_80007AB8);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_80007FF4);
+INCLUDE_ASM(s32, "src/code0/audio", func_80007FF4);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_800080E0);
+INCLUDE_ASM(s32, "src/code0/audio", func_800080E0);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_80008574);
+INCLUDE_ASM(s32, "src/code0/audio", func_80008574);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_80008604);
+INCLUDE_ASM(s32, "src/code0/audio", func_80008604);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_800086B0);
+INCLUDE_ASM(s32, "src/code0/audio", func_800086B0);
 
-INCLUDE_ASM(s32, "src/codeseg0/audio", func_80008710);
+INCLUDE_ASM(s32, "src/code0/audio", func_80008710);

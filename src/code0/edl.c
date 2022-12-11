@@ -1,9 +1,9 @@
 #include "common.h"
-#include "codeseg0/main.h"
-#include "codeseg0/4600.h"
-#include "codeseg0/cache1d.h"
-#include "codeseg0/edl.h"
-#include "codeseg1/common1.h"
+#include "code0/main.h"
+#include "code0/4600.h"
+#include "code0/cache1d.h"
+#include "code0/edl.h"
+#include "code1/common1.h"
 
 typedef struct
 {
@@ -42,10 +42,10 @@ static void parseEDLheader(EDLInfo *info);
 static s32 swap(EDLInfo *info, u32 value);
 
 static void decodeEDL0(EDLInfo *info);
-INCLUDE_ASM(s32, "src/codeseg0/edl", decodeEDL0);
+INCLUDE_ASM(s32, "src/code0/edl", decodeEDL0);
 
 static void decodeEDL1(EDLInfo *info);
-INCLUDE_ASM(s32, "src/codeseg0/edl", decodeEDL1);
+INCLUDE_ASM(s32, "src/code0/edl", decodeEDL1);
 
 /*800813F8*/
 static void decodeEDL(EDLInfo *info)
@@ -229,4 +229,4 @@ void func_80081760(u8 **handle, s32 id, u8 *dst)
     info->handle = handle;
 }
 
-INCLUDE_ASM(s32, "src/codeseg0/edl", func_80081840);
+INCLUDE_ASM(s32, "src/code0/edl", func_80081840);

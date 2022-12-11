@@ -1,5 +1,5 @@
 #include "common.h"
-#include "spseg1/tileinfo.h"
+#include "static/tileinfo.h"
 
 /*.data*/
 

@@ -1,5 +1,5 @@
 #include "common.h"
-#include "codeseg0/graphics.h"
+#include "code0/graphics.h"
 
 /*.text*/
 
