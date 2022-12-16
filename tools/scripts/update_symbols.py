@@ -6,22 +6,20 @@ import glob
 import sys
 import os
 import m2ctx
+import sys
+sys.path.insert(1, 'tools/splat')
+import split
 
 class SYMBOL:
-    def __init__(self, name: str = None, addr: int = 0, type: str = None, \
-                 size: int = 0, static: bool = False, source: str = None, \
-                 section: str = None, exclude: bool = False, ignore: bool = False):
-         self.name: str = name
-         self.addr: int = addr
-         self.type: str = type
-         self.size: int = size
+    def __init__(self, splat: split.symbols.Symbol = None, ignore: bool = False, \
+                 static: bool = False, source: str = None, section: str = None):
+         self.splat: split.symbols.Symbol = splat
+         self.ignore: bool = ignore
          self.static: bool = static
          self.source: str = source
          self.section: str = section
-         self.exclude: bool = exclude
-         self.ignore: bool = ignore
     def __lt__(self, other):
-         return self.addr < other.addr
+         return self.splat.vram_start < other.splat.vram_start
 
 class SYMBOLS:
     def __init__(self):
@@ -32,33 +30,33 @@ class SYMBOLS:
     
     def add(self, symbol: SYMBOL, verbose: bool) -> None:
         # Already existing name
-        index = self.names.get(symbol.name)
+        index = self.names.get(symbol.splat.name)
         if index != None:
-            if symbol.addr != self.symbols[index].addr:
-                print('Error: trying to add ' + symbol.name + ' with different address')
+            if symbol.splat.vram_start != self.symbols[index].splat.vram_start:
+                print('Error: trying to add ' + symbol.splat.name + ' with different address')
             return
             
         # Already existing addr
-        index = self.addrs.get(symbol.addr)
+        index = self.addrs.get(symbol.splat.vram_start)
         if index != None:
-            if symbol.name != self.symbols[index].name:
-                self.rename(self.symbols[index].name, symbol.name)
+            if symbol.splat.name != self.symbols[index].splat.name:
+                self.rename(self.symbols[index].splat.name, symbol.splat.name)
             return
         
         self.symbols.append(symbol)
-        self.names[symbol.name] = len(self.symbols)-1
-        self.addrs[symbol.addr] = len(self.symbols)-1
+        self.names[symbol.splat.name] = len(self.symbols)-1
+        self.addrs[symbol.splat.vram_start] = len(self.symbols)-1
 
-        if len(symbol.name) > self.name_max_size:
-            self.name_max_size = len(symbol.name)
+        if len(symbol.splat.name) > self.name_max_size:
+            self.name_max_size = len(symbol.splat.name)
 
         if verbose:
-            print('Adding symbol ' + symbol.name)
+            print('Adding symbol ' + symbol.splat.name)
 
     def rename(self, old: str, new: str) -> None:
         index = self.names.get(old)
         if index != None:
-            self.symbols[index].name = new
+            self.symbols[index].splat.given_name = new
             del self.names[old]
             self.names[new] = index
 
@@ -68,26 +66,26 @@ class SYMBOLS:
             print('Renaming symbol ' + old + ' to ' + new)
 
     def remove(self, symbol: SYMBOL) -> None:
-        index = self.names.get(symbol.name)
+        index = self.names.get(symbol.splat.name)
         if index != None:
-            del self.names[symbol.name]
-            del self.addrs[symbol.addr]
+            del self.names[symbol.splat.name]
+            del self.addrs[symbol.splat.vram_start]
             del self.symbols[index]
-            print('Deleting symbol ' + symbol.name)
+            print('Deleting symbol ' + symbol.splat.name)
 
     def update(self, symbol: SYMBOL) -> None:
-        index = self.names.get(symbol.name)
-        if index != None and not self.symbols[index].exclude:
-            if symbol.size != 0:
-                self.symbols[index].size = symbol.size
-            if symbol.type != None:
-                self.symbols[index].type = symbol.type
-            self.symbols[index].static = symbol.static
+        index = self.names.get(symbol.splat.name)
+        if index != None:
+            if symbol.splat.size != 0:
+                self.symbols[index].splat.given_size = symbol.splat.size
+            if symbol.splat.type != None:
+                self.symbols[index].splat.type = symbol.splat.type
+            if symbol.static == True:  
+                self.symbols[index].static = True
             if symbol.section != None:
                 self.symbols[index].section = symbol.section
             if symbol.source != None:
                 self.symbols[index].source = symbol.source
-            self.symbols[index].exclude = symbol.exclude
 
 def parse_symbols_from_config(file: str, symbols: SYMBOLS) -> None:
     f = open(file, 'r')
@@ -96,35 +94,33 @@ def parse_symbols_from_config(file: str, symbols: SYMBOLS) -> None:
 
     for line in lines:
         s = line.split('=')
-        if len(s) == 2:
+        if 'ignore:true' in line:
             name = s[0].strip()
             addr = int(s[1].strip().split(';')[0], 16)
-            info = s[1].strip().split(';')[1].split()
-            size = 0
-            type = None
+            size = int(s[1].strip().split('size:')[1].split()[0], 16)
+            sym = SYMBOL(splat=split.symbols.Symbol(given_name=name, given_size=size, vram_start=addr), ignore=True)
+            symbols.add(sym, False)
+        else:
+            addr = int(s[1].strip().split(';')[0], 16)
+            splat = split.symbols.all_symbols_dict[addr][0]
+            if not 'size:' in s[1]:
+                splat.given_size = 0
+            info = s[1].split('(')[1:]
             static = False
             section = None
-            src = None
-            ignore = False
+            source = None
             for i in info:
-                if 'size:' in i:
-                    size = int(i.strip().split('size:')[1], 16)
-                elif 'type:' in i:
-                    type = i.strip().split('type:')[1]
-                elif 'ignore:' in i:
-                    if 'true' in i.strip().split('ignore:')[1]:
-                        ignore = True
-                elif '(static)' in i:
+                if 'static)' in i:
                     static = True
-                elif '(.' in i:
-                    section = i.strip().split('(.')[1].split(')')[0]
-                elif '(' in i:
-                    src = i.strip().split('(')[1].split(')')[0]
+                elif i[0] == '.':
+                    section = i[1:].split(')')[0]
+                else:
+                    source = i.split(')')[0]
                 
-            sym = SYMBOL(name=name, addr=addr, type=type, size=size, static=static, section=section, source=src, ignore=ignore)
+            sym = SYMBOL(splat=splat, static=static, section=section, source=source)
             symbols.add(sym, False)
 
-def parse_addrs_from_source(file: str, coord: dict, symbols: SYMBOLS) -> None:
+def parse_addrs_from_source(file: str, coord: dict, symbols: SYMBOLS, forced: list) -> None:
     f = open(file, 'r')
     lines = f.readlines()
     f.close() 
@@ -150,12 +146,22 @@ def parse_addrs_from_source(file: str, coord: dict, symbols: SYMBOLS) -> None:
             if name == None:
                 continue
 
-            sym = SYMBOL(name=name, addr=addr)
+            sym = SYMBOL(splat=split.symbols.Symbol(given_name=name, given_size=0, vram_start=addr))
             symbols.add(sym, True)
-        elif lines[i].startswith('INCLUDE_ASM'):
-             name = lines[i].split(',')[2].split(')')[0].strip()
-             sym = SYMBOL(name=name, exclude=True)
-             symbols.update(sym)
+        if lines[i].startswith('INCLUDE_ASM'):
+            name = lines[i].split(',')[2].split(')')[0].strip()
+            sym = SYMBOL(splat=split.symbols.Symbol(given_name=name, given_size=-1, vram_start=0))
+            forced.append(sym)
+        if 'EXTERN' in lines[i]:
+            name = coord.get(i+1)
+            sym = SYMBOL(splat=split.symbols.Symbol(given_name=name, given_size=0, vram_start=0), \
+                         section='data')
+            forced.append(sym)
+        if 'STATIC' in lines[i]:
+            name = coord.get(i+1)
+            sym = SYMBOL(splat=split.symbols.Symbol(given_name=name, given_size=0, vram_start=0), \
+                         static=True)
+            forced.append(sym)
 
 def parse_object_file(file: str, symbols: SYMBOLS) -> None:
     result = subprocess.run(['mips-linux-gnu-nm', '--defined-only', '--print-size', '--print-file-name', file], \
@@ -174,7 +180,7 @@ def parse_object_file(file: str, symbols: SYMBOLS) -> None:
             type = sp[1]
             name = sp[2]
         src = sp[0].split(':')[0]
-        src = src.split('build/')[1]
+        src = src.split((BUILD_DIR + '/'))[1]
         src = src.split('.o')[0]
 
         if type >= 'a' and type <= 'z':
@@ -199,7 +205,8 @@ def parse_object_file(file: str, symbols: SYMBOLS) -> None:
         else:
             section = None
         
-        sym = SYMBOL(name=name, type=t, size=size, static=static, source=src, section=section)
+        sym = SYMBOL(splat=split.symbols.Symbol(given_name=name, given_size=size, vram_start=0, type=t), \
+                     static=static, source=src, section=section)
         symbols.update(sym)
 
 class Visitor(c_ast.NodeVisitor):
@@ -210,7 +217,7 @@ class Visitor(c_ast.NodeVisitor):
         if node.coord != None and self.file == node.coord.file:
             self.coord[node.coord.line] = node.declname
 
-def parse_source_file(file: str, symbols: SYMBOLS) -> None:            
+def parse_source_file(file: str, symbols: SYMBOLS, forced: list) -> None:            
     out_text = m2ctx.import_c_file(file, False, True)
     parser = c_parser.CParser()
     try:
@@ -222,7 +229,7 @@ def parse_source_file(file: str, symbols: SYMBOLS) -> None:
 
     v = Visitor(file)
     v.visit(ast)
-    parse_addrs_from_source(file, v.coord, symbols)
+    parse_addrs_from_source(file, v.coord, symbols, forced)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('Path', nargs='*', default=[], help='source files')
@@ -230,9 +237,18 @@ parser.add_argument('-p', '--prefix_static', action='store_true', help='Prefix s
 args = parser.parse_args()
 
 symbols = SYMBOLS()
+forced = []
+BUILD_DIR = 'tmp'
+
+# Initialize splat symbols
+with open('dukenukemzerohour.yaml') as f:
+    config = split.yaml.load(f.read(), Loader=split.yaml.SafeLoader)
+split.options.initialize(config, 'dukenukemzerohour.yaml', None, None)
+all_segments = split.initialize_segments(config["segments"])
+split.symbols.initialize(all_segments)
 
 # Parse symbols from config file
-parse_symbols_from_config('symbol_addrs.txt', symbols)
+parse_symbols_from_config(split.options.opts.symbol_addrs_paths[0], symbols)
 
 # Parse symbols from source files
 if len(args.Path) == 0:
@@ -249,24 +265,29 @@ else:
     files += h_files
 
 for file in files:
-    parse_source_file(file, symbols)
+    parse_source_file(file, symbols, forced)
 
 # Build source files
 if len(args.Path) == 0:
-    subprocess.run(['make', 'compile', '-j12'])
-    o_files = [y for x in os.walk('build/src') for y in glob.glob(os.path.join(x[0], '*.o'))]
-    o_files += [y for x in os.walk('build/libs') for y in glob.glob(os.path.join(x[0], '*.o'))]
+    subprocess.run(['make', 'objects', '-j12', ('BUILD_DIR=' + BUILD_DIR), 'EXTERN=0'])
+    o_files = [y for x in os.walk((BUILD_DIR + '/src')) for y in glob.glob(os.path.join(x[0], '*.o'))]
+    o_files += [y for x in os.walk((BUILD_DIR + '/libs')) for y in glob.glob(os.path.join(x[0], '*.o'))]
 else:
     o_files = []
     for file in args.Path:
         if '.c' in file:
-            obj = os.path.join('build', (file + '.o'))
+            obj = os.path.join(BUILD_DIR, (file + '.o'))
             o_files.append(obj)
-            subprocess.run(['make', obj])
+            subprocess.run(['make', obj, ('BUILD_DIR=' + BUILD_DIR), 'EXTERN=0'])
 
 # Parse symbols from object files
 for file in o_files:
     parse_object_file(file, symbols)
+
+for sym in forced:
+    symbols.update(sym)
+
+#subprocess.run(['make', 'clean', ('BUILD_DIR=' + BUILD_DIR), 'EXTERN=0'])
 
 # Sort symbols
 symbols.symbols.sort()
@@ -276,39 +297,39 @@ if args.prefix_static == True:
     for file in files:
         for symbol in symbols.symbols:
             if (symbol.static == True) \
-                and (not symbol.name.startswith('_')) \
-                and (not symbol.name.startswith('D_')) \
-                and (not symbol.name.startswith('func_')) \
+                and (not symbol.splat.name.startswith('_')) \
+                and (not symbol.splat.name.startswith('D_')) \
+                and (not symbol.splat.name.startswith('func_')) \
                 and (file == symbol.source):
                 prefix = '_' + os.path.basename(symbol.source).split('.')[0] + '_'
-                symbols.rename(symbol.name, (prefix + symbol.name))
+                symbols.rename(symbol.splat.name, (prefix + symbol.splat.name))
                 
 # Write symbols to files
 f = open('symbol_addrs.txt', 'w')
 for i in range(0, len(symbols.symbols)):
     line = ''
-    line += (f'{symbols.symbols[i].name:<{symbols.name_max_size}}')
-    addr = f'{symbols.symbols[i].addr:08X}'
+    line += (f'{symbols.symbols[i].splat.name:<{symbols.name_max_size}}')
+    addr = f'{symbols.symbols[i].splat.vram_start:08X}'
     line += (' = 0x' + addr + ';')
 
     if symbols.symbols[i].ignore:
         line += (' //')
         line += (f"{' ignore:true':<14}")
-        if symbols.symbols[i].size != 0:
-            size = f'{symbols.symbols[i].size:X}'
+        if symbols.symbols[i].splat.size > 0:
+            size = f'{symbols.symbols[i].splat.size:X}'
             size = ' size:0x' + size
             line += (f"{size:<14}")
-    elif (symbols.symbols[i].type != None) or (symbols.symbols[i].size != 0) \
+    elif (symbols.symbols[i].splat.type != None) or (symbols.symbols[i].splat.size != 0) \
         or (symbols.symbols[i].static == True) or (symbols.symbols[i].source != None) \
         or (symbols.symbols[i].section != None):
         line += (' //')
-        if symbols.symbols[i].type != None:
-            type = ' type:' + symbols.symbols[i].type
+        if symbols.symbols[i].splat.type != None:
+            type = ' type:' + symbols.symbols[i].splat.type
             line += (f"{type:<14}")
         else:
             line += (f"{'':<14}")
-        if symbols.symbols[i].size != 0:
-            size = f'{symbols.symbols[i].size:X}'
+        if symbols.symbols[i].splat.size > 0:
+            size = f'{symbols.symbols[i].splat.size:X}'
             size = ' size:0x' + size
             line += (f"{size:<14}")
         else:

@@ -28,6 +28,9 @@ CPP_FLAGS = [
     "-D_MIPS_SZLONG=32",
     "-D_FINALROM",
     "-DTARGET_N64",
+    "-DEXTERN=extern",
+    "-DSTATIC=",
+    "-D__attribute__(A)=",
     "-U__mips",
     "-D__CTX__",
 ]

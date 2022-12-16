@@ -1,14 +1,12 @@
 #include <regdef.h>
 #include <sys/asm.h>
 
-#define BSS_SIZE 0xD6680
-
 .set noreorder
 .text
 LEAF(start)
-    la         t0, code0SegmentBssStart
-    lui        t1, (BSS_SIZE >> 16)
-    addiu      t1, (BSS_SIZE & 0xFFFF)
+    la         t0, code0_BSS_START
+    lui        t1, %hi(code0_BSS_SIZE)
+    addiu      t1, %lo(code0_BSS_SIZE)
 .loop:
     sw         zero, 0x0(t0)
     sw         zero, 0x4(t0)
@@ -17,8 +15,8 @@ LEAF(start)
     bnez       t1, .loop
     nop
     la         t2, boot
-    lui        sp, %hi(bootStack)
+    lui        sp, %hi(bootStackAddress)
     jr         t2
-    addiu      sp, sp, %lo(bootStack)
+    addiu      sp, sp, %lo(bootStackAddress)
     nop
 END(start)

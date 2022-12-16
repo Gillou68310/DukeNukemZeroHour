@@ -12,6 +12,7 @@ void func_801C3370(void);
 void func_801C3524(void);
 void func_801C3E08(void);
 void func_801C4B34(void);
+void func_801C4F38(void);
 void func_801C542C(void);
 void func_801C63CC(void);
 void func_801C6560(void);
@@ -23,7 +24,9 @@ void func_801C97F0(void);
 void func_801C97F8(void);
 void func_801C9924(void);
 void func_801C9B28(void);
+void func_801C9B48(void);
 void func_801C9D68(void);
+void func_801C9E7C(void);
 void func_801C9F74(void);
 
 extern f32 D_801CA144;

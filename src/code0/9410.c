@@ -5,19 +5,16 @@
 #include "code0/main.h"
 #include "code0/9410.h"
 
-#include "code0/code0.h"
-
 #define MAXTILES 6144
 #define MAXTILESIZE 32832
 
 /*.data*/
-/*800BD724*/ extern /*static*/ u8 *tileROMAddr;
+/*800BD724*/ EXTERN STATIC u8 *_tileROMAddr;
 
 /*.comm*/
-/*80107910*/ s16 gTilemap[MAXTILES];
-/*801AC9F0*/ TileInfo *gpTileInfo;
-/*80169580*/ u8 D_80169580[TILENUM];
-/*8012FDA0*/ u8 gTileBuffer[MAXTILESIZE];
+/*80107910*/ s16 gTilemap[MAXTILES] ALIGNED(16);
+/*80169580*/ u8 D_80169580[TILENUM] ALIGNED(16);
+/*8012FDA0*/ u8 gTileBuffer[MAXTILESIZE] ALIGNED(16);
 
 /*.text*/
 
@@ -182,7 +179,7 @@ u8 *tileLoad(u16 tileid)
     {
         D_80169580[tileid] = 0x82;
         allocache(&gpTileInfo[tileid].ramaddr, size, &D_80169580[tileid]);
-        romAddr = tileROMAddr;
+        romAddr = _tileROMAddr;
         romAddr = romAddr + gpTileInfo[tileid].fileoff;
         readRom(gTileBuffer, romAddr, (gpTileInfo[tileid].filesize + 1) & ~1);
         if ((s16)(decompressEDL(gTileBuffer, gpTileInfo[tileid].ramaddr)) != 0)

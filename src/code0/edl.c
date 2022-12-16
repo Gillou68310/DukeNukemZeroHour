@@ -4,8 +4,6 @@
 #include "code0/cache1d.h"
 #include "code0/edl.h"
 
-#include "code1/code1.h"
-
 typedef struct
 {
     u8 *dst;
@@ -27,25 +25,25 @@ typedef struct
 } unkFileInfo;
 
 /*data*/
-/*800E0B40*/ extern /*static*/ u8 D_800E0B40[32];
-/*800E0B60*/ extern /*static*/ u8 D_800E0B60[32];
-/*800E0B80*/ extern /*static*/ u16 D_800E0B80[30];
-/*800E0BBC*/ extern /*static*/ u8 D_800E0BBC[32];
-/*800E0D18*/ extern /*static*/ unkFileInfo D_800E0D18[32];
+/*800E0B40*/ EXTERN STATIC u8 D_800E0B40[32];
+/*800E0B60*/ EXTERN STATIC u8 D_800E0B60[32];
+/*800E0B80*/ EXTERN STATIC u16 D_800E0B80[30];
+/*800E0BBC*/ EXTERN STATIC u8 D_800E0BBC[32];
+/*800E0D18*/ EXTERN STATIC unkFileInfo D_800E0D18[32];
 
 /*comm*/
-/*8012CD90*/ u32 D_8012CD90[288];
-/*80168820*/ s32 D_80168820[287];
-/*801978A0*/ s32 D_801978A0[288];
+/*8012CD90*/ u32 D_8012CD90[288] ALIGNED(16);
+/*80168820*/ s32 D_80168820[287] ALIGNED(16);
+/*801978A0*/ s32 D_801978A0[288] ALIGNED(16);
 
 /*.text*/
 static void parseEDLheader(EDLInfo *info);
 static s32 swap(EDLInfo *info, u32 value);
 
-static void decodeEDL0(EDLInfo *info);
+STATIC void decodeEDL0(EDLInfo *info);
 INCLUDE_ASM(s32, "src/code0/edl", decodeEDL0);
 
-static void decodeEDL1(EDLInfo *info);
+STATIC void decodeEDL1(EDLInfo *info);
 INCLUDE_ASM(s32, "src/code0/edl", decodeEDL1);
 
 /*800813F8*/

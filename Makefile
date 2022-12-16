@@ -1,6 +1,3 @@
-
-.DEFAULT_GOAL := all
-
 ### Build Options ###
 
 BASEROM      := baserom.us.z64
@@ -9,9 +6,8 @@ COMPARE      ?= 1
 NON_MATCHING ?= 0
 CHECK        ?= 1
 VERBOSE      ?= 0
-
-# Patches
-# PATCHES_ASFLAGS := --defsym MP_SAVETYPE_PATCH=1
+BUILD_DIR    ?= build
+EXTERN       ?= 1
 
 # Fail early if baserom does not exist
 ifeq ($(wildcard $(BASEROM)),)
@@ -44,7 +40,6 @@ endif
 
 ### Output ###
 
-BUILD_DIR    := build
 LIBULTRA_DIR := libs/libultra
 LIBKMC_DIR   := libs/libkmc
 LIBMUS_DIR   := libs/libmus
@@ -92,8 +87,8 @@ ENDLINE := \n'
 OPTFLAGS       := -O2 -g2
 ASFLAGS        := -G0 -mips3 -I include
 CFLAGS         := -G0 -mips3 -mgp32 -mfp32 -funsigned-char #-save-temps #-Wa,--vr4300mul-off
-CPPFLAGS       := -I include -I $(LIBULTRA_DIR)/include/2.0I -I $(LIBMUS_DIR)/include -D_LANGUAGE_C -DF3DEX_GBI_2 -DF3DEX_GBI_2x -D_MIPS_SZLONG=32 -D_FINALROM -DTARGET_N64
-LDFLAGS        := -T undefined_syms.txt -T undefined_funcs.txt -T undefined_funcs_auto.txt -T undefined_syms_auto.txt -T $(LD_SCRIPT) -Map $(LD_MAP) --no-check-sections
+CPPFLAGS       := -I include -I $(LIBULTRA_DIR)/include/2.0I -I $(LIBMUS_DIR)/include -D_LANGUAGE_C -DF3DEX_GBI_2 -DF3DEX_GBI_2x -D_MIPS_SZLONG=32 -D_FINALROM -DTARGET_N64 -DSTATIC=
+LDFLAGS        := -T undefined_syms.txt -T undefined_funcs.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(LD_MAP) --no-check-sections
 CHECK_WARNINGS := -Wall -Wextra -Wno-missing-braces -Wno-format-security -Wno-unused-parameter -Wno-unused-variable -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -Wno-unused-function -m32
 CFLAGS_CHECK   := -fsyntax-only -funsigned-char -nostdinc -fno-builtin -D CC_CHECK -std=gnu90 $(CHECK_WARNINGS)
 
@@ -101,37 +96,44 @@ ifneq ($(CHECK),1)
 CFLAGS_CHECK += -w
 endif
 
+ifeq ($(EXTERN),1)
+CPPFLAGS += -DEXTERN=extern
+else
+CPPFLAGS += -DEXTERN=
+endif
+
+ifeq ($(NON_MATCHING),1)
+CPPFLAGS += -DNON_MATCHING
+endif
+
 ### Sources ###
 
 # Object files
-OBJECTS := $(shell grep -E 'build.+\.o' dukenukemzerohour.ld -o)
-DEPENDS := $(OBJECTS:=.d) 
+OBJECTS := $(shell grep -E 'BUILD_PATH.+\.o' dukenukemzerohour.ld -o)
+OBJECTS := $(OBJECTS:BUILD_PATH/%=$(BUILD_DIR)/%)
+DEPENDS := $(OBJECTS:=.d)
 
 ### Targets ###
-build/$(LIBULTRA_DIR)/src/%.o: OPTFLAGS := -O3 -g0
-build/$(LIBULTRA_DIR)/src/%.o: CPPFLAGS += -I $(LIBULTRA_DIR)/src -I $(LIBULTRA_DIR)/include/2.0I/PR
+$(BUILD_DIR)/$(LIBULTRA_DIR)/src/%.o: OPTFLAGS := -O3 -g0
+$(BUILD_DIR)/$(LIBULTRA_DIR)/src/%.o: CPPFLAGS += -I $(LIBULTRA_DIR)/src -I $(LIBULTRA_DIR)/include/2.0I/PR
 
-build/$(LIBKMC_DIR)/src/%.o: OPTFLAGS := -O1 -g1
-build/$(LIBKMC_DIR)/src/%.o: CFLAGS := $(filter-out -funsigned-char,$(CFLAGS))
-build/$(LIBKMC_DIR)/src/%.o: CPPFLAGS += -I $(LIBKMC_DIR)/src -I $(LIBKMC_DIR)/include/
-build/$(LIBKMC_DIR)/src/%.o: ASFLAGS += -I $(LIBKMC_DIR)/src
+$(BUILD_DIR)/$(LIBKMC_DIR)/src/%.o: OPTFLAGS := -O1 -g1
+$(BUILD_DIR)/$(LIBKMC_DIR)/src/%.o: CFLAGS := $(filter-out -funsigned-char,$(CFLAGS))
+$(BUILD_DIR)/$(LIBKMC_DIR)/src/%.o: CPPFLAGS += -I $(LIBKMC_DIR)/src -I $(LIBKMC_DIR)/include/
+$(BUILD_DIR)/$(LIBKMC_DIR)/src/%.o: ASFLAGS += -I $(LIBKMC_DIR)/src
 
-build/$(LIBMUS_DIR)/src/%.o: OPTFLAGS := -O3 -g0
-build/$(LIBMUS_DIR)/src/%.o: CFLAGS += -D_OLD_AUDIO_LIBRARY
-build/$(LIBMUS_DIR)/src/%.o: CPPFLAGS += -I $(LIBULTRA_DIR)/include/2.0I/PR
-
-build/src/code0/code0.c.o:   include/code0/code0.h
-build/src/code1/code1.c.o:   include/code1/code1.h
-build/src/static/static.c.o: include/static/static.h
+$(BUILD_DIR)/$(LIBMUS_DIR)/src/%.o: OPTFLAGS := -O3 -g0
+$(BUILD_DIR)/$(LIBMUS_DIR)/src/%.o: CFLAGS += -D_OLD_AUDIO_LIBRARY
+$(BUILD_DIR)/$(LIBMUS_DIR)/src/%.o: CPPFLAGS += -I $(LIBULTRA_DIR)/include/2.0I/PR
 
 all: $(ROM)
 
-compile: $(OBJECTS) build/src/code0/code0.c.o build/src/code1/code1.c.o build/src/static/static.c.o
+objects: $(OBJECTS)
 
 -include $(DEPENDS)
 
 clean:
-	$(V)rm -rf build
+	$(V)rm -rf $(BUILD_DIR)
 
 distclean: clean
 	$(V)rm -rf assets/
@@ -141,6 +143,7 @@ distclean: clean
 	$(V)rm -rf nonmatchings/
 	$(V)rm -rf gen/
 	$(V)rm -rf data/
+	$(V)rm -rf tmp/
 	$(V)rm -f ctx.c
 
 setup: distclean split
@@ -182,8 +185,12 @@ $(BUILD_DIR)/%.bin.o: %.bin
 	@mkdir -p $(shell dirname $@)
 	$(V)$(LD) -r -b binary -o $@ $<
 
+$(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
+	@$(PRINT)$(GREEN)Preprocessing linker script: $(ENDGREEN)$(BLUE)$<$(ENDBLUE)$(ENDLINE)
+	$(V)$(CPP) -P -DBUILD_PATH=$(BUILD_DIR) $< -o $@
+
 # Link the .o files into the .elf
-$(BUILD_DIR)/$(TARGET).elf: $(OBJECTS)
+$(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) $(BUILD_DIR)/$(LD_SCRIPT)
 	@$(PRINT)$(GREEN)Linking elf file: $(ENDGREEN)$(BLUE)$@$(ENDBLUE)$(ENDLINE)
 	$(V)$(LD) $(LDFLAGS) -o $@
 

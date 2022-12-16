@@ -13,15 +13,15 @@ typedef struct
 
 /*data*/
 /*800DD3F0*/ u8 gCacheLock[2] = {200, 200};
-/*800DD3F4*/ static s32 cachesize = 0;
-/*800DD3F8*/ static s32 cachecount = 0;
-/*800DD3FC*/ static u8 zerochar = 0;
-/*800DD400*/ static u8 *cachestart = NULL;
+/*800DD3F4*/ static s32 _cachesize = 0;
+/*800DD3F8*/ static s32 _cachecount = 0;
+/*800DD3FC*/ static u8 _zerochar = 0;
+/*800DD400*/ static u8 *_cachestart = NULL;
 /*800DD404*/ s32 gCacNum = 0;
 
 /*.comm*/
-/*800FF540*/ cactype gCac[MAXCACHEOBJECTS];
-/*8012F920*/ s32 gLockRecip[200];
+/*800FF540*/ cactype gCac[MAXCACHEOBJECTS] ALIGNED(16);
+/*8012F920*/ s32 gLockRecip[200] ALIGNED(8);
 
 /*.text*/
 
@@ -35,7 +35,7 @@ void initcache(u8 *dacachestart, s32 dacachesize)
         if (gCac[i].hand)
             *gCac[i].hand = NULL;
         gCac[i].hand = NULL;
-        gCac[i].lock = &zerochar;
+        gCac[i].lock = &_zerochar;
         gCac[i].leng = 0;
     }
 
@@ -44,16 +44,16 @@ void initcache(u8 *dacachestart, s32 dacachesize)
         gLockRecip[i] = (1 << 28) / (200 - i);
     }
 
-    cachestart = dacachestart;
-    cachesize = dacachesize;
+    _cachestart = dacachestart;
+    _cachesize = dacachesize;
 
-    gCac[0].leng = cachesize;
-    gCac[0].lock = &zerochar;
+    gCac[0].leng = _cachesize;
+    gCac[0].lock = &_zerochar;
     gCacNum = 1;
 }
 
 /*8002A3A0*/
-static s8 _allocache(u8 **newhandle, u32 newbytes, u8 *newlockptr);
+STATIC s8 _allocache(u8 **newhandle, u32 newbytes, u8 *newlockptr);
 INCLUDE_ASM(s32, "src/code0/cache1d", _allocache);
 
 /*8002A7BC*/
@@ -67,7 +67,7 @@ void suckcache(u8 **suckptr)
         {
             if (*gCac[i].lock)
                 *gCac[i].hand = 0;
-            gCac[i].lock = &zerochar;
+            gCac[i].lock = &_zerochar;
             gCac[i].hand = 0;
 
             if ((i > 0) && (*gCac[i - 1].lock == 0))
@@ -118,7 +118,7 @@ void allocache(u8 **newhandle, u32 newbytes, u8 *newlockptr)
 /*8002AD3C*/
 static void reportandexit(char *errormessage)
 {
-    printf("Cachesize = %ld\n", cachesize);
+    printf("Cachesize = %ld\n", _cachesize);
     printf("Cacnum = %ld\n", gCacNum);
     printf("ERROR: %s", errormessage);
     exit(0);
@@ -130,11 +130,11 @@ s32 func_8002AD44(void)
     s32 i;
     s32 size;
 
-    size = cachesize;
+    size = _cachesize;
 
     for (i = 0; i < gCacNum; i++)
     {
-        if (gCac[i].lock != &zerochar)
+        if (gCac[i].lock != &_zerochar)
             size -= gCac[i].leng;
     }
 

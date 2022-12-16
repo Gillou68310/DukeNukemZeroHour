@@ -19,7 +19,9 @@
                 "_LANGUAGE_C",
                 "_MIPS_SZLONG=32",
                 "_FINALROM",
-                "TARGET_N64"
+                "TARGET_N64",
+                "EXTERN=extern",
+                "STATIC="
             ],
             "cStandard": "c89",
             "cppStandard": "c++17",

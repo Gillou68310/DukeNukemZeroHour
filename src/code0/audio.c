@@ -3,8 +3,6 @@
 #include "code0/audio.h"
 #include "libmus.h"
 
-#include "code0/code0.h"
-
 #define DMA_LEN 16384
 #define MUSIC_COUNT 21
 #define SFX_BANK_SIZE 54152
@@ -21,12 +19,12 @@ typedef struct
     u8 *music_end;
 } MusicInfo;
 
-#define PBANK0_START pbank0SegmentRomStart
-#define PBANK0_END pbank0SegmentRomEnd
-#define WBANK0_START wbank0SegmentRomStart
-#define WBANK0_END wbank0SegmentRomEnd
-#define SFX_BANK_START sfxBankSegmentRomStart
-#define SFX_BANK_END sfxBankSegmentRomEnd
+#define PBANK0_START sounds_bank0_ptr_ROM_START
+#define PBANK0_END sounds_bank0_ptr_ROM_END
+#define WBANK0_START sounds_bank0_wbk_ROM_START
+#define WBANK0_END sounds_bank0_wbk_ROM_END
+#define SFX_BANK_START sounds_sfx_bfx_ROM_START
+#define SFX_BANK_END sounds_sfx_bfx_ROM_END
 
 extern u8 PBANK0_START[];
 extern u8 PBANK0_END[];
@@ -36,14 +34,14 @@ extern u8 SFX_BANK_START[];
 extern u8 SFX_BANK_END[];
 
 /*data*/
-/*800BD460*/ extern /*static*/ MusicInfo musicInfo[MUSIC_COUNT];
-extern /*static*/ s8 D_800BD618;
+/*800BD460*/ EXTERN STATIC MusicInfo _musicInfo[MUSIC_COUNT];
+/*800BD618*/ EXTERN STATIC s8 D_800BD618;
 
 /*.comm*/
-/*8010A9C0*/ u8 gSfxBankBuffer[SFX_BANK_SIZE];
-/*8013F960*/ u8 gSfxPbankBuffer[SFX_PBANK_SIZE];
-/*8016D190*/ u8 gAudioMemory[AUDIO_HEAP_SIZE];
-/*801A2840*/ u8 gMusicPbankBuffer[MUSIC_PBANK_SIZE];
+/*8010A9C0*/ u8 gSfxBankBuffer[SFX_BANK_SIZE] ALIGNED(16);
+/*8013F960*/ u8 gSfxPbankBuffer[SFX_PBANK_SIZE] ALIGNED(16);
+/*8016D190*/ u8 gAudioMemory[AUDIO_HEAP_SIZE] ALIGNED(16);
+/*801A2840*/ u8 gMusicPbankBuffer[MUSIC_PBANK_SIZE] ALIGNED(16);
 /*801B0D3C*/ s16 gSfxCount;
 
 /*.text*/

@@ -136,7 +136,7 @@ char *gWeaponStrInfo[0x7D] = {
 s16 gWeaponStrInfoCount = sizeof(gWeaponStrInfo) / sizeof(char *);
 
 /*01021758*/
-static char *keyStrTable1[0x10] = {
+static char *_keyStrTable1[0x10] = {
     "TRANSTEK CODE CARD",
     "",
     "",
@@ -156,7 +156,7 @@ static char *keyStrTable1[0x10] = {
 };
 
 /*01021798*/
-static char *keyStrTable2[0x10] = {
+static char *_keyStrTable2[0x10] = {
     "CONTROL KEY",
     "SERVICE ELEVATOR PASS",
     "PUMPING STATION KEY",
@@ -176,7 +176,7 @@ static char *keyStrTable2[0x10] = {
 };
 
 /*010217D8*/
-static char *keyStrTable3[0x10] = {
+static char *_keyStrTable3[0x10] = {
     "POWER CELL ALPHA",
     "POWER CELL BETA",
     "POWER CELL DELTA",
@@ -196,7 +196,7 @@ static char *keyStrTable3[0x10] = {
 };
 
 /*01021818*/
-static char *keyStrTable4[0x10] = {
+static char *_keyStrTable4[0x10] = {
     "",
     "",
     "",
@@ -216,7 +216,7 @@ static char *keyStrTable4[0x10] = {
 };
 
 /*01021858*/
-static char *keyStrTable5[0x10] = {
+static char *_keyStrTable5[0x10] = {
     "LABORATORY KEY",
     "ARMORY KEY",
     "",
@@ -236,7 +236,7 @@ static char *keyStrTable5[0x10] = {
 };
 
 /*01021898*/
-static char *keyStrTable6[0x10] = {
+static char *_keyStrTable6[0x10] = {
     "",
     "",
     "",
@@ -256,7 +256,7 @@ static char *keyStrTable6[0x10] = {
 };
 
 /*010218D8*/
-static char *keyStrTable7[0x10] = {
+static char *_keyStrTable7[0x10] = {
     "GUARD TOWER KEY",
     "",
     "",
@@ -276,7 +276,7 @@ static char *keyStrTable7[0x10] = {
 };
 
 /*01021918*/
-static char *keyStrTable8[0x10] = {
+static char *_keyStrTable8[0x10] = {
     "HOTEL KEY",
     "SALOON KEY",
     "ALIEN PLANS",
@@ -296,7 +296,7 @@ static char *keyStrTable8[0x10] = {
 };
 
 /*01021958*/
-static char *keyStrTable9[0x10] = {
+static char *_keyStrTable9[0x10] = {
     "",
     "EAST WING KEY",
     "NORTH WING KEY",
@@ -316,7 +316,7 @@ static char *keyStrTable9[0x10] = {
 };
 
 /*01021998*/
-static char *keyStrTable10[0x10] = {
+static char *_keyStrTable10[0x10] = {
     "LEVEL 1 SECURITY PASS",
     "LEVEL 2 SECURITY PASS",
     "BACKSTAGE KEY",
@@ -336,7 +336,7 @@ static char *keyStrTable10[0x10] = {
 };
 
 /*010219D8*/
-static char *keyStrTable11[0x10] = {
+static char *_keyStrTable11[0x10] = {
     "GUARD TOWER KEY",
     "BARRACKS KEY",
     "",
@@ -356,7 +356,7 @@ static char *keyStrTable11[0x10] = {
 };
 
 /*01021A18*/
-static char *keyStrTable12[0x10] = {
+static char *_keyStrTable12[0x10] = {
     "",
     "",
     "",
@@ -376,7 +376,7 @@ static char *keyStrTable12[0x10] = {
 };
 
 /*01021A58*/
-static char *keyStrTable13[0x10] = {
+static char *_keyStrTable13[0x10] = {
     "",
     "",
     "",
@@ -396,7 +396,7 @@ static char *keyStrTable13[0x10] = {
 };
 
 /*01021A98*/
-static char *keyStrTable14[0x10] = {
+static char *_keyStrTable14[0x10] = {
     "",
     "",
     "",
@@ -416,7 +416,7 @@ static char *keyStrTable14[0x10] = {
 };
 
 /*01021AD8*/
-static char *keyStrTable15[0x10] = {
+static char *_keyStrTable15[0x10] = {
     "CRYPT KEY",
     "",
     "",
@@ -436,7 +436,7 @@ static char *keyStrTable15[0x10] = {
 };
 
 /*01021B18*/
-static char *keyStrTable16[0x10] = {
+static char *_keyStrTable16[0x10] = {
     "SKELETON KEY",
     "",
     "",
@@ -456,7 +456,7 @@ static char *keyStrTable16[0x10] = {
 };
 
 /*01021B58*/
-static char *keyStrTable17[0x10] = {
+static char *_keyStrTable17[0x10] = {
     "3RD CLASS KEY",
     "",
     "",
@@ -476,7 +476,7 @@ static char *keyStrTable17[0x10] = {
 };
 
 /*01021B98*/
-static char *keyStrTable18[0x10] = {
+static char *_keyStrTable18[0x10] = {
     "COURTYARD KEY",
     "GREAT HALL KEY",
     "CATAPULT ROCK",
@@ -496,7 +496,7 @@ static char *keyStrTable18[0x10] = {
 };
 
 /*01021BD8*/
-static char *keyStrTable19[0x10] = {
+static char *_keyStrTable19[0x10] = {
     "",
     "",
     "",
@@ -516,7 +516,7 @@ static char *keyStrTable19[0x10] = {
 };
 
 /*01021C18*/
-static char *keyStrTable20[0x10] = {
+static char *_keyStrTable20[0x10] = {
     "",
     "",
     "",
@@ -536,7 +536,7 @@ static char *keyStrTable20[0x10] = {
 };
 
 /*01021C58*/
-static char *keyStrTable21[0x10] = {
+static char *_keyStrTable21[0x10] = {
     "",
     "",
     "",
@@ -556,7 +556,7 @@ static char *keyStrTable21[0x10] = {
 };
 
 /*01021C98*/
-static char *keyStrTable22[0x10] = {
+static char *_keyStrTable22[0x10] = {
     "",
     "",
     "",
@@ -576,7 +576,7 @@ static char *keyStrTable22[0x10] = {
 };
 
 /*01021CD8*/
-static char *keyStrTable23[0x10] = {
+static char *_keyStrTable23[0x10] = {
     "CYBORG HEAD",
     "BIO-EMITTER",
     "CYBORG HEAD",
@@ -596,7 +596,7 @@ static char *keyStrTable23[0x10] = {
 };
 
 /*01021D18*/
-static char *keyStrTable24[0x10] = {
+static char *_keyStrTable24[0x10] = {
     "",
     "",
     "",
@@ -617,34 +617,34 @@ static char *keyStrTable24[0x10] = {
 
 /*01021D58*/
 char **gKeyStrInfo[0x18] = {
-    keyStrTable1,
-    keyStrTable2,
-    keyStrTable3,
-    keyStrTable7,
-    keyStrTable4,
-    keyStrTable5,
-    keyStrTable6,
-    keyStrTable8,
-    keyStrTable9,
-    keyStrTable10,
-    keyStrTable11,
-    keyStrTable12,
-    keyStrTable13,
-    keyStrTable14,
-    keyStrTable15,
-    keyStrTable16,
-    keyStrTable18,
-    keyStrTable17,
-    keyStrTable19,
-    keyStrTable21,
-    keyStrTable23,
-    keyStrTable24,
-    keyStrTable24,
-    keyStrTable24,
+    _keyStrTable1,
+    _keyStrTable2,
+    _keyStrTable3,
+    _keyStrTable7,
+    _keyStrTable4,
+    _keyStrTable5,
+    _keyStrTable6,
+    _keyStrTable8,
+    _keyStrTable9,
+    _keyStrTable10,
+    _keyStrTable11,
+    _keyStrTable12,
+    _keyStrTable13,
+    _keyStrTable14,
+    _keyStrTable15,
+    _keyStrTable16,
+    _keyStrTable18,
+    _keyStrTable17,
+    _keyStrTable19,
+    _keyStrTable21,
+    _keyStrTable23,
+    _keyStrTable24,
+    _keyStrTable24,
+    _keyStrTable24,
 };
 
 /*01021DB8*/
-static char *msgStrTable1[5] = {
+static char *_msgStrTable1[5] = {
     "FIND A WAY TO APPROACH THE STATUE OF LIBERTY",
     "LOCATE AND QUESTION SURVIVING SOLDIERS",
     "RETURN TO PARKING LOT TO RENDEZVOUS WITH REINFORCEMENTS",
@@ -652,7 +652,7 @@ static char *msgStrTable1[5] = {
     "GET TO SUBWAY STATION AND LOCATE UNDERGROUND ACCESS TUNNEL"};
 
 /*01021DCC*/
-static char *msgStrTable2[6] = {
+static char *_msgStrTable2[6] = {
     "FIND AND DESTROY THE ALIEN HEADQUARTERS",
     "PROCEED INSIDE THE STATUE",
     "LOCATE OVERFLOW CONTROL KEY",
@@ -662,7 +662,7 @@ static char *msgStrTable2[6] = {
 };
 
 /*01021DE4*/
-static char *msgStrTable3[7] = {
+static char *_msgStrTable3[7] = {
     "RE-ESTABLISH CONTACT WITH HQ",
     "FIND SIGNS OF LIFE",
     "LOCATE POWER CELL ALPHA",
@@ -673,12 +673,12 @@ static char *msgStrTable3[7] = {
 };
 
 /*01021E00*/
-static char *msgStrTable4[1] = {
+static char *_msgStrTable4[1] = {
     "FIND THE BALLOON TO ESCAPE THE MAN-MADE ATOLL"
 };
 
 /*01021E04*/
-static char *msgStrTable5[4] = {
+static char *_msgStrTable5[4] = {
     "REACH MILITARY BASE",
     "EXPLORE SURROUNDING AREA",
     "DISABLE ALIEN FORCE-FIELD GENERATOR",
@@ -686,7 +686,7 @@ static char *msgStrTable5[4] = {
 };
 
 /*01021E14*/
-static char *msgStrTable6[5] = {
+static char *_msgStrTable6[5] = {
     "GAIN ACCESS TO BASE AND PROTECT SURVIVORS",
     "PROCEED TO MAIN ENTRANCE",
     "GET TO MEDICAL AND POWER UP DOOR TO TEMPORAL LABS",
@@ -695,12 +695,12 @@ static char *msgStrTable6[5] = {
 };
 
 /*01021E28*/
-static char *msgStrTable7[1] = {
+static char *_msgStrTable7[1] = {
     "DEFEAT BOSS HOG"
 };
 
 /*01021E2C*/
-static char *msgStrTable8[6] = {
+static char *_msgStrTable8[6] = {
     "BLOW OPEN THE SAFE IN THE TOWN BANK TO STEAL THE ALIEN PLANS",
     "LOCATE THE PLUNGER DETONATOR",
     "USE THE HOTEL KEY TO GAIN ACCESS TO THE FUSE WIRE",
@@ -710,7 +710,7 @@ static char *msgStrTable8[6] = {
 };
 
 /*01021E44*/
-static char *msgStrTable9[4] = {
+static char *_msgStrTable9[4] = {
     "ESCAPE FROM JAIL",
     "FIND A HELPING HAND TO ESCAPE",
     "FIND A WAY TO BREAK OUT",
@@ -718,7 +718,7 @@ static char *msgStrTable9[4] = {
 };
 
 /*01021E54*/
-static char *msgStrTable10[4] = {
+static char *_msgStrTable10[4] = {
     "CLEAR OUT THE ALIEN WAR FACTORY",
     "BOARD THE RIVERBOAT",
     "LOCATE AN EXIT",
@@ -726,7 +726,7 @@ static char *msgStrTable10[4] = {
 };
 
 /*01021E64*/
-static char *msgStrTable11[5] = {
+static char *_msgStrTable11[5] = {
     "LOCATE THE ALIEN BOMB",
     "SURVIVE THE CANNON FIRE AND REACH THE FORT",
     "AVOID THE BOOBY TRAPS IN AND AROUND THE FORT",
@@ -735,7 +735,7 @@ static char *msgStrTable11[5] = {
 };
 
 /*01021E78*/
-static char *msgStrTable12[5] = {
+static char *_msgStrTable12[5] = {
     "CHASE THE ALIEN BOMB AND DEFUSE THE EXPLOSIVE SITUATION",
     "FIND A MINE CART TO TAKE YOU DEEPER",
     "RIDE THE MINE CART (REMEMBER TO USE JUMP AND CROUCH)",
@@ -744,12 +744,12 @@ static char *msgStrTable12[5] = {
 };
 
 /*01021E8C*/
-static char *msgStrTable13[1] = {
+static char *_msgStrTable13[1] = {
     "DEFEAT THE CYBORG SCORPION"
 };
 
 /*01021E90*/
-static char *msgStrTable14[5] = {
+static char *_msgStrTable14[5] = {
     "DESTROY ALIEN VIRUS AND FIND ANOTHER TIME MACHINE",
     "LOCATE THE ENTRANCE TO THE SEWERS",
     "LOCATE THE WAY UP TO WHITECHAPEL",
@@ -758,7 +758,7 @@ static char *msgStrTable14[5] = {
 };
 
 /*01021EA4*/
-static char *msgStrTable15[4] = {
+static char *_msgStrTable15[4] = {
     "PROCEED TO AIRFIELD TO TAKE AIRSHIP TO CASTLE",
     "EXPLORE THE GRAVEYARD AND LOCATE CANAL ENTRANCE",
     "FOLLOW CANALS TO AIRFIELD",
@@ -766,7 +766,7 @@ static char *msgStrTable15[4] = {
 };
 
 /*01021EB4*/
-static char *msgStrTable16[4] = {
+static char *_msgStrTable16[4] = {
     "USE THE AIRSHIP'S PLANE TO ESCAPE TO CASTLE",
     "BREAK OUT FROM LUGGAGE HOLD",
     "FIND THE SKELETON KEY",
@@ -774,7 +774,7 @@ static char *msgStrTable16[4] = {
 };
 
 /*01021EC4*/
-static char *msgStrTable17[5] = {
+static char *_msgStrTable17[5] = {
     "STOP THE SHIP FROM REACHING ITS DESTINATION",
     "EXPLORE THE SHIP AND FIND A WAY TO REACH THE BOTTOM OF THE HOLD",
     "SINK THE SHIP IN ANY WAY POSSIBLE",
@@ -783,27 +783,27 @@ static char *msgStrTable17[5] = {
 };
 
 /*01021ED8*/
-static char *msgStrTable18[3] = {
+static char *_msgStrTable18[3] = {
     "LOCATE THE ALIEN MASTERMIND",
     "LOCATE AN ENTRANCE TO THE CASTLE",
     "EXPLORE THE CASTLE AND FIND THE LOCATION OF THE ALIEN BRAIN"
 };
 
 /*01021EE4*/
-static char *msgStrTable19[2] = {
+static char *_msgStrTable19[2] = {
     "KILL THE BRAIN IN A VAT",
     "DEACTIVATE ALL LIFE SUPPORT MACHINES"
 };
 
 /*01021EEC*/
-static char *msgStrTable20[3] = {
+static char *_msgStrTable20[3] = {
     "HIJACK SHUTTLE TO BOARD MOTHERSHIP",
     "DEFEAT EVIL DUKES",
     "LOCATE ALIEN SHUTTLECRAFT"
 };
 
 /*01021EF8*/
-static char *msgStrTable21[5] = {
+static char *_msgStrTable21[5] = {
     "DESTROY THE ALIEN SPACECRAFT",
     "LOCATE COMPATIBLE KEY TO ESCAPE SHUTTLE BAY",
     "FIND A WAY TO DEACTIVATE BIO-SENSITIVE FORCEFIELDS",
@@ -812,17 +812,17 @@ static char *msgStrTable21[5] = {
 };
 
 /*01021F0C*/
-static char *msgStrTable22[1] = {
+static char *_msgStrTable22[1] = {
     "KILL ZERO"
 };
 
 /*01021F10*/
-static char *msgStrTable23[1] = {
+static char *_msgStrTable23[1] = {
     "WATCH END SEQUENCE"
 };
 
 /*01021F14*/
-static char *msgStrTable24[7] = {
+static char *_msgStrTable24[7] = {
     "PROCEED TO THE HANGAR AND BOARD THE WAITING HELICOPTER",
     "JUMP, CLIMB, CRAWL AND SWIM ACROSS THE ASSAULT COURSE",
     "DESTROY TARGETS TO ACCESS NEXT SECTION OF RANGE",
@@ -834,30 +834,30 @@ static char *msgStrTable24[7] = {
 
 /*01021F30*/
 MsgStrInfo gMsgStrInfo[0x18] = {
-    { sizeof(msgStrTable1) / sizeof(char *), msgStrTable1 },
-    { sizeof(msgStrTable2) / sizeof(char *), msgStrTable2 },
-    { sizeof(msgStrTable3) / sizeof(char *), msgStrTable3 },
-    { sizeof(msgStrTable4) / sizeof(char *), msgStrTable4 },
-    { sizeof(msgStrTable5) / sizeof(char *), msgStrTable5 },
-    { sizeof(msgStrTable6) / sizeof(char *), msgStrTable6 },
-    { sizeof(msgStrTable7) / sizeof(char *), msgStrTable7 },
-    { sizeof(msgStrTable8) / sizeof(char *), msgStrTable8 },
-    { sizeof(msgStrTable9) / sizeof(char *), msgStrTable9 },
-    { sizeof(msgStrTable10) / sizeof(char *), msgStrTable10 },
-    { sizeof(msgStrTable11) / sizeof(char *), msgStrTable11 },
-    { sizeof(msgStrTable12) / sizeof(char *), msgStrTable12 },
-    { sizeof(msgStrTable13) / sizeof(char *), msgStrTable13 },
-    { sizeof(msgStrTable14) / sizeof(char *), msgStrTable14 },
-    { sizeof(msgStrTable15) / sizeof(char *), msgStrTable15 },
-    { sizeof(msgStrTable16) / sizeof(char *), msgStrTable16 },
-    { sizeof(msgStrTable18) / sizeof(char *), msgStrTable18 },
-    { sizeof(msgStrTable17) / sizeof(char *), msgStrTable17 },
-    { sizeof(msgStrTable19) / sizeof(char *), msgStrTable19 },
-    { sizeof(msgStrTable20) / sizeof(char *), msgStrTable20 },
-    { sizeof(msgStrTable21) / sizeof(char *), msgStrTable21 },
-    { sizeof(msgStrTable22) / sizeof(char *), msgStrTable22 },
-    { sizeof(msgStrTable23) / sizeof(char *), msgStrTable23 },
-    { sizeof(msgStrTable24) / sizeof(char *), msgStrTable24 },
+    { sizeof(_msgStrTable1) / sizeof(char *), _msgStrTable1 },
+    { sizeof(_msgStrTable2) / sizeof(char *), _msgStrTable2 },
+    { sizeof(_msgStrTable3) / sizeof(char *), _msgStrTable3 },
+    { sizeof(_msgStrTable4) / sizeof(char *), _msgStrTable4 },
+    { sizeof(_msgStrTable5) / sizeof(char *), _msgStrTable5 },
+    { sizeof(_msgStrTable6) / sizeof(char *), _msgStrTable6 },
+    { sizeof(_msgStrTable7) / sizeof(char *), _msgStrTable7 },
+    { sizeof(_msgStrTable8) / sizeof(char *), _msgStrTable8 },
+    { sizeof(_msgStrTable9) / sizeof(char *), _msgStrTable9 },
+    { sizeof(_msgStrTable10) / sizeof(char *), _msgStrTable10 },
+    { sizeof(_msgStrTable11) / sizeof(char *), _msgStrTable11 },
+    { sizeof(_msgStrTable12) / sizeof(char *), _msgStrTable12 },
+    { sizeof(_msgStrTable13) / sizeof(char *), _msgStrTable13 },
+    { sizeof(_msgStrTable14) / sizeof(char *), _msgStrTable14 },
+    { sizeof(_msgStrTable15) / sizeof(char *), _msgStrTable15 },
+    { sizeof(_msgStrTable16) / sizeof(char *), _msgStrTable16 },
+    { sizeof(_msgStrTable18) / sizeof(char *), _msgStrTable18 },
+    { sizeof(_msgStrTable17) / sizeof(char *), _msgStrTable17 },
+    { sizeof(_msgStrTable19) / sizeof(char *), _msgStrTable19 },
+    { sizeof(_msgStrTable20) / sizeof(char *), _msgStrTable20 },
+    { sizeof(_msgStrTable21) / sizeof(char *), _msgStrTable21 },
+    { sizeof(_msgStrTable22) / sizeof(char *), _msgStrTable22 },
+    { sizeof(_msgStrTable23) / sizeof(char *), _msgStrTable23 },
+    { sizeof(_msgStrTable24) / sizeof(char *), _msgStrTable24 },
 };
 
 /*01021FF0*/
@@ -913,21 +913,21 @@ char *gActionStrInfo[0x11] = {
 s16 gActionStrInfoCount = sizeof(gActionStrInfo) / sizeof(char *);
 
 /*01022098*/
-s32 D_1022098 = 0x20000000;
+s32 D_01022098 = 0x20000000;
 
 /*0102209C*/
 char *gLicenceStrInfo[0x23] = {
     "DUKE NUKEM^ ZERO HOUR^ (C)1999",
     "3D REALMS ENTERTAINMENT.",
     "ALL RIGHTS RESERVED.",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "DEVELOPED BY",
     "EUROCOM DEVELOPMENTS, LTD.",
     "UNDER SUBLICENSE FROM GT",
     "INTERACTIVE SOFTWARE CORP.",
     "UNDER LICENSE FROM",
     "3D REALMS ENTERTAINMENT.",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "PUBLISHED AND DISTRIBUTED BY",
     "GT INTERACTIVE SOFTWARE CORP.",
     "GT AND THE GT GAMES LOGO ARE",
@@ -939,17 +939,17 @@ char *gLicenceStrInfo[0x23] = {
     "ENTERTAINMENT. EUROCOM AND THE",
     "EUROCOM LOGO ARE TRADEMARKS OF",
     "EUROCOM DEVELOPMENTS, LTD.",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "NINTENDO, THE OFFICIAL SEAL,",
     "NINTENDO 64 AND THE 3-D \"N\" LOGO",
     "ARE TRADEMARKS OF NINTENDO OF",
     "AMERICA, INC.",
     "(C)1996 NINTENDO OF AMERICA, INC.",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "ALL OTHER TRADEMARKS ARE THE",
     "PROPERTY OF THEIR RESPECTIVE",
     "COMPANIES.",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "LICENSED BY NINTENDO",
     NULL
 };
@@ -962,46 +962,46 @@ char *gCreditStrInfo[0xF8] = {
     "DUKE NUKEM: ZERO HOUR",
     "DEVELOPED BY",
     "EUROCOM ENTERTAINMENT SOFTWARE",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "PROGRAMMING",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "SIMON MILLS",
     "STEF WALKER",
     "KEV GRANTHAM",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "TOOLS PROGRAMMING",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "ANDY MITCHELL",
     "DAVE ARNOLD",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "ADDITIONAL PROGRAMMING",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "PAUL BATES",
     "ASHLEY FINNEY",
     "TIM ROGERS",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "LEVEL DESIGN",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "BILL BEACHAM",
     "ROB CRAVEN",
     "KEV HARVEY",
     "AARON JENKINS",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "2D GRAPHICS",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "LEE AMES",
     "ANDY BEE",
     "ROB BENTON",
     "PAUL ROBINSON",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "3D GRAPHICS",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "ANDY BEE",
     "NIGEL BENTLEY",
     "ROB BENTON",
@@ -1010,136 +1010,136 @@ char *gCreditStrInfo[0xF8] = {
     "DARREN HYLAND",
     "ADRIAN MANNION",
     "PAUL ROBINSON",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "ANIMATION",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "DARREN HYLAND",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "AUDIO",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "NEIL BALDWIN",
     "GUY COCKCROFT",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "CONCEPT ART",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "ROB BENTON",
     "NICK DRY",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "QUALITY ASSURANCE MANAGER",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "MIKE BOTHAM",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "QUALITY ASSURANCE",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "PHIL BAKER",
     "JOHN BARKER",
     "ANDY COLLINS",
     "PHIL BENNETT",
     "J.D. BUXTON",
     "MIKE ROBINSON",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "PROJECT MANAGEMENT",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "BILL BEACHAM",
     "HUGH BINNS",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "THANKS",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "PAUL WRIGHT",
     "MAT SNEAP",
     "ANDY COLLINS",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "DUKE NUKEM CREATED AND",
     "LICENSED BY",
     "3D REALMS ENTERTAINMENT",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "QUALITY REVIEW,",
     "AND DESIGN TWEAKS !",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "GEORGE BROUSSARD",
     "KEITH SCHULER",
     "SCOTT MILLER",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "SPEECH EDITING",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "LEE JACKSON",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "VOICE TALENT",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "JON ST. JOHN AS DUKE NUKEM",
     "LANI MINELLA AS FEMALE COMMANDER",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "GT INTERACTIVE",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "SENIOR PRODUCER",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "RICK RAYMO",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "ASSOC. PRODUCER",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "MARIANNE AROTZARENA",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "FORMER UK PRODUCER",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "CRAIG LEIGH",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "GT TEST MANAGER",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "STEVE KNOPF",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "GT TEST LEAD",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "JIM DUNN",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "TESTERS",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "JON MARQUETTE",
     "YUME GREGERSON",
     "CHRIS DUNN",
     "JOE ORR",
     "JOSH GALLOWAY",
     "ARLO EVANS",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "LOCALISATION MANAGER",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "NEIL MCKENNA",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "LOCALISATION CO-ORDINATOR",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "ALEX BUSH",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "SPECIAL THANKS :",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "MIKE RYDER",
     "RICH ROBINSON",
     "MARY STEER",
@@ -1158,54 +1158,54 @@ char *gCreditStrInfo[0xF8] = {
     "DEAN GLOSTER",
     "GLEN BRODERICK",
     "PETE STERN",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     "THE MARIO CLUB",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "DEREK WHIPPLE",
     "TIM WALKER",
-    (char *)&D_1022098,
+    (char *)&D_01022098,
     "STEVE BOLENDER",
     "TODD GARDINER",
     "JON HAMAKER",
     "ELAINE HUTCHISON",
     "PHILL SANDHOP",
     "CALVIN SMITH",
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
-    (char *)&D_1022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
+    (char *)&D_01022098,
     NULL
 };
 

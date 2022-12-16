@@ -1,14 +1,122 @@
-code0SegmentBssStart = 0x800EA700;
-code0SegmentBssEnd = 0x801C0D80;
-bootStack = 0x80119A30;
-rspbootTextEnd = 0x800BB220;
-gspF3DLX2_NoN_fifoTextEnd = 0x800BC5B0;
-aspMainTextEnd = 0x800BD3D0;
-gspF3DEX2_NoN_fifoDataEnd = 0x800E4140;
-aspMainDataEnd = 0x800E4400;
-pbank0SegmentRomStart = 0x1191A00;
-pbank0SegmentRomEnd = 0x11BA850;
-wbank0SegmentRomStart = 0x11BA850;
-wbank0SegmentRomEnd = 0x1A7E270;
-sfxBankSegmentRomStart = 0x1A7E270;
-sfxBankSegmentRomEnd = 0x1A8B5D0;
+osTvType = 0x80000300;
+osRomBase = 0x80000308;
+osResetType = 0x8000030C;
+osMemSize = 0x80000318;
+osAppNMIBuffer = 0x8000031C;
+
+bootStackAddress = 0x80119A30;
+
+rspbootTextStart = _binary_assets_ucode_rspboot_text_bin_start;
+rspbootTextEnd = _binary_assets_ucode_rspboot_text_bin_end;
+
+gspF3DLX2_NoN_fifoTextStart = _binary_assets_ucode_gspF3DEX2_NoN_fifo_text_bin_start;
+gspF3DLX2_NoN_fifoTextEnd = _binary_assets_ucode_gspF3DEX2_NoN_fifo_text_bin_end;
+
+aspMainTextStart = _binary_assets_ucode_aspMain_text_bin_start;
+aspMainTextEnd = _binary_assets_ucode_aspMain_text_bin_end;
+
+gspF3DEX2_NoN_fifoDataStart = _binary_assets_ucode_gspF3DEX2_NoN_fifo_data_bin_start;
+gspF3DEX2_NoN_fifoDataEnd = _binary_assets_ucode_gspF3DEX2_NoN_fifo_data_bin_end;
+
+aspMainDataStart = _binary_assets_ucode_aspMain_data_bin_start;
+aspMainDataEnd = _binary_assets_ucode_aspMain_data_bin_end;
+
+gTileInfo_STATIC_START = gTileInfo - static_VRAM;
+gWeaponStrInfo_STATIC_START = gWeaponStrInfo - static_VRAM;
+gWeaponStrInfoCount_STATIC_START = gWeaponStrInfoCount - static_VRAM;
+gKeyStrInfo_STATIC_START = gKeyStrInfo - static_VRAM;
+gMsgStrInfo_STATIC_START = gMsgStrInfo - static_VRAM;
+gMapStrInfo_STATIC_START = gMapStrInfo - static_VRAM;
+gActionStrInfo_STATIC_START = gActionStrInfo - static_VRAM;
+gActionStrInfoCount_STATIC_START = gActionStrInfoCount - static_VRAM;
+gLicenceStrInfo_STATIC_START = gLicenceStrInfo - static_VRAM;
+gLicenceStrInfoCount_STATIC_START = gLicenceStrInfoCount - static_VRAM;
+gCreditStrInfo_STATIC_START = gCreditStrInfo - static_VRAM;
+gCreditStrInfoCount_STATIC_START = gCreditStrInfoCount - static_VRAM;
+D_01022510_STATIC_START = D_01022510 - static_VRAM;
+D_01022790_STATIC_START = D_01022790 - static_VRAM;
+D_01022990_STATIC_START = D_01022990 - static_VRAM;
+gSinTable_STATIC_START = gSinTable - static_VRAM;
+gRadarang_STATIC_START = gRadarang - static_VRAM;
+D_01024590_STATIC_START = D_01024590 - static_VRAM;
+D_010245E8_STATIC_START = D_010245E8 - static_VRAM;
+D_0102464C_STATIC_START = D_0102464C - static_VRAM;
+D_010247AC_STATIC_START = D_010247AC - static_VRAM;
+D_01025734_STATIC_START = D_01025734 - static_VRAM;
+D_0102578C_STATIC_START = D_0102578C - static_VRAM;
+D_0102583C_STATIC_START = D_0102583C - static_VRAM;
+D_01025840_STATIC_START = D_01025840 - static_VRAM;
+D_010258D8_STATIC_START = D_010258D8 - static_VRAM;
+D_01025908_STATIC_START = D_01025908 - static_VRAM;
+D_01025968_STATIC_START = D_01025968 - static_VRAM;
+D_010259B0_STATIC_START = D_010259B0 - static_VRAM;
+D_01025AAC_STATIC_START = D_01025AAC - static_VRAM;
+D_01025BA0_STATIC_START = D_01025BA0 - static_VRAM;
+D_01025CFC_STATIC_START = D_01025CFC - static_VRAM;
+gMapInfo_STATIC_START = gMapInfo - static_VRAM;
+D_01026910_STATIC_START = D_01026910 - static_VRAM;
+
+/*Static segment offset*/
+D_F1E0 = 0xF1E0;
+D_12FCC = 0x12FCC;
+D_13404 = 0x13404;
+D_13B0C = 0x13B0C;
+D_13E74 = 0x13E74;
+D_14468 = 0x14468;
+D_151EC = 0x151EC;
+D_17850 = 0x17850;
+D_17854 = 0x17854;
+D_17AFC = 0x17AFC;
+D_189A4 = 0x189A4;
+D_198B4 = 0x198B4;
+D_1999C = 0x1999C;
+D_1A220 = 0x1A220;
+D_1A624 = 0x1A624;
+D_1A9A0 = 0x1A9A0;
+D_1AA1C = 0x1AA1C;
+D_1ACAC = 0x1ACAC;
+D_1B9C8 = 0x1B9C8;
+D_1BC88 = 0x1BC88;
+D_1C310 = 0x1C310;
+D_1C458 = 0x1C458;
+D_1C8A0 = 0x1C8A0;
+D_1CF20 = 0x1CF20;
+D_1D440 = 0x1D440;
+D_1D470 = 0x1D470;
+D_1DFC4 = 0x1DFC4;
+D_1E524 = 0x1E524;
+D_1E560 = 0x1E560;
+D_1E594 = 0x1E594;
+D_1E5C8 = 0x1E5C8;
+D_1EB64 = 0x1EB64;
+D_1F1B4 = 0x1F1B4;
+D_1F4B4 = 0x1F4B4;
+D_1F5E8 = 0x1F5E8;
+D_1F780 = 0x1F780;
+D_1F8F8 = 0x1F8F8;
+D_1FB20 = 0x1FB20;
+D_1FF1C = 0x1FF1C;
+D_200C8 = 0x200C8;
+D_201B8 = 0x201B8;
+D_20284 = 0x20284;
+D_2037C = 0x2037C;
+D_2040C = 0x2040C;
+D_20DDC = 0x20DDC;
+D_20EDC = 0x20EDC;
+D_20F10 = 0x20F10;
+D_21228 = 0x21228;
+D_21464 = 0x21464;
+
+/*Matrix OS_K0_TO_PHYSICAL*/
+D_12BC28 = 0x12BC28;
+
+/*ROM address*/
+D_11FC80 = 0x11FC80;
+D_385980 = 0x385980;
+D_CD82F0 = 0xCD82F0;
+D_1191A00 = 0x1191A00;
+D_1A8B5D0 = 0x1A8B5D0;
+
+D_80000004 = 0x80000004;
+D_8000000C = 0x8000000C;
+D_C0000400 = 0xC0000400;
