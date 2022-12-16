@@ -3,7 +3,7 @@
 
 /*.data*/
 
-/*1025D00*/
+/*01025D00*/
 MapInfo gMapInfo[MAPNUM] = {
     {
         (u8 *)0xDEB7C0,

@@ -438,18 +438,22 @@ segments:
     type: code
     start: 0xF6D70
     vram: 0x01000000 #0x801CF720
-    subalign: 8
+    subalign: 4 #Is it?
     subsegments:
-    - {start: 0xF6D70,  type:  data,  vram: 0x01000000, name: static/F6D70}
-    - {start: 0xF85D0,  type:  .data, vram: 0x01001860, name: src/static/spinit}
-    - {start: 0xF8670,  type:  data,  vram: 0x01001900, name: static/F8670}
-    - {start: 0xF8730,  type:  .data, vram: 0x010019C0, name: src/static/tileinfo}
-    - {start: 0x105F50, type:  data,  vram: 0x0100F1E0, name: static/105F50}
-    - {start: 0x119900, type:  .data, vram: 0x01022B90, name: src/static/sintable}
-    - {start: 0x11A900, type:  .data, vram: 0x01023B90, name: src/static/radarang}
-    - {start: 0x11B300, type:  data,  vram: 0x01024590, name: static/11B300}
-    - {start: 0x11CA70, type:  .data, vram: 0x01025D00, name: src/static/mapinfo}
-    - {start: 0x11D520, type:  data,  vram: 0x010267B0, name: static/11D520}
+    - {start: 0xF6D70,  type:  data,    vram: 0x01000000, name: static/F6D70}
+    - {start: 0xF85D0,  type:  .data,   vram: 0x01001860, name: src/static/spinit}
+    - {start: 0xF8670,  type:  data,    vram: 0x01001900, name: static/F8670}
+    - {start: 0xF8730,  type:  .data,   vram: 0x010019C0, name: src/static/tileinfo}
+    - {start: 0x105F50, type:  data,    vram: 0x0100F1E0, name: static/105F50}
+    - {start: 0x1182D0, type:  .data,   vram: 0x01021560, name: src/static/strinfo}
+    - {start: 0x119280, type:  data,    vram: 0x01022510, name: static/119280}
+    - {start: 0x119900, type:  .data,   vram: 0x01022B90, name: src/static/sintable}
+    - {start: 0x11A900, type:  .data,   vram: 0x01023B90, name: src/static/radarang}
+    - {start: 0x11B300, type:  data,    vram: 0x01024590, name: static/11B300}
+    - {start: 0x11CA70, type:  .data,   vram: 0x01025D00, name: src/static/mapinfo}
+    - {start: 0x11D520, type:  data,    vram: 0x010267B0, name: static/11D520}
+    - {start: 0x11D780, type:  .rodata, vram: 0x01026A10, name: src/static/strinfo}
+    - {start: 0x11F98C, type:  rodata,  vram: 0x01028C1C, name: static/11F98C}
 
   #files
   - [0x11FC80,  bin,        files/all]

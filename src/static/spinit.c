@@ -1,10 +1,10 @@
 #include "common.h"
 #include "code0/20490.h"
 
-/*.text*/
+/*.data*/
 
 /*01001860*/
-Gfx rspInitDl[] = {
+Gfx gRspInitDl[] = {
     gsSPViewport(&D_800DCB10),
     gsSPClearGeometryMode(G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH),
     gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
@@ -13,7 +13,7 @@ Gfx rspInitDl[] = {
 };
 
 /*01001888*/
-Gfx rdpInitDl[] = {
+Gfx gRdpInitDl[] = {
     gsDPSetCycleType(G_CYC_1CYCLE),
     gsDPPipelineMode(G_PM_1PRIMITIVE),
     gsDPSetTextureLOD(G_TL_TILE),
@@ -30,3 +30,5 @@ Gfx rdpInitDl[] = {
     gsDPPipeSync(),
     gsSPEndDisplayList(),
 };
+
+/*.text*/

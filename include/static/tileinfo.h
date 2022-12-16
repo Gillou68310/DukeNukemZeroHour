@@ -19,4 +19,6 @@ typedef struct
     u16 tileid;
 } TileInfo;
 
+extern TileInfo gTileInfo[TILENUM];
+
 #endif

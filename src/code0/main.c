@@ -26,6 +26,7 @@
 #include "code1/EB300.h"
 #include "static/spinit.h"
 #include "static/mapinfo.h"
+#include "static/strinfo.h"
 #include "libmus.h"
 
 #include "code0/code0.h"
@@ -655,8 +656,8 @@ static void setupSegments(void)
     gSPSegment(gpDisplaylist++, PHYSICAL_SEGMENT, 0x0);
     gSPSegment(gpDisplaylist++, STATIC_SEGMENT, OS_K0_TO_PHYSICAL(gStaticSegment));
     gSPSegment(gpDisplaylist++, FRAMEBUFFER_SEGMENT, OS_K0_TO_PHYSICAL(gFramebuffer[framebufferIndex]));
-    gSPDisplayList(gpDisplaylist++, rdpInitDl);
-    gSPDisplayList(gpDisplaylist++, rspInitDl);
+    gSPDisplayList(gpDisplaylist++, gRdpInitDl);
+    gSPDisplayList(gpDisplaylist++, gRspInitDl);
     gDPSetScissor(gpDisplaylist++, G_SC_NON_INTERLACE, 0, 0, gScreenWidth, gScreenHeight);
 }
 
