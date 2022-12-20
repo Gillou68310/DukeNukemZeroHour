@@ -253,7 +253,7 @@ for file in files:
 
 # Build source files
 if len(args.Path) == 0:
-    subprocess.run(['make', '-j12'])
+    subprocess.run(['make', 'compile', '-j12'])
     o_files = [y for x in os.walk('build/src') for y in glob.glob(os.path.join(x[0], '*.o'))]
     o_files += [y for x in os.walk('build/libs') for y in glob.glob(os.path.join(x[0], '*.o'))]
 else:

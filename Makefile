@@ -1,3 +1,6 @@
+
+.DEFAULT_GOAL := all
+
 ### Build Options ###
 
 BASEROM      := baserom.us.z64
@@ -117,7 +120,13 @@ build/$(LIBMUS_DIR)/src/%.o: OPTFLAGS := -O3 -g0
 build/$(LIBMUS_DIR)/src/%.o: CFLAGS += -D_OLD_AUDIO_LIBRARY
 build/$(LIBMUS_DIR)/src/%.o: CPPFLAGS += -I $(LIBULTRA_DIR)/include/2.0I/PR
 
+build/src/code0/code0.c.o:   include/code0/code0.h
+build/src/code1/code1.c.o:   include/code1/code1.h
+build/src/static/static.c.o: include/static/static.h
+
 all: $(ROM)
+
+compile: $(OBJECTS) build/src/code0/code0.c.o build/src/code1/code1.c.o build/src/static/static.c.o
 
 -include $(DEPENDS)
 
