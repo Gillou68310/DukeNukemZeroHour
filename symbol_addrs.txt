@@ -1,3 +1,4 @@
+staticSegment                      = 0x01000000; // ignore:true   size:0x28F10
 rspInitDl                          = 0x01001860; // type:data     size:0x28              (.data)   (src/static/spinit.c)
 rdpInitDl                          = 0x01001888; // type:data     size:0x78              (.data)   (src/static/spinit.c)
 tileInfo                           = 0x010019C0; // type:data     size:0xD820            (.data)   (src/static/tileinfo.c)
