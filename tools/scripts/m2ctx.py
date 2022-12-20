@@ -71,6 +71,9 @@ def import_c_file(in_file, macro, linemarker) -> str:
         if "#define va_end" in line:
             out_text_ += "\n"
             continue
+        if "while(1)" in line:
+            out_text_ += "\n"
+            continue
         if line.startswith(";"):
             out_text_ += "\n"
             continue
