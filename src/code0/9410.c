@@ -4,7 +4,8 @@
 #include "code0/edl.h"
 #include "code0/main.h"
 #include "code0/9410.h"
-#include "code0/common0.h"
+
+#include "code0/code0.h"
 
 #define MAXTILES 6144
 #define MAXTILESIZE 32832

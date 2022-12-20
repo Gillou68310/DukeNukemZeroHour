@@ -1,5 +1,5 @@
-#ifndef _COMMON1_H_
-#define _COMMON1_H_
+#ifndef _CODE1_H_
+#define _CODE1_H_
 
 #include "common.h"
 
@@ -16,7 +16,7 @@ typedef struct
     f32 zUp;
 } Position;
 
-#ifdef _COMMON1_C_
+#ifdef _CODE1_C_
 #define _extern
 #else
 #define _extern extern

@@ -1,5 +1,6 @@
 #include "common.h"
-#include "code1/common1.h"
+
+#include "code1/code1.h"
 
 /*.text*/
 

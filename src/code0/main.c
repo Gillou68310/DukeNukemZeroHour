@@ -22,12 +22,14 @@
 #include "code0/8EFE0.h"
 #include "code0/95500.h"
 #include "code0/A06F0.h"
-#include "code0/common0.h"
 #include "code0/main.h"
 #include "code1/EB300.h"
-#include "code1/common1.h"
 #include "static/spinit.h"
 #include "libmus.h"
+
+#include "code0/code0.h"
+#include "code1/code1.h"
+#include "static/static.h"
 
 #define IDLELOOP_STACKSIZE 0x1000
 #define MAINLOOP_STACKSIZE 0x8000

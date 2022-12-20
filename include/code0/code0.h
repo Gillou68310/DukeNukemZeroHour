@@ -1,5 +1,5 @@
-#ifndef _COMMON0_H_
-#define _COMMON0_H_
+#ifndef _CODE0_H_
+#define _CODE0_H_
 
 #include "common.h"
 #include "PR/sched.h"
@@ -80,7 +80,7 @@ typedef struct
     u8 unk_89;
     u8 unk_8A;
     u8 unk_8B[17]; /*14->17?*/
-} common0UnkStruct1;
+} code0UnkStruct1;
 
 typedef struct
 {
@@ -96,7 +96,7 @@ typedef struct
     s16 unk_14;
     s16 unk_16;
     s16 unk_18;
-} common0UnkStruct2;
+} code0UnkStruct2;
 
 typedef struct
 {
@@ -136,7 +136,7 @@ typedef struct
     u8 unk_9E;
     u8 unk_9F[2];
     u8 unk_A1[3]; /*0->3?*/
-} common0UnkStruct3;
+} code0UnkStruct3;
 
 typedef struct
 {
@@ -148,9 +148,9 @@ typedef struct
     s16 unk_0A;
     s32 unk_0C;
     u8 unk_10;
-} common0UnkStruct4;
+} code0UnkStruct4;
 
-#ifdef _COMMON0_C_
+#ifdef _CODE0_C_
 #define _extern
 #else
 #define _extern extern
@@ -163,8 +163,8 @@ typedef struct
 /*80106D30*/ _extern u8 D_80106D30[4];
 /*80106D50*/ _extern s16 D_80106D50[1500];
 /*8010A938*/ _extern s32 D_8010A938;
-/*8010A940*/ _extern common0UnkStruct2 D_8010A940[4];
-/*80117ED8*/ _extern common0UnkStruct1 D_80117ED8[4];
+/*8010A940*/ _extern code0UnkStruct2 D_8010A940[4];
+/*80117ED8*/ _extern code0UnkStruct1 D_80117ED8[4];
 /*80118148*/ _extern u8 D_80118148;
 /*801297E0*/ _extern Gfx *D_801297E0[8];
 /*8012C470*/ _extern s16 D_8012C470;
@@ -184,8 +184,8 @@ typedef struct
 /*80199524*/ _extern s32 D_80199524;
 /*80199528*/ _extern s32 D_80199528;
 /*80199750*/ _extern s32 D_80199750;
-/*8019B940*/ _extern common0UnkStruct3 D_8019B940[150];
-/*801A1958*/ _extern common0UnkStruct4 D_801A1958;
+/*8019B940*/ _extern code0UnkStruct3 D_8019B940[150];
+/*801A1958*/ _extern code0UnkStruct4 D_801A1958;
 /*801A1970*/ _extern s32 D_801A1970;
 /*801A19EC*/ _extern u8 D_801A19EC;
 /*801A6AF8*/ _extern OSSched gScheduler;

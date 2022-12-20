@@ -1,8 +1,9 @@
 #include "common.h"
 #include "code0/main.h"
 #include "code0/audio.h"
-#include "code0/common0.h"
 #include "libmus.h"
+
+#include "code0/code0.h"
 
 #define DMA_LEN 16384
 #define MUSIC_COUNT 21

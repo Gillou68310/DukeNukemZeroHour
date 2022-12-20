@@ -43,7 +43,7 @@ segments:
     bss_size: 0xD6680
     subsegments:
     #.text section
-      - [0x1000,  c,        src/code0/common0]
+      - [0x1000,  c,        src/code0/code0]
       - [0x1000,  hasm,     src/code0/entrypoint]
       - [0x1040,  bin,      code0/1040.text.pad] #Padding
       - [0x1050,  c,        src/code0/main]
@@ -417,7 +417,7 @@ segments:
       - {start: 0xEB300, type: .bss, vram: 0x800FCB40, name: libs/libultra/src/io/sptask}
       - {start: 0xEB300, type: .bss, vram: 0x800FCB80, name: libs/libultra/src/io/siacs}
       - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/piacs}
-      - {start: 0xEB300, type:  bss, vram: 0x800FCBA0, name: code0/common0}
+      - {start: 0xEB300, type:  bss, vram: 0x800FCBA0, name: code0/code0}
 
   - name: code1
     type: code
@@ -427,14 +427,14 @@ segments:
     subalign: 8
     subsegments:
     #.text section
-      - [0xEB300,  c,        src/code1/common1]
+      - [0xEB300,  c,        src/code1/code1]
       - [0xEB300,  c,        src/code1/EB300]
     #.data section?
       - [0xF46C0,  data,     code1/EB300]
     #.rodata section?
       - [0xF64B0,  rodata,   code1/EB300]
     #.bss section
-      - {start: 0xF6D70, type:  bss, vram: 0x801CC7F0, name: code1/common1}
+      - {start: 0xF6D70, type:  bss, vram: 0x801CC7F0, name: code1/code1}
 
   - name: static
     type: code
@@ -442,6 +442,7 @@ segments:
     vram: 0x01000000 #0x801CF720
     subalign: 8
     subsegments:
+      - [0xF6D70,  .data,      src/static/static]
       - [0xF6D70,  data,       static/F6D70]
       - [0xF85D0,  .data,      src/static/spinit]
       - [0xF8670,  data,       static/F8670]
