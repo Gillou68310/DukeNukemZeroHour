@@ -91,11 +91,11 @@ ENDLINE := \n'
 
 OPTFLAGS       := -O2 -g2
 ASFLAGS        := -G0 -mips3 -I include
-CFLAGS         := -G0 -mips3 -mgp32 -mfp32 #-save-temps #-Wa,--vr4300mul-off
+CFLAGS         := -G0 -mips3 -mgp32 -mfp32 -funsigned-char #-save-temps #-Wa,--vr4300mul-off
 CPPFLAGS       := -I include -I $(LIBULTRA_DIR)/include/2.0I -I $(LIBMUS_DIR)/include -D_LANGUAGE_C -DF3DEX_GBI_2 -DF3DEX_GBI_2x -D_MIPS_SZLONG=32 -D_FINALROM -DTARGET_N64
 LDFLAGS        := -T undefined_syms.txt -T undefined_funcs.txt -T undefined_funcs_auto.txt -T undefined_syms_auto.txt -T $(LD_SCRIPT) -Map $(LD_MAP) --no-check-sections
 CHECK_WARNINGS := -Wall -Wextra -Wno-missing-braces -Wno-format-security -Wno-unused-parameter -Wno-unused-variable -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -Wno-unused-function -m32
-CFLAGS_CHECK   := -fsyntax-only -fsigned-char -nostdinc -fno-builtin -D CC_CHECK -std=gnu90 $(CHECK_WARNINGS)
+CFLAGS_CHECK   := -fsyntax-only -funsigned-char -nostdinc -fno-builtin -D CC_CHECK -std=gnu90 $(CHECK_WARNINGS)
 
 ifneq ($(CHECK),1)
 CFLAGS_CHECK += -w
@@ -109,10 +109,10 @@ DEPENDS := $(OBJECTS:=.d)
 
 ### Targets ###
 build/$(LIBULTRA_DIR)/src/%.o: OPTFLAGS := -O3 -g0
-build/$(LIBULTRA_DIR)/src/%.o: CFLAGS += -funsigned-char
 build/$(LIBULTRA_DIR)/src/%.o: CPPFLAGS += -I $(LIBULTRA_DIR)/src -I $(LIBULTRA_DIR)/include/2.0I/PR
 
 build/$(LIBKMC_DIR)/src/%.o: OPTFLAGS := -O1 -g1
+build/$(LIBKMC_DIR)/src/%.o: CFLAGS := $(filter-out -funsigned-char,$(CFLAGS))
 build/$(LIBKMC_DIR)/src/%.o: CPPFLAGS += -I $(LIBKMC_DIR)/src -I $(LIBKMC_DIR)/include/
 build/$(LIBKMC_DIR)/src/%.o: ASFLAGS += -I $(LIBKMC_DIR)/src
 
