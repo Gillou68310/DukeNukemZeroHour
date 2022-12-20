@@ -9,7 +9,8 @@ import m2ctx
 
 class SYMBOL:
     def __init__(self, name: str = None, addr: int = 0, type: str = None, \
-                 size: int = 0, static: bool = False, source: str = None, section: str = None, exclude: bool = False):
+                 size: int = 0, static: bool = False, source: str = None, \
+                 section: str = None, exclude: bool = False, ignore: bool = False):
          self.name: str = name
          self.addr: int = addr
          self.type: str = type
@@ -18,6 +19,7 @@ class SYMBOL:
          self.source: str = source
          self.section: str = section
          self.exclude: bool = exclude
+         self.ignore: bool = ignore
     def __lt__(self, other):
          return self.addr < other.addr
 
@@ -103,19 +105,23 @@ def parse_symbols_from_config(file: str, symbols: SYMBOLS) -> None:
             static = False
             section = None
             src = None
+            ignore = False
             for i in info:
                 if 'size:' in i:
                     size = int(i.strip().split('size:')[1], 16)
                 elif 'type:' in i:
                     type = i.strip().split('type:')[1]
-                elif 'static' in i:
+                elif 'ignore:' in i:
+                    if 'true' in i.strip().split('ignore:')[1]:
+                        ignore = True
+                elif '(static)' in i:
                     static = True
                 elif '(.' in i:
                     section = i.strip().split('(.')[1].split(')')[0]
                 elif '(' in i:
                     src = i.strip().split('(')[1].split(')')[0]
                 
-            sym = SYMBOL(name=name, addr=addr, type=type, size=size, static=static, section=section, source=src)
+            sym = SYMBOL(name=name, addr=addr, type=type, size=size, static=static, section=section, source=src, ignore=ignore)
             symbols.add(sym, False)
 
 def parse_addrs_from_source(file: str, coord: dict, symbols: SYMBOLS) -> None:
@@ -284,7 +290,15 @@ for i in range(0, len(symbols.symbols)):
     line += (f'{symbols.symbols[i].name:<{symbols.name_max_size}}')
     addr = f'{symbols.symbols[i].addr:08X}'
     line += (' = 0x' + addr + ';')
-    if (symbols.symbols[i].type != None) or (symbols.symbols[i].size != 0) \
+
+    if symbols.symbols[i].ignore:
+        line += (' //')
+        line += (f"{' ignore:true':<14}")
+        if symbols.symbols[i].size != 0:
+            size = f'{symbols.symbols[i].size:X}'
+            size = ' size:0x' + size
+            line += (f"{size:<14}")
+    elif (symbols.symbols[i].type != None) or (symbols.symbols[i].size != 0) \
         or (symbols.symbols[i].static == True) or (symbols.symbols[i].source != None) \
         or (symbols.symbols[i].section != None):
         line += (' //')

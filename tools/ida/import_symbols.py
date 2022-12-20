@@ -11,11 +11,12 @@ import ida_diskio
 import ida_typeinf
 
 class SYMBOL:
-    def __init__(self, name, addr, type, size):
+    def __init__(self, name, addr, type, size, ignore):
          self.name = name
          self.addr = addr
          self.type = type
          self.size = size
+         self.ignore = ignore
 
 def get_type_size(type):
     tp = idc.parse_decl(type, idc.PT_SIL)
@@ -39,18 +40,25 @@ def parse_symbol_addrs(file):
             info = s[1].strip().split(';')[1].split()
             size = 0
             type = None
+            ignore = False
             for i in info:
                 if 'size:' in i:
                     size = int(i.strip().split('size:')[1], 16)
                 if 'type:' in i:
                     type = i.strip().split('type:')[1]
-            symbols.append(SYMBOL(name, addr, type, size))
+                elif 'ignore:' in i:
+                    if 'true' in i.strip().split('ignore:')[1]:
+                        ignore = True
+            symbols.append(SYMBOL(name, addr, type, size, ignore))
 
     return symbols
 
 # Add symbols
 symbols = parse_symbol_addrs('symbol_addrs.txt')
 for symbol in symbols:
+    if symbol.ignore:
+        continue
+    
     ea = ida_name.get_name_ea(ida_idaapi.BADADDR, symbol.name)
     if ea != None:
         ida_name.del_global_name(ea)
