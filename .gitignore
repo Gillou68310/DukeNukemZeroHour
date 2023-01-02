@@ -1,11 +1,11 @@
 baserom.us.z64
-undefined_funcs_auto.txt
-undefined_syms_auto.txt
 nonmatchings/
 build/
 assets/
 gen/
 data/
+tmp/
+docs/
 dukenukemzerohour.ld
 ctx.c
 .vscode/configurationCache.log
@@ -16,3 +16,4 @@ ctx.c
 __pycache__/
 .DS_Store
 *.idb
+*.splache

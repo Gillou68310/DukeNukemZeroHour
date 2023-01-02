@@ -10,7 +10,7 @@ options:
   platform: n64
   create_undefined_funcs_auto: False
   create_undefined_syms_auto: False
-  # symbol_addrs_path: symbol_addrs.txt
+  symbol_addrs_path: ["symbol_addrs.txt", "rom_addrs.txt"]
   # undefined_syms_path: undefined_syms.txt
   asm_path: .
   src_path: .
@@ -457,8 +457,14 @@ segments:
     - {start: 0x11D780, type:  .rodata, vram: 0x01026A10, name: src/static/strinfo}
     - {start: 0x11F98C, type:  rodata,  vram: 0x01028C1C, name: static/11F98C}
 
-  #unknown files
-  - [0x11FC80,  bin,        files/11FC80]
+  #tiles
+  - [0x11FC80,  bin,        files/tiles]
+
+  #models
+  - [0x385980,  bin,        files/models]
+
+  #blks
+  - [0xCD82F0,  bin,        files/blks]
 
   #maps
   - [0xDEB7C0,  bin,        maps/map1]  #MEAN STREETS
@@ -502,6 +508,49 @@ segments:
 
   #unknown files
   - [0x1003A60, bin,        files/1003A60]
+  - [0x1004260, bin,        files/1004260]
+  - [0x1004A60, bin,        files/1004A60]
+  - [0x1005260, bin,        files/1005260]
+  - [0x1005A60, bin,        files/1005A60]
+  - [0x1006260, bin,        files/1006260]
+  - [0x1006A60, bin,        files/1006A60]
+  - [0x1007260, bin,        files/1007260]
+  - [0x1007A60, bin,        files/1007A60]
+  - [0x1008260, bin,        files/1008260]
+  - [0x1008A60, bin,        files/1008A60]
+  - [0x1009260, bin,        files/1009260]
+
+  #Art
+  - [0x1009A60, bin,        files/1009A60]
+  - [0x10271A0, bin,        files/10271A0]
+  - [0x1041D90, bin,        files/1041D90]
+  - [0x1057DF0, bin,        files/1057DF0]
+  - [0x105ADA0, bin,        files/105ADA0]
+  - [0x106D8B0, bin,        files/106D8B0]
+  - [0x1081080, bin,        files/1081080]
+  - [0x1095D20, bin,        files/1095D20]
+  - [0x10A4BF0, bin,        files/10A4BF0]
+  - [0x10B6DC0, bin,        files/10B6DC0]
+  - [0x10C6040, bin,        files/10C6040]
+  - [0x10DA3B0, bin,        files/10DA3B0]
+  - [0x10DAB40, bin,        files/10DAB40]
+  - [0x10DC260, bin,        files/10DC260]
+  - [0x10E8750, bin,        files/10E8750]
+  - [0x11437F0, bin,        files/11437F0]
+  - [0x11736E0, bin,        files/11736E0]
+  - [0x1175AD0, bin,        files/1175AD0]
+  - [0x1175ED0, bin,        files/1175ED0]
+  - [0x1176420, bin,        files/1176420]
+  - [0x117A400, bin,        files/117A400]
+  - [0x117AAA0, bin,        files/117AAA0]
+  - [0x117AB20, bin,        files/117AB20]
+  - [0x117AB30, bin,        files/117AB30]
+  - [0x117AD40, bin,        files/117AD40]
+  - [0x117B0C0, bin,        files/117B0C0]
+  - [0x117B140, bin,        files/117B140]
+  - [0x117B1F0, bin,        files/117B1F0]
+  - [0x117CB90, bin,        files/117CB90]
+  - [0x1189460, bin,        files/1189460]
 
   #sounds
   - [0x1191A00, bin,        sounds/bank0.ptr]
