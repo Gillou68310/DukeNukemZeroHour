@@ -1,13 +1,90 @@
 #include "common.h"
 #include "static/mapinfo.h"
 
+extern u8 maps_map1_ROM_START[];
+extern u8 maps_map1_ROM_END[];
+extern u8 maps_map2_ROM_START[];
+extern u8 maps_map2_ROM_END[];
+extern u8 maps_map3_ROM_START[];
+extern u8 maps_map3_ROM_END[];
+extern u8 maps_map4_ROM_START[];
+extern u8 maps_map4_ROM_END[];
+extern u8 maps_map5_ROM_START[];
+extern u8 maps_map5_ROM_END[];
+extern u8 maps_map6_ROM_START[];
+extern u8 maps_map6_ROM_END[];
+extern u8 maps_map7_ROM_START[];
+extern u8 maps_map7_ROM_END[];
+extern u8 maps_map8_ROM_START[];
+extern u8 maps_map8_ROM_END[];
+extern u8 maps_map9_ROM_START[];
+extern u8 maps_map9_ROM_END[];
+extern u8 maps_map10_ROM_START[];
+extern u8 maps_map10_ROM_END[];
+extern u8 maps_map11_ROM_START[];
+extern u8 maps_map11_ROM_END[];
+extern u8 maps_map12_ROM_START[];
+extern u8 maps_map12_ROM_END[];
+extern u8 maps_map13_ROM_START[];
+extern u8 maps_map13_ROM_END[];
+extern u8 maps_map14_ROM_START[];
+extern u8 maps_map14_ROM_END[];
+extern u8 maps_map15_ROM_START[];
+extern u8 maps_map15_ROM_END[];
+extern u8 maps_map16_ROM_START[];
+extern u8 maps_map16_ROM_END[];
+extern u8 maps_map17_ROM_START[];
+extern u8 maps_map17_ROM_END[];
+extern u8 maps_map18_ROM_START[];
+extern u8 maps_map18_ROM_END[];
+extern u8 maps_map19_ROM_START[];
+extern u8 maps_map19_ROM_END[];
+extern u8 maps_map20_ROM_START[];
+extern u8 maps_map20_ROM_END[];
+extern u8 maps_map21_ROM_START[];
+extern u8 maps_map21_ROM_END[];
+extern u8 maps_map22_ROM_START[];
+extern u8 maps_map22_ROM_END[];
+extern u8 maps_map23_ROM_START[];
+extern u8 maps_map23_ROM_END[];
+extern u8 maps_map24_ROM_START[];
+extern u8 maps_map24_ROM_END[];
+extern u8 maps_map25_ROM_START[];
+extern u8 maps_map25_ROM_END[];
+extern u8 maps_map26_ROM_START[];
+extern u8 maps_map26_ROM_END[];
+extern u8 maps_map27_ROM_START[];
+extern u8 maps_map27_ROM_END[];
+extern u8 maps_map28_ROM_START[];
+extern u8 maps_map28_ROM_END[];
+extern u8 maps_map29_ROM_START[];
+extern u8 maps_map29_ROM_END[];
+extern u8 maps_map30_ROM_START[];
+extern u8 maps_map30_ROM_END[];
+extern u8 maps_map31_ROM_START[];
+extern u8 maps_map31_ROM_END[];
+extern u8 maps_map32_ROM_START[];
+extern u8 maps_map32_ROM_END[];
+extern u8 maps_map33_ROM_START[];
+extern u8 maps_map33_ROM_END[];
+extern u8 maps_map34_ROM_START[];
+extern u8 maps_map34_ROM_END[];
+extern u8 maps_map35_ROM_START[];
+extern u8 maps_map35_ROM_END[];
+extern u8 maps_map36_ROM_START[];
+extern u8 maps_map36_ROM_END[];
+extern u8 maps_map37_ROM_START[];
+extern u8 maps_map37_ROM_END[];
+extern u8 maps_map38_ROM_START[];
+extern u8 maps_map38_ROM_END[];
+
 /*.data*/
 
 /*01025D00*/
-MapInfo gMapInfo[MAPNUM] = {
+MapInfo gMapInfo[MAP_NUM] = {
     {
-        (u8 *)0xDEB7C0,
-        (u8 *)0xE04350,
+        maps_map1_ROM_START,
+        maps_map1_ROM_END,
         0x13010,
         0x7CA0,
         0x15454,
@@ -27,8 +104,8 @@ MapInfo gMapInfo[MAPNUM] = {
         0.0f,
     },
     {
-        (u8 *)0xE04350,
-        (u8 *)0xE1E280,
+        maps_map2_ROM_START,
+        maps_map2_ROM_END,
         0x143C8,
         0xA2C0,
         0x16500,
@@ -48,8 +125,8 @@ MapInfo gMapInfo[MAPNUM] = {
         0.0f,
     },
     {
-        (u8 *)0xE1E280,
-        (u8 *)0xE39630,
+        maps_map3_ROM_START,
+        maps_map3_ROM_END,
         0x15314,
         0x9850,
         0x17858,
@@ -69,8 +146,8 @@ MapInfo gMapInfo[MAPNUM] = {
         112.0f,
     },
     {
-        (u8 *)0xE6D430,
-        (u8 *)0xE7FF40,
+        maps_map4_ROM_START,
+        maps_map4_ROM_END,
         0xF5EC,
         0x7A60,
         0x10D30,
@@ -90,8 +167,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xE39630,
-        (u8 *)0xE50950,
+        maps_map5_ROM_START,
+        maps_map5_ROM_END,
         0x124A4,
         0x9320,
         0x14398,
@@ -111,8 +188,8 @@ MapInfo gMapInfo[MAPNUM] = {
         211.0f,
     },
     {
-        (u8 *)0xE50950,
-        (u8 *)0xE68CE0,
+        maps_map6_ROM_START,
+        maps_map6_ROM_END,
         0x12CD8,
         0x8FF0,
         0x14C58,
@@ -132,8 +209,8 @@ MapInfo gMapInfo[MAPNUM] = {
         249.0f,
     },
     {
-        (u8 *)0xE68CE0,
-        (u8 *)0xE6D430,
+        maps_map7_ROM_START,
+        maps_map7_ROM_END,
         0x3548,
         0x1A40,
         0x3AB0,
@@ -153,8 +230,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xE7FF40,
-        (u8 *)0xE9A200,
+        maps_map8_ROM_START,
+        maps_map8_ROM_END,
         0x14784,
         0x9260,
         0x16790,
@@ -174,8 +251,8 @@ MapInfo gMapInfo[MAPNUM] = {
         0.0f,
     },
     {
-        (u8 *)0xE9A200,
-        (u8 *)0xEB2140,
+        maps_map9_ROM_START,
+        maps_map9_ROM_END,
         0x12864,
         0x8A30,
         0x148B4,
@@ -195,8 +272,8 @@ MapInfo gMapInfo[MAPNUM] = {
         0.0f,
     },
     {
-        (u8 *)0xEB2140,
-        (u8 *)0xECBB60,
+        maps_map10_ROM_START,
+        maps_map10_ROM_END,
         0x14C24,
         0x9870,
         0x16E30,
@@ -216,8 +293,8 @@ MapInfo gMapInfo[MAPNUM] = {
         0.0f,
     },
     {
-        (u8 *)0xEEAC50,
-        (u8 *)0xF041A0,
+        maps_map11_ROM_START,
+        maps_map11_ROM_END,
         0x14460,
         0x8820,
         0x16438,
@@ -237,8 +314,8 @@ MapInfo gMapInfo[MAPNUM] = {
         0.0f,
     },
     {
-        (u8 *)0xECBB60,
-        (u8 *)0xEEAC50,
+        maps_map12_ROM_START,
+        maps_map12_ROM_END,
         0x19CCC,
         0xE5F0,
         0x1BD00,
@@ -258,8 +335,8 @@ MapInfo gMapInfo[MAPNUM] = {
         0.0f,
     },
     {
-        (u8 *)0xF041A0,
-        (u8 *)0xF091C0,
+        maps_map13_ROM_START,
+        maps_map13_ROM_END,
         0x4284,
         0x26A0,
         0x46EC,
@@ -279,8 +356,8 @@ MapInfo gMapInfo[MAPNUM] = {
         0.0f,
     },
     {
-        (u8 *)0xF091C0,
-        (u8 *)0xF251C0,
+        maps_map14_ROM_START,
+        maps_map14_ROM_END,
         0x15C78,
         0xA580,
         0x17F7C,
@@ -300,8 +377,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xF251C0,
-        (u8 *)0xF3D490,
+        maps_map15_ROM_START,
+        maps_map15_ROM_END,
         0x12B2C,
         0x78F0,
         0x14C74,
@@ -321,8 +398,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xF3D490,
-        (u8 *)0xF50DD0,
+        maps_map16_ROM_START,
+        maps_map16_ROM_END,
         0xF9B0,
         0x77A0,
         0x11410,
@@ -342,8 +419,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xF691C0,
-        (u8 *)0xF81640,
+        maps_map17_ROM_START,
+        maps_map17_ROM_END,
         0x14284,
         0x9C90,
         0x16004,
@@ -363,8 +440,8 @@ MapInfo gMapInfo[MAPNUM] = {
         249.0f,
     },
     {
-        (u8 *)0xF50DD0,
-        (u8 *)0xF691C0,
+        maps_map18_ROM_START,
+        maps_map18_ROM_END,
         0x13B7C,
         0x9B00,
         0x15924,
@@ -384,8 +461,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xF81640,
-        (u8 *)0xF8D4D0,
+        maps_map19_ROM_START,
+        maps_map19_ROM_END,
         0x9EAC,
         0x57E0,
         0xAB14,
@@ -405,8 +482,8 @@ MapInfo gMapInfo[MAPNUM] = {
         0.0f,
     },
     {
-        (u8 *)0xF8D4D0,
-        (u8 *)0xFA0070,
+        maps_map20_ROM_START,
+        maps_map20_ROM_END,
         0xE954,
         0x6740,
         0x10348,
@@ -426,8 +503,8 @@ MapInfo gMapInfo[MAPNUM] = {
         0.0f,
     },
     {
-        (u8 *)0xFA0070,
-        (u8 *)0xFBAAB0,
+        maps_map21_ROM_START,
+        maps_map21_ROM_END,
         0x15818,
         0xB120,
         0x17B08,
@@ -447,8 +524,8 @@ MapInfo gMapInfo[MAPNUM] = {
         0.0f,
     },
     {
-        (u8 *)0xFBAAB0,
-        (u8 *)0xFBFF20,
+        maps_map22_ROM_START,
+        maps_map22_ROM_END,
         0x4070,
         0x1C00,
         0x46BC,
@@ -468,8 +545,8 @@ MapInfo gMapInfo[MAPNUM] = {
         0.0f,
     },
     {
-        (u8 *)0xFBFF20,
-        (u8 *)0xFC2790,
+        maps_map23_ROM_START,
+        maps_map23_ROM_END,
         0x1DD8,
         0xE80,
         0x2148,
@@ -489,8 +566,8 @@ MapInfo gMapInfo[MAPNUM] = {
         0.0f,
     },
     {
-        (u8 *)0xFF6B20,
-        (u8 *)0x01003A60,
+        maps_map24_ROM_START,
+        maps_map24_ROM_END,
         0xA510,
         0x4EC0,
         0xB574,
@@ -510,8 +587,8 @@ MapInfo gMapInfo[MAPNUM] = {
         0.0f,
     },
     {
-        (u8 *)0xFC2790,
-        (u8 *)0xFC3F00,
+        maps_map25_ROM_START,
+        maps_map25_ROM_END,
         0x11F8,
         0x8D0,
         0x1414,
@@ -531,8 +608,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xFC3F00,
-        (u8 *)0xFC9C10,
+        maps_map26_ROM_START,
+        maps_map26_ROM_END,
         0x4F0C,
         0x2BD0,
         0x5658,
@@ -552,8 +629,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xFC9C10,
-        (u8 *)0xFCBFB0,
+        maps_map27_ROM_START,
+        maps_map27_ROM_END,
         0x1DA0,
         0xEF0,
         0x20B0,
@@ -573,8 +650,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xFCBFB0,
-        (u8 *)0xFCECC0,
+        maps_map28_ROM_START,
+        maps_map28_ROM_END,
         0x2310,
         0xDC0,
         0x26E4,
@@ -594,8 +671,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xFCECC0,
-        (u8 *)0xFD11F0,
+        maps_map29_ROM_START,
+        maps_map29_ROM_END,
         0x1F64,
         0x11A0,
         0x21E4,
@@ -615,8 +692,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xFD11F0,
-        (u8 *)0xFD7CB0,
+        maps_map30_ROM_START,
+        maps_map30_ROM_END,
         0x5A30,
         0x2680,
         0x6450,
@@ -636,8 +713,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xFD7CB0,
-        (u8 *)0xFDCC10,
+        maps_map31_ROM_START,
+        maps_map31_ROM_END,
         0x4534,
         0x2380,
         0x4C1C,
@@ -657,8 +734,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xFDCC10,
-        (u8 *)0xFDF5A0,
+        maps_map32_ROM_START,
+        maps_map32_ROM_END,
         0x24B4,
         0x1540,
         0x2748,
@@ -678,8 +755,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xFDF5A0,
-        (u8 *)0xFE3A60,
+        maps_map33_ROM_START,
+        maps_map33_ROM_END,
         0x3B48,
         0x1D00,
         0x4300,
@@ -699,8 +776,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xFE3A60,
-        (u8 *)0xFE9C20,
+        maps_map34_ROM_START,
+        maps_map34_ROM_END,
         0x56AC,
         0x2960,
         0x5F38,
@@ -720,8 +797,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xFE9C20,
-        (u8 *)0xFECB90,
+        maps_map35_ROM_START,
+        maps_map35_ROM_END,
         0x2714,
         0x1510,
         0x2B14,
@@ -741,8 +818,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xFECB90,
-        (u8 *)0xFF1C00,
+        maps_map36_ROM_START,
+        maps_map36_ROM_END,
         0x4738,
         0x2B70,
         0x4C74,
@@ -762,8 +839,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xFF1C00,
-        (u8 *)0xFF5210,
+        maps_map37_ROM_START,
+        maps_map37_ROM_END,
         0x2E9C,
         0x1B90,
         0x3180,
@@ -783,8 +860,8 @@ MapInfo gMapInfo[MAPNUM] = {
         255.0f,
     },
     {
-        (u8 *)0xFF5210,
-        (u8 *)0xFF6B20,
+        maps_map38_ROM_START,
+        maps_map38_ROM_END,
         0x14C4,
         0x9A0,
         0x16F8,

@@ -16,6 +16,7 @@ options:
   src_path: .
   nonmatchings_path : nonmatchings
   build_path: BUILD_PATH
+  ld_symbol_header_path: gen/ld_symbols.h
   # extensions_path: tools/splat_ext
   # mips_abi_float_regs: o32
   # section_order: [".text", ".data", ".rodata", ".bss"]
@@ -456,8 +457,51 @@ segments:
     - {start: 0x11D780, type:  .rodata, vram: 0x01026A10, name: src/static/strinfo}
     - {start: 0x11F98C, type:  rodata,  vram: 0x01028C1C, name: static/11F98C}
 
-  #files
-  - [0x11FC80,  bin,        files/all]
+  #unknown files
+  - [0x11FC80,  bin,        files/11FC80]
+
+  #maps
+  - [0xDEB7C0,  bin,        maps/map1]  #MEAN STREETS
+  - [0xE04350,  bin,        maps/map2]  #LIBERTY OR DEATH
+  - [0xE1E280,  bin,        maps/map3]  #NUCLEAR WINTER
+  - [0xE39630,  bin,        maps/map5]  #FALLOUT
+  - [0xE50950,  bin,        maps/map6]  #UNDER SIEGE
+  - [0xE68CE0,  bin,        maps/map7]  #BOSS HOG
+  - [0xE6D430,  bin,        maps/map4]  #WETWORLD
+  - [0xE7FF40,  bin,        maps/map8]  #DRY TOWN
+  - [0xE9A200,  bin,        maps/map9]  #JAIL BREAK
+  - [0xEB2140,  bin,        maps/map10] #UP SHIP CREEK
+  - [0xECBB60,  bin,        maps/map12] #PROBING THE DEPTHS
+  - [0xEEAC50,  bin,        maps/map11] #FORT ROSWELL
+  - [0xF041A0,  bin,        maps/map13] #CYBORG SCORPION
+  - [0xF091C0,  bin,        maps/map14] #THE WHITECHAPEL KILLINGS
+  - [0xF251C0,  bin,        maps/map15] #DAWN OF THE DUKE
+  - [0xF3D490,  bin,        maps/map16] #HYDROGEN BOMB
+  - [0xF50DD0,  bin,        maps/map18] #GOING DOWN THE RACK
+  - [0xF691C0,  bin,        maps/map17] #THE RACK
+  - [0xF81640,  bin,        maps/map19] #BRAINSTORM
+  - [0xF8D4D0,  bin,        maps/map20] #THE BROTHERS NUKEM
+  - [0xFA0070,  bin,        maps/map21] #ALIEN MOTHER...
+  - [0xFBAAB0,  bin,        maps/map22] #ZERO HOUR
+  - [0xFBFF20,  bin,        maps/map23] #THE END
+  - [0xFC2790,  bin,        maps/map25] #COOL AS ICE
+  - [0xFC3F00,  bin,        maps/map26] #MIND FUNK
+  - [0xFC9C10,  bin,        maps/map27] #CHIMERA
+  - [0xFCBFB0,  bin,        maps/map28] #SLIDERS
+  - [0xFCECC0,  bin,        maps/map29] #ATOMIC
+  - [0xFD11F0,  bin,        maps/map30] #HIGH NOON
+  - [0xFD7CB0,  bin,        maps/map31] #ROCKY KNOLL
+  - [0xFDCC10,  bin,        maps/map32] #CASHING IN
+  - [0xFDF5A0,  bin,        maps/map33] #HIVE 8
+  - [0xFE3A60,  bin,        maps/map34] #CASTLEMANIA
+  - [0xFE9C20,  bin,        maps/map35] #TOXIC SHOCK
+  - [0xFECB90,  bin,        maps/map36] #FOGGING HELL
+  - [0xFF1C00,  bin,        maps/map37] #CATACOMBS
+  - [0xFF5210,  bin,        maps/map38] #INFERNO
+  - [0xFF6B20,  bin,        maps/map24] #BASE
+
+  #unknown files
+  - [0x1003A60, bin,        files/1003A60]
 
   #sounds
   - [0x1191A00, bin,        sounds/bank0.ptr]
