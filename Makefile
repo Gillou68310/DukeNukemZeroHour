@@ -137,7 +137,6 @@ clean:
 
 distclean: clean
 	$(V)rm -rf assets/
-	$(V)rm -f *auto.txt
 	$(V)rm -f dukenukemzerohour.ld
 	$(V)rm -f include/ld_addrs.h
 	$(V)rm -rf nonmatchings/

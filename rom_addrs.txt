@@ -1,4 +1,4 @@
-files_tiles_ROM_START                 = 0x0011FC80;
+tiles_tile_0_ROM_START                = 0x0011FC80;
 files_models_ROM_START                = 0x00385980;
 files_blks_ROM_START                  = 0x00CD82F0;
 
