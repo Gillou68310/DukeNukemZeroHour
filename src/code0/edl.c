@@ -21,15 +21,339 @@ typedef struct
     u8 *romstart;
     u8 *romend;
     u8 **handle;
-    u8 *unkC;
+    s32 *offset;
 } unkFileInfo;
 
+extern u8 files_1009A60_ROM_START[];
+extern u8 files_1009A60_ROM_END[];
+extern u8 files_10271A0_ROM_START[];
+extern u8 files_10271A0_ROM_END[];
+extern u8 files_1041D90_ROM_START[];
+extern u8 files_1041D90_ROM_END[];
+extern u8 files_105ADA0_ROM_START[];
+extern u8 files_105ADA0_ROM_END[];
+extern u8 files_106D8B0_ROM_START[];
+extern u8 files_106D8B0_ROM_END[];
+extern u8 files_1057DF0_ROM_START[];
+extern u8 files_1057DF0_ROM_END[];
+extern u8 files_1081080_ROM_START[];
+extern u8 files_1081080_ROM_END[];
+extern u8 files_1095D20_ROM_START[];
+extern u8 files_1095D20_ROM_END[];
+extern u8 files_10A4BF0_ROM_START[];
+extern u8 files_10A4BF0_ROM_END[];
+extern u8 files_10B6DC0_ROM_START[];
+extern u8 files_10B6DC0_ROM_END[];
+extern u8 files_10C6040_ROM_START[];
+extern u8 files_10C6040_ROM_END[];
+extern u8 files_10DA3B0_ROM_START[];
+extern u8 files_10DA3B0_ROM_END[];
+extern u8 files_10DAB40_ROM_START[];
+extern u8 files_10DAB40_ROM_END[];
+extern u8 files_10DC260_ROM_START[];
+extern u8 files_10DC260_ROM_END[];
+extern u8 files_10E8750_ROM_START[];
+extern u8 files_10E8750_ROM_END[];
+extern u8 files_11437F0_ROM_START[];
+extern u8 files_11437F0_ROM_END[];
+extern u8 files_11736E0_ROM_START[];
+extern u8 files_11736E0_ROM_END[];
+extern u8 files_1175AD0_ROM_START[];
+extern u8 files_1175AD0_ROM_END[];
+extern u8 files_1175ED0_ROM_START[];
+extern u8 files_1175ED0_ROM_END[];
+extern u8 files_1176420_ROM_START[];
+extern u8 files_1176420_ROM_END[];
+extern u8 files_117AD40_ROM_START[];
+extern u8 files_117AD40_ROM_END[];
+extern u8 files_117B0C0_ROM_START[];
+extern u8 files_117B0C0_ROM_END[];
+extern u8 files_117B140_ROM_START[];
+extern u8 files_117B140_ROM_END[];
+extern u8 files_117B1F0_ROM_START[];
+extern u8 files_117B1F0_ROM_END[];
+extern u8 files_117A400_ROM_START[];
+extern u8 files_117A400_ROM_END[];
+extern u8 files_117AAA0_ROM_START[];
+extern u8 files_117AAA0_ROM_END[];
+extern u8 files_117AB20_ROM_START[];
+extern u8 files_117AB20_ROM_END[];
+extern u8 files_117AB30_ROM_START[];
+extern u8 files_117AB30_ROM_END[];
+extern u8 files_117CB90_ROM_START[];
+extern u8 files_117CB90_ROM_END[];
+extern u8 files_1189460_ROM_START[];
+extern u8 files_1189460_ROM_END[];
+
 /*data*/
-/*800E0B40*/ EXTERN STATIC u8 D_800E0B40[32];
-/*800E0B60*/ EXTERN STATIC u8 D_800E0B60[32];
-/*800E0B80*/ EXTERN STATIC u16 D_800E0B80[30];
-/*800E0BBC*/ EXTERN STATIC u8 D_800E0BBC[32];
-/*800E0D18*/ EXTERN STATIC unkFileInfo D_800E0D18[32];
+
+/*800E0B40*/
+static u8 D_800E0B40[32] = {
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    0xA,
+    0xC,
+    0xE,
+    0x10,
+    0x14,
+    0x18,
+    0x1C,
+    0x20,
+    0x28,
+    0x30,
+    0x38,
+    0x40,
+    0x50,
+    0x60,
+    0x70,
+    0x80,
+    0xA0,
+    0xC0,
+    0xE0,
+    0xFF,
+    0,
+    0,
+    0,
+};
+
+/*800E0B60*/
+static u8 D_800E0B60[32] = {
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    0,
+    0,
+    0,
+    0,
+};
+
+/*800E0B80*/
+static u16 D_800E0B80[32] = {
+    0,
+    1,
+    2,
+    3,
+    4,
+    6,
+    8,
+    0xC,
+    0x10,
+    0x18,
+    0x20,
+    0x30,
+    0x40,
+    0x60,
+    0x80,
+    0xC0,
+    0x100,
+    0x180,
+    0x200,
+    0x300,
+    0x400,
+    0x600,
+    0x800,
+    0xC00,
+    0x1000,
+    0x1800,
+    0x2000,
+    0x3000,
+    0x4000,
+    0x6000,
+    0,
+    0,
+};
+
+/*800E0BC0*/
+static u8 D_800E0BC0[32] = {
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    0xA,
+    0xA,
+    0xB,
+    0xB,
+    0xC,
+    0xC,
+    0xD,
+    0xD,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+};
+
+/*800E0BE0*/
+static s32 D_800E0BE0 = 0;
+
+/*800E0BE4*/
+static s32 D_800E0BE4[13] = {
+    0,
+    0x131E,
+    0x2D16,
+    0x3604,
+    0x3814,
+    0x3874,
+    0x38D4,
+    0x3934,
+    0x3994,
+    0x3A9E,
+    0x3C50,
+    0x3E02,
+    0x3FA4,
+};
+
+/*800E0C18*/
+static s32 D_800E0C18[64] = {
+    0,
+    0x60,
+    0xC0,
+    0x10C,
+    0x16C,
+    0x1CC,
+    0x22C,
+    0x28C,
+    0x2D8,
+    0x338,
+    0x384,
+    0x3E4,
+    0x444,
+    0x4A4,
+    0x4F0,
+    0x550,
+    0x5B0,
+    0x610,
+    0x670,
+    0x6D0,
+    0x730,
+    0x790,
+    0x7F0,
+    0x850,
+    0x8B0,
+    0x910,
+    0x970,
+    0x9D0,
+    0xA30,
+    0xA90,
+    0xAF0,
+    0xB50,
+    0xBB0,
+    0xC10,
+    0xC70,
+    0xCD0,
+    0xD30,
+    0xD90,
+    0xDF0,
+    0xE50,
+    0xEB0,
+    0xF10,
+    0xF70,
+    0xFD0,
+    0x1030,
+    0x1090,
+    0x10F0,
+    0x1150,
+    0x11B0,
+    0x1210,
+    0x1270,
+    0x12D0,
+    0x1330,
+    0x1390,
+    0x13F0,
+    0x1450,
+    0x14B0,
+    0x1510,
+    0x1570,
+    0x15D0,
+    0x1630,
+    0x1690,
+    0x16F0,
+    0x1750,
+};
+
+/*800E0D18*/
+static unkFileInfo D_800E0D18[32] = {
+    { files_1009A60_ROM_START, files_1009A60_ROM_END, NULL, NULL },
+    { files_10271A0_ROM_START, files_10271A0_ROM_END, NULL, NULL },
+    { files_1041D90_ROM_START, files_1041D90_ROM_END, NULL, NULL },
+    { files_105ADA0_ROM_START, files_105ADA0_ROM_END, NULL, NULL },
+    { files_106D8B0_ROM_START, files_106D8B0_ROM_END, NULL, NULL },
+    { files_1057DF0_ROM_START, files_1057DF0_ROM_END, NULL, NULL },
+    { files_1081080_ROM_START, files_1081080_ROM_END, NULL, NULL },
+    { files_1095D20_ROM_START, files_1095D20_ROM_END, NULL, NULL },
+    { files_10A4BF0_ROM_START, files_10A4BF0_ROM_END, NULL, NULL },
+    { files_10B6DC0_ROM_START, files_10B6DC0_ROM_END, NULL, NULL },
+    { files_10C6040_ROM_START, files_10C6040_ROM_END, NULL, NULL },
+    { files_10DA3B0_ROM_START, files_10DA3B0_ROM_END, NULL, NULL },
+    { files_10DAB40_ROM_START, files_10DAB40_ROM_END, NULL, NULL },
+    { files_10DC260_ROM_START, files_10DC260_ROM_END, NULL, NULL },
+    { files_10E8750_ROM_START, files_10E8750_ROM_END, NULL, NULL },
+    { files_11437F0_ROM_START, files_11437F0_ROM_END, NULL, NULL },
+    { files_11736E0_ROM_START, files_11736E0_ROM_END, NULL, D_800E0BE4 },
+    { files_1175AD0_ROM_START, files_1175AD0_ROM_END, NULL, NULL },
+    { files_1175ED0_ROM_START, files_1175ED0_ROM_END, NULL, NULL },
+    { files_1176420_ROM_START, files_1176420_ROM_END, NULL, NULL },
+    { files_117AD40_ROM_START, files_117AD40_ROM_END, NULL, D_800E0C18 },
+    { files_117B0C0_ROM_START, files_117B0C0_ROM_END, NULL, NULL },
+    { files_117B140_ROM_START, files_117B140_ROM_END, NULL, NULL },
+    { files_117B1F0_ROM_START, files_117B1F0_ROM_END, NULL, NULL },
+    { files_117A400_ROM_START, files_117A400_ROM_END, NULL, &D_800E0BE0 },
+    { files_117AAA0_ROM_START, files_117AAA0_ROM_END, NULL, NULL },
+    { files_117AB20_ROM_START, files_117AB20_ROM_END, NULL, NULL },
+    { files_117AB30_ROM_START, files_117AB30_ROM_END, NULL, NULL },
+    { files_117CB90_ROM_START, files_117CB90_ROM_END, NULL, NULL },
+    { files_1189460_ROM_START, files_1189460_ROM_END, NULL, NULL },
+    { NULL, NULL, NULL, NULL },
+    { NULL, NULL, NULL, NULL },
+};
 
 /*comm*/
 /*8012CD90*/ u32 D_8012CD90[288] ALIGNED(16);
@@ -228,4 +552,9 @@ void func_80081760(u8 **handle, s32 id, u8 *dst)
     info->handle = handle;
 }
 
-INCLUDE_ASM(s32, "src/code0/edl", func_80081840);
+/*80081840*/
+u8 *func_80081840(s16 id, s16 off)
+{
+    s32 *offset = D_800E0D18[id].offset;
+    return *D_800E0D18[id].handle + offset[off];
+}

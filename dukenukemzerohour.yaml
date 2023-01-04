@@ -287,7 +287,7 @@ segments:
       - [0xE0550, data,     code0/7CBC0]
       - [0xE05A0, data,     code0/7F6A0]
       - [0xE14B0, data,     code0/7FCE0]
-      - [0xE1740, data,     code0/edl]
+      - [0xE1740, .data,    src/code0/edl]
       - [0xE1B20, data,     code0/84490]
       - [0xE1B60, data,     code0/88690]
       - [0xE22A0, data,     code0/8E670]

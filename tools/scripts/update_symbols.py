@@ -12,10 +12,10 @@ import split
 
 class SYMBOL:
     def __init__(self, splat: split.symbols.Symbol = None, ignore: bool = False, \
-                 static: bool = False, source: str = None, section: str = None):
+                 static: str = None, source: str = None, section: str = None):
          self.splat: split.symbols.Symbol = splat
          self.ignore: bool = ignore
-         self.static: bool = static
+         self.static: str = static
          self.source: str = source
          self.section: str = section
     def __lt__(self, other):
@@ -80,8 +80,8 @@ class SYMBOLS:
                 self.symbols[index].splat.given_size = symbol.splat.size
             if symbol.splat.type != None:
                 self.symbols[index].splat.type = symbol.splat.type
-            if symbol.static == True:  
-                self.symbols[index].static = True
+            if symbol.static != None:  
+                self.symbols[index].static = symbol.static
             if symbol.section != None:
                 self.symbols[index].section = symbol.section
             if symbol.source != None:
@@ -97,7 +97,9 @@ def parse_symbols_from_config(file: str, symbols: SYMBOLS) -> None:
         if 'ignore:true' in line:
             name = s[0].strip()
             addr = int(s[1].strip().split(';')[0], 16)
-            size = int(s[1].strip().split('size:')[1].split()[0], 16)
+            size = 0
+            if 'size:' in line:
+                size = int(s[1].strip().split('size:')[1].split()[0], 16)
             sym = SYMBOL(splat=split.symbols.Symbol(given_name=name, given_size=size, vram_start=addr), ignore=True)
             symbols.add(sym, False)
         else:
@@ -106,12 +108,12 @@ def parse_symbols_from_config(file: str, symbols: SYMBOLS) -> None:
             if not 'size:' in s[1]:
                 splat.given_size = 0
             info = s[1].split('(')[1:]
-            static = False
+            static = None
             section = None
             source = None
             for i in info:
                 if 'static)' in i:
-                    static = True
+                    static = 'True'
                 elif i[0] == '.':
                     section = i[1:].split(')')[0]
                 else:
@@ -160,7 +162,7 @@ def parse_addrs_from_source(file: str, coord: dict, symbols: SYMBOLS, forced: li
         if 'STATIC' in lines[i]:
             name = coord.get(i+1)
             sym = SYMBOL(splat=split.symbols.Symbol(given_name=name, given_size=0, vram_start=0), \
-                         static=True)
+                         static='True')
             forced.append(sym)
 
 def parse_object_file(file: str, symbols: SYMBOLS) -> None:
@@ -184,9 +186,9 @@ def parse_object_file(file: str, symbols: SYMBOLS) -> None:
         src = src.split('.o')[0]
 
         if type >= 'a' and type <= 'z':
-            static = True
+            static = 'True'
         else:
-            static = False
+            static = 'False'
         if type == 't' or type == 'T':
             t = 'function'
         else:
@@ -296,7 +298,7 @@ symbols.symbols.sort()
 if args.prefix_static == True:
     for file in files:
         for symbol in symbols.symbols:
-            if (symbol.static == True) \
+            if (symbol.static == 'True') \
                 and (not symbol.splat.name.startswith('_')) \
                 and (not symbol.splat.name.startswith('D_')) \
                 and (not symbol.splat.name.startswith('func_')) \
@@ -320,7 +322,7 @@ for i in range(0, len(symbols.symbols)):
             size = ' size:0x' + size
             line += (f"{size:<14}")
     elif (symbols.symbols[i].splat.type != None) or (symbols.symbols[i].splat.size != 0) \
-        or (symbols.symbols[i].static == True) or (symbols.symbols[i].source != None) \
+        or (symbols.symbols[i].static == 'True') or (symbols.symbols[i].source != None) \
         or (symbols.symbols[i].section != None):
         line += (' //')
         if symbols.symbols[i].splat.type != None:
@@ -334,7 +336,7 @@ for i in range(0, len(symbols.symbols)):
             line += (f"{size:<14}")
         else:
             line += (f"{'':<14}")
-        if symbols.symbols[i].static == True:
+        if symbols.symbols[i].static == 'True':
             line += (' (static)')
         else:
             line += (f"{'':<9}")

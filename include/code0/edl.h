@@ -7,5 +7,6 @@ s32 decompressEDL(u8 *src, u8 *dst);
 void allocacheEDL(u8 **handle, s32 size);
 void func_80081688(u8 **handle, s32 id);
 void func_80081760(u8 **handle, s32 id, u8 *dst);
+u8 *func_80081840(s16 id, s16 off);
 
 #endif
