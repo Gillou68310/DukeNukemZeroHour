@@ -7,10 +7,7 @@
 #include "static/strinfo.h"
 #include "static/mapinfo.h"
 #include "static/11B300.h"
-
-/*TODO*/
 #include "code0/code0.h"
-#include "code1/code1.h"
 
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGHT 240
@@ -58,7 +55,5 @@ extern OSScTask gGfxTask[GFX_TASKS];
 extern MapInfo *gpMapInfo;
 extern Gfx *gpDisplaylist;
 extern Dynamic *gpDynamic;
-extern char **gpLicenceStrInfo;
-extern char **gpCreditStrInfo;
 
 #endif

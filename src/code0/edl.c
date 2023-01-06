@@ -3,6 +3,7 @@
 #include "code0/4600.h"
 #include "code0/cache1d.h"
 #include "code0/edl.h"
+#include "code1/code1.h"
 
 typedef struct
 {

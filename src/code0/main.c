@@ -25,6 +25,7 @@
 #include "code0/95500.h"
 #include "code0/A06F0.h"
 #include "code0/main.h"
+#include "code1/code1.h"
 #include "code1/EB300.h"
 #include "static/spinit.h"
 #include "static/sintable.h"
@@ -172,8 +173,6 @@ extern u8 static_ROM_END[];
 /*801B0D40*/ u64 gOutputBuffer[OUTPUT_BUFFER_SIZE / sizeof(u64)] ALIGNED(16);
 /*801C0D60*/ Dynamic *gpDynamic;
 /*801C0D64*/ OSMesg D_801C0D64;
-/*801CDB00*/ char **gpLicenceStrInfo;
-/*801CE5D4*/ char **gpCreditStrInfo;
 
 /*.text*/
 s32 osAfterPreNMI(void);
