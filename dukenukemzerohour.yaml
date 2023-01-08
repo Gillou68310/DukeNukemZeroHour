@@ -38,12 +38,11 @@ segments:
     type: code
     start: 0x1000
     vram: 0x80000400
-    subalign: 8
+    subalign: null
     bss_size: 0xD6680
     subsegments:
     #.text section
       - [0x1000,  hasm,     src/code0/entrypoint]
-      - [0x1040,  asm,      gen/code0/1040] #Padding
       - [0x1050,  c,        src/code0/main]
       - [0x4590,  c,        gen/code0/4590]
       - [0x4600,  c,        src/code0/4600]
@@ -111,7 +110,7 @@ segments:
       - [0xAC4C0, c,        libs/libultra/src/gu/random]
       - [0xAC4F0, hasm,     libs/libultra/src/os/invaldcache]
       - [0xAC5A0, hasm,     libs/libultra/src/os/invalicache]
-      - [0xAC620, asm,      gen/code0/AC620] #Padding
+      - [0xAC620, hasm,     libs/libultra/src/os/parameters]
       - [0xAC680, hasm,     libs/libultra/src/os/writebackdcacheall]
       - [0xAC6B0, c,        libs/libultra/src/os/createmesgqueue]
       - [0xAC6E0, c,        libs/libultra/src/os/createthread]
@@ -393,7 +392,6 @@ segments:
       - [0xEB050, .rodata,  libs/libultra/src/os/setintmask]
       - [0xEB0D0, .rodata,  libs/libultra/src/libc/xprintf]
       - [0xEB248, .rodata,  libs/libultra/src/io/devmgr]
-      - [0xEB268, rodata,   code0/EB268] #Padding
       - [0xEB270, .rodata,  libs/libultra/src/libc/xldtob]
       - [0xEB2E0, .rodata,  libs/libkmc/src/sqrt]
     #.bss section
@@ -424,7 +422,7 @@ segments:
     follows_vram: code0
     vram: 0x801C0D80
     bss_size: 0x2F30
-    subalign: 8
+    subalign: null
     subsegments:
     #.text section
       - [0xEB300,  c,        src/code1/EB300]

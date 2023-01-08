@@ -19,4 +19,5 @@ LEAF(start)
     jr         t2
     addiu      sp, sp, %lo(bootStackAddress)
     nop
+    nop
 END(start)
