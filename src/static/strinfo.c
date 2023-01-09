@@ -136,7 +136,7 @@ char *gWeaponStrInfo[0x7D] = {
 s16 gWeaponStrInfoCount = sizeof(gWeaponStrInfo) / sizeof(char *);
 
 /*01021758*/
-static char *_keyStrTable1[0x10] = {
+static char *_keyStrTable1[KEY_STRINFO_NUM] = {
     "TRANSTEK CODE CARD",
     "",
     "",
@@ -156,7 +156,7 @@ static char *_keyStrTable1[0x10] = {
 };
 
 /*01021798*/
-static char *_keyStrTable2[0x10] = {
+static char *_keyStrTable2[KEY_STRINFO_NUM] = {
     "CONTROL KEY",
     "SERVICE ELEVATOR PASS",
     "PUMPING STATION KEY",
@@ -176,7 +176,7 @@ static char *_keyStrTable2[0x10] = {
 };
 
 /*010217D8*/
-static char *_keyStrTable3[0x10] = {
+static char *_keyStrTable3[KEY_STRINFO_NUM] = {
     "POWER CELL ALPHA",
     "POWER CELL BETA",
     "POWER CELL DELTA",
@@ -196,7 +196,7 @@ static char *_keyStrTable3[0x10] = {
 };
 
 /*01021818*/
-static char *_keyStrTable4[0x10] = {
+static char *_keyStrTable4[KEY_STRINFO_NUM] = {
     "",
     "",
     "",
@@ -216,7 +216,7 @@ static char *_keyStrTable4[0x10] = {
 };
 
 /*01021858*/
-static char *_keyStrTable5[0x10] = {
+static char *_keyStrTable5[KEY_STRINFO_NUM] = {
     "LABORATORY KEY",
     "ARMORY KEY",
     "",
@@ -236,7 +236,7 @@ static char *_keyStrTable5[0x10] = {
 };
 
 /*01021898*/
-static char *_keyStrTable6[0x10] = {
+static char *_keyStrTable6[KEY_STRINFO_NUM] = {
     "",
     "",
     "",
@@ -256,7 +256,7 @@ static char *_keyStrTable6[0x10] = {
 };
 
 /*010218D8*/
-static char *_keyStrTable7[0x10] = {
+static char *_keyStrTable7[KEY_STRINFO_NUM] = {
     "GUARD TOWER KEY",
     "",
     "",
@@ -276,7 +276,7 @@ static char *_keyStrTable7[0x10] = {
 };
 
 /*01021918*/
-static char *_keyStrTable8[0x10] = {
+static char *_keyStrTable8[KEY_STRINFO_NUM] = {
     "HOTEL KEY",
     "SALOON KEY",
     "ALIEN PLANS",
@@ -296,7 +296,7 @@ static char *_keyStrTable8[0x10] = {
 };
 
 /*01021958*/
-static char *_keyStrTable9[0x10] = {
+static char *_keyStrTable9[KEY_STRINFO_NUM] = {
     "",
     "EAST WING KEY",
     "NORTH WING KEY",
@@ -316,7 +316,7 @@ static char *_keyStrTable9[0x10] = {
 };
 
 /*01021998*/
-static char *_keyStrTable10[0x10] = {
+static char *_keyStrTable10[KEY_STRINFO_NUM] = {
     "LEVEL 1 SECURITY PASS",
     "LEVEL 2 SECURITY PASS",
     "BACKSTAGE KEY",
@@ -336,7 +336,7 @@ static char *_keyStrTable10[0x10] = {
 };
 
 /*010219D8*/
-static char *_keyStrTable11[0x10] = {
+static char *_keyStrTable11[KEY_STRINFO_NUM] = {
     "GUARD TOWER KEY",
     "BARRACKS KEY",
     "",
@@ -356,7 +356,7 @@ static char *_keyStrTable11[0x10] = {
 };
 
 /*01021A18*/
-static char *_keyStrTable12[0x10] = {
+static char *_keyStrTable12[KEY_STRINFO_NUM] = {
     "",
     "",
     "",
@@ -376,7 +376,7 @@ static char *_keyStrTable12[0x10] = {
 };
 
 /*01021A58*/
-static char *_keyStrTable13[0x10] = {
+static char *_keyStrTable13[KEY_STRINFO_NUM] = {
     "",
     "",
     "",
@@ -396,7 +396,7 @@ static char *_keyStrTable13[0x10] = {
 };
 
 /*01021A98*/
-static char *_keyStrTable14[0x10] = {
+static char *_keyStrTable14[KEY_STRINFO_NUM] = {
     "",
     "",
     "",
@@ -416,7 +416,7 @@ static char *_keyStrTable14[0x10] = {
 };
 
 /*01021AD8*/
-static char *_keyStrTable15[0x10] = {
+static char *_keyStrTable15[KEY_STRINFO_NUM] = {
     "CRYPT KEY",
     "",
     "",
@@ -436,7 +436,7 @@ static char *_keyStrTable15[0x10] = {
 };
 
 /*01021B18*/
-static char *_keyStrTable16[0x10] = {
+static char *_keyStrTable16[KEY_STRINFO_NUM] = {
     "SKELETON KEY",
     "",
     "",
@@ -456,7 +456,7 @@ static char *_keyStrTable16[0x10] = {
 };
 
 /*01021B58*/
-static char *_keyStrTable17[0x10] = {
+static char *_keyStrTable17[KEY_STRINFO_NUM] = {
     "3RD CLASS KEY",
     "",
     "",
@@ -476,7 +476,7 @@ static char *_keyStrTable17[0x10] = {
 };
 
 /*01021B98*/
-static char *_keyStrTable18[0x10] = {
+static char *_keyStrTable18[KEY_STRINFO_NUM] = {
     "COURTYARD KEY",
     "GREAT HALL KEY",
     "CATAPULT ROCK",
@@ -496,7 +496,7 @@ static char *_keyStrTable18[0x10] = {
 };
 
 /*01021BD8*/
-static char *_keyStrTable19[0x10] = {
+static char *_keyStrTable19[KEY_STRINFO_NUM] = {
     "",
     "",
     "",
@@ -516,7 +516,7 @@ static char *_keyStrTable19[0x10] = {
 };
 
 /*01021C18*/
-static char *_keyStrTable20[0x10] = {
+static char *_keyStrTable20[KEY_STRINFO_NUM] = {
     "",
     "",
     "",
@@ -536,7 +536,7 @@ static char *_keyStrTable20[0x10] = {
 };
 
 /*01021C58*/
-static char *_keyStrTable21[0x10] = {
+static char *_keyStrTable21[KEY_STRINFO_NUM] = {
     "",
     "",
     "",
@@ -556,7 +556,7 @@ static char *_keyStrTable21[0x10] = {
 };
 
 /*01021C98*/
-static char *_keyStrTable22[0x10] = {
+static char *_keyStrTable22[KEY_STRINFO_NUM] = {
     "",
     "",
     "",
@@ -576,7 +576,7 @@ static char *_keyStrTable22[0x10] = {
 };
 
 /*01021CD8*/
-static char *_keyStrTable23[0x10] = {
+static char *_keyStrTable23[KEY_STRINFO_NUM] = {
     "CYBORG HEAD",
     "BIO-EMITTER",
     "CYBORG HEAD",
@@ -596,7 +596,7 @@ static char *_keyStrTable23[0x10] = {
 };
 
 /*01021D18*/
-static char *_keyStrTable24[0x10] = {
+static char *_keyStrTable24[KEY_STRINFO_NUM] = {
     "",
     "",
     "",
@@ -616,7 +616,7 @@ static char *_keyStrTable24[0x10] = {
 };
 
 /*01021D58*/
-char **gKeyStrInfo[0x18] = {
+char **gKeyStrInfo[MAP_STRINFO_NUM] = {
     _keyStrTable1,
     _keyStrTable2,
     _keyStrTable3,
@@ -833,7 +833,7 @@ static char *_msgStrTable24[7] = {
 };
 
 /*01021F30*/
-MsgStrInfo gMsgStrInfo[0x18] = {
+MsgStrInfo gMsgStrInfo[MAP_STRINFO_NUM] = {
     { sizeof(_msgStrTable1) / sizeof(char *), _msgStrTable1 },
     { sizeof(_msgStrTable2) / sizeof(char *), _msgStrTable2 },
     { sizeof(_msgStrTable3) / sizeof(char *), _msgStrTable3 },
@@ -861,7 +861,7 @@ MsgStrInfo gMsgStrInfo[0x18] = {
 };
 
 /*01021FF0*/
-char *gMapStrInfo[0x18] = {
+char *gMapStrInfo[MAP_STRINFO_NUM] = {
     "NEW YORK CITY.\nPRESENT DAY.",
     "LIBERTY ISLAND.\nPRESENT DAY.",
     "RUINS OF NEW YORK.\nPOST-APOCALYPSE.\nTHE FUTURE.",

@@ -7,6 +7,7 @@
 #include "static/strinfo.h"
 #include "static/mapinfo.h"
 #include "static/11B300.h"
+#include "static/11D520.h"
 #include "code0/code0.h"
 
 #define SCREEN_WIDTH 320
@@ -55,5 +56,6 @@ extern OSScTask gGfxTask[GFX_TASKS];
 extern MapInfo *gpMapInfo;
 extern Gfx *gpDisplaylist;
 extern Dynamic *gpDynamic;
+extern _11D520UnkStruct1 *D_801ACBD8;
 
 #endif

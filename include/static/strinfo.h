@@ -3,6 +3,9 @@
 
 #include "common.h"
 
+#define MAP_STRINFO_NUM 24
+#define KEY_STRINFO_NUM 16
+
 typedef struct
 {
     s16 count;
@@ -11,9 +14,9 @@ typedef struct
 
 extern char *gWeaponStrInfo[0x7D];
 extern s16 gWeaponStrInfoCount;
-extern char **gKeyStrInfo[0x18];
-extern MsgStrInfo gMsgStrInfo[0x18];
-extern char *gMapStrInfo[0x18];
+extern char **gKeyStrInfo[MAP_STRINFO_NUM];
+extern MsgStrInfo gMsgStrInfo[MAP_STRINFO_NUM];
+extern char *gMapStrInfo[MAP_STRINFO_NUM];
 extern char *gActionStrInfo[0x11];
 extern s16 gActionStrInfoCount;
 extern char *gLicenceStrInfo[0x23];

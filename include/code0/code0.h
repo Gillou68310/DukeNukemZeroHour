@@ -188,7 +188,6 @@ typedef struct
 /*801A1958*/ _extern code0UnkStruct4 D_801A1958;
 /*801A1970*/ _extern s32 D_801A1970;
 /*801A19EC*/ _extern u8 D_801A19EC;
-/*801ACBD8*/ _extern u8 *D_801ACBD8;
 /*801AD470*/ _extern u8 D_801AD470;
 /*801AD474*/ _extern u8 *D_801AD474;
 /*801AE528*/ _extern s32 D_801AE528;

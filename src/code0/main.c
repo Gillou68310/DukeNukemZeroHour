@@ -30,8 +30,6 @@
 #include "static/spinit.h"
 #include "static/sintable.h"
 #include "static/radarang.h"
-#include "static/119280.h"
-#include "static/11D520.h"
 #include "libmus.h"
 
 DECL_STATIC_SEG_SYM(gTileInfo);
@@ -48,7 +46,7 @@ DECL_STATIC_SEG_SYM(gCreditStrInfo);
 DECL_STATIC_SEG_SYM(gCreditStrInfoCount);
 DECL_STATIC_SEG_SYM(D_01022510);
 DECL_STATIC_SEG_SYM(D_01022790);
-DECL_STATIC_SEG_SYM(D_01022990);
+DECL_STATIC_SEG_SYM(gControlPreset);
 DECL_STATIC_SEG_SYM(gSinTable);
 DECL_STATIC_SEG_SYM(gRadarang);
 DECL_STATIC_SEG_SYM(D_01024590);
@@ -164,6 +162,7 @@ extern u8 static_ROM_END[];
 /*801AC8B8*/ OSMesgQueue gGfxFrameMsgQ ALIGNED(8);
 /*801AC9F0*/ TileInfo *gpTileInfo;
 /*801ACB00*/ OSScTask gGfxTask[GFX_TASKS];
+/*801ACBD8*/ _11D520UnkStruct1 *D_801ACBD8;
 /*801AD070*/ OSMesg gDmaMessages[NUM_DMA_MSGS] ALIGNED(16);
 /*801AE498*/ s64 D_801AE498;
 /*801AEA14*/ MapInfo *gpMapInfo;
@@ -1011,7 +1010,7 @@ static void mainLoop(void *arg)
     gpMapStrInfo = (char **)GET_STATIC_SEG_SYM(gMapStrInfo);
 
 #ifdef TARGET_N64
-    for (i = 0; i < 24; i++)
+    for (i = 0; i < MAP_STRINFO_NUM; i++)
     {
         intptr_t *addr = (intptr_t *)gpMapStrInfo;
         intptr_t offset = (intptr_t)gStaticSegment - STATIC_SEGMENT_VRAM;
@@ -1022,13 +1021,13 @@ static void mainLoop(void *arg)
     addr_ = (intptr_t *)gpKeyStrInfo;
     msg_ = gpMsgStrInfo;
     offset_ = (intptr_t)gStaticSegment - STATIC_SEGMENT_VRAM;
-    while (i < 24)
+    while (i < MAP_STRINFO_NUM)
     {
         MsgStrInfo *msg;
         addr_[i] += offset_;
         *(intptr_t *)&msg_[i].addr += offset_;
 
-        for (j = 0; j < 16; j++)
+        for (j = 0; j < KEY_STRINFO_NUM; j++)
         {
             intptr_t *addr = (intptr_t *)addr_[i];
             addr[j] += offset_;
@@ -1081,10 +1080,10 @@ static void mainLoop(void *arg)
     }
 #endif
 
-    D_801ACBD8 = (u8 *)GET_STATIC_SEG_SYM(D_01026910);
+    D_801ACBD8 = (_11D520UnkStruct1 *)GET_STATIC_SEG_SYM(D_01026910);
 
 #ifdef TARGET_N64
-    for (i = 0; i < 31; i++)
+    for (i = 0; i < D_01026910_NUM; i++)
     {
         intptr_t *addr = (intptr_t *)D_801ACBD8;
         intptr_t offset = (intptr_t)gStaticSegment - STATIC_SEGMENT_VRAM;
@@ -1139,16 +1138,16 @@ static void mainLoop(void *arg)
 
     D_801CE5E8 = (u8 *)GET_STATIC_SEG_SYM(D_01022510);
     D_80138778 = (u8 *)GET_STATIC_SEG_SYM(D_01022790);
-    D_801CDAD0 = (u8 *)GET_STATIC_SEG_SYM(D_01022990);
+    gpControlPreset = (ControlMapping *)GET_STATIC_SEG_SYM(gControlPreset);
 
 #ifdef TARGET_N64
-    for (i = 0; i < 8; i++)
+    for (i = 0; i < CONTROL_PRESET_NUM; i++)
     {
-        for (j = 0; j < 16; j++)
+        for (j = 0; j < CONTROL_MAPPING_NUM; j++)
         {
-            intptr_t *addr = (s32 *)D_801CDAD0;
+            intptr_t *addr = (s32 *)gpControlPreset;
             intptr_t offset = (intptr_t)gStaticSegment - STATIC_SEGMENT_VRAM;
-            *(addr + (i*16) + j) += offset;
+            *(addr + (i*CONTROL_MAPPING_NUM) + j) += offset;
         }
     }
 #endif
