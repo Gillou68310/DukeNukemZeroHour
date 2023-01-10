@@ -106,22 +106,22 @@ void func_8000E04C(void)
 }
 
 /*8000E0A0*/
-u16 getTileId(u16 tilenum)
+u16 getTileNum(u16 tileid)
 {
-    u16 tileid;
+    u16 tilenum;
 
-    if (tilenum == 0)
+    if (tileid == 0)
     {
         return 0;
     }
-    tileid = gTilemap[tilenum];
-    if (tileid == MAXTILES)
+    tilenum = gTilemap[tileid];
+    if (tilenum == MAXTILES)
     {
         return 1;
     }
     else
     {
-        return tileid;
+        return tilenum;
     }
 }
 
@@ -154,7 +154,7 @@ static void func_8000E160(void)
 }
 
 /*8000E1B4*/
-u8 *tileLoad(u16 tileid)
+u8 *loadTile(u16 tilenum)
 {
     u8 i;
     u8 *ptr;
@@ -162,33 +162,33 @@ u8 *tileLoad(u16 tileid)
     u16 size;
     u8 val;
 
-    if (gpTileInfo[tileid].ramaddr != NULL)
+    if (gpTileInfo[tilenum].ramaddr != NULL)
     {
-        D_80169580[tileid] = 0x82;
-        return gpTileInfo[tileid].ramaddr;
+        D_80169580[tilenum] = 0x82;
+        return gpTileInfo[tilenum].ramaddr;
     }
-    if (gpTileInfo[tileid].flags & 0x80)
+    if (gpTileInfo[tilenum].flags & 0x80)
     {
-        size = (gpTileInfo[tileid].dimx * gpTileInfo[tileid].dimy);
+        size = (gpTileInfo[tilenum].dimx * gpTileInfo[tilenum].dimy);
     }
     else
     {
-        size = (((gpTileInfo[tileid].dimx * gpTileInfo[tileid].dimy) / 2) + 32);
+        size = (((gpTileInfo[tilenum].dimx * gpTileInfo[tilenum].dimy) / 2) + 32);
     }
     if (size <= MAXTILESIZE)
     {
-        D_80169580[tileid] = 0x82;
-        alloCache(&gpTileInfo[tileid].ramaddr, size, &D_80169580[tileid]);
+        D_80169580[tilenum] = 0x82;
+        alloCache(&gpTileInfo[tilenum].ramaddr, size, &D_80169580[tilenum]);
         romAddr = _tileROMAddr;
-        romAddr = romAddr + gpTileInfo[tileid].fileoff;
-        readRom(gTileBuffer, romAddr, (gpTileInfo[tileid].filesize + 1) & ~1);
-        if ((s16)(decompressEDL(gTileBuffer, gpTileInfo[tileid].ramaddr)) != 0)
+        romAddr = romAddr + gpTileInfo[tilenum].fileoff;
+        readRom(gTileBuffer, romAddr, (gpTileInfo[tilenum].filesize + 1) & ~1);
+        if ((s16)(decompressEDL(gTileBuffer, gpTileInfo[tilenum].ramaddr)) != 0)
         {
-            Bmemcpy(gpTileInfo[tileid].ramaddr, gTileBuffer, size);
+            Bmemcpy(gpTileInfo[tilenum].ramaddr, gTileBuffer, size);
         }
-        if (!(gpTileInfo[tileid].flags & 0x80))
+        if (!(gpTileInfo[tilenum].flags & 0x80))
         {
-            ptr = gpTileInfo[tileid].ramaddr;
+            ptr = gpTileInfo[tilenum].ramaddr;
             for (i = 0; i < 16; i++)
             {
                 val = *ptr;
@@ -197,7 +197,7 @@ u8 *tileLoad(u16 tileid)
                 ptr += 2;
             }
         }
-        return gpTileInfo[tileid].ramaddr;
+        return gpTileInfo[tilenum].ramaddr;
     }
     return NULL;
 }

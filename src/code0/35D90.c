@@ -1,12 +1,31 @@
 #include "common.h"
+#include "code0/main.h"
+#include "code0/9410.h"
 
 /*.text*/
 
 /*80035190*/
-INCLUDE_ASM(s32, "src/code0/35D90", getTileSizeX);
+s16 getTileSizeX(u16 tileid)
+{
+    if ((getTileNum(tileid)) != 1)
+    {
+        return gpTileInfo[getTileNum(tileid)].sizex;
+    }
+    return 0;
+}
 
 /*800351F4*/
-INCLUDE_ASM(s32, "src/code0/35D90", getTileSizeY);
+s16 getTileSizeY(u16 tileid)
+{
+    if ((getTileNum(tileid)) != 1)
+    {
+        return gpTileInfo[getTileNum(tileid)].sizey;
+    }
+    return 0;
+}
 
 /*80035258*/
-INCLUDE_ASM(s32, "src/code0/35D90", getTilePicanm);
+s32 getTilePicanm(u16 tileid)
+{
+    return gpTileInfo[getTileNum(tileid)].picanm;
+}

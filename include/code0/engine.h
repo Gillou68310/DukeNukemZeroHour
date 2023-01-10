@@ -143,7 +143,7 @@ void func_8002B680(void);
 s32 clipInsideBox(s32 x, s32 y, s16 wallnum, s32 walldist);
 s32 getAngle(s32 xvect, s32 yvect);
 s32 setSprite(s16 spritenum, s32 newx, s32 newy, s32 newz);
-s32 animateOffs(s16 tilenum, s16 fakevar);
+s32 animateOffs(s16 tileid, s16 fakevar);
 void initSpriteLists(void);
 s32 insertSprite(s16 sectnum, s16 statnum);
 s32 deleteSprite(s16 spritenum);

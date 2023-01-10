@@ -9,8 +9,8 @@ void func_80008E3C(void);
 void func_8000E04C(void);
 void func_8000EA0C(u8, s16, s16, s16, s32);
 void func_8000EB4C(u8, s16, s16, s16, s32);
-u16 getTileId(u16 tilenum);
-u8 *tileLoad(u16 tileid);
+u16 getTileNum(u16 tileid);
+u8 *loadTile(u16 tilenum);
 
 typedef struct
 {

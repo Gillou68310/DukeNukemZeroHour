@@ -169,28 +169,28 @@ s32 setSprite(s16 spritenum, s32 newx, s32 newy, s32 newz)
 }
 
 /*8002BCE0*/
-s32 animateOffs(s16 tilenum, s16 fakevar)
+s32 animateOffs(s16 tileid, s16 fakevar)
 {
     s32 i, k, offs;
 
     offs = 0;
-    i = (gTotalClockLock>>((getTilePicanm(tilenum)>>24)&15));
-    if ((getTilePicanm(tilenum)&63) > 0)
+    i = (gTotalClockLock>>((getTilePicanm(tileid)>>24)&15));
+    if ((getTilePicanm(tileid)&63) > 0)
     {
-        switch (getTilePicanm(tilenum)&192)
+        switch (getTilePicanm(tileid)&192)
         {
         case 64:
-            k = (i%((getTilePicanm(tilenum)&63)<<1));
-            if (k < (getTilePicanm(tilenum)&63))
+            k = (i%((getTilePicanm(tileid)&63)<<1));
+            if (k < (getTilePicanm(tileid)&63))
                 offs = k;
             else
-                offs = (((getTilePicanm(tilenum)&63)<<1)-k);
+                offs = (((getTilePicanm(tileid)&63)<<1)-k);
             break;
         case 128:
-            offs = (i%((getTilePicanm(tilenum)&63)+1));
+            offs = (i%((getTilePicanm(tileid)&63)+1));
             break;
         case 192:
-            offs = -(i%((getTilePicanm(tilenum)&63)+1));
+            offs = -(i%((getTilePicanm(tileid)&63)+1));
         }
     }
     return(offs);

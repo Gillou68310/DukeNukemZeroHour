@@ -3,6 +3,8 @@
 
 #include "common.h"
 
-s32 getTilePicanm(u16 tilenum);
+s16 getTileSizeX(u16 tileid);
+s16 getTileSizeY(u16 tileid);
+s32 getTilePicanm(u16 tileid);
 
 #endif
