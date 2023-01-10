@@ -162,7 +162,7 @@ typedef struct
 /*8010A940*/ _extern code0UnkStruct2 D_8010A940[4];
 /*80117ED8*/ _extern code0UnkStruct1 D_80117ED8[4];
 /*80118148*/ _extern u8 D_80118148;
-/*801297E0*/ _extern Gfx *D_801297E0[8];
+/*801297E0*/ _extern Gfx *D_801297E0[4][2];
 /*80129808*/ _extern u8 *D_80129808;
 /*8012C470*/ _extern s16 D_8012C470;
 /*8012DF00*/ _extern u8 *D_8012DF00;
@@ -172,7 +172,6 @@ typedef struct
 /*80138688*/ _extern OSTime D_80138688;
 /*80138778*/ _extern u8 *D_80138778;
 /*80138780*/ _extern u16 D_80138780;
-/*8013A648*/ _extern u8 *D_8013A648;
 /*8013F920*/ _extern u8 *D_8013F920;
 /*80168D0C*/ _extern s16 D_80168D0C;
 /*80168D10*/ _extern s32 D_80168D10;

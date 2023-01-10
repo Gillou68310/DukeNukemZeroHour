@@ -30,6 +30,8 @@ typedef struct
 /*801CDB00*/ _extern char **gpLicenceStrInfo;
 /*801CDB4C*/ _extern s32 D_801CDB4C;
 /*801CDC65*/ _extern u8 D_801CDC65;
+/*801CDC68*/ _extern s8 *D_801CDC68;
+/*801CDC70*/ _extern u8 D_801CDC70[0x800];
 /*801CE4C6*/ _extern u16 D_801CE4C6[4];
 /*801CE4EA*/ _extern u16 gPerspNorm;
 /*801CE5AC*/ _extern u16 D_801CE5AC;

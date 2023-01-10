@@ -25,7 +25,7 @@ void func_80000C74(void);
 void func_80001CFC(void);
 void func_80001F40(void);
 void func_80001FAC(void);
-void func_80002014(s32, s32, s32, s32);
+void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size);
 void func_80002390(void);
 
 extern s32 gScreenWidth;

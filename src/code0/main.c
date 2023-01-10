@@ -18,6 +18,7 @@
 #include "code0/7CBC0.h"
 #include "code0/7F6A0.h"
 #include "code0/7FCE0.h"
+#include "code0/84490.h"
 #include "code0/87010.h"
 #include "code0/88690.h"
 #include "code0/8E670.h"
@@ -90,9 +91,11 @@ extern u8 static_ROM_END[];
 #define FRAMEBUFFER_SEGMENT 2
 #define OUTPUT_BUFFER_SIZE 65536
 #define STATIC_SEGMENT_VRAM (STATIC_SEGMENT << 24)
+#define FRAMEBUFFER_ALIGN 16
+#define DEPTHBUFFER_ALIGN 256
 
 /*.data*/
-/*800BD3D0*/ static s32 D_800BD3D0 = 2;
+/*800BD3D0*/ static s32 _framebufferCount = 2;
 /*800BD3D4*/ s32 gScreenWidth = SCREEN_WIDTH;
 /*800BD3D8*/ s32 gScreenHeight = SCREEN_HEIGHT;
 /*800BD3E0*/ static s64 D_800BD3E0 = 0LL;
@@ -129,13 +132,14 @@ extern u8 static_ROM_END[];
 
 /*.comm*/
 /*800FE948*/ char ***gpKeyStrInfo;
-/*800FF530*/ void *gFramebuffer[3];
+/*800FF530*/ u8 *gFramebuffer[3];
 /*800FF53C*/ ProcPointer D_800FF53C;
 /*8010571C*/ u8 *D_8010571C;
 /*8010A920*/ OSMesgQueue D_8010A920 ALIGNED(8);
 /*80118160*/ s32 gGfxDebugTime;
 /*80119A5C*/ s32 D_80119A5C;
 /*80119A78*/ OSMesgQueue gRetraceMsgQ ALIGNED(8);
+/*8011A668*/ u8 *gCacheMemEnd;
 /*8011BC60*/ Dynamic gDynamic[GFX_TASKS] ALIGNED(16);
 /*8012C990*/ OSMesg gGfxMessages[NUM_DMA_MSGS] ALIGNED(16);
 /*8012E158*/ OSViMode *D_8012E158;
@@ -146,6 +150,7 @@ extern u8 static_ROM_END[];
 /*80138788*/ s64 D_80138788;
 /*80138818*/ u32 D_80138818;
 /*80138864*/ u8 *gDepthBuffer;
+/*8013A648*/ u8 *gCacheMemStart;
 /*8016D170*/ Vtx *gpVertex;
 /*8016D178*/ s32 D_8016D178;
 /*8016D184*/ Vtx *gVertex[GFX_TASKS];
@@ -173,6 +178,7 @@ extern u8 static_ROM_END[];
 
 /*.text*/
 s32 osAfterPreNMI(void);
+void func_80000000(u8 *, s32);
 static void idleLoop(void *);
 static void mainLoop(void *);
 static void viLoop(void *);
@@ -360,8 +366,7 @@ static void idleLoop(void *arg)
     osCreateThread(&_mainLoopThread, 3, mainLoop, arg, &_mainLoopThreadStack[MAINLOOP_STACKSIZE / sizeof(u64)], 10);
     osStartThread(&_mainLoopThread);
     osSetThreadPri(&_idleLoopThread, 0);
-    while (1)
-        ;
+    while (1);
 }
 
 /*80000A6C*/
@@ -759,7 +764,7 @@ static void createGfxTask(void)
 
     ucode_boot_end = (char *)rspbootTextEnd;
     ucode_boot_size = ucode_boot_end - (char *)rspbootTextStart;
-    ucode_boot_end = NULL;
+    ucode_boot_end = NULL; //FIXME
 
     gDPFullSync(gpDisplaylist++);
     gSPEndDisplayList(gpDisplaylist++);
@@ -849,7 +854,7 @@ static void func_80001D44(void)
         D_801AE8B8 = 0x3C00;
         D_801AE8FC = 0x2400;
     }
-    func_80002014(width, height, D_801AE8B8, D_801AE8FC);
+    allocMemory(width, height, D_801AE8B8, D_801AE8FC);
     func_8001F928(width, height);
     _red = 0;
     _green = 0;
@@ -887,7 +892,77 @@ void func_80001FAC(void)
     D_800DEDE0 = 4;
 }
 
-INCLUDE_ASM(s32, "src/code0/main", func_80002014);
+/*80002014*/
+void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size)
+{
+    s16 i;
+    u8 *plock;
+    u8 *handler;
+    s32 fb_size;
+    u8 *fb_addr;
+    s32 depth_align;
+    s32 remaining_size;
+
+    plock = &gCacheLock[1];
+    func_80000450();
+    if ((D_800BD3F8 == 0))
+    {
+        if (width == 480)
+            width = 512;
+    }
+
+    if (osMemSize == 0x400000)
+        _framebufferCount = 2;
+    else
+        _framebufferCount = 3;
+
+    gCacheMemEnd = (u8 *)(osMemSize - 0x80000000);
+    initCache(gCacheMemStart, (gCacheMemEnd - gCacheMemStart));
+
+    fb_size = height * width * 2;
+    alloCache(&gFramebuffer[0], ((fb_size + FRAMEBUFFER_ALIGN) * _framebufferCount), &gCacheLock[0]);
+    fb_addr = (u8 *)(((intptr_t)gFramebuffer[0] + (FRAMEBUFFER_ALIGN-1)) & ~(FRAMEBUFFER_ALIGN-1));
+    gFramebuffer[0] = fb_addr;
+    gFramebuffer[1] = fb_addr + fb_size;
+
+    if (_framebufferCount == 3) {
+        gFramebuffer[2] = fb_addr + fb_size + fb_size;
+    }
+
+    alloCache((u8 **)&gDisplaylist[0], (dlist_size * sizeof(Gfx) * GFX_TASKS), &gCacheLock[0]);
+    gDisplaylist[1] = &gDisplaylist[0][dlist_size];
+
+    depth_align = DEPTHBUFFER_ALIGN; //FIXME
+    remaining_size = gCacheMemEnd - gCacheMemStart;
+    remaining_size -= ((((fb_size + FRAMEBUFFER_ALIGN) * _framebufferCount) + depth_align) + fb_size);
+    remaining_size -= (dlist_size * sizeof(Gfx) * GFX_TASKS);
+
+    if (vertex_size != 0)
+    {
+        alloCache((u8 **)&gVertex[0], (vertex_size * sizeof(Vtx) * GFX_TASKS), &gCacheLock[0]);
+        remaining_size -= (vertex_size * sizeof(Vtx) * GFX_TASKS);
+        gVertex[1] = &gVertex[0][vertex_size];
+
+        alloCache((u8 **)&D_801297E0[0][0], (D_8012C470 * 1600 * sizeof(Gfx) * GFX_TASKS), &gCacheLock[0]);
+        D_801297E0[0][1] = D_801297E0[0][0] + 1600;
+        for (i = 1; i<D_8012C470; i++)
+        {
+            D_801297E0[i][0] = D_801297E0[i-1][1] + 1600;
+            D_801297E0[i][1] = D_801297E0[i][0] + 1600;
+        }
+        remaining_size -= (D_8012C470 * 1600 * sizeof(Gfx) * GFX_TASKS);
+    }
+
+    alloCache(&handler, remaining_size, plock);
+    alloCache(&gDepthBuffer, (fb_size + DEPTHBUFFER_ALIGN), &gCacheLock[0]);
+    gDepthBuffer = (u8 *)(((intptr_t)gDepthBuffer + (DEPTHBUFFER_ALIGN-1)) & ~(DEPTHBUFFER_ALIGN-1));
+    suckCache(&handler);
+    Bmemset(gFramebuffer[0], 0, ((fb_size + FRAMEBUFFER_ALIGN) * _framebufferCount));
+    _framebufferIndex = 0;
+    gScreenWidth = height;
+    gScreenHeight = width;
+    D_800E0F58 = 1;
+}
 
 /*80002390*/
 void func_80002390(void)
@@ -952,7 +1027,7 @@ void func_80002390(void)
 /*80002494*/
 static void func_80002494(void)
 {
-    func_80002014(320, 480, 0x2800, 0);
+    allocMemory(320, 480, 0x2800, 0);
     func_801C10C8();
     setCameraPosition(0.0f, 0.0f, -500.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     func_8007FD8C(&D_800DFB08, 11);
@@ -982,7 +1057,7 @@ static void mainLoop(void *arg)
     D_80138818 = (u32)(code1_VRAM - (u8 *)func_80000450) >> 0xA;
     gStaticSegment = (u8 *)code1_VRAM_END;
     size = static_ROM_END - static_ROM_START;
-    D_8013A648 = (u8 *)((intptr_t)(&gStaticSegment[size] + 0x3F) & ~0x3F);
+    gCacheMemStart = (u8 *)((intptr_t)(&gStaticSegment[size] + 0x3F) & ~0x3F);
 
     osInvalICache(code1_TEXT_START, code1_TEXT_END - code1_TEXT_START);
     readRom(code1_VRAM, code1_ROM_START, code1_ROM_END - code1_ROM_START);
@@ -1150,7 +1225,7 @@ static void mainLoop(void *arg)
     }
 #endif
 
-    func_80002014(SCREEN_WIDTH, SCREEN_HEIGHT, 0x2800, 0);
+    allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT, 0x2800, 0);
     osCreateScheduler(&gScheduler, &_schedulerStack[SCHEDULER_STACKSIZE / sizeof(u64)], 0x28, _viMode, (u8)1);
     osViBlack(1U);
     osCreateThread(&_viLoopThread, 7, viLoop, arg, &_viLoopThreadStack[VILOOP_STACKSIZE / sizeof(u64)], 20);
@@ -1235,7 +1310,7 @@ static void mainLoop(void *arg)
                 {
                     D_80119A5C -= 1;
                 }
-                if (D_800BD3D0 < 3)
+                if (_framebufferCount < 3)
                 {
                     if (gRetraceMsgQ.validCount >= gRetraceMsgQ.msgCount)
                     {
@@ -1249,7 +1324,7 @@ static void mainLoop(void *arg)
             D_800BD428 = gGfxTaskIndex;
             gGfxTaskIndex ^= 1;
             _framebufferIndex++;
-            if (_framebufferIndex == D_800BD3D0)
+            if (_framebufferIndex == _framebufferCount)
             {
                 _framebufferIndex = 0;
             }
@@ -1392,4 +1467,10 @@ static void func_800036DC(void)
     func_8007EF70();
 }
 
-INCLUDE_ASM(s32, "src/code0/main", func_80003940);
+/*80003940*/
+void func_80003940(void)
+{
+    *(D_801CDC68++) = 0;
+    D_801CDB4C = 0;
+    func_80000000(D_801CDC70, 2048);
+}
