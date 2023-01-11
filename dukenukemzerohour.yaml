@@ -346,7 +346,7 @@ segments:
       - [0xE4D40, bin,      ucode/aspMain.data]
     #.rodata section
       - [0xE5000, .rodata,  src/code0/main]
-      - [0xE5080, rodata,   code0/4600]
+      - [0xE5080, .rodata,  src/code0/4600]
       - [0xE50D0, .rodata,  src/code0/graphics]
       - [0xE5110, rodata,   code0/audio]
       - [0xE5150, rodata,   code0/9410]

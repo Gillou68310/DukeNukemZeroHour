@@ -1,12 +1,49 @@
 #include "common.h"
+#include "code0/2ABE0.h"
+
+#define PI 3.14159265359
 
 /*.text*/
 
-INCLUDE_ASM(s32, "src/code0/4600", func_80003A00);
+/*80003A00*/
+static f32 func_80003A00(f32 arg0)
+{
+    while (arg0 < 0.0f) arg0 += 2*PI;
+    while (arg0 >= 2*PI) arg0 -= 2*PI;
+    return arg0;
+}
 
-INCLUDE_ASM(s32, "src/code0/4600", func_80003A74);
+/*80003A74*/
+static f32 func_80003A74(f32 arg0, f32 arg1)
+{
+    if (arg0 <= arg1)
+    {
+        arg1 -= arg0;
+        if (arg1 <= PI)
+            return arg1;
+        else
+            return arg1 - 2*PI;
+    }
+    else
+    {
+        arg0 -= arg1;
+        if (arg0 <= PI)
+            return -arg0;
+        else
+            return -(arg0 - 2*PI);
+    }
+}
 
-INCLUDE_ASM(s32, "src/code0/4600", func_80003B00);
+/*80003B00*/
+static f32 func_80003B00(f32 arg0, f32 arg1, f32 arg2, f32 arg3)
+{
+    return -func_80029FE0(arg3 - arg1, arg2 - arg0) + 4.712388980385;
+}
+
+/*.rodata*/
+const f64 D_800E44B8 = 0.7999999999999999;
+const f64 D_800E44C0 = 0.6283185307179999;
+const f64 D_800E44C8 = 3.14159265359;
 
 INCLUDE_ASM(s32, "src/code0/4600", func_80003B4C);
 
