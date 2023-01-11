@@ -365,9 +365,38 @@ static unkFileInfo D_800E0D18[32] = {
 static void parseEDLheader(EDLInfo *info);
 static s32 swap(EDLInfo *info, u32 value);
 
-STATIC void decodeEDL0(EDLInfo *info);
-INCLUDE_ASM(s32, "src/code0/edl", decodeEDL0);
+/*800808D0*/
+static void decodeEDL0(EDLInfo *info)
+{
+    u8 *src;
+    u8 *dst;
+    s32 i;
+    s32 size;
 
+    dst = info->dst;
+    i = size = info->dsize;
+    src = &info->src[12];
+
+    if ((src >= dst) || (dst >= &src[size]))
+    {
+        for (i = (size-1); i != -1; i--)
+        {
+            *dst++ = *src++;
+        }
+    }
+    else
+    {
+        dst = &dst[size-1];
+        src = &src[size-1];
+
+        for (i = (size-1); i != -1; i--)
+        {
+            *dst-- = *src--;
+        }
+    }
+}
+
+/*80080968*/
 STATIC void decodeEDL1(EDLInfo *info);
 INCLUDE_ASM(s32, "src/code0/edl", decodeEDL1);
 
