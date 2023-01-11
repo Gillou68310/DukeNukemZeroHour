@@ -258,7 +258,7 @@ static void func_80000678(void)
 {
     if (D_80119A5C == 0)
     {
-        func_8002AAC0();
+        cache1d_8002AAC0();
         D_800FF53C();
     }
 }
@@ -810,7 +810,7 @@ static void func_80001D44(void)
     s16 width;
     s16 height;
 
-    func_8002AAC0();
+    cache1d_8002AAC0();
     MusStop(MUSFLAG_EFFECTS | MUSFLAG_SONGS, 0);
     switch (D_801CE5AC)
     {
