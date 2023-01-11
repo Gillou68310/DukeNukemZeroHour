@@ -1,0 +1,4 @@
+-r tools/splat/requirements.txt
+pycparser
+pynacl
+toml
