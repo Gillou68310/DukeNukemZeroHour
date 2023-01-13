@@ -2,6 +2,7 @@
 #define _CODE0_H_
 
 #include "common.h"
+#include "libmus.h"
 
 typedef struct
 {
@@ -145,6 +146,13 @@ typedef struct
     u8 unk_10;
 } code0UnkStruct4;
 
+typedef struct
+{
+    musHandle handle;
+    s32 unk_04;
+    s32 unk_08;
+} code0UnkStruct5;
+
 #ifdef _CODE0_C_
 #define _extern
 #else
@@ -172,6 +180,7 @@ typedef struct
 /*80138688*/ _extern OSTime D_80138688;
 /*80138778*/ _extern u8 *D_80138778;
 /*80138780*/ _extern u16 D_80138780;
+/*8013B2D8*/ extern code0UnkStruct5 D_8013B2D8[];
 /*8013F920*/ _extern u8 *D_8013F920;
 /*80168D0C*/ _extern s16 D_80168D0C;
 /*80168D10*/ _extern s32 D_80168D10;

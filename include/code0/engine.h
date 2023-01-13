@@ -38,7 +38,8 @@ typedef struct
     /*0x14*/ s16 unk14; //floorpicnum;
     /*0x16*/ s16 floorheinum;
 
-    /*0x18*/ u8 pad[24];
+    /*0x18*/ s16 unk18;
+    /*0x1A*/ u8 pad[22];
 
     //signed char ceilingshade;
     //char ceilingpal;
@@ -164,7 +165,7 @@ s32 clipMove(s32 *x, s32 *y, s32 *z, s16 *sectnum,
 s32 pushMove(s32 *x, s32 *y, s32 *z, s16 *sectnum,
              s32 walldist, s32 ceildist, s32 flordist, u32 cliptype);
 void updateSector(s32 x, s32 y, s16 *sectnum);
-void func_80033044(s32 x, s32 y, s32 z, s16 *sectnum);
+void updateSectorZ(s32 x, s32 y, s32 z, s16 *sectnum);
 s32 rotatePoint(s32 xpivot, s32 ypivot, s32 x, s32 y, s16 daang, s32 *x2, s32 *y2);
 s32 krand(void);
 

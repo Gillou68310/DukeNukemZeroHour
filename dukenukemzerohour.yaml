@@ -622,6 +622,4 @@ segments:
   - [0x1FC57C0, bin,        sounds/bank15.wbk]
   - [0x1FCB1B0, bin,        sounds/ambient9]
 
-  #0xFF to the end
-  - [0x1FCB220, bin,        trailer]
-  - [0x2000000]
+  - [0x1FCB220]

@@ -2,23 +2,24 @@
 #include "code0/pragmas.h"
 #include "code0/engine.h"
 #include "code0/35D90.h"
+#include "code0/code0.h"
 
 #define klabs(A) (((A) > 0) ? (A) : -(A))
 
 #define MAXCLIPNUM 512
 #define MAXCLIPDIST 1024
 
-typedef struct { long x1, y1, x2, y2; } LineType;
+typedef struct { s32 x1, y1, x2, y2; } LineType;
 
 /*.data*/
-/*800DD440*/ EXTERN_DATA STATIC s16 _editstatus;
+/*800DD440*/ EXTERN_DATA STATIC s16 _editStatus;
 
 /*.bss*/
 /*800F70A0*/ EXTERN_BSS STATIC s16 D_800F70A0;
-/*800F70A2*/ EXTERN_BSS STATIC s16 _clipnum;
-/*800F70B0*/ EXTERN_BSS STATIC LineType _clipit[MAXCLIPNUM];
-/*800F90B0*/ EXTERN_BSS STATIC s16 _clipsectorlist[MAXCLIPNUM];
-/*800F94B0*/ EXTERN_BSS STATIC s16 _clipsectnum;
+/*800F70A2*/ EXTERN_BSS STATIC s16 _clipNum;
+/*800F70B0*/ EXTERN_BSS STATIC LineType _clipIt[MAXCLIPNUM];
+/*800F90B0*/ EXTERN_BSS STATIC s16 _clipSectorList[MAXCLIPNUM];
+/*800F94B0*/ EXTERN_BSS STATIC s16 _clipSectNum;
 
 /*.comm*/
 /*800FE420*/ s16 gHeadSpriteSect[MAXSECTORS+1] ALIGNED(16);
@@ -41,8 +42,10 @@ typedef struct { long x1, y1, x2, y2; } LineType;
 
 /*.text*/
 
-static s32 insertSpriteStat(s16 statnum);
-static s32 insertSpriteSect(s16 sectnum);
+static s16 insertSpriteStat(s16 statnum);
+static s16 insertSpriteSect(s16 sectnum);
+static s32 deleteSpriteStat(s16 deleteme);
+static s32 deleteSpriteSect(s16 deleteme);
 static s16 lastWall(s16 point);
 
 /*8002B680*/
@@ -154,7 +157,7 @@ s32 setSprite(s16 spritenum, s32 newx, s32 newy, s32 newz)
     gpSprite[spritenum].z = newz;
 
     tempsectnum = gpSprite[spritenum].sectnum;
-    func_80033044(newx, newy, newz, &tempsectnum);
+    updateSectorZ(newx, newy, newz, &tempsectnum);
     if (tempsectnum < 0)
     {
         updateSector(newx, newy, &tempsectnum);
@@ -232,10 +235,33 @@ void initSpriteLists(void)
 }
 
 /*8002BFF8*/
-INCLUDE_ASM(s32, "src/code0/engine", insertSprite);
+s32 insertSprite(s16 sectnum, s16 statnum)
+{
+    s16 stat;
+    s16 sect;
+    s32 temp;
+
+    stat = insertSpriteStat(statnum);
+    sect = insertSpriteSect(sectnum);
+
+    if (((stat == -1) || (sect == -1)) == 0)
+    {
+        if (stat == sect)
+        {
+            temp = D_80199950;
+            D_801A2624++;
+            if (temp < D_801A2624)
+            {
+                temp = D_801A2624;
+            }
+            D_80199950 = temp;
+        }
+    }
+    return sect;
+}
 
 /*8002C0A8*/
-static s32 insertSpriteSect(s16 sectnum)
+static s16 insertSpriteSect(s16 sectnum)
 {
     s16 blanktouse;
 
@@ -260,7 +286,7 @@ static s32 insertSpriteSect(s16 sectnum)
 }
 
 /*8002C18C*/
-static s32 insertSpriteStat(s16 statnum)
+static s16 insertSpriteStat(s16 statnum)
 {
     s16 blanktouse;
 
@@ -285,7 +311,30 @@ static s32 insertSpriteStat(s16 statnum)
 }
 
 /*8002C270*/
-INCLUDE_ASM(s32, "src/code0/engine", deleteSprite);
+s32 deleteSprite(s16 spritenum)
+{
+    s32 stat;
+    s32 sect;
+    s32 statnum;
+
+    MusHandleStop(D_8013B2D8[spritenum].handle, 0);
+    D_8013B2D8[spritenum].handle = 0;
+    statnum = gpSprite[spritenum].statnum;
+
+    stat = deleteSpriteStat(spritenum);
+    sect = deleteSpriteSect(spritenum);
+
+    if (((stat == -1) || (sect == -1)) == 0)
+    {
+        D_801A2624--;
+        if (statnum == 0x136)
+        {
+            if (D_801AC9F4 != 0)
+                D_801AC9F4--;
+        }
+    }
+    return sect;
+}
 
 /*8002C35C*/
 static s32 deleteSpriteSect(s16 deleteme)
@@ -428,10 +477,10 @@ s32 canSee(s32 x1, s32 y1, s32 z1, s16 sect1, s32 x2, s32 y2, s32 z2, s16 sect2)
 
     x21 = x2-x1; y21 = y2-y1; z21 = z2-z1;
 
-    _clipsectorlist[0] = sect1; danum = 1;
+    _clipSectorList[0] = sect1; danum = 1;
     for (dacnt = 0; dacnt<danum; dacnt++)
     {
-        dasectnum = _clipsectorlist[dacnt]; sec = &gpSector[dasectnum];
+        dasectnum = _clipSectorList[dacnt]; sec = &gpSector[dasectnum];
         for (cnt = sec->wallnum, wal = &gpWall[sec->wallptr]; cnt>0; cnt--, wal++)
         {
             wal2 = &gpWall[wal->point2];
@@ -457,11 +506,11 @@ s32 canSee(s32 x1, s32 y1, s32 z1, s16 sect1, s32 x2, s32 y2, s32 z2, s16 sect2)
             getzsOfSlope((s16)nexts, x, y, &cz, &fz);
             if ((z <= cz) || (z >= fz)) return(0);
 
-            for (i = danum-1; i>=0; i--) if (_clipsectorlist[i] == nexts) break;
-            if (i < 0) _clipsectorlist[danum++] = nexts;
+            for (i = danum-1; i>=0; i--) if (_clipSectorList[i] == nexts) break;
+            if (i < 0) _clipSectorList[danum++] = nexts;
         }
     }
-    for (i = danum-1; i>=0; i--) if (_clipsectorlist[i] == sect2) return(1);
+    for (i = danum-1; i>=0; i--) if (_clipSectorList[i] == sect2) return(1);
     return(0);
 }
 
@@ -596,8 +645,8 @@ static void keepAway(s32 *x, s32 *y, s32 w)
     s32 dx, dy, ox, oy, x1, y1;
     u8 first;
 
-    x1 = _clipit[w].x1; dx = _clipit[w].x2-x1;
-    y1 = _clipit[w].y1; dy = _clipit[w].y2-y1;
+    x1 = _clipIt[w].x1; dx = _clipIt[w].x2-x1;
+    y1 = _clipIt[w].y1; dy = _clipIt[w].y2-y1;
     ox = ksgn(-dy); oy = ksgn(dx);
     first = (klabs(dx) <= klabs(dy));
     while (1)
@@ -609,11 +658,174 @@ static void keepAway(s32 *x, s32 *y, s32 w)
 }
 
 /*80032538*/
-STATIC s32 rayTrace(s32 x3, s32 y3, s32 *x4, s32 *y4);
-INCLUDE_ASM(s32, "src/code0/engine", rayTrace);
+static s32 rayTrace(s32 x3, s32 y3, s32 *x4, s32 *y4)
+{
+    s32 x1, y1, x2, y2, t, bot, topu, nintx, ninty, cnt, z, hitwall;
+    s32 x21, y21, x43, y43;
+
+    hitwall = -1;
+    for (z = _clipNum-1; z>=0; z--)
+    {
+        x1 = _clipIt[z].x1; x2 = _clipIt[z].x2; x21 = x2-x1;
+        y1 = _clipIt[z].y1; y2 = _clipIt[z].y2; y21 = y2-y1;
+
+        topu = x21*(y3-y1) - (x3-x1)*y21; if (topu <= 0) continue;
+        if (x21*(*y4-y1) > (*x4-x1)*y21) continue;
+        x43 = *x4-x3; y43 = *y4-y3;
+        if (x43*(y1-y3) > (x1-x3)*y43) continue;
+        if (x43*(y2-y3) <= (x2-x3)*y43) continue;
+        bot = x43*y21 - x21*y43; if (bot == 0) continue;
+
+        cnt = 256;
+        do
+        {
+            cnt--; if (cnt < 0) { *x4 = x3; *y4 = y3; return(z); }
+            nintx = x3 + scale(x43, topu, bot);
+            ninty = y3 + scale(y43, topu, bot);
+            topu--;
+        } while (x21*(ninty-y1) <= (nintx-x1)*y21);
+
+        if (klabs(x3-nintx)+klabs(y3-ninty) < klabs(x3-*x4)+klabs(y3-*y4))
+        {
+            *x4 = nintx; *y4 = ninty; hitwall = z;
+        }
+    }
+    return(hitwall);
+}
 
 /*8003283C*/
-INCLUDE_ASM(s32, "src/code0/engine", pushMove);
+s32 pushMove(s32 *x, s32 *y, s32 *z, s16 *sectnum,
+             s32 walldist, s32 ceildist, s32 flordist, u32 cliptype)
+{
+    SectorType *sec, *sec2;
+    WallType *wal, *wal2;
+    SpriteType *spr;
+    s32 i, j, k, t, dx, dy, dax, day, daz, daz2, bad, dir;
+    s32 dasprclipmask, dawalclipmask;
+    s16 startwall, endwall, clipsectcnt;
+    char bad2;
+
+    if ((*sectnum) < 0) return(-1);
+
+    dawalclipmask = (cliptype&65535);
+    dasprclipmask = (cliptype>>16);
+
+    k = 32;
+    dir = 1;
+    do
+    {
+        bad = 0;
+
+        _clipSectorList[0] = *sectnum;
+        clipsectcnt = 0; _clipSectNum = 1;
+        do
+        {
+            /*Push FACE sprites
+            for(i=headspritesect[clipsectorlist[clipsectcnt]];i>=0;i=nextspritesect[i])
+            {
+                spr = &sprite[i];
+                if (((spr->cstat&48) != 0) && ((spr->cstat&48) != 48)) continue;
+                if ((spr->cstat&dasprclipmask) == 0) continue;
+
+                dax = (*x)-spr->x; day = (*y)-spr->y;
+                t = (spr->clipdist<<2)+walldist;
+                if ((klabs(dax) < t) && (klabs(day) < t))
+                {
+                    t = ((tilesizy[spr->picnum]*spr->yrepeat)<<2);
+                    if (spr->cstat&128) daz = spr->z+(t>>1); else daz = spr->z;
+                    if (picanm[spr->picnum]&0x00ff0000) daz -= ((s32)((s8)((picanm[spr->picnum]>>16)&255))*spr->yrepeat<<2);
+                    if (((*z) < daz+ceildist) && ((*z) > daz-t-flordist))
+                    {
+                        t = (spr->clipdist<<2)+walldist;
+
+                        j = getangle(dax,day);
+                        dx = (sintable[(j+512)&2047]>>11);
+                        dy = (sintable[(j)&2047]>>11);
+                        bad2 = 16;
+                        do
+                        {
+                            *x = (*x) + dx; *y = (*y) + dy;
+                            bad2--; if (bad2 == 0) break;
+                        } while ((klabs((*x)-spr->x) < t) && (klabs((*y)-spr->y) < t));
+                        bad = -1;
+                        k--; if (k <= 0) return(bad);
+                        updatesector(*x,*y,sectnum);
+                    }
+                }
+            }*/
+
+            sec = &gpSector[_clipSectorList[clipsectcnt]];
+            if (dir > 0)
+                startwall = sec->wallptr, endwall = startwall + sec->wallnum;
+            else
+                endwall = sec->wallptr, startwall = endwall + sec->wallnum;
+
+            for (i = startwall, wal = &gpWall[startwall]; i!=endwall; i += dir, wal += dir)
+                if (clipInsideBox(*x, *y, i, walldist-4) == 1)
+                {
+                    j = 0;
+                    if (wal->nextsector < 0) j = 1;
+                    if (wal->cstat&dawalclipmask) j = 1;
+                    if (j == 0)
+                    {
+                        sec2 = &gpSector[wal->nextsector];
+
+
+                        //Find closest point on wall (dax, day) to (*x, *y)
+                        dax = gpWall[wal->point2].x-wal->x;
+                        day = gpWall[wal->point2].y-wal->y;
+                        daz = dax*((*x)-wal->x) + day*((*y)-wal->y);
+                        if (daz <= 0)
+                            t = 0;
+                        else
+                        {
+                            daz2 = dax*dax+day*day;
+                            if (daz >= daz2) t = (1<<30); else t = divscale30(daz, daz2);
+                        }
+                        dax = wal->x + mulscale30(dax, t);
+                        day = wal->y + mulscale30(day, t);
+
+
+                        daz = getFlorzOfSlope(_clipSectorList[clipsectcnt], dax, day);
+                        daz2 = getFlorzOfSlope(wal->nextsector, dax, day);
+                        if ((daz2 < daz-(1<<8)) && ((sec2->floorstat&1) == 0))
+                            if (*z >= daz2-(flordist-1)) j = 1;
+
+                        daz = getCeilzOfSlope(_clipSectorList[clipsectcnt], dax, day);
+                        daz2 = getCeilzOfSlope(wal->nextsector, dax, day);
+                        if ((daz2 > daz+(1<<8)) && ((sec2->ceilingstat&1) == 0))
+                            if (*z <= daz2+(ceildist-1)) j = 1;
+                    }
+                    if (j != 0)
+                    {
+                        j = getAngle(gpWall[wal->point2].x-wal->x, gpWall[wal->point2].y-wal->y);
+                        dx = (gpSinTable[(j+1024)&2047]>>11);
+                        dy = (gpSinTable[(j+512)&2047]>>11);
+                        bad2 = 16;
+                        do
+                        {
+                            *x = (*x) + dx; *y = (*y) + dy;
+                            bad2--; if (bad2 == 0) break;
+                        } while (clipInsideBox(*x, *y, i, walldist-4) != 0);
+                        bad = -1;
+                        k--; if (k <= 0) return(bad);
+                        updateSector(*x, *y, sectnum);
+                    }
+                    else
+                    {
+                        for (j = _clipSectNum-1; j>=0; j--)
+                            if (wal->nextsector == _clipSectorList[j]) break;
+                        if (j < 0) _clipSectorList[_clipSectNum++] = wal->nextsector;
+                    }
+                }
+
+            clipsectcnt++;
+        } while (clipsectcnt < _clipSectNum);
+        dir = -dir;
+    } while (bad != 0);
+
+    return(bad);
+}
 
 /*80032DF8*/
 void updateSector(s32 x, s32 y, s16 *sectnum)
@@ -651,9 +863,72 @@ void updateSector(s32 x, s32 y, s16 *sectnum)
     *sectnum = -1;
 }
 
-INCLUDE_ASM(s32, "src/code0/engine", func_80032F38);
+/*80032F38*/
+static u8 func_80032F38(s32 x, s32 y, s32 z, s16 sectnum)
+{
+    s32 ceilz;
+    s32 florz;
+    s16 fz;
 
-INCLUDE_ASM(s32, "src/code0/engine", func_80033044);
+    fz = ((gpSector[sectnum].unk18 == 1) ? 0x2600 : 0) + 8;
+    if (gpSector[sectnum].unk18 == 4)
+    {
+        fz += 0x1000;
+    }
+    if (gpSector[sectnum].unk18 == 5)
+    {
+        fz += 0x2600;
+    }
+    if (gpSector[sectnum].unk18 == 6)
+    {
+        fz += 0x1000;
+    }
+    getzsOfSlope(sectnum, x, y, &ceilz, &florz);
+    if ((z > (florz + fz)) || (z < (ceilz - 8)))
+        return 0;
+    else
+        return inside(x, y, sectnum);
+}
+
+/*80033044*/
+void updateSectorZ(s32 x, s32 y, s32 z, s16 *sectnum)
+{
+    WallType *wal;
+    s32 i, j, cz, fz;
+
+    if (func_80032F38(x, y, z, *sectnum) == 1)
+        return;
+
+    if ((*sectnum >= 0) && (*sectnum < gNumSectors))
+    {
+        wal = &gpWall[gpSector[*sectnum].wallptr];
+        j = gpSector[*sectnum].wallnum;
+        do
+        {
+            i = wal->nextsector;
+            if (i >= 0)
+            {
+                if (func_80032F38(x, y, z, i) == 1)
+                {
+                    *sectnum = i;
+                    return;
+                }
+            }
+            wal++; j--;
+        } while (j != 0);
+    }
+
+    for (i = gNumSectors-1; i>=0; i--)
+    {
+        if (func_80032F38(x, y, z, i) == 1)
+        {
+            *sectnum = i;
+            return;
+        }
+    }
+
+    *sectnum = -1;
+}
 
 /*800331A4*/
 s32 rotatePoint(s32 xpivot, s32 ypivot, s32 x, s32 y, s16 daang, s32 *x2, s32 *y2)
