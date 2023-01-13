@@ -66,14 +66,14 @@ for symbol in symbols:
 
 # Create type library from context file
 tilib = os.path.join(ida_diskio.idadir(''), 'tilib.exe')
-if os.path.isfile(tilib) and os.path.isfile('ctx.c'):
+if os.path.isfile(tilib) and os.path.isfile('ida_ctx.c'):
 
     try:
         os.remove('dukezh.til')
     except OSError:
         pass
 
-    result = subprocess.run([tilib, '-Cags40444248u3n', '-Gn', '-u+', '-c', '-v', '-hctx.c', 'dukezh.til'], capture_output=True, text=True)
+    result = subprocess.run([tilib, '-Cags40444248u3n', '-Gn', '-u+', '-c', '-v', '-hida_ctx.c', 'dukezh.til'], capture_output=True, text=True)
 
     if os.path.isfile('dukezh.til'):
         print('Importing type library...')

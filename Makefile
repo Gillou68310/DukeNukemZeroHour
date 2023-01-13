@@ -144,7 +144,7 @@ distclean: clean
 	$(V)rm -rf gen/
 	$(V)rm -rf data/
 	$(V)rm -rf tmp/
-	$(V)rm -f ctx.c
+	$(V)rm -f *ctx.c
 
 setup: distclean split
 
@@ -153,13 +153,6 @@ split:
 
 test: $(ROM)
 	$(V)$(EMULATOR) $<
-
-context:
-	@$(PRINT)$(GREEN)Creating context file...$(ENDLINE)
-	$(V)rm -f ctx.c ctx_includes.c
-	$(V)find include/ src/ -type f -name "*.h" | sed -e 's/.*/#include "\0"/' > ctx_includes.c
-	$(V)$(PYTHON) tools/scripts/m2ctx.py ctx_includes.c
-	$(V)rm -f ctx_includes.c
 
 compare:
 	$(V)$(PYTHON) tools/scripts/first_diff.py
