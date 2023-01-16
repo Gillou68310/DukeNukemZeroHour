@@ -66,7 +66,7 @@ segments:
       - [0x36410, c,        gen/code0/36410]
       - [0x37090, c,        gen/code0/37090]
       - [0x3FAD0, c,        gen/code0/3FAD0]
-      - [0x41940, c,        gen/code0/41940]
+      - [0x41940, c,        src/code0/41940]
       - [0x59D40, c,        gen/code0/59D40]
       - [0x609D0, c,        gen/code0/609D0]
       - [0x64530, c,        gen/code0/64530]
