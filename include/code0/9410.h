@@ -2,10 +2,12 @@
 #define _9410_H_
 
 #include "common.h"
+#include "code0/engine.h"
 #include "static/tileinfo.h"
 
 void loadMap(s32 mapnum);
 void func_80008E3C(void);
+void func_8000DBDC(u8, u8, VertexType *);
 void func_8000E04C(void);
 void func_8000EA0C(u8, s16, s16, s16, s32);
 void func_8000EB4C(u8, s16, s16, s16, s32);

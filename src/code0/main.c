@@ -151,9 +151,9 @@ extern u8 static_ROM_END[];
 /*80138818*/ u32 D_80138818;
 /*80138864*/ u8 *gDepthBuffer;
 /*8013A648*/ u8 *gCacheMemStart;
-/*8016D170*/ Vtx *gpVertex;
+/*8016D170*/ Vtx *gpVertexN64;
 /*8016D178*/ s32 D_8016D178;
-/*8016D184*/ Vtx *gVertex[GFX_TASKS];
+/*8016D184*/ Vtx *gVertexN64[GFX_TASKS];
 /*80197D4C*/ u8 *D_80197D4C;
 /*80197D50*/ char **gpActionStrInfo;
 /*80197D58*/ OSMesgQueue gDmaMessageQ ALIGNED(8);
@@ -553,11 +553,11 @@ static void func_80001038(void)
         func_80079830();
         func_80079560();
         func_8004EC38();
-        if (gCurrentMapNum == 16)
+        if (gMapNum == MAP_THE_RACK)
         {
             func_80094D18();
         }
-        if (gCurrentMapNum == 2)
+        if (gMapNum == MAP_NUCLEAR_WINTER)
         {
             func_80095220();
         }
@@ -626,7 +626,7 @@ static void func_80001038(void)
                 D_800DEDE0 = 1;
                 return;
             case 1:
-                if (gCurrentMapNum == 22)
+                if (gMapNum == MAP_THE_END)
                 {
                     func_80000624(func_801C97F8);
                 }
@@ -737,7 +737,7 @@ static void func_800017AC(void)
 static void setupSegments(void)
 {
     gpDisplaylist = gDisplaylist[gGfxTaskIndex];
-    gpVertex = gVertex[gGfxTaskIndex];
+    gpVertexN64 = gVertexN64[gGfxTaskIndex];
     gpDynamic = &gDynamic[gGfxTaskIndex];
     gSPSegment(gpDisplaylist++, PHYSICAL_SEGMENT, 0x0);
     gSPSegment(gpDisplaylist++, STATIC_SEGMENT, OS_K0_TO_PHYSICAL(gStaticSegment));
@@ -871,7 +871,7 @@ void func_80001F40(void)
 {
     func_80001D44();
     func_80050408();
-    loadMap(gMapNum);
+    loadMap(gLoadMapNum);
     D_800BD3F9 = 3;
     D_800BD42D = 1;
     D_801CA144 = 0.0f;
@@ -940,9 +940,9 @@ void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size)
 
     if (vertex_size != 0)
     {
-        alloCache((u8 **)&gVertex[0], (vertex_size * sizeof(Vtx) * GFX_TASKS), &gCacheLock[0]);
+        alloCache((u8 **)&gVertexN64[0], (vertex_size * sizeof(Vtx) * GFX_TASKS), &gCacheLock[0]);
         remaining_size -= (vertex_size * sizeof(Vtx) * GFX_TASKS);
-        gVertex[1] = &gVertex[0][vertex_size];
+        gVertexN64[1] = &gVertexN64[0][vertex_size];
 
         alloCache((u8 **)&D_801297E0[0][0], (D_8012C470 * 1600 * sizeof(Gfx) * GFX_TASKS), &gCacheLock[0]);
         D_801297E0[0][1] = D_801297E0[0][0] + 1600;
@@ -1257,7 +1257,7 @@ static void mainLoop(void *arg)
     func_80000450();
     func_8000071C();
     func_80002494();
-    gMapNum = 0;
+    gLoadMapNum = 0;
 
     do
     {
@@ -1278,7 +1278,7 @@ static void mainLoop(void *arg)
                 D_800BD3F0 = 0;
                 func_801C9B48();
             }
-            loadMap(gMapNum);
+            loadMap(gLoadMapNum);
             D_800DEDE0 = 0;
             D_801A1970 = 1;
         }

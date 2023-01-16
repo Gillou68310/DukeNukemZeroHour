@@ -56,8 +56,7 @@ typedef struct
     s32 xpos;
     s32 ypos;
     s32 zpos;
-    s16 starting_angle;
-    s16 starting_sector;
+    s32 unk2C;
     f32 unk30;
     f32 unk34;
     f32 unk38;

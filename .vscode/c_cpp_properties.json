@@ -22,7 +22,8 @@
                 "TARGET_N64",
                 "EXTERN_DATA=extern",
                 "EXTERN_BSS=extern",
-                "STATIC="
+                "STATIC=",
+                "NON_MATCHING"
             ],
             "cStandard": "c89",
             "cppStandard": "c++17",

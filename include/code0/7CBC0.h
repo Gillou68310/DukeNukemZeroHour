@@ -3,6 +3,6 @@
 
 #include "common.h"
 
-/*800DF950*/ extern s16 gMapNum;
+/*800DF950*/ extern s16 gLoadMapNum;
 
 #endif

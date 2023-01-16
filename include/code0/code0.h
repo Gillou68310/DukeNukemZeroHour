@@ -22,9 +22,9 @@ typedef struct
 
 typedef struct
 {
-    s32 unk_00;
-    s32 unk_04;
-    s32 unk_08;
+    s32 xpos;
+    s32 ypos;
+    s32 zpos;
     s32 unk_0C;    /*XV*/
     s32 unk_10;    /*YV*/
     s32 unk_14[3]; /*ZV*/
@@ -33,9 +33,10 @@ typedef struct
     s32 unk_28;
     s32 unk_2C;
     s32 unk_30;
-    s16 unk_34;
+    s16 sectnum;
     s16 unk_36;
-    s16 unk_38[2];
+    s16 unk_38; /*MapInfo->unk2C*/
+    s16 unk_3A;
     s16 unk_3C;
     s16 unk_3E;
     s32 unk_40;
@@ -185,13 +186,15 @@ typedef struct
 #endif
 
 /*800FE3F4*/ _extern s32 D_800FE3F4;
-/*800FE416*/ _extern s16 gCurrentMapNum;
+/*800FE410*/ _extern s32 D_800FE410;
+/*800FE416*/ _extern s16 gMapNum;
 /*800FF528*/ _extern u8 *D_800FF528;
 /*800FE9E0*/ _extern s64 D_800FE9E0;
 /*800FEA90*/ _extern s8 D_800FEA90;
 /*80105550*/ _extern u8 *D_80105550;
 /*80106D30*/ _extern u8 D_80106D30[4];
 /*80106D50*/ _extern s16 D_80106D50[MAXSPRITES];
+/*8010A914*/ _extern VertexType *gpVertex;
 /*8010A938*/ _extern s32 D_8010A938;
 /*8010A940*/ _extern code0UnkStruct2 D_8010A940[4];
 /*80117ED8*/ _extern code0UnkStruct1 D_80117ED8[4];
@@ -203,6 +206,8 @@ typedef struct
 /*8012E150*/ _extern u8 *D_8012E150;
 /*8012EED0*/ _extern u8 *D_8012EED0;
 /*8012FC90*/ _extern s32 D_8012FC90;
+/*801385F4*/ _extern s16 D_801385F4;
+/*80138680*/ _extern s32 D_80138680;
 /*80138688*/ _extern OSTime D_80138688;
 /*80138778*/ _extern u8 *D_80138778;
 /*80138780*/ _extern u16 D_80138780;
@@ -212,10 +217,12 @@ typedef struct
 /*80168D10*/ _extern s32 D_80168D10;
 /*80168D04*/ _extern u8 *D_80168D04;
 /*80168D18*/ _extern s32 D_80168D18;
+/*8016A148*/ _extern s32 D_8016A148;
 /*8016D174*/ _extern u8 D_8016D174[4];
 /*80197DE8*/ _extern u8 *D_80197DE8;
 /*80199524*/ _extern s32 D_80199524;
 /*80199528*/ _extern s32 D_80199528;
+/*80199554*/ _extern s32 D_80199554;
 /*80199750*/ _extern s32 D_80199750;
 /*8019B940*/ _extern code0UnkStruct3 D_8019B940[150];
 /*801A1958*/ _extern code0UnkStruct4 D_801A1958;

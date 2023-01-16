@@ -33,14 +33,23 @@ typedef struct
     /*0x0C*/ s16 ceilingstat;
 
     /*0x0E*/ s16 floorstat;
-    /*0x10*/ s16 unk10; //ceilingpicnum;
+    /*0x10*/ s16 unk10; //ceilingpicnum?
     /*0x12*/ s16 ceilingheinum;
 
-    /*0x14*/ s16 unk14; //floorpicnum;
+    /*0x14*/ s16 unk14; //floorpicnum?
     /*0x16*/ s16 floorheinum;
 
-    /*0x18*/ s16 unk18;
-    /*0x1A*/ u8 pad[22];
+    /*0x16*/ s16 unk18;
+    /*0x1A*/ s16 unk1A;
+    /*0x1C*/ s16 unk1C;
+    /*0x1E*/ u16 vtxptr;
+    /*0x20*/ u8 pad[6];
+    /*0x26*/ u8 unk26;
+    /*0x27*/ u8 unk27;
+    /*0x28*/ u8 pad2[3];
+    /*0x2B*/ u8 unk2B;  //vtxnum?
+    /*0x2C*/ u8 unk2C;
+    /*0x2D*/ u8 pad3[3];
 
     //signed char ceilingshade;
     //char ceilingpal;
@@ -140,6 +149,24 @@ typedef struct
     //s16 hitag;
     //s16 extra;
 } SpriteType;
+
+typedef struct {
+    s16 ob[3];	/* x, y, z */
+    s16 tc[2];	/* texture coord */
+    u8	cn[4];	/* color & alpha */
+} VertexV;
+
+typedef struct {
+    s16 ob[3];	/* x, y, z */
+    s16 tc[2];	/* texture coord */
+    s8  n[3];	/* normal */
+    u8  a;      /* alpha  */
+} VertexN;
+
+typedef union {
+    VertexV v;  /* Use this one for colors  */
+    VertexN n;  /* Use this one for normals */
+} VertexType;
 
 void func_8002B680(void);
 s32 clipInsideBox(s32 x, s32 y, s16 wallnum, s32 walldist);

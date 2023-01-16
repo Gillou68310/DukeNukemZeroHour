@@ -4,7 +4,6 @@
 #include "code0/edl.h"
 #include "code0/main.h"
 #include "code0/audio.h"
-#include "code0/engine.h"
 #include "code0/9410.h"
 #include "code0/1A7C0.h"
 #include "code0/1E7A0.h"
@@ -21,11 +20,14 @@
 
 /*.data*/
 /*800BD724*/ EXTERN_DATA STATIC u8 *_tileROMAddr;
+/*800BD72C*/ EXTERN_DATA f32 gMapXpos;
+/*800BD730*/ EXTERN_DATA f32 gMapYpos;
+/*800BD734*/ EXTERN_DATA f32 gMapZpos;
 /*800BD738*/ EXTERN_DATA STATIC u8 _sectorsLock;
 /*800BD739*/ EXTERN_DATA STATIC u8 _wallsLock;
 /*800BD73A*/ EXTERN_DATA STATIC u8 _spritesLock;
 /*800BD73B*/ EXTERN_DATA STATIC u8 _mapLock;
-/*800BD73C*/ EXTERN_DATA STATIC u8 D_800BD73C;
+/*800BD73C*/ EXTERN_DATA STATIC u8 _vertexLock;
 
 /*.comm*/
 /*80107910*/ s16 gTilemap[MAXTILES] ALIGNED(16);
@@ -34,7 +36,8 @@
 /*80105708*/ u8 *gpMapBuffer;
 
 /*.text*/
-STATIC void func_80008B88(void);
+STATIC void decompressMap(void);
+static void initTiles(void);
 
 /*80008810*/
 void loadMap(s32 mapnum)
@@ -53,12 +56,12 @@ void loadMap(s32 mapnum)
     alloCache((u8 **)&gpSprite, MAXSPRITES * sizeof(SpriteType), &_spritesLock);
     Bmemset(gpSprite, 0U, MAXSPRITES * sizeof(SpriteType));
     func_80004C84();
-    gCurrentMapNum = mapnum;
+    gMapNum = mapnum;
     Bmemset(&D_801A1958, 0U, 0x14U);
     alloCache(&gpMapBuffer, gpMapInfo[mapnum].rom_end - gpMapInfo[mapnum].rom_start, &_mapLock);
     readRom(gpMapBuffer, gpMapInfo[mapnum].rom_start, gpMapInfo[mapnum].rom_end - gpMapInfo[mapnum].rom_start);
     initSpriteLists();
-    func_80008B88();
+    decompressMap();
     ptr = D_8013B2D0;
     for (i = 0; i < gNumSprites; i++)
     {
@@ -93,7 +96,7 @@ void loadMap(s32 mapnum)
         func_80004A3C(i);
     }
 
-    func_80008710(gCurrentMapNum);
+    func_80008710(gMapNum);
     func_8000EB4C(4U, 0, 0, 0, 0x120);
     func_80094958();
     func_8007AEB4();
@@ -106,7 +109,55 @@ void loadMap(s32 mapnum)
     D_800E1748 = -1;
 }
 
-INCLUDE_ASM(s32, "src/code0/9410", func_80008B88);
+#ifdef NON_MATCHING
+STATIC void decompressMap(void)
+{
+    s32 i;
+    s32 count;
+    s32 floorz;
+    s32 offset;
+
+    gMapXpos = (f32)gpMapInfo[gMapNum].xpos;
+    gMapYpos = (f32)gpMapInfo[gMapNum].ypos;
+    gMapZpos = (f32)gpMapInfo[gMapNum].zpos;
+
+    offset = gpMapInfo[gMapNum].sector_offset;
+    decompressEDL(&gpMapBuffer[offset], (u8 *)gpSector);
+
+    offset = gpMapInfo[gMapNum].wall_offset;
+    decompressEDL(&gpMapBuffer[offset], (u8 *)gpWall);
+
+    offset = gpMapInfo[gMapNum].sprite_offset;
+    decompressEDL(&gpMapBuffer[offset], (u8 *)gpSprite);
+
+    count = 0;
+    for (i = 0; i<gNumSectors; i++)
+    {
+        count += gpSector[i].unk2B;
+        count += gpSector[i].unk2C;
+    }
+
+    count *= 3;
+    alloCache((u8 **)&gpVertex, (count * sizeof(VertexType)), &_vertexLock);
+    decompressEDL(&gpMapBuffer[0], (u8 *)gpVertex);
+    suckCache(&gpMapBuffer);
+    initTiles();
+
+    for (i = 0; i < 4; i++)
+    {
+        D_80117ED8[i].xpos = (s32)(2.0f * gMapXpos);
+        D_80117ED8[i].ypos = (s32)(2.0f * gMapYpos);
+        D_80117ED8[i].zpos = (s32)(32.0f * gMapZpos);
+        updateSector(D_80117ED8[i].xpos, D_80117ED8[i].ypos, &D_80117ED8[i].sectnum);
+        floorz = getFlorzOfSlope(D_80117ED8[i].sectnum, D_80117ED8[i].xpos, D_80117ED8[i].ypos);
+        D_80117ED8[i].zpos = floorz - 0x3900;
+        D_80117ED8[i].unk_38 = gpMapInfo[gMapNum].unk2C;
+    }
+}
+#else
+/*80008B88*/
+INCLUDE_ASM(s32, "src/code0/9410", decompressMap);
+#endif
 
 INCLUDE_ASM(s32, "src/code0/9410", func_80008E3C);
 
@@ -156,7 +207,48 @@ INCLUDE_ASM(s32, "src/code0/9410", func_8000CA94);
 
 INCLUDE_ASM(s32, "src/code0/9410", func_8000CC54);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000D22C);
+#define SATURATE_U8(A) \
+    (((A) >= 256) ? 255 : A)
+
+#define VERTEX2N64(N64, VTX) \
+        N64->v.ob[0] = VTX->v.ob[0]; \
+        N64->v.ob[1] = VTX->v.ob[1]; \
+        N64->v.ob[2] = VTX->v.ob[2]; \
+        N64->v.tc[0] = VTX->v.tc[0]; \
+        N64->v.tc[1] = VTX->v.tc[1]; \
+        N64->v.cn[0] = SATURATE_U8(VTX->v.cn[0] + D_8016A148); \
+        N64->v.cn[1] = SATURATE_U8(VTX->v.cn[1] + D_800FE410); \
+        N64->v.cn[2] = SATURATE_U8(VTX->v.cn[2] + D_80138680); \
+        N64->v.cn[3] = 0x9B;
+
+/*8000D22C*/
+static void vertexToN64(s32 secnum)
+{
+    s32 i;
+    VertexType *vtx;
+
+    D_80199554 = 0;
+    D_801385F4 = 0;
+    vtx = &gpVertex[gpSector[secnum].vtxptr];
+    func_8000DBDC(gpSector[secnum].unk27, gpSector[secnum].unk26, gpVertex);
+    for (i = 0; i < gpSector[secnum].unk2B; i++)
+    {
+        VERTEX2N64(gpVertexN64, vtx);
+        vtx++;
+        gpVertexN64++;
+
+        VERTEX2N64(gpVertexN64, vtx);
+        vtx++;
+        gpVertexN64++;
+
+        VERTEX2N64(gpVertexN64, vtx);
+        vtx++;
+        gpVertexN64++;
+
+        D_801385F4++;
+    }
+    D_80199554 = D_801385F4;
+}
 
 INCLUDE_ASM(s32, "src/code0/9410", func_8000D574);
 
@@ -227,7 +319,7 @@ static void initTileMap(void)
 }
 
 /*8000E160*/
-static void func_8000E160(void)
+static void initTiles(void)
 {
     s32 i;
 
