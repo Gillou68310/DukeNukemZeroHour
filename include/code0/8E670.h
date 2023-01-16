@@ -3,6 +3,7 @@
 
 #include "common.h"
 
+void func_8008DC24(void);
 void func_8008DE14(void);
 
 /*800E1748*/ extern s32 D_800E1748;

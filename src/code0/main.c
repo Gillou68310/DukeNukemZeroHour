@@ -553,11 +553,11 @@ static void func_80001038(void)
         func_80079830();
         func_80079560();
         func_8004EC38();
-        if (D_800FE416 == 0x10)
+        if (gCurrentMapNum == 16)
         {
             func_80094D18();
         }
-        if (D_800FE416 == 2)
+        if (gCurrentMapNum == 2)
         {
             func_80095220();
         }
@@ -626,7 +626,7 @@ static void func_80001038(void)
                 D_800DEDE0 = 1;
                 return;
             case 1:
-                if (D_800FE416 == 0x16)
+                if (gCurrentMapNum == 22)
                 {
                     func_80000624(func_801C97F8);
                 }
@@ -871,7 +871,7 @@ void func_80001F40(void)
 {
     func_80001D44();
     func_80050408();
-    func_80008810(D_800DF950);
+    loadMap(gMapNum);
     D_800BD3F9 = 3;
     D_800BD42D = 1;
     D_801CA144 = 0.0f;
@@ -925,7 +925,8 @@ void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size)
     gFramebuffer[0] = fb_addr;
     gFramebuffer[1] = fb_addr + fb_size;
 
-    if (_framebufferCount == 3) {
+    if (_framebufferCount == 3)
+    {
         gFramebuffer[2] = fb_addr + fb_size + fb_size;
     }
 
@@ -1256,7 +1257,7 @@ static void mainLoop(void *arg)
     func_80000450();
     func_8000071C();
     func_80002494();
-    D_800DF950 = 0;
+    gMapNum = 0;
 
     do
     {
@@ -1277,7 +1278,7 @@ static void mainLoop(void *arg)
                 D_800BD3F0 = 0;
                 func_801C9B48();
             }
-            func_80008810(D_800DF950);
+            loadMap(gMapNum);
             D_800DEDE0 = 0;
             D_801A1970 = 1;
         }

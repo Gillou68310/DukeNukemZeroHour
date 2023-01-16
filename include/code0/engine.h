@@ -7,6 +7,7 @@
 #define MAXWALLS 3912
 #define MAXSPRITES 1500
 
+#define MAXTILES 6144
 #define MAXSTATUS 1024
 
 //ceilingstat/floorstat:

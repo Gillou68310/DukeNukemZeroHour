@@ -11,7 +11,7 @@ void alloCache(u8 **newhandle, u32 newbytes, u8 *newlockptr);
 void cache1d_8002AAEC(void);
 s32 cache1d_8002AD44(void);
 
-/*800DD404*/ extern s32 gCacheNum;
-/*800DD3F0*/ extern u8 gCacheLock[2];
+extern s32 gCacheNum;
+extern u8 gCacheLock[2];
 
 #endif

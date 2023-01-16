@@ -13,6 +13,7 @@ void func_80050408(void);
 void func_800504F4(void);
 void func_8005087C(void);
 void func_800514C8(void);
+void func_80051568(void);
 
 /*800DEEA0*/ extern s32 D_800DEEA0;
 /*800DF1A8*/ extern s32 D_800DF1A8;

@@ -4,7 +4,7 @@
 #include "common.h"
 #include "static/tileinfo.h"
 
-void func_80008810(s16);
+void loadMap(s32 mapnum);
 void func_80008E3C(void);
 void func_8000E04C(void);
 void func_8000EA0C(u8, s16, s16, s16, s32);

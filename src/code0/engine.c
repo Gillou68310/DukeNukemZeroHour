@@ -319,8 +319,8 @@ s32 deleteSprite(s16 spritenum)
     s32 sect;
     s32 statnum;
 
-    MusHandleStop(D_8013B2D8[spritenum].handle, 0);
-    D_8013B2D8[spritenum].handle = 0;
+    MusHandleStop(D_8013B2D0[spritenum].handle, 0);
+    D_8013B2D0[spritenum].handle = 0;
     statnum = gpSprite[spritenum].statnum;
 
     stat = deleteSpriteStat(spritenum);

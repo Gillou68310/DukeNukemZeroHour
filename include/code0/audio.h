@@ -8,5 +8,6 @@ void initAudio(void);
 void func_80006838(s32, s32);
 void func_80006CC0(void);
 void func_80007AB8(void);
+void func_80008710(s16);
 
 #endif

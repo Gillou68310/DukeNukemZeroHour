@@ -3,22 +3,108 @@
 #include "code0/cache1d.h"
 #include "code0/edl.h"
 #include "code0/main.h"
+#include "code0/audio.h"
+#include "code0/engine.h"
 #include "code0/9410.h"
+#include "code0/1A7C0.h"
+#include "code0/1E7A0.h"
+#include "code0/7BA50.h"
+#include "code0/8E670.h"
+#include "code0/609D0.h"
+#include "code0/41940.h"
+#include "code0/87010.h"
+#include "code0/95500.h"
+#include "code0/A06F0.h"
+#include "code1/EB300.h"
 
-#define MAXTILES 6144
 #define MAXTILESIZE 32832
 
 /*.data*/
 /*800BD724*/ EXTERN_DATA STATIC u8 *_tileROMAddr;
+/*800BD738*/ EXTERN_DATA STATIC u8 _sectorsLock;
+/*800BD739*/ EXTERN_DATA STATIC u8 _wallsLock;
+/*800BD73A*/ EXTERN_DATA STATIC u8 _spritesLock;
+/*800BD73B*/ EXTERN_DATA STATIC u8 _mapLock;
+/*800BD73C*/ EXTERN_DATA STATIC u8 D_800BD73C;
 
 /*.comm*/
 /*80107910*/ s16 gTilemap[MAXTILES] ALIGNED(16);
 /*80169580*/ u8 D_80169580[TILENUM] ALIGNED(16);
 /*8012FDA0*/ u8 gTileBuffer[MAXTILESIZE] ALIGNED(16);
+/*80105708*/ u8 *gpMapBuffer;
 
 /*.text*/
+STATIC void func_80008B88(void);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_80008810);
+/*80008810*/
+void loadMap(s32 mapnum)
+{
+    code0UnkStruct5 *ptr;
+    s32 i;
+
+    MusStop(3U, 0);
+    cache1d_8002AAEC();
+    func_801C14D4();
+    gNumSectors = gpMapInfo[mapnum].sectors;
+    gNumSprites = gpMapInfo[mapnum].sprites;
+    gNumWalls = gpMapInfo[mapnum].walls;
+    alloCache((u8 **)&gpSector, gNumSectors * sizeof(SectorType), &_sectorsLock);
+    alloCache((u8 **)&gpWall, gNumWalls * sizeof(WallType), &_wallsLock);
+    alloCache((u8 **)&gpSprite, MAXSPRITES * sizeof(SpriteType), &_spritesLock);
+    Bmemset(gpSprite, 0U, MAXSPRITES * sizeof(SpriteType));
+    func_80004C84();
+    gCurrentMapNum = mapnum;
+    Bmemset(&D_801A1958, 0U, 0x14U);
+    alloCache(&gpMapBuffer, gpMapInfo[mapnum].rom_end - gpMapInfo[mapnum].rom_start, &_mapLock);
+    readRom(gpMapBuffer, gpMapInfo[mapnum].rom_start, gpMapInfo[mapnum].rom_end - gpMapInfo[mapnum].rom_start);
+    initSpriteLists();
+    func_80008B88();
+    ptr = D_8013B2D0;
+    for (i = 0; i < gNumSprites; i++)
+    {
+        insertSprite(gpSprite[i].sectnum, gpSprite[i].statnum);
+        ptr[i].unk4 = 0;
+        ptr[i].unk2 = 0;
+        D_8013B2D0[i].unk0 = 0;
+    }
+
+    func_80019BC0();
+    func_80062300();
+    func_8008DC24();
+    D_801AE4A0[0].unk0 = D_801AE4A0[0].unk6 = 0x32;
+    D_801AE4A0[0].unk8 = 0x32;
+    D_801AE4A0[0].unk2 = 0x32;
+    D_801AE4A0[0].unkA = 0x46;
+    D_801AE4A0[0].unk4 = 0x46;
+    D_801AE4A0[0].unk16 = 0x3DE;
+    D_801AE4A0[0].unk12 = 0x3DE;
+    D_801AE4A0[0].unk18 = 0x3ED;
+    D_801AE4A0[0].unk14 = 0x3ED;
+    D_801AE4A0[0].unk1E = 0;
+    Bmemcpy(&D_801AE4A0[1], &D_801AE4A0[0], sizeof(code0UnkStruct6));
+    Bmemcpy(&D_801AE4A0[2], &D_801AE4A0[0], sizeof(code0UnkStruct6));
+    Bmemcpy(&D_801AE4A0[3], &D_801AE4A0[0], sizeof(code0UnkStruct6));
+    D_801A19EC = 0;
+    func_8001DE5C();
+
+    for (i = 0; i < gNumSectors; i++)
+    {
+        func_80004B60(i);
+        func_80004A3C(i);
+    }
+
+    func_80008710(gCurrentMapNum);
+    func_8000EB4C(4U, 0, 0, 0, 0x120);
+    func_80094958();
+    func_8007AEB4();
+    func_80086410();
+    func_80001CFC();
+    func_800A0E74();
+    func_80051568();
+    D_800FEA90 = 0;
+    D_801AE914 = 0;
+    D_800E1748 = -1;
+}
 
 INCLUDE_ASM(s32, "src/code0/9410", func_80008B88);
 

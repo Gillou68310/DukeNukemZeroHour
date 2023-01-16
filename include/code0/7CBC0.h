@@ -3,6 +3,6 @@
 
 #include "common.h"
 
-/*800DF950*/ extern s16 D_800DF950;
+/*800DF950*/ extern s16 gMapNum;
 
 #endif

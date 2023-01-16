@@ -3,6 +3,7 @@
 
 #include "common.h"
 #include "libmus.h"
+#include "code0/engine.h"
 
 typedef struct
 {
@@ -148,10 +149,34 @@ typedef struct
 
 typedef struct
 {
+    u16 unk0;
+    u16 unk2;
+    u16 unk4;
+    u16 unk6;
     musHandle handle;
-    s32 unk_04;
-    s32 unk_08;
 } code0UnkStruct5;
+
+typedef struct
+{
+    u16 unk0;
+    u16 unk2;
+    u16 unk4;
+    u16 unk6;
+    u16 unk8;
+    u16 unkA;
+    u16 unkC;
+    u16 unkE;
+    u16 unk10;
+    u16 unk12;
+    u16 unk14;
+    u16 unk16;
+    u16 unk18;
+    u16 unk1A;
+    u16 unk1C;
+    u16 unk1E;
+    u16 unk20;
+} code0UnkStruct6;
+
 
 #ifdef _CODE0_C_
 #define _extern
@@ -160,12 +185,13 @@ typedef struct
 #endif
 
 /*800FE3F4*/ _extern s32 D_800FE3F4;
-/*800FE416*/ _extern s16 D_800FE416;
+/*800FE416*/ _extern s16 gCurrentMapNum;
 /*800FF528*/ _extern u8 *D_800FF528;
 /*800FE9E0*/ _extern s64 D_800FE9E0;
+/*800FEA90*/ _extern s8 D_800FEA90;
 /*80105550*/ _extern u8 *D_80105550;
 /*80106D30*/ _extern u8 D_80106D30[4];
-/*80106D50*/ _extern s16 D_80106D50[1500];
+/*80106D50*/ _extern s16 D_80106D50[MAXSPRITES];
 /*8010A938*/ _extern s32 D_8010A938;
 /*8010A940*/ _extern code0UnkStruct2 D_8010A940[4];
 /*80117ED8*/ _extern code0UnkStruct1 D_80117ED8[4];
@@ -180,7 +206,7 @@ typedef struct
 /*80138688*/ _extern OSTime D_80138688;
 /*80138778*/ _extern u8 *D_80138778;
 /*80138780*/ _extern u16 D_80138780;
-/*8013B2D8*/ extern code0UnkStruct5 D_8013B2D8[];
+/*8013B2D0*/ _extern code0UnkStruct5 D_8013B2D0[MAXSPRITES];
 /*8013F920*/ _extern u8 *D_8013F920;
 /*80168D0C*/ _extern s16 D_80168D0C;
 /*80168D10*/ _extern s32 D_80168D10;
@@ -197,6 +223,7 @@ typedef struct
 /*801A19EC*/ _extern u8 D_801A19EC;
 /*801AD470*/ _extern u8 D_801AD470;
 /*801AD474*/ _extern u8 *D_801AD474;
+/*801AE4A0*/ _extern code0UnkStruct6 D_801AE4A0[4];
 /*801AE528*/ _extern s32 D_801AE528;
 /*801AE8B8*/ _extern s32 D_801AE8B8;
 /*801AE8F0*/ _extern u8 *D_801AE8F0;

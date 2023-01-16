@@ -47,9 +47,9 @@ typedef struct
 {
     u8 *rom_start;
     u8 *rom_end;
-    s32 unk8;
-    s32 unkC;
-    s32 unk10;
+    s32 sector_offset;
+    s32 wall_offset;
+    s32 sprite_offset;
     s32 sectors;
     s32 sprites;
     s32 walls;
