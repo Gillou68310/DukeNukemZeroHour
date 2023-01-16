@@ -177,6 +177,8 @@ s32 getFlorzOfSlope(s16 sectnum, s32 dax, s32 day);
 void getzsOfSlope(s16 sectnum, s32 dax, s32 day, s32 *ceilz, s32 *florz);
 void alignFlorSlope(s16 dasect, s32 x, s32 y, s32 z);
 void alignCeilSlope(s16 dasect, s32 x, s32 y, s32 z);
+s32 findDistance2D(s32 dx, s32 dy);
+s32 findDistance3D(s32 dx, s32 dy, s32 dz);
 
 extern s16 gHeadSpriteSect[MAXSECTORS+1];
 extern s16 gHeadSpriteStat[MAXSTATUS+1];
@@ -184,6 +186,8 @@ extern s16 gNextSpriteSect[MAXSPRITES];
 extern s16 gNextSpriteStat[MAXSPRITES];
 extern s16 *gpRadaRang;
 extern s16 gNumSectors;
+extern s16 gNumSprites;
+extern s16 gNumWalls;
 extern s32 gRandomSeed;
 extern SpriteType *gpSprite;
 extern SectorType *gpSector;

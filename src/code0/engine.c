@@ -23,6 +23,7 @@ typedef struct { s32 x1, y1, x2, y2; } LineType;
 
 /*.comm*/
 /*800FE420*/ s16 gHeadSpriteSect[MAXSECTORS+1] ALIGNED(16);
+/*8010571A*/ s16 gNumWalls;
 /*8012EEE0*/ s16 gHeadSpriteStat[MAXSTATUS+1] ALIGNED(16);
 /*80139880*/ s16 gPrevSpriteSect[MAXSPRITES] ALIGNED(16);
 /*80119AB0*/ s16 gPrevSpriteStat[MAXSPRITES] ALIGNED(16);
@@ -33,6 +34,7 @@ typedef struct { s32 x1, y1, x2, y2; } LineType;
 /*8012FC98*/ s32 gRandomSeed;
 /*8012FCA8*/ SpriteType *gpSprite;
 /*8013A64C*/ SectorType *gpSector;
+/*80169578*/ s16 gNumSprites;
 /*80197DE0*/ s32 gTotalClockLock;
 /*80199950*/ s32 D_80199950;
 /*801A197C*/ s16 *gpSinTable;
@@ -1037,6 +1039,14 @@ void alignCeilSlope(s16 dasect, s32 x, s32 y, s32 z)
     else gpSector[dasect].ceilingstat |= 2;
 }
 
-INCLUDE_ASM(s32, "src/code0/engine", func_800350A8);
+/*800350A8*/
+s32 findDistance2D(s32 dx, s32 dy)
+{
+    return sqrtf(((f32)dx * (f32)dx) + ((f32)dy * (f32)dy));
+}
 
-INCLUDE_ASM(s32, "src/code0/engine", func_80035110);
+/*80035110*/
+s32 findDistance3D(s32 dx, s32 dy, s32 dz)
+{
+    return sqrtf(((f32)dx * (f32)dx) + ((f32)dy * (f32)dy) + ((f32)dz * (f32)dz));
+}
