@@ -245,6 +245,12 @@ parser.add_argument('Path', nargs='*', default=[], help='source files')
 parser.add_argument('-p', '--prefix_static', action='store_true', help='Prefix static variables')
 args = parser.parse_args()
 
+script_dir = os.path.dirname(os.path.realpath(__file__))
+root_dir = os.path.abspath(os.path.join(script_dir, "../.."))
+
+for i in range (0, len(args.Path)):
+    args.Path[i] = os.path.relpath(args.Path[i], root_dir)
+
 symbols = SYMBOLS()
 forced = []
 BUILD_DIR = 'tmp'

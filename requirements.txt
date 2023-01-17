@@ -2,3 +2,4 @@
 pycparser
 pynacl
 toml
+spimdisasm>=1.10.4

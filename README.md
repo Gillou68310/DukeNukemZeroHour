@@ -17,6 +17,7 @@ sudo apt install make git build-essential binutils-mips-linux-gnu cpp-mips-linux
 Tools requires Python 3.8+. Package requirements can be installed via:
 
 ```sh
+pip3 install --upgrade pip
 pip3 install -r requirements.txt
 ```
 
