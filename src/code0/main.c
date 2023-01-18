@@ -146,7 +146,7 @@ extern u8 static_ROM_END[];
 /*8012C990*/ OSMesg gGfxMessages[NUM_DMA_MSGS] ALIGNED(16);
 /*8012E158*/ OSViMode *D_8012E158;
 /*8012F6E4*/ _11B300UnkStruct1 *D_8012F6E4;
-/*8012FD78*/ Gfx *gDisplaylist[GFX_TASKS];
+/*8012FD78*/ Gfx *gDisplayList[GFX_TASKS];
 /*80137DE4*/ char **gpWeaponStrInfo;
 /*80138684*/ u8 *gStaticSegment;
 /*80138788*/ s64 D_80138788;
@@ -170,9 +170,11 @@ extern u8 static_ROM_END[];
 /*801ACBD8*/ _11D520UnkStruct1 *D_801ACBD8;
 /*801AD070*/ OSMesg gDmaMessages[NUM_DMA_MSGS] ALIGNED(16);
 /*801AE498*/ s64 D_801AE498;
+/*801AE8B8*/ s32 gDisplayListMaxSize;
 /*801AEA14*/ MapInfo *gpMapInfo;
+/*801AE8FC*/ s32 gVertexN64MaxSize;
 /*801AEA40*/ u64 gDramStack[SP_DRAM_STACK_SIZE64] ALIGNED(16);
-/*801B0808*/ Gfx *gpDisplaylist;
+/*801B0808*/ Gfx *gpDisplayList;
 /*801B0818*/ s32 D_801B0818;
 /*801B0D40*/ u64 gOutputBuffer[OUTPUT_BUFFER_SIZE / sizeof(u64)] ALIGNED(16);
 /*801C0D60*/ Dynamic *gpDynamic;
@@ -398,38 +400,38 @@ void func_80000A94(void)
 /*0x80000B68*/
 static void clearDepthBuffer(void)
 {
-    gDPSetDepthImage(gpDisplaylist++, OS_K0_TO_PHYSICAL(gDepthBuffer));
-    gDPSetCycleType(gpDisplaylist++, G_CYC_FILL);
-    gDPSetColorImage(gpDisplaylist++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gScreenWidth, OS_K0_TO_PHYSICAL(gDepthBuffer));
-    gDPSetFillColor(gpDisplaylist++, GPACK_ZDZ(G_MAXFBZ, 0) << 16 | GPACK_ZDZ(G_MAXFBZ, 0));
-    gDPFillRectangle(gpDisplaylist++, 0, 0, gScreenWidth - 1, gScreenHeight - 1);
-    gDPPipeSync(gpDisplaylist++);
-    gDPSetCycleType(gpDisplaylist++, G_CYC_1CYCLE);
+    gDPSetDepthImage(gpDisplayList++, OS_K0_TO_PHYSICAL(gDepthBuffer));
+    gDPSetCycleType(gpDisplayList++, G_CYC_FILL);
+    gDPSetColorImage(gpDisplayList++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gScreenWidth, OS_K0_TO_PHYSICAL(gDepthBuffer));
+    gDPSetFillColor(gpDisplayList++, GPACK_ZDZ(G_MAXFBZ, 0) << 16 | GPACK_ZDZ(G_MAXFBZ, 0));
+    gDPFillRectangle(gpDisplayList++, 0, 0, gScreenWidth - 1, gScreenHeight - 1);
+    gDPPipeSync(gpDisplayList++);
+    gDPSetCycleType(gpDisplayList++, G_CYC_1CYCLE);
 }
 
 /*80000C74*/
 void func_80000C74(void)
 {
-    gDPPipeSync(gpDisplaylist++);
-    gDPSetCycleType(gpDisplaylist++, G_CYC_FILL);
-    gDPSetRenderMode(gpDisplaylist++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
-    gDPSetColorImage(gpDisplaylist++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gScreenWidth, OS_K0_TO_PHYSICAL(gDepthBuffer));
-    gDPSetFillColor(gpDisplaylist++, GPACK_ZDZ(G_MAXFBZ, 0) << 16 | GPACK_ZDZ(G_MAXFBZ, 0));
-    gDPFillRectangle(gpDisplaylist++, 12, 12, gScreenWidth - 12, gScreenHeight - 12);
-    gDPPipeSync(gpDisplaylist++);
-    gDPSetColorImage(gpDisplaylist++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gScreenWidth, OS_K0_TO_PHYSICAL(gFramebuffer[_framebufferIndex]));
-    gDPSetCycleType(gpDisplaylist++, G_CYC_2CYCLE);
+    gDPPipeSync(gpDisplayList++);
+    gDPSetCycleType(gpDisplayList++, G_CYC_FILL);
+    gDPSetRenderMode(gpDisplayList++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
+    gDPSetColorImage(gpDisplayList++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gScreenWidth, OS_K0_TO_PHYSICAL(gDepthBuffer));
+    gDPSetFillColor(gpDisplayList++, GPACK_ZDZ(G_MAXFBZ, 0) << 16 | GPACK_ZDZ(G_MAXFBZ, 0));
+    gDPFillRectangle(gpDisplayList++, 12, 12, gScreenWidth - 12, gScreenHeight - 12);
+    gDPPipeSync(gpDisplayList++);
+    gDPSetColorImage(gpDisplayList++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gScreenWidth, OS_K0_TO_PHYSICAL(gFramebuffer[_framebufferIndex]));
+    gDPSetCycleType(gpDisplayList++, G_CYC_2CYCLE);
 }
 
 /*80000DDC*/
 static void func_80000DDC(void)
 {
-    gDPSetColorImage(gpDisplaylist++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gScreenWidth, OS_K0_TO_PHYSICAL(gFramebuffer[_framebufferIndex]));
+    gDPSetColorImage(gpDisplayList++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gScreenWidth, OS_K0_TO_PHYSICAL(gFramebuffer[_framebufferIndex]));
     if (D_800BD3E8 != 0)
     {
-        gDPSetCycleType(gpDisplaylist++, G_CYC_FILL);
-        gDPSetFillColor(gpDisplaylist++, GPACK_RGBA5551(_red, _green, _blue, 1) << 16 | GPACK_RGBA5551(_red, _green, _blue, 1));
-        gDPFillRectangle(gpDisplaylist++, 0, 0, gScreenWidth - 1, gScreenHeight - 1);
+        gDPSetCycleType(gpDisplayList++, G_CYC_FILL);
+        gDPSetFillColor(gpDisplayList++, GPACK_RGBA5551(_red, _green, _blue, 1) << 16 | GPACK_RGBA5551(_red, _green, _blue, 1));
+        gDPFillRectangle(gpDisplayList++, 0, 0, gScreenWidth - 1, gScreenHeight - 1);
     }
 }
 
@@ -738,15 +740,15 @@ static void func_800017AC(void)
 /*80001968*/
 static void setupSegments(void)
 {
-    gpDisplaylist = gDisplaylist[gGfxTaskIndex];
+    gpDisplayList = gDisplayList[gGfxTaskIndex];
     gpVertexN64 = gVertexN64[gGfxTaskIndex];
     gpDynamic = &gDynamic[gGfxTaskIndex];
-    gSPSegment(gpDisplaylist++, PHYSICAL_SEGMENT, 0x0);
-    gSPSegment(gpDisplaylist++, STATIC_SEGMENT, OS_K0_TO_PHYSICAL(gStaticSegment));
-    gSPSegment(gpDisplaylist++, FRAMEBUFFER_SEGMENT, OS_K0_TO_PHYSICAL(gFramebuffer[_framebufferIndex]));
-    gSPDisplayList(gpDisplaylist++, gRdpInitDl);
-    gSPDisplayList(gpDisplaylist++, gRspInitDl);
-    gDPSetScissor(gpDisplaylist++, G_SC_NON_INTERLACE, 0, 0, gScreenWidth, gScreenHeight);
+    gSPSegment(gpDisplayList++, PHYSICAL_SEGMENT, 0x0);
+    gSPSegment(gpDisplayList++, STATIC_SEGMENT, OS_K0_TO_PHYSICAL(gStaticSegment));
+    gSPSegment(gpDisplayList++, FRAMEBUFFER_SEGMENT, OS_K0_TO_PHYSICAL(gFramebuffer[_framebufferIndex]));
+    gSPDisplayList(gpDisplayList++, gRdpInitDl);
+    gSPDisplayList(gpDisplayList++, gRspInitDl);
+    gDPSetScissor(gpDisplayList++, G_SC_NON_INTERLACE, 0, 0, gScreenWidth, gScreenHeight);
 }
 
 /*80001AF8*/
@@ -766,13 +768,13 @@ static void createGfxTask(void)
 
     ucode_boot_end = (char *)rspbootTextEnd;
     ucode_boot_size = ucode_boot_end - (char *)rspbootTextStart;
-    ucode_boot_end = NULL; //FIXME
+    ucode_boot_end = NULL; /*FIXME*/
 
-    gDPFullSync(gpDisplaylist++);
-    gSPEndDisplayList(gpDisplaylist++);
+    gDPFullSync(gpDisplayList++);
+    gSPEndDisplayList(gpDisplayList++);
     t = &gGfxTask[gGfxTaskIndex];
-    t->list.t.data_ptr = (u64 *)gDisplaylist[gGfxTaskIndex];
-    t->list.t.data_size = (s32)(gpDisplaylist - gDisplaylist[gGfxTaskIndex]) * sizeof(Gfx);
+    t->list.t.data_ptr = (u64 *)gDisplayList[gGfxTaskIndex];
+    t->list.t.data_size = (s32)(gpDisplayList - gDisplayList[gGfxTaskIndex]) * sizeof(Gfx);
     t->list.t.type = M_GFXTASK;
     t->list.t.flags = 0;
     t->list.t.ucode_boot = (u64 *)rspbootTextStart;
@@ -843,20 +845,20 @@ static void func_80001D44(void)
     if ((u32)osMemSize > 0x400000U)
     {
         D_800DEEA0 = 1;
-        D_801AE8B8 = 0xA000;
-        D_801AE8FC = 0x6000;
+        gDisplayListMaxSize = 0xA000;
+        gVertexN64MaxSize = 0x6000;
     }
     else if (D_8012C470 < 2)
     {
-        D_801AE8B8 = 0x2800;
-        D_801AE8FC = 0x1800;
+        gDisplayListMaxSize = 0x2800;
+        gVertexN64MaxSize = 0x1800;
     }
     else
     {
-        D_801AE8B8 = 0x3C00;
-        D_801AE8FC = 0x2400;
+        gDisplayListMaxSize = 0x3C00;
+        gVertexN64MaxSize = 0x2400;
     }
-    allocMemory(width, height, D_801AE8B8, D_801AE8FC);
+    allocMemory(width, height, gDisplayListMaxSize, gVertexN64MaxSize);
     func_8001F928(width, height);
     _red = 0;
     _green = 0;
@@ -932,10 +934,10 @@ void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size)
         gFramebuffer[2] = fb_addr + fb_size + fb_size;
     }
 
-    alloCache(&gDisplaylist[0], (dlist_size * sizeof(Gfx) * GFX_TASKS), &gCacheLock[0]);
-    gDisplaylist[1] = &gDisplaylist[0][dlist_size];
+    alloCache(&gDisplayList[0], (dlist_size * sizeof(Gfx) * GFX_TASKS), &gCacheLock[0]);
+    gDisplayList[1] = &gDisplayList[0][dlist_size];
 
-    depth_align = DEPTHBUFFER_ALIGN; //FIXME
+    depth_align = DEPTHBUFFER_ALIGN; /*FIXME*/
     remaining_size = gCacheMemEnd - gCacheMemStart;
     remaining_size -= ((((fb_size + FRAMEBUFFER_ALIGN) * _framebufferCount) + depth_align) + fb_size);
     remaining_size -= (dlist_size * sizeof(Gfx) * GFX_TASKS);
@@ -1425,9 +1427,9 @@ static void func_800034F4(void)
         1.0,
         0.0);
 
-    gSPMatrix(gpDisplaylist++, &gpDynamic->projection, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    gSPMatrix(gpDisplaylist++, &gpDynamic->viewing, G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-    gSPPerspNormalize(gpDisplaylist++, gPerspNorm);
+    gSPMatrix(gpDisplayList++, &gpDynamic->projection, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
+    gSPMatrix(gpDisplayList++, &gpDynamic->viewing, G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
+    gSPPerspNormalize(gpDisplayList++, gPerspNorm);
 
     guLookAtReflect(
         &gpDynamic->viewing,
@@ -1442,31 +1444,31 @@ static void func_800034F4(void)
         1.0,
         0.0);
 
-    gSPLookAtX(gpDisplaylist++, &gpDynamic->lookat.l[0]);
-    gSPLookAtY(gpDisplaylist++, &gpDynamic->lookat.l[1]);
+    gSPLookAtX(gpDisplayList++, &gpDynamic->lookat.l[0]);
+    gSPLookAtY(gpDisplayList++, &gpDynamic->lookat.l[1]);
 }
 
 /*800036DC*/
 static void func_800036DC(void)
 {
-    gSPViewport(gpDisplaylist++, &D_800DCB10);
+    gSPViewport(gpDisplayList++, &D_800DCB10);
     guMtxIdent(&gpDynamic->identity);
     guScale(&gpDynamic->scale, 0.25, 0.25, 0.25);
     D_801AE528 = 0;
     D_80168D18 = 0;
     D_800FE3F4 = 0;
-    gDPPipeSync(gpDisplaylist++);
-    gDPSetScissor(gpDisplaylist++, G_SC_NON_INTERLACE, 0, 0, gScreenWidth, gScreenHeight);
-    gDPSetCycleType(gpDisplaylist++, G_CYC_1CYCLE);
-    gDPSetRenderMode(gpDisplaylist++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
-    gDPSetCombineMode(gpDisplaylist++, G_CC_MODULATEIA, G_CC_MODULATEIA);
-    gDPSetTextureFilter(gpDisplaylist++, G_TF_BILERP);
-    gDPSetTextureLUT(gpDisplaylist++, G_TT_RGBA16);
-    gSPClearGeometryMode(gpDisplaylist++, G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
-    gSPSetGeometryMode(gpDisplaylist++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
-    gDPSetTexturePersp(gpDisplaylist++, G_TP_PERSP);
+    gDPPipeSync(gpDisplayList++);
+    gDPSetScissor(gpDisplayList++, G_SC_NON_INTERLACE, 0, 0, gScreenWidth, gScreenHeight);
+    gDPSetCycleType(gpDisplayList++, G_CYC_1CYCLE);
+    gDPSetRenderMode(gpDisplayList++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
+    gDPSetCombineMode(gpDisplayList++, G_CC_MODULATEIA, G_CC_MODULATEIA);
+    gDPSetTextureFilter(gpDisplayList++, G_TF_BILERP);
+    gDPSetTextureLUT(gpDisplayList++, G_TT_RGBA16);
+    gSPClearGeometryMode(gpDisplayList++, G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
+    gSPSetGeometryMode(gpDisplayList++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
+    gDPSetTexturePersp(gpDisplayList++, G_TP_PERSP);
     func_800034F4();
-    gSPTexture(gpDisplaylist++, 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON);
+    gSPTexture(gpDisplayList++, 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON);
     func_8007EF70();
 }
 

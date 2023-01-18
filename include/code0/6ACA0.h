@@ -5,6 +5,7 @@
 
 void func_80079560(void);
 
+/*800DF2F4*/ extern s8 D_800DF2F4[];
 /*800DF585*/ extern s8 D_800DF585;
 
 #endif

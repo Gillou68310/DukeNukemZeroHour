@@ -31,24 +31,25 @@ typedef struct
     /*0x08*/ s16 wallptr;
     /*0x0A*/ s16 wallnum;
     /*0x0C*/ s16 ceilingstat;
-
     /*0x0E*/ s16 floorstat;
-    /*0x10*/ s16 unk10; //ceilingpicnum?
+    /*0x10*/ s16 ceilingpicnum;
     /*0x12*/ s16 ceilingheinum;
-
-    /*0x14*/ s16 unk14; //floorpicnum?
+    /*0x14*/ s16 floorpicnum;
     /*0x16*/ s16 floorheinum;
 
     /*0x16*/ s16 unk18;
     /*0x1A*/ s16 unk1A;
     /*0x1C*/ s16 unk1C;
-    /*0x1E*/ u16 vtxptr;
-    /*0x20*/ u8 pad[6];
+    /*0x1E*/ u16 floorvtxptr;
+    /*0x20*/ u16 ceilingvtxptr;
+    /*0x22*/ u8 unk22;
+    /*0x23*/ u8 unk23;
+    /*0x24*/ u8 pad[2];
     /*0x26*/ u8 unk26;
     /*0x27*/ u8 unk27;
     /*0x28*/ u8 pad2[3];
-    /*0x2B*/ u8 unk2B;  //vtxnum?
-    /*0x2C*/ u8 unk2C;
+    /*0x2B*/ u8 floorvtxnum;
+    /*0x2C*/ u8 ceilingvtxnum;
     /*0x2D*/ u8 pad3[3];
 
     //signed char ceilingshade;
@@ -87,8 +88,14 @@ typedef struct
     /*0x0A*/ s16 nextwall;
     /*0x0C*/ s16 nextsector;
     /*0x0E*/ s16 cstat;
+    /*0x10*/ s16 picnum;
+    /*0x12*/ s16 overpicnum;
 
-    /*0x10*/ u8 pad[22];
+    /*0x14*/ u8 pad1[8];
+    /*0x1C*/ u8 unk1C;
+    /*0x1D*/ u8 pad2[4];
+    /*0x21*/ u8 unk20;
+    /*0x22*/ u8 pad3[6];
 
     //s16 picnum;
     //s16 overpicnum;
@@ -129,11 +136,14 @@ typedef struct
     /*0x12*/ s16 statnum;
     /*0x14*/ s16 ang;
 
-    /*0x16*/ u8 pad[16];
+    /*0x16*/ u8 pad[8];
+    /*0x1E*/ s16 unk1E; //tileid
+    /*0x20*/ u8 pad1[5];
+    /*0x25*/ u8 shade;
     /*0x26*/ u8 clipdist;
     /*0x27*/ u8 xrepeat;
     /*0x28*/ u8 yrepeat;
-    /*0x28*/ u8 pad1[3];
+    /*0x29*/ u8 pad2[3];
 
     //s8 shade;
     //char pal;

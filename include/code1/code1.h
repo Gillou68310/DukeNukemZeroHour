@@ -43,7 +43,7 @@ typedef struct
 /*801CDB4C*/ _extern s32 D_801CDB4C;
 /*801CDBC4*/ _extern s16 D_801CDBC4;
 /*801CDBC6*/ _extern s16 D_801CDBC6;
-/*801CDBCC*/ _extern s16 D_801CDBCC;
+/*801CDBCC*/ _extern u16 D_801CDBCC;
 /*801CDC65*/ _extern u8 D_801CDC65;
 /*801CDC68*/ _extern s8 *D_801CDC68;
 /*801CDC70*/ _extern u8 D_801CDC70[0x800];

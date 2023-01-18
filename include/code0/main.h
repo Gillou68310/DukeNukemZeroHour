@@ -37,7 +37,7 @@ extern s32 gGfxTaskIndex;
 
 extern char ***gpKeyStrInfo;
 extern _11B300UnkStruct1 *D_8012F6E4;
-extern Gfx *gDisplaylist[GFX_TASKS];
+extern Gfx *gDisplayList[GFX_TASKS];
 extern char **gpWeaponStrInfo;
 extern u8 *gStaticSegment;
 extern u8 *gDepthBuffer;
@@ -52,8 +52,10 @@ extern OSSched gScheduler;
 extern TileInfo *gpTileInfo;
 extern OSScTask gGfxTask[GFX_TASKS];
 extern MapInfo *gpMapInfo;
-extern Gfx *gpDisplaylist;
+extern Gfx *gpDisplayList;
 extern Dynamic *gpDynamic;
 extern _11D520UnkStruct1 *D_801ACBD8;
+extern s32 gDisplayListMaxSize;
+extern s32 gVertexN64MaxSize;
 
 #endif

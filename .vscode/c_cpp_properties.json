@@ -15,7 +15,6 @@
             ],
             "defines": [
                 "F3DEX_GBI_2",
-                "F3DEX_GBI_2x",
                 "_LANGUAGE_C",
                 "_MIPS_SZLONG=32",
                 "_FINALROM",
@@ -23,7 +22,8 @@
                 "EXTERN_DATA=extern",
                 "EXTERN_BSS=extern",
                 "STATIC=",
-                "NON_MATCHING"
+                "NON_MATCHING",
+                "__CTX__"
             ],
             "cStandard": "c89",
             "cppStandard": "c++17",

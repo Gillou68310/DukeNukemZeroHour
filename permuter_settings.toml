@@ -11,6 +11,9 @@ OS_K0_TO_PHYSICAL = "int"
 "G_.*" = "int"
 "TEXEL.*" = "int"
 PRIMITIVE = "int"
+"gSetImage" = "void"
+"MAX" = "void"
+"MIN" = "void"
 
 [decompme.compilers]
 "tools/gcc_2.7.2/linux/gcc" = "gcc2.7.2kmc"

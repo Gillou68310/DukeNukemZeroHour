@@ -24,7 +24,6 @@ CPP_FLAGS = [
     "-Ilibs/libmus/include",
     "-D_LANGUAGE_C",
     "-DF3DEX_GBI_2",
-    "-DF3DEX_GBI_2x",
     "-D_MIPS_SZLONG=32",
     "-D_FINALROM",
     "-DTARGET_N64",
