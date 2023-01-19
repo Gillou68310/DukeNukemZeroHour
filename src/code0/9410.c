@@ -51,9 +51,9 @@ void loadMap(s32 mapnum)
     gNumSectors = gpMapInfo[mapnum].sectors;
     gNumSprites = gpMapInfo[mapnum].sprites;
     gNumWalls = gpMapInfo[mapnum].walls;
-    alloCache((u8 **)&gpSector, gNumSectors * sizeof(SectorType), &_sectorsLock);
-    alloCache((u8 **)&gpWall, gNumWalls * sizeof(WallType), &_wallsLock);
-    alloCache((u8 **)&gpSprite, MAXSPRITES * sizeof(SpriteType), &_spritesLock);
+    alloCache(&gpSector, gNumSectors * sizeof(SectorType), &_sectorsLock);
+    alloCache(&gpWall, gNumWalls * sizeof(WallType), &_wallsLock);
+    alloCache(&gpSprite, MAXSPRITES * sizeof(SpriteType), &_spritesLock);
     Bmemset(gpSprite, 0U, MAXSPRITES * sizeof(SpriteType));
     func_80004C84();
     gMapNum = mapnum;
@@ -122,13 +122,13 @@ STATIC void decompressMap(void)
     gMapZpos = (f32)gpMapInfo[gMapNum].zpos;
 
     offset = gpMapInfo[gMapNum].sector_offset;
-    decompressEDL(&gpMapBuffer[offset], (u8 *)gpSector);
+    decompressEDL(&gpMapBuffer[offset], gpSector);
 
     offset = gpMapInfo[gMapNum].wall_offset;
-    decompressEDL(&gpMapBuffer[offset], (u8 *)gpWall);
+    decompressEDL(&gpMapBuffer[offset], gpWall);
 
     offset = gpMapInfo[gMapNum].sprite_offset;
-    decompressEDL(&gpMapBuffer[offset], (u8 *)gpSprite);
+    decompressEDL(&gpMapBuffer[offset], gpSprite);
 
     count = 0;
     for (i = 0; i<gNumSectors; i++)
@@ -138,8 +138,8 @@ STATIC void decompressMap(void)
     }
 
     count *= 3;
-    alloCache((u8 **)&gpVertex, (count * sizeof(VertexType)), &_vertexLock);
-    decompressEDL(&gpMapBuffer[0], (u8 *)gpVertex);
+    alloCache(&gpVertex, (count * sizeof(VertexType)), &_vertexLock);
+    decompressEDL(&gpMapBuffer[0], gpVertex);
     suckCache(&gpMapBuffer);
     initTiles();
 

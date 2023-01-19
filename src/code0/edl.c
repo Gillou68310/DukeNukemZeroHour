@@ -481,7 +481,7 @@ static s32 getEDLDecompressedSize(u8 *src)
 }
 
 /*80081598*/
-s32 decompressEDL(u8 *src, u8 *dst)
+s32 decompressEDL(void *src, void *dst)
 {
     EDLInfo info;
 
@@ -525,13 +525,13 @@ static void _decompressEDL(u8 **handle, u8 *src, u8 *dst)
 }
 
 /*80081660*/
-void allocacheEDL(u8 **handle, s32 size)
+void allocacheEDL(void *handle, s32 size)
 {
     alloCache(handle, size + 16, &gCacheLock[1]);
 }
 
 /*80081688*/
-void func_80081688(u8 **handle, s32 id)
+void func_80081688(void *handle, s32 id)
 {
     s32 size;
     unkFileInfo *info;
@@ -552,13 +552,13 @@ void func_80081688(u8 **handle, s32 id)
     else
     {
         alloCache(handle, size, gCacheLock + 1);
-        Bmemcpy(*handle, D_801CD96C, size);
+        Bmemcpy(*(u8 **)handle, D_801CD96C, size);
         info->handle = handle;
     }
 }
 
 /*80081760*/
-void func_80081760(u8 **handle, s32 id, u8 *dst)
+void func_80081760(void *handle, s32 id, void *dst)
 {
     s32 size;
     unkFileInfo *info;
@@ -578,7 +578,7 @@ void func_80081760(u8 **handle, s32 id, u8 *dst)
         return;
     }
     alloCache(handle, size, gCacheLock + 1);
-    Bmemcpy(*handle, D_801CD96C, size);
+    Bmemcpy(*(u8 **)handle, D_801CD96C, size);
     info->handle = handle;
 }
 

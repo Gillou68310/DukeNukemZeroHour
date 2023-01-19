@@ -140,7 +140,7 @@ static s8 _alloCache(u8 **newhandle, u32 newbytes, u8 *newlockptr)
 }
 
 /*8002A7BC*/
-void suckCache(u8 **suckptr)
+void suckCache(void *suckptr)
 {
     s32 i;
 
@@ -246,7 +246,7 @@ void ageCache(void)
 }
 
 /*8002ACD4*/
-void alloCache(u8 **newhandle, u32 newbytes, u8 *newlockptr)
+void alloCache(void *newhandle, u32 newbytes, u8 *newlockptr)
 {
     while ((_alloCache(newhandle, newbytes, newlockptr)) == 0)
     {

@@ -932,7 +932,7 @@ void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size)
         gFramebuffer[2] = fb_addr + fb_size + fb_size;
     }
 
-    alloCache((u8 **)&gDisplaylist[0], (dlist_size * sizeof(Gfx) * GFX_TASKS), &gCacheLock[0]);
+    alloCache(&gDisplaylist[0], (dlist_size * sizeof(Gfx) * GFX_TASKS), &gCacheLock[0]);
     gDisplaylist[1] = &gDisplaylist[0][dlist_size];
 
     depth_align = DEPTHBUFFER_ALIGN; //FIXME
@@ -942,11 +942,11 @@ void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size)
 
     if (vertex_size != 0)
     {
-        alloCache((u8 **)&gVertexN64[0], (vertex_size * sizeof(Vtx) * GFX_TASKS), &gCacheLock[0]);
+        alloCache(&gVertexN64[0], (vertex_size * sizeof(Vtx) * GFX_TASKS), &gCacheLock[0]);
         remaining_size -= (vertex_size * sizeof(Vtx) * GFX_TASKS);
         gVertexN64[1] = &gVertexN64[0][vertex_size];
 
-        alloCache((u8 **)&D_801297E0[0][0], (D_8012C470 * 1600 * sizeof(Gfx) * GFX_TASKS), &gCacheLock[0]);
+        alloCache(&D_801297E0[0][0], (D_8012C470 * 1600 * sizeof(Gfx) * GFX_TASKS), &gCacheLock[0]);
         D_801297E0[0][1] = D_801297E0[0][0] + 1600;
         for (i = 1; i<D_8012C470; i++)
         {
