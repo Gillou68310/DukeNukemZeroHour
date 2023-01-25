@@ -21,10 +21,12 @@ options:
   # mips_abi_float_regs: o32
   # section_order: [".text", ".data", ".rodata", ".bss"]
   # auto_all_sections: [".data", ".rodata", ".bss"]
-  asm_inc_header: "\t.set noat\n\t.set noreorder\n\n"
-  migrate_rodata_to_functions: False
+  asm_inc_header: ""
+  migrate_rodata_to_functions: True
   add_set_gp_64: False
   generated_c_preamble: "#include \"common.h\"\n\n/*.text*/"
+  use_legacy_include_asm: False
+  include_macro_inc: False
 segments:
   - name: gen/header
     type: header
@@ -71,22 +73,22 @@ segments:
       - [0x41940, c,        src/code0/41940]
       - [0x59D40, c,        gen/code0/59D40]
       - [0x609D0, c,        gen/code0/609D0]
-      - [0x64530, c,        gen/code0/64530]
+      - [0x64530, c,        src/code0/64530]
       - [0x6ACA0, c,        gen/code0/6ACA0]
       - [0x7A430, c,        gen/code0/7A430]
       - [0x7BA50, c,        gen/code0/7BA50]
-      - [0x7CBC0, c,        gen/code0/7CBC0]
+      - [0x7CBC0, c,        src/code0/debug]
       - [0x7F6A0, c,        gen/code0/7F6A0]
       - [0x7FCE0, c,        gen/code0/7FCE0]
       - [0x814D0, c,        src/code0/edl]
       - [0x82480, c,        gen/code0/82480]
       - [0x84490, c,        gen/code0/84490]
       - [0x87010, c,        gen/code0/87010]
-      - [0x88690, c,        gen/code0/88690]
+      - [0x88690, c,        src/code0/88690]
       - [0x8E670, c,        gen/code0/8E670]
       - [0x8EFE0, c,        gen/code0/8EFE0]
-      - [0x95500, c,        gen/code0/95500]
-      - [0xA06F0, c,        gen/code0/A06F0]
+      - [0x95500, c,        src/code0/95500]
+      - [0xA06F0, c,        src/code0/A06F0]
       - [0xA5580, c,        libs/libmus/src/player]
       - [0xA8E80, c,        libs/libmus/src/player_fx]
       - [0xA9760, c,        libs/libmus/src/aud_dma]
@@ -287,7 +289,7 @@ segments:
       - [0xDFEF0, data,     code0/6ACA0]
       - [0xE0280, data,     code0/7A430]
       - [0xE0540, data,     code0/7BA50]
-      - [0xE0550, data,     code0/7CBC0]
+      - [0xE0550, data,     code0/debug]
       - [0xE05A0, data,     code0/7F6A0]
       - [0xE14B0, data,     code0/7FCE0]
       - [0xE1740, .data,    src/code0/edl]
@@ -352,33 +354,33 @@ segments:
       - [0xE5000, .rodata,  src/code0/main]
       - [0xE5080, .rodata,  src/code0/4600]
       - [0xE50D0, .rodata,  src/code0/graphics]
-      - [0xE5110, rodata,   code0/audio]
-      - [0xE5150, rodata,   code0/9410]
-      - [0xE51D0, rodata,   code0/FDE0]
-      - [0xE5310, rodata,   code0/17B30]
-      - [0xE55D0, rodata,   code0/1A7C0]
-      - [0xE5AD0, rodata,   code0/1E7A0]
-      - [0xE5B00, rodata,   code0/20490]
-      - [0xE5B20, rodata,   code0/24610]
-      - [0xE5B90, rodata,   code0/2ABE0]
-      - [0xE5BC0, rodata,   code0/engine]
-      - [0xE5BD0, rodata,   code0/37090]
-      - [0xE5DB0, rodata,   code0/3FAD0]
-      - [0xE5DF0, rodata,   code0/416A0]
-      - [0xE5E00, rodata,   code0/41940]
-      - [0xE9230, rodata,   code0/59D40]
-      - [0xE92F0, rodata,   code0/609D0]
-      - [0xE9460, rodata,   code0/64530]
-      - [0xE9590, rodata,   code0/6ACA0]
-      - [0xE9990, rodata,   code0/7A430]
-      - [0xE99D0, rodata,   code0/7CBC0]
-      - [0xE9D10, rodata,   code0/7FCE0]
-      - [0xE9D20, rodata,   code0/82480]
-      - [0xE9D60, rodata,   code0/87010]
-      - [0xE9D70, rodata,   code0/88690]
-      - [0xEA330, rodata,   code0/8EFE0]
-      - [0xEA760, rodata,   code0/95500]
-      - [0xEA9C0, rodata,   code0/A06F0]
+      - [0xE5110, .rodata,  src/code0/audio]
+      - [0xE5150, .rodata,  src/code0/9410]
+      - [0xE51D0, .rodata,  gen/code0/FDE0]
+      - [0xE5310, .rodata,  gen/code0/17B30]
+      - [0xE55D0, .rodata,  gen/code0/1A7C0]
+      - [0xE5AD0, .rodata,  gen/code0/1E7A0]
+      - [0xE5B00, .rodata,  gen/code0/20490]
+      - [0xE5B20, .rodata,  gen/code0/24610]
+      - [0xE5B90, .rodata,  gen/code0/2ABE0]
+      - [0xE5BC0, .rodata,  src/code0/engine]
+      - [0xE5BD0, .rodata,  gen/code0/37090]
+      - [0xE5DB0, .rodata,  gen/code0/3FAD0]
+      - [0xE5DF0, .rodata,  gen/code0/416A0]
+      - {start: 0xE5E00, type: .rodata, partial_migration: True, name: src/code0/41940}
+      - [0xE9230, .rodata,  gen/code0/59D40]
+      - [0xE92F0, .rodata,  gen/code0/609D0]
+      - {start: 0xE9460, type: .rodata, partial_migration: True, name: src/code0/64530}
+      - [0xE9590, .rodata,  gen/code0/6ACA0]
+      - [0xE9990, .rodata,  gen/code0/7A430]
+      - {start: 0xE99D0, type: .rodata, partial_migration: True, name: src/code0/debug}
+      - [0xE9D10, .rodata,  gen/code0/7FCE0]
+      - [0xE9D20, .rodata,  gen/code0/82480]
+      - [0xE9D60, .rodata,  gen/code0/87010]
+      - {start: 0xE9D70, type: .rodata, partial_migration: True, name: src/code0/88690}
+      - [0xEA330, .rodata,  gen/code0/8EFE0]
+      - {start: 0xEA760, type: .rodata, partial_migration: True, name: src/code0/95500}
+      - {start: 0xEA9C0, type: .rodata, partial_migration: True, name: src/code0/A06F0}
       - [0xEABB0, .rodata,  libs/libmus/src/player]
       - [0xEAC90, .rodata,  libs/libmus/src/player_fx]
       - [0xEACA0, .rodata,  libs/libultra/src/gu/cosf]
@@ -436,7 +438,7 @@ segments:
     #.data section?
       - [0xF46C0,  data,     code1/EB300]
     #.rodata section?
-      - [0xF64B0,  rodata,   code1/EB300]
+      - {start: 0xF64B0, type: .rodata, partial_migration: True, name: src/code1/EB300}
     #.bss section
       - {start: 0xF6D70, type:  bss, vram: 0x801CC7F0, name: code1/code1}
       - {start: 0xF6D70, type:  .bss, vram: 0x801CC7F0, name: src/code1/code1}

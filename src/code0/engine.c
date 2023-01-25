@@ -517,10 +517,10 @@ s32 canSee(s32 x1, s32 y1, s32 z1, s16 sect1, s32 x2, s32 y2, s32 z2, s16 sect2)
 }
 
 /*8002CBEC*/
-INCLUDE_ASM(s32, "src/code0/engine", hitScan);
+INCLUDE_ASM("nonmatchings/src/code0/engine", hitScan);
 
 /*8002F1B4*/
-INCLUDE_ASM(s32, "src/code0/engine", nearTag);
+INCLUDE_ASM("nonmatchings/src/code0/engine", nearTag);
 
 /*8002F994*/
 static s32 lIntersect(s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2, s32 x3,
@@ -639,7 +639,7 @@ static s16 lastWall(s16 point)
 }
 
 /*80030070*/
-INCLUDE_ASM(s32, "src/code0/engine", clipMove);
+INCLUDE_ASM("nonmatchings/src/code0/engine", clipMove);
 
 /*80032410*/
 static void keepAway(s32 *x, s32 *y, s32 w)
@@ -953,7 +953,7 @@ s32 krand(void)
 }
 
 /*8003331C*/
-INCLUDE_ASM(s32, "src/code0/engine", getzRange);
+INCLUDE_ASM("nonmatchings/src/code0/engine", getzRange);
 
 /*800348F8*/
 s32 getCeilzOfSlope(s16 sectnum, s32 dax, s32 day)

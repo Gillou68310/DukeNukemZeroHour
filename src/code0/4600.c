@@ -40,16 +40,11 @@ static f32 func_80003B00(f32 arg0, f32 arg1, f32 arg2, f32 arg3)
     return -func_80029FE0(arg3 - arg1, arg2 - arg0) + 4.712388980385;
 }
 
-/*.rodata*/
-const f64 D_800E44B8 = 0.7999999999999999;
-const f64 D_800E44C0 = 0.6283185307179999;
-const f64 D_800E44C8 = 3.14159265359;
+INCLUDE_ASM("nonmatchings/src/code0/4600", func_80003B4C);
 
-INCLUDE_ASM(s32, "src/code0/4600", func_80003B4C);
+INCLUDE_ASM("nonmatchings/src/code0/4600", func_800042D8);
 
-INCLUDE_ASM(s32, "src/code0/4600", func_800042D8);
-
-INCLUDE_ASM(s32, "src/code0/4600", func_800043F4);
+INCLUDE_ASM("nonmatchings/src/code0/4600", func_800043F4);
 
 /*8000491C*/
 static void _memcpy(u8 *dst, u8 *src, s32 size)
@@ -118,16 +113,16 @@ void Bmemset(void *dst, u8 value, u32 size)
     }
 }
 
-INCLUDE_ASM(s32, "src/code0/4600", func_80004A3C);
+INCLUDE_ASM("nonmatchings/src/code0/4600", func_80004A3C);
 
-INCLUDE_ASM(s32, "src/code0/4600", func_80004B60);
+INCLUDE_ASM("nonmatchings/src/code0/4600", func_80004B60);
 
-INCLUDE_ASM(s32, "src/code0/4600", func_80004C84);
+INCLUDE_ASM("nonmatchings/src/code0/4600", func_80004C84);
 
-INCLUDE_ASM(s32, "src/code0/4600", func_80004CFC);
+INCLUDE_ASM("nonmatchings/src/code0/4600", func_80004CFC);
 
-INCLUDE_ASM(s32, "src/code0/4600", func_80004ECC);
+INCLUDE_ASM("nonmatchings/src/code0/4600", func_80004ECC);
 
-INCLUDE_ASM(s32, "src/code0/4600", func_80004F14);
+INCLUDE_ASM("nonmatchings/src/code0/4600", func_80004F14);
 
-INCLUDE_ASM(s32, "src/code0/4600", func_80005118);
+INCLUDE_ASM("nonmatchings/src/code0/4600", func_80005118);

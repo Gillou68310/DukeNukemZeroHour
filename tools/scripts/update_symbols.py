@@ -145,14 +145,14 @@ def parse_addrs_from_source(file: str, coord: dict, symbols: SYMBOLS, forced: li
             if name == None:
                 name = coord.get(i+2)
             if name == None and lines[i+1].startswith('INCLUDE_ASM'):
-                name = lines[i+1].split(',')[2].split(')')[0].strip()
+                name = lines[i+1].split(',')[1].split(')')[0].strip()
             if name == None:
                 continue
 
             sym = SYMBOL(splat=split.symbols.Symbol(given_name=name, given_size=0, vram_start=addr))
             symbols.add(sym, True)
         if lines[i].startswith('INCLUDE_ASM'):
-            name = lines[i].split(',')[2].split(')')[0].strip()
+            name = lines[i].split(',')[1].split(')')[0].strip()
             sym = SYMBOL(splat=split.symbols.Symbol(given_name=name, given_size=0, vram_start=0, type='function'), \
                          source=file, section='.text')
             forced.append(sym)
@@ -334,8 +334,12 @@ for i in range(0, len(symbols.symbols)):
             size = f'{symbols.symbols[i].splat.size:X}'
             size = ' size:0x' + size
             line += (f"{size:<14}")
-    elif (symbols.symbols[i].splat.type != None) or (symbols.symbols[i].splat.size != 0) \
-        or (symbols.symbols[i].splat.dont_allow_addend != False) or (symbols.symbols[i].source != None):
+    elif (symbols.symbols[i].splat.type != None) or \
+         (symbols.symbols[i].splat.size != 0) or \
+         (symbols.symbols[i].splat.dont_allow_addend != False) or \
+         (symbols.symbols[i].splat.force_not_migration != False) or \
+         (symbols.symbols[i].splat.force_migration != False) or \
+         (symbols.symbols[i].source != None):
         line += (' //')
         if symbols.symbols[i].splat.type != None:
             type = ' type:' + symbols.symbols[i].splat.type
@@ -349,9 +353,13 @@ for i in range(0, len(symbols.symbols)):
         else:
             line += (f"{'':<14}")
         if symbols.symbols[i].splat.dont_allow_addend == True:
-            line += (f"{' dont_allow_addend:true':<23}")
+            line += (f"{' dont_allow_addend:true':<25}")
+        elif symbols.symbols[i].splat.force_not_migration == True:
+            line += (f"{' force_not_migration:true':<25}")
+        elif symbols.symbols[i].splat.force_migration == True:
+            line += (f"{' force_migration:true':<25}")
         else:
-            line += (f"{'':<23}")
+            line += (f"{'':<25}")
         if symbols.symbols[i].source != None and symbols.symbols[i].section != None:
             if symbols.symbols[i].visibility != None:
                 visibility = symbols.symbols[i].visibility + ', '

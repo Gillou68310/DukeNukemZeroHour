@@ -398,7 +398,7 @@ static void decodeEDL0(EDLInfo *info)
 
 /*80080968*/
 STATIC void decodeEDL1(EDLInfo *info);
-INCLUDE_ASM(s32, "src/code0/edl", decodeEDL1);
+INCLUDE_ASM("nonmatchings/src/code0/edl", decodeEDL1);
 
 /*800813F8*/
 static void decodeEDL(EDLInfo *info)

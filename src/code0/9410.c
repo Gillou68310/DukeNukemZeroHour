@@ -156,56 +156,56 @@ STATIC void decompressMap(void)
 }
 #else
 /*80008B88*/
-INCLUDE_ASM(s32, "src/code0/9410", decompressMap);
+INCLUDE_ASM("nonmatchings/src/code0/9410", decompressMap);
 #endif
 
-INCLUDE_ASM(s32, "src/code0/9410", func_80008E3C);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_80008E3C);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000921C);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000921C);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_80009314);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_80009314);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_80009998);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_80009998);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_800099D0);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_800099D0);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_80009A14);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_80009A14);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000A070);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000A070);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000A174);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000A174);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000A184);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000A184);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000A634);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000A634);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000A938);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000A938);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000AEE0);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000AEE0);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000B570);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000B570);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000B6A8);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000B6A8);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000B830);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000B830);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000B9C0);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000B9C0);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000BDB0);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000BDB0);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000C0D0);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000C0D0);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000C3E4);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000C3E4);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000C76C);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000C76C);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000C7A4);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000C7A4);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000C8EC);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000C8EC);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000CA94);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000CA94);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000CC54);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000CC54);
 
 #define SATURATE_U8(A) \
     (((A) >= 256) ? 255 : A)
@@ -250,13 +250,13 @@ static void vertexToN64(s32 secnum)
     D_80199554 = D_801385F4;
 }
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000D574);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000D574);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000D894);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000D894);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000DBDC);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000DBDC);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000DCF0);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000DCF0);
 
 /*8000E024*/
 static void func_8000E024(s32 arg0, s32 arg1)
@@ -380,18 +380,18 @@ u8 *loadTile(u16 tilenum)
     return NULL;
 }
 
-INCLUDE_ASM(s32, "src/code0/9410", tileMasks);
+INCLUDE_ASM("nonmatchings/src/code0/9410", tileMasks);
 
-INCLUDE_ASM(s32, "src/code0/9410", tileMaskt);
+INCLUDE_ASM("nonmatchings/src/code0/9410", tileMaskt);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000E56C);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000E56C);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000EA0C);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000EA0C);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000EB4C);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000EB4C);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000EB90);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000EB90);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000EBD4);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000EBD4);
 
-INCLUDE_ASM(s32, "src/code0/9410", func_8000EBF0);
+INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000EBF0);
