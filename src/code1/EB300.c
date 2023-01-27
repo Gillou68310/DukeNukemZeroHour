@@ -1,4 +1,5 @@
 #include "common.h"
+#include "code0/8E670.h"
 #include "code1/code1.h"
 
 /*.text*/
@@ -298,59 +299,197 @@ INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6560);
 
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C66D8);
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6CA4);
+/*801C6CA4*/
+void func_801C6CA4(void)
+{
+    D_800E16C0 |= 0x1C000000;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6CC4);
+/*801C6CC4*/
+void func_801C6CC4(void)
+{
+    D_800E16C0 |= 0x03FC0000;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6CE4);
+/*801C6CE4*/
+void func_801C6CE4(void)
+{
+    D_800E16C0 |= 0x70;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6D00);
+/*801C6D00*/
+void func_801C6D00(void)
+{
+    D_800E16C0 |= 0x3E000;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6D24);
+/*801C6D24*/
+void func_801C6D24(void)
+{
+    D_800E16C0 |= 0x1C80;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6D40);
+/*801C6D40*/
+void func_801C6D40(void)
+{
+    D_800E16C0 |= 0x300;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6D5C);
+/*801C6D5C*/
+void func_801C6D5C(void)
+{
+    D_801CDBC6 = 1;
+    D_800E16BC |= 1;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6D84);
+/*801C6D84*/
+void func_801C6D84(void)
+{
+    D_801CC926 = 1;
+    D_800E16BC |= 2;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6DAC);
+/*801C6DAC*/
+void func_801C6DAC(void)
+{
+    D_801CDBCC = 1;
+    D_800E16BC |= 4;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6DD4);
+/*801C6DD4*/
+void func_801C6DD4(void)
+{
+    D_801CC7F4 = 1;
+    D_800E16BC |= 8;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6DFC);
+/*801C6DFC*/
+void func_801C6DFC(void)
+{
+    D_801CC8C8 = 1;
+    D_800E16BC |= 0x10;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6E24);
+/*801C6E24*/
+void func_801C6E24(void)
+{
+    D_801CC8A8 = 1;
+    D_800E16BC |= 0x20;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6E4C);
+/*801C6E4C*/
+void func_801C6E4C(void)
+{
+    D_801CDBC4 = 1;
+    D_800E16BC |= 0x40;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6E74);
+/*801C6E74*/
+void func_801C6E74(void)
+{
+    D_801CC8CC = 1;
+    D_800E16BC |= 0x80;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6E9C);
+/*801C6E9C*/
+void func_801C6E9C(void)
+{
+    D_801CE48C = 1;
+    D_800E16BC |= 0x100;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6EC4);
+/*801C6EC4*/
+void func_801C6EC4(void)
+{
+    D_801CC924 = 1;
+    D_801CE470 |= 1;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6EEC);
+/*801C6EEC*/
+void func_801C6EEC(void)
+{
+    D_801CDB48 = 1;
+    D_801CE470 |= 2;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6F14);
+/*801C6F14*/
+void func_801C6F14(void)
+{
+    D_801CE4EC = 1;
+    D_801CE470 |= 4;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6F3C);
+/*801C6F3C*/
+void func_801C6F3C(void)
+{
+    D_801CF634 = 1;
+    D_801CE470 |= 8;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6F64);
+/*801C6F64*/
+void func_801C6F64(void)
+{
+    D_801CE478 = 1;
+    D_801CE470 |= 0x10;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6F8C);
+/*801C6F8C*/
+void func_801C6F8C(void)
+{
+    D_801CDA80 = 1;
+    D_801CE470 |= 0x20;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6FB4);
+/*801C6FB4*/
+void func_801C6FB4(void)
+{
+    D_801CC8B8 = 1;
+    D_801CE470 |= 0x40;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C6FDC);
+/*801C6FDC*/
+void func_801C6FDC(void)
+{
+    D_801CDB14 = 1;
+    D_801CE470 |= 0x80;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C7004);
+/*801C7004*/
+void func_801C7004(void)
+{
+    D_801CDB16 = 1;
+    D_801CE470 |= 0x100;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C702C);
+/*801C702C*/
+void func_801C702C(void)
+{
+    D_801CD984 = 1;
+    D_801CE470 |= 0x200;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C7054);
+/*801C7054*/
+void func_801C7054(void)
+{
+    D_801CE480 = 1;
+    D_801CE470 |= 0x400;
+}
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C707C);
+/*801C707C*/
+void func_801C707C(void)
+{
+    func_801C6EC4();
+    func_801C6EEC();
+    func_801C6F14();
+    func_801C6F3C();
+    func_801C6F64();
+    func_801C6F8C();
+    func_801C6FB4();
+    func_801C6FDC();
+    func_801C7004();
+    func_801C702C();
+    func_801C7054();
+}
 
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C70EC);
 
@@ -399,6 +538,7 @@ INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C959C);
 
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C97A8);
 
+/*801C97F0*/
 void func_801C97F0(void)
 {
 }
