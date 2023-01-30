@@ -1,4 +1,7 @@
-compiler_command = "tools/gcc_2.7.2/linux/gcc -w -Iinclude -Ilibs/libultra/include/2.0I -Ilibs/libmus/include -D_LANGUAGE_C -DF3DEX_GBI_2 -DF3DEX_GBI_2x -D_MIPS_SZLONG=32 -D_FINALROM -DTARGET_N64 -nostdinc -c -O2 -G0 -g2 -mips3 -mgp32 -mfp32 -fno-common -B tools/gcc_2.7.2/linux/  -Wuninitialized -Wmissing-braces -Wimplicit -Wredundant-decls -Wstrict-prototypes -DPERMUTER"
+
+compiler_type = "gcc"
+
+compiler_command = "tools/gcc_2.7.2/linux/gcc -Iinclude -Ilibs/libultra/include/2.0I -Ilibs/libmus/include -D_LANGUAGE_C -DF3DEX_GBI_2 -DF3DEX_GBI_2x -D_MIPS_SZLONG=32 -D_FINALROM -DTARGET_N64 -DSTATIC= -DEXTERN_DATA=extern -DEXTERN_BSS=extern -DPERMUTER -c -O2 -g2 -G0 -mips3 -mgp32 -mfp32 -funsigned-char -B tools/gcc_2.7.2/linux/"
 assembler_command = "mips-linux-gnu-as -EB -march=vr4300 -mtune=vr4300 -Iinclude -G 0 -I include -mips3 -mabi=32"
 
 [preserve_macros]
@@ -10,4 +13,4 @@ OS_K0_TO_PHYSICAL = "int"
 PRIMITIVE = "int"
 
 [decompme.compilers]
-"tools/gcc_2.7.2/linux/gcc" = "gcc2.7.2"
+"tools/gcc_2.7.2/linux/gcc" = "gcc2.7.2kmc"

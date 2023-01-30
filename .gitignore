@@ -8,12 +8,10 @@ tmp/
 docs/
 dukenukemzerohour.ld
 *ctx.c
-.vscode/configurationCache.log
-.vscode/dryrun.log
-.vscode/targets.log
-.vscode/tasks.json
-.vscode/settings.json
+.vscode/
 __pycache__/
 .DS_Store
-*.idb
+*.id*
+*.til
+*.nam
 *.splache

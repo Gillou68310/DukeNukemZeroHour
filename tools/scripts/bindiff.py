@@ -5,8 +5,8 @@ import tempfile
 import sys
 import os
 
-if len(sys.argv) < 2:
-    print('bindiff START END')
+if len(sys.argv) < 3:
+    print('bindiff.py START END')
     sys.exit(1)
 
 start = int(sys.argv[1], 16)
@@ -19,14 +19,16 @@ fd2, path2 = tempfile.mkstemp()
 target = subprocess.run(('hexdump', '-C', '-v', '-s', str(start), '-n', str(len), 'baserom.us.z64'), capture_output=True)
 current = subprocess.run(('hexdump', '-C', '-v', '-s', str(start), '-n', str(len), 'build/dukenukemzerohour.z64'), capture_output=True)
 
-os.write(fd1, target.stdout)
-os.write(fd2, current.stdout)
-os.close(fd1)
-os.close(fd2)
+f1 = open(path1, 'wb')
+f2 = open(path2, 'wb')
+f1.write(target.stdout)
+f2.write(current.stdout)
+f1.close()
+f2.close()
 
 out = subprocess.run(('diff', '-u', path1, path2), capture_output=True, text=True)
 if out.stdout == '':
-    print('Identical')
+    print('No diff')
 else:
     print(out.stdout)
 

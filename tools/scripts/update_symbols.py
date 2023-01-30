@@ -245,12 +245,6 @@ parser.add_argument('Path', nargs='*', default=[], help='source files')
 parser.add_argument('-p', '--prefix_static', action='store_true', help='Prefix static variables')
 args = parser.parse_args()
 
-script_dir = os.path.dirname(os.path.realpath(__file__))
-root_dir = os.path.abspath(os.path.join(script_dir, "../.."))
-
-for i in range (0, len(args.Path)):
-    args.Path[i] = os.path.relpath(args.Path[i], root_dir)
-
 symbols = SYMBOLS()
 forced = []
 BUILD_DIR = 'tmp'
@@ -263,21 +257,17 @@ all_segments = split.initialize_segments(config["segments"])
 split.symbols.initialize(all_segments)
 
 # Parse symbols from config file
-parse_symbols_from_config(split.options.opts.symbol_addrs_paths[0], symbols)
+parse_symbols_from_config('symbol_addrs.txt', symbols)
 
 # Parse symbols from source files
+h_files = [y for x in os.walk('include') for y in glob.glob(os.path.join(x[0], '*.h'))]
+
 if len(args.Path) == 0:
     c_files = [y for x in os.walk('src') for y in glob.glob(os.path.join(x[0], '*.c'))]
-    h_files = [y for x in os.walk('include') for y in glob.glob(os.path.join(x[0], '*.h'))]
-    files = c_files + h_files
 else:
-    h_files = []
-    files = args.Path
-    for file in files:
-        if '.c' in file:
-            h = file.replace('src/', 'include/').replace('.c', '.h')
-            h_files.append(h)
-    files += h_files
+    c_files = args.Path
+
+files = c_files + h_files
 
 for file in files:
     parse_source_file(file, symbols, forced)
@@ -320,56 +310,62 @@ if args.prefix_static == True:
                 symbols.rename(symbol.splat.name, (prefix + symbol.splat.name))
                 
 # Write symbols to files
-f = open('symbol_addrs.txt', 'w')
-for i in range(0, len(symbols.symbols)):
-    line = ''
-    line += (f'{symbols.symbols[i].splat.name:<{symbols.name_max_size}}')
-    addr = f'{symbols.symbols[i].splat.vram_start:08X}'
-    line += (' = 0x' + addr + ';')
+f = open('symbol_addrs.txt.new', 'w')
+try:
+    for i in range(0, len(symbols.symbols)):
+        line = ''
+        line += (f'{symbols.symbols[i].splat.name:<{symbols.name_max_size}}')
+        addr = f'{symbols.symbols[i].splat.vram_start:08X}'
+        line += (' = 0x' + addr + ';')
 
-    if symbols.symbols[i].ignore:
-        line += (' //')
-        line += (f"{' ignore:true':<14}")
-        if symbols.symbols[i].splat.size > 0:
-            size = f'{symbols.symbols[i].splat.size:X}'
-            size = ' size:0x' + size
-            line += (f"{size:<14}")
-    elif (symbols.symbols[i].splat.type != None) or \
-         (symbols.symbols[i].splat.size != 0) or \
-         (symbols.symbols[i].splat.dont_allow_addend != False) or \
-         (symbols.symbols[i].splat.force_not_migration != False) or \
-         (symbols.symbols[i].splat.force_migration != False) or \
-         (symbols.symbols[i].source != None):
-        line += (' //')
-        if symbols.symbols[i].splat.type != None:
-            type = ' type:' + symbols.symbols[i].splat.type
-            line += (f"{type:<14}")
-        else:
-            line += (f"{'':<14}")
-        if symbols.symbols[i].splat.size > 0:
-            size = f'{symbols.symbols[i].splat.size:X}'
-            size = ' size:0x' + size
-            line += (f"{size:<14}")
-        else:
-            line += (f"{'':<14}")
-        if symbols.symbols[i].splat.dont_allow_addend == True:
-            line += (f"{' dont_allow_addend:true':<25}")
-        elif symbols.symbols[i].splat.force_not_migration == True:
-            line += (f"{' force_not_migration:true':<25}")
-        elif symbols.symbols[i].splat.force_migration == True:
-            line += (f"{' force_migration:true':<25}")
-        else:
-            line += (f"{'':<25}")
-        if symbols.symbols[i].source != None and symbols.symbols[i].section != None:
-            if symbols.symbols[i].visibility != None:
-                visibility = symbols.symbols[i].visibility + ', '
+        if symbols.symbols[i].ignore:
+            line += (' //')
+            line += (f"{' ignore:true':<14}")
+            if symbols.symbols[i].splat.size > 0:
+                size = f'{symbols.symbols[i].splat.size:X}'
+                size = ' size:0x' + size
+                line += (f"{size:<14}")
+        elif (symbols.symbols[i].splat.type != None) or \
+             (symbols.symbols[i].splat.size != 0) or \
+             (symbols.symbols[i].splat.dont_allow_addend != False) or \
+             (symbols.symbols[i].splat.force_not_migration != False) or \
+             (symbols.symbols[i].splat.force_migration != False) or \
+             (symbols.symbols[i].source != None):
+            line += (' //')
+            if symbols.symbols[i].splat.type != None:
+                type = ' type:' + symbols.symbols[i].splat.type
+                line += (f"{type:<14}")
             else:
-                visibility = 'global, '
-            section = symbols.symbols[i].section + ', '
-            line += ' (' + f"{visibility:<8}"
-            line += f"{section:<9}"
-            line += symbols.symbols[i].source + ')'
-    
-    f.write(line.strip())
-    f.write('\n')
-f.close()
+                line += (f"{'':<14}")
+            if symbols.symbols[i].splat.size > 0:
+                size = f'{symbols.symbols[i].splat.size:X}'
+                size = ' size:0x' + size
+                line += (f"{size:<14}")
+            else:
+                line += (f"{'':<14}")
+            if symbols.symbols[i].splat.dont_allow_addend == True:
+                line += (f"{' dont_allow_addend:true':<25}")
+            elif symbols.symbols[i].splat.force_not_migration == True:
+                line += (f"{' force_not_migration:true':<25}")
+            elif symbols.symbols[i].splat.force_migration == True:
+                line += (f"{' force_migration:true':<25}")
+            else:
+                line += (f"{'':<25}")
+            if symbols.symbols[i].source != None and symbols.symbols[i].section != None:
+                if symbols.symbols[i].visibility != None:
+                    visibility = symbols.symbols[i].visibility + ', '
+                else:
+                    visibility = 'global, '
+                section = symbols.symbols[i].section + ', '
+                line += ' (' + f"{visibility:<8}"
+                line += f"{section:<9}"
+                line += symbols.symbols[i].source + ')'
+
+        f.write(line.strip())
+        f.write('\n')
+    f.close()
+    os.remove('symbol_addrs.txt')
+    os.rename('symbol_addrs.txt.new', 'symbol_addrs.txt')
+except:
+    f.close()
+    os.remove('symbol_addrs.txt.new')
