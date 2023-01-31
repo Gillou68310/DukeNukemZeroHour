@@ -217,7 +217,6 @@ typedef struct
 /*8012EED0*/ _extern u8 *D_8012EED0;
 /*8012F6F0*/ _extern s8 D_8012F6F0[4];
 /*8012FC90*/ _extern s32 D_8012FC90;
-/*801385F4*/ _extern s16 D_801385F4;
 /*80138680*/ _extern s32 D_80138680;
 /*80138688*/ _extern OSTime D_80138688;
 /*80138778*/ _extern u8 *D_80138778;
@@ -239,7 +238,6 @@ typedef struct
 /*80199114*/ _extern Vtx *D_80199114;
 /*80199524*/ _extern s32 D_80199524;
 /*80199528*/ _extern s32 D_80199528;
-/*80199554*/ _extern s32 D_80199554;
 /*80199558*/ _extern s32 D_80199558;
 /*80199750*/ _extern s32 D_80199750;
 /*8019B940*/ _extern code0UnkStruct3 D_8019B940[150];
@@ -251,6 +249,7 @@ typedef struct
 /*801A2684*/ _extern f32 D_801A2684;
 /*801A2688*/ _extern s8 D_801A2688;
 /*801A6D80*/ _extern s16 D_801A6D80;
+/*801ACC60*/ _extern s32 D_801ACC60;
 /*801AD470*/ _extern u8 D_801AD470;
 /*801AD474*/ _extern u8 *D_801AD474;
 /*801AE4A0*/ _extern Fog gFog[MAXPLAYERS];
@@ -259,6 +258,7 @@ typedef struct
 /*801AE914*/ _extern s32 D_801AE914;
 /*801B0815*/ _extern u8 D_801B0815;
 /*801B0820*/ _extern u8 D_801B0820;
+/*801B0830*/ _extern Matrix4f D_801B0830[20];
 /*801C0D70*/ _extern u8 *D_801C0D70;
 
 #undef _extern
