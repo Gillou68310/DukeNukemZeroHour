@@ -367,20 +367,20 @@ segments:
       - [0xE5BD0, .rodata,  gen/code0/37090]
       - [0xE5DB0, .rodata,  gen/code0/3FAD0]
       - [0xE5DF0, .rodata,  gen/code0/416A0]
-      - {start: 0xE5E00, type: .rodata, partial_migration: True, name: src/code0/41940}
+      - [0xE5E00, .rodata,  src/code0/41940]
       - [0xE9230, .rodata,  gen/code0/59D40]
       - [0xE92F0, .rodata,  gen/code0/609D0]
-      - {start: 0xE9460, type: .rodata, partial_migration: True, name: src/code0/64530}
+      - [0xE9460, .rodata,  src/code0/64530]
       - [0xE9590, .rodata,  gen/code0/6ACA0]
       - [0xE9990, .rodata,  gen/code0/7A430]
-      - {start: 0xE99D0, type: .rodata, partial_migration: True, name: src/code0/debug}
+      - [0xE99D0, .rodata,  src/code0/debug]
       - [0xE9D10, .rodata,  gen/code0/7FCE0]
       - [0xE9D20, .rodata,  gen/code0/82480]
       - [0xE9D60, .rodata,  gen/code0/87010]
-      - {start: 0xE9D70, type: .rodata, partial_migration: True, name: src/code0/88690}
+      - [0xE9D70, .rodata,  src/code0/88690]
       - [0xEA330, .rodata,  gen/code0/8EFE0]
-      - {start: 0xEA760, type: .rodata, partial_migration: True, name: src/code0/95500}
-      - {start: 0xEA9C0, type: .rodata, partial_migration: True, name: src/code0/A06F0}
+      - [0xEA760, .rodata,  src/code0/95500]
+      - [0xEA9C0, .rodata,  src/code0/A06F0]
       - [0xEABB0, .rodata,  libs/libmus/src/player]
       - [0xEAC90, .rodata,  libs/libmus/src/player_fx]
       - [0xEACA0, .rodata,  libs/libultra/src/gu/cosf]

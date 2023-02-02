@@ -2,7 +2,6 @@
 pycparser
 pynacl
 toml
-spimdisasm>=1.10.4
 colorama
 watchdog
 python-Levenshtein
