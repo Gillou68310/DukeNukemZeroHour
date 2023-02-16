@@ -14,19 +14,19 @@
 #define SCREEN_HEIGHT 240
 #define GFX_TASKS 2
 
-void func_80000450(void);
-void func_80000610(void);
-void func_80000624(ProcPointer proc);
-void func_80000C74(void);
+void main_80000450(void);
+void main_80000610(void);
+void main_80000624(ProcPointer proc);
+void main_80000C74(void);
 void boot(void);
 void readRom(u8 *segStart, u8 *romStart, s32 size);
-void func_80000A94(void);
-void func_80000C74(void);
-void func_80001CFC(void);
-void func_80001F40(void);
-void func_80001FAC(void);
+void main_80000A94(void);
+void main_80000C74(void);
+void main_80001CFC(void);
+void main_80001F40(void);
+void main_80001FAC(void);
 void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size);
-void func_80002390(void);
+void main_80002390(void);
 
 extern s32 gScreenWidth;
 extern s32 gScreenHeight;

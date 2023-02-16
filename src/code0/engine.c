@@ -49,7 +49,7 @@ static s32 deleteSpriteSect(s16 deleteme);
 static s16 lastWall(s16 point);
 
 /*8002B680*/
-void func_8002B680(void)
+void engine_8002B680(void)
 {
     D_800F70A0 = -1;
     gTotalClockLock = 0;
@@ -864,7 +864,7 @@ void updateSector(s32 x, s32 y, s16 *sectnum)
 }
 
 /*80032F38*/
-static u8 func_80032F38(s32 x, s32 y, s32 z, s16 sectnum)
+static u8 engine_80032F38(s32 x, s32 y, s32 z, s16 sectnum)
 {
     s32 ceilz;
     s32 florz;
@@ -896,7 +896,7 @@ void updateSectorZ(s32 x, s32 y, s32 z, s16 *sectnum)
     WallType *wal;
     s32 i, j, cz, fz;
 
-    if (func_80032F38(x, y, z, *sectnum) == 1)
+    if (engine_80032F38(x, y, z, *sectnum) == 1)
         return;
 
     if ((*sectnum >= 0) && (*sectnum < gNumSectors))
@@ -908,7 +908,7 @@ void updateSectorZ(s32 x, s32 y, s32 z, s16 *sectnum)
             i = wal->nextsector;
             if (i >= 0)
             {
-                if (func_80032F38(x, y, z, i) == 1)
+                if (engine_80032F38(x, y, z, i) == 1)
                 {
                     *sectnum = i;
                     return;
@@ -920,7 +920,7 @@ void updateSectorZ(s32 x, s32 y, s32 z, s16 *sectnum)
 
     for (i = gNumSectors-1; i>=0; i--)
     {
-        if (func_80032F38(x, y, z, i) == 1)
+        if (engine_80032F38(x, y, z, i) == 1)
         {
             *sectnum = i;
             return;

@@ -184,7 +184,7 @@ typedef union {
     VertexN n;  /* Use this one for normals */
 } VertexType;
 
-void func_8002B680(void);
+void engine_8002B680(void);
 s32 clipInsideBox(s32 x, s32 y, s16 wallnum, s32 walldist);
 s32 getAngle(s32 xvect, s32 yvect);
 s32 setSprite(s16 spritenum, s32 newx, s32 newy, s32 newz);

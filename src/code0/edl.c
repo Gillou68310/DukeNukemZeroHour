@@ -531,7 +531,7 @@ void allocacheEDL(void *handle, s32 size)
 }
 
 /*80081688*/
-void func_80081688(void *handle, s32 id)
+void edl_80081688(void *handle, s32 id)
 {
     s32 size;
     unkFileInfo *info;
@@ -558,7 +558,7 @@ void func_80081688(void *handle, s32 id)
 }
 
 /*80081760*/
-void func_80081760(void *handle, s32 id, void *dst)
+void edl_80081760(void *handle, s32 id, void *dst)
 {
     s32 size;
     unkFileInfo *info;
@@ -583,7 +583,7 @@ void func_80081760(void *handle, s32 id, void *dst)
 }
 
 /*80081840*/
-u8 *func_80081840(s16 id, s16 off)
+u8 *edl_80081840(s16 id, s16 off)
 {
     s32 *offset = D_800E0D18[id].offset;
     return *D_800E0D18[id].handle + offset[off];

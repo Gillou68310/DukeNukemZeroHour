@@ -136,7 +136,7 @@ void loadMap(s32 mapnum)
     func_80094958();
     func_8007AEB4();
     func_80086410();
-    func_80001CFC();
+    main_80001CFC();
     func_800A0E74();
     func_80051568();
     D_800FEA90 = 0;

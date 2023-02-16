@@ -186,10 +186,10 @@ void func_80000000(u8 *, s32);
 static void idleLoop(void *);
 static void mainLoop(void *);
 static void viLoop(void *);
-static void func_800036DC();
+static void main_800036DC(void);
 
 /*80000450*/
-void func_80000450(void)
+void main_80000450(void)
 {
     D_8012E158 = &osViModeTable[OS_VI_PAL_LAF1];
     osViModeTable[OS_VI_PAL_LAF1].fldRegs[0].yScale = 0x800;
@@ -210,7 +210,7 @@ void func_80000450(void)
 }
 
 /*80000508*/
-static void func_80000508(void)
+static void main_80000508(void)
 {
     D_8012E158 = &osViModeTable[OS_VI_PAL_LAF1];
     osViModeTable[OS_VI_PAL_LAF1].fldRegs[0].vStart = 0x2D0237;
@@ -233,7 +233,7 @@ static void func_80000508(void)
 }
 
 /*800005D8*/
-static void func_800005D8(void)
+static void main_800005D8(void)
 {
     D_8012E158 = &osViModeTable[OS_VI_PAL_LAF1];
     osViModeTable[OS_VI_PAL_LAF1].fldRegs[0].vStart = 0x4B0237;
@@ -241,24 +241,24 @@ static void func_800005D8(void)
 }
 
 /*80000610*/
-void func_80000610(void)
+void main_80000610(void)
 {
     D_800BD3F4 = 1;
 }
 
 /*80000624*/
-void func_80000624(ProcPointer proc)
+void main_80000624(ProcPointer proc)
 {
     D_80119A5C = 5;
     D_800FF53C = proc;
     D_800BD3E8 = 1;
     func_8007F050();
-    func_80000450();
+    main_80000450();
     D_800BD3F9 = 6;
 }
 
 /*80000678*/
-static void func_80000678(void)
+static void main_80000678(void)
 {
     if (D_80119A5C == 0)
     {
@@ -268,7 +268,7 @@ static void func_80000678(void)
 }
 
 /*800006B4*/
-static void func_800006B4(void)
+static void main_800006B4(void)
 {
     s32 i;
     if (func_8008AEF0() & 0xFF)
@@ -280,12 +280,12 @@ static void func_800006B4(void)
         }
 
         D_801CC8CA = i;
-        func_80000624(&func_801C6560);
+        main_80000624(&func_801C6560);
     }
 }
 
 /*8000071C*/
-static void func_8000071C(void)
+static void main_8000071C(void)
 {
     D_8012E158 = &osViModeTable[OS_VI_PAL_LAF1];
     osViModeTable[OS_VI_PAL_LAF1].comRegs.vSync = 0x270;
@@ -380,7 +380,7 @@ void readRom(u8 *segStart, u8 *romStart, s32 size)
 }
 
 /*80000A94*/
-void func_80000A94(void)
+void main_80000A94(void)
 {
     OSTime start;
     OSTime end;
@@ -410,7 +410,7 @@ static void clearDepthBuffer(void)
 }
 
 /*80000C74*/
-void func_80000C74(void)
+void main_80000C74(void)
 {
     gDPPipeSync(gpDisplayList++);
     gDPSetCycleType(gpDisplayList++, G_CYC_FILL);
@@ -424,7 +424,7 @@ void func_80000C74(void)
 }
 
 /*80000DDC*/
-static void func_80000DDC(void)
+static void main_80000DDC(void)
 {
     gDPSetColorImage(gpDisplayList++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gScreenWidth, OS_K0_TO_PHYSICAL(gFramebuffer[_framebufferIndex]));
     if (D_800BD3E8 != 0)
@@ -436,11 +436,11 @@ static void func_80000DDC(void)
 }
 
 /*80000F00*/
-static void func_80000F00(void)
+static void main_80000F00(void)
 {
     if (D_800BD3F9 != 3)
     {
-        func_800036DC();
+        main_800036DC();
         return;
     }
     if (D_800BD3F0 == 0)
@@ -448,12 +448,12 @@ static void func_80000F00(void)
         if (D_801A1970 != 0)
             func_80008E3C();
         if (D_801AE914 != 0)
-            func_800036DC();
+            main_800036DC();
     }
 }
 
 /*80000F68*/
-static void func_80000F68(s16 arg0)
+static void main_80000F68(s16 arg0)
 {
     D_80117ED8[arg0].unk80 = 0;
 
@@ -473,7 +473,7 @@ static void func_80000F68(s16 arg0)
 }
 
 /*80001038*/
-static void func_80001038(void)
+static void main_80001038(void)
 {
     s16 i;
     s16 temp;
@@ -485,7 +485,7 @@ static void func_80001038(void)
             return;
         }
         D_800BD3E8 = 0;
-        func_80000610();
+        main_80000610();
         D_800BD3F0 = 0;
     }
     audio_80006CC0();
@@ -499,7 +499,7 @@ static void func_80001038(void)
         func_801C4B34();
         for (i = 0; i < D_8012C470; i++)
         {
-            func_80000F68(i);
+            main_80000F68(i);
         }
     }
     else
@@ -632,11 +632,11 @@ static void func_80001038(void)
             case 1:
                 if (gMapNum == MAP_THE_END)
                 {
-                    func_80000624(func_801C97F8);
+                    main_80000624(func_801C97F8);
                 }
                 else
                 {
-                    func_80000624(func_801C9B28);
+                    main_80000624(func_801C9B28);
                 }
                 break;
             case 3:
@@ -646,13 +646,13 @@ static void func_80001038(void)
                 D_800DEDE0 = 3;
                 return;
             case 5:
-                func_80000624(func_801C15CC);
+                main_80000624(func_801C15CC);
                 break;
             case 0:
-                func_80000624(func_801C3E08);
+                main_80000624(func_801C3E08);
                 break;
             default:
-                func_80000624(func_801C3E08);
+                main_80000624(func_801C3E08);
                 break;
             }
         }
@@ -660,7 +660,7 @@ static void func_80001038(void)
 }
 
 /*800017AC*/
-static void func_800017AC(void)
+static void main_800017AC(void)
 {
     s32 i;
 
@@ -685,7 +685,7 @@ static void func_800017AC(void)
     switch (D_800BD3F9)
     {
     case 0:
-        func_800006B4();
+        main_800006B4();
         break;
     case 9:
         func_801C97F0();
@@ -715,10 +715,10 @@ static void func_800017AC(void)
         func_801C66D8();
         break;
     case 6:
-        func_80000678();
+        main_80000678();
         break;
     case 3:
-        func_80001038();
+        main_80001038();
         break;
     case 13:
         func_801C3370();
@@ -733,7 +733,7 @@ static void func_800017AC(void)
     if (D_800BD42D != 0)
     {
         D_800BD42D = 0;
-        func_800017AC();
+        main_800017AC();
     }
 }
 
@@ -752,11 +752,11 @@ static void setupSegments(void)
 }
 
 /*80001AF8*/
-static void func_80001AF8(void)
+static void main_80001AF8(void)
 {
     setupSegments();
     clearDepthBuffer();
-    func_80000DDC();
+    main_80000DDC();
 }
 
 /*80001B28*/
@@ -799,7 +799,7 @@ static void createGfxTask(void)
 }
 
 /*80001CFC*/
-void func_80001CFC(void)
+void main_80001CFC(void)
 {
     D_800FE9E0 = 0LL;
     D_801AE498 = 0LL;
@@ -808,7 +808,7 @@ void func_80001CFC(void)
 }
 
 /*80001D44*/
-static void func_80001D44(void)
+static void main_80001D44(void)
 {
     s16 i;
     s16 width;
@@ -838,7 +838,7 @@ static void func_80001D44(void)
     }
     for (i = 0; i < D_8012C470; i++)
     {
-        func_80000F68(i);
+        main_80000F68(i);
         func_80095390(i);
     }
     D_800DEEA0 = 0;
@@ -865,33 +865,33 @@ static void func_80001D44(void)
     _blue = 0;
     D_800BD3E8 = 1;
     D_801A1970 = 1;
-    func_80000DDC();
+    main_80000DDC();
     clearDepthBuffer();
     D_800DF585 = 0;
 }
 
 /*80001F40*/
-void func_80001F40(void)
+void main_80001F40(void)
 {
-    func_80001D44();
+    main_80001D44();
     func_80050408();
     loadMap(gLoadMapNum);
     D_800BD3F9 = 3;
     D_800BD42D = 1;
     D_801CA144 = 0.0f;
-    func_80002390();
+    main_80002390();
     D_800BD3F0 = 0xA;
 }
 
 /*80001FAC*/
-void func_80001FAC(void)
+void main_80001FAC(void)
 {
     D_801CDC65 = 1;
-    func_80001D44();
+    main_80001D44();
     D_800BD3F9 = 3;
     D_800BD42D = 0;
     D_801CA144 = 0.0f;
-    func_80002390();
+    main_80002390();
     D_800BD3F0 = 0x64;
     D_800DEDE0 = 4;
 }
@@ -908,7 +908,7 @@ void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size)
     s32 remaining_size;
 
     plock = &gCacheLock[1];
-    func_80000450();
+    main_80000450();
     if ((D_800BD3F8 == 0))
     {
         if (width == 480)
@@ -970,7 +970,7 @@ void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size)
 }
 
 /*80002390*/
-void func_80002390(void)
+void main_80002390(void)
 {
     func_8001F928(gScreenWidth, gScreenHeight);
     switch (osTvType)
@@ -1030,7 +1030,7 @@ void func_80002390(void)
 }
 
 /*80002494*/
-static void func_80002494(void)
+static void main_80002494(void)
 {
     allocMemory(320, 480, 0x2800, 0);
     func_801C10C8();
@@ -1039,8 +1039,8 @@ static void func_80002494(void)
     func_8007FD8C(&D_800DFA90, 2);
     D_800BD3F9 = 0;
     D_800BD3E8 = 1;
-    func_80002390();
-    func_80000610();
+    main_80002390();
+    main_80000610();
 }
 
 /*80002548*/
@@ -1058,8 +1058,8 @@ static void mainLoop(void *arg)
     osCreateMesgQueue(&gDmaMessageQ, gDmaMessages, NUM_DMA_MSGS);
 
     D_80197D4C = code1_VRAM;
-    D_8010571C = (u8 *)func_80000450;
-    D_80138818 = (u32)(code1_VRAM - (u8 *)func_80000450) >> 0xA;
+    D_8010571C = (u8 *)main_80000450;
+    D_80138818 = (u32)(code1_VRAM - (u8 *)main_80000450) >> 0xA;
     gStaticSegment = (u8 *)code1_VRAM_END;
     size = static_ROM_END - static_ROM_START;
     gCacheMemStart = (u8 *)((intptr_t)(&gStaticSegment[size] + 0x3F) & ~0x3F);
@@ -1254,13 +1254,13 @@ static void mainLoop(void *arg)
     osCreateMesgQueue(&gRetraceMsgQ, gRetraceMessages, NUM_DMA_MSGS);
     osScAddClient(&gScheduler, &_retraceClient, &gRetraceMsgQ);
     osStartThread(&_viLoopThread);
-    func_80000A94();
+    main_80000A94();
     func_800356EC();
-    func_8002B680();
-    func_80001CFC();
-    func_80000450();
-    func_8000071C();
-    func_80002494();
+    engine_8002B680();
+    main_80001CFC();
+    main_80000450();
+    main_8000071C();
+    main_80002494();
     gLoadMapNum = 0;
 
     do
@@ -1278,7 +1278,7 @@ static void mainLoop(void *arg)
             if (D_800DEDE0 == 4)
             {
                 D_800BD3E8 = 0;
-                func_80000610();
+                main_80000610();
                 D_800BD3F0 = 0;
                 func_801C9B48();
             }
@@ -1297,13 +1297,13 @@ static void mainLoop(void *arg)
         D_801AE498 = D_80138788;
 
         for (; D_800BD3E0>=3; D_800BD3E0 -= 2)
-            func_800017AC();
+            main_800017AC();
 
         if (D_800BD3E0 >= 0)
         {
-            func_800017AC();
-            func_80001AF8();
-            func_80000F00();
+            main_800017AC();
+            main_80001AF8();
+            main_80000F00();
 
             D_800BD3E0 -= 2;
 
@@ -1378,11 +1378,11 @@ static void viLoop(void *arg)
                 {
                     if (D_800BD3F8 != 0)
                     {
-                        func_80000508();
+                        main_80000508();
                     }
                     else
                     {
-                        func_800005D8();
+                        main_800005D8();
                     }
                     osViSetMode(&osViModeTable[_viMode]);
                     osViSetSpecialFeatures(OS_VI_GAMMA_OFF | OS_VI_DITHER_FILTER_ON);
@@ -1390,7 +1390,7 @@ static void viLoop(void *arg)
             }
             break;
         case OS_SC_PRE_NMI_MSG:
-            func_80000450();
+            main_80000450();
             osAfterPreNMI();
             MusStop(3U, 0);
             func_8008A654();
@@ -1404,7 +1404,7 @@ static void viLoop(void *arg)
 }
 
 /*800034F4*/
-static void func_800034F4(void)
+static void main_800034F4(void)
 {
     guPerspective(
         &gpDynamic->projection,
@@ -1449,7 +1449,7 @@ static void func_800034F4(void)
 }
 
 /*800036DC*/
-static void func_800036DC(void)
+static void main_800036DC(void)
 {
     gSPViewport(gpDisplayList++, &D_800DCB10);
     guMtxIdent(&gpDynamic->identity);
@@ -1467,13 +1467,13 @@ static void func_800036DC(void)
     gSPClearGeometryMode(gpDisplayList++, G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
     gSPSetGeometryMode(gpDisplayList++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
     gDPSetTexturePersp(gpDisplayList++, G_TP_PERSP);
-    func_800034F4();
+    main_800034F4();
     gSPTexture(gpDisplayList++, 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON);
     func_8007EF70();
 }
 
 /*80003940*/
-void func_80003940(void)
+void main_80003940(void)
 {
     *(D_801CDC68++) = 0;
     D_801CDB4C = 0;
