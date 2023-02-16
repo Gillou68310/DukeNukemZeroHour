@@ -2,6 +2,13 @@
 #define _EB300_H_
 
 #include "common.h"
+#include "static/mapinfo.h"
+
+typedef struct {
+    /*0x00*/ u16 unk0;
+    /*0x02*/ u16 unk2;
+    /*0x04*/ char *mapname;
+} _EB300UnkStruct1;
 
 void func_801C10C8(void);
 void setCameraPosition(f32 xEye, f32 yEye, f32 zEye, f32 xAt, f32 yAt, f32 zAt, f32 xUp, f32 yUp, f32 zUp);
@@ -31,5 +38,6 @@ void func_801C9E7C(void);
 void func_801C9F74(void);
 
 extern f32 D_801CA144;
+extern _EB300UnkStruct1 D_801CA14C[MAP_NUM+1];
 
 #endif

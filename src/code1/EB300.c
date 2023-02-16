@@ -1,6 +1,11 @@
 #include "common.h"
 #include "code0/8E670.h"
+#include "code1/EB300.h"
 #include "code1/code1.h"
+
+/*.data*/
+/*801CA144*/ EXTERN_DATA f32 D_801CA144;
+/*801CA14C*/ EXTERN_DATA _EB300UnkStruct1 D_801CA14C[MAP_NUM+1];
 
 /*.text*/
 

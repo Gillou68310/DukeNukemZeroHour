@@ -5,6 +5,7 @@ import subprocess
 import idc
 import ida_ua
 import ida_name
+import ida_funcs
 import ida_bytes
 import ida_idaapi
 import ida_diskio
@@ -118,9 +119,10 @@ if os.path.isfile(tilib) and os.path.isfile('ida_ctx.c'):
                     else:
                         print('Failed to apply new size (type not found: + ' + type + ')')
 
-            elif symbol.type == 'function' and symbol.size != 0:
-                for i in range(symbol.size):
-                    ida_ua.create_insn(ea + i)
+            elif symbol.type == 'function':
+                ret = ida_funcs.add_func(symbol.addr, ida_idaapi.BADADDR)
+                for i in range(0, symbol.size, 4):
+                    ida_ua.create_insn(symbol.addr + i)
     else:
         print('Failed to generate type library')
         print(result.stdout)

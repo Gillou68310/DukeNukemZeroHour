@@ -5,11 +5,11 @@
 
 typedef struct
 {
-    s32 unk_00;
-    s32 unk_04;
-    s32 unk_08;
-    s32 unk_0C;
-    s32 unk_10;
+    /*0x00*/ s32 unk_00;
+    /*0x04*/ s32 unk_04;
+    /*0x08*/ s32 unk_08;
+    /*0x0C*/ s32 unk_0C;
+    /*0x10*/ s32 unk_10;
 } _7F6A0UnkStruct1;
 
 void func_8007EF70(void);

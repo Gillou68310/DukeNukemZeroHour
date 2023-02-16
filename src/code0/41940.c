@@ -1,5 +1,19 @@
 #include "common.h"
 #include "code0/engine.h"
+#include "code0/code0.h"
+
+/*.data*/
+/*800DEE80*/ EXTERN_DATA s32 D_800DEE80; /*spritenum?*/
+/*800DEE9C*/ EXTERN_DATA s32 D_800DEE9C;
+/*800DEEA0*/ EXTERN_DATA s32 D_800DEEA0;
+/*800DEEA8*/ EXTERN_DATA s32 D_800DEEA8;
+/*800DEEAC*/ EXTERN_DATA s32 D_800DEEAC;
+/*800DEEB0*/ EXTERN_DATA s32 D_800DEEB0;
+/*800DEEB8*/ EXTERN_DATA s32 D_800DEEB8;
+/*800DEEE4*/ EXTERN_DATA s8 D_800DEEE4;
+/*800DEF1C*/ EXTERN_DATA s32 D_800DEF1C;
+/*800DF1A8*/ EXTERN_DATA s32 D_800DF1A8;
+/*800DF1AC*/ EXTERN_DATA s16 D_800DF1AC[4];
 
 /*.text*/
 
@@ -161,7 +175,135 @@ INCLUDE_ASM("nonmatchings/src/code0/41940", func_80045D34);
 
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80045DA8);
 
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_80045E40);
+/*80045E40*/
+s32 func_80045E40(s32 spritenum, s32 arg1)
+{
+    switch (arg1)
+    {
+    case 0x40000000:
+        arg1 = D_80137DE0->unk44;
+        break;
+    case 0x40000001:
+        arg1 = D_80137DE0->unk48;
+        break;
+    case 0x40000002:
+        arg1 = D_80137DE0->unk4C;
+        break;
+    case 0x40000003:
+        arg1 = D_80137DE0->unk50;
+        break;
+    case 0x40000004:
+        arg1 = D_80137DE0->unk54;
+        break;
+    case 0x40000005:
+        arg1 = D_80137DE0->unk58;
+        break;
+    case 0x40000006:
+        arg1 = D_80137DE0->unk5C;
+        break;
+    case 0x40000007:
+        arg1 = D_80137DE0->unk60;
+        break;
+    case 0x4000000C:
+        arg1 = krand();
+        break;
+    case 0x4000000D:
+        arg1 = D_80137DE0->unk2E;
+        break;
+    case 0x4000000E:
+        arg1 = D_8013B2D0[spritenum].unk2;
+        break;
+    case 0x4000000A:
+        arg1 = D_80137DE0->unk0;
+        break;
+    case 0x40000034:
+        arg1 = D_80137DE0->unk4;
+        break;
+    case 0x40000011:
+        arg1 = D_8013B2D0[spritenum].unk0;
+        break;
+    case 0x40000020:
+        arg1 = D_8013B2D0[spritenum].unk4;
+        break;
+    case 0x40000010:
+        arg1 = 7296;
+        arg1 = (D_80117ED8[D_801A2628].zpos - (D_80118248->z - arg1) - (D_801B0D30 / 2)) >> 8;
+        break;
+    case 0x40000009:
+        arg1 = D_80118248->ang;
+        break;
+    case 0x40000012:
+        arg1 = D_80118248->shade;
+        break;
+    case 0x40000016:
+        arg1 = D_80137DE0->unkA1;
+        break;
+    case 0x40000015:
+        arg1 = D_8013B2D0[spritenum].unk6;
+        break;
+    case 0x40000017:
+        arg1 = D_8012FD88;
+        break;
+    case 0x4000001B:
+        arg1 = D_80118248->cstat;
+        break;
+    case 0x40000018:
+        arg1 = D_80137DE0->unk8;
+        break;
+    case 0x4000001E:
+        arg1 = D_80137DE0->unk9A;
+        break;
+    case 0x40000013:
+    case 0x40000019:
+        arg1 = D_80118248->unk1C;
+        break;
+    case 0x40000022:
+        arg1 = D_80137DE0->unk99;
+        break;
+    case 0x40000023:
+    case 0x40000024:
+        arg1 = D_80137DE0->unk8C;
+        break;
+    case 0x40000025:
+        arg1 = D_80137DE0->unk98;
+        break;
+    case 0x40000027:
+        arg1 = D_80137DE0->unk7C;
+        break;
+    case 0x40000028:
+        arg1 = D_800DEEA8;
+        break;
+    case 0x40000029:
+        arg1 = D_800DEEAC;
+        break;
+    case 0x4000002A:
+        arg1 = D_800DEEB0;
+        break;
+    case 0x4000002B:
+        arg1 = D_80118248->unk1E;
+        break;
+    case 0x4000002C:
+        arg1 = D_80118248->unk20;
+        break;
+    case 0x40000031:
+        arg1 = D_80118248->unk22;
+        break;
+    case 0x40000026:
+        arg1 = D_80137DE0->unk68;
+        break;
+    case 0x40000030:
+        arg1 = D_80137DE0->unk9F;
+        break;
+    case 0x40000032:
+        arg1 = D_80137DE0->unk94;
+        break;
+    case 0x40000035:
+        arg1 = D_80137DE0->unk92;
+        break;
+    }
+    return arg1;
+}
+
 
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_800461E8);
 

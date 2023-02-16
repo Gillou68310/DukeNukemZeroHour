@@ -4,8 +4,6 @@
 #include "code0/35D90.h"
 #include "code0/code0.h"
 
-#define klabs(A) (((A) > 0) ? (A) : -(A))
-
 #define MAXCLIPNUM 512
 #define MAXCLIPDIST 1024
 

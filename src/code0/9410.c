@@ -183,10 +183,10 @@ STATIC void decompressMap(void)
         D_80117ED8[i].xpos = (s32)(2.0f * gMapXpos);
         D_80117ED8[i].ypos = (s32)(2.0f * gMapYpos);
         D_80117ED8[i].zpos = (s32)(32.0f * gMapZpos);
-        updateSector(D_80117ED8[i].xpos, D_80117ED8[i].ypos, &D_80117ED8[i].sectnum);
-        floorz = getFlorzOfSlope(D_80117ED8[i].sectnum, D_80117ED8[i].xpos, D_80117ED8[i].ypos);
+        updateSector(D_80117ED8[i].xpos, D_80117ED8[i].ypos, &D_80117ED8[i].unk32);
+        floorz = getFlorzOfSlope(D_80117ED8[i].unk32, D_80117ED8[i].xpos, D_80117ED8[i].ypos);
         D_80117ED8[i].zpos = floorz - 0x3900;
-        D_80117ED8[i].unk_38 = gpMapInfo[gMapNum].unk2C;
+        D_80117ED8[i].unk38 = gpMapInfo[gMapNum].unk2C;
     }
 }
 #else
@@ -211,7 +211,7 @@ void func_80008E3C(void)
     D_8012F6F0[3] = 0;
     D_801B0820 = 0;
 
-    for (D_801B0820; D_801B0820 < D_8012C470; D_801B0820++)
+    for (; D_801B0820 < D_8012C470; D_801B0820++)
     {
         func_8001FD60(D_801B0820, 0);
         func_80009A14(D_801B0820);
@@ -257,7 +257,7 @@ void func_80008E3C(void)
 
     for (i = 0; i < D_8012C470; i++)
     {
-        D_8019B940[D_80106D50[D_80117ED8[i].unk_4A]].unk_00 &= ~0x100;
+        D_8019B940[D_80106D50[D_80117ED8[i].unk4A]].unk0 &= ~0x100;
     }
     func_80040B70(3);
 }

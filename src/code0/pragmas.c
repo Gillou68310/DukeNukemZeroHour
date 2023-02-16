@@ -127,7 +127,7 @@ s32 nsqrtasm(s32 arg0)
 }
 
 /*8002B660*/
-s32 labs(s32 arg0)
+s32 klabs_(s32 arg0)
 {
     if (arg0 < 0)
     {

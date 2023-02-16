@@ -27,10 +27,10 @@ s32 tileMaskt(u16);
 
 typedef struct
 {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
+    /*0x00*/ u8 unk0;
+    /*0x01*/ u8 unk1;
+    /*0x02*/ u8 unk2;
+    /*0x03*/ u8 unk3;
 } _9410UnkStruct1;
 
 extern f32 gMapXpos;

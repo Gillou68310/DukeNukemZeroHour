@@ -136,14 +136,20 @@ typedef struct
     /*0x12*/ s16 statnum;
     /*0x14*/ s16 ang;
 
-    /*0x16*/ u8 pad[8];
-    /*0x1E*/ s16 unk1E; //tileid
-    /*0x20*/ u8 pad1[5];
+    /*0x16*/ s16 unk16; /*spritenum?*/
+    /*0x18*/ s16 unk18;
+    /*0x18*/ s16 unk1A;
+    /*0x1C*/ s16 unk1C;
+    /*0x1E*/ s16 unk1E;
+    /*0x20*/ s16 unk20;
+    /*0x22*/ s16 unk22; /*spritenum?*/
+    /*0x24*/ u8 unk24;
     /*0x25*/ u8 shade;
     /*0x26*/ u8 clipdist;
     /*0x27*/ u8 xrepeat;
     /*0x28*/ u8 yrepeat;
-    /*0x29*/ u8 pad2[3];
+    /*0x29*/ u8 pad2[2];
+    /*0x2B*/ u8 unk2B;
 
     //s8 shade;
     //char pal;
