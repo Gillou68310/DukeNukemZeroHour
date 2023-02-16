@@ -1308,7 +1308,7 @@ void func_8005D3BC(s32 spritenum, s32 arg1)
     {
         if ((ptr->unk0 == 0xE) || (ptr->unk0 == 0x1D))
         {
-            func_80007A44(1400, spritenum, 0x4E20);
+            audio_80007A44(1400, spritenum, 0x4E20);
         }
     }
 }
@@ -1323,7 +1323,7 @@ void func_8005D430(s32 spritenum, s32 arg1)
     {
         if ((ptr->unk0 == 0x5) || (ptr->unk0 == 0x14))
         {
-            func_80007A44(647, spritenum, 0x4E20);
+            audio_80007A44(647, spritenum, 0x4E20);
         }
     }
 }
@@ -1338,7 +1338,7 @@ void func_8005D4A4(s32 spritenum, s32 arg1)
     {
         if ((ptr->unk0 == 0x5) || (ptr->unk0 == 0x14))
         {
-            func_80007A44(520, spritenum, 0x4E20);
+            audio_80007A44(520, spritenum, 0x4E20);
         }
     }
 }
@@ -1353,7 +1353,7 @@ void func_8005D518(s32 spritenum, s32 arg1)
     {
         if ((ptr->unk0 == 5) || (ptr->unk0 == 0x14))
         {
-            func_80007A44(((krand() % 3) + 0x272) & 0xFFFF, spritenum, 0x84D0);
+            audio_80007A44(((krand() % 3) + 626) & 0xFFFF, spritenum, 0x84D0);
         }
     }
 }
@@ -1416,7 +1416,7 @@ void func_8005DCAC(s32 spritenum, s32 arg1)
 /*8005DCC4*/
 void func_8005DCC4(s32 spritenum, s32 arg1)
 {
-    func_80008574(0, func_80045E40(spritenum, arg1));
+    audio_80008574(0, func_80045E40(spritenum, arg1));
 }
 
 /*8005DCF0*/
@@ -1497,7 +1497,7 @@ void func_8005E000(s32 spritenum, s32 arg1)
 
     if (!MusHandleAsk(D_8013B2D0[spritenum].handle))
     {
-        D_8013B2D0[spritenum].handle = func_80007170(1429);
+        D_8013B2D0[spritenum].handle = playSfx(1429);
     }
     unk22 = D_80118248->unk22;
     if (unk22 == -1)
@@ -1518,7 +1518,7 @@ void func_8005E0E0(s32 spritenum, s32 arg1)
 {
     s32 spritenum_;
 
-    func_80007A44(0x3F6, spritenum, 0xBB80);
+    audio_80007A44(1014, spritenum, 0xBB80);
     spritenum_ = func_8008E3E0(D_80118248->x, D_80118248->y,
                                D_80118248->z, D_80118248->sectnum, 0x37, 0x6B1);
     if (spritenum_ != -1)
@@ -1648,7 +1648,7 @@ INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005E7AC);
 /*8005E9D8*/
 void func_8005E9D8(s32 spritenum, s32 arg1)
 {
-    func_80007A44(0x25A, spritenum, 0x7D00);
+    audio_80007A44(602, spritenum, 0x7D00);
 }
 
 /*8005EA04*/
@@ -1738,13 +1738,13 @@ void func_8005EC88(s32 spritenum, s32 arg1)
 /*8005ED2C*/
 void func_8005ED2C(s32 spritenum, s32 arg1)
 {
-    func_80007170(func_80045E40(spritenum, arg1));
+    playSfx(func_80045E40(spritenum, arg1));
 }
 
 /*8005ED54*/
 void func_8005ED54(s32 spritenum, s32 arg1)
 {
-    s32 spritnum_;
+    s32 spritenum_;
     s32 i;
 
     for (i = 0; i < 3; i++)
@@ -1753,12 +1753,12 @@ void func_8005ED54(s32 spritenum, s32 arg1)
                       D_80118248->z - 0x2000,
                       D_80118248->sectnum, 0x37, 0x852);
     }
-    spritnum_ = func_8008E3E0(D_80118248->x, D_80118248->y,
+    spritenum_ = func_8008E3E0(D_80118248->x, D_80118248->y,
                               D_80118248->z - 0x3000,
                               D_80118248->sectnum, 0x37, 0x852);
-    if (spritnum_ != -1)
+    if (spritenum_ != -1)
     {
-        gpSprite[spritnum_].ang = 0x180;
+        gpSprite[spritenum_].ang = 0x180;
     }
     D_80118248->z -= 0x1600;
     func_80057540(D_80118248, 0x5DC, 5, 0);
@@ -2002,7 +2002,7 @@ void func_8005FA88(s32 spritenum, s32 arg1)
 {
     s32 i;
 
-    func_800077F4(0x2B8, D_80117ED8[0].unk4A);
+    audio_800077F4(696, D_80117ED8[0].unk4A);
     func_800A419C(0, *gpKeyStrInfo[gMapNum]);
     D_80117ED8[0].pad[1] = 1;
 
@@ -2040,7 +2040,7 @@ void func_8005FC34(s32 spritenum, s32 arg1)
 {
     func_800A419C(0, "BABE SAVED!");
     D_801A1958.unk4++;
-    func_800077F4(0x2C0, spritenum);
+    audio_800077F4(704, spritenum);
     func_8008E3E0(gpSprite[spritenum].x, gpSprite[spritenum].y, gpSprite[spritenum].z, gpSprite[spritenum].sectnum, 0x2B, 0);
     func_80036520(0, 0xA);
 }
@@ -2068,5 +2068,5 @@ void func_8005FD4C(s32 spritenum, s32 arg1)
 void func_8005FD60(s32 spritenum, s32 arg1)
 {
     if (D_801CA14C[gMapNum].unk0 == 1 && D_80118248->picnum != 1304)
-        func_80007A44(752, spritenum, 16000);
+        audio_80007A44(752, spritenum, 16000);
 }

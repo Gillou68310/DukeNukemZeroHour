@@ -10,6 +10,7 @@ typedef struct {
     /*0x04*/ char *mapname;
 } _EB300UnkStruct1;
 
+s32 func_801C0FDC(s16);
 void func_801C10C8(void);
 void setCameraPosition(f32 xEye, f32 yEye, f32 zEye, f32 xAt, f32 yAt, f32 zAt, f32 xUp, f32 yUp, f32 zUp);
 void func_801C146C(void);

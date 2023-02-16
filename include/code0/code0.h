@@ -19,6 +19,7 @@ typedef struct
     /*0x4DC0*/ u8 pad3[8192];
 } Dynamic;
 
+/*Player struct*/
 typedef struct
 {
     /*0x00*/ s32 xpos;
@@ -42,13 +43,13 @@ typedef struct
     /*0x3E*/ s16 unk3E;
     /*0x40*/ s32 unk40;
     /*0x44*/ u8 unk44; /*JF*/
-    /*0x45*/ u8 unk45;
+    /*0x45*/ u8 unk45; /*Condition to mute music?*/
     /*0x46*/ s16 unk46;
     /*0x48*/ s16 unk48;
     /*0x4A*/ s16 unk4A; /*spritenum?*/
     /*0x4C*/ s16 unk4C; /*DN*/
     /*0x4E*/ s16 unk4E;
-    /*0x50*/ s16 unk50; /*spritenum?*/
+    /*0x50*/ s16 unk50; /*spritenum?*/  /*Inside mine cart?*/
     /*0x52*/ s16 unk52;
     /*0x54*/ u8 unk54;
     /*0x55*/ u8 unk55;
@@ -265,6 +266,7 @@ typedef struct
 /*80138680*/ _extern s32 D_80138680;
 /*80138688*/ _extern OSTime D_80138688;
 /*80138690*/ _extern s32 D_80138690;
+/*8013871C*/ _extern s32 D_8013871C;
 /*80138778*/ _extern u8 *D_80138778;
 /*80138780*/ _extern u16 D_80138780;
 /*80138830*/ _extern s32 D_80138830;

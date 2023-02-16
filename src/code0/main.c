@@ -488,7 +488,7 @@ static void func_80001038(void)
         func_80000610();
         D_800BD3F0 = 0;
     }
-    func_80006CC0();
+    audio_80006CC0();
     if (D_801AE914 != 0)
     {
         if (D_800BD42C != 0)
@@ -530,7 +530,7 @@ static void func_80001038(void)
         func_8004FC4C();
         func_8004FF08();
         func_800698E8();
-        func_80007AB8();
+        audio_80007AB8();
         func_80040890();
         func_800502A0();
         func_8009542C();

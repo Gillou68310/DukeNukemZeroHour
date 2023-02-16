@@ -17,6 +17,13 @@ typedef struct
     f32 zUp;
 } Position;
 
+/*TODO: This is probably a bigger struct, config?*/
+typedef struct
+{
+    u16 mastervol;
+    u16 musicvol;
+} code1UnkStruct1;
+
 #ifdef _CODE1_C_
 #define _extern
 #else
@@ -51,6 +58,7 @@ typedef struct
 /*801CE478*/ _extern s16 D_801CE478;
 /*801CE480*/ _extern s16 D_801CE480;
 /*801CE48C*/ _extern u16 D_801CE48C;
+/*801CE4B0*/ _extern code1UnkStruct1 D_801CE4B0;
 /*801CE4C6*/ _extern u16 D_801CE4C6[4];
 /*801CE4EA*/ _extern u16 gPerspNorm;
 /*801CE4EC*/ _extern s16 D_801CE4EC;

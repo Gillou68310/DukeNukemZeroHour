@@ -131,7 +131,7 @@ void loadMap(s32 mapnum)
         func_80004A3C(i);
     }
 
-    func_80008710(gMapNum);
+    audio_80008710(gMapNum);
     func_8000EB4C(4U, 0, 0, 0, 0x120);
     func_80094958();
     func_8007AEB4();
