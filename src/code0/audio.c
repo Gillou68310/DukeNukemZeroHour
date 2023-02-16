@@ -65,6 +65,7 @@ extern u8 SFX_BANK_END[];
 /*800BD610*/ EXTERN_DATA STATIC s32 D_800BD610;
 /*800BD618*/ EXTERN_DATA STATIC u8 D_800BD618;
 /*800BD634*/ EXTERN_DATA STATIC musHandle D_800BD634[MAXPLAYERS];
+/*800BD644*/ EXTERN_DATA STATIC u16 D_800BD644[4];
 /*800BD64C*/ EXTERN_DATA STATIC u16 D_800BD64C[8];
 /*800BD65C*/ EXTERN_DATA STATIC u16 D_800BD65C[8];
 /*800BD66C*/ EXTERN_DATA STATIC u16 D_800BD66C[8];
@@ -85,6 +86,7 @@ extern u8 SFX_BANK_END[];
 /*80199754*/ s32 gMusicVolume;
 /*8019A9A0*/ u8 gAmbientPbankBuffer[AMBIENT_PBANK_SIZE] ALIGNED(16);
 /*801A2840*/ u8 gMusicPbankBuffer[MUSIC_PBANK_SIZE] ALIGNED(16);
+/*801AC8D4*/ s16 D_801AC8D4[4];
 /*801B0D3C*/ u16 gSfxCount;
 
 /*.text*/
@@ -526,7 +528,22 @@ musHandle audio_80007A80(musHandle handle, s16 arg1, s32 arg2)
 INCLUDE_ASM("nonmatchings/src/code0/audio", audio_80007AB8);
 
 /*80007FF4*/
-INCLUDE_ASM("nonmatchings/src/code0/audio", audio_80007FF4);
+void audio_80007FF4(void)
+{
+    s16 i;
+    for (i = 0; i < D_8012C470; i++)
+    {
+        if (D_800BD644[i])
+        {
+            D_800BD644[i]--;
+            if (!D_800BD644[i])
+            {
+                MusHandleStop(D_800BD634[i], 0);
+                D_800BD634[i] = playSfx(D_801AC8D4[i]);
+            }
+        }
+    }
+}
 
 /*800080E0*/
 INCLUDE_ASM("nonmatchings/src/code0/audio", audio_800080E0);
