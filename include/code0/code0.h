@@ -237,7 +237,7 @@ typedef struct
 /*800FE410*/ _extern s32 D_800FE410;
 /*800FE416*/ _extern s16 gMapNum;
 /*800FF528*/ _extern u8 *D_800FF528;
-/*800FE944*/ _extern s32 D_800FE944;
+/*800FE944*/ _extern u8 *D_800FE944;
 /*800FE9E0*/ _extern s64 D_800FE9E0;
 /*800FEA90*/ _extern s8 D_800FEA90;
 /*80105550*/ _extern u8 *D_80105550;
@@ -269,11 +269,12 @@ typedef struct
 /*80138680*/ _extern s32 D_80138680;
 /*80138688*/ _extern OSTime D_80138688;
 /*80138690*/ _extern s32 D_80138690;
-/*80138714*/ _extern s32 D_80138714;
+/*80138714*/ _extern u8 *D_80138714;
 /*8013871C*/ _extern s32 D_8013871C;
 /*80138778*/ _extern u8 *D_80138778;
 /*80138780*/ _extern u16 D_80138780;
 /*80138830*/ _extern s32 D_80138830;
+/*80138854*/ _extern u8 *D_80138854; /*cache buffer*/
 /*8013A448*/ _extern u16 D_8013A448[256] ALIGNED(8);
 /*8013B2D0*/ _extern code0UnkStruct5 D_8013B2D0[MAXSPRITES] ALIGNED(16);
 /*8013F920*/ _extern u8 *D_8013F920;
@@ -283,6 +284,7 @@ typedef struct
 /*80168D04*/ _extern u8 *D_80168D04;
 /*80168D08*/ _extern s32 D_80168D08;
 /*80168D18*/ _extern s32 D_80168D18;
+/*80169520*/ _extern u8 D_80169520; /*cache lock*/
 /*8016A148*/ _extern s32 D_8016A148;
 /*8016D174*/ _extern u8 D_8016D174[4];
 /*80197DD4*/ _extern s16 D_80197DD4;

@@ -540,8 +540,7 @@ void edl_80081688(void *handle, s32 id)
     size = info->romend - info->romstart;
     if (size > 0x5B108)
     {
-        while (1)
-            ;
+        while (1);
     }
     readRom(D_801CD96C, info->romstart, size);
     if (isEDL(D_801CD96C) != 0)
@@ -551,7 +550,7 @@ void edl_80081688(void *handle, s32 id)
     }
     else
     {
-        alloCache(handle, size, gCacheLock + 1);
+        alloCache(handle, size, &gCacheLock[1]);
         Bmemcpy(*(u8 **)handle, D_801CD96C, size);
         info->handle = handle;
     }
@@ -567,8 +566,7 @@ void edl_80081760(void *handle, s32 id, void *dst)
     size = info->romend - info->romstart;
     if (size > 0x5B108)
     {
-        while (1)
-            ;
+        while (1);
     }
     readRom(D_801CD96C, info->romstart, size);
     if (isEDL(D_801CD96C) != 0)
@@ -577,7 +575,7 @@ void edl_80081760(void *handle, s32 id, void *dst)
         info->handle = handle;
         return;
     }
-    alloCache(handle, size, gCacheLock + 1);
+    alloCache(handle, size, &gCacheLock[1]);
     Bmemcpy(*(u8 **)handle, D_801CD96C, size);
     info->handle = handle;
 }

@@ -2432,15 +2432,15 @@ static s32 func_80058538(SpriteType *spr, s32 arg1)
 s32 func_80058600(s32 spritenum)
 {
     s32 ret, temp;
-    _FDE0UnkStruct2 *ptr;
+    ModelInfo *model;
 
     ret = 0x3900;
     if (gpSprite[spritenum].cstat & 0x1000)
     {
-        ptr = D_800D52E0[gpSprite[spritenum].picnum-1280];
-        if (ptr != 0)
+        model = D_800D52E0[gpSprite[spritenum].picnum-1280];
+        if (model != NULL)
         {
-            ret = (ptr->unk2E - ptr->unk28) * 32;
+            ret = (model->unk2E - model->unk28) * 32;
             temp = gpSprite[spritenum].xrepeat * ret;
             ret = temp / 64;
         }

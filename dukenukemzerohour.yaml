@@ -53,7 +53,7 @@ segments:
       - [0x9410,  c,        src/code0/9410]
       - [0xFDE0,  c,        src/code0/FDE0]
       - [0x16DF0, c,        gen/code0/16DF0]
-      - [0x16FF0, c,        gen/code0/16FF0]
+      - [0x16FF0, c,        src/code0/16FF0]
       - [0x17B30, c,        gen/code0/17B30]
       - [0x1A7C0, c,        gen/code0/1A7C0]
       - [0x1E7A0, c,        gen/code0/1E7A0]

@@ -1,16 +1,16 @@
 #include "common.h"
-#include "code0/FDE0.h"
+#include "code0/16FF0.h"
 #include "code0/graphics.h"
 #include "code0/code0.h"
 
 /*.data*/
 /*800BD788*/ EXTERN_DATA s32 D_800BD788;
-/*800D52E0*/ EXTERN_DATA _FDE0UnkStruct2 *D_800D52E0[1320];
+/*800D52E0*/ EXTERN_DATA ModelInfo *D_800D52E0[1320];
 /*800D6780*/ EXTERN_DATA s16 D_800D6780; /*D_800D52E0 count*/
 
 /*.text*/
-STATIC s32 func_800115E0(_FDE0UnkStruct2 *);
-STATIC s32 func_800117A4(s32, s32, s32);
+STATIC s32 func_800115E0(ModelInfo *model);
+STATIC s32 func_800117A4(u8 *, u8 *, u8 *);
 
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_8000F1E0);
 
@@ -27,20 +27,22 @@ INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_80011410);
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_800115E0);
 
 /*80011700*/
-void func_80011700(_FDE0UnkStruct2 *arg0)
+void func_80011700(ModelInfo *model)
 {
-    s32 a, b, c;
+    u8 *ramaddr1;
+    u8 *ramaddr2;
+    u8 *ramaddr3;
     _FDE0UnkStruct1 *ptr;
 
-    func_80016D98(arg0);
-    c = arg0->unk4 + arg0->unkE;
-    ptr = arg0->unk18;
-    a = ptr->unk4;
-    b = arg0->unk4 + arg0->unk10;
-    D_800FE944 = arg0->unk4;
-    D_80138714 = arg0->unk4 + arg0->unkC;
-    if ((D_800BD788 == 0) || (func_800115E0(arg0) != 0))
-        func_800117A4(c, a, b);
+    loadModel(model);
+    ramaddr1 = model->ramaddr + model->unkE;
+    ptr = model->unk18;
+    ramaddr2 = ptr->ramaddr;
+    ramaddr3 = model->ramaddr + model->unk10;
+    D_800FE944 = model->ramaddr;
+    D_80138714 = model->ramaddr + model->unkC;
+    if ((D_800BD788 == 0) || (func_800115E0(model) != 0))
+        func_800117A4(ramaddr1, ramaddr2, ramaddr3);
 }
 
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_800117A4);
