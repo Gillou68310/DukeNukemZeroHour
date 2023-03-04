@@ -6,6 +6,7 @@
 #include "code0/engine.h"
 
 #define MAXPLAYERS 4
+#define CODE0_MAXUNK1 150
 
 typedef struct
 {
@@ -201,12 +202,31 @@ typedef struct
 } code0UnkStruct6;
 
 typedef struct {
+    /*0x00*/ s32 fileoff;
+    /*0x04*/ u8 *ramaddr;
+    /*0x08*/ s8 lock;
+    /*0x0C*/ s32 unkC;
+    /*0x10*/ s32 unk10;
+    /*0x14*/ s16 unk14;
+    /*0x18*/ u16 *unk18;
+    /*0x1C*/ u16 *unk1C;
+    /*0x20*/ u8 pad[4];
+}code0unkStruct7;
+
+typedef struct {
     /*0x00*/ s16 unk0;
     /*0x02*/ s16 unk2;
-    /*0x04*/ u8 pad[10];
+    /*0x04*/ code0unkStruct7 *unk4;
+    /*0x08*/ code0unkStruct7 *unk8;
+    /*0x0C*/ s16 unkC;
     /*0x0E*/ s16 unkE;
-    /*0x10*/ u8 pad1[16];
-} code0unkStruct7;
+    /*0x10*/ s16 unk10;
+    /*0x12*/ s16 unk12;
+    /*0x14*/ s16 unk14;
+    /*0x16*/ s16 unk16;
+    /*0x18*/ code0unkStruct7 *unk18;
+    /*0x1C*/ code0unkStruct7 *unk1C;
+} code0unkStruct8;
 
 typedef struct {
     s16 r;
@@ -289,14 +309,14 @@ typedef struct
 /*8016D174*/ _extern u8 D_8016D174[4];
 /*80197DD4*/ _extern s16 D_80197DD4;
 /*80197DE8*/ _extern u8 *D_80197DE8;
-/*80197E40*/ _extern code0unkStruct7 D_80197E40[150] ALIGNED(16);
+/*80197E40*/ _extern code0unkStruct8 D_80197E40[CODE0_MAXUNK1] ALIGNED(16);
 /*80199110*/ _extern f32 D_80199110;
 /*80199114*/ _extern Vtx *D_80199114;
 /*80199524*/ _extern s32 D_80199524;
 /*80199528*/ _extern s32 D_80199528;
 /*80199558*/ _extern s32 D_80199558;
 /*80199750*/ _extern s32 D_80199750;
-/*8019B940*/ _extern code0UnkStruct3 D_8019B940[150] ALIGNED(16);
+/*8019B940*/ _extern code0UnkStruct3 D_8019B940[CODE0_MAXUNK1] ALIGNED(16);
 /*801A1958*/ _extern code0UnkStruct4 D_801A1958 ALIGNED(8);
 /*801A1970*/ _extern s32 D_801A1970;
 /*801A1980*/ _extern f32 D_801A1980;

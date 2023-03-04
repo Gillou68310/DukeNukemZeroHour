@@ -15,7 +15,7 @@
 #define MUSIC_BUFFER_SIZE 8496
 #define AMBIENT_PBANK_SIZE 3836
 #define AMBIENT_BUFFER_SIZE 10000
-#define MAXUNK1 32
+#define AUDIO_MAXUNK1 32
 
 typedef struct
 {
@@ -36,13 +36,13 @@ typedef struct {
     musHandle handle;
     u16 unk4; /*sfxnum?*/
     u16 unk6;
-} unkStruct1;
+} audioUnkStruct1;
 
 typedef struct
 {
     s8 musicnum;
     s8 ambientnum;
-} unkStruct2;
+} audioUnkStruct2;
 
 #define PBANK0_START sounds_bank0_ptr_ROM_START
 #define PBANK0_END sounds_bank0_ptr_ROM_END
@@ -71,11 +71,11 @@ extern u8 SFX_BANK_END[];
 /*800BD66C*/ EXTERN_DATA STATIC u16 D_800BD66C[8];
 /*800BD67C*/ EXTERN_DATA STATIC u16 D_800BD67C[4];
 /*800BD684*/ EXTERN_DATA STATIC u16 D_800BD684[6];
-/*800BD690*/ EXTERN_DATA STATIC unkStruct2 D_800BD690[42];
+/*800BD690*/ EXTERN_DATA STATIC audioUnkStruct2 D_800BD690[42];
 /*800BD6E4*/ EXTERN_DATA STATIC s16 _multiplier[MUSIC_COUNT+AMBIENT_COUNT] ALIGNED(8);
 
 /*.comm*/
-/*800FEA98*/ unkStruct1 D_800FEA98[MAXUNK1] ALIGNED(8);
+/*800FEA98*/ audioUnkStruct1 D_800FEA98[AUDIO_MAXUNK1] ALIGNED(8);
 /*8010A9C0*/ u8 gSfxBankBuffer[SFX_BANK_SIZE] ALIGNED(16);
 /*80129810*/ u8 gMusicBuffer[MUSIC_BUFFER_SIZE] ALIGNED(16);
 /*80138608*/ s16 gMusicNum;
@@ -283,7 +283,7 @@ void audio_80006CC0(void)
         }
     }
 
-    for (i = 0; i < MAXUNK1; i++)
+    for (i = 0; i < AUDIO_MAXUNK1; i++)
     {
         if (MusHandleAsk(D_800FEA98[i].handle) == 0)
         {
@@ -331,7 +331,7 @@ static void audio_80006E60(void)
 {
     s16 i;
 
-    for (i = 0; i < MAXUNK1; i++)
+    for (i = 0; i < AUDIO_MAXUNK1; i++)
     {
         if (D_800FEA98[i].handle)
             MusHandleSetVolume(D_800FEA98[i].handle, 0);
@@ -360,7 +360,7 @@ static void audio_80006F08(void)
         }
     }
 
-    for (i = 0; i < MAXUNK1; i++)
+    for (i = 0; i < AUDIO_MAXUNK1; i++)
     {
         if (D_800FEA98[i].handle)
             MusHandleSetVolume(D_800FEA98[i].handle, (gMasterVolume * 128) / 100U);
@@ -385,7 +385,7 @@ static s32 func_80007084(u16 sfxnum)
     count = 0;
     unk6 = -1;
 
-    for (i = 0; i < MAXUNK1; i++)
+    for (i = 0; i < AUDIO_MAXUNK1; i++)
     {
         if (D_800FEA98[i].handle == NULL)
             ret = i;

@@ -256,7 +256,7 @@ void func_80042124(code0UnkStruct3 *arg0, s32 arg1)
 /*80042140*/
 s32 func_80042140(s32 spritenum)
 {
-    code0unkStruct7 *ptr;
+    code0unkStruct8 *ptr;
 
     ptr = &D_80197E40[D_80106D50[spritenum]];
     if (ptr->unkE == 0)
@@ -712,7 +712,7 @@ STATIC s32 func_80043DE4(s32 spritenum)
 STATIC s32 func_80043E7C(s32 spritenum)
 {
     s32 i, j, result;
-    code0unkStruct7 *ptr;
+    code0unkStruct8 *ptr;
 
     ptr = &D_80197E40[D_80106D50[spritenum]];
     i = *gpInst++;
@@ -734,7 +734,7 @@ STATIC s32 func_80043E7C(s32 spritenum)
 STATIC s32 func_80043F3C(s32 spritenum)
 {
     s32 i, j, result;
-    code0unkStruct7 *ptr;
+    code0unkStruct8 *ptr;
 
     ptr = &D_80197E40[D_80106D50[spritenum]];
     i = *gpInst++;

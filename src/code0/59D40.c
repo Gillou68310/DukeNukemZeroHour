@@ -410,7 +410,7 @@ INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005A4A4);
 /*8005A800*/
 void func_8005A800(s32 spritenum, s32 arg1)
 {
-    code0unkStruct7 *ptr;
+    code0unkStruct8 *ptr;
 
     ptr = &D_80197E40[D_80106D50[spritenum]];
     if (ptr->unkE == 0)
@@ -1216,7 +1216,7 @@ void func_8005CA18(s32 spritenum, s32 arg1)
 /*8005CA28*/
 void func_8005CA28(s32 spritenum, s32 arg1)
 {
-    code0unkStruct7 *ptr;
+    code0unkStruct8 *ptr;
 
     ptr = &D_80197E40[D_80106D50[spritenum]];
     ptr->unk2 = 0;
@@ -1304,7 +1304,7 @@ void func_8005D39C(s32 spritenum, s32 arg1)
 /*8005D3BC*/
 void func_8005D3BC(s32 spritenum, s32 arg1)
 {
-    code0unkStruct7 *ptr;
+    code0unkStruct8 *ptr;
 
     ptr = &D_80197E40[D_80106D50[spritenum]];
     if (ptr->unkE == 0)
@@ -1319,7 +1319,7 @@ void func_8005D3BC(s32 spritenum, s32 arg1)
 /*8005D430*/
 void func_8005D430(s32 spritenum, s32 arg1)
 {
-    code0unkStruct7 *ptr;
+    code0unkStruct8 *ptr;
 
     ptr = &D_80197E40[D_80106D50[spritenum]];
     if (ptr->unkE == 0)
@@ -1334,7 +1334,7 @@ void func_8005D430(s32 spritenum, s32 arg1)
 /*8005D4A4*/
 void func_8005D4A4(s32 spritenum, s32 arg1)
 {
-    code0unkStruct7 *ptr;
+    code0unkStruct8 *ptr;
 
     ptr = &D_80197E40[D_80106D50[spritenum]];
     if (ptr->unkE == 0)
@@ -1349,7 +1349,7 @@ void func_8005D4A4(s32 spritenum, s32 arg1)
 /*8005D518*/
 void func_8005D518(s32 spritenum, s32 arg1)
 {
-    code0unkStruct7 *ptr;
+    code0unkStruct8 *ptr;
 
     ptr = &D_80197E40[D_80106D50[spritenum]];
     if (ptr->unkE == 0)
