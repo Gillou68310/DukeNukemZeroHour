@@ -60,6 +60,7 @@ typedef struct
 /*801CE48C*/ _extern u16 D_801CE48C;
 /*801CE4B0*/ _extern code1UnkStruct1 D_801CE4B0;
 /*801CE4C6*/ _extern u16 D_801CE4C6[4];
+/*801CE4E6*/ _extern u16 D_801CE4E6;
 /*801CE4EA*/ _extern u16 gPerspNorm;
 /*801CE4EC*/ _extern s16 D_801CE4EC;
 /*801CE5AC*/ _extern u16 D_801CE5AC;

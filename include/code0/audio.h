@@ -42,6 +42,7 @@ musHandle audio_8000784C(musHandle handle, s16);
 musHandle audio_80007A44(u16 sfxnum, s16 spritenum, s32);
 musHandle audio_80007A80(musHandle handle, s16, s32);
 void audio_80007AB8(void);
+s32 audio_800080E0(s32, s16);
 void audio_80008574(s16 playernum, u16 sfxnum);
 void audio_80008604(void);
 void audio_800086B0(u16);

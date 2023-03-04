@@ -299,7 +299,7 @@ void audio_80006CC0(void)
 
     if (gMapNum == MAP_PROBING_THE_DEPTHS)
     {
-        if (D_80117ED8->unk50 != -1)
+        if (D_80117ED8[0].unk50 != -1)
         {
             if (gMusicHandle == NULL)
             {
@@ -338,7 +338,7 @@ static void audio_80006E60(void)
     }
 
     MusHandleSetVolume(gAmbientHandle, 0);
-    if ((D_80117ED8->unk45 == 0) || (D_8012C470 >= 2))
+    if ((D_80117ED8[0].unk45 == 0) || (D_8012C470 >= 2))
     {
         MusHandleSetVolume(gMusicHandle, 0);
     }
@@ -350,7 +350,7 @@ static void audio_80006F08(void)
     s16 i;
     s16 volume;
 
-    if (D_80117ED8->unk45 != 0)
+    if (D_80117ED8[0].unk45 != 0)
     {
         if (D_8012C470 == 1)
         {

@@ -78,7 +78,9 @@ typedef struct
     /*0x82*/ s16 unk82;
     /*0x84*/ s16 unk84;
     /*0x86*/ s16 unk86;
-    /*0x88*/ u8 pad[20];
+    /*0x88*/ u8 unk88;
+    /*0x89*/ u8 unk89;
+    /*0x8A*/ u8 pad[18];
 } code0UnkStruct1;
 
 typedef struct
@@ -107,13 +109,13 @@ typedef struct
     /*0x04*/ s32 unk4;
     /*0x08*/ s16 unk8;
     /*0x0A*/ u16 unkA;
-    /*0x0C*/ s32 unkC;
-    /*0x10*/ s32 unk10;
-    /*0x14*/ s32 unk14;
-    /*0x18*/ s32 unk18;
-    /*0x1C*/ s32 unk1C;
-    /*0x20*/ s32 unk20;
-    /*0x24*/ s32 unk24;
+    /*0x0C*/ s32 *unkC;
+    /*0x10*/ s32 *unk10;
+    /*0x14*/ s32 *unk14;
+    /*0x18*/ s32 *unk18;
+    /*0x1C*/ s32 *unk1C;
+    /*0x20*/ s32 *unk20;
+    /*0x24*/ s32 *unk24;
     /*0x28*/ s16 unk28;
     /*0x2A*/ s16 unk2A;
     /*0x2C*/ s16 unk2C;
@@ -133,10 +135,10 @@ typedef struct
     /*0x58*/ s32 unk58;
     /*0x5C*/ s32 unk5C;
     /*0x60*/ s32 unk60; /*spritenum?*/
-    /*0x64*/ s32 unk64;
+    /*0x64*/ intptr_t unk64;
     /*0x68*/ s32 unk68;
-    /*0x6C*/ musHandle unk6C; /*mushandle?*/
-    /*0x70*/ s32 unk70;
+    /*0x6C*/ musHandle unk6C; /*handle?*/
+    /*0x70*/ musHandle unk70; /*handle?*/
     /*0x74*/ s32 unk74;
     /*0x78*/ s32 unk78;
     /*0x7C*/ s16 unk7C;
@@ -235,6 +237,7 @@ typedef struct
 /*800FE410*/ _extern s32 D_800FE410;
 /*800FE416*/ _extern s16 gMapNum;
 /*800FF528*/ _extern u8 *D_800FF528;
+/*800FE944*/ _extern s32 D_800FE944;
 /*800FE9E0*/ _extern s64 D_800FE9E0;
 /*800FEA90*/ _extern s8 D_800FEA90;
 /*80105550*/ _extern u8 *D_80105550;
@@ -266,6 +269,7 @@ typedef struct
 /*80138680*/ _extern s32 D_80138680;
 /*80138688*/ _extern OSTime D_80138688;
 /*80138690*/ _extern s32 D_80138690;
+/*80138714*/ _extern s32 D_80138714;
 /*8013871C*/ _extern s32 D_8013871C;
 /*80138778*/ _extern u8 *D_80138778;
 /*80138780*/ _extern u16 D_80138780;
@@ -277,6 +281,7 @@ typedef struct
 /*80168D0C*/ _extern s16 D_80168D0C;
 /*80168D10*/ _extern s32 D_80168D10;
 /*80168D04*/ _extern u8 *D_80168D04;
+/*80168D08*/ _extern s32 D_80168D08;
 /*80168D18*/ _extern s32 D_80168D18;
 /*8016A148*/ _extern s32 D_8016A148;
 /*8016D174*/ _extern u8 D_8016D174[4];

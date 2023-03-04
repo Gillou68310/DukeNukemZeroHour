@@ -1,8 +1,16 @@
 #include "common.h"
+#include "code0/FDE0.h"
 #include "code0/graphics.h"
 #include "code0/code0.h"
 
+/*.data*/
+/*800BD788*/ EXTERN_DATA s32 D_800BD788;
+/*800D52E0*/ EXTERN_DATA _FDE0UnkStruct2 *D_800D52E0[1320];
+/*800D6780*/ EXTERN_DATA s16 D_800D6780; /*D_800D52E0 count*/
+
 /*.text*/
+STATIC s32 func_800115E0(_FDE0UnkStruct2 *);
+STATIC s32 func_800117A4(s32, s32, s32);
 
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_8000F1E0);
 
@@ -18,7 +26,22 @@ INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_80011410);
 
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_800115E0);
 
-INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_80011700);
+/*80011700*/
+void func_80011700(_FDE0UnkStruct2 *arg0)
+{
+    s32 a, b, c;
+    _FDE0UnkStruct1 *ptr;
+
+    func_80016D98(arg0);
+    c = arg0->unk4 + arg0->unkE;
+    ptr = arg0->unk18;
+    a = ptr->unk4;
+    b = arg0->unk4 + arg0->unk10;
+    D_800FE944 = arg0->unk4;
+    D_80138714 = arg0->unk4 + arg0->unkC;
+    if ((D_800BD788 == 0) || (func_800115E0(arg0) != 0))
+        func_800117A4(c, a, b);
+}
 
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_800117A4);
 
