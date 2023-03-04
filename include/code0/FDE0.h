@@ -32,7 +32,8 @@ typedef struct {
     /*0x2E*/ s16 unk2E;
 } ModelInfo;
 
-void func_8000F3C4(s32, s32, s32, s32, s32, s32);
+/*Skip declaration so it's called with s32 instead*/
+/*void func_8000F3C4(s16 r1, s16 g1, s16 b1, s16 r2, s16 g2, s16 b2);*/
 void func_80011700(ModelInfo *model);
 
 extern s32 D_800BD788;

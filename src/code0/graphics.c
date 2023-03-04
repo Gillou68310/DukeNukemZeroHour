@@ -3,12 +3,12 @@
 
 /*.text*/
 
-void grPositionF(float mf[4][4], float r, float p, float h, float s,
-               float x, float y, float z)
+void grPositionF(f32 mf[4][4], f32 r, f32 p, f32 h, f32 s,
+                 f32 x, f32 y, f32 z)
 {
-    static float dtor = 3.1415926 / 180.0;
-    float sinr, sinp, sinh;
-    float cosr, cosp, cosh;
+    static f32 dtor = 3.1415926 / 180.0;
+    f32 sinr, sinp, sinh;
+    f32 cosr, cosp, cosh;
 
     r *= dtor;
     p *= dtor;
@@ -41,19 +41,19 @@ void grPositionF(float mf[4][4], float r, float p, float h, float s,
     mf[3][3] = 1.0;
 }
 
-void grPosition(Mtx *m, float r, float p, float h, float s,
-              float x, float y, float z)
+void grPosition(Mtx *m, f32 r, f32 p, f32 h, f32 s,
+                f32 x, f32 y, f32 z)
 {
-    float mf[4][4];
+    f32 mf[4][4];
 
     grPositionF(mf, r, p, h, s, x, y, z);
     grMtxF2L(mf, m);
 }
 
-void grPerspectiveF(float mf[4][4], u16 *perspNorm, float fovy, float aspect, float near, float far, float scale)
+void grPerspectiveF(f32 mf[4][4], u16 *perspNorm, f32 fovy, f32 aspect, f32 near, f32 far, f32 scale)
 {
-    float cot;
-    int i, j;
+    f32 cot;
+    s32 i, j;
 
     grMtxIdentF(mf);
 
@@ -86,7 +86,7 @@ void grPerspectiveF(float mf[4][4], u16 *perspNorm, float fovy, float aspect, fl
     }
 }
 
-void grPerspective(Mtx *m, u16 *perspNorm, float fovy, float aspect, float near, float far, float scale)
+void grPerspective(Mtx *m, u16 *perspNorm, f32 fovy, f32 aspect, f32 near, f32 far, f32 scale)
 {
     Matrix4f mf;
 
@@ -94,9 +94,9 @@ void grPerspective(Mtx *m, u16 *perspNorm, float fovy, float aspect, float near,
     grMtxF2L(mf, m);
 }
 
-void grNormalize(float *x, float *y, float *z)
+void grNormalize(f32 *x, f32 *y, f32 *z)
 {
-    float m;
+    f32 m;
 
     m = 1 / sqrtf((*x) * (*x) + (*y) * (*y) + (*z) * (*z));
     *x *= m;
@@ -104,7 +104,7 @@ void grNormalize(float *x, float *y, float *z)
     *z *= m;
 }
 
-void grTranslateF(float mf[4][4], float x, float y, float z)
+void grTranslateF(f32 mf[4][4], f32 x, f32 y, f32 z)
 {
     grMtxIdentF(mf);
 
@@ -113,7 +113,7 @@ void grTranslateF(float mf[4][4], float x, float y, float z)
     mf[3][2] = z;
 }
 
-void grTranslate(Mtx *m, float x, float y, float z)
+void grTranslate(Mtx *m, f32 x, f32 y, f32 z)
 {
     Matrix4f mf;
 
@@ -121,7 +121,7 @@ void grTranslate(Mtx *m, float x, float y, float z)
     grMtxF2L(mf, m);
 }
 
-void grScaleF(float mf[4][4], float x, float y, float z)
+void grScaleF(f32 mf[4][4], f32 x, f32 y, f32 z)
 {
     grMtxIdentF(mf);
 
@@ -131,7 +131,7 @@ void grScaleF(float mf[4][4], float x, float y, float z)
     mf[3][3] = 1;
 }
 
-void grScale(Mtx *m, float x, float y, float z)
+void grScale(Mtx *m, f32 x, f32 y, f32 z)
 {
     Matrix4f mf;
 
@@ -141,7 +141,7 @@ void grScale(Mtx *m, float x, float y, float z)
 
 void grMtxCatL(Mtx *m, Mtx *n, Mtx *res)
 {
-    float mf[4][4], nf[4][4], resf[4][4];
+    f32 mf[4][4], nf[4][4], resf[4][4];
 
     grMtxL2F(mf, m);
     grMtxL2F(nf, n);
@@ -149,10 +149,10 @@ void grMtxCatL(Mtx *m, Mtx *n, Mtx *res)
     grMtxF2L(resf, res);
 }
 
-void grMtxCatF(float mf[4][4], float nf[4][4], float res[4][4])
+void grMtxCatF(f32 mf[4][4], f32 nf[4][4], f32 res[4][4])
 {
-    int i, j, k;
-    float temp[4][4];
+    s32 i, j, k;
+    f32 temp[4][4];
 
     for (i = 0; i < 4; i++)
     {
@@ -176,21 +176,21 @@ void grMtxCatF(float mf[4][4], float nf[4][4], float res[4][4])
     }
 }
 
-void grMtxXFMF(float mf[4][4], float x, float y, float z, float *ox, float *oy, float *oz)
+void grMtxXFMF(f32 mf[4][4], f32 x, f32 y, f32 z, f32 *ox, f32 *oy, f32 *oz)
 {
     *ox = mf[0][0] * x + mf[1][0] * y + mf[2][0] * z + mf[3][0];
     *oy = mf[0][1] * x + mf[1][1] * y + mf[2][1] * z + mf[3][1];
     *oz = mf[0][2] * x + mf[1][2] * y + mf[2][2] * z + mf[3][2];
 }
 
-void grMtxF2L(float mf[4][4], Mtx *m)
+void grMtxF2L(f32 mf[4][4], Mtx *m)
 {
-    int i, j;
-    int e1, e2;
-    int *ai, *af;
+    s32 i, j;
+    s32 e1, e2;
+    s32 *ai, *af;
 
-    ai = (int *)&m->m[0][0];
-    af = (int *)&m->m[2][0];
+    ai = (s32 *)&m->m[0][0];
+    af = (s32 *)&m->m[2][0];
 
     for (i = 0; i < 4; i++)
         for (j = 0; j < 2; j++)
@@ -202,32 +202,32 @@ void grMtxF2L(float mf[4][4], Mtx *m)
         }
 }
 
-void grMtxL2F(float mf[4][4], Mtx *m)
+void grMtxL2F(f32 mf[4][4], Mtx *m)
 {
-    int i, j;
-    unsigned int e1, e2;
-    unsigned int *ai, *af;
-    int q1, q2;
+    s32 i, j;
+    u32 e1, e2;
+    u32 *ai, *af;
+    s32 q1, q2;
 
-    ai = (unsigned int *)&m->m[0][0];
-    af = (unsigned int *)&m->m[2][0];
+    ai = (u32 *)&m->m[0][0];
+    af = (u32 *)&m->m[2][0];
 
     for (i = 0; i < 4; i++)
         for (j = 0; j < 2; j++)
         {
             e1 = (*ai & 0xffff0000) | ((*af >> 16) & 0xffff);
             e2 = ((*(ai++) << 16) & 0xffff0000) | (*(af++) & 0xffff);
-            q1 = *((int *)&e1);
-            q2 = *((int *)&e2);
+            q1 = *((s32 *)&e1);
+            q2 = *((s32 *)&e2);
 
             mf[i][j * 2] = FIX32TOF(q1);
             mf[i][j * 2 + 1] = FIX32TOF(q2);
         }
 }
 
-void grMtxIdentF(float mf[4][4])
+void grMtxIdentF(f32 mf[4][4])
 {
-    int i, j;
+    s32 i, j;
 
     for (i = 0; i < 4; i++)
         for (j = 0; j < 4; j++)
@@ -237,11 +237,11 @@ void grMtxIdentF(float mf[4][4])
                 mf[i][j] = 0.0;
 }
 
-void grLookAtF(float mf[4][4], float xEye, float yEye, float zEye,
-             float xAt, float yAt, float zAt,
-             float xUp, float yUp, float zUp)
+void grLookAtF(f32 mf[4][4], f32 xEye, f32 yEye, f32 zEye,
+               f32 xAt, f32 yAt, f32 zAt,
+               f32 xUp, f32 yUp, f32 zUp)
 {
-    float len, xLook, yLook, zLook, xRight, yRight, zRight;
+    f32 len, xLook, yLook, zLook, xRight, yRight, zRight;
 
     grMtxIdentF(mf);
 
@@ -296,12 +296,12 @@ void grLookAtF(float mf[4][4], float xEye, float yEye, float zEye,
     mf[3][3] = 1;
 }
 
-void grLookAtReflectF(float mf[4][4], LookAt *l,
-                    float xEye, float yEye, float zEye,
-                    float xAt, float yAt, float zAt,
-                    float xUp, float yUp, float zUp)
+void grLookAtReflectF(f32 mf[4][4], LookAt *l,
+                      f32 xEye, f32 yEye, f32 zEye,
+                      f32 xAt, f32 yAt, f32 zAt,
+                      f32 xUp, f32 yUp, f32 zUp)
 {
-    float len, xLook, yLook, zLook, xRight, yRight, zRight;
+    f32 len, xLook, yLook, zLook, xRight, yRight, zRight;
 
     grMtxIdentF(mf);
 
@@ -381,11 +381,11 @@ void grLookAtReflectF(float mf[4][4], LookAt *l,
     mf[3][3] = 1;
 }
 
-void grLookAtReflect(Mtx *m, LookAt *l, float xEye, float yEye, float zEye,
-                   float xAt, float yAt, float zAt,
-                   float xUp, float yUp, float zUp)
+void grLookAtReflect(Mtx *m, LookAt *l, f32 xEye, f32 yEye, f32 zEye,
+                     f32 xAt, f32 yAt, f32 zAt,
+                     f32 xUp, f32 yUp, f32 zUp)
 {
-    float mf[4][4];
+    f32 mf[4][4];
 
     grLookAtReflectF(mf, l, xEye, yEye, zEye, xAt, yAt, zAt,
                    xUp, yUp, zUp);

@@ -315,6 +315,7 @@ typedef struct
 /*80199524*/ _extern s32 D_80199524;
 /*80199528*/ _extern s32 D_80199528;
 /*80199558*/ _extern s32 D_80199558;
+/*8019956C*/ _extern u8 D_8019956C;
 /*80199750*/ _extern s32 D_80199750;
 /*8019B940*/ _extern code0UnkStruct3 D_8019B940[CODE0_MAXUNK1] ALIGNED(16);
 /*801A1958*/ _extern code0UnkStruct4 D_801A1958 ALIGNED(8);
