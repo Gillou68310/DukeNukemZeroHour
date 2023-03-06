@@ -1,27 +1,46 @@
 #include "common.h"
 #include "code0/2ABE0.h"
+#include "code0/4600.h"
+#include "code0/pragmas.h"
 #include "code0/code0.h"
 
 #define PI 3.14159265359
-#define MAXUNK1 1266
-#define MAXUNK2 40
+#define _4600_MAXUNK1 1266
+#define _4600_MAXUNK2 40
+#define _4600_MAXUNK3 489
+#define _4600_MAXUNK4 83
 
 /*.text*/
+STATIC void func_80003B4C(f32, f32, s16);
 static void func_80004CFC(u16 secnum);
 static void func_80004F14(u16 secnum);
 
 /*.data*/
-/*800BD442*/ EXTERN_DATA STATIC u16 D_800BD442;
-/*800BD444*/ EXTERN_DATA STATIC u16 D_800BD444;
+/*800BD430*/ static u16 D_800BD430[9] = {0x1, 0x2, 0x4, 0x8, 0x10, 0x20, 0x40, 0x80, 0x100};
+/*800BD442*/ static u16 D_800BD442 = 0;
+/*800BD444*/ static u16 D_800BD444 = 0;
 
 /*.comm*/
+/*800FEBA0*/ f32 D_800FEBA0[512] ALIGNED(16);
 /*800FF52C*/ s32 D_800FF52C;
+/*8012BBD0*/ u8 D_8012BBD0[_4600_MAXUNK4] ALIGNED(8);
+/*8012C7A0*/ u8 D_8012C7A0[_4600_MAXUNK3] ALIGNED(8);
+/*8012D210*/ s32 D_8012D210;
 /*8012DEF8*/ s16 D_8012DEF8;
-/*8012E160*/ s16 D_8012E160[MAXUNK1] ALIGNED(16);
-/*80138628*/ u16 D_80138628[MAXUNK2] ALIGNED(8);
-/*80138720*/ u16 D_80138720[MAXUNK2] ALIGNED(8);
+/*8012E160*/ s16 D_8012E160[_4600_MAXUNK1] ALIGNED(16);
+/*80138628*/ u16 D_80138628[_4600_MAXUNK2] ALIGNED(8);
+/*80138720*/ u16 D_80138720[_4600_MAXUNK2] ALIGNED(8);
+/*80168D20*/ f32 D_80168D20[512] ALIGNED(16);
+/*80169D40*/ u16 D_80169D40[512] ALIGNED(16);
 /*8016A160*/ s32 D_8016A160;
-/*801AFE20*/ s16 D_801AFE20[MAXUNK1] ALIGNED(16);
+/*80197D78*/ u8 D_80197D78[_4600_MAXUNK4] ALIGNED(8);
+/*80199758*/ u8 D_80199758[_4600_MAXUNK3] ALIGNED(8);
+/*80199958*/ s32 D_80199958;
+/*801A1988*/ s32 D_801A1988;
+/*801A2630*/ u8 D_801A2630[_4600_MAXUNK4] ALIGNED(8);
+/*801AE9C8*/ s32 D_801AE9C8;
+/*801AFE20*/ s16 D_801AFE20[_4600_MAXUNK1] ALIGNED(16);
+/*801C0D58*/ s32 D_801C0D58;
 
 /*80003A00*/
 static f32 func_80003A00(f32 arg0)
@@ -60,9 +79,132 @@ static f32 func_80003B00(f32 arg0, f32 arg1, f32 arg2, f32 arg3)
 
 INCLUDE_ASM("nonmatchings/src/code0/4600", func_80003B4C);
 
-INCLUDE_ASM("nonmatchings/src/code0/4600", func_800042D8);
+/*800042D8*/
+s32 func_800042D8(s32 arg0, f32 arg1, f32 arg2)
+{
+    s32 i;
 
-INCLUDE_ASM("nonmatchings/src/code0/4600", func_800043F4);
+    for (i = 0; i < D_801A1988; i++)
+    {
+        if ((D_80169D40[i] == arg0) && (func_80003A74(arg1, D_800FEBA0[i]) <= 0.0f))
+        {
+            if (func_80003A74(arg2, D_80168D20[i]) >= 0.0f)
+                return 0;
+        }
+    }
+    return 1;
+}
+
+/*800043F4*/
+void func_800043F4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, u16 arg4)
+{
+    f32 f1, f2, f3, f4, f5;
+    s16 secnum;
+    s32 i, j;
+
+    D_8012FC40 = 1;
+    f1 = (klabs(D_8016A15C) * 0.7999999999999999) + 0.6283185307179999;
+
+    if (sinf(D_801AC8E0) > 0.0f)
+        f2 = sinf(D_801AC8E0);
+    else
+        f2 = -sinf(D_801AC8E0);
+
+    if (cosf(D_801AC8E0) > 0.0f)
+        f1 *= (f2 + cosf(D_801AC8E0));
+    else
+        f1 *= (f2 - cosf(D_801AC8E0));
+
+    f3 = func_80003A00((3.14159265359 - arg3));
+    D_801C0D58 = f3;
+    D_801AE9C8 = arg0;
+    D_8012D210 = arg1;
+    D_80199958 = arg2;
+    D_80199750 = 0;
+    D_80168D10 = 0;
+    D_80199528 = 0;
+    D_801A1988 = 0;
+    D_80138790 = 0;
+    f4 = f3 - f1;
+    Bmemset(D_8012C7A0, 0, sizeof(D_8012C7A0));
+    Bmemset(D_80199758, 0, sizeof(D_80199758));
+    Bmemset(D_8012BBD0, 0, sizeof(D_8012BBD0));
+    Bmemset(D_801A2630, 0, sizeof(D_801A2630));
+    Bmemset(D_80197D78, 0, sizeof(D_80197D78));
+    f5 = f3 + f1;
+
+    func_80003B4C(f4, f5, arg4);
+
+    for (i = 0; i < _4600_MAXUNK3; i++)
+    {
+        if (D_8012C7A0[i] != 0)
+        {
+            for (j = 0; j < 8; j++)
+            {
+                if (D_8012C7A0[i] & D_800BD430[j])
+                {
+                    D_8013A448[D_80199750] = (i * 8) + j;
+                    D_80199750++;
+                }
+            }
+        }
+    }
+
+    for (i = 0; i < (_4600_MAXUNK4-1); i++)
+    {
+        if (D_8012BBD0[i] != 0)
+        {
+            for (j = 0; j < 8; j++)
+            {
+                if (D_8012BBD0[i] & D_800BD430[j])
+                {
+                    D_801A2690[D_80199528] = (i * 8) + j;
+                    D_80199528++;
+                }
+            }
+        }
+    }
+
+    for (i = 0; i < (_4600_MAXUNK4-1); i++)
+    {
+        if (D_801A2630[i] != 0)
+        {
+            for (j = 0; j < 8; j++)
+            {
+                if (D_801A2630[i] & D_800BD430[j])
+                {
+                    D_80199650[D_80168D10] = (i * 8) + j;
+                    D_80168D10++;
+                }
+            }
+        }
+    }
+
+    for (i = 0; i < (_4600_MAXUNK4-1); i++)
+    {
+        if (D_80197D78[i] != 0)
+        {
+            for (j = 0; j < 8; j++)
+            {
+                if (D_80197D78[i] & D_800BD430[j])
+                {
+                    secnum = (i * 8) + j;
+                    D_800FF3E8[D_80138790] = secnum;
+
+                    if ((gpSector[secnum].ceilingstat & 1) || (gpSector[secnum].floorstat & 1))
+                        D_8012FC40 = 0;
+
+                    D_80138790++;
+                }
+            }
+        }
+    }
+
+    D_800FF3E8[D_80138790] = 0xFFFF;
+    D_80199650[D_80168D10] = 0xFFFF;
+    D_801A2690[D_80199528] = 0xFFFF;
+    D_8013A448[D_80199750] = 0xFFFF;
+}
 
 /*8000491C*/
 static void _memcpy(u8 *dst, u8 *src, s32 size)
@@ -210,7 +352,7 @@ static void func_80004CFC(u16 secnum)
     vtxnum = 0;
     vtx = NULL;
 
-    for (i = 0; i < MAXUNK2; i++)
+    for (i = 0; i < _4600_MAXUNK2; i++)
     {
         if (D_80138628[i] == secnum)
             return;
@@ -232,7 +374,7 @@ static void func_80004CFC(u16 secnum)
     D_80138720[D_800BD442] = D_800BD444;
     D_800BD442++;
 
-    if (D_800BD442 >= (MAXUNK2+1))
+    if (D_800BD442 > _4600_MAXUNK2)
     {
         printf("D_800BD442: %d\n", D_800BD442);
         exit(0);
@@ -244,7 +386,7 @@ static void func_80004CFC(u16 secnum)
         D_8012E160[D_800BD444] = vtx->v.ob[1] - D_8016A160;
         vtx++;
         D_800BD444++;
-        if (D_800BD444 >= (MAXUNK1+1))
+        if (D_800BD444 > _4600_MAXUNK1)
         {
             printf("D_800BD444: %d\n", D_800BD444);
             exit(0);
@@ -285,7 +427,7 @@ static void func_80004F14(u16 secnum)
         vtx = &gpVertex[gpSector[secnum].floorvtxptr];
 
 
-    for (j = 0; j < MAXUNK2; j++)
+    for (j = 0; j < _4600_MAXUNK2; j++)
     {
         if (D_80138628[j] == secnum)
             goto rotate;

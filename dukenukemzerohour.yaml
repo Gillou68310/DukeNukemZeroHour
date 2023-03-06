@@ -270,7 +270,7 @@ segments:
       - [0xBD1B0, bin,      ucode/aspMain.text]
     #.data section
       - [0xBDFD0, .data,    src/code0/main]
-      - [0xBE030, data,     code0/4600]
+      - [0xBE030, .data,    src/code0/4600]
       - [0xBE050, .data,    src/code0/graphics]
       - [0xBE060, data,     code0/audio]
       - [0xBE310, data,     code0/9410]
