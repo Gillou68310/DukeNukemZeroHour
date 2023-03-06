@@ -2,7 +2,7 @@
 #define _16FF0_H_
 
 #include "common.h"
-#include "code0/FDE0.h"
+#include "code0/modelinfo.h"
 
 void loadModel(ModelInfo *model);
 

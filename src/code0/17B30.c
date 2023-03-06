@@ -3,7 +3,6 @@
 #include "code0/cache1d.h"
 #include "code0/edl.h"
 #include "code0/4600.h"
-#include "code0/FDE0.h"
 #include "code0/code0.h"
 
 extern u8 files_blks_ROM_START[];

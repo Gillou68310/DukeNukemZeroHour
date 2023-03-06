@@ -6,8 +6,6 @@
 
 /*.data*/
 /*800BD788*/ EXTERN_DATA s32 D_800BD788;
-/*800D52E0*/ EXTERN_DATA ModelInfo *D_800D52E0[1320];
-/*800D6780*/ EXTERN_DATA s16 D_800D6780; /*D_800D52E0 count*/
 
 /*.comm*/
 /*800FE414*/ u8 D_800FE414;
@@ -45,7 +43,7 @@ void func_80011700(ModelInfo *model)
     u8 *ramaddr1;
     u8 *ramaddr2;
     u8 *ramaddr3;
-    _FDE0UnkStruct1 *ptr;
+    ModelInfoUnkStruct1 *ptr;
 
     loadModel(model);
     ramaddr1 = model->ramaddr + model->unkE;
