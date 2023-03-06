@@ -120,9 +120,8 @@ s32 scale(s32 arg0, s32 arg1, s32 arg2)
 s32 nsqrtasm(s32 arg0)
 {
     if (arg0 < 0)
-    {
         return 1;
-    }
+
     return (s32)sqrtf((f64)arg0);
 }
 
@@ -130,13 +129,9 @@ s32 nsqrtasm(s32 arg0)
 s32 klabs_(s32 arg0)
 {
     if (arg0 < 0)
-    {
         return -arg0;
-    }
     else
-    {
         return arg0;
-    }
 }
 
 /*8002B674*/

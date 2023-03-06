@@ -70,9 +70,7 @@ static void _memcpy(u8 *dst, u8 *src, s32 size)
     s32 i;
 
     for (i = size; i != 0; i--)
-    {
         *dst++ = *src++;
-    }
 }
 
 /*80004944*/
@@ -101,9 +99,7 @@ static void _memset(u8 *dst, u8 value, s32 size)
     s32 i;
 
     for (i = size; i != 0; i--)
-    {
         *dst++ = value;
-    }
 }
 
 /*800049C8*/
@@ -113,13 +109,9 @@ void Bmemset(void *dst, u8 value, u32 size)
     s32 val;
 
     if (((intptr_t)dst & 3) != 0)
-    {
         _memset(dst, value, size);
-    }
     else if ((size & 3) != 0)
-    {
         _memset(dst, value, size);
-    }
     else
     {
         val = value | (value << 8) | (value << 16) | value << 24;
@@ -221,27 +213,20 @@ static void func_80004CFC(u16 secnum)
     for (i = 0; i < MAXUNK2; i++)
     {
         if (D_80138628[i] == secnum)
-        {
             return;
-        }
     }
 
-    if (gpSector[secnum].ceilingstat & 64)
-    {
+    if (gpSector[secnum].ceilingstat & 0x40)
         vtxnum += gpSector[secnum].ceilingvtxnum * 3;
-    }
-    if (gpSector[secnum].floorstat & 64)
-    {
+
+    if (gpSector[secnum].floorstat & 0x40)
         vtxnum += gpSector[secnum].floorvtxnum * 3;
-    }
-    if (gpSector[secnum].ceilingstat & 64)
-    {
+
+    if (gpSector[secnum].ceilingstat & 0x40)
         vtx = &gpVertex[gpSector[secnum].ceilingvtxptr];
-    }
-    if (gpSector[secnum].floorstat & 64)
-    {
+
+    if (gpSector[secnum].floorstat & 0x40)
         vtx = &gpVertex[gpSector[secnum].floorvtxptr];
-    }
 
     D_80138628[D_800BD442] = secnum;
     D_80138720[D_800BD442] = D_800BD444;
@@ -287,29 +272,23 @@ static void func_80004F14(u16 secnum)
     vtxnum = 0;
     vtx = NULL;
 
-    if (gpSector[secnum].ceilingstat & 64)
-    {
+    if (gpSector[secnum].ceilingstat & 0x40)
         vtxnum = gpSector[secnum].ceilingvtxnum * 3;
-    }
-    if (gpSector[secnum].floorstat & 64)
-    {
+
+    if (gpSector[secnum].floorstat & 0x40)
         vtxnum += gpSector[secnum].floorvtxnum * 3;
-    }
-    if (gpSector[secnum].ceilingstat & 64)
-    {
+
+    if (gpSector[secnum].ceilingstat & 0x40)
         vtx = &gpVertex[gpSector[secnum].ceilingvtxptr];
-    }
-    if (gpSector[secnum].floorstat & 64)
-    {
+
+    if (gpSector[secnum].floorstat & 0x40)
         vtx = &gpVertex[gpSector[secnum].floorvtxptr];
-    }
+
 
     for (j = 0; j < MAXUNK2; j++)
     {
         if (D_80138628[j] == secnum)
-        {
             goto rotate;
-        }
     }
     return;
 

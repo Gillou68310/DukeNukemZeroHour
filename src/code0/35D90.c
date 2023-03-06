@@ -8,20 +8,18 @@
 s16 getTileSizeX(u16 tileid)
 {
     if ((getTileNum(tileid)) != 1)
-    {
         return gpTileInfo[getTileNum(tileid)].sizex;
-    }
-    return 0;
+    else
+        return 0;
 }
 
 /*800351F4*/
 s16 getTileSizeY(u16 tileid)
 {
     if ((getTileNum(tileid)) != 1)
-    {
         return gpTileInfo[getTileNum(tileid)].sizey;
-    }
-    return 0;
+    else
+        return 0;
 }
 
 /*80035258*/

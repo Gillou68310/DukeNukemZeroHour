@@ -27,7 +27,7 @@
 #define MAXTILESIZE 32832
 
 #define SATURATE_U8(A) \
-    (((A) >= 256) ? 255 : A)
+    (((A) > 255) ? 255 : A)
 
 /*.data*/
 /*800BD724*/ EXTERN_DATA STATIC u8 *_tileROMAddr;
@@ -84,7 +84,7 @@ void loadMap(s32 mapnum)
     s32 i;
     code0UnkStruct5 *ptr;
 
-    MusStop(3U, 0);
+    MusStop(3, 0);
     cache1d_8002AAEC();
     func_801C14D4();
     gNumSectors = gpMapInfo[mapnum].sectors;
@@ -93,10 +93,10 @@ void loadMap(s32 mapnum)
     alloCache(&gpSector, gNumSectors * sizeof(SectorType), &_sectorsLock);
     alloCache(&gpWall, gNumWalls * sizeof(WallType), &_wallsLock);
     alloCache(&gpSprite, MAXSPRITES * sizeof(SpriteType), &_spritesLock);
-    Bmemset(gpSprite, 0U, MAXSPRITES * sizeof(SpriteType));
+    Bmemset(gpSprite, 0, MAXSPRITES * sizeof(SpriteType));
     func_80004C84();
     gMapNum = mapnum;
-    Bmemset(&D_801A1958, 0U, 0x14U);
+    Bmemset(&D_801A1958, 0, sizeof(D_801A1958));
     alloCache(&gpMapBuffer, gpMapInfo[mapnum].rom_end - gpMapInfo[mapnum].rom_start, &_mapLock);
     readRom(gpMapBuffer, gpMapInfo[mapnum].rom_start, gpMapInfo[mapnum].rom_end - gpMapInfo[mapnum].rom_start);
     initSpriteLists();
@@ -132,7 +132,7 @@ void loadMap(s32 mapnum)
     }
 
     audio_80008710(gMapNum);
-    func_8000EB4C(4U, 0, 0, 0, 0x120);
+    func_8000EB4C(4, 0, 0, 0, 288);
     func_80094958();
     func_8007AEB4();
     func_80086410();
@@ -230,35 +230,32 @@ void func_80008E3C(void)
         value = (value < 0) ? 0 : value;
         sprintf(buffer, "%02d:%02d", value / 60, value % 60);
 
-        func_80029130(0xFF, 0x80, 0, 0, 0, 0);
+        func_80029130(255, 128, 0, 0, 0, 0);
         if ((D_8012C470 == 3) && (D_800DCBD5 == 0))
-        {
-            func_8001C9E4(0xCF, 0xA4, buffer);
-        }
+            func_8001C9E4(207, 164, buffer);
         else
-        {
-            func_8001CBAC(-1, 0x70, buffer);
-        }
+            func_8001CBAC(-1, 112, buffer);
     }
+
     if (!func_800099D0() && (D_800DF98C != 0))
     {
         func_8000A070();
         debugMenu();
     }
+
     func_80020510();
+
     if (D_801AE914 != 0)
-    {
-        func_8000EB4C(4U, 0, 0, 0, 0xC4);
-    }
+        func_8000EB4C(4, 0, 0, 0, 196);
+
     func_8000EBF0(4, 0);
 
     gDisplayListSize = ((uintptr_t)gpDisplayList - (uintptr_t)gDisplayList[gGfxTaskIndex]) / sizeof(Gfx);
     gVertexN64Size = ((uintptr_t)gpVertexN64 - (uintptr_t)gVertexN64[gGfxTaskIndex]) / sizeof(Vtx);
 
     for (i = 0; i < D_8012C470; i++)
-    {
         D_8019B940[D_80106D50[D_80117ED8[i].unk4A]].unk0 &= ~0x100;
-    }
+
     func_80040B70(3);
 }
 
@@ -299,7 +296,7 @@ static u8 func_800099D0(void)
     size = ((uintptr_t)gpDisplayList - (uintptr_t)gDisplayList[gGfxTaskIndex]) / sizeof(Gfx);
     size = gDisplayListMaxSize - size;
     gDisplayListRemainingSize = size;
-    return gDisplayListRemainingSize < 2048U;
+    return gDisplayListRemainingSize < 2048;
 }
 
 INCLUDE_ASM("nonmatchings/src/code0/9410", func_80009A14);
@@ -344,7 +341,7 @@ static void func_8000A634(void)
         {
             wallnum = D_8012BC70[i].unk0 & 0x7FFF;
             tileid = gpWall[wallnum].overpicnum;
-            if ((tileid == 0x14B4) || (tileid == 0x17C0))
+            if ((tileid == 5300) || (tileid == 6080))
             {
                 if (D_800BD74B == 0)
                 {
@@ -502,18 +499,14 @@ STATIC void func_8000B9C0(s16 tileid)
     s16 tilenum;
 
     if (D_801CDBCC != 0)
-    {
-        tileid = 0x173C;
-    }
+        tileid = 5948;
 
     if (D_8012DEFC == tileid)
         return;
 
     tilenum = getTileNum(tileid);
     if (gpTileInfo[tilenum].picanm&192)
-    {
         tilenum += animateOffs(tileid, 0);
-    }
 
     gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(tilenum));
     gDPLoadTextureBlock_4b(gpDisplayList++, loadTile(tilenum)+32, G_IM_FMT_CI,
@@ -538,9 +531,7 @@ void func_8000BDB0(s16 tileid)
 
     tilenum = getTileNum(tileid);
     if (gpTileInfo[tilenum].picanm&192)
-    {
         tilenum += animateOffs(tileid, 0);
-    }
 
     gDPLoadTextureBlock_4b(gpDisplayList++, loadTile(tilenum)+32, G_IM_FMT_I,
                            gpTileInfo[tilenum].dimx, gpTileInfo[tilenum].dimy, 0, 0, 0,
@@ -608,9 +599,8 @@ static void drawWalls(void)
             if (D_801C0D6C > 0)
             {
                 if (gpWall[wallnum].cstat & 2)
-                {
                     func_8000B9C0(gpWall[gpWall[wallnum].nextwall].picnum);
-                }
+
                 func_8000B6A8(D_801C0D6C);
             }
         }
@@ -818,18 +808,13 @@ u16 getTileNum(u16 tileid)
     u16 tilenum;
 
     if (tileid == 0)
-    {
         return 0;
-    }
     tilenum = gTilemap[tileid];
+
     if (tilenum == MAXTILES)
-    {
         return 1;
-    }
     else
-    {
         return tilenum;
-    }
 }
 
 /*8000E0D8*/
@@ -838,13 +823,10 @@ static void initTileMap(void)
     u16 i;
 
     for (i = 0; i < MAXTILES; i++)
-    {
         gTilemap[i] = MAXTILES;
-    }
+
     for (i = 0; i < TILENUM; i++)
-    {
         gTilemap[gpTileInfo[i].tileid] = i;
-    }
 }
 
 /*8000E160*/
@@ -874,14 +856,12 @@ u8 *loadTile(u16 tilenum)
         D_80169580[tilenum] = 0x82;
         return gpTileInfo[tilenum].ramaddr;
     }
+
     if (gpTileInfo[tilenum].flags & 0x80)
-    {
         size = (gpTileInfo[tilenum].dimx * gpTileInfo[tilenum].dimy);
-    }
     else
-    {
         size = (((gpTileInfo[tilenum].dimx * gpTileInfo[tilenum].dimy) / 2) + 32);
-    }
+
     if (size <= MAXTILESIZE)
     {
         D_80169580[tilenum] = 0x82;
@@ -889,10 +869,10 @@ u8 *loadTile(u16 tilenum)
         romAddr = _tileROMAddr;
         romAddr = romAddr + gpTileInfo[tilenum].fileoff;
         readRom(gTileBuffer, romAddr, (gpTileInfo[tilenum].filesize + 1) & ~1);
+
         if ((s16)(decompressEDL(gTileBuffer, gpTileInfo[tilenum].ramaddr)) != 0)
-        {
             Bmemcpy(gpTileInfo[tilenum].ramaddr, gTileBuffer, size);
-        }
+
         if (!(gpTileInfo[tilenum].flags & 0x80))
         {
             ptr = gpTileInfo[tilenum].ramaddr;

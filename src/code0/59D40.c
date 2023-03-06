@@ -94,14 +94,13 @@ void func_80059348(s32 spritenum, s32 arg1)
         gpSprite[spritenum1].unk1E = 2;
         unk4A = D_80117ED8[0].unk4A;
         spritenum2 = getVar(spritenum, arg1);
+
         if (spritenum2 == 4)
-        {
             krand();
-        }
+
         if ((spritenum2 == 6) || (spritenum2 == 2))
-        {
             gpSprite[spritenum1].unk1E = 9;
-        }
+
         gpSprite[spritenum1].unk20 = spritenum;
         func_800494DC(unk4A, 8, spritenum1, 0);
         deleteSprite(spritenum1);
@@ -127,7 +126,7 @@ void func_80059460(s32 spritenum, s32 arg1)
 void func_8005952C(s32 spritenum, s32 arg1)
 {
     func_8004BFDC(spritenum, 3, gpSprite[spritenum].z, 0);
-    func_8004AB6C(spritenum, 0x3E8, 0x19, 0x32, 0x4B, 0x64, 0);
+    func_8004AB6C(spritenum, 1000, 25, 50, 75, 100, 0);
 }
 
 INCLUDE_ASM("nonmatchings/src/code0/59D40", func_800595A8);
@@ -144,13 +143,9 @@ void func_80059800(s32 spritenum, s32 arg1)
     d1 = 300000;
 
     if (D_80137DE0->unk4 & 64)
-    {
         unk1E = gpSprite[D_80118248->unk16].unk1E;
-    }
     else
-    {
         unk1E = D_80118248->unk1E;
-    }
 
     while (i >= 0)
     {
@@ -187,14 +182,13 @@ void func_800599E4(s32 spritenum, s32 arg1)
 
     ang = getAngleDelta(D_80118248->ang, ang);
     setVar(spritenum, arg1, 0);
+
     if ((ang - 301) < 449)
-    {
         setVar(spritenum, arg1, 1);
-    }
+
     if ((ang + 749) < 449)
-    {
         setVar(spritenum, arg1, 2);
-    }
+
     setVar(spritenum, arg1, 1);
 }
 
@@ -219,22 +213,14 @@ void func_80059B10(s32 spritenum, s32 arg1)
     z4 = z3 = z2 - z1;
 
     if (z3 <= 0)
-    {
         z4 = z1 - z2;
-    }
 
     if (z4 < 32)
-    {
         setVar(spritenum, arg1, 0);
-    }
     else if (z3 < 0)
-    {
         setVar(spritenum, arg1, 2);
-    }
     else
-    {
         setVar(spritenum, arg1, 1);
-    }
 }
 
 /*80059BBC*/
@@ -245,26 +231,18 @@ void func_80059BBC(s32 spritenum, s32 arg1)
     z1 = (D_80117ED8[0].zpos >> 8);
     z2 = D_80118248[0].z >> 8;
     z1 += (D_80117ED8[0].unk40 >> 8);
-    z1 -= 0x48;
+    z1 -= 72;
     z3 = z4 = z2 - z1;
 
     if (z3 <= 0)
-    {
         z4 = z1 - z2;
-    }
 
     if (z4 < 16)
-    {
         setVar(spritenum, arg1, 0);
-    }
     else if (z3 < 0)
-    {
         setVar(spritenum, arg1, 2);
-    }
     else
-    {
         setVar(spritenum, arg1, 1);
-    }
 }
 
 /*80059C48*/
@@ -305,7 +283,7 @@ void func_80059E08(s32 spritenum, s32 arg1)
 {
     if (D_80137DE0->unk44 == 0)
     {
-        func_8001DBA0(D_80118248->x/2, D_80118248->y/2, D_80118248->z/32, 0x16, 0x16, 3);
+        func_8001DBA0(D_80118248->x/2, D_80118248->y/2, D_80118248->z/32, 22, 22, 3);
         D_80137DE0->unk44 = 12;
     }
     else
@@ -369,13 +347,9 @@ void func_8005A2C8(s32 spritenum, s32 arg1)
                        (gpWall[gpWall[wallnum].point2].y - gpWall[wallnum].y));
 
         if ((getAngleDelta(D_80117ED8[0].unk38, ang)) > 0)
-        {
-            setVar(spritenum, arg1, (ang - 0x400) & 0x7FF);
-        }
+            setVar(spritenum, arg1, (ang - 1024) & 0x7FF);
         else
-        {
             setVar(spritenum, arg1, ang & 0x7FF);
-        }
     }
 }
 
@@ -441,36 +415,28 @@ void func_8005A8A8(s32 spritenum, s32 arg1)
     ang1 = D_80118248->ang;
 
     if (((D_80137DE0->unk0 & 0x1800) != 0) && (var1 != -1))
-    {
         ang2 = getAngle((gpSprite[D_80137DE0->unk28].x - D_80118248->x),
                         (gpSprite[D_80137DE0->unk28].y - D_80118248->y));
-    }
     else
-    {
         ang2 = getAngle((D_80117ED8[D_801A2628].xpos - D_80118248->x),
                         (D_80117ED8[D_801A2628].ypos - D_80118248->y));
-    }
 
     var1 = getAngleDelta(ang1, ang2);
     var1 = klabs(var1);
 
     if (var1 < var2)
-    {
         setVar(spritenum, arg1, 1);
-    }
     else
-    {
         setVar(spritenum, arg1, 0);
-    }
 }
 
 /*8005A9EC*/
 void func_8005A9EC(s32 spritenum, s32 arg1)
 {
     if (D_801CA14C[gMapNum].unk0 == 2)
-        D_80137DE0->unk99 = 0x1D;
+        D_80137DE0->unk99 = 29;
     else
-        D_80137DE0->unk99 = 0x21;
+        D_80137DE0->unk99 = 33;
 }
 
 /*8005AA30*/
@@ -488,9 +454,7 @@ void func_8005AA30(s32 spritenum, s32 arg1)
     {
         spritenum_ = func_8008E3E0(x, y, (D_80118248->z - 0x3000), D_80118248->sectnum, 32, 22);
         if (spritenum_ >= 0)
-        {
             gpSprite[spritenum_].ang = D_80118248->ang;
-        }
     }
 
     if ((D_8012FD88 & 0xF) == 0xF)
@@ -502,10 +466,8 @@ void func_8005AA30(s32 spritenum, s32 arg1)
 
         func_8001DCD0(x/2, y/2, D_80118248->z/32, 1);
 
-        if (func_80040D40(D_80117ED8[0].xpos, D_80117ED8[0].ypos, x, y) < 0x4B0)
-        {
+        if (func_80040D40(D_80117ED8[0].xpos, D_80117ED8[0].ypos, x, y) < 1200)
             func_80059348(spritenum, 1);
-        }
     }
 }
 
@@ -519,15 +481,14 @@ void func_8005AC28(s32 spritenum, s32 arg1)
                                  (gpSprite[D_80137DE0->unk60].y - D_80118248->y));
     unk48 = D_80137DE0->unk48;
     unk48 = unk48 / 12;
-    if (unk48 >= 0x8D)
-    {
-        unk48 = 0x8C;
-    }
+
+    if (unk48 > 140)
+        unk48 = 140;
+
     offset = (unk48 / 24);
+
     if (D_80137DE0->unk6C != 0)
-    {
         MusHandleSetFreqOffset(D_80137DE0->unk6C, offset);
-    }
 }
 
 /*8005AD18*/
@@ -622,10 +583,10 @@ static void func_8005B014(s32 spritenum)
         y += ((gpSinTable[D_80118248->ang & 0x7FF] * 15) >> 14);
         floorz1 = getFlorzOfSlope(D_80118248->sectnum, D_80118248->x, D_80118248->y);
         floorz2 = getFlorzOfSlope(D_80118248->sectnum, x, y);
+
         if (floorz2 < floorz1)
-        {
             value = -value;
-        }
+
         D_8013B2D0[spritenum].unk2 = value;
     }
     else
@@ -658,8 +619,8 @@ void func_8005B1EC(s16 spritenum, s32 arg1)
         gpSprite[spritenum_].picnum = i;
         gpSprite[spritenum_].cstat = 0x1101;
         gpSprite[spritenum_].unk16 = spritenum;
-        gpSprite[spritenum_].xrepeat = 0x40;
-        gpSprite[spritenum_].yrepeat = 0x40;
+        gpSprite[spritenum_].xrepeat = 64;
+        gpSprite[spritenum_].yrepeat = 64;
         gpSprite[spritenum_].shade = 0;
     }
     D_80137DE0->unk9F |= 4;
@@ -690,9 +651,7 @@ void func_8005B2DC(s32 spritenum, s32 arg1)
 void func_8005B388(s32 spritenum, s32 arg1)
 {
     if (D_80118248->unk16 != -1)
-    {
         func_8004BD24(D_80118248->unk16);
-    }
 }
 
 /*8005B3C0*/
@@ -700,23 +659,23 @@ void func_8005B3C0(s32 spritenum, s32 arg1)
 {
     s32 spritenum_;
 
-    spritenum_ = func_80058934(D_80118248->x, D_80118248->y, D_80118248->z, D_80118248->sectnum, 0xFA);
+    spritenum_ = func_80058934(D_80118248->x, D_80118248->y, D_80118248->z, D_80118248->sectnum, 250);
     gpSprite[spritenum_].picnum = 5550;
     gpSprite[spritenum_].cstat = 0x880;
     D_80118248->unk22 = spritenum_;
     gpSprite[spritenum_].unk16 = D_80118248->picnum;
-    gpSprite[spritenum_].xrepeat = 0x40;
-    gpSprite[spritenum_].yrepeat = 0x40;
-    gpSprite[spritenum_].shade = 0x10;
+    gpSprite[spritenum_].xrepeat = 64;
+    gpSprite[spritenum_].yrepeat = 64;
+    gpSprite[spritenum_].shade = 16;
     gpSprite[spritenum_].unk1A = 0;
     D_8013B2D0[spritenum_].unk6 = 0;
-    spritenum_ = func_80058934(D_80118248->x, D_80118248->y, D_80118248->z, D_80118248->sectnum, 0xFA);
+    spritenum_ = func_80058934(D_80118248->x, D_80118248->y, D_80118248->z, D_80118248->sectnum, 250);
     gpSprite[spritenum_].picnum = 5550;
     gpSprite[spritenum_].cstat = 0x880;
     D_80118248->unk16 = spritenum_;
     gpSprite[spritenum_].unk16 = D_80118248->picnum;
-    gpSprite[spritenum_].xrepeat = 0x40;
-    gpSprite[spritenum_].yrepeat = 0x40;
+    gpSprite[spritenum_].xrepeat = 64;
+    gpSprite[spritenum_].yrepeat = 64;
     gpSprite[spritenum_].shade = 2;
     gpSprite[spritenum_].unk1A = 1;
     D_8013B2D0[spritenum_].unk6 = 0xFF;
@@ -738,9 +697,9 @@ void func_8005B5C8(s32 spritenum, s32 arg1)
     spritenum_ = gpSprite[spritenum].unk22;
     if (gpSprite[spritenum_].unk1A == 0)
     {
-        unk6 = D_8013B2D0[spritenum_].unk6 + 0x10;
+        unk6 = D_8013B2D0[spritenum_].unk6 + 16;
         D_8013B2D0[spritenum_].unk6 = unk6;
-        if (unk6 >= 0x100)
+        if (unk6 > 0xFF)
         {
             D_8013B2D0[spritenum_].unk6 = 0xFF;
             gpSprite[spritenum_].unk1A = 1;
@@ -748,7 +707,7 @@ void func_8005B5C8(s32 spritenum, s32 arg1)
     }
     else if (gpSprite[spritenum_].unk1A == 1)
     {
-        unk6 = D_8013B2D0[spritenum_].unk6 - 0x10;
+        unk6 = D_8013B2D0[spritenum_].unk6 - 16;
         D_8013B2D0[spritenum_].unk6 = unk6;
         if (unk6 < 0)
         {
@@ -764,9 +723,9 @@ void func_8005B5C8(s32 spritenum, s32 arg1)
     spritenum_ = gpSprite[spritenum].unk16;
     if (gpSprite[spritenum_].unk1A == 0)
     {
-        unk6 = D_8013B2D0[spritenum_].unk6 + 0x10;
+        unk6 = D_8013B2D0[spritenum_].unk6 + 16;
         D_8013B2D0[spritenum_].unk6 = unk6;
-        if (unk6 >= 0x100)
+        if (unk6 > 0xFF)
         {
             D_8013B2D0[spritenum_].unk6 = 0xFF;
             gpSprite[spritenum_].unk1A = 1;
@@ -774,7 +733,7 @@ void func_8005B5C8(s32 spritenum, s32 arg1)
     }
     else if (gpSprite[spritenum_].unk1A == 1)
     {
-        unk6 = D_8013B2D0[spritenum_].unk6 - 0x10;
+        unk6 = D_8013B2D0[spritenum_].unk6 - 16;
         D_8013B2D0[spritenum_].unk6 = unk6;
         if (unk6 < 0)
         {
@@ -882,7 +841,7 @@ void func_8005BAAC(s16 spritenum, s32 arg1)
         {
             ang = D_80118248->ang;
             ang -= ((krand() & 0x7F) - 0x80);
-            func_80045400(D_80118248->x, D_80118248->y, z - 0x800, D_80118248->sectnum, 0x258, ang, 0x1C, 0);
+            func_80045400(D_80118248->x, D_80118248->y, z - 0x800, D_80118248->sectnum, 600, ang, 28, 0);
         }
     }
 }
@@ -962,13 +921,9 @@ void func_8005BD28(s32 spritenum, s32 arg1)
     f3 = func_80029FE0(f1, f2) * 325.9493234521802;
 
     if (f3 >= 480.0f)
-    {
         f3 = 480.0f;
-    }
     else if (f3 <= -480.0f)
-    {
         f3 = -480.0f;
-    }
 
     if (D_80137DE0->unk7C != (s16)f3)
     {
@@ -1016,8 +971,8 @@ void func_8005C19C(s32 spritenum, s32 arg1)
 /*8005C1F4*/
 void func_8005C1F4(s32 spritenum, s32 arg1)
 {
-    D_80118248->unk1E = 0xC;
-    func_8004BFDC(spritenum, 0xB, gpSprite[spritenum].z, 1);
+    D_80118248->unk1E = 12;
+    func_8004BFDC(spritenum, 11, gpSprite[spritenum].z, 1);
 }
 
 /*8005C24C*/
@@ -1025,7 +980,7 @@ void func_8005C24C(s32 spritenum, s32 arg1)
 {
     s16 spritenum_;
 
-    D_80118248->unk1E = 0xC;
+    D_80118248->unk1E = 12;
     func_8004BFDC(spritenum, 9, gpSprite[spritenum].z, 0);
     func_8004BFDC(spritenum, 4, gpSprite[spritenum].z, 1);
     D_80118248->picnum = 2251;
@@ -1033,8 +988,8 @@ void func_8005C24C(s32 spritenum, s32 arg1)
     if (spritenum_ >= 0)
     {
         gpSprite[spritenum_].unk18 = 0;
-        gpSprite[spritenum_].unk24 = 0x1E;
-        gpSprite[spritenum_].shade = 0x4C;
+        gpSprite[spritenum_].unk24 = 30;
+        gpSprite[spritenum_].shade = 76;
         gpSprite[spritenum_].unk20 = 1;
         gpSprite[spritenum_].unk1E = 6;
     }
@@ -1057,7 +1012,7 @@ void func_8005C374(s32 spritenum, s32 arg1)
         spritenum_ = func_80045400(D_80118248->x + r1,
                                   D_80118248->y + r2,
                                   D_80118248->z - (r3 << 8),
-                                  D_80118248->sectnum, 0x50, r4, 0xF, 1);
+                                  D_80118248->sectnum, 80, r4, 0xF, 1);
 
         if (spritenum_ >= 0)
         {
@@ -1108,7 +1063,7 @@ void func_8005C580(s32 spritenum, s32 arg1)
 /*8005C590*/
 void func_8005C590(s32 spritenum, s32 arg1)
 {
-    D_80118248->unk1E = 0xC;
+    D_80118248->unk1E = 12;
     if (getVar(spritenum, arg1) == 0)
     {
         func_8004BFDC(spritenum, 4, gpSprite[spritenum].z, 1);
@@ -1130,7 +1085,7 @@ void func_8005C644(s32 spritenum, s32 arg1)
     spritenum_ = func_8008E3E0(D_80118248->x, D_80118248->y, D_80118248->z, D_80118248->sectnum, 8, 0);
     if (spritenum_ >= 0)
     {
-        gpSprite[spritenum_].unk18 = 0x1E;
+        gpSprite[spritenum_].unk18 = 30;
         gpSprite[spritenum_].unk1E = 0;
         gpSprite[spritenum_].unk20 = 4;
     }
@@ -1174,23 +1129,21 @@ void func_8005C85C(s32 spritenum, s32 arg1)
 
     wallnum = D_80137DE0->unk2E;
     setVar(spritenum, arg1, 0);
-    if ((((u16)wallnum - 49152) > 0) && (gpSprite[(u16)wallnum - 49152].statnum == 0xA))
-    {
+
+    if ((((u16)wallnum - 49152) > 0) && (gpSprite[(u16)wallnum - 49152].statnum == 10))
         setVar(spritenum, arg1, 1);
-    }
+
     if (D_8010A918 < 1700)
-    {
         setVar(spritenum, arg1, 1);
-    }
 }
 
 /*8005C920*/
 void func_8005C920(s32 spritenum, s32 arg1)
 {
-    D_80118248->unk1A = 0x5A;
+    D_80118248->unk1A = 90;
     D_80118248->unk18 = 2;
     D_80118248->unk1C = 0;
-    changeSpriteStat(spritenum, 0x35);
+    changeSpriteStat(spritenum, 53);
 }
 
 /*8005C964*/
@@ -1230,9 +1183,8 @@ void func_8005CA54(s32 spritenum, s32 arg1)
 
     unk7C = D_80137DE0->unk7C;
     if (unk7C < 0)
-    {
         unk7C += 7;
-    }
+
     setVar(spritenum, arg1, unk7C >> 3);
 }
 
@@ -1309,10 +1261,8 @@ void func_8005D3BC(s32 spritenum, s32 arg1)
     ptr = &D_80197E40[D_80106D50[spritenum]];
     if (ptr->unkE == 0)
     {
-        if ((ptr->unk0 == 0xE) || (ptr->unk0 == 0x1D))
-        {
+        if ((ptr->unk0 == 14) || (ptr->unk0 == 29))
             audio_80007A44(1400, spritenum, 0x4E20);
-        }
     }
 }
 
@@ -1324,10 +1274,8 @@ void func_8005D430(s32 spritenum, s32 arg1)
     ptr = &D_80197E40[D_80106D50[spritenum]];
     if (ptr->unkE == 0)
     {
-        if ((ptr->unk0 == 0x5) || (ptr->unk0 == 0x14))
-        {
+        if ((ptr->unk0 == 5) || (ptr->unk0 == 20))
             audio_80007A44(647, spritenum, 0x4E20);
-        }
     }
 }
 
@@ -1339,10 +1287,8 @@ void func_8005D4A4(s32 spritenum, s32 arg1)
     ptr = &D_80197E40[D_80106D50[spritenum]];
     if (ptr->unkE == 0)
     {
-        if ((ptr->unk0 == 0x5) || (ptr->unk0 == 0x14))
-        {
+        if ((ptr->unk0 == 5) || (ptr->unk0 == 20))
             audio_80007A44(520, spritenum, 0x4E20);
-        }
     }
 }
 
@@ -1354,10 +1300,8 @@ void func_8005D518(s32 spritenum, s32 arg1)
     ptr = &D_80197E40[D_80106D50[spritenum]];
     if (ptr->unkE == 0)
     {
-        if ((ptr->unk0 == 5) || (ptr->unk0 == 0x14))
-        {
-            audio_80007A44(((krand() % 3) + 626) & 0xFFFF, spritenum, 0x84D0);
-        }
+        if ((ptr->unk0 == 5) || (ptr->unk0 == 20))
+            audio_80007A44(((krand() % 3) + 626) & 0xFFFF, spritenum, 34000);
     }
 }
 
@@ -1376,7 +1320,7 @@ void func_8005D5D4(s32 spritenum, s32 arg1)
             gpSprite[spritenum].z - 0x1000,
             gpSprite[spritenum].sectnum,
             gpSinTable[(ang + 512) & 0x7FF],
-            gpSinTable[ang & 0x7FF], 0, &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x01000040U);
+            gpSinTable[ang & 0x7FF], 0, &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x01000040);
 
     gpSprite[spritenum].cstat = cstat;
     if (hitwall != -1)
@@ -1438,8 +1382,8 @@ void func_8005DD00(s32 spritenum, s32 arg1)
 void func_8005DD14(s32 spritenum, s32 arg1)
 {
     func_80050C14();
-    func_80057540(&gpSprite[spritenum], 0x6F5, 0xE, 0);
-    func_8004BC64(D_80118248->x - 0x12C, D_80118248->y, D_80118248->z, D_80118248->sectnum, 0x9EB, 0, 0);
+    func_80057540(&gpSprite[spritenum], 1781, 14, 0);
+    func_8004BC64(D_80118248->x - 300, D_80118248->y, D_80118248->z, D_80118248->sectnum, 2539, 0, 0);
 }
 
 /*8005DD9C*/
@@ -1475,7 +1419,7 @@ void func_8005DDF4(s32 spritenum, s32 arg1)
             gpSprite[spritenum_].ang = (krand() & 0x7F) + 1968;
     }
 
-    func_80045400(0x5713, -0x2D7, -0x1D00, 0xA, 0xA0, 0x200, 0x19, 0x14);
+    func_80045400(22291, -727, -7424, 10, 160, 512, 25, 20);
 }
 
 /*8005DF6C*/
@@ -1499,20 +1443,18 @@ void func_8005E000(s32 spritenum, s32 arg1)
     s16 spritenum_;
 
     if (!MusHandleAsk(D_8013B2D0[spritenum].handle))
-    {
         D_8013B2D0[spritenum].handle = playSfx(1429);
-    }
+
     unk22 = D_80118248->unk22;
     if (unk22 == -1)
     {
         spritenum_ = func_8008E3E0(D_80118248->x, D_80118248->y,
-                                   D_80118248->z, D_80118248->sectnum, 0x3B, 1);
+                                   D_80118248->z, D_80118248->sectnum, 59, 1);
 
         D_80118248->unk22 = spritenum_;
+
         if (spritenum_ != unk22)
-        {
             gpSprite[spritenum_].unk22 = spritenum;
-        }
     }
 }
 
@@ -1521,17 +1463,16 @@ void func_8005E0E0(s32 spritenum, s32 arg1)
 {
     s32 spritenum_;
 
-    audio_80007A44(1014, spritenum, 0xBB80);
+    audio_80007A44(1014, spritenum, 48000);
     spritenum_ = func_8008E3E0(D_80118248->x, D_80118248->y,
-                               D_80118248->z, D_80118248->sectnum, 0x37, 0x6B1);
+                               D_80118248->z, D_80118248->sectnum, 55, 1713);
     if (spritenum_ != -1)
-    {
         gpSprite[spritenum_].ang = getAngle((D_80117ED8[0].xpos - D_80118248->x),
                                             (D_80117ED8[0].ypos - D_80118248->y));
-    }
-    func_8008E3E0(D_80118248->x, D_80118248->y, D_80118248->z, D_80118248->sectnum, 0x37, 0x6B3);
-    func_8008E3E0(D_80118248->x, D_80118248->y, D_80118248->z, D_80118248->sectnum, 0x37, 0x6B4);
-    func_80057540(D_80118248, 0x1644, (krand() & 3) + 1, 0);
+
+    func_8008E3E0(D_80118248->x, D_80118248->y, D_80118248->z, D_80118248->sectnum, 55, 1715);
+    func_8008E3E0(D_80118248->x, D_80118248->y, D_80118248->z, D_80118248->sectnum, 55, 1716);
+    func_80057540(D_80118248, 5700, (krand() & 3) + 1, 0);
 }
 
 /*8005E228*/
@@ -1540,8 +1481,8 @@ void func_8005E228(s32 spritenum, s32 arg1)
     s32 unk1E;
 
     unk1E = D_80118248->unk1E;
-    D_80118248->unk1E = 0xC;
-    func_8004AB6C(spritenum, arg1, (arg1 >> 2), (arg1 >> 1), (arg1 - (arg1 >> 2)), 0xC8, 0);
+    D_80118248->unk1E = 12;
+    func_8004AB6C(spritenum, arg1, (arg1 >> 2), (arg1 >> 1), (arg1 - (arg1 >> 2)), 200, 0);
     D_80118248->unk1E = unk1E;
 }
 
@@ -1577,7 +1518,7 @@ void func_8005E4C4(s32 spritenum, s32 arg1)
     while (i >= 0)
     {
         nexti = gNextSpriteStat[i];
-        if (gpSprite[i].picnum == 0x2E && i != spritenum && arg1)
+        if (gpSprite[i].picnum == 46 && i != spritenum && arg1)
         {
             func_8004BD24(i);
             break;
@@ -1604,9 +1545,8 @@ void func_8005E604(s32 spritenum, s32 arg1)
     {
         if (gpSprite[i].shade == 3 && gpSprite[i].picnum == 1442)
         {
-            gpSprite[i].unk22 = 0x7B;
+            gpSprite[i].unk22 = 123;
             gpSprite[spritenum].unk16 = i;
-
         }
         i = gNextSpriteStat[i];
     }
@@ -1622,7 +1562,7 @@ void func_8005E694(s32 spritenum, s32 arg1)
     {
         if (gpSprite[i].shade == 3 && gpSprite[i].picnum == 1442)
         {
-            gpSprite[i].unk22 = 0x7B;
+            gpSprite[i].unk22 = 123;
             D_800DEF1C = i;
             break;
         }
@@ -1633,10 +1573,8 @@ void func_8005E694(s32 spritenum, s32 arg1)
 /*8005E718*/
 void func_8005E718(s32 spritenum, s32 arg1)
 {
-    if (((gpSector[D_80118248->sectnum].ceilingz >> 8) + 0x96) >= (D_80118248->z >> 8))
-    {
+    if (((gpSector[D_80118248->sectnum].ceilingz >> 8) + 150) >= (D_80118248->z >> 8))
         D_80137DE0->unk44 = 1;
-    }
 }
 
 /*8005E770*/
@@ -1651,13 +1589,13 @@ INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005E7AC);
 /*8005E9D8*/
 void func_8005E9D8(s32 spritenum, s32 arg1)
 {
-    audio_80007A44(602, spritenum, 0x7D00);
+    audio_80007A44(602, spritenum, 32000);
 }
 
 /*8005EA04*/
 void func_8005EA04(s32 spritenum, s32 arg1)
 {
-    func_8006B590(0x190);
+    func_8006B590(400);
 }
 
 /*8005EA24*/
@@ -1673,12 +1611,12 @@ void func_8005EA50(s32 spritenum, s32 arg1)
 
     if (D_8013B2D0[spritenum].unk0 < -80)
         D_8013B2D0[spritenum].unk0 = -80;
-    else if (D_8013B2D0[spritenum].unk0 >= 81)
+    else if (D_8013B2D0[spritenum].unk0 > 80)
         D_8013B2D0[spritenum].unk0 = 80;
 
     if (D_8013B2D0[spritenum].unk4 < -32)
         D_8013B2D0[spritenum].unk4 = -32;
-    else if (D_8013B2D0[spritenum].unk4 >= 33)
+    else if (D_8013B2D0[spritenum].unk4 > 32)
         D_8013B2D0[spritenum].unk4 = 32;
 
     if (D_80118248->picnum == 2443)
@@ -1709,9 +1647,7 @@ void func_8005EBA0(s32 spritenum, s32 arg1)
     {
         nexti = gNextSpriteStat[i];
         if ((D_8019B940[D_80106D50[i]].unk0 & 0x200000) != 0)
-        {
             func_8004BD24(i);
-        }
         i = nexti;
     }
 }
@@ -1730,10 +1666,9 @@ void func_8005EC88(s32 spritenum, s32 arg1)
     i = gHeadSpriteStat[1];
     while (i >= 0)
     {
-        if (gpSprite[i].picnum == 1727 && gpSprite[i].shade == 0x14)
-        {
+        if (gpSprite[i].picnum == 1727 && gpSprite[i].shade == 20)
             D_8019B940[D_80106D50[i]].unk44 = 1;
-        }
+
         i = gNextSpriteStat[i];
     }
 }
@@ -1754,15 +1689,14 @@ void func_8005ED54(s32 spritenum, s32 arg1)
     {
         func_8008E3E0(D_80118248->x, D_80118248->y,
                       D_80118248->z - 0x2000,
-                      D_80118248->sectnum, 0x37, 0x852);
+                      D_80118248->sectnum, 55, 2130);
     }
     spritenum_ = func_8008E3E0(D_80118248->x, D_80118248->y,
                               D_80118248->z - 0x3000,
-                              D_80118248->sectnum, 0x37, 0x852);
+                              D_80118248->sectnum, 55, 2130);
     if (spritenum_ != -1)
-    {
-        gpSprite[spritenum_].ang = 0x180;
-    }
+        gpSprite[spritenum_].ang = 384;
+
     D_80118248->z -= 0x1600;
     func_80057540(D_80118248, MAXSPRITES, 5, 0);
     D_80118248->z += 0x1600;
@@ -1780,14 +1714,11 @@ void func_8005EE60(s32 spritenum, s32 arg1)
     ang2 = getAngleDelta(gpSprite[D_80118248->unk16].ang, ang1);
 
     ang2 = klabs(ang2);
-    if (ang2 < 0x40)
-    {
+
+    if (ang2 < 64)
         setVar(spritenum, arg1, 1);
-    }
     else
-    {
         setVar(spritenum, arg1, 0);
-    }
 }
 
 /*8005EF54*/
@@ -1805,10 +1736,9 @@ void func_8005EF98(s32 spritenum, s32 arg1)
     {
         x = klabs_(D_80118248->x - D_80117ED8[0].xpos);
         y = klabs_(D_80118248->y - D_80117ED8[0].ypos);
-        if (((x + y) < 0x28A) && (D_80118248->z > D_80117ED8[0].zpos))
-        {
+
+        if (((x + y) < 650) && (D_80118248->z > D_80117ED8[0].zpos))
             setVar(spritenum, arg1, 1);
-        }
     }
 }
 
@@ -1834,7 +1764,7 @@ void func_8005F0F0(s32 spritenum, s32 arg1)
     D_80138690 = 1;
     ang = getAngle(D_80137DE0->unk44 - D_80137DE0->unk48, D_80118248->x - D_80118248->y);
 
-    spritenum_ = ang; /*FIXME*/
+    spritenum_ = ang; /*FAKEMATCH*/
 
     f1 = (D_80137DE0->unk4C - D_80118248->z) / 16;
     f2 = func_80040D40(D_80137DE0->unk44,
@@ -1847,7 +1777,7 @@ void func_8005F0F0(s32 spritenum, s32 arg1)
     D_80117ED8[0].unk38 = ang;
     unk3E = D_80117ED8[0].unk3E;
     D_80117ED8[0].unk3E = f3;
-    spritenum_ = func_8006D3B8(D_80117ED8[0].unk4A, 0x13, 0, 0, 0);
+    spritenum_ = func_8006D3B8(D_80117ED8[0].unk4A, 19, 0, 0, 0);
     D_80117ED8[0].unk38 = unk38;
     D_80117ED8[0].unk3E = unk3E;
 
@@ -1861,15 +1791,16 @@ void func_8005F0F0(s32 spritenum, s32 arg1)
 /*8005F290*/
 void func_8005F290(s32 spritenum, s32 arg1)
 {
-    D_80118248->picnum = 0x8EC;
+    D_80118248->picnum = 2284;
+
     func_8008E3E0(D_80118248->x, D_80118248->y,
-                  D_80118248->z, D_80118248->sectnum, 0x2F, 0);
+                  D_80118248->z, D_80118248->sectnum, 47, 0);
 
-    func_80045400(D_80118248->x, D_80118248->y, D_80118248->z - 0x3E80,
-                  D_80118248->sectnum, 0, D_80118248->ang, 0x2C, 0x82);
+    func_80045400(D_80118248->x, D_80118248->y, D_80118248->z - 16000,
+                  D_80118248->sectnum, 0, D_80118248->ang, 44, 130);
 
-    func_80045400(D_80118248->x, D_80118248->y, D_80118248->z - 0x1F40,
-                  D_80118248->sectnum, 0, D_80118248->ang, 0x2C, 0x82);
+    func_80045400(D_80118248->x, D_80118248->y, D_80118248->z - 8000,
+                  D_80118248->sectnum, 0, D_80118248->ang, 44, 130);
 }
 
 /*8005F358*/
@@ -1894,9 +1825,7 @@ void func_8005F6A8(s32 spritenum, s32 arg1)
 void func_8005F6DC(s32 spritenum, s32 arg1)
 {
     if (D_801CE48C != 0)
-    {
         setVar(spritenum, arg1, getVar(spritenum, arg1) * 4);
-    }
 }
 
 /*8005F730*/
@@ -1906,9 +1835,9 @@ void func_8005F730(s32 spritenum, s32 arg1)
 
     spritenum_ = func_80058934(D_80118248->x, D_80118248->y, D_80118248->z, D_80118248->sectnum, 0);
     gpSprite[spritenum_].cstat = 0x1000;
-    gpSprite[spritenum_].xrepeat = 0x40;
-    gpSprite[spritenum_].yrepeat = 0x40;
-    gpSprite[spritenum_].picnum = 0xA13;
+    gpSprite[spritenum_].xrepeat = 64;
+    gpSprite[spritenum_].yrepeat = 64;
+    gpSprite[spritenum_].picnum = 2579;
     gpSprite[spritenum_].shade = 0;
     gpSprite[spritenum_].unk16 = spritenum;
 }
@@ -1929,7 +1858,7 @@ void func_8005F7FC(s32 spritenum, s32 arg1)
     {
         if (gpSprite[i].picnum == 2596)
         {
-            func_8001F7B4(0xC, 8);
+            func_8001F7B4(12, 8);
             D_800DEEB8 = 0;
             gpSprite[i].unk22 = 1;
             break;
@@ -1946,7 +1875,7 @@ void func_8005F8A0(s32 spritenum, s32 arg1)
 /*8005F8A8*/
 void func_8005F8A8(s32 spritenum, s32 arg1)
 {
-    D_8013B2D0[spritenum].unk6 = (krand() & 0x3F) + 64;
+    D_8013B2D0[spritenum].unk6 = (krand() & 0x3F) + 0x40;
 }
 
 /*8005F8F0*/
@@ -2044,8 +1973,8 @@ void func_8005FC34(s32 spritenum, s32 arg1)
     func_800A419C(0, "BABE SAVED!");
     D_801A1958.unk4++;
     audio_800077F4(704, spritenum);
-    func_8008E3E0(gpSprite[spritenum].x, gpSprite[spritenum].y, gpSprite[spritenum].z, gpSprite[spritenum].sectnum, 0x2B, 0);
-    func_80036520(0, 0xA);
+    func_8008E3E0(gpSprite[spritenum].x, gpSprite[spritenum].y, gpSprite[spritenum].z, gpSprite[spritenum].sectnum, 43, 0);
+    func_80036520(0, 10);
 }
 
 /*8005FCDC*/

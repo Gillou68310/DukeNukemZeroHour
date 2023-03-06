@@ -46,7 +46,7 @@ segments:
     #.text section
       - [0x1000,  hasm,     src/code0/entrypoint]
       - [0x1050,  c,        src/code0/main]
-      - [0x4590,  c,        gen/code0/4590]
+      - [0x4590,  c,        src/code0/4590]
       - [0x4600,  c,        src/code0/4600]
       - [0x5D50,  c,        src/code0/graphics]
       - [0x71F0,  c,        src/code0/audio]

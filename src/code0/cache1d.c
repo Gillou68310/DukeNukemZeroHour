@@ -46,9 +46,7 @@ void initCache(u8 *dacachestart, s32 dacachesize)
     }
 
     for (i = 1; i < 200; i++)
-    {
         gLockRecip[i] = (1 << 28) / (200 - i);
-    }
 
     _cachestart = dacachestart;
     _cachesize = dacachesize;
@@ -73,13 +71,10 @@ static s8 _alloCache(u8 **newhandle, u32 newbytes, u8 *newlockptr)
     }
 
     if (*newlockptr == 0)
-    {
         reportAndExit("ALLOCACHE CALLED WITH LOCK OF 0!");
-    }
+
     if (*newlockptr > 200)
-    {
         reportAndExit("ALLOCACHE CALLED WITH LOCK ABOVE 200!");
-    }
 
     //Find best place
     bestval = 0x7fffffff; o1 = _cachesize;
@@ -239,9 +234,7 @@ void ageCache(void)
     for (cnt = 0; cnt < gCacheNum; cnt++)
     {
         if (((*gCache[cnt].lock - 2) & 255) < 198)
-        {
             (*gCache[cnt].lock)--;
-        }
     }
 }
 

@@ -106,13 +106,10 @@ void dmaRomToRam(u8 *rom, u8 *ram, s32 size)
     while (size != 0)
     {
         if (size > DMA_LEN)
-        {
             len = DMA_LEN;
-        }
         else
-        {
             len = size;
-        }
+
         osPiStartDma(&dmaIOMessageBuf, OS_MESG_PRI_NORMAL, OS_READ, (uintptr_t)rom, ram, len, &gDmaMessageQ);
         rom += len;
         ram += len;
@@ -172,11 +169,11 @@ void setVolume(u32 musicvol, u32 mastervol)
 {
     gMusicVolume = musicvol;
     gMasterVolume = mastervol;
-    MusSetMasterVolume(1U, (mastervol * 32767) / 100);
+    MusSetMasterVolume(1, (mastervol * 32767) / 100);
+
     if (gMusicNum != -1)
-    {
         musicvol = musicvol * _multiplier[gMusicNum] / 100;
-    }
+
     MusHandleSetVolume(gMusicHandle, (musicvol * 128) / 100);
     MusHandleSetVolume(gAmbientHandle, (mastervol *128) / 100);
 }
@@ -203,10 +200,9 @@ void playMusic(s32 musicnum)
     {
         MusHandleStop(gMusicHandle, 0);
         while (MusHandleAsk(gMusicHandle));
+
         if (musicnum < 0)
-        {
             gMusicHandle = NULL;
-        }
         else
         {
             if (_music.music[musicnum].pbank_start)
@@ -240,10 +236,9 @@ void playAmbient(s32 ambientnum)
 {
     MusHandleStop(gAmbientHandle, 0);
     while (MusHandleAsk(gAmbientHandle));
+
     if (ambientnum < 0)
-    {
         gAmbientHandle = NULL;
-    }
     else
     {
         initBank(
@@ -302,9 +297,7 @@ void audio_80006CC0(void)
         if (D_80117ED8[0].unk50 != -1)
         {
             if (gMusicHandle == NULL)
-            {
                 playMusic(MUSIC_WESTERN_MINE_CART);
-            }
         }
         else
         {
@@ -338,10 +331,9 @@ static void audio_80006E60(void)
     }
 
     MusHandleSetVolume(gAmbientHandle, 0);
+
     if ((D_80117ED8[0].unk45 == 0) || (D_8012C470 >= 2))
-    {
         MusHandleSetVolume(gMusicHandle, 0);
-    }
 }
 
 /*80006F08*/
@@ -355,7 +347,7 @@ static void audio_80006F08(void)
         if (D_8012C470 == 1)
         {
             gMasterVolume = 0;
-            MusSetMasterVolume(1U, 0);
+            MusSetMasterVolume(1, 0);
             return;
         }
     }
@@ -552,9 +544,7 @@ INCLUDE_ASM("nonmatchings/src/code0/audio", audio_800080E0);
 void audio_80008574(s16 playernum, u16 sfxnum)
 {
     if ((MusHandleAsk(D_800BD634[playernum]) == 0) && (D_80117ED8[playernum].unk45 == 0))
-    {
         D_800BD634[playernum] = playSfx(sfxnum);
-    }
 }
 
 /*80008604*/
@@ -583,13 +573,10 @@ void audio_800086B0(u16 arg0)
     u16 sfxnum;
 
     if (!arg0)
-    {
         sfxnum = D_800BD67C[func_801C0FDC(3)];
-    }
     else
-    {
         sfxnum = D_800BD684[func_801C0FDC(6)];
-    }
+
     playSfx(sfxnum);
 }
 

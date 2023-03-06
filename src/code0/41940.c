@@ -74,22 +74,16 @@ s32 func_80040D40(s32 x1, s32 y1, s32 x2, s32 y2)
     x = klabs(x1 - x2);
     y = klabs(y1 - y2);
 
-    if (x < y)
-        a = y;
-    else
-        a = x;
+    if (x < y) a = y;
+    else a = x;
 
-    if (y < x)
-        b = y;
-    else
-        b = x;
+    if (y < x) b = y;
+    else b = x;
 
     c = a + (b >> 2);
 
-    if (y < x)
-        d = y;
-    else
-        d = x;
+    if (y < x) d = y;
+    else d = x;
 
     return c + (d >> 3);
 }
@@ -299,10 +293,10 @@ STATIC s32 func_80042210(s32 spritenum)
         D_80137DE0->unk30 = D_80137DE0->unk2A;
         D_80137DE0->unk80 = D_80137DE0->unk2C;
         D_80137DE0->unk4 &= 0xFFFCBFF7;
+
         if (D_80137DE0->unk92 != 8)
-        {
             D_80137DE0->unk92 = D_80137DE0->unk93;
-        }
+
         if (D_80137DE0->unk86 != D_80137DE0->unk8A)
         {
             D_80137DE0->unk86 = D_80137DE0->unk8A | 0x8000;
@@ -327,7 +321,7 @@ STATIC s32 func_800422BC(s32 spritenum)
     if ((krand() >> 8) < (0xFF - result))
     {
         gpInst += j;
-        if ((i && i) && i) {} /*FIXME*/
+        if ((i && i) && i) {} /*FAKEMATCH*/
         return 0;
     }
     return 0;
@@ -1664,8 +1658,8 @@ static void func_8004A4D4(SpriteType *spr, s32 arg1, s32 arg2)
     if (spritenum != -1)
     {
         spr2 = &gpSprite[spritenum];
-        spr2->xrepeat = 0x60;
-        spr2->unk1E = 0x50;
+        spr2->xrepeat = 96;
+        spr2->unk1E = 80;
         spr2->cstat = 0x1000;
         spr2->unk22 = 0x1234;
         spr2->unk1C = 0;
@@ -1716,16 +1710,16 @@ s32 func_8004BC64(s32 x, s32 y, s32 z, s32 sectnum, s32 arg4, s32 arg5, s32 arg6
     if (spritenum != -1)
     {
         spr = &gpSprite[spritenum];
-        spr->xrepeat = 0x40;
-        spr->yrepeat = 0x40;
+        spr->xrepeat = 64;
+        spr->yrepeat = 64;
         spr->cstat = 0;
         spr->unk16 = arg6;
         spr->picnum = arg4;
         spr->shade = 0;
+
         if (arg4 == 2487)
-        {
             spr->shade = arg5;
-        }
+
         spr->ang = 0;
         func_800539A8(arg4, spritenum);
         return spritenum;
@@ -1817,10 +1811,10 @@ s32 func_8004D7D8(s32 spritenum)
 {
     s16 ret;
 
-    if (gpSprite[spritenum].statnum == 0x35)
+    if (gpSprite[spritenum].statnum == 53)
         return 1;
 
-    if (gpSprite[spritenum].statnum == 0xA)
+    if (gpSprite[spritenum].statnum == 10)
         return 1;
 
     if (D_80106D50[spritenum] == -1)
@@ -1946,14 +1940,14 @@ void func_8004EA40(s32 spritenum)
         else
         {
             func_8008E3E0(gpSprite[spritenum].x, gpSprite[spritenum].y,
-                          gpSprite[spritenum].z, gpSprite[spritenum].sectnum, 0x2B, 0);
+                          gpSprite[spritenum].z, gpSprite[spritenum].sectnum, 43, 0);
             func_8004E9B4(spritenum);
         }
     }
     else if (func_8004EB60(D_800DF1A8) == 0)
     {
         func_8008E3E0(gpSprite[D_800DF1A8].x, gpSprite[D_800DF1A8].y,
-                      gpSprite[D_800DF1A8].z, gpSprite[D_800DF1A8].sectnum, 0x2B, 0);
+                      gpSprite[D_800DF1A8].z, gpSprite[D_800DF1A8].sectnum, 43, 0);
         func_8004E9B4(D_800DF1A8);
         D_800DF1A8 = -1;
     }
@@ -1991,7 +1985,7 @@ void func_8004EC38(void)
             {
                 if (D_800DEEE4[i] < 5)
                     D_800DF1AC[i] += 64;
-                if (D_800DF1AC[i] >= 256)
+                if (D_800DF1AC[i] > 255)
                     D_800DF1AC[i] = 255;
                 else
                     D_800DF1AC[i] -= 8;
@@ -2014,17 +2008,13 @@ s32 func_8004EFB4(s32 spritenum)
     SpriteType *spr;
 
     if (gpSector[gpSprite[spritenum].sectnum].unk18 == 2)
-    {
         return 1;
-    }
 
     spr = &gpSprite[spritenum];
     if (gpSector[spr->sectnum].unk18 == 3)
     {
         if (func_80036490(spr->sectnum) < spr->z)
-        {
             return 1;
-        }
     }
     return 0;
 }
@@ -2138,16 +2128,16 @@ void func_80050408(void)
     switch (D_801CE4E6)
     {
     case 0:
-        D_800DEF14 = 0xC8;
-        D_800DEF18 = 0x19;
+        D_800DEF14 = 200;
+        D_800DEF18 = 25;
         break;
     case 1:
-        D_800DEF14 = 0x96;
-        D_800DEF18 = 0x4B;
+        D_800DEF14 = 150;
+        D_800DEF18 = 75;
         break;
     case 2:
-        D_800DEF14 = 0x64;
-        D_800DEF18 = 0x64;
+        D_800DEF14 = 100;
+        D_800DEF18 = 100;
         break;
     }
 }
@@ -2242,13 +2232,9 @@ void func_80051568(void)
     for (i = 0; i < MAXSPRITES; i++)
     {
         if (D_80106D50[i] != -1)
-        {
             unused++;
-        }
         else if (gpSprite[i].x != -1)
-        {
             unused++;
-        }
     }
 }
 
@@ -2336,16 +2322,10 @@ INCLUDE_ASM("nonmatchings/src/code0/41940", func_800539A8);
 static void func_80055DDC(s32 spritenum)
 {
     if (gpSprite[spritenum].statnum == 21)
-    {
         gpSprite[spritenum].cstat = gpSprite[spritenum].cstat | 0x8000;
-        return;
-    }
-    if (gpSprite[spritenum].statnum == 22)
-    {
+    else if (gpSprite[spritenum].statnum == 22)
         gpSprite[spritenum].cstat = -0x8000;
-        return;
-    }
-    if (((gpSprite[spritenum].statnum == 0) || (gpSprite[spritenum].statnum == 54)) != 0)
+    else if (((gpSprite[spritenum].statnum == 0) || (gpSprite[spritenum].statnum == 54)))
     {
         gpSprite[spritenum].unk2B = 0;
         if (gpSprite[spritenum].statnum == 54)
@@ -2375,9 +2355,8 @@ void func_800574A4(s32 spritenum)
     if (gpSprite[spritenum].sectnum != MAXSECTORS)
     {
         if (D_80106D50[spritenum] != -1)
-        {
             D_8019B940[D_80106D50[spritenum]].unk0 = 0;
-        }
+
         deleteSprite(spritenum);
         D_80106D50[spritenum] = -1;
     }
@@ -2540,7 +2519,7 @@ void func_80058A14(s16 spritenum, s16 *hitsprite, s32 *hitx, s32 *hity)
             &x,
             &y,
             &z,
-            0x10001U);
+            0x10001);
 
     *hitx = x;
     *hity = y;

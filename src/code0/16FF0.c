@@ -30,7 +30,7 @@ void loadModel(ModelInfo *model)
         if (size < model->unk18->unkA)
             size = model->unk18->unkA;
 
-        D_80169520 = 0xC8;
+        D_80169520 = 200;
         alloCache(&D_80138854, size, &D_80169520);
         size = model->unkA;
         romaddr = files_models_ROM_START;

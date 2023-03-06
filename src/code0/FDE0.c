@@ -54,6 +54,7 @@ void func_80011700(ModelInfo *model)
     ramaddr3 = model->ramaddr + model->unk10;
     D_800FE944 = model->ramaddr;
     D_80138714 = model->ramaddr + model->unkC;
+
     if ((D_800BD788 == 0) || (func_800115E0(model) != 0))
         func_800117A4(ramaddr1, ramaddr2, ramaddr3);
 }
@@ -108,9 +109,7 @@ static void copyMatrix(Matrix4f dst, Matrix4f src)
     for (i = 0; i < 4; i++)
     {
         for (j = 0; j < 4; j++)
-        {
             dst[i][j] = src[i][j];
-        }
     }
 }
 

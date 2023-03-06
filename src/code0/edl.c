@@ -421,7 +421,7 @@ static void decodeEDL(EDLInfo *info)
 /*80081460*/
 static void parseEDLheader(EDLInfo *info)
 {
-    if ((info->src[0] == 0x45) && (info->src[1] == 0x44) && (info->src[2] == 0x4C))
+    if ((info->src[0] == 'E') && (info->src[1] == 'D') && (info->src[2] == 'L'))
     {
         info->file_endian = info->src[3] >> 7;
         info->type = info->src[3] & 0x7F;
@@ -434,32 +434,22 @@ static void parseEDLheader(EDLInfo *info)
                 info->dsize = swap(info, *(u32 *)&info->src[8]);
             }
             else
-            {
                 info->result = -4;
-            }
         }
         else
-        {
             info->result = -4;
-        }
     }
     else
-    {
         info->result = -3;
-    }
 }
 
 /*8008151C*/
 static s32 swap(EDLInfo *info, u32 value)
 {
     if (info->file_endian == info->sys_endian)
-    {
         return value;
-    }
     else
-    {
         return (value >> 24) + ((value >> 8) & 0xFF00) + ((value & 0xFF00) << 8) + (value << 24);
-    }
 }
 
 /*8008155C*/
@@ -471,13 +461,9 @@ static s32 getEDLDecompressedSize(u8 *src)
     info.sys_endian = BYTE_ORDER;
     parseEDLheader(&info);
     if (info.result == 0)
-    {
         return info.dsize;
-    }
     else
-    {
         return 0;
-    }
 }
 
 /*80081598*/
@@ -511,14 +497,12 @@ static void _decompressEDL(u8 **handle, u8 *src, u8 *dst)
 
     info.src = src;
     dsize = *(s32 *)(&info.src[8]);
+
     if (dst != NULL)
-    {
         *handle = dst;
-    }
     else
-    {
         alloCache(handle, dsize, &gCacheLock[1]);
-    }
+
     info.dst = *handle;
     info.sys_endian = BYTE_ORDER;
     decodeEDL(&info);
@@ -573,11 +557,13 @@ void edl_80081760(void *handle, s32 id, void *dst)
     {
         _decompressEDL(handle, D_801CD96C, dst);
         info->handle = handle;
-        return;
     }
-    alloCache(handle, size, &gCacheLock[1]);
-    Bmemcpy(*(u8 **)handle, D_801CD96C, size);
-    info->handle = handle;
+    else
+    {
+        alloCache(handle, size, &gCacheLock[1]);
+        Bmemcpy(*(u8 **)handle, D_801CD96C, size);
+        info->handle = handle;
+    }
 }
 
 /*80081840*/

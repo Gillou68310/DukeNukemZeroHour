@@ -341,7 +341,7 @@ static void main_8000071C(void)
 /*8000090C*/
 void boot(void)
 {
-    osViBlack(1U);
+    osViBlack(1);
     D_800BD3F4 = 0;
     D_800BD3F0 = 0;
     osInitialize();
@@ -386,9 +386,8 @@ void main_80000A94(void)
     OSTime end;
 
     while (gRetraceMsgQ.validCount >= gRetraceMsgQ.msgCount)
-    {
         osRecvMesg(&gRetraceMsgQ, NULL, OS_MESG_BLOCK);
-    }
+
     osRecvMesg(&gRetraceMsgQ, NULL, OS_MESG_BLOCK);
     start = osGetTime();
     osRecvMesg(&gRetraceMsgQ, NULL, OS_MESG_BLOCK);
@@ -441,9 +440,8 @@ static void main_80000F00(void)
     if (D_800BD3F9 != 3)
     {
         main_800036DC();
-        return;
     }
-    if (D_800BD3F0 == 0)
+    else if (D_800BD3F0 == 0)
     {
         if (D_801A1970 != 0)
             func_80008E3C();
@@ -457,18 +455,15 @@ static void main_80000F68(s16 arg0)
 {
     D_80117ED8[arg0].unk80 = 0;
 
-    if (D_801CE4C6[arg0] >= 4U)
-    {
+    if (D_801CE4C6[arg0] >= 4)
         D_80117ED8[arg0].unk80 = 4;
-    }
-    if ((D_801CE4C6[arg0] & 3) >= 2U)
-    {
+
+    if ((D_801CE4C6[arg0] & 3) >= 2)
         D_80117ED8[arg0].unk80 |= 1;
-    }
+
     if (D_801CE4C6[arg0] & 1)
-    {
         D_80117ED8[arg0].unk80 |= 2;
-    }
+
     func_80035794(arg0);
 }
 
@@ -481,9 +476,8 @@ static void main_80001038(void)
     if (D_800BD3F0 != 0)
     {
         if (--D_800BD3F0 != 1)
-        {
             return;
-        }
+
         D_800BD3E8 = 0;
         main_80000610();
         D_800BD3F0 = 0;
@@ -497,32 +491,29 @@ static void main_80001038(void)
             D_800BD42C = 0;
         }
         func_801C4B34();
+
         for (i = 0; i < D_8012C470; i++)
-        {
             main_80000F68(i);
-        }
     }
     else
     {
         D_800BD42C = 1;
         if ((D_80199524 != 0) && (func_8008A070() & 0xFF))
-        {
             D_80199524 = 0;
-        }
+
         func_80040AA0(1, "SM");
         func_80040B2C(1);
         gTotalClockLock += 4;
         D_80168D0C = RAND(0x7FFF);
         D_801A1958.unkC++;
         ageCache();
+
         if (D_801AD470 != 0)
-        {
             func_8008DE14();
-        }
+
         if (D_800DF1A8 != -1)
-        {
             func_8004EA40(0);
-        }
+
         func_80064AA0();
         func_80064E78();
         func_80069160();
@@ -537,10 +528,10 @@ static void main_80001038(void)
         func_800A4478();
         func_800504F4();
         func_8005087C();
+
         for (i = 0; i < D_8012C470; i++)
-        {
             func_80017268(D_80117ED8[i].unk4A);
-        }
+
         func_80069E50();
         func_8009FAF0();
         func_80040B70(1);
@@ -557,14 +548,13 @@ static void main_80001038(void)
         func_80079830();
         func_80079560();
         func_8004EC38();
+
         if (gMapNum == MAP_THE_RACK)
-        {
             func_80094D18();
-        }
+
         if (gMapNum == MAP_NUCLEAR_WINTER)
-        {
             func_80095220();
-        }
+
         func_80040B70(2);
 
         for (i = 0; i < D_8012C470; i++)
@@ -573,51 +563,33 @@ static void main_80001038(void)
             func_8000EA0C(i, D_800DF1AC[i], D_800DF1AC[i], D_800DF1AC[i], (s32)D_800DF1AC[i]);
 
             if (D_8019B940[D_80106D50[D_80117ED8[i].unk4A]].unk0 & 0x40)
-            {
-                func_8000EA0C(i, 0, 255, 255, 128);
-            }
+                func_8000EA0C(i, 0, 0xFF, 0xFF, 0x80);
             else if (D_8010A940[i].unk7 != 0)
-            {
-                func_8000EA0C(i, 0, 255, 0, 128);
-            }
+                func_8000EA0C(i, 0, 0xFF, 0, 0x80);
             else if (D_80117ED8[i].unk55 != 0)
-            {
                 func_8000EA0C(i, D_800BD710[D_801A19EC].unk0, D_800BD710[D_801A19EC].unk1, D_800BD710[D_801A19EC].unk2, D_800BD710[D_801A19EC].unk3);
-            }
             else if (D_80117ED8[i].unk82 > 0)
-            {
-                func_8000EA0C(i, 0, 255, 0, D_80117ED8[i].unk82 / 2);
-            }
+                func_8000EA0C(i, 0, 0xFF, 0, D_80117ED8[i].unk82 / 2);
+
             if (D_80106D30[i] != 0)
-            {
                 func_8000EA0C(i, 0, 0, 0, 200);
-            }
 
             if (D_80117ED8[i].unk45 != 0)
             {
                 temp = D_80117ED8[i].unk4E;
                 if (D_80117ED8[i].unk45 == 4)
-                {
-                    func_8000EA0C(i, 0xFF - temp, 0xFF - temp, 0xFF - temp, 255);
-                }
+                    func_8000EA0C(i, 0xFF - temp, 0xFF - temp, 0xFF - temp, 0xFF);
                 else if (D_80117ED8[i].unk45 == 3)
-                {
-                    func_8000EA0C(i, 0xFF - temp, -temp, -temp, 255);
-                }
+                    func_8000EA0C(i, 0xFF - temp, -temp, -temp, 0xFF);
                 else
-                {
                     func_8000EA0C(i, -temp, -temp, -temp, temp);
-                }
             }
         }
+
         if (D_800E1748 >= 0)
-        {
-            func_8000EB4C(4, 0, 0, 0, (s32)(s16)(0x120 - (D_800E1748 * 8)));
-        }
+            func_8000EB4C(4, 0, 0, 0, (s32)(s16)(288 - (D_800E1748 * 8)));
         else
-        {
             func_8000EA0C(4, 0, 0, 0, -8);
-        }
 
         if ((D_800E1748 > 0) && (--D_800E1748 == 0))
         {
@@ -628,23 +600,19 @@ static void main_80001038(void)
             {
             case 2:
                 D_800DEDE0 = 1;
-                return;
+                break;
             case 1:
                 if (gMapNum == MAP_THE_END)
-                {
                     main_80000624(func_801C97F8);
-                }
                 else
-                {
                     main_80000624(func_801C9B28);
-                }
                 break;
             case 3:
                 D_800DEDE0 = 2;
-                return;
+                break;
             case 4:
                 D_800DEDE0 = 3;
-                return;
+                break;
             case 5:
                 main_80000624(func_801C15CC);
                 break;
@@ -666,19 +634,14 @@ static void main_800017AC(void)
 
     func_8008A724();
     if (D_8012FC90 != 0)
-    {
         func_801C9D68();
-    }
     else
     {
         for (i = 0; i < 4; i++)
-        {
             func_80003990(i);
-        }
+
         if ((D_800BD3F9 == 3) && (D_801CDB4C != 0))
-        {
             func_801C9F74();
-        }
         func_801C146C();
     }
 
@@ -743,7 +706,7 @@ static void setupSegments(void)
     gpDisplayList = gDisplayList[gGfxTaskIndex];
     gpVertexN64 = gVertexN64[gGfxTaskIndex];
     gpDynamic = &gDynamic[gGfxTaskIndex];
-    gSPSegment(gpDisplayList++, PHYSICAL_SEGMENT, 0x0);
+    gSPSegment(gpDisplayList++, PHYSICAL_SEGMENT, 0);
     gSPSegment(gpDisplayList++, STATIC_SEGMENT, OS_K0_TO_PHYSICAL(gStaticSegment));
     gSPSegment(gpDisplayList++, FRAMEBUFFER_SEGMENT, OS_K0_TO_PHYSICAL(gFramebuffer[_framebufferIndex]));
     gSPDisplayList(gpDisplayList++, gRdpInitDl);
@@ -768,7 +731,7 @@ static void createGfxTask(void)
 
     ucode_boot_end = (char *)rspbootTextEnd;
     ucode_boot_size = ucode_boot_end - (char *)rspbootTextStart;
-    ucode_boot_end = NULL; /*FIXME*/
+    ucode_boot_end = NULL; /*FAKEMATCH*/
 
     gDPFullSync(gpDisplayList++);
     gSPEndDisplayList(gpDisplayList++);
@@ -892,7 +855,7 @@ void main_80001FAC(void)
     D_800BD42D = 0;
     D_801CA144 = 0.0f;
     main_80002390();
-    D_800BD3F0 = 0x64;
+    D_800BD3F0 = 100;
     D_800DEDE0 = 4;
 }
 
@@ -937,7 +900,7 @@ void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size)
     alloCache(&gDisplayList[0], (dlist_size * sizeof(Gfx) * GFX_TASKS), &gCacheLock[0]);
     gDisplayList[1] = &gDisplayList[0][dlist_size];
 
-    depth_align = DEPTHBUFFER_ALIGN; /*FIXME*/
+    depth_align = DEPTHBUFFER_ALIGN; /*FAKEMATCH*/
     remaining_size = gCacheMemEnd - gCacheMemStart;
     remaining_size -= ((((fb_size + FRAMEBUFFER_ALIGN) * _framebufferCount) + depth_align) + fb_size);
     remaining_size -= (dlist_size * sizeof(Gfx) * GFX_TASKS);
@@ -977,53 +940,35 @@ void main_80002390(void)
     {
     case OS_TV_NTSC:
         if (gScreenWidth == 512)
-        {
             _viMode = OS_VI_NTSC_HAF1;
-        }
         else
         {
             if (gScreenHeight == 240)
-            {
                 _viMode = OS_VI_NTSC_LAN1;
-            }
             else
-            {
                 _viMode = OS_VI_NTSC_LAF1;
-            }
         }
         break;
     case OS_TV_PAL:
         if (gScreenWidth == 512)
-        {
             _viMode = OS_VI_PAL_HAF1;
-        }
         else
         {
             if (gScreenHeight == 240)
-            {
                 _viMode = OS_VI_PAL_LAN1;
-            }
             else
-            {
                 _viMode = OS_VI_PAL_LAF1;
-            }
         }
         break;
     case OS_TV_MPAL:
         if (gScreenWidth == 512)
-        {
             _viMode = OS_VI_MPAL_HAF1;
-        }
         else
         {
             if (gScreenHeight == 240)
-            {
                 _viMode = OS_VI_MPAL_LAN1;
-            }
             else
-            {
                 _viMode = OS_VI_MPAL_LAF1;
-            }
         }
         break;
     }
@@ -1059,7 +1004,7 @@ static void mainLoop(void *arg)
 
     D_80197D4C = code1_VRAM;
     D_8010571C = (u8 *)main_80000450;
-    D_80138818 = (u32)(code1_VRAM - (u8 *)main_80000450) >> 0xA;
+    D_80138818 = (u32)(code1_VRAM - (u8 *)main_80000450) >> 10;
     gStaticSegment = (u8 *)code1_VRAM_END;
     size = static_ROM_END - static_ROM_START;
     gCacheMemStart = (u8 *)((intptr_t)(&gStaticSegment[size] + 0x3F) & ~0x3F);
@@ -1111,7 +1056,7 @@ static void mainLoop(void *arg)
             addr[j] += offset_;
         }
 
-        /*FIXME*/
+        /*FAKEMATCH*/
         if (i)
         {
         }
@@ -1138,7 +1083,7 @@ static void mainLoop(void *arg)
     temp = gStaticSegment;
     for (i = 0; i < count2; i++)
     {
-        /*FIXME*/
+        /*FAKEMATCH*/
         _11B300UnkStruct1 *unk = (_11B300UnkStruct1 *)(temp + (intptr_t)D_01025BA0_STATIC_START);
         intptr_t offset = (intptr_t)temp - STATIC_SEGMENT_VRAM;
         *(intptr_t *)&unk[i].actor += offset;
@@ -1231,13 +1176,13 @@ static void mainLoop(void *arg)
 #endif
 
     allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT, 0x2800, 0);
-    osCreateScheduler(&gScheduler, &_schedulerStack[SCHEDULER_STACKSIZE / sizeof(u64)], 0x28, _viMode, (u8)1);
+    osCreateScheduler(&gScheduler, &_schedulerStack[SCHEDULER_STACKSIZE / sizeof(u64)], 40, _viMode, (u8)1);
     osViBlack(1U);
     osCreateThread(&_viLoopThread, 7, viLoop, arg, &_viLoopThreadStack[VILOOP_STACKSIZE / sizeof(u64)], 20);
     initAudio();
     func_801C4F38();
     func_8008AD94();
-    func_8008A3EC("DUKE ZERO HOUR.A", D_801CC930, 0x103C);
+    func_8008A3EC("DUKE ZERO HOUR.A", D_801CC930, 4156);
     switch (osTvType)
     {
     case 0:
@@ -1268,13 +1213,9 @@ static void mainLoop(void *arg)
         if (D_800DEDE0)
         {
             if (D_800DEDE0 == 2)
-            {
                 func_801C9B48();
-            }
             if (D_800DEDE0 == 3)
-            {
                 func_801C9E7C();
-            }
             if (D_800DEDE0 == 4)
             {
                 D_800BD3E8 = 0;
@@ -1291,12 +1232,12 @@ static void mainLoop(void *arg)
         D_800BD3E0 += D_800FE9E0 - D_801AE498;
         D_801CE5D8 += D_800FE9E0 - D_801AE498;
 
-        if (D_800BD3E0 >= 9)
+        if (D_800BD3E0 > 8LL)
             D_800BD3E0 = 8LL;
 
         D_801AE498 = D_80138788;
 
-        for (; D_800BD3E0>=3; D_800BD3E0 -= 2)
+        for (; D_800BD3E0 > 2; D_800BD3E0 -= 2)
             main_800017AC();
 
         if (D_800BD3E0 >= 0)
@@ -1311,16 +1252,15 @@ static void mainLoop(void *arg)
             {
                 osRecvMesg(&D_8010A920, NULL, OS_MESG_BLOCK);
                 D_800BD3FC = 0;
+
                 if (D_80119A5C != 0)
-                {
                     D_80119A5C -= 1;
-                }
+
                 if (_framebufferCount < 3)
                 {
                     if (gRetraceMsgQ.validCount >= gRetraceMsgQ.msgCount)
-                    {
                         osRecvMesg(&gRetraceMsgQ, NULL, OS_MESG_BLOCK);
-                    }
+
                     osRecvMesg(&gRetraceMsgQ, NULL, OS_MESG_BLOCK);
                 }
             }
@@ -1330,9 +1270,7 @@ static void mainLoop(void *arg)
             gGfxTaskIndex ^= 1;
             _framebufferIndex++;
             if (_framebufferIndex == _framebufferCount)
-            {
                 _framebufferIndex = 0;
-            }
         }
     } while (1);
 }
@@ -1354,10 +1292,9 @@ static void viLoop(void *arg)
             if (osTvType == OS_TV_PAL)
             {
                 D_800BD42E++;
-                if ((u16)(D_800BD42E % 5) == 0)
-                {
+                if ((D_800BD42E % 5) == 0)
                     D_800FE9E0++;
-                }
+
                 if (D_800BD42E == 60)
                 {
                     D_800BD42E = 0;
@@ -1377,13 +1314,9 @@ static void viLoop(void *arg)
                 if (D_800BD3F4 == 0)
                 {
                     if (D_800BD3F8 != 0)
-                    {
                         main_80000508();
-                    }
                     else
-                    {
                         main_800005D8();
-                    }
                     osViSetMode(&osViModeTable[_viMode]);
                     osViSetSpecialFeatures(OS_VI_GAMMA_OFF | OS_VI_DITHER_FILTER_ON);
                 }
@@ -1392,12 +1325,12 @@ static void viLoop(void *arg)
         case OS_SC_PRE_NMI_MSG:
             main_80000450();
             osAfterPreNMI();
-            MusStop(3U, 0);
+            MusStop(3, 0);
             func_8008A654();
+
             while (1)
-            {
                 func_8008A724();
-            }
+
             break;
         }
     }

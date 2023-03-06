@@ -33,7 +33,7 @@ void func_80016F7C(code0unkStruct7 *arg0)
     {
         size = arg0->unkC;
         alloCache(&arg0->ramaddr, (size + 1) & ~1, (u8 *)&arg0->lock);
-        D_80169520 = 0xC8;
+        D_80169520 = 200;
         size = arg0->unk10;
         alloCache(&D_80138854, size, &D_80169520);
         romaddr = files_blks_ROM_START;
