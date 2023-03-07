@@ -11,6 +11,7 @@ options:
   create_undefined_funcs_auto: False
   create_undefined_syms_auto: False
   symbol_addrs_path: ["symbol_addrs.txt", "rom_addrs.txt", "static_offsets.txt"]
+  reloc_addrs_path: reloc_addrs.txt
   # undefined_syms_path: undefined_syms.txt
   asm_path: .
   src_path: .
