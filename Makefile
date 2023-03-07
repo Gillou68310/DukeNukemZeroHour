@@ -8,6 +8,7 @@ CHECK        ?= 1
 VERBOSE      ?= 0
 BUILD_DIR    ?= build
 EXTERN       ?= 1
+MODERN       ?= 0
 
 # Fail early if baserom does not exist
 ifeq ($(wildcard $(BASEROM)),)
@@ -16,6 +17,11 @@ endif
 
 # NON_MATCHING=1 implies COMPARE=0
 ifeq ($(NON_MATCHING),1)
+override COMPARE=0
+endif
+
+# MODERN=1 implies COMPARE=0
+ifeq ($(MODERN),1)
 override COMPARE=0
 endif
 
@@ -65,7 +71,7 @@ OBJCOPY  := $(CROSS)objcopy
 STRIP    := $(CROSS)strip
 CPP      := $(CROSS)cpp
 
-CC       := tools/gcc_2.7.2/$(DETECTED_OS)/gcc
+CC       := export COMPILER_PATH=tools/gcc_2.7.2/$(DETECTED_OS) && tools/gcc_2.7.2/$(DETECTED_OS)/gcc
 CC_HOST  := gcc
 
 PRINT := printf '
@@ -114,6 +120,13 @@ OBJECTS := $(OBJECTS:BUILD_PATH/%=$(BUILD_DIR)/%)
 DEPENDS := $(OBJECTS:=.d)
 
 ### Targets ###
+
+ifeq ($(MODERN),1)
+$(BUILD_DIR)/src/%.o: OPTFLAGS := -O0 -g
+$(BUILD_DIR)/src/%.o: CFLAGS += -mabi=32 -march=vr4300 -mfix4300 -mno-abicalls -fno-pic -fno-exceptions -fno-stack-protector -fno-zero-initialized-in-bss -fno-builtin -mno-gpopt -fno-toplevel-reorder
+$(BUILD_DIR)/src/%.o: CC := $(CROSS)gcc
+endif
+
 $(BUILD_DIR)/$(LIBULTRA_DIR)/src/%.o: OPTFLAGS := -O3 -g0
 $(BUILD_DIR)/$(LIBULTRA_DIR)/src/%.o: CPPFLAGS += -I $(LIBULTRA_DIR)/src -I $(LIBULTRA_DIR)/include/2.0I/PR
 
@@ -170,7 +183,7 @@ $(BUILD_DIR)/%.c.o: %.c
 	@mkdir -p $(shell dirname $@)
 	@$(CC_HOST) $(CFLAGS_CHECK) $(CPPFLAGS) -MMD -MP -MT $@ -MF $@.d $<
 	$(V)$(CPP) $(CFLAGS) $(CPPFLAGS) -ffreestanding -U__mips -D__FILE__=\"$(notdir $<)\" -Wno-builtin-macro-redefined $< -o $@.i
-	$(V)export COMPILER_PATH=tools/gcc_2.7.2/$(DETECTED_OS) && $(CC) $(OPTFLAGS) $(CFLAGS) -c -o $@ $@.i
+	$(V)$(CC) $(OPTFLAGS) $(CFLAGS) -c -o $@ $@.i
 
 # Compile .s files with kmc as but preprocessed by modern gnu cpp
 $(BUILD_DIR)/%.s.o: %.s
@@ -188,6 +201,9 @@ $(BUILD_DIR)/%.bin.o: %.bin
 $(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
 	@$(PRINT)$(GREEN)Preprocessing linker script: $(ENDGREEN)$(BLUE)$<$(ENDBLUE)$(ENDLINE)
 	$(V)$(CPP) -P -DBUILD_PATH=$(BUILD_DIR) $< -o $@
+ifeq ($(MODERN),1)
+	@sed -r -i 's/\*\(\*\);/\*\(.eh_frame\);\n        *(.MIPS.abiflags);/g' $@
+endif
 
 # Link the .o files into the .elf
 $(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) $(BUILD_DIR)/$(LD_SCRIPT)

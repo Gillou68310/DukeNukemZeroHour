@@ -28,6 +28,7 @@ options:
   generated_c_preamble: "#include \"common.h\"\n\n/*.text*/"
   use_legacy_include_asm: False
   include_macro_inc: False
+  ld_wildcard_sections: True
 segments:
   - name: gen/header
     type: header
