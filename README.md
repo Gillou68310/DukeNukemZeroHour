@@ -74,6 +74,33 @@ When binding windows or mac folder I strongly recommand installing [Mutagen Exte
 docker --context=desktop-linux-mutagen run --rm -ti --mount src=$(pwd),target=/dukenukemzerohour,type=bind dukenukemzerohour
 ```
 
+## Debugging
+
+Game can be debugged with gdb through mupen64plus (Windows only for now).
+In order to have source code information the game should be compiled with modern gcc by adding MODERN=1 to the make command.
+
+Run the gdb server in cmd:
+
+```sh
+tools\debugger\win32\gdbserver.bat
+```
+
+Then run the gdb client in cmd:
+
+```sh
+tools\debugger\win32\gdbclient.bat
+```
+
+It's also possible to debug within vscode with the [Native Debug](https://marketplace.visualstudio.com/items?itemName=webfreak.debug) extension.
+
+Run the gdb server in cmd:
+
+```sh
+tools\debugger\win32\gdbserver.bat
+```
+
+Then run the "GDB Client(Win32)" configuration in vscode.
+
 ## Tools
 
  - [asm-differ](https://github.com/simonlindholm/asm-differ); rapidly diff between source/target assembly
