@@ -153,7 +153,7 @@ def parse_addrs_from_source(file: str, coord: dict, symbols: SYMBOLS, forced: li
             symbols.add(sym, True)
         if lines[i].startswith('INCLUDE_ASM'):
             name = lines[i].split(',')[1].split(')')[0].strip()
-            sym = SYMBOL(splat=split.symbols.Symbol(given_name=name, given_size=0, vram_start=0, type='function'), \
+            sym = SYMBOL(splat=split.symbols.Symbol(given_name=name, given_size=0, vram_start=0, type='func'), \
                          source=file, section='.text')
             forced.append(sym)
         if 'EXTERN_DATA' in lines[i]:
@@ -197,7 +197,7 @@ def parse_object_file(file: str, symbols: SYMBOLS) -> None:
         else:
             visibility = 'global'
         if type == 't' or type == 'T':
-            t = 'function'
+            t = 'func'
         else:
             t = 'data'
 

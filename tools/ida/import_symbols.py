@@ -119,7 +119,7 @@ if os.path.isfile(tilib) and os.path.isfile('ida_ctx.c'):
                     else:
                         print('Failed to apply new size (type not found: + ' + type + ')')
 
-            elif symbol.type == 'function':
+            elif symbol.type == 'func':
                 ret = ida_funcs.add_func(symbol.addr, ida_idaapi.BADADDR)
                 for i in range(0, symbol.size, 4):
                     ida_ua.create_insn(symbol.addr + i)
