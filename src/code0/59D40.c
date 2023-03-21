@@ -8,6 +8,7 @@
 #include "code0/41940.h"
 #include "code0/59D40.h"
 #include "code0/6ACA0.h"
+#include "code0/87010.h"
 #include "code0/8E670.h"
 #include "code0/8EFE0.h"
 #include "code0/A06F0.h"
@@ -879,45 +880,32 @@ void func_8005BB88(s32 spritenum, s32 arg1)
     }
 }
 
-#ifdef NON_MATCHING
+/*8005BD28*/
 void func_8005BD28(s32 spritenum, s32 arg1)
 {
     s32 x1, x2, y1, y2, z, z1, z2;
     f32 f1, f2, f3;
-    s32 temp;
 
-    temp = spritenum;
     if ((D_80137DE0->unk0 & 0x1800) && (D_80137DE0->unk28 != -1))
     {
-        z = (gpSprite[D_80137DE0->unk28].z - D_80118248->z) / 16;
-        x1 = gpSprite[D_80137DE0->unk28].x;
-        y1 = gpSprite[D_80137DE0->unk28].y;
-        x2 = D_80118248->x;
-        y2 = D_80118248->y;
-        f1 = z;
+        f1 = (gpSprite[D_80137DE0->unk28].z - D_80118248->z) / 16;
+        f2 = func_80040D40(gpSprite[D_80137DE0->unk28].x, gpSprite[D_80137DE0->unk28].y, D_80118248->x, D_80118248->y);
     }
     else
     {
         if ((D_801CA14C[gMapNum].unk0 == 2) && (D_80137DE0->unk4 & 0x20))
         {
-            z1 = D_80117ED8[0].zpos;
-            z2 = gpSprite[temp].z;
-            z2 -= 0x4600;
+            z2 = (gpSprite[spritenum].z - 0x4600);
+            f1 = (D_80117ED8[0].zpos - z2) / 16;
         }
         else
         {
-            z1 = D_80117ED8[0].zpos;
-            z2 = gpSprite[temp].z;
-            z2 -= 0x4000;
+            z2 = (gpSprite[spritenum].z - 0x4000);
+            f1 = (D_80117ED8[0].zpos - z2) / 16;
         }
-        f1 = (z1 - z2) / 16;
-        x1 = D_80117ED8[0].xpos;
-        y1 = D_80117ED8[0].ypos;
-        x2 = gpSprite[spritenum].x;
-        y2 = gpSprite[spritenum].y;
+
+        f2 = func_80040D40(D_80117ED8[0].xpos, D_80117ED8[0].ypos, gpSprite[spritenum].x, gpSprite[spritenum].y);
     }
-    temp = 0;
-    f2 = func_80040D40(x1, y1, x2, y2);
     f3 = func_80029FE0(f1, f2) * 325.9493234521802;
 
     if (f3 >= 480.0f)
@@ -930,7 +918,7 @@ void func_8005BD28(s32 spritenum, s32 arg1)
         if (D_80137DE0->unk7C < f3)
         {
             D_80137DE0->unk7C += 8;
-            if (f3 < D_80137DE0->unk7C)
+            if (D_80137DE0->unk7C > f3)
                 D_80137DE0->unk7C = f3;
         }
         else
@@ -941,10 +929,6 @@ void func_8005BD28(s32 spritenum, s32 arg1)
         }
     }
 }
-#else
-/*8005BD28*/
-INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005BD28);
-#endif
 
 INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005BFD8);
 
@@ -1224,7 +1208,128 @@ void func_8005CAE0(s32 spritenum, s32 arg1)
     }
 }
 
-INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005CBC4);
+/*8005CBC4*/
+void func_8005CBC4(s32 spritenum, s32 arg1)
+{
+    s16 hitsect, hitwall, hitsprite;
+    s32 hitx, hity, hitz;
+    s32 x, y, z, z2, unk50;
+    s16 ang, ang1, ang2, sectnum, cstat;
+    f32 f1, f2, f3, f4, f5;
+
+    x = D_80118248->x;
+    y = D_80118248->y;
+
+    if (D_80118248->unk22 == 0)
+        z = D_80118248->z - 13824;
+    else
+        z = D_80118248->z - 8192;
+
+    if (D_80137DE0->unk84 == 42)
+        z += 5376;
+
+    ang = D_80137DE0->unk5C;
+    cstat = D_80118248->cstat;
+    D_80118248->cstat = cstat & 0xFEFE;
+    sectnum = D_80118248->sectnum;
+    f4 = D_80137DE0->unk60 * 0.0030679615757714844;
+    f5 = sinf(f4) / cosf(f4) * 16384.0f * 16.0f;
+
+    hitScan(x,
+            y,
+            z,
+            sectnum,
+            gpSinTable[(ang + 512) & 0x7FF],
+            gpSinTable[ang & 0x7FF],
+            f5,
+            &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x01000040);
+
+    D_80118248->cstat = cstat;
+    if (hitsect != -1)
+    {
+        if ((arg1 == 1) && ((D_80137DE0->unk9F & 1) == 0))
+        {
+            D_80137DE0->unk9F |= 1;
+            D_80137DE0->unk48 = (D_80137DE0->unk38 + (krand() & 0x7FF)) - 0x400;
+            D_80137DE0->unk4C = (D_80137DE0->unk3C + (krand() & 0x7FF)) - 0x400;
+            D_80137DE0->unk50 = D_80137DE0->unk40 + (((krand() & 0xFF) - 0x7F) << 8);
+        }
+
+        func_8008E3E0(hitx, hity, hitz, hitsect, 51, 0);
+
+        if (D_80137DE0->unk84 == 42)
+        {
+            z -= 5376;
+            x += ((gpSinTable[(D_80118248->ang + 982) & 0x7FF] * 19) >> 13);
+            y += (gpSinTable[(D_80118248->ang + 470) & 0x7FF] * 19) >> 13;
+        }
+        else
+        {
+            z -= 4352;
+            x += ((gpSinTable[(D_80118248->ang + 982) & 0x7FF] * 85) >> 13);
+            y += (gpSinTable[(D_80118248->ang + 470) & 0x7FF] * 85) >> 13;
+        }
+
+        func_80087174(spritenum, x, y, z, hitx, hity, hitz, 16, 8);
+
+        if (arg1 == 0)
+        {
+            z2 = (gpSprite[spritenum].z - 23552);
+            f1 = ((D_80117ED8[0].zpos - z2) - 8192) / 16;
+            f2 = func_80040D40(D_80117ED8[0].xpos, D_80117ED8[0].ypos, gpSprite[spritenum].x, gpSprite[spritenum].y);
+            f3 = func_80029FE0(f1, f2) * 325.9493234521802;
+        }
+        else
+        {
+            unk50 = D_80137DE0->unk50;
+            z2 = (gpSprite[spritenum].z - 23552);
+            f1 = ((unk50 - z2) - 8192) / 16;
+            f2 = func_80040D40(D_80137DE0->unk48, D_80137DE0->unk4C, gpSprite[spritenum].x, gpSprite[spritenum].y);
+            f3 = func_80029FE0(f1, f2) * 325.9493234521802;
+        }
+
+        if (arg1 == 0)
+            ang1 = getAngle(D_80117ED8[D_801A2628].xpos - D_80118248->x, D_80117ED8[D_801A2628].ypos - D_80118248->y);
+        else
+            ang1 = getAngle(D_80137DE0->unk48 - D_80118248->x, D_80137DE0->unk4C - D_80118248->y);
+
+        ang2 = getAngleDelta(D_80137DE0->unk5C, ang1) >> 5;
+        if (ang2 == 0)
+        {
+            ang2 = getAngleDelta(D_80137DE0->unk5C, ang1) >> 4;
+            if (ang2 == 0)
+            {
+                ang2 = getAngleDelta(D_80137DE0->unk5C, ang1) >> 3;
+                if (ang2 == 0)
+                {
+                    ang2 = getAngleDelta(D_80137DE0->unk5C, ang1) >> 2;
+                    if (ang2 == 0)
+                    {
+                        ang2 = getAngleDelta(D_80137DE0->unk5C, ang1) >> 1;
+                        if (ang2 == 0)
+                        {
+                            ang2 = getAngleDelta(D_80137DE0->unk5C, ang1);
+                        }
+                    }
+                }
+            }
+        }
+
+        D_80137DE0->unk5C += ang2;
+        D_80118248->ang = D_80137DE0->unk5C;
+
+        if (D_80137DE0->unk60 != (s32)f3)
+        {
+            if (D_80137DE0->unk60 < f3)
+                D_80137DE0->unk60++;
+            else
+                D_80137DE0->unk60--;
+        }
+        D_80137DE0->unk7C = D_80137DE0->unk60;
+        if ((hitsprite != -1) && (gpSprite[hitsprite].statnum == 10))
+            D_80137DE0->unk54 = 1;
+    }
+}
 
 /*8005D268*/
 void func_8005D268(s32 spritenum, s32 arg1)
@@ -1350,9 +1455,111 @@ void func_8005D740(s32 spritenum, s32 arg1)
     D_80118248->z += 0x2000;
 }
 
-INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005D83C);
+/*8005D83C*/
+void func_8005D83C(s32 spritenum, s32 arg1)
+{
+    s16 hitsect, hitwall, hitsprite;
+    s32 hitx, hity, hitz;
+    s16 cstat;
+    s32 i, ang, ang2, d1, d2, temp;
 
-INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005DA18);
+    d2 = -1;
+    ang2 = -1;
+    ang = krand() & 0xFF;
+
+    for (i = 0; i < 16; i++)
+    {
+        cstat = gpSprite[spritenum].cstat;
+        gpSprite[spritenum].cstat = cstat & 0xFEFE;
+
+        hitScan(gpSprite[spritenum].x,
+                gpSprite[spritenum].y,
+                gpSprite[spritenum].z - 0x1000,
+                gpSprite[spritenum].sectnum,
+                gpSinTable[(ang + 512) & 0x7FF],
+                gpSinTable[ang & 0x7FF],
+                0, &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x01000040);
+
+        d1 = -1;
+        gpSprite[spritenum].cstat = cstat;
+
+        if (hitwall != -1)
+            d1 = klabs_(gpSprite[spritenum].x - hitx) + klabs_(gpSprite[spritenum].y - hity);
+
+        if (d1 != -1)
+        {
+            if (d2 < d1)
+            {
+                d2 = d1;
+                ang2 = ang;
+                if (d1 > 6000)
+                    break;
+
+                while (0); /*FAKEMATCH*/
+            }
+        }
+        ang += 256;
+    }
+
+    temp = ang2 - 256;
+    ang2 = temp + (krand() & 0x1FF);
+    setVar(spritenum, arg1, ang2);
+}
+
+/*8005DA18*/
+void func_8005DA18(s32 spritenum, s32 arg1)
+{
+    s16 hitsect, hitwall, hitsprite;
+    s32 hitx, hity, hitz;
+    s16 cstat;
+    s32 i, ang, ang1, d1, d2, d3, d4;
+
+    ang = krand() & 0xFF;
+    d2 = -1;
+    ang1 = -1;
+    d3 = 0;
+    d4 = klabs_(gpSprite[spritenum].x - D_80117ED8[0].xpos) + klabs_(gpSprite[spritenum].y - D_80117ED8[0].ypos);
+
+    if (d4 < 4000)
+        d4 = 800000;
+
+    for (i = 0; i < 16; i++)
+    {
+        cstat = gpSprite[spritenum].cstat;
+        gpSprite[spritenum].cstat = cstat & 0xFEFE;
+        hitScan(gpSprite[spritenum].x,
+                gpSprite[spritenum].y,
+                gpSprite[spritenum].z - 0x1000,
+                gpSprite[spritenum].sectnum,
+                gpSinTable[(ang + 512) & 0x7FF],
+                gpSinTable[ang & 0x7FF],
+                0, &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x01000040);
+
+        d1 = -1;
+        gpSprite[spritenum].cstat = cstat;
+        if (hitwall != -1)
+        {
+            d1 = klabs_(gpSprite[spritenum].x - hitx) + klabs_(gpSprite[spritenum].y - hity);
+            d3 = klabs_(hitx - D_80117ED8[0].xpos) + klabs_(hity - D_80117ED8[0].ypos);
+        }
+
+        if (d1 != -1)
+        {
+            if (d2 < d1)
+            {
+                if (d3 < d4)
+                {
+                    d2 = d1;
+                    ang1 = ang;
+                    while (0); /*FAKEMATCH*/
+                }
+            }
+        }
+        ang += 256;
+    }
+    D_80137DE0->unk48 = (d2 / 400) + 1;
+    setVar(spritenum, arg1, ang1);
+}
 
 /*8005DCAC*/
 void func_8005DCAC(s32 spritenum, s32 arg1)
@@ -1498,7 +1705,62 @@ void func_8005E29C(s32 spritenum, s32 arg1)
     D_80137DE0->unk99 = D_80137DE0->unkA;
 }
 
-INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005E2B0);
+/*8005E2B0*/
+void func_8005E2B0(s32 spritenum)
+{
+    s32 i, j, d1, d2, nexti, picnum, spritenum_, x, y, z, sectnum, val;
+
+    i = gHeadSpriteStat[80];
+    j = -1;
+    d1 = 300000;
+    while (i >= 0)
+    {
+        nexti = gNextSpriteStat[i];
+        d2 = ldist(&gpSprite[D_80117ED8[0].unk4A], &gpSprite[i]);
+        if (d2 < d1)
+        {
+            d1 = d2;
+            j = i;
+        }
+        i = nexti;
+    }
+
+    picnum = gpSprite[spritenum].picnum;
+    x = gpSprite[j].x;
+    y = gpSprite[j].y;
+    z = gpSprite[j].z;
+    sectnum = gpSprite[j].sectnum;
+
+    val = 2566;
+    if (picnum == 1533)
+        val = 2567;
+    if (picnum == 1534)
+        func_8006B590(200);
+    else if (picnum != 2003)
+    {
+        if (picnum == 2000)
+            func_8006B590(201);
+        else
+        {
+            if (picnum == 2366)
+                val = 2571;
+            if (picnum == 2382)
+                func_8006B590(202);
+            else
+            {
+                spritenum_ = func_8004BC64(x, y, z, sectnum, val, 0, 0);
+                if (spritenum_ >= 0)
+                {
+                    changeSpriteStat(spritenum_, 0);
+                    gpSprite[spritenum_].cstat &= 0xFEFE;
+                    gpSprite[spritenum_].cstat |= 0x8000;
+                    func_8004EA40(spritenum_);
+                }
+            }
+        }
+    }
+    func_8004BD24(spritenum);
+}
 
 /*8005E4B0*/
 void func_8005E4B0(s32 spritenum, s32 arg1)
@@ -1810,7 +2072,42 @@ void func_8005F358(s32 spritenum, s32 arg1)
     D_80118248->shade = 3;
 }
 
-INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005F38C);
+/*8005F38C*/
+void func_8005F38C(s32 spritenum, s32 arg1)
+{
+    s32 x, y, z, x1, y1, z1, ang, ang1, m, temp;
+
+    if ((D_8012FD88 & 3) == 3)
+    {
+        ang = krand() & 0x3FF;
+        temp = (krand() & 0x1FFF) + 8000;
+        m = temp + (krand() & 0x7FF);
+        ang1 = ang + 1;
+        x1 = (m * gpSinTable[ang1]) >> 14;
+        y1 = (m * gpSinTable[(ang - 511) & 0x7FF]) >> 14;
+        z1 = krand();
+        x = D_80118248->x;
+        y = D_80118248->y;
+        z = D_80118248->z;
+        D_80118248->x += x1;
+        D_80118248->y += y1;
+        D_80118248->z += z1 & 0x7FFF;
+        if ((krand() & 3) >= 3)
+        {
+            func_8004BFDC(spritenum, 3, D_80118248->z, 1);
+        }
+        else
+        {
+            func_8008E3E0(D_80118248->x, D_80118248->y, D_80118248->z, D_80118248->sectnum, 41, 32);
+            audio_80007A44((func_801C0FDC(6) + 559) & 0xFFFF, spritenum, 40000);
+        }
+        D_80118248->x = x;
+        D_80118248->y = y;
+        D_80118248->z = z;
+        audio_80007A44((func_801C0FDC(6) + 559) & 0xFFFF, spritenum, 40000);
+        func_8001F7B4(4, 4);
+    }
+}
 
 INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005F560);
 
