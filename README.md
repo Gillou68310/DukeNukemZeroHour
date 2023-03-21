@@ -59,6 +59,20 @@ OK
 Functions can be decompiled to a state where they are functionally equivalent, but are not a byte-perfect match.
 In order to build/test the non-matching, add NON_MATCHING=1 argument to the make commands.
 
+## Docker
+
+A Docker image containing all dependencies can be built and ran as follows:
+```sh
+docker build . -t dukenukemzerohour
+docker run --rm -ti --mount src=$(pwd),target=/dukenukemzerohour,type=bind dukenukemzerohour
+```
+
+Then continue with [the building instructions](#Building)
+
+When binding windows or mac folder I strongly recommand installing [Mutagen Extension for Docker Desktop](https://mutagen.io/documentation/docker-desktop-extension).
+```sh
+docker --context=desktop-linux-mutagen run --rm -ti --mount src=$(pwd),target=/dukenukemzerohour,type=bind dukenukemzerohour
+```
 
 ## Tools
 
