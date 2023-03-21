@@ -23,6 +23,7 @@ endif
 # MODERN=1 implies COMPARE=0
 ifeq ($(MODERN),1)
 override COMPARE=0
+override CHECK=0
 endif
 
 ifeq ($(VERBOSE),0)
@@ -61,7 +62,6 @@ PYTHON     := python3
 N64CKSUM   := $(PYTHON) tools/scripts/n64cksum.py
 SPLAT_YAML := dukenukemzerohour.yaml
 SPLAT      := $(PYTHON) tools/splat/split.py $(SPLAT_YAML)
-EMULATOR   := mupen64plus
 DIFF       := diff
 
 CROSS    := mips-linux-gnu-
@@ -93,19 +93,16 @@ ENDLINE := \n'
 OPTFLAGS       := -O2 -g2
 ASFLAGS        := -G0 -mips3 -I include
 CFLAGS         := -G0 -mips3 -mgp32 -mfp32 -funsigned-char #-save-temps #-Wa,--vr4300mul-off
-CPPFLAGS       := -I include -I $(LIBULTRA_DIR)/include/2.0I -I $(LIBMUS_DIR)/include -D_LANGUAGE_C -DF3DEX_GBI_2 -D_MIPS_SZLONG=32 -D_FINALROM -DTARGET_N64 -DSTATIC=
+CPPFLAGS       := -I include -I $(LIBULTRA_DIR)/include/2.0I -I $(LIBMUS_DIR)/include -D_LANGUAGE_C -DF3DEX_GBI_2 -D_MIPS_SZLONG=32 -D_FINALROM -DTARGET_N64
 LDFLAGS        := -T undefined_syms.txt -T undefined_funcs.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(LD_MAP) --no-check-sections
-CHECK_WARNINGS := -Wall -Wextra -Wno-missing-braces -Wno-format-security -Wno-unused-parameter -Wno-unused-variable -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -Wno-unused-function -m32
-CFLAGS_CHECK   := -fsyntax-only -funsigned-char -nostdinc -fno-builtin -D CC_CHECK -std=gnu90 $(CHECK_WARNINGS)
-
-ifneq ($(CHECK),1)
-CFLAGS_CHECK += -w
-endif
+CHECK_WARNINGS := -Wall -Wextra -Wno-missing-braces -Wno-format-security -Wno-unused-parameter -Wno-unused-variable -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -Wno-unused-function
+CFLAGS_CHECK   := -m32 -fsyntax-only -funsigned-char -nostdinc -fno-builtin -std=gnu90
+CFLAGS_MODERN  := -mabi=32 -march=vr4300 -mfix4300 -mno-abicalls -fno-pic -fno-exceptions -fno-stack-protector -fno-zero-initialized-in-bss -fno-builtin -mno-gpopt -fno-toplevel-reorder
 
 ifeq ($(EXTERN),1)
-CPPFLAGS += -DEXTERN_DATA=extern -DEXTERN_BSS=extern
+CPPFLAGS += -DEXTERN_DATA=extern -DEXTERN_BSS=extern -DSTATIC=
 else
-CPPFLAGS += -DEXTERN_DATA= -DEXTERN_BSS= -D__CTX__
+CPPFLAGS += -DEXTERN_DATA= -DEXTERN_BSS= -D__CTX__ -DSTATIC=
 endif
 
 ifeq ($(NON_MATCHING),1)
@@ -123,7 +120,7 @@ DEPENDS := $(OBJECTS:=.d)
 
 ifeq ($(MODERN),1)
 $(BUILD_DIR)/src/%.o: OPTFLAGS := -O0 -g
-$(BUILD_DIR)/src/%.o: CFLAGS += -mabi=32 -march=vr4300 -mfix4300 -mno-abicalls -fno-pic -fno-exceptions -fno-stack-protector -fno-zero-initialized-in-bss -fno-builtin -mno-gpopt -fno-toplevel-reorder
+$(BUILD_DIR)/src/%.o: CFLAGS += $(CFLAGS_MODERN) $(CHECK_WARNINGS)
 $(BUILD_DIR)/src/%.o: CC := $(CROSS)gcc
 endif
 
@@ -163,16 +160,6 @@ setup: distclean split
 
 split:
 	$(V)$(SPLAT)
-
-test: $(ROM)
-	$(V)$(EMULATOR) $<
-
-context:
-	@$(PRINT)$(GREEN)Creating context file...$(ENDLINE)
-	$(V)rm -f ctx.c ctx_includes.c
-	$(V)find include/ src/ -type f -name "*.h" | sed -e 's/.*/#include "\0"/' > ctx_includes.c
-	$(V)$(PYTHON) tools/scripts/m2ctx.py ctx_includes.c
-	$(V)rm -f ctx_includes.c
 	
 compare:
 	$(V)$(PYTHON) tools/scripts/first_diff.py
@@ -181,7 +168,9 @@ compare:
 $(BUILD_DIR)/%.c.o: %.c
 	@$(PRINT)$(GREEN)Compiling C file: $(ENDGREEN)$(BLUE)$<$(ENDBLUE)$(ENDLINE)
 	@mkdir -p $(shell dirname $@)
-	@$(CC_HOST) $(CFLAGS_CHECK) $(CPPFLAGS) -MMD -MP -MT $@ -MF $@.d $<
+ifeq ($(CHECK),1)
+	@$(CC_HOST) $(CFLAGS_CHECK) $(CHECK_WARNINGS) $(CPPFLAGS) -MMD -MP -MT $@ -MF $@.d $<
+endif
 	$(V)$(CPP) $(CFLAGS) $(CPPFLAGS) -ffreestanding -U__mips -D__FILE__=\"$(notdir $<)\" -Wno-builtin-macro-redefined $< -o $@.i
 	$(V)$(CC) $(OPTFLAGS) $(CFLAGS) -c -o $@ $@.i
 
