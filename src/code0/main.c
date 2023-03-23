@@ -1366,7 +1366,7 @@ static void main_800034F4(void)
 
     guLookAtReflect(
         &gpDynamic->viewing,
-        &gpDynamic->lookat,
+        &gpDynamic->lookat[0][0],
         gPosition.xEye,
         gPosition.yEye,
         gPosition.zEye,
@@ -1377,8 +1377,8 @@ static void main_800034F4(void)
         1.0,
         0.0);
 
-    gSPLookAtX(gpDisplayList++, &gpDynamic->lookat.l[0]);
-    gSPLookAtY(gpDisplayList++, &gpDynamic->lookat.l[1]);
+    gSPLookAtX(gpDisplayList++, &gpDynamic->lookat[0][0].l[0]);
+    gSPLookAtY(gpDisplayList++, &gpDynamic->lookat[0][0].l[1]);
 }
 
 /*800036DC*/

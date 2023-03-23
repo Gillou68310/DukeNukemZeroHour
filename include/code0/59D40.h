@@ -71,6 +71,7 @@ void func_8005CA54(s32 spritenum, s32);
 void func_8005CA88(s32 spritenum, s32);
 void func_8005CAB4(s32 spritenum, s32);
 void func_8005CAE0(s32 spritenum, s32);
+void func_8005CBC4(s32 spritenum, s32);
 void func_8005D268(s32 spritenum, s32);
 void func_8005D39C(s32 spritenum, s32);
 void func_8005D3BC(s32 spritenum, s32);
@@ -79,6 +80,8 @@ void func_8005D4A4(s32 spritenum, s32);
 void func_8005D518(s32 spritenum, s32);
 void func_8005D5D4(s32 spritenum, s32);
 void func_8005D740(s32 spritenum, s32);
+void func_8005D83C(s32 spritenum, s32);
+void func_8005DA18(s32 spritenum, s32);
 void func_8005DCAC(s32 spritenum, s32);
 void func_8005DCC4(s32 spritenum, s32);
 void func_8005DCF0(s32 spritenum, s32);
@@ -119,6 +122,7 @@ void func_8005F050(s32 spritenum, s32);
 void func_8005F0F0(s32 spritenum, s32);
 void func_8005F290(s32 spritenum, s32);
 void func_8005F358(s32 spritenum, s32);
+void func_8005F38C(s32 spritenum, s32);
 void func_8005F6A8(s32 spritenum, s32);
 void func_8005F6DC(s32 spritenum, s32);
 void func_8005F730(s32 spritenum, s32);
@@ -142,5 +146,6 @@ void func_8005FD60(s32 spritenum, s32);
 
 s32 func_8005A240(s32 spritenum);
 void func_80059EEC(s16 spritenum, s32, s32);
+void func_8005E2B0(s32 spritenum);
 
 #endif

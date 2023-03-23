@@ -10,9 +10,10 @@
 
 typedef struct
 {
-    /*0x0000*/ u8 pad1[512];
-    /*0x0200*/ LookAt lookat;
-    /*0x0220*/ u8 pad2[19104];
+    /*0x0000*/ Mtx mtx1[4];
+    /*0x0100*/ Mtx mtx2[4];
+    /*0x0200*/ LookAt lookat[4][2];
+    /*0x0300*/ u8 pad2[18880];
     /*0x4CC0*/ Mtx projection;
     /*0x4D00*/ Mtx viewing;
     /*0x4D40*/ Mtx identity;
@@ -283,6 +284,7 @@ typedef struct
 /*8011BC48*/ _extern s32 D_8011BC48;
 /*801297E0*/ _extern Gfx *D_801297E0[MAXPLAYERS][2] ALIGNED(8);
 /*80129808*/ _extern u8 *D_80129808;
+/*8012B948*/ _extern Matrix4f D_8012B948; /*viewing*/
 /*8012BBCC*/ _extern s16 D_8012BBCC;
 /*8012BC70*/ _extern code0UnkStruct6 D_8012BC70[256] ALIGNED(16);
 /*8012C470*/ _extern s16 D_8012C470;
@@ -352,6 +354,7 @@ typedef struct
 /*801AE528*/ _extern s32 D_801AE528;
 /*801AE8F0*/ _extern u8 *D_801AE8F0;
 /*801AE914*/ _extern s32 D_801AE914;
+/*801AEA10*/ _extern f32 D_801AEA10;
 /*801B0815*/ _extern u8 D_801B0815;
 /*801B0820*/ _extern u8 D_801B0820;
 /*801B0830*/ _extern Matrix4f D_801B0830[20] ALIGNED(16);

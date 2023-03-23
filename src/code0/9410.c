@@ -4,6 +4,7 @@
 #include "code0/edl.h"
 #include "code0/main.h"
 #include "code0/audio.h"
+#include "code0/graphics.h"
 #include "code0/9410.h"
 #include "code0/1A7C0.h"
 #include "code0/1E7A0.h"
@@ -49,6 +50,7 @@
 /*80107910*/ s16 gTilemap[MAXTILES] ALIGNED(16);
 /*80119A58*/ u32 gDisplayListSize;
 /*8012FDA0*/ u8 gTileBuffer[MAXTILESIZE] ALIGNED(16);
+/*801385F2*/ u16 D_801385F2; /*perspNorm*/
 /*801385F4*/ s16 D_801385F4;
 /*80138694*/ s16 D_80138694;
 /*80169580*/ u8 D_80169580[TILENUM] ALIGNED(16);
@@ -886,11 +888,125 @@ u8 *loadTile(u16 tilenum)
     return NULL;
 }
 
-INCLUDE_ASM("nonmatchings/src/code0/9410", tileMasks);
+/*8000E3D4*/
+s32 tileMasks(u16 arg0)
+{
+    switch (gpTileInfo[arg0].dimx)
+    {
+    case 0:
+        return 0;
+    case 2:
+        return 1;
+    case 4:
+        return 2;
+    case 8:
+        return 3;
+    case 16:
+        return 4;
+    case 32:
+        return 5;
+    case 64:
+        return 6;
+    case 128:
+        return 7;
+    case 256:
+        return 8;
+    }
+    return 0;
+}
 
-INCLUDE_ASM("nonmatchings/src/code0/9410", tileMaskt);
+/*8000E4A0*/
+s32 tileMaskt(u16 arg0)
+{
+    switch (gpTileInfo[arg0].dimy)
+    {
+    case 0:
+        return 0;
+    case 2:
+        return 1;
+    case 4:
+        return 2;
+    case 8:
+        return 3;
+    case 16:
+        return 4;
+    case 32:
+        return 5;
+    case 64:
+        return 6;
+    case 128:
+        return 7;
+    case 256:
+        return 8;
+    }
+    return 0;
+}
 
-INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000E56C);
+/*8000E56C*/
+static void func_8000E56C(void)
+{
+    f32 xUp, yUp, zUp, xAt, yAt, zAt;
+
+    u16 perspNorm;
+    Matrix4f projection;
+    Matrix4f viewing;
+
+    xAt = sinf(D_801AEA10) * 512.0;
+    yAt = cosf(D_801AEA10) * -512.0;
+    zAt = (f64)(sinf(D_8016A15C) * 512.0) / cosf(D_8016A15C);
+
+    grPerspectiveF(projection,
+                   &perspNorm,
+                   (15360.0 / D_80117ED8[D_801B0820].unk6E),
+                   1.3333334f,
+                   ((D_80117ED8[D_801B0820].unk6E * 5) / 256.0),
+                   16384.0f,
+                   (256.0 / D_80117ED8[D_801B0820].unk6E));
+
+    grPerspective(&gpDynamic->mtx1[D_801B0820],
+                  &perspNorm,
+                  (15360.0 / D_80117ED8[D_801B0820].unk6E),
+                  1.3333334f,
+                  ((D_80117ED8[D_801B0820].unk6E * 5) / 256.0),
+                  16384.0f,
+                  (256.0 / D_80117ED8[D_801B0820].unk6E));
+
+    D_801385F2 = perspNorm;
+
+    xUp = sinf(D_801AC8E0) * cosf(D_801AEA10);
+    yUp = sinf(D_801AC8E0) * sinf(D_801AEA10);
+    zUp = -cosf(D_801AC8E0);
+
+    grLookAtF(viewing,
+              gMapXpos * 0.5f,
+              gMapYpos * 0.5f,
+              gMapZpos * 0.5f,
+              (xAt + gMapXpos) * 0.5f,
+              (yAt + gMapYpos) * 0.5f,
+              (zAt + gMapZpos) * 0.5f,
+              xUp,
+              yUp,
+              zUp);
+
+    grLookAtReflect(&gpDynamic->mtx2[D_801B0820],
+                    &gpDynamic->lookat[D_801B0820][0],
+                    gMapXpos * 0.5f,
+                    gMapYpos * 0.5f,
+                    gMapZpos * 0.5f,
+                    (xAt + gMapXpos) * 0.5f,
+                    (yAt + gMapYpos) * 0.5f,
+                    (zAt + gMapZpos) * 0.5f,
+                    xUp,
+                    yUp,
+                    zUp);
+
+    gSPLookAtX(gpDisplayList++, &gpDynamic->lookat[D_801B0820][0].l[0]);
+    gSPLookAtY(gpDisplayList++, &gpDynamic->lookat[D_801B0820][0].l[1]);
+    gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx1[D_801B0820]), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
+    gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx2[D_801B0820]), G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
+    gSPPerspNormalize(gpDisplayList++, perspNorm);
+    grMtxCatF(viewing, projection, D_8012B948);
+}
 
 INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000EA0C);
 
