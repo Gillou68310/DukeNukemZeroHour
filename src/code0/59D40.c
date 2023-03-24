@@ -1467,7 +1467,7 @@ void func_8005D83C(s32 spritenum, s32 arg1)
     ang2 = -1;
     ang = krand() & 0xFF;
 
-    for (i = 0; i < 16; i++)
+    for (i = 0; i < 16; i++, ang += 256)
     {
         cstat = gpSprite[spritenum].cstat;
         gpSprite[spritenum].cstat = cstat & 0xFEFE;
@@ -1494,11 +1494,8 @@ void func_8005D83C(s32 spritenum, s32 arg1)
                 ang2 = ang;
                 if (d1 > 6000)
                     break;
-
-                while (0); /*FAKEMATCH*/
             }
         }
-        ang += 256;
     }
 
     temp = ang2 - 256;
@@ -1523,7 +1520,7 @@ void func_8005DA18(s32 spritenum, s32 arg1)
     if (d4 < 4000)
         d4 = 800000;
 
-    for (i = 0; i < 16; i++)
+    for (i = 0; i < 16; i++, ang += 256)
     {
         cstat = gpSprite[spritenum].cstat;
         gpSprite[spritenum].cstat = cstat & 0xFEFE;
@@ -1551,11 +1548,9 @@ void func_8005DA18(s32 spritenum, s32 arg1)
                 {
                     d2 = d1;
                     ang1 = ang;
-                    while (0); /*FAKEMATCH*/
                 }
             }
         }
-        ang += 256;
     }
     D_80137DE0->unk48 = (d2 / 400) + 1;
     setVar(spritenum, arg1, ang1);

@@ -7,7 +7,7 @@
 
 s32 func_80040D40(s32 x1, s32 y1, s32 x2, s32 y2);
 s32 func_80040D94(s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2);
-u16 func_80040DFC(s32, s32, f32 arg2);
+u16 func_80040DFC(s32, s32, f32);
 s16 getAngleDelta(s16 currAngle, s16 newAngle);
 void func_80042124(code0UnkStruct3 *, s32);
 s32 func_80042140(s32 spritenum);
@@ -26,8 +26,8 @@ s32 func_8004D7D8(s32 spritenum);
 void func_8004D884(void);
 void func_8004DC74(void);
 void func_8004E5F8(s16 spritenum, s32, s32, s16);
-s32 func_8004E7F0(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4,
-                  s32 arg5, s32 arg6, s32 arg7, s32 arg8, s32 arg9);
+s32 func_8004E7F0(s32, s32, s32, s32, s32,
+                  s32, s32, s32, s32, s32);
 void func_8004EA40(s32 spritenum);
 void func_8004EC38(void);
 s32 func_8004EFB4(s32 spritenum);
@@ -47,9 +47,9 @@ void func_800539A8(s32, s32 spritenum);
 void func_800574A4(s32 spritenum);
 void func_80057540(SpriteType *, s32, s32, s32);
 s32 func_80058600(s32 spritenum);
-void func_800586B0(s32 spritenum, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6);
-s32 func_800587B8(s32 spritenum, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6);
-void func_80058844(s32 spritenum, s32 arg1, s32 arg2, s16 arg3);
+void func_800586B0(s32 spritenum, s32, s32, s32, s32, s32, s32);
+s32 func_800587B8(s32 spritenum, s32, s32, s32, s32, s32, s32);
+void func_80058844(s32 spritenum, s32, s32, s16);
 s16 func_80058934(s32 x, s32 y, s32 z, s32 sectnum, s32);
 void func_80058A14(s16 spritenum, s16 *hitsprite, s32 *hitx, s32 *hity);
 

@@ -9,6 +9,7 @@ import m2ctx
 import sys
 sys.path.insert(1, 'tools/splat')
 import split
+from multiprocessing import Pool
 
 class SYMBOL:
     def __init__(self, splat: split.symbols.Symbol = None, ignore: bool = False, \
@@ -226,7 +227,7 @@ class Visitor(c_ast.NodeVisitor):
         if node.coord != None and self.file == node.coord.file:
             self.coord[node.coord.line] = node.declname
 
-def parse_source_file(file: str, symbols: SYMBOLS, forced: list) -> None:            
+def parse_source_file(file: str) -> None:            
     out_text = m2ctx.import_c_file(file, False, True)
     parser = c_parser.CParser()
     try:
@@ -238,134 +239,125 @@ def parse_source_file(file: str, symbols: SYMBOLS, forced: list) -> None:
 
     v = Visitor(file)
     v.visit(ast)
-    parse_addrs_from_source(file, v.coord, symbols, forced)
+    return (file, v)
 
-parser = argparse.ArgumentParser()
-parser.add_argument('Path', nargs='*', default=[], help='source files')
-parser.add_argument('-p', '--prefix_static', action='store_true', help='Prefix static variables')
-args = parser.parse_args()
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-p', '--prefix_static', action='store_true', help='Prefix static variables')
+    args = parser.parse_args()
 
-symbols = SYMBOLS()
-forced = []
-BUILD_DIR = 'tmp'
+    symbols = SYMBOLS()
+    forced = []
+    BUILD_DIR = 'tmp'
 
-# Initialize splat symbols
-with open('dukenukemzerohour.yaml') as f:
-    config = split.yaml.load(f.read(), Loader=split.yaml.SafeLoader)
-split.options.initialize(config, 'dukenukemzerohour.yaml', None, None)
-all_segments = split.initialize_segments(config["segments"])
-split.symbols.initialize(all_segments)
+    # Initialize splat symbols
+    with open('dukenukemzerohour.yaml') as f:
+        config = split.yaml.load(f.read(), Loader=split.yaml.SafeLoader)
+    split.options.initialize(config, 'dukenukemzerohour.yaml', None, None)
+    all_segments = split.initialize_segments(config["segments"])
+    split.symbols.initialize(all_segments)
 
-# Parse symbols from config file
-parse_symbols_from_config('symbol_addrs.txt', symbols)
+    # Parse symbols from config file
+    parse_symbols_from_config('symbol_addrs.txt', symbols)
 
-# Parse symbols from source files
-h_files = [y for x in os.walk('include') for y in glob.glob(os.path.join(x[0], '*.h'))]
-
-if len(args.Path) == 0:
+    # Parse symbols from source files
+    h_files = [y for x in os.walk('include') for y in glob.glob(os.path.join(x[0], '*.h'))]
     c_files = [y for x in os.walk('src') for y in glob.glob(os.path.join(x[0], '*.c'))]
-else:
-    c_files = args.Path
 
-files = c_files + h_files
+    files = c_files + h_files
 
-for file in files:
-    parse_source_file(file, symbols, forced)
+    with Pool() as pool:
+        results = pool.map(parse_source_file, files)
 
-# Build source files
-if len(args.Path) == 0:
+    for file, v in results:
+        parse_addrs_from_source(file, v.coord, symbols, forced)
+
+    # Build source files
     subprocess.run(['make', 'objects', '-j12', ('BUILD_DIR=' + BUILD_DIR), 'EXTERN=0'])
     o_files = [y for x in os.walk((BUILD_DIR + '/src')) for y in glob.glob(os.path.join(x[0], '*.o'))]
     o_files += [y for x in os.walk((BUILD_DIR + '/libs')) for y in glob.glob(os.path.join(x[0], '*.o'))]
-else:
-    o_files = []
-    for file in args.Path:
-        if '.c' in file:
-            obj = os.path.join(BUILD_DIR, (file + '.o'))
-            o_files.append(obj)
-            subprocess.run(['make', obj, ('BUILD_DIR=' + BUILD_DIR), 'EXTERN=0'])
 
-# Parse symbols from object files
-for file in o_files:
-    parse_object_file(file, symbols)
+    # Parse symbols from object files
+    for file in o_files:
+        parse_object_file(file, symbols)
 
-for sym in forced:
-    symbols.update(sym)
+    for sym in forced:
+        symbols.update(sym)
 
-#subprocess.run(['make', 'clean', ('BUILD_DIR=' + BUILD_DIR), 'EXTERN=0'])
+    #subprocess.run(['make', 'clean', ('BUILD_DIR=' + BUILD_DIR), 'EXTERN=0'])
 
-# Sort symbols
-symbols.symbols.sort()
+    # Sort symbols
+    symbols.symbols.sort()
 
-# Prefix static symbols
-if args.prefix_static == True:
-    for file in files:
-        for symbol in symbols.symbols:
-            if (symbol.visibility == 'local') \
-                and (not symbol.splat.name.startswith('_')) \
-                and (not symbol.splat.name.startswith('D_')) \
-                and (not symbol.splat.name.startswith('func_')) \
-                and (file == symbol.source):
-                prefix = '_' + os.path.basename(symbol.source).split('.')[0] + '_'
-                symbols.rename(symbol.splat.name, (prefix + symbol.splat.name))
-                
-# Write symbols to files
-f = open('symbol_addrs.txt.new', 'w')
-try:
-    for i in range(0, len(symbols.symbols)):
-        line = ''
-        line += (f'{symbols.symbols[i].splat.name:<{symbols.name_max_size}}')
-        addr = f'{symbols.symbols[i].splat.vram_start:08X}'
-        line += (' = 0x' + addr + ';')
+    # Prefix static symbols
+    if args.prefix_static == True:
+        for file in files:
+            for symbol in symbols.symbols:
+                if (symbol.visibility == 'local') \
+                    and (not symbol.splat.name.startswith('_')) \
+                    and (not symbol.splat.name.startswith('D_')) \
+                    and (not symbol.splat.name.startswith('func_')) \
+                    and (file == symbol.source):
+                    prefix = '_' + os.path.basename(symbol.source).split('.')[0] + '_'
+                    symbols.rename(symbol.splat.name, (prefix + symbol.splat.name))
 
-        if symbols.symbols[i].ignore:
-            line += (' //')
-            line += (f"{' ignore:true':<14}")
-            if symbols.symbols[i].splat.size > 0:
-                size = f'{symbols.symbols[i].splat.size:X}'
-                size = ' size:0x' + size
-                line += (f"{size:<14}")
-        elif (symbols.symbols[i].splat.type != None) or \
-             (symbols.symbols[i].splat.size != 0) or \
-             (symbols.symbols[i].splat.dont_allow_addend != False) or \
-             (symbols.symbols[i].splat.force_not_migration != False) or \
-             (symbols.symbols[i].splat.force_migration != False) or \
-             (symbols.symbols[i].source != None):
-            line += (' //')
-            if symbols.symbols[i].splat.type != None:
-                type = ' type:' + symbols.symbols[i].splat.type
-                line += (f"{type:<14}")
-            else:
-                line += (f"{'':<14}")
-            if symbols.symbols[i].splat.size > 0:
-                size = f'{symbols.symbols[i].splat.size:X}'
-                size = ' size:0x' + size
-                line += (f"{size:<14}")
-            else:
-                line += (f"{'':<14}")
-            if symbols.symbols[i].splat.dont_allow_addend == True:
-                line += (f"{' dont_allow_addend:true':<25}")
-            elif symbols.symbols[i].splat.force_not_migration == True:
-                line += (f"{' force_not_migration:true':<25}")
-            elif symbols.symbols[i].splat.force_migration == True:
-                line += (f"{' force_migration:true':<25}")
-            else:
-                line += (f"{'':<25}")
-            if symbols.symbols[i].source != None and symbols.symbols[i].section != None:
-                if symbols.symbols[i].visibility != None:
-                    visibility = symbols.symbols[i].visibility + ', '
+    # Write symbols to files
+    f = open('symbol_addrs.txt.new', 'w')
+    try:
+        for i in range(0, len(symbols.symbols)):
+            line = ''
+            line += (f'{symbols.symbols[i].splat.name:<{symbols.name_max_size}}')
+            addr = f'{symbols.symbols[i].splat.vram_start:08X}'
+            line += (' = 0x' + addr + ';')
+
+            if symbols.symbols[i].ignore:
+                line += (' //')
+                line += (f"{' ignore:true':<14}")
+                if symbols.symbols[i].splat.size > 0:
+                    size = f'{symbols.symbols[i].splat.size:X}'
+                    size = ' size:0x' + size
+                    line += (f"{size:<14}")
+            elif (symbols.symbols[i].splat.type != None) or \
+                 (symbols.symbols[i].splat.size != 0) or \
+                 (symbols.symbols[i].splat.dont_allow_addend != False) or \
+                 (symbols.symbols[i].splat.force_not_migration != False) or \
+                 (symbols.symbols[i].splat.force_migration != False) or \
+                 (symbols.symbols[i].source != None):
+                line += (' //')
+                if symbols.symbols[i].splat.type != None:
+                    type = ' type:' + symbols.symbols[i].splat.type
+                    line += (f"{type:<14}")
                 else:
-                    visibility = 'global, '
-                section = symbols.symbols[i].section + ', '
-                line += ' (' + f"{visibility:<8}"
-                line += f"{section:<9}"
-                line += symbols.symbols[i].source + ')'
+                    line += (f"{'':<14}")
+                if symbols.symbols[i].splat.size > 0:
+                    size = f'{symbols.symbols[i].splat.size:X}'
+                    size = ' size:0x' + size
+                    line += (f"{size:<14}")
+                else:
+                    line += (f"{'':<14}")
+                if symbols.symbols[i].splat.dont_allow_addend == True:
+                    line += (f"{' dont_allow_addend:true':<25}")
+                elif symbols.symbols[i].splat.force_not_migration == True:
+                    line += (f"{' force_not_migration:true':<25}")
+                elif symbols.symbols[i].splat.force_migration == True:
+                    line += (f"{' force_migration:true':<25}")
+                else:
+                    line += (f"{'':<25}")
+                if symbols.symbols[i].source != None and symbols.symbols[i].section != None:
+                    if symbols.symbols[i].visibility != None:
+                        visibility = symbols.symbols[i].visibility + ', '
+                    else:
+                        visibility = 'global, '
+                    section = symbols.symbols[i].section + ', '
+                    line += ' (' + f"{visibility:<8}"
+                    line += f"{section:<9}"
+                    line += symbols.symbols[i].source + ')'
 
-        f.write(line.strip())
-        f.write('\n')
-    f.close()
-    os.remove('symbol_addrs.txt')
-    os.rename('symbol_addrs.txt.new', 'symbol_addrs.txt')
-except:
-    f.close()
-    os.remove('symbol_addrs.txt.new')
+            f.write(line.strip())
+            f.write('\n')
+        f.close()
+        os.remove('symbol_addrs.txt')
+        os.rename('symbol_addrs.txt.new', 'symbol_addrs.txt')
+    except:
+        f.close()
+        os.remove('symbol_addrs.txt.new')

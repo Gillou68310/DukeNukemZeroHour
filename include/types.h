@@ -11,6 +11,7 @@ typedef s32 intptr_t;
 #endif
 
 typedef f32 Matrix4f[4][4];
+typedef f32 Vec4f[4];
 typedef u8 Addr[];
 typedef void (*ProcPointer)(void);
 
