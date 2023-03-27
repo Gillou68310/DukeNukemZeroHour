@@ -6,12 +6,156 @@
 #include "code0/modelinfo.h"
 #include "code0/code0.h"
 
+/*Skip following declaration so it defaults to s32*/
+/*#include "code0/9410.h"*/
+/*u16 getTileNum(u16 tileid);*/
+/*s32 tileMasks(u16);*/
+/*s32 tileMaskt(u16);*/
+u8 *loadTile(u16 tilenum);
+
 extern u8 files_models_ROM_START[];
 
 /*.text*/
-INCLUDE_ASM("nonmatchings/src/code0/16FF0", func_800163F0);
 
-INCLUDE_ASM("nonmatchings/src/code0/16FF0", func_8001660C);
+/*800163F0*/
+void func_800163F0(u8 arg0)
+{
+    u16 i;
+    u16 *pal;
+    u8 *ptr;
+
+    if (D_801A2688 == 0)
+    {
+        if (D_8010A9AC == 0)
+        {
+            ptr = D_800FE944;
+            pal = (u16 *)&ptr[D_80138714[arg0].unk4];
+            ptr = (u8 *)pal;
+
+            for (i = 0; i < 16; i++)
+            {
+                if (pal[i] == 0xF83F)
+                    pal[i] = 0x8420;
+            }
+            gDPLoadTLUT_pal16(gpDisplayList++, 0, ptr);
+        }
+        else if (D_8010A9AC == 1)
+        {
+            gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(getTileNum(5741)));
+        }
+        else
+        {
+            gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(getTileNum(3328)));
+        }
+    }
+}
+
+/*8001660C*/
+void func_8001660C(u8 arg0)
+{
+    u8 *pTile;
+    s16 dimx, dimy;
+    s32 dimx2, dimy2;
+    s32 masks, maskt;
+    s32 tilenum;
+
+    if (D_8010A9AC == 0)
+    {
+        dimx = D_80138714[arg0].unk0;
+        dimy = D_80138714[arg0].unk2;
+
+        switch (dimx)
+        {
+        case 1:
+            masks = 0;
+            break;
+        case 2:
+            masks = 1;
+            break;
+        case 4:
+            masks = 2;
+            break;
+        case 8:
+            masks = 3;
+            break;
+        case 16:
+            masks = 4;
+            break;
+        case 32:
+            masks = 5;
+            break;
+        case 64:
+            masks = 6;
+            break;
+        case 128:
+            masks = 7;
+            break;
+        default:
+            masks = 7;
+            break;
+        }
+
+        switch (dimy)
+        {
+        case 1:
+            maskt = 0;
+            break;
+        case 2:
+            maskt = 1;
+            break;
+        case 4:
+            maskt = 2;
+            break;
+        case 8:
+            maskt = 3;
+            break;
+        case 16:
+            maskt = 4;
+            break;
+        case 32:
+            maskt = 5;
+            break;
+        case 64:
+            maskt = 6;
+            break;
+        case 128:
+            maskt = 7;
+            break;
+        default:
+            maskt = 7;
+            break;
+        }
+
+        pTile = D_800FE944;
+        pTile = &pTile[D_80138714[arg0].unk4];
+
+        if (D_801A2688 != 0)
+        {
+            if (D_80105718 != 0)
+            {
+                tilenum = 0x17A2;
+                tilenum += animateOffs(0x17A2, 0);
+                pTile = loadTile(getTileNum(tilenum));
+            }
+            gDPLoadTextureBlock_4b(gpDisplayList++, pTile+32, G_IM_FMT_I,
+                           dimx, dimy, 0, 0, 0,
+                           masks, maskt, 0, 0);
+        }
+        else
+        {
+            gDPLoadTextureBlock_4b(gpDisplayList++, pTile+32, G_IM_FMT_CI,
+                           dimx, dimy, 0, 0, 0,
+                           masks, maskt, 0, 0);
+        }
+    }
+    else
+    {
+        pTile = getTileNum(0x166D);
+        gDPLoadTextureBlock_4b(gpDisplayList++, loadTile((s32)pTile)+32, G_IM_FMT_CI,
+                               gpTileInfo[(s32)pTile].dimx, gpTileInfo[(s32)pTile].dimy, 0, 0, 0,
+                               tileMasks((s32)pTile), tileMaskt((s32)pTile), 0, 0);
+    }
+}
 
 /*80016D98*/
 void loadModel(ModelInfo *model)

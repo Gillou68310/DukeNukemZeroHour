@@ -248,6 +248,13 @@ typedef struct {
     /*0x08*/ s32 *unk8;
 }code0unkStruct10;
 
+typedef struct
+{
+    /*0x00*/ s16 unk0; /*dimx*/
+    /*0x00*/ s16 unk2; /*dimy*/
+    /*0x04*/ s32 unk4; /*palette offset*/
+} code0unkStruct11;
+
 typedef struct {
     s16 r;
     s16 g;
@@ -278,18 +285,18 @@ typedef struct
 /*800FE410*/ _extern s32 D_800FE410;
 /*800FE416*/ _extern s16 gMapNum;
 /*800FF528*/ _extern u8 *D_800FF528;
-/*800FE944*/ _extern u8 *D_800FE944;
+/*800FE944*/ _extern u8 *D_800FE944; /*model ramaddr*/
 /*800FE9E0*/ _extern s64 D_800FE9E0;
 /*800FEA90*/ _extern s8 D_800FEA90;
 /*80105550*/ _extern u8 *D_80105550;
-/*80105718*/ _extern s8 D_80105718;
+/*80105718*/ _extern u8 D_80105718;
 /*80106D30*/ _extern u8 D_80106D30[MAXPLAYERS];
 /*80106D50*/ _extern s16 D_80106D50[MAXSPRITES] ALIGNED(16);
 /*8010A914*/ _extern VertexType *gpVertex;
 /*8010A918*/ _extern s32 D_8010A918;
 /*8010A938*/ _extern s32 D_8010A938;
 /*8010A940*/ _extern code0UnkStruct2 D_8010A940[MAXPLAYERS] ALIGNED(8);
-/*8010A9AC*/ _extern s8 D_8010A9AC;
+/*8010A9AC*/ _extern u8 D_8010A9AC;
 /*80117ED8*/ _extern code0UnkStruct1 D_80117ED8[MAXPLAYERS] ALIGNED(8);
 /*80118148*/ _extern u8 D_80118148;
 /*80118248*/ _extern SpriteType *D_80118248;
@@ -317,7 +324,7 @@ typedef struct
 /*80138680*/ _extern s32 D_80138680;
 /*80138688*/ _extern OSTime D_80138688;
 /*80138690*/ _extern s32 D_80138690;
-/*80138714*/ _extern u8 *D_80138714;
+/*80138714*/ _extern code0unkStruct11 *D_80138714;
 /*8013871C*/ _extern s32 D_8013871C;
 /*80138778*/ _extern u8 *D_80138778;
 /*80138780*/ _extern u16 D_80138780;
