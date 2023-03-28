@@ -191,7 +191,7 @@ $(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
 	@$(PRINT)$(GREEN)Preprocessing linker script: $(ENDGREEN)$(BLUE)$<$(ENDBLUE)$(ENDLINE)
 	$(V)$(CPP) -P -DBUILD_PATH=$(BUILD_DIR) $< -o $@
 ifeq ($(MODERN),1)
-	@sed -r -i 's/\*\(\*\);/\*\(.eh_frame\);\n        *(.MIPS.abiflags);/g' $@
+	@sed -r -i 's/\*\(\*\);/*(.text);*(.rodata);*(.bss);*(.MIPS.abiflags);*(.reginfo);*(.rel.dyn);/g' $@
 endif
 
 # Link the .o files into the .elf

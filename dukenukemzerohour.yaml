@@ -360,6 +360,7 @@ segments:
       - [0xE5110, .rodata,  src/code0/audio]
       - [0xE5150, .rodata,  src/code0/9410]
       - [0xE51D0, .rodata,  src/code0/FDE0]
+      - [0xE5310, .rodata,  src/code0/16FF0] # For modern gcc
       - [0xE5310, .rodata,  src/code0/17B30]
       - [0xE55D0, .rodata,  gen/code0/1A7C0]
       - [0xE5AD0, .rodata,  gen/code0/1E7A0]
