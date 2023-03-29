@@ -7,6 +7,12 @@
 #define LITTLE_ENDIAN 0
 #define BIG_ENDIAN 1
 
+#define CLAMP_MAX(A, B) \
+    (((A) > B) ? B : A)
+
+#define CLAMP_MIN(A, B) \
+    (((A) < B) ? B : A)
+
 #ifdef TARGET_N64
 #define BYTE_ORDER BIG_ENDIAN
 #define printf(ARGS...)

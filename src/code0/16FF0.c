@@ -133,8 +133,8 @@ void func_8001660C(u8 arg0)
         {
             if (D_80105718 != 0)
             {
-                tilenum = 0x17A2;
-                tilenum += animateOffs(0x17A2, 0);
+                tilenum = 6050;
+                tilenum += animateOffs(6050, 0);
                 pTile = loadTile(getTileNum(tilenum));
             }
             gDPLoadTextureBlock_4b(gpDisplayList++, pTile+32, G_IM_FMT_I,
@@ -150,7 +150,8 @@ void func_8001660C(u8 arg0)
     }
     else
     {
-        pTile = getTileNum(0x166D);
+        /*FAKEMATCH?*/
+        pTile = getTileNum(5741);
         gDPLoadTextureBlock_4b(gpDisplayList++, loadTile((s32)pTile)+32, G_IM_FMT_CI,
                                gpTileInfo[(s32)pTile].dimx, gpTileInfo[(s32)pTile].dimy, 0, 0, 0,
                                tileMasks((s32)pTile), tileMaskt((s32)pTile), 0, 0);

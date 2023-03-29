@@ -26,9 +26,6 @@
 
 #define MAXTILESIZE 32832
 
-#define SATURATE_U8(A) \
-    (((A) > 255) ? 255 : A)
-
 /*.data*/
 /*800BD724*/ EXTERN_DATA STATIC u8 *_tileROMAddr;
 /*800BD72C*/ EXTERN_DATA f32 gMapXpos;
@@ -231,9 +228,9 @@ void func_80008E3C(void)
 
         func_80029130(255, 128, 0, 0, 0, 0);
         if ((D_8012C470 == 3) && (D_800DCBD5 == 0))
-            func_8001C9E4(207, 164, buffer);
+            displayNumbers(207, 164, buffer);
         else
-            func_8001CBAC(-1, 112, buffer);
+            displayMessage1(-1, 112, buffer);
     }
 
     if (!func_800099D0() && (D_800DF98C != 0))
@@ -678,9 +675,9 @@ INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000CC54);
         N64->v.ob[2] = Z; \
         N64->v.tc[0] = VTX->v.tc[0]; \
         N64->v.tc[1] = VTX->v.tc[1]; \
-        N64->v.cn[0] = SATURATE_U8(VTX->v.cn[0] + D_8016A148); \
-        N64->v.cn[1] = SATURATE_U8(VTX->v.cn[1] + D_800FE410); \
-        N64->v.cn[2] = SATURATE_U8(VTX->v.cn[2] + D_80138680); 
+        N64->v.cn[0] = CLAMP_MAX((VTX->v.cn[0] + D_8016A148), 255); \
+        N64->v.cn[1] = CLAMP_MAX((VTX->v.cn[1] + D_800FE410), 255); \
+        N64->v.cn[2] = CLAMP_MAX((VTX->v.cn[2] + D_80138680), 255); 
 
 /*8000D22C*/
 static void floorVtxToN64(s32 secnum)

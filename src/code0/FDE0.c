@@ -98,7 +98,7 @@ void func_80011700(ModelInfo *model)
     ramaddr2 = ptr->ramaddr;
     ramaddr3 = model->ramaddr + model->unk10;
     D_800FE944 = model->ramaddr;
-    D_80138714 = (code0unkStruct11*)(model->ramaddr + model->unkC);
+    D_80138714 = (code0unkStruct11 *)(model->ramaddr + model->unkC);
 
     if ((D_800BD788 == 0) || (func_800115E0(model) != 0))
         func_800117A4(ramaddr1, ramaddr2, ramaddr3);
@@ -154,8 +154,8 @@ static void func_800124EC(s16 arg0)
         gDPSetTextureLUT(gpDisplayList++, G_TT_NONE);
         gDPSetCombineLERP(gpDisplayList++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
         gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_XLU_SURF2);
-        gDPSetPrimColor(gpDisplayList++, 0, 0, D_80168D04[arg0].r, D_80168D04[arg0].g, D_80168D04[arg0].b, D_8012FD87);
-        gDPSetEnvColor(gpDisplayList++, D_80168D04[arg0].renv, D_80168D04[arg0].genv, D_80168D04[arg0].benv, D_8012FD87);
+        gDPSetPrimColor(gpDisplayList++, 0, 0, D_80168D04[arg0].primary.r, D_80168D04[arg0].primary.g, D_80168D04[arg0].primary.b, D_8012FD87);
+        gDPSetEnvColor(gpDisplayList++, D_80168D04[arg0].env.r, D_80168D04[arg0].env.g, D_80168D04[arg0].env.b, D_8012FD87);
     }
 }
 
@@ -185,9 +185,7 @@ INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_8001270C);
 void func_80013FFC(code0unkStruct10 *arg0)
 {
     if (D_80106D50[D_801AE8F4] != -1)
-    {
         func_8001270C(arg0, 0);
-    }
 }
 
 /*80014040*/

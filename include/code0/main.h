@@ -42,6 +42,7 @@ extern char **gpWeaponStrInfo;
 extern u8 *gStaticSegment;
 extern u8 *gDepthBuffer;
 extern Vtx *gpVertexN64;
+extern _11B300UnkStruct2 *D_80168D04;
 extern s32 D_8016D178;
 extern Vtx *gVertexN64[GFX_TASKS];
 extern char **gpActionStrInfo;

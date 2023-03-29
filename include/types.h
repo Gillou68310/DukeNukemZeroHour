@@ -15,4 +15,8 @@ typedef f32 Vec4f[4];
 typedef u8 Addr[];
 typedef void (*ProcPointer)(void);
 
+typedef struct {
+    u8 r, g, b;
+} Color;
+
 #endif

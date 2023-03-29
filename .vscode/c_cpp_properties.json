@@ -11,7 +11,9 @@
                 "${workspaceFolder}/libs/libultra/include/2.0I",
                 "${workspaceFolder}/libs/libultra/include/2.0I/PR",
                 "${workspaceFolder}/libs/libmus/src",
-                "${workspaceFolder}/libs/libmus/include"
+                "${workspaceFolder}/libs/libmus/include",
+                "${workspaceFolder}/libs/libkmc/src",
+                "${workspaceFolder}/libs/libkmc/include"
             ],
             "defines": [
                 "F3DEX_GBI_2",

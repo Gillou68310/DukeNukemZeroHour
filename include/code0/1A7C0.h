@@ -4,7 +4,13 @@
 #include "common.h"
 
 void func_80019BC0(void);
-void func_8001C9E4(s32, s32, char *);
-void func_8001CBAC(s32, s32, char *);
+void func_8001BB1C(void);
+void func_8001BCDC(void);
+void displayDebug(s16 x, s16 y, char *string);
+void displayNumbers(s16 x, s16 y, char *string);
+void displayMessage1(s16 x, s16 y, char *string);
+void displayMessage2(s16 x, s16 y, char *string);
+void func_8001D238(s32 x, s32 y, u16 tileid);
+void func_8001D128(s32 *x, s32 *y);
 
 #endif

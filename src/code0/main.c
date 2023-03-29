@@ -153,6 +153,7 @@ extern u8 static_ROM_END[];
 /*80138818*/ u32 D_80138818;
 /*80138864*/ u8 *gDepthBuffer;
 /*8013A648*/ u8 *gCacheMemStart;
+/*80168D04*/ _11B300UnkStruct2 *D_80168D04;
 /*8016D170*/ Vtx *gpVertexN64;
 /*8016D178*/ s32 D_8016D178;
 /*8016D184*/ Vtx *gVertexN64[GFX_TASKS];
@@ -1074,7 +1075,7 @@ static void mainLoop(void *arg)
     gpSinTable = (s16 *)GET_STATIC_SEG_SYM(gSinTable);
     gpRadaRang = (s16 *)GET_STATIC_SEG_SYM(gRadarang);
     D_8012EED0 = (u8 *)GET_STATIC_SEG_SYM(D_010259B0);
-    D_80168D04 = (_11B300ColorStruct *)GET_STATIC_SEG_SYM(D_01025AAC);
+    D_80168D04 = (_11B300UnkStruct2 *)GET_STATIC_SEG_SYM(D_01025AAC);
     D_8012F6E4 = (_11B300UnkStruct1 *)GET_STATIC_SEG_SYM(D_01025BA0);
     count2 = *(u16 *)GET_STATIC_SEG_SYM(D_01025CFC);
     D_80138780 = count2;

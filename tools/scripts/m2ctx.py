@@ -22,6 +22,7 @@ CPP_FLAGS = [
     "-Iinclude",
     "-Ilibs/libultra/include/2.0I",
     "-Ilibs/libmus/include",
+    "-Ilibs/libkmc/include",
     "-D_LANGUAGE_C",
     "-DF3DEX_GBI_2",
     "-D_MIPS_SZLONG=32",
