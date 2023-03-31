@@ -15,9 +15,9 @@ LEAF(start)
     bnez       t1, .loop
     nop
     la         t2, boot
-    lui        sp, %hi(bootStackAddress)
+    lui        sp, %hi(D_80118260+0x17D0)
     jr         t2
-    addiu      sp, sp, %lo(bootStackAddress)
+    addiu      sp, sp, %lo(D_80118260+0x17D0)
     nop
     nop
 END(start)

@@ -1,5 +1,3 @@
-bootStackAddress = 0x80119A30;
-
 rspbootTextStart = _binary_assets_ucode_rspboot_text_bin_start;
 rspbootTextEnd = _binary_assets_ucode_rspboot_text_bin_end;
 
