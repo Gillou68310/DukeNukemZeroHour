@@ -58,21 +58,305 @@ extern u8 WBANK0_END[];
 extern u8 SFX_BANK_START[];
 extern u8 SFX_BANK_END[];
 
+extern u8 sounds_bank0_ptr_ROM_START[];
+extern u8 sounds_bank0_wbk_ROM_START[];
+extern u8 sounds_sfx_bfx_ROM_START[];
+extern u8 sounds_training_base_ROM_START[];
+extern u8 sounds_bank1_ptr_ROM_START[];
+extern u8 sounds_bank1_wbk_ROM_START[];
+extern u8 sounds_western1_ROM_START[];
+extern u8 sounds_western2_ROM_START[];
+extern u8 sounds_bank2_ptr_ROM_START[];
+extern u8 sounds_bank2_wbk_ROM_START[];
+extern u8 sounds_western_mine_cart_ROM_START[];
+extern u8 sounds_bank3_ptr_ROM_START[];
+extern u8 sounds_bank3_wbk_ROM_START[];
+extern u8 sounds_present_day2_ROM_START[];
+extern u8 sounds_present_day1_ROM_START[];
+extern u8 sounds_title_screen_ROM_START[];
+extern u8 sounds_present_day_boss_hog_ROM_START[];
+extern u8 sounds_bank4_ptr_ROM_START[];
+extern u8 sounds_bank4_wbk_ROM_START[];
+extern u8 sounds_victorian1_ROM_START[];
+extern u8 sounds_victorian2_ROM_START[];
+extern u8 sounds_bank5_ptr_ROM_START[];
+extern u8 sounds_bank5_wbk_ROM_START[];
+extern u8 sounds_boss_ROM_START[];
+extern u8 sounds_bank6_ptr_ROM_START[];
+extern u8 sounds_bank6_wbk_ROM_START[];
+extern u8 sounds_final_alien_mother_ROM_START[];
+extern u8 sounds_bank7_ptr_ROM_START[];
+extern u8 sounds_bank7_wbk_ROM_START[];
+extern u8 sounds_ambient1_ROM_START[];
+extern u8 sounds_bank8_ptr_ROM_START[];
+extern u8 sounds_bank8_wbk_ROM_START[];
+extern u8 sounds_ambient2_ROM_START[];
+extern u8 sounds_bank9_ptr_ROM_START[];
+extern u8 sounds_bank9_wbk_ROM_START[];
+extern u8 sounds_ambient3_ROM_START[];
+extern u8 sounds_bank10_ptr_ROM_START[];
+extern u8 sounds_bank10_wbk_ROM_START[];
+extern u8 sounds_ambient4_ROM_START[];
+extern u8 sounds_bank11_ptr_ROM_START[];
+extern u8 sounds_bank11_wbk_ROM_START[];
+extern u8 sounds_ambient5_ROM_START[];
+extern u8 sounds_bank12_ptr_ROM_START[];
+extern u8 sounds_bank12_wbk_ROM_START[];
+extern u8 sounds_ambient6_ROM_START[];
+extern u8 sounds_bank13_ptr_ROM_START[];
+extern u8 sounds_bank13_wbk_ROM_START[];
+extern u8 sounds_ambient7_ROM_START[];
+extern u8 sounds_bank14_ptr_ROM_START[];
+extern u8 sounds_bank14_wbk_ROM_START[];
+extern u8 sounds_ambient8_ROM_START[];
+extern u8 sounds_bank15_ptr_ROM_START[];
+extern u8 sounds_bank15_wbk_ROM_START[];
+extern u8 sounds_ambient9_ROM_START[];
+extern u8 sounds_ambient9_ROM_END[];
+
 /*data*/
-/*800BD460*/ EXTERN_DATA STATIC Music _music ALIGNED(8);
-/*800BD604*/ EXTERN_DATA musHandle gMusicHandle;
-/*800BD608*/ EXTERN_DATA musHandle gAmbientHandle;
-/*800BD610*/ EXTERN_DATA STATIC s32 D_800BD610;
-/*800BD618*/ EXTERN_DATA STATIC u8 D_800BD618;
-/*800BD634*/ EXTERN_DATA STATIC musHandle D_800BD634[MAXPLAYERS];
-/*800BD644*/ EXTERN_DATA STATIC u16 D_800BD644[4];
-/*800BD64C*/ EXTERN_DATA STATIC u16 D_800BD64C[8];
-/*800BD65C*/ EXTERN_DATA STATIC u16 D_800BD65C[8];
-/*800BD66C*/ EXTERN_DATA STATIC u16 D_800BD66C[8];
-/*800BD67C*/ EXTERN_DATA STATIC u16 D_800BD67C[4];
-/*800BD684*/ EXTERN_DATA STATIC u16 D_800BD684[6];
-/*800BD690*/ EXTERN_DATA STATIC audioUnkStruct2 D_800BD690[42];
-/*800BD6E4*/ EXTERN_DATA STATIC s16 _multiplier[MUSIC_COUNT+AMBIENT_COUNT] ALIGNED(8);
+
+/*800BD460*/
+static Music _music = {
+    {
+        {
+            sounds_bank3_wbk_ROM_START,
+            sounds_bank3_ptr_ROM_START,
+            sounds_bank3_wbk_ROM_START,
+            sounds_present_day2_ROM_START,
+            sounds_present_day1_ROM_START,
+        },
+        {
+            sounds_bank3_wbk_ROM_START,
+            sounds_bank3_ptr_ROM_START,
+            sounds_bank3_wbk_ROM_START,
+            sounds_present_day1_ROM_START,
+            sounds_title_screen_ROM_START,
+        },
+        {
+            sounds_bank3_wbk_ROM_START,
+            sounds_bank3_ptr_ROM_START,
+            sounds_bank3_wbk_ROM_START,
+            sounds_title_screen_ROM_START,
+            sounds_present_day_boss_hog_ROM_START,
+        },
+        {
+            sounds_bank1_wbk_ROM_START,
+            sounds_bank1_ptr_ROM_START,
+            sounds_bank1_wbk_ROM_START,
+            sounds_western1_ROM_START,
+            sounds_western2_ROM_START,
+        },
+        {
+            sounds_bank1_wbk_ROM_START,
+            sounds_bank1_ptr_ROM_START,
+            sounds_bank1_wbk_ROM_START,
+            sounds_western2_ROM_START,
+            sounds_bank2_ptr_ROM_START,
+        },
+        {
+            sounds_bank2_wbk_ROM_START,
+            sounds_bank2_ptr_ROM_START,
+            sounds_bank2_wbk_ROM_START,
+            sounds_western_mine_cart_ROM_START,
+            sounds_bank3_ptr_ROM_START,
+        },
+        {
+            sounds_bank4_wbk_ROM_START,
+            sounds_bank4_ptr_ROM_START,
+            sounds_bank4_wbk_ROM_START,
+            sounds_victorian1_ROM_START,
+            sounds_victorian2_ROM_START,
+        },
+        {
+            sounds_bank4_wbk_ROM_START,
+            sounds_bank4_ptr_ROM_START,
+            sounds_bank4_wbk_ROM_START,
+            sounds_victorian2_ROM_START,
+            sounds_bank5_ptr_ROM_START,
+        },
+        {
+            sounds_bank6_wbk_ROM_START,
+            sounds_bank6_ptr_ROM_START,
+            sounds_bank6_wbk_ROM_START,
+            sounds_final_alien_mother_ROM_START,
+            sounds_bank7_ptr_ROM_START,
+        },
+        {
+            sounds_bank5_wbk_ROM_START,
+            sounds_bank5_ptr_ROM_START,
+            sounds_bank5_wbk_ROM_START,
+            sounds_boss_ROM_START,
+            sounds_bank6_ptr_ROM_START,
+        },
+        {
+            sounds_bank3_wbk_ROM_START,
+            sounds_bank3_ptr_ROM_START,
+            sounds_bank3_wbk_ROM_START,
+            sounds_present_day_boss_hog_ROM_START,
+            sounds_bank4_ptr_ROM_START,
+        },
+        {
+            NULL,
+            NULL,
+            NULL,
+            sounds_training_base_ROM_START,
+            sounds_bank1_ptr_ROM_START,
+        },
+    },
+    {
+        {
+            sounds_bank7_wbk_ROM_START,
+            sounds_bank7_ptr_ROM_START,
+            sounds_bank7_wbk_ROM_START,
+            sounds_ambient1_ROM_START,
+            sounds_bank8_ptr_ROM_START,
+        },
+        {
+            sounds_bank8_wbk_ROM_START,
+            sounds_bank8_ptr_ROM_START,
+            sounds_bank8_wbk_ROM_START,
+            sounds_ambient2_ROM_START,
+            sounds_bank9_ptr_ROM_START,
+        },
+        {
+            sounds_bank9_wbk_ROM_START,
+            sounds_bank9_ptr_ROM_START,
+            sounds_bank9_wbk_ROM_START,
+            sounds_ambient3_ROM_START,
+            sounds_bank10_ptr_ROM_START,
+        },
+        {
+            sounds_bank10_wbk_ROM_START,
+            sounds_bank10_ptr_ROM_START,
+            sounds_bank10_wbk_ROM_START,
+            sounds_ambient4_ROM_START,
+            sounds_bank11_ptr_ROM_START,
+        },
+        {
+            sounds_bank11_wbk_ROM_START,
+            sounds_bank11_ptr_ROM_START,
+            sounds_bank11_wbk_ROM_START,
+            sounds_ambient5_ROM_START,
+            sounds_bank12_ptr_ROM_START,
+        },
+        {
+            sounds_bank12_wbk_ROM_START,
+            sounds_bank12_ptr_ROM_START,
+            sounds_bank12_wbk_ROM_START,
+            sounds_ambient6_ROM_START,
+            sounds_bank13_ptr_ROM_START,
+        },
+        {
+            sounds_bank13_wbk_ROM_START,
+            sounds_bank13_ptr_ROM_START,
+            sounds_bank13_wbk_ROM_START,
+            sounds_ambient7_ROM_START,
+            sounds_bank14_ptr_ROM_START,
+        },
+        {
+            sounds_bank14_wbk_ROM_START,
+            sounds_bank14_ptr_ROM_START,
+            sounds_bank14_wbk_ROM_START,
+            sounds_ambient8_ROM_START,
+            sounds_bank15_ptr_ROM_START,
+        },
+        {
+            sounds_bank15_wbk_ROM_START,
+            sounds_bank15_ptr_ROM_START,
+            sounds_bank15_wbk_ROM_START,
+            sounds_ambient9_ROM_START,
+            sounds_ambient9_ROM_END,
+        },
+    },
+};
+
+/*800BD604*/ u32 gMusicHandle = 0;
+/*800BD608*/ u32 gAmbientHandle = 0;
+static s32 _unused = 0;
+/*800BD610*/ static s32 D_800BD610 = 16384;
+/*800BD614*/ static s32 D_800BD614 = 256;
+/*800BD618*/ static u8 D_800BD618 = 0;
+/*800BD61A*/ s16 D_800BD61A = 0;
+/*800BD61C*/ static u32 D_800BD61C[6] = {0, 0, 0, 0, 0, 0};
+/*800BD634*/ static u32 D_800BD634[4] = {0, 0, 0, 0};
+/*800BD644*/ static u16 D_800BD644[4] = {0, 0, 0, 0};
+/*800BD64C*/ static u16 D_800BD64C[8] = {1279, 1625, 1280, 1281, 1626, 1627, 1628, 0};
+/*800BD65C*/ static u16 D_800BD65C[8] = {1283, 1629, 1287, 1630, 1631, 1288, 1632, 0};
+/*800BD66C*/ static u16 D_800BD66C[8] = {1294, 1298, 1633, 1300, 1301, 1302, 1304, 0};
+/*800BD67C*/ static u16 D_800BD67C[4] = {1660, 1661, 1664, 0};
+/*800BD684*/ static u16 D_800BD684[6] = {1660, 1661, 1662, 1663, 1664, 1665};
+
+/*800BD690*/
+static audioUnkStruct2 D_800BD690[42] = {
+    { 1, 0 },
+    { 0, -1 },
+    { -1, 6 },
+    { -1, 5 },
+    { -1, -1 },
+    { 1, -1 },
+    { 10, -1 },
+    { 3, 2 },
+    { -1, 2 },
+    { 4, 4 },
+    { -1, 2 },
+    { -1, -1 },
+    { 9, -1 },
+    { 6, 3 },
+    { -1, 3 },
+    { 7, 8 },
+    { 7, 1 },
+    { 6, -1 },
+    { 9, -1 },
+    { 1, -1 },
+    { 8, -1 },
+    { 9, 7 },
+    { 2, -1 },
+    { 11, -1 },
+    { 0, -1 },
+    { 7, -1 },
+    { 6, -1 },
+    { 1, -1 },
+    { 8, -1 },
+    { 3, -1 },
+    { 4, -1 },
+    { 2, -1 },
+    { 8, -1 },
+    { 6, -1 },
+    { 1, -1 },
+    { 0, -1 },
+    { 9, -1 },
+    { 7, -1 },
+    { -1, -1 },
+    { -1, -1 },
+    { -1, -1 },
+    { 0, 0 },
+};
+
+/*800BD6E4*/
+static s16 _multiplier[21] = {
+    0x46,
+    0x46,
+    0x46,
+    0x46,
+    0x46,
+    0x64,
+    0x46,
+    0x46,
+    0x46,
+    0x46,
+    0x50,
+    0x4B,
+    0,
+    0,
+    0,
+    0x17,
+    0,
+    8,
+    0,
+    0,
+    0,
+};
 
 /*.comm*/
 /*800FEA98*/ audioUnkStruct1 D_800FEA98[AUDIO_MAXUNK1] ALIGNED(8);

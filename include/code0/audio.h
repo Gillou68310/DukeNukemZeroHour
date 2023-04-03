@@ -53,5 +53,6 @@ extern musHandle gAmbientHandle;
 extern s16 gMusicNum;
 extern s32 gMasterVolume;
 extern s32 gMusicVolume;
+extern s16 D_800BD61A;
 
 #endif
