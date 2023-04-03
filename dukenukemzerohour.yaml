@@ -58,7 +58,7 @@ segments:
       - [0x16FF0, c,        src/code0/16FF0]
       - [0x17B30, c,        src/code0/17B30]
       - [0x1A7C0, c,        src/code0/1A7C0]
-      - [0x1E7A0, c,        gen/code0/1E7A0]
+      - [0x1E7A0, c,        src/code0/1E7A0]
       - [0x20490, c,        gen/code0/20490]
       - [0x21500, c,        gen/code0/21500]
       - [0x24610, c,        gen/code0/24610]
@@ -363,7 +363,7 @@ segments:
       - [0xE5310, .rodata,  src/code0/16FF0] # For modern gcc
       - [0xE5310, .rodata,  src/code0/17B30]
       - [0xE55D0, .rodata,  src/code0/1A7C0]
-      - [0xE5AD0, .rodata,  gen/code0/1E7A0]
+      - [0xE5AD0, .rodata,  src/code0/1E7A0]
       - [0xE5B00, .rodata,  gen/code0/20490]
       - [0xE5B20, .rodata,  gen/code0/24610]
       - [0xE5B90, .rodata,  gen/code0/2ABE0]
@@ -442,7 +442,7 @@ segments:
     #.data section?
       - [0xF46C0,  data,     code1/EB300]
     #.rodata section?
-      - {start: 0xF64B0, type: .rodata, partial_migration: True, name: src/code1/EB300}
+      - [0xF64B0, .rodata,   src/code1/EB300]
     #.bss section
       - {start: 0xF6D70, type:  bss, vram: 0x801CC7F0, name: code1/code1}
       - {start: 0xF6D70, type:  .bss, vram: 0x801CC7F0, name: src/code1/code1}

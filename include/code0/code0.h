@@ -8,6 +8,8 @@
 
 #define MAXPLAYERS 4
 #define CODE0_MAXUNK1 150
+#define CODE0_MAXUNK2 32
+#define CODE0_MAXUNK3 16
 
 typedef struct
 {
@@ -78,8 +80,8 @@ typedef struct
     /*0x72*/ s16 unk72;
     /*0x74*/ s16 unk74;
     /*0x76*/ s16 unk76;
-    /*0x78*/ float unk78;
-    /*0x7C*/ float unk7C;
+    /*0x78*/ f32 unk78;
+    /*0x7C*/ f32 unk7C;
     /*0x80*/ u8 unk80;
     /*0x82*/ s16 unk82;
     /*0x84*/ s16 unk84;
@@ -268,6 +270,38 @@ typedef struct
     /*0x20*/ Color fog;
 } code0unkStruct12;
 
+typedef struct
+{
+    /*0x00*/ s8 unk0;
+    /*0x01*/ s8 unk1;
+    /*0x02*/ s16 unk2; /*x?*/
+    /*0x04*/ s16 unk4; /*y?*/
+    /*0x06*/ s16 unk6; /*z?*/
+    /*0x08*/ s16 unk8;
+    /*0x0A*/ s16 unkA;
+    /*0x0C*/ u8 pad[4];
+    /*0x10*/ f32 unk10;
+    /*0x14*/ f32 unk14;
+    /*0x18*/ u8 unk18;
+    /*0x19*/ u8 unk19;
+} code0UnkStruct13;
+
+typedef struct
+{
+    /*0x00*/ s8 unk0;
+    /*0x04*/ s32 unk4; /*x?*/
+    /*0x08*/ s32 unk8; /*y?*/
+    /*0x0C*/ s32 unkC; /*z?*/
+    /*0x10*/ s32 unk10;
+    /*0x14*/ s32 unk14;
+    /*0x18*/ s32 unk18;
+    /*0x1C*/ s16 unk1C;
+    /*0x1E*/ u8 unk1E;
+    /*0x1F*/ u8 unk1F;
+    /*0x20*/ s16 unk20;
+    /*0x22*/ s16 unk22;
+} code0UnkStruct14;
+
 typedef struct {
     s16 r;
     s16 g;
@@ -326,13 +360,14 @@ typedef struct
 /*8012C470*/ _extern s16 D_8012C470;
 /*8012DEFC*/ _extern u16 D_8012DEFC;
 /*8012DF00*/ _extern u8 *D_8012DF00;
+/*8012DF10*/ _extern code0UnkStruct14 D_8012DF10[CODE0_MAXUNK3] ALIGNED(8);
 /*8012E150*/ _extern u8 *D_8012E150;
 /*8012EED0*/ _extern u8 *D_8012EED0;
 /*8012F6F0*/ _extern s8 D_8012F6F0[4];
 /*8012F6F4*/ _extern s16 D_8012F6F4; /*sectnum*/
 /*8012F6FC*/ _extern volatile u16 D_8012F6FC[4];
 /*8012FC40*/ _extern u8 D_8012FC40;
-/*8012FC48*/ _extern code0unkStruct12 D_8012FC48[2];
+/*8012FC48*/ _extern code0unkStruct12 D_8012FC48[2] ALIGNED(8);
 /*8012FC90*/ _extern s32 D_8012FC90;
 /*8012FCA0*/ _extern s16 D_8012FCA0;
 /*8012FD88*/ _extern s32 D_8012FD88;
@@ -395,6 +430,7 @@ typedef struct
 /*801AD474*/ _extern u8 *D_801AD474;
 /*801AE4A0*/ _extern Fog gFog[MAXPLAYERS] ALIGNED(8);
 /*801AE528*/ _extern s32 D_801AE528;
+/*801AE538*/ _extern code0UnkStruct13 D_801AE538[CODE0_MAXUNK2] ALIGNED(8);
 /*801AE8F0*/ _extern u8 *D_801AE8F0;
 /*801AE8F4*/ _extern u16 D_801AE8F4;
 /*801AE914*/ _extern s32 D_801AE914;

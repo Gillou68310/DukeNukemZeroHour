@@ -23,7 +23,7 @@ typedef struct
     u8 *romend;
     u8 **handle;
     s32 *offset;
-} unkFileInfo;
+} edlUnkStruct1;
 
 extern u8 files_1009A60_ROM_START[];
 extern u8 files_1009A60_ROM_END[];
@@ -321,7 +321,7 @@ static s32 D_800E0C18[64] = {
 };
 
 /*800E0D18*/
-static unkFileInfo D_800E0D18[32] = {
+static edlUnkStruct1 D_800E0D18[32] = {
     { files_1009A60_ROM_START, files_1009A60_ROM_END, NULL, NULL },
     { files_10271A0_ROM_START, files_10271A0_ROM_END, NULL, NULL },
     { files_1041D90_ROM_START, files_1041D90_ROM_END, NULL, NULL },
@@ -518,7 +518,7 @@ void allocacheEDL(void *handle, s32 size)
 void edl_80081688(void *handle, s32 id)
 {
     s32 size;
-    unkFileInfo *info;
+    edlUnkStruct1 *info;
 
     info = &D_800E0D18[id];
     size = info->romend - info->romstart;
@@ -544,7 +544,7 @@ void edl_80081688(void *handle, s32 id)
 void edl_80081760(void *handle, s32 id, void *dst)
 {
     s32 size;
-    unkFileInfo *info;
+    edlUnkStruct1 *info;
 
     info = &D_800E0D18[id];
     size = info->romend - info->romstart;
