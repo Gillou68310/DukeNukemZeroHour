@@ -456,13 +456,13 @@ static void main_80000F68(s16 arg0)
 {
     D_80117ED8[arg0].unk80 = 0;
 
-    if (D_801CE4C6[arg0] >= 4)
+    if (D_801CE498.unk2E[arg0] >= 4)
         D_80117ED8[arg0].unk80 = 4;
 
-    if ((D_801CE4C6[arg0] & 3) >= 2)
+    if ((D_801CE498.unk2E[arg0] & 3) >= 2)
         D_80117ED8[arg0].unk80 |= 1;
 
-    if (D_801CE4C6[arg0] & 1)
+    if (D_801CE498.unk2E[arg0] & 1)
         D_80117ED8[arg0].unk80 |= 2;
 
     func_80035794(arg0);

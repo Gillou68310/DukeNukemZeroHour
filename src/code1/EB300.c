@@ -1,13 +1,61 @@
 #include "common.h"
+#include "code0/7F6A0.h"
 #include "code0/8E670.h"
 #include "code1/EB300.h"
+#include "code0/code0.h"
 #include "code1/code1.h"
 
 /*.data*/
 /*801CA144*/ EXTERN_DATA f32 D_801CA144;
 /*801CA14C*/ EXTERN_DATA _EB300UnkStruct1 D_801CA14C[MAP_NUM+1];
 
+/*.comm*/
+/*801CDBB0*/ char D_801CDBB0[20] ALIGNED(8);
+
 /*.text*/
+STATIC void func_801C4E90();
+
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD20);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD28);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD34);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD44);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD50);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD5C);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD64);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD70);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD7C);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD88);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD90);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD98);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBDA0);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBDAC);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBDB8);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBDC0);
+
+extern const char D_801CBDC8[]; /*TODO: mutualized rodata?*/
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBDC8);
+
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBDD4);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBDE4);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBDF8);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBE04);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBE10);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBE1C);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBE2C);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBE40);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBE5C);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBE6C);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBE80);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBE90);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBEA0);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBEAC);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBEB8);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBEC4);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBED0);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBED8);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBEE4);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBEF4);
+INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBF08);
 
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C0D80);
 
@@ -266,7 +314,43 @@ INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C4B34);
 
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C4E90);
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C4F38);
+void func_801C4F38(void)
+{
+    func_8007EAA0(&D_801CE5F0, 0, sizeof(D_801CE5F0));
+    func_8007EAA0(&D_801CE498, 0, sizeof(D_801CE498));
+    D_801CE5AC = 0;
+    D_801CE5F0.unk103A = 0;
+    D_801CE498.unk20 = 1;
+    D_801CE498.unk22 = 0;
+    D_801CE498.unk1E = 1;
+    D_801CE498.unk28 = 0;
+    D_801CE498.mastervol = 7;
+    D_801CE498.musicvol = 3;
+    D_801CE498.unk8 = 2;
+    D_801CE498.unk1C = 7;
+    D_801CE498.unk16 = 1;
+    D_801CE498.unk4E = 1;
+
+    if (osMemSize > 0x400000)
+        D_801CE5AC = 2;
+
+    D_801CE498.unk36 = 0;
+    D_801CE498.unk38 = 0;
+    D_801CE498.unk3A = 0;
+    D_801CE498.unk3C = 0;
+    D_801CE498.unk3E = 2;
+    D_801CE498.unk40 = 2;
+    D_801CE498.unk42 = 2;
+    D_801CE498.unk44 = 2;
+    D_801AE914 = 0;
+    D_801A1994 = 0;
+    D_80199524 = 0;
+    D_800FE3FC = 0;
+    D_801CE470 = 0;
+    D_800E16BC = 0;
+    func_801C4E90();
+    sprintf(D_801CDBB0, D_801CBDC8); /*TODO: mutualized rodata?*/
+}
 
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C509C);
 

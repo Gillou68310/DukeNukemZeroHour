@@ -2125,7 +2125,7 @@ INCLUDE_ASM("nonmatchings/src/code0/41940", func_800502A0);
 /*80050408*/
 void func_80050408(void)
 {
-    switch (D_801CE4E6)
+    switch (D_801CE498.unk4E)
     {
     case 0:
         D_800DEF14 = 200;

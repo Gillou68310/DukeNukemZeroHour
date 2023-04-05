@@ -56,8 +56,8 @@ def load_file(fd, neflags, format):
 
     # Create Code Segment 1
     ida_segment.add_segm(0, 0x801C0D80, 0x801CA140, '.code1.text', 'CODE', ida_segment.ADDSEG_SPARSE)
-    ida_segment.add_segm(0, 0x801CA140, 0x801CBF30, '.code1.data', 'DATA', ida_segment.ADDSEG_SPARSE)
-    ida_segment.add_segm(0, 0x801CBF30, 0x801CC7F0, '.code1.rodata', 'CONST', ida_segment.ADDSEG_SPARSE)
+    ida_segment.add_segm(0, 0x801CA140, 0x801CBD20, '.code1.data', 'DATA', ida_segment.ADDSEG_SPARSE)
+    ida_segment.add_segm(0, 0x801CBD20, 0x801CC7F0, '.code1.rodata', 'CONST', ida_segment.ADDSEG_SPARSE)
     ida_segment.add_segm(0, 0x801CC7F0, 0x801CF720, '.code1.bss', 'BSS', ida_segment.ADDSEG_SPARSE)
 
     # Create SP Segment 1

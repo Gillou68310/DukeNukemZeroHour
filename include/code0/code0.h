@@ -327,6 +327,7 @@ typedef struct
 #define _extern extern
 #endif
 
+/*800FE3FC*/ _extern s32 D_800FE3FC;
 /*800FF3E8*/ _extern u16 D_800FF3E8[128] ALIGNED(8);
 /*800FE3F0*/ _extern s32 D_800FE3F0; /*ys*/
 /*800FE3F4*/ _extern s32 D_800FE3F4;
@@ -414,6 +415,7 @@ typedef struct
 /*801A1958*/ _extern code0UnkStruct4 D_801A1958 ALIGNED(8);
 /*801A1970*/ _extern s32 D_801A1970;
 /*801A1980*/ _extern f32 D_801A1980;
+/*801A1994*/ _extern s32 D_801A1994;
 /*801A19EC*/ _extern u8 D_801A19EC;
 /*801A2620*/ _extern s16 D_801A2620;
 /*801A2628*/ _extern s16 D_801A2628;

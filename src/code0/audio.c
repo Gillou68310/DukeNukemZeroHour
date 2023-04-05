@@ -867,7 +867,7 @@ void audio_800086B0(u16 arg0)
 /*80008710*/
 void audio_80008710(s16 arg0)
 {
-    setVolume((D_801CE4B0.musicvol * 100) / 7, (D_801CE4B0.mastervol * 100) / 7);
+    setVolume((D_801CE498.musicvol * 100) / 7, (D_801CE498.mastervol * 100) / 7);
     if (arg0 == -1)
     {
         playMusic(2);

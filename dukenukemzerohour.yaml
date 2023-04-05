@@ -439,10 +439,10 @@ segments:
     subsegments:
     #.text section
       - [0xEB300,  c,        src/code1/EB300]
-    #.data section?
+    #.data section
       - [0xF46C0,  data,     code1/EB300]
-    #.rodata section?
-      - [0xF64B0, .rodata,   src/code1/EB300]
+    #.rodata section
+      - [0xF62A0, .rodata,   src/code1/EB300]
     #.bss section
       - {start: 0xF6D70, type:  bss, vram: 0x801CC7F0, name: code1/code1}
       - {start: 0xF6D70, type:  .bss, vram: 0x801CC7F0, name: src/code1/code1}
