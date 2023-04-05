@@ -5,6 +5,7 @@
 
 void func_8006A0A0(s16);
 void func_8006B590(s16);
+void func_8006D0E4(s16);
 s32 func_8006D3B8(s32, s32, s32, s32, s32);
 void func_80079560(void);
 

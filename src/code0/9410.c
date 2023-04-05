@@ -17,7 +17,7 @@
 #include "code0/609D0.h"
 #include "code0/6ACA0.h"
 #include "code0/41940.h"
-#include "code0/7CBC0.h"
+#include "code0/debug.h"
 #include "code0/87010.h"
 #include "code0/95500.h"
 #include "code0/A06F0.h"

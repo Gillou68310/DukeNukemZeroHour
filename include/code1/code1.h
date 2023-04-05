@@ -58,17 +58,37 @@ typedef struct
 
 typedef struct
 {
+    /*0x000*/ u16 unk0;
+    /*0x002*/ u16 unk2;
+    /*0x004*/ u16 unk4[24][3];
+    /*0x148*/ u16 unk148[8];
+    /*0x164*/ u16 unk164;
+    /*0x166*/ u16 unk166;
+    /*0x168*/ u16 unk168;
+    /*0x172*/ s32 unk172;
+    /*0x176*/ u16 unk176;
+    /*0x178*/ u16 unk178;
+    /*0x180*/ u16 unk180;
+    /*0x182*/ u8 unk182;
+} code1UnkStruct2;
+
+typedef struct
+{
     /*0x0000*/ u8 pad[2];
-    /*0x0002*/ s16 unk2;
-    /*0x0004*/ u8 pad1[4052];
+    /*0x0002*/ u16 unk2;
+    /*0x0004*/ code1UnkStruct2 unk4[22];
+    /*0x0FD4*/ u8 unkFD4;
+    /*0x0FD5*/ u8 unkFD5;
+    /*0x0FD6*/ u8 unkFD6;
+    /*0x0FD7*/ u8 unkFD7;
     /*0x0FD8*/ s32 unkFD8;
     /*0x0FDC*/ s32 unkFDC;
     /*0x0FE0*/ u16 unkFE0;
     /*0x0FE4*/ s32 unkFE4;
     /*0x0FE8*/ code1UnkStruct1 unkFE8;
     /*0x103A*/ u8 unk103A;
-    /*0x103C*/ u8 pad3;
-} code1UnkStruct2;
+    /*0x103C*/ u8 pad2;
+} code1UnkStruct3;
 
 #ifdef _CODE1_C_
 #define _extern
@@ -77,6 +97,7 @@ typedef struct
 #endif
 
 /*801CC7F4*/ _extern s16 D_801CC7F4;
+/*801CC88C*/ _extern s32 D_801CC88C;
 /*801CC8A8*/ _extern s16 D_801CC8A8;
 /*801CC8B8*/ _extern s16 D_801CC8B8;
 /*801CC8C8*/ _extern s16 D_801CC8C8;
@@ -84,7 +105,7 @@ typedef struct
 /*801CC8CA*/ _extern s16 D_801CC8CA;
 /*801CC924*/ _extern s16 D_801CC924;
 /*801CC926*/ _extern s16 D_801CC926;
-/*801CC930*/ _extern code1UnkStruct2 D_801CC930;
+/*801CC930*/ _extern code1UnkStruct3 D_801CC930 ALIGNED(16);
 /*801CD96C*/ _extern u8 *D_801CD96C;
 /*801CD984*/ _extern s16 D_801CD984;
 /*801CDA80*/ _extern s16 D_801CDA80;
@@ -98,6 +119,7 @@ typedef struct
 /*801CDBC6*/ _extern s16 D_801CDBC6;
 /*801CDBCC*/ _extern u16 D_801CDBCC;
 /*801CDC65*/ _extern u8 D_801CDC65;
+/*801CDC66*/ _extern u8 D_801CDC66;
 /*801CDC68*/ _extern s8 *D_801CDC68;
 /*801CDC70*/ _extern u8 D_801CDC70[0x800] ALIGNED(16);
 /*801CE470*/ _extern u16 D_801CE470;
@@ -107,12 +129,13 @@ typedef struct
 /*801CE498*/ _extern code1UnkStruct1 D_801CE498 ALIGNED(8);
 /*801CE4EA*/ _extern u16 gPerspNorm;
 /*801CE4EC*/ _extern s16 D_801CE4EC;
+/*801CE5A0*/ _extern s32 D_801CE5A0;
 /*801CE5AC*/ _extern u16 D_801CE5AC;
 /*801CE5B0*/ _extern Position gPosition ALIGNED(8);
 /*801CE5D4*/ _extern char **gpCreditStrInfo;
 /*801CE5D8*/ _extern s32 D_801CE5D8;
 /*801CE5E8*/ _extern u8 *D_801CE5E8;
-/*801CE5F0*/ _extern code1UnkStruct2 D_801CE5F0 ALIGNED(16);
+/*801CE5F0*/ _extern code1UnkStruct3 D_801CE5F0 ALIGNED(16);
 /*801CF634*/ _extern s16 D_801CF634;
 
 #undef _extern
