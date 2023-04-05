@@ -1183,7 +1183,7 @@ static void mainLoop(void *arg)
     initAudio();
     func_801C4F38();
     func_8008AD94();
-    func_8008A3EC("DUKE ZERO HOUR.A", D_801CC930, 4156);
+    func_8008A3EC("DUKE ZERO HOUR.A", &D_801CC930, 4156);
     switch (osTvType)
     {
     case 0:

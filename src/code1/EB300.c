@@ -621,7 +621,15 @@ INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C90E4);
 
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C936C);
 
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C948C);
+/*801C948C*/
+static void func_801C948C(void)
+{
+    code1UnkStruct2 *ptr;
+    ptr = &D_801CE5F0;
+    ptr->unk2 = 31;
+    ptr->unkFE8 = D_801CE498;
+    D_801CC930 = *ptr;
+}
 
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C959C);
 

@@ -58,9 +58,16 @@ typedef struct
 
 typedef struct
 {
-    /*0x0000*/ u8 pad[4154];
+    /*0x0000*/ u8 pad[2];
+    /*0x0002*/ s16 unk2;
+    /*0x0004*/ u8 pad1[4052];
+    /*0x0FD8*/ s32 unkFD8;
+    /*0x0FDC*/ s32 unkFDC;
+    /*0x0FE0*/ u16 unkFE0;
+    /*0x0FE4*/ s32 unkFE4;
+    /*0x0FE8*/ code1UnkStruct1 unkFE8;
     /*0x103A*/ u8 unk103A;
-    /*0x103B*/ u8 pad1;
+    /*0x103C*/ u8 pad3;
 } code1UnkStruct2;
 
 #ifdef _CODE1_C_
@@ -77,7 +84,7 @@ typedef struct
 /*801CC8CA*/ _extern s16 D_801CC8CA;
 /*801CC924*/ _extern s16 D_801CC924;
 /*801CC926*/ _extern s16 D_801CC926;
-/*801CC930*/  extern s32 D_801CC930[];
+/*801CC930*/ _extern code1UnkStruct2 D_801CC930;
 /*801CD96C*/ _extern u8 *D_801CD96C;
 /*801CD984*/ _extern s16 D_801CD984;
 /*801CDA80*/ _extern s16 D_801CDA80;
