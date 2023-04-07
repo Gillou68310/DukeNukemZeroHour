@@ -931,7 +931,7 @@ void updateSectorZ(s32 x, s32 y, s32 z, s16 *sectnum)
 }
 
 /*800331A4*/
-s32 rotatePoint(s32 xpivot, s32 ypivot, s32 x, s32 y, s16 daang, s32 *x2, s32 *y2)
+void rotatePoint(s32 xpivot, s32 ypivot, s32 x, s32 y, s16 daang, s32 *x2, s32 *y2)
 {
     s32 dacos, dasin;
 

@@ -2377,7 +2377,7 @@ STATIC s32 func_80058468(s32 spritenum)
     b = getVar(spritenum, *gpInst++);
     c = getVar(spritenum, *gpInst++);
 
-    func_80057540(&gpSprite[spritenum], a, b, c);
+    return func_80057540(&gpSprite[spritenum], a, b, c);
 }
 
 /*80058538*/

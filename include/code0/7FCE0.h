@@ -4,18 +4,20 @@
 #include "common.h"
 #include "code0/code0.h"
 
-typedef struct
-{
-    /*0x00*/ s32 unk0;
-    /*0x04*/ s32 unk4;
-    /*0x08*/ s32 unk8;
-    /*0x0C*/ s32 unkC;
-    /*0x10*/ s32 unk10;
-} _7FCE0UnkStruct1;
+void func_8007F0E0(void);
+code0UnkStruct16 *func_8007FC08(code0UnkStruct15 *, s32, s32, s32, s32);
+void func_8007FCC8(void);
+void func_8007FD8C(code0UnkStruct15 *, s32);
+void func_8007FE04(s32 unused, s32 id, void *dst);
+code0UnkStruct16 *func_8007FE2C(void *, s32, s32, s32, s32, s32);
+void func_8007FEDC(void *src, u8);
+void func_8007FF94(void *src, u8);
+void func_80080060(void);
+void func_800800A8(s32);
+code0UnkStruct16 *func_800802C0(void *, s32, s32, s32, s32);
+void func_8008036C(void);
 
-void func_8007FD8C(_7FCE0UnkStruct1 *, s32);
-
-/*800DFA90*/ extern _7FCE0UnkStruct1 D_800DFA90;
-/*800DFB08*/ extern _7FCE0UnkStruct1 D_800DFB08;
+extern code0UnkStruct15 D_800DFA90[2];
+extern code0UnkStruct15 D_800DFB08[61];
 
 #endif

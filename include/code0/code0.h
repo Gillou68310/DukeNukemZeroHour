@@ -24,7 +24,7 @@ typedef struct
     /*0x4D00*/ Mtx viewing;
     /*0x4D40*/ Mtx identity;
     /*0x4D80*/ Mtx scale;
-    /*0x4DC0*/ u8 pad3[8192];
+    /*0x4DC0*/ Mtx mtx5[128]; /*?*/
 } Dynamic;
 
 /*Player struct*/
@@ -297,20 +297,43 @@ typedef struct
 
 typedef struct
 {
+    /*0x00*/ s32 unk0;
+    /*0x04*/ s32 unk4;
+    /*0x08*/ s32 unk8;
+    /*0x0C*/ s32 unkC;
+    /*0x10*/ s32 unk10;
+} code0UnkStruct15;
+
+typedef struct
+{
     /*0x00*/ s8 unk0;
     /*0x04*/ s32 unk4;
     /*0x08*/ u32 unk8;
-    /*0x0C*/ s32 unkC;
-    /*0x10*/ u8 unk10;
-    /*0x11*/ u8 unk11;
+    /*0x0C*/ s32 unkC; /*flag?*/
+    /*0x10*/ u8 unk10; /*alpha?*/
+    /*0x11*/ u8 unk11; /*color?*/
     /*0x12*/ u8 unk12;
-    /*0x13*/ u8 pad2[41];
+    /*0x13*/ u8 pad2[1];
+    /*0x14*/ s32 unk14;
+    /*0x18*/ u8 pad3[28];
+    /*0x34*/ f32 unk34;
+    /*0x38*/ f32 unk38;
     /*0x3C*/ f32 unk3C;
     /*0x40*/ f32 unk40;
-    /*0x44*/ u8 pad3[32];
+    /*0x44*/ u8 pad4[8];
+    /*0x4C*/ f32 unk4C;
+    /*0x50*/ u8 pad5[4];
+    /*0x54*/ f32 unk54;
+    /*0x58*/ u8 pad6[12];
     /*0x64*/ f32 unk64;
-    /*0x68*/ u8 pad4[72];
-} code0UnkStruct15;
+    /*0x68*/ Color unk68;
+    /*0x6B*/ Color unk6B;
+    /*0x6E*/ u8 pad7[2];
+    /*0x70*/ void *unk70;
+    /*0x74*/ s32 unk74;
+    /*0x78*/ s32 unk78;
+    /*0x7C*/ u8 pad8[52];
+} code0UnkStruct16;
 
 typedef struct {
     s16 r;
@@ -359,6 +382,7 @@ typedef struct
 /*80117ED8*/ _extern code0UnkStruct1 D_80117ED8[MAXPLAYERS] ALIGNED(8);
 /*80118148*/ _extern u8 D_80118148;
 /*80118248*/ _extern SpriteType *D_80118248;
+/*80118260*/ _extern u8 D_80118260[6096] ALIGNED(16);
 /*80119A64*/ _extern s32 D_80119A64;
 /*80119A9C*/ _extern u16 D_80119A9C;
 /*8011A670*/ _extern volatile u16 D_8011A670[4];
@@ -370,6 +394,7 @@ typedef struct
 /*8012BBCC*/ _extern s16 D_8012BBCC;
 /*8012BC70*/ _extern code0UnkStruct6 D_8012BC70[256] ALIGNED(16);
 /*8012C470*/ _extern s16 D_8012C470;
+/*8012C478*/ _extern Gfx *D_8012C478[200] ALIGNED(8);
 /*8012DEFC*/ _extern u16 D_8012DEFC;
 /*8012DF00*/ _extern u8 *D_8012DF00;
 /*8012DF10*/ _extern code0UnkStruct14 D_8012DF10[CODE0_MAXUNK3] ALIGNED(8);
@@ -383,7 +408,7 @@ typedef struct
 /*8012FC90*/ _extern s32 D_8012FC90;
 /*8012FCA0*/ _extern s16 D_8012FCA0;
 /*8012FD88*/ _extern s32 D_8012FD88;
-/*8012FD8C*/ _extern code0UnkStruct15 *D_8012FD8C;
+/*8012FD8C*/ _extern code0UnkStruct16 *D_8012FD8C;
 /*80137DE0*/ _extern code0UnkStruct3 *D_80137DE0;
 /*80138680*/ _extern s32 D_80138680;
 /*80138688*/ _extern OSTime D_80138688;

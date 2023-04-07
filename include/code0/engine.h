@@ -210,7 +210,7 @@ s32 pushMove(s32 *x, s32 *y, s32 *z, s16 *sectnum,
              s32 walldist, s32 ceildist, s32 flordist, u32 cliptype);
 void updateSector(s32 x, s32 y, s16 *sectnum);
 void updateSectorZ(s32 x, s32 y, s32 z, s16 *sectnum);
-s32 rotatePoint(s32 xpivot, s32 ypivot, s32 x, s32 y, s16 daang, s32 *x2, s32 *y2);
+void rotatePoint(s32 xpivot, s32 ypivot, s32 x, s32 y, s16 daang, s32 *x2, s32 *y2);
 s32 krand(void);
 
 void getzRange(s32 x, s32 y, s32 z, s16 sectnum,

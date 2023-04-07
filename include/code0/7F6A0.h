@@ -6,9 +6,9 @@
 
 void memset(void *dst, s32 value, s32 size);
 void func_8007EB24(void);
-code0UnkStruct15 * func_8007EC10(s32);
-void func_8007EC7C(code0UnkStruct15 *);
-void func_8007ECC8(code0UnkStruct15 *);
+code0UnkStruct16 *func_8007EC10(s32);
+void func_8007EC7C(code0UnkStruct16 *);
+void func_8007ECC8(code0UnkStruct16 *);
 void func_8007EF70(void);
 void func_8007F050(void);
 void func_8007F07C(void);

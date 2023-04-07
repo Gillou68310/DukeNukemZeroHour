@@ -14,7 +14,7 @@
 /*80138870*/ s16 D_80138870[_7F6A0_MAXUNK2] ALIGNED(16);
 /*8016D17C*/ s32 D_8016D17C;
 /*80199990*/ s16 D_80199990[_7F6A0_MAXUNK2+2] ALIGNED(16);
-/*801A6D90*/ code0UnkStruct15 D_801A6D90[_7F6A0_MAXUNK1] ALIGNED(16);
+/*801A6D90*/ code0UnkStruct16 D_801A6D90[_7F6A0_MAXUNK1] ALIGNED(16);
 
 /*.text*/
 
@@ -54,7 +54,7 @@ void func_8007EB24(void)
 static void func_8007EB58(void)
 {
     s32 i;
-    code0UnkStruct15 *ptr;
+    code0UnkStruct16 *ptr;
 
     ptr = &D_801A6D90[0];
     for (i = 0; i < _7F6A0_MAXUNK1; i++)
@@ -66,17 +66,17 @@ static void func_8007EB58(void)
 }
 
 /*8007EBB0*/
-static code0UnkStruct15 *func_8007EBB0(void)
+static code0UnkStruct16 *func_8007EBB0(void)
 {
     s32 i;
-    code0UnkStruct15 *ptr;
+    code0UnkStruct16 *ptr;
 
     ptr = &D_801A6D90[0];
     for (i = 0; i < _7F6A0_MAXUNK1; i++)
     {
         if (ptr->unk0 == 0)
         {
-            memset(ptr, 0, sizeof(code0UnkStruct15));
+            memset(ptr, 0, sizeof(code0UnkStruct16));
             return ptr;
         }
         ptr++;
@@ -85,9 +85,9 @@ static code0UnkStruct15 *func_8007EBB0(void)
 }
 
 /*8007EC10*/
-code0UnkStruct15 * func_8007EC10(s32 arg0)
+code0UnkStruct16 *func_8007EC10(s32 arg0)
 {
-    code0UnkStruct15 *ptr;
+    code0UnkStruct16 *ptr;
 
     ptr = func_8007EBB0();
     ptr->unkC = 1;
@@ -101,16 +101,16 @@ code0UnkStruct15 * func_8007EC10(s32 arg0)
 }
 
 /*8007EC7C*/
-void func_8007EC7C(code0UnkStruct15 *arg0)
+void func_8007EC7C(code0UnkStruct16 *arg0)
 {
-    memset(arg0, 0, sizeof(code0UnkStruct15));
+    memset(arg0, 0, sizeof(code0UnkStruct16));
     arg0->unk12 = 0xFF;
     arg0->unk10 = 0xFF;
     arg0->unk40 = 1.0f;
 }
 
 /*8007ECC8*/
-void func_8007ECC8(code0UnkStruct15 *arg0)
+void func_8007ECC8(code0UnkStruct16 *arg0)
 {
     ProcPointer proc;
 
@@ -130,7 +130,7 @@ void func_8007ECC8(code0UnkStruct15 *arg0)
 /*8007ED34*/
 static s32 func_8007ED34(void)
 {
-    code0UnkStruct15 *ptr;
+    code0UnkStruct16 *ptr;
     s32 i, ret;
     s16 j;
 
@@ -194,7 +194,7 @@ void func_8007EEC4(void)
 /*8007EF70*/
 void func_8007EF70(void)
 {
-    code0UnkStruct15 *ptr;
+    code0UnkStruct16 *ptr;
     ProcPointer proc;
     s32 i, j;
 

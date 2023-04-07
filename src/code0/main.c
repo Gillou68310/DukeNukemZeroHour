@@ -981,8 +981,8 @@ static void main_80002494(void)
     allocMemory(320, 480, 0x2800, 0);
     func_801C10C8();
     setCameraPosition(0.0f, 0.0f, -500.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-    func_8007FD8C(&D_800DFB08, 11);
-    func_8007FD8C(&D_800DFA90, 2);
+    func_8007FD8C(D_800DFB08, 11);
+    func_8007FD8C(D_800DFA90, 2);
     D_800BD3F9 = 0;
     D_800BD3E8 = 1;
     main_80002390();
@@ -1160,7 +1160,7 @@ static void mainLoop(void *arg)
     }
 #endif
 
-    D_801CE5E8 = (u8 *)GET_STATIC_SEG_SYM(D_01022510);
+    D_801CE5E8 = (_119280UnkStruct1 *)GET_STATIC_SEG_SYM(D_01022510);
     D_80138778 = (u8 *)GET_STATIC_SEG_SYM(D_01022790);
     gpControlPreset = (ControlMapping *)GET_STATIC_SEG_SYM(gControlPreset);
 

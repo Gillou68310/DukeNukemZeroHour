@@ -34,7 +34,13 @@ typedef struct
     char *activate_item;
 } ControlMapping;
 
-/*01022510*/ extern u8 D_01022510[];
+typedef struct
+{
+    u16 unk0;
+    u8 pad[8];
+} _119280UnkStruct1;
+
+/*01022510*/ extern _119280UnkStruct1 D_01022510[64];
 /*01022790*/ extern u8 D_01022790[];
 /*01022990*/ extern ControlMapping gControlPreset[CONTROL_PRESET_NUM];
 
