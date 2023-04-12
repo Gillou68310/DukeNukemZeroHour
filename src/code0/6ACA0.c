@@ -35,7 +35,7 @@ INCLUDE_ASM("nonmatchings/src/code0/6ACA0", func_8006CDE0);
 void func_8006D0E4(s16 arg0)
 {
     s16 i;
-    for (i = 0; i < 24; i++)
+    for (i = 0; i < ARRAY_COUNT(D_8011A680[arg0]); i++)
         Bmemset(&D_8011A680[arg0][i], 0, 20);
 
     func_8007AD30();

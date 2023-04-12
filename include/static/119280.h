@@ -37,7 +37,10 @@ typedef struct
 typedef struct
 {
     u16 unk0;
-    u8 pad[8];
+    u16 unk2;
+    u16 unk4;
+    u16 unk6;
+    u16 unk8;
 } _119280UnkStruct1;
 
 /*01022510*/ extern _119280UnkStruct1 D_01022510[64];

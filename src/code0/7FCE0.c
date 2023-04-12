@@ -172,14 +172,10 @@ STATIC void func_8007FCC8(void)
 void func_8007FD8C(code0UnkStruct15 *arg0, s32 arg1)
 {
     edl_80081688(&D_8010A938, arg1);
-    if (arg0->unk0 != -1)
+    for (; arg0->unk0 != -1; arg0++)
     {
-        do
-        {
-            arg0->unk0 = arg0->unk8 + D_8010A938;
-            arg0->unk4 = arg0->unkC + D_8010A938;
-            arg0++;
-        } while (arg0->unk0 != -1);
+        arg0->unk0 = arg0->unk8 + (intptr_t)D_8010A938;
+        arg0->unk4 = arg0->unkC + (intptr_t)D_8010A938;
     }
 }
 

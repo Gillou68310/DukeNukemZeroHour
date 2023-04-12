@@ -13,6 +13,7 @@
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGHT 240
 #define GFX_TASKS 2
+#define DISPLAY_LIST_SIZE 0x1400
 
 void main_80000450(void);
 void main_80000610(void);

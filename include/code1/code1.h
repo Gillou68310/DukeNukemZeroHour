@@ -42,16 +42,9 @@ typedef struct
     /*0x2A*/ u16 unk2A;
     /*0x2C*/ u8 pad5[2];
     /*0x2E*/ u16 unk2E[4];
-    /*0x36*/ u16 unk36;
-    /*0x38*/ u16 unk38;
-    /*0x3A*/ u16 unk3A;
-    /*0x3C*/ u16 unk3C;
-    /*0x3E*/ u16 unk3E;
-    /*0x40*/ u16 unk40;
-    /*0x42*/ u16 unk42;
-    /*0x44*/ u16 unk44;
-    /*0x46*/ u16 unk46;
-    /*0x48*/ u8 pad6[6];
+    /*0x32*/ u16 unk36[4];
+    /*0x3E*/ u16 unk3E[4];
+    /*0x46*/ u16 unk46[4];
     /*0x4E*/ u16 unk4E;
     /*0x50*/ u8 unk50;
 } code1UnkStruct1;
@@ -90,6 +83,36 @@ typedef struct
     /*0x103C*/ u8 pad2;
 } code1UnkStruct3;
 
+typedef struct
+{
+    /*0x00*/ u8 unk0;
+    /*0x01*/ u8 unk1;
+    /*0x02*/ u8 unk2;
+} code1UnkStruct4;
+
+typedef struct
+{
+    /*0x00*/ u16 unk0;
+    /*0x02*/ u16 unk2;
+    /*0x04*/ u16 unk4;
+    /*0x06*/ u16 unk6;
+    /*0x08*/ char *unk8;
+    /*0x0C*/ ProcPointer unkC;
+    /*0x10*/ struct _code1UnkStruct6 *unk10;
+    /*0x14*/ u16 unk14;
+    /*0x16*/ u16 unk16;
+    /*0x18*/ u16 *unk18;
+} code1UnkStruct5;
+
+typedef struct _code1UnkStruct6
+{
+    /*0x00*/ u16 unk0;
+    /*0x04*/ code1UnkStruct5 *unk4;
+    /*0x08*/ s16 unk8;
+    /*0x0A*/ u16 unkA;
+    /*0x0C*/ u8 *unkC;
+} code1UnkStruct6;
+
 #ifdef _CODE1_C_
 #define _extern
 #else
@@ -97,31 +120,40 @@ typedef struct
 #endif
 
 /*801CC7F4*/ _extern s16 D_801CC7F4;
+/*801CC888*/ _extern u8 *D_801CC888; /*edlHandle*/
 /*801CC88C*/ _extern s32 D_801CC88C;
 /*801CC8A8*/ _extern s16 D_801CC8A8;
 /*801CC8B8*/ _extern s16 D_801CC8B8;
 /*801CC8C8*/ _extern s16 D_801CC8C8;
 /*801CC8CC*/ _extern s16 D_801CC8CC;
-/*801CC8CA*/ _extern s16 D_801CC8CA;
+/*801CC8CA*/ _extern u16 D_801CC8CA;
+/*801CC91C*/ _extern u8 *D_801CC91C; /*edlHandle*/
+/*801CC920*/ _extern u8 *D_801CC920; /*edlHandle*/
 /*801CC924*/ _extern s16 D_801CC924;
 /*801CC926*/ _extern s16 D_801CC926;
 /*801CC930*/ _extern code1UnkStruct3 D_801CC930 ALIGNED(16);
 /*801CD96C*/ _extern u8 *D_801CD96C;
+/*801CD980*/ _extern s32 D_801CD980;
 /*801CD984*/ _extern s16 D_801CD984;
+/*801CD986*/ _extern u16 D_801CD986[3]; /*TODO: Size?*/
 /*801CDA80*/ _extern s16 D_801CDA80;
+/*801CDA98*/ _extern u8 *D_801CDA98; /*edlHandle*/
+/*801CDACC*/ _extern s32 D_801CDACC;
 /*801CDAD0*/ _extern ControlMapping *gpControlPreset;
 /*801CDB00*/ _extern char **gpLicenceStrInfo;
+/*801CDB08*/ _extern u8 *D_801CDB08; /*edlHandle*/
 /*801CDB14*/ _extern s16 D_801CDB14;
 /*801CDB16*/ _extern s16 D_801CDB16;
+/*801CDB1C*/ _extern u8 *D_801CDB1C; /*edlHandle*/
 /*801CDB48*/ _extern s16 D_801CDB48;
 /*801CDB4C*/ _extern s32 D_801CDB4C;
 /*801CDBC4*/ _extern s16 D_801CDBC4;
 /*801CDBC6*/ _extern s16 D_801CDBC6;
+/*801CDBC8*/ _extern u8 *D_801CDBC8; /*edlHandle*/
 /*801CDBCC*/ _extern u16 D_801CDBCC;
-/*801CDC65*/ _extern u8 D_801CDC65;
-/*801CDC66*/ _extern u8 D_801CDC66;
+/*801CDC64*/ _extern code1UnkStruct4 D_801CDC64;
 /*801CDC68*/ _extern s8 *D_801CDC68;
-/*801CDC70*/ _extern u8 D_801CDC70[0x800] ALIGNED(16);
+/*801CDC70*/ _extern s8 D_801CDC70[0x800] ALIGNED(16);
 /*801CE470*/ _extern u16 D_801CE470;
 /*801CE478*/ _extern s16 D_801CE478;
 /*801CE480*/ _extern s16 D_801CE480;

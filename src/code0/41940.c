@@ -1977,7 +1977,7 @@ void func_8004EC38(void)
 {
     s16 i;
 
-    for (i = 0; i< D_8012C470; i++)
+    for (i = 0; i < D_8012C470; i++)
     {
         if (D_800DEEE4[i])
         {

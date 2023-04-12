@@ -5,10 +5,6 @@
 #include "code0/code0.h"
 
 #define PI 3.14159265359
-#define _4600_MAXUNK1 1266
-#define _4600_MAXUNK2 40
-#define _4600_MAXUNK3 489
-#define _4600_MAXUNK4 83
 
 /*.text*/
 STATIC void func_80003B4C(f32, f32, s16);
@@ -23,23 +19,23 @@ static void func_80004F14(u16 secnum);
 /*.comm*/
 /*800FEBA0*/ f32 D_800FEBA0[512] ALIGNED(16);
 /*800FF52C*/ s32 D_800FF52C;
-/*8012BBD0*/ u8 D_8012BBD0[_4600_MAXUNK4] ALIGNED(8);
-/*8012C7A0*/ u8 D_8012C7A0[_4600_MAXUNK3] ALIGNED(8);
+/*8012BBD0*/ u8 D_8012BBD0[83] ALIGNED(8);
+/*8012C7A0*/ u8 D_8012C7A0[489] ALIGNED(8);
 /*8012D210*/ s32 D_8012D210;
 /*8012DEF8*/ s16 D_8012DEF8;
-/*8012E160*/ s16 D_8012E160[_4600_MAXUNK1] ALIGNED(16);
-/*80138628*/ u16 D_80138628[_4600_MAXUNK2] ALIGNED(8);
-/*80138720*/ u16 D_80138720[_4600_MAXUNK2] ALIGNED(8);
+/*8012E160*/ s16 D_8012E160[1266] ALIGNED(16);
+/*80138628*/ u16 D_80138628[40] ALIGNED(8);
+/*80138720*/ u16 D_80138720[40] ALIGNED(8);
 /*80168D20*/ f32 D_80168D20[512] ALIGNED(16);
 /*80169D40*/ u16 D_80169D40[512] ALIGNED(16);
 /*8016A160*/ s32 D_8016A160;
-/*80197D78*/ u8 D_80197D78[_4600_MAXUNK4] ALIGNED(8);
-/*80199758*/ u8 D_80199758[_4600_MAXUNK3] ALIGNED(8);
+/*80197D78*/ u8 D_80197D78[83] ALIGNED(8);
+/*80199758*/ u8 D_80199758[489] ALIGNED(8);
 /*80199958*/ s32 D_80199958;
 /*801A1988*/ s32 D_801A1988;
-/*801A2630*/ u8 D_801A2630[_4600_MAXUNK4] ALIGNED(8);
+/*801A2630*/ u8 D_801A2630[83] ALIGNED(8);
 /*801AE9C8*/ s32 D_801AE9C8;
-/*801AFE20*/ s16 D_801AFE20[_4600_MAXUNK1] ALIGNED(16);
+/*801AFE20*/ s16 D_801AFE20[1266] ALIGNED(16);
 /*801C0D58*/ s32 D_801C0D58;
 
 /*80003A00*/
@@ -135,7 +131,7 @@ void func_800043F4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, u16 arg4)
 
     func_80003B4C(f4, f5, arg4);
 
-    for (i = 0; i < _4600_MAXUNK3; i++)
+    for (i = 0; i < ARRAY_COUNT(D_8012C7A0); i++)
     {
         if (D_8012C7A0[i] != 0)
         {
@@ -150,7 +146,7 @@ void func_800043F4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, u16 arg4)
         }
     }
 
-    for (i = 0; i < (_4600_MAXUNK4-1); i++)
+    for (i = 0; i < (ARRAY_COUNT(D_8012BBD0)-1); i++)
     {
         if (D_8012BBD0[i] != 0)
         {
@@ -165,7 +161,7 @@ void func_800043F4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, u16 arg4)
         }
     }
 
-    for (i = 0; i < (_4600_MAXUNK4-1); i++)
+    for (i = 0; i < (ARRAY_COUNT(D_801A2630)-1); i++)
     {
         if (D_801A2630[i] != 0)
         {
@@ -180,7 +176,7 @@ void func_800043F4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, u16 arg4)
         }
     }
 
-    for (i = 0; i < (_4600_MAXUNK4-1); i++)
+    for (i = 0; i < (ARRAY_COUNT(D_80197D78)-1); i++)
     {
         if (D_80197D78[i] != 0)
         {
@@ -352,7 +348,7 @@ static void func_80004CFC(u16 secnum)
     vtxnum = 0;
     vtx = NULL;
 
-    for (i = 0; i < _4600_MAXUNK2; i++)
+    for (i = 0; i < ARRAY_COUNT(D_80138628); i++)
     {
         if (D_80138628[i] == secnum)
             return;
@@ -374,7 +370,7 @@ static void func_80004CFC(u16 secnum)
     D_80138720[D_800BD442] = D_800BD444;
     D_800BD442++;
 
-    if (D_800BD442 > _4600_MAXUNK2)
+    if (D_800BD442 > ARRAY_COUNT(D_80138628))
     {
         printf("D_800BD442: %d\n", D_800BD442);
         exit(0);
@@ -386,7 +382,7 @@ static void func_80004CFC(u16 secnum)
         D_8012E160[D_800BD444] = vtx->v.ob[1] - D_8016A160;
         vtx++;
         D_800BD444++;
-        if (D_800BD444 > _4600_MAXUNK1)
+        if (D_800BD444 > ARRAY_COUNT(D_801AFE20))
         {
             printf("D_800BD444: %d\n", D_800BD444);
             exit(0);
@@ -427,7 +423,7 @@ static void func_80004F14(u16 secnum)
         vtx = &gpVertex[gpSector[secnum].floorvtxptr];
 
 
-    for (j = 0; j < _4600_MAXUNK2; j++)
+    for (j = 0; j < ARRAY_COUNT(D_80138628); j++)
     {
         if (D_80138628[j] == secnum)
             goto rotate;

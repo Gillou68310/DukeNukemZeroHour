@@ -17,7 +17,15 @@ void func_800800A8(s32);
 code0UnkStruct16 *func_800802C0(void *, s32, s32, s32, s32);
 void func_8008036C(void);
 
+extern code0UnkStruct15 D_800DFA40[2];
 extern code0UnkStruct15 D_800DFA90[2];
+extern code0UnkStruct15 D_800DFAB8[2];
+extern code0UnkStruct15 D_800DFAE0[2];
 extern code0UnkStruct15 D_800DFB08[61];
+extern code0UnkStruct15 D_800E0404[4];
+extern code0UnkStruct15 D_800E0454[2];
+extern code0UnkStruct15 D_800E064C[15];
+extern code0UnkStruct15 D_800E0778[3];
+extern code0UnkStruct15 D_800E07DC[2];
 
 #endif

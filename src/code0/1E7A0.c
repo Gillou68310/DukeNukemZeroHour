@@ -33,7 +33,7 @@ void func_8001DBA0(s16 x, s16 y, s16 z, u8 arg3, u8 arg4, s32 arg5)
 
     if ((krand() & 0x7FFF) >= 9000)
     {
-        for (i = 0, ptr = D_801AE538; i < CODE0_MAXUNK2; i++, ptr++)
+        for (i = 0, ptr = D_801AE538; i < ARRAY_COUNT(D_801AE538); i++, ptr++)
         {
             if (ptr->unk0 == 0)
             {
@@ -72,7 +72,7 @@ void func_8001DD78(s32 x, s32 y, s32 z)
     code0UnkStruct14 *ptr;
     s16 i;
 
-    for (ptr = D_8012DF10, i = 0; i < CODE0_MAXUNK3; i++, ptr++)
+    for (ptr = D_8012DF10, i = 0; i < ARRAY_COUNT(D_8012DF10); i++, ptr++)
     {
         if (ptr->unk0 == 0)
         {
@@ -99,9 +99,9 @@ void func_8001DE5C(void)
 {
     s32 i;
 
-    for (i = 0; i < CODE0_MAXUNK2; i++)
+    for (i = 0; i < ARRAY_COUNT(D_801AE538); i++)
         D_801AE538[i].unk0 = 0;
-    for (i = 0; i < CODE0_MAXUNK3; i++)
+    for (i = 0; i < ARRAY_COUNT(D_8012DF10); i++)
         D_8012DF10[i].unk0 = 0;
 }
 
@@ -115,7 +115,7 @@ void func_8001F388(void)
     code0UnkStruct14 *ptr;
     s16 i;
 
-    for (ptr = D_8012DF10, i = 0; i < CODE0_MAXUNK3; i++, ptr++)
+    for (ptr = D_8012DF10, i = 0; i < ARRAY_COUNT(D_8012DF10); i++, ptr++)
     {
         if (ptr->unk0 != 0)
         {
@@ -148,7 +148,7 @@ void func_8001F44C(void)
     else
         k = 1;
 
-    for (i = 0; i < CODE0_MAXUNK2; i++)
+    for (i = 0; i < ARRAY_COUNT(D_801AE538); i++)
     {
         for (j = 0; j < k; j++)
         {

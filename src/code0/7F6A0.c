@@ -2,19 +2,16 @@
 #include "code0/7F6A0.h"
 #include "code0/code0.h"
 
-#define _7F6A0_MAXUNK1 128
-#define _7F6A0_MAXUNK2 2048
-
 /*.data*/
 /*800DF9A0*/ EXTERN_DATA STATIC ProcPointer D_800DF9A0[12];
 /*800DF9D0*/ EXTERN_DATA STATIC ProcPointer D_800DF9D0[16];
 /*800DFA10*/ EXTERN_DATA STATIC ProcPointer D_800DFA10[12];
 
 /*.comm*/
-/*80138870*/ s16 D_80138870[_7F6A0_MAXUNK2] ALIGNED(16);
+/*80138870*/ s16 D_80138870[2048] ALIGNED(16);
 /*8016D17C*/ s32 D_8016D17C;
-/*80199990*/ s16 D_80199990[_7F6A0_MAXUNK2+2] ALIGNED(16);
-/*801A6D90*/ code0UnkStruct16 D_801A6D90[_7F6A0_MAXUNK1] ALIGNED(16);
+/*80199990*/ s16 D_80199990[2048+2] ALIGNED(16);
+/*801A6D90*/ code0UnkStruct16 D_801A6D90[128] ALIGNED(16);
 
 /*.text*/
 
@@ -57,7 +54,7 @@ static void func_8007EB58(void)
     code0UnkStruct16 *ptr;
 
     ptr = &D_801A6D90[0];
-    for (i = 0; i < _7F6A0_MAXUNK1; i++)
+    for (i = 0; i < ARRAY_COUNT(D_801A6D90); i++)
     {
         if (ptr->unk0 != 0)
             func_8007ECC8(ptr);
@@ -72,7 +69,7 @@ static code0UnkStruct16 *func_8007EBB0(void)
     code0UnkStruct16 *ptr;
 
     ptr = &D_801A6D90[0];
-    for (i = 0; i < _7F6A0_MAXUNK1; i++)
+    for (i = 0; i < ARRAY_COUNT(D_801A6D90); i++)
     {
         if (ptr->unk0 == 0)
         {
@@ -92,7 +89,7 @@ code0UnkStruct16 *func_8007EC10(s32 arg0)
     ptr = func_8007EBB0();
     ptr->unkC = 1;
     ptr->unk8 = arg0;
-    D_8016D17C += 1;
+    D_8016D17C++;
     ptr->unk0 = 1;
     ptr->unk12 = 0xFF;
     ptr->unk10 = 0xFF;
@@ -138,26 +135,26 @@ static s32 func_8007ED34(void)
     memset(&D_80199990, 0, sizeof(D_80199990));
 
     ptr = D_801A6D90;
-    for (i = 0; i < _7F6A0_MAXUNK1; i++)
+    for (i = 0; i < ARRAY_COUNT(D_801A6D90); i++)
     {
         if (ptr->unk0 != 0)
         {
             ptr->unk4 = 1024 - ((s32)(ptr->unk3C + ptr->unk64) / 10);
             if (ptr->unk4 < 0)
                 ptr->unk4 = 0;
-            else if (ptr->unk4 >= _7F6A0_MAXUNK2)
-                ptr->unk4 = _7F6A0_MAXUNK2;
+            else if (ptr->unk4 >= ARRAY_COUNT(D_80199990)-2)
+                ptr->unk4 = ARRAY_COUNT(D_80199990)-2;
 
             D_80199990[ptr->unk4]++;
         }
         ptr++;
     }
 
-    for (i = 0; i < _7F6A0_MAXUNK2; i++)
+    for (i = 0; i < ARRAY_COUNT(D_80199990)-2; i++)
         D_80199990[i+1] += D_80199990[i];
 
     ptr = D_801A6D90;
-    for (i = 0; i < _7F6A0_MAXUNK1; i++)
+    for (i = 0; i < ARRAY_COUNT(D_801A6D90); i++)
     {
         if (ptr->unk0 != 0)
         {
@@ -179,7 +176,7 @@ void func_8007EEC4(void)
     s32 i;
 
     D_8012FD8C = D_801A6D90;
-    for (i = 0; i < _7F6A0_MAXUNK1; i++)
+    for (i = 0; i < ARRAY_COUNT(D_801A6D90); i++)
     {
         if ((D_8012FD8C->unk0 != 0) && (D_8012FD8C->unkC & 1))
         {
@@ -222,7 +219,7 @@ void func_8007F050(void)
 {
     s32 i;
 
-    for (i = 0; i < _7F6A0_MAXUNK1; i++)
+    for (i = 0; i < ARRAY_COUNT(D_801A6D90); i++)
         D_801A6D90[i].unk0 = 0;
 
     D_8016D17C = 0;
@@ -233,7 +230,7 @@ void func_8007F07C(void)
 {
     s32 i;
 
-    for (i = 0; i < _7F6A0_MAXUNK1; i++)
+    for (i = 0; i < ARRAY_COUNT(D_801A6D90); i++)
     {
         if ((D_801A6D90[i].unk8 - 4) < 2)
         {

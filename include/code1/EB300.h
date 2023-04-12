@@ -3,6 +3,7 @@
 
 #include "common.h"
 #include "static/mapinfo.h"
+#include "code1/code1.h"
 
 typedef struct {
     /*0x00*/ u16 unk0;
@@ -10,13 +11,16 @@ typedef struct {
     /*0x04*/ char *mapname;
 } _EB300UnkStruct1;
 
-s32 func_801C0FDC(s16);
+u32 func_801C0FDC(s16);
+f32 func_801C1024(f32);
+f32 tanf(f32 angle);
 void func_801C10C8(void);
 void setCameraPosition(f32 xEye, f32 yEye, f32 zEye, f32 xAt, f32 yAt, f32 zAt, f32 xUp, f32 yUp, f32 zUp);
 void func_801C146C(void);
 void func_801C14D4(void);
 void func_801C15CC(void);
 void func_801C1950(void);
+void func_801C2BE8(code1UnkStruct6 *);
 void func_801C3370(void);
 void func_801C3524(void);
 void func_801C3E08(void);

@@ -15,7 +15,6 @@
 #define MUSIC_BUFFER_SIZE 8496
 #define AMBIENT_PBANK_SIZE 3836
 #define AMBIENT_BUFFER_SIZE 10000
-#define AUDIO_MAXUNK1 32
 
 typedef struct
 {
@@ -359,7 +358,7 @@ static s16 _multiplier[21] = {
 };
 
 /*.comm*/
-/*800FEA98*/ audioUnkStruct1 D_800FEA98[AUDIO_MAXUNK1] ALIGNED(8);
+/*800FEA98*/ audioUnkStruct1 D_800FEA98[32] ALIGNED(8);
 /*8010A9C0*/ u8 gSfxBankBuffer[SFX_BANK_SIZE] ALIGNED(16);
 /*80129810*/ u8 gMusicBuffer[MUSIC_BUFFER_SIZE] ALIGNED(16);
 /*80138608*/ s16 gMusicNum;
@@ -562,7 +561,7 @@ void audio_80006CC0(void)
         }
     }
 
-    for (i = 0; i < AUDIO_MAXUNK1; i++)
+    for (i = 0; i < ARRAY_COUNT(D_800FEA98); i++)
     {
         if (MusHandleAsk(D_800FEA98[i].handle) == 0)
         {
@@ -608,7 +607,7 @@ static void audio_80006E60(void)
 {
     s16 i;
 
-    for (i = 0; i < AUDIO_MAXUNK1; i++)
+    for (i = 0; i < ARRAY_COUNT(D_800FEA98); i++)
     {
         if (D_800FEA98[i].handle)
             MusHandleSetVolume(D_800FEA98[i].handle, 0);
@@ -636,7 +635,7 @@ static void audio_80006F08(void)
         }
     }
 
-    for (i = 0; i < AUDIO_MAXUNK1; i++)
+    for (i = 0; i < ARRAY_COUNT(D_800FEA98); i++)
     {
         if (D_800FEA98[i].handle)
             MusHandleSetVolume(D_800FEA98[i].handle, (gMasterVolume * 128) / 100U);
@@ -661,7 +660,7 @@ static s32 func_80007084(u16 sfxnum)
     count = 0;
     unk6 = -1;
 
-    for (i = 0; i < AUDIO_MAXUNK1; i++)
+    for (i = 0; i < ARRAY_COUNT(D_800FEA98); i++)
     {
         if (D_800FEA98[i].handle == NULL)
             ret = i;

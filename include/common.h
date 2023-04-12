@@ -13,6 +13,9 @@
 #define CLAMP_MIN(A, B) \
     (((A) < B) ? B : A)
 
+#define ARRAY_COUNT(arr) \
+    (s32)(sizeof(arr) / sizeof(arr[0]))
+
 #ifdef TARGET_N64
 #define BYTE_ORDER BIG_ENDIAN
 #define printf(ARGS...)

@@ -187,7 +187,7 @@ extern u8 static_ROM_END[];
 
 /*.text*/
 s32 osAfterPreNMI(void);
-void func_80000000(u8 *, s32);
+void func_80000000(s8 *, s32);
 static void idleLoop(void *);
 static void mainLoop(void *);
 static void viLoop(void *);
@@ -278,7 +278,7 @@ static void main_800006B4(void)
     s32 i;
     if (func_8008AEF0() & 0xFF)
     {
-        for (i = 0; i < 4; i++)
+        for (i = 0; i < ARRAY_COUNT(D_8016D174); i++)
         {
             if (D_8016D174[i] == 0)
                 break;
@@ -800,20 +800,20 @@ static void main_80001D44(void)
     switch (D_801CE5AC)
     {
     case 0:
-        width = 320;
-        height = 240;
+        width = SCREEN_WIDTH;
+        height = SCREEN_HEIGHT;
         break;
     case 1:
-        width = 320;
-        height = 480;
+        width = SCREEN_WIDTH;
+        height = SCREEN_HEIGHT*2;
         break;
     case 2:
         width = 512;
         height = 384;
         break;
     }
-    D_8012C470 = D_801CDC65;
-    if (D_801CDC65 == 0)
+    D_8012C470 = D_801CDC64.unk1;
+    if (D_801CDC64.unk1 == 0)
     {
         D_8012C470 = 1;
     }
@@ -831,12 +831,12 @@ static void main_80001D44(void)
     }
     else if (D_8012C470 < 2)
     {
-        gDisplayListMaxSize = 0x2800;
+        gDisplayListMaxSize = DISPLAY_LIST_SIZE*2;
         gVertexN64MaxSize = 0x1800;
     }
     else
     {
-        gDisplayListMaxSize = 0x3C00;
+        gDisplayListMaxSize = DISPLAY_LIST_SIZE*3;
         gVertexN64MaxSize = 0x2400;
     }
     allocMemory(width, height, gDisplayListMaxSize, gVertexN64MaxSize);
@@ -867,7 +867,7 @@ void main_80001F40(void)
 /*80001FAC*/
 void main_80001FAC(void)
 {
-    D_801CDC65 = 1;
+    D_801CDC64.unk1 = 1;
     main_80001D44();
     D_800BD3F9 = 3;
     D_800BD42D = 0;
@@ -892,7 +892,7 @@ void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size)
     main_80000450();
     if ((D_800BD3F8 == 0))
     {
-        if (width == 480)
+        if (width == SCREEN_HEIGHT*2)
             width = 512;
     }
 
@@ -911,9 +911,7 @@ void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size)
     gFramebuffer[1] = fb_addr + fb_size;
 
     if (_framebufferCount == 3)
-    {
         gFramebuffer[2] = fb_addr + fb_size + fb_size;
-    }
 
     alloCache(&gDisplayList[0], (dlist_size * sizeof(Gfx) * GFX_TASKS), &gCacheLock[0]);
     gDisplayList[1] = &gDisplayList[0][dlist_size];
@@ -931,7 +929,7 @@ void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size)
 
         alloCache(&D_801297E0[0][0], (D_8012C470 * 1600 * sizeof(Gfx) * GFX_TASKS), &gCacheLock[0]);
         D_801297E0[0][1] = D_801297E0[0][0] + 1600;
-        for (i = 1; i<D_8012C470; i++)
+        for (i = 1; i < D_8012C470; i++)
         {
             D_801297E0[i][0] = D_801297E0[i-1][1] + 1600;
             D_801297E0[i][1] = D_801297E0[i][0] + 1600;
@@ -961,7 +959,7 @@ void main_80002390(void)
             _viMode = OS_VI_NTSC_HAF1;
         else
         {
-            if (gScreenHeight == 240)
+            if (gScreenHeight == SCREEN_HEIGHT)
                 _viMode = OS_VI_NTSC_LAN1;
             else
                 _viMode = OS_VI_NTSC_LAF1;
@@ -972,7 +970,7 @@ void main_80002390(void)
             _viMode = OS_VI_PAL_HAF1;
         else
         {
-            if (gScreenHeight == 240)
+            if (gScreenHeight == SCREEN_HEIGHT)
                 _viMode = OS_VI_PAL_LAN1;
             else
                 _viMode = OS_VI_PAL_LAF1;
@@ -983,7 +981,7 @@ void main_80002390(void)
             _viMode = OS_VI_MPAL_HAF1;
         else
         {
-            if (gScreenHeight == 240)
+            if (gScreenHeight == SCREEN_HEIGHT)
                 _viMode = OS_VI_MPAL_LAN1;
             else
                 _viMode = OS_VI_MPAL_LAF1;
@@ -995,7 +993,7 @@ void main_80002390(void)
 /*80002494*/
 static void main_80002494(void)
 {
-    allocMemory(320, 480, 0x2800, 0);
+    allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT*2, DISPLAY_LIST_SIZE*2, 0);
     func_801C10C8();
     setCameraPosition(0.0f, 0.0f, -500.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     func_8007FD8C(D_800DFB08, 11);
@@ -1193,7 +1191,7 @@ static void mainLoop(void *arg)
     }
 #endif
 
-    allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT, 0x2800, 0);
+    allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT, DISPLAY_LIST_SIZE*2, 0);
     osCreateScheduler(&gScheduler, &_schedulerStack[SCHEDULER_STACKSIZE / sizeof(u64)], 40, _viMode, (u8)1);
     osViBlack(1U);
     osCreateThread(&_viLoopThread, 7, viLoop, arg, &_viLoopThreadStack[VILOOP_STACKSIZE / sizeof(u64)], 20);

@@ -380,9 +380,7 @@ static void decodeEDL0(EDLInfo *info)
     if ((src >= dst) || (dst >= &src[size]))
     {
         for (i = (size-1); i != -1; i--)
-        {
             *dst++ = *src++;
-        }
     }
     else
     {
@@ -390,9 +388,7 @@ static void decodeEDL0(EDLInfo *info)
         src = &src[size-1];
 
         for (i = (size-1); i != -1; i--)
-        {
             *dst-- = *src--;
-        }
     }
 }
 
@@ -522,7 +518,7 @@ void edl_80081688(void *handle, s32 id)
 
     info = &D_800E0D18[id];
     size = info->romend - info->romstart;
-    if (size > 0x5B108)
+    if (size > EDL_FILE_MAX_SIZE)
     {
         while (1);
     }
@@ -548,7 +544,7 @@ void edl_80081760(void *handle, s32 id, void *dst)
 
     info = &D_800E0D18[id];
     size = info->romend - info->romstart;
-    if (size > 0x5B108)
+    if (size > EDL_FILE_MAX_SIZE)
     {
         while (1);
     }

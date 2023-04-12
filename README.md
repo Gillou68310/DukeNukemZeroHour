@@ -63,7 +63,7 @@ In order to build/test the non-matching, add NON_MATCHING=1 argument to the make
 
 A Docker image containing all dependencies can be built and ran as follows:
 ```sh
-docker build . -t dukenukemzerohour
+docker build --no-cache . -t dukenukemzerohour
 docker run --rm -ti --mount src=$(pwd),target=/dukenukemzerohour,type=bind dukenukemzerohour
 ```
 

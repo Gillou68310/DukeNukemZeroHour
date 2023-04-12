@@ -3,6 +3,7 @@
 
 #include "common.h"
 
+u8 func_8008DA70(s16);
 void func_8008DC24(void);
 void func_8008DE14(void);
 void func_8008E01C(s16, s32);
