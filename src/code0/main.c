@@ -34,6 +34,7 @@
 #include "static/sintable.h"
 #include "static/radarang.h"
 #include "libmus.h"
+#include "assert.h"
 
 DECL_STATIC_SEG_SYM(gTileInfo);
 DECL_STATIC_SEG_SYM(gWeaponStrInfo);
@@ -70,6 +71,9 @@ DECL_STATIC_SEG_SYM(D_01025CFC);
 DECL_STATIC_SEG_SYM(gMapInfo);
 DECL_STATIC_SEG_SYM(D_01026910);
 
+extern u8 code0_ROM_START[];
+extern u8 code0_ROM_END[];
+extern u8 code0_TEXT_SIZE[];
 extern u8 code0_VRAM[];
 extern u8 code0_VRAM_END[];
 extern u8 code1_VRAM[];
@@ -342,6 +346,19 @@ static void main_8000071C(void)
 /*8000090C*/
 void boot(void)
 {
+#if defined (MODERN) || defined (NON_MATCHING)
+    assert((u32)code0_TEXT_SIZE <= 0x100000);
+    if ((code0_ROM_END - code0_ROM_START) > 0x100000)
+    {
+        osInvalDCache(code0_VRAM+0x100000, (code0_ROM_END-(code0_ROM_START+0x100000)));
+        osPiRawStartDma(OS_READ,
+                        (u32)(code0_ROM_START+0x100000),
+                        (code0_VRAM+0x100000),
+                        (code0_ROM_END-(code0_ROM_START+0x100000)));
+
+        while (IO_READ(PI_STATUS_REG) & PI_STATUS_DMA_BUSY);
+    }
+#endif
     osViBlack(1);
     D_800BD3F4 = 0;
     D_800BD3F0 = 0;
