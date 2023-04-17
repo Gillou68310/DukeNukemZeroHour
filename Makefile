@@ -119,9 +119,9 @@ DEPENDS := $(OBJECTS:=.d)
 ### Targets ###
 
 ifeq ($(MODERN),1)
-$(BUILD_DIR)/src/%.o: OPTFLAGS := -O0 -g
-$(BUILD_DIR)/src/%.o: CFLAGS += $(CFLAGS_MODERN) $(CHECK_WARNINGS)
-$(BUILD_DIR)/src/%.o: CC := $(CROSS)gcc
+$(BUILD_DIR)/%.o: override OPTFLAGS := -O0 -g
+CFLAGS += $(CFLAGS_MODERN) $(CHECK_WARNINGS)
+CC := $(CROSS)gcc
 endif
 
 $(BUILD_DIR)/$(LIBULTRA_DIR)/src/%.o: OPTFLAGS := -O3 -g0

@@ -391,8 +391,12 @@ segments:
       - [0xEACA0, .rodata,  libs/libultra/src/gu/cosf]
       - [0xEAD00, .rodata,  libs/libultra/src/gu/lookat]
       - [0xEAD20, .rodata,  libs/libultra/src/gu/lookatref]
+      - [0xEAD30, .rodata,  libs/libultra/src/gu/mtxutil] # For modern gcc
+      - [0xEAD30, .rodata,  libs/libultra/src/gu/ortho] # For modern gcc
       - [0xEAD30, .rodata,  libs/libultra/src/gu/perspective]
+      - [0xEAD70, .rodata,  libs/libultra/src/gu/scale] # For modern gcc
       - [0xEAD70, .rodata,  libs/libultra/src/gu/sinf]
+      - [0xEADD0, .rodata,  libs/libultra/src/gu/position] # For modern gcc
       - [0xEADD0, .rodata,  libs/libultra/src/audio/resample]
       - [0xEAE00, .rodata,  libs/libultra/src/sched/sched]
       - [0xEAE30, .rodata,  libs/libultra/src/audio/drvrNew]
