@@ -330,6 +330,7 @@ func_8001DD78                      = 0x8001DD78; // type:func     size:0xE4     
 func_8001DE5C                      = 0x8001DE5C; // type:func     size:0x40                              (global, .text,   src/code0/1E7A0.c)
 func_8001F388                      = 0x8001F388; // type:func     size:0xC4                              (global, .text,   src/code0/1E7A0.c)
 func_8001F44C                      = 0x8001F44C; // type:func     size:0x368                             (global, .text,   src/code0/1E7A0.c)
+func_8001F7B4                      = 0x8001F7B4; // type:func     size:0xD0                              (global, .text,   src/code0/1E7A0.c)
 initCache                          = 0x8002A2B0; // type:func     size:0xF0                              (global, .text,   src/code0/cache1d.c)
 _alloCache                         = 0x8002A3A0; // type:func     size:0x41C                             (local,  .text,   src/code0/cache1d.c)
 suckCache                          = 0x8002A7BC; // type:func     size:0x1E4                             (global, .text,   src/code0/cache1d.c)

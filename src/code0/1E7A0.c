@@ -1,8 +1,10 @@
 #include "common.h"
 #include "code0/audio.h"
 #include "code0/engine.h"
+#include "code0/41940.h"
 #include "code0/code0.h"
 #include "code1/code1.h"
+#include "code1/EB300.h"
 
 typedef struct
 {
@@ -177,4 +179,17 @@ void func_8001F44C(void)
     }
 }
 
-INCLUDE_ASM("nonmatchings/src/code0/1E7A0", func_8001F7B4);
+/*8001F7B4*/
+void func_8001F7B4(s32 arg0, s32 arg1)
+{
+    s16 i;
+
+    D_800DEE88 = arg0;
+    D_800DEE8C = arg1;
+
+    for (i = 0; i < D_8012C470; i++)
+    {
+        if (D_80117ED8[i].unk45 == 0)
+            func_801C363C(i, arg0, CLAMP_MAX(arg1*16, 255));
+    }
+}
