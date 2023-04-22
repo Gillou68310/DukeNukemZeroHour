@@ -1,5 +1,10 @@
 {
     "[c]": {
         "editor.formatOnSave": true
+    },
+    "C_Cpp.exclusionPolicy": "checkFilesAndFolders",
+    "C_Cpp.files.exclude": {
+        "ida_ctx.c": true,
+        "**.i": true
     }
 }
