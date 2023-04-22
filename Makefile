@@ -155,6 +155,8 @@ distclean: clean
 	$(V)rm -rf data/
 	$(V)rm -rf tmp/
 	$(V)rm -f *ctx.c
+	$(V)rm -f data.c*
+	$(V)rm -f *.til
 
 setup: distclean split
 

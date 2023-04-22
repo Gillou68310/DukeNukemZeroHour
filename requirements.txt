@@ -7,3 +7,4 @@ watchdog
 python-Levenshtein
 GitPython
 colour
+debugpy

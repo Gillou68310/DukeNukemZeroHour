@@ -16,7 +16,7 @@ void func_80016F30(void)
 
     for (i = 0; i < ARRAY_COUNT(D_80197E40); i++)
     {
-        (&D_80197E40[i])->unk4 = NULL;
+        (&D_80197E40[i])->unk4 = NULL; /*FAKEMATCH*/
         D_80197E40[i].unk8 = NULL;
     }
 }

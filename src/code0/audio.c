@@ -485,7 +485,7 @@ void playMusic(s32 musicnum)
         while (MusHandleAsk(gMusicHandle));
 
         if (musicnum < 0)
-            gMusicHandle = NULL;
+            gMusicHandle = 0;
         else
         {
             if (_music.music[musicnum].pbank_start)
@@ -521,7 +521,7 @@ void playAmbient(s32 ambientnum)
     while (MusHandleAsk(gAmbientHandle));
 
     if (ambientnum < 0)
-        gAmbientHandle = NULL;
+        gAmbientHandle = 0;
     else
     {
         initBank(
@@ -565,7 +565,7 @@ void audio_80006CC0(void)
     {
         if (MusHandleAsk(D_800FEA98[i].handle) == 0)
         {
-            D_800FEA98[i].handle = NULL;
+            D_800FEA98[i].handle = 0;
             D_800FEA98[i].unk4 = 0;
             D_800FEA98[i].unk6 = 0;
         }
@@ -579,13 +579,13 @@ void audio_80006CC0(void)
     {
         if (D_80117ED8[0].unk50 != -1)
         {
-            if (gMusicHandle == NULL)
+            if (gMusicHandle == 0)
                 playMusic(MUSIC_WESTERN_MINE_CART);
         }
         else
         {
             MusHandleStop(gMusicHandle, 0);
-            gMusicHandle = NULL;
+            gMusicHandle = 0;
         }
     }
     else
@@ -593,9 +593,9 @@ void audio_80006CC0(void)
         if (gMusicVolume == 0)
         {
             MusHandleStop(gMusicHandle, 0);
-            gMusicHandle = NULL;
+            gMusicHandle = 0;
         }
-        else if (gMusicHandle == NULL)
+        else if (gMusicHandle == 0)
         {
             playMusic(gMusicNum);
         }
@@ -662,7 +662,7 @@ static s32 func_80007084(u16 sfxnum)
 
     for (i = 0; i < ARRAY_COUNT(D_800FEA98); i++)
     {
-        if (D_800FEA98[i].handle == NULL)
+        if (D_800FEA98[i].handle == 0)
             ret = i;
         else
         {
@@ -707,7 +707,7 @@ musHandle playSfx(u16 sfxnum)
             }
         }
     }
-    return NULL;
+    return 0;
 }
 
 /*80007218*/
@@ -731,7 +731,7 @@ musHandle playSfx2(u16 sfxnum, s16 volume, s16 pan, u8 restartflag, s16 priority
             }
         }
     }
-    return NULL;
+    return 0;
 }
 
 /*8000730C*/

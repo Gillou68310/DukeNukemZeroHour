@@ -3,7 +3,6 @@ from pycparser import c_parser, c_ast
 import subprocess
 import argparse
 import glob
-import sys
 import os
 import m2ctx
 import sys
