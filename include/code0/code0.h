@@ -397,6 +397,7 @@ typedef struct
 /*8012BC70*/ _extern code0UnkStruct6 D_8012BC70[256] ALIGNED(16);
 /*8012C470*/ _extern s16 D_8012C470;
 /*8012C478*/ _extern Gfx *D_8012C478[200] ALIGNED(8);
+/*8012D218*/ _extern u32 D_8012D218[4][18] ALIGNED(8);
 /*8012DEFC*/ _extern u16 D_8012DEFC;
 /*8012DF00*/ _extern u8 *D_8012DF00;
 /*8012DF10*/ _extern code0UnkStruct14 D_8012DF10[16] ALIGNED(8);
