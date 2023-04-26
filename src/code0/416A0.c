@@ -34,5 +34,10 @@ void func_80040B70(s32 arg0)
 /*80040C08*/
 f32 func_80040C08(s32 arg0)
 {
+#ifdef MODERN
+    /*Force modern gcc to use __floatdisf instead of __floatundisf*/
+    return ((f32)(s64)D_80168CA8[arg0] / (f32)(s64)D_80138688) * 240.0;
+#else
     return ((f32)D_80168CA8[arg0] / (f32)D_80138688) * 240.0;
+#endif
 }

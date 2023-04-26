@@ -346,7 +346,7 @@ static void func_8000A634(void)
                     gSPTexture(gpDisplayList++, 0x7FC0, 0x7FC0, 0, G_TX_RENDERTILE, G_ON);
                 }
                 func_8000C76C();
-                func_8000DBDC(gpWall[wallnum].unk20, gpWall[wallnum].unk1C);
+                func_8000DBDC(gpWall[wallnum].unk21, gpWall[wallnum].unk1C);
                 func_8000F3C4(0, 0, 0, D_8016A148, D_800FE410, D_80138680);
             }
             else if (D_800BD74B == 1)
