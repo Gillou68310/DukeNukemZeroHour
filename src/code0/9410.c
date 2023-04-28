@@ -621,7 +621,7 @@ static void func_8000C8EC(void)
         if (gpSector[gpSprite[spriteIndex].sectnum].floorvtxnum != 0)
         {
             floorVtxToN64Z(gpSprite[spriteIndex].sectnum, gpSprite[spriteIndex].z / 32);
-            gDPSetEnvColor(gpDisplayList++, 0xFF, 0xFF, 0xFF, gpSprite[spriteIndex].shade);
+            gDPSetEnvColor(gpDisplayList++, 0xFF, 0xFF, 0xFF, gpSprite[spriteIndex].unk25);
             func_8000B9C0(gpSprite[spriteIndex].unk1E);
             func_8000B570(D_80199554);
         }

@@ -48,7 +48,7 @@ void func_800591EC(s32 spritenum, s32 arg1)
     while (i >= 0)
     {
         nexti = gNextSpriteStat[i];
-        if ((gpSprite[i].unk20 == gpSprite[spritenum].unk1E) && (gpSprite[i].shade == 1))
+        if ((gpSprite[i].unk20 == gpSprite[spritenum].unk1E) && (gpSprite[i].unk25 == 1))
         {
             gpSprite[spritenum].unk16 = i;
             break;
@@ -151,7 +151,7 @@ void func_80059800(s32 spritenum, s32 arg1)
     while (i >= 0)
     {
         nexti = gNextSpriteStat[i];
-        if ((gpSprite[i].shade == 0) && (gpSprite[i].unk20 == unk1E))
+        if ((gpSprite[i].unk25 == 0) && (gpSprite[i].unk20 == unk1E))
         {
             d2 = ldist(&gpSprite[i], D_80118248);
             if (d2 < d1)
@@ -504,7 +504,7 @@ void func_8005AD18(s32 spritenum, s32 arg1)
     while (i >= 0)
     {
         nexti = gNextSpriteStat[i];
-        if (gpSprite[i].shade == D_80118248->unk1E)
+        if (gpSprite[i].unk25 == D_80118248->unk1E)
         {
             d2 = ldist(&gpSprite[i], D_80118248);
             if (d2 < d1)
@@ -534,7 +534,7 @@ void func_8005AE18(s32 spritenum, s32 arg1)
     while (i >= 0)
     {
         nexti = gNextSpriteStat[i];
-        if (gpSprite[i].shade == D_80118248->unk1E)
+        if (gpSprite[i].unk25 == D_80118248->unk1E)
         {
             if ((unk20 < gpSprite[i].unk20) && (gpSprite[i].unk20 < (unk20 + 11)))
             {
@@ -622,7 +622,7 @@ void func_8005B1EC(s16 spritenum, s32 arg1)
         gpSprite[spritenum_].unk16 = spritenum;
         gpSprite[spritenum_].xrepeat = 64;
         gpSprite[spritenum_].yrepeat = 64;
-        gpSprite[spritenum_].shade = 0;
+        gpSprite[spritenum_].unk25 = 0;
     }
     D_80137DE0->unk9F |= 4;
 }
@@ -667,7 +667,7 @@ void func_8005B3C0(s32 spritenum, s32 arg1)
     gpSprite[spritenum_].unk16 = D_80118248->picnum;
     gpSprite[spritenum_].xrepeat = 64;
     gpSprite[spritenum_].yrepeat = 64;
-    gpSprite[spritenum_].shade = 16;
+    gpSprite[spritenum_].unk25 = 16;
     gpSprite[spritenum_].unk1A = 0;
     D_8013B2D0[spritenum_].unk6 = 0;
     spritenum_ = func_80058934(D_80118248->x, D_80118248->y, D_80118248->z, D_80118248->sectnum, 250);
@@ -677,7 +677,7 @@ void func_8005B3C0(s32 spritenum, s32 arg1)
     gpSprite[spritenum_].unk16 = D_80118248->picnum;
     gpSprite[spritenum_].xrepeat = 64;
     gpSprite[spritenum_].yrepeat = 64;
-    gpSprite[spritenum_].shade = 2;
+    gpSprite[spritenum_].unk25 = 2;
     gpSprite[spritenum_].unk1A = 1;
     D_8013B2D0[spritenum_].unk6 = 0xFF;
 }
@@ -973,7 +973,7 @@ void func_8005C24C(s32 spritenum, s32 arg1)
     {
         gpSprite[spritenum_].unk18 = 0;
         gpSprite[spritenum_].unk24 = 30;
-        gpSprite[spritenum_].shade = 76;
+        gpSprite[spritenum_].unk25 = 76;
         gpSprite[spritenum_].unk20 = 1;
         gpSprite[spritenum_].unk1E = 6;
     }
@@ -1009,7 +1009,7 @@ void func_8005C374(s32 spritenum, s32 arg1)
 /*8005C4B4*/
 void func_8005C4B4(s32 spritenum, s32 arg1)
 {
-    setVar(spritenum, arg1, gpSprite[gpSprite[spritenum].unk16].shade);
+    setVar(spritenum, arg1, gpSprite[gpSprite[spritenum].unk16].unk25);
 }
 
 /*8005C514*/
@@ -1800,7 +1800,7 @@ void func_8005E604(s32 spritenum, s32 arg1)
     i = gHeadSpriteStat[1];
     while (i >= 0)
     {
-        if (gpSprite[i].shade == 3 && gpSprite[i].picnum == 1442)
+        if (gpSprite[i].unk25 == 3 && gpSprite[i].picnum == 1442)
         {
             gpSprite[i].unk22 = 123;
             gpSprite[spritenum].unk16 = i;
@@ -1817,7 +1817,7 @@ void func_8005E694(s32 spritenum, s32 arg1)
     i = gHeadSpriteStat[1];
     while (i >= 0)
     {
-        if (gpSprite[i].shade == 3 && gpSprite[i].picnum == 1442)
+        if (gpSprite[i].unk25 == 3 && gpSprite[i].picnum == 1442)
         {
             gpSprite[i].unk22 = 123;
             D_800DEF1C = i;
@@ -1923,7 +1923,7 @@ void func_8005EC88(s32 spritenum, s32 arg1)
     i = gHeadSpriteStat[1];
     while (i >= 0)
     {
-        if (gpSprite[i].picnum == 1727 && gpSprite[i].shade == 20)
+        if (gpSprite[i].picnum == 1727 && gpSprite[i].unk25 == 20)
             D_8019B940[D_80106D50[i]].unk44 = 1;
 
         i = gNextSpriteStat[i];
@@ -2064,7 +2064,7 @@ void func_8005F290(s32 spritenum, s32 arg1)
 void func_8005F358(s32 spritenum, s32 arg1)
 {
     changeSpriteStat(spritenum, 160);
-    D_80118248->shade = 3;
+    D_80118248->unk25 = 3;
 }
 
 /*8005F38C*/
@@ -2130,7 +2130,7 @@ void func_8005F730(s32 spritenum, s32 arg1)
     gpSprite[spritenum_].xrepeat = 64;
     gpSprite[spritenum_].yrepeat = 64;
     gpSprite[spritenum_].picnum = 2579;
-    gpSprite[spritenum_].shade = 0;
+    gpSprite[spritenum_].unk25 = 0;
     gpSprite[spritenum_].unk16 = spritenum;
 }
 
@@ -2237,7 +2237,7 @@ void func_8005FA88(s32 spritenum, s32 arg1)
         {
             gpSprite[i].unk2B = 0;
             gpSprite[i].unk22 = 0;
-            gpSprite[i].shade = 0;
+            gpSprite[i].unk25 = 0;
             func_80042124(&D_8019B940[D_80106D50[i]], 133);
             D_8019B940[D_80106D50[i]].unk8 = 30;
         }

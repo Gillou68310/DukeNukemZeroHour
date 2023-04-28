@@ -1304,7 +1304,7 @@ s32 getVar(s32 spritenum, s32 id)
         id = D_80118248->ang;
         break;
     case 0x40000012:
-        id = D_80118248->shade;
+        id = D_80118248->unk25;
         break;
     case 0x40000016:
         id = D_80137DE0->unkA1;
@@ -1423,7 +1423,7 @@ s32 setVar(s32 spritenum, s32 id, s32 value)
         D_8013B2D0[spritenum].unk4 = value;
         break;
     case 0x40000012:
-        D_80118248->shade = value;
+        D_80118248->unk25 = value;
         break;
     case 0x40000009:
         D_80118248->ang = value;
@@ -1667,7 +1667,7 @@ static void func_8004A4D4(SpriteType *spr, s32 arg1, s32 arg2)
         spr2->unk22 = 0x1234;
         spr2->unk1C = 0;
         spr2->unk18 = 0;
-        spr2->shade = arg2;
+        spr2->unk25 = arg2;
         spr2->picnum = arg1;
         spr2->unk2B = 1;
     }
@@ -1718,10 +1718,10 @@ s32 func_8004BC64(s32 x, s32 y, s32 z, s32 sectnum, s32 arg4, s32 arg5, s32 arg6
         spr->cstat = 0;
         spr->unk16 = arg6;
         spr->picnum = arg4;
-        spr->shade = 0;
+        spr->unk25 = 0;
 
         if (arg4 == 2487)
-            spr->shade = arg5;
+            spr->unk25 = arg5;
 
         spr->ang = 0;
         func_800539A8(arg4, spritenum);

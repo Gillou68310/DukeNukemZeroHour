@@ -148,7 +148,7 @@ typedef struct
     /*0x20*/ s16 unk20;
     /*0x22*/ s16 unk22; /*spritenum?*/
     /*0x24*/ u8 unk24;
-    /*0x25*/ u8 shade;
+    /*0x25*/ u8 unk25;
     /*0x26*/ u8 clipdist;
     /*0x27*/ u8 xrepeat;
     /*0x28*/ u8 yrepeat;
