@@ -19,21 +19,15 @@
 /*8012F910*/ s32 D_8012F910; /*vx*/
 /*8013860C*/ s32 D_8013860C;
 /*8013867C*/ u8 D_8013867C;
-/*8013869D*/ u8 D_8013869D;
 /*801387C0*/ f32 D_801387C0;
 /*8013F954*/ f32 D_8013F954;
 /*80168CFC*/ u8 D_80168CFC;
-/*80169523*/ u8 D_80169523;
-/*80197DCD*/ u8 D_80197DCD;
 /*80197DD8*/ s32 D_80197DD8; /*vy*/
-/*801A198D*/ u8 D_801A198D;
 /*801A1990*/ f32 D_801A1990;
 /*801ACBDC*/ f32 D_801ACBDC;
 /*801AE90C*/ u8 D_801AE90C;
 /*801AE91C*/ s16 D_801AE91C;
-/*801AEA31*/ u8 D_801AEA31;
 /*801B0D34*/ s16 D_801B0D34;
-/*801C0D5D*/ u8 D_801C0D5D;
 
 /*.text*/
 STATIC void func_8001A8EC(s16, s16, s32 tileid, s16, u8);
@@ -57,10 +51,10 @@ static void func_8001AAEC(void)
     cond = 0;
     if ((klabs(D_801A1990) < 200.0f) && (klabs(D_801387C0) < 200.0f))
     {
-        cstat = gpSprite[D_80117ED8[D_801B0820].unk4A].cstat;
+        cstat = gpSprite[gPlayer[D_801B0820].unk4A].cstat;
 
-        if ((D_80117ED8[D_801B0820].unk6A < 255) || (D_80117ED8[D_801B0820].unk60 == 0))
-            gpSprite[D_80117ED8[D_801B0820].unk4A].cstat = cstat & 0xFEFE;
+        if ((gPlayer[D_801B0820].unk6A < 255) || (gPlayer[D_801B0820].unk60 == 0))
+            gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & 0xFEFE;
 
         hitScan(D_801A6D84,
                 D_800FE3F0,
@@ -77,7 +71,7 @@ static void func_8001AAEC(void)
                 &hitz,
                 0x01000040U);
 
-        gpSprite[D_80117ED8[D_801B0820].unk4A].cstat = cstat;
+        gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat;
 
         if ((hitwall == -1) && (hitsprite == -1))
         {
@@ -238,8 +232,8 @@ static void func_8001B740(void)
 
             D_8013F954 = f5 * D_80199110;
             D_801ACBDC = -f4 * D_801A1980;
-            fy = ((D_80117ED8[D_801B0820].unk6E * 2) * D_80199110) / 40960.0;
-            fx = ((D_80117ED8[D_801B0820].unk6E * 2) * D_801A1980) / 30720.0;
+            fy = ((gPlayer[D_801B0820].unk6E * 2) * D_80199110) / 40960.0;
+            fx = ((gPlayer[D_801B0820].unk6E * 2) * D_801A1980) / 30720.0;
 
             if (gMapNum == 21)
             {
@@ -257,12 +251,12 @@ void func_8001BB1C(void)
     if (D_8012FC40 == 0)
     {
         func_8000A070();
-        func_80028F04(D_801AEA31,
-                      D_801A198D,
-                      D_8013869D,
-                      D_801C0D5D,
-                      D_80169523,
-                      D_80197DCD);
+        func_80028F04(gSkyBottomR,
+                      gSkyBottomG,
+                      gSkyBottomB,
+                      gSkyTopR,
+                      gSkyTopG,
+                      gSkyTopB);
 
         gDPSetRenderMode(gpDisplayList++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
         func_8000BDB0(5946);

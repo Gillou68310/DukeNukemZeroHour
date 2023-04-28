@@ -34,23 +34,26 @@ typedef struct
 } _41940UnkStruct1;
 
 /*.data*/
-/*800DEF14*/ EXTERN_DATA STATIC s32 D_800DEF14;
-/*800DEF18*/ EXTERN_DATA STATIC s32 D_800DEF18;
+/*800DEF14*/ EXTERN_DATA STATIC s32 D_800DEF14; /*damage?*/
+/*800DEF18*/ EXTERN_DATA STATIC s32 D_800DEF18; /*damage?*/
 /*800DEF38*/ EXTERN_DATA STATIC s32 D_800DEF38;
 /*800DEE80*/ EXTERN_DATA s32 D_800DEE80; /*spritenum?*/
+/*800DEE84*/ EXTERN_DATA s32 D_800DEE84;
 /*800DEE88*/ EXTERN_DATA s32 D_800DEE88;
 /*800DEE8C*/ EXTERN_DATA s32 D_800DEE8C;
 /*800DEE9C*/ EXTERN_DATA s32 D_800DEE9C;
 /*800DEEA0*/ EXTERN_DATA s32 D_800DEEA0;
-/*800DEEA8*/ EXTERN_DATA s32 D_800DEEA8;
-/*800DEEAC*/ EXTERN_DATA s32 D_800DEEAC;
-/*800DEEB0*/ EXTERN_DATA s32 D_800DEEB0;
+/*800DEEA8*/ EXTERN_DATA s32 gAiDebugGvar1;
+/*800DEEAC*/ EXTERN_DATA s32 gAiDebugGvar2;
+/*800DEEB0*/ EXTERN_DATA s32 gAiDebugGvar3;
 /*800DEEB8*/ EXTERN_DATA s32 D_800DEEB8;
-/*800DEEE4*/ EXTERN_DATA u8 D_800DEEE4[4];
+/*800DEEC0*/ EXTERN_DATA s32 gInvulnerability;
+/*800DEEE4*/ EXTERN_DATA u8 D_800DEEE4[MAXPLAYERS];
+/*800DEEE8*/ EXTERN_DATA s32 gAutoAim;
 /*800DEF1C*/ EXTERN_DATA s32 D_800DEF1C;
 /*800DEF3C*/ EXTERN_DATA STATIC unkFuncPointer D_800DEF3C[84];
 /*800DF1A8*/ EXTERN_DATA s32 D_800DF1A8;
-/*800DF1AC*/ EXTERN_DATA s16 D_800DF1AC[4];
+/*800DF1AC*/ EXTERN_DATA s16 D_800DF1AC[MAXPLAYERS];
 /*800DF1C0*/ EXTERN_DATA STATIC char *D_800DF1C0[4];
 
 /*.comm*/
@@ -361,10 +364,10 @@ STATIC s32 func_80042434(s32 spritenum)
         j += 2;
 
     result3 = 0;
-    if ((result & 1) && (D_80117ED8[D_801A2628].zpos < (D_80118248->z - (result2 << 8))))
+    if ((result & 1) && (gPlayer[D_801A2628].zpos < (D_80118248->z - (result2 << 8))))
         result3 = 1;
 
-    if ((result & 2) && (D_80117ED8[D_801A2628].zpos >(D_80118248->z + (result2 << 8))))
+    if ((result & 2) && (gPlayer[D_801A2628].zpos >(D_80118248->z + (result2 << 8))))
         result3 = 1;
 
     if (result3 == 0)
@@ -474,7 +477,7 @@ STATIC s32 func_80042B40(s32 spritenum)
     j = *gpInst++;
     if (i < 0)
         j += 2;
-    if (!D_80117ED8[0].unk45)
+    if (!gPlayer[0].unk45)
         gpInst = &gpInst[j];
     return 0;
 }
@@ -1295,7 +1298,7 @@ s32 getVar(s32 spritenum, s32 id)
         break;
     case 0x40000010:
         id = 7296;
-        id = (D_80117ED8[D_801A2628].zpos - (D_80118248->z - id) - (D_801B0D30 / 2)) >> 8;
+        id = (gPlayer[D_801A2628].zpos - (D_80118248->z - id) - (D_801B0D30 / 2)) >> 8;
         break;
     case 0x40000009:
         id = D_80118248->ang;
@@ -1339,13 +1342,13 @@ s32 getVar(s32 spritenum, s32 id)
         id = D_80137DE0->unk7C;
         break;
     case 0x40000028:
-        id = D_800DEEA8;
+        id = gAiDebugGvar1;
         break;
     case 0x40000029:
-        id = D_800DEEAC;
+        id = gAiDebugGvar2;
         break;
     case 0x4000002A:
-        id = D_800DEEB0;
+        id = gAiDebugGvar3;
         break;
     case 0x4000002B:
         id = D_80118248->unk1E;
@@ -1958,8 +1961,8 @@ static s32 func_8004EB60(s32 spritenum)
 {
     s32 x, y;
 
-    x = klabs_(gpSprite[spritenum].x - D_80117ED8[0].xpos);
-    y = klabs_(gpSprite[spritenum].y - D_80117ED8[0].ypos);
+    x = klabs_(gpSprite[spritenum].x - gPlayer[0].xpos);
+    y = klabs_(gpSprite[spritenum].y - gPlayer[0].ypos);
     if ((x + y) < 500)
         return -1;
     else
@@ -2125,7 +2128,7 @@ INCLUDE_ASM("nonmatchings/src/code0/41940", func_800502A0);
 /*80050408*/
 void func_80050408(void)
 {
-    switch (D_801CE498.unk4E)
+    switch (D_801CE498.difficulty)
     {
     case 0:
         D_800DEF14 = 200;
@@ -2210,9 +2213,9 @@ INCLUDE_ASM("nonmatchings/src/code0/41940", func_80051330);
 /*800514C8*/
 void func_800514C8(void)
 {
-    func_80056C00(D_80117ED8[0].unk4A);
-    if (D_80117ED8[0].unk52 >= 0)
-        func_80056C00(D_80117ED8[0].unk52 & 0x7FF);
+    func_80056C00(gPlayer[0].unk4A);
+    if (gPlayer[0].unk52 >= 0)
+        func_80056C00(gPlayer[0].unk52 & 0x7FF);
 }
 
 /*80051508*/
@@ -2274,7 +2277,7 @@ static s32 func_800516EC(s16 spritenum)
             if (spr->picnum >= 2469)
             {
                 audio_800080E0(0, 16);
-                D_80168D08 |= 1 << gMapNum;
+                gTimeMachinePart |= 1 << gMapNum;
                 func_800A419C(0, D_800DF1C0[3]);
                 ret = 1;
             }
@@ -2531,9 +2534,9 @@ INCLUDE_ASM("nonmatchings/src/code0/41940", func_80058B3C);
 /*80058DE0*/
 static s32 func_80058DE0(SpriteType *spr, s32 *arg1)
 {
-    *arg1 = klabs(D_80117ED8[0].unk28 - spr->x)
-        + klabs(D_80117ED8[0].unk2C - spr->y)
-        + (klabs(D_80117ED8[0].unk30 - spr->z + 7168) >> 4);
+    *arg1 = klabs(gPlayer[0].unk28 - spr->x)
+        + klabs(gPlayer[0].unk2C - spr->y)
+        + (klabs(gPlayer[0].unk30 - spr->z + 7168) >> 4);
 
     return 0;
 }

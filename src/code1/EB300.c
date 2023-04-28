@@ -281,7 +281,7 @@ static u32 func_801C0F88(void)
 /*801C0FDC*/
 u32 func_801C0FDC(s16 arg0)
 {
-    return ((func_801C0F88() >> 16) * arg0) >> 16;
+    return ((func_801C0F88() >> 16) * arg0) >> 16; /*TODO?*/
 }
 
 /*801C1024*/
@@ -763,14 +763,14 @@ static void func_801C3608(void)
 }
 
 /*801C363C*/
-void func_801C363C(u8 arg0, u16 arg1, u8 arg2)
+void func_801C363C(u8 playernum, u16 arg1, u8 arg2)
 {
     if (D_8012FC90 == 0)
     {
-        if (D_80117ED8[arg0].unk45 == 0)
+        if (gPlayer[playernum].unk45 == 0)
         {
             if (D_801CE498.unk1C != 0)
-                func_8008A4C4(arg0, arg1, ((arg2 * D_801CE498.unk1C) / 7));
+                func_8008A4C4(playernum, arg1, ((arg2 * D_801CE498.unk1C) / 7));
         }
     }
 }
@@ -811,7 +811,7 @@ static void func_801C37B8(void)
     for (i = 0; D_801CA14C[gLoadMapNum].unk0 != 10; i++)
         gLoadMapNum++;
 
-    D_80168D08 = 0;
+    gTimeMachinePart = 0;
     D_8010554C = D_801CC8CC;
 }
 
@@ -1035,7 +1035,7 @@ void func_801C4F38(void)
     D_801CE498.unk8 = 2;
     D_801CE498.unk1C = 7;
     D_801CE498.unk16 = 1;
-    D_801CE498.unk4E = 1;
+    D_801CE498.difficulty = 1;
 
     if (osMemSize > 0x400000)
         D_801CE5AC = 2;
@@ -1066,20 +1066,20 @@ static void func_801C509C(void)
 
     D_801A1994 = 0;
 
-    if (D_801A1958.unk2 == 0)
+    if (D_801A1958.enemies_total == 0)
         f1 = 1.0f;
     else
-        f1 = (f32)D_801A1958.unk0 / (f32)D_801A1958.unk2;
+        f1 = (f32)D_801A1958.enemies_killed / (f32)D_801A1958.enemies_total;
 
-    if (D_801A1958.unk6 == 0)
+    if (D_801A1958.babes_total == 0)
         f2 = 1.0f;
     else
-        f2 = (f32)D_801A1958.unk4 / (f32)D_801A1958.unk6;
+        f2 = (f32)D_801A1958.babes_saved / (f32)D_801A1958.babes_total;
 
-    if (D_801A1958.unkA == 0)
+    if (D_801A1958.secrets_total == 0)
         f3 = 1.0f;
     else
-        f3 = (f32)D_801A1958.unk8 / (f32)D_801A1958.unkA;
+        f3 = (f32)D_801A1958.secrets_found / (f32)D_801A1958.secrets_total;
 
     f1 *= 2.0f;
     f2 *= 2.0f;
@@ -1588,14 +1588,14 @@ static void func_801C90E4(void)
     {
         ptr2->unk182 = D_801A1958.unk10;
         ptr2->unk172 = D_801A1958.unkC;
-        ptr2->unk178 = D_801A1958.unk4;
-        ptr2->unk180 = D_801A1958.unk8;
-        ptr2->unk176 = D_801A1958.unk0;
-        ptr2->unk164 = D_801A1958.unk2;
-        ptr2->unk166 = D_801A1958.unk6;
-        ptr2->unk168 = D_801A1958.unkA;
-        ptr2->unk0 = D_80117ED8[0].unk46;
-        ptr2->unk2 = D_80117ED8[0].unk70;
+        ptr2->unk178 = D_801A1958.babes_saved;
+        ptr2->unk180 = D_801A1958.secrets_found;
+        ptr2->unk176 = D_801A1958.enemies_killed;
+        ptr2->unk164 = D_801A1958.enemies_total;
+        ptr2->unk166 = D_801A1958.babes_total;
+        ptr2->unk168 = D_801A1958.secrets_total;
+        ptr2->unk0 = gPlayer[0].unk46;
+        ptr2->unk2 = gPlayer[0].unk70;
 
         for (i = 0; i < ARRAY_COUNT(D_8011A680[0]); i++)
         {
@@ -1611,7 +1611,7 @@ static void func_801C90E4(void)
     ptr->unkFD8 = D_800E16C0;
     ptr->unkFDC = D_800E16BC;
     ptr->unkFE0 = D_801CE470;
-    ptr->unkFE4 = D_80168D08;
+    ptr->unkFE4 = gTimeMachinePart;
 }
 
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C936C);
@@ -1644,7 +1644,7 @@ static void func_801C959C(void)
     D_800E16C0 |= ptr->unkFD8;
     D_800E16BC |= ptr->unkFDC;
     D_801CE470 |= ptr->unkFE0;
-    D_80168D08 = ptr->unkFE4;
+    gTimeMachinePart = ptr->unkFE4;
 }
 
 /*801C97A8*/

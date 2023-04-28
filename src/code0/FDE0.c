@@ -132,14 +132,14 @@ void func_80012174(void)
 /*80012318*/
 void func_80012318(void)
 {
-    if (D_80117ED8[D_801B0820].unk60 && D_80117ED8[D_801B0820].unk6A < 255 && D_80117ED8[D_801B0820].unk52 < 0)
+    if (gPlayer[D_801B0820].unk60 && gPlayer[D_801B0820].unk6A < 255 && gPlayer[D_801B0820].unk52 < 0)
     {
         func_8000F1E0();
-        D_8013B2D0[D_80117ED8[D_801B0820].unk4A].unk6 = 255 - D_80117ED8[D_801B0820].unk6A;
-        func_8000F474(D_80117ED8[D_801B0820].unk4A,
-                     ((D_8013B2D0[D_80117ED8[D_801B0820].unk4A].unk0 * 180) / 1024.0),
-                     ((D_8013B2D0[D_80117ED8[D_801B0820].unk4A].unk2 * 180) / 1024.0),
-                     ((((gpSprite[D_80117ED8[D_801B0820].unk4A].ang + D_8013B2D0[D_80117ED8[D_801B0820].unk4A].unk4) * 180) / 1024.0) + 90.0));
+        D_8013B2D0[gPlayer[D_801B0820].unk4A].unk6 = 255 - gPlayer[D_801B0820].unk6A;
+        func_8000F474(gPlayer[D_801B0820].unk4A,
+                     ((D_8013B2D0[gPlayer[D_801B0820].unk4A].unk0 * 180) / 1024.0),
+                     ((D_8013B2D0[gPlayer[D_801B0820].unk4A].unk2 * 180) / 1024.0),
+                     ((((gpSprite[gPlayer[D_801B0820].unk4A].ang + D_8013B2D0[gPlayer[D_801B0820].unk4A].unk4) * 180) / 1024.0) + 90.0));
     }
 }
 
@@ -154,8 +154,8 @@ static void func_800124EC(s16 arg0)
         gDPSetTextureLUT(gpDisplayList++, G_TT_NONE);
         gDPSetCombineLERP(gpDisplayList++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
         gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_XLU_SURF2);
-        gDPSetPrimColor(gpDisplayList++, 0, 0, D_80168D04[arg0].primary.r, D_80168D04[arg0].primary.g, D_80168D04[arg0].primary.b, D_8012FD87);
-        gDPSetEnvColor(gpDisplayList++, D_80168D04[arg0].env.r, D_80168D04[arg0].env.g, D_80168D04[arg0].env.b, D_8012FD87);
+        gDPSetPrimColor(gpDisplayList++, 0, 0, gpAlphaPalette[arg0].primary.r, gpAlphaPalette[arg0].primary.g, gpAlphaPalette[arg0].primary.b, D_8012FD87);
+        gDPSetEnvColor(gpDisplayList++, gpAlphaPalette[arg0].env.r, gpAlphaPalette[arg0].env.g, gpAlphaPalette[arg0].env.b, D_8012FD87);
     }
 }
 

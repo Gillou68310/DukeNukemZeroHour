@@ -43,12 +43,12 @@ extern char **gpWeaponStrInfo;
 extern u8 *gStaticSegment;
 extern u8 *gDepthBuffer;
 extern Vtx *gpVertexN64;
-extern _11B300UnkStruct2 *D_80168D04;
-extern s32 D_8016D178;
+extern AlphaPalette *gpAlphaPalette;
+extern s32 gGfxTime;
 extern Vtx *gVertexN64[GFX_TASKS];
 extern char **gpActionStrInfo;
 extern OSMesgQueue gDmaMessageQ;
-extern MsgStrInfo *gpMsgStrInfo;
+extern ObjectiveStrInfo *gpObjectiveStrInfo;
 extern char **gpMapStrInfo;
 extern OSSched gScheduler;
 extern TileInfo *gpTileInfo;
@@ -59,5 +59,6 @@ extern Dynamic *gpDynamic;
 extern _11D520UnkStruct1 *D_801ACBD8;
 extern s32 gDisplayListMaxSize;
 extern s32 gVertexN64MaxSize;
+extern GlobalPalette *gpGlobalPalette;
 
 #endif

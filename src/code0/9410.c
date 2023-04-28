@@ -176,13 +176,13 @@ STATIC void decompressMap(void)
 
     for (i = 0; i < MAXPLAYERS; i++)
     {
-        D_80117ED8[i].xpos = (s32)(2.0f * gMapXpos);
-        D_80117ED8[i].ypos = (s32)(2.0f * gMapYpos);
-        D_80117ED8[i].zpos = (s32)(32.0f * gMapZpos);
-        updateSector(D_80117ED8[i].xpos, D_80117ED8[i].ypos, &D_80117ED8[i].unk32);
-        floorz = getFlorzOfSlope(D_80117ED8[i].unk32, D_80117ED8[i].xpos, D_80117ED8[i].ypos);
-        D_80117ED8[i].zpos = floorz - 0x3900;
-        D_80117ED8[i].unk38 = gpMapInfo[gMapNum].unk2C;
+        gPlayer[i].xpos = (s32)(2.0f * gMapXpos);
+        gPlayer[i].ypos = (s32)(2.0f * gMapYpos);
+        gPlayer[i].zpos = (s32)(32.0f * gMapZpos);
+        updateSector(gPlayer[i].xpos, gPlayer[i].ypos, &gPlayer[i].unk32);
+        floorz = getFlorzOfSlope(gPlayer[i].unk32, gPlayer[i].xpos, gPlayer[i].ypos);
+        gPlayer[i].zpos = floorz - 0x3900;
+        gPlayer[i].unk38 = gpMapInfo[gMapNum].unk2C;
     }
 }
 #else
@@ -195,7 +195,7 @@ void func_80008E3C(void)
 {
     char buffer[8];
     s32 value;
-    s32 i;
+    s32 playernum;
 
     func_80040AA0(3, "DR");
     func_80040B2C(3);
@@ -249,8 +249,8 @@ void func_80008E3C(void)
     gDisplayListSize = ((uintptr_t)gpDisplayList - (uintptr_t)gDisplayList[gGfxTaskIndex]) / sizeof(Gfx);
     gVertexN64Size = ((uintptr_t)gpVertexN64 - (uintptr_t)gVertexN64[gGfxTaskIndex]) / sizeof(Vtx);
 
-    for (i = 0; i < D_8012C470; i++)
-        D_8019B940[D_80106D50[D_80117ED8[i].unk4A]].unk0 &= ~0x100;
+    for (playernum = 0; playernum < D_8012C470; playernum++)
+        D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk0 &= ~0x100;
 
     func_80040B70(3);
 }
@@ -954,19 +954,19 @@ static void func_8000E56C(void)
 
     grPerspectiveF(projection,
                    &perspNorm,
-                   (15360.0 / D_80117ED8[D_801B0820].unk6E),
+                   (15360.0 / gPlayer[D_801B0820].unk6E),
                    1.3333334f,
-                   ((D_80117ED8[D_801B0820].unk6E * 5) / 256.0),
+                   ((gPlayer[D_801B0820].unk6E * 5) / 256.0),
                    16384.0f,
-                   (256.0 / D_80117ED8[D_801B0820].unk6E));
+                   (256.0 / gPlayer[D_801B0820].unk6E));
 
     grPerspective(&gpDynamic->mtx1[D_801B0820],
                   &perspNorm,
-                  (15360.0 / D_80117ED8[D_801B0820].unk6E),
+                  (15360.0 / gPlayer[D_801B0820].unk6E),
                   1.3333334f,
-                  ((D_80117ED8[D_801B0820].unk6E * 5) / 256.0),
+                  ((gPlayer[D_801B0820].unk6E * 5) / 256.0),
                   16384.0f,
-                  (256.0 / D_80117ED8[D_801B0820].unk6E));
+                  (256.0 / gPlayer[D_801B0820].unk6E));
 
     D_801385F2 = perspNorm;
 

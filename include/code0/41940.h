@@ -54,15 +54,18 @@ s16 func_80058934(s32 x, s32 y, s32 z, s32 sectnum, s32);
 void func_80058A14(s16 spritenum, s16 *hitsprite, s32 *hitx, s32 *hity);
 
 extern s32 D_800DEE80; /*spritenum?*/
+extern s32 D_800DEE84;
 extern s32 D_800DEE88;
 extern s32 D_800DEE8C;
 extern s32 D_800DEE9C;
 extern s32 D_800DEEA0;
-extern s32 D_800DEEA8;
-extern s32 D_800DEEAC;
-extern s32 D_800DEEB0;
+extern s32 gAiDebugGvar1;
+extern s32 gAiDebugGvar2;
+extern s32 gAiDebugGvar3;
 extern s32 D_800DEEB8;
+extern s32 gInvulnerability;
 extern u8 D_800DEEE4[4];
+extern s32 gAutoAim;
 extern s32 D_800DEF1C;
 extern s32 D_800DF1A8;
 extern s16 D_800DF1AC[4];

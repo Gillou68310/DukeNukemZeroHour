@@ -19,7 +19,14 @@ typedef struct
 {
     /*0x00*/ Color primary;
     /*0x03*/ Color env;
-} _11B300UnkStruct2;
+} AlphaPalette;
+
+typedef struct
+{
+    /*0x00*/ u16 r;
+    /*0x02*/ u16 g;
+    /*0x04*/ u16 b;
+} GlobalPalette;
 
 /*01024590*/ extern u8 D_01024590[];
 /*010245E8*/ extern u8 D_010245E8[];
@@ -32,8 +39,8 @@ typedef struct
 /*010258D8*/ extern u8 D_010258D8[];
 /*01025908*/ extern u8 D_01025908[];
 /*01025968*/ extern u8 D_01025968[];
-/*010259B0*/ extern u8 D_010259B0[];
-/*01025AAC*/ extern _11B300UnkStruct2 D_01025AAC[40];
+/*010259B0*/ extern GlobalPalette gGlobalPalette[42];
+/*01025AAC*/ extern AlphaPalette gAlphaPalette[40];
 /*01025BA0*/ extern u8 D_01025BA0[];
 /*01025CFC*/ extern u8 D_01025CFC[];
 

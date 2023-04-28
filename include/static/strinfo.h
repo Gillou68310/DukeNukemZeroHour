@@ -2,26 +2,26 @@
 #define _STRINFO_H_
 
 #include "common.h"
+#include "static/mapinfo.h"
 
-#define MAP_STRINFO_NUM 24
 #define KEY_STRINFO_NUM 16
 
 typedef struct
 {
     s16 count;
     char **addr;
-} MsgStrInfo;
+} ObjectiveStrInfo;
 
-extern char *gWeaponStrInfo[0x7D];
+extern char *gWeaponStrInfo[125];
 extern s16 gWeaponStrInfoCount;
-extern char **gKeyStrInfo[MAP_STRINFO_NUM];
-extern MsgStrInfo gMsgStrInfo[MAP_STRINFO_NUM];
-extern char *gMapStrInfo[MAP_STRINFO_NUM];
-extern char *gActionStrInfo[0x11];
+extern char **gKeyStrInfo[MAP_COUNT];
+extern ObjectiveStrInfo gObjectiveStrInfo[MAP_COUNT];
+extern char *gMapStrInfo[MAP_COUNT];
+extern char *gActionStrInfo[17];
 extern s16 gActionStrInfoCount;
-extern char *gLicenceStrInfo[0x23];
+extern char *gLicenceStrInfo[35];
 extern s16 gLicenceStrInfoCount;
-extern char *gCreditStrInfo[0xF8];
+extern char *gCreditStrInfo[248];
 extern s16 gCreditStrInfoCount;
 
 #endif

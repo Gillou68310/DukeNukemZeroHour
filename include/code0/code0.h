@@ -10,9 +10,9 @@
 
 typedef struct
 {
-    /*0x0000*/ Mtx mtx1[4];
-    /*0x0100*/ Mtx mtx2[4];
-    /*0x0200*/ LookAt lookat[4][2];
+    /*0x0000*/ Mtx mtx1[MAXPLAYERS];
+    /*0x0100*/ Mtx mtx2[MAXPLAYERS];
+    /*0x0200*/ LookAt lookat[MAXPLAYERS][2];
     /*0x0300*/ u8 pad1[320];
     /*0x0440*/ Mtx mtx3[256];
     /*0x4440*/ u8 pad2[2112];
@@ -24,7 +24,6 @@ typedef struct
     /*0x4DC0*/ Mtx mtx5[128]; /*?*/
 } Dynamic;
 
-/*Player struct*/
 typedef struct
 {
     /*0x00*/ s32 xpos;
@@ -83,10 +82,9 @@ typedef struct
     /*0x82*/ s16 unk82;
     /*0x84*/ s16 unk84;
     /*0x86*/ s16 unk86;
-    /*0x88*/ u8 unk88;
-    /*0x89*/ u8 unk89;
-    /*0x8A*/ u8 pad[18];
-} code0UnkStruct1;
+    /*0x88*/ u8 unk88[17];
+    /*0x99*/ u8 pad[2];
+} Player;
 
 typedef struct
 {
@@ -172,12 +170,12 @@ typedef struct
 
 typedef struct
 {
-    /*0x00*/ u16 unk0;
-    /*0x02*/ u16 unk2;
-    /*0x04*/ u16 unk4;
-    /*0x06*/ u16 unk6;
-    /*0x08*/ u16 unk8;
-    /*0x0A*/ u16 unkA;
+    /*0x00*/ u16 enemies_killed;
+    /*0x02*/ u16 enemies_total;
+    /*0x04*/ u16 babes_saved;
+    /*0x06*/ u16 babes_total;
+    /*0x08*/ u16 secrets_found;
+    /*0x0A*/ u16 secrets_total;
     /*0x0C*/ s32 unkC;
     /*0x10*/ u8 unk10;
 } code0UnkStruct4;
@@ -256,7 +254,7 @@ typedef struct
     /*0x10*/ s32 unk10;
     /*0x14*/ s32 unk14;
     /*0x18*/ s16 unk18; /*tileid*/
-    /*0x1C*/ s32 unk1C;
+    /*0x1C*/ s32 unk1C; /*CLOUDS HT*/
     /*0x20*/ Color fog;
 } code0unkStruct12;
 
@@ -368,6 +366,7 @@ typedef struct
 /*800FE416*/ _extern s16 gMapNum;
 /*800FF528*/ _extern u8 *D_800FF528;
 /*800FE944*/ _extern u8 *D_800FE944; /*model ramaddr*/
+/*800FE9C8*/ _extern s32 D_800FE9C8[2]; /*CLOUDS SP*/
 /*800FE9E0*/ _extern s64 D_800FE9E0;
 /*800FEA90*/ _extern u8 D_800FEA90;
 /*8010554C*/ _extern s8 D_8010554C;
@@ -380,13 +379,13 @@ typedef struct
 /*8010A938*/ _extern u8 *D_8010A938; /*edlHandle*/
 /*8010A940*/ _extern code0UnkStruct2 D_8010A940[MAXPLAYERS] ALIGNED(8);
 /*8010A9AC*/ _extern u8 D_8010A9AC;
-/*80117ED8*/ _extern code0UnkStruct1 D_80117ED8[MAXPLAYERS] ALIGNED(8);
+/*80117ED8*/ _extern Player gPlayer[MAXPLAYERS] ALIGNED(8);
 /*80118148*/ _extern u8 D_80118148;
 /*80118248*/ _extern SpriteType *D_80118248;
 /*80118260*/ _extern u8 D_80118260[6096] ALIGNED(16);
 /*80119A64*/ _extern s32 D_80119A64;
 /*80119A9C*/ _extern u16 D_80119A9C;
-/*8011A670*/ _extern volatile u16 D_8011A670[4];
+/*8011A670*/ _extern volatile u16 D_8011A670[MAXPLAYERS];
 /*8011A680*/ _extern u16 D_8011A680[4][24][10] ALIGNED(16);
 /*8011BC40*/ _extern code0UnkStruct16 *D_8011BC40;
 /*8011BC48*/ _extern s32 D_8011BC48;
@@ -395,35 +394,36 @@ typedef struct
 /*8012B948*/ _extern Matrix4f D_8012B948 ALIGNED(8); /*viewing*/
 /*8012BBCC*/ _extern s16 D_8012BBCC;
 /*8012BC70*/ _extern code0UnkStruct6 D_8012BC70[256] ALIGNED(16);
-/*8012C470*/ _extern s16 D_8012C470;
+/*8012C470*/ _extern s16 D_8012C470; /*playernum*/
 /*8012C478*/ _extern Gfx *D_8012C478[200] ALIGNED(8);
-/*8012D218*/ _extern u32 D_8012D218[4][18] ALIGNED(8);
+/*8012D218*/ _extern u32 D_8012D218[MAXPLAYERS][18] ALIGNED(8);
 /*8012DEFC*/ _extern u16 D_8012DEFC;
 /*8012DF00*/ _extern u8 *D_8012DF00;
 /*8012DF10*/ _extern code0UnkStruct14 D_8012DF10[16] ALIGNED(8);
 /*8012E150*/ _extern u8 *D_8012E150;
-/*8012EED0*/ _extern u8 *D_8012EED0;
 /*8012F6F0*/ _extern s8 D_8012F6F0[4];
 /*8012F6F4*/ _extern s16 D_8012F6F4; /*sectnum*/
-/*8012F6FC*/ _extern volatile u16 D_8012F6FC[4];
+/*8012F6FC*/ _extern volatile u16 D_8012F6FC[MAXPLAYERS];
 /*8012FC40*/ _extern u8 D_8012FC40;
 /*8012FC48*/ _extern code0unkStruct12 D_8012FC48[2] ALIGNED(8);
 /*8012FC90*/ _extern s32 D_8012FC90;
 /*8012FCA0*/ _extern s16 D_8012FCA0;
+/*8012FD80*/ _extern s32 gAlertAliens;
 /*8012FD88*/ _extern s32 D_8012FD88;
 /*8012FD8C*/ _extern code0UnkStruct16 *D_8012FD8C;
 /*80137DE0*/ _extern code0UnkStruct3 *D_80137DE0;
 /*80138680*/ _extern s32 D_80138680;
 /*80138688*/ _extern OSTime D_80138688;
 /*80138690*/ _extern s32 D_80138690;
+/*8013869C*/ _extern s16 gSkyBottomB;
 /*80138714*/ _extern code0unkStruct11 *D_80138714;
 /*8013871C*/ _extern s32 D_8013871C;
 /*80138778*/ _extern u8 *D_80138778;
-/*80138780*/ _extern u16 D_80138780;
+/*80138780*/ _extern s16 D_80138780;
 /*80138790*/ _extern s32 D_80138790;
 /*80138830*/ _extern s32 D_80138830;
 /*80138854*/ _extern u8 *D_80138854; /*cache buffer*/
-/*8013A43C*/ _extern volatile u16 D_8013A43C[4];
+/*8013A43C*/ _extern volatile u16 D_8013A43C[MAXPLAYERS];
 /*8013A448*/ _extern u16 D_8013A448[256] ALIGNED(8);
 /*8013B2D0*/ _extern code0UnkStruct5 D_8013B2D0[MAXSPRITES] ALIGNED(16);
 /*8013F920*/ _extern u8 *D_8013F920;
@@ -431,13 +431,15 @@ typedef struct
 /*80168C9C*/ _extern f32 D_80168C9C;
 /*80168D0C*/ _extern s16 D_80168D0C;
 /*80168D10*/ _extern s32 D_80168D10;
-/*80168D08*/ _extern s32 D_80168D08;
+/*80168D08*/ _extern s32 gTimeMachinePart;
 /*80168D18*/ _extern s32 D_80168D18;
 /*80169520*/ _extern u8 D_80169520; /*cache lock*/
+/*80169522*/ _extern s16 gSkyTopG;
 /*8016A148*/ _extern s32 D_8016A148;
 /*8016A15C*/ _extern f32 D_8016A15C;
 /*8016D174*/ _extern u8 D_8016D174[4];
 /*8016D180*/ _extern u16 D_8016D180;
+/*80197DCC*/ _extern s16 gSkyTopB;
 /*80197DD4*/ _extern s16 D_80197DD4;
 /*80197DE8*/ _extern u8 *D_80197DE8;
 /*80197E40*/ _extern code0unkStruct8 D_80197E40[150] ALIGNED(16);
@@ -455,14 +457,15 @@ typedef struct
 /*801A1958*/ _extern code0UnkStruct4 D_801A1958 ALIGNED(8);
 /*801A1970*/ _extern s32 D_801A1970;
 /*801A1980*/ _extern f32 D_801A1980;
+/*801A198C*/ _extern s16 gSkyBottomG;
 /*801A1994*/ _extern s32 D_801A1994;
 /*801A19EC*/ _extern u8 D_801A19EC;
 /*801A2620*/ _extern s16 D_801A2620;
-/*801A2628*/ _extern s16 D_801A2628;
+/*801A2628*/ _extern s16 D_801A2628; /*playernum?*/
 /*801A2684*/ _extern f32 D_801A2684;
 /*801A2688*/ _extern s8 D_801A2688;
 /*801A2690*/ _extern u16 D_801A2690[128] ALIGNED(8);
-/*801A68A8*/ _extern code0unkStruct9 D_801A68A8[4] ALIGNED(8);
+/*801A68A8*/ _extern code0unkStruct9 D_801A68A8[MAXPLAYERS] ALIGNED(8);
 /*801A6D80*/ _extern u16 D_801A6D80;
 /*801A6D84*/ _extern s32 D_801A6D84; /*xs*/
 /*801AC8E0*/ _extern f32 D_801AC8E0;
@@ -471,17 +474,21 @@ typedef struct
 /*801ACC60*/ _extern s32 D_801ACC60;
 /*801AD470*/ _extern u8 D_801AD470;
 /*801AD474*/ _extern u8 *D_801AD474;
+/*801AE490*/ _extern s32 gSnoozingAliens;
 /*801AE4A0*/ _extern Fog gFog[MAXPLAYERS] ALIGNED(8);
 /*801AE528*/ _extern s32 D_801AE528;
 /*801AE538*/ _extern code0UnkStruct13 D_801AE538[32] ALIGNED(8);
 /*801AE8F0*/ _extern u8 *D_801AE8F0;
 /*801AE8F4*/ _extern u16 D_801AE8F4;
+/*801AE904*/ _extern s32 D_801AE904[2]; /*CLOUDS AN*/
 /*801AE914*/ _extern s32 D_801AE914;
 /*801AEA10*/ _extern f32 D_801AEA10;
+/*801AEA30*/ _extern s16 gSkyBottomR;
 /*801B0815*/ _extern u8 D_801B0815;
-/*801B0820*/ _extern u8 D_801B0820;
+/*801B0820*/ _extern u8 D_801B0820; /*playernum?*/
 /*801B0830*/ _extern Matrix4f D_801B0830[20] ALIGNED(16);
 /*801B0D30*/ _extern s32 D_801B0D30;
+/*801C0D5C*/ _extern s16 gSkyTopR;
 /*801C0D70*/ _extern u8 *D_801C0D70;
 
 #undef _extern

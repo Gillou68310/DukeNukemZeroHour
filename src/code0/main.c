@@ -40,7 +40,7 @@ DECL_STATIC_SEG_SYM(gTileInfo);
 DECL_STATIC_SEG_SYM(gWeaponStrInfo);
 DECL_STATIC_SEG_SYM(gWeaponStrInfoCount);
 DECL_STATIC_SEG_SYM(gKeyStrInfo);
-DECL_STATIC_SEG_SYM(gMsgStrInfo);
+DECL_STATIC_SEG_SYM(gObjectiveStrInfo);
 DECL_STATIC_SEG_SYM(gMapStrInfo);
 DECL_STATIC_SEG_SYM(gActionStrInfo);
 DECL_STATIC_SEG_SYM(gActionStrInfoCount);
@@ -64,8 +64,8 @@ DECL_STATIC_SEG_SYM(D_01025840);
 DECL_STATIC_SEG_SYM(D_010258D8);
 DECL_STATIC_SEG_SYM(D_01025908);
 DECL_STATIC_SEG_SYM(D_01025968);
-DECL_STATIC_SEG_SYM(D_010259B0);
-DECL_STATIC_SEG_SYM(D_01025AAC);
+DECL_STATIC_SEG_SYM(gGlobalPalette);
+DECL_STATIC_SEG_SYM(gAlphaPalette);
 DECL_STATIC_SEG_SYM(D_01025BA0);
 DECL_STATIC_SEG_SYM(D_01025CFC);
 DECL_STATIC_SEG_SYM(gMapInfo);
@@ -149,6 +149,7 @@ extern u8 static_ROM_END[];
 /*8011BC60*/ Dynamic gDynamic[GFX_TASKS] ALIGNED(16);
 /*8012C990*/ OSMesg gGfxMessages[NUM_DMA_MSGS] ALIGNED(16);
 /*8012E158*/ OSViMode *D_8012E158;
+/*8012EED0*/ GlobalPalette *gpGlobalPalette;
 /*8012F6E4*/ _11B300UnkStruct1 *D_8012F6E4;
 /*8012FD78*/ Gfx *gDisplayList[GFX_TASKS];
 /*80137DE4*/ char **gpWeaponStrInfo;
@@ -157,15 +158,15 @@ extern u8 static_ROM_END[];
 /*80138818*/ u32 D_80138818;
 /*80138864*/ u8 *gDepthBuffer;
 /*8013A648*/ u8 *gCacheMemStart;
-/*80168D04*/ _11B300UnkStruct2 *D_80168D04;
+/*80168D04*/ AlphaPalette *gpAlphaPalette;
 /*8016D170*/ Vtx *gpVertexN64;
-/*8016D178*/ s32 D_8016D178;
+/*8016D178*/ s32 gGfxTime;
 /*8016D184*/ Vtx *gVertexN64[GFX_TASKS];
 /*80197D4C*/ u8 *D_80197D4C;
 /*80197D50*/ char **gpActionStrInfo;
 /*80197D58*/ OSMesgQueue gDmaMessageQ ALIGNED(8);
 /*80199120*/ OSMesg gRetraceMessages[NUM_DMA_MSGS] ALIGNED(16);
-/*801A196C*/ MsgStrInfo *gpMsgStrInfo;
+/*801A196C*/ ObjectiveStrInfo *gpObjectiveStrInfo;
 /*801A1A20*/ u64 gfxYieldBuf[OS_YIELD_DATA_SIZE / sizeof(u64)] ALIGNED(16);
 /*801A68CC*/ char **gpMapStrInfo;
 /*801A6AF8*/ OSSched gScheduler;
@@ -469,26 +470,26 @@ static void main_80000F00(void)
 }
 
 /*80000F68*/
-static void main_80000F68(s16 arg0)
+static void main_80000F68(s16 playernum)
 {
-    D_80117ED8[arg0].unk80 = 0;
+    gPlayer[playernum].unk80 = 0;
 
-    if (D_801CE498.unk2E[arg0] >= 4)
-        D_80117ED8[arg0].unk80 = 4;
+    if (D_801CE498.unk2E[playernum] >= 4)
+        gPlayer[playernum].unk80 = 4;
 
-    if ((D_801CE498.unk2E[arg0] & 3) >= 2)
-        D_80117ED8[arg0].unk80 |= 1;
+    if ((D_801CE498.unk2E[playernum] & 3) >= 2)
+        gPlayer[playernum].unk80 |= 1;
 
-    if (D_801CE498.unk2E[arg0] & 1)
-        D_80117ED8[arg0].unk80 |= 2;
+    if (D_801CE498.unk2E[playernum] & 1)
+        gPlayer[playernum].unk80 |= 2;
 
-    func_80035794(arg0);
+    func_80035794(playernum);
 }
 
 /*80001038*/
 static void main_80001038(void)
 {
-    s16 i;
+    s16 playernum;
     s16 temp;
 
     if (D_800BD3F0 != 0)
@@ -510,8 +511,8 @@ static void main_80001038(void)
         }
         func_801C4B34();
 
-        for (i = 0; i < D_8012C470; i++)
-            main_80000F68(i);
+        for (playernum = 0; playernum < D_8012C470; playernum++)
+            main_80000F68(playernum);
     }
     else
     {
@@ -547,8 +548,8 @@ static void main_80001038(void)
         func_800504F4();
         func_8005087C();
 
-        for (i = 0; i < D_8012C470; i++)
-            func_80017268(D_80117ED8[i].unk4A);
+        for (playernum = 0; playernum < D_8012C470; playernum++)
+            func_80017268(gPlayer[playernum].unk4A);
 
         func_80069E50();
         func_8009FAF0();
@@ -575,32 +576,32 @@ static void main_80001038(void)
 
         func_80040B70(2);
 
-        for (i = 0; i < D_8012C470; i++)
+        for (playernum = 0; playernum < D_8012C470; playernum++)
         {
-            func_8000EB4C(i, 0, 0, 0, 0);
-            func_8000EA0C(i, D_800DF1AC[i], D_800DF1AC[i], D_800DF1AC[i], (s32)D_800DF1AC[i]);
+            func_8000EB4C(playernum, 0, 0, 0, 0);
+            func_8000EA0C(playernum, D_800DF1AC[playernum], D_800DF1AC[playernum], D_800DF1AC[playernum], (s32)D_800DF1AC[playernum]);
 
-            if (D_8019B940[D_80106D50[D_80117ED8[i].unk4A]].unk0 & 0x40)
-                func_8000EA0C(i, 0, 0xFF, 0xFF, 0x80);
-            else if (D_8010A940[i].unk7 != 0)
-                func_8000EA0C(i, 0, 0xFF, 0, 0x80);
-            else if (D_80117ED8[i].unk55 != 0)
-                func_8000EA0C(i, D_800BD710[D_801A19EC].unk0, D_800BD710[D_801A19EC].unk1, D_800BD710[D_801A19EC].unk2, D_800BD710[D_801A19EC].unk3);
-            else if (D_80117ED8[i].unk82 > 0)
-                func_8000EA0C(i, 0, 0xFF, 0, D_80117ED8[i].unk82 / 2);
+            if (D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk0 & 0x40)
+                func_8000EA0C(playernum, 0, 0xFF, 0xFF, 0x80);
+            else if (D_8010A940[playernum].unk7 != 0)
+                func_8000EA0C(playernum, 0, 0xFF, 0, 0x80);
+            else if (gPlayer[playernum].unk55 != 0)
+                func_8000EA0C(playernum, D_800BD710[D_801A19EC].unk0, D_800BD710[D_801A19EC].unk1, D_800BD710[D_801A19EC].unk2, D_800BD710[D_801A19EC].unk3);
+            else if (gPlayer[playernum].unk82 > 0)
+                func_8000EA0C(playernum, 0, 0xFF, 0, gPlayer[playernum].unk82 / 2);
 
-            if (D_80106D30[i] != 0)
-                func_8000EA0C(i, 0, 0, 0, 200);
+            if (D_80106D30[playernum] != 0)
+                func_8000EA0C(playernum, 0, 0, 0, 200);
 
-            if (D_80117ED8[i].unk45 != 0)
+            if (gPlayer[playernum].unk45 != 0)
             {
-                temp = D_80117ED8[i].unk4E;
-                if (D_80117ED8[i].unk45 == 4)
-                    func_8000EA0C(i, 0xFF - temp, 0xFF - temp, 0xFF - temp, 0xFF);
-                else if (D_80117ED8[i].unk45 == 3)
-                    func_8000EA0C(i, 0xFF - temp, -temp, -temp, 0xFF);
+                temp = gPlayer[playernum].unk4E;
+                if (gPlayer[playernum].unk45 == 4)
+                    func_8000EA0C(playernum, 0xFF - temp, 0xFF - temp, 0xFF - temp, 0xFF);
+                else if (gPlayer[playernum].unk45 == 3)
+                    func_8000EA0C(playernum, 0xFF - temp, -temp, -temp, 0xFF);
                 else
-                    func_8000EA0C(i, -temp, -temp, -temp, temp);
+                    func_8000EA0C(playernum, -temp, -temp, -temp, temp);
             }
         }
 
@@ -655,7 +656,7 @@ static void main_800017AC(void)
         func_801C9D68();
     else
     {
-        for (i = 0; i < 4; i++)
+        for (i = 0; i < MAXPLAYERS; i++)
             func_80003990(i);
 
         if ((D_800BD3F9 == 3) && (D_801CDB4C != 0))
@@ -1012,7 +1013,7 @@ static void mainLoop(void *arg)
     s16 count2;
     intptr_t *addr_;
     s32 size;
-    MsgStrInfo *msg_;
+    ObjectiveStrInfo *msg_;
     intptr_t offset_;
     u8 *temp;
 
@@ -1032,7 +1033,7 @@ static void mainLoop(void *arg)
 
     gpTileInfo = (TileInfo *)GET_STATIC_SEG_SYM(gTileInfo);
     gpKeyStrInfo = (char ***)GET_STATIC_SEG_SYM(gKeyStrInfo);
-    gpMsgStrInfo = (MsgStrInfo *)GET_STATIC_SEG_SYM(gMsgStrInfo);
+    gpObjectiveStrInfo = (ObjectiveStrInfo *)GET_STATIC_SEG_SYM(gObjectiveStrInfo);
 
     count = (s16 *)GET_STATIC_SEG_SYM(gWeaponStrInfoCount);
     gpWeaponStrInfo = (char **)GET_STATIC_SEG_SYM(gWeaponStrInfo);
@@ -1049,7 +1050,7 @@ static void mainLoop(void *arg)
     gpMapStrInfo = (char **)GET_STATIC_SEG_SYM(gMapStrInfo);
 
 #ifdef TARGET_N64
-    for (i = 0; i < MAP_STRINFO_NUM; i++)
+    for (i = 0; i < ARRAY_COUNT(gMapStrInfo); i++)
     {
         intptr_t *addr = (intptr_t *)gpMapStrInfo;
         intptr_t offset = (intptr_t)gStaticSegment - STATIC_SEGMENT_VRAM;
@@ -1058,11 +1059,11 @@ static void mainLoop(void *arg)
 
     i = 0;
     addr_ = (intptr_t *)gpKeyStrInfo;
-    msg_ = gpMsgStrInfo;
+    msg_ = gpObjectiveStrInfo;
     offset_ = (intptr_t)gStaticSegment - STATIC_SEGMENT_VRAM;
-    while (i < MAP_STRINFO_NUM)
+    while (i < ARRAY_COUNT(gMapStrInfo))
     {
-        MsgStrInfo *msg;
+        ObjectiveStrInfo *msg;
         addr_[i] += offset_;
         *(intptr_t *)&msg_[i].addr += offset_;
 
@@ -1089,8 +1090,8 @@ static void mainLoop(void *arg)
 
     gpSinTable = (s16 *)GET_STATIC_SEG_SYM(gSinTable);
     gpRadaRang = (s16 *)GET_STATIC_SEG_SYM(gRadarang);
-    D_8012EED0 = (u8 *)GET_STATIC_SEG_SYM(D_010259B0);
-    D_80168D04 = (_11B300UnkStruct2 *)GET_STATIC_SEG_SYM(D_01025AAC);
+    gpGlobalPalette = (GlobalPalette *)GET_STATIC_SEG_SYM(gGlobalPalette);
+    gpAlphaPalette = (AlphaPalette *)GET_STATIC_SEG_SYM(gAlphaPalette);
     D_8012F6E4 = (_11B300UnkStruct1 *)GET_STATIC_SEG_SYM(D_01025BA0);
     count2 = *(u16 *)GET_STATIC_SEG_SYM(D_01025CFC);
     D_80138780 = count2;
@@ -1320,10 +1321,10 @@ static void viLoop(void *arg)
             break;
         case OS_SC_DONE_MSG:
             D_801B0818 = gGfxTask[D_800BD428].totalTime;
-            D_8016D178 = D_801B0818 - gGfxDebugTime;
+            gGfxTime = D_801B0818 - gGfxDebugTime;
             osSendMesg(&D_8010A920, NULL, OS_MESG_NOBLOCK);
-            D_8016D178 *= gScreenHeight;
-            D_8016D178 /= D_80138688;
+            gGfxTime *= gScreenHeight;
+            gGfxTime /= D_80138688;
             if (D_800BD3F4 != 0)
             {
                 D_800BD3F4--;

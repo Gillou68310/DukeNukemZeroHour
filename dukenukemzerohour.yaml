@@ -292,7 +292,7 @@ segments:
       - [0xDFEF0, data,     code0/6ACA0]
       - [0xE0280, data,     code0/7A430]
       - [0xE0540, data,     code0/7BA50]
-      - [0xE0550, data,     code0/debug]
+      - [0xE0550, .data,    src/code0/debug]
       - [0xE05A0, data,     code0/7F6A0]
       - [0xE0640, data,     code0/7FCE0]
       - [0xE1740, .data,    src/code0/edl]

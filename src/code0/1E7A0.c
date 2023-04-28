@@ -142,7 +142,7 @@ void func_8001F388(void)
 /*8001F44C*/
 void func_8001F44C(void)
 {
-    s16 i, j, k, num, ang;
+    s16 i, j, k, playernum, ang;
     f32 f1, f2;
 
     if (D_801CE5AC == 2)
@@ -165,10 +165,10 @@ void func_8001F44C(void)
                 if (D_801AE538[i].unk14 <= 0.0f)
                     D_801AE538[i].unk0 = 0;
 
-                num = audio_80007510(D_801AE538[i].unk2 * 2, D_801AE538[i].unk4 * 2);
+                playernum = audio_80007510(D_801AE538[i].unk2 * 2, D_801AE538[i].unk4 * 2);
                 if (D_8013871C >= 0x101)
                 {
-                    ang = getAngle(D_80117ED8[num].xpos - (D_801AE538[i].unk2 * 2), D_80117ED8[num].ypos - (D_801AE538[i].unk4 * 2));
+                    ang = getAngle(gPlayer[playernum].xpos - (D_801AE538[i].unk2 * 2), gPlayer[playernum].ypos - (D_801AE538[i].unk4 * 2));
                     f1 = D_801AE538[i].unk2;
                     D_801AE538[i].unk2 = f1 + (cosf(ang * 0.00306796157577148444) * 8.0f);
                     f2 = D_801AE538[i].unk4;
@@ -182,14 +182,14 @@ void func_8001F44C(void)
 /*8001F7B4*/
 void func_8001F7B4(s32 arg0, s32 arg1)
 {
-    s16 i;
+    s16 playernum;
 
     D_800DEE88 = arg0;
     D_800DEE8C = arg1;
 
-    for (i = 0; i < D_8012C470; i++)
+    for (playernum = 0; playernum < D_8012C470; playernum++)
     {
-        if (D_80117ED8[i].unk45 == 0)
-            func_801C363C(i, arg0, CLAMP_MAX(arg1*16, 255));
+        if (gPlayer[playernum].unk45 == 0)
+            func_801C363C(playernum, arg0, CLAMP_MAX(arg1*16, 255));
     }
 }

@@ -17,6 +17,7 @@ typedef struct
     f32 zUp;
 } Position;
 
+/*Config?*/
 typedef struct
 {
     /*0x00*/ u8 pad[3];
@@ -45,7 +46,7 @@ typedef struct
     /*0x32*/ u16 unk36[4];
     /*0x3E*/ u16 unk3E[4];
     /*0x46*/ u16 unk46[4];
-    /*0x4E*/ u16 unk4E;
+    /*0x4E*/ u16 difficulty;
     /*0x50*/ u8 unk50;
 } code1UnkStruct1;
 
@@ -119,7 +120,7 @@ typedef struct _code1UnkStruct6
 #define _extern extern
 #endif
 
-/*801CC7F4*/ _extern s16 D_801CC7F4;
+/*801CC7F4*/ _extern u16 D_801CC7F4;
 /*801CC888*/ _extern u8 *D_801CC888; /*edlHandle*/
 /*801CC88C*/ _extern s32 D_801CC88C;
 /*801CC8A8*/ _extern s16 D_801CC8A8;

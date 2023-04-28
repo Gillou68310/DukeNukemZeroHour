@@ -27,6 +27,7 @@
 #define MAP_ZERO_HOUR 21
 #define MAP_THE_END 22
 #define MAP_BASE 23
+#define MAP_COUNT 24
 #define MAP_COOL_AS_ICE 24
 #define MAP_MIND_FUNK 25
 #define MAP_CHIMERA 26

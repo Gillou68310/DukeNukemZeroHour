@@ -278,8 +278,8 @@ static s32 _unused = 0;
 /*800BD618*/ static u8 D_800BD618 = 0;
 /*800BD61A*/ s16 D_800BD61A = 0;
 /*800BD61C*/ static u32 D_800BD61C[6] = {0, 0, 0, 0, 0, 0};
-/*800BD634*/ static u32 D_800BD634[4] = {0, 0, 0, 0};
-/*800BD644*/ static u16 D_800BD644[4] = {0, 0, 0, 0};
+/*800BD634*/ static u32 D_800BD634[MAXPLAYERS] = {0, 0, 0, 0};
+/*800BD644*/ static u16 D_800BD644[MAXPLAYERS] = {0, 0, 0, 0};
 /*800BD64C*/ static u16 D_800BD64C[8] = {1279, 1625, 1280, 1281, 1626, 1627, 1628, 0};
 /*800BD65C*/ static u16 D_800BD65C[8] = {1283, 1629, 1287, 1630, 1631, 1288, 1632, 0};
 /*800BD66C*/ static u16 D_800BD66C[8] = {1294, 1298, 1633, 1300, 1301, 1302, 1304, 0};
@@ -577,7 +577,7 @@ void audio_80006CC0(void)
 
     if (gMapNum == MAP_PROBING_THE_DEPTHS)
     {
-        if (D_80117ED8[0].unk50 != -1)
+        if (gPlayer[0].unk50 != -1)
         {
             if (gMusicHandle == 0)
                 playMusic(MUSIC_WESTERN_MINE_CART);
@@ -615,7 +615,7 @@ static void audio_80006E60(void)
 
     MusHandleSetVolume(gAmbientHandle, 0);
 
-    if ((D_80117ED8[0].unk45 == 0) || (D_8012C470 >= 2))
+    if ((gPlayer[0].unk45 == 0) || (D_8012C470 >= 2))
         MusHandleSetVolume(gMusicHandle, 0);
 }
 
@@ -625,7 +625,7 @@ static void audio_80006F08(void)
     s16 i;
     s16 volume;
 
-    if (D_80117ED8[0].unk45 != 0)
+    if (gPlayer[0].unk45 != 0)
     {
         if (D_8012C470 == 1)
         {
@@ -743,22 +743,22 @@ INCLUDE_ASM("nonmatchings/src/code0/audio", audio_80007418);
 /*80007510*/
 u8 audio_80007510(s32 x, s32 y)
 {
-    u8 i, j;
+    u8 playernum, playernum_;
     s32 value;
 
-    j = 0;
+    playernum_ = 0;
     D_8013871C = 0x40000000;
 
-    for (i = 0; i < D_8012C470; i++)
+    for (playernum = 0; playernum < D_8012C470; playernum++)
     {
-        value = func_80040D40(D_80117ED8[i].xpos, D_80117ED8[i].ypos, x, y);
+        value = func_80040D40(gPlayer[playernum].xpos, gPlayer[playernum].ypos, x, y);
         if (value < D_8013871C)
         {
             D_8013871C = value;
-            j = i;
+            playernum_ = playernum;
         }
     }
-    return j;
+    return playernum_;
 }
 
 /*800075EC*/
@@ -826,7 +826,7 @@ INCLUDE_ASM("nonmatchings/src/code0/audio", audio_800080E0);
 /*80008574*/
 void audio_80008574(s16 playernum, u16 sfxnum)
 {
-    if ((MusHandleAsk(D_800BD634[playernum]) == 0) && (D_80117ED8[playernum].unk45 == 0))
+    if ((MusHandleAsk(D_800BD634[playernum]) == 0) && (gPlayer[playernum].unk45 == 0))
         D_800BD634[playernum] = playSfx(sfxnum);
 }
 

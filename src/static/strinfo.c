@@ -4,7 +4,7 @@
 /*.data*/
 
 /*01021560*/
-char *gWeaponStrInfo[0x7D] = {
+char *gWeaponStrInfo[125] = {
     "M-80 BLASTER",
     NULL,
     "BLASTER CELLS",
@@ -616,7 +616,7 @@ static char *_keyStrTable24[KEY_STRINFO_NUM] = {
 };
 
 /*01021D58*/
-char **gKeyStrInfo[MAP_STRINFO_NUM] = {
+char **gKeyStrInfo[MAP_COUNT] = {
     _keyStrTable1,
     _keyStrTable2,
     _keyStrTable3,
@@ -644,7 +644,7 @@ char **gKeyStrInfo[MAP_STRINFO_NUM] = {
 };
 
 /*01021DB8*/
-static char *_msgStrTable1[5] = {
+static char *_objectiveStrTable1[5] = {
     "FIND A WAY TO APPROACH THE STATUE OF LIBERTY",
     "LOCATE AND QUESTION SURVIVING SOLDIERS",
     "RETURN TO PARKING LOT TO RENDEZVOUS WITH REINFORCEMENTS",
@@ -652,7 +652,7 @@ static char *_msgStrTable1[5] = {
     "GET TO SUBWAY STATION AND LOCATE UNDERGROUND ACCESS TUNNEL"};
 
 /*01021DCC*/
-static char *_msgStrTable2[6] = {
+static char *_objectiveStrTable2[6] = {
     "FIND AND DESTROY THE ALIEN HEADQUARTERS",
     "PROCEED INSIDE THE STATUE",
     "LOCATE OVERFLOW CONTROL KEY",
@@ -662,7 +662,7 @@ static char *_msgStrTable2[6] = {
 };
 
 /*01021DE4*/
-static char *_msgStrTable3[7] = {
+static char *_objectiveStrTable3[7] = {
     "RE-ESTABLISH CONTACT WITH HQ",
     "FIND SIGNS OF LIFE",
     "LOCATE POWER CELL ALPHA",
@@ -673,12 +673,12 @@ static char *_msgStrTable3[7] = {
 };
 
 /*01021E00*/
-static char *_msgStrTable4[1] = {
+static char *_objectiveStrTable4[1] = {
     "FIND THE BALLOON TO ESCAPE THE MAN-MADE ATOLL"
 };
 
 /*01021E04*/
-static char *_msgStrTable5[4] = {
+static char *_objectiveStrTable5[4] = {
     "REACH MILITARY BASE",
     "EXPLORE SURROUNDING AREA",
     "DISABLE ALIEN FORCE-FIELD GENERATOR",
@@ -686,7 +686,7 @@ static char *_msgStrTable5[4] = {
 };
 
 /*01021E14*/
-static char *_msgStrTable6[5] = {
+static char *_objectiveStrTable6[5] = {
     "GAIN ACCESS TO BASE AND PROTECT SURVIVORS",
     "PROCEED TO MAIN ENTRANCE",
     "GET TO MEDICAL AND POWER UP DOOR TO TEMPORAL LABS",
@@ -695,12 +695,12 @@ static char *_msgStrTable6[5] = {
 };
 
 /*01021E28*/
-static char *_msgStrTable7[1] = {
+static char *_objectiveStrTable7[1] = {
     "DEFEAT BOSS HOG"
 };
 
 /*01021E2C*/
-static char *_msgStrTable8[6] = {
+static char *_objectiveStrTable8[6] = {
     "BLOW OPEN THE SAFE IN THE TOWN BANK TO STEAL THE ALIEN PLANS",
     "LOCATE THE PLUNGER DETONATOR",
     "USE THE HOTEL KEY TO GAIN ACCESS TO THE FUSE WIRE",
@@ -710,7 +710,7 @@ static char *_msgStrTable8[6] = {
 };
 
 /*01021E44*/
-static char *_msgStrTable9[4] = {
+static char *_objectiveStrTable9[4] = {
     "ESCAPE FROM JAIL",
     "FIND A HELPING HAND TO ESCAPE",
     "FIND A WAY TO BREAK OUT",
@@ -718,7 +718,7 @@ static char *_msgStrTable9[4] = {
 };
 
 /*01021E54*/
-static char *_msgStrTable10[4] = {
+static char *_objectiveStrTable10[4] = {
     "CLEAR OUT THE ALIEN WAR FACTORY",
     "BOARD THE RIVERBOAT",
     "LOCATE AN EXIT",
@@ -726,7 +726,7 @@ static char *_msgStrTable10[4] = {
 };
 
 /*01021E64*/
-static char *_msgStrTable11[5] = {
+static char *_objectiveStrTable11[5] = {
     "LOCATE THE ALIEN BOMB",
     "SURVIVE THE CANNON FIRE AND REACH THE FORT",
     "AVOID THE BOOBY TRAPS IN AND AROUND THE FORT",
@@ -735,7 +735,7 @@ static char *_msgStrTable11[5] = {
 };
 
 /*01021E78*/
-static char *_msgStrTable12[5] = {
+static char *_objectiveStrTable12[5] = {
     "CHASE THE ALIEN BOMB AND DEFUSE THE EXPLOSIVE SITUATION",
     "FIND A MINE CART TO TAKE YOU DEEPER",
     "RIDE THE MINE CART (REMEMBER TO USE JUMP AND CROUCH)",
@@ -744,12 +744,12 @@ static char *_msgStrTable12[5] = {
 };
 
 /*01021E8C*/
-static char *_msgStrTable13[1] = {
+static char *_objectiveStrTable13[1] = {
     "DEFEAT THE CYBORG SCORPION"
 };
 
 /*01021E90*/
-static char *_msgStrTable14[5] = {
+static char *_objectiveStrTable14[5] = {
     "DESTROY ALIEN VIRUS AND FIND ANOTHER TIME MACHINE",
     "LOCATE THE ENTRANCE TO THE SEWERS",
     "LOCATE THE WAY UP TO WHITECHAPEL",
@@ -758,7 +758,7 @@ static char *_msgStrTable14[5] = {
 };
 
 /*01021EA4*/
-static char *_msgStrTable15[4] = {
+static char *_objectiveStrTable15[4] = {
     "PROCEED TO AIRFIELD TO TAKE AIRSHIP TO CASTLE",
     "EXPLORE THE GRAVEYARD AND LOCATE CANAL ENTRANCE",
     "FOLLOW CANALS TO AIRFIELD",
@@ -766,7 +766,7 @@ static char *_msgStrTable15[4] = {
 };
 
 /*01021EB4*/
-static char *_msgStrTable16[4] = {
+static char *_objectiveStrTable16[4] = {
     "USE THE AIRSHIP'S PLANE TO ESCAPE TO CASTLE",
     "BREAK OUT FROM LUGGAGE HOLD",
     "FIND THE SKELETON KEY",
@@ -774,7 +774,7 @@ static char *_msgStrTable16[4] = {
 };
 
 /*01021EC4*/
-static char *_msgStrTable17[5] = {
+static char *_objectiveStrTable17[5] = {
     "STOP THE SHIP FROM REACHING ITS DESTINATION",
     "EXPLORE THE SHIP AND FIND A WAY TO REACH THE BOTTOM OF THE HOLD",
     "SINK THE SHIP IN ANY WAY POSSIBLE",
@@ -783,27 +783,27 @@ static char *_msgStrTable17[5] = {
 };
 
 /*01021ED8*/
-static char *_msgStrTable18[3] = {
+static char *_objectiveStrTable18[3] = {
     "LOCATE THE ALIEN MASTERMIND",
     "LOCATE AN ENTRANCE TO THE CASTLE",
     "EXPLORE THE CASTLE AND FIND THE LOCATION OF THE ALIEN BRAIN"
 };
 
 /*01021EE4*/
-static char *_msgStrTable19[2] = {
+static char *_objectiveStrTable19[2] = {
     "KILL THE BRAIN IN A VAT",
     "DEACTIVATE ALL LIFE SUPPORT MACHINES"
 };
 
 /*01021EEC*/
-static char *_msgStrTable20[3] = {
+static char *_objectiveStrTable20[3] = {
     "HIJACK SHUTTLE TO BOARD MOTHERSHIP",
     "DEFEAT EVIL DUKES",
     "LOCATE ALIEN SHUTTLECRAFT"
 };
 
 /*01021EF8*/
-static char *_msgStrTable21[5] = {
+static char *_objectiveStrTable21[5] = {
     "DESTROY THE ALIEN SPACECRAFT",
     "LOCATE COMPATIBLE KEY TO ESCAPE SHUTTLE BAY",
     "FIND A WAY TO DEACTIVATE BIO-SENSITIVE FORCEFIELDS",
@@ -812,17 +812,17 @@ static char *_msgStrTable21[5] = {
 };
 
 /*01021F0C*/
-static char *_msgStrTable22[1] = {
+static char *_objectiveStrTable22[1] = {
     "KILL ZERO"
 };
 
 /*01021F10*/
-static char *_msgStrTable23[1] = {
+static char *_objectiveStrTable23[1] = {
     "WATCH END SEQUENCE"
 };
 
 /*01021F14*/
-static char *_msgStrTable24[7] = {
+static char *_objectiveStrTable24[7] = {
     "PROCEED TO THE HANGAR AND BOARD THE WAITING HELICOPTER",
     "JUMP, CLIMB, CRAWL AND SWIM ACROSS THE ASSAULT COURSE",
     "DESTROY TARGETS TO ACCESS NEXT SECTION OF RANGE",
@@ -833,35 +833,35 @@ static char *_msgStrTable24[7] = {
 };
 
 /*01021F30*/
-MsgStrInfo gMsgStrInfo[MAP_STRINFO_NUM] = {
-    { sizeof(_msgStrTable1) / sizeof(char *), _msgStrTable1 },
-    { sizeof(_msgStrTable2) / sizeof(char *), _msgStrTable2 },
-    { sizeof(_msgStrTable3) / sizeof(char *), _msgStrTable3 },
-    { sizeof(_msgStrTable4) / sizeof(char *), _msgStrTable4 },
-    { sizeof(_msgStrTable5) / sizeof(char *), _msgStrTable5 },
-    { sizeof(_msgStrTable6) / sizeof(char *), _msgStrTable6 },
-    { sizeof(_msgStrTable7) / sizeof(char *), _msgStrTable7 },
-    { sizeof(_msgStrTable8) / sizeof(char *), _msgStrTable8 },
-    { sizeof(_msgStrTable9) / sizeof(char *), _msgStrTable9 },
-    { sizeof(_msgStrTable10) / sizeof(char *), _msgStrTable10 },
-    { sizeof(_msgStrTable11) / sizeof(char *), _msgStrTable11 },
-    { sizeof(_msgStrTable12) / sizeof(char *), _msgStrTable12 },
-    { sizeof(_msgStrTable13) / sizeof(char *), _msgStrTable13 },
-    { sizeof(_msgStrTable14) / sizeof(char *), _msgStrTable14 },
-    { sizeof(_msgStrTable15) / sizeof(char *), _msgStrTable15 },
-    { sizeof(_msgStrTable16) / sizeof(char *), _msgStrTable16 },
-    { sizeof(_msgStrTable18) / sizeof(char *), _msgStrTable18 },
-    { sizeof(_msgStrTable17) / sizeof(char *), _msgStrTable17 },
-    { sizeof(_msgStrTable19) / sizeof(char *), _msgStrTable19 },
-    { sizeof(_msgStrTable20) / sizeof(char *), _msgStrTable20 },
-    { sizeof(_msgStrTable21) / sizeof(char *), _msgStrTable21 },
-    { sizeof(_msgStrTable22) / sizeof(char *), _msgStrTable22 },
-    { sizeof(_msgStrTable23) / sizeof(char *), _msgStrTable23 },
-    { sizeof(_msgStrTable24) / sizeof(char *), _msgStrTable24 },
+ObjectiveStrInfo gObjectiveStrInfo[MAP_COUNT] = {
+    { sizeof(_objectiveStrTable1) / sizeof(char *), _objectiveStrTable1 },
+    { sizeof(_objectiveStrTable2) / sizeof(char *), _objectiveStrTable2 },
+    { sizeof(_objectiveStrTable3) / sizeof(char *), _objectiveStrTable3 },
+    { sizeof(_objectiveStrTable4) / sizeof(char *), _objectiveStrTable4 },
+    { sizeof(_objectiveStrTable5) / sizeof(char *), _objectiveStrTable5 },
+    { sizeof(_objectiveStrTable6) / sizeof(char *), _objectiveStrTable6 },
+    { sizeof(_objectiveStrTable7) / sizeof(char *), _objectiveStrTable7 },
+    { sizeof(_objectiveStrTable8) / sizeof(char *), _objectiveStrTable8 },
+    { sizeof(_objectiveStrTable9) / sizeof(char *), _objectiveStrTable9 },
+    { sizeof(_objectiveStrTable10) / sizeof(char *), _objectiveStrTable10 },
+    { sizeof(_objectiveStrTable11) / sizeof(char *), _objectiveStrTable11 },
+    { sizeof(_objectiveStrTable12) / sizeof(char *), _objectiveStrTable12 },
+    { sizeof(_objectiveStrTable13) / sizeof(char *), _objectiveStrTable13 },
+    { sizeof(_objectiveStrTable14) / sizeof(char *), _objectiveStrTable14 },
+    { sizeof(_objectiveStrTable15) / sizeof(char *), _objectiveStrTable15 },
+    { sizeof(_objectiveStrTable16) / sizeof(char *), _objectiveStrTable16 },
+    { sizeof(_objectiveStrTable18) / sizeof(char *), _objectiveStrTable18 },
+    { sizeof(_objectiveStrTable17) / sizeof(char *), _objectiveStrTable17 },
+    { sizeof(_objectiveStrTable19) / sizeof(char *), _objectiveStrTable19 },
+    { sizeof(_objectiveStrTable20) / sizeof(char *), _objectiveStrTable20 },
+    { sizeof(_objectiveStrTable21) / sizeof(char *), _objectiveStrTable21 },
+    { sizeof(_objectiveStrTable22) / sizeof(char *), _objectiveStrTable22 },
+    { sizeof(_objectiveStrTable23) / sizeof(char *), _objectiveStrTable23 },
+    { sizeof(_objectiveStrTable24) / sizeof(char *), _objectiveStrTable24 },
 };
 
 /*01021FF0*/
-char *gMapStrInfo[MAP_STRINFO_NUM] = {
+char *gMapStrInfo[MAP_COUNT] = {
     "NEW YORK CITY.\nPRESENT DAY.",
     "LIBERTY ISLAND.\nPRESENT DAY.",
     "RUINS OF NEW YORK.\nPOST-APOCALYPSE.\nTHE FUTURE.",
@@ -889,7 +889,7 @@ char *gMapStrInfo[MAP_STRINFO_NUM] = {
 };
 
 /*01022050*/
-char *gActionStrInfo[0x11] = {
+char *gActionStrInfo[17] = {
     "'ACTIVATE' TO USE VIEWSCREEN",
     "'ACTIVATE' TO OPEN DOOR",
     "JUMP HERE",
@@ -916,7 +916,7 @@ s16 gActionStrInfoCount = sizeof(gActionStrInfo) / sizeof(char *);
 s32 D_01022098 = 0x20000000;
 
 /*0102209C*/
-char *gLicenceStrInfo[0x23] = {
+char *gLicenceStrInfo[35] = {
     "DUKE NUKEM^ ZERO HOUR^ (C)1999",
     "3D REALMS ENTERTAINMENT.",
     "ALL RIGHTS RESERVED.",
@@ -958,7 +958,7 @@ char *gLicenceStrInfo[0x23] = {
 s16 gLicenceStrInfoCount = (sizeof(gLicenceStrInfo) / sizeof(char *)) - 1;
 
 /*0102212C*/
-char *gCreditStrInfo[0xF8] = {
+char *gCreditStrInfo[248] = {
     "DUKE NUKEM: ZERO HOUR",
     "DEVELOPED BY",
     "EUROCOM ENTERTAINMENT SOFTWARE",
