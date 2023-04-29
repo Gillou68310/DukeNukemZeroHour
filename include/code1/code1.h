@@ -56,13 +56,13 @@ typedef struct
     /*0x002*/ u16 unk2;
     /*0x004*/ u16 unk4[24][3];
     /*0x148*/ u16 unk148[8];
-    /*0x164*/ u16 unk164;
-    /*0x166*/ u16 unk166;
-    /*0x168*/ u16 unk168;
+    /*0x164*/ u16 unk164; /*enemies_total*/
+    /*0x166*/ u16 unk166; /*babes_total*/
+    /*0x168*/ u16 unk168; /*secrets_total*/
     /*0x172*/ s32 unk172;
-    /*0x176*/ u16 unk176;
-    /*0x178*/ u16 unk178;
-    /*0x180*/ u16 unk180;
+    /*0x176*/ u16 unk176; /*enemies_killed*/
+    /*0x178*/ u16 unk178; /*babes_saved*/
+    /*0x180*/ u16 unk180; /*secrets_found*/
     /*0x182*/ u8 unk182;
 } code1UnkStruct2;
 
@@ -78,7 +78,7 @@ typedef struct
     /*0x0FD8*/ s32 unkFD8;
     /*0x0FDC*/ s32 unkFDC;
     /*0x0FE0*/ u16 unkFE0;
-    /*0x0FE4*/ s32 unkFE4;
+    /*0x0FE4*/ s32 unkFE4; /*time machine part?*/
     /*0x0FE8*/ code1UnkStruct1 unkFE8;
     /*0x103A*/ u8 unk103A;
     /*0x103C*/ u8 pad2;

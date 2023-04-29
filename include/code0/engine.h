@@ -47,7 +47,8 @@ typedef struct
     /*0x24*/ u8 pad[2];
     /*0x26*/ u8 unk26;
     /*0x27*/ u8 unk27;
-    /*0x28*/ u8 pad2[3];
+    /*0x28*/ u8 pad2[2];
+    /*0x2A*/ u8 unk2A;
     /*0x2B*/ u8 floorvtxnum;
     /*0x2C*/ u8 ceilingvtxnum;
     /*0x2D*/ u8 pad3[3];
@@ -243,5 +244,6 @@ extern s32 gTotalClockLock;
 extern s16 *gpSinTable;
 extern WallType *gpWall;
 extern s32 D_801AC9F4;
+extern s8 D_800DD448;
 
 #endif

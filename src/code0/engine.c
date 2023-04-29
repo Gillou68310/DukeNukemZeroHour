@@ -11,6 +11,7 @@ typedef struct { s32 x1, y1, x2, y2; } LineType;
 
 /*.data*/
 /*800DD440*/ EXTERN_DATA STATIC s16 _editStatus;
+/*800DD448*/ EXTERN_DATA s8 D_800DD448;
 
 /*.bss*/
 /*800F70A0*/ EXTERN_BSS STATIC s16 D_800F70A0;

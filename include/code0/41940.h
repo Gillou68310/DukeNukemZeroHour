@@ -64,10 +64,11 @@ extern s32 gAiDebugGvar2;
 extern s32 gAiDebugGvar3;
 extern s32 D_800DEEB8;
 extern s32 gInvulnerability;
-extern u8 D_800DEEE4[4];
+extern u8 D_800DEED0[MAXPLAYERS];
+extern u8 D_800DEEE4[MAXPLAYERS];
 extern s32 gAutoAim;
 extern s32 D_800DEF1C;
 extern s32 D_800DF1A8;
-extern s16 D_800DF1AC[4];
+extern s16 D_800DF1AC[MAXPLAYERS];
 
 #endif
