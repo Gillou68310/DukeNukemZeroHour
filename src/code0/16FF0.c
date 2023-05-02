@@ -28,8 +28,8 @@ void func_800163F0(u8 arg0)
     {
         if (D_8010A9AC == 0)
         {
-            ptr = D_800FE944;
-            pal = (u16 *)&ptr[D_80138714[arg0].unk4];
+            ptr = gpModelTile;
+            pal = (u16 *)&ptr[gpModelTileInfo[arg0].offset];
             ptr = (u8 *)pal;
 
             for (i = 0; i < 16; i++)
@@ -61,8 +61,8 @@ void func_8001660C(u8 arg0)
 
     if (D_8010A9AC == 0)
     {
-        dimx = D_80138714[arg0].unk0;
-        dimy = D_80138714[arg0].unk2;
+        dimx = gpModelTileInfo[arg0].dimx;
+        dimy = gpModelTileInfo[arg0].dimy;
 
         switch (dimx)
         {
@@ -126,8 +126,8 @@ void func_8001660C(u8 arg0)
             break;
         }
 
-        pTile = D_800FE944;
-        pTile = &pTile[D_80138714[arg0].unk4];
+        pTile = gpModelTile;
+        pTile = &pTile[gpModelTileInfo[arg0].offset];
 
         if (D_801A2688 != 0)
         {

@@ -3,6 +3,13 @@
 
 #include "common.h"
 
+typedef struct
+{
+    /*0x00*/ s16 dimx;
+    /*0x00*/ s16 dimy;
+    /*0x04*/ s32 offset;
+} ModelTileInfo;
+
 typedef struct {
     /*0x00*/ s32 fileoff;
     /*0x04*/ u8 *ramaddr;
@@ -15,8 +22,8 @@ typedef struct {
     /*0x04*/ u8 *ramaddr;
     /*0x08*/ u16 unk8;
     /*0x0A*/ u16 unkA;
-    /*0x0C*/ u16 unkC;
-    /*0x0E*/ u16 unkE;
+    /*0x0C*/ u16 tileinfo;
+    /*0x0E*/ u16 unkE; /*tileinfo end?*/
     /*0x10*/ u16 unk10;
     /*0x12*/ u16 unk12;
     /*0x14*/ u8 pad2[4];

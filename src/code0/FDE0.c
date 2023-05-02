@@ -97,8 +97,8 @@ void func_80011700(ModelInfo *model)
     ptr = model->unk18;
     ramaddr2 = ptr->ramaddr;
     ramaddr3 = model->ramaddr + model->unk10;
-    D_800FE944 = model->ramaddr;
-    D_80138714 = (code0unkStruct11 *)(model->ramaddr + model->unkC);
+    gpModelTile = model->ramaddr;
+    gpModelTileInfo = (ModelTileInfo *)(model->ramaddr + model->tileinfo);
 
     if ((D_800BD788 == 0) || (func_800115E0(model) != 0))
         func_800117A4(ramaddr1, ramaddr2, ramaddr3);

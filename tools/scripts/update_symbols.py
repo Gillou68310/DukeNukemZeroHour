@@ -6,6 +6,7 @@ import glob
 import os
 import m2ctx
 import sys
+import tqdm
 sys.path.insert(1, 'tools/splat')
 import split
 from multiprocessing import Pool
@@ -265,10 +266,13 @@ if __name__ == '__main__':
 
     files = c_files + h_files
 
+    print('Parsing source files pass 1...')
     with Pool() as pool:
-        results = pool.map(parse_source_file, files)
+        results = list(tqdm.tqdm(pool.imap(parse_source_file, files), total=len(files)))
 
-    for file, v in results:
+    print('Parsing source files pass 2...')
+    bar = tqdm.tqdm(results, total=len(results))
+    for file, v in bar:
         parse_addrs_from_source(file, v.coord, symbols, forced)
 
     # Build source files

@@ -240,13 +240,6 @@ typedef struct {
 
 typedef struct
 {
-    /*0x00*/ s16 unk0; /*dimx*/
-    /*0x00*/ s16 unk2; /*dimy*/
-    /*0x04*/ s32 unk4; /*palette offset*/
-} code0unkStruct11;
-
-typedef struct
-{
     /*0x00*/ s32 unk0;
     /*0x04*/ s32 unk4;
     /*0x08*/ s32 unk8;
@@ -366,7 +359,7 @@ typedef struct
 /*800FE410*/ _extern s32 D_800FE410;
 /*800FE416*/ _extern s16 gMapNum;
 /*800FF528*/ _extern u8 *D_800FF528;
-/*800FE944*/ _extern u8 *D_800FE944; /*model ramaddr*/
+/*800FE944*/ _extern u8 *gpModelTile;
 /*800FE9C8*/ _extern s32 D_800FE9C8[2]; /*CLOUDS SP*/
 /*800FE9E0*/ _extern s64 D_800FE9E0;
 /*800FEA90*/ _extern u8 D_800FEA90;
@@ -423,7 +416,7 @@ typedef struct
 /*80138688*/ _extern OSTime D_80138688;
 /*80138690*/ _extern s32 D_80138690;
 /*8013869C*/ _extern s16 gSkyBottomB;
-/*80138714*/ _extern code0unkStruct11 *D_80138714;
+/*80138714*/ _extern ModelTileInfo *gpModelTileInfo;
 /*8013871C*/ _extern s32 D_8013871C;
 /*80138778*/ _extern u8 *D_80138778;
 /*80138780*/ _extern s16 D_80138780;

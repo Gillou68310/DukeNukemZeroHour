@@ -2,6 +2,7 @@ baserom.us.z64
 nonmatchings/
 build/
 assets/
+extracted/
 gen/
 data/
 tmp/
