@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import glob
+import tqdm
 import sys
 import os
 sys.path.insert(1, 'tools/scripts')
@@ -43,7 +44,7 @@ if __name__ == '__main__':
     f = open('ida_ctx.c', 'w')
 
     with Pool() as pool:
-        sources = pool.map(parse_source_file, files)
+        sources = list(tqdm.tqdm(pool.imap(parse_source_file, files), total=len(files)))
 
     for src in sources:
         f.write(src)

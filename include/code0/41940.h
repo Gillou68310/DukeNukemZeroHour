@@ -53,6 +53,7 @@ void func_80058844(s32 spritenum, s32, s32, s16);
 s16 func_80058934(s32 x, s32 y, s32 z, s32 sectnum, s32);
 void func_80058A14(s16 spritenum, s16 *hitsprite, s32 *hitx, s32 *hity);
 
+extern s16 D_800DEE70;
 extern s32 D_800DEE80; /*spritenum?*/
 extern s32 D_800DEE84;
 extern s32 D_800DEE88;

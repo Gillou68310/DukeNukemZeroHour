@@ -153,7 +153,8 @@ typedef struct
     /*0x26*/ u8 clipdist;
     /*0x27*/ u8 xrepeat;
     /*0x28*/ u8 yrepeat;
-    /*0x29*/ u8 pad2[2];
+    /*0x29*/ u8 unk29;
+    /*0x2A*/ u8 unk2A;
     /*0x2B*/ u8 unk2B;
 
     //s8 shade;

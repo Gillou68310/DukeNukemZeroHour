@@ -8,8 +8,8 @@
 
 /*.text*/
 STATIC void func_80003B4C(f32, f32, s16);
-static void func_80004CFC(u16 secnum);
-static void func_80004F14(u16 secnum);
+static void func_80004CFC(u16 sectnum);
+static void func_80004F14(u16 sectnum);
 
 /*.data*/
 /*800BD430*/ static u16 D_800BD430[9] = {0x1, 0x2, 0x4, 0x8, 0x10, 0x20, 0x40, 0x80, 0x100};
@@ -95,7 +95,7 @@ s32 func_800042D8(s32 arg0, f32 arg1, f32 arg2)
 void func_800043F4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, u16 arg4)
 {
     f32 f1, f2, f3, f4, f5;
-    s16 secnum;
+    s16 sectnum;
     s32 i, j;
 
     D_8012FC40 = 1;
@@ -184,10 +184,10 @@ void func_800043F4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, u16 arg4)
             {
                 if (D_80197D78[i] & D_800BD430[j])
                 {
-                    secnum = (i * 8) + j;
-                    D_800FF3E8[D_80138790] = secnum;
+                    sectnum = (i * 8) + j;
+                    D_800FF3E8[D_80138790] = sectnum;
 
-                    if ((gpSector[secnum].ceilingstat & 1) || (gpSector[secnum].floorstat & 1))
+                    if ((gpSector[sectnum].ceilingstat & 1) || (gpSector[sectnum].floorstat & 1))
                         D_8012FC40 = 0;
 
                     D_80138790++;
@@ -262,27 +262,27 @@ void Bmemset(void *dst, u8 value, u32 size)
 }
 
 /*80004A3C*/
-void func_80004A3C(u16 secnum)
+void func_80004A3C(u16 sectnum)
 {
     VertexType *vtx;
     s32 floorz;
     u16 floorvtxnum;
     u16 i;
 
-    vtx = &gpVertex[gpSector[secnum].floorvtxptr];
-    floorvtxnum = gpSector[secnum].floorvtxnum * 3;
+    vtx = &gpVertex[gpSector[sectnum].floorvtxptr];
+    floorvtxnum = gpSector[sectnum].floorvtxnum * 3;
 
-    if (gpSector[secnum].floorstat & 2)
+    if (gpSector[sectnum].floorstat & 2)
     {
         for (i = 0; i < floorvtxnum; i++)
         {
-            vtx->v.ob[2] = getFlorzOfSlope(secnum, (vtx->v.ob[0] * 2), (vtx->v.ob[1] * 2)) >> 5;
+            vtx->v.ob[2] = getFlorzOfSlope(sectnum, (vtx->v.ob[0] * 2), (vtx->v.ob[1] * 2)) >> 5;
             vtx++;
         }
     }
     else
     {
-        floorz = gpSector[secnum].floorz >> 5;
+        floorz = gpSector[sectnum].floorz >> 5;
         if (vtx->v.ob[2] != floorz)
         {
             for (i = 0; i < floorvtxnum; i++)
@@ -295,27 +295,27 @@ void func_80004A3C(u16 secnum)
 }
 
 /*80004B60*/
-void func_80004B60(u16 secnum)
+void func_80004B60(u16 sectnum)
 {
     VertexType *vtx;
     s32 ceilingz;
     u16 ceilingvtxnum;
     u16 i;
 
-    vtx = &gpVertex[gpSector[secnum].ceilingvtxptr];
-    ceilingvtxnum = gpSector[secnum].ceilingvtxnum * 3;
+    vtx = &gpVertex[gpSector[sectnum].ceilingvtxptr];
+    ceilingvtxnum = gpSector[sectnum].ceilingvtxnum * 3;
 
-    if (gpSector[secnum].ceilingstat & 2)
+    if (gpSector[sectnum].ceilingstat & 2)
     {
         for (i = 0; i < ceilingvtxnum; i++)
         {
-            vtx->v.ob[2] = getCeilzOfSlope(secnum, (vtx->v.ob[0] * 2), (vtx->v.ob[1] * 2)) >> 5;
+            vtx->v.ob[2] = getCeilzOfSlope(sectnum, (vtx->v.ob[0] * 2), (vtx->v.ob[1] * 2)) >> 5;
             vtx++;
         }
     }
     else
     {
-        ceilingz = gpSector[secnum].ceilingz >> 5;
+        ceilingz = gpSector[sectnum].ceilingz >> 5;
         if (vtx->v.ob[2] != ceilingz)
         {
             for (i = 0; i < ceilingvtxnum; i++)
@@ -339,7 +339,7 @@ void func_80004C84(void)
 }
 
 /*80004CFC*/
-static void func_80004CFC(u16 secnum)
+static void func_80004CFC(u16 sectnum)
 {
     VertexType *vtx;
     u16 vtxnum;
@@ -350,23 +350,23 @@ static void func_80004CFC(u16 secnum)
 
     for (i = 0; i < ARRAY_COUNT(D_80138628); i++)
     {
-        if (D_80138628[i] == secnum)
+        if (D_80138628[i] == sectnum)
             return;
     }
 
-    if (gpSector[secnum].ceilingstat & 0x40)
-        vtxnum += gpSector[secnum].ceilingvtxnum * 3;
+    if (gpSector[sectnum].ceilingstat & 0x40)
+        vtxnum += gpSector[sectnum].ceilingvtxnum * 3;
 
-    if (gpSector[secnum].floorstat & 0x40)
-        vtxnum += gpSector[secnum].floorvtxnum * 3;
+    if (gpSector[sectnum].floorstat & 0x40)
+        vtxnum += gpSector[sectnum].floorvtxnum * 3;
 
-    if (gpSector[secnum].ceilingstat & 0x40)
-        vtx = &gpVertex[gpSector[secnum].ceilingvtxptr];
+    if (gpSector[sectnum].ceilingstat & 0x40)
+        vtx = &gpVertex[gpSector[sectnum].ceilingvtxptr];
 
-    if (gpSector[secnum].floorstat & 0x40)
-        vtx = &gpVertex[gpSector[secnum].floorvtxptr];
+    if (gpSector[sectnum].floorstat & 0x40)
+        vtx = &gpVertex[gpSector[sectnum].floorvtxptr];
 
-    D_80138628[D_800BD442] = secnum;
+    D_80138628[D_800BD442] = sectnum;
     D_80138720[D_800BD442] = D_800BD444;
     D_800BD442++;
 
@@ -391,15 +391,15 @@ static void func_80004CFC(u16 secnum)
 }
 
 /*80004ECC*/
-void func_80004ECC(s32 secnum, s32 arg1, s32 arg2)
+void func_80004ECC(s32 sectnum, s32 arg1, s32 arg2)
 {
     D_800FF52C = arg1 / 2;
     D_8016A160 = arg2 / 2;
-    func_80004CFC(secnum);
+    func_80004CFC(sectnum);
 }
 
 /*80004F14*/
-static void func_80004F14(u16 secnum)
+static void func_80004F14(u16 sectnum)
 {
     s32 x2;
     s32 y2;
@@ -410,22 +410,22 @@ static void func_80004F14(u16 secnum)
     vtxnum = 0;
     vtx = NULL;
 
-    if (gpSector[secnum].ceilingstat & 0x40)
-        vtxnum = gpSector[secnum].ceilingvtxnum * 3;
+    if (gpSector[sectnum].ceilingstat & 0x40)
+        vtxnum = gpSector[sectnum].ceilingvtxnum * 3;
 
-    if (gpSector[secnum].floorstat & 0x40)
-        vtxnum += gpSector[secnum].floorvtxnum * 3;
+    if (gpSector[sectnum].floorstat & 0x40)
+        vtxnum += gpSector[sectnum].floorvtxnum * 3;
 
-    if (gpSector[secnum].ceilingstat & 0x40)
-        vtx = &gpVertex[gpSector[secnum].ceilingvtxptr];
+    if (gpSector[sectnum].ceilingstat & 0x40)
+        vtx = &gpVertex[gpSector[sectnum].ceilingvtxptr];
 
-    if (gpSector[secnum].floorstat & 0x40)
-        vtx = &gpVertex[gpSector[secnum].floorvtxptr];
+    if (gpSector[sectnum].floorstat & 0x40)
+        vtx = &gpVertex[gpSector[sectnum].floorvtxptr];
 
 
     for (j = 0; j < ARRAY_COUNT(D_80138628); j++)
     {
-        if (D_80138628[j] == secnum)
+        if (D_80138628[j] == sectnum)
             goto rotate;
     }
     return;
@@ -443,10 +443,10 @@ rotate:
 }
 
 /*80005118*/
-void func_80005118(s32 secnum, s16 arg1, s32 arg2, s32 arg3)
+void func_80005118(s32 sectnum, s16 arg1, s32 arg2, s32 arg3)
 {
     D_8012DEF8 = arg1;
     D_800FF52C = arg2;
     D_8016A160 = arg3;
-    func_80004F14(secnum);
+    func_80004F14(sectnum);
 }

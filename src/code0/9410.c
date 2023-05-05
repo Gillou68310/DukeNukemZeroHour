@@ -62,9 +62,9 @@
 /*.text*/
 static void initTiles(void);
 static u8 func_800099D0(void);
-static void floorVtxToN64(s32 secnum);
-static void floorVtxToN64Z(s32 secnum, s32 z);
-static void ceilingVtxToN64(s32 secnum);
+static void floorVtxToN64(s32 sectnum);
+static void floorVtxToN64Z(s32 sectnum, s32 z);
+static void ceilingVtxToN64(s32 sectnum);
 
 STATIC void decompressMap(void);
 STATIC void func_80009A14(u8);
@@ -632,36 +632,36 @@ static void func_8000C8EC(void)
 static void drawFloorCeiling(void)
 {
     s32 i;
-    u16 secnum;
+    u16 sectnum;
 
     for (i = 0; i < D_80199528; i++)
     {
-        secnum = D_801A2690[i];
-        if (gpSector[secnum].floorvtxnum != 0)
+        sectnum = D_801A2690[i];
+        if (gpSector[sectnum].floorvtxnum != 0)
         {
-            if (D_800DF2F4[secnum] & 1)
+            if (D_800DF2F4[sectnum] & 1)
             {
-                func_80004A3C(secnum);
-                D_800DF2F4[secnum]--;
+                func_80004A3C(sectnum);
+                D_800DF2F4[sectnum]--;
             }
-            floorVtxToN64(secnum);
-            func_8000B9C0(gpSector[secnum].floorpicnum);
+            floorVtxToN64(sectnum);
+            func_8000B9C0(gpSector[sectnum].floorpicnum);
             func_8000B570(D_80199554);
         }
     }
 
     for (i = 0; i < D_80168D10; i++)
     {
-        secnum = D_80199650[i];
-        if (gpSector[secnum].ceilingvtxnum != 0)
+        sectnum = D_80199650[i];
+        if (gpSector[sectnum].ceilingvtxnum != 0)
         {
-            if (D_800DF2F4[secnum] & 2)
+            if (D_800DF2F4[sectnum] & 2)
             {
-                func_80004B60(secnum);
-                D_800DF2F4[secnum] -= 2;
+                func_80004B60(sectnum);
+                D_800DF2F4[sectnum] -= 2;
             }
-            ceilingVtxToN64(secnum);
-            func_8000B9C0(gpSector[secnum].ceilingpicnum);
+            ceilingVtxToN64(sectnum);
+            func_8000B9C0(gpSector[sectnum].ceilingpicnum);
             func_8000B570(D_80199554);
         }
     }
@@ -680,17 +680,17 @@ INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000CC54);
         N64->v.cn[2] = CLAMP_MAX((VTX->v.cn[2] + D_80138680), 255); 
 
 /*8000D22C*/
-static void floorVtxToN64(s32 secnum)
+static void floorVtxToN64(s32 sectnum)
 {
     s32 i;
     VertexType *vtx;
 
     D_80199554 = 0;
     D_801385F4 = 0;
-    vtx = &gpVertex[gpSector[secnum].floorvtxptr];
-    func_8000DBDC(gpSector[secnum].unk27, gpSector[secnum].unk26);
+    vtx = &gpVertex[gpSector[sectnum].floorvtxptr];
+    func_8000DBDC(gpSector[sectnum].unk27, gpSector[sectnum].unk26);
 
-    for (i = 0; i < gpSector[secnum].floorvtxnum; i++)
+    for (i = 0; i < gpSector[sectnum].floorvtxnum; i++)
     {
         VERTEX2N64(gpVertexN64, vtx, vtx->v.ob[2]);
         gpVertexN64->n.a = 0x9B;
@@ -711,17 +711,17 @@ static void floorVtxToN64(s32 secnum)
 }
 
 /*8000D574*/
-static void floorVtxToN64Z(s32 secnum, s32 z)
+static void floorVtxToN64Z(s32 sectnum, s32 z)
 {
     s32 i;
     VertexType *vtx;
 
     D_80199554 = 0;
     D_801385F4 = 0;
-    vtx = &gpVertex[gpSector[secnum].floorvtxptr];
-    func_8000DBDC(gpSector[secnum].unk27, gpSector[secnum].unk26);
+    vtx = &gpVertex[gpSector[sectnum].floorvtxptr];
+    func_8000DBDC(gpSector[sectnum].unk27, gpSector[sectnum].unk26);
 
-    for (i = 0; i < gpSector[secnum].floorvtxnum; i++)
+    for (i = 0; i < gpSector[sectnum].floorvtxnum; i++)
     {
         VERTEX2N64(gpVertexN64, vtx, z);
         vtx++;
@@ -739,17 +739,17 @@ static void floorVtxToN64Z(s32 secnum, s32 z)
 }
 
 /*8000D894*/
-static void ceilingVtxToN64(s32 secnum)
+static void ceilingVtxToN64(s32 sectnum)
 {
     s32 i;
     VertexType *vtx;
 
     D_80199554 = 0;
     D_801385F4 = 0;
-    vtx = &gpVertex[gpSector[secnum].ceilingvtxptr];
-    func_8000DBDC(gpSector[secnum].unk23, gpSector[secnum].unk22);
+    vtx = &gpVertex[gpSector[sectnum].ceilingvtxptr];
+    func_8000DBDC(gpSector[sectnum].unk23, gpSector[sectnum].unk22);
 
-    for (i = 0; i < gpSector[secnum].ceilingvtxnum; i++)
+    for (i = 0; i < gpSector[sectnum].ceilingvtxnum; i++)
     {
         VERTEX2N64(gpVertexN64, vtx, vtx->v.ob[2]);
         gpVertexN64->n.a = 0xFF;

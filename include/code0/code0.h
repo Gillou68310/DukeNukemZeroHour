@@ -326,6 +326,24 @@ typedef struct
     /*0xAC*/ u8 *unkAC;
 } code0UnkStruct16;
 
+typedef struct
+{
+    /*0x00*/ s32 unk0; /*x*/
+    /*0x04*/ s32 unk4; /*y*/
+    /*0x08*/ s32 unk8; /*z*/
+    /*0x0C*/ s32 unkC; /*sectnum*/
+    /*0x10*/ s16 unk10;
+    /*0x12*/ s16 unk12;
+    /*0x14*/ s16 unk14;
+    /*0x16*/ s16 unk16;
+    /*0x18*/ s16 unk18;
+    /*0x1A*/ s16 unk1A;
+    /*0x1C*/ s16 unk1C;
+    /*0x1E*/ s16 unk1E;
+    /*0x20*/ s8 unk20;
+    /*0x24*/ s32 unk24;
+} code0UnkStruct17;
+
 typedef struct {
     s16 r;
     s16 g;
@@ -467,6 +485,7 @@ typedef struct
 /*801A2684*/ _extern f32 D_801A2684;
 /*801A2688*/ _extern s8 D_801A2688;
 /*801A2690*/ _extern u16 D_801A2690[128] ALIGNED(8);
+/*801A2790*/ _extern code0UnkStruct17 D_801A2790[MAXPLAYERS];
 /*801A68A8*/ _extern code0unkStruct9 D_801A68A8[MAXPLAYERS] ALIGNED(8);
 /*801A6D80*/ _extern u16 D_801A6D80;
 /*801A6D84*/ _extern s32 D_801A6D84; /*xs*/
