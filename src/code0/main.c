@@ -185,6 +185,7 @@ extern u8 static_ROM_END[];
 /*801B0D40*/ u64 gOutputBuffer[OUTPUT_BUFFER_SIZE / sizeof(u64)] ALIGNED(16);
 /*801C0D60*/ Dynamic *gpDynamic;
 /*801C0D64*/ OSMesg D_801C0D64;
+/*801C0D70*/ _11B300UnkStruct2 *D_801C0D70;
 
 /*.text*/
 s32 osAfterPreNMI(void);
@@ -1134,7 +1135,7 @@ static void mainLoop(void *arg)
     count = (s16 *)GET_STATIC_SEG_SYM(D_0102583C);
     D_801AE8F0 = (u8 *)GET_STATIC_SEG_SYM(D_01024590);
     D_80197DE8 = (u8 *)GET_STATIC_SEG_SYM(D_010245E8);
-    D_801C0D70 = (u8 *)GET_STATIC_SEG_SYM(D_0102464C);
+    D_801C0D70 = (_11B300UnkStruct2 *)GET_STATIC_SEG_SYM(D_0102464C);
     D_80129808 = (u8 *)GET_STATIC_SEG_SYM(D_0102578C);
 
 #ifdef TARGET_N64

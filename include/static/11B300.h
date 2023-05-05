@@ -15,6 +15,13 @@ typedef struct
     /*0x0B*/ u8 unkB;
 } _11B300UnkStruct1;
 
+typedef struct {
+    /*0x00*/ s16 unk0;
+    /*0x02*/ s16 unk2;
+    /*0x04*/ s16 unk4;
+    /*0x06*/ s16 unk6;
+} _11B300UnkStruct2;
+
 typedef struct
 {
     /*0x00*/ Color primary;
@@ -30,7 +37,7 @@ typedef struct
 
 /*01024590*/ extern u8 D_01024590[];
 /*010245E8*/ extern u8 D_010245E8[];
-/*0102464C*/ extern u8 D_0102464C[];
+/*0102464C*/ extern _11B300UnkStruct2 D_0102464C[44];
 /*010247AC*/ extern u8 D_010247AC[];
 /*01025734*/ extern u8 D_01025734[];
 /*0102578C*/ extern _11B300UnkStruct1 D_0102578C[29];

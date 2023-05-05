@@ -74,7 +74,7 @@ void debugMenu(void)
         if (D_800DF989 == 0)
         {
             D_800DF989 = 1;
-            D_800DF988 += 1;
+            D_800DF988++;
         }
     }
     else

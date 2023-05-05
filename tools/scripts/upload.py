@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from pathlib import Path
 from typing import Dict
 import urllib.request
 import urllib.parse
@@ -9,16 +10,55 @@ import json
 import glob
 import sys
 import os
+        
+def get_scratches_decompme(sessionid):
+    s = []
+    url = "https://decomp.me/api/user/scratches?page_size=100" 
+    while(1):
+        try:
+            request = urllib.request.Request(url)
+            request.add_header("Cookie", "sessionid=" + sessionid)
+            data = urllib.request.urlopen(request).read()
+            json_object = json.loads(data)
+            s += json_object["results"]
+            if json_object["next"]:
+                url = json_object["next"]
+            else:
+                break
+        except Exception:
+            print("Failed to get scratches from decomp.me")
+            sys.exit(1)
+    return s
 
 if len(sys.argv) < 2:
-    print('upload.py [function path]')
+    print('upload.py [function]')
     sys.exit(1)
 
-path = sys.argv[1]
-s = path.split('/')
-del s[0]
-del s[-1]
-src_file = os.path.join(*s) + '.c'
+# Check if function is already on decompme
+if os.path.exists('sessionid'):
+    f = open('sessionid', 'r')
+    lines = f.readlines()
+    f.close()
+    assert(len(lines) == 1)
+    scrathes = get_scratches_decompme(lines[0])
+    for scrath in scrathes:
+        if sys.argv[1] == scrath['name']:
+            print("Already existing function at")
+            print(f"https://decomp.me/scratch/{scrath['slug']}")
+            sys.exit(1)
+
+path = list(Path('nonmatchings/').rglob(sys.argv[1] + '*'))
+
+if len(path) == 0:
+    print('Cannot find function ' + sys.argv[1])
+    sys.exit(1)
+
+assert(len(path) == 1)
+path = path[0]
+print('Found function at ' + str(path))
+
+src_file = Path(*path.parts[1:-1])
+src_file = src_file.with_suffix('.c')
 h_files = [y for x in os.walk('include') for y in glob.glob(os.path.join(x[0], '*.h'))]
 
 fd, temp = tempfile.mkstemp(suffix=".c")
@@ -37,6 +77,7 @@ for line in lines:
 
 f.close()
 
+print("Generating context...")
 context = m2ctx.import_c_file(temp, True, False)
 os.remove(temp)
 

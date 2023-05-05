@@ -328,6 +328,7 @@ INCLUDE_ASM("nonmatchings/src/code0/37090", func_80039774);
 
 INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003A910);
 
+/*8003AFD0*/
 static void func_8003AFD0(s16 playernum)
 {
     gPlayer[playernum].unk6C = 2;

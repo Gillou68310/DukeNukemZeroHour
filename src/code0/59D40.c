@@ -995,7 +995,7 @@ void func_8005C374(s32 spritenum, s32 arg1)
     {
         spritenum_ = func_80045400(D_80118248->x + r1,
                                   D_80118248->y + r2,
-                                  D_80118248->z - (r3 << 8),
+                                  D_80118248->z - (r3 *256),
                                   D_80118248->sectnum, 80, r4, 0xF, 1);
 
         if (spritenum_ >= 0)
@@ -1252,7 +1252,7 @@ void func_8005CBC4(s32 spritenum, s32 arg1)
             D_80137DE0->unk9F |= 1;
             D_80137DE0->unk48 = (D_80137DE0->unk38 + (krand() & 0x7FF)) - 0x400;
             D_80137DE0->unk4C = (D_80137DE0->unk3C + (krand() & 0x7FF)) - 0x400;
-            D_80137DE0->unk50 = D_80137DE0->unk40 + (((krand() & 0xFF) - 0x7F) << 8);
+            D_80137DE0->unk50 = D_80137DE0->unk40 + (((krand() & 0xFF) - 0x7F) * 256);
         }
 
         func_8008E3E0(hitx, hity, hitz, hitsect, 51, 0);
@@ -2202,9 +2202,7 @@ void func_8005F988(s32 spritenum, s32 arg1)
     x = klabs_(D_80118248->x - D_80137DE0->unk38);
     y = klabs_(D_80118248->y - D_80137DE0->unk3C);
     if ((x + y) < 500)
-    {
         D_80137DE0->unk38 = -1;
-    }
 }
 
 /*8005FA08*/

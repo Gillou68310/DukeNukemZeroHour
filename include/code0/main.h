@@ -60,5 +60,6 @@ extern _11D520UnkStruct1 *D_801ACBD8;
 extern s32 gDisplayListMaxSize;
 extern s32 gVertexN64MaxSize;
 extern GlobalPalette *gpGlobalPalette;
+extern _11B300UnkStruct2 *D_801C0D70;
 
 #endif
