@@ -5,5 +5,6 @@
 
 extern Gfx gRspInitDl[];
 extern Gfx gRdpInitDl[];
+extern Gfx D_01001900[];
 
 #endif

@@ -462,7 +462,6 @@ segments:
     subsegments:
     - {start: 0xF6D70,  type:  data,    vram: 0x01000000, name: static/F6D70}
     - {start: 0xF85D0,  type:  .data,   vram: 0x01001860, name: src/static/spinit}
-    - {start: 0xF8670,  type:  data,    vram: 0x01001900, name: static/F8670}
     - {start: 0xF8730,  type:  .data,   vram: 0x010019C0, name: src/static/tileinfo}
     - {start: 0x105F50, type:  data,    vram: 0x0100F1E0, name: static/105F50}
     - {start: 0x1182D0, type:  .data,   vram: 0x01021560, name: src/static/strinfo}

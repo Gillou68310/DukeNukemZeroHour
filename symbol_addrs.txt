@@ -1,5 +1,6 @@
 gRspInitDl                         = 0x01001860; // type:data     size:0x28                              (global, .data,   src/static/spinit.c)
 gRdpInitDl                         = 0x01001888; // type:data     size:0x78                              (global, .data,   src/static/spinit.c)
+D_01001900                         = 0x01001900; // type:data     size:0xC0                              (global, .data,   src/static/spinit.c)
 gTileInfo                          = 0x010019C0; // type:data     size:0xD820                            (global, .data,   src/static/tileinfo.c)
 D_0100F1E0                         = 0x0100F1E0;
 D_01012FCC                         = 0x01012FCC;
