@@ -92,7 +92,9 @@ typedef struct
     /*0x10*/ s16 picnum;
     /*0x12*/ s16 overpicnum;
 
-    /*0x14*/ u8 pad1[8];
+    /*0x14*/ s16 unk14;
+    /*0x16*/ s16 unk16;
+    /*0x18*/ u8 pad1[4];
     /*0x1C*/ u8 unk1C;
     /*0x1D*/ u8 pad2[4];
     /*0x21*/ u8 unk21;

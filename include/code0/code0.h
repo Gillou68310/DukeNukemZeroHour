@@ -507,7 +507,7 @@ typedef struct
 /*801AE8F4*/ _extern u16 D_801AE8F4;
 /*801AE904*/ _extern s32 D_801AE904[2]; /*CLOUDS AN*/
 /*801AE914*/ _extern s32 D_801AE914;
-/*801AE91E*/ _extern u8 D_801AE91E[7];
+/*801AE91E*/ _extern u8 D_801AE91E[8];
 /*801AE9C0*/ _extern s32 D_801AE9C0; /*ceilhit*/
 /*801AEA10*/ _extern f32 D_801AEA10;
 /*801AEA30*/ _extern s16 gSkyBottomR;
