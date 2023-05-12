@@ -80,8 +80,9 @@ typedef struct
 /*.text*/
 STATIC s32 func_80042C98(s32 spritenum);
 STATIC s32 func_800433D4(s32 spritenum);
-static s32 func_8004BC24(s32 arg0, s32 arg1);
+static s32 func_8004BC24(s32, s32);
 static s32 func_8004EB60(s32 spritenum);
+static void func_8004FA74(s32);
 STATIC void func_80050E40(void);
 STATIC void func_80056C00(s32);
 
@@ -2612,11 +2613,65 @@ static void func_8004F704(s16 arg0)
     }
 }
 
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004F8D0);
+/*8004F8D0*/
+static void func_8004F8D0(s32 arg0)
+{
+    SpriteType *spr;
+    s16 i, nexti;
+    s32 j;
+
+    if (D_8012F6E8 == 0)
+    {
+        i = gHeadSpriteStat[666];
+        while (i >= 0)
+        {
+            nexti = gNextSpriteStat[i];
+            spr = &gpSprite[i];
+            if (spr->unk1C == 1)
+            {
+                if (D_80118248->sectnum == spr->sectnum)
+                {
+                    switch (spr->unk22)
+                    {
+                    case 0:
+                        if (D_80137DE0->unk0 & 4)
+                            func_8004FA74(arg0);
+                        break;
+
+                    case 1:
+                        j = klabs(gpSector[D_80118248->sectnum].floorz - D_80118248->z);
+                        j = 0x4000 - j;
+                        if (j > 0)
+                            func_8004FA74(arg0);
+                        break;
+
+                    default:
+                        func_8004FA74(arg0);
+                    }
+                }
+            }
+            else
+            {
+                if (func_80040D94(gpSprite[arg0].x,
+                    gpSprite[arg0].y,
+                    gpSprite[arg0].z / 16,
+                    spr->x,
+                    spr->y,
+                    spr->z / 16) < spr->unk22)
+                {
+                    func_8004FA74(arg0);
+                }
+            }
+            i = nexti;
+        }
+    }
+}
 
 /*8004FA74*/
-static void func_8004FA74(void)
+static void func_8004FA74(s32 arg0)
 {
+    (void)arg0;
+
     D_80137DE0->unk96++;
     if ((D_80137DE0->unk0 & 0x20000) != 0)
     {

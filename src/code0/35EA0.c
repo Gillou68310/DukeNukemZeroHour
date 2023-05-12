@@ -3,7 +3,7 @@
 #include "code0/code0.h"
 
 /*.text*/
-static void func_800355D0(s16);
+static void func_800355D0(s16 playernum);
 
 /*800352A0*/
 static void func_800352A0(s16 playernum)

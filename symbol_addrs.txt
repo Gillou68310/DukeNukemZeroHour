@@ -554,6 +554,7 @@ func_8004F31C                      = 0x8004F31C; // type:func     size:0x184    
 func_8004F4A0                      = 0x8004F4A0; // type:func     size:0x13C                             (global, .text,   src/code0/41940.c)
 func_8004F5DC                      = 0x8004F5DC; // type:func     size:0x128                             (local,  .text,   src/code0/41940.c)
 func_8004F704                      = 0x8004F704; // type:func     size:0x1CC                             (local,  .text,   src/code0/41940.c)
+func_8004F8D0                      = 0x8004F8D0; // type:func     size:0x1A4                             (local,  .text,   src/code0/41940.c)
 func_8004FA74                      = 0x8004FA74; // type:func     size:0x64                              (local,  .text,   src/code0/41940.c)
 func_8004FAD8                      = 0x8004FAD8; // type:func     size:0x174                             (global, .text,   src/code0/41940.c)
 func_8004FC4C                      = 0x8004FC4C; // type:func     size:0x2BC                             (global, .text,   src/code0/41940.c)
