@@ -2949,8 +2949,8 @@ static void func_80051330(void)
     d2 = 0x200000;
     if ((D_80137DE0->unk0 & 0x800) && ((D_80137DE0->unk28 == -1) || (gpSprite[D_80137DE0->unk28].statnum != 1)))
     {
-        klabs_(D_80118248->x - gPlayer->xpos);
-        klabs_(D_80118248->y - gPlayer->ypos);
+        klabs_(D_80118248->x - gPlayer[0].xpos);
+        klabs_(D_80118248->y - gPlayer[0].ypos);
         i = gHeadSpriteStat[1];
 
         while (i >= 0)

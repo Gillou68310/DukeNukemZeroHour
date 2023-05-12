@@ -354,13 +354,12 @@ void func_8005A2C8(s32 spritenum, s32 arg1)
     }
 }
 
-#ifdef NON_MATCHING
+/*8005A3AC*/
 void func_8005A3AC(s32 spritenum, s32 arg1)
 {
-    s32 ang;
-    u16 wallnum;
+    s32 ang, wallnum;
 
-    wallnum = D_80137DE0->unk2E;
+    wallnum = (u16)D_80137DE0->unk2E;
     if ((wallnum - 49152) < 0)
     {
         wallnum &= 0x1FFF;
@@ -375,10 +374,6 @@ void func_8005A3AC(s32 spritenum, s32 arg1)
     }
     setVar(spritenum, arg1, ang);
 }
-#else
-/*8005A3AC*/
-INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005A3AC);
-#endif
 
 INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005A4A4);
 

@@ -120,7 +120,7 @@ void func_8007ECC8(code0UnkStruct16 *arg0)
             proc();
 
         arg0->unk0 = 0;
-        D_8016D17C -= 1;
+        D_8016D17C--;
     }
 }
 

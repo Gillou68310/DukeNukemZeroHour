@@ -1150,7 +1150,7 @@ static void mainLoop(void *arg)
     count = (s16 *)GET_STATIC_SEG_SYM(gLicenceStrInfoCount);
     D_801AD474 = (u8 *)GET_STATIC_SEG_SYM(D_010247AC);
     D_80105550 = (u8 *)GET_STATIC_SEG_SYM(D_01025734);
-    D_800FF528 = (u8 *)GET_STATIC_SEG_SYM(D_01025840);
+    D_800FF528 = (s32 *)GET_STATIC_SEG_SYM(D_01025840);
     D_8013F920 = (u8 *)GET_STATIC_SEG_SYM(D_010258D8);
     D_8012DF00 = (u8 *)GET_STATIC_SEG_SYM(D_01025908);
     D_8012E150 = (u8 *)GET_STATIC_SEG_SYM(D_01025968);
@@ -1272,7 +1272,7 @@ static void mainLoop(void *arg)
                 D_800BD3FC = 0;
 
                 if (D_80119A5C != 0)
-                    D_80119A5C -= 1;
+                    D_80119A5C--;
 
                 if (_framebufferCount < 3)
                 {

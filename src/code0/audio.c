@@ -740,7 +740,7 @@ static musHandle audio_8000730C(u16 arg0, u32 arg1, s32 pan, u8 restartflag)
     if (D_801CE498.unk16 == 0)
         pan = 128;
 
-    if (arg1 >= D_800BD610)
+    if (arg1 >= (u32)D_800BD610)
         return 0;
 
     arg1 = (D_800BD610 - arg1) * (65536.0 / (D_800BD610));

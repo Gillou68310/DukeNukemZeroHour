@@ -377,7 +377,7 @@ typedef struct
 /*800FE400*/ _extern s32 D_800FE400;
 /*800FE410*/ _extern s32 D_800FE410;
 /*800FE416*/ _extern s16 gMapNum;
-/*800FF528*/ _extern u8 *D_800FF528;
+/*800FF528*/ _extern s32 *D_800FF528;
 /*800FE944*/ _extern u8 *gpModelTile;
 /*800FE9C8*/ _extern s32 D_800FE9C8[2]; /*CLOUDS SP*/
 /*800FE9E0*/ _extern s64 D_800FE9E0;

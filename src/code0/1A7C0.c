@@ -69,7 +69,7 @@ static void func_8001AAEC(void)
                 &hitx,
                 &hity,
                 &hitz,
-                0x01000040U);
+                0x01000040);
 
         gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat;
 

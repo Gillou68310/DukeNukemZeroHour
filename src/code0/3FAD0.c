@@ -35,7 +35,7 @@ static f32 func_8003EED0(f32 arg0, f32 arg1)
             x,
             y,
             z * 16,
-            &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x10001U);
+            &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x10001);
 
     if ((gpSector[hitsect].unk18 == 3) && (D_801A2790[D_801B0820].unk8 != hitz))
     {
@@ -96,7 +96,7 @@ void func_80040890(void)
         D_800DEE70--;
         if (D_800DEE70 == 0)
         {
-            gPlayer->unk52 = -1;
+            gPlayer[0].unk52 = -1;
             D_800DEE80 = -1;
         }
     }
