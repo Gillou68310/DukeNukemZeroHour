@@ -376,8 +376,6 @@ static s16 _multiplier[21] = {
 static void audio_80006E60(void);
 static void audio_80006F08(void);
 STATIC musHandle audio_800075EC(u16 sfxnum, s16 spritenum, u8);
-STATIC musHandle audio_8000730C(u16, u32, s32, u8);
-STATIC musHandle audio_80007418(musHandle, s32, s32);
 
 /*800065F0*/
 void dmaRomToRam(u8 *rom, u8 *ram, s32 size)
@@ -735,10 +733,45 @@ musHandle playSfx2(u16 sfxnum, s16 volume, s16 pan, u8 restartflag, s16 priority
 }
 
 /*8000730C*/
-INCLUDE_ASM("nonmatchings/src/code0/audio", audio_8000730C);
+static musHandle audio_8000730C(u16 arg0, u32 arg1, s32 pan, u8 restartflag)
+{
+    s32 volume;
+
+    if (D_801CE498.unk16 == 0)
+        pan = 128;
+
+    if (arg1 >= D_800BD610)
+        return 0;
+
+    arg1 = (D_800BD610 - arg1) * (65536.0 / (D_800BD610));
+    volume = (arg1 * 128) >> 16;
+    volume = (volume * D_800BD614) >> 8;
+    return playSfx2(arg0, volume, pan, restartflag, -1);
+}
 
 /*80007418*/
-INCLUDE_ASM("nonmatchings/src/code0/audio", audio_80007418);
+static musHandle audio_80007418(musHandle handle, s32 arg1, s32 pan)
+{
+    s32 volume;
+
+    if (D_801CE498.unk16 == 0)
+        pan = 128;
+
+    if (MusHandleAsk(handle) != 0)
+    {
+        if (arg1 < D_800BD610)
+        {
+            arg1 = (D_800BD610 - arg1) * (65536.0 / D_800BD610);
+            volume = (arg1 * 128) >> 16;
+            volume = (volume * D_800BD614) >> 8;
+            MusHandleSetVolume(handle, volume);
+            MusHandleSetPan(handle, pan);
+            return handle;
+        }
+        MusHandleStop(handle, 0);
+    }
+    return 0;
+}
 
 /*80007510*/
 u8 audio_80007510(s32 x, s32 y)
