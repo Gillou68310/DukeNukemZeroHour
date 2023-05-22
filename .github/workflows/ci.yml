@@ -1,0 +1,56 @@
+name: Build
+
+# Build on every branch push, tag push, and pull request change:
+on: [push, pull_request_target]
+
+jobs:
+  build_repo:
+    name: Build repo
+    runs-on: ubuntu-20.04
+
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [us]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+        ref: ${{ github.event.pull_request.head.sha }}
+
+    - name: Install package requirements
+      run: sudo apt-get install -yq make git build-essential binutils-mips-linux-gnu cpp-mips-linux-gnu gcc-mips-linux-gnu python3 python3-pip
+
+    - name: Upgrade pip
+      run: pip3 install --upgrade pip
+      
+    - name: Install Python Dependencies
+      run: pip3 install -r requirements.txt
+
+    - name: Get extra dependencies
+      uses: actions/checkout@v3
+      with:
+        repository: ${{ secrets.SECRETREPO }}
+        token: ${{ secrets.SECRETTOKEN }}
+        path: deps_repo
+
+    - name: Get the dependency
+      run: cp deps_repo/dukezh/* .
+
+    - name: Setup
+      run: make setup -j $(nproc)
+
+    - name: Build Duke Nukem Zero Hour (MATCHING)
+      run: make -j $(nproc)
+      
+    - name: Build Duke Nukem Zero Hour (NON_MATCHING)
+      run: make -j $(nproc) NON_MATCHING=1 BUILD_DIR=build_non_matching
+      
+    - name: Build Duke Nukem Zero Hour (MODERN GCC)
+      run: make -j $(nproc) MODERN=1 BUILD_DIR=build_modern
+
+    - name: Upload frogress
+      if: github.ref == 'refs/heads/master'
+      run: python3 tools/scripts/frogress.py ${{ matrix.version }} --api_key ${{ secrets.PROGRESS_API_KEY }}

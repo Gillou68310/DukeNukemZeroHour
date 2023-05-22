@@ -9,3 +9,4 @@ python-Levenshtein
 GitPython
 colour
 debugpy
+requests

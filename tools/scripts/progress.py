@@ -63,6 +63,27 @@ def get_funcs_sizes(sizes, matchings, nonmatchings):
 def lerp(a, b, alpha):
     return a + (b - a) * alpha
 
+def getProgressData() -> list:
+    func_sizes, total_size = get_func_sizes()
+    all_funcs = set(func_sizes.keys())
+
+    nonmatching_funcs = get_nonmatching_funcs()
+    matching_funcs = all_funcs - nonmatching_funcs
+
+    matching_size, nonmatching_size = get_funcs_sizes(func_sizes, matching_funcs, nonmatching_funcs)
+
+    if len(all_funcs) == 0:
+        funcs_matching_ratio = 0.0
+        matching_ratio = 0.0
+    else:
+        funcs_matching_ratio = (len(matching_funcs) / len(all_funcs)) * 100
+        matching_ratio = (matching_size / total_size) * 100
+
+    if matching_size + nonmatching_size != total_size:
+            print("Warning: category/total size mismatch!\n")
+
+    return len(matching_funcs), len(all_funcs), funcs_matching_ratio, matching_size, total_size, matching_ratio
+
 def main(args):
     func_sizes, total_size = get_func_sizes()
     all_funcs = set(func_sizes.keys())

@@ -1,4 +1,10 @@
-# Duke Nukem Zero Hour N64
+# Duke Nukem Zero Hour N64 [![Build Status]][actions] ![Code Progress] ![Bytes Progress]
+
+[Build Status]: <https://github.com/Gillou68310/DukeNukemZeroHour/actions/workflows/ci.yml/badge.svg>
+[actions]: <https://github.com/Gillou68310/DukeNukemZeroHour/actions/workflows/ci.yml>
+[Code Progress]: https://img.shields.io/endpoint?label=Code%20US&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fdukezh%2Fus%2Fdefault%2F%3Fmode%3Dshield%26measure%3Dfuncs
+[Bytes Progress]: https://img.shields.io/endpoint?label=Bytes%20US&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fdukezh%2Fus%2Fdefault%2F%3Fmode%3Dshield%26measure%3Dbytes
+
 A WIP decompilation of Duke Nukem Zero Hour (US) for N64.
 
 Note: To use this repository, you must already own a copy of the game.
