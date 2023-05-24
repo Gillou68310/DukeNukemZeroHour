@@ -12,7 +12,7 @@
 #include "code0/code0.h"
 #include "static/mapinfo.h"
 
-typedef void (*unkFuncPointer)(s32 spritenum);
+typedef void (*_6ACA0UnkFuncPointer)(s32 spritenum);
 
 /*Skip following declaration so it defaults to s32*/
 /*#include "code0/87010.h"*/
@@ -23,8 +23,8 @@ void func_800867CC(s16 spritenum, s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2
 /*800DF2F0*/ EXTERN_DATA u8 D_800DF2F0;
 /*800DF2F4*/ EXTERN_DATA s8 D_800DF2F4[657];
 /*800DF585*/ EXTERN_DATA s8 D_800DF585;
-/*800DF5A0*/ EXTERN_DATA STATIC unkFuncPointer D_800DF5A0[50];
-/*800DF668*/ EXTERN_DATA STATIC unkFuncPointer D_800DF668[4];
+/*800DF5A0*/ EXTERN_DATA STATIC _6ACA0UnkFuncPointer D_800DF5A0[50];
+/*800DF668*/ EXTERN_DATA STATIC _6ACA0UnkFuncPointer D_800DF668[4];
 
 /*.text*/
 static void func_8006B384(s32 spritenum);
@@ -2908,7 +2908,7 @@ STATIC void func_8007939C(s32 spritenum)
 /*80079560*/
 void func_80079560(void)
 {
-    unkFuncPointer *ptr;
+    _6ACA0UnkFuncPointer *ptr;
     s16 i, nexti;
     s32 j;
 

@@ -56,7 +56,7 @@ void func_800574A4(s32 spritenum);
 s32 func_80057540(SpriteType *, s32, s32, s32);
 s32 func_80058600(s32 spritenum);
 void func_800586B0(s32 spritenum, s32, s32, s32, s32, s32, s32);
-s32 func_800587B8(s32 spritenum, s32, s32, s32, s32, s32, s32);
+void func_800587B8(s32 spritenum, s32, s32, s32, s32, s32, s32);
 void func_80058844(s32 spritenum, s32, s32, s16);
 s16 func_80058934(s32 x, s32 y, s32 z, s32 sectnum, s32);
 void func_80058A14(s16 spritenum, s16 *hitsprite, s32 *hitx, s32 *hity);

@@ -78,7 +78,7 @@ segments:
       - [0x64530, c,        src/code0/64530]
       - [0x6ACA0, c,        src/code0/6ACA0]
       - [0x7A430, c,        src/code0/7A430]
-      - [0x7BA50, c,        gen/code0/7BA50]
+      - [0x7BA50, c,        src/code0/7BA50]
       - [0x7CBC0, c,        src/code0/debug]
       - [0x7F6A0, c,        src/code0/7F6A0]
       - [0x7FCE0, c,        src/code0/7FCE0]

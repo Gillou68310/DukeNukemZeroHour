@@ -20,7 +20,7 @@
 
 DECL_STATIC_SEG_SYM(D_0100F1E0);
 
-typedef void (*unkFuncPointer)(s32 spritenum, s32 arg1);
+typedef void (*_41940UnkFuncPointer)(s32 spritenum, s32 arg1);
 
 typedef struct
 {
@@ -61,7 +61,7 @@ typedef struct
 /*800DEF1C*/ EXTERN_DATA s32 D_800DEF1C;
 /*800DEF20*/ EXTERN_DATA STATIC s16 D_800DEF20;
 /*800DEF38*/ EXTERN_DATA STATIC s32 D_800DEF38;
-/*800DEF3C*/ EXTERN_DATA STATIC unkFuncPointer D_800DEF3C[84];
+/*800DEF3C*/ EXTERN_DATA STATIC _41940UnkFuncPointer D_800DEF3C[84];
 /*800DF1A8*/ EXTERN_DATA s32 D_800DF1A8;
 /*800DF1AC*/ EXTERN_DATA s16 D_800DF1AC[MAXPLAYERS];
 /*800DF1B4*/ EXTERN_DATA s16 D_800DF1B4[9];
@@ -2089,11 +2089,11 @@ STATIC s32 func_8004BE20(s32 spritenum)
 /*8004BE48*/
 STATIC s32 func_8004BE48(s32 spritenum)
 {
-    unkFuncPointer func;
+    _41940UnkFuncPointer func;
     s32 i;
 
     gpInst++;
-    func = (unkFuncPointer)*gpInst++;
+    func = (_41940UnkFuncPointer)*gpInst++;
     func(spritenum, *gpInst++);
     return 0;
 }
@@ -3454,11 +3454,11 @@ void func_800586B0(s32 spritenum, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 ar
 }
 
 /*800587B8*/
-s32 func_800587B8(s32 spritenum, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6)
+void func_800587B8(s32 spritenum, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6)
 {
-    return func_8007AED8(gpSprite[spritenum].x, gpSprite[spritenum].y, gpSprite[spritenum].z,
-                         gpSprite[spritenum].x, gpSprite[spritenum].y, gpSprite[spritenum].z - (arg5 << 6),
-                         arg2, arg3, arg4, arg6, arg1);
+    func_8007AED8(gpSprite[spritenum].x, gpSprite[spritenum].y, gpSprite[spritenum].z,
+                  gpSprite[spritenum].x, gpSprite[spritenum].y, gpSprite[spritenum].z - (arg5 << 6),
+                  arg2, arg3, arg4, arg6, arg1);
 }
 
 /*80058844*/
