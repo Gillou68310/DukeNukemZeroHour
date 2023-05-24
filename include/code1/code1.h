@@ -124,29 +124,29 @@ typedef struct _code1UnkStruct6
 /*801CC888*/ _extern u8 *D_801CC888; /*edlHandle*/
 /*801CC88C*/ _extern s32 D_801CC88C;
 /*801CC8A8*/ _extern s16 D_801CC8A8;
-/*801CC8B8*/ _extern s16 D_801CC8B8;
+/*801CC8B8*/ _extern u16 D_801CC8B8;
 /*801CC8C8*/ _extern s16 D_801CC8C8;
 /*801CC8CC*/ _extern s16 D_801CC8CC;
 /*801CC8CA*/ _extern u16 D_801CC8CA;
 /*801CC91C*/ _extern u8 *D_801CC91C; /*edlHandle*/
 /*801CC920*/ _extern u8 *D_801CC920; /*edlHandle*/
-/*801CC924*/ _extern s16 D_801CC924;
+/*801CC924*/ _extern u16 D_801CC924;
 /*801CC926*/ _extern s16 D_801CC926;
 /*801CC930*/ _extern code1UnkStruct3 D_801CC930 ALIGNED(16);
 /*801CD96C*/ _extern u8 *D_801CD96C;
 /*801CD980*/ _extern s32 D_801CD980;
-/*801CD984*/ _extern s16 D_801CD984;
+/*801CD984*/ _extern u16 D_801CD984;
 /*801CD986*/ _extern u16 D_801CD986[3]; /*TODO: Size?*/
-/*801CDA80*/ _extern s16 D_801CDA80;
+/*801CDA80*/ _extern u16 D_801CDA80;
 /*801CDA98*/ _extern u8 *D_801CDA98; /*edlHandle*/
 /*801CDACC*/ _extern s32 D_801CDACC;
 /*801CDAD0*/ _extern ControlMapping *gpControlPreset;
 /*801CDB00*/ _extern char **gpLicenceStrInfo;
 /*801CDB08*/ _extern u8 *D_801CDB08; /*edlHandle*/
-/*801CDB14*/ _extern s16 D_801CDB14;
-/*801CDB16*/ _extern s16 D_801CDB16;
+/*801CDB14*/ _extern u16 D_801CDB14;
+/*801CDB16*/ _extern u16 D_801CDB16;
 /*801CDB1C*/ _extern u8 *D_801CDB1C; /*edlHandle*/
-/*801CDB48*/ _extern s16 D_801CDB48;
+/*801CDB48*/ _extern u16 D_801CDB48;
 /*801CDB4C*/ _extern s32 D_801CDB4C;
 /*801CDBC4*/ _extern s16 D_801CDBC4;
 /*801CDBC6*/ _extern s16 D_801CDBC6;
@@ -156,12 +156,12 @@ typedef struct _code1UnkStruct6
 /*801CDC68*/ _extern s8 *D_801CDC68;
 /*801CDC70*/ _extern s8 D_801CDC70[0x800] ALIGNED(16);
 /*801CE470*/ _extern u16 D_801CE470;
-/*801CE478*/ _extern s16 D_801CE478;
-/*801CE480*/ _extern s16 D_801CE480;
+/*801CE478*/ _extern u16 D_801CE478;
+/*801CE480*/ _extern u16 D_801CE480;
 /*801CE48C*/ _extern u16 D_801CE48C;
 /*801CE498*/ _extern code1UnkStruct1 D_801CE498 ALIGNED(8);
 /*801CE4EA*/ _extern u16 gPerspNorm;
-/*801CE4EC*/ _extern s16 D_801CE4EC;
+/*801CE4EC*/ _extern u16 D_801CE4EC;
 /*801CE5A0*/ _extern s32 D_801CE5A0;
 /*801CE5AC*/ _extern u16 D_801CE5AC;
 /*801CE5B0*/ _extern Position gPosition ALIGNED(8);
@@ -169,7 +169,7 @@ typedef struct _code1UnkStruct6
 /*801CE5D8*/ _extern s32 D_801CE5D8;
 /*801CE5E8*/ _extern _119280UnkStruct1 *D_801CE5E8;
 /*801CE5F0*/ _extern code1UnkStruct3 D_801CE5F0 ALIGNED(16);
-/*801CF634*/ _extern s16 D_801CF634;
+/*801CF634*/ _extern u16 D_801CF634;
 
 #undef _extern
 

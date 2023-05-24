@@ -77,7 +77,7 @@ segments:
       - [0x609D0, c,        src/code0/609D0]
       - [0x64530, c,        src/code0/64530]
       - [0x6ACA0, c,        src/code0/6ACA0]
-      - [0x7A430, c,        gen/code0/7A430]
+      - [0x7A430, c,        src/code0/7A430]
       - [0x7BA50, c,        gen/code0/7BA50]
       - [0x7CBC0, c,        src/code0/debug]
       - [0x7F6A0, c,        src/code0/7F6A0]
@@ -378,7 +378,7 @@ segments:
       - [0xE92F0, .rodata,  src/code0/609D0]
       - [0xE9460, .rodata,  src/code0/64530]
       - [0xE9590, .rodata,  src/code0/6ACA0]
-      - [0xE9990, .rodata,  gen/code0/7A430]
+      - [0xE9990, .rodata,  src/code0/7A430]
       - [0xE99D0, .rodata,  src/code0/debug]
       - [0xE9D10, .rodata,  src/code0/7F6A0] # For modern gcc
       - [0xE9D10, .rodata,  src/code0/7FCE0]

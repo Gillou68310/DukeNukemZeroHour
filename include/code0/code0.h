@@ -400,7 +400,7 @@ typedef struct
 /*80119A64*/ _extern s32 D_80119A64;
 /*80119A9C*/ _extern u16 D_80119A9C;
 /*8011A670*/ _extern volatile u16 D_8011A670[MAXPLAYERS];
-/*8011A680*/ _extern s16 D_8011A680[4][24][10] ALIGNED(16);
+/*8011A680*/ _extern s16 D_8011A680[MAXPLAYERS][24][10] ALIGNED(16);
 /*8011BC40*/ _extern code0UnkStruct16 *D_8011BC40;
 /*8011BC48*/ _extern s32 D_8011BC48;
 /*801297E0*/ _extern Gfx *D_801297E0[MAXPLAYERS][2] ALIGNED(8);

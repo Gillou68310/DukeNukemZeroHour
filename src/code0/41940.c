@@ -3122,7 +3122,7 @@ INCLUDE_ASM("nonmatchings/src/code0/41940", func_800519AC);
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80052358);
 
 /*800524BC*/
-static void func_800524BC(s16 arg0, s16 arg1, s16 arg2)
+static void func_800524BC(s16 playernum, s16 arg1, s16 arg2)
 {
     s16 i, j;
 
@@ -3147,8 +3147,8 @@ static void func_800524BC(s16 arg0, s16 arg1, s16 arg2)
 
         if (j != 0)
         {
-            D_8011A680[arg0][arg1][0] |= 4;
-            D_8011A680[arg0][arg1][7] = MIN(j, D_8011A680[arg0][arg1][7]+arg2);
+            D_8011A680[playernum][arg1][0] |= 4;
+            D_8011A680[playernum][arg1][7] = MIN(j, D_8011A680[playernum][arg1][7]+arg2);
         }
     }
 }
