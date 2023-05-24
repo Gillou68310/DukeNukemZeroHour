@@ -11,7 +11,7 @@ def get_commit_hash() -> str:
     return subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
 
 def get_api_post_url() -> str:
-    url = domain + "/data/dukezh/" + version
+    url = domain + "/data/dukezh/"+version+"/"
     return url
 
 def push_data_to_api(data) -> None:
