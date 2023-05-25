@@ -3,6 +3,8 @@
 
 #include "common.h"
 
+s32 swap16(s16 *);
+
 extern s32 D_800E0F58;
 
 #endif

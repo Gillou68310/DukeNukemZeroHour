@@ -294,6 +294,13 @@ typedef struct
 
 typedef struct
 {
+    /*0x00*/ s16 unk0;
+    /*0x02*/ s16 unk2;
+    /*0x04*/ s16 unk4;
+} code0UnkStruct18;
+
+typedef struct
+{
     /*0x00*/ s8 unk0;
     /*0x04*/ s32 unk4;
     /*0x08*/ u32 unk8;
@@ -318,9 +325,18 @@ typedef struct
     /*0x6B*/ Color unk6B;
     /*0x6E*/ u8 pad7[2];
     /*0x70*/ void *unk70;
-    /*0x74*/ s32 unk74;
-    /*0x78*/ s32 unk78;
-    /*0x7C*/ u8 pad8[40];
+    /*0k74*/ s32 unk74;
+    /*0k78*/ s32 unk78;
+    /*0k7C*/ s32 unk7C;
+    /*0k80*/ s32 unk80;
+    /*0k84*/ code0UnkStruct18 *unk84;
+    /*0k88*/ s32 unk88;
+    /*0k8C*/ u8 *unk8C;
+    /*0k90*/ s32 unk90;
+    /*0k94*/ s32 unk94;
+    /*0k98*/ s32 unk98;
+    /*0k9C*/ s32 unk9C;
+    /*0kA0*/ s32 unkA0;
     /*0xA4*/ Gfx *unkA4;
     /*0xA8*/ u8 pad9[4];
     /*0xAC*/ u8 *unkAC;
