@@ -4,6 +4,7 @@
 #include "code0/7F6A0.h"
 #include "code0/84490.h"
 #include "code0/code0.h"
+#include "code1/code1.h"
 #include "static/119280.h"
 
 typedef struct {
@@ -29,20 +30,20 @@ static f32 _fabs(f32 arg0)
 /*800818A8*/
 void func_800818A8(code0UnkStruct16 *arg0, s16 id, s16 off, s32 arg3, s32 arg4, s32 arg5, s32 arg6)
 {
-    s16 *ptr;
-    s16 *ptr2;
+    u8 *ptr;
+    u8 *ptr2;
 
-    ptr = (s16 *)edl_80081840(id, off);
+    ptr = edl_80081840(id, off);
     arg0->unk70 = ptr;
     arg0->unk74 = arg3;
     arg0->unk78 = arg4;
     arg0->unk7C = arg5;
     arg0->unk80 = arg6;
     arg0->unk88 = swap16(ptr);
-    arg0->unk84 = (code0UnkStruct18 *)&ptr[1];
-    ptr2 = (s16 *)&arg0->unk84[arg0->unk88];
+    arg0->unk84 = (code0UnkStruct18 *)&ptr[2];
+    ptr2 = (u8 *)&arg0->unk84[arg0->unk88];
     arg0->unk98 = swap16(ptr2);
-    arg0->unk8C = (u8 *)&ptr2[1];
+    arg0->unk8C = &ptr2[2];
 }
 
 /*8008196C*/
@@ -230,4 +231,14 @@ code0UnkStruct16 *func_800837B8(u16 *arg0, s32 arg1, u8 *arg2)
     return ptr;
 }
 
-INCLUDE_ASM("nonmatchings/src/code0/82480", func_8008383C);
+/*8008383C*/
+void func_8008383C(void)
+{
+    if (D_801CC88C == 0)
+    {
+        D_8012FD8C->unk4C += D_8012FD8C->unk58;
+        D_8012FD8C->unk50 += D_8012FD8C->unk5C;
+        D_8012FD8C->unk54 += D_8012FD8C->unk60;
+    }
+}
+

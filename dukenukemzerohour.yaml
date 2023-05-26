@@ -84,7 +84,7 @@ segments:
       - [0x7FCE0, c,        src/code0/7FCE0]
       - [0x814D0, c,        src/code0/edl]
       - [0x82480, c,        src/code0/82480]
-      - [0x84490, c,        gen/code0/84490]
+      - [0x84490, c,        src/code0/84490]
       - [0x87010, c,        gen/code0/87010]
       - [0x88690, c,        src/code0/88690]
       - [0x8E670, c,        gen/code0/8E670]

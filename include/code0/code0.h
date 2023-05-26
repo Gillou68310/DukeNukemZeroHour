@@ -317,9 +317,11 @@ typedef struct
     /*0x40*/ f32 unk40;
     /*0x44*/ u8 pad4[8];
     /*0x4C*/ f32 unk4C;
-    /*0x50*/ s32 unk50;
+    /*0x50*/ f32 unk50;
     /*0x54*/ f32 unk54;
-    /*0x58*/ u8 pad6[12];
+    /*0x58*/ f32 unk58;
+    /*0x5C*/ f32 unk5C;
+    /*0x60*/ f32 unk60;
     /*0x64*/ f32 unk64;
     /*0x68*/ Color unk68;
     /*0x6B*/ Color unk6B;
@@ -330,7 +332,7 @@ typedef struct
     /*0k7C*/ s32 unk7C;
     /*0k80*/ s32 unk80;
     /*0k84*/ code0UnkStruct18 *unk84;
-    /*0k88*/ s32 unk88;
+    /*0k88*/ s32 unk88; /*unk84 element count*/
     /*0k8C*/ u8 *unk8C;
     /*0k90*/ s32 unk90;
     /*0k94*/ s32 unk94;
@@ -359,6 +361,65 @@ typedef struct
     /*0x20*/ s8 unk20;
     /*0x24*/ s32 unk24;
 } code0UnkStruct17;
+
+typedef struct
+{
+    /*0x00*/ s32 unk0;
+    /*0x04*/ s32 unk4;
+    /*0x08*/ s32 unk8;
+    /*0x0C*/ s32 unkC;
+    /*0x10*/ s32 unk10;
+    /*0x14*/ s32 unk14;
+    /*0x18*/ s16 unk18;
+    /*0x1A*/ s16 unk1A;
+    /*0x1C*/ s16 unk1C;
+    /*0x1E*/ s16 unk1E;
+    /*0x20*/ s16 unk20;
+    /*0x22*/ s16 unk22;
+    /*0x24*/ s16 unk24;
+    /*0x26*/ s16 unk26;
+    /*0x28*/ s16 unk28;
+    /*0x2A*/ s16 unk2A;
+    /*0x2C*/ s16 unk2C;
+    /*0x2E*/ s16 unk2E;
+    /*0x30*/ s32 unk30;
+    /*0x34*/ s32 unk34;
+    /*0x38*/ s32 unk38;
+    /*0x3C*/ s32 unk3C;
+    /*0x40*/ s32 unk40;
+    /*0x44*/ s32 unk44;
+    /*0x48*/ s32 unk48;
+    /*0x4C*/ s32 unk4C;
+    /*0x50*/ s32 unk50;
+    /*0x54*/ s32 unk54;
+    /*0x58*/ s32 unk58;
+    /*0x5C*/ s32 unk5C;
+    /*0x60*/ s32 unk60;
+} code0UnkStruct19;
+
+typedef struct
+{
+    /*0x00*/ s16 unk0;
+    /*0x02*/ s16 unk2;
+    /*0x04*/ s32 unk4;
+    /*0x08*/ s32 unk8;
+    /*0x0C*/ s32 unkC;
+    /*0x10*/ s32 unk10;
+} code0UnkStruct20;
+
+typedef struct
+{
+    /*0x00*/ s16 unk0;
+    /*0x02*/ s16 unk2;
+    /*0x04*/ s16 unk4;
+    /*0x06*/ s16 unk6;
+    /*0x08*/ s16 unk8;
+    /*0x0A*/ s16 unkA;
+    /*0x0C*/ u8 unkC;
+    /*0x0D*/ u8 unkD;
+    /*0x0E*/ u8 unkE;
+    /*0x0F*/ u8 unkF;
+} code0UnkStruct21;
 
 typedef struct {
     s16 r;
@@ -410,6 +471,7 @@ typedef struct
 /*8010A9AC*/ _extern u8 D_8010A9AC;
 /*80117ED8*/ _extern Player gPlayer[MAXPLAYERS] ALIGNED(8);
 /*80118148*/ _extern u8 D_80118148;
+/*80118168*/ _extern code0UnkStruct19 D_80118168 ALIGNED(8);
 /*80118248*/ _extern SpriteType *D_80118248;
 /*80118260*/ _extern u8 D_80118260[6096] ALIGNED(16);
 /*80119A30*/ _extern u8 D_80119A30[MAXPLAYERS];
