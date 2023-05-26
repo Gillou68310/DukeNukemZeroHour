@@ -383,6 +383,7 @@ segments:
       - [0xE9D10, .rodata,  src/code0/7F6A0] # For modern gcc
       - [0xE9D10, .rodata,  src/code0/7FCE0]
       - [0xE9D20, .rodata,  src/code0/82480]
+      - [0xE9D60, .rodata,  src/code0/84490] # For modern gcc
       - [0xE9D60, .rodata,  gen/code0/87010]
       - [0xE9D70, .rodata,  src/code0/88690]
       - [0xEA330, .rodata,  gen/code0/8EFE0]
