@@ -22,7 +22,7 @@
 #include "code0/7FCE0.h"
 #include "code0/84490.h"
 #include "code0/87010.h"
-#include "code0/88690.h"
+#include "code0/controller.h"
 #include "code0/8E670.h"
 #include "code0/8EFE0.h"
 #include "code0/95500.h"
@@ -278,7 +278,7 @@ static void main_80000678(void)
 static void main_800006B4(void)
 {
     s32 i;
-    if (func_8008AEF0() & 0xFF)
+    if (controller_8008AEF0())
     {
         for (i = 0; i < ARRAY_COUNT(D_8016D174); i++)
         {
@@ -507,7 +507,7 @@ static void main_80001038(void)
     {
         if (D_800BD42C != 0)
         {
-            func_8008A654();
+            controller_8008A654();
             D_800BD42C = 0;
         }
         func_801C4B34();
@@ -518,7 +518,7 @@ static void main_80001038(void)
     else
     {
         D_800BD42C = 1;
-        if ((D_80199524 != 0) && (func_8008A070() & 0xFF))
+        if ((D_80199524 != 0) && controller_8008A070())
             D_80199524 = 0;
 
         func_80040AA0(1, "SM");
@@ -580,7 +580,7 @@ static void main_80001038(void)
         for (playernum = 0; playernum < D_8012C470; playernum++)
         {
             func_8000EB4C(playernum, 0, 0, 0, 0);
-            func_8000EA0C(playernum, D_800DF1AC[playernum], D_800DF1AC[playernum], D_800DF1AC[playernum], (s32)D_800DF1AC[playernum]);
+            func_8000EA0C(playernum, D_800DF1AC[playernum], D_800DF1AC[playernum], D_800DF1AC[playernum], D_800DF1AC[playernum]);
 
             if (D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk0 & 0x40)
                 func_8000EA0C(playernum, 0, 0xFF, 0xFF, 0x80);
@@ -652,7 +652,7 @@ static void main_800017AC(void)
 {
     s32 i;
 
-    func_8008A724();
+    controller_8008A724();
     if (D_8012FC90 != 0)
         func_801C9D68();
     else
@@ -1199,8 +1199,8 @@ static void mainLoop(void *arg)
     osCreateThread(&_viLoopThread, 7, viLoop, arg, &_viLoopThreadStack[VILOOP_STACKSIZE / sizeof(u64)], 20);
     initAudio();
     func_801C4F38();
-    func_8008AD94();
-    func_8008A3EC("DUKE ZERO HOUR.A", &D_801CC930, 4156);
+    controller_8008AD94();
+    controller_8008A3EC("DUKE ZERO HOUR.A", &D_801CC930, sizeof(D_801CC930));
     switch (osTvType)
     {
     case 0:
@@ -1344,10 +1344,10 @@ static void viLoop(void *arg)
             main_80000450();
             osAfterPreNMI();
             MusStop(3, 0);
-            func_8008A654();
+            controller_8008A654();
 
             while (1)
-                func_8008A724();
+                controller_8008A724();
 
             break;
         }

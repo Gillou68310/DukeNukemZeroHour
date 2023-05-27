@@ -216,7 +216,7 @@ void Bmemcpy(void *dst, void *src, u32 size)
 {
     u32 i;
 
-    if (((intptr_t)src & 3) != 0 || ((intptr_t)dst & 3) != 0 || (size & 3) != 0)
+    if (((intptr_t)src & 3) || ((intptr_t)dst & 3) || (size & 3))
     {
         _memcpy(dst, src, size);
     }
@@ -246,9 +246,9 @@ void Bmemset(void *dst, u8 value, u32 size)
     u32 i;
     s32 val;
 
-    if (((intptr_t)dst & 3) != 0)
+    if ((intptr_t)dst & 3)
         _memset(dst, value, size);
-    else if ((size & 3) != 0)
+    else if (size & 3)
         _memset(dst, value, size);
     else
     {

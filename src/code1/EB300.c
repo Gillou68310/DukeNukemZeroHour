@@ -9,7 +9,7 @@
 #include "code0/7FCE0.h"
 #include "code0/82480.h"
 #include "code0/84490.h"
-#include "code0/88690.h"
+#include "code0/controller.h"
 #include "code0/8E670.h"
 #include "code1/EB300.h"
 #include "code0/code0.h"
@@ -770,7 +770,7 @@ void func_801C363C(u8 playernum, u16 arg1, u8 arg2)
         if (gPlayer[playernum].unk45 == 0)
         {
             if (D_801CE498.unk1C != 0)
-                func_8008A4C4(playernum, arg1, ((arg2 * D_801CE498.unk1C) / 7));
+                controller_8008A4C4(playernum, arg1, ((arg2 * D_801CE498.unk1C) / 7));
         }
     }
 }
@@ -1411,45 +1411,45 @@ static void func_801C7108(void)
         D_801CB2AC[j].unk4 = 2;
     for (k = 0; k < ARRAY_COUNT(D_801CB14C)-1; k++)
         D_801CB14C[k].unk4 = 2;
-    if ((D_800E16BC & 2) != 0)
+    if (D_800E16BC & 2)
         D_801CB32C[0].unk4 = 0;
-    if ((D_800E16BC & 4) != 0)
+    if (D_800E16BC & 4)
         D_801CB32C[1].unk4 = 0;
-    if ((D_800E16BC & 8) != 0)
+    if (D_800E16BC & 8)
         D_801CB32C[2].unk4 = 0;
-    if ((D_800E16BC & 0x10) != 0)
+    if (D_800E16BC & 0x10)
         D_801CB32C[3].unk4 = 0;
-    if ((D_800E16BC & 0x20) != 0)
+    if (D_800E16BC & 0x20)
         D_801CB32C[4].unk4 = 0;
-    if ((D_800E16BC & 0x100) != 0)
+    if (D_800E16BC & 0x100)
         D_801CB32C[5].unk4 = 0;
-    if ((D_800E16BC & 1) != 0)
+    if (D_800E16BC & 1)
         D_801CB2AC[0].unk4 = 0;
-    if ((D_800E16BC & 0x40) != 0)
+    if (D_800E16BC & 0x40)
         D_801CB2AC[1].unk4 = 0;
-    if ((D_800E16BC & 0x80) != 0)
+    if (D_800E16BC & 0x80)
         D_801CB2AC[2].unk4 = 0;
-    if ((D_801CE470 & 1) != 0)
+    if (D_801CE470 & 1)
         D_801CB14C[0].unk4 = 0;
-    if ((D_801CE470 & 2) != 0)
+    if (D_801CE470 & 2)
         D_801CB14C[1].unk4 = 0;
-    if ((D_801CE470 & 4) != 0)
+    if (D_801CE470 & 4)
         D_801CB14C[2].unk4 = 0;
-    if ((D_801CE470 & 8) != 0)
+    if (D_801CE470 & 8)
         D_801CB14C[3].unk4 = 0;
-    if ((D_801CE470 & 0x10) != 0)
+    if (D_801CE470 & 0x10)
         D_801CB14C[4].unk4 = 0;
-    if ((D_801CE470 & 0x20) != 0)
+    if (D_801CE470 & 0x20)
         D_801CB14C[5].unk4 = 0;
-    if ((D_801CE470 & 0x40) != 0)
+    if (D_801CE470 & 0x40)
         D_801CB14C[6].unk4 = 0;
-    if ((D_801CE470 & 0x80) != 0)
+    if (D_801CE470 & 0x80)
         D_801CB14C[7].unk4 = 0;
-    if ((D_801CE470 & 0x100) != 0)
+    if (D_801CE470 & 0x100)
         D_801CB14C[8].unk4 = 0;
-    if ((D_801CE470 & 0x200) != 0)
+    if (D_801CE470 & 0x200)
         D_801CB14C[9].unk4 = 0;
-    if ((D_801CE470 & 0x400) != 0)
+    if (D_801CE470 & 0x400)
         D_801CB14C[10].unk4 = 0;
 }
 

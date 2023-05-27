@@ -2673,7 +2673,7 @@ static void func_8004FA74(s32 arg0)
     (void)arg0;
 
     D_80137DE0->unk96++;
-    if ((D_80137DE0->unk0 & 0x20000) != 0)
+    if (D_80137DE0->unk0 & 0x20000)
     {
         if (D_80137DE0->unk96 < 120)
             D_80137DE0->unk96++;

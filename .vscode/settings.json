@@ -6,5 +6,20 @@
     "C_Cpp.files.exclude": {
         "ida_ctx.c": true,
         "**.i": true
+    },
+    "terminal.integrated.env.windows": {
+        "PATH": "${env:PATH}"
+    },
+    "editor.tokenColorCustomizations": {
+        "[Default Dark+]": {
+            "textMateRules": [
+                {
+                    "scope": "constant.other.placeholder",
+                    "settings": {
+                        "foreground": "#CE9178"
+                    }
+                }
+            ]
+        }
     }
 }

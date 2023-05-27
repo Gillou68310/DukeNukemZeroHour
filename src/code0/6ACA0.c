@@ -288,7 +288,7 @@ static u8 func_8006D180(SpriteType *spr)
 {
     if ((gpSector[spr->sectnum].unk18 == 2) ||
         ((gpSector[spr->sectnum].unk18 == 3) &&
-            ((func_80036490(spr->sectnum) < spr->z) != 0)))
+            (func_80036490(spr->sectnum) < spr->z)))
     {
         return 1;
     }
@@ -1299,7 +1299,7 @@ STATIC void func_800749A8(s32 spritenum)
 
     spr->cstat = cstat;
 
-    if ((spr->unk18++ >= 24) || ((florz < spr->z) != 0) || (spr->z < ceilz) || (num & 0xC000))
+    if ((spr->unk18++ >= 24) || (florz < spr->z) || (spr->z < ceilz) || (num & 0xC000))
     {
         D_80137DE0->unk60++;
         if ((D_80137DE0->unk60 & 3) == 3)
@@ -2132,7 +2132,7 @@ STATIC void func_80077608(s32 spritenum)
     func_800722A0(spritenum);
     func_80087174(spritenum, spr->x, spr->y, spr->z, x, y, z, 128, 1);
 
-    if ((spr->xrepeat & 0xFF) != 0x40)
+    if (spr->xrepeat != 0x40)
     {
         spr->xrepeat += 8;
         spr->yrepeat += 8;
@@ -2529,7 +2529,7 @@ STATIC void func_80078564(s32 spritenum)
             {
                 gpSprite[spritenum_].unk22 -= (krand() & 0x3FF);
                 gpSprite[spritenum_].unk18 = krand() & 0x7F;
-                audio_800077F4(((krand() % 4) + 577) & 0xFFFF, spritenum_);
+                audio_800077F4(((krand() % 4) + 577), spritenum_);
             }
         }
         deleteSprite(spritenum);
@@ -2555,7 +2555,7 @@ STATIC void func_80078564(s32 spritenum)
             {
                 gpSprite[spritenum_].unk22 -= (krand() & 0x3FF);
                 gpSprite[spritenum_].unk18 = krand() & 0x7F;
-                audio_800077F4(((krand() % 4) + 577) & 0xFFFF, spritenum_);
+                audio_800077F4(((krand() % 4) + 577), spritenum_);
             }
         }
         deleteSprite(spritenum);

@@ -25,7 +25,7 @@ void memset(void *dst, s32 value, s32 size)
     ptr = dst;
     val = (value << 24) | (value << 16) | (value << 8) | value;
 
-    if ((((intptr_t)dst & 3) != 0) || ((size & 3) != 0))
+    if (((intptr_t)dst & 3) || (size & 3))
     {
         for (i = 0; i < size; i++)
             *ptr++ = value;

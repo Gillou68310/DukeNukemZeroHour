@@ -4,6 +4,7 @@ import subprocess
 
 import idc
 import ida_ua
+import ida_auto
 import ida_name
 import ida_funcs
 import ida_bytes
@@ -53,6 +54,9 @@ def parse_symbol_addrs(file):
             symbols.append(SYMBOL(name, addr, type, size, ignore))
 
     return symbols
+
+#Wait for auto-analysis to finish before running script
+ida_auto.auto_wait()
 
 # Add symbols
 symbols = parse_symbol_addrs('symbol_addrs.txt')

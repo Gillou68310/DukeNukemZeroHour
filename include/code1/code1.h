@@ -68,7 +68,7 @@ typedef struct
 
 typedef struct
 {
-    /*0x0000*/ u8 pad[2];
+    /*0x0000*/ u16 unk0;
     /*0x0002*/ u16 unk2;
     /*0x0004*/ code1UnkStruct2 unk4[22];
     /*0x0FD4*/ u8 unkFD4;

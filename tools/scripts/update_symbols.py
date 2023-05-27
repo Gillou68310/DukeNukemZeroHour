@@ -81,7 +81,7 @@ class SYMBOLS:
         if index != None:
             if symbol.splat.size != 0:
                 self.symbols[index].splat.given_size = symbol.splat.size
-            if symbol.splat.type != None:
+            if symbol.splat.type != None and self.symbols[index].splat.type != "asciz":
                 self.symbols[index].splat.type = symbol.splat.type
             if symbol.visibility != None:  
                 self.symbols[index].visibility = symbol.visibility

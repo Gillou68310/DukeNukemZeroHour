@@ -86,7 +86,7 @@ segments:
       - [0x82480, c,        src/code0/82480]
       - [0x84490, c,        src/code0/84490]
       - [0x87010, c,        src/code0/87010]
-      - [0x88690, c,        src/code0/88690]
+      - [0x88690, c,        src/code0/controller]
       - [0x8E670, c,        gen/code0/8E670]
       - [0x8EFE0, c,        gen/code0/8EFE0]
       - [0x95500, c,        src/code0/95500]
@@ -297,7 +297,7 @@ segments:
       - [0xE0640, data,     code0/7FCE0]
       - [0xE1740, .data,    src/code0/edl]
       - [0xE1B20, data,     code0/84490]
-      - [0xE1B60, data,     code0/88690]
+      - [0xE1B60, data,     code0/controller]
       - [0xE22A0, data,     code0/8E670]
       - [0xE2350, data,     code0/8EFE0]
       - [0xE2370, data,     code0/95500]
@@ -385,7 +385,7 @@ segments:
       - [0xE9D20, .rodata,  src/code0/82480]
       - [0xE9D60, .rodata,  src/code0/84490] # For modern gcc
       - [0xE9D60, .rodata,  src/code0/87010]
-      - [0xE9D70, .rodata,  src/code0/88690]
+      - [0xE9D70, .rodata,  src/code0/controller]
       - [0xEA330, .rodata,  gen/code0/8EFE0]
       - [0xEA760, .rodata,  src/code0/95500]
       - [0xEA9C0, .rodata,  src/code0/A06F0]
@@ -421,7 +421,7 @@ segments:
       - {start: 0xEB300, type:  bss, vram: 0x800F7060, name: code0/engine}
       - {start: 0xEB300, type:  bss, vram: 0x800F9CC0, name: code0/609D0}
       - {start: 0xEB300, type:  bss, vram: 0x800F9CD0, name: code0/6ACA0}
-      - {start: 0xEB300, type:  bss, vram: 0x800F9CE0, name: code0/88690}
+      - {start: 0xEB300, type:  bss, vram: 0x800F9CE0, name: code0/controller}
       - {start: 0xEB300, type: .bss, vram: 0x800FA3B0, name: libs/libmus/src/player}
       - {start: 0xEB300, type: .bss, vram: 0x800FA420, name: libs/libmus/src/aud_dma}
       - {start: 0xEB300, type: .bss, vram: 0x800FA460, name: libs/libmus/src/aud_sched}

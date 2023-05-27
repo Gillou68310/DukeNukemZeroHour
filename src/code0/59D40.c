@@ -410,7 +410,7 @@ void func_8005A8A8(s32 spritenum, s32 arg1)
     var1 = D_80137DE0->unk28;
     ang1 = D_80118248->ang;
 
-    if (((D_80137DE0->unk0 & 0x1800) != 0) && (var1 != -1))
+    if ((D_80137DE0->unk0 & 0x1800) && (var1 != -1))
         ang2 = getAngle((gpSprite[D_80137DE0->unk28].x - D_80118248->x),
                         (gpSprite[D_80137DE0->unk28].y - D_80118248->y));
     else
@@ -568,7 +568,7 @@ static void func_8005B014(s32 spritenum)
     s32 floorz1, floorz2;
     s32 value;
 
-    if (((gpSector[D_80118248->sectnum].floorstat & 2) != 0) && (gpSector[D_80118248->sectnum].floorheinum != 0))
+    if ((gpSector[D_80118248->sectnum].floorstat & 2) && (gpSector[D_80118248->sectnum].floorheinum != 0))
     {
         floorheinum = klabs(gpSector[D_80118248->sectnum].floorheinum);
         value = floorheinum / 16;
@@ -1401,7 +1401,7 @@ void func_8005D518(s32 spritenum, s32 arg1)
     if (ptr->unkE == 0)
     {
         if ((ptr->unk0 == 5) || (ptr->unk0 == 20))
-            audio_80007A44(((krand() % 3) + 626) & 0xFFFF, spritenum, 34000);
+            audio_80007A44(((krand() % 3) + 626), spritenum, 34000);
     }
 }
 
@@ -1898,7 +1898,7 @@ void func_8005EBA0(s32 spritenum, s32 arg1)
     while (i >= 0)
     {
         nexti = gNextSpriteStat[i];
-        if ((D_8019B940[D_80106D50[i]].unk0 & 0x200000) != 0)
+        if (D_8019B940[D_80106D50[i]].unk0 & 0x200000)
             func_8004BD24(i);
         i = nexti;
     }
@@ -2089,12 +2089,12 @@ void func_8005F38C(s32 spritenum, s32 arg1)
         else
         {
             func_8008E3E0(D_80118248->x, D_80118248->y, D_80118248->z, D_80118248->sectnum, 41, 32);
-            audio_80007A44((func_801C0FDC(6) + 559) & 0xFFFF, spritenum, 40000);
+            audio_80007A44((func_801C0FDC(6) + 559), spritenum, 40000);
         }
         D_80118248->x = x;
         D_80118248->y = y;
         D_80118248->z = z;
-        audio_80007A44((func_801C0FDC(6) + 559) & 0xFFFF, spritenum, 40000);
+        audio_80007A44((func_801C0FDC(6) + 559), spritenum, 40000);
         func_8001F7B4(4, 4);
     }
 }
