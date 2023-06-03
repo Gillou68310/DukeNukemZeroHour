@@ -414,6 +414,13 @@ typedef struct
     /*0x0F*/ u8 unkF;
 } code0UnkStruct21;
 
+typedef struct
+{
+    /*0x02*/ s16 unk0;
+    /*0x04*/ s16 unk2;
+    /*0x06*/ u8 pad[10];
+} code0UnkStruct22;
+
 typedef struct {
     s16 r;
     s16 g;
@@ -450,9 +457,11 @@ typedef struct
 /*800FF528*/ _extern s32 *D_800FF528;
 /*800FE944*/ _extern u8 *gpModelTile;
 /*800FE9C8*/ _extern s32 D_800FE9C8[2]; /*CLOUDS SP*/
+/*800FE9D0*/ _extern s8 D_800FE9D0;
 /*800FE9E0*/ _extern s64 D_800FE9E0;
 /*800FEA90*/ _extern u8 D_800FEA90;
-/*8010554C*/ _extern s8 D_8010554C;
+/*800FF4F0*/ _extern code0UnkStruct22 D_800FF4F0[4] ALIGNED(8);
+/*8010554C*/ _extern u8 D_8010554C;
 /*80105550*/ _extern u8 *D_80105550;
 /*80105718*/ _extern u8 D_80105718;
 /*80106D30*/ _extern u8 D_80106D30[MAXPLAYERS];

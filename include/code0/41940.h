@@ -84,5 +84,6 @@ extern s32 D_800DEF1C;
 extern s32 D_800DF1A8;
 extern s16 D_800DF1AC[MAXPLAYERS];
 extern s16 D_800DF1B4[9];
+extern s16 D_800DF1D0[24][3];
 
 #endif
