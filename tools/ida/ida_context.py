@@ -26,7 +26,7 @@ def parse_source_file(file: str) -> None:
         elif isinstance(node, c_ast.Decl):
             ast.ext[i].init = None
 
-    return c_generator.CGenerator().visit(ast)
+    return c_generator.CGenerator().visit(ast), file
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -46,7 +46,10 @@ if __name__ == '__main__':
     with Pool() as pool:
         sources = list(tqdm.tqdm(pool.imap(parse_source_file, files), total=len(files)))
 
-    for src in sources:
+    for src, file in sources:
+        #prefix unused variables to avoid multiple definitions
+        prefix = os.path.basename(file).split('.')[0]
+        src = src.replace("_unused", prefix+"_unused")
         f.write(src)
 
     f.close()

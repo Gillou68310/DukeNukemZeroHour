@@ -26,8 +26,8 @@ typedef struct {
     /*0x00*/ u32 unk0;
     /*0x04*/ u32 game_code;
     /*0x08*/ u16 company_code;
-    /*0x0A*/ char ext_name[4];
-    /*0x0E*/ char game_name[18];
+    /*0x0A*/ u8 ext_name[4];
+    /*0x0E*/ u8 game_name[18];
 } ControllerUnkStruct1;
 
 typedef struct {
@@ -208,7 +208,7 @@ static u8 _unused5;
 /*801A6D82*/ s8 D_801A6D82;
 
 /*.text*/
-STATIC s8 func_80089F14(s32, s32);
+static s8 func_80089F14(s8, u8);
 static u8 func_8008A370(u8, intptr_t, intptr_t, intptr_t,
                         intptr_t, intptr_t, intptr_t, intptr_t);
 static u8 func_8008B8B0(void);
@@ -1298,11 +1298,176 @@ static u8 func_80088FEC(void)
     return ret;
 }
 
-extern const char D_800E93B4[];
-INCLUDE_RODATA("nonmatchings/src/code0/controller", D_800E93B4); /*TODO: mutualized rodata*/
+/*80089724*/
+static u8 func_80089724(void)
+{
+    s32 i;
+    u8 ret;
 
-STATIC u8 func_80089724(void);
-INCLUDE_ASM("nonmatchings/src/code0/controller", func_80089724);
+    ret = 0;
+    switch (D_800E1687)
+    {
+    case 0:
+        sprintf(D_800FA2C4, "    ");
+        D_800F9F02 = 0;
+        D_800E1687 = 8;
+        break;
+    case 8:
+        func_8008A370(CONTROLLER_PFS_INIT_PAK,
+                      (intptr_t)&_contPfs[_channel],
+                      _channel,
+                      0, 0, 0, 0, 0);
+        D_800E1687 = 1;
+        break;
+    case 1:
+        if (D_80119A70 == 0)
+        {
+            if (D_800FE408 == 2)
+            {
+                D_800F9F02 = 1;
+                D_800E1687 = 8;
+            }
+            else if (D_800FE408 != 0)
+            {
+                D_800E1687 = 7;
+            }
+            else
+            {
+                func_8008A370(CONTROLLER_PFS_NUM_FILES,
+                              (intptr_t)&_contPfs[_channel],
+                              (intptr_t)&D_800F9F40,
+                              (intptr_t)&D_800F9F44,
+                              0, 0, 0, 0);
+                D_800E1687 = 2;
+            }
+        }
+        break;
+    case 2:
+        if (D_80119A70 == 0)
+        {
+            if (D_800FE408 != 0)
+                D_800E1687 = 7;
+            else
+            {
+                func_8008A370(CONTROLLER_PFS_FREE_BLOCKS,
+                              (intptr_t)&_contPfs[_channel],
+                              (intptr_t)&D_800F9F48,
+                              0, 0, 0, 0, 0);
+                D_800E1687 = 3;
+            }
+        }
+        break;
+    case 3:
+        if (D_80119A70 == 0)
+        {
+            if (D_800FE408 == 0)
+            {
+                D_800F9CF0 = 0;
+                D_800E1687 = 4;
+            }
+            else
+                D_800E1687 = 7;
+        }
+        break;
+    case 4:
+        func_8008A370(CONTROLLER_PFS_FILE_STATE,
+                      (intptr_t)&_contPfs[_channel],
+                      D_800F9CF0,
+                      (intptr_t)&D_800F9F50[D_800F9CF0],
+                      0, 0, 0, 0);
+        D_800E1687 = 5;
+        break;
+    case 5:
+        if (D_80119A70 != 0)
+            break;
+
+        if (D_800FE408 == 5)
+        {
+            D_800FA150[D_800F9CF0].unk0 = 0;
+
+            for (i = 0; i < 16; i++)
+                D_800FA150[D_800F9CF0].unk1[i] = ' ';
+            D_800FA150[D_800F9CF0].unk1[i] = '\0';
+
+            for (i = 0; i < 4; i++)
+                D_800FA150[D_800F9CF0].unk12[i] = ' ';
+            D_800FA150[D_800F9CF0].unk12[i] = '\0';
+
+            D_800FE408 = 0;
+        }
+        else
+        {
+            if (D_800FE408 == 0)
+            {
+                D_800FA150[D_800F9CF0].unk0 = 1;
+                func_80087EF4(D_800FA150[D_800F9CF0].unk1, D_800F9F50[D_800F9CF0].game_name, 16);
+                func_80087E78(D_800FA150[D_800F9CF0].unk12, D_800F9F50[D_800F9CF0].ext_name, 4);
+            }
+            else
+            {
+                D_800E1687 = 7;
+                break;
+            }
+        }
+
+        D_800F9CF0++;
+        if (D_800F9CF0 < 16)
+        {
+            D_800E1687 = 4;
+            break;
+        }
+
+        if (D_800FA2C9 != 0)
+        {
+            *D_800FA2C4 = 'A';
+            do
+            {
+                for (i = 0; i < 16; i++)
+                {
+                    if (D_800FA150[i].unk0 == 0)
+                        continue;
+
+                    if (D_800F9F50[i].game_code != 0x4E445A45) /*NDZE*/
+                        continue;
+
+                    if (D_800F9F50[i].company_code != 0x3458) /*4X*/
+                        continue;
+
+                    if (strcmp(D_800FA150[i].unk1, D_800F9F28) == 0)
+                    {
+                        if (strcmp(D_800FA150[i].unk12, D_800FA2C4) == 0)
+                            break;
+                    }
+                }
+                if (i < 16)
+                    (*D_800FA2C4)++;
+                else
+                {
+                    D_800E1687 = 6;
+                    break;
+                }
+            } while (1);
+        }
+        else
+            D_800E1687 = 6;
+
+        break;
+    case 6:
+        ret = 1;
+        D_800E1687 = 0;
+        break;
+    case 7:
+        if (func_80088910())
+        {
+            if (D_800FE408 == 0)
+                D_800E1687 = 0;
+            else
+                D_800E1687 = 6;
+        }
+        break;
+    }
+    return ret;
+}
 
 /*80089CF4*/
 static s32 func_80089CF4(s32 arg0)
@@ -1321,7 +1486,7 @@ static s32 func_80089CF4(s32 arg0)
 
     if (strcmp(D_800FA150[arg0].unk1, D_800F9F28) == 0)
     {
-        if (strcmp(D_800FA150[arg0].unk12, D_800E93B4) == 0)
+        if (strcmp(D_800FA150[arg0].unk12, "    ") == 0)
             return 1;
     }
 
@@ -1368,7 +1533,75 @@ static u8 func_80089DCC(void)
     return ret;
 }
 
-INCLUDE_ASM("nonmatchings/src/code0/controller", func_80089F14);
+/*80089F14*/
+static s8 func_80089F14(s8 arg0, u8 arg1)
+{
+    s32 i;
+    s32 num;
+    s32 ret;
+
+    for (i = 0; i < 16; i++)
+    {
+        if (D_800FA150[i].unk0 == 0)
+            break;
+    }
+
+    for (num = 0; num < 16; num++)
+    {
+        if (func_80089CF4(num) != 0)
+            break;
+    }
+
+    ret = 0;
+    num = _fileNumber;
+    do
+    {
+        num += arg0;
+        if ((num >= 0) && (num < D_800FA320))
+        {
+            switch (arg1)
+            {
+            case 0:
+                if (num < 16)
+                {
+                    if (func_80089CF4(num) != 0)
+                        ret = 1;
+                }
+                else
+                    ret = 1;
+                break;
+            case 1:
+                if (num < 16)
+                {
+                    if (D_800FA150[num].unk0 != 0)
+                        ret = 1;
+                }
+                else
+                    ret = 1;
+                break;
+            case 2:
+                if (num < 16)
+                {
+                    if (D_800FA150[num].unk0 != 0)
+                        ret = 1;
+                }
+                else
+                    ret = 1;
+                break;
+            }
+
+            if (ret != 0)
+            {
+                _fileNumber = num;
+                break;
+            }
+        }
+        else
+            break;
+
+    } while (1);
+    return ret;
+}
 
 /*8008A070*/
 u8 controller_8008A070(void)
