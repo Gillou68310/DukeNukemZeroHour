@@ -446,6 +446,12 @@ typedef struct
 #define _extern extern
 #endif
 
+#ifdef MODERN
+#define _volatile volatile
+#else
+#define _volatile
+#endif
+
 /*800FCBE0*/ _extern s32 D_800FCBE0; /*floorhit*/
 /*800FE3FC*/ _extern s32 D_800FE3FC;
 /*800FF3E8*/ _extern u16 D_800FF3E8[128] ALIGNED(8);
@@ -458,7 +464,7 @@ typedef struct
 /*800FE944*/ _extern u8 *gpModelTile;
 /*800FE9C8*/ _extern s32 D_800FE9C8[2]; /*CLOUDS SP*/
 /*800FE9D0*/ _extern s8 D_800FE9D0;
-/*800FE9E0*/ _extern s64 D_800FE9E0;
+/*800FE9E0*/ _extern _volatile s64 D_800FE9E0;
 /*800FEA90*/ _extern u8 D_800FEA90;
 /*800FF4F0*/ _extern code0UnkStruct22 D_800FF4F0[4] ALIGNED(8);
 /*8010554C*/ _extern u8 D_8010554C;
