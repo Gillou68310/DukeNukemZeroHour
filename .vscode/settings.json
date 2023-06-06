@@ -21,5 +21,6 @@
                 }
             ]
         }
-    }
+    },
+    "terminal.integrated.tabs.enableAnimation": false
 }
