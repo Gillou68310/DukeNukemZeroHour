@@ -2204,7 +2204,7 @@ u8 controller_8008AEF0(void)
         }
         break;
     }
-    D_800FA31C -= 1;
+    D_800FA31C--;
     return ret;
 }
 

@@ -96,6 +96,7 @@ typedef struct
     /*0x06*/ u8 unk6;
     /*0x07*/ u8 unk7;
     /*0x08*/ u8 unk8;
+    /*0x09*/ u8 unk9;
     /*0x0A*/ s16 unkA[8];
 } code0UnkStruct2;
 
@@ -467,6 +468,7 @@ typedef struct
 /*800FE9E0*/ _extern _volatile s64 D_800FE9E0;
 /*800FEA90*/ _extern u8 D_800FEA90;
 /*800FF4F0*/ _extern code0UnkStruct22 D_800FF4F0[4] ALIGNED(8);
+/*80105540*/ _extern s32 D_80105540;
 /*8010554C*/ _extern u8 D_8010554C;
 /*80105550*/ _extern u8 *D_80105550;
 /*80105718*/ _extern u8 D_80105718;
@@ -497,6 +499,7 @@ typedef struct
 /*8012BC70*/ _extern code0UnkStruct6 D_8012BC70[256] ALIGNED(16);
 /*8012C470*/ _extern s16 D_8012C470; /*playernum?*/
 /*8012C478*/ _extern Gfx *D_8012C478[200] ALIGNED(8);
+/*8012C989*/ _extern u8 D_8012C989;
 /*8012D218*/ _extern u32 D_8012D218[MAXPLAYERS][18] ALIGNED(8);
 /*8012D338*/ _extern s8 D_8012D338; /*angle*/
 /*8012DEFC*/ _extern u16 D_8012DEFC;

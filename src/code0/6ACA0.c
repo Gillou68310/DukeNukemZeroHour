@@ -22,7 +22,7 @@ void func_800867CC(s16 spritenum, s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2
 /*.data*/
 /*800DF2F0*/ EXTERN_DATA u8 D_800DF2F0;
 /*800DF2F4*/ EXTERN_DATA s8 D_800DF2F4[657];
-/*800DF585*/ EXTERN_DATA s8 D_800DF585;
+/*800DF585*/ EXTERN_DATA u8 D_800DF585;
 /*800DF5A0*/ EXTERN_DATA STATIC _6ACA0UnkFuncPointer D_800DF5A0[50];
 /*800DF668*/ EXTERN_DATA STATIC _6ACA0UnkFuncPointer D_800DF668[4];
 
@@ -362,7 +362,7 @@ s32 func_800720FC(s16 spritenum)
         &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x10001);
 
     spr->cstat = cstat;
-    if ((hitwall == -1) && (hitsprite != hitwall))
+    if ((hitwall == -1) && (hitsprite != -1))
     {
         if ((gpSprite[hitsprite].statnum == 1) ||
             (gpSprite[hitsprite].statnum == 51) ||
@@ -2430,7 +2430,7 @@ STATIC void func_800780AC(s32 spritenum)
     else
         deleteSprite(spritenum);
 
-    if ((hitwall == -1) && (hitsprite != hitwall) && !(D_8012FD88 & 3))
+    if ((hitwall == -1) && (hitsprite != -1) && !(D_8012FD88 & 3))
         func_80047820(spritenum, hitsprite, 1);
 }
 

@@ -11,7 +11,7 @@ typedef struct {
     /*0x04*/ char *mapname;
 } _EB300UnkStruct1;
 
-u32 func_801C0FDC(s16);
+s32 func_801C0FDC(s16);
 f32 func_801C1024(f32);
 f32 tanf(f32 angle);
 void func_801C10C8(void);

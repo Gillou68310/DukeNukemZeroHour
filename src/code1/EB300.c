@@ -279,7 +279,7 @@ static u32 func_801C0F88(void)
 }
 
 /*801C0FDC*/
-u32 func_801C0FDC(s16 arg0)
+s32 func_801C0FDC(s16 arg0)
 {
     return ((func_801C0F88() >> 16) * arg0) >> 16; /*TODO?*/
 }
