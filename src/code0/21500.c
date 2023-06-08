@@ -24,6 +24,8 @@
 /*801ACBE4*/ f32 D_801ACBE4;
 
 /*.text*/
+STATIC s32 func_80021464(s32 sectnum, s32 wallnum);
+STATIC s32 func_80022C30(s32 sectnum, s32 wallnum);
 
 /*80020900*/
 static void func_80020900(u16 tileid)
@@ -173,10 +175,35 @@ static void func_800211D0(s32 arg0)
     }
 }
 
-INCLUDE_ASM("nonmatchings/src/code0/21500", func_800213B8);
+/*800213B8*/
+u8 func_800213B8(s32 sectnum, s32 wallnum)
+{
+    s16 nextsector;
+    u16 stat;
+    s32 ret;
 
+    stat = gpSector[sectnum].floorstat;
+    nextsector = gpWall[wallnum].nextsector;
+    stat |= gpSector[sectnum].ceilingstat;
+    if (nextsector != -1)
+    {
+        stat |= gpSector[nextsector].floorstat;
+        stat |= gpSector[nextsector].ceilingstat;
+    }
+
+    if (!(stat & 2))
+        ret = func_80022C30(sectnum, wallnum);
+    else
+        ret = func_80021464(sectnum, wallnum);
+
+    return ret;
+}
+
+/*80021464*/
 INCLUDE_ASM("nonmatchings/src/code0/21500", func_80021464);
 
+/*800226C0*/
 INCLUDE_ASM("nonmatchings/src/code0/21500", func_800226C0);
 
+/*80022C30*/
 INCLUDE_ASM("nonmatchings/src/code0/21500", func_80022C30);

@@ -35,14 +35,19 @@ void func_80023A10(void)
     gDPSetPrimDepth(gpDisplayList++, 0, 0);
 }
 
+/*80023C04*/
 INCLUDE_ASM("nonmatchings/src/code0/24610", func_80023C04);
 
+/*8002433C*/
 INCLUDE_ASM("nonmatchings/src/code0/24610", func_8002433C);
 
+/*80025C3C*/
 INCLUDE_ASM("nonmatchings/src/code0/24610", func_80025C3C);
 
+/*800273EC*/
 INCLUDE_ASM("nonmatchings/src/code0/24610", func_800273EC);
 
+/*80027C18*/
 INCLUDE_ASM("nonmatchings/src/code0/24610", func_80027C18);
 
 /*80028F04*/
@@ -93,4 +98,5 @@ void func_80029238(u8 arg0, u8 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5, u8 arg6
     gDPSetEnvColor(gpDisplayList++, arg3, arg4, arg5, arg6);
 }
 
+/*8002935C*/
 INCLUDE_ASM("nonmatchings/src/code0/24610", func_8002935C);

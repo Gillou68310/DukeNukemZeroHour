@@ -107,8 +107,10 @@ void func_8001DE5C(void)
         D_8012DF10[i].unk0 = 0;
 }
 
+/*8001DE9C*/
 INCLUDE_ASM("nonmatchings/src/code0/1E7A0", func_8001DE9C);
 
+/*8001EB2C*/
 INCLUDE_ASM("nonmatchings/src/code0/1E7A0", func_8001EB2C);
 
 /*8001F388*/

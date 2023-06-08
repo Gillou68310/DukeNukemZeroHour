@@ -343,6 +343,7 @@ void func_80095390(s16 playernum)
         D_8010A940[playernum].unk0 = -1;
 }
 
+/*8009542C*/
 INCLUDE_ASM("nonmatchings/src/code0/95500", func_8009542C);
 
 /*8009584C*/
@@ -441,6 +442,7 @@ void func_8009584C(s16 playernum)
     }
 }
 
+/*80095B20*/
 INCLUDE_ASM("nonmatchings/src/code0/95500", func_80095B20);
 
 /*80095F58*/
@@ -624,6 +626,7 @@ static void func_80096494(s32 spritenum, s32 arg1, s32 arg2)
     }
 }
 
+/*800965F8*/
 INCLUDE_ASM("nonmatchings/src/code0/95500", func_800965F8);
 
 /*8009A020*/
@@ -661,6 +664,7 @@ static s32 func_8009A020(s16 spritenum1, s16 spritenum2)
     return 0;
 }
 
+/*8009A1A0*/
 INCLUDE_ASM("nonmatchings/src/code0/95500", func_8009A1A0);
 
 /*8009A43C*/
@@ -747,6 +751,7 @@ void func_8009A9B8(void)
     D_8012FCAC = 120;
 }
 
+/*8009A9F0*/
 INCLUDE_ASM("nonmatchings/src/code0/95500", func_8009A9F0);
 
 /*8009B838*/
@@ -784,10 +789,13 @@ void func_8009B8A4(s32 spritenum)
     }
 }
 
+/*8009B974*/
 INCLUDE_ASM("nonmatchings/src/code0/95500", func_8009B974);
 
+/*8009BED0*/
 INCLUDE_ASM("nonmatchings/src/code0/95500", func_8009BED0);
 
+/*8009C248*/
 INCLUDE_ASM("nonmatchings/src/code0/95500", func_8009C248);
 
 /*8009E5B0*/
@@ -876,6 +884,7 @@ static void func_8009E734(s32 spritenum)
     }
 }
 
+/*8009E8C8*/
 INCLUDE_ASM("nonmatchings/src/code0/95500", func_8009E8C8);
 
 /*8009F648*/
@@ -901,6 +910,7 @@ static s32 func_8009F648(s32 spritenum)
     return -1;
 }
 
+/*8009F71C*/
 INCLUDE_ASM("nonmatchings/src/code0/95500", func_8009F71C);
 
 

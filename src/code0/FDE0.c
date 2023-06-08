@@ -49,6 +49,7 @@ void func_8000F3C4(s16 r1, s16 g1, s16 b1, s16 r2, s16 g2, s16 b2)
     gSPLightColor(gpDisplayList++, LIGHT_2, ((r2<<24)+(g2<<16)+(b2<<8)));
 }
 
+/*8000F474*/
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_8000F474);
 
 /*80011148*/
@@ -57,8 +58,10 @@ static f32 func_80011148(Vec4f vec1, Vec4f vec2)
     return (vec1[0] * vec2[0]) + (vec1[1] * vec2[1]) + (vec1[2] * vec2[2]) + vec1[3];
 }
 
+/*80011180*/
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_80011180);
 
+/*80011410*/
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_80011410);
 
 /*800115E0*/
@@ -104,8 +107,10 @@ void func_80011700(ModelInfo *model)
         func_800117A4(ramaddr1, ramaddr2, ramaddr3);
 }
 
+/*800117A4*/
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_800117A4);
 
+/*80011DA8*/
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_80011DA8);
 
 /*80012174*/
@@ -179,6 +184,7 @@ static void func_80012630(void)
     }
 }
 
+/*8001270C*/
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_8001270C);
 
 /*80013FFC*/
@@ -432,6 +438,7 @@ static void func_80014D4C(void)
         D_801ACC60--;
 }
 
+/*80014D6C*/
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_80014D6C);
 
 /*800152AC*/
@@ -453,6 +460,8 @@ static void func_800152AC(s32 spritenum1, s32 spritenum2, Matrix4f mf, s32 x, s3
     D_8013B2D0[spritenum1].unk0 = D_8013B2D0[spritenum2].unk0;
 }
 
+/*80015458*/
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_80015458);
 
+/*80015DE0*/
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_80015DE0);

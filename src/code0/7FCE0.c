@@ -127,6 +127,7 @@ static void func_8007F71C(void)
     gSPSetGeometryMode(gpDisplayList++, G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
 }
 
+/*8007F7E8*/
 INCLUDE_ASM("nonmatchings/src/code0/7FCE0", func_8007F7E8);
 
 /*8007FC08*/

@@ -30,8 +30,10 @@ void func_800867CC(s16 spritenum, s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2
 static void func_8006B384(s32 spritenum);
 static void func_8007963C(s32 spritenum, s32);
 
+/*8006A0A0*/
 INCLUDE_ASM("nonmatchings/src/code0/6ACA0", func_8006A0A0);
 
+/*8006AD70*/
 STATIC void func_8006AD70(s32);
 INCLUDE_ASM("nonmatchings/src/code0/6ACA0", func_8006AD70);
 
@@ -147,6 +149,7 @@ void func_8006B4E4(s16 arg0)
     }
 }
 
+/*8006B590*/
 void func_8006B590(s16);
 INCLUDE_ASM("nonmatchings/src/code0/6ACA0", func_8006B590);
 
@@ -271,6 +274,7 @@ static void func_8006CD38(s16 playernum)
     }
 }
 
+/*8006CDE0*/
 INCLUDE_ASM("nonmatchings/src/code0/6ACA0", func_8006CDE0);
 
 /*8006D0E4*/
@@ -338,6 +342,7 @@ static void func_8006D1F4(SpriteType *spr, s32 x, s32 y, s32 z, s32 arg4, s32 ar
     }
 }
 
+/*8006D3B8*/
 s32 func_8006D3B8(s32, s32, s32, s32, s32);
 INCLUDE_ASM("nonmatchings/src/code0/6ACA0", func_8006D3B8);
 
@@ -2030,6 +2035,7 @@ STATIC void func_8007675C(s32 spritenum)
         func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, D_8012C470, 0);
 }
 
+/*80076C14*/
 INCLUDE_ASM("nonmatchings/src/code0/6ACA0", func_80076C14);
 
 /*80077320*/

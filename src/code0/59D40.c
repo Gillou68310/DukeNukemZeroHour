@@ -130,6 +130,7 @@ void func_8005952C(s32 spritenum, s32 arg1)
     func_8004AB6C(spritenum, 1000, 25, 50, 75, 100, 0);
 }
 
+/*800595A8*/
 INCLUDE_ASM("nonmatchings/src/code0/59D40", func_800595A8);
 
 /*80059800*/
@@ -295,6 +296,7 @@ void func_80059E08(s32 spritenum, s32 arg1)
     func_80059EEC(spritenum, 1, 0x800);
 }
 
+/*80059EEC*/
 INCLUDE_ASM("nonmatchings/src/code0/59D40", func_80059EEC);
 
 /*8005A240*/
@@ -375,6 +377,7 @@ void func_8005A3AC(s32 spritenum, s32 arg1)
     setVar(spritenum, arg1, ang);
 }
 
+/*8005A4A4*/
 INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005A4A4);
 
 /*8005A800*/
@@ -925,6 +928,7 @@ void func_8005BD28(s32 spritenum, s32 arg1)
     }
 }
 
+/*8005BFD8*/
 INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005BFD8);
 
 /*8005C19C*/
@@ -1836,6 +1840,7 @@ void func_8005E770(s32 spritenum, s32 arg1)
     D_8013B2D0[spritenum].unk4 = D_800DF2E8;
 }
 
+/*8005E7AC*/
 INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005E7AC);
 
 /*8005E9D8*/
@@ -2099,6 +2104,7 @@ void func_8005F38C(s32 spritenum, s32 arg1)
     }
 }
 
+/*8005F560*/
 INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005F560);
 
 /*8005F6A8*/

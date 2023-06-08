@@ -374,6 +374,7 @@ void setCameraPosition(f32 xEye, f32 yEye, f32 zEye, f32 xAt, f32 yAt, f32 zAt, 
     gPosition.zUp = zUp;
 }
 
+/*801C127C*/
 STATIC void func_801C127C(void);
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C127C);
 
@@ -477,6 +478,7 @@ void func_801C15CC(void)
     D_801CD974 = 0;
 }
 
+/*801C1950*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C1950);
 
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBFA8);
@@ -485,8 +487,10 @@ INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBFC8);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBFDC);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBFF0);
 
+/*801C2BE8*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C2BE8);
 
+/*801C2F1C*/
 STATIC void func_801C2F1C(void);
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C2F1C);
 
@@ -591,6 +595,7 @@ static void func_801C3310(void)
     }
 }
 
+/*801C3370*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C3370);
 
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC020);
@@ -988,10 +993,13 @@ void func_801C3E08(void)
     main_80000610();
 }
 
+/*801C3E5C*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C3E5C);
 
+/*801C45C0*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C45C0);
 
+/*801C4B34*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C4B34);
 
 /*801C4E90*/
@@ -1155,6 +1163,7 @@ INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC578);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC588);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC594);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC59C);
+/*801C542C*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C542C);
 
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC5F0);
@@ -1171,8 +1180,10 @@ INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC66C);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC670);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC674);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC678);
+/*801C5C68*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C5C68);
 
+/*801C63CC*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C63CC);
 
 /*801C6560*/
@@ -1200,6 +1211,7 @@ void func_801C6560(void)
     D_800BD3E8 = 1;
 }
 
+/*801C66D8*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C66D8);
 
 /*801C6CA4*/
@@ -1464,6 +1476,7 @@ static void func_801C73A0(void)
     D_801CC8BC = 0;
 }
 
+/*801C73CC*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C73CC);
 
 /*801C7574*/
@@ -1485,6 +1498,7 @@ static void func_801C7574(void)
 
 extern const char *D_801CC6F8[]; /*TODO: mutualized rodata?*/
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC6F8);
+/*801C764C*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C764C);
 
 /*801C8650*/
@@ -1537,7 +1551,7 @@ static void func_801C8650(void)
     D_8010554C = 1;
 }
 
-
+/*801C899C*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C899C);
 
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC72C);
@@ -1556,8 +1570,10 @@ INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC7B4);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC7C0);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC7D0);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC7DC);
+/*801C8DE0*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C8DE0);
 
+/*801C8F54*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C8F54);
 
 /*801C90E4*/
@@ -1614,6 +1630,7 @@ static void func_801C90E4(void)
     ptr->unkFE4 = gTimeMachinePart;
 }
 
+/*801C936C*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C936C);
 
 /*801C948C*/
@@ -1692,6 +1709,7 @@ void func_801C97F8(void)
     D_800BD3F9 = 14;
 }
 
+/*801C9924*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C9924);
 
 /*801C9B08*/
@@ -1722,8 +1740,10 @@ void func_801C9B48(void)
     D_800DF98C = 0;
 }
 
+/*801C9C18*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C9C18);
 
+/*801C9D68*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C9D68);
 
 /*801C9E7C*/
@@ -1758,4 +1778,5 @@ static void func_801C9EDC(void)
     }
 }
 
+/*801C9F74*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C9F74);

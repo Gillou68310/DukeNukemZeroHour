@@ -126,6 +126,8 @@ void func_800171D0(code0unkStruct8 *arg0, code0unkStruct7 *arg1, s16 arg2)
     arg0->unk8 = arg1;
 }
 
+/*80017268*/
 INCLUDE_ASM("nonmatchings/src/code0/17B30", func_80017268);
 
+/*800195DC*/
 INCLUDE_ASM("nonmatchings/src/code0/17B30", func_800195DC);

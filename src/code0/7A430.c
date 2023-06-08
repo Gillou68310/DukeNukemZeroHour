@@ -139,6 +139,7 @@ static s16 func_80079D38(s16 playernum, s16 arg1)
     return j;
 }
 
+/*80079DE8*/
 INCLUDE_ASM("nonmatchings/src/code0/7A430", func_80079DE8);
 
 /*80079F24*/
@@ -148,6 +149,7 @@ static void func_80079F24(s16 playernum, s16 arg1)
         playSfx(D_800DF680[arg1][3]);
 }
 
+/*80079F60*/
 INCLUDE_ASM("nonmatchings/src/code0/7A430", func_80079F60);
 
 /*8007AC6C*/
@@ -170,6 +172,7 @@ void func_8007AC6C(s32 arg0, s32 arg1, s32 arg2)
         audio_800077F4(D_800DF680[arg0][2], arg1);
 }
 
+/*8007AD30*/
 INCLUDE_ASM("nonmatchings/src/code0/7A430", func_8007AD30);
 
 /*8007ADBC*/

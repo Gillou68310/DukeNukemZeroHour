@@ -375,7 +375,7 @@ static s16 _multiplier[21] = {
 /*.text*/
 static void audio_80006E60(void);
 static void audio_80006F08(void);
-STATIC musHandle audio_800075EC(u16 sfxnum, s16 spritenum, u8);
+static musHandle audio_800075EC(u16 sfxnum, s16 spritenum, u8);
 
 /*800065F0*/
 void dmaRomToRam(u8 *rom, u8 *ram, s32 size)
@@ -795,7 +795,42 @@ u8 audio_80007510(s32 x, s32 y)
 }
 
 /*800075EC*/
-INCLUDE_ASM("nonmatchings/src/code0/audio", audio_800075EC);
+static u32 audio_800075EC(u16 sfxnum, s16 spritenum, u8 restartflag)
+{
+    s32 pan;
+    s16 playernum;
+    u32 spritenum2;
+    s16 spritenum1;
+
+    if (gPlayer[0].unk52 >= 2048)
+    {
+        playernum = 0;
+        spritenum1 = gPlayer[0].unk52 & 0x7FF;
+        spritenum2 = func_80040D40(gpSprite[spritenum1].x, gpSprite[spritenum1].y,
+                                  gpSprite[spritenum].x, gpSprite[spritenum].y);
+    }
+    else
+    {
+        playernum = audio_80007510(gpSprite[spritenum].x, gpSprite[spritenum].y);
+        spritenum2 = D_8013871C;
+        spritenum1 = gPlayer[playernum].unk4A;
+    }
+
+    if ((spritenum2 < 512) || (D_801CE498.unk16 == 0))
+        pan = 128;
+    else
+    {
+        pan = (D_801A2790[playernum].unk16 -
+              getAngle(gpSprite[spritenum1].x - gpSprite[spritenum].x, gpSprite[spritenum1].y - gpSprite[spritenum].y));
+
+        pan &= 0x7FF;
+        if (pan >= 1024)
+            pan = -pan + 2048;
+
+        pan = pan >> 2;
+    }
+    return audio_8000730C(sfxnum, spritenum2, pan, restartflag);
+}
 
 /*800077F4*/
 musHandle audio_800077F4(u16 sfxnum, s16 spritenum)
@@ -810,7 +845,42 @@ musHandle audio_80007820(u16 sfxnum, s16 spritenum)
 }
 
 /*8000784C*/
-INCLUDE_ASM("nonmatchings/src/code0/audio", audio_8000784C);
+u32 audio_8000784C(u32 handle, s16 spritenum)
+{
+    s32 pan;
+    s16 playernum;
+    s32 spritenum2;
+    s16 spritenum1;
+
+    if (gPlayer[0].unk52 >= 2048)
+    {
+        playernum = 0;
+        spritenum1 = gPlayer[0].unk52 & 0x7FF;
+        spritenum2 = func_80040D40(gpSprite[spritenum1].x, gpSprite[spritenum1].y,
+                                  gpSprite[spritenum].x, gpSprite[spritenum].y);
+    }
+    else
+    {
+        playernum = audio_80007510(gpSprite[spritenum].x, gpSprite[spritenum].y);
+        spritenum2 = D_8013871C;
+        spritenum1 = gPlayer[playernum].unk4A;
+    }
+
+    if ((spritenum2 < 512) || (D_801CE498.unk16 == 0))
+        pan = 128;
+    else
+    {
+        pan = (D_801A2790[playernum].unk16 -
+              getAngle(gpSprite[spritenum1].x - gpSprite[spritenum].x, gpSprite[spritenum1].y - gpSprite[spritenum].y));
+
+        pan &= 0x7FF;
+        if (pan >= 1024)
+            pan = -pan + 2048;
+
+        pan = pan >> 2;
+    }
+    return audio_80007418(handle, spritenum2, pan);
+}
 
 /*80007A44*/
 musHandle audio_80007A44(u16 sfxnum, s16 spritenum, s32 arg2)

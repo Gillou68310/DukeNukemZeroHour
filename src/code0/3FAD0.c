@@ -81,8 +81,10 @@ static s16 func_8003F29C(void)
         return 0;
 }
 
+/*8003F340*/
 INCLUDE_ASM("nonmatchings/src/code0/3FAD0", func_8003F340);
 
+/*8003FD5C*/
 INCLUDE_ASM("nonmatchings/src/code0/3FAD0", func_8003FD5C);
 
 /*80040890*/

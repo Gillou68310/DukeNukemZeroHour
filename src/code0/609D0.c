@@ -41,8 +41,10 @@ static void func_8005FE84(s16 wallnum)
         gpWall[gpWall[wallnum].nextwall].cstat |= 0x1000;
 }
 
+/*8005FEE0*/
 INCLUDE_ASM("nonmatchings/src/code0/609D0", func_8005FEE0);
 
+/*80062300*/
 INCLUDE_ASM("nonmatchings/src/code0/609D0", func_80062300);
 
 /*80062688*/
@@ -130,4 +132,5 @@ static void func_80062888(void)
     }
 }
 
+/*80062950*/
 INCLUDE_ASM("nonmatchings/src/code0/609D0", func_80062950);

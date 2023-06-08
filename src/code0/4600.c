@@ -73,6 +73,7 @@ static f32 func_80003B00(f32 arg0, f32 arg1, f32 arg2, f32 arg3)
     return -func_80029FE0(arg3 - arg1, arg2 - arg0) + 4.712388980385;
 }
 
+/*80003B4C*/
 INCLUDE_ASM("nonmatchings/src/code0/4600", func_80003B4C);
 
 /*800042D8*/

@@ -58,6 +58,7 @@ void func_80086410(void)
     }
 }
 
+/*80086490*/
 STATIC void func_80086490(_87010UnkStruct1 *, s16, s16);
 INCLUDE_ASM("nonmatchings/src/code0/87010", func_80086490);
 
@@ -108,6 +109,7 @@ void func_800867CC(s16 spritenum, s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2
     }
 }
 
+/*80086A24*/
 INCLUDE_ASM("nonmatchings/src/code0/87010", func_80086A24);
 
 /*80087174*/
@@ -150,6 +152,7 @@ void func_80087174(s16 spritenum, s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2
     }
 }
 
+/*8008736C*/
 INCLUDE_ASM("nonmatchings/src/code0/87010", func_8008736C);
 
 /*800879E8*/

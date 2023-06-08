@@ -33,7 +33,7 @@ typedef struct
     /*0x14*/ s32 unk14; /*y?*/
     /*0x18*/ s32 unk18; /*z?*/
     /*0x1C*/ u8 unk1C;
-    /*0x1D*/ u8 unk1D;
+    /*0x1D*/ s8 unk1D;
 } _41940UnkStruct1;
 
 /*.data*/
@@ -167,8 +167,10 @@ s16 getAngleDelta(s16 currAngle, s16 newAngle)
     return newAngle-currAngle;
 }
 
+/*80040EF0*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80040EF0);
 
+/*800413CC*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_800413CC);
 
 /*800418B8*/
@@ -198,8 +200,10 @@ static void func_800418B8(s32 arg0)
     }
 }
 
+/*80041968*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80041968);
 
+/*80041D10*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80041D10);
 
 /*8004201C*/
@@ -394,6 +398,7 @@ STATIC s32 func_80042434(s32 spritenum)
     return 0;
 }
 
+/*80042598*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80042598);
 
 /*80042860*/
@@ -530,10 +535,13 @@ STATIC s32 func_80042C18(s32 spritenum)
     return 0;
 }
 
+/*80042C98*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80042C98);
 
+/*800433D4*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_800433D4);
 
+/*8004364C*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004364C);
 
 /*800437F4*/
@@ -866,6 +874,7 @@ STATIC s32 ifVarVarAE(s32 spritenum)
     return 0;
 }
 
+/*80044394*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80044394);
 
 /*80044854*/
@@ -936,6 +945,7 @@ STATIC s32 divVarVar(s32 spritenum)
     return 0;
 }
 
+/*80044B38*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80044B38);
 
 /*80044F9C*/
@@ -1637,6 +1647,7 @@ STATIC s32 func_80046494(s32 spritenum)
     return 0;
 }
 
+/*80046540*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80046540);
 
 /*80047710*/
@@ -1665,8 +1676,10 @@ static void func_80047710(void)
     }
 }
 
+/*80047820*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80047820);
 
+/*800494DC*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_800494DC);
 
 /*8004A4D4*/
@@ -1691,9 +1704,11 @@ static void func_8004A4D4(SpriteType *spr, s32 arg1, s32 arg2)
     }
 }
 
+/*8004A590*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004A590);
 
 INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5618);
+/*8004AB6C*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004AB6C);
 
 
@@ -2134,8 +2149,10 @@ s32 func_8004BE90(void)
     }
 }
 
+/*8004BFDC*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004BFDC);
 
+/*8004CB3C*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004CB3C);
 
 /*8004CC90*/
@@ -2176,8 +2193,10 @@ s32 ldist(SpriteType *s1, SpriteType *s2)
 }
 
 INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E58F4);
+/*8004CE58*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004CE58);
 
+/*8004D304*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004D304);
 
 /*8004D65C*/
@@ -2270,12 +2289,16 @@ s32 func_8004D7D8(s32 spritenum)
     return ret;
 }
 
+/*8004D884*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004D884);
 
+/*8004DC74*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004DC74);
 
+/*8004DE60*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004DE60);
 
+/*8004E5F8*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004E5F8);
 
 /*8004E7F0*/
@@ -2300,19 +2323,17 @@ s32 func_8004E7F0(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4,
     return ret;
 }
 
-#ifdef NON_MATCHING
-STATIC void func_8004E8BC(void)
+/*8004E8BC*/
+static void func_8004E8BC(void)
 {
-    _41940UnkStruct1 *ptr;
     s32 i;
 
-    ptr = D_801ACC70;
-    i = 0;
-    do
+    for (i = 0; i < ARRAY_COUNT(D_801ACC70); i++)
     {
-        if (ptr->unk0 != 0)
+
+        if (D_801ACC70[i].unk0 != 0)
         {
-            func_800867CC(ptr->unk0,
+            func_800867CC(D_801ACC70[i].unk0,
                           D_801ACC70[i].unk10,
                           D_801ACC70[i].unk14,
                           D_801ACC70[i].unk18,
@@ -2322,17 +2343,11 @@ STATIC void func_8004E8BC(void)
                           D_801ACC70[i].unk1D,
                           D_801ACC70[i].unk1C);
         }
-        if (ptr->unk2-- == 0)
-            ptr->unk0 = 0;
 
-        ptr++;
-        i++;
-    } while ((intptr_t)ptr < (intptr_t)&D_801ACC70[32]);
+        if (D_801ACC70[i].unk2-- == 0)
+            D_801ACC70[i].unk0 = 0;
+    }
 }
-#else
-/*8004E8BC*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004E8BC);
-#endif
 
 /*8004E9B4*/
 static void func_8004E9B4(s32 spritenum)
@@ -2469,6 +2484,7 @@ s32 func_8004EFB4(s32 spritenum)
     return 0;
 }
 
+/*8004F044*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004F044);
 
 /*8004F284*/
@@ -2929,14 +2945,19 @@ INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5A54);
 INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5A60);
 INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5A6C);
 
+/*800504F4*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_800504F4);
 
+/*8005087C*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8005087C);
 
+/*80050C14*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80050C14);
 
+/*80050E40*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80050E40);
 
+/*80051088*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80051088);
 
 /*80051330*/
@@ -3118,8 +3139,10 @@ static void func_80051808(s16 spritenum)
     }
 }
 
+/*800519AC*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_800519AC);
 
+/*80052358*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80052358);
 
 /*800524BC*/
@@ -3154,11 +3177,14 @@ static void func_800524BC(s16 playernum, s16 arg1, s16 arg2)
     }
 }
 
+/*8005259C*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8005259C);
 
+/*80052AB0*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80052AB0);
 
 INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5CDC);
+/*800533C4*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_800533C4);
 
 /*80053650*/
@@ -3262,6 +3288,7 @@ static code0UnkStruct3 *func_80053900(s32 spritenum)
     return &D_8019B940[D_80106D50[spritenum]];
 }
 
+/*800539A8*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_800539A8);
 
 /*80055DDC*/
@@ -3283,10 +3310,13 @@ static void func_80055DDC(s32 spritenum)
         changeSpriteStat(spritenum, 1);
 }
 
+/*80055EC0*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80055EC0);
 
+/*800563D4*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_800563D4);
 
+/*80056600*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80056600);
 
 /*80056A54*/
@@ -3322,6 +3352,7 @@ void func_80056A54(s16 spritenum)
     }
 }
 
+/*80056C00*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80056C00);
 
 /*8005731C*/
@@ -3363,8 +3394,10 @@ void func_800574A4(s32 spritenum)
     }
 }
 
+/*80057540*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80057540);
 
+/*80057E7C*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80057E7C);
 
 /*80058468*/
@@ -3646,5 +3679,6 @@ void func_80058E44(s32 spritenum)
     audio_800077F4(538, spritenum);
 }
 #else
+/*80058E44*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80058E44);
 #endif

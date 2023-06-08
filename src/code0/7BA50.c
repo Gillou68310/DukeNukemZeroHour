@@ -156,8 +156,11 @@ static s16 func_8007B5D8(s32 arg0, s16 arg1)
     return -1;
 }
 
+/*8007B64C*/
 INCLUDE_ASM("nonmatchings/src/code0/7BA50", func_8007B64C);
 
+/*8007B930*/
 INCLUDE_ASM("nonmatchings/src/code0/7BA50", func_8007B930);
 
+/*8007BE80*/
 INCLUDE_ASM("nonmatchings/src/code0/7BA50", func_8007BE80);

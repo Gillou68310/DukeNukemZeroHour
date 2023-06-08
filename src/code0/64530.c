@@ -38,9 +38,11 @@ static void func_80063930(s32 sectnum)
     }
 }
 
+/*80063A40*/
 STATIC void func_80063A40(s16, s16);
 INCLUDE_ASM("nonmatchings/src/code0/64530", func_80063A40);
 
+/*800642CC*/
 STATIC void func_800642CC(s16, s16);
 INCLUDE_ASM("nonmatchings/src/code0/64530", func_800642CC);
 
@@ -143,6 +145,7 @@ void func_80064DE0(SectorType *sec, u8 arg1, u8 arg2)
     }
 }
 
+/*80064E78*/
 INCLUDE_ASM("nonmatchings/src/code0/64530", func_80064E78);
 
 /*80068D74*/
@@ -180,8 +183,10 @@ void func_80068E0C(s16 sectnum)
 }
 
 INCLUDE_RODATA("nonmatchings/src/code0/64530", D_800E8954);
+/*80068E9C*/
 INCLUDE_ASM("nonmatchings/src/code0/64530", func_80068E9C);
 
+/*80069160*/
 INCLUDE_ASM("nonmatchings/src/code0/64530", func_80069160);
 
 /*800697D8*/
@@ -211,6 +216,7 @@ static void func_800697D8(s16 playernum, s16 arg1, s16 arg2)
         func_8003671C(playernum, arg1, -1, -1);
 }
 
+/*800698E8*/
 INCLUDE_ASM("nonmatchings/src/code0/64530", func_800698E8);
 
 /*80069E50*/

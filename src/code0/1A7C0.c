@@ -34,10 +34,13 @@ STATIC void func_8001A8EC(s16, s16, s32 tileid, s16, u8);
 static void func_8001BFB0(code0unkStruct12 *);
 static void func_8001C490(s16);
 
+/*80019BC0*/
 INCLUDE_ASM("nonmatchings/src/code0/1A7C0", func_80019BC0);
 
+/*8001A1A4*/
 INCLUDE_ASM("nonmatchings/src/code0/1A7C0", func_8001A1A4);
 
+/*8001A8EC*/
 INCLUDE_ASM("nonmatchings/src/code0/1A7C0", func_8001A8EC);
 
 /*8001AAEC*/
@@ -182,6 +185,7 @@ static void func_8001B0E0(s32 x, s32 y, s32 z, f32 *fx, f32 *fy)
     *fy = fy_;
 }
 
+/*8001B2D0*/
 INCLUDE_ASM("nonmatchings/src/code0/1A7C0", func_8001B2D0);
 
 /*8001B740*/
@@ -864,4 +868,5 @@ void func_8001D128(s32 *x, s32 *y)
     *y = y_;
 }
 
+/*8001D238*/
 INCLUDE_ASM("nonmatchings/src/code0/1A7C0", func_8001D238);

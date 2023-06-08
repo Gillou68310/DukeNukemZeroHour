@@ -50,6 +50,8 @@
 /*801385F2*/ u16 D_801385F2; /*perspNorm*/
 /*801385F4*/ s16 D_801385F4;
 /*80138694*/ s16 D_80138694;
+/*80138798*/ s16 D_80138798[5][4] ALIGNED(8); /*MAXPLAYERS?*/
+/*8013F930*/ s16 D_8013F930[MAXPLAYERS][4] ALIGNED(8);
 /*80169580*/ u8 D_80169580[TILENUM] ALIGNED(16);
 /*80199118*/ s16 D_80199118;
 /*80199554*/ s32 D_80199554;
@@ -70,7 +72,7 @@ STATIC void decompressMap(void);
 STATIC void func_80009A14(u8);
 static void func_8000A938(u16 wallnum);
 STATIC void func_8000AEE0(u16 wallnum);
-STATIC void func_8000B9C0(s16 tileid);
+static void func_8000B9C0(s16 tileid);
 STATIC void func_8000CC54(s32 wallnum);
 STATIC void func_8000EBF0(u8, u8);
 
@@ -141,6 +143,7 @@ void loadMap(s32 mapnum)
 }
 
 #ifdef NON_MATCHING
+/*80008B88*/
 STATIC void decompressMap(void)
 {
     s32 i;
@@ -276,6 +279,7 @@ s32 func_8000921C(void)
     return ret;
 }
 
+/*80009314*/
 INCLUDE_ASM("nonmatchings/src/code0/9410", func_80009314);
 
 /*80009998*/
@@ -295,6 +299,7 @@ static u8 func_800099D0(void)
     return gDisplayListRemainingSize < 2048;
 }
 
+/*80009A14*/
 INCLUDE_ASM("nonmatchings/src/code0/9410", func_80009A14);
 
 /*8000A070*/
@@ -318,6 +323,7 @@ static void func_8000A174(s32 arg0, s32 arg1)
     (void)arg1;
 }
 
+/*8000A184*/
 INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000A184);
 
 /*8000A634*/
@@ -423,6 +429,7 @@ static void func_8000A938(u16 wallnum)
     D_80197DD4 -= 4;
 };
 
+/*8000AEE0*/
 INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000AEE0);
 
 /*8000B570*/
@@ -489,33 +496,31 @@ void func_8000B830(s16 arg0)
     }
 }
 
-#ifdef NON_MATCHING
-STATIC void func_8000B9C0(s16 tileid)
+/*8000B9C0*/
+static void func_8000B9C0(s16 tileid)
 {
-    s16 tilenum;
+    s16 tileid_;
 
     if (D_801CDBCC != 0)
         tileid = 5948;
 
+    tileid_ = tileid;
     if (D_8012DEFC == tileid)
         return;
 
-    tilenum = getTileNum(tileid);
-    if (gpTileInfo[tilenum].picanm&192)
-        tilenum += animateOffs(tileid, 0);
+    tileid = getTileNum(tileid);
+    if (gpTileInfo[tileid].picanm & 0xC0)
+        tileid += animateOffs(tileid_, 0);
 
-    gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(tilenum));
-    gDPLoadTextureBlock_4b(gpDisplayList++, loadTile(tilenum)+32, G_IM_FMT_CI,
-                           gpTileInfo[tilenum].dimx, gpTileInfo[tilenum].dimy, 0, 0, 0,
-                           tileMasks(tilenum), tileMaskt(tilenum), 0, 0);
+    gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(tileid));
+    gDPLoadTextureBlock_4b(gpDisplayList++, loadTile(tileid)+32, G_IM_FMT_CI,
+                           gpTileInfo[tileid].dimx, gpTileInfo[tileid].dimy, 0, 0, 0,
+                           tileMasks(tileid), tileMaskt(tileid), 0, 0);
 
-    D_8012DEFC = tileid;
+    D_8012DEFC = tileid_;
     D_801AC9EC++;
 }
-#else
-/*8000B9C0*/
-INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000B9C0);
-#endif
+
 
 /*8000BDB0*/
 void func_8000BDB0(s16 tileid)
@@ -667,6 +672,7 @@ static void drawFloorCeiling(void)
     }
 }
 
+/*8000CC54*/
 INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000CC54);
 
 #define VERTEX2N64(N64, VTX, Z) \
@@ -769,8 +775,24 @@ static void ceilingVtxToN64(s32 sectnum)
     D_80199554 = D_801385F4;
 }
 
-INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000DBDC);
+/*8000DBDC*/
+void func_8000DBDC(u8 arg0, s16 arg1)
+{
+    D_8016A148 = (arg1 * gpGlobalPalette[arg0].r) >> 8;
+    D_800FE410 = (arg1 * gpGlobalPalette[arg0].g) >> 8;
+    D_80138680 = (arg1 * gpGlobalPalette[arg0].b) >> 8;
 
+    if (D_8010A940[D_801B0820].unk7 != 0)
+    {
+        D_800FE410 = MAX(D_800FE410, D_8016A148);
+        D_800FE410 = MAX(D_800FE410, D_80138680);
+        D_8016A148 = 0;
+        D_800FE410 = CLAMP_MAX((D_800FE410 + 32) * 2, 255);
+        D_80138680 = 0;
+    }
+}
+
+/*8000DCF0*/
 INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000DCF0);
 
 /*8000E024*/
@@ -1005,12 +1027,38 @@ static void func_8000E56C(void)
     grMtxCatF(viewing, projection, D_8012B948);
 }
 
-INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000EA0C);
+/*8000EA0C*/
+void func_8000EA0C(u8 playernum, s16 arg1, s16 arg2, s16 arg3, s16 arg4)
+{
+    D_80138798[playernum][0] = CLAMP_MIN(CLAMP_MAX(D_80138798[playernum][0] + arg1, 255), 0);
+    D_80138798[playernum][1] = CLAMP_MIN(CLAMP_MAX(D_80138798[playernum][1] + arg2, 255), 0);
+    D_80138798[playernum][2] = CLAMP_MIN(CLAMP_MAX(D_80138798[playernum][2] + arg3, 255), 0);
+    D_80138798[playernum][3] = CLAMP_MIN(D_80138798[playernum][3] + arg4, 0);
+}
 
-INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000EB4C);
+/*8000EB4C*/
+void func_8000EB4C(u8 playernum, s16 arg1, s16 arg2, s16 arg3, s16 arg4)
+{
+    D_80138798[playernum][0] = arg1;
+    D_80138798[playernum][1] = arg2;
+    D_80138798[playernum][2] = arg3;
+    D_80138798[playernum][3] = arg4;
+}
 
-INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000EB90);
+/*8000EB90*/
+void func_8000EB90(u8 playernum, s16 arg1, s16 arg2, s16 arg3, s16 arg4)
+{
+    D_8013F930[playernum][0] = arg1;
+    D_8013F930[playernum][1] = arg2;
+    D_8013F930[playernum][2] = arg3;
+    D_8013F930[playernum][3] = arg4;
+}
 
-INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000EBD4);
+/*8000EBD4*/
+s16 func_8000EBD4(u8 playernum)
+{
+    return D_80138798[playernum][3];
+}
 
+/*8000EBF0*/
 INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000EBF0);

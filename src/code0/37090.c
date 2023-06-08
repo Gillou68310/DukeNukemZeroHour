@@ -56,6 +56,7 @@ void func_800365C0(s16 playernum)
     }
 }
 
+/*8003671C*/
 INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003671C);
 
 /*80036FEC*/
@@ -223,6 +224,7 @@ s32 func_800377E8(void)
         return 20;
 }
 
+/*80037B84*/
 INCLUDE_ASM("nonmatchings/src/code0/37090", func_80037B84);
 
 /*800390F0*/
@@ -324,8 +326,10 @@ static void func_80039344(void)
     }
 }
 
+/*80039774*/
 INCLUDE_ASM("nonmatchings/src/code0/37090", func_80039774);
 
+/*8003A910*/
 INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003A910);
 
 /*8003AFD0*/
@@ -350,15 +354,20 @@ static void func_8003B04C(s16 playernum)
     D_800DEED0[playernum] = 0;
 }
 
+/*8003B0E4*/
 INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003B0E4);
 
+/*8003B31C*/
 INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003B31C);
 
+/*8003B428*/
 INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003B428);
 
+/*8003B5F8*/
 STATIC void func_8003B5F8(void);
 INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003B5F8);
 
+/*8003DACC*/
 INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003DACC);
 
 /*8003DD54*/
@@ -368,6 +377,8 @@ void func_8003DD54(void)
         func_8003B5F8();
 }
 
+/*8003DDB8*/
 INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003DDB8);
 
+/*8003E8D0*/
 INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003E8D0);

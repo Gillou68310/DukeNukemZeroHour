@@ -37,8 +37,10 @@ static void func_8001F890(Vp *arg0)
     D_801A2684 = (arg0->vp.vtrans[1] / 4);
 }
 
+/*8001F928*/
 INCLUDE_ASM("nonmatchings/src/code0/20490", func_8001F928);
 
+/*8001FD60*/
 INCLUDE_ASM("nonmatchings/src/code0/20490", func_8001FD60);
 
 /*80020350*/

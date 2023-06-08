@@ -73,8 +73,10 @@ static void func_8008196C(s32 *arg0)
     arg0[2] = (s8)(f4 * f1);
 }
 
+/*80081AEC*/
 INCLUDE_ASM("nonmatchings/src/code0/82480", func_80081AEC);
 
+/*80081E20*/
 INCLUDE_ASM("nonmatchings/src/code0/82480", func_80081E20);
 
 /*80082290*/
@@ -114,6 +116,7 @@ void func_80082410(Mtx *m, f32 arg1, f32 arg2, f32 arg3)
     guMtxF2L(mf, m);
 }
 
+/*80082448*/
 INCLUDE_ASM("nonmatchings/src/code0/82480", func_80082448);
 
 /*80082920*/
@@ -177,6 +180,7 @@ static void func_80082B44(_82480UnkStruct1 *arg0, f32 arg1, f32 arg2, f32 arg3)
     arg0->unk8 += arg3;
 }
 
+/*80082BA0*/
 INCLUDE_ASM("nonmatchings/src/code0/82480", func_80082BA0);
 
 /*800831D8*/
@@ -185,8 +189,10 @@ void func_800831D8(void *arg0, s32 arg1)
     alloCache(arg0, arg1 + 16, &gCacheLock[1]);
 }
 
+/*80083200*/
 INCLUDE_ASM("nonmatchings/src/code0/82480", func_80083200);
 
+/*80083430*/
 STATIC void func_80083430(s32 arg0, _119280UnkStruct1 *arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6);
 INCLUDE_ASM("nonmatchings/src/code0/82480", func_80083430);
 

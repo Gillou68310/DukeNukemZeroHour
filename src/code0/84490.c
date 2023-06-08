@@ -63,6 +63,7 @@ s32 swap16(u8 *arg0)
     return byte[1] | (byte[0] << 8);
 }
 
+/*80083908*/
 INCLUDE_ASM("nonmatchings/src/code0/84490", func_80083908);
 
 /*80083BF4*/
@@ -74,6 +75,7 @@ static void func_80083BF4(code0UnkStruct18 *arg0, s32 arg1, code0UnkStruct18 *ar
         arg2[i] = arg0[i];
 }
 
+/*80083C40*/
 STATIC void func_80083C40(void);
 INCLUDE_ASM("nonmatchings/src/code0/84490", func_80083C40);
 
@@ -85,9 +87,11 @@ static void func_800847F8(void)
     D_8011815C = 0;
 }
 
+/*8008482C*/
 STATIC void func_8008482C(void);
 INCLUDE_ASM("nonmatchings/src/code0/84490", func_8008482C);
 
+/*80085128*/
 STATIC void func_80085128(void);
 INCLUDE_ASM("nonmatchings/src/code0/84490", func_80085128);
 
