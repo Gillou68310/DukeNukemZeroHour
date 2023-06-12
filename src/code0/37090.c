@@ -3,11 +3,17 @@
 #include "code0/engine.h"
 #include "code0/pragmas.h"
 #include "code0/audio.h"
+#include "code0/9410.h"
 #include "code0/41940.h"
+#include "code0/7A430.h"
 #include "code0/code0.h"
 
 /*.data*/
+/*800DEDD0*/ EXTERN_DATA STATIC u8 D_800DEDD0[MAXPLAYERS];
 /*800DEDE0*/ EXTERN_DATA u8 D_800DEDE0;
+
+/*.comm*/
+/*8011BC44*/ code0UnkStruct3 *D_8011BC44;
 
 /*.text*/
 
@@ -290,7 +296,7 @@ static void func_80039344(void)
         temp = (32 - i2) * 16384;
         i1 += temp * 3;
 
-        if (D_8010A940[D_801B0820].unk4 && D_800DEE80 == -1)
+        if (D_8010A940[D_801B0820].unk2[2] && D_800DEE80 == -1)
             i1 *= 2;
 
         if (gPlayer[D_801B0820].unk54 != 0)
@@ -355,20 +361,128 @@ static void func_8003B04C(s16 playernum)
 }
 
 /*8003B0E4*/
-INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003B0E4);
+static void func_8003B0E4(s16 playernum)
+{
+    D_8012F914[playernum] = -1;
+
+    if (func_8003779C(0) != 0)
+    {
+        if (D_800DEDD0[playernum] == 0)
+        {
+            switch (gPlayer[playernum].unk6C)
+            {
+            case 2:
+                gPlayer[playernum].unk6C = 4;
+                break;
+
+            case 4:
+                gPlayer[playernum].unk6C = 8;
+                break;
+
+            case 8:
+                gPlayer[playernum].unk6C = 2;
+                break;
+            }
+            D_800DEDD0[playernum] = 1;
+
+            if (gPlayer[playernum].unk6C == 2)
+                playSfx2(873, 128, 128, 1, -1);
+            else
+                playSfx2(1036, 128, 128, 1, -1);
+        }
+    }
+    else
+        D_800DEDD0[playernum] = 0;
+
+    if (gPlayer[playernum].unk6E < (gPlayer[playernum].unk6C << 8))
+        gPlayer[playernum].unk6E = MIN((gPlayer[playernum].unk6C << 8), (gPlayer[playernum].unk6E * 1.1));
+    else
+        gPlayer[playernum].unk6E = MAX((gPlayer[playernum].unk6C << 8), (gPlayer[playernum].unk6E / 1.1));
+}
 
 /*8003B31C*/
-INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003B31C);
+s16 func_8003B31C(s16 playernum, s16 arg1)
+{
+    s16 i;
+
+    i = D_8010A940[playernum].unk0;
+    for (i = (i + arg1) % 8; D_8010A940[playernum].unkA[i] == 0; i = (i + arg1) % 8)
+    {
+        if (i == D_8010A940[playernum].unk0)
+            break;
+    }
+
+    if (D_8010A940[playernum].unkA[i] == 0)
+        i = -1;
+
+    return i;
+
+}
 
 /*8003B428*/
-INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003B428);
+static void func_8003B428(s16 arg0)
+{
+    D_80199970[D_801B0820] = 0;
+    if (arg0 < 0)
+        arg0 += 24;
+
+    D_8011BC44->unk99 = (D_8011BC44->unk99 + arg0) % 24;
+    if ((D_8011BC44->unk99 == 19) || (D_8011BC44->unk99 == 11))
+        D_8011BC44->unk99 = (D_8011BC44->unk99 + arg0) % 24;
+
+    while (!(func_80079DE8(D_801B0820, D_8011BC44->unk99)))
+    {
+        D_8011BC44->unk99 = (D_8011BC44->unk99 + arg0) % 24;
+        if ((D_8011BC44->unk99 == 19) || (D_8011BC44->unk99 == 11))
+            D_8011BC44->unk99 = (D_8011BC44->unk99 + arg0) % 24;
+    }
+}
 
 /*8003B5F8*/
 STATIC void func_8003B5F8(void);
 INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003B5F8);
 
 /*8003DACC*/
-INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003DACC);
+void func_8003DACC(void)
+{
+    f32 f1;
+    s32 i;
+
+    D_801AEA10 = (D_801A2790[D_801B0820].unk16 + D_801A2790[D_801B0820].unk1C) * 0.0030679615757714844;
+    D_801AC8E0 = (D_801A2790[D_801B0820].unk1A * 0.0030679615757714844);
+    if (D_801A2790[D_801B0820].unk14 != 0)
+    {
+        if (gPlayer[D_801B0820].unk82 != 0)
+        {
+            f1 = ((gpSinTable[D_801A2790[D_801B0820].unk14] * 0.3) / 16384.0);
+            if (gPlayer[D_801B0820].unk82 < 0x1E)
+                f1 = (f1 * gPlayer[D_801B0820].unk82) / 30.0f;
+
+            D_801AC8E0 = D_801AC8E0 + f1;
+        }
+        else
+        {
+            D_801AC8E0 += (((gpSinTable[D_801A2790[D_801B0820].unk14] * 0.03) / 16384.0));
+        }
+    }
+
+    i = D_801A2790[D_801B0820].unk18;
+    if (i > 0x400)
+        i -= 0x800;
+
+    i = i + D_801A2790[D_801B0820].unk1E;
+    if (i > 0x400)
+        i -= 0x800;
+
+    D_801A6D84 = D_801A2790[D_801B0820].unk0;
+    D_800FE3F0 = D_801A2790[D_801B0820].unk4;
+    D_80199640 = D_801A2790[D_801B0820].unk8;
+    D_8012F6F4 = gPlayer[D_801B0820].unk68;
+    D_8016A15C = i * 0.0030679615757714844;
+    gMapXpos = (D_801A6D84 / 2);
+    gMapYpos = ((D_800FE3F0 /2));
+    gMapZpos = D_80199640 / 32;
+}
 
 /*8003DD54*/
 void func_8003DD54(void)

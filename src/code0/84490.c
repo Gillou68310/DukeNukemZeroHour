@@ -26,11 +26,12 @@
 /*80119AA0*/ s32 D_80119AA0;
 /*80129800*/ s32 D_80129800;
 /*8012B940*/ s32 D_8012B940;
+/*8012EB68*/ s32 D_8012EB68[31][7] ALIGNED(8);
 /*8012F6EC*/ s32 D_8012F6EC;
 /*8012F6F8*/ Gfx *D_8012F6F8;
 /*801385F8*/ Gfx *D_801385F8;
 /*80138810*/ s32 D_80138810;
-/*8013F924*/ code0UnkStruct21 *D_8013F924;
+/*8013F924*/ Vtx *D_8013F924;
 /*8016A170*/ code0UnkStruct18 D_8016A170[2048] ALIGNED(16);
 /*80197DD0*/ s32 D_80197DD0;
 /*80199108*/ u8 D_80199108;
@@ -64,7 +65,60 @@ s32 swap16(u8 *arg0)
 }
 
 /*80083908*/
-INCLUDE_ASM("nonmatchings/src/code0/84490", func_80083908);
+static void func_80083908(s32 arg0)
+{
+    if ((D_8012EB68[arg0][0] & 0x40000000) != D_800E0F48)
+    {
+        D_800E0F48 = D_8012EB68[arg0][0] & 0x40000000;
+        if (D_8012EB68[arg0][0] & 0x40000000)
+        {
+            gSPSetGeometryMode(D_8012F6F8++, G_TEXTURE_GEN);
+            D_801ACBD4 = D_8012F6F8;
+            gSPTexture(D_8012F6F8++, 0x05BC, 0x05BC, 0, G_TX_RENDERTILE, G_ON);
+        }
+        else
+        {
+            gSPClearGeometryMode(D_8012F6F8++, G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR);
+            gSPTexture(D_8012F6F8++, 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON);
+        }
+        gSPVertex(D_8012F6F8++, (Vtx *)&D_8013F924[D_800FE3F4], D_8012F6EC, 0);
+    }
+
+    if ((D_8012EB68[arg0][0] & 0x10000000) != D_800E0F44)
+    {
+        D_800E0F44 = (D_8012EB68[arg0][0] & 0x10000000);
+        if (D_8012EB68[arg0][0] & 0x10000000)
+        {
+            gDPSetTextureLUT(D_8012F6F8++, G_TT_NONE);
+            gDPSetRenderMode(D_8012F6F8++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
+            gDPSetCombineLERP(D_8012F6F8++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0,
+                               PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0);
+            return;
+        }
+        else
+        {
+            gDPSetCombineMode(D_8012F6F8++, G_CC_MODULATEIA, G_CC_MODULATEIA);
+            gDPSetTextureLUT(D_8012F6F8++, G_TT_RGBA16);
+        }
+    }
+    if ((D_8012EB68[arg0][0] & 4) != D_800E0F4C)
+    {
+        D_800E0F4C = D_8012EB68[arg0][0] & 4;
+        if (D_8012EB68[arg0][0] & 4)
+        {
+            if (D_800E0F58 != 0)
+            {
+                gDPSetRenderMode(D_8012F6F8++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
+            }
+            else
+            {
+                gDPSetRenderMode(D_8012F6F8++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
+            }
+        }
+        else
+            gDPSetRenderMode(D_8012F6F8++, D_800E0F50, D_800E0F54);
+    }
+}
 
 /*80083BF4*/
 static void func_80083BF4(code0UnkStruct18 *arg0, s32 arg1, code0UnkStruct18 *arg2, s32 arg3)
@@ -99,23 +153,23 @@ INCLUDE_ASM("nonmatchings/src/code0/84490", func_80085128);
 static void func_80085CDC(void)
 {
     code0UnkStruct18 *ptr;
-    code0UnkStruct21 *ptr2;
+    Vtx *ptr2;
 
     ptr = &D_8016A170[D_80118168.unk1C];
     ptr2 = &D_8013F924[D_80168D18];
-    ptr2->unk0 = -ptr->unk0;
-    ptr2->unk2 = ptr->unk2;
-    ptr2->unk4 = ptr->unk4;
+    ptr2->v.ob[0] = -ptr->unk0;
+    ptr2->v.ob[1] = ptr->unk2;
+    ptr2->v.ob[2] = ptr->unk4;
     ptr = &D_8016A170[D_80118168.unk1A];
     ptr2++;
-    ptr2->unk0 = -ptr->unk0;
-    ptr2->unk2 = ptr->unk2;
-    ptr2->unk4 = ptr->unk4;
+    ptr2->v.ob[0] = -ptr->unk0;
+    ptr2->v.ob[1] = ptr->unk2;
+    ptr2->v.ob[2] = ptr->unk4;
     ptr = &D_8016A170[D_80118168.unk18];
     ptr2++;
-    ptr2->unk0 = -ptr->unk0;
-    ptr2->unk2 = ptr->unk2;
-    ptr2->unk4 = ptr->unk4;
+    ptr2->v.ob[0] = -ptr->unk0;
+    ptr2->v.ob[1] = ptr->unk2;
+    ptr2->v.ob[2] = ptr->unk4;
     D_80168D18 += 3;
 }
 
@@ -123,33 +177,33 @@ static void func_80085CDC(void)
 static void func_80085DB0(void)
 {
     code0UnkStruct18 *ptr;
-    code0UnkStruct21 *ptr2;
+    Vtx *ptr2;
 
     ptr = &D_8016A170[D_80118168.unk1E];
     ptr2 = &D_8013F924[D_80168D18];
-    ptr2->unk0 = -ptr->unk0;
-    ptr2->unk2 = ptr->unk2;
-    ptr2->unk4 = ptr->unk4;
+    ptr2->v.ob[0] = -ptr->unk0;
+    ptr2->v.ob[1] = ptr->unk2;
+    ptr2->v.ob[2] = ptr->unk4;
     ptr = &D_8016A170[D_80118168.unk1C];
     ptr2++;
-    ptr2->unk0 = -ptr->unk0;
-    ptr2->unk2 = ptr->unk2;
-    ptr2->unk4 = ptr->unk4;
+    ptr2->v.ob[0] = -ptr->unk0;
+    ptr2->v.ob[1] = ptr->unk2;
+    ptr2->v.ob[2] = ptr->unk4;
     ptr = &D_8016A170[D_80118168.unk1A];
     ptr2++;
-    ptr2->unk0 = -ptr->unk0;
-    ptr2->unk2 = ptr->unk2;
-    ptr2->unk4 = ptr->unk4;
+    ptr2->v.ob[0] = -ptr->unk0;
+    ptr2->v.ob[1] = ptr->unk2;
+    ptr2->v.ob[2] = ptr->unk4;
     ptr = &D_8016A170[D_80118168.unk18];
     ptr2++;
-    ptr2->unk0 = -ptr->unk0;
-    ptr2->unk2 = ptr->unk2;
-    ptr2->unk4 = ptr->unk4;
+    ptr2->v.ob[0] = -ptr->unk0;
+    ptr2->v.ob[1] = ptr->unk2;
+    ptr2->v.ob[2] = ptr->unk4;
     D_80168D18 += 4;
 }
 
 /*80085EBC*/
-void func_80085EBC(code0UnkStruct21 *arg0, s32 arg1, Gfx **arg2, s32 arg3, s32 arg4)
+void func_80085EBC(Vtx *arg0, s32 arg1, Gfx **arg2, s32 arg3, s32 arg4)
 {
     Gfx *dlist;
 
@@ -243,7 +297,7 @@ static void func_80086100(s32 arg0)
 }
 
 /*800861F4*/
-void func_800861F4(code0UnkStruct20 *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, s32 arg6, code0UnkStruct21 *arg7, s32 arg8, Gfx *arg9, s32 argA)
+void func_800861F4(code0UnkStruct20 *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, s32 arg6, Vtx *arg7, s32 arg8, Gfx *arg9, s32 argA)
 {
     code0UnkStruct16 sp20;
     Gfx *dlist;

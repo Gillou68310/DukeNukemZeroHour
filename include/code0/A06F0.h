@@ -5,7 +5,7 @@
 
 void func_8009FAF0(void);
 void func_800A0E74(void);
-void func_800A419C(s32, char *);
+void func_800A419C(s16, char *);
 void func_800A4478(void);
 
 #endif

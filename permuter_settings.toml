@@ -14,6 +14,10 @@ PRIMITIVE = "int"
 "gSetImage" = "void"
 "MAX" = "void"
 "MIN" = "void"
+"GCCc0w0" = "void"
+"GCCc0w1" = "void"
+"GCCc1w0" = "void"
+"GCCc1w1" = "void"
 
 [decompme.compilers]
 "tools/gcc_2.7.2/linux/gcc" = "gcc2.7.2kmc"

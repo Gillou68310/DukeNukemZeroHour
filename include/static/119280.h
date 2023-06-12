@@ -14,24 +14,28 @@
 #define CONTROL_PRESET_NUM 8
 #define CONTROL_MAPPING_NUM 16
 
-typedef struct
+typedef union
 {
-    char *turn_left;
-    char *turn_right;
-    char *move_forward;
-    char *move_back;
-    char *move_left;
-    char *move_right;
-    char *look_up;
-    char *look_down;
-    char *jump;
-    char *fire;
-    char *open;
-    char *next_weapon;
-    char *last_weapon;
-    char *next_item;
-    char *previous_item;
-    char *activate_item;
+    struct
+    {
+        char *turn_left;
+        char *turn_right;
+        char *move_forward;
+        char *move_back;
+        char *move_left;
+        char *move_right;
+        char *look_up;
+        char *look_down;
+        char *jump;
+        char *fire;
+        char *open;
+        char *next_weapon;
+        char *last_weapon;
+        char *next_item;
+        char *previous_item;
+        char *activate_item;
+    }u;
+    char *mapping[16];
 } ControlMapping;
 
 typedef struct

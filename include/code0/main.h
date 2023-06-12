@@ -28,6 +28,7 @@ void main_80001F40(void);
 void main_80001FAC(void);
 void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size);
 void main_80002390(void);
+void main_80003940(void);
 
 extern s32 gScreenWidth;
 extern s32 gScreenHeight;

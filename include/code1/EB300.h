@@ -34,6 +34,7 @@ void func_801C66D8(void);
 void func_801C764C(void);
 void func_801C899C(void);
 void func_801C8F54(void);
+void func_801C936C(void);
 void func_801C97F0(void);
 void func_801C97F8(void);
 void func_801C9924(void);

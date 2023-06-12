@@ -58,7 +58,7 @@ void func_80035954(s32 spritenum)
 }
 
 /*80035A98*/
-void func_80035A98(s32 spritenum)
+void func_80035A98(s32 spritenum, s32 arg1)
 {
     u16 *ptr;
     s32 j, unk84;

@@ -42,5 +42,7 @@ extern f32 gMapZpos;
 extern _9410UnkStruct1 D_800BD710[5];
 extern u32 gDisplayListSize;
 extern u32 gVertexN64Size;
+extern s16 D_800BD748;
+extern u8 D_800BD74A;
 
 #endif

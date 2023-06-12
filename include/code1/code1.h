@@ -143,9 +143,12 @@ typedef struct _code1UnkStruct6
 /*801CDAD0*/ _extern ControlMapping *gpControlPreset;
 /*801CDB00*/ _extern char **gpLicenceStrInfo;
 /*801CDB08*/ _extern u8 *D_801CDB08; /*edlHandle*/
+/*801CDB10*/ _extern u8 *D_801CDB10;
 /*801CDB14*/ _extern u16 D_801CDB14;
+/*801CDB18*/ _extern u8 *D_801CDB18;
 /*801CDB16*/ _extern u16 D_801CDB16;
 /*801CDB1C*/ _extern u8 *D_801CDB1C; /*edlHandle*/
+/*801CDB44*/ _extern u8 *D_801CDB44;
 /*801CDB48*/ _extern u16 D_801CDB48;
 /*801CDB4C*/ _extern s32 D_801CDB4C;
 /*801CDBC4*/ _extern s16 D_801CDBC4;

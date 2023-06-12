@@ -4,8 +4,6 @@
 #include "code0/pragmas.h"
 #include "code0/code0.h"
 
-#define PI 3.14159265359
-
 /*.text*/
 STATIC void func_80003B4C(f32, f32, s16);
 static void func_80004CFC(u16 sectnum);
@@ -112,7 +110,7 @@ void func_800043F4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, u16 arg4)
     else
         f1 *= (f2 - cosf(D_801AC8E0));
 
-    f3 = func_80003A00((3.14159265359 - arg3));
+    f3 = func_80003A00((PI - arg3));
     D_801C0D58 = f3;
     D_801AE9C8 = arg0;
     D_8012D210 = arg1;

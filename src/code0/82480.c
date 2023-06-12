@@ -2,6 +2,7 @@
 #include "code0/cache1d.h"
 #include "code0/edl.h"
 #include "code0/7F6A0.h"
+#include "code0/82480.h"
 #include "code0/84490.h"
 #include "code0/code0.h"
 #include "code1/code1.h"
@@ -14,7 +15,10 @@ typedef struct {
 } _82480UnkStruct1;
 
 /*.comm*/
+/*800FF3E0*/ _82480UnkStruct1 *D_800FF3E0;
 /*8012FC9C*/ _82480UnkStruct1 *D_8012FC9C;
+/*801AC598*/ Vtx *D_801AC598[200] ALIGNED(8);
+/*801AE52C*/ s32 D_801AE52C;
 
 /*.text*/
 
@@ -28,17 +32,17 @@ static f32 _fabs(f32 arg0)
 }
 
 /*800818A8*/
-void func_800818A8(code0UnkStruct16 *arg0, s16 id, s16 off, s32 arg3, s32 arg4, s32 arg5, s32 arg6)
+void func_800818A8(code0UnkStruct16 *arg0, s16 id, s16 off, void *arg3, void *arg4, void *arg5, void *arg6)
 {
     u8 *ptr;
     u8 *ptr2;
 
     ptr = edl_80081840(id, off);
-    arg0->unk70 = ptr;
-    arg0->unk74 = arg3;
-    arg0->unk78 = arg4;
-    arg0->unk7C = arg5;
-    arg0->unk80 = arg6;
+    arg0->unk70 = (intptr_t)ptr;
+    arg0->unk74 = (intptr_t)arg3;
+    arg0->unk78 = (intptr_t)arg4;
+    arg0->unk7C = (intptr_t)arg5;
+    arg0->unk80 = (intptr_t)arg6;
     arg0->unk88 = swap16(ptr);
     arg0->unk84 = (code0UnkStruct18 *)&ptr[2];
     ptr2 = (u8 *)&arg0->unk84[arg0->unk88];
@@ -181,6 +185,7 @@ static void func_80082B44(_82480UnkStruct1 *arg0, f32 arg1, f32 arg2, f32 arg3)
 }
 
 /*80082BA0*/
+STATIC void func_80082BA0(void);
 INCLUDE_ASM("nonmatchings/src/code0/82480", func_80082BA0);
 
 /*800831D8*/
@@ -190,11 +195,113 @@ void func_800831D8(void *arg0, s32 arg1)
 }
 
 /*80083200*/
-INCLUDE_ASM("nonmatchings/src/code0/82480", func_80083200);
+void func_80083200(_119280UnkStruct1 *arg0, s32 arg1)
+{
+    code0UnkStruct20 sp30;
+    code0UnkStruct16 sp48;
+    s32 i;
+    u8 *ptr1;
+    u8 *ptr2;
+    u8 *ptr3;
+
+    ptr1 = D_801CDBC8;
+    ptr2 = D_801CC888;
+    ptr3 = D_801CDA98;
+    D_801AE52C = 0;
+    func_800831D8(&D_801AC598[arg0->unk0], arg0->unk6 * sizeof(Vtx));
+    func_800831D8(&D_8012C478[arg0->unk0], arg0->unk8 * sizeof(Gfx));
+    i = arg1 & 0x1000;
+    if (i != 0)
+    {
+        D_80168D18 = 0;
+        D_800FE3F4 = 0;
+        D_8012FC9C = (_82480UnkStruct1 *)D_801CD96C;
+        D_800FF3E0 = &D_8012FC9C[arg0->unk6];
+        func_80085EBC(D_801AC598[arg0->unk0], arg0->unk6, &D_8012C478[arg0->unk0], arg0->unk8, arg1);
+        D_8012FD8C = &sp48;
+        func_8007EC7C(&sp48);
+        D_8012FD8C->unk34 = 0.0f;
+        D_8012FD8C->unk38 = 0.0f;
+        D_8012FD8C->unk3C = 0.0f;
+        D_8012FD8C->unk50 = 0.0f;
+        D_8012FD8C->unkC = arg1 | 0x20;
+        func_800818A8(D_8012FD8C, arg0->unk2, arg0->unk4, ptr1, ptr2, NULL, ptr3);
+        func_80081E20(func_80082920, func_80082BA0, 1);
+    }
+    sp30.unk0 = arg0->unk2;
+    sp30.unk2 = arg0->unk4;
+    sp30.unk4 = ptr1;
+    sp30.unk8 = ptr2;
+    sp30.unkC = ptr3;
+    sp30.unk10 = 0;
+    if (i != 0)
+        arg1 |= 0x2000;
+
+    func_800861F4(&sp30, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, arg1 | 0x20,
+                  D_801AC598[arg0->unk0], arg0->unk6, D_8012C478[arg0->unk0], arg0->unk8);
+}
 
 /*80083430*/
-STATIC void func_80083430(s32 arg0, _119280UnkStruct1 *arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6);
-INCLUDE_ASM("nonmatchings/src/code0/82480", func_80083430);
+static void func_80083430(s32 arg0, _119280UnkStruct1 *arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6)
+{
+    code0UnkStruct20 sp30;
+    code0UnkStruct16 sp48;
+    s32 i;
+    u8 *ptr1;
+    u8 *ptr2;
+    u8 *ptr3;
+
+    D_801AE52C = arg6;
+    switch (arg0)
+    {
+    case 0:
+        ptr3 = D_801CC920;
+        ptr2 = D_801CC91C;
+        ptr1 = D_801CDB1C;
+        break;
+    case 1:
+        ptr3 = D_801CDBC8;
+        ptr2 = D_801CC888;
+        ptr1 = D_801CDA98;
+        break;
+    case 2:
+        ptr3 = D_801CDB44;
+        ptr2 = D_801CDB10;
+        ptr1 = D_801CDB18;
+        break;
+    }
+    allocacheEDL(&D_801AC598[arg1->unk0], arg1->unk6 * sizeof(Vtx));
+    allocacheEDL(&D_8012C478[arg1->unk0], arg1->unk8 * sizeof(Gfx));
+    i = arg2 & 0x1000;
+    if (i != 0)
+    {
+        D_80168D18 = 0;
+        D_800FE3F4 = 0;
+        D_8012FC9C = (_82480UnkStruct1 *)D_801CD96C;
+        D_800FF3E0 = &D_8012FC9C[arg1->unk6];
+        func_80085EBC(D_801AC598[arg1->unk0], arg1->unk6, &D_8012C478[arg1->unk0], arg1->unk8, arg2);
+        D_8012FD8C = &sp48;
+        func_8007EC7C(&sp48);
+        D_8012FD8C->unk34 = 0.0f;
+        D_8012FD8C->unk38 = 0.0f;
+        D_8012FD8C->unk3C = 0.0f;
+        D_8012FD8C->unk50 = 0.0f;
+        D_8012FD8C->unkC = arg2 | 0x20;
+        func_800818A8(D_8012FD8C, arg1->unk2, arg1->unk4, ptr3, ptr2, NULL, ptr1);
+        func_80081E20(func_80082920, func_80082BA0, 1);
+    }
+    sp30.unk0 = arg1->unk2;
+    sp30.unk2 = arg1->unk4;
+    sp30.unk4 = ptr3;
+    sp30.unk8 = ptr2;
+    sp30.unkC = ptr1;
+    sp30.unk10 = 0;
+    if (i != 0)
+        arg2 |= 0x2000;
+
+    func_800861F4(&sp30, arg3, arg4, arg5, 0.0f, 1.0f, arg2 | 0x20,
+                  D_801AC598[arg1->unk0], arg1->unk6, D_8012C478[arg1->unk0], arg1->unk8);
+}
 
 /*80083700*/
 void func_80083700(s32 arg0, _119280UnkStruct1 *arg1, s32 arg2, s32 arg3)

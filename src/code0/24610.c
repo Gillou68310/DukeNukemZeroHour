@@ -18,8 +18,8 @@ void func_80023A10(void)
     D_801A2688 = 0;
     D_80119A9C = 0xFF;
     D_801A689C = 0;
-    D_800F704C = sinf(D_801AEA10 - 1.570796326795);
-    D_800F7050 = cosf(D_801AEA10 - 1.570796326795);
+    D_800F704C = sinf(D_801AEA10 - (PI/2.0));
+    D_800F7050 = cosf(D_801AEA10 - (PI/2.0));
     D_801385F0 = 1;
 
     gDPSetTextureFilter(gpDisplayList++, G_TF_BILERP);
@@ -51,51 +51,51 @@ INCLUDE_ASM("nonmatchings/src/code0/24610", func_800273EC);
 INCLUDE_ASM("nonmatchings/src/code0/24610", func_80027C18);
 
 /*80028F04*/
-void func_80028F04(u8 arg0, u8 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5)
+void func_80028F04(u8 r1, u8 g1, u8 b1, u8 r2, u8 g2, u8 b2)
 {
     D_801A2688 = 1;
     gDPSetAlphaCompare(gpDisplayList++, G_AC_NONE);
     gDPSetTextureLUT(gpDisplayList++, G_TT_NONE);
     gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_XLU_SURF2);
     gDPSetCombineLERP(gpDisplayList++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
-    gDPSetPrimColor(gpDisplayList++, 0, 0, arg0, arg1, arg2, 0xFF);
-    gDPSetEnvColor(gpDisplayList++, arg3, arg4, arg5, 0xFF);
+    gDPSetPrimColor(gpDisplayList++, 0, 0, r1, g1, b1, 0xFF);
+    gDPSetEnvColor(gpDisplayList++, r2, g2, b2, 0xFF);
 }
 
 /*8002900C*/
-void func_8002900C(u8 arg0, u8 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5, u8 arg6)
+void func_8002900C(u8 r1, u8 g1, u8 b1, u8 r2, u8 g2, u8 b2, u8 a)
 {
     D_801A2688 = 1;
     gDPSetAlphaCompare(gpDisplayList++, G_AC_NONE);
     gDPSetTextureLUT(gpDisplayList++, G_TT_NONE);
     gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_XLU_SURF2);
     gDPSetCombineLERP(gpDisplayList++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
-    gDPSetPrimColor(gpDisplayList++, 0, 0, arg0, arg1, arg2, arg6);
-    gDPSetEnvColor(gpDisplayList++, arg3, arg4, arg5, arg6);
+    gDPSetPrimColor(gpDisplayList++, 0, 0, r1, g1, b1, a);
+    gDPSetEnvColor(gpDisplayList++, r2, g2, b2, a);
 }
 
 /*80029130*/
-void func_80029130(u8 arg0, u8 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5)
+void func_80029130(u8 r1, u8 g1, u8 b1, u8 r2, u8 g2, u8 b2)
 {
     D_801A2688 = 1;
     gDPSetAlphaCompare(gpDisplayList++, G_AC_NONE);
     gDPSetTextureLUT(gpDisplayList++, G_TT_NONE);
     gDPSetRenderMode(gpDisplayList++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
     gDPSetCombineLERP(gpDisplayList++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
-    gDPSetPrimColor(gpDisplayList++, 0, 0, arg0, arg1, arg2, 0xFF);
-    gDPSetEnvColor(gpDisplayList++, arg3, arg4, arg5, 0xFF);
+    gDPSetPrimColor(gpDisplayList++, 0, 0, r1, g1, b1, 0xFF);
+    gDPSetEnvColor(gpDisplayList++, r2, g2, b2, 0xFF);
 }
 
 /*80029238*/
-void func_80029238(u8 arg0, u8 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5, u8 arg6)
+void func_80029238(u8 r1, u8 g1, u8 b1, u8 r2, u8 g2, u8 b2, u8 a)
 {
     D_801A2688 = 1;
     gDPSetAlphaCompare(gpDisplayList++, G_AC_NONE);
     gDPSetTextureLUT(gpDisplayList++, G_TT_NONE);
     gDPSetRenderMode(gpDisplayList++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
     gDPSetCombineLERP(gpDisplayList++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
-    gDPSetPrimColor(gpDisplayList++, 0, 0, arg0, arg1, arg2, arg6);
-    gDPSetEnvColor(gpDisplayList++, arg3, arg4, arg5, arg6);
+    gDPSetPrimColor(gpDisplayList++, 0, 0, r1, g1, b1, a);
+    gDPSetEnvColor(gpDisplayList++, r2, g2, b2, a);
 }
 
 /*8002935C*/

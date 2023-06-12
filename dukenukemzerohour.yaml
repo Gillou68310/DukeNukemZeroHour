@@ -282,7 +282,7 @@ segments:
       - [0xDD600, data,     code0/1A7C0]
       - [0xDD620, data,     code0/1E7A0]
       - [0xDD710, .data,    src/code0/20490]
-      - [0xDD7E0, data,     code0/2ABE0]
+      - [0xDD7E0, .data,    src/code0/2ABE0]
       - [0xDDFF0, .data,    src/code0/cache1d]
       - [0xDE010, data,     code0/engine]
       - [0xDE050, .data,    src/code0/DE050]

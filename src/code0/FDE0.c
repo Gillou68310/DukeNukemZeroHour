@@ -6,12 +6,17 @@
 #include "code0/graphics.h"
 #include "code0/code0.h"
 
+/*TODO: include math.h from libkmc*/
+double sqrt(double);
+
 /*.data*/
 /*800BD760*/ EXTERN_DATA STATIC Lights2 _light2;
 /*800BD788*/ EXTERN_DATA s32 D_800BD788;
 
 /*.comm*/
 /*800FE414*/ u8 D_800FE414;
+/*80106D3C*/ f32 D_80106D3C;
+/*8012EB48*/ f32 D_8012EB48;
 /*8012FD87*/ u8 D_8012FD87; /*alpha*/
 /*80197DF0*/ Matrix4f D_80197DF0 ALIGNED(8);
 
@@ -59,7 +64,52 @@ static f32 func_80011148(Vec4f vec1, Vec4f vec2)
 }
 
 /*80011180*/
-INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_80011180);
+void func_80011180(void)
+{
+    f32 f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14;
+    s32 i;
+    f1 = sinf(0.61086524f);
+    f2 = cosf(0.61086524f);
+    f3 = 159.0f / (f1 / f2);
+    f5 = 119.0f;
+    f4 = 1.0 / sqrt((f3 * f3) + 14161.0f);
+    D_80197DF0[0][0] = f2;
+    D_80197DF0[0][1] = 0.0f;
+    D_80197DF0[0][2] = f1;
+    D_80197DF0[0][3] = 0.0f;
+    D_80197DF0[1][0] = -f2;
+    D_80197DF0[1][1] = 0.0f;
+    D_80197DF0[1][2] = f1;
+    D_80197DF0[1][3] = 0.0f;
+    D_80197DF0[2][0] = 0.0f;
+    D_80197DF0[2][1] = f3 * f4;
+    D_80197DF0[2][2] = f4 * 119.0f;
+    D_80197DF0[2][3] = 0.0f;
+    D_80197DF0[3][0] = 0.0f;
+    D_80197DF0[3][1] = -(f3 * f4);
+    D_80197DF0[3][2] = f4 * 119.0f;
+    D_80197DF0[3][3] = 0.0f;
+    D_80106D3C = 0.18310827f;
+    D_8012EB48 = (f3 * 65536.0) * (1.0 / 12000.0);
+    f5 = cosf(D_8016A15C);
+    f14 = f5;
+    f6 = sinf(D_8016A15C);
+    f7 = cosf(-D_801AEA10);
+    f8 = sinf(-D_801AEA10);
+
+    for (i = 0; i < 4; i++)
+    {
+        f9 = D_80197DF0[i][0];
+        f10 = D_80197DF0[i][1];
+        f11 = D_80197DF0[i][2];
+        f12 = (f10 * f14) - (f11 * f6);
+        f13 = (f10 * f6) + (f11 * f14);
+        D_80197DF0[i][0] = (f9 * f7) - (f13 * f8);
+        D_80197DF0[i][1] = f12;
+        f13 = (f9 * f8) + (f13 * f7);
+        D_80197DF0[i][2] = f13;
+    }
+}
 
 /*80011410*/
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_80011410);

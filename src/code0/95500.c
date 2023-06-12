@@ -370,27 +370,27 @@ void func_8009584C(s16 playernum)
     case 0:
         if (ptr1->unkA[2] > 0)
         {
-            if (ptr1->unk4 == 0)
+            if (ptr1->unk2[2] == 0)
             {
-                ptr1->unk4 = 1;
+                ptr1->unk2[2] = 1;
                 cond = 1;
                 audio_800080E0(playernum, 7);
             }
         }
         else
-            ptr1->unk4 = 0;
+            ptr1->unk2[2] = 0;
 
         break;
     case 3:
         if (ptr1->unkA[5] > 0)
         {
-            cond = ptr1->unk7 == 0;
-            ptr1->unk7 = cond;
+            cond = ptr1->unk2[5] == 0;
+            ptr1->unk2[5] = cond;
         }
         else
-            ptr1->unk7 = 0;
+            ptr1->unk2[5] = 0;
 
-        if (ptr1->unk7 != 0)
+        if (ptr1->unk2[5] != 0)
             playSfx(1321);
         else
             playSfx(1322);
@@ -398,11 +398,11 @@ void func_8009584C(s16 playernum)
     case 4:
         if (ptr1->unkA[6] > 0)
         {
-            cond = ptr1->unk8 == 0;
-            ptr1->unk8 = cond;
+            cond = ptr1->unk2[6] == 0;
+            ptr1->unk2[6] = cond;
         }
         else
-            ptr1->unk8 = 0;
+            ptr1->unk2[6] = 0;
 
         break;
     case 2:
@@ -419,8 +419,8 @@ void func_8009584C(s16 playernum)
         }
         break;
     case 5:
-        ptr1->unk9 = ptr1->unk9 == 0;
-        if (ptr1->unk9)
+        ptr1->unk2[7] = ptr1->unk2[7] == 0;
+        if (ptr1->unk2[7])
         {
             D_8012C989 = 0;
             playSfx(1433);

@@ -3,6 +3,7 @@
 #include "code0/engine.h"
 #include "code0/37090.h"
 #include "code0/41940.h"
+#include "code0/6ACA0.h"
 #include "code0/8EFE0.h"
 #include "code0/A06F0.h"
 #include "code0/code0.h"
@@ -182,9 +183,65 @@ void func_80068E0C(s16 sectnum)
     }
 }
 
-INCLUDE_RODATA("nonmatchings/src/code0/64530", D_800E8954);
+typedef struct {
+    s16 unk0[8];
+} _64530UnkStruct1;
+
+static const _64530UnkStruct1 D_800E8954 = {1,2,20,21,22,53,59,65};
+
 /*80068E9C*/
-INCLUDE_ASM("nonmatchings/src/code0/64530", func_80068E9C);
+void func_80068E9C(void)
+{
+    _64530UnkStruct1 sp10;
+    s16 i, j, k, l;
+    s16 nexti;
+
+    i = gHeadSpriteStat[106];
+    while (i >= 0)
+    {
+        nexti = gNextSpriteStat[i];
+
+        if (gpSprite[i].picnum == 8)
+        {
+            if (gpSprite[i].unk25 == 1)
+            {
+                gpSprite[i].unk18--;
+                if (gpSprite[i].unk18 <= 0)
+                {
+                    if (gpSprite[i].cstat & 8)
+                        func_8006B590(gpSprite[i].unk1E);
+                    else
+                        func_8006CB38(gpSprite[i].sectnum);
+
+                    gpSprite[i].unk25 = 0;
+                    gpSprite[i].unk2B = 1;
+                }
+            }
+        }
+        if (gpSprite[i].picnum == 9)
+        {
+            l = 0;
+            sp10 = D_800E8954;
+            for (j = 0; j < 8; j++)
+            {
+                k = gHeadSpriteStat[sp10.unk0[j]];
+                while (k >= 0)
+                {
+                    if ((gpSprite[k].picnum >= 49) && (gpSprite[i].unk1E == gpSprite[k].unk20))
+                        goto label1;
+                    k = gNextSpriteStat[k];
+                }
+            }
+            if (l == 0)
+            {
+                func_8006B590(gpSprite[i].unk20);
+                deleteSprite(i);
+            }
+        }
+    label1:
+        i = nexti;
+    }
+}
 
 /*80069160*/
 INCLUDE_ASM("nonmatchings/src/code0/64530", func_80069160);
@@ -207,7 +264,7 @@ static void func_800697D8(s16 playernum, s16 arg1, s16 arg2)
             i = 1;
         break;
     case 2:
-        if (D_8010A940[playernum].unk8 == 0)
+        if (D_8010A940[playernum].unk2[6] == 0)
             i = 1;
         break;
     }

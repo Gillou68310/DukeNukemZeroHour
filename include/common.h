@@ -35,6 +35,8 @@
 #include <stdlib.h>
 #endif
 
+#define PI 3.14159265359
+
 #include "ultra64.h"
 #include "macros.h"
 #include "types.h"

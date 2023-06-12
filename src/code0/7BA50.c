@@ -1,11 +1,13 @@
 #include "common.h"
+#include "code0/9410.h"
+#include "code0/main.h"
 
 typedef struct
 {
     u8 unk0;
-    u8 unk1;
-    u8 unk2;
-    u8 unk3;
+    u8 unk1; /*r*/
+    u8 unk2; /*g*/
+    u8 unk3; /*b*/
     s32 unk4; /*x1*/
     s32 unk8; /*y1*/
     s32 unkC; /*z1*/
@@ -157,10 +159,80 @@ static s16 func_8007B5D8(s32 arg0, s16 arg1)
 }
 
 /*8007B64C*/
-INCLUDE_ASM("nonmatchings/src/code0/7BA50", func_8007B64C);
+static void func_8007B64C(s32 arg0)
+{
+    s32 i, j, k, l, d, m;
+    s32 temp;
+
+    k = 0;
+    gDPSetCombineMode(gpDisplayList++, G_CC_SHADE, G_CC_PASS2);
+    func_8000C76C();
+    temp = arg0;
+    for (i = 127; i >= 0; i--)
+    {
+        l = func_8007B5D8(temp, i);
+        if (l != -1)
+        {
+            d = (D_800FCBF0[l].unk28 << 7) / D_800FCBF0[l].unk2A;
+            j = (k == 0);
+            D_800FCBF0[l].unk0 |= 2;
+            m = CLAMP_MAX(d, 0xFF);
+            for (; j < 2; j++)
+            {
+                gpVertexN64->v.ob[0] = D_800FCBF0[l].unk4 / 8;
+                gpVertexN64->v.ob[1] = D_800FCBF0[l].unk8 / 8;
+                gpVertexN64->v.ob[2] = D_800FCBF0[l].unkC / 8;
+                gpVertexN64->v.tc[0] = 0;
+                gpVertexN64->v.tc[1] = 0;
+                gpVertexN64->v.cn[0] = D_800FCBF0[l].unk1;
+                gpVertexN64->v.cn[1] = D_800FCBF0[l].unk2;
+                gpVertexN64->v.cn[2] = D_800FCBF0[l].unk3;
+                gpVertexN64->v.cn[3] = m;
+                gpVertexN64++;
+                gpVertexN64->v.ob[0] = D_800FCBF0[l].unk10 / 8;
+                gpVertexN64->v.ob[1] = D_800FCBF0[l].unk14 / 8;
+                gpVertexN64->v.ob[2] = D_800FCBF0[l].unk18 / 8;
+                gpVertexN64->v.tc[0] = 0;
+                gpVertexN64->v.tc[1] = 0;
+                gpVertexN64->v.cn[0] = D_800FCBF0[l].unk1;
+                gpVertexN64->v.cn[1] = D_800FCBF0[l].unk2;
+                gpVertexN64->v.cn[2] = D_800FCBF0[l].unk3;
+                gpVertexN64->v.cn[3] = m;
+                gpVertexN64++;
+            }
+            k += 1;
+        }
+    }
+    if (k >= 2)
+        func_8000B830(k - 1);
+}
 
 /*8007B930*/
+STATIC void func_8007B930(s16);
 INCLUDE_ASM("nonmatchings/src/code0/7BA50", func_8007B930);
 
 /*8007BE80*/
-INCLUDE_ASM("nonmatchings/src/code0/7BA50", func_8007BE80);
+void func_8007BE80(void)
+{
+    s32 i;
+
+    gSPClearGeometryMode(gpDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN |
+                                          G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
+    gSPSetGeometryMode(gpDisplayList++, G_ZBUFFER | G_SHADE | G_SHADING_SMOOTH);
+    gDPSetRenderMode(gpDisplayList++, G_RM_AA_ZB_XLU_SURF, G_RM_AA_ZB_XLU_SURF2);
+
+    for (i = 0; i < ARRAY_COUNT(D_800FCBF0); i++)
+    {
+        if ((D_800FCBF0[i].unk0 & 1) && !(D_800FCBF0[i].unk0 & 2))
+        {
+            if (D_800FCBF0[i].unk0 & 4)
+                func_8007B930(D_800FCBF0[i].unk2C);
+            else
+                func_8007B64C(D_800FCBF0[i].unk2C);
+        }
+    }
+    for (i = 0; i < ARRAY_COUNT(D_800FCBF0); i++)
+    {
+        D_800FCBF0[i].unk0 &= 0xFD;
+    }
+}

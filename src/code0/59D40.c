@@ -131,7 +131,59 @@ void func_8005952C(s32 spritenum, s32 arg1)
 }
 
 /*800595A8*/
-INCLUDE_ASM("nonmatchings/src/code0/59D40", func_800595A8);
+void func_800595A8(s32 spritenum, s32 arg1)
+{
+    s32 i, nexti;
+    s32 unk50, unk5C, unk60;
+    s32 var;
+    s32 spritenum_;
+
+    var = getVar(spritenum, arg1);
+    unk5C = D_80137DE0->unk5C;
+    unk60 = D_80137DE0->unk60;
+    if (D_80137DE0->unk58 == -1)
+    {
+        i = gHeadSpriteStat[7];
+        while (i >= 0)
+        {
+            nexti = gNextSpriteStat[i];
+            if ((gpSprite[i].unk1E == unk60) && (gpSprite[i].unk20 == unk5C))
+            {
+                D_80137DE0->unk54 = i;
+                i = 1;
+                D_80137DE0->unk58 = 0;
+                break;
+            }
+            i = nexti;
+        }
+        if (i <= 0)
+        {
+            i = gHeadSpriteStat[7];
+            while (i >= 0)
+            {
+                nexti = gNextSpriteStat[i];
+                if ((gpSprite[i].unk1E == (unk60 - 1)) && (gpSprite[i].unk20 == unk5C))
+                {
+                    D_80137DE0->unk58 = 2;
+                    break;
+                }
+                i = nexti;
+            }
+        }
+    }
+    spritenum_ = D_80137DE0->unk54;
+    D_80137DE0->unk44 = getAngle(gpSprite[spritenum_].x - D_80118248->x, gpSprite[spritenum_].y - D_80118248->y);
+    unk50 = ((gpSprite[spritenum_].z - D_80118248->z) * var) / ldist(D_80118248, &gpSprite[spritenum_]);
+    unk50 /= 8;
+
+    if (unk50 > 0x7FFF)
+        unk50 = 0x7FFF;
+    else if (unk50 < -0x7FFF)
+        unk50 = -0x7FFF;
+
+    D_80137DE0->unk50 = unk50;
+}
+
 
 /*80059800*/
 void func_80059800(s32 spritenum, s32 arg1)
@@ -1582,7 +1634,7 @@ void func_8005DD00(s32 spritenum, s32 arg1)
 /*8005DD14*/
 void func_8005DD14(s32 spritenum, s32 arg1)
 {
-    func_80050C14();
+    func_80050C14(spritenum);
     func_80057540(&gpSprite[spritenum], 1781, 14, 0);
     func_8004BC64(D_80118248->x - 300, D_80118248->y, D_80118248->z, D_80118248->sectnum, 2539, 0, 0);
 }

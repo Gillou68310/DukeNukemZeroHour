@@ -10,6 +10,7 @@
 #include "code0/8EFE0.h"
 #include "code0/A06F0.h"
 #include "code0/code0.h"
+#include "code1/EB300.h"
 #include "static/mapinfo.h"
 
 typedef void (*_6ACA0UnkFuncPointer)(s32 spritenum);

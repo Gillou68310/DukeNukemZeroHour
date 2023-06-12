@@ -584,7 +584,7 @@ static void main_80001038(void)
 
             if (D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk0 & 0x40)
                 func_8000EA0C(playernum, 0, 0xFF, 0xFF, 0x80);
-            else if (D_8010A940[playernum].unk7 != 0)
+            else if (D_8010A940[playernum].unk2[5] != 0)
                 func_8000EA0C(playernum, 0, 0xFF, 0, 0x80);
             else if (gPlayer[playernum].unk55 != 0)
                 func_8000EA0C(playernum, D_800BD710[D_801A19EC].unk0, D_800BD710[D_801A19EC].unk1, D_800BD710[D_801A19EC].unk2, D_800BD710[D_801A19EC].unk3);

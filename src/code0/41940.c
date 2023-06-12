@@ -5,7 +5,9 @@
 #include "code0/pragmas.h"
 #include "code0/4600.h"
 #include "code0/FDE0.h"
+#include "code0/17B30.h"
 #include "code0/1E7A0.h"
+#include "code0/36410.h"
 #include "code0/37090.h"
 #include "code0/41940.h"
 #include "code0/59D40.h"
@@ -73,19 +75,28 @@ typedef struct
 /*80137DF0*/ s16 D_80137DF0[1024] ALIGNED(16); /*spritenum array*/
 /*80138718*/ s32 *gpInst;
 /*80138820*/ s16 D_80138820[8] ALIGNED(8); /*sectornum array*/
+/*80197E30*/ s32 D_80197E30;
 /*8019955C*/ s16 D_8019955C;
 /*8019B89C*/ s32 D_8019B89C; /*unused*/
 /*801A1978*/ s16 D_801A1978; /*sector count*/
 /*801ACC70*/ _41940UnkStruct1 D_801ACC70[32] ALIGNED(16);
+/*801C0D68*/ s32 D_801C0D68;
 
 /*.text*/
 STATIC s32 func_80042C98(s32 spritenum);
 STATIC s32 func_800433D4(s32 spritenum);
 static s32 func_8004BC24(s32, s32);
 static s32 func_8004EB60(s32 spritenum);
+static s32 func_8004F284(SpriteType *spr, s32 *, s32 spritenum);
+static void func_8004F5DC(void);
 static void func_8004FA74(s32);
-STATIC void func_80050E40(void);
+static void func_80050E40(void);
+STATIC void func_800519AC(void);
+static void func_80053650(s32, s32 spritenum);
 STATIC void func_80056C00(s32);
+STATIC void func_80057E7C(void);
+static s32 func_80058538(SpriteType *spr, s32);
+static s32 func_80058DE0(SpriteType *spr, s32 *);
 
 /*80040D40*/
 s32 func_80040D40(s32 x1, s32 y1, s32 x2, s32 y2)
@@ -168,6 +179,7 @@ s16 getAngleDelta(s16 currAngle, s16 newAngle)
 }
 
 /*80040EF0*/
+STATIC void func_80040EF0(s16 spritenum, s16 playernum, s32);
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80040EF0);
 
 /*800413CC*/
@@ -399,7 +411,94 @@ STATIC s32 func_80042434(s32 spritenum)
 }
 
 /*80042598*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_80042598);
+STATIC s32 func_80042598(s32 spritenum)
+{
+    s32 x, y, z, z2;
+    s32 i, j, k, l, m;
+    s32 d;
+    s32 cond;
+
+    i = *gpInst++;
+    j = getVar(spritenum, *gpInst++);
+    k = *gpInst++;
+    l = getVar(spritenum, k);
+    m = *gpInst++;
+
+    if (i < 0)
+        m += 2;
+
+    cond = 0;
+
+    if (j & 0x10)
+        cond = D_80137DE0->unk8 < 1;
+
+    if (j & 0x40)
+    {
+        x = D_80118248->x - gPlayer->xpos;
+        y = D_80118248->y - gPlayer->ypos;
+        if (x < 0)
+            x = -x;
+
+        if (y < 0)
+            y = -y;
+
+        x = x + y;
+        if (x < l)
+            cond = 1;
+    }
+
+    if (j & 1)
+    {
+        if (gpSector[D_80118248->sectnum].unk18 == 2)
+            cond = 1;
+
+        if (gpSector[D_80118248->sectnum].unk18 == 3)
+        {
+            z = D_80118248->z - l;
+            if (func_80036490(D_80118248->sectnum) < z)
+                cond = 1;
+        }
+    }
+
+    if (j & 0x800)
+    {
+        d = func_80058538(D_80118248, k);
+        if (d == -1)
+            cond = 0;
+        else if (d < l)
+            cond = 1;
+    }
+
+    if (j & 2)
+    {
+        cond = gpSector[D_80118248->sectnum].unk18 != 2;
+        if (gpSector[D_80118248->sectnum].unk18 == 3)
+        {
+            z2 = D_80118248->z - l;
+            cond &= -(!(func_80036490(D_80118248->sectnum) < z2));
+        }
+    }
+
+    if (j & 8)
+    {
+        if (!(D_80137DE0->unk0 & 4))
+            cond = 1;
+    }
+
+    if (j & 4)
+    {
+        if (D_80137DE0->unk0 & 4)
+            cond = 1;
+    }
+
+    if ((j & 0x8000) && (D_80137DE0->unk38 == -1))
+        cond = 1;
+
+    if (cond == 0)
+        gpInst = &gpInst[m];
+
+    return 0;
+}
 
 /*80042860*/
 STATIC s32 ifVarVarN(s32 spritenum)
@@ -1648,6 +1747,7 @@ STATIC s32 func_80046494(s32 spritenum)
 }
 
 /*80046540*/
+STATIC void func_80046540(void);
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80046540);
 
 /*80047710*/
@@ -2153,7 +2253,42 @@ s32 func_8004BE90(void)
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004BFDC);
 
 /*8004CB3C*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004CB3C);
+s32 func_8004CB3C(s32 wallnum)
+{
+    s16 overpicnum;
+    s32 wallnum_;
+
+    wallnum_ = wallnum & 0x7FFF;
+    if (gpWall[wallnum_].cstat & 0x10)
+    {
+        overpicnum = gpWall[wallnum_].overpicnum;
+        switch (overpicnum)
+        {
+        case 3185:
+        case 3172:
+        case 5300:
+            func_80093BB0(wallnum_);
+            gpWall[wallnum_].cstat &= ~0x51;
+            if (gpWall[wallnum_].nextwall != -1)
+                gpWall[gpWall[wallnum_].nextwall].cstat &= ~0x51;
+
+            return 1;
+
+        case 3759:
+            gpWall[wallnum_].overpicnum = 3678;
+            gpWall[wallnum_].cstat &= ~0x41;
+            if (gpWall[wallnum_].nextwall != -1)
+            {
+                if (gpWall[gpWall[wallnum_].nextwall].overpicnum == overpicnum)
+                    gpWall[gpWall[wallnum_].nextwall].overpicnum = 3678;
+
+                gpWall[gpWall[wallnum_].nextwall].cstat &= ~0x41;
+            }
+            return 1;
+        }
+    }
+    return 0;
+}
 
 /*8004CC90*/
 s32 func_8004CC90(s32 spritenum, s32 arg1, s32 arg2)
@@ -2293,7 +2428,60 @@ s32 func_8004D7D8(s32 spritenum)
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004D884);
 
 /*8004DC74*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004DC74);
+void func_8004DC74(void)
+{
+    s32 i;
+
+    i = 0x100;
+    if (D_80137DE0->unk0 & 0x800000)
+    {
+        D_80118248->z += D_80118248->unk1C;
+        D_80137DE0->unk0 &= ~4;
+        return;
+    }
+    if (D_80118248->z < D_80138860)
+    {
+        if (D_80137DE0->unk0 & 2)
+        {
+            if (D_80137DE0->unk84 == 33)
+                i = 0x40;
+
+            D_80118248->unk1C += i;
+        }
+    }
+    else if (D_80138860 < D_80118248->z)
+    {
+        if (((D_80118248->z - D_80138860) < 0x1200) || (D_80129804 < D_80118248->z))
+            D_80118248->z += ((D_80138860 - D_80118248->z) / 2);
+    }
+    D_80118248->z += D_80118248->unk1C;
+    D_80137DE0->unk0 &= ~4;
+
+    if (D_80118248->z >= D_80138860)
+        D_80137DE0->unk0 |= 4;
+
+    if (D_80197E30 != 0)
+    {
+        if (D_80118248->z < D_801A1998)
+        {
+            D_80118248->unk1C = 0;
+            D_80118248->z = D_801A1998;
+        }
+    }
+    else if ((D_80118248->z - D_801B0D30) < D_801A1998)
+    {
+        D_80118248->z = D_801A1998 + D_801B0D30;
+        D_80118248->unk1C = 0;
+        if (D_80118248->z >= D_80138860)
+            D_80118248->z = D_80138860;
+    }
+    if ((D_80118248->unk1C > 0) && (D_80118248->z >= D_80138860))
+    {
+        D_80137DE0->unk0 |= 4;
+        D_80118248->z = D_80138860;
+        D_80118248->unk1C = 0;
+    }
+}
 
 /*8004DE60*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004DE60);
@@ -2466,7 +2654,6 @@ static void func_8004ED40(s32 spritenum)
     }
 }
 
-
 /*8004EFB4*/
 s32 func_8004EFB4(s32 spritenum)
 {
@@ -2485,7 +2672,55 @@ s32 func_8004EFB4(s32 spritenum)
 }
 
 /*8004F044*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004F044);
+void func_8004F044(void)
+{
+    s32 sp10;
+    SpriteType *spr;
+    s16 i, j, nexti, temp;
+
+    D_801C0D68 = 0;
+    D_8012FD88++;
+    if (D_800DEE88 != 0)
+        D_800DEE88--;
+
+    j = 0;
+    i = gHeadSpriteStat[1];
+    while (i >= 0)
+    {
+        nexti = gNextSpriteStat[i];
+        if (D_80106D50[i] != -1)
+        {
+            if (D_8019B940[D_80106D50[i]].unkC != 0)
+            {
+                if (D_8019B940[D_80106D50[i]].unk0 & 1)
+                {
+                    spr = &gpSprite[i];
+                    if (((D_8019B940[D_80106D50[i]].unk0 & 0x800) || (D_8019B940[D_80106D50[i]].unk0 & 0x1000))
+                        && (D_8019B940[D_80106D50[i]].unk28 != -1))
+                        j = func_8004F284(spr, &sp10, D_8019B940[D_80106D50[i]].unk28);
+                    else
+                        j = func_80058DE0(spr, &sp10);
+
+                    if (temp == 0)
+                        D_801C0D68++;
+
+                    func_80040EF0(i, j, sp10);
+                    func_80017268(i);
+                }
+            }
+        }
+        i = nexti;
+    }
+    func_8004F5DC();
+    func_80047710();
+    func_80046540();
+    func_80057E7C();
+    func_8004E8BC();
+    func_800519AC();
+    gPlayer[j].unk28 = gPlayer[j].xpos;
+    gPlayer[j].unk2C = gPlayer[j].ypos;
+    gPlayer[j].unk30 = gPlayer[j].zpos;
+}
 
 /*8004F284*/
 static s32 func_8004F284(SpriteType *spr, s32 *arg1, s32 spritenum)
@@ -2952,13 +3187,139 @@ INCLUDE_ASM("nonmatchings/src/code0/41940", func_800504F4);
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8005087C);
 
 /*80050C14*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_80050C14);
+void func_80050C14(s32 arg0)
+{
+    s32 x, y, z;
+    s32 spritenum_;
+    s32 ang;
+
+    x = gpSprite[arg0].x;
+    y = gpSprite[arg0].y;
+    z = gpSprite[arg0].z;
+
+    spritenum_ = func_8008E3E0(x, y, z - 2048, gpSprite[arg0].sectnum, 18, 0);
+    do {} while (0); /*FAKEMATCH*/
+    if (spritenum_ != -1)
+    {
+        D_8013B2D0[spritenum_].unk2 = 0;
+        D_8013B2D0[spritenum_].unk0 = 0;
+        gpSprite[spritenum_].ang = 0;
+    }
+
+    func_8008E3E0(x, y, z, gpSprite[arg0].sectnum, 17, 0);
+    ang = gpSprite[arg0].ang;
+    ang = (ang - 1024);
+    ang &= 0x7FF;
+
+    spritenum_ = func_8008E3E0(x, y, z, gpSprite[arg0].sectnum, 19, 1);
+    if (spritenum_ != -1)
+    {
+        gpSprite[spritenum_].x += (gpSinTable[(ang + 512) & 0x7FF] * 5) >> 13;
+        gpSprite[spritenum_].y += (gpSinTable[ang] * 5) >> 13;
+    }
+
+    func_8001F7B4(12, 8);
+    audio_80007A44(560, arg0, 40000);
+    func_8008E3E0(x, y, z, gpSprite[arg0].sectnum, 41, 32);
+}
 
 /*80050E40*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_80050E40);
+static void func_80050E40(void)
+{
+    s32 nexti;
+    s32 i;
+
+    i = gHeadSpriteStat[1];
+    while (i >= 0)
+    {
+        nexti = gNextSpriteStat[i];
+        if ((func_8005A240(i) != 1) || ((gpSprite[i].unk25 != 5) && (gpSprite[i].unk25 != 1)))
+            func_8004BD24(i);
+
+        i = nexti;
+    }
+    i = gHeadSpriteStat[2];
+    while (i >= 0)
+    {
+        nexti = gNextSpriteStat[i];
+        if ((func_8005A240(i) != 1) || ((gpSprite[i].unk25 != 5) && (gpSprite[i].unk25 != 1)))
+            func_8004BD24(i);
+
+        i = nexti;
+    }
+    i = gHeadSpriteStat[20];
+    while (i >= 0)
+    {
+        nexti = gNextSpriteStat[i];
+        if ((func_8005A240(i) != 1) || ((gpSprite[i].unk25 != 5) && (gpSprite[i].unk25 != 1)))
+            func_8004BD24(i);
+
+        i = nexti;
+    }
+    i = gHeadSpriteStat[21];
+    while (i >= 0)
+    {
+        nexti = gNextSpriteStat[i];
+        if ((func_8005A240(i) != 1) || ((gpSprite[i].unk25 != 5) && (gpSprite[i].unk25 != 1)))
+            func_8004BD24(i);
+
+        i = nexti;
+    }
+}
 
 /*80051088*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_80051088);
+void func_80051088(s32 spritenum)
+{
+    s32 i, j, nexti;
+    s32 d1, d2, d3;
+
+    j = -1;
+    d3 = 0x200000;
+    if ((D_80137DE0->unk0 & 0x1000) &&
+            ((D_80137DE0->unk28 == -1) ||
+                (gpSprite[D_80137DE0->unk28].statnum != 302) ||
+                (gpSprite[D_80137DE0->unk28].unk2B != 0)))
+    {
+        D_80137DE0->unk28 = -1;
+        if (D_80137DE0->unk99 == 23)
+        {
+            i = gHeadSpriteStat[1];
+            while (i >= 0)
+            {
+                nexti = gNextSpriteStat[i];
+                if ((gpSprite[i].picnum == 1442) && (gpSprite[i].unk25 == 4))
+                {
+                    D_80137DE0->unk28 = j;
+                    break;
+                }
+                i = nexti;
+            }
+        }
+        else
+        {
+            d1 = klabs_(D_80118248->x - gPlayer[0].xpos) + klabs_(D_80118248->y - gPlayer[0].ypos);
+            i = gHeadSpriteStat[302];
+            while (i >= 0)
+            {
+                nexti = gNextSpriteStat[i];
+                d2 = klabs_(D_80118248->x - gpSprite[i].x) + klabs_(D_80118248->y - gpSprite[i].y);
+                if ((d2 < d3) && !(gpSprite[i].unk25 & 0x7F))
+                {
+                    if (d2 < 20000)
+                    {
+                        d3 = d2;
+                        j = i;
+                    }
+                }
+                i = nexti;
+            }
+            if ((d1 < d3) && (gpSprite[spritenum].unk24 == 123))
+                j = gPlayer[0].unk4A;
+
+            D_80137DE0->unk28 = j;
+        }
+    }
+}
 
 /*80051330*/
 static void func_80051330(void)
@@ -3183,9 +3544,236 @@ INCLUDE_ASM("nonmatchings/src/code0/41940", func_8005259C);
 /*80052AB0*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80052AB0);
 
-INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5CDC);
+typedef struct
+{
+    /*0x00*/ s32 unk0[3];
+} _41940UnkStruct2;
+
+static const _41940UnkStruct2 D_800E5CDC = {15, 45, 67};
+
 /*800533C4*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_800533C4);
+void func_800533C4(s32 arg0, s32 spritenum)
+{
+    _41940UnkStruct2 sp10;
+    SpriteType *spr;
+    s32 i, j, k;
+    s32 spritenum_;
+
+    i = 0;
+    k = 0;
+    j = -1;
+    sp10 = D_800E5CDC;
+    spr = &gpSprite[spritenum];
+    spritenum_ = spritenum;
+
+    if (spr->xrepeat == 0)
+        spr->xrepeat = 0x40;
+
+    if (spr->unk25 == 0)
+    {
+        switch (arg0)
+        {
+        case 0x6E7:case 0x6E8:case 0x886:case 0x887:case 0x8B4:case 0x8B5:
+        case 0x8B6:case 0x8BE:case 0x8BF:case 0x8C0:case 0x8C1:case 0x967:
+            i = 1;
+
+        default:
+            j = -1;
+            break;
+
+        case 0x6E9:case 0x6ED:case 0x6EE:
+            i = 1;
+            j = 1;
+            break;
+
+        case 0x597:case 0x599:case 0x59B:case 0x59F:case 0x5F4:case 0x5F5:
+        case 0x60D:case 0x60E:case 0x610:case 0x62A:case 0x658:case 0x6AE:
+        case 0x6AF:case 0x6D6:case 0x785:case 0x78E:case 0x791:case 0x796:
+        case 0x7C0:case 0x86C:case 0x8FB:case 0x945:case 0x96C:case 0xA27:
+            j = 1;
+            break;
+
+        case 0x6F0:
+            j = 5;
+            i = 1;
+            break;
+
+        case 0x6C3:case 0x6C4:
+            j = 3;
+            i = 1;
+            break;
+
+        case 0x6D7:case 0x6EA:case 0x7A9:
+            i = 1;
+            j = 0;
+            break;
+
+        case 0x534:case 0x548:case 0x549:case 0x57F:case 0x58C:case 0x58D:
+        case 0x58E:case 0x5B1:case 0x5B4:case 0x5BB:case 0x5BE:case 0x5BF:
+        case 0x5C9:case 0x5CA:case 0x5EE:case 0x5EF:case 0x622:case 0x627:
+        case 0x628:case 0x629:case 0x643:case 0x647:case 0x648:case 0x649:
+        case 0x64A:case 0x64B:case 0x64C:case 0x67A:case 0x684:case 0x69E:
+        case 0x6B2:case 0x6B3:case 0x6B4:case 0x6C6:case 0x6C7:case 0x6EF:
+        case 0x6F8:case 0x6F9:case 0x6FE:case 0x6FF:case 0x788:case 0x7BA:
+        case 0x7BB:case 0x7BC:case 0x7C2:case 0x7C6:case 0x7C7:case 0x867:
+        case 0x869:case 0x86D:case 0x873:case 0x874:case 0x875:case 0x877:
+        case 0x878:case 0x87E:case 0x880:case 0x88C:case 0x89F:case 0x8A2:
+        case 0x926:case 0x927:case 0xA17:case 0xA26:
+            j = 0;
+            break;
+
+        case 0x7B0:
+            i = 1;
+            j = 0xD;
+            break;
+
+        case 0x545:case 0x546:case 0x5CD:case 0x5CE:case 0x5D7:
+            j = 0xD;
+            break;
+
+        case 0x6D8:case 0x8C9:case 0x8CA:case 0x993:case 0x99E:
+            i = 1;
+            j = 0x15;
+            break;
+
+        case 0x571:case 0x57E:case 0x584:case 0x585:case 0x5B8:case 0x5D6:
+        case 0x5F9:case 0x6BA:case 0x6BB:case 0x6FD:case 0x794:case 0x7AB:
+        case 0x7AF:case 0x7B1:case 0x889:case 0x92E:case 0x92F:case 0xA22:
+            j = 0x15;
+            break;
+
+        case 0x5B5:
+            j = 2;
+            k = 1;
+            break;
+
+        case 0x5A2:case 0x5DD:case 0x5DE:case 0x615:case 0x616:case 0x635:
+        case 0x6DD:case 0x784:case 0x883:case 0x90E:case 0x959:
+            j = 2;
+            break;
+
+        case 0x51E:case 0x51F:case 0x522:case 0x523:case 0x525:case 0x526:
+        case 0x527:case 0x528:case 0x52B:case 0x52F:case 0x533:case 0x538:
+        case 0x539:case 0x543:case 0x554:case 0x556:case 0x55C:case 0x5BC:
+        case 0x5C5:case 0x5C6:case 0x5D2:case 0x5F0:case 0x5F1:case 0x5F2:
+        case 0x5F3:case 0x600:case 0x609:case 0x60C:case 0x611:case 0x612:
+        case 0x613:case 0x614:case 0x61D:case 0x61F:case 0x620:case 0x621:
+        case 0x623:case 0x62D:case 0x62E:case 0x62F:case 0x630:case 0x631:
+        case 0x636:case 0x639:case 0x63A:case 0x641:case 0x644:case 0x646:
+        case 0x650:case 0x651:case 0x654:case 0x662:case 0x666:case 0x667:
+        case 0x668:case 0x679:case 0x6E0:case 0x6E4:case 0x797:case 0x798:
+        case 0x799:case 0x79A:case 0x79B:case 0x79C:case 0x79D:case 0x7AD:
+        case 0x7B5:case 0x7B6:case 0x7B7:case 0x7CA:case 0x85D:case 0x861:
+        case 0x862:case 0x863:case 0x865:case 0x872:case 0x876:case 0x87A:
+        case 0x87C:case 0x87D:case 0x890:case 0x891:case 0x892:case 0x893:
+        case 0x894:case 0x895:case 0x896:case 0x899:case 0x8D9:case 0x8DD:
+        case 0x8DE:case 0x8DF:case 0x8E0:case 0x8E1:case 0x8E2:case 0x8E3:
+        case 0x8E4:case 0x8E5:case 0x8E6:case 0x8EA:case 0x965:case 0x966:
+        case 0x974:case 0xA12:case 0xF6C:
+            j = 3;
+            break;
+
+        case 0x520:case 0x521:case 0x524:case 0x5A6:case 0x5AD:case 0x5AE:
+        case 0x5AF:case 0x5C4:case 0x5D8:case 0x5FA:case 0x657:case 0x6FB:
+        case 0x6FC:case 0x78F:case 0x86E:case 0x879:case 0x882:case 0x946:
+        case 0x947:case 0x948:case 0x949:case 0x94A:
+            j = 4;
+            break;
+
+        case 0x53D:case 0x607:case 0x7AC:
+            j = 5;
+            break;
+
+        case 0x5C3:case 0x60F:case 0x6DA:case 0x86F:case 0x885:
+            j = 6;
+            break;
+
+        case 0x529:case 0x52A:case 0x52E:case 0x530:case 0x54A:case 0x5CF:
+        case 0x5D0:case 0x5D1:case 0x5E2:case 0x5E3:case 0x5E5:case 0x5E6:
+        case 0x5E7:case 0x602:case 0x603:case 0x604:case 0x605:case 0x6C5:
+        case 0x6E5:case 0x782:case 0x789:case 0x78A:case 0x78B:case 0x795:
+        case 0x7C8:case 0x85F:case 0x860:case 0x864:case 0x88A:case 0x8B8:
+        case 0x8B9:case 0x8BA:case 0x8BB:case 0x8BC:case 0x8CF:case 0x8D0:
+        case 0x8D1:case 0x8D2:case 0x8D3:
+            j = 0xC;
+            break;
+
+        case 0x7AE:
+            j = 0xE;
+            break;
+
+        case 0x52C:case 0x52D:case 0x532:case 0x558:case 0x55A:case 0x655:
+        case 0x678:case 0x6D9:case 0x6DB:case 0x6DC:case 0x6DE:case 0x6DF:
+        case 0x780:case 0x7B2:case 0x7B3:case 0x7B4:case 0xA21:
+            j = 0xF;
+            break;
+
+        case 0x559:
+            j = 0x10;
+            break;
+
+        case 0x7C3:case 0x7C4:
+            j = 0x11;
+            break;
+
+        case 0x881:
+            j = 0x12;
+            break;
+
+        case 0x53C:case 0x540:case 0x580:case 0x589:case 0x5B7:case 0x92C:
+        case 0x92D:
+            j = 0x16;
+            break;
+
+        case 0x55B:
+            j = 0x18;
+            break;
+
+        case 0x637:case 0x638:
+            j = 0x19;
+            break;
+
+        case 0x54C:case 0x54D:case 0x54E:
+            j = 0x3E7;
+            break;
+
+        case 0x8E9:
+            j = 0x3E8;
+            break;
+
+        case 0x575:case 0x576:case 0x577:
+            if (spr->statnum == 0)
+            {
+                i = 2;
+                j = -1;
+            }
+            break;
+        }
+
+        spr->unk2A = 0;
+        if (k != 0)
+            spr->unk2A = 1;
+
+        if (j != -1)
+        {
+            changeSpriteStat(spritenum_, 65);
+            spr->unk22 = j;
+            spr->unk18 = sp10.unk0[j % 3];
+        }
+
+        if (((~j) == 0) & (i != 0))
+        {
+            changeSpriteStat(spritenum_, 65);
+            spr->unk22 = -1;
+            spr->unk18 = sp10.unk0[0];
+        }
+        spr->unk2B = i;
+
+        if (i == 2)
+            spr->unk18 = sp10.unk0[2];
+    }
+    func_80053650(arg0, spritenum);
+}
 
 /*80053650*/
 static void func_80053650(s32 arg0, s32 spritenum)
@@ -3314,7 +3902,44 @@ static void func_80055DDC(s32 spritenum)
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80055EC0);
 
 /*800563D4*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_800563D4);
+void func_800563D4(s32 spritenum)
+{
+    s32 unk9E;
+
+    if (D_80137DE0->unk6C != 0)
+    {
+        MusHandleStop(D_80137DE0->unk6C, 0);
+        D_80137DE0->unk6C = 0;
+    }
+
+    D_80137DE0->unk99 = 0;
+    unk9E = D_80137DE0->unk9E;
+    func_8006D3B8(spritenum, 103, 0, 0, 0);
+
+    if (unk9E == 19 || unk9E == 32 || unk9E == 18 || unk9E == 8 ||
+        unk9E == 10 || unk9E == 13 || unk9E == 12 || unk9E == 14)
+    {
+        func_80057540(&gpSprite[spritenum], 1501, 2, 0);
+        func_80057540(&gpSprite[spritenum], 1501, 2, 0);
+        func_8008E3E0(gpSprite[spritenum].x, gpSprite[spritenum].y, gpSprite[spritenum].z,
+                      gpSprite[spritenum].sectnum, 36, 0);
+        audio_800077F4(((krand() % 3) + 538), spritenum);
+        func_8004BD24(spritenum);
+    }
+    else
+    {
+        D_80137DE0->unk44 = 0;
+        func_80035A98(spritenum, 0);
+        changeSpriteStat(spritenum, 53);
+        gpSprite[spritenum].unk18 = 0;
+        gpSprite[spritenum].unk1A = 0;
+        if (unk9E == 21)
+        {
+            gpSprite[spritenum].cstat |= 0x800;
+            gpSprite[spritenum].unk25 = 31;
+        }
+    }
+}
 
 /*80056600*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80056600);

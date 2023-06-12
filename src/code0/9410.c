@@ -36,6 +36,8 @@
 /*800BD73A*/ EXTERN_DATA STATIC u8 _spritesLock;
 /*800BD73B*/ EXTERN_DATA STATIC u8 _mapLock;
 /*800BD73C*/ EXTERN_DATA STATIC u8 _vertexLock;
+/*800BD748*/ EXTERN_DATA s16 D_800BD748;
+/*800BD74A*/ EXTERN_DATA u8 D_800BD74A;
 /*800BD74B*/ EXTERN_DATA STATIC u8 D_800BD74B;
 /*800BD74C*/ EXTERN_DATA STATIC u8 *_tilemap;
 
@@ -782,7 +784,7 @@ void func_8000DBDC(u8 arg0, s16 arg1)
     D_800FE410 = (arg1 * gpGlobalPalette[arg0].g) >> 8;
     D_80138680 = (arg1 * gpGlobalPalette[arg0].b) >> 8;
 
-    if (D_8010A940[D_801B0820].unk7 != 0)
+    if (D_8010A940[D_801B0820].unk2[5] != 0)
     {
         D_800FE410 = MAX(D_800FE410, D_8016A148);
         D_800FE410 = MAX(D_800FE410, D_80138680);

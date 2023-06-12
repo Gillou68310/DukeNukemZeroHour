@@ -139,7 +139,7 @@ code0UnkStruct16 *func_8007FC08(code0UnkStruct15 *arg0, s32 arg1, s32 arg2, s32 
     ptr->unk34 = arg2;
     ptr->unk38 = arg3;
     ptr->unk11 = 0xFF;
-    ptr->unk70 = arg0;
+    ptr->unk70 = (intptr_t)arg0;
     ptr->unk3C = arg4;
     if (arg0 != NULL)
     {
@@ -164,7 +164,7 @@ STATIC void func_8007FCC8(void)
     if (!(unk40 <= 0.1) && (D_8012FD8C->unk70 != NULL))
     {
         func_8007F540(D_8012FD8C->unkC, D_8012FD8C->unk10, D_8012FD8C->unk11, D_8012FD8C->unk78);
-        func_8007F7E8(D_8012FD8C->unk70, D_8012FD8C->unk74, unk34, unk38, unk40);
+        func_8007F7E8((void *)D_8012FD8C->unk70, D_8012FD8C->unk74, unk34, unk38, unk40);
         func_8007F71C();
     }
 }
@@ -195,7 +195,7 @@ code0UnkStruct16 *func_8007FE2C(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 ar
     ptr->unk34 = arg1;
     ptr->unk38 = arg2;
     ptr->unk3C = arg3;
-    ptr->unk70 = arg0;
+    ptr->unk70 = (intptr_t)arg0;
     ptr->unk11 = 0xFF;
     ptr->unk14 = 0;
     ptr->unk74 = arg4;
@@ -266,15 +266,15 @@ STATIC void func_8008011C(void)
     ptr3 = D_800E0B14[D_8012FD8C->unk78].unkC;
 
     if (D_8012FD8C->unk74 & 1)
-        unk34 -= (func_800800D8(D_8012FD8C->unk70, D_8012FD8C->unk78) / 2);
+        unk34 -= (func_800800D8((void *)D_8012FD8C->unk70, D_8012FD8C->unk78) / 2);
 
     if (D_8012FD8C->unk74 & 2)
-        unk34 -= func_800800D8(D_8012FD8C->unk70, D_8012FD8C->unk78);
+        unk34 -= func_800800D8((void *)D_8012FD8C->unk70, D_8012FD8C->unk78);
 
     unk38 = D_8012FD8C->unk38;
     func_8007F540(D_8012FD8C->unkC, D_8012FD8C->unk10, D_8012FD8C->unk11, 0);
 
-    unk70 = D_8012FD8C->unk70;
+    unk70 = (u8 *)D_8012FD8C->unk70;
     for (i = *unk70++; i != 0; i = *unk70++)
     {
         i -= 32;
@@ -297,7 +297,7 @@ code0UnkStruct16 *func_800802C0(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 ar
     ptr->unk34 = arg1;
     ptr->unk38 = arg2;
     ptr->unk3C = arg3;
-    ptr->unk70 = arg0;
+    ptr->unk70 = (intptr_t)arg0;
     ptr->unk11 = 0xFF;
     ptr->unk6B.b = 0xFF;
     ptr->unk6B.g = 0xFF;
@@ -338,12 +338,12 @@ void func_8008036C(void)
     unk34 = D_8012FD8C->unk34;
 
     if (D_8012FD8C->unk74 & 2)
-        unk34 -= (func_800800D8(D_8012FD8C->unk70, 1) * ptr->unk40);
+        unk34 -= (func_800800D8((void *)D_8012FD8C->unk70, 1) * ptr->unk40);
 
     if (D_8012FD8C->unk74 & 1)
-        unk34 -= (func_800800D8(D_8012FD8C->unk70, 1) * ptr->unk40) / 2.0f;
+        unk34 -= (func_800800D8((void *)D_8012FD8C->unk70, 1) * ptr->unk40) / 2.0f;
 
-    unk70 = D_8012FD8C->unk70;
+    unk70 = (u8 *)D_8012FD8C->unk70;
     for (i = *unk70++, D_8012FD8C = &copy; i != 0; i = *unk70++)
     {
         i -= 32;
