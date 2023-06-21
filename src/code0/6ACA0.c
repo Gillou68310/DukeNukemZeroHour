@@ -17,8 +17,8 @@ typedef void (*_6ACA0UnkFuncPointer)(s32 spritenum);
 
 /*Skip following declaration so it defaults to s32*/
 /*#include "code0/87010.h"*/
-/*void func_80087174(s16 spritenum, s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2, s32, s32);*/
-void func_800867CC(s16 spritenum, s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2, s32, s32);
+/*void func_80087174(s16 spritenum, s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2, s16, u8);*/
+void func_800867CC(s16 spritenum, s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2, s16, u8);
 
 /*.data*/
 /*800DF2F0*/ EXTERN_DATA u8 D_800DF2F0;
@@ -276,7 +276,86 @@ static void func_8006CD38(s16 playernum)
 }
 
 /*8006CDE0*/
-INCLUDE_ASM("nonmatchings/src/code0/6ACA0", func_8006CDE0);
+static s32 func_8006CDE0(s16 playernum, s32 *arg1, s32 *arg2, s32 *arg3)
+{
+    SpriteType *spr;
+    s32 x1, y1, z1;
+    s32 sectnum;
+    s32 i, j, nexti;
+    s16 ang;
+    s32 delta;
+
+    *arg1 = -1;
+    *arg2 = -1;
+    *arg3 = -1;
+    i = gHeadSpriteStat[1];
+    x1 = gpSprite[gPlayer[playernum].unk4A].x;
+    y1 = gpSprite[gPlayer[playernum].unk4A].y;
+    z1 = gpSprite[gPlayer[playernum].unk4A].z;
+    j = 0;
+    sectnum = gpSprite[gPlayer[playernum].unk4A].sectnum;
+    while (i >= 0)
+    {
+        nexti = gNextSpriteStat[i];
+        spr = &gpSprite[i];
+        if (func_8004D7D8(i) != 0)
+        {
+            ang = getAngle(spr->x - x1, spr->y - y1);
+            delta = getAngleDelta(ang, gPlayer[playernum].unk38);
+            if (((delta > 0) && (getAngleDelta(ang, gPlayer[playernum].unk38)) < 384) ||
+                ((delta <= 0) && (-getAngleDelta(ang, gPlayer[playernum].unk38) < 384)))
+            {
+                if (canSee(x1, y1, z1, sectnum, spr->x, spr->y, spr->z, spr->sectnum) != 0)
+                {
+                    switch (j)
+                    {
+                    case 0:
+                        *arg1 = i;
+                        j = 1;
+                        break;
+                    case 1:
+                        *arg2 = i;
+                        j = 2;
+                        break;
+                    case 2:
+                        *arg3 = i;
+                        j = 3;
+                        break;
+                    }
+                }
+            }
+        }
+        if (j == 3)
+            break;
+
+        i = nexti;
+    }
+    if ((*arg1 == -1) && (*arg2 == -1) && (*arg3 == -1))
+    {
+        if (playernum < 0)
+        {
+            *arg1 = gPlayer[0].unk4A;
+            *arg2 = gPlayer[0].unk4A;
+            *arg3 = gPlayer[0].unk4A;
+            return 1;
+        }
+        else
+            return -1;
+    }
+    else if (*arg2 == -1)
+    {
+        *arg2 = *arg1;
+        *arg3 = *arg1;
+        return 1;
+    }
+    else if (*arg3 == -1)
+    {
+        *arg3 = *arg1;
+        return 1;
+    }
+
+    return 1;
+}
 
 /*8006D0E4*/
 void func_8006D0E4(s16 playernum)

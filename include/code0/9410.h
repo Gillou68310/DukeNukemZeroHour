@@ -17,6 +17,7 @@ void func_8000C0D0(s16 tilenum);
 void func_8000C3E4(s16 tilenum);
 void func_8000C76C(void);
 void func_8000DBDC(u8, s16);
+void func_8000DCF0(s32 x, s32 y, s32 z, s16 sectnum);
 void func_8000E04C(void);
 void func_8000EA0C(u8 playernum, s16, s16, s16, s16);
 void func_8000EB4C(u8 playernum, s16, s16, s16, s16);

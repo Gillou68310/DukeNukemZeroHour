@@ -216,7 +216,121 @@ static void func_800418B8(s32 arg0)
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80041968);
 
 /*80041D10*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_80041D10);
+STATIC s32 func_80041D10(s32 spritenum)
+{
+    s32 i, j, k, l;
+    s32 x, y, z1, z2;
+    s32 d;
+    s32 cond;
+
+    gpInst++;
+    i = getVar(spritenum, *gpInst++);
+    j = *gpInst++;
+    k = getVar(spritenum, *gpInst++);
+    l = *gpInst++;
+
+    cond = 0;
+    if (j & 0x80)
+    {
+        if (i == k)
+            cond = 1;
+    }
+
+    if (j & 0x100)
+    {
+        if (i != k)
+            cond = 1;
+    }
+
+    if (j & 0x200)
+    {
+        if (i < k)
+            cond = 1;
+    }
+
+    if (j & 0x400)
+    {
+        if (k < i)
+            cond = 1;
+    }
+
+    if (j & 0x10)
+    {
+        if (D_80137DE0->unk8 <= 0)
+            cond = 1;
+    }
+
+    if (j & 0x40)
+    {
+        x = D_80118248->x - gPlayer->xpos;
+        y = D_80118248->y - gPlayer->ypos;
+
+        if (x < 0)
+            x = -x;
+
+        if (y < 0)
+            y = -y;
+
+        x = x + y;
+        if (x < i)
+            cond = 1;
+    }
+
+    if (j & 0x800)
+    {
+        d = func_80058538(D_80118248, k);
+        if (d == -1)
+            cond = 0;
+        else if (d < i)
+            cond = 1;
+    }
+
+    if (j & 1)
+    {
+        if (gpSector[D_80118248->sectnum].unk18 == 2)
+            cond = 1;
+
+        if (gpSector[D_80118248->sectnum].unk18 == 3)
+        {
+            z1 = D_80118248->z - i;
+            if (func_80036490(D_80118248->sectnum) < z1)
+                cond = 1;
+        }
+    }
+
+    if (j & 2)
+    {
+        cond = gpSector[D_80118248->sectnum].unk18 != 2;
+        if (gpSector[D_80118248->sectnum].unk18 == 3)
+        {
+            z2 = D_80118248->z - i;
+            cond &= -((func_80036490(D_80118248->sectnum) >= (z2)));
+        }
+    }
+
+    if (j & 8)
+    {
+        if (!(D_80137DE0->unk0 & 4))
+            cond = 1;
+    }
+
+    if (j & 4)
+    {
+        if (D_80137DE0->unk0 & 4)
+            cond = 1;
+    }
+
+    if (j & 0x8000)
+    {
+        if (D_80137DE0->unk38 == -1)
+            cond = 1;
+    }
+
+    if (cond == 1)
+        gpInst = &gpInst[l];
+
+    return 0;
+}
 
 /*8004201C*/
 STATIC s32 func_8004201C(s32 spritenum)
@@ -413,7 +527,7 @@ STATIC s32 func_80042434(s32 spritenum)
 /*80042598*/
 STATIC s32 func_80042598(s32 spritenum)
 {
-    s32 x, y, z, z2;
+    s32 x, y, z1, z2;
     s32 i, j, k, l, m;
     s32 d;
     s32 cond;
@@ -430,7 +544,10 @@ STATIC s32 func_80042598(s32 spritenum)
     cond = 0;
 
     if (j & 0x10)
-        cond = D_80137DE0->unk8 < 1;
+    {
+        if (D_80137DE0->unk8 < 1)
+            cond = 1;
+    }
 
     if (j & 0x40)
     {
@@ -454,8 +571,8 @@ STATIC s32 func_80042598(s32 spritenum)
 
         if (gpSector[D_80118248->sectnum].unk18 == 3)
         {
-            z = D_80118248->z - l;
-            if (func_80036490(D_80118248->sectnum) < z)
+            z1 = D_80118248->z - l;
+            if (func_80036490(D_80118248->sectnum) < z1)
                 cond = 1;
         }
     }
@@ -475,7 +592,7 @@ STATIC s32 func_80042598(s32 spritenum)
         if (gpSector[D_80118248->sectnum].unk18 == 3)
         {
             z2 = D_80118248->z - l;
-            cond &= -(!(func_80036490(D_80118248->sectnum) < z2));
+            cond &= -((func_80036490(D_80118248->sectnum) >= z2));
         }
     }
 

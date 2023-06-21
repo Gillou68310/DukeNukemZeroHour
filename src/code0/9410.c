@@ -789,13 +789,68 @@ void func_8000DBDC(u8 arg0, s16 arg1)
         D_800FE410 = MAX(D_800FE410, D_8016A148);
         D_800FE410 = MAX(D_800FE410, D_80138680);
         D_8016A148 = 0;
-        D_800FE410 = CLAMP_MAX((D_800FE410 + 32) * 2, 255);
+        D_800FE410 = CLAMP_MAX((D_800FE410 + 32) * 2, 0xFF);
         D_80138680 = 0;
     }
 }
 
 /*8000DCF0*/
-INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000DCF0);
+void func_8000DCF0(s32 x, s32 y, s32 z, s16 sectnum)
+{
+    s16 i;
+    s32 x1, y1;
+    s32 j, k, unk20;
+    f32 f1;
+
+    i = gHeadSpriteStat[100];
+    D_80138680 = 0;
+    D_800FE410 = 0;
+    D_8016A148 = 0;
+    j = 0x40000000;
+    while (i != -1)
+    {
+        if ((gpSprite[i].ang > 1024) || (gpSprite[i].sectnum == sectnum))
+        {
+            x1 = gpSprite[i].x;
+            y1 = gpSprite[i].y;
+            unk20 = gpSprite[i].unk20;
+            k = func_80040D40(x, y, x1, y1);
+            if (k < unk20)
+            {
+                if (k < j)
+                {
+                    j = k;
+                    D_801B080C = x1;
+                    D_8016A14C = y1;
+                    D_8013A438 = gpSprite[i].z;
+                }
+                f1 = 1.0f - ((f32)k / (f32)unk20);
+                D_8016A148 += (gpSprite[i].unk18 * f1);
+                D_800FE410 += (gpSprite[i].unk1A * f1);
+                D_80138680 += (gpSprite[i].unk1C * f1);
+            }
+        }
+        i = gNextSpriteStat[i];
+    }
+
+    if (D_8016A148 > 0xFF)
+        D_8016A148 = 0xFF;
+
+    if (D_800FE410 > 0xFF)
+        D_800FE410 = 0xFF;
+
+    if (D_80138680 > 0xFF)
+        D_80138680 = 0xFF;
+
+    if (D_8010A940[D_801B0820].unk2[5] != 0)
+    {
+        D_800FE410 = MAX(D_800FE410, D_8016A148);
+        D_800FE410 = MAX(D_800FE410, D_80138680);
+        D_8016A148 = 0;
+        D_800FE410 = CLAMP_MAX((D_800FE410 + 32) * 2, 0xFF);
+        D_80138680 = 0;
+    }
+}
 
 /*8000E024*/
 static void func_8000E024(s32 arg0, s32 arg1)
