@@ -349,6 +349,12 @@ typedef struct
     /*0x24*/ s32 unk24;
 } code0UnkStruct17;
 
+typedef struct {
+    /*0x00*/ s32 unk0;
+    /*0x04*/ s32 unk4;
+    /*0x08*/ s32 unk8;
+} code0UnkStruct21;
+
 typedef struct
 {
     /*0x00*/ s32 unk0;
@@ -370,18 +376,7 @@ typedef struct
     /*0x2C*/ s16 unk2C;
     /*0x2E*/ s16 unk2E;
     /*0x30*/ s32 unk30;
-    /*0x34*/ s32 unk34;
-    /*0x38*/ s32 unk38;
-    /*0x3C*/ s32 unk3C;
-    /*0x40*/ s32 unk40;
-    /*0x44*/ s32 unk44;
-    /*0x48*/ s32 unk48;
-    /*0x4C*/ s32 unk4C;
-    /*0x50*/ s32 unk50;
-    /*0x54*/ s32 unk54;
-    /*0x58*/ s32 unk58;
-    /*0x5C*/ s32 unk5C;
-    /*0x60*/ s32 unk60;
+    /*0x34*/ code0UnkStruct21 unk34[4];
 } code0UnkStruct19;
 
 typedef struct

@@ -8,15 +8,9 @@
 #include "code1/code1.h"
 #include "static/119280.h"
 
-typedef struct {
-    /*0x00*/ s32 unk0;
-    /*0x04*/ s32 unk4;
-    /*0x08*/ s32 unk8;
-} _82480UnkStruct1;
-
 /*.comm*/
-/*800FF3E0*/ _82480UnkStruct1 *D_800FF3E0;
-/*8012FC9C*/ _82480UnkStruct1 *D_8012FC9C;
+/*800FF3E0*/ code0UnkStruct21 *D_800FF3E0;
+/*8012FC9C*/ code0UnkStruct21 *D_8012FC9C;
 /*801AC598*/ Vtx *D_801AC598[200] ALIGNED(8);
 /*801AE52C*/ s32 D_801AE52C;
 
@@ -51,20 +45,20 @@ void func_800818A8(code0UnkStruct16 *arg0, s16 id, s16 off, void *arg3, void *ar
 }
 
 /*8008196C*/
-static void func_8008196C(s32 *arg0)
+static void func_8008196C(code0UnkStruct21 *arg0)
 {
     f32 f1, f2, f3, f4, f5;
 
     f1 = 0.0f;
-    f2 = arg0[0];
+    f2 = arg0->unk0;
     if (f2 == 0.0f)
         f2 = 1.0f;
 
-    f3 = arg0[1];
+    f3 = arg0->unk4;
     if (f3 == 0.0f)
         f3 = 1.0f;
 
-    f4 = arg0[2];
+    f4 = arg0->unk8;
     if (f4 == 0.0f)
         f4 = 1.0f;
 
@@ -72,13 +66,51 @@ static void func_8008196C(s32 *arg0)
     if (!(f5 < 0.01))
         f1 = (126.0 / sqrtf(f5));
 
-    arg0[0] = (s8)(f2 * f1);
-    arg0[1] = (s8)(f3 * f1);
-    arg0[2] = (s8)(f4 * f1);
+    arg0->unk0 = (s8)(f2 * f1);
+    arg0->unk4 = (s8)(f3 * f1);
+    arg0->unk8 = (s8)(f4 * f1);
 }
 
 /*80081AEC*/
-INCLUDE_ASM("nonmatchings/src/code0/82480", func_80081AEC);
+static void func_80081AEC(s32 arg0)
+{
+    f32 f1, f2, f3, f4, f5;
+    s32 i;
+
+    D_80118168.unk34[0] = D_8012FC9C[D_80118168.unk18];
+    func_8008196C(&D_80118168.unk34[0]);
+    D_80118168.unk34[1] = D_8012FC9C[D_80118168.unk1A];
+    func_8008196C(&D_80118168.unk34[1]);
+    D_80118168.unk34[2] = D_8012FC9C[D_80118168.unk1C];
+    func_8008196C(&D_80118168.unk34[2]);
+
+    if (D_80118168.unk1C != D_80118168.unk1E)
+    {
+        D_80118168.unk34[3] = D_8012FC9C[D_80118168.unk1E];
+        func_8008196C(&D_80118168.unk34[3]);
+    }
+
+    if (D_80118168.unk30 & 0x20000000)
+    {
+        for (i = 0; i < 4; i++)
+        {
+            f1 = (f32)(D_80118168.unk34[i].unk0 - D_800FF3E0[arg0].unk0);
+            f2 = (f32)(D_80118168.unk34[i].unk4 + D_800FF3E0[arg0].unk4);
+            f3 = (f32)(D_80118168.unk34[i].unk8 + D_800FF3E0[arg0].unk8);
+            f4 = 0.0f;
+
+            if (_fabs(f1) > 1.0f) f4 = f1 * f1;
+            if (_fabs(f2) > 1.0f) f4 += f2 * f2;
+            if (_fabs(f3) > 1.0f) f4 += f3 * f3;
+            if (f4 >= 1.0f) f5 = (126.0 / sqrtf(f4));
+            else f5 = 126.0f;
+
+            D_80118168.unk34[i].unk0 = (s8)(f1 * f5);
+            D_80118168.unk34[i].unk4 = (s8)(f2 * f5);
+            D_80118168.unk34[i].unk8 = (s8)(f3 * f5);
+        }
+    }
+}
 
 /*80081E20*/
 INCLUDE_ASM("nonmatchings/src/code0/82480", func_80081E20);
@@ -127,7 +159,7 @@ INCLUDE_ASM("nonmatchings/src/code0/82480", func_80082448);
 static void func_80082920(void)
 {
     s32 i;
-    _82480UnkStruct1 *ptr;
+    code0UnkStruct21 *ptr;
 
     ptr = D_8012FC9C;
     for (i = 0; i < 2048; i++, ptr++)
@@ -139,13 +171,13 @@ static void func_80082920(void)
 }
 
 /*80082958*/
-static f32 func_80082958(_82480UnkStruct1 *arg0, _82480UnkStruct1 *arg1)
+static f32 func_80082958(code0UnkStruct21 *arg0, code0UnkStruct21 *arg1)
 {
     return ((arg0->unk0 * arg1->unk0) + (arg0->unk4 * arg1->unk4) + (arg0->unk8 * arg1->unk8));
 }
 
 /*800829BC*/
-static f32 func_800829BC(_82480UnkStruct1 *arg0, _82480UnkStruct1 *arg1)
+static f32 func_800829BC(code0UnkStruct21 *arg0, code0UnkStruct21 *arg1)
 {
     f32 f1, f2, f3, f4, f5, f6;
 
@@ -177,7 +209,7 @@ static f32 func_800829BC(_82480UnkStruct1 *arg0, _82480UnkStruct1 *arg1)
 }
 
 /*80082B44*/
-static void func_80082B44(_82480UnkStruct1 *arg0, f32 arg1, f32 arg2, f32 arg3)
+static void func_80082B44(code0UnkStruct21 *arg0, f32 arg1, f32 arg2, f32 arg3)
 {
     arg0->unk0 -= arg1;
     arg0->unk4 += arg2;
@@ -215,7 +247,7 @@ void func_80083200(_119280UnkStruct1 *arg0, s32 arg1)
     {
         D_80168D18 = 0;
         D_800FE3F4 = 0;
-        D_8012FC9C = (_82480UnkStruct1 *)D_801CD96C;
+        D_8012FC9C = (code0UnkStruct21 *)D_801CD96C;
         D_800FF3E0 = &D_8012FC9C[arg0->unk6];
         func_80085EBC(D_801AC598[arg0->unk0], arg0->unk6, &D_8012C478[arg0->unk0], arg0->unk8, arg1);
         D_8012FD8C = &sp48;
@@ -277,7 +309,7 @@ static void func_80083430(s32 arg0, _119280UnkStruct1 *arg1, s32 arg2, s32 arg3,
     {
         D_80168D18 = 0;
         D_800FE3F4 = 0;
-        D_8012FC9C = (_82480UnkStruct1 *)D_801CD96C;
+        D_8012FC9C = (code0UnkStruct21 *)D_801CD96C;
         D_800FF3E0 = &D_8012FC9C[arg1->unk6];
         func_80085EBC(D_801AC598[arg1->unk0], arg1->unk6, &D_8012C478[arg1->unk0], arg1->unk8, arg2);
         D_8012FD8C = &sp48;
