@@ -200,7 +200,7 @@ static void func_8007B64C(s32 arg0)
                 gpVertexN64->v.cn[3] = m;
                 gpVertexN64++;
             }
-            k += 1;
+            k++;
         }
     }
     if (k >= 2)

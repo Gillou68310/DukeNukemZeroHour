@@ -201,13 +201,13 @@ void func_80094D18(void)
                         func_8008E3E0(ptr->unk4, ptr->unk8, (z - 512), ptr->unk12, 28, 0);
 
                     ptr->unk0 = 0;
-                    D_800E1770 -= 1;
+                    D_800E1770--;
                 }
             }
             else
             {
                 ptr->unk0 = 0;
-                D_800E1770 -= 1;
+                D_800E1770--;
             }
         }
     }
@@ -317,7 +317,7 @@ void func_80095220(void)
             if ((ptr->unk12 == -1) || (ptr->unkC >= getFlorzOfSlope(ptr->unk12, ptr->unk4, ptr->unk8)))
             {
                 ptr->unk0 = 0;
-                D_800E1770 -= 1;
+                D_800E1770--;
             }
         }
     }
@@ -793,7 +793,44 @@ void func_8009B8A4(s32 spritenum)
 INCLUDE_ASM("nonmatchings/src/code0/95500", func_8009B974);
 
 /*8009BED0*/
-INCLUDE_ASM("nonmatchings/src/code0/95500", func_8009BED0);
+static s32 func_8009BED0(SpriteType *arg0, s32 x, s32 y, s32 z, s16 sectnum)
+{
+    s16 sectnum1;
+    s32 i, j, k;
+    s32 x1, y1, z1;
+
+    x1 = arg0->x;
+    y1 = arg0->y;
+    z1 = arg0->z;
+    sectnum1 = arg0->sectnum;
+
+    i = canSee(x1, y1, z1 - 25000, sectnum1, x, y, z - 7296, sectnum);
+    j = canSee(x1, y1, z1 - 50000, sectnum1, x, y, z, sectnum);
+    k = canSee(x1, y1, z1, sectnum1, x, y, z - 0x3900, sectnum);
+
+    if (i != 0 || j != 0 || k)
+        return 1;
+
+    x1 = arg0->x + ((gpSinTable[(arg0->ang + 1024) & 0x7FF] * 125) >> 11);
+    y1 = arg0->y + ((gpSinTable[(arg0->ang + 512) & 0x7FF] * 125) >> 11);
+    i = canSee(x1, y1, z1 - 25000, sectnum1, x, y, z - 0x1C80, sectnum);
+    j = canSee(x1, y1, z1 - 50000, sectnum1, x, y, z, sectnum);
+    k = canSee(x1, y1, z1, sectnum1, x, y, z - 14592, sectnum);
+
+    if (i != 0 || j != 0 || k)
+        return 1;
+
+    x1 = arg0->x + ((gpSinTable[arg0->ang & 0x7FF] * 125) >> 11);
+    y1 = arg0->y + ((gpSinTable[(arg0->ang - 512) & 0x7FF] * 125) >> 11);
+    i = canSee(x1, y1, z1 - 25000, sectnum1, x, y, z - 7296, sectnum);
+    j = canSee(x1, y1, z1 - 50000, sectnum1, x, y, z, sectnum);
+    k = canSee(x1, y1, z1, sectnum1, x, y, z - 14592, sectnum);
+
+    if (i != 0 || j != 0 || k)
+        return 1;
+
+    return 0;
+}
 
 /*8009C248*/
 INCLUDE_ASM("nonmatchings/src/code0/95500", func_8009C248);

@@ -100,8 +100,7 @@ typedef struct
     /*0x08*/ char *unk8;
     /*0x0C*/ ProcPointer unkC;
     /*0x10*/ struct _code1UnkStruct6 *unk10;
-    /*0x14*/ u16 unk14;
-    /*0x16*/ u16 unk16;
+    /*0x14*/ struct _code1UnkStruct6 *unk14;
     /*0x18*/ u16 *unk18;
 } code1UnkStruct5;
 

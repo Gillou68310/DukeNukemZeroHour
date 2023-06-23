@@ -540,7 +540,64 @@ INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBFDC);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBFF0);
 
 /*801C2BE8*/
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C2BE8);
+void func_801C2BE8(code1UnkStruct6 *arg0)
+{
+    code1UnkStruct5 *ptr;
+    s32 i;
+    s16 j;
+
+    ptr = arg0->unk4;
+    D_801CE490 = 0;
+
+    for (i = 0; i < arg0->unk0; i++, ptr++)
+    {
+        j = ptr->unk2;
+
+        if (j == -1)
+            j = gScreenWidth / 2;
+        else if (gScreenWidth == 512)
+            j += 96;
+
+        D_801CD990[D_801CE490] = func_800802C0(ptr->unk8, j, arg0->unk8 + (i * arg0->unkA), 200, ptr->unk0);
+
+        if (ptr->unk4 & 1)
+        {
+            func_801C14C4(D_801CD990[D_801CE490], 32, 0xFF, 32);
+            D_801CD990[D_801CE490]->unk3C -= 100.0f;
+        }
+        else
+            func_801C14C4(D_801CD990[D_801CE490], 140, 140, 165);
+
+        if (ptr->unk4 & 2)
+            D_801CD990[D_801CE490]->unk12 = 150;
+
+        D_801CE490 += 1;
+        if (ptr->unk14 != NULL)
+        {
+            j = ptr->unk14->unk4[ptr->unk18[0]].unk2;
+
+            if (j == -1)
+                j = gScreenWidth / 2;
+            else if (gScreenWidth == 512)
+                j += 96;
+
+            D_801CD990[D_801CE490-1]->unk7C = (intptr_t)func_800802C0(ptr->unk14->unk4[ptr->unk18[0]].unk8,
+                                                                      j,
+                                                                      arg0->unk8 + (i * arg0->unkA),
+                                                                      200,
+                                                                      ptr->unk14->unk4[ptr->unk18[0]].unk0);
+
+            if ((ptr->unk14 == &D_801CA970) && ((ptr->unk18[0] != 0)))
+                func_801C14C4((code0UnkStruct16 *)D_801CD990[D_801CE490-1]->unk7C, 0xFF, 0xFF, 0xFF);
+            else
+                func_801C14C4((code0UnkStruct16 *)D_801CD990[D_801CE490-1]->unk7C, 0, 200, 200);
+
+            if (ptr->unk14->unk4->unk4 & 2)
+                ((code0UnkStruct16 *)D_801CD990[D_801CE490-1]->unk7C)->unk12 = 150;
+        }
+    }
+    D_801CE5A8 = arg0;
+}
 
 /*801C2F1C*/
 static void func_801C2F1C(void)
@@ -1104,13 +1161,99 @@ void func_801C3E08(void)
 }
 
 /*801C3E5C*/
+STATIC void func_801C3E5C(void);
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C3E5C);
 
 /*801C45C0*/
+STATIC void func_801C45C0(void);
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C45C0);
 
 /*801C4B34*/
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C4B34);
+void func_801C4B34(void)
+{
+    code0UnkStruct16 *ptr;
+    code1UnkStruct5 *ptr2;
+    u8 c;
+    s16 sin;
+
+    ptr2 = &D_801CE5A8->unk4[D_801CE5A0];
+    if (D_801AE914 == 0)
+        func_801C118C();
+
+    sin = sins(D_801CC910 << 13);
+    ptr = D_801CD990[D_801CE5A0];
+    c = ((sin*3) >> 11) - 49;
+    ptr->unk6B.b = c;
+    ptr->unk6B.g = c;
+    ptr->unk6B.r = c;
+
+    if (gMusicVolume == 0)
+    {
+        MusHandleStop(gMusicHandle, 0);
+        gMusicHandle = 0;
+    }
+    else if (gMusicHandle == 0)
+    {
+        playMusic(gMusicNum);
+    }
+
+    if ((D_801AE914 == 0) && (D_801CE5A8 == &D_801CB528))
+    {
+        D_801CC8C4++;
+        if (func_801C0E68())
+            D_801CC8C4 = 0;
+
+        if (D_801CC8C4 >= 451)
+        {
+            main_80000624(func_801C15CC);
+            return;
+        }
+    }
+
+    if (D_801CC8C0 == 1)
+    {
+        if (D_801CA144 > -1.8)
+        {
+            D_801CA144 -= 0.2;
+            if (D_801CA144 < -1.8)
+            {
+                D_801CC8C0 = 0;
+                D_801CA144 = 1.8f;
+                if (ptr2->unkC != NULL)
+                    ptr2->unkC();
+            }
+        }
+    }
+    if (D_801CC8C0 == -1)
+    {
+        if (D_801CA144 > -1.8)
+        {
+            D_801CA144 -= 0.2;
+            if (D_801CA144 < -1.8)
+            {
+                D_801CC8C0 = 0;
+                D_801CA144 = 1.8f;
+                func_801C305C();
+            }
+        }
+    }
+    if (D_801CC8C0 == 0)
+    {
+        if (D_801CA144 > 0.0f)
+        {
+            D_801CA144 -= 0.2;
+            if (D_801CA144 < 0.0f)
+                D_801CA144 = 0.0f;
+        }
+        if (D_801CA144 == 0.0f)
+        {
+            if (D_801AE914 == 0)
+                func_801C3E5C();
+            else
+                func_801C45C0();
+        }
+    }
+}
 
 /*801C4E90*/
 STATIC void func_801C4E90(void)

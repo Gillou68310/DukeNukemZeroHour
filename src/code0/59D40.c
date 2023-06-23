@@ -479,7 +479,60 @@ void func_8005A3AC(s32 spritenum, s32 arg1)
 }
 
 /*8005A4A4*/
-INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005A4A4);
+void func_8005A4A4(s32 spritenum, s32 arg1)
+{
+    code0UnkStruct3 *ptr;
+    s32 i, j, nexti;
+    s32 rand;
+    s32 stat[2] = {1, 10};
+
+    gpSprite[spritenum].unk1E = 15;
+    for (j = 0; j < 2; j++)
+    {
+        i = gHeadSpriteStat[stat[j]];
+        while (i >= 0)
+        {
+            nexti = gNextSpriteStat[i];
+            if ((stat[j] != 10) || (gpSprite[spritenum].unk20 != i))
+            {
+                if (D_80106D50[i] != -1)
+                {
+                    if ((func_80040D40(gpSprite[spritenum].x, gpSprite[spritenum].y, gpSprite[i].x, gpSprite[i].y) < 900) &&
+                        (func_8004D7D8(i) != 0) &&
+                        (((canSee(D_80118248->x, D_80118248->y, D_80118248->z - 2048, D_80118248->sectnum,
+                            gpSprite[i].x, gpSprite[i].y, gpSprite[i].z - 2048, gpSprite[i].sectnum) != 0)) ||
+                            ((canSee(D_80118248->x, D_80118248->y, D_80118248->z - 8192, D_80118248->sectnum,
+                                gpSprite[i].x, gpSprite[i].y, gpSprite[i].z - 8192, gpSprite[i].sectnum) != 0))))
+                    {
+                        ptr = &D_8019B940[D_80106D50[i]];
+                        rand = krand() % 99;
+                        if (((ptr->unk8 - rand) <= 0) && (stat[j] != 10))
+                        {
+                            if (ptr->unk70 != 0)
+                            {
+                                MusHandleStop(ptr->unk70, 0);
+                                ptr->unk70 = 0;
+                            }
+                            if (ptr->unk6C != 0)
+                            {
+                                MusHandleStop(ptr->unk6C, 0);
+                                ptr->unk6C = 0;
+                            }
+                            ptr->unk0 |= 0x40;
+                            gpSprite[i].unk22 = 0;
+                            gpSprite[i].unk16 = gpSprite[i].xrepeat;
+                            changeSpriteStat(i, 59);
+                            gpSprite[i].cstat |= 0x101;
+                            return;
+                        }
+                        func_800494DC(i, 1, spritenum, 0);
+                    }
+                }
+            }
+            i = nexti;
+        }
+    }
+}
 
 /*8005A800*/
 void func_8005A800(s32 spritenum, s32 arg1)
