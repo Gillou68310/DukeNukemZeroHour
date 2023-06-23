@@ -349,7 +349,56 @@ void func_80059E08(s32 spritenum, s32 arg1)
 }
 
 /*80059EEC*/
-INCLUDE_ASM("nonmatchings/src/code0/59D40", func_80059EEC);
+void func_80059EEC(s16 spritenum, s32 arg1, s32 arg2)
+{
+    SpriteType *spr;
+    s32 i, j, k, nexti;
+    s32 stat[2] = {1, 10};
+
+    if ((D_8012FD88 & 3) != 3)
+        return;
+
+    if ((D_8012FD88 & 1) == 0)
+        return;
+
+    spr = &gpSprite[spritenum];
+    for (j = 0; j < 2; j++)
+    {
+        i = gHeadSpriteStat[stat[j]];
+        while (i >= 0)
+        {
+            nexti = gNextSpriteStat[i];
+            if (D_80106D50[i] != -1)
+            {
+                if ((func_80040D40(spr->x, spr->y, gpSprite[i].x, gpSprite[i].y) < arg2) &&
+                    (((canSee(spr->x, spr->y, spr->z - 0x800, spr->sectnum,
+                        gpSprite[i].x, gpSprite[i].y, gpSprite[i].z - 0x800, gpSprite[i].sectnum) != 0)) ||
+                        ((canSee(spr->x, spr->y, spr->z - 0x2000, spr->sectnum,
+                            gpSprite[i].x, gpSprite[i].y, gpSprite[i].z - 0x2000, gpSprite[i].sectnum) != 0))))
+                {
+
+                    D_8019B940[D_80106D50[i]].unk0 |= 0x8000;
+                    D_8019B940[D_80106D50[i]].unk98 = 0xFF;
+                    func_800494DC(i, arg1, spritenum, 0);
+                    D_8019B940[D_80106D50[i]].unk0 &= ~0x8000;
+                    if ((krand() & 7) >= 7)
+                    {
+                        if (D_8019B940[D_80106D50[i]].unk8C == 0)
+                        {
+                            D_8019B940[D_80106D50[i]].unk8C = 24;
+                            k = func_8005A240(i);
+                            if (k == 0)
+                                audio_800077F4((krand() & 1) | 822, i);
+                            if (k == 1)
+                                audio_800077F4(0x338U, i);
+                        }
+                    }
+                }
+            }
+            i = nexti;
+        }
+    }
+}
 
 /*8005A240*/
 s32 func_8005A240(s32 spritenum)
