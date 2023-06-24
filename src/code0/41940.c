@@ -213,7 +213,75 @@ static void func_800418B8(s32 arg0)
 }
 
 /*80041968*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_80041968);
+s32 func_80041968(s32 spritenum)
+{
+    s32 i, j;
+    s16 ang;
+
+    gpInst++;
+    i = getVar(spritenum, *gpInst++);
+    if (i == 0x4000002D)
+    {
+        if (D_80137DE0->unk38 != -1)
+        {
+            ang = getAngle(D_80137DE0->unk38 - D_80118248->x,
+                           D_80137DE0->unk3C - D_80118248->y);
+            j = *gpInst;
+            ang = getAngleDelta(D_80118248->ang, ang);
+            ang >>= j;
+            D_80118248->ang += ang;
+            D_80137DE0->unk32 = ang;
+            i = 0;
+        }
+        else
+            goto label4;
+    }
+    if (i == 0x40000008)
+    {
+    label4:
+        ang = getAngle(gPlayer[D_801A2628].xpos - D_80118248->x,
+                       gPlayer[D_801A2628].ypos - D_80118248->y);
+        j = *gpInst;
+        ang = getAngleDelta(D_80118248->ang, ang);
+        ang >>= j;
+        D_80118248->ang += ang;
+        D_80137DE0->unk32 = ang;
+        i = 0;
+    }
+    if (i == 0x4000001F)
+    {
+        ang = getAngle(gPlayer[D_801A2628].xpos - D_80118248->x,
+                       gPlayer[D_801A2628].ypos - D_80118248->y);
+        j = *gpInst;
+        ang = getAngleDelta(D_80118248->ang, (ang + 1024) & 0x7FF);
+        ang >>= j;
+        D_80118248->ang += ang;
+        D_80137DE0->unk32 = ang;
+        i = 0;
+    }
+    if (i == 0x4000001A)
+    {
+        D_80118248->ang = getAngle(gPlayer[D_801A2628].xpos - D_80118248->x,
+                                   gPlayer[D_801A2628].ypos - D_80118248->y) & 0x7FF;
+        i = 0;
+    }
+    D_80137DE0->unk30 = i;
+    if (i == 0)
+    {
+        gpInst += 3;
+        return 0;
+    }
+    D_80118248->unk18 = getVar(spritenum, *gpInst++);
+    D_80118248->unk1A = getVar(spritenum, *gpInst++);
+    i = getVar(spritenum, *gpInst++);
+
+    if (D_80137DE0->unk0 & 2)
+        D_80118248->unk1C += i;
+    else
+        D_80118248->unk1C = i;
+
+    return 1;
+}
 
 /*80041D10*/
 STATIC s32 func_80041D10(s32 spritenum)
@@ -3292,16 +3360,194 @@ static void func_80050480(s16 arg0, s16 spritenum)
     }
 }
 
-INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5A40);
-INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5A54);
-INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5A60);
-INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5A6C);
-
 /*800504F4*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_800504F4);
+void func_800504F4(void)
+{
+    SpriteType *spr;
+    s16 i, nexti;
+
+    i = gHeadSpriteStat[74];
+    while (i >= 0)
+    {
+        spr = &gpSprite[i];
+        nexti = gNextSpriteStat[i];
+
+        if (spr->unk18 == 0)
+        {
+            spr->unk18 = 1;
+            if (spr->picnum == 1549)
+                spr->picnum = 1749;
+            if ((spr->picnum == 1586) || (spr->picnum == 1587) || (spr->picnum == 1588))
+                spr->picnum = 1589;
+            else if ((spr->picnum == 1524) || (spr->picnum == 1525))
+                spr->picnum = 1435;
+            else
+                spr->picnum++;
+
+            func_80050C14(i);
+            return;
+        }
+        else if (spr->unk18 == 1)
+        {
+            spr->unk1C = -3000;
+            spr->unk22 = (krand() & 0x1F) - 0xF;
+            spr->unk16 = (krand() & 0x1F) - 0xF;
+            spr->unk18 = 2;
+        }
+        else if (spr->unk18 == 2)
+        {
+            spr->unk1C += 200;
+            spr->z += spr->unk1C;
+            D_8013B2D0[i].unk2 += spr->unk22;
+            D_8013B2D0[i].unk0 += spr->unk16;
+            D_80138860 = getFlorzOfSlope(spr->sectnum, spr->x, spr->y);
+            if (spr->z >= D_80138860)
+            {
+                spr->z = D_80138860;
+                spr->unk18 = 3;
+                if (spr->picnum == 1433)
+                {
+                    func_8004BFDC(i, 4, gpSprite[i].z, 1);
+                    func_8004BD24(i);
+                }
+            }
+            func_8001F7B4(5, 8);
+        }
+        else if (spr->unk18 == 3)
+        {
+            if (D_8013B2D0[i].unk2 != 0)
+            {
+                if (D_8013B2D0[i].unk2 > 0)
+                {
+                    D_8013B2D0[i].unk2 -= 48;
+                    if (D_8013B2D0[i].unk2 <= 0)
+                        D_8013B2D0[i].unk2 = 0;
+                }
+                else
+                {
+                    D_8013B2D0[i].unk2 += 48;
+                    if (D_8013B2D0[i].unk2 >= 0)
+                        D_8013B2D0[i].unk2 = 0;
+                }
+            }
+
+            if (D_8013B2D0[i].unk0 != 0)
+            {
+                if (D_8013B2D0[i].unk0 > 0)
+                {
+                    D_8013B2D0[i].unk0 -= 48;
+                    if (D_8013B2D0[i].unk0 <= 0)
+                        D_8013B2D0[i].unk0 = 0;
+                }
+                else
+                {
+                    D_8013B2D0[i].unk0 += 48;
+                    if (D_8013B2D0[i].unk0 >= 0)
+                        D_8013B2D0[i].unk0 = 0;
+                }
+            }
+
+            if (D_8013B2D0[i].unk0 == 0 && D_8013B2D0[i].unk2 == 0)
+            {
+                spr->unk18 = 4;
+                func_800533C4(spr->picnum, i);
+            }
+        }
+        i = nexti;
+    }
+}
 
 /*8005087C*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_8005087C);
+void func_8005087C(void)
+{
+    SpriteType *spr;
+    s16 i, nexti;
+
+    i = gHeadSpriteStat[75];
+    while (i >= 0)
+    {
+        spr = &gpSprite[i];
+        nexti = gNextSpriteStat[i];
+        if (spr->unk18 == 0)
+        {
+            spr->unk18 = 1;
+            if ((spr->picnum == 1586) || (spr->picnum == 1587) || (spr->picnum == 1588))
+                spr->picnum = 1589;
+            else if ((spr->picnum == 1524) || (spr->picnum == 1525))
+                spr->picnum = 1435;
+            else if (spr->picnum == 2585)
+                spr->picnum = 2595;
+            else
+                spr->picnum++;
+
+            func_8004AB6C(i, 2048, 25, 50, 75, 100, 0);
+            func_80050C14(i);
+            return;
+        }
+        else if (spr->unk18 == 1)
+        {
+            spr->unk1C = -400;
+            spr->unk22 = (krand() & 7) - 3;
+            spr->unk16 = (krand() & 7) - 3;
+            spr->unk18 = 2;
+        }
+        else if (spr->unk18== 2)
+        {
+            spr->unk1C += 100;
+            spr->z += spr->unk1C;
+            D_8013B2D0[i].unk2 += spr->unk22;
+            D_8013B2D0[i].unk0 += spr->unk16;
+            getzRange(spr->x, spr->y, (spr->z - 2048), spr->sectnum,
+                      &D_801A1998, &D_801AE9C0, &D_80138860, &D_800FCBE0, 64, 0x10001);
+            if (spr->z >= D_80138860)
+            {
+                spr->z = D_80138860;
+                spr->unk18 = 3;
+            }
+        }
+        else if (spr->unk18== 3)
+        {
+            if (D_8013B2D0[i].unk2 != 0)
+            {
+                if (D_8013B2D0[i].unk2 > 0)
+                {
+                    D_8013B2D0[i].unk2 -= 16;
+                    if (D_8013B2D0[i].unk2 <= 0)
+                        D_8013B2D0[i].unk2 = 0;
+                }
+                else
+                {
+                    D_8013B2D0[i].unk2 += 16;
+                    if (D_8013B2D0[i].unk2 >= 0)
+                        D_8013B2D0[i].unk2 = 0;
+                }
+            }
+
+            if (D_8013B2D0[i].unk0 != 0)
+            {
+                if (D_8013B2D0[i].unk0 > 0)
+                {
+                    D_8013B2D0[i].unk0 -= 16;
+                    if (D_8013B2D0[i].unk0 <= 0)
+                        D_8013B2D0[i].unk0 = 0;
+                }
+                else
+                {
+                    D_8013B2D0[i].unk0 += 16;
+                    if (D_8013B2D0[i].unk0 >= 0)
+                        D_8013B2D0[i].unk0 = 0;
+                }
+            }
+
+            if ((D_8013B2D0[i].unk0 == 0) && (D_8013B2D0[i].unk2 == 0))
+            {
+                spr->unk18 = 4;
+                func_800533C4(spr->picnum, i);
+            }
+        }
+        i = nexti;
+    }
+}
 
 /*80050C14*/
 void func_80050C14(s32 arg0)
@@ -3616,6 +3862,11 @@ static void func_80051808(s16 spritenum)
             func_8006B4E4(2);
     }
 }
+
+INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5A40);
+INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5A54);
+INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5A60);
+INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5A6C);
 
 /*800519AC*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_800519AC);

@@ -63,7 +63,7 @@ for dir in dirs:
         func.append(Function(name, get_size(file), addr))
 
     all_func += func
-    sorted_size = sorted(all_func, key=operator.attrgetter('size'))
+    sorted_size = sorted(func, key=operator.attrgetter('size'))
 
     parent1 = os.path.split(dir)
     parent2 = os.path.split(parent1[0])
