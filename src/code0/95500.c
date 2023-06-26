@@ -1,5 +1,6 @@
 #include "common.h"
 #include "code0/main.h"
+#include "code0/graphics.h"
 #include "code0/4600.h"
 #include "code0/9410.h"
 #include "code0/audio.h"
@@ -541,7 +542,56 @@ void func_8009584C(s16 playernum)
 }
 
 /*80095B20*/
-INCLUDE_ASM("nonmatchings/src/code0/95500", func_80095B20);
+static void func_80095B20(s32 spritenum, s32 arg1, f32 x, f32 y, f32 z, s32 arg5)
+{
+    SpriteType *spr;
+    code0UnkStruct5 *ptr;
+    f32 ox, oy, oz;
+    f32 f1, f2, f3, f4;
+    s32 spritenum_;
+    u16 cstat;
+    s32 i;
+
+    f32 mf5[4][4];
+    f32 mf2[4][4];
+    f32 mf1[4][4];
+    f32 mf3[4][4];
+    f32 mf4[4][4];
+
+    ptr = &D_8013B2D0[spritenum];
+    f1 = ((ptr->unk2 * 180) / 1024.0);
+    f2 = ((ptr->unk0 * 180) / 1024.0);
+    f3 = ((ptr->unk4 * 180) / 1024.0);
+    f4 = (((gpSprite[spritenum].ang * 180) / 1024.0) + 90.0);
+    guRotateRPYF(mf1, f1, 0.0f, 0.0f);
+    guRotateRPYF(mf2, 0.0f, f2, 0.0f);
+    guRotateRPYF(mf3, 0.0f, 0.0f, f4);
+    guRotateRPYF(mf4, 0.0f, 0.0f, -f3);
+    grMtxCatF(mf4, mf1, mf5);
+    grMtxCatF(mf5, mf2, mf5);
+    grMtxCatF(mf5, mf3, mf5);
+    grMtxXFMF(mf5, x, y, z, &ox, &oy, &oz);
+    spr = &gpSprite[spritenum];
+    ox = (ox * (spr->xrepeat / 64.0));
+    oy = (oy * (spr->xrepeat / 64.0));
+    oz = (oz * (spr->xrepeat / 64.0));
+    cstat = spr->cstat;
+    spr->cstat = cstat & 0xFEFE;
+
+    spritenum_ = func_8004BC64(spr->x - ((s32)ox * 4), spr->y - ((s32)oy * 4), spr->z + ((s32)oz * 64), spr->sectnum, 32123, 0, 0);
+    if (spritenum_ >= 0)
+    {
+        gpSprite[spritenum_].ang = (gpSprite[spritenum].ang + arg5) & 0x7FF;
+        D_8013B2D0[spritenum_].unk4 = D_8013B2D0[spritenum].unk4;
+        i = func_8006D3B8(spritenum_, arg1, 0, 0, 0);
+        if (i != -1)
+        {
+            D_8013B2D0[i].unk2 = D_8013B2D0[spritenum].unk2;
+            func_8004BD24(spritenum_);
+        }
+    }
+    spr->cstat = cstat;
+}
 
 /*80095F58*/
 static s32 func_80095F58(s32 arg0, s32 arg1)
