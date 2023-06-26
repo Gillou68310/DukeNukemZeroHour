@@ -63,9 +63,6 @@ INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9BE4);
 INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9BF0);
 INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9BF8);
 INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9BFC);
-INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9C00);
-extern const char D_800E9C08[]; /*TODO: mutualized rodata?*/
-INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9C08);
 
 /*.text*/
 
@@ -344,7 +341,108 @@ void func_80095390(s16 playernum)
 }
 
 /*8009542C*/
-INCLUDE_ASM("nonmatchings/src/code0/95500", func_8009542C);
+void func_8009542C(void)
+{
+    char sp10[32];
+    code0UnkStruct2 *ptr2;
+    s16 i;
+    char **ptr;
+    u8 unk2;
+
+    if ((D_801CA14C[gMapNum].unk0 == 2) || (D_801CA14C[gMapNum].unk0 == 3))
+        ptr = D_800E17A0;
+    else
+        ptr = D_800E1780;
+
+    for (i = 0; i < D_8012C470; i++)
+    {
+        ptr2 = &D_8010A940[i];
+
+        if (D_8012F6E4[gPlayer[i].unk4C].unkB == 5)
+        {
+            ptr2->unk2[5] = 0;
+            ptr2->unk2[6] = 0;
+        }
+
+        unk2 = ptr2->unk2[1];
+        ptr2->unkA[0] = D_8019B940[D_80106D50[gPlayer[i].unk4A]].unk7E;
+        ptr2->unk2[1] = 0;
+
+        if ((gPlayer[i].unk54 != 0) && (ptr2->unkA[1] > 0))
+        {
+            ptr2->unk2[1] = 1;
+            ptr2->unkA[1]--;
+        }
+
+        if (ptr2->unk2[1] != unk2)
+        {
+            if (ptr2->unk2[1] != 0)
+            {
+                ptr2->unk0 = 1;
+                sprintf(sp10, "%s ON", ptr[1]);
+            }
+            else
+                sprintf(sp10, "%s OFF", ptr[1]);
+
+            func_800A419C(i, sp10);
+
+        }
+        if (ptr2->unk2[2] != 0)
+            ptr2->unkA[2]--;
+
+        if (ptr2->unkA[2] <= 0)
+            ptr2->unk2[2] = 0;
+
+        if (ptr2->unk2[5] != 0)
+        {
+            ptr2->unkA[5]--;
+            if (ptr2->unkA[5] <= 0)
+            {
+                ptr2->unk2[5] = 0;
+                sprintf(sp10, "%s OFF", ptr[5]);
+                func_800A419C(i, sp10);
+            }
+        }
+
+        if (gPlayer[i].unk52 != -1)
+            ptr2->unk2[5] = 0;
+
+        if (ptr2->unk2[6] != 0)
+        {
+            ptr2->unkA[6]--;
+            if (ptr2->unkA[6] <= 0)
+            {
+                ptr2->unk2[6] = 0;
+                sprintf(sp10, "%s OFF", ptr[6]);
+                func_800A419C(i, sp10);
+            }
+        }
+        if (D_8012C470 == 1)
+        {
+            if (ptr2->unk0 != 7)
+            {
+                ptr2->unk2[7] = 0;
+                ptr2->unkA[7] = 4096;
+            }
+
+            if (ptr2->unk2[7] != 0)
+                ptr2->unkA[7] = MIN(24576, (ptr2->unkA[7] * 1.2));
+            else
+                ptr2->unkA[7] = MAX(4096, (ptr2->unkA[7] / 1.2));
+        }
+
+        if (ptr2->unk0 >= 0)
+        {
+            if (ptr2->unkA[ptr2->unk0] == 0)
+                ptr2->unk0 = func_8003B31C(i, 1);
+        }
+        if (D_8012F6E4[gPlayer[i].unk4C].unkB == 5)
+        {
+            ptr2->unk2[5] = 1;
+            ptr2->unk2[6] = 1;
+        }
+    }
+}
 
 /*8009584C*/
 void func_8009584C(s16 playernum)
@@ -436,7 +534,7 @@ void func_8009584C(s16 playernum)
         if (cond != 0)
             sprintf(buffer, "%s %s", ptr[ptr1->unk0], D_800E17C0[ptr1->unk0]);
         else
-            sprintf(buffer, D_800E9C08, ptr[ptr1->unk0]);
+            sprintf(buffer, "%s OFF", ptr[ptr1->unk0]);
 
         func_800A419C(playernum, buffer);
     }
