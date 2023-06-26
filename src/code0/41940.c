@@ -2524,7 +2524,6 @@ STATIC void func_8004D65C(s32 spritenum)
 {
     s16 i, nexti;
     s32 unk20;
-    u16 unk1E;
 
     spritenum &= 0xFFFF;
     if (spritenum & 0xC000)
@@ -2541,10 +2540,9 @@ STATIC void func_8004D65C(s32 spritenum)
                     nexti = gNextSpriteStat[i];
                     if (gpSprite[i].unk20 == unk20)
                     {
-                        unk1E = gpSprite[i].unk1E;
-                        if ((u16)(unk1E - 101) < 2)
+                        if ((gpSprite[i].unk1E == 101) || (gpSprite[i].unk1E == 102))
                         {
-                            if ((s16)unk1E == 101)
+                            if (gpSprite[i].unk1E == 101)
                             {
                                 D_80106D50[i] = -1;
                                 D_8019B89C = 0;
@@ -2610,7 +2608,80 @@ s32 func_8004D7D8(s32 spritenum)
 }
 
 /*8004D884*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004D884);
+void func_8004D884(void)
+{
+    s32 z1, z2;
+    s32 i;
+    u16 cstat;
+
+    cstat = D_80118248->cstat;
+    D_80118248->cstat = cstat & 0xFEFE;
+    getzRange(D_80118248->x, D_80118248->y, D_80118248->z - 2048, D_80118248->sectnum,
+              &D_801A1998, &D_801AE9C0, &D_80138860, &D_800FCBE0, 64, 0x10001);
+    D_80118248->cstat = cstat;
+    D_80129804 = getFlorzOfSlope(D_80118248->sectnum, D_80118248->x, D_80118248->y);
+    D_8012EB4C = getCeilzOfSlope(D_80118248->sectnum, D_80118248->x, D_80118248->y) - D_801B0D30;
+
+    if ((gpSector[D_80118248->sectnum].unk18 == 1) && (D_80137DE0->unk0 & 2))
+    {
+        if (D_80138860 == D_80129804)
+        {
+            D_80138860 = D_80129804 + 0x2600;
+            if ((D_80118248->z - (D_801B0D30 + 0x400)) >= D_80138860)
+            {
+                D_80118248->z = D_80138860 - 0x400;
+                D_80118248->z -= D_801B0D30;
+            }
+        }
+        D_80129804 = D_80129804 + 0x2600;
+    }
+
+    if ((gpSector[D_80118248->sectnum].unk18 == 3) && (D_80118248->unk1C <= 0) && (D_80137DE0->unk0 & 2))
+    {
+        z1 = func_80036490(D_80118248->sectnum);
+        z2 = (D_80118248->z - D_801B0D30) + 0x400;
+        if (!(z2 < (z1 - 0x1300)) & (z2 < z1))
+            D_80118248->z = (D_801B0D30 + z1) - 0xF00;
+    }
+
+    if ((D_8012F6E8 != 2 && D_80118248->picnum == 1285) || (D_8012F6E8 == 2 && D_80137DE0->unk48 == 0))
+    {
+        if (D_80118248->picnum == 1285)
+            i = 0x700;
+        else
+            i = 0x800;
+
+        if (D_80118248->picnum != 1727)
+        {
+            if (D_80118248->picnum == 1304)
+                i = 0x500;
+
+            if (D_80138860 == D_80129804)
+                D_80138860 = D_80129804 + i;
+
+            D_80129804 = D_80129804 + i;
+        }
+    }
+
+    if (gpSector[D_80118248->sectnum].unk18 == 4)
+    {
+        if (D_80138860 == D_80129804)
+            D_80138860 = D_80129804 + 0x1000;
+
+        D_80129804 = D_80129804 + 0x1000;
+    }
+
+    if (gpSector[D_80118248->sectnum].unk18 == 5)
+    {
+        if (D_80138860 == D_80129804)
+            D_80138860 = D_80129804 + 0x2600;
+
+        D_80129804 = D_80129804 + 0x2600;
+    }
+
+    if ((D_800FCBE0 >= 0xC000) && (gpSprite[D_800FCBE0 - 0xC000].statnum == 10))
+        D_80137DE0->unk94 |= 2;
+}
 
 /*8004DC74*/
 void func_8004DC74(void)

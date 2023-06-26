@@ -1,10 +1,13 @@
 #include "common.h"
 #include "code0/main.h"
 #include "code0/9410.h"
+#include "code0/17B30.h"
 #include "code0/1A7C0.h"
 #include "code0/24610.h"
 #include "code0/41940.h"
 #include "code0/6ACA0.h"
+#include "code0/8EFE0.h"
+#include "code0/95500.h"
 #include "code0/code0.h"
 #include "static/mapinfo.h"
 
@@ -22,7 +25,108 @@ size_t strlen(const char *);
 /*.text*/
 
 /*8009FAF0*/
-INCLUDE_ASM("nonmatchings/src/code0/A06F0", func_8009FAF0);
+void func_8009FAF0(void)
+{
+    s16 spritenum;
+    u16 sectnum;
+    SpriteType *spr;
+    s16 temp;
+    s32 i, j, k, nextj, nextk;
+
+    for (i = 0; i < D_80138790; i++)
+    {
+        if (D_800DEE98 == 2)
+        {
+            sectnum = D_800FF3E8[i];
+            temp = sectnum;
+            if (gpSector[sectnum].unk18 == 0)
+            {
+                gpSector[temp].unk18 = 3;
+                spritenum = insertSprite(temp, 102);
+                if (spritenum != -1)
+                {
+                    gpSprite[spritenum].x = gpWall[gpSector[temp].wallptr].x;
+                    gpSprite[spritenum].y = gpWall[gpSector[temp].wallptr].y;
+                    gpSprite[spritenum].z = D_801AC9E8;
+                    gpSprite[spritenum].picnum = 15;
+                    gpSprite[spritenum].unk1E = 5263;
+                    gpSprite[spritenum].unk20 = 0;
+                    gpSprite[spritenum].unk25 = 0x80;
+                    gpSprite[spritenum].cstat = -0x8000;
+                    gpSprite[spritenum].ang = 0;
+                }
+            }
+        }
+        j = gHeadSpriteSect[D_800FF3E8[i]];
+        while (j >= 0)
+        {
+
+            spr = &gpSprite[j];
+            nextj = gNextSpriteSect[j];
+            switch (spr->statnum)
+            {
+            case 50:
+                func_8008FE88(j);
+                break;
+            case 108:
+                func_8006CCCC(j);
+                break;
+            case 120:
+                func_800195DC(j);
+                break;
+            case 301:
+                func_800965F8(j);
+                break;
+            case 303:
+                if (spr->unk25 != 0)
+                    func_8009A1A0(j);
+                break;
+            }
+            j = nextj;
+        }
+    }
+
+    k = gHeadSpriteStat[302];
+    while (k >= 0)
+    {
+        nextk = gNextSpriteStat[k];
+        func_800965F8(k);
+        k = nextk;
+    }
+
+    k = gHeadSpriteStat[310];
+    while (k >= 0)
+    {
+        nextk = gNextSpriteStat[k];
+        func_8008FE88(k);
+        k = nextk;
+    }
+
+    k = gHeadSpriteStat[311];
+    while (k >= 0)
+    {
+        nextk = gNextSpriteStat[k];
+        func_8008FE88(k);
+        k = nextk;
+    }
+
+    k = gHeadSpriteStat[305];
+    if (k >= 0)
+    {
+        switch (gpSprite[k].picnum)
+        {
+        case 1307:
+            func_8009A9F0(k);
+            return;
+        case 1309:
+            func_8009C248(k);
+            return;
+        case 1306:
+            func_8009E8C8(k);
+            break;
+        }
+    }
+}
 
 /*8009FEB0*/
 static s16 func_8009FEB0(s16 x, s16 y, char *arg2, s16 arg3)

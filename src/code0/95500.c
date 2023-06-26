@@ -446,7 +446,7 @@ void func_8009584C(s16 playernum)
 INCLUDE_ASM("nonmatchings/src/code0/95500", func_80095B20);
 
 /*80095F58*/
-static s16 func_80095F58(s32 arg0, s32 arg1)
+static s32 func_80095F58(s32 arg0, s32 arg1)
 {
     s32 i;
 

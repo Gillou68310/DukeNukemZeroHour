@@ -476,6 +476,7 @@ typedef struct
 /*8012C989*/ _extern u8 D_8012C989;
 /*8012D218*/ _extern u32 D_8012D218[MAXPLAYERS][18] ALIGNED(8);
 /*8012D338*/ _extern s8 D_8012D338; /*angle*/
+/*8012DEFA*/ _extern u16 D_8012DEFA;
 /*8012DEFC*/ _extern u16 D_8012DEFC;
 /*8012DF00*/ _extern u8 *D_8012DF00;
 /*8012DF04*/ _extern Color D_8012DF04[4];
@@ -517,6 +518,7 @@ typedef struct
 /*8013A448*/ _extern u16 D_8013A448[256] ALIGNED(8);
 /*8013B2D0*/ _extern code0UnkStruct5 D_8013B2D0[MAXSPRITES] ALIGNED(16);
 /*8013F920*/ _extern u8 *D_8013F920;
+/*8013F950*/ _extern s32 D_8013F950;
 /*80168810*/ _extern s16 D_80168810;
 /*80168C9C*/ _extern f32 D_80168C9C;
 /*80168D0C*/ _extern s16 D_80168D0C;
@@ -525,6 +527,7 @@ typedef struct
 /*80168D18*/ _extern s32 D_80168D18;
 /*80169520*/ _extern u8 D_80169520; /*cache lock*/
 /*80169522*/ _extern s16 gSkyTopG;
+/*8016A144*/ _extern s32 D_8016A144;
 /*8016A148*/ _extern s32 D_8016A148;
 /*8016A14C*/ _extern s32 D_8016A14C; /*y*/
 /*8016A15C*/ _extern f32 D_8016A15C;
@@ -559,10 +562,12 @@ typedef struct
 /*801A2688*/ _extern s8 D_801A2688;
 /*801A2690*/ _extern u16 D_801A2690[128] ALIGNED(8);
 /*801A2790*/ _extern code0UnkStruct17 D_801A2790[MAXPLAYERS] ALIGNED(8);
+/*801A68D0*/ _extern u16 D_801A68D0[256] ALIGNED(8);
 /*801A6D80*/ _extern u16 D_801A6D80;
 /*801A6D84*/ _extern s32 D_801A6D84; /*xs*/
 /*801AC8E0*/ _extern f32 D_801AC8E0;
 /*801AC8E8*/ _extern s16 D_801AC8E8[128] ALIGNED(8);
+/*801AC9E8*/ _extern s32 D_801AC9E8;
 /*801AC9F8*/ _extern s16 D_801AC9F8;
 /*801ACBD4*/ _extern Gfx *D_801ACBD4;
 /*801ACC60*/ _extern s32 D_801ACC60;
@@ -575,6 +580,7 @@ typedef struct
 /*801AE8F0*/ _extern u8 *D_801AE8F0;
 /*801AE8F4*/ _extern u16 D_801AE8F4;
 /*801AE904*/ _extern s32 D_801AE904[2]; /*CLOUDS AN*/
+/*801AE910*/ _extern s32 D_801AE910;
 /*801AE914*/ _extern s32 D_801AE914;
 /*801AE91E*/ _extern u8 D_801AE91E[8];
 /*801AE9C0*/ _extern s32 D_801AE9C0; /*ceilhit*/

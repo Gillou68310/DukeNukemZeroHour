@@ -444,7 +444,7 @@ void func_8005A2C8(s32 spritenum, s32 arg1)
     s32 ang, wallnum;
 
     wallnum = D_80137DE0->unk2E;
-    if ((wallnum - 49152) < 0)
+    if ((wallnum - 0xC000) < 0)
     {
         wallnum &= 0x1FFF;
         ang = getAngle((gpWall[gpWall[wallnum].point2].x - gpWall[wallnum].x),
@@ -463,7 +463,7 @@ void func_8005A3AC(s32 spritenum, s32 arg1)
     s32 ang, wallnum;
 
     wallnum = (u16)D_80137DE0->unk2E;
-    if ((wallnum - 49152) < 0)
+    if ((wallnum - 0xC000) < 0)
     {
         wallnum &= 0x1FFF;
         ang = ((getAngle(gpWall[gpWall[wallnum].point2].x - gpWall[wallnum].x,
@@ -1267,7 +1267,7 @@ void func_8005C85C(s32 spritenum, s32 arg1)
     wallnum = D_80137DE0->unk2E;
     setVar(spritenum, arg1, 0);
 
-    if ((((u16)wallnum - 49152) > 0) && (gpSprite[(u16)wallnum - 49152].statnum == 10))
+    if ((((u16)wallnum - 0xC000) > 0) && (gpSprite[(u16)wallnum - 0xC000].statnum == 10))
         setVar(spritenum, arg1, 1);
 
     if (D_8010A918 < 1700)

@@ -3,7 +3,9 @@
 #include "code0/9410.h"
 #include "code0/16FF0.h"
 #include "code0/17B30.h"
+#include "code0/41940.h"
 #include "code0/graphics.h"
+#include "code0/A06F0.h"
 #include "code0/code0.h"
 
 /*TODO: include math.h from libkmc*/
@@ -15,10 +17,14 @@ double sqrt(double);
 
 /*.comm*/
 /*800FE414*/ u8 D_800FE414;
+/*800FF3A0*/ Matrix4f D_800FF3A0 ALIGNED(8);
 /*80106D3C*/ f32 D_80106D3C;
 /*8012EB48*/ f32 D_8012EB48;
 /*8012FD87*/ u8 D_8012FD87; /*alpha*/
 /*80197DF0*/ Matrix4f D_80197DF0 ALIGNED(8);
+/*80199578*/ Matrix4f D_80199578 ALIGNED(8);
+/*801AE9D0*/ Matrix4f D_801AE9D0 ALIGNED(8);
+/*801AFDE0*/ Matrix4f D_801AFDE0 ALIGNED(8);
 
 /*.text*/
 STATIC void func_8000F474(s16, f32, f32, f32);
@@ -161,7 +167,44 @@ void func_80011700(ModelInfo *model)
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_800117A4);
 
 /*80011DA8*/
-INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_80011DA8);
+void func_80011DA8(void)
+{
+    s16 i;
+
+    func_8000F1E0();
+    for (i = 0; i < D_8012DEFA; i++)
+    {
+        if ((gpSprite[D_801A68D0[i]].statnum != 10) || (gpSprite[D_801A68D0[i]].unk16 != D_801B0820))
+        {
+            if (D_801A68D0[i] != gPlayer[D_801B0820].unk52)
+            {
+                func_8000F474(D_801A68D0[i],
+                    ((D_8013B2D0[D_801A68D0[i]].unk0 * 180) / 1024.0),
+                    ((D_8013B2D0[D_801A68D0[i]].unk2 * 180) / 1024.0),
+                    ((((gpSprite[D_801A68D0[i]].ang +
+                        D_8013B2D0[D_801A68D0[i]].unk4) * 180) / 1024.0) + 90.0));
+            }
+        }
+    }
+
+    if (gPlayer[D_801B0820].unk60 != 0)
+    {
+        if (gPlayer[D_801B0820].unk52 == -1)
+            func_800A3688();
+    }
+
+    if ((gPlayer[D_801B0820].unk52 != -1) ||
+        ((gPlayer[D_801B0820].unk60 != 0) && (gPlayer[D_801B0820].unk6A >= 0xFF)))
+    {
+        func_8000F1E0();
+        D_8013B2D0[gPlayer[D_801B0820].unk4A].unk6 = 0;
+        func_8000F474(gPlayer[D_801B0820].unk4A,
+            ((D_8013B2D0[gPlayer[D_801B0820].unk4A].unk0 * 180) / 1024.0),
+            ((D_8013B2D0[gPlayer[D_801B0820].unk4A].unk2 * 180) / 1024.0),
+            ((((gpSprite[gPlayer[D_801B0820].unk4A].ang +
+                D_8013B2D0[gPlayer[D_801B0820].unk4A].unk4) * 180) / 1024.0) + 90.0));
+    }
+}
 
 /*80012174*/
 void func_80012174(void)
@@ -489,6 +532,7 @@ static void func_80014D4C(void)
 }
 
 /*80014D6C*/
+STATIC void func_80014D6C(code0unkStruct10 *, s32);
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_80014D6C);
 
 /*800152AC*/
@@ -511,7 +555,69 @@ static void func_800152AC(s32 spritenum1, s32 spritenum2, Matrix4f mf, s32 x, s3
 }
 
 /*80015458*/
+STATIC void func_80015458(code0unkStruct10 *, s32);
 INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_80015458);
 
 /*80015DE0*/
-INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_80015DE0);
+void func_80015DE0(s32 spritenum)
+{
+    SpriteType *spr;
+    SpriteType *spr2;
+    code0UnkStruct5 *ptr;
+    f32 f3, f2, f1;
+    s32 i, nexti;
+
+    D_801AE8F4 = spritenum;
+    if (D_80106D50[D_801AE8F4] != -1)
+    {
+        ptr = &D_8013B2D0[spritenum];
+        spr = &gpSprite[spritenum];
+        f1 = (ptr->unk2 * 180) / 1024.0;
+        f2 = (ptr->unk0 * 180) / 1024.0;
+        f3 = (((spr->ang + ptr->unk4) * 180) / 1024.0) + 90.0;
+        if (spr->picnum == 1306)
+        {
+            func_80014C7C(-f1, -f2, f3, ((f32)spr->xrepeat / 64.0));
+            func_80014D6C(&D_800DBC68, 0);
+
+            i = gHeadSpriteStat[302];
+            while (i >= 0)
+            {
+                nexti = gNextSpriteStat[i];
+                spr2 = &gpSprite[i];
+                if ((spr2->picnum == 2559) || (spr2->picnum == 2560))
+                {
+                    changeSpriteSect(i, spr->sectnum);
+                    spr2->x = spr->x;
+                    spr2->y = spr->y;
+                    spr2->z = spr->z;
+                    spr2->ang = spr->ang;
+                    D_8013B2D0[i].unk2 = ptr->unk2;
+                }
+
+                if (spr2->picnum == 2562)
+                    func_800152AC(i, spritenum, D_80199578, 0, 0, 0);
+
+                if (spr2->picnum == 2563)
+                    func_800152AC(i, spritenum, D_800FF3A0, 0, 0, 0);
+
+                if (spr2->picnum == 2564)
+                    func_800152AC(i, spritenum, D_801AE9D0, 0, 0, 0);
+
+                i = nexti;
+            }
+        }
+
+        if (spr->statnum == 10)
+        {
+            func_80014C7C(f1, f2, f3, ((f32)spr->xrepeat / 64.0));
+            func_80015458(func_80014040(gpSprite[spritenum].picnum), 0);
+            i = func_80058934(spr->x, spr->y, spr->z, spr->sectnum, 72);
+            func_800152AC(i, spritenum, D_801AFDE0, 0, 0xF, -80);
+            D_801AE910 = gpSprite[i].x;
+            D_8013F950 = gpSprite[i].y;
+            D_8016A144 = gpSprite[i].z;
+            deleteSprite(i);
+        }
+    }
+}

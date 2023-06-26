@@ -57,7 +57,7 @@ void func_80064AA0(void)
     while (i >= 0)
     {
         cond2 = 1;
-        cond1 = (u16)(gpSector[gpSprite[i].sectnum].unk18 - 1) < 2U;
+        cond1 = (gpSector[gpSprite[i].sectnum].unk18 == 1) || (gpSector[gpSprite[i].sectnum].unk18 == 2);
         j = gHeadSpriteSect[gpSprite[i].sectnum];
 
         while (j >= 0)

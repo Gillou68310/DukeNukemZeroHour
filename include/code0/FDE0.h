@@ -10,6 +10,7 @@ void func_8000F1E0(void);
 /*void func_8000F3C4(s16 r1, s16 g1, s16 b1, s16 r2, s16 g2, s16 b2);*/
 void func_80011180(void);
 void func_80011700(ModelInfo *model);
+void func_80011DA8(void);
 void func_80012174(void);
 void func_80012318(void);
 void func_80013FFC(code0unkStruct10 *);
