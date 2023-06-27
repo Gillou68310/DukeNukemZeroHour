@@ -1844,7 +1844,95 @@ static void func_801C8650(void)
 }
 
 /*801C899C*/
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C899C);
+void func_801C899C(void)
+{
+    s32 i, j;
+    s64 prev;
+
+    func_801C118C();
+
+    for (i = 0; i < 14; i++)
+    {
+        D_801CDA28[i]->unk34 = ((gScreenWidth / 2) - 60 + ((i * 130)) - (D_801CDA88 >> 8));
+        if ((D_801CDA28[i]->unk34 < (gScreenWidth + 80)) && (D_801CDA28[i]->unk34 > -130.0f))
+            D_801CDA28[i]->unkC |= 1;
+        else
+            D_801CDA28[i]->unkC &= ~1;
+    }
+
+    j = D_801CE5DC * 256;
+    j = ((((D_801CE5DC * 16384) + j) * 2) - D_801CDA88) >> 1;
+    D_801CDA88 += j;
+
+    if (!(func_801C0E68() & 0x300))
+        j = 0;
+
+    if ((u32)(j + 299) < 599)
+    {
+
+        for (i = 0; i < 14; i++)
+            D_801CDA28[i]->unk10 = 110;
+
+        D_801CDA28[D_801CE5DC]->unk10 = 0xFF;
+        D_801CDB20 = 0;
+        D_801CC8B0->unk70 = (intptr_t)D_801CDB50[D_801CE5DC].mapname;
+    }
+
+    if (D_801CDB20 == 0)
+    {
+        if (func_801C0E68() & 0x200)
+        {
+            if (D_801CE5DC != 0)
+            {
+                playSfx(746);
+                D_801CE5DC--;
+            }
+            D_801CDB20 = 1;
+        }
+        if (func_801C0E68() & 0x100)
+        {
+            if (D_801CE5DC != 13)
+            {
+                playSfx(746);
+                D_801CE5DC++;
+            }
+            D_801CDB20 = 1;
+        }
+    }
+    if (func_801C0E68() & 0x8000)
+    {
+        func_801C0EDC(0x8000);
+        playSfx(747);
+        for (gLoadMapNum = 0; D_801CA14C[gLoadMapNum].unk0 != 5; gLoadMapNum++);
+        gLoadMapNum += D_801CE5DC;
+        if (D_801CE498.unk1C == 0)
+        {
+            func_801C3608();
+            return;
+        }
+        func_801C30EC();
+        D_801CDAC8 = 1;
+    }
+
+    if (func_801C0E68() & 0x4000)
+    {
+        playSfx(748);
+        func_801C0EDC(0x4000);
+
+        prev = D_800FE9E0;
+        while (prev == D_800FE9E0);
+
+        func_8007F050();
+        cache1d_8002AAEC();
+        func_801C3AD8();
+        func_801C2F1C();
+        D_801CDAA0[D_801CD980++] = &D_801CB528;
+        D_801CDAA0[D_801CD980++] = &D_801CB13C;
+        D_801CDAA0[D_801CD980++] = &D_801CB03C;
+        func_801C2BE8(&D_801CAF30);
+        func_801C3A88(*D_801CE5A8->unkC);
+    }
+}
 
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC72C);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC73C);
