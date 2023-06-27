@@ -577,7 +577,7 @@ typedef struct
 /*801AE4A0*/ _extern Fog gFog[MAXPLAYERS] ALIGNED(8);
 /*801AE528*/ _extern s32 D_801AE528;
 /*801AE538*/ _extern code0UnkStruct13 D_801AE538[32] ALIGNED(8);
-/*801AE8F0*/ _extern u8 *D_801AE8F0;
+/*801AE8F0*/ _extern s16 *D_801AE8F0;
 /*801AE8F4*/ _extern u16 D_801AE8F4;
 /*801AE904*/ _extern s32 D_801AE904[2]; /*CLOUDS AN*/
 /*801AE910*/ _extern s32 D_801AE910;
