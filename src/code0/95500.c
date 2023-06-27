@@ -211,7 +211,7 @@ void func_80094D18(void)
     }
 
     j = MIN(ARRAY_COUNT(D_801AEE40) - D_800E1770, 20);
-    if ((j > 0) && (gpSector[gPlayer->unk32].ceilingstat & 1))
+    if ((j > 0) && (gpSector[gPlayer[0].unk32].ceilingstat & 1))
     {
         for (i = 0; i < j; i++)
             func_80094984();
@@ -225,10 +225,10 @@ static void func_80094E98(void)
     u16 unk32;
     _95500UnkStruct1 *ptr;
 
-    z = gPlayer->zpos;
-    x = gPlayer->xpos;
-    y = gPlayer->ypos;
-    unk32 = gPlayer->unk32;
+    z = gPlayer[0].zpos;
+    x = gPlayer[0].xpos;
+    y = gPlayer[0].ypos;
+    unk32 = gPlayer[0].unk32;
 
     x += (((krand() & 0x3FF) - 512) * 10);
     y += (((krand() & 0x3FF) - 512) * 10);
@@ -321,7 +321,7 @@ void func_80095220(void)
     }
 
     j = MIN((ARRAY_COUNT(D_801AEE40) - D_800E1770), 20);
-    if ((j > 0) && (gpSector[gPlayer->unk32].ceilingstat & 1))
+    if ((j > 0) && (gpSector[gPlayer[0].unk32].ceilingstat & 1))
     {
         for (i = 0; i < j; i++)
             func_80094E98();

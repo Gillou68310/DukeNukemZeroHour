@@ -330,8 +330,8 @@ STATIC s32 func_80041D10(s32 spritenum)
 
     if (j & 0x40)
     {
-        x = D_80118248->x - gPlayer->xpos;
-        y = D_80118248->y - gPlayer->ypos;
+        x = D_80118248->x - gPlayer[0].xpos;
+        y = D_80118248->y - gPlayer[0].ypos;
 
         if (x < 0)
             x = -x;
@@ -619,8 +619,8 @@ STATIC s32 func_80042598(s32 spritenum)
 
     if (j & 0x40)
     {
-        x = D_80118248->x - gPlayer->xpos;
-        y = D_80118248->y - gPlayer->ypos;
+        x = D_80118248->x - gPlayer[0].xpos;
+        y = D_80118248->y - gPlayer[0].ypos;
         if (x < 0)
             x = -x;
 
@@ -1230,7 +1230,72 @@ STATIC s32 divVarVar(s32 spritenum)
 }
 
 /*80044B38*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_80044B38);
+STATIC s32 func_80044B38(s32 spritenum)
+{
+    s32 ang, ang1, ang2, ang3;
+    s32 i, j, k, l, m, n;
+
+    gpInst++;
+    D_80137DE0->unk30 = getVar(spritenum, *gpInst++);
+    n = *gpInst++;
+    i = getVar(spritenum, n);
+    j = getVar(spritenum, *gpInst++);
+    k = getVar(spritenum, *gpInst++);
+    l = getVar(spritenum, *gpInst++);
+    m = getVar(spritenum, *gpInst++);
+
+    if (i == 0x40000008)
+    {
+        ang1 = getAngleDelta(D_80118248->ang,
+                             getAngle(gPlayer[0].xpos - D_80118248->x, gPlayer[0].ypos - D_80118248->y)) >> m;
+        D_80137DE0->unk32 = ang1;
+        D_80118248->ang += ang1;
+    }
+    if (i == 0x4000001F)
+    {
+        ang2 = getAngleDelta(D_80118248->ang,
+                             (getAngle(gPlayer[D_801A2628].xpos - D_80118248->x,
+                                 gPlayer[D_801A2628].ypos - D_80118248->y) + 1024)) >> m;
+        D_80137DE0->unk32 = ang2;
+        D_80118248->ang += ang2;
+    }
+    if (i == 0x4000001A)
+    {
+        D_80118248->ang = getAngle(gPlayer[D_801A2628].xpos - D_80118248->x,
+                                   gPlayer[D_801A2628].ypos - D_80118248->y) & 0x7FF;
+    }
+
+    if ((n != 0x40000008) && (n != 0x40000009) &&
+        (n != 0x4000001F) && (n != 0x4000001A))
+    {
+        if (i != D_80118248->ang)
+        {
+            ang3 = getAngleDelta(D_80118248->ang, i) >> m;
+            D_80118248->ang += ang3;
+            D_80137DE0->unk32 = ang3;
+        }
+    }
+
+    if (n == 0x4000001C)
+        ang = D_80137DE0->unk60;
+    else
+        ang = D_80118248->ang;
+
+    i = getVar(spritenum, *gpInst++);
+    j = (j * gpSinTable[(ang + 512) & 0x7FF]) >> 14;
+    l = (l * gpSinTable[i & 0x7FF]) >> 14;
+    k = (k * gpSinTable[ang & 0x7FF]) >> 14;
+
+    D_80118248->unk18 = j;
+    D_80118248->unk1A = k;
+
+    if (D_80137DE0->unk0 & 2)
+        D_80118248->unk1C += l;
+    else
+        D_80118248->unk1C = l;
+
+    return D_80137DE0->unk30 != 0;
+}
 
 /*80044F9C*/
 STATIC s32 func_80044F9C(s32 spritenum)

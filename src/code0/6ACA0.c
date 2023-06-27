@@ -1920,7 +1920,7 @@ STATIC void func_80076144(s32 spritenum)
               &ceilz, &ceilhit, &florz, &florhit, 64, 0x10001);
 
     spr->cstat = cstat;
-    if (!(D_8012FD88 & 3) && (func_80040D40(gPlayer->xpos, gPlayer->ypos, spr->x, spr->y) < 1024))
+    if (!(D_8012FD88 & 3) && (func_80040D40(gPlayer[0].xpos, gPlayer[0].ypos, spr->x, spr->y) < 1024))
         func_8003671C(0, 1, -1, 44);
 
     if (spr->unk18++ < 29)
@@ -3036,7 +3036,7 @@ static void func_8007963C(s32 spritenum, s32 arg1)
     s32 unk4A, unk1C;
     s32 dist, dist2, z;
 
-    unk4A = gPlayer->unk4A;
+    unk4A = gPlayer[0].unk4A;
     spr = &gpSprite[spritenum];
     z = spr->z;
     dist = ldist(spr, &gpSprite[unk4A]);
