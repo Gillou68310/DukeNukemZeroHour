@@ -1,13 +1,24 @@
 #include "common.h"
+#include "code0/main.h"
+#include "code0/graphics.h"
+#include "code0/9410.h"
 #include "code0/41940.h"
 #include "code0/code0.h"
 
 typedef struct {
-    u8 unk0;
-    u16 unk2;
-    u8 pad[36];
-    s32 unk28;
-    s32 unk2C;
+    /*0x00*/ u8 unk0;
+    /*0x02*/ u16 unk2;
+    /*0x04*/ s32 unk4;
+    /*0x08*/ s32 unk8;
+    /*0x0C*/ s32 unkC;
+    /*0x10*/ s32 unk10;
+    /*0x14*/ s32 unk14;
+    /*0x18*/ s32 unk18;
+    /*0x1C*/ s32 unk1C;
+    /*0x20*/ s32 unk20;
+    /*0x24*/ s32 unk24;
+    /*0x28*/ s32 unk28;
+    /*0x2C*/ s32 unk2C;
 } _8EFE0UnkStruct1;
 
 /*.comm*/
@@ -67,7 +78,79 @@ INCLUDE_ASM("nonmatchings/src/code0/8EFE0", func_80093670);
 INCLUDE_ASM("nonmatchings/src/code0/8EFE0", func_80093BB0);
 
 /*80094278*/
-INCLUDE_ASM("nonmatchings/src/code0/8EFE0", func_80094278);
+void func_80094278(void)
+{
+    _8EFE0UnkStruct1 *ptr;
+    s32 i;
+
+    gSPClearGeometryMode(gpDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN |
+                                          G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
+    gSPSetGeometryMode(gpDisplayList++, G_ZBUFFER | G_SHADE | G_SHADING_SMOOTH);
+    gDPSetRenderMode(gpDisplayList++, G_RM_AA_ZB_XLU_SURF, G_RM_AA_ZB_XLU_SURF2);
+    gDPSetTextureLUT(gpDisplayList++, G_TT_NONE);
+    gDPSetCombineMode(gpDisplayList++, G_CC_PRIMITIVE, G_CC_PASS2);
+    gDPSetPrimColor(gpDisplayList++, 0, 0, 0x00, 0x00, 0x00, 0x80);
+
+    i = gHeadSpriteStat[300];
+    while (i >= 0)
+    {
+        func_8000C76C();
+        if (D_801A6D80 < ARRAY_COUNT(gpDynamic->mtx3))
+        {
+            grPosition(&gpDynamic->mtx3[D_801A6D80+1],
+                       0.0f,
+                       (D_8013B2D0[i].unk0 * 0.17578125),
+                       (gpSprite[i].ang * 0.17578125),
+                       0.5,
+                       (gpSprite[i].x / 4),
+                       (gpSprite[i].y / 4),
+                       (gpSprite[i].z / 4.0));
+
+            gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx3[D_801A6D80+1]),
+                                       G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+
+            D_801A6D80++;
+            ptr = &D_80106730[gpSprite[i].unk22];
+
+            gpVertexN64->v.ob[0] = (ptr->unk4 >> 1);
+            gpVertexN64->v.ob[1] = (ptr->unk10 >> 1);
+            gpVertexN64->v.ob[2] = (ptr->unk1C >> 1);
+            gpVertexN64->v.tc[0] = 0;
+            gpVertexN64->v.tc[1] = 0;
+            gpVertexN64->v.cn[0] = 0xFF;
+            gpVertexN64->v.cn[1] = 0xFF;
+            gpVertexN64->v.cn[2] = 0xFF;
+            gpVertexN64->v.cn[3] = 0xFF;
+            gpVertexN64++;
+            gpVertexN64->v.ob[0] = (ptr->unk8 >> 1);
+            gpVertexN64->v.ob[1] = (ptr->unk14 >> 1);
+            gpVertexN64->v.ob[2] = (ptr->unk20 >> 1);
+            gpVertexN64->v.tc[0] = 0x800;
+            gpVertexN64->v.tc[1] = 0;
+            gpVertexN64->v.cn[0] = 0xFF;
+            gpVertexN64->v.cn[1] = 0xFF;
+            gpVertexN64->v.cn[2] = 0xFF;
+            gpVertexN64->v.cn[3] = 0xFF;
+            gpVertexN64++;
+            gpVertexN64->v.ob[0] = (ptr->unkC >> 1);
+            gpVertexN64->v.ob[1] = (ptr->unk18 >> 1);
+            gpVertexN64->v.ob[2] = (ptr->unk24 >> 1);
+            gpVertexN64->v.tc[0] = 0x800;
+            gpVertexN64->v.tc[1] = 0x800;
+            gpVertexN64->v.cn[0] = 0xFF;
+            gpVertexN64->v.cn[1] = 0xFF;
+            gpVertexN64->v.cn[2] = 0xFF;
+            gpVertexN64->v.cn[3] = 0xFF;
+            gpVertexN64++;
+            func_8000B570(1);
+
+            gSPPopMatrix(gpDisplayList++, G_MTX_MODELVIEW);
+            i = gNextSpriteStat[i];
+        }
+        else
+            break;
+    }
+}
 
 /*800946B8*/
 void func_800946B8(void)
