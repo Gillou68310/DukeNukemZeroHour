@@ -208,8 +208,95 @@ static void func_8007B64C(s32 arg0)
 }
 
 /*8007B930*/
-STATIC void func_8007B930(s16);
-INCLUDE_ASM("nonmatchings/src/code0/7BA50", func_8007B930);
+static void func_8007B930(s32 arg0)
+{
+    s16 i, j;
+    u8 c1, c2;
+    s32 k, l, m;
+    s32 temp;
+
+    gDPSetTextureLUT(gpDisplayList++, G_TT_NONE);
+    func_8000C76C();
+    func_8000BDB0((animateOffs(5907, 0) + 5907));
+
+    gDPSetCombineLERP(gpDisplayList++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0,
+                                       0, PRIMITIVE, 0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+
+    gDPSetPrimColor(gpDisplayList++, 0, 0, gpAlphaPalette->primary.r,
+                    gpAlphaPalette->primary.g, gpAlphaPalette->primary.b, 0xFF);
+    gDPSetEnvColor(gpDisplayList++, gpAlphaPalette->env.r,
+                   gpAlphaPalette->env.g, gpAlphaPalette->env.b, 0);
+
+    temp = arg0;
+    m = 0;
+    l = 16;
+
+    for (k = 127; k > 0; k--)
+    {
+        i = func_8007B5D8(temp, k);
+        if (i != -1)
+        {
+            j = func_8007B5D8(temp, (k - 1));
+            if (j != -1)
+            {
+                D_800FCBF0[i].unk0 |= 2;
+                D_800FCBF0[j].unk0 |= 2;
+                c1 = CLAMP_MAX((D_800FCBF0[i].unk28 << 7) / D_800FCBF0[i].unk2A, 0xFF);
+                c2 = CLAMP_MAX((D_800FCBF0[j].unk28 << 7) / D_800FCBF0[j].unk2A, 0xFF);
+
+                gpVertexN64->v.ob[0] = D_800FCBF0[i].unk10 / 8;
+                gpVertexN64->v.ob[1] = D_800FCBF0[i].unk14 / 8;
+                gpVertexN64->v.ob[2] = D_800FCBF0[i].unk18 / 8;
+                gpVertexN64->v.tc[0] = m << 5;
+                gpVertexN64->v.tc[1] = 0;
+                gpVertexN64->v.cn[0] = 0xFF;
+                gpVertexN64->v.cn[1] = 0xFF;
+                gpVertexN64->v.cn[2] = 0xFF;
+                gpVertexN64->v.cn[3] = c1;
+                gpVertexN64++;
+
+                gpVertexN64->v.ob[0] = D_800FCBF0[j].unk10 / 8;
+                gpVertexN64->v.ob[1] = D_800FCBF0[j].unk14 / 8;
+                gpVertexN64->v.ob[2] = D_800FCBF0[j].unk18 / 8;
+                gpVertexN64->v.tc[0] = l << 5;;
+                gpVertexN64->v.tc[1] = 0;
+                gpVertexN64->v.cn[0] = 0xFF;
+                gpVertexN64->v.cn[1] = 0xFF;
+                gpVertexN64->v.cn[2] = 0xFF;
+                gpVertexN64->v.cn[3] = c2;
+                gpVertexN64++;
+
+                gpVertexN64->v.ob[0] = D_800FCBF0[j].unk4 / 8;
+                gpVertexN64->v.ob[1] = D_800FCBF0[j].unk8 / 8;
+                gpVertexN64->v.ob[2] = D_800FCBF0[j].unkC / 8;
+                gpVertexN64->v.tc[0] = l << 5;;
+                gpVertexN64->v.tc[1] = 0x3FF;
+                gpVertexN64->v.cn[0] = 0xFF;
+                gpVertexN64->v.cn[1] = 0xFF;
+                gpVertexN64->v.cn[2] = 0xFF;
+                gpVertexN64->v.cn[3] = c2;
+                gpVertexN64++;
+
+                gpVertexN64->v.ob[0] = D_800FCBF0[i].unk4 / 8;
+                gpVertexN64->v.ob[1] = D_800FCBF0[i].unk8 / 8;
+                gpVertexN64->v.ob[2] = D_800FCBF0[i].unkC / 8;
+                gpVertexN64->v.tc[0] = m << 5;
+                gpVertexN64->v.tc[1] = 0x3FF;
+                gpVertexN64->v.cn[0] = 0xFF;
+                gpVertexN64->v.cn[1] = 0xFF;
+                gpVertexN64->v.cn[2] = 0xFF;
+                gpVertexN64->v.cn[3] = c1;
+                gpVertexN64++;
+
+                func_8000B6A8(1);
+                m = (m + 16);
+                l = (l + 16);
+                m &= 0x3f;
+                l &= 0x3f;
+            }
+        }
+    }
+}
 
 /*8007BE80*/
 void func_8007BE80(void)
