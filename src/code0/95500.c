@@ -5,9 +5,11 @@
 #include "code0/9410.h"
 #include "code0/audio.h"
 #include "code0/pragmas.h"
+#include "code0/17B30.h"
 #include "code0/37090.h"
 #include "code0/41940.h"
 #include "code0/6ACA0.h"
+#include "code0/8E670.h"
 #include "code0/8EFE0.h"
 #include "code0/A06F0.h"
 #include "code0/code0.h"
@@ -938,7 +940,105 @@ void func_8009B8A4(s32 spritenum)
 }
 
 /*8009B974*/
-INCLUDE_ASM("nonmatchings/src/code0/95500", func_8009B974);
+static void func_8009B974(s32 spritenum)
+{
+    SpriteType *spr;
+    SpriteType *spr2;
+    code0UnkStruct3 *ptr;
+    s32 i, j, k;
+    s32 x1, y1, z1;
+    s32 x2, y2, z2;
+    s32 ang;
+
+    ptr = &D_8019B940[D_80106D50[spritenum]];
+    spr = &gpSprite[spritenum];
+    switch (spr->unk2B)
+    {
+    case 0:
+        D_80119A34 = gpSprite[gPlayer[0].unk4A].z - 64000;
+        func_80042124(ptr, 75);
+        spr->unk2B = 1;
+        break;
+    case 1:
+        func_80017268(spritenum);
+        D_801B081C = 0;
+        spr->unk1C = (D_80119A34 - spr->z) >> 4;
+        if (spr->unk1C < 800)
+        {
+            D_801B081C = 0;
+            spr->unk22 = 123;
+            func_80042124(ptr, 150);
+            spr->unk2B = 6;
+            i = gHeadSpriteStat[7];
+            while (i >= 0)
+            {
+                spr2 = &gpSprite[i];
+                if (spr2->unk1E == 100)
+                {
+                    setSprite(spritenum, spr2->x, spr2->y, spr2->z);
+                    spr->ang = 1024;
+                    func_8006B590(925);
+                    break;
+                }
+                i = gNextSpriteStat[i];
+            }
+            break;
+        }
+        func_8004E5F8(spritenum, 0, 0, spr->unk1C);
+        break;
+    case 6:
+        if (D_801AE8F8 != 0)
+        {
+            if ((func_80042140(spritenum) < 87) && !(D_8012FD88 & 1))
+                func_8008E3E0(spr->x, spr->y, (spr->z - 54000), spr->sectnum, 54, 0);
+
+            if ((func_80042140(spritenum) >= 88) && (func_80042140(spritenum) < 301))
+            {
+                ang = krand() & 0x7FF;
+                x2 = gpSprite[spritenum].x + 500;
+                y2 = gpSprite[spritenum].y;
+                k = (krand() & 0xFFF) + 52000;
+                z2 = gpSprite[spritenum].z - k;
+                j = (krand() & 0x1FFF) + 20000;
+                x1 = x2 + ((j * gpSinTable[(ang + 512) & 0x7FF]) >> 14);
+                y1 = y2 + ((j * gpSinTable[ang]) >> 14);
+                z1 = z2 + ((krand() & 0xFFFF) - 0x8000);
+                func_8004E7F0(x1, y1, z1, x2, y2, z2, 3, (krand() & 0x1F) + 64, 0x800, 31);
+                audio_80007820(((krand() % 3) + 1649), spritenum);
+            }
+
+            if (func_80042140(spritenum) == 87)
+            {
+                D_800DEEE4[0] = 1;
+                playSfx(1346);
+            }
+
+            if (func_80042140(spritenum) == 301)
+            {
+                func_8008E3E0(spr->x, spr->y, (spr->z - 54000), spr->sectnum, 80, 0);
+                D_800DEEE4[0] = 1;
+                playSfx(1648);
+                func_8008E3E0(spr->x, spr->y, (spr->z - 54000), spr->sectnum, 30, 0);
+                spr->unk25 = 31;
+                spr->cstat |= 0x800;
+            }
+            if (func_80042140(spritenum) == 319)
+            {
+                if (D_8013B2D0[spritenum].unk6 < 251)
+                    D_8013B2D0[spritenum].unk6 += 4;
+                else
+                    spr->cstat = -0x8000;
+
+                D_801AE8F8--;
+                if ((D_801AE8F8 == 1) && (gPlayer[0].unk45 == 0))
+                    func_8008E01C(30, 1);
+            }
+            else
+                func_80017268(spritenum);
+        }
+        break;
+    }
+}
 
 /*8009BED0*/
 static s32 func_8009BED0(SpriteType *arg0, s32 x, s32 y, s32 z, s16 sectnum)

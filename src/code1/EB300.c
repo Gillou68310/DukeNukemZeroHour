@@ -571,7 +571,7 @@ void func_801C2BE8(code1UnkStruct6 *arg0)
         if (ptr->unk4 & 2)
             D_801CD990[D_801CE490]->unk12 = 150;
 
-        D_801CE490 += 1;
+        D_801CE490++;
         if (ptr->unk14 != NULL)
         {
             j = ptr->unk14->unk4[ptr->unk18[0]].unk2;
@@ -2374,5 +2374,5 @@ void func_801C9F74(void)
     }
 
     if (cond == 0)
-        D_801CDB0C += 1;
+        D_801CDB0C++;
 }
