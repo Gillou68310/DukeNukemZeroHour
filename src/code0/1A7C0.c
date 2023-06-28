@@ -4,6 +4,7 @@
 #include "code0/9410.h"
 #include "code0/1A7C0.h"
 #include "code0/24610.h"
+#include "code0/41940.h"
 #include "code0/graphics.h"
 #include "code0/pragmas.h"
 #include "code0/code0.h"
@@ -186,7 +187,94 @@ static void func_8001B0E0(s32 x, s32 y, s32 z, f32 *fx, f32 *fy)
 }
 
 /*8001B2D0*/
-INCLUDE_ASM("nonmatchings/src/code0/1A7C0", func_8001B2D0);
+void func_8001B2D0(void)
+{
+    s16 i;
+    f32 f1;
+    s32 x1, x2, x3;
+    s32 y1, y2, y3;
+    s32 z1, z2, z3;
+
+    if ((D_8012C470 < 2) && (D_800DEEA0 != 0))
+    {
+        if ((D_801AE90C != 0) && (D_8012FC40 == 0))
+        {
+            D_80168CFC = 1;
+            D_8013867C = 1;
+            D_801A1990 = D_8013F954;
+            D_801387C0 = D_801ACBDC;
+            D_8012F910 = D_80105714;
+            D_80197DD8 = D_8010570C;
+            D_80105548 = D_8013860C;
+            func_8001AAEC();
+        }
+
+        i = gHeadSpriteStat[4];
+        D_80168CFC = 0;
+        D_8013867C = 0;
+        f1 = D_800DCA00;
+
+        while (i >= 0)
+        {
+            if (gpSprite[i].unk1E == 21)
+            {
+                x1 = gpSprite[i].x;
+                y1 = gpSprite[i].y;
+                z1 = gpSprite[i].z;
+                D_8012F910 = x1;
+                D_80197DD8 = y1;
+                D_80105548 = z1;
+                func_8001B0E0(x1, y1, z1, &D_801A1990, &D_801387C0);
+                D_800DCA00 = 256;
+                D_801B0D34 = gpSprite[i].sectnum;
+                if (D_801A1990 != 9999.0f)
+                    func_8001AAEC();
+            }
+            i = gNextSpriteStat[i];
+        }
+
+        i = gHeadSpriteStat[50];
+        while (i >= 0)
+        {
+            if (gpSprite[i].unk16 == 52)
+            {
+                x2 = gpSprite[i].x;
+                y2 = gpSprite[i].y;
+                z2 = gpSprite[i].z;
+                D_8012F910 = x2;
+                D_80197DD8 = y2;
+                D_80105548 = z2;
+                func_8001B0E0(x2, y2, z2, &D_801A1990, &D_801387C0);
+                D_801B0D34 = gpSprite[i].sectnum;
+                D_800DCA00 = CLAMP_MAX((gpSprite[i].xrepeat * 2), 256);
+                if (D_801A1990 != 9999.0f)
+                    func_8001AAEC();
+            }
+            i = gNextSpriteStat[i];
+        }
+
+        i = gHeadSpriteStat[310];
+        while (i >= 0)
+        {
+            if ((gpSprite[i].unk16 == 79) || (gpSprite[i].unk16 == 68))
+            {
+                x3 = gpSprite[i].x;
+                y3 = gpSprite[i].y;
+                z3 = gpSprite[i].z;
+                D_8012F910 = x3;
+                D_80197DD8 = y3;
+                D_80105548 = z3;
+                func_8001B0E0(x3, y3, z3, &D_801A1990, &D_801387C0);
+                D_801B0D34 = gpSprite[i].sectnum;
+                D_800DCA00 = 256 - D_8013B2D0[i].unk6;
+                if (D_801A1990 != 9999.0f)
+                    func_8001AAEC();
+            }
+            i = gNextSpriteStat[i];
+        }
+        D_800DCA00 = f1;
+    }
+}
 
 /*8001B740*/
 static void func_8001B740(void)
