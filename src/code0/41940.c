@@ -1159,7 +1159,93 @@ STATIC s32 ifVarVarAE(s32 spritenum)
 }
 
 /*80044394*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_80044394);
+STATIC s32 func_80044394(s32 spritenum)
+{
+    s16 ang;
+    s32 i, j, k, l, m, n;
+
+    gpInst++;
+    D_80137DE0->unk30 = getVar(spritenum, *gpInst++);
+    i = *gpInst++;
+    j = getVar(spritenum, *gpInst++);
+    k = getVar(spritenum, *gpInst++);
+    l = getVar(spritenum, *gpInst++);
+
+    if ((u32)((u16)D_80137DE0->unk84 - 38) < 6U)
+    {
+        j *= 2;
+        k *= 2;
+    }
+
+    m = getVar(spritenum, *gpInst++);
+    n = getVar(spritenum, i);
+    switch (n)
+    {
+    case 0x4000002D:
+        if (D_80137DE0->unk38 == -1)
+            ang = getAngle(gPlayer[0].xpos - D_80118248->x,
+                           gPlayer[0].ypos - D_80118248->y);
+        else
+            ang = getAngle(D_80137DE0->unk38 - D_80118248->x,
+                           D_80137DE0->unk3C - D_80118248->y);
+
+        i = getAngleDelta(D_80118248->ang, ang) >> m;
+        D_80118248->ang = func_80051508(D_80118248->ang, ang, m);
+        D_80137DE0->unk32 = i;
+        break;
+    case 0x40000008:
+        if ((D_80137DE0->unk0 & 0x1800) && (D_80137DE0->unk28 != -1))
+            ang = getAngle(gpSprite[D_80137DE0->unk28].x - D_80118248->x,
+                           gpSprite[D_80137DE0->unk28].y - D_80118248->y);
+        else
+            ang = getAngle(gPlayer[0].xpos - D_80118248->x,
+                           gPlayer[0].ypos - D_80118248->y);
+
+        i = getAngleDelta(D_80118248->ang, ang) >> m;
+        D_80118248->ang = func_80051508(D_80118248->ang, ang, m);
+        D_80137DE0->unk32 = i;
+        break;
+    case 0x4000001F:
+        ang = (getAngle(gPlayer[D_801A2628].xpos - D_80118248->x,
+            gPlayer[D_801A2628].ypos - D_80118248->y) + 1024) & 0x7FF;
+        i = getAngleDelta(D_80118248->ang, ang) >> m;
+        D_80118248->ang = func_80051508(D_80118248->ang, ang, m);
+        D_80137DE0->unk32 = i;
+        break;
+    case 0x4000001A:
+        D_80118248->ang = getAngle(gPlayer[D_801A2628].xpos - D_80118248->x,
+                                   gPlayer[D_801A2628].ypos - D_80118248->y) & 0x7FF;
+        break;
+    case 0x4000001C:
+        D_80118248->ang = D_80137DE0->unk5C;
+        break;
+    default:
+        if (n != D_80118248->ang)
+        {
+            if (m != -1)
+            {
+                D_80118248->ang = func_80051508(D_80118248->ang, n, m);
+                i = (getAngleDelta(D_80118248->ang, n) >> m);
+                D_80137DE0->unk32 = i;
+            }
+            else
+                D_80118248->ang = n;
+        }
+        break;
+    }
+    j = (j * gpSinTable[(D_80118248->ang + 512) & 0x7FF]) >> 14;
+    i = D_80118248->ang; /*FAKEMATCH*/
+    k = (k * gpSinTable[i & 0x7FF]) >> 14;
+    D_80118248->unk18 = j;
+    D_80118248->unk1A = k;
+
+    if (D_80137DE0->unk0 & 2)
+        D_80118248->unk1C += l;
+    else
+        D_80118248->unk1C = l;
+
+    return D_80137DE0->unk30 != 0;
+}
 
 /*80044854*/
 STATIC s32 setVarVar(s32 spritenum)
