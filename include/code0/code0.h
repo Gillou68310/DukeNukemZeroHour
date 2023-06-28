@@ -302,7 +302,8 @@ typedef struct
     /*0x38*/ f32 unk38;
     /*0x3C*/ f32 unk3C;
     /*0x40*/ f32 unk40;
-    /*0x44*/ u8 pad4[8];
+    /*0x44*/ f32 unk44;
+    /*0x48*/ f32 unk48;
     /*0x4C*/ f32 unk4C;
     /*0x50*/ f32 unk50;
     /*0x54*/ f32 unk54;
@@ -328,7 +329,7 @@ typedef struct
     /*0kA0*/ s32 unkA0;
     /*0xA4*/ Gfx *unkA4;
     /*0xA8*/ u8 pad9[4];
-    /*0xAC*/ u8 *unkAC;
+    /*0xAC*/ Lights1 *unkAC;
 } code0UnkStruct16;
 
 typedef struct

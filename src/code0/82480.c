@@ -1,4 +1,5 @@
 #include "common.h"
+#include "code0/main.h"
 #include "code0/cache1d.h"
 #include "code0/edl.h"
 #include "code0/7F6A0.h"
@@ -153,7 +154,77 @@ void func_80082410(Mtx *m, f32 arg1, f32 arg2, f32 arg3)
 }
 
 /*80082448*/
-INCLUDE_ASM("nonmatchings/src/code0/82480", func_80082448);
+void func_80082448(void)
+{
+    Mtx mf3;
+    Mtx mf2[3];
+    Mtx mf1;
+
+    u8 c0, c1, c2, c3, c4, c5;
+    Lights1 *light;
+
+    gDPPipeSync(gpDisplayList++);
+    guTranslate(&mf3, -D_8012FD8C->unk34 / 4.0f, D_8012FD8C->unk38 / 4.0f, D_8012FD8C->unk3C / 4.0f);
+    if (D_8012FD8C->unkC & 0x40000)
+        guScale(&mf1, D_8012FD8C->unk44, D_8012FD8C->unk48, 1.0f);
+    else
+        guScale(&mf1, D_8012FD8C->unk40, D_8012FD8C->unk40, D_8012FD8C->unk40);
+
+    func_80082410(mf2, -D_8012FD8C->unk4C, -D_8012FD8C->unk50, -D_8012FD8C->unk54);
+    guMtxCatL(&mf3, &gpDynamic->identity, &gpDynamic->mtx5[D_801AE528]);
+    guMtxCatL(&mf1, &gpDynamic->mtx5[D_801AE528], &gpDynamic->mtx5[D_801AE528]);
+    guMtxCatL(mf2, &gpDynamic->mtx5[D_801AE528], &gpDynamic->mtx5[D_801AE528]);
+    guMtxCatL(&gpDynamic->scale, &gpDynamic->mtx5[D_801AE528], &gpDynamic->mtx5[D_801AE528]);
+    gSPMatrix(gpDisplayList++, &gpDynamic->mtx5[D_801AE528], G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+
+    if (D_8012FD8C->unkC & 0x1000)
+    {
+        light = D_8012FD8C->unkAC;
+        c0 = D_8012FD8C->unk10;
+        light->l[0].l.col[0] = c0;
+        light->l[0].l.colc[0] = c0;
+        c1 = D_8012FD8C->unk10;
+        light->l[0].l.col[1] = c1;
+        light->l[0].l.colc[1] = c1;
+        c2 = D_8012FD8C->unk10;
+        light->l[0].l.col[2] = c2;
+        light->l[0].l.colc[2] = c2;
+        c3 = D_8012FD8C->unk10 / 3;
+        light->a.l.col[0] = c3;
+        light->a.l.colc[0] = c3;
+        c4 = D_8012FD8C->unk10 / 3;
+        light->a.l.col[1] = c4;
+        light->a.l.colc[1] = c4;
+        c5 = D_8012FD8C->unk10 / 3;
+        light->a.l.col[2] = c5;
+        light->a.l.colc[2] = c5;
+
+        gSPGeometryMode(gpDisplayList++, 0, G_LIGHTING);
+        gSPSetLights1(gpDisplayList++, (*light));
+    }
+
+    D_801AE528++;
+    gDPSetColorDither(gpDisplayList++, G_CD_BAYER);
+
+    if (D_8012FD8C->unkC & 0x4000)
+    {
+        gDPSetCombineMode(gpDisplayList++, G_CC_MODULATEI_PRIM, G_CC_MODULATEI_PRIM);
+    }
+    else if (D_8012FD8C->unkC & 0x1000)
+    {
+        gDPSetCombineMode(gpDisplayList++, G_CC_MODULATEIA, G_CC_MODULATEIA);
+    }
+    else
+    {
+        gDPSetCombineMode(gpDisplayList++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+    }
+
+    gDPSetEnvColor(gpDisplayList++, D_8012FD8C->unk68.r, D_8012FD8C->unk68.g, D_8012FD8C->unk68.b, 0);
+    gDPSetPrimColor(gpDisplayList++, 0, 0, D_8012FD8C->unk6B.r, D_8012FD8C->unk6B.g, D_8012FD8C->unk6B.b, D_8012FD8C->unk12);
+    gSPDisplayList(gpDisplayList++, D_8012FD8C->unkA4);
+    gDPSetColorDither(gpDisplayList++, G_CD_DISABLE);
+    gSPClearGeometryMode(gpDisplayList++, G_LIGHTING | G_TEXTURE_GEN);
+}
 
 /*80082920*/
 static void func_80082920(void)
@@ -342,7 +413,7 @@ void func_80083700(s32 arg0, _119280UnkStruct1 *arg1, s32 arg2, s32 arg3)
 }
 
 /*8008372C*/
-code0UnkStruct16 *func_8008372C(s32 arg0, _119280UnkStruct1 *arg1, s32 arg2, u8 *arg3, s32 arg4)
+code0UnkStruct16 *func_8008372C(s32 arg0, _119280UnkStruct1 *arg1, s32 arg2, Lights1 *arg3, s32 arg4)
 {
     code0UnkStruct16 *ptr;
 
@@ -360,7 +431,7 @@ code0UnkStruct16 *func_8008372C(s32 arg0, _119280UnkStruct1 *arg1, s32 arg2, u8 
 }
 
 /*800837B8*/
-code0UnkStruct16 *func_800837B8(u16 *arg0, s32 arg1, u8 *arg2)
+code0UnkStruct16 *func_800837B8(u16 *arg0, s32 arg1, Lights1 *arg2)
 {
     code0UnkStruct16 *ptr;
 
