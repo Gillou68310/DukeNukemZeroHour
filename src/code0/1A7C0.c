@@ -327,7 +327,7 @@ static void func_8001B740(void)
             fy = ((gPlayer[D_801B0820].unk6E * 2) * D_80199110) / 40960.0;
             fx = ((gPlayer[D_801B0820].unk6E * 2) * D_801A1980) / 30720.0;
 
-            if (gMapNum == 21)
+            if (gMapNum == MAP_ZERO_HOUR)
             {
                 fy *= 2.0f;
                 fx *= 2.0f;

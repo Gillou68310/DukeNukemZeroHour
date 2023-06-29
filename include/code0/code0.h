@@ -456,6 +456,7 @@ typedef struct
 /*8010A9AC*/ _extern u8 D_8010A9AC;
 /*80117ED8*/ _extern Player gPlayer[MAXPLAYERS] ALIGNED(8);
 /*80118148*/ _extern u8 D_80118148;
+/*8011814A*/ _extern s16 D_8011814A[5];
 /*80118168*/ _extern code0UnkStruct19 D_80118168 ALIGNED(8);
 /*80118248*/ _extern SpriteType *D_80118248;
 /*80118260*/ _extern u8 D_80118260[6096] ALIGNED(16);

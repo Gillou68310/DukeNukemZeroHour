@@ -9,4 +9,6 @@ void func_800A3688(void);
 void func_800A419C(s16, char *);
 void func_800A4478(void);
 
+extern s32 D_800E192C;
+
 #endif

@@ -703,10 +703,8 @@ static void func_801C32C4(void)
 /*801C3310*/
 static void func_801C3310(void)
 {
-    if ((gLoadMapNum == 22) || (D_801CE498.unk1C == 0))
-    {
+    if ((gLoadMapNum == MAP_THE_END) || (D_801CE498.unk1C == 0))
         main_80000624(func_801C9B08);
-    }
     else
     {
         func_801C30EC();
@@ -1394,9 +1392,9 @@ static s16 func_801C53E8(s16 mapnum)
 {
     if (D_800FEA90 == 0)
     {
-        if (mapnum+1 != 3)
+        if (mapnum+1 != MAP_WETWORLD)
         {
-            if (mapnum+1 != 17)
+            if (mapnum+1 != MAP_GOING_DOWN_THE_RACK)
                 return mapnum+1;
             else
                 return mapnum+2;

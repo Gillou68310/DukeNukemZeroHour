@@ -1,24 +1,33 @@
 #include "common.h"
 #include "code0/main.h"
+#include "code0/audio.h"
 #include "code0/9410.h"
 #include "code0/17B30.h"
 #include "code0/1A7C0.h"
+#include "code0/1E7A0.h"
 #include "code0/24610.h"
+#include "code0/37090.h"
 #include "code0/41940.h"
 #include "code0/6ACA0.h"
 #include "code0/8EFE0.h"
 #include "code0/95500.h"
 #include "code0/code0.h"
+#include "code1/code1.h"
 #include "static/mapinfo.h"
 
 /*TODO: include string.h from libkmc instead of libultra*/
 char *strcpy(char *, const char *);
 size_t strlen(const char *);
 
+/*.data*/
+/*800E192C*/ EXTERN_DATA s32 D_800E192C;
+
 /*.comm*/
 /*80106D40*/ u8 D_80106D40;
+/*80119A94*/ s16 D_80119A94;
 /*8012FD70*/ u8 D_8012FD70[4];
 /*8016A140*/ s16 D_8016A140;
+/*80199944*/ s16 D_80199944;
 /*8019994C*/ s16 D_8019994C;
 /*801B0804*/ u8 D_801B0804;
 
@@ -327,4 +336,121 @@ static void func_800A42A4(s16 arg0)
 }
 
 /*800A4478*/
-INCLUDE_ASM("nonmatchings/src/code0/A06F0", func_800A4478);
+void func_800A4478(void)
+{
+    s16 j;
+    s16 i;
+    s16 nextj;
+    s32 a, b;
+
+    for (i = 0; i < D_8012C470; i++)
+    {
+        if ((gPlayer[i].unk54 != 0) || (D_8011814A[i] < 600))
+            D_8012FD70[i] = 0x80;
+        else
+            D_8012FD70[i] = CLAMP_MIN((D_8012FD70[i] - 4), 0);
+
+        if ((D_8010A940[i].unk0 == 7) && (D_8010A940[i].unkA[7] == 0x6000))
+            D_80106D40 = CLAMP_MAX((D_80106D40 + 16), 0xFF);
+        else
+            D_80106D40 = 0;
+
+        if (D_8012C470 >= 2)
+        {
+            if (D_801AD470 != 2)
+            {
+                if (gPlayer[i].unk45 != 0)
+                {
+                    if (gPlayer[i].unk4E > 90)
+                        func_800A419C(i, "PRESS START");
+                }
+            }
+        }
+    }
+
+    for (i = 0; i < 4; i++)
+    {
+        if (gPlayer[i].unk52 < 0x800)
+        {
+            if (D_80138858[i] > 0)
+                D_80138858[i]--;
+        }
+    }
+
+    if (D_8016A140 > 0)
+    {
+        D_8016A140--;
+        D_8019994C++;
+    }
+
+    D_80119A94 = 0;
+    D_80199944 = 0;
+
+    if ((D_8012C470 == 1) && (D_801AC9F8 > 0))
+    {
+        D_801AC9F8--;
+        D_80119A94 = krand() & 3;
+        D_80199944 = krand() & 3;
+    }
+
+    if (gMapNum == MAP_PROBING_THE_DEPTHS)
+    {
+        switch (D_801CE498.difficulty)
+        {
+        case 0:
+        default:
+            b = 21600;
+            break;
+        case 1:
+            b = 18000;
+            break;
+        case 2:
+            b = 14400;
+            break;
+        }
+        if ((((b - D_801A1958.unkC) / 30U) == 0) && (D_801B0804 == 0))
+        {
+            D_801B0804 = 1;
+            func_8003671C(0, 1000, -1, -1);
+            func_8001F7B4(60, 15);
+            playSfx(1648);
+            D_800DEEE4[0] = 1;
+            gPlayer[0].unk45 = 4;
+        }
+    }
+
+    if ((gMapNum == MAP_UNDER_SIEGE) && (D_80138678 != -1))
+    {
+        switch (D_801CE498.difficulty)
+        {
+        case 0:
+        default:
+            a = 3600;
+            break;
+        case 1:
+            a = 2700;
+            break;
+        case 2:
+            a = 1800;
+            break;
+        }
+
+        b = D_801A1958.unkC - D_80138678;
+        b = (a - b) / 30U;
+        if (b == 0)
+        {
+            D_80138678 = -1;
+            D_800E192C = -1;
+            func_8006B590(1918);
+            j = gHeadSpriteStat[106];
+            while (j >= 0)
+            {
+                nextj = gNextSpriteStat[j];
+                if ((gpSprite[j].picnum == 9) && (gpSprite[j].unk20 == 1221))
+                    deleteSprite(j);
+
+                j = nextj;
+            }
+        }
+    }
+}

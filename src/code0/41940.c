@@ -3619,7 +3619,7 @@ void func_8004FAD8(s32 spritenum)
     s32 x, y, z;
     s32 i;
 
-    if (gMapNum == 0x11)
+    if (gMapNum == MAP_GOING_DOWN_THE_RACK)
     {
         func_80045400(gpSprite[spritenum].x,
                       gpSprite[spritenum].y,
