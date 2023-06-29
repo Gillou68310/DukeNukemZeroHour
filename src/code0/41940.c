@@ -2663,9 +2663,99 @@ s32 ldist(SpriteType *s1, SpriteType *s2)
     return findDistance2D((s1->x - s2->x), (s1->y - s2->y)) + 1;
 }
 
-INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E58F4);
+typedef struct
+{
+    /*0x00*/ s16 unk0[3];
+} _41940UnkStruct3;
+
+static const _41940UnkStruct3 D_800E58F4 = {1, 10, 305};
+
 /*8004CE58*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004CE58);
+s32 func_8004CE58(SpriteType *spr, s16 arg1, s16 arg2)
+{
+    s32 a, b, c, d, e, ret, f, g, h;
+    _41940UnkStruct3 stat;
+    s32 x, y;
+    s32 i, m;
+    s32 cond1, cond2;
+    s16 j;
+    s32 temp;
+
+    stat = D_800E58F4;
+    if (spr->statnum == 10)
+    {
+        i = spr->unk16;
+        if (arg2 != 20)
+        {
+            j = 2 - D_801CE498.unk3E[i];
+            switch (j)
+            {
+            case 0:
+                arg1 = (arg1 * 150) / 100;
+                break;
+            case 1:
+                arg1 = (arg1 * 125) / 100;
+                break;
+            case 2:
+                break;
+            }
+        }
+    }
+
+    ret = -1;
+    e = ~0x80000000;
+    a = gpSinTable[((spr->ang + 512) - arg1) & 0x7FF];
+    b = gpSinTable[(spr->ang - arg1) & 0x7FF];
+    c = gpSinTable[(spr->ang  + 512 + arg1) & 0x7FF];
+    d = gpSinTable[(spr->ang + arg1) & 0x7FF];
+    g = gpSinTable[(spr->ang + 512) & 0x7FF];
+    h = gpSinTable[spr->ang & 0x7FF];
+
+    if (spr->statnum == 10)
+        f = gPlayer[spr->unk16].unk3E;
+    else
+        f = 0;
+
+    for (i = 0; i < 3; i++)
+    {
+        j = gHeadSpriteStat[stat.unk0[i]];
+        while (j >= 0)
+        {
+            if (spr != &gpSprite[j])
+            {
+                if ((gpSprite[j].statnum != 10) ||
+                    ((gPlayer[gpSprite[j].unk16].unk45 == 0) && (D_80138690 == 0)))
+                {
+                    x = gpSprite[j].x - spr->x;
+                    y = gpSprite[j].y - spr->y;
+                    temp = b * x;
+
+                    if ((a * y) >= (temp))
+                    {
+                        if ((d * x) >= (c * y))
+                        {
+                            m = mulscale(g, x, 14) + mulscale(h, y, 14);
+                            if (!(m < 513) && (m < e))
+                            {
+                                cond1 = klabs_(scale(gpSprite[j].z - spr->z, 10, m) - f) < 100;
+                                cond2 = (canSee(gpSprite[j].x, gpSprite[j].y, (gpSprite[j].z - 8192), gpSprite[j].sectnum,
+                                    spr->x, spr->y, (spr->z - 8192), spr->sectnum) << 16) != 0;
+
+                                if (cond1 & cond2)
+                                {
+                                    e = m;
+                                    ret = j;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            j = gNextSpriteStat[j];
+        }
+    }
+    return ret;
+}
 
 /*8004D304*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004D304);
