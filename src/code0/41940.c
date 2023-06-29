@@ -2758,7 +2758,69 @@ s32 func_8004CE58(SpriteType *spr, s16 arg1, s16 arg2)
 }
 
 /*8004D304*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004D304);
+s32 func_8004D304(SpriteType *arg0, s16 arg1, s16 arg2)
+{
+    SpriteType *spr;
+    s32 a, b, c, d, e, f, g, ret;
+    _41940UnkStruct3 stat;
+    s32 x, y;
+    s16 i;
+    s32 j, m;
+    s32 cond;
+
+    if (arg1)
+        stat = D_800E58F4;
+    else
+        stat = D_800E58F4;
+
+    ret = -1;
+    g = ~0x80000000;
+
+    a = gpSinTable[((arg0->ang + 512) - arg1) & 0x7FF];
+    b = gpSinTable[(arg0->ang - arg1) & 0x7FF];
+    c = gpSinTable[(arg0->ang + 512 + arg1) & 0x7FF];
+    d = gpSinTable[(arg0->ang + arg1) & 0x7FF];
+    e = gpSinTable[(arg0->ang + 512) & 0x7FF];
+    f = gpSinTable[arg0->ang & 0x7FF];
+
+    for (j = 0; j < 3; j++)
+    {
+        i = gHeadSpriteStat[stat.unk0[j]];
+        while (i >= 0)
+        {
+            spr = &gpSprite[i];
+            if (arg0 != spr)
+            {
+                if ((spr->statnum != 10) ||
+                    ((gPlayer[spr->unk16].unk45  == 0) && (D_80138690 == 0)))
+                {
+                    x = spr->x - arg0->x;
+                    y = spr->y - arg0->y;
+
+                    if ((b * x) <= (a * y))
+                    {
+                        if ((d * x) >= (c * y))
+                        {
+                            m = mulscale(e, x, 14) + mulscale(f, y, 14);
+                            if (m < g)
+                            {
+                                cond = (canSee(gpSprite[i].x, gpSprite[i].y, (gpSprite[i].z - 8192) - func_80058600(i),
+                                    gpSprite[i].sectnum, arg0->x, arg0->y, (arg0->z - 8192), arg0->sectnum)) << 16;
+                                if (cond != 0)
+                                {
+                                    g = m;
+                                    ret = i;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            i = gNextSpriteStat[i];
+        }
+    }
+    return ret;
+}
 
 /*8004D65C*/
 STATIC void func_8004D65C(s32 spritenum)

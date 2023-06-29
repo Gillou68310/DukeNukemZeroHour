@@ -26,7 +26,7 @@ s32 func_8004CB3C(s32);
 s32 func_8004CE58(SpriteType *spr, s16, s16);
 s32 dist(SpriteType *s1, SpriteType *s2);
 s32 ldist(SpriteType *s1, SpriteType *s2);
-s16 func_8004D304(SpriteType *, s32, s32);
+s32 func_8004D304(SpriteType *, s16, s16);
 s32 func_8004D7D8(s32 spritenum);
 void func_8004D884(void);
 void func_8004DC74(void);
