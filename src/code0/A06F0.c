@@ -1,7 +1,9 @@
 #include "common.h"
 #include "code0/main.h"
 #include "code0/audio.h"
+#include "code0/graphics.h"
 #include "code0/9410.h"
+#include "code0/FDE0.h"
 #include "code0/17B30.h"
 #include "code0/1A7C0.h"
 #include "code0/1E7A0.h"
@@ -20,6 +22,7 @@ char *strcpy(char *, const char *);
 size_t strlen(const char *);
 
 /*.data*/
+/*800E18F8*/ EXTERN_DATA STATIC Lights2 D_800E18F8;
 /*800E192C*/ EXTERN_DATA s32 D_800E192C;
 
 /*.comm*/
@@ -167,7 +170,69 @@ static s16 func_8009FEB0(s16 x, s16 y, char *arg2, s16 arg3)
 INCLUDE_ASM("nonmatchings/src/code0/A06F0", func_800A0014);
 
 /*800A0698*/
-INCLUDE_ASM("nonmatchings/src/code0/A06F0", func_800A0698);
+static void func_800A0698(void)
+{
+    Gfx *dlist;
+    f32 x, y, z;
+    s16 i, c;
+    s32 temp;
+
+    D_8010A9AC = 0;
+    D_8019956C = 0;
+    D_80119A38 = 0;
+    D_80105718 = 0;
+    D_801AE8F4 = gPlayer[D_801B0820].unk4A;
+    main_80000C74();
+    func_8000F1E0();
+    func_8000C76C();
+
+    gSPSetLights2(gpDisplayList++, D_800E18F8);
+    c = 0xFF;
+
+    for (i = 0; i < D_8012C470; i++)
+    {
+        if (i != D_801B0820)
+        {
+            if (D_80106D30[i] != 1)
+            {
+                if (gpSprite[gPlayer[i].unk4A].picnum == gpSprite[D_801AE8F4].picnum)
+                    c = 0x40;
+            }
+        }
+    }
+
+    gSPLightColor(gpDisplayList++, LIGHT_3, (c<<24)+(c<<16)+(c<<8));
+
+    x = gpSprite[D_801AE8F4].x;
+    y = gpSprite[D_801AE8F4].y;
+    z = (gpSprite[D_801AE8F4].z - 0x1964);
+
+    x += (cosf(gpSprite[D_801AE8F4].ang * 0.0030679615757714844) * 1204.0f);
+    y += (sinf(gpSprite[D_801AE8F4].ang * 0.0030679615757714844) * 1204.0f);
+
+    temp = D_8012FD88 % 360; /*FAKEMATCH*/
+    grPosition(
+        &gpDynamic->mtx3[D_801A6D80 + 1],
+        0.0f,
+        180.0f,
+        (D_8012FD88 % 360),
+        1.0f,
+        (x / 4.0),
+        (y / 4.0),
+        (z / 64.0));
+
+    gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx3[D_801A6D80 + 1]),
+              G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+
+    D_801A6D80 += 1;
+
+    dlist = gpDisplayList;
+    gpDisplayList = D_801297E0[D_801B0820][gGfxTaskIndex];
+    func_80013FFC(func_80014040(gpSprite[D_801AE8F4].picnum));
+    gSPEndDisplayList(gpDisplayList++);
+    gSPDisplayList(dlist++, D_801297E0[D_801B0820][gGfxTaskIndex]);
+    gpDisplayList = dlist;
+}
 
 /*800A0BD4*/
 static void func_800A0BD4(s16 x, s16 y, char *arg2)
