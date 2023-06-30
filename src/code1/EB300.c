@@ -1163,8 +1163,118 @@ STATIC void func_801C3E5C(void);
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C3E5C);
 
 /*801C45C0*/
-STATIC void func_801C45C0(void);
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C45C0);
+static void func_801C45C0(void)
+{
+    code1UnkStruct5 *ptr;
+    code0UnkStruct16 *ptr2;
+
+    ptr = &D_801CE5A8->unk4[D_801CE5A0];
+    if (D_801CD986[D_801CDACC] & 0x800)
+    {
+        D_801CD986[D_801CDACC] &= 0xF7FF;
+        playSfx(746);
+        func_801C14C4(D_801CD990[D_801CE5A0], 140, 140, 165);
+        do
+        {
+            if (D_801CE5A0 == 0)
+                D_801CE5A0 = D_801CE5A8->unk0 - 1;
+            else
+                D_801CE5A0--;
+
+        } while (D_801CE5A8->unk4[D_801CE5A0].unk4 != 0);
+    }
+    else if (D_801CD986[D_801CDACC] & 0x400)
+    {
+        D_801CD986[D_801CDACC] &= 0xFBFF;
+        playSfx(746);
+        func_801C14C4(D_801CD990[D_801CE5A0], 140, 140, 165);
+        do
+        {
+            if (D_801CE5A0 == (D_801CE5A8->unk0 - 1))
+                func_801C3A88(0);
+            else
+                D_801CE5A0++;
+
+        } while (D_801CE5A8->unk4[D_801CE5A0].unk4 != 0);
+    }
+    else
+    {
+        if ((D_801CD986[D_801CDACC] & 0x1000) || (D_801CD986[D_801CDACC] & 0x8000))
+        {
+            D_801CD986[D_801CDACC] &= 0xEFFF;
+            if (ptr->unkC != NULL)
+            {
+                playSfx(747);
+                D_801CC8C0 = 1;
+            }
+        }
+        else if (D_801CD986[D_801CDACC] & 0x4000)
+        {
+            D_801CD986[D_801CDACC] &= 0xBFFF;
+            if (D_801CD980 != 0)
+            {
+                playSfx(748);
+                D_801CC8C0 = -1;
+                return;
+            }
+            if ((D_801CE5A8 == &D_801CB870) || (D_801CE5A8 == &D_801CB8F0))
+            {
+                playSfx(748);
+                func_801C14C4(D_801CD990[D_801CE5A0], 140, 140, 165);
+                func_801C3A88(0);
+                D_801CC8C0 = 1;
+            }
+        }
+        else if (ptr->unk14 != NULL)
+        {
+            if (D_801CD986[D_801CDACC] & 0x200)
+            {
+                D_801CD986[D_801CDACC] &= 0xFDFF;
+                playSfx(746);
+                if (ptr->unk18[0] == 0)
+                    ptr->unk18[0] = ptr->unk14->unk0 - 1;
+                else
+                    ptr->unk18[0]--;
+
+                if ((ptr->unk18 == &D_801CE498.musicvol) || (ptr->unk18 == &D_801CE498.mastervol))
+                    setVolume((D_801CE498.musicvol * 100) / 7, (D_801CE498.mastervol * 100) / 7);
+
+                ptr2 = (code0UnkStruct16 *)D_801CD990[D_801CE5A0]->unk7C;
+                ptr2->unk70 = (intptr_t)ptr->unk14->unk4[*ptr->unk18].unk8;
+                if (ptr->unk14 == &D_801CA970)
+                {
+                    if (*ptr->unk18 == 0)
+                        func_801C14C4(ptr2, 0, 200, 200);
+                    else
+                        func_801C14C4(ptr2, 0xFF, 0xFF, 0xFF);
+                }
+            }
+
+            if (D_801CD986[D_801CDACC] & 0x100)
+            {
+                D_801CD986[D_801CDACC] &= 0xFEFF;
+                playSfx(746);
+                if (ptr->unk18[0] != (ptr->unk14->unk0 - 1))
+                    ptr->unk18[0]++;
+                else
+                    ptr->unk18[0] = 0;
+
+                if ((ptr->unk18 == &D_801CE498.musicvol) || (ptr->unk18 == &D_801CE498.mastervol))
+                    setVolume((D_801CE498.musicvol * 100) / 7, (D_801CE498.mastervol * 100) / 7);
+
+                ptr2 = (code0UnkStruct16 *)D_801CD990[D_801CE5A0]->unk7C;
+                ptr2->unk70 = (intptr_t)ptr->unk14->unk4[*ptr->unk18].unk8;
+                if (ptr->unk14 == &D_801CA970)
+                {
+                    if (*ptr->unk18 == 0)
+                        func_801C14C4(ptr2, 0, 200, 200);
+                    else
+                        func_801C14C4(ptr2, 0xFF, 0xFF, 0xFF);
+                }
+            }
+        }
+    }
+}
 
 /*801C4B34*/
 void func_801C4B34(void)

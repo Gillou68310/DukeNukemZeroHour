@@ -116,7 +116,7 @@ static s32 func_80079CB4(s16 playernum, s16 arg1)
     case 15:
         return 0;
     default:
-        return ((gPlayer[playernum].unk54 != 0) & (arg1 == 20)) ^ 1;
+        return ((gPlayer[playernum].unk54 != 0) && (arg1 == 20)) ^ 1;
     }
 }
 
