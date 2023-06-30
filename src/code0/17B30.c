@@ -44,7 +44,7 @@ void func_80016F7C(code0unkStruct7 *arg0)
 
         suckCache(&D_80138854);
         arg0->unk18 = (u16 *)arg0->ramaddr;
-        arg0->unk1C = (u16 *)(arg0->ramaddr + (arg0->unk14 * 6));
+        arg0->unk1C = &((code0UnkStruct23 *)arg0->ramaddr)[arg0->unk14];
     }
 }
 

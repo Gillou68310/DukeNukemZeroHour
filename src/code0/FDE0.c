@@ -1,5 +1,6 @@
 #include "common.h"
 #include "code0/main.h"
+#include "code0/pragmas.h"
 #include "code0/9410.h"
 #include "code0/16FF0.h"
 #include "code0/17B30.h"
@@ -532,8 +533,93 @@ static void func_80014D4C(void)
 }
 
 /*80014D6C*/
-STATIC void func_80014D6C(code0unkStruct10 *, s32);
-INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_80014D6C);
+static void func_80014D6C(code0unkStruct10 *arg0, s16 arg1)
+{
+    Matrix4f mf1, mf2, mf3, mf4, mf5;
+    code0unkStruct8 *ptr;
+    f32 f1, f2, f3;
+    f32 f4, f5, f6;
+    f32 f7;
+    s16 i, j, k;
+
+    ptr = &D_80197E40[D_80106D50[D_801AE8F4]];
+
+    f1 = 0.0f;
+    f2 = 0.0f;
+    f3 = 0.0f;
+
+    if (ptr->unk8 == NULL)
+    {
+        f4 = arg0->unk8[arg1].unk0;
+        f5 = arg0->unk8[arg1].unk8;
+        f6 = arg0->unk8[arg1].unk4;
+    }
+    else
+    {
+        func_80016F7C(ptr->unk8);
+        j = ptr->unk2 + (arg1 * ptr->unk8->unk14);
+
+        if (ptr->unk16 == -1)
+        {
+            f1 = ptr->unk8->unk1C[j].unk4;
+            f2 = ptr->unk8->unk1C[j].unk2;
+            f3 = ptr->unk8->unk1C[j].unk0;
+        }
+        else
+        {
+            func_80016F7C(ptr->unk1C);
+            k = ptr->unk16 + (arg1 * klabs(ptr->unk1C->unk14));
+            f7 = (f32)klabs(ptr->unkE) / ptr->unk12;
+            f1 = func_80040DFC(ptr->unk8->unk1C[j].unk4, ptr->unk1C->unk1C[k].unk4, f7);
+            f2 = func_80040DFC(ptr->unk8->unk1C[j].unk2, ptr->unk1C->unk1C[k].unk2, f7);
+            f3 = func_80040DFC(ptr->unk8->unk1C[j].unk0, ptr->unk1C->unk1C[k].unk0, f7);
+        }
+
+        f4 = arg0->unk8[arg1].unk0;
+        f5 = arg0->unk8[arg1].unk8;
+        f6 = arg0->unk8[arg1].unk4;
+    }
+
+
+    j = arg0->unk8[arg1].unk18;
+    if (j != -1)
+    {
+        do { f4 -= arg0->unk8[j].unk0; } while (0); /*FAKEMATCH*/
+        f5 -= arg0->unk8[j].unk8;
+        f6 -= arg0->unk8[j].unk4;
+    }
+
+    f2 = (f2 * 360.0f) / 65536.0f;
+    f1 = (f1 * 360.0f) / 65536.0f;
+    f3 = (f3 * 360.0f) / 65536.0f;
+
+    guRotateRPYF(mf1, f2, 0.0f, 0.0f);
+    guRotateRPYF(mf2, 0.0f, f1, 0.0f);
+    guRotateRPYF(mf3, 0.0f, 0.0f, f3);
+    grTranslateF(mf4, f4 * 50.0f, -f5 * 50.0f, f6 * 50.0f);
+    grMtxCatF(mf2, mf1, mf5);
+    grMtxCatF(mf5, mf3, mf5);
+    grMtxCatF(mf5, mf4, mf5);
+    func_80014D04(mf5);
+
+    if (arg0->unk0 == 11)
+    {
+        if (arg1 == 12)
+            copyMatrix(D_80199578, D_801B0830[D_801ACC60]);
+        if (arg1 == 13)
+            copyMatrix(D_800FF3A0, D_801B0830[D_801ACC60]);
+        if (arg1 == 4)
+            copyMatrix(D_801AE9D0, D_801B0830[D_801ACC60]);
+    }
+
+    for (i = 0; i < arg0->unk2; i++)
+    {
+        if (arg0->unk8[i].unk18 == arg1)
+            func_80014D6C(arg0, i);
+    }
+
+    func_80014D4C();
+}
 
 /*800152AC*/
 static void func_800152AC(s32 spritenum1, s32 spritenum2, Matrix4f mf, s32 x, s32 y, s32 z)

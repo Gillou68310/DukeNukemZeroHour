@@ -147,7 +147,7 @@ static void func_80082290(float mf[4][4], f32 arg1, f32 arg2, f32 arg3)
 /*80082410*/
 void func_80082410(Mtx *m, f32 arg1, f32 arg2, f32 arg3)
 {
-    float mf[4][4];
+    Matrix4f mf;
 
     func_80082290(mf, arg1, arg2, arg3);
     guMtxF2L(mf, m);

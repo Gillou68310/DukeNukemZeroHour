@@ -554,11 +554,7 @@ static void func_80095B20(s32 spritenum, s32 arg1, f32 x, f32 y, f32 z, s32 arg5
     u16 cstat;
     s32 i;
 
-    f32 mf5[4][4];
-    f32 mf2[4][4];
-    f32 mf1[4][4];
-    f32 mf3[4][4];
-    f32 mf4[4][4];
+    Matrix4f mf5, mf2, mf1, mf3, mf4;
 
     ptr = &D_8013B2D0[spritenum];
     f1 = ((ptr->unk2 * 180) / 1024.0);
