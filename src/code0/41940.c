@@ -2259,7 +2259,103 @@ static void func_8004A4D4(SpriteType *spr, s32 arg1, s32 arg2)
 }
 
 /*8004A590*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004A590);
+static void func_8004A590(s32 spritenum)
+{
+    s32 i;
+    s32 j;
+
+    gpSprite[spritenum].cstat |= 0x101;
+    if (gpSprite[spritenum].unk18 == 0)
+    {
+        func_8004F4A0(spritenum);
+        D_80137DE0->unk86 = -32665;
+        D_80137DE0->unk58 = 0;
+        D_80137DE0->unk0 |= 2;
+        gpSprite[spritenum].unk18 = 1;
+    }
+
+    if (gpSprite[spritenum].unk18 == 1)
+    {
+        D_80137DE0->unk0 &= ~2;
+        gpSprite[spritenum].unk18 = 2;
+        gpSprite[spritenum].unk1C = 0;
+    }
+
+    if (gpSprite[spritenum].unk18 == 2)
+    {
+        if (D_80137DE0->unk54 != 0)
+        {
+            if ((gpSprite[spritenum].unk1C == 0) && (gpSprite[spritenum].unk25 != 31))
+            {
+                func_80045400(D_80137DE0->unk44, D_80137DE0->unk48, D_80137DE0->unk4C,
+                              D_80137DE0->unk50, 200, D_80137DE0->unk60, 15, 18);
+                gpSprite[spritenum].unk1C = 3;
+                D_80137DE0->unk54 -= 1;
+            }
+            else
+                gpSprite[spritenum].unk1C--;
+        }
+
+        if (((gpSprite[spritenum].unk1A++ & 7) == 7) && (gpSprite[spritenum].unk25 != 31))
+        {
+            audio_80007A44(((krand() % 2) + 57), spritenum, 0x4000);
+            D_80137DE0->unk54 = 6;
+            gpSprite[spritenum].unk1C = 0;
+            D_80137DE0->unk44 = (gpSprite[spritenum].x + (krand() & 0x1F)) - 0xF;
+            D_80137DE0->unk48 = (gpSprite[spritenum].y + (krand() & 0x1F)) - 0xF;
+            D_80137DE0->unk4C = gpSprite[spritenum].z - ((krand() & 0x3F) << 8);
+            D_80137DE0->unk50 = gpSprite[spritenum].sectnum;
+            D_80137DE0->unk60 = (D_80118248->ang + (krand() & 512)) - 256;
+        }
+
+        if (D_80137DE0->unk58++ > 180)
+        {
+            if (gpSprite[spritenum].unk25 != 31)
+            {
+                for (i = 0; i < 3; i++)
+                {
+                    j = func_8008E3E0(gpSprite[spritenum].x, gpSprite[spritenum].y,
+                                      gpSprite[spritenum].z, gpSprite[spritenum].sectnum, 55, 1781);
+                    if (j != -1)
+                    {
+                        gpSprite[j].xrepeat = (krand() & 0x3F) + 0x20;
+                        gpSprite[j].yrepeat = (krand() & 0x3F) + 0x20;
+                    }
+                }
+                func_80057540(&gpSprite[spritenum], 1781, 5, 0);
+                gpSprite[spritenum].unk1E = 12;
+                func_8004BFDC(spritenum, 11, gpSprite[spritenum].z, 1);
+            }
+            else
+            {
+                func_8004AB6C(spritenum, 6000, 250, 500, 750, 1000, 1);
+                audio_80007A44(591, spritenum, 36000);
+
+                func_8008E3E0(gpSprite[spritenum].x, gpSprite[spritenum].y, gpSprite[spritenum].z - 6144,
+                              gpSprite[spritenum].sectnum, 30, 0);
+
+                for (i = 0; i < 3; i++)
+                    func_8008E3E0(gpSprite[spritenum].x, gpSprite[spritenum].y,
+                                  gpSprite[spritenum].z - 6144, gpSprite[spritenum].sectnum, 20, 0);
+            }
+
+            if (gMapNum == MAP_THE_RACK)
+            {
+                if (gpSprite[spritenum].unk20 == 837)
+                    func_8004A4D4(&gpSprite[spritenum], 2364, 4);
+            }
+            if (gMapNum == MAP_ALIEN_MOTHER)
+            {
+                if (gpSprite[spritenum].unk20 == 806)
+                    func_8004A4D4(&gpSprite[spritenum], 2364, 1);
+
+                if (gpSprite[spritenum].unk20 == 818)
+                    func_8004A4D4(&gpSprite[spritenum], 2364, 3);
+            }
+            func_8004BD24(spritenum);
+        }
+    }
+}
 
 INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5618);
 /*8004AB6C*/
