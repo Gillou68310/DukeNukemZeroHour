@@ -189,7 +189,6 @@ def extract_tiles(rom):
             assert(0)
 
 if __name__ == '__main__':
-
     with open('dukenukemzerohour.yaml') as f:
         config = split.yaml.load(f.read(), Loader=split.yaml.SafeLoader)
     split.options.initialize(config, 'dukenukemzerohour.yaml', None, None)

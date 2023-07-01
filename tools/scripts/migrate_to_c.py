@@ -62,7 +62,6 @@ def parse_source_file(file: str) -> None:
     return (v, out_text)
 
 if __name__ == '__main__':
-
     #TODO: check arg
     c_file = sys.argv[1].replace('data/', 'src/').replace('.data.s', '.c')
 

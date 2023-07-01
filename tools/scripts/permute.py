@@ -42,27 +42,28 @@ def get_function_name(path):
             return line.split()[1]
     return None
 
-if len(sys.argv) < 2:
-    print('permute.py [url]')
-    sys.exit(1)
-
-tempdir = tempfile.TemporaryDirectory(dir='./')
-download_decompme(sys.argv[1], tempdir.name)
-
-# Merge context + code
-filenames = [os.path.join(tempdir.name, 'ctx.c'), os.path.join(tempdir.name, 'code.c')]
-f =  open(os.path.join(tempdir.name, 'func.c'), 'w')
-for fname in filenames:
-    with open(fname) as infile:
-        for line in infile:
-            f.write(line)
-    f.write('\n\n')
-f.close()
-
-code = os.path.join(tempdir.name, 'func.c')
-target = os.path.join(tempdir.name, 'target.s')
-nonmatching = os.path.join('nonmatchings', get_function_name(target))
-
-subprocess.run(['tools/decomp-permuter/import.py', code, target])
-tempdir.cleanup()
-subprocess.run(['tools/decomp-permuter/permuter.py', '--best-only', '--stop-on-zero', '-j12', nonmatching])
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print('permute.py [url]')
+        sys.exit(1)
+    
+    tempdir = tempfile.TemporaryDirectory(dir='./')
+    download_decompme(sys.argv[1], tempdir.name)
+    
+    # Merge context + code
+    filenames = [os.path.join(tempdir.name, 'ctx.c'), os.path.join(tempdir.name, 'code.c')]
+    f =  open(os.path.join(tempdir.name, 'func.c'), 'w')
+    for fname in filenames:
+        with open(fname) as infile:
+            for line in infile:
+                f.write(line)
+        f.write('\n\n')
+    f.close()
+    
+    code = os.path.join(tempdir.name, 'func.c')
+    target = os.path.join(tempdir.name, 'target.s')
+    nonmatching = os.path.join('nonmatchings', get_function_name(target))
+    
+    subprocess.run(['tools/decomp-permuter/import.py', code, target])
+    tempdir.cleanup()
+    subprocess.run(['tools/decomp-permuter/permuter.py', '--best-only', '--stop-on-zero', '-j12', nonmatching])
