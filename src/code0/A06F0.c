@@ -224,7 +224,7 @@ static void func_800A0698(void)
     gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx3[D_801A6D80 + 1]),
               G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 
-    D_801A6D80 += 1;
+    D_801A6D80++;
 
     dlist = gpDisplayList;
     gpDisplayList = D_801297E0[D_801B0820][gGfxTaskIndex];

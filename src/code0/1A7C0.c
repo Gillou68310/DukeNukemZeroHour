@@ -8,6 +8,7 @@
 #include "code0/graphics.h"
 #include "code0/pragmas.h"
 #include "code0/code0.h"
+#include "code1/EB300.h"
 
 /*.data*/
 /*800DCA00*/ EXTERN_DATA STATIC s16 D_800DCA00;
@@ -35,8 +36,100 @@ STATIC void func_8001A8EC(s16, s16, s32 tileid, s16, u8);
 static void func_8001BFB0(code0unkStruct12 *);
 static void func_8001C490(s16);
 
+#ifdef NON_MATCHING
+/*80019BC0*/
+void func_80019BC0(void)
+{
+    s16 i;
+    code0unkStruct12 *ptr;
+    code0unkStruct12 *ptr2;
+    s16 nexti;
+
+    i = gHeadSpriteStat[104];
+    D_8012EB44 = -1;
+    D_801AE91C = -1;
+    D_801AE90C = 0;
+    D_8012FC40 = 1;
+    gSkyTopR = gpMapInfo[gMapNum].unk30;
+    gSkyBottomR = gpMapInfo[gMapNum].unk3C;
+    gSkyTopG = gpMapInfo[gMapNum].unk34;
+    gSkyBottomG = gpMapInfo[gMapNum].unk40;
+    gSkyTopB = gpMapInfo[gMapNum].unk38;
+    gSkyBottomB = gpMapInfo[gMapNum].unk44;
+    D_8012FC48[0].unk10 = 0x400;
+    D_8012FC48[0].unk14 = 0x800;
+    D_8012FC48[1].unk10 = 0x400;
+    D_8012FC48[1].unk14 = 0x800;
+    D_8012FC48[0].unk18 = -1;
+    D_8012FC48[1].unk18 = -1;
+
+    while (i >= 0)
+    {
+        nexti = gNextSpriteStat[i];
+        switch (gpSprite[i].picnum)
+        {
+        case 18:
+            gSkyTopR = gpSprite[i].unk18;
+            gSkyTopG = gpSprite[i].unk1A;
+            gSkyTopB = gpSprite[i].unk1C;
+            break;
+        case 19:
+            gSkyBottomR = gpSprite[i].unk18;
+            gSkyBottomG = gpSprite[i].unk1A;
+            gSkyBottomB = gpSprite[i].unk1C;
+            break;
+        case 20:
+            if (gpSprite[i].cstat & 8)
+                ptr = &D_8012FC48[1];
+            else
+                ptr = &D_8012FC48[0];
+
+            ptr->fog.r = gpSprite[i].unk18;
+            ptr->fog.g = gpSprite[i].unk1A;
+            ptr->fog.b = gpSprite[i].unk1C;
+            break;
+        case 21:
+            if (gpSprite[i].cstat & 8)
+            {
+                D_801AE904[1] = gpSprite[i].ang;
+                D_800FE9C8[1] = gpSprite[i].unk18;
+                ptr2 = &D_8012FC48[1];
+            }
+            else
+            {
+                D_801AE904[0] = gpSprite[i].ang;
+                D_800FE9C8[0] = gpSprite[i].unk18;
+                ptr2 = &D_8012FC48[0];
+            }
+
+            ptr2->unk18 = gpSprite[i].unk1E;
+            ptr2->unk8 = ((-cosf((gpSprite[i].ang * 0.0030679615757714844)) * gpSprite[i].unk18) / 50.0f);
+            ptr2->unkC = ((-sinf((gpSprite[i].ang * 0.0030679615757714844)) * gpSprite[i].unk18) / 50.0f);
+            ptr2->unk0 = gpSprite[i].unk20 * 10;
+
+            if (gpSprite[i].unk25 == 0)
+                ptr2->unk0 = -ptr2->unk0;
+            break;
+        case 24:
+            D_8012EB44 = gpSprite[i].unk1E;
+            D_80199942 = gpSprite[i].unk20;
+            break;
+        case 25:
+            D_801AE91C = gpSprite[i].unk1E;
+            D_801AE90C = gpSprite[i].unk25 == 0;
+            D_80105714 = (cosf((gpSprite[i].ang * 0.0030679615757714844)) * 10240.0f);
+            D_8010570C = (sinf((gpSprite[i].ang * 0.0030679615757714844)) * 10240.0f);
+            D_8013860C = (tanf((gpSprite[i].unk20 * 0.0030679615757714844)) * 10240.0f * -16.0f);
+            break;
+        }
+        deleteSprite(i);
+        i = nexti;
+    }
+}
+#else
 /*80019BC0*/
 INCLUDE_ASM("nonmatchings/src/code0/1A7C0", func_80019BC0);
+#endif
 
 /*8001A1A4*/
 INCLUDE_ASM("nonmatchings/src/code0/1A7C0", func_8001A1A4);
