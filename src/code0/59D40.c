@@ -17,6 +17,7 @@
 #include "code1/EB300.h"
 
 /*.data*/
+/*800DF2E0*/ EXTERN_DATA STATIC s32 D_800DF2E0;
 /*800DF2E4*/ EXTERN_DATA STATIC s32 D_800DF2E4;
 /*800DF2E8*/ EXTERN_DATA STATIC s32 D_800DF2E8;
 
@@ -1083,7 +1084,35 @@ void func_8005BD28(s32 spritenum, s32 arg1)
 }
 
 /*8005BFD8*/
-INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005BFD8);
+void func_8005BFD8(s32 spritenum, s32 arg1)
+{
+    D_80137DE0->unk7C = (D_80118248->ang -
+                         getAngle(gPlayer[0].xpos - D_80118248->x, gPlayer[0].ypos - D_80118248->y)) & 0x7FF;
+
+    if (((klabs(D_80137DE0->unk32) >= 9) & (~arg1 != 0)) && (D_80137DE0->unk97 != 0))
+    {
+        if (klabs((D_8013B2D0[spritenum].unk0 - (D_80137DE0->unk32 / 2))) < 0x300)
+            D_8013B2D0[spritenum].unk0 -= D_80137DE0->unk32 / 2;
+    }
+    else
+    {
+        if (D_8013B2D0[spritenum].unk0 != 0)
+        {
+            if (D_8013B2D0[spritenum].unk0 > 0)
+            {
+                D_8013B2D0[spritenum].unk0 -= 8;
+                if (D_8013B2D0[spritenum].unk0 <= 0)
+                    D_8013B2D0[spritenum].unk0 = 0;
+            }
+            else
+            {
+                D_8013B2D0[spritenum].unk0 += 8;
+                if (D_8013B2D0[spritenum].unk0 >= 0)
+                    D_8013B2D0[spritenum].unk0 = 0;
+            }
+        }
+    }
+}
 
 /*8005C19C*/
 void func_8005C19C(s32 spritenum, s32 arg1)
@@ -1995,7 +2024,54 @@ void func_8005E770(s32 spritenum, s32 arg1)
 }
 
 /*8005E7AC*/
-INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005E7AC);
+void func_8005E7AC(s32 spritenum, s32 arg1)
+{
+    s32 i, j;
+
+    D_800DF2E0 = 0;
+    if (gPlayer->unk52 >= 0x800)
+        func_8005E4C4(spritenum, 1);
+
+    i = gHeadSpriteStat[24];
+    j = spritenum;
+
+    while (i >= 0)
+    {
+        if ((gpSprite[i].picnum == 47) && (gpSprite[i].unk24 == gpSprite[j].unk24))
+        {
+            D_800DF2E0 = gpSprite[i].unk25;
+            j = i;
+            break;
+        }
+        i = gNextSpriteStat[i];
+    }
+
+    if (i == -1)
+    {
+        D_800DF2E4 = 0;
+        D_800DF2E8 = 0;
+        D_800DEF1C = i;
+        return;
+    }
+
+    D_800DF2E4 = gpSprite[i].unk1E;
+    D_800DF2E8 = gpSprite[i].unk20;
+    i = gHeadSpriteStat[1];
+
+    while (i >= 0)
+    {
+        if ((klabs(gpSprite[i].x - gpSprite[j].x) < 0x80) &&
+            (klabs(gpSprite[i].y - gpSprite[j].y) < 0x80))
+        {
+            D_800DEF1C = i;
+            break;
+        }
+        i = gNextSpriteStat[i];
+    }
+
+    if (i == -1)
+        D_800DEF1C = j;
+}
 
 /*8005E9D8*/
 void func_8005E9D8(s32 spritenum, s32 arg1)
