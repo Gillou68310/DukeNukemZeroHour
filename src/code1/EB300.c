@@ -16,6 +16,12 @@
 #include "code1/code1.h"
 #include "static/mapinfo.h"
 
+typedef struct {
+    /*0x00*/ ProcPointer unk0;
+    /*0x04*/ u8 unk4;
+    /*0x06*/ u16 unk6[11];
+} _EB300UnkStruct2;
+
 /*.data*/
 /*801CA144*/ EXTERN_DATA f32 D_801CA144;
 /*801CA14C*/ EXTERN_DATA _EB300UnkStruct1 D_801CA14C[MAP_NUM+1];
@@ -94,6 +100,7 @@
 /*801CB900*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CB900[2];
 /*801CB938*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CB938;
 /*801CB948*/ EXTERN_DATA STATIC s32 D_801CB948[6];
+/*801CB998*/ EXTERN_DATA STATIC _EB300UnkStruct2 D_801CB998[28];
 /*801CBCA8*/ EXTERN_DATA STATIC char *D_801CBCA8[16];
 /*801CBCE8*/ EXTERN_DATA STATIC u8 *D_801CBCE8[12];
 /*801CBD18*/ EXTERN_DATA STATIC u32 D_801CBD18;
@@ -107,7 +114,7 @@
 /*801CC8C4*/ s32 D_801CC8C4;
 /*801CC8D0*/ code0UnkStruct16 *D_801CC8D0[16] ALIGNED(8);
 /*801CC910*/ s32 D_801CC910;
-/*801CC918*/ s16 D_801CC918;
+/*801CC918*/ u16 D_801CC918;
 /*801CD970*/ s32 D_801CD970;
 /*801CD974*/ s32 D_801CD974;
 /*801CD97C*/ s16 D_801CD97C;
@@ -1878,7 +1885,54 @@ static void func_801C73A0(void)
 }
 
 /*801C73CC*/
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C73CC);
+static void func_801C73CC(void)
+{
+    _EB300UnkStruct2 *ptr;
+    s32 i;
+
+    for (i = 0; i < 16; i++)
+    {
+        if (!((D_801CC918 >> i) & 1))
+        {
+            if ((D_8012F6FC[0] >> i) & 1)
+            {
+                D_801CC918 = 1 << i;
+                D_801CC8BC = 1 << i;
+                D_801CF640 = D_801CF640 | (1 << i);
+            }
+        }
+        if (((D_801CC918 >> i) & 1))
+        {
+            if (!((D_8012F6FC[0] >> i) & 1))
+            {
+                D_801CF640 = D_801CF640 & (~(1 << i));
+                D_801CC918 = D_801CC918 & (~(1 << i));
+            }
+        }
+    }
+
+    if (D_801CC8BC != 0)
+    {
+        ptr = D_801CB998;
+        for (i = 0; i < ARRAY_COUNT(D_801CDB28); i++, ptr++)
+        {
+            if (D_801CC8BC == ptr->unk6[D_801CDB28[i]])
+            {
+                D_801CDB28[i]++;
+                if ((D_801CDB28[i]) == ptr->unk4)
+                {
+                    playSfx(46);
+                    D_801CE498.unk50 = 1;
+                    ptr->unk0();
+                    func_801C73A0();
+                }
+            }
+            else
+                D_801CDB28[i] = 0;
+        }
+        D_801CC8BC = 0;
+    }
+}
 
 /*801C7574*/
 static void func_801C7574(void)
