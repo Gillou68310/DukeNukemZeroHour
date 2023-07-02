@@ -11,6 +11,7 @@
 
 /*.comm*/
 /*800FF3E0*/ code0UnkStruct21 *D_800FF3E0;
+/*8010A910*/ s32 D_8010A910;
 /*8012FC9C*/ code0UnkStruct21 *D_8012FC9C;
 /*801AC598*/ Vtx *D_801AC598[200] ALIGNED(8);
 /*801AE52C*/ s32 D_801AE52C;
@@ -114,7 +115,172 @@ static void func_80081AEC(s32 arg0)
 }
 
 /*80081E20*/
-INCLUDE_ASM("nonmatchings/src/code0/82480", func_80081E20);
+void func_80081E20(ProcPointer arg0, ProcPointer arg1, s8 arg2)
+{
+    s32 i, j, k, l, m;
+    u8 *ptr;
+    u8 *ptr2;
+
+    if (arg0 != NULL)
+        arg0();
+
+    D_80118168.unk14 = D_8012FD8C->unk84;
+    ptr = D_8012FD8C->unk8C;
+
+    for (i = 0; i < D_8012FD8C->unk98;)
+    {
+        D_80118168.unk0 = ((swap16(ptr) & 0xFFFF) * 8) + D_8012FD8C->unk74;
+        ptr += 2;
+        D_80118168.unk8 = swap16(ptr);
+        ptr += 2;
+        D_80118168.unkC = swap16(ptr);
+        ptr += 2;
+        D_80118168.unk10 = D_8012FD8C->unk78 + swap16(ptr);
+        ptr += 2;
+        k = swap16(ptr);
+        ptr += 2;
+
+        for (j = 0; j < k; j++)
+        {
+            l = swap32(ptr);
+            ptr += 4;
+
+            if (l & 1)
+            {
+                if (l & 2)
+                {
+                    D_80118168.unk18 = *ptr;
+                    ptr++;
+                    D_80118168.unk1A = *ptr;
+                    ptr++;
+                    D_80118168.unk1C = *ptr;
+                    ptr++;
+                    D_80118168.unk1E = *ptr;
+                    ptr++;
+                }
+                else
+                {
+                    D_80118168.unk18 = swap16(ptr);
+                    ptr += 2;
+                    D_80118168.unk1A = swap16(ptr);
+                    ptr += 2;
+                    D_80118168.unk1C = swap16(ptr);
+                    ptr += 2;
+                    D_80118168.unk1E = swap16(ptr);
+                    ptr += 2;
+                }
+                m = swap16(ptr);
+                ptr += 2;
+                if (arg2 != 0)
+                {
+                    ptr2 = &((u8 *)D_8012FD8C->unk80)[m];
+                    if (l & 0x100)
+                    {
+                        D_80118168.unk20 = swap16(ptr2);
+                        ptr2 += 2;
+                        D_80118168.unk22 = swap16(ptr2);
+                        ptr2 += 2;
+                        D_80118168.unk24 = swap16(ptr2);
+                        ptr2 += 2;
+                        D_80118168.unk26 = swap16(ptr2);
+                        ptr2 += 2;
+                        D_80118168.unk28 = swap16(ptr2);
+                        ptr2 += 2;
+                        D_80118168.unk2A = swap16(ptr2);
+                        ptr2 += 2;
+                        D_80118168.unk2C = swap16(ptr2);
+                        ptr2 += 2;
+                        D_80118168.unk2E = swap16(ptr2);
+                    }
+                    else
+                    {
+                        D_80118168.unk20 = *ptr2;
+                        ptr2++;
+                        D_80118168.unk22 = *ptr2;
+                        ptr2++;
+                        D_80118168.unk24 = *ptr2;
+                        ptr2++;
+                        D_80118168.unk26 = *ptr2;
+                        ptr2++;
+                        D_80118168.unk28 = *ptr2;
+                        ptr2++;
+                        D_80118168.unk2A = *ptr2;
+                        ptr2++;
+                        D_80118168.unk2C = *ptr2;
+                        ptr2++;
+                        D_80118168.unk2E = *ptr2;
+                    }
+                }
+            }
+            else
+            {
+                if (l & 2)
+                {
+                    D_80118168.unk18 = *ptr;
+                    ptr++;
+                    D_80118168.unk1A = *ptr;
+                    ptr++;
+                    D_80118168.unk1E = *ptr;
+                    ptr++;
+                    D_80118168.unk1C = D_80118168.unk1E;
+                }
+                else
+                {
+                    D_80118168.unk18 = swap16(ptr);
+                    ptr += 2;
+                    D_80118168.unk1A = swap16(ptr);
+                    ptr += 2;
+                    D_80118168.unk1E = swap16(ptr);
+                    ptr += 2;
+                    D_80118168.unk1C = D_80118168.unk1E;
+                }
+
+                m = swap16(ptr);
+                ptr += 2;
+
+                if (arg2 != 0)
+                {
+                    ptr2 = &((u8 *)D_8012FD8C->unk80)[m];
+                    if (l & 0x100)
+                    {
+                        D_80118168.unk20 = swap16(ptr2);
+                        ptr2 += 2;
+                        D_80118168.unk22 = swap16(ptr2);
+                        ptr2 += 2;
+                        D_80118168.unk24 = swap16(ptr2);
+                        ptr2 += 2;
+                        D_80118168.unk26 = swap16(ptr2);
+                        ptr2 += 2;
+                        D_80118168.unk28 = swap16(ptr2);
+                        ptr2 += 2;
+                        D_80118168.unk2A = swap16(ptr2);
+                    }
+                    else
+                    {
+                        D_80118168.unk20 = *ptr2;
+                        ptr2++;
+                        D_80118168.unk22 = *ptr2;
+                        ptr2++;
+                        D_80118168.unk24 = *ptr2;
+                        ptr2++;
+                        D_80118168.unk26 = *ptr2;
+                        ptr2++;
+                        D_80118168.unk28 = *ptr2;
+                        ptr2++;
+                        D_80118168.unk2A = *ptr2;
+                    }
+                }
+            }
+            D_80118168.unk30 = l;
+            if (D_8012FD8C->unkC & 0x2000)
+                func_80081AEC(i);
+
+            D_8010A910 = i;
+            i++;
+            arg1();
+        }
+    }
+}
 
 /*80082290*/
 static void func_80082290(float mf[4][4], f32 arg1, f32 arg2, f32 arg3)
