@@ -140,7 +140,45 @@ static s16 func_80079D38(s16 playernum, s16 arg1)
 }
 
 /*80079DE8*/
-INCLUDE_ASM("nonmatchings/src/code0/7A430", func_80079DE8);
+u8 func_80079DE8(s16 playernum, s16 arg1)
+{
+    s16 *ptr;
+
+    ptr = D_8011A680[playernum][arg1];
+    if (arg1 == 5)
+    {
+        if (ptr[1] < 2)
+            return 0;
+    }
+
+    if (arg1 == 0)
+        return 1;
+
+    if (arg1 == 14)
+    {
+        if (func_80079D38(playernum, 14) >= 5)
+            return 0;
+    }
+
+    if ((ptr[0] & 1) == 0)
+        return 0;
+
+    if (ptr[1] > 0)
+        return 1;
+
+    if ((ptr[0] & 4) != 0)
+    {
+        if (ptr[7] > 0 && arg1 != 4)
+            return 1;
+    }
+    if (arg1 == 10)
+    {
+        if (func_80079D38(playernum, 10) > 0)
+            return 1;
+    }
+
+    return 0;
+}
 
 /*80079F24*/
 static void func_80079F24(s16 playernum, s16 arg1)
