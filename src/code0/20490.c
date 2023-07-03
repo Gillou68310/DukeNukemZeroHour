@@ -38,7 +38,150 @@ static void func_8001F890(Vp *arg0)
 }
 
 /*8001F928*/
-INCLUDE_ASM("nonmatchings/src/code0/20490", func_8001F928);
+void func_8001F928(s32 arg0, s32 arg1)
+{
+    s32 i, j;
+    s16 k, l, m, n;
+
+    i = (arg0 * 12) / 320;
+    l = ((arg0 / 2) + i) * 2;
+    k = ((arg0 - i) + (arg0 / 2)) * 2;
+
+    j = arg1 / 20;
+    n = ((arg1 / 2) + j) * 2;
+    m = ((arg1 - j) + (arg1 / 2)) * 2;
+
+    D_800DCB10.vp.vscale[0] = arg0 * 2;
+    D_800DCB10.vp.vtrans[0] = arg0 * 2;
+    D_800DCB20.vp.vscale[0] = arg0;
+    D_800DCB30.vp.vscale[0] = arg0;
+    D_800DCB20.vp.vtrans[0] = l;
+    D_800DCB30.vp.vtrans[0] = k;
+
+    if ((D_8012C470 == 3) && (D_800DCBD5 != 0))
+    {
+        D_800DCB40.vp.vscale[0] = arg0 * 2;
+        D_800DCB40.vp.vtrans[0] = arg0 * 2;
+    }
+    else
+    {
+        D_800DCB40.vp.vscale[0] = arg0;
+        D_800DCB40.vp.vtrans[0] = l;
+    }
+
+    D_800DCB50.vp.vscale[0] = arg0;
+    D_800DCB50.vp.vtrans[0] = k;
+
+    if (D_800DCBD4 != 0)
+    {
+        D_800DCB60.vp.vscale[0] = arg0 * 2;
+        D_800DCB60.vp.vtrans[0] = arg0 * 2;
+        D_800DCB70.vp.vscale[0] = arg0 * 2;
+        D_800DCB70.vp.vtrans[0] = arg0 * 2;
+    }
+    else
+    {
+        D_800DCB60.vp.vscale[0] = arg0;
+        D_800DCB60.vp.vtrans[0] = l;
+        D_800DCB70.vp.vscale[0] = arg0;
+        D_800DCB70.vp.vtrans[0] = k;
+    }
+
+    D_800DCB80.vp.vscale[0] = arg0 * 2;
+    D_800DCB80.vp.vtrans[0] = arg0 * 2;
+    D_800DCB10.vp.vscale[1] = arg1 * 2;
+    D_800DCB10.vp.vtrans[1] = arg1 * 2;
+    D_800DCB20.vp.vscale[1] = arg1;
+    D_800DCB20.vp.vtrans[1] = n;
+    D_800DCB30.vp.vscale[1] = arg1;
+    D_800DCB30.vp.vtrans[1] = n;
+    D_800DCB40.vp.vscale[1] = arg1;
+    D_800DCB40.vp.vtrans[1] = m;
+    D_800DCB50.vp.vscale[1] = arg1;
+    D_800DCB50.vp.vtrans[1] = m;
+
+    if (D_800DCBD4 != 0)
+    {
+        D_800DCB60.vp.vscale[1] = arg1;
+        D_800DCB60.vp.vtrans[1] = n;
+        D_800DCB70.vp.vscale[1] = arg1;
+        D_800DCB70.vp.vtrans[1] = m;
+    }
+    else
+    {
+        D_800DCB60.vp.vscale[1] = arg1 * 2;
+        D_800DCB60.vp.vtrans[1] = arg1 * 2;
+        D_800DCB70.vp.vscale[1] = arg1 * 2;
+        D_800DCB70.vp.vtrans[1] = arg1 * 2;
+    }
+    D_800DCB80.vp.vscale[1] = arg1 * 2;
+    D_800DCB80.vp.vtrans[1] = arg1 * 2;
+    D_800DCB90[0].vp.vtrans[2] = (arg0 / 2) - 1;
+    D_800DCB90[1].vp.vscale[0] = (arg0 / 2) + 1;
+    D_800DCB90[0].vp.vscale[2] = arg0;
+    D_800DCB90[0].vp.vtrans[0] = i;
+    D_800DCB90[1].vp.vscale[2] = arg0 - i;
+
+    if ((D_8012C470 == 3) && (D_800DCBD5 != 0))
+    {
+        D_800DCB90[1].vp.vtrans[0] = i;
+        D_800DCB90[1].vp.vtrans[2] = arg0 - i;
+    }
+    else
+    {
+        D_800DCB90[1].vp.vtrans[0] = i;
+        D_800DCB90[1].vp.vtrans[2] = (arg0 / 2) - 1;
+    }
+
+    D_800DCB90[2].vp.vscale[0] = (arg0 / 2) + 1;
+    D_800DCB90[2].vp.vscale[2] = arg0 - i;
+
+    if (D_800DCBD4 != 0)
+    {
+        D_800DCB90[2].vp.vtrans[0] = i;
+        D_800DCB90[2].vp.vtrans[2] = arg0 - i;
+        D_800DCB90[3].vp.vscale[0] = i;
+        D_800DCB90[3].vp.vscale[2] = arg0 - i;
+    }
+    else
+    {
+        D_800DCB90[2].vp.vtrans[0] = i;
+        D_800DCB90[2].vp.vtrans[2] = (arg0 / 2) - 1;
+        D_800DCB90[3].vp.vscale[0] = (arg0 / 2) + 1;
+        D_800DCB90[3].vp.vscale[2] = arg0 - i;
+    }
+
+    D_800DCB90[3].vp.vtrans[2] = arg0 - i;
+    D_800DCB90[3].vp.vtrans[0] = i;
+    D_800DCB90[0].vp.vscale[3] = arg1;
+    D_800DCB90[0].vp.vtrans[1] = j;
+    D_800DCB90[0].vp.vtrans[3] = (arg1 / 2) - 1;
+
+    D_800DCB90[1].vp.vscale[1] = j;
+    D_800DCB90[1].vp.vscale[3] = (arg1 / 2) - 1;
+    D_800DCB90[1].vp.vtrans[1] = (arg1 / 2) + 1;
+    D_800DCB90[1].vp.vtrans[3] = arg1 - j;
+    D_800DCB90[2].vp.vscale[1] = (arg1 / 2) + 1;
+    D_800DCB90[2].vp.vscale[3] = arg1 - j;
+
+    if (D_800DCBD4 != 0)
+    {
+        D_800DCB90[2].vp.vtrans[1] = j;
+        D_800DCB90[2].vp.vtrans[3] = (arg1 / 2) - 1;
+        D_800DCB90[3].vp.vscale[1] = (arg1 / 2) + 1;
+        D_800DCB90[3].vp.vscale[3] = arg1 - j;
+    }
+    else
+    {
+        D_800DCB90[2].vp.vtrans[1] = j;
+        D_800DCB90[2].vp.vtrans[3] = arg1 - j;
+        D_800DCB90[3].vp.vscale[1] = j;
+        D_800DCB90[3].vp.vscale[3] = arg1 - j;
+    }
+
+    D_800DCB90[3].vp.vtrans[1] = j;
+    D_800DCB90[3].vp.vtrans[3] = arg1 - j;
+}
 
 /*8001FD60*/
 INCLUDE_ASM("nonmatchings/src/code0/20490", func_8001FD60);
