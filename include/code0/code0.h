@@ -445,6 +445,7 @@ typedef struct
 #define _volatile
 #endif
 
+/*800FCBA0*/ _extern s16 D_800FCBA0[32];
 /*800FCBE0*/ _extern s32 D_800FCBE0; /*floorhit*/
 /*800FE3FC*/ _extern s32 D_800FE3FC;
 /*800FF3E8*/ _extern u16 D_800FF3E8[128] ALIGNED(8);
@@ -464,6 +465,7 @@ typedef struct
 /*8010554C*/ _extern u8 D_8010554C;
 /*80105550*/ _extern u8 *D_80105550;
 /*80105718*/ _extern u8 D_80105718;
+/*80105720*/ _extern s16 D_80105720;
 /*80106D30*/ _extern u8 D_80106D30[MAXPLAYERS];
 /*80106D50*/ _extern s16 D_80106D50[MAXSPRITES] ALIGNED(16);
 /*8010A914*/ _extern VertexType *gpVertex;

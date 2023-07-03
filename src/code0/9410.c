@@ -4,8 +4,10 @@
 #include "code0/edl.h"
 #include "code0/main.h"
 #include "code0/audio.h"
+#include "code0/pragmas.h"
 #include "code0/graphics.h"
 #include "code0/9410.h"
+#include "code0/FDE0.h"
 #include "code0/1A7C0.h"
 #include "code0/1E7A0.h"
 #include "code0/20490.h"
@@ -326,7 +328,124 @@ static void func_8000A174(s32 arg0, s32 arg1)
 }
 
 /*8000A184*/
-INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000A184);
+static void func_8000A184(void)
+{
+    s16 i;
+    s32 j, k, l, m;
+
+    s16 stat[2] = {55, 305};
+
+    D_8012DEFA = 0;
+    D_8016D180 = 0;
+    D_80199118 = 0;
+    D_80105720 = 0;
+
+    for (i = 0; i < ARRAY_COUNT(stat); i++)
+    {
+        j = gHeadSpriteStat[stat[i]];
+        while (j >= 0)
+        {
+            if (gpSprite[j].cstat & 0x1000)
+            {
+                if (D_8012DEFA != ARRAY_COUNT(D_801A68D0))
+                {
+                    D_801A68D0[D_8012DEFA] = j;
+                    D_8012DEFA++;
+                }
+            }
+            else
+            {
+                m = klabs((D_801A6D84 - gpSprite[j].x));
+                l = klabs((D_800FE3F0 - gpSprite[j].y));
+                m = MAX(m, l) + (MIN(m, l) >> 2) + (MIN(m, l) >> 3);
+                func_80023C04(j, gpSprite[j].sectnum, m);
+            }
+            j = gNextSpriteStat[j];
+        }
+    }
+
+    for (k = 0; k < D_80138790; k++)
+    {
+        j = gHeadSpriteSect[D_800FF3E8[k]];
+        while (j >= 0)
+        {
+            if (gpSprite[j].statnum != 55)
+            {
+                if (gpSprite[j].statnum != 305)
+                {
+                    if (gpSprite[j].picnum == 15)
+                    {
+                        if (D_80199118 < ARRAY_COUNT(D_801A19A0))
+                        {
+                            D_801A19A0[D_80199118] = j;
+                            D_80199118++;
+                        }
+                    }
+                    else
+                    {
+                        if (!(gpSprite[j].cstat & 0x8000))
+                        {
+                            if (gpSprite[j].picnum >= 49)
+                            {
+                                if (gpSprite[j].xrepeat != 0)
+                                {
+                                    if (gpSprite[j].cstat & 0x1000)
+                                    {
+                                        if (!(gpSprite[j].cstat & 0x800))
+                                        {
+                                            if (D_8012DEFA != ARRAY_COUNT(D_801A68D0))
+                                            {
+                                                D_801A68D0[D_8012DEFA] = j;
+                                                D_8012DEFA++;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (D_8016D180 != ARRAY_COUNT(D_801AC8E8))
+                                            {
+                                                D_801AC8E8[D_8016D180] = j;
+                                                D_8016D180++;
+                                            }
+                                        }
+                                    }
+                                    else if (!(gpSprite[j].cstat & 0xA02))
+                                    {
+                                        m = klabs((D_801A6D84 - gpSprite[j].x));
+                                        l = klabs((D_800FE3F0 - gpSprite[j].y));
+                                        m = MAX(m, l) + (MIN(m, l) >> 2) + (MIN(m, l) >> 3);
+                                        func_80023C04(j, D_800FF3E8[k], m);
+
+                                    }
+                                    else if (gpSprite[j].statnum == 109)
+                                    {
+                                        if (D_80105720 != ARRAY_COUNT(D_800FCBA0))
+                                        {
+                                            D_800FCBA0[D_80105720] = j;
+                                            D_80105720++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (D_80138830 != 0x100)
+                                        {
+                                            m = klabs((D_801A6D84 - gpSprite[j].x));
+                                            l = klabs((D_800FE3F0 - gpSprite[j].y));
+                                            D_8012BC70[D_80138830].unk4 = MAX(m, l) + (MIN(m, l) >> 2) + (MIN(m, l) >> 3);
+                                            D_8012BC70[D_80138830].unk0 = j;
+                                            D_8012BC70[D_80138830].unk2 = D_800FF3E8[k];
+                                            D_80138830++;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            j = gNextSpriteSect[j];
+        }
+    }
+}
 
 /*8000A634*/
 static void func_8000A634(void)
