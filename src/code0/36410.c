@@ -231,14 +231,14 @@ void func_800361F4(s32 arg0)
 }
 
 /*80036280*/
-void func_80036280(s32 arg0)
+void func_80036280(s32 spritenum, s32 arg1)
 {
     u16 *ptr;
     u16 **ptr2;
     s32 unk84;
     s32 i, j, k, l;
 
-    D_8011BC54 = &D_8019B940[D_80106D50[arg0]];
+    D_8011BC54 = &D_8019B940[D_80106D50[spritenum]];
     if (D_8011BC54->unk90 == 0)
     {
         unk84 = D_8011BC54->unk84;
@@ -271,7 +271,7 @@ void func_80036280(s32 arg0)
                     i = (krand() % i);
                     if (D_8011BC54->unk6C == 0)
                     {
-                        D_8011BC54->unk6C = audio_80007A44(((_36410UnkStruct1 *)&ptr[4])[i].sfxnum, arg0, ((_36410UnkStruct1 *)&ptr[4])[i].unk2);
+                        D_8011BC54->unk6C = audio_80007A44(((_36410UnkStruct1 *)&ptr[4])[i].sfxnum, spritenum, ((_36410UnkStruct1 *)&ptr[4])[i].unk2);
                         D_8011BC54->unk74 = ((_36410UnkStruct1 *)&ptr[4])[i].unk2;
                     }
                 }

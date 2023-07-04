@@ -363,7 +363,7 @@ void func_80059EEC(s16 spritenum, s32 arg1, s32 arg2)
         return;
 
     spr = &gpSprite[spritenum];
-    for (j = 0; j < 2; j++)
+    for (j = 0; j < ARRAY_COUNT(stat); j++)
     {
         i = gHeadSpriteStat[stat[j]];
         while (i >= 0)
@@ -488,7 +488,7 @@ void func_8005A4A4(s32 spritenum, s32 arg1)
     s32 stat[2] = {1, 10};
 
     gpSprite[spritenum].unk1E = 15;
-    for (j = 0; j < 2; j++)
+    for (j = 0; j < ARRAY_COUNT(stat); j++)
     {
         i = gHeadSpriteStat[stat[j]];
         while (i >= 0)

@@ -7,6 +7,7 @@
 #include "code0/FDE0.h"
 #include "code0/17B30.h"
 #include "code0/1E7A0.h"
+#include "code0/35D90.h"
 #include "code0/36410.h"
 #include "code0/37090.h"
 #include "code0/41940.h"
@@ -22,7 +23,8 @@
 
 DECL_STATIC_SEG_SYM(D_0100F1E0);
 
-typedef void (*_41940UnkFuncPointer)(s32 spritenum, s32 arg1);
+typedef void (*_41940UnkFuncPointer1)(s32 spritenum, s32 arg1);
+typedef s32(*_41940UnkFuncPointer2)(s32 spritenum);
 
 typedef struct
 {
@@ -63,7 +65,8 @@ typedef struct
 /*800DEF1C*/ EXTERN_DATA s32 D_800DEF1C;
 /*800DEF20*/ EXTERN_DATA STATIC s16 D_800DEF20;
 /*800DEF38*/ EXTERN_DATA STATIC s32 D_800DEF38;
-/*800DEF3C*/ EXTERN_DATA STATIC _41940UnkFuncPointer D_800DEF3C[84];
+/*800DEF3C*/ EXTERN_DATA STATIC _41940UnkFuncPointer2 D_800DEF3C[84];
+/*800DF08C*/ EXTERN_DATA STATIC intptr_t D_800DF08C;
 /*800DF1A8*/ EXTERN_DATA s32 D_800DF1A8;
 /*800DF1AC*/ EXTERN_DATA s16 D_800DF1AC[MAXPLAYERS];
 /*800DF1B4*/ EXTERN_DATA s16 D_800DF1B4[9];
@@ -74,6 +77,7 @@ typedef struct
 /*800FE9D4*/ s32 D_800FE9D4;
 /*80137DF0*/ s16 D_80137DF0[1024] ALIGNED(16); /*spritenum array*/
 /*80138718*/ s32 *gpInst;
+/*80138794*/ s32 *D_80138794;
 /*80138820*/ s16 D_80138820[8] ALIGNED(8); /*sectornum array*/
 /*80197E30*/ s32 D_80197E30;
 /*8019955C*/ s16 D_8019955C;
@@ -84,6 +88,7 @@ typedef struct
 /*801C0D68*/ s32 D_801C0D68;
 
 /*.text*/
+static s32 func_800413CC(s32 spritenum);
 static void func_800418B8(s32);
 STATIC s32 func_80042C98(s32 spritenum);
 STATIC s32 func_800433D4(s32 spritenum);
@@ -93,8 +98,12 @@ static s32 func_8004EB60(s32 spritenum);
 static void func_8004ED40(s32 spritenum);
 static s32 func_8004F284(SpriteType *spr, s32 *, s32 spritenum);
 static void func_8004F5DC(void);
+static void func_8004F704(s32);
+static void func_8004F8D0(s32 spritenum);
 static void func_8004FA74(s32 spritenum);
 static void func_80050E40(void);
+static void func_80051088(s32 spritenum);
+static void func_80051330(s32 spritenum);
 STATIC void func_800519AC(void);
 static void func_80053650(s32, s32 spritenum);
 STATIC void func_80056C00(s32);
@@ -183,8 +192,114 @@ s16 getAngleDelta(s16 currAngle, s16 newAngle)
 }
 
 /*80040EF0*/
-STATIC void func_80040EF0(s16 spritenum, s16 playernum, s32);
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_80040EF0);
+static void func_80040EF0(s32 spritenum, s16 playernum, s32 arg2)
+{
+    ModelInfo *ptr;
+    s32 i, j;
+
+    if (D_800DEE84 == 0)
+    {
+        D_80137DE0 = &D_8019B940[D_80106D50[spritenum]];
+        D_80137DE0->unk9B++;
+        D_80137DE0->unk9C++;
+        D_80137DE0->unk9D++;
+
+        if (!(D_8012FD88 & 7))
+        {
+            if (D_80137DE0->unkA0 != 0)
+                D_80137DE0->unkA0--;
+        }
+
+        if (D_80137DE0->unk8C != 0)
+            D_80137DE0->unk8C--;
+
+        D_8010A918 = arg2;
+        D_800FE400 = spritenum;
+        gpInst = D_80137DE0->unkC;
+        D_80118248 = &gpSprite[spritenum];
+        D_8012F6E8 = func_8005A240(spritenum);
+        D_801A2628 = playernum;
+
+        if (D_80118248->cstat & 0x1000)
+        {
+            ptr = D_800D52E0[D_80118248->picnum - 1280];
+            D_801B0D30 = (ptr->unk2E - ptr->unk28) << 6;
+            if (ptr->unk28 < 0)
+                D_80197E30 = 1;
+            else
+                D_80197E30 = 0;
+        }
+        else
+            D_801B0D30 = getTileSizeY(D_80118248->picnum) * D_80118248->yrepeat * 4;
+
+
+        j = 0;
+        if (D_8013B2D0[spritenum].unk6 != 0)
+        {
+            D_8013B2D0[spritenum].unk6 -= 8;
+            if (D_8013B2D0[spritenum].unk6 < 9)
+                D_8013B2D0[spritenum].unk6 = 0;
+        }
+        func_80051088(spritenum);
+        func_80051330(spritenum);
+
+        if (D_80137DE0->unk0 & 0x200)
+            func_80036280(spritenum, 0);
+
+        if (D_80137DE0->unk30 == 0)
+        {
+            while (j == 0)
+            {
+                j = D_800DEF3C[*gpInst & 0x7FFFFFFF](spritenum);
+                if (j != -1)
+                {
+                    D_80138794 = D_80137DE0->unkC;
+                    D_80137DE0->unkC = gpInst;
+                    D_800DF08C = ((intptr_t)gpInst - (intptr_t)D_0100F1E0_STATIC_START) - (intptr_t)gStaticSegment;
+                }
+                else
+                    return;
+
+            }
+        }
+        if ((j != -1) && ((j == 2) || (func_800413CC(spritenum) != -1)))
+        {
+            if (D_80137DE0->unk0 & 0x20000)
+            {
+                func_8004F704(spritenum);
+                D_80137DE0->unk0 |= 0x8000;
+                if ((D_8012FD88 & 0xF) == 0xF)
+                    func_800494DC(spritenum, 5, 0, 1);
+
+                D_80137DE0->unk0 &= ~0x8000;
+                if (D_8012F6E8 != 2)
+                {
+                    if (D_80137DE0->unk96 != 0)
+                        D_80137DE0->unk96--;
+                    else
+                        D_80137DE0->unk0 &= ~0x20000;
+                }
+            }
+            func_8004F8D0(spritenum);
+            i = gHeadSpriteStat[60];
+            while (i >= 0)
+            {
+                if (gpSprite[i].unk16 == spritenum)
+                {
+                    gpSprite[i].ang = D_80118248->ang;
+                    gpSprite[i].x = D_80118248->x;
+                    gpSprite[i].y = D_80118248->y;
+                    gpSprite[i].z = D_80118248->z;
+                    D_8013B2D0[i].unk2 = D_8013B2D0[spritenum].unk2;
+                    changeSpriteSect(i, D_80118248->sectnum);
+                }
+                i = gNextSpriteStat[i];
+            }
+            D_801B0D30 = 0;
+            D_80197E30 = 0;
+        }
+    }
+}
 
 /*800413CC*/
 static s32 func_800413CC(s32 spritenum)
@@ -2755,11 +2870,11 @@ STATIC s32 func_8004BE20(s32 spritenum)
 /*8004BE48*/
 STATIC s32 func_8004BE48(s32 spritenum)
 {
-    _41940UnkFuncPointer func;
+    _41940UnkFuncPointer1 func;
     s32 i;
 
     gpInst++;
-    func = (_41940UnkFuncPointer)*gpInst++;
+    func = (_41940UnkFuncPointer1)*gpInst++;
     func(spritenum, *gpInst++);
     return 0;
 }
@@ -2930,7 +3045,7 @@ s32 func_8004CE58(SpriteType *spr, s16 arg1, s16 arg2)
     else
         f = 0;
 
-    for (i = 0; i < 3; i++)
+    for (i = 0; i < ARRAY_COUNT(stat.unk0); i++)
     {
         j = gHeadSpriteStat[stat.unk0[i]];
         while (j >= 0)
@@ -2997,7 +3112,7 @@ s32 func_8004D304(SpriteType *arg0, s16 arg1, s16 arg2)
     e = gpSinTable[(arg0->ang + 512) & 0x7FF];
     f = gpSinTable[arg0->ang & 0x7FF];
 
-    for (j = 0; j < 3; j++)
+    for (j = 0; j < ARRAY_COUNT(stat.unk0); j++)
     {
         i = gHeadSpriteStat[stat.unk0[j]];
         while (i >= 0)
@@ -3610,7 +3725,7 @@ static void func_8004F5DC(void)
 }
 
 /*8004F704*/
-static void func_8004F704(s16 arg0)
+static void func_8004F704(s32 arg0)
 {
     s32 a, b;
     s32 x, y, z;
@@ -4219,7 +4334,7 @@ static void func_80050E40(void)
 }
 
 /*80051088*/
-void func_80051088(s32 spritenum)
+static void func_80051088(s32 spritenum)
 {
     s32 i, j, nexti;
     s32 d1, d2, d3;
@@ -4273,7 +4388,7 @@ void func_80051088(s32 spritenum)
 }
 
 /*80051330*/
-static void func_80051330(void)
+static void func_80051330(s32 spritenum)
 {
     s32 i, nexti;
     s32 ret;
