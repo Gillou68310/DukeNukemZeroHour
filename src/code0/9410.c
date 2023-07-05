@@ -28,6 +28,13 @@
 
 #define MAXTILESIZE 32832
 
+typedef struct {
+    s16 r;
+    s16 g;
+    s16 b;
+    s16 a;
+} Color16;
+
 /*.data*/
 /*800BD724*/ EXTERN_DATA STATIC u8 *_tileROMAddr;
 /*800BD72C*/ EXTERN_DATA f32 gMapXpos;
@@ -42,6 +49,7 @@
 /*800BD74A*/ EXTERN_DATA u8 D_800BD74A;
 /*800BD74B*/ EXTERN_DATA STATIC u8 D_800BD74B;
 /*800BD74C*/ EXTERN_DATA STATIC u8 *_tilemap;
+/*800BD750*/ EXTERN_DATA STATIC musHandle D_800BD750;
 
 /*.comm*/
 /*800FE404*/ s16 D_800FE404;
@@ -54,8 +62,8 @@
 /*801385F2*/ u16 D_801385F2; /*perspNorm*/
 /*801385F4*/ s16 D_801385F4;
 /*80138694*/ s16 D_80138694;
-/*80138798*/ s16 D_80138798[5][4] ALIGNED(8); /*MAXPLAYERS?*/
-/*8013F930*/ s16 D_8013F930[MAXPLAYERS][4] ALIGNED(8);
+/*80138798*/ Color16 D_80138798[5] ALIGNED(8); /*MAXPLAYERS?*/
+/*8013F930*/ Color16 D_8013F930[MAXPLAYERS] ALIGNED(8);
 /*80169580*/ u8 D_80169580[TILENUM] ALIGNED(16);
 /*80199118*/ s16 D_80199118;
 /*80199554*/ s32 D_80199554;
@@ -78,7 +86,7 @@ static void func_8000A938(u16 wallnum);
 STATIC void func_8000AEE0(u16 wallnum);
 static void func_8000B9C0(s16 tileid);
 STATIC void func_8000CC54(s32 wallnum);
-STATIC void func_8000EBF0(u8, u8);
+static void func_8000EBF0(u8, u8);
 
 /*80008810*/
 void loadMap(s32 mapnum)
@@ -1204,37 +1212,148 @@ static void func_8000E56C(void)
 }
 
 /*8000EA0C*/
-void func_8000EA0C(u8 playernum, s16 arg1, s16 arg2, s16 arg3, s16 arg4)
+void func_8000EA0C(u8 playernum, s16 r, s16 g, s16 b, s16 a)
 {
-    D_80138798[playernum][0] = CLAMP_MIN(CLAMP_MAX(D_80138798[playernum][0] + arg1, 255), 0);
-    D_80138798[playernum][1] = CLAMP_MIN(CLAMP_MAX(D_80138798[playernum][1] + arg2, 255), 0);
-    D_80138798[playernum][2] = CLAMP_MIN(CLAMP_MAX(D_80138798[playernum][2] + arg3, 255), 0);
-    D_80138798[playernum][3] = CLAMP_MIN(D_80138798[playernum][3] + arg4, 0);
+    D_80138798[playernum].r = CLAMP_MIN(CLAMP_MAX(D_80138798[playernum].r + r, 255), 0);
+    D_80138798[playernum].g = CLAMP_MIN(CLAMP_MAX(D_80138798[playernum].g + g, 255), 0);
+    D_80138798[playernum].b = CLAMP_MIN(CLAMP_MAX(D_80138798[playernum].b + b, 255), 0);
+    D_80138798[playernum].a = CLAMP_MIN(D_80138798[playernum].a + a, 0);
 }
 
 /*8000EB4C*/
-void func_8000EB4C(u8 playernum, s16 arg1, s16 arg2, s16 arg3, s16 arg4)
+void func_8000EB4C(u8 playernum, s16 r, s16 g, s16 b, s16 a)
 {
-    D_80138798[playernum][0] = arg1;
-    D_80138798[playernum][1] = arg2;
-    D_80138798[playernum][2] = arg3;
-    D_80138798[playernum][3] = arg4;
+    D_80138798[playernum].r = r;
+    D_80138798[playernum].g = g;
+    D_80138798[playernum].b = b;
+    D_80138798[playernum].a = a;
 }
 
 /*8000EB90*/
-void func_8000EB90(u8 playernum, s16 arg1, s16 arg2, s16 arg3, s16 arg4)
+void func_8000EB90(u8 playernum, s16 r, s16 g, s16 b, s16 a)
 {
-    D_8013F930[playernum][0] = arg1;
-    D_8013F930[playernum][1] = arg2;
-    D_8013F930[playernum][2] = arg3;
-    D_8013F930[playernum][3] = arg4;
+    D_8013F930[playernum].r = r;
+    D_8013F930[playernum].g = g;
+    D_8013F930[playernum].b = b;
+    D_8013F930[playernum].a = a;
 }
 
 /*8000EBD4*/
 s16 func_8000EBD4(u8 playernum)
 {
-    return D_80138798[playernum][3];
+    return D_80138798[playernum].a;
 }
 
 /*8000EBF0*/
-INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000EBF0);
+static void func_8000EBF0(u8 arg0, u8 arg1)
+{
+    s16 alpha;
+    f32 f1, f2;
+
+    func_8000A070();
+    if (arg0 == 4)
+    {
+        gDPSetAlphaDither(gpDisplayList++, G_AD_DISABLE);
+    }
+    else
+    {
+        gDPSetAlphaDither(gpDisplayList++, G_AD_NOISE);
+    }
+
+    if (arg1)
+    {
+        switch (D_800BD74A)
+        {
+        case 0:
+            if (func_801C0FDC(1000) >= 985)
+                D_800BD74A = 1;
+            break;
+        case 1:
+            D_800BD748 = CLAMP_MAX((D_800BD748 + 4), 255);
+            if (func_801C0FDC(1000) >= 934)
+                D_800BD74A = 2;
+            break;
+        case 2:
+            D_800BD748 -= 4;
+            if (D_800BD748 <= 0)
+            {
+                D_800BD748 = 0;
+                D_800BD74A = 0;
+            }
+            break;
+        }
+
+        if ((D_800BD748 / 2) > 0)
+        {
+            if (D_800BD750 == 0)
+                D_800BD750 = playSfx2(1596, (D_800BD748 / 2), 0x80, 1, -1);
+            else
+                MusHandleSetVolume(D_800BD750, (D_800BD748 / 2));
+        }
+        else
+        {
+            MusHandleStop(D_800BD750, 0);
+            D_800BD750 = 0;
+        }
+    }
+    else
+    {
+        if (arg0 != 4)
+        {
+            MusHandleStop(D_800BD750, 0);
+            D_800BD750 = 0;
+        }
+    }
+
+    if (D_80138798[arg0].a > 0)
+    {
+        alpha = CLAMP_MIN(CLAMP_MAX(D_80138798[arg0].a, 255), 0);
+
+        if (alpha != 255)
+        {
+            gDPSetRenderMode(gpDisplayList++, 0x504B40, 0); /*TODO*/
+        }
+        else
+        {
+            gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_RA_OPA_SURF2);
+        }
+
+        if (arg1)
+        {
+            gDPSetEnvColor(gpDisplayList++, D_800BD748, D_800BD748, D_800BD748, 0xFF);
+            gDPSetCombineLERP(gpDisplayList++, NOISE, 0, ENVIRONMENT, PRIMITIVE, 0, 0, 0, PRIMITIVE,
+                                               NOISE, 0, ENVIRONMENT, PRIMITIVE, 0, 0, 0, PRIMITIVE);
+        }
+        else
+        {
+            gDPSetCombineMode(gpDisplayList++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
+        }
+        gDPSetPrimColor(gpDisplayList++, 0, 0, D_80138798[arg0].r, D_80138798[arg0].g, D_80138798[arg0].b, alpha);
+
+        f1 = (D_80199110 / 160.0 * 60.0);
+        f2 = (D_801A1980 / 120.0 * 46.875);
+        if (arg0 >= 4)
+        {
+            func_80027C18((gScreenWidth/2), (gScreenHeight / 2), f1, f2, getTileNum(5948), 0);
+            return;
+        }
+        func_80027C18(D_80168C9C, D_801A2684, f1, f2, getTileNum(5948), 0);
+    }
+
+    if (arg0 < 4)
+    {
+        if (D_8013F930[arg0].a > 0)
+        {
+            f1 = (D_80199110 / 160.0 * 13.875);
+            f2 = (D_801A1980 / 120.0 * 10.40625);
+
+            alpha = CLAMP_MIN(CLAMP_MAX(D_8013F930[arg0].a, 255), 0);
+
+            func_8002900C(D_8013F930[arg0].r, D_8013F930[arg0].g, D_8013F930[arg0].b,
+                          D_8013F930[arg0].r, D_8013F930[arg0].g, D_8013F930[arg0].b, alpha);
+
+            func_80027C18(D_80168C9C, D_801A2684, f1, f2, getTileNum(5983), 0);
+            D_8013F930[arg0].a = CLAMP_MIN((D_8013F930[arg0].a - 8), 0);
+        }
+    }
+}
