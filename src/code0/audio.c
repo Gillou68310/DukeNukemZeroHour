@@ -376,6 +376,12 @@ static s16 _multiplier[21] = {
 static void audio_80006E60(void);
 static void audio_80006F08(void);
 static musHandle audio_800075EC(u16 sfxnum, s16 spritenum, u8);
+static void audio_80007FF4(void);
+
+static inline musHandle get_D_800BD61C(s32 i)
+{
+    return D_800BD61C[i];
+}
 
 /*800065F0*/
 void dmaRomToRam(u8 *rom, u8 *ram, s32 size)
@@ -903,10 +909,153 @@ musHandle audio_80007A80(musHandle handle, s16 arg1, s32 arg2)
 }
 
 /*80007AB8*/
-INCLUDE_ASM("nonmatchings/src/code0/audio", audio_80007AB8);
+void audio_80007AB8(void)
+{
+    SpriteType *spr;
+    s16 i;
+
+    u8 j, k, l, m, n;
+
+
+    audio_80007FF4();
+    n = 0;
+    m = 0;
+    l = 0;
+    k = 0;
+    j = 0;
+
+    for (i = 0; i < D_8012C470; i++)
+    {
+        if (gPlayer[i].unk55 != 0)
+            j = 1;
+
+        if ((~gPlayer[i].unk52 != 0) & (gPlayer[i].unk52 < 0x800))
+        {
+            if (gpSprite[gPlayer[i].unk52].picnum != 1423)
+                k = 1;
+            else
+                k = 2;
+        }
+
+        if (D_8012F6E4[gPlayer[i].unk4C].unkB != 5)
+        {
+            if ((D_8010A940[i].unk2[1] != 0) || (D_8010A940[i].unk2[6] != 0))
+                l = 1;
+            if (D_8010A940[i].unk2[5] != 0)
+                m = 1;
+        }
+
+        if (D_8010A940[i].unk2[2] != 0)
+            n = 1;
+    }
+
+    if (j)
+    {
+        if (get_D_800BD61C(0) == 0)
+            D_800BD61C[0] = playSfx(15);
+
+        MusHandleSetVolume(gAmbientHandle, (gMasterVolume << 6) / 100U);
+    }
+    else
+    {
+        if (get_D_800BD61C(0)!= 0)
+        {
+            MusHandleStop(get_D_800BD61C(0), 10);
+            D_800BD61C[0] = 0;
+        }
+        MusHandleSetVolume(gAmbientHandle, (gMasterVolume << 7) / 100U);
+    }
+
+    if (k != 0)
+    {
+        if (get_D_800BD61C(1) == 0)
+        {
+            if (k == 1)
+                D_800BD61C[1] = playSfx(1332);
+            else
+                D_800BD61C[1] = playSfx(1608);
+        }
+    }
+    else
+    {
+        MusHandleStop(get_D_800BD61C(1), 10);
+        D_800BD61C[1] = 0;
+    }
+
+    if (l != 0)
+    {
+        if (get_D_800BD61C(2) == 0)
+            D_800BD61C[2] = playSfx(28);
+    }
+    else
+    {
+        MusHandleStop(get_D_800BD61C(2), 10);
+        D_800BD61C[2] = 0;
+    }
+
+    if (m != 0)
+    {
+        if (get_D_800BD61C(3) == 0)
+            D_800BD61C[3] = playSfx(1329);
+    }
+    else
+    {
+        MusHandleStop(get_D_800BD61C(3), 10);
+        D_800BD61C[3] = 0;
+    }
+
+    if (n != 0)
+    {
+        if (get_D_800BD61C(5) == 0)
+            D_800BD61C[5] = playSfx(503);
+    }
+    else
+    {
+        MusHandleStop(get_D_800BD61C(5), 10);
+        D_800BD61C[5] = 0;
+    }
+
+    if (D_800BD61A > 0)
+    {
+        D_800BD61A -= 1;
+        if (get_D_800BD61C(4) == 0)
+            D_800BD61C[4] = playSfx(1598);
+    }
+    else
+    {
+        MusHandleStop(get_D_800BD61C(4), 10);
+        D_800BD61C[4] = 0;
+    }
+
+    i = gHeadSpriteStat[110];
+    while (i >= 0)
+    {
+        spr = &gpSprite[i];
+        if (spr->picnum == 5)
+        {
+            if (spr->unk24 != 0)
+            {
+                MusHandleStop(D_8013B2D0[i].handle, 0);
+                D_8013B2D0[i].handle = 0;
+            }
+            else
+            {
+                D_800BD610 = (u16)spr->unk1A;
+                D_800BD614 = spr->unk25;
+                if (D_8013B2D0[i].handle == 0)
+                    D_8013B2D0[i].handle = audio_800077F4(spr->unk1E, i);
+                else
+                    D_8013B2D0[i].handle = audio_8000784C(D_8013B2D0[i].handle, i);
+            }
+        }
+        i = gNextSpriteStat[i];
+    }
+    D_800BD610 = 0x4000;
+    D_800BD614 = 0x100;
+}
 
 /*80007FF4*/
-void audio_80007FF4(void)
+static void audio_80007FF4(void)
 {
     s16 i;
     for (i = 0; i < D_8012C470; i++)
@@ -924,7 +1073,121 @@ void audio_80007FF4(void)
 }
 
 /*800080E0*/
-INCLUDE_ASM("nonmatchings/src/code0/audio", audio_800080E0);
+void audio_800080E0(s16 playernum, u16 arg1)
+{
+    _11D520UnkStruct1 *ptr;
+    s32 i, l;
+    u16 j, k;
+    u8 temp; /*FAKEMATCH*/
+
+    if ((arg1 == 3) || (arg1 == 4))
+        MusHandleStop(D_800BD634[playernum], 0);
+
+    if (((arg1 == 3) || (arg1 == 4)) ||
+        ((MusHandleAsk(D_800BD634[playernum]) == 0) && (gPlayer[playernum].unk45 == 0)))
+    {
+        temp = 0;
+        if ((D_8012C470 < 2) ||
+            (((arg1 != 3) && (arg1 != 8)) == 0) ||
+            ((arg1 == 9) || (arg1 == 10)))
+        {
+            if ((arg1 == 3) || (arg1 == 8) ||
+                (arg1 == 9) || (arg1 == 10) || (arg1 == 19))
+                i = 1;
+            else
+                i = 0;
+
+            if (D_8012F6E4[gPlayer[playernum].unk4C].unkB != 0)
+            {
+                switch (D_8012F6E4[gPlayer[playernum].unk4C].unkB)
+                {
+                case 1:
+                    if (arg1 == 3)
+                        arg1 = 21;
+                    else if ((arg1 == 8) || (arg1 == 9) || (arg1 == 10))
+                        arg1 = 20;
+                    else
+                        arg1 = 0xFFFF;
+                    break;
+                case 2:
+                    if (arg1 == 3)
+                        arg1 = 23;
+                    else if ((arg1 == 8) || (arg1 == 9) || (arg1 == 10))
+                        arg1 = 22;
+                    else
+                        arg1 = 0xFFFF;
+                    break;
+                case 4:
+                    if (arg1 == 3)
+                        arg1 = 25;
+                    else if ((arg1 == 8) || (arg1 == 9) || (arg1 == 10))
+                        arg1 = 24;
+                    else
+                        arg1 = 0xFFFF;
+                    break;
+                case 3:
+                    if (arg1 == 3)
+                        arg1 = 27;
+                    else if ((arg1 == 8) || (arg1 == 9) || (arg1 == 10))
+                        arg1 = 26;
+                    else
+                        arg1 = 0xFFFF;
+                    break;
+                case 5:
+                    arg1 = 28;
+                    break;
+                }
+            }
+
+            if (D_8012F6E4[gPlayer[playernum].unk4C].unk0 == 2366)
+            {
+                if (arg1 == 3)
+                    arg1 = 30;
+                else if ((arg1 == 8) || (arg1 == 9) || (arg1 == 10))
+                    arg1 = 29;
+            }
+
+            if (arg1 != 0xFFFF)
+            {
+                ptr = &D_801ACBD8[arg1];
+                if (func_801C0FDC(100) < ptr->unk6)
+                {
+                    do
+                    {
+                        k = ptr->unk4;
+                        if (arg1 == 1)
+                        {
+                            if ((gMapNum < MAP_NUCLEAR_WINTER) || (gMapNum >= MAP_BOSS_HOG))
+                                k--;
+                        }
+                        else if (arg1 == 13)
+                        {
+                            if ((gMapNum < MAP_NUCLEAR_WINTER) || (gMapNum >= MAP_BOSS_HOG))
+                                k--;
+                        }
+                        l = func_801C0FDC(k);
+                        j = ptr->unk0[l];
+                    } while (j == D_801AC8D4[playernum]);
+
+                    if (gPlayer[playernum].unk54 != temp)
+                    {
+                        if (arg1 == 3)
+                            j = 1101;
+
+                        if ((arg1 == 8) || (arg1 == 9) || (arg1 == 10))
+                            j = func_801C0FDC(5) + 1684;
+                    }
+
+                    D_801AC8D4[playernum] = j;
+                    D_800BD644[playernum] = 15;
+
+                    if ((i || (arg1 == 4) || (arg1 == 17)))
+                        D_800BD644[playernum] = 1;
+                }
+            }
+        }
+    }
+}
 
 /*80008574*/
 void audio_80008574(s16 playernum, u16 sfxnum)
