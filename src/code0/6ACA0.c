@@ -6,6 +6,7 @@
 #include "code0/37090.h"
 #include "code0/41940.h"
 #include "code0/59D40.h"
+#include "code0/64530.h"
 #include "code0/7A430.h"
 #include "code0/8EFE0.h"
 #include "code0/A06F0.h"
@@ -24,6 +25,8 @@ void func_800867CC(s16 spritenum, s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2
 /*800DF2F0*/ EXTERN_DATA u8 D_800DF2F0;
 /*800DF2F4*/ EXTERN_DATA s8 D_800DF2F4[657];
 /*800DF585*/ EXTERN_DATA u8 D_800DF585;
+/*800DF590*/ EXTERN_DATA STATIC u8 D_800DF590;
+/*800DF591*/ EXTERN_DATA STATIC u8 D_800DF591;
 /*800DF5A0*/ EXTERN_DATA STATIC _6ACA0UnkFuncPointer D_800DF5A0[50];
 /*800DF668*/ EXTERN_DATA STATIC _6ACA0UnkFuncPointer D_800DF668[4];
 
@@ -35,8 +38,182 @@ static void func_8007963C(s32 spritenum, s32);
 INCLUDE_ASM("nonmatchings/src/code0/6ACA0", func_8006A0A0);
 
 /*8006AD70*/
-STATIC void func_8006AD70(s32);
-INCLUDE_ASM("nonmatchings/src/code0/6ACA0", func_8006AD70);
+static void func_8006AD70(s16 spritenum)
+{
+    SectorType *sec;
+    SpriteType *spr;
+    s16 i;
+
+    spr = &gpSprite[spritenum];
+    sec = &gpSector[spr->sectnum];
+    if (!(spr->cstat & 0x8000))
+    {
+        switch (spr->unk1E)
+        {
+        case 12:
+            spr->unk2B = 1;
+            spr->clipdist = !spr->clipdist;
+            break;
+        case 13:
+            if (spr->unk25 == 0)
+                spr->unk25 = 1;
+            break;
+        case 30:
+        case 40:
+        case 41:
+        case 42:
+        case 43:
+        case 44:
+        case 45:
+            spr->unk2B = 1;
+            break;
+        case 46:
+            spr->unk2B = 1;
+            i = gHeadSpriteSect[spr->sectnum];
+            while (i>=0)
+            {
+                if ((gpSprite[i].picnum >= 2548) && (gpSprite[i].picnum < 2552))
+                    changeSpriteStat(i, 120);
+                i = gNextSpriteSect[i];
+            }
+            D_801A19F0 = playSfx(1599);
+            break;;
+        case 50:
+            if (D_800DF2F0 != 0)
+            {
+                if ((spr->unk1C > 0) || ((spr->unk1C >= 0) && (sec->floorz == sec->ceilingz)))
+                    spr->unk1C = -1;
+                else
+                    spr->unk1C = 1;
+            }
+            else if (spr->unk1C == 0)
+            {
+
+                if (sec->floorz == sec->ceilingz)
+                {
+                    if (D_800DF591 == 0)
+                        spr->unk1C = -1;
+                    else
+                        break;
+                }
+                else if (sec->floorz != sec->ceilingz)
+                {
+                    if (D_800DF590 == 0)
+                        spr->unk1C = 1;
+                    else
+                        break;
+                }
+                func_80068E0C(spr->sectnum);
+            }
+            break;
+        case 51:
+        case 52:
+            if (D_800DF2F0 != 0)
+            {
+                if ((spr->unk1C <= 0) && ((spr->unk1C < 0) || (sec->floorz == sec->ceilingz)))
+                    spr->unk1C = 1;
+                else
+                    spr->unk1C = -1;
+            }
+            else if (spr->unk1C == 0)
+            {
+                if (sec->floorz == sec->ceilingz)
+                {
+                    if (D_800DF591 == 0)
+                        spr->unk1C = 1;
+                    else
+                        break;
+                }
+                else if (sec->floorz != sec->ceilingz)
+                {
+                    if (D_800DF590 == 0)
+                        spr->unk1C = -1;
+                    else
+                        break;
+                }
+                func_80068E0C(spr->sectnum);
+            }
+            break;
+        case 53:
+            if (D_800DF2F0 != 0)
+            {
+                if (spr->unk18 <= 0)
+                {
+                    if (spr->unk18 < 0)
+                        spr->unk18 = -1;
+                }
+                else
+                    spr->unk18 = 1;
+            }
+            else if (spr->unk18 == 0)
+            {
+                if (spr->unk25 == 0)
+                {
+                    if (D_800DF591 == 0)
+                        spr->unk18 = spr->unk1C;
+                    else
+                        break;
+                }
+                else
+                {
+                    if (D_800DF590 == 0)
+                        spr->unk18 = -spr->unk1C;
+                    else
+                        break;
+                }
+                func_80068E0C(spr->sectnum);
+            }
+            break;
+        case 54:
+            if (D_800DF2F0 != 0)
+            {
+                if (spr->unk18 > 0)
+                {
+                    spr->unk18 = -1;
+                    spr->unk25 = !spr->unk25;
+                }
+                else if (spr->unk18 < 0)
+                {
+                    spr->unk18 = 1;
+                    spr->unk25 = !spr->unk25;
+                }
+                else if (spr->unk25 != 0)
+                    spr->unk18 = -1;
+                else
+                    spr->unk18 = 1;
+            }
+            else if (spr->unk18 == 0)
+            {
+                if (spr->unk25 != 0)
+                {
+                    if (D_800DF590 == 0)
+                        spr->unk18 = -1;
+                    else
+                        break;
+                }
+                else
+                {
+                    if (D_800DF591 == 0)
+                        spr->unk18 = 1;
+                    else
+                        break;
+                }
+                func_80068E0C(spr->sectnum);
+            }
+            break;
+        case 60:
+            spr->unk2B = 1;
+            break;
+        case 61:
+            D_800BD61A = spr->unk25 * 30;
+            func_8001F7B4(D_800BD61A, spr->unk24);
+            break;
+        case 24:
+            spr->unk2B = !spr->unk2B;
+            break;
+        }
+    }
+}
 
 /*8006B170*/
 s8 func_8006B170(s16 arg0)
@@ -1066,7 +1243,7 @@ STATIC void func_80073670(s32 spritenum)
             }
             if (num & 0xC000)
             {
-                if (num <= 0xBFFF)
+                if (num < 0xC000)
                 {
                     num &= 0x7FFF;
 

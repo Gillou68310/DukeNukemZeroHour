@@ -113,10 +113,10 @@ static void func_80036FEC(void)
     D_801A1998 += 1024;
     gPlayer[D_801B0820].unk36 = gPlayer[D_801B0820].unk32;
 
-    if ((u32)(D_800FCBE0 - 0x4000) <= 0x7FFFU)
+    if (D_800FCBE0 >= 0x4000 && D_800FCBE0 < 0xC000)
         gPlayer[D_801B0820].unk36 = (D_800FCBE0 - 0x4000);
 
-    if (D_800FCBE0 > 0xBFFF)
+    if (D_800FCBE0 >= 0xC000)
     {
         gPlayer[D_801B0820].unk36 = D_800FCBE0 + 0x5000;
         spritenum = D_800FCBE0 + 0x4000;

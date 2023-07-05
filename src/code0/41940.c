@@ -1404,7 +1404,7 @@ STATIC s32 func_80044394(s32 spritenum)
     k = getVar(spritenum, *gpInst++);
     l = getVar(spritenum, *gpInst++);
 
-    if ((u32)((u16)D_80137DE0->unk84 - 38) < 6U)
+    if (D_80137DE0->unk84 >= 38 && D_80137DE0->unk84 < 44)
     {
         j *= 2;
         k *= 2;
@@ -4526,7 +4526,7 @@ static void func_80051808(s16 spritenum)
     unk25 = gpSprite[spritenum].unk25;
     if (gMapNum == MAP_NUCLEAR_WINTER)
     {
-        if ((u16)(unk25 - 1) < 3)
+        if (unk25 >= 1 && unk25 < 4)
             func_8006B4E4(unk25 + 1);
 
         if ((D_801AE91E[2] == 68) && (D_801AE91E[3] == D_801AE91E[2]) && (D_801AE91E[4] == D_801AE91E[3]))

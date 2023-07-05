@@ -578,6 +578,7 @@ typedef struct
 /*801A1994*/ _extern s32 D_801A1994;
 /*801A1998*/ _extern s32 D_801A1998; /*ceilz*/
 /*801A19EC*/ _extern u8 D_801A19EC;
+/*801A19F0*/ _extern musHandle D_801A19F0;
 /*801A2620*/ _extern s16 D_801A2620;
 /*801A2628*/ _extern s16 D_801A2628; /*playernum?*/
 /*801A2684*/ _extern f32 D_801A2684;
