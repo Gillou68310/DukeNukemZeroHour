@@ -6,17 +6,15 @@
 #include "code0/code0.h"
 
 typedef struct {
+    /*0x00*/ s32 x[3];
+    /*0x0C*/ s32 y[3];
+    /*0x18*/ s32 z[3];
+} _8EFE0UnkStruct2;
+
+typedef struct {
     /*0x00*/ u8 unk0;
     /*0x02*/ u16 unk2;
-    /*0x04*/ s32 unk4;
-    /*0x08*/ s32 unk8;
-    /*0x0C*/ s32 unkC;
-    /*0x10*/ s32 unk10;
-    /*0x14*/ s32 unk14;
-    /*0x18*/ s32 unk18;
-    /*0x1C*/ s32 unk1C;
-    /*0x20*/ s32 unk20;
-    /*0x24*/ s32 unk24;
+    /*0x04*/ _8EFE0UnkStruct2 unk4;
     /*0x28*/ s32 unk28;
     /*0x2C*/ s32 unk2C;
 } _8EFE0UnkStruct1;
@@ -24,6 +22,8 @@ typedef struct {
 /*.comm*/
 /*80106730*/ _8EFE0UnkStruct1 D_80106730[32] ALIGNED(16);
 /*80139870*/ s32 D_80139870;
+/*80197D20*/ _8EFE0UnkStruct2 D_80197D20 ALIGNED(8);
+/*801A19F8*/ _8EFE0UnkStruct2 D_801A19F8 ALIGNED(8);
 
 /*.text*/
 
@@ -34,7 +34,7 @@ INCLUDE_ASM("nonmatchings/src/code0/8EFE0", func_8008E3E0);
 INCLUDE_ASM("nonmatchings/src/code0/8EFE0", func_8008FE88);
 
 /*80093450*/
-static s16 func_80093450(s32 x, s32 y, s32 z, s32 sectnum, s32 *arg4)
+static s32 func_80093450(s32 x, s32 y, s32 z, s32 sectnum, _8EFE0UnkStruct2 *arg4)
 {
     _8EFE0UnkStruct1 *ptr;
     s32 i, j, spritenum;
@@ -49,9 +49,9 @@ static s16 func_80093450(s32 x, s32 y, s32 z, s32 sectnum, s32 *arg4)
             {
                 for (j = 0, ptr->unk0 = 1; j < 3; j++)
                 {
-                    ((s32 *)ptr)[j+1] = (arg4[j] - x);
-                    ((s32 *)ptr)[j+4] = (arg4[j+3] - y);
-                    ((s32 *)ptr)[j+7] = (arg4[j+6] - z);
+                    ptr->unk4.x[j] = (arg4->x[j] - x);
+                    ptr->unk4.y[j] = (arg4->y[j] - y);
+                    ptr->unk4.z[j] = (arg4->z[j] - z);
                 }
                 ptr->unk2 = 100;
                 gpSprite[spritenum].unk22 = i;
@@ -72,7 +72,60 @@ static s16 func_80093450(s32 x, s32 y, s32 z, s32 sectnum, s32 *arg4)
 }
 
 /*80093670*/
-INCLUDE_ASM("nonmatchings/src/code0/8EFE0", func_80093670);
+static s32 func_80093670(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
+{
+    _8EFE0UnkStruct2 *ptr;
+
+    ptr = &D_801A19F8;
+    if ((krand() & 0xFFF) < 0x800)
+    {
+        *ptr = D_80197D20;
+
+        ptr->x[0] = (D_80197D20.x[0] + D_80197D20.x[1]) / 2;
+        ptr->y[0] = (D_80197D20.y[0] + D_80197D20.y[1]) / 2;
+        ptr->z[0] = (D_80197D20.z[0] + D_80197D20.z[1]) / 2;
+
+        func_80093450((ptr->x[0] + ptr->x[1] + ptr->x[2]) / 3,
+                      (ptr->y[0] + ptr->y[1] + ptr->y[2]) / 3,
+                      (ptr->z[0] + ptr->z[1] + ptr->z[2]) / 3,
+                      arg3, ptr);
+
+        *ptr = D_80197D20;
+
+        ptr->x[1] = (D_80197D20.x[0] + D_80197D20.x[1]) / 2;
+        ptr->y[1] = (D_80197D20.y[0] + D_80197D20.y[1]) / 2;
+        ptr->z[1] = (D_80197D20.z[0] + D_80197D20.z[1]) / 2;
+
+        return func_80093450((ptr->x[0] + ptr->x[1] + ptr->x[2]) / 3,
+                             (ptr->y[0] + ptr->y[1] + ptr->y[2]) / 3,
+                             (ptr->z[0] + ptr->z[1] + ptr->z[2]) / 3,
+                             arg3, ptr);
+    }
+    else
+    {
+        *ptr = D_80197D20;
+
+        ptr->x[1] = (D_80197D20.x[1] + D_80197D20.x[2]) / 2;
+        ptr->y[1] = (D_80197D20.y[1] + D_80197D20.y[2]) / 2;
+        ptr->z[1] = (D_80197D20.z[1] + D_80197D20.z[2]) / 2;
+
+        func_80093450((ptr->x[0] + ptr->x[1] + ptr->x[2]) / 3,
+                      (ptr->y[0] + ptr->y[1] + ptr->y[2]) / 3,
+                      (ptr->z[0] + ptr->z[1] + ptr->z[2]) / 3,
+                      arg3, ptr);
+
+        *ptr = D_80197D20;
+
+        ptr->x[2] = (D_80197D20.x[1] + D_80197D20.x[2]) / 2;
+        ptr->y[2] = (D_80197D20.y[1] + D_80197D20.y[2]) / 2;
+        ptr->z[2] = (D_80197D20.z[1] + D_80197D20.z[2]) / 2;
+
+        return func_80093450((ptr->x[0] + ptr->x[1] + ptr->x[2]) / 3,
+                             (ptr->y[0] + ptr->y[1] + ptr->y[2]) / 3,
+                             (ptr->z[0] + ptr->z[1] + ptr->z[2]) / 3,
+                             arg3, ptr);
+    }
+}
 
 /*80093BB0*/
 INCLUDE_ASM("nonmatchings/src/code0/8EFE0", func_80093BB0);
@@ -112,9 +165,9 @@ void func_80094278(void)
             D_801A6D80++;
             ptr = &D_80106730[gpSprite[i].unk22];
 
-            gpVertexN64->v.ob[0] = (ptr->unk4 >> 1);
-            gpVertexN64->v.ob[1] = (ptr->unk10 >> 1);
-            gpVertexN64->v.ob[2] = (ptr->unk1C >> 1);
+            gpVertexN64->v.ob[0] = (ptr->unk4.x[0] >> 1);
+            gpVertexN64->v.ob[1] = (ptr->unk4.y[0] >> 1);
+            gpVertexN64->v.ob[2] = (ptr->unk4.z[0] >> 1);
             gpVertexN64->v.tc[0] = 0;
             gpVertexN64->v.tc[1] = 0;
             gpVertexN64->v.cn[0] = 0xFF;
@@ -122,9 +175,9 @@ void func_80094278(void)
             gpVertexN64->v.cn[2] = 0xFF;
             gpVertexN64->v.cn[3] = 0xFF;
             gpVertexN64++;
-            gpVertexN64->v.ob[0] = (ptr->unk8 >> 1);
-            gpVertexN64->v.ob[1] = (ptr->unk14 >> 1);
-            gpVertexN64->v.ob[2] = (ptr->unk20 >> 1);
+            gpVertexN64->v.ob[0] = (ptr->unk4.x[1] >> 1);
+            gpVertexN64->v.ob[1] = (ptr->unk4.y[1] >> 1);
+            gpVertexN64->v.ob[2] = (ptr->unk4.z[1] >> 1);
             gpVertexN64->v.tc[0] = 0x800;
             gpVertexN64->v.tc[1] = 0;
             gpVertexN64->v.cn[0] = 0xFF;
@@ -132,9 +185,9 @@ void func_80094278(void)
             gpVertexN64->v.cn[2] = 0xFF;
             gpVertexN64->v.cn[3] = 0xFF;
             gpVertexN64++;
-            gpVertexN64->v.ob[0] = (ptr->unkC >> 1);
-            gpVertexN64->v.ob[1] = (ptr->unk18 >> 1);
-            gpVertexN64->v.ob[2] = (ptr->unk24 >> 1);
+            gpVertexN64->v.ob[0] = (ptr->unk4.x[2] >> 1);
+            gpVertexN64->v.ob[1] = (ptr->unk4.y[2] >> 1);
+            gpVertexN64->v.ob[2] = (ptr->unk4.z[2] >> 1);
             gpVertexN64->v.tc[0] = 0x800;
             gpVertexN64->v.tc[1] = 0x800;
             gpVertexN64->v.cn[0] = 0xFF;
