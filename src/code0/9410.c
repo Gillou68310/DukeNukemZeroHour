@@ -85,7 +85,7 @@ STATIC void func_80009A14(u8);
 static void func_8000A938(u16 wallnum);
 STATIC void func_8000AEE0(u16 wallnum);
 static void func_8000B9C0(s16 tileid);
-STATIC void func_8000CC54(s32 wallnum);
+static s32 func_8000CC54(s32 wallnum);
 static void func_8000EBF0(u8, u8);
 
 /*80008810*/
@@ -184,7 +184,7 @@ STATIC void decompressMap(void)
     }
 
     count *= 3;
-    alloCache(&gpVertex, (count * sizeof(VertexType)), &_vertexLock);
+    alloCache(&gpVertex, (count * sizeof(Vertex)), &_vertexLock);
     decompressEDL(&gpMapBuffer[0], gpVertex);
     suckCache(&gpMapBuffer);
     initTiles();
@@ -528,7 +528,8 @@ static void func_8000A938(u16 wallnum)
         D_801A2688 = 0;
         gDPSetAlphaCompare(gpDisplayList++, G_AC_NONE);
         gDPSetTextureLUT(gpDisplayList++, G_TT_RGBA16);
-        gDPSetCombineLERP(gpDisplayList++, TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+        gDPSetCombineLERP(gpDisplayList++, TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT,
+                                           0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
     }
 
     if (D_80197DD4 == 0)
@@ -745,7 +746,8 @@ static void func_8000C8EC(void)
 
     D_8012DEFC = -1;
     gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_XLU_SURF2);
-    gDPSetCombineLERP(gpDisplayList++, TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+    gDPSetCombineLERP(gpDisplayList++, TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT,
+                                       0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
     gDPSetAlphaCompare(gpDisplayList++, G_AC_NONE);
     gDPSetTextureLUT(gpDisplayList++, G_TT_RGBA16);
 
@@ -802,7 +804,123 @@ static void drawFloorCeiling(void)
 }
 
 /*8000CC54*/
-INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000CC54);
+static s32 func_8000CC54(s32 wallnum)
+{
+    VertexC *ptr;
+    f32 f1, f2, f3, f4;
+    s32 wallnum_;
+    s32 ang2;
+    s16 ang;
+    s32 i, j;
+    u16 cstat;
+    u8 alpha;
+    s32 x1, y1, x2, y2;
+
+    alpha = 0xFF;
+    ptr = D_800FE950;
+    cstat = gpWall[wallnum].cstat;
+    wallnum_ = gpWall[wallnum].point2;
+    ang = 0;
+    if (cstat & 0x80)
+    {
+        alpha = 0xAB;
+        if (cstat & 0x200)
+            alpha = 0x55;
+    }
+    if (D_801A2688 == 0)
+    {
+        if (alpha < 0xFF)
+        {
+            if (D_801385F0 == 1)
+            {
+                D_801385F0 = 0;
+                gDPSetCombineLERP(gpDisplayList++, TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT,
+                                                   0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+                gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_XLU_SURF2);
+            }
+        }
+
+        if ((alpha == 0xFF) && (D_801385F0 == 0))
+        {
+            D_801385F0 = 1;
+            gDPSetCombineMode(gpDisplayList++, G_CC_MODULATEIDECALA, G_CC_PASS2);
+            gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_TEX_EDGE2);
+        }
+    }
+
+    gDPSetEnvColor(gpDisplayList++, 0xFF, 0xFF, 0xFF, alpha);
+
+    func_8000DBDC(gpWall[wallnum].unk21, gpWall[wallnum].unk1C);
+
+    if (D_800BD74B != 0)
+    {
+        x2 = gpWall[wallnum].x;
+        y2 = gpWall[wallnum].y;
+        x1 = gpWall[wallnum_].x;
+        y1 = gpWall[wallnum_].y;
+        ang = (getAngle(x1 - x2, y1 - y2) + 512) & 0x7FF;
+    }
+
+    for (i = 0; i < 2; i++)
+    {
+        for (j = 0; j < 2; j++)
+        {
+            if (D_800BD74B == 0)
+            {
+                gpVertexN64->v.ob[0] = ptr->ob[0];
+                gpVertexN64->v.ob[1] = ptr->ob[1];
+                gpVertexN64->v.ob[2] = ptr->ob[2];
+                gpVertexN64->v.tc[0] = ptr->tc[0];
+                gpVertexN64->v.tc[1] = ptr->tc[1];
+
+                if (i == 0)
+                {
+                    gpVertexN64->v.cn[0] = CLAMP_MAX((gpWall[wallnum].unk1D + D_8016A148), 255);
+                    gpVertexN64->v.cn[1] = CLAMP_MAX((gpWall[wallnum].unk1E + D_800FE410), 255);
+                    gpVertexN64->v.cn[2] = CLAMP_MAX((gpWall[wallnum].unk1F + D_80138680), 255);
+                }
+                else
+                {
+                    gpVertexN64->v.cn[0] = CLAMP_MAX((gpWall[wallnum_].unk1D + D_8016A148), 255);
+                    gpVertexN64->v.cn[1] = CLAMP_MAX((gpWall[wallnum_].unk1E + D_800FE410), 255);
+                    gpVertexN64->v.cn[2] = CLAMP_MAX((gpWall[wallnum_].unk1F + D_80138680), 255);
+                }
+                gpVertexN64->v.cn[3] = alpha;
+            }
+            else
+            {
+                gpVertexN64->v.ob[0] = ptr->ob[0];
+                gpVertexN64->v.ob[1] = ptr->ob[1];
+                gpVertexN64->v.ob[2] = ptr->ob[2];
+                gpVertexN64->v.tc[0] = ptr->tc[0];
+                gpVertexN64->v.tc[1] = ptr->tc[1];
+                if (i == 0)
+                {
+                    ang2 = ang - 45;
+                    f3 = (j == 0) ? 16.0f : -16.0f;
+                }
+                else
+                {
+                    ang2 = ang + 45;
+                    f3 = (j == 0) ? -16.0f : 16.0f;
+                }
+                f1 = (gpSinTable[(ang2 + 512) & 0x7FF] * 0x7F) >> 14;
+                f2 = (gpSinTable[ang2 & 0x7FF] * 0x7F) >> 14;
+                f4 = 127.0 / sqrtf((f1 * f1) + (f2 * f2) + (f3 * f3));
+                f1 *= f4;
+                gpVertexN64->v.cn[0] = (s32)f1;
+                f2 *= f4;
+                gpVertexN64->v.cn[1] = (s32)f2;
+                f3 *= f4;
+                gpVertexN64->v.cn[2] = (s32)f3;
+                gpVertexN64->v.cn[3] = alpha;
+            }
+            gpVertexN64++;
+            ptr++;
+        }
+    }
+    return 1;
+}
 
 #define VERTEX2N64(N64, VTX, Z) \
         N64->v.ob[0] = VTX->v.ob[0]; \
@@ -818,7 +936,7 @@ INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000CC54);
 static void floorVtxToN64(s32 sectnum)
 {
     s32 i;
-    VertexType *vtx;
+    Vertex *vtx;
 
     D_80199554 = 0;
     D_801385F4 = 0;
@@ -849,7 +967,7 @@ static void floorVtxToN64(s32 sectnum)
 static void floorVtxToN64Z(s32 sectnum, s32 z)
 {
     s32 i;
-    VertexType *vtx;
+    Vertex *vtx;
 
     D_80199554 = 0;
     D_801385F4 = 0;
@@ -877,7 +995,7 @@ static void floorVtxToN64Z(s32 sectnum, s32 z)
 static void ceilingVtxToN64(s32 sectnum)
 {
     s32 i;
-    VertexType *vtx;
+    Vertex *vtx;
 
     D_80199554 = 0;
     D_801385F4 = 0;
@@ -1205,8 +1323,10 @@ static void func_8000E56C(void)
 
     gSPLookAtX(gpDisplayList++, &gpDynamic->lookat[D_801B0820][0].l[0]);
     gSPLookAtY(gpDisplayList++, &gpDynamic->lookat[D_801B0820][0].l[1]);
-    gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx1[D_801B0820]), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx2[D_801B0820]), G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
+    gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx1[D_801B0820]),
+                               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
+    gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx2[D_801B0820]),
+                               G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
     gSPPerspNormalize(gpDisplayList++, perspNorm);
     grMtxCatF(viewing, projection, D_8012B948);
 }

@@ -96,7 +96,10 @@ typedef struct
     /*0x16*/ s16 unk16;
     /*0x18*/ u8 pad1[4];
     /*0x1C*/ u8 unk1C;
-    /*0x1D*/ u8 pad2[4];
+    /*0x1D*/ u8 unk1D;
+    /*0x1E*/ u8 unk1E;
+    /*0x1F*/ u8 unk1F;
+    /*0x20*/ u8 unk20;
     /*0x21*/ u8 unk21;
     /*0x22*/ u8 unk22;
     /*0x23*/ u8 unk23;
@@ -173,24 +176,6 @@ typedef struct
     //s16 hitag;
     //s16 extra;
 } SpriteType;
-
-typedef struct {
-    s16 ob[3];	/* x, y, z */
-    s16 tc[2];	/* texture coord */
-    u8	cn[4];	/* color & alpha */
-} VertexV;
-
-typedef struct {
-    s16 ob[3];	/* x, y, z */
-    s16 tc[2];	/* texture coord */
-    s8  n[3];	/* normal */
-    u8  a;      /* alpha  */
-} VertexN;
-
-typedef union {
-    VertexV v;  /* Use this one for colors  */
-    VertexN n;  /* Use this one for normals */
-} VertexType;
 
 void engine_8002B680(void);
 s32 clipInsideBox(s32 x, s32 y, s16 wallnum, s32 walldist);

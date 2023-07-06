@@ -445,7 +445,7 @@ typedef struct
 #define _volatile
 #endif
 
-/*800FCBA0*/ _extern s16 D_800FCBA0[32];
+/*800FCBA0*/ _extern s16 D_800FCBA0[32] ALIGNED(8);
 /*800FCBE0*/ _extern s32 D_800FCBE0; /*floorhit*/
 /*800FE3FC*/ _extern s32 D_800FE3FC;
 /*800FF3E8*/ _extern u16 D_800FF3E8[128] ALIGNED(8);
@@ -456,6 +456,7 @@ typedef struct
 /*800FE416*/ _extern s16 gMapNum;
 /*800FF528*/ _extern s32 *D_800FF528;
 /*800FE944*/ _extern u8 *gpModelTile;
+/*800FE950*/ _extern VertexC D_800FE950[12];
 /*800FE9C8*/ _extern s32 D_800FE9C8[2]; /*CLOUDS SP*/
 /*800FE9D0*/ _extern s8 D_800FE9D0;
 /*800FE9E0*/ _extern _volatile s64 D_800FE9E0;
@@ -468,7 +469,7 @@ typedef struct
 /*80105720*/ _extern s16 D_80105720;
 /*80106D30*/ _extern u8 D_80106D30[MAXPLAYERS];
 /*80106D50*/ _extern s16 D_80106D50[MAXSPRITES] ALIGNED(16);
-/*8010A914*/ _extern VertexType *gpVertex;
+/*8010A914*/ _extern Vertex *gpVertex;
 /*8010A918*/ _extern s32 D_8010A918;
 /*8010A938*/ _extern u8 *D_8010A938; /*edlHandle*/
 /*8010A940*/ _extern code0UnkStruct2 D_8010A940[MAXPLAYERS] ALIGNED(8);
@@ -519,7 +520,7 @@ typedef struct
 /*8012FD88*/ _extern s32 D_8012FD88;
 /*8012FD8C*/ _extern code0UnkStruct16 *D_8012FD8C;
 /*80137DE0*/ _extern code0UnkStruct3 *D_80137DE0;
-/*801385F0*/ _extern s8 D_801385F0;
+/*801385F0*/ _extern u8 D_801385F0;
 /*80138620*/ _extern s8 D_80138620;
 /*80138678*/ _extern s32 D_80138678;
 /*80138680*/ _extern s32 D_80138680;

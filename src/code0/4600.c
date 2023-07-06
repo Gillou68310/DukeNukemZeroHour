@@ -263,7 +263,7 @@ void Bmemset(void *dst, u8 value, u32 size)
 /*80004A3C*/
 void func_80004A3C(u16 sectnum)
 {
-    VertexType *vtx;
+    Vertex *vtx;
     s32 floorz;
     u16 floorvtxnum;
     u16 i;
@@ -296,7 +296,7 @@ void func_80004A3C(u16 sectnum)
 /*80004B60*/
 void func_80004B60(u16 sectnum)
 {
-    VertexType *vtx;
+    Vertex *vtx;
     s32 ceilingz;
     u16 ceilingvtxnum;
     u16 i;
@@ -340,7 +340,7 @@ void func_80004C84(void)
 /*80004CFC*/
 static void func_80004CFC(u16 sectnum)
 {
-    VertexType *vtx;
+    Vertex *vtx;
     u16 vtxnum;
     u16 i, j;
 
@@ -402,7 +402,7 @@ static void func_80004F14(u16 sectnum)
 {
     s32 x2;
     s32 y2;
-    VertexType *vtx;
+    Vertex *vtx;
     u16 vtxnum;
     u16 i, j, k;
 
