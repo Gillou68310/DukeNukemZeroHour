@@ -5,12 +5,18 @@
 #include "code0/audio.h"
 #include "code0/9410.h"
 #include "code0/41940.h"
+#include "code0/6ACA0.h"
 #include "code0/7A430.h"
+#include "code0/8E670.h"
+#include "code0/8EFE0.h"
+#include "code0/A06F0.h"
 #include "code0/code0.h"
+#include "code1/EB300.h"
 
 /*.data*/
 /*800DEDD0*/ EXTERN_DATA STATIC u8 D_800DEDD0[MAXPLAYERS];
 /*800DEDE0*/ EXTERN_DATA u8 D_800DEDE0;
+/*800DEE64*/ EXTERN_DATA STATIC musHandle D_800DEE64;
 
 /*.comm*/
 /*8011BC44*/ code0UnkStruct3 *D_8011BC44;
@@ -495,4 +501,103 @@ void func_8003DD54(void)
 INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003DDB8);
 
 /*8003E8D0*/
-INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003E8D0);
+static void func_8003E8D0(void)
+{
+    s16 i, j, k;
+
+    j = gPlayer[D_801B0820].unk32;
+    if (gPlayer[D_801B0820].unk45 == 0)
+    {
+        if (gpSector[j].floorstat & 0x80)
+        {
+            func_8008E01C(30, 1);
+            gpSector[j].floorstat &= 0xFF7F;
+        }
+
+        if (gpSector[j].floorstat & 0x1000)
+        {
+            D_800FEA90 = 1;
+            func_8008E01C(30, 1);
+            gpSector[j].floorstat &= 0xEFFF;
+        }
+
+        if (gpSector[j].floorstat & 0x100)
+        {
+            func_800A419C(D_801B0820, "SECRET AREA");
+            gpSector[j].floorstat &= 0xFEFF;
+            D_801A1958.secrets_found += 1;
+            playSfx(1595);
+            func_801C363C(D_801B0820, 10, 128);
+        }
+
+        if (!(gpSector[j].floorstat & 0x200))
+        {
+            if (gPlayer[D_801B0820].unk5A != 0)
+            {
+                gPlayer[D_801B0820].unk5A = 0;
+                if (gPlayer[D_801B0820].unk6C == 0)
+                    gPlayer[D_801B0820].unk60 = gPlayer[D_801B0820].unk61;
+            }
+        }
+
+        if ((gpSector[j].floorstat & 0x2000) && (D_8011BC44->unk8 > 0) &&
+            (D_8011BC44->unk8 < gPlayer[D_801B0820].unk48))
+        {
+            if (D_800DEE64 == 0)
+                D_800DEE64 = playSfx(502);
+
+            if (!(D_8012FD88 & 3))
+            {
+                D_8011BC44->unk8 = MIN((D_8011BC44->unk8 + 1), gPlayer[D_801B0820].unk48);
+                func_8008E3E0(gPlayer[D_801B0820].xpos, gPlayer[D_801B0820].ypos, gpSector[j].floorz, j, 78, 1);
+            }
+        }
+        else
+        {
+            MusHandleStop(D_800DEE64, 10);
+            D_800DEE64 = 0;
+        }
+
+        if ((gpSector[j].floorstat & 0x4000) && (gPlayer[D_801B0820].unk59 == 0) && (D_8011BC44->unk8 > 0))
+        {
+            i = gHeadSpriteStat[121];
+            while (i >= 0)
+            {
+                if (gpSprite[i].sectnum == j)
+                    break;
+
+                i = gNextSpriteStat[i];
+            }
+
+            k = D_801B0820;
+            if (gPlayer[k].zpos >= gpSprite[i].z)
+            {
+                gPlayer[k].unk45 = 1;
+                gPlayer[k].unk4E = 0;
+                D_8011BC44->unk8 = 0;
+                D_8011BC44->unk9E = 253;
+                playSfx(991);
+            }
+        }
+
+        j = gHeadSpriteStat[118];
+        while (j >= 0)
+        {
+            k = gNextSpriteStat[j];
+            if ((gpSprite[j].unk20 == 0) && (dist(&gpSprite[j], &gpSprite[gPlayer[D_801B0820].unk4A]) < 1024))
+            {
+                if (gMapNum == MAP_ALIEN_MOTHER)
+                    func_8006B590(2031);
+                else
+                    func_8008E01C(30, 1);
+
+                if (gpSprite[j].unk25 != 0)
+                    D_800FEA90 = 1;
+
+                changeSpriteStat(j, 0);
+            }
+            j = k;
+        }
+    }
+}
+
