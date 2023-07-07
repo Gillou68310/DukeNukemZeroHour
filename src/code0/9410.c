@@ -13,6 +13,7 @@
 #include "code0/20490.h"
 #include "code0/21500.h"
 #include "code0/24610.h"
+#include "code0/37090.h"
 #include "code0/416A0.h"
 #include "code0/7BA50.h"
 #include "code0/8E670.h"
@@ -21,10 +22,12 @@
 #include "code0/41940.h"
 #include "code0/debug.h"
 #include "code0/87010.h"
+#include "code0/8EFE0.h"
 #include "code0/95500.h"
 #include "code0/A06F0.h"
 #include "code1/EB300.h"
 #include "code1/code1.h"
+#include "static/spinit.h"
 
 #define MAXTILESIZE 32832
 
@@ -57,6 +60,14 @@ typedef struct {
 /*80105708*/ u8 *gpMapBuffer;
 /*80106D38*/ u32 gVertexN64Size;
 /*80107910*/ s16 gTilemap[MAXTILES] ALIGNED(16);
+/*80117D48*/ OSTime D_80117D48; /*TODO: Probably a struct*/
+/*80117D50*/ OSTime D_80117D50;
+/*80117D58*/ OSTime D_80117D58;
+/*80117D60*/ OSTime D_80117D60;
+/*80117E38*/ OSTime D_80117E38;
+/*80117E40*/ OSTime D_80117E40;
+/*80117E48*/ OSTime D_80117E48;
+/*80117E50*/ OSTime D_80117E50;
 /*80119A58*/ u32 gDisplayListSize;
 /*8012FDA0*/ u8 gTileBuffer[MAXTILESIZE] ALIGNED(16);
 /*801385F2*/ u16 D_801385F2; /*perspNorm*/
@@ -65,6 +76,7 @@ typedef struct {
 /*80138798*/ Color16 D_80138798[5] ALIGNED(8); /*MAXPLAYERS?*/
 /*8013F930*/ Color16 D_8013F930[MAXPLAYERS] ALIGNED(8);
 /*80169580*/ u8 D_80169580[TILENUM] ALIGNED(16);
+/*8016A158*/ s32 D_8016A158;
 /*80199118*/ s16 D_80199118;
 /*80199554*/ s32 D_80199554;
 /*80199946*/ s16 D_80199946;
@@ -79,14 +91,19 @@ static u8 func_800099D0(void);
 static void floorVtxToN64(s32 sectnum);
 static void floorVtxToN64Z(s32 sectnum, s32 z);
 static void ceilingVtxToN64(s32 sectnum);
-
 STATIC void decompressMap(void);
-STATIC void func_80009A14(u8);
+static void func_80009A14(u8 playernum);
 static void func_8000A938(u16 wallnum);
 STATIC void func_8000AEE0(u16 wallnum);
 static void func_8000B9C0(s16 tileid);
 static s32 func_8000CC54(s32 wallnum);
-static void func_8000EBF0(u8, u8);
+static void func_8000E56C(void);
+static void func_8000EBF0(u8 playernum, u8);
+static void drawWalls(void);
+static void drawFloorCeiling(void);
+static void func_8000A184(void);
+static void func_8000A634(void);
+static void func_8000C8EC(void);
 
 /*80008810*/
 void loadMap(s32 mapnum)
@@ -292,6 +309,7 @@ s32 func_8000921C(void)
 }
 
 /*80009314*/
+STATIC void func_80009314(u8 playernum);
 INCLUDE_ASM("nonmatchings/src/code0/9410", func_80009314);
 
 /*80009998*/
@@ -312,13 +330,155 @@ static u8 func_800099D0(void)
 }
 
 /*80009A14*/
-INCLUDE_ASM("nonmatchings/src/code0/9410", func_80009A14);
+static void func_80009A14(u8 playernum)
+{
+    u8 cond;
+
+    updateSector(gPlayer[playernum].xpos, gPlayer[playernum].ypos, &gPlayer[playernum].unk32);
+    func_8003DACC();
+    func_8000E56C();
+    func_80011180();
+    D_80117D48 = osGetTime();
+    func_800043F4(D_801A6D84, D_800FE3F0, D_80199640, D_801AEA10, D_8012F6F4);
+    D_80117E38 = osGetTime();
+    gDPPipeSync(gpDisplayList++);
+    gSPDisplayList(gpDisplayList++, D_01001900);
+    func_8001BB1C();
+    func_8000C76C();
+    gSPDisplayList(gpDisplayList++, D_01001900);
+    func_8001BCDC();
+    grTranslate(&gpDynamic->mtx6, 0.0f, 0.0f, 0.0f);
+    grScale(&gpDynamic->mtx8, 0.5f, 0.5f, 0.5f);
+    gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx6), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx8), G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
+    gSPDisplayList(gpDisplayList++, D_01001900);
+
+    func_80009314(playernum);
+    D_80138830 = 0;
+    D_8012DEFC = 0xFFFF;
+    D_80117D50 = osGetTime();
+    func_8000E04C();
+    D_80117E40 = osGetTime();
+    func_8000C76C();
+    D_80117D58 = osGetTime();
+    D_8019996C = 0;
+    drawWalls();
+    D_80117E48 = osGetTime();
+    func_8000C76C();
+    D_80117D60 = osGetTime();
+    drawFloorCeiling();
+    D_80117E50 = osGetTime();
+
+    if (func_800099D0())
+        return;
+
+    func_8000C76C();
+
+    gSPClearGeometryMode(gpDisplayList++, G_CULL_BACK);
+
+    func_80023A10();
+    func_8000A184();
+    if (func_800099D0())
+        return;
+
+    func_8000C76C();
+    D_800BD788 = 1;
+    func_80011DA8();
+    D_800BD788 = 0;
+
+    gSPTexture(gpDisplayList++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON);
+
+    if (func_800099D0())
+        return;
+
+    func_8000C76C();
+    func_8000A634();
+
+    if (func_800099D0())
+        return;
+
+    func_8000C76C();
+    func_8000C8EC();
+
+    if (func_800099D0())
+        return;
+
+    func_8007BE80();
+    func_80086A24();
+
+    if (func_800099D0())
+        return;
+
+    func_8001DE9C();
+
+    if (func_800099D0())
+        return;
+
+    func_8001EB2C();
+    func_80094278();
+
+    if (gMapNum == MAP_THE_RACK)
+        func_80094A60();
+
+    if (gMapNum == MAP_NUCLEAR_WINTER)
+        func_80094F7C();
+
+    if (func_800099D0())
+        return;
+
+    func_8000C76C();
+    func_80012174();
+
+    gSPTexture(gpDisplayList++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON);
+
+    if (func_800099D0())
+        return;
+
+    func_80012318();
+
+    if (func_800099D0())
+        return;
+
+
+    cond = 0;
+    func_8001A1A4();
+    func_8001B2D0();
+
+    if (D_8012C470 == 1)
+    {
+        cond = D_8010A940[playernum].unk2[5] != 0;
+        if (gPlayer[playernum].unk52 >= 0)
+        {
+            if (gPlayer[playernum].unk52 < 2048)
+                cond = 1;
+
+            if (gMapNum == MAP_BASE)
+            {
+                if ((gpSprite[gPlayer[D_801B0820].unk52 & 0x7FF].unk20 == 400) ||
+                    (gpSprite[gPlayer[D_801B0820].unk52 & 0x7FF].unk20 == 402))
+                    cond = 1;
+            }
+
+            if (cond != 0)
+                func_8000EA0C(playernum, -D_800BD748, -D_800BD748, -D_800BD748, D_800BD748);
+        }
+    }
+
+    func_8000EBF0(playernum, cond);
+
+    if (func_800099D0())
+        return;
+
+    func_800A0F84();
+    D_8016A158 = getDisplayListRemainingSize();
+}
 
 /*8000A070*/
 void func_8000A070(void)
 {
     gDPPipeSync(gpDisplayList++);
-    gSPClearGeometryMode(gpDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
+    gSPClearGeometryMode(gpDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING |
+                                          G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
     gSPSetGeometryMode(gpDisplayList++, G_SHADE | G_SHADING_SMOOTH);
     gDPSetTextureLUT(gpDisplayList++, G_TT_RGBA16);
     gDPSetCombineMode(gpDisplayList++, G_CC_DECALRGBA, G_CC_PASS2);
@@ -1365,13 +1525,13 @@ s16 func_8000EBD4(u8 playernum)
 }
 
 /*8000EBF0*/
-static void func_8000EBF0(u8 arg0, u8 arg1)
+static void func_8000EBF0(u8 playernum, u8 arg1)
 {
     s16 alpha;
     f32 f1, f2;
 
     func_8000A070();
-    if (arg0 == 4)
+    if (playernum == 4)
     {
         gDPSetAlphaDither(gpDisplayList++, G_AD_DISABLE);
     }
@@ -1418,16 +1578,16 @@ static void func_8000EBF0(u8 arg0, u8 arg1)
     }
     else
     {
-        if (arg0 != 4)
+        if (playernum != 4)
         {
             MusHandleStop(D_800BD750, 0);
             D_800BD750 = 0;
         }
     }
 
-    if (D_80138798[arg0].a > 0)
+    if (D_80138798[playernum].a > 0)
     {
-        alpha = CLAMP_MIN(CLAMP_MAX(D_80138798[arg0].a, 255), 0);
+        alpha = CLAMP_MIN(CLAMP_MAX(D_80138798[playernum].a, 255), 0);
 
         if (alpha != 255)
         {
@@ -1448,11 +1608,11 @@ static void func_8000EBF0(u8 arg0, u8 arg1)
         {
             gDPSetCombineMode(gpDisplayList++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
         }
-        gDPSetPrimColor(gpDisplayList++, 0, 0, D_80138798[arg0].r, D_80138798[arg0].g, D_80138798[arg0].b, alpha);
+        gDPSetPrimColor(gpDisplayList++, 0, 0, D_80138798[playernum].r, D_80138798[playernum].g, D_80138798[playernum].b, alpha);
 
         f1 = (D_80199110 / 160.0 * 60.0);
         f2 = (D_801A1980 / 120.0 * 46.875);
-        if (arg0 >= 4)
+        if (playernum >= 4)
         {
             func_80027C18((gScreenWidth/2), (gScreenHeight / 2), f1, f2, getTileNum(5948), 0);
             return;
@@ -1460,20 +1620,20 @@ static void func_8000EBF0(u8 arg0, u8 arg1)
         func_80027C18(D_80168C9C, D_801A2684, f1, f2, getTileNum(5948), 0);
     }
 
-    if (arg0 < 4)
+    if (playernum < 4)
     {
-        if (D_8013F930[arg0].a > 0)
+        if (D_8013F930[playernum].a > 0)
         {
             f1 = (D_80199110 / 160.0 * 13.875);
             f2 = (D_801A1980 / 120.0 * 10.40625);
 
-            alpha = CLAMP_MIN(CLAMP_MAX(D_8013F930[arg0].a, 255), 0);
+            alpha = CLAMP_MIN(CLAMP_MAX(D_8013F930[playernum].a, 255), 0);
 
-            func_8002900C(D_8013F930[arg0].r, D_8013F930[arg0].g, D_8013F930[arg0].b,
-                          D_8013F930[arg0].r, D_8013F930[arg0].g, D_8013F930[arg0].b, alpha);
+            func_8002900C(D_8013F930[playernum].r, D_8013F930[playernum].g, D_8013F930[playernum].b,
+                          D_8013F930[playernum].r, D_8013F930[playernum].g, D_8013F930[playernum].b, alpha);
 
             func_80027C18(D_80168C9C, D_801A2684, f1, f2, getTileNum(5983), 0);
-            D_8013F930[arg0].a = CLAMP_MIN((D_8013F930[arg0].a - 8), 0);
+            D_8013F930[playernum].a = CLAMP_MIN((D_8013F930[playernum].a - 8), 0);
         }
     }
 }

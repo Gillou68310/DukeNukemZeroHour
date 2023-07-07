@@ -4,6 +4,7 @@
 #include "common.h"
 
 void func_80019BC0(void);
+void func_8001A1A4(void);
 void func_8001B2D0(void);
 void func_8001BB1C(void);
 void func_8001BCDC(void);

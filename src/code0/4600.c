@@ -91,7 +91,7 @@ s32 func_800042D8(s32 arg0, f32 arg1, f32 arg2)
 }
 
 /*800043F4*/
-void func_800043F4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, u16 arg4)
+void func_800043F4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s16 arg4)
 {
     f32 f1, f2, f3, f4, f5;
     s16 sectnum;

@@ -13,7 +13,10 @@ typedef struct
     /*0x0000*/ Mtx mtx1[MAXPLAYERS];
     /*0x0100*/ Mtx mtx2[MAXPLAYERS];
     /*0x0200*/ LookAt lookat[MAXPLAYERS][2];
-    /*0x0300*/ u8 pad1[320];
+    /*0x0300*/ Mtx mtx6;
+    /*0x0340*/ Mtx mtx7;
+    /*0x0380*/ Mtx mtx8;
+    /*0x03C0*/ u8 pad1[128];
     /*0x0440*/ Mtx mtx3[256];
     /*0x4440*/ u8 pad2[2112];
     /*0x4C80*/ Mtx mtx4;
@@ -456,7 +459,7 @@ typedef struct
 /*800FE416*/ _extern s16 gMapNum;
 /*800FF528*/ _extern s32 *D_800FF528;
 /*800FE944*/ _extern u8 *gpModelTile;
-/*800FE950*/ _extern VertexC D_800FE950[12];
+/*800FE950*/ _extern VertexC D_800FE950[12] ALIGNED(8);
 /*800FE9C8*/ _extern s32 D_800FE9C8[2]; /*CLOUDS SP*/
 /*800FE9D0*/ _extern s8 D_800FE9D0;
 /*800FE9E0*/ _extern _volatile s64 D_800FE9E0;

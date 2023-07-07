@@ -3,7 +3,7 @@
 
 #include "common.h"
 
-void func_800043F4(s32, s32, s32, f32, u16);
+void func_800043F4(s32, s32, s32, f32, s16);
 void func_80004A3C(u16 sectnum);
 void func_80004B60(u16);
 void func_80004C84(void);
