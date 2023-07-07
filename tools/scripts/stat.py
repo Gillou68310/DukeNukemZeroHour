@@ -68,6 +68,9 @@ def write_output_file(path, funcs, scratches):
     f = open(path, 'w')
     for fu in funcs:
         s = scratches.get(fu.name)
+        if s == None:
+           s = scratches.get(f"func_{fu.addr:08X}")
+
         if fu.addr in non_matching:
             f.write('non_matching')
         f.write(';'+fu.name+';'+str(fu.size))

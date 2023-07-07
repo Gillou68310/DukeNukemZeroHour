@@ -4,7 +4,7 @@
 #include "common.h"
 
 void func_8001F928(s32, s32);
-void func_8001FD60(u8, s32);
+void func_8001FD60(u8, u8);
 void func_80020510(void);
 
 extern Vp D_800DCB10;
