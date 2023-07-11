@@ -1,4 +1,5 @@
 #include "common.h"
+#include "code0/main.h"
 #include "code0/audio.h"
 #include "code0/engine.h"
 #include "code0/37090.h"
@@ -244,7 +245,162 @@ void func_80068E9C(void)
 }
 
 /*80069160*/
-INCLUDE_ASM("nonmatchings/src/code0/64530", func_80069160);
+void func_80069160(void)
+{
+    SpriteType *spr;
+    s16 i, j, nexti;
+    u8 cond;
+
+    i = gHeadSpriteStat[105];
+    while (i >= 0)
+    {
+        spr = &gpSprite[i];
+        nexti = gNextSpriteStat[i];
+        if (!(spr->cstat & 0x8000))
+        {
+            cond = 0;
+            switch (spr->unk25)
+            {
+            case 0:
+                for (j = 0; j < D_8012C470; j++)
+                {
+                    if (gPlayer[j].unk32 == spr->sectnum)
+                    {
+                        cond = 1;
+                        break;
+                    }
+                }
+                break;
+            case 1:
+                j = gHeadSpriteSect[spr->sectnum];
+                while (j >= 0)
+                {
+                    if ((gpSprite[j].picnum == 2222) || (gpSprite[j].picnum == 2311))
+                    {
+                        cond = 1;
+                        break;
+                    }
+                    j = gNextSpriteSect[j];
+                }
+                break;
+            case 2:
+                j = gHeadSpriteSect[spr->sectnum];
+                while (j >= 0)
+                {
+                    if ((gpSprite[j].statnum == 1) &&
+                        (gpSprite[j].picnum >= 49))
+                    {
+                        if ((D_8019B940[D_80106D50[j]].unk0 & 0x100000) == 0)
+                        {
+                            cond = 1;
+                            break;
+                        }
+                    }
+                    j = gNextSpriteSect[j];
+                }
+                break;
+            case 3:
+                for (j = 0; j < D_8012C470; j++)
+                {
+                    if ((gPlayer[j].unk32 == spr->sectnum) && ((gPlayer[j].unk88[spr->ang])))
+                    {
+                        cond = 1;
+                        break;
+                    }
+                }
+                break;
+            case 4:
+                j = gHeadSpriteSect[spr->sectnum];
+                while (j >= 0)
+                {
+                    if ((gpSprite[j].statnum == 1) && (gpSprite[j].picnum == 46))
+                    {
+                        cond = 1;
+                        break;
+                    }
+                    j = gNextSpriteSect[j];
+                }
+                break;
+            case 5:
+                if (D_800DF585 == 0)
+                {
+                    for (j = 0; j < D_8012C470; j++)
+                    {
+                        if (gPlayer[j].unk32 == spr->sectnum)
+                        {
+                            cond = 1;
+                            break;
+                        }
+                    }
+                }
+                else
+                    deleteSprite(i);
+
+                break;
+            }
+
+            if (cond != 0)
+            {
+                if (spr->unk24 == 0)
+                {
+                    if (spr->unk20 != 0)
+                        func_8006B590(spr->unk20);
+                    else
+                        func_8006CB38(spr->sectnum);
+
+                    spr->unk24 = 1;
+                    if ((spr->unk1E > 0) && (--spr->unk1E == 0))
+                        deleteSprite(i);
+                }
+            }
+            else
+                spr->unk24 = 0;
+        }
+        i = nexti;
+    }
+
+    i = gHeadSpriteStat[111];
+    while (i >= 0)
+    {
+        nexti = gNextSpriteStat[i];
+        if ((gpSprite[i].unk20 == 0) && (gpSprite[i].picnum == 29))
+        {
+            cond = 0;
+            for (j = 0; j < D_8012C470; j++)
+            {
+                if (gPlayer[j].unk32 == gpSprite[i].sectnum)
+                    cond = 1;
+            }
+
+            if (cond)
+            {
+                audio_80008574(0, gpSprite[i].unk1E);
+                deleteSprite(i);
+            }
+        }
+        i = nexti;
+    }
+
+    i = gHeadSpriteStat[122];
+    while (i >= 0)
+    {
+        nexti = gNextSpriteStat[i];
+        if (gPlayer[0].unk32 == gpSprite[i].sectnum)
+        {
+            if (gpSprite[i].unk24 == 0)
+                func_800A419C(0, gpActionStrInfo[gpSprite[i].unk25]);
+
+            if (gMapNum == MAP_BASE)
+                gpSprite[i].unk24 = 1;
+            else
+                deleteSprite(i);
+        }
+        else
+            gpSprite[i].unk24 = 0;
+
+        i = nexti;
+    }
+}
 
 /*800697D8*/
 static void func_800697D8(s16 playernum, s16 arg1, s16 arg2)
