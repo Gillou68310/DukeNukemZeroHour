@@ -167,7 +167,95 @@ static s16 func_8009FEB0(s16 x, s16 y, char *arg2, s16 arg3)
 }
 
 /*800A0014*/
-INCLUDE_ASM("nonmatchings/src/code0/A06F0", func_800A0014);
+static void func_800A0014(void)
+{
+    char sp20[32];
+    s16 x, y;
+    s16 i, j, k;
+    u8 cond;
+
+    func_8000A070();
+    x = D_80119A94 + 80;
+    y = D_80199944 + 35;
+
+    if (D_8012C989 != 0)
+    {
+        cond = 0;
+        func_80029238(200, 200, 200, 0x80, 0x80, 0x80, D_80106D40);
+        displayMessage2(x, y, "KEYS");
+        y += 10;
+        func_80029238(0, 200, 200, 0, 0x80, 0x80, D_80106D40);
+
+        for (i = 1; i < ARRAY_COUNT(gPlayer[0].unk88); i++)
+        {
+            if (gPlayer[0].unk88[i] != 0)
+            {
+                displayMessage2(x, y, gpKeyStrInfo[gMapNum][i-1]);
+                y += 10;
+                cond = 1;
+            }
+        }
+        if (!cond)
+        {
+            displayMessage2(x, y, "NONE");
+            y += 10;
+        }
+        func_80029238(200, 200, 200, 0x80, 0x80, 0x80, D_80106D40);
+        y += 10;
+        displayMessage2(x, y, "TIME MACHINE PARTS");
+        y += 10;
+        func_80029238(0, 200, 200, 0, 0x80, 0x80, D_80106D40);
+
+        if ((gMapNum == MAP_WETWORLD) || (gMapNum == MAP_BOSS_HOG) ||
+            (gMapNum == MAP_CYBORG_SCORPION) || (gMapNum >= MAP_THE_RACK))
+            displayMessage2(x, y, "NONE DETECTED");
+        else if (gTimeMachinePart & (1 << gMapNum))
+            displayMessage2(x, y, "PART COLLECTED");
+        else
+            displayMessage2(x, y, "PART NOT FOUND");
+    }
+    else
+    {
+        func_80029238(200, 200, 200, 0x80, 0x80, 0x80, D_80106D40);
+        displayMessage2(x, y, "PRIMARY GOAL");
+        y += 10;
+        func_80029238(0, 200, 200, 0, 0x80, 0x80, D_80106D40);
+        y = func_8009FEB0(x, y, gpObjectiveStrInfo[gMapNum].addr[0], 29);
+
+        if (gpObjectiveStrInfo[gMapNum].count >= 2)
+        {
+            y += 10;
+            func_80029238(200, 200, 200, 0x80, 0x80, 0x80, D_80106D40);
+            displayMessage2(x, y, "CURRENT OBJECTIVES");
+            y += 10;
+            func_80029238(0, 200, 200, 0, 0x80, 0x80, D_80106D40);
+
+            for (i = 1; i < gpObjectiveStrInfo[gMapNum].count; i++)
+            {
+                if (D_801AE91E[i] == 67)
+                    y = func_8009FEB0(x, y, gpObjectiveStrInfo[gMapNum].addr[i], 29);
+            }
+        }
+    }
+
+    func_80029238(200, 200, 0, 0, 0x80, 0x80, D_80106D40);
+    k = 0;
+    for (j = 0; j < 32; j++)
+    {
+        if (gTimeMachinePart & (1 << j))
+            k++;
+    }
+
+    sprintf(sp20, "TIME MACHINE PARTS %d:%d", k, 13);
+    displayMessage2((D_80119A94 + 80), (D_80199944 + 135), sp20);
+    sprintf(sp20, "SECRETS %d:%d   BABES %d:%d", D_801A1958.secrets_found,
+            D_801A1958.secrets_total, D_801A1958.babes_saved, D_801A1958.babes_total);
+    displayMessage2((D_80119A94 + 80), (D_80199944 + 145), sp20);
+    gDPSetTextureLUT(gpDisplayList++, G_TT_RGBA16);
+    gDPSetCombineMode(gpDisplayList++, G_CC_DECALRGBA, G_CC_PASS2);
+    func_8001D238(D_80119A94 + 210, D_80199944 + 145, 3997);
+    func_8001D238(D_80119A94 + 230, D_80199944 + 145, 3998);
+}
 
 /*800A0698*/
 static void func_800A0698(void)

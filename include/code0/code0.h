@@ -85,7 +85,7 @@ typedef struct
     /*0x82*/ s16 unk82;
     /*0x84*/ s16 unk84;
     /*0x86*/ s16 unk86;
-    /*0x88*/ u8 unk88[17];
+    /*0x88*/ u8 unk88[17]; /*KEY_STRINFO_NUM+1*/
     /*0x99*/ u8 pad[2];
 } Player;
 
