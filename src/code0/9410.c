@@ -38,21 +38,8 @@ typedef struct {
     s16 a;
 } Color16;
 
-/*.data*/
-/*800BD724*/ EXTERN_DATA STATIC u8 *_tileROMAddr;
-/*800BD72C*/ EXTERN_DATA f32 gMapXpos;
-/*800BD730*/ EXTERN_DATA f32 gMapYpos;
-/*800BD734*/ EXTERN_DATA f32 gMapZpos;
-/*800BD738*/ EXTERN_DATA STATIC u8 _sectorsLock;
-/*800BD739*/ EXTERN_DATA STATIC u8 _wallsLock;
-/*800BD73A*/ EXTERN_DATA STATIC u8 _spritesLock;
-/*800BD73B*/ EXTERN_DATA STATIC u8 _mapLock;
-/*800BD73C*/ EXTERN_DATA STATIC u8 _vertexLock;
-/*800BD748*/ EXTERN_DATA s16 D_800BD748;
-/*800BD74A*/ EXTERN_DATA u8 D_800BD74A;
-/*800BD74B*/ EXTERN_DATA STATIC u8 D_800BD74B;
-/*800BD74C*/ EXTERN_DATA STATIC u8 *_tilemap;
-/*800BD750*/ EXTERN_DATA STATIC musHandle D_800BD750;
+extern u8 files_tiles_ROM_START[];
+extern u8 files_tiles_ROM_END[];
 
 /*.comm*/
 /*800FE404*/ s16 D_800FE404;
@@ -80,10 +67,40 @@ typedef struct {
 /*80199118*/ s16 D_80199118;
 /*80199554*/ s32 D_80199554;
 /*80199946*/ s16 D_80199946;
+/*80199954*/ u8 D_80199954;
 /*8019996C*/ s32 D_8019996C;
 /*801A19A0*/ s16 D_801A19A0[32] ALIGNED(8);
 /*801AC9EC*/ s32 D_801AC9EC;
 /*801C0D6C*/ s16 D_801C0D6C;
+
+/*.data*/
+
+/*800BD710*/
+_9410UnkStruct1 D_800BD710[5] = {
+    { 30, 30, 90, 128 },
+    { 30, 60, 30, 166 },
+    { 0, 0, 0, 200 },
+    { 24, 32, 21, 128 },
+    { 22, 77, 17, 128 },
+};
+
+/*800BD724*/ static u8 *_tileROMAddr = files_tiles_ROM_START;
+static u8 *_unused1 = files_tiles_ROM_END;
+/*800BD72C*/ f32 gMapXpos = 0.0f;
+/*800BD730*/ f32 gMapYpos = 256.0f;
+/*800BD734*/ f32 gMapZpos = 0.0f;
+/*800BD738*/ static u8 _sectorsLock = 200;
+/*800BD739*/ static u8 _wallsLock = 200;
+/*800BD73A*/ static u8 _spritesLock = 200;
+/*800BD73B*/ static u8 _mapLock = 200;
+/*800BD73C*/ static u8 _vertexLock = 200;
+static s32 _unused2 = 25;
+static s32 _unused3 = 0;
+/*800BD748*/ s16 D_800BD748 = 0;
+/*800BD74A*/ u8 D_800BD74A = 0;
+/*800BD74B*/ static u8 D_800BD74B = 0;
+/*800BD74C*/ static u8 *_tilemap = gTileBuffer;
+/*800BD750*/ static u32 D_800BD750 = 0;
 
 /*.text*/
 static void initTiles(void);
@@ -94,7 +111,7 @@ static void ceilingVtxToN64(s32 sectnum);
 STATIC void decompressMap(void);
 static void func_80009A14(u8 playernum);
 static void func_8000A938(u16 wallnum);
-STATIC void func_8000AEE0(u16 wallnum);
+static void func_8000AEE0(u16 wallnum);
 static void func_8000B9C0(s16 tileid);
 static s32 func_8000CC54(s32 wallnum);
 static void func_8000E56C(void);
@@ -817,7 +834,119 @@ static void func_8000A938(u16 wallnum)
 };
 
 /*8000AEE0*/
-INCLUDE_ASM("nonmatchings/src/code0/9410", func_8000AEE0);
+static void func_8000AEE0(u16 wallnum)
+{
+    VertexC *ptr;
+    s16 v, w;
+    s16 a, b, c, d, e, f;
+    s16 i, j, k;
+    s16 point2;
+
+    ptr = D_800FE950;
+    point2 = gpWall[wallnum].point2;
+    D_80199954 = func_800213B8(gpWall[wallnum].unk1A, wallnum);
+
+    if (D_80199954 & 8)
+        D_80138694 = 1;
+    else
+        D_80138694 = 0;
+
+    if (D_80199954 & 1)
+        D_800FE404 = 1;
+    else
+        D_800FE404 = 0;
+
+    if (D_80199954 & 2)
+        D_801C0D6C = 1;
+    else
+        D_801C0D6C = 0;
+
+    if (gpWall[wallnum].unk14 == 4)
+    {
+        v = gpWall[wallnum].unk1A;
+        func_8000DBDC(gpSector[v].unk27, gpSector[v].unk26);
+        d = D_8016A148;
+        e = D_800FE410;
+        f = D_80138680;
+        func_8000DBDC(gpSector[v].unk23, gpSector[v].unk22);
+        a = D_8016A148;
+        b = D_800FE410;
+        c = D_80138680;
+    }
+    else
+    {
+        func_8000DBDC(gpWall[wallnum].unk21, gpWall[wallnum].unk1C);
+        d = D_8016A148;
+        e = D_800FE410;
+        f = D_80138680;
+
+        w = wallnum;
+        if (gpWall[wallnum].unk14 == 2)
+            w = point2;
+
+        if (gpWall[wallnum].unk14 == 3)
+        {
+            if (gpWall[point2].nextwall != -1)
+                w = gpWall[gpWall[point2].nextwall].point2;
+            else
+                w = point2;
+        }
+
+        func_8000DBDC(gpWall[w].unk21, gpWall[w].unk1C);
+        a = D_8016A148;
+        b = D_800FE410;
+        c = D_80138680;
+    }
+    for (i = 0; i < (D_80138694 + D_800FE404 + D_801C0D6C); i++)
+    {
+        for (j = 0; j < 2; j++)
+        {
+            for (k = 0; k < 2; k++)
+            {
+                gpVertexN64->v.ob[0] = ptr->ob[0];
+                gpVertexN64->v.ob[1] = ptr->ob[1];
+                gpVertexN64->v.ob[2] = ptr->ob[2];
+                gpVertexN64->v.tc[0] = ptr->tc[0];
+                gpVertexN64->v.tc[1] = ptr->tc[1];
+
+                if (j == 0)
+                {
+                    if ((gpWall[wallnum].unk14 == 4) & (k == 0))
+                    {
+                        gpVertexN64->v.cn[0] = CLAMP_MAX((gpWall[wallnum].unk1D+a), 0xFF);
+                        gpVertexN64->v.cn[1] = CLAMP_MAX((gpWall[wallnum].unk1E+b), 0xFF);
+                        gpVertexN64->v.cn[2] = CLAMP_MAX((gpWall[wallnum].unk1F+c), 0xFF);
+                    }
+                    else
+                    {
+                        gpVertexN64->v.cn[0] = CLAMP_MAX((gpWall[wallnum].unk1D+d), 0xFF);
+                        gpVertexN64->v.cn[1] = CLAMP_MAX((gpWall[wallnum].unk1E+e), 0xFF);
+                        gpVertexN64->v.cn[2] = CLAMP_MAX((gpWall[wallnum].unk1F+f), 0xFF);
+                    }
+                }
+                else
+                {
+                    if ((gpWall[wallnum].unk14 == 4) & (k == 0))
+                    {
+                        gpVertexN64->v.cn[0] = CLAMP_MAX((gpWall[point2].unk1D+d), 0xFF);
+                        gpVertexN64->v.cn[1] = CLAMP_MAX((gpWall[point2].unk1E+e), 0xFF);
+                        gpVertexN64->v.cn[2] = CLAMP_MAX((gpWall[point2].unk1F+f), 0xFF);
+                    }
+                    else
+                    {
+                        gpVertexN64->v.cn[0] = CLAMP_MAX((gpWall[point2].unk1D+a), 0xFF);
+                        gpVertexN64->v.cn[1] = CLAMP_MAX((gpWall[point2].unk1E+b), 0xFF);
+                        gpVertexN64->v.cn[2] = CLAMP_MAX((gpWall[point2].unk1F+c), 0xFF);
+                    }
+                }
+
+                gpVertexN64->v.cn[3] = 0xFF;
+                gpVertexN64++;
+                ptr++;
+            }
+        }
+    }
+}
 
 /*8000B570*/
 void func_8000B570(s16 arg0)

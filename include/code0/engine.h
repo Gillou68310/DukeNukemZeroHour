@@ -94,7 +94,8 @@ typedef struct
 
     /*0x14*/ s16 unk14;
     /*0x16*/ s16 unk16;
-    /*0x18*/ u8 pad1[4];
+    /*0x18*/ s16 unk18;
+    /*0x1A*/ u16 unk1A;
     /*0x1C*/ u8 unk1C;
     /*0x1D*/ u8 unk1D;
     /*0x1E*/ u8 unk1E;

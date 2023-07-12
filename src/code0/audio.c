@@ -1017,7 +1017,7 @@ void audio_80007AB8(void)
 
     if (D_800BD61A > 0)
     {
-        D_800BD61A -= 1;
+        D_800BD61A--;
         if (get_D_800BD61C(4) == 0)
             D_800BD61C[4] = playSfx(1598);
     }

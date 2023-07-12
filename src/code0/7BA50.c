@@ -259,7 +259,7 @@ static void func_8007B930(s32 arg0)
                 gpVertexN64->v.ob[0] = D_800FCBF0[j].unk10 / 8;
                 gpVertexN64->v.ob[1] = D_800FCBF0[j].unk14 / 8;
                 gpVertexN64->v.ob[2] = D_800FCBF0[j].unk18 / 8;
-                gpVertexN64->v.tc[0] = l << 5;;
+                gpVertexN64->v.tc[0] = l << 5;
                 gpVertexN64->v.tc[1] = 0;
                 gpVertexN64->v.cn[0] = 0xFF;
                 gpVertexN64->v.cn[1] = 0xFF;
@@ -270,7 +270,7 @@ static void func_8007B930(s32 arg0)
                 gpVertexN64->v.ob[0] = D_800FCBF0[j].unk4 / 8;
                 gpVertexN64->v.ob[1] = D_800FCBF0[j].unk8 / 8;
                 gpVertexN64->v.ob[2] = D_800FCBF0[j].unkC / 8;
-                gpVertexN64->v.tc[0] = l << 5;;
+                gpVertexN64->v.tc[0] = l << 5;
                 gpVertexN64->v.tc[1] = 0x3FF;
                 gpVertexN64->v.cn[0] = 0xFF;
                 gpVertexN64->v.cn[1] = 0xFF;

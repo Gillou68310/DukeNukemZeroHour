@@ -2029,7 +2029,7 @@ void func_8005E7AC(s32 spritenum, s32 arg1)
     s32 i, j;
 
     D_800DF2E0 = 0;
-    if (gPlayer->unk52 >= 0x800)
+    if (gPlayer[0].unk52 >= 0x800)
         func_8005E4C4(spritenum, 1);
 
     i = gHeadSpriteStat[24];

@@ -2405,7 +2405,7 @@ static void func_8004A590(s32 spritenum)
                 func_80045400(D_80137DE0->unk44, D_80137DE0->unk48, D_80137DE0->unk4C,
                               D_80137DE0->unk50, 200, D_80137DE0->unk60, 15, 18);
                 gpSprite[spritenum].unk1C = 3;
-                D_80137DE0->unk54 -= 1;
+                D_80137DE0->unk54--;
             }
             else
                 gpSprite[spritenum].unk1C--;

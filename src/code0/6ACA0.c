@@ -77,7 +77,7 @@ static void func_8006AD70(s16 spritenum)
                 i = gNextSpriteSect[i];
             }
             D_801A19F0 = playSfx(1599);
-            break;;
+            break;
         case 50:
             if (D_800DF2F0 != 0)
             {
