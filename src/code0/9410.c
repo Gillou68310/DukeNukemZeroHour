@@ -309,8 +309,105 @@ s32 func_8000921C(void)
 }
 
 /*80009314*/
-STATIC void func_80009314(u8 playernum);
-INCLUDE_ASM("nonmatchings/src/code0/9410", func_80009314);
+static void func_80009314(u8 playernum)
+{
+    Fog *fog;
+    s16 i;
+
+    fog = &gFog[playernum];
+    if (gPlayer[playernum].unk55 != 0)
+    {
+        if (fog->unk20 == 0)
+        {
+            fog->unk20 = 1;
+            fog->color[2].r = fog->color[1].r;
+            fog->color[2].g = fog->color[1].g;
+            fog->color[2].b = fog->color[1].b;
+            fog->scale[2].nr = fog->scale[1].nr;
+            fog->scale[2].fr = fog->scale[1].fr;
+        }
+
+        fog->color[0].r = fog->color[1].r = D_800BD710[D_801A19EC].unk0;
+        fog->color[0].g = fog->color[1].g = D_800BD710[D_801A19EC].unk1;
+        fog->color[0].b = fog->color[1].b = D_800BD710[D_801A19EC].unk2;
+        fog->scale[0].nr = fog->scale[1].nr = 995;
+        fog->scale[0].fr = fog->scale[1].fr = 1000;
+        fog->unk1E = 0;
+    }
+
+    else if (fog->unk20 != 0)
+    {
+        fog->unk1E = 0;
+        fog->unk20 = 0;
+        fog->color[0].r = fog->color[1].r = fog->color[2].r;
+        fog->color[0].g = fog->color[1].g = fog->color[2].g;
+        fog->color[0].b = fog->color[1].b = fog->color[2].b;
+        fog->scale[0].nr = fog->scale[1].nr = fog->scale[2].nr;
+        fog->scale[0].fr = fog->scale[1].fr = fog->scale[2].fr;
+    }
+    if ((gPlayer[playernum].unk55 == 0) && (D_801CC7F4 == 0))
+    {
+        i = gHeadSpriteSect[gPlayer[playernum].unk32];
+        while (i != -1)
+        {
+            if (gpSprite[i].picnum == 14)
+            {
+                fog->color[1].r = gpSprite[i].unk18;
+                fog->color[1].g = gpSprite[i].unk1A;
+                fog->color[1].b = gpSprite[i].unk1C;
+                fog->scale[1].nr = gpSprite[i].unk20;
+                fog->scale[1].fr = gpSprite[i].unk1E;
+                fog->unk1E = gpSprite[i].ang;
+
+                if (fog->unk1E == 0)
+                {
+                    fog->color[0].r = fog->color[1].r;
+                    fog->color[0].g = fog->color[1].g;
+                    fog->color[0].b = fog->color[1].b;
+                    fog->scale[0].nr = fog->scale[1].nr;
+                    fog->scale[0].fr = fog->scale[1].fr;
+                }
+                break;
+            }
+            i = gNextSpriteSect[i];
+        }
+    }
+
+    if (fog->color[0].r < fog->color[1].r)
+        fog->color[0].r = MIN(fog->color[1].r, (fog->color[0].r + fog->unk1E));
+
+    if (fog->color[0].r > fog->color[1].r)
+        fog->color[0].r = MAX(fog->color[1].r, (fog->color[0].r - fog->unk1E));
+
+    if (fog->color[0].g < fog->color[1].g)
+        fog->color[0].g = MIN(fog->color[1].g, (fog->color[0].g + fog->unk1E));
+
+    if (fog->color[0].g > fog->color[1].g)
+        fog->color[0].g = MAX(fog->color[1].g, (fog->color[0].g - fog->unk1E));
+
+    if (fog->color[0].b < fog->color[1].b)
+        fog->color[0].b = MIN(fog->color[1].b, (fog->color[0].b + fog->unk1E));
+
+    if (fog->color[0].b > fog->color[1].b)
+        fog->color[0].b = MAX(fog->color[1].b, (fog->color[0].b - fog->unk1E));
+
+    if (fog->scale[0].nr < fog->scale[1].nr)
+        fog->scale[0].nr = MIN(fog->scale[1].nr, (fog->scale[0].nr + CLAMP_MIN(fog->unk1E/8, 1)));
+
+    if (fog->scale[0].nr > fog->scale[1].nr)
+        fog->scale[0].nr = MAX(fog->scale[1].nr, (fog->scale[0].nr - CLAMP_MIN(fog->unk1E/8, 1)));
+
+    if (fog->scale[0].fr < fog->scale[1].fr)
+        fog->scale[0].fr = MIN(fog->scale[1].fr, (fog->scale[0].fr + CLAMP_MIN(fog->unk1E/8, 1)));
+
+    if (fog->scale[0].fr > fog->scale[1].fr)
+        fog->scale[0].fr = MAX(fog->scale[1].fr, (fog->scale[0].fr - CLAMP_MIN(fog->unk1E/8, 1)));
+
+    fog->scale[0].fr = MAX((fog->scale[0].nr + 5), fog->scale[0].fr);
+    gDPSetFogColor(gpDisplayList++, fog->color[0].r, fog->color[0].g, fog->color[0].b, 0);
+    gSPFogFactor(gpDisplayList++, (0x1F400 / (fog->scale[0].fr - fog->scale[0].nr)),
+                                  (((0x1F4-fog->scale[0].nr) << 8) / (fog->scale[0].fr - fog->scale[0].nr)));
+}
 
 /*80009998*/
 static s32 getDisplayListRemainingSize(void)

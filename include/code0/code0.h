@@ -433,7 +433,8 @@ typedef struct
     FogColor color[3];
     FogScale scale[3];
     s16 unk1E;
-    s16 unk20;
+    u8 unk20;
+    u8 pad;
 } Fog;
 
 #ifdef _CODE0_C_
