@@ -1402,7 +1402,7 @@ static void main_800034F4(void)
 /*800036DC*/
 static void main_800036DC(void)
 {
-    gSPViewport(gpDisplayList++, &D_800DCB10);
+    gSPViewport(gpDisplayList++, &D_800DCB10[0]);
     guMtxIdent(&gpDynamic->identity);
     guScale(&gpDynamic->scale, 0.25, 0.25, 0.25);
     D_801AE528 = 0;

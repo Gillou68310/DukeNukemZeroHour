@@ -1,11 +1,51 @@
 #include "common.h"
 #include "code0/7F6A0.h"
+#include "code0/7FCE0.h"
+#include "code0/82480.h"
 #include "code0/code0.h"
 
 /*.data*/
-/*800DF9A0*/ EXTERN_DATA STATIC ProcPointer D_800DF9A0[12];
-/*800DF9D0*/ EXTERN_DATA STATIC ProcPointer D_800DF9D0[16];
-/*800DFA10*/ EXTERN_DATA STATIC ProcPointer D_800DFA10[12];
+/*800DF9A0*/
+static ProcPointer D_800DF9A0[12] = {
+    NULL,
+    NULL,
+    func_8008383C,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};
+
+/*800DF9D0*/
+static ProcPointer D_800DF9D0[16] = {
+    NULL,
+    func_8007FCC8,
+    func_80082448,
+    func_8007F0E0,
+    func_8008011C,
+    func_8008036C,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};
+
+/*800DFA10*/
+static ProcPointer D_800DFA10[12] = {
+    NULL, NULL, NULL, NULL, NULL, NULL,
+    NULL, NULL, NULL, NULL, NULL, NULL
+};
 
 /*.comm*/
 /*80138870*/ s16 D_80138870[2048] ALIGNED(16);

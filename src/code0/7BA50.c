@@ -22,12 +22,13 @@ typedef struct
     s16 unk2C;
 } _7BA50UnkStruct1;
 
-/*.text*/
-
-/*800DF940*/ EXTERN_DATA STATIC u16 D_800DF940;
+/*.data*/
+/*800DF940*/ static u16 D_800DF940 = 0;
 
 /*.comm*/
 /*800FCBF0*/ _7BA50UnkStruct1 D_800FCBF0[128] ALIGNED(16);
+
+/*.text*/
 
 /*8007AE50*/
 s32 func_8007AE50(void)

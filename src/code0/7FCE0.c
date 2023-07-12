@@ -251,7 +251,7 @@ STATIC s32 func_800800D8(u8 *arg0, s32 arg1)
 }
 
 /*8008011C*/
-STATIC void func_8008011C(void)
+void func_8008011C(void)
 {
     code0UnkStruct15 *ptr;
     s8 *ptr2;
