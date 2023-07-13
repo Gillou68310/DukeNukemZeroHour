@@ -127,8 +127,125 @@ static s32 func_80093670(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
     }
 }
 
+#ifdef NON_MATCHING
+/*80093BB0*/
+void func_80093BB0(u16 wallnum)
+{
+    s32 x1, y1, x2, y2, x3, y3, z1, z2, z3;
+    s32 ceilz, floorz1, floorz2;
+    s32 i, j;
+
+    D_80139870 = (getAngle(gpWall[wallnum].x - gpWall[gpWall[wallnum].point2].x,
+        gpWall[wallnum].y - gpWall[gpWall[wallnum].point2].y) + 1024) & 0x7FF;
+    x1 = gpWall[wallnum].x;
+    y1 = gpWall[wallnum].y;
+    x2 = gpWall[gpWall[wallnum].point2].x;
+    y2 = gpWall[gpWall[wallnum].point2].y;
+    ceilz = getCeilzOfSlope(gpWall[wallnum].unk1A, x1, y1) >> 4;
+    getCeilzOfSlope(gpWall[wallnum].unk1A, x2, y2);
+    z1 = getCeilzOfSlope(gpWall[wallnum].nextsector, x1, y1) >> 4;
+    getCeilzOfSlope(gpWall[wallnum].nextsector, x2, y2);
+
+    if (ceilz < z1)
+        ceilz = z1;
+
+    floorz1 = getFlorzOfSlope(gpWall[wallnum].unk1A, x1, y1) >> 4;
+    floorz2 = getFlorzOfSlope(gpWall[wallnum].unk1A, x2, y2) >> 4;
+    z1 = getFlorzOfSlope(gpWall[wallnum].nextsector, x1, y1) >> 4;
+    z2 = getFlorzOfSlope(gpWall[wallnum].nextsector, x2, y2) >> 4;
+
+    if (z1 < floorz1)
+    {
+        floorz1 = z1;
+        floorz2 = z2;
+    }
+
+    if (D_80199638 != 0)
+    {
+        x3 = D_801AE918;
+        y3 = D_8010A9B0;
+        z3 = D_8016A150 / 16;
+    }
+    else
+    {
+        x3 = (x1 + x2) / 2;
+        y3 = (y1 + y2) / 2;
+        z3 = (ceilz + floorz2) / 2;
+    }
+
+    D_80197D20.x[0] = x1;
+    D_80197D20.y[0] = y1;
+    D_80197D20.z[0] = ceilz;
+    D_80197D20.x[1] = x2;
+    D_80197D20.y[1] = y2;
+    D_80197D20.z[1] = ceilz;
+    D_80197D20.x[2] = x3;
+    D_80197D20.y[2] = y3;
+    D_80197D20.z[2] = z3;
+
+    func_80093670((x1 + x2 + x3) / 3,
+                  (y1 + y2 + y3) / 3,
+                  ((ceilz * 2) + z3) / 3,
+                  gpWall[wallnum].unk1A);
+
+    D_80197D20.x[0] = x2;
+    D_80197D20.y[0] = y2;
+    D_80197D20.z[0] = ceilz;
+    D_80197D20.x[1] = x2;
+    D_80197D20.y[1] = y2;
+    D_80197D20.z[1] = floorz1;
+    D_80197D20.x[2] = x3;
+    D_80197D20.y[2] = y3;
+    D_80197D20.z[2] = z3;
+
+    func_80093670(((x2 * 2) + x3) / 3,
+                  ((y2 * 2) + y3) / 3,
+                  (ceilz + floorz1 + z3) / 3,
+                  gpWall[wallnum].unk1A);
+
+    D_80197D20.x[0] = x2;
+    D_80197D20.y[0] = y2;
+    D_80197D20.z[0] = floorz1;
+    D_80197D20.x[1] = x1;
+    D_80197D20.y[1] = y1;
+    D_80197D20.z[1] = floorz1;
+    D_80197D20.x[2] = x3;
+    D_80197D20.y[2] = y3;
+    D_80197D20.z[2] = z3;
+
+    func_80093670((x1 + x2 + x3) / 3,
+                  (y1 + y2 + y3) / 3,
+                  ((floorz1 * 2) + z3) / 3,
+                  gpWall[wallnum].unk1A);
+
+    D_80197D20.x[0] = x1;
+    D_80197D20.y[0] = y1;
+    D_80197D20.z[0] = ceilz;
+    D_80197D20.x[1] = x1;
+    D_80197D20.y[1] = y1;
+    D_80197D20.z[1] = floorz1;
+    D_80197D20.x[2] = x3;
+    D_80197D20.y[2] = y3;
+    D_80197D20.z[2] = z3;
+
+    i = func_80093670(((x1 * 2) + x3) / 3,
+                      ((y1 * 2) + y3) / 3,
+                      (ceilz + floorz1 + z3) / 3,
+                      gpWall[wallnum].unk1A);
+
+    j = func_80040D94(x1, y1, ceilz, x2, y2, floorz2);
+
+    if (j < 1024)
+        audio_800077F4(((krand() % 3) + 1045), i);
+    else if ((j >= 1024) && (j < 2048))
+        audio_800077F4(((krand() % 3) + 1039), i);
+    else if (j >= 2048)
+        audio_800077F4(((krand() % 3) + 1042), i);
+}
+#else
 /*80093BB0*/
 INCLUDE_ASM("nonmatchings/src/code0/8EFE0", func_80093BB0);
+#endif
 
 /*80094278*/
 void func_80094278(void)

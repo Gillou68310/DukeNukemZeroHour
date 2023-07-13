@@ -412,7 +412,7 @@ static void func_8003A910(void)
         }
         if ((gPlayer[D_801B0820].unk20 > 0) && (gPlayer[D_801B0820].unk54 == 0))
         {
-            if ((u32)(i - 0x8000) < 0x4000U)
+            if ((i >= 0x8000) && (i < 0xC000))
             {
                 if (gpWall[i-0x8000].unk14 == 50)
                 {
