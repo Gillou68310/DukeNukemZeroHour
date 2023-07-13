@@ -1,6 +1,3 @@
-files_tiles_ROM_START                 = 0x0011FC80;
-files_tiles_ROM_END                   = 0x00385980;
-
 files_1003A60_ROM_START               = 0x01003A60;
 files_1004260_ROM_START               = 0x01004260;
 files_1004A60_ROM_START               = 0x01004A60;
