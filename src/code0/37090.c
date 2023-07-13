@@ -639,7 +639,7 @@ static void func_8003E8D0(void)
         {
             func_800A419C(D_801B0820, "SECRET AREA");
             gpSector[j].floorstat &= 0xFEFF;
-            D_801A1958.secrets_found += 1;
+            D_801A1958.secrets_found++;
             playSfx(1595);
             func_801C363C(D_801B0820, 10, 128);
         }

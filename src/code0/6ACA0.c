@@ -2449,7 +2449,7 @@ STATIC void func_80076C14(s32 spritenum)
                 if (spr->unk18 >= 26)
                 {
                     spr->unk1A = 0;
-                    spr->unk25 += 1;
+                    spr->unk25++;
                 }
             }
         }

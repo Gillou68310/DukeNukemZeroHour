@@ -57,6 +57,7 @@ typedef struct
 /*800DEEC0*/ EXTERN_DATA s32 gInvulnerability;
 /*800DEEC8*/ EXTERN_DATA STATIC s32 D_800DEEC8;
 /*800DEED0*/ EXTERN_DATA u8 D_800DEED0[MAXPLAYERS];
+/*800DEED4*/ EXTERN_DATA STATIC s32 D_800DEED4;
 /*800DEEE4*/ EXTERN_DATA u8 D_800DEEE4[MAXPLAYERS];
 /*800DEEE8*/ EXTERN_DATA s32 gAutoAim;
 /*800DEF10*/ EXTERN_DATA STATIC s32 D_800DEF10;
@@ -106,7 +107,7 @@ static void func_80051088(s32 spritenum);
 static void func_80051330(s32 spritenum);
 STATIC void func_800519AC(void);
 static void func_80053650(s32, s32 spritenum);
-STATIC void func_80056C00(s32);
+static void func_80056C00(s32);
 STATIC void func_80057E7C(void);
 static s32 func_80058538(SpriteType *spr, s32);
 static s32 func_80058DE0(SpriteType *spr, s32 *);
@@ -3068,7 +3069,7 @@ s32 func_8004CE58(SpriteType *spr, s16 arg1, s16 arg2)
                             {
                                 cond1 = klabs_(scale(gpSprite[j].z - spr->z, 10, m) - f) < 100;
                                 cond2 = (canSee(gpSprite[j].x, gpSprite[j].y, (gpSprite[j].z - 8192), gpSprite[j].sectnum,
-                                    spr->x, spr->y, (spr->z - 8192), spr->sectnum) << 16) != 0;
+                                    spr->x, spr->y, (spr->z - 8192), spr->sectnum) << 16) != 0; /*TODO*/
 
                                 if (cond1 & cond2)
                                 {
@@ -3095,7 +3096,7 @@ s32 func_8004D304(SpriteType *arg0, s16 arg1, s16 arg2)
     s32 x, y;
     s16 i;
     s32 j, m;
-    s32 cond;
+    s16 cond;
 
     if (arg1)
         stat = D_800E58F4;
@@ -3134,7 +3135,7 @@ s32 func_8004D304(SpriteType *arg0, s16 arg1, s16 arg2)
                             if (m < g)
                             {
                                 cond = (canSee(gpSprite[i].x, gpSprite[i].y, (gpSprite[i].z - 8192) - func_80058600(i),
-                                    gpSprite[i].sectnum, arg0->x, arg0->y, (arg0->z - 8192), arg0->sectnum)) << 16;
+                                    gpSprite[i].sectnum, arg0->x, arg0->y, (arg0->z - 8192), arg0->sectnum));
                                 if (cond != 0)
                                 {
                                     g = m;
@@ -5410,7 +5411,140 @@ void func_80056A54(s16 spritenum)
 }
 
 /*80056C00*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_80056C00);
+static void func_80056C00(s32 spritenum)
+{
+    SpriteType *spr;
+    code0UnkStruct3 *ptr;
+    s32 cond;
+    s16 i, nexti;
+    s32 x1, y1, x2, y2;
+    s32 ang;
+    s32 d1, d2, d3;
+    s16 cond2;
+
+    i = gHeadSpriteStat[2];
+    gSnoozingAliens = 0;
+    gAlertAliens = 0;
+    cond = gpSprite[spritenum].statnum == 10;
+
+    while (i >= 0)
+    {
+        nexti = gNextSpriteStat[i];
+        ptr = &D_8019B940[D_80106D50[i]];
+        if (ptr->unk6C != 0)
+            ptr->unk6C = audio_80007A80(ptr->unk6C, i, ptr->unk74);
+
+        if (ptr->unk70 != 0)
+            ptr->unk70 = audio_80007A80(ptr->unk70, i, ptr->unk78);
+
+        if (gMapNum == MAP_WETWORLD)
+            d1 = 25000;
+        else
+            d1 = 30000;
+
+        if ((D_8019B940[D_80106D50[i]].unkC != 0) && (D_8019B940[D_80106D50[i]].unk0 & 1))
+        {
+            spr = &gpSprite[i];
+            d2 = klabs_(gpSprite[spritenum].x - spr->x) + klabs_(gpSprite[spritenum].y - spr->y);
+            if (d2 < d1)
+            {
+                ang = ((krand() & 0x7F) - 64);
+                x2 = gpSprite[spritenum].x - ang;
+                ang = ((krand() & 0x7F) - 64);
+                y2 = gpSprite[spritenum].y - ang;
+                ang = ((krand() & 0x7F) - 64);
+                x1 = spr->x - ang;
+                ang = ((krand() & 0x7F) - 64);
+                y1 = spr->y - ang;
+
+                if (cond == 0)
+                    cond2 = 1;
+                else
+                    cond2 = canSee(x1, y1, (spr->z - ((krand() % 40) << 8)), spr->sectnum,
+                                    x2, y2, ((gpSprite[spritenum].z - ((krand() % 40) << 8))),
+                                    gpSprite[spritenum].sectnum);
+
+                if (cond2 != 0)
+                    changeSpriteStat(i, 1);
+            }
+        }
+        i = nexti;
+    }
+
+    if (D_800DEF1C == -1)
+    {
+        i = gHeadSpriteStat[1];
+        while (i >= 0)
+        {
+            nexti = gNextSpriteStat[i];
+            ptr = &D_8019B940[D_80106D50[i]];
+
+            if (ptr->unk6C != 0)
+                ptr->unk6C = audio_80007A80(ptr->unk6C, i, ptr->unk74);
+
+            if (ptr->unk70 != 0)
+                ptr->unk70 = audio_80007A80(ptr->unk70, i, ptr->unk78);
+
+            if (D_8019B940[D_80106D50[i]].unkC != 0)
+            {
+                if ((D_8019B940[D_80106D50[i]].unk0 & 1) &&
+                    !(D_8019B940[D_80106D50[i]].unk0 & 0x40000) &&
+                    !(D_8019B940[D_80106D50[i]].unk4 & 0x40))
+                {
+                    spr = &gpSprite[i];
+                    d2 = klabs_(gpSprite[spritenum].x - spr->x) + klabs_(gpSprite[spritenum].y - spr->y);
+                    d3 = D_800DEED4;
+
+                    if ((gMapNum == MAP_UP_SHIP_CREEK) & (cond == 0))
+                        d3 >>= 1;
+
+                    if (gpSprite[i].picnum == 2468)
+                        d3 += 10000;
+
+                    if (gMapNum == MAP_WETWORLD)
+                        d3 = 30000;
+
+                    if ((d3 < d2) && (D_8013B2D0[i].unk6 == 0))
+                    {
+                        ang = ((krand() & 0x7F) - 64);
+                        x2 = gpSprite[spritenum].x - ang;
+                        ang = ((krand() & 0x7F) - 64);
+                        y2 = gpSprite[spritenum].y - ang;
+                        ang = ((krand() & 0x7F) - 64);
+                        x1 = spr->x - ang;
+                        ang = ((krand() & 0x7F) - 64);
+                        y1 = spr->y - ang;
+
+                        cond2 = canSee(x1, y1, (spr->z - ((krand() % 40) << 8)), spr->sectnum,
+                                       x2, y2, ((gpSprite[spritenum].z - ((krand() % 40) << 8))),
+                                       gpSprite[spritenum].sectnum);
+
+                        if (cond2 == 0)
+                            changeSpriteStat(i, 2);
+                    }
+                }
+            }
+            i = nexti;
+        }
+    }
+
+    i = gHeadSpriteStat[1];
+    gAlertAliens = 0;
+    gSnoozingAliens = 0;
+
+    while (i >= 0)
+    {
+        i = gNextSpriteStat[i];
+        gAlertAliens++;
+    }
+
+    i = gHeadSpriteStat[2];
+    while (i >= 0)
+    {
+        i = gNextSpriteStat[i];
+        gSnoozingAliens++;
+    }
+}
 
 /*8005731C*/
 STATIC s32 func_8005731C(s32 spritenum)
@@ -5485,9 +5619,7 @@ static s32 func_80058538(SpriteType *spr, s32 arg1)
         {
             d2 = dist(&gpSprite[i], spr);
             if (d2 < d1)
-            {
                 d1 = d2;
-            }
         }
         i = gNextSpriteStat[i];
     }
