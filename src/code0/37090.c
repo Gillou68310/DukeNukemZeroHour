@@ -4,6 +4,7 @@
 #include "code0/pragmas.h"
 #include "code0/audio.h"
 #include "code0/9410.h"
+#include "code0/37090.h"
 #include "code0/41940.h"
 #include "code0/6ACA0.h"
 #include "code0/7A430.h"
@@ -342,7 +343,120 @@ static void func_80039344(void)
 INCLUDE_ASM("nonmatchings/src/code0/37090", func_80039774);
 
 /*8003A910*/
-INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003A910);
+static void func_8003A910(void)
+{
+    s32 x, y;
+    u16 cstat;
+    ModelInfo *model;
+    s16 spritenum;
+    s16 ang;
+    s32 i, j;
+    s32 walldist;
+    s32 flordist;
+
+    cstat = gpSprite[gPlayer[D_801B0820].unk4A].cstat;
+    gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & 0xFEFE;
+    walldist = 164;
+
+    if (gpSprite[gPlayer[D_801B0820].unk4A].cstat & 0x1000)
+    {
+        model = D_800D52E0[gpSprite[gPlayer[D_801B0820].unk4A].picnum - 1280];
+        walldist = ((model->unk2A - model->unk24) *
+                    gpSprite[gPlayer[D_801B0820].unk4A].xrepeat / 64);
+        walldist *= 2;
+    }
+
+    x = gPlayer[D_801B0820].xpos;
+    y = gPlayer[D_801B0820].ypos;
+    flordist = CLAMP_MIN((gPlayer[D_801B0820].unk40 - 0x1200), 1024);
+
+    i = clipMove(&gPlayer[D_801B0820].xpos, &gPlayer[D_801B0820].ypos,
+                 &gPlayer[D_801B0820].zpos, &gPlayer[D_801B0820].unk32,
+                 gPlayer[D_801B0820].unkC, gPlayer[D_801B0820].unk10,
+                 walldist, 1024, flordist, 0x10001);
+
+    if (gPlayer[D_801B0820].unk45== 0)
+    {
+        j = pushMove(&gPlayer[D_801B0820].xpos, &gPlayer[D_801B0820].ypos,
+                     &gPlayer[D_801B0820].zpos, &gPlayer[D_801B0820].unk32,
+                     walldist, 1024, flordist, 0x10001);
+
+        gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat;
+        if (j == -1)
+            func_800365C0(D_801B0820);
+
+        if (i != 0)
+        {
+            gPlayer[D_801B0820].unkC = (gPlayer[D_801B0820].xpos - x) << 14;
+            gPlayer[D_801B0820].unk10 = (gPlayer[D_801B0820].ypos - y) << 14;
+            if (i >= 0xC000)
+            {
+                spritenum = i + 0x4000;
+                if ((gpSprite[spritenum].picnum == 1398) || (gpSprite[spritenum].picnum == 1399))
+                {
+                    if (!(D_8012FD88 & 7))
+                        func_8003671C(D_801B0820, 1, -1, -1);
+                }
+                if (gpSprite[spritenum].statnum == 305)
+                {
+                    if (gpSprite[spritenum].picnum == 1306)
+                        func_800365C0(0);
+                }
+
+                if (D_80106D50[spritenum] != -1)
+                {
+                    if (D_8019B940[D_80106D50[spritenum]].unk4 & 0x8000)
+                        D_8019B940[D_80106D50[spritenum]].unk4 |= 0x20000;
+                }
+            }
+        }
+        if ((gPlayer[D_801B0820].unk20 > 0) && (gPlayer[D_801B0820].unk54 == 0))
+        {
+            if ((u32)(i - 0x8000) < 0x4000U)
+            {
+                if (gpWall[i-0x8000].unk14 == 50)
+                {
+                    gPlayer[D_801B0820].unk72 = D_8011BC44->unk99;
+                    gPlayer[D_801B0820].unk5E = i - 0x8000;
+                    gPlayer[D_801B0820].unk58 = 1;
+                    gPlayer[D_801B0820].unk10 = 0;
+                    gPlayer[D_801B0820].unkC = 0;
+                    if (D_8011BC44->unk70 != 0)
+                        func_80079C20(gPlayer[D_801B0820].unk4A);
+
+                    D_8011BC44->unk99 = 0;
+                }
+            }
+            if (i >= 0xC000)
+            {
+
+                if (gpSprite[i-0xC000].statnum == 115)
+                {
+                    ang = (gpSprite[i - 0xC000].ang + 0x400) & 0x7FF;
+                    ang = gPlayer[D_801B0820].unk38 - ang;
+
+                    if (ang < -1024)
+                        ang += 2048;
+                    if (ang > 1024)
+                        ang -= 2048;
+
+                    if (klabs(ang) < 256)
+                    {
+                        gPlayer[D_801B0820].unk72 = D_8011BC44->unk99;
+                        gPlayer[D_801B0820].unk5E = i + 0x5000;
+                        gPlayer[D_801B0820].unk58 = 1;
+                        gPlayer[D_801B0820].unk10 = 0;
+                        gPlayer[D_801B0820].unkC = 0;
+                        if (D_8011BC44->unk70 != 0)
+                            func_80079C20(gPlayer[D_801B0820].unk4A);
+
+                        D_8011BC44->unk99 = 0;
+                    }
+                }
+            }
+        }
+    }
+}
 
 /*8003AFD0*/
 static void func_8003AFD0(s16 playernum)

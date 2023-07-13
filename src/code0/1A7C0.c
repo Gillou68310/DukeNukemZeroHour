@@ -36,6 +36,7 @@ STATIC void func_8001A8EC(s16, s16, s32 tileid, s16, u8);
 static void func_8001BFB0(code0unkStruct12 *);
 static void func_8001C490(s16);
 
+/*FIXME: This breaks sky*/
 #ifdef NON_MATCHING
 /*80019BC0*/
 void func_80019BC0(void)
