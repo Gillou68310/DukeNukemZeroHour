@@ -37,7 +37,7 @@ static void func_8001BFB0(code0unkStruct12 *);
 static void func_8001C490(s16);
 
 /*FIXME: This breaks sky*/
-#ifdef NON_MATCHING
+#ifdef NON_EQUIVALENT
 /*80019BC0*/
 void func_80019BC0(void)
 {

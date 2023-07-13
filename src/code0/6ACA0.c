@@ -2293,7 +2293,172 @@ STATIC void func_8007675C(s32 spritenum)
 }
 
 /*80076C14*/
-INCLUDE_ASM("nonmatchings/src/code0/6ACA0", func_80076C14);
+STATIC void func_80076C14(s32 spritenum)
+{
+    s32 x1, y1, z1;
+    s32 x2, y2, z2;
+    s32 x3, y3, z3;
+    s32 ceilz, ceilhit;
+    s32 florz, florhit;
+    SpriteType *spr;
+    s32 i, j;
+    s32 ang, ang2, ang3;
+    u16 cstat;
+
+    spr = &gpSprite[spritenum];
+    x1 = 0;
+    z1 = 0;
+    y1 = 0;
+    if (spr->unk18 == 0)
+    {
+        ang = (gpSinTable[(spr->ang + 512) & 0x7FF] * 575) >> 12;
+        ang2 = (gpSinTable[spr->ang & 0x7FF] * 575) >> 12;
+
+        i = func_8004E5F8(spritenum, ang, ang2, spr->unk1C);
+        if (spr->sectnum == -1)
+        {
+            deleteSprite(spritenum);
+            return;
+        }
+
+        if (D_8012C470 == 1)
+        {
+            func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 66, 31);
+            func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 15, 31);
+        }
+
+        if (D_8012FD88 & 1)
+            func_800586B0(spritenum, spr->unk2A, 0x80, 0x80, 0xFF, 48, 60);
+
+        D_8013B2D0[spritenum].unk0 = krand() & 0x7FF;
+        cstat = spr->cstat;
+        spr->cstat = cstat & 0xFEFE;
+        getzRange(spr->x, spr->y, (spr->z - 512), spr->sectnum,
+                  &ceilz, &ceilhit, &florz, &florhit, 64, 0x01000040);
+
+        spr->cstat = cstat;
+        if ((florz < spr->z) || (spr->z < ceilz))
+        {
+            spr->unk25 = 0;
+            spr->unk18 = 1;
+            spr->cstat |= 0x8000;
+        }
+
+        if (i & 0xC000)
+        {
+            spr->unk18 = 1;
+            spr->unk25 = 0;
+            spr->cstat |= 0x8000;
+        }
+
+        if (spr->unk18 == 1)
+        {
+            if ((florz - spr->z) < 0x6400)
+                spr->unk22 = 0;
+            else
+            {
+                if ((spr->z - ceilz) >= 0x6400)
+                    spr->unk22 = 2;
+                else
+                    spr->unk22 = 1;
+            }
+
+            if (spr->unk22 == 0)
+                func_8008E3E0(spr->x, spr->y, (spr->z - 2048), spr->sectnum, 18, 0);
+            if (spr->unk22 == 1)
+                func_8008E3E0(spr->x, spr->y, (spr->z + 4096), spr->sectnum, 18, 0);
+            if (spr->unk22 == 2)
+                func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 18, 0);
+        }
+    }
+    else
+    {
+        if (spr->unk25 < 2)
+        {
+            if (spr->unk1A == 0)
+            {
+                if (spr->unk25 == 0)
+                {
+                    audio_80007A44(564, spritenum, 0x20000);
+                }
+                else if (spr->unk25 == 1)
+                {
+                    func_8004AB6C(spritenum, 6000, 250, 500, 750, 1000, 1);
+                    audio_80007A44(591, spritenum, 0x20000);
+                }
+                j = func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 30, 0);
+                if (j != -1)
+                {
+                    gpSprite[j].unk1E = spritenum;
+                    gpSprite[j].unk22 = spr->unk22;
+                }
+                spr->unk1A++;
+            }
+
+            if (spr->unk1A == 1)
+            {
+                if (D_8012C470 == 1)
+                {
+                    ang = krand() & 0x7FF;
+                    x2 = gpSprite[spritenum].x;
+                    y2 = gpSprite[spritenum].y;
+                    z2 = gpSprite[spritenum].z;
+                    ang2 = (krand() & 0x1FFF) + 400;
+                    x3 = x2;
+                    y3 = y2;
+                    z3 = z2;
+
+                    if (spr->unk22 == 0)
+                    {
+                        x1 = x3 + ((ang2 * gpSinTable[(ang + 512) & 0x7FF]) >> 14);
+                        y1 = y3 + ((ang2 * gpSinTable[ang]) >> 14);
+                        ang3 = ((krand() & 0x1FFF) - 55000);
+                        z1 = z3 + ang3;
+                    }
+                    else if (spr->unk22 == 1)
+                    {
+                        spr->unk22 = 1;
+                        x1 = x3 + ((ang2 * gpSinTable[(ang + 512) & 0x7FF]) >> 14);
+                        y1 = y3 + ((ang2 * gpSinTable[ang]) >> 14);
+                        ang3 = ((krand() & 0x1FFF) + 55000);
+                        z1 = z3 + ang3;
+                    }
+                    else if (spr->unk22 == 2)
+                    {
+                        x1 = x3 + ((ang2 * gpSinTable[(ang + 512) & 0x7FF]) >> 14);
+                        y1 = y3 + ((ang2 * gpSinTable[ang]) >> 14);
+                        if (krand() & 1)
+                        {
+                            ang3 = ((krand() & 0x1FFF) + 55000);
+                            z1 = z3 + ang3;
+                        }
+                        else
+                        {
+                            ang3 = ((krand() & 0x1FFF) - 55000);
+                            z1 = z3 + ang3;
+                        }
+                    }
+
+                    func_8004E7F0(x1, y1, z1, x3, y3, z3, 0x1F, (krand() & 0x1F) + 64, 2048, 3);
+                    func_8004E7F0(x1, y1, z1, x3, y3, z3, 0x1F, (krand() & 0x1F) + 64, 2048, 3);
+                }
+            }
+            if (spr->unk1A == 2)
+            {
+                spr->unk18++;
+                if (spr->unk18 >= 26)
+                {
+                    spr->unk1A = 0;
+                    spr->unk25 += 1;
+                }
+            }
+        }
+        else
+        {
+            deleteSprite(spritenum);
+        }
+    }
+}
 
 /*80077320*/
 STATIC void func_80077320(s32 spritenum)
