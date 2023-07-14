@@ -134,8 +134,10 @@ typedef struct {
 /*801CDB28*/ u8 D_801CDB28[28] ALIGNED(8);
 /*801CDB50*/ _EB300UnkStruct1 *D_801CDB50;
 /*801CDB54*/ s32 D_801CDB54;
+/*801CDB58*/ char D_801CDB58[5][16] ALIGNED(8);
 /*801CDBA8*/ s32 D_801CDBA8;
 /*801CDBB0*/ char D_801CDBB0[20] ALIGNED(8);
+/*801CDBD0*/ code0UnkStruct16 *D_801CDBD0[5] ALIGNED(8);
 /*801CDBF8*/ code0UnkStruct16 *D_801CDBF8;
 /*801CDBFC*/ code0UnkStruct16 *D_801CDBFC;
 /*801CE474*/ s32 D_801CE474;
@@ -143,6 +145,7 @@ typedef struct {
 /*801CE490*/ s32 D_801CE490;
 /*801CE494*/ s32 D_801CE494;
 /*801CE558*/ code0UnkStruct16 *D_801CE558[16] ALIGNED(8);
+/*801CE59C*/ s32 D_801CE59C;
 /*801CE5A8*/ code1UnkStruct6 *D_801CE5A8;
 /*801CE5DC*/ s32 D_801CE5DC;
 /*801CF62C*/ Gfx *D_801CF62C;
@@ -150,6 +153,7 @@ typedef struct {
 /*801CF638*/ u8 *D_801CF638; /*edlHandle*/
 /*801CF63C*/ s32 D_801CF63C;
 /*801CF640*/ s16 D_801CF640;
+/*801CF6E0*/ code0UnkStruct16 *D_801CF6E0[8] ALIGNED(8);
 /*801CF708*/ u16 D_801CF708;
 /*801CF70C*/ code0UnkStruct16 *D_801CF70C;
 /*801CF710*/ s16 D_801CF710;
@@ -163,8 +167,10 @@ static s16 func_801C53E8(s16);
 STATIC void func_801C5C68(void);
 static void func_801C7108(void);
 static void func_801C73A0(void);
+static void func_801C7574(void);
 static void func_801C8650(void);
 static void func_801C90E4(void);
+static void func_801C948C(void);
 static void func_801C9B08(void);
 
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD20);
@@ -1524,16 +1530,166 @@ static s16 func_801C53E8(s16 mapnum)
         return mapnum+1;
 }
 
+/*TODO: mutualized rodata*/
+extern const char D_801CC550[];
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC550);
+extern const char D_801CC55C[];
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC55C);
+extern const char D_801CC564[];
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC564);
+extern const char D_801CC56C[];
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC56C);
+extern const char D_801CC578[];
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC578);
+extern const char D_801CC588[];
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC588);
+extern const char D_801CC594[];
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC594);
+extern const char D_801CC59C[];
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC59C);
+
 /*801C542C*/
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C542C);
+void func_801C542C(void)
+{
+    code1UnkStruct2 *ptr;
+    s32 i, j;
+
+    switch (D_801CDB04)
+    {
+    case 0:
+        func_801C53E8(gMapNum);
+        func_801C0EDC(0x9000);
+        func_8007F050();
+        D_801CDA20 = func_8007FC08(D_800E0454, 0, 0, 0, 500);
+        func_801C1114();
+        func_801C1158(0, 0, 0, 0xFF);
+        D_801CC88C = -1;
+        D_801CF6E0[0] = func_800802C0(D_801CA14C[gMapNum].mapname, gScreenWidth / 2, -12, 180, 1);
+        func_801C14C4(D_801CF6E0[0], 32, 0xFF, 32);
+        D_801CF6E0[1] = func_800802C0((void *)D_801CC550, 0, 65, 200, 0);
+        D_801CF6E0[2] = func_800802C0((void *)D_801CC55C, 0, 87, 200, 0);
+        D_801CF6E0[3] = func_800802C0((void *)D_801CC564, 0, 109, 200, 0);
+        D_801CF6E0[4] = func_800802C0((void *)D_801CC56C, 0, 131, 200, 0);
+        D_801CF6E0[5] = func_800802C0((void *)D_801CC578, 0, 153, 200, 0);
+        D_801CD980 = 0;
+        func_801C2BE8(&D_801CB938);
+
+        if (D_80138620 != 0)
+            D_801CE5A0 = 1;
+        else
+            D_801CE5A0 = 0;
+
+        sprintf(D_801CDB58[0], D_801CC588, D_801A1958.unkC / 1800U,
+                (D_801A1958.unkC / 30U) - ((D_801A1958.unkC / 1800U) * 60));
+        D_801CDBD0[0] = func_800802C0(D_801CDB58[0], gScreenWidth, 65, 200, 2);
+        sprintf(D_801CDB58[1], D_801CC594, D_801A1958.enemies_killed, D_801A1958.enemies_total);
+        D_801CDBD0[1] = func_800802C0(D_801CDB58[1], gScreenWidth, 87, 200, 2);
+        sprintf(D_801CDB58[2], D_801CC594, D_801A1958.babes_saved, D_801A1958.babes_total);
+        D_801CDBD0[2] = func_800802C0(D_801CDB58[2], gScreenWidth, 109, 200, 2);
+        sprintf(D_801CDB58[3], D_801CC594, D_801A1958.secrets_found, D_801A1958.secrets_total);
+        D_801CDBD0[3] = func_800802C0(D_801CDB58[3], gScreenWidth, 131, 200, 2);
+        sprintf(D_801CDB58[4], D_801CC59C, D_801A1958.unk10);
+        D_801CDBD0[4] = func_800802C0(D_801CDB58[4], gScreenWidth, 153, 200, 2);
+
+        for (i = 0; i < ARRAY_COUNT(D_801CDBD0); i++)
+            func_801C14C4(D_801CDBD0[i], 0, 200, 200);
+
+        D_801CA144 = 0.0f;
+        D_801CE59C = 0;
+
+        if (D_801CDB54 != 0)
+            D_801CF6E0[6] = func_8007FE2C("CHEAT AWARDED", gScreenWidth/2, 128, 200, 1, 0);
+
+        if ((((gMapNum == MAP_WETWORLD) || (gMapNum == MAP_BOSS_HOG)) == 0) &&
+            (((gMapNum == MAP_CYBORG_SCORPION) || ((gMapNum >= MAP_THE_RACK))) == 0))
+        {
+            if (gTimeMachinePart & (1 << gMapNum))
+            {
+                D_801CE59C = 1;
+                D_801CF6E0[7] = func_8007FE2C("TIME MACHINE PART FOUND",
+                                              gScreenWidth / 2, (gScreenHeight / 2) + 96, 200, 1, 0);
+            }
+            else
+            {
+                D_801CF6E0[7] = func_8007FE2C("TIME MACHINE PART NOT FOUND",
+                                              gScreenWidth / 2, (gScreenHeight / 2) + 96, 200, 1, 0);
+                D_801CF6E0[7]->unkC |= 0x04000000;
+            }
+        }
+        D_801CDB04++;
+        break;
+    case 1:
+        j = D_801CC88C;
+        if (j == D_801CDB04)
+        {
+            if (D_8011BC40->unk10 == 0xFF)
+            {
+                if (D_801CDA8C == 0)
+                    func_8007F050();
+
+                D_801CDA8C++;
+                if (D_801CDA8C >= 11)
+                {
+                    if (D_801CDBA8 == j)
+                    {
+                        func_801C90E4();
+                        ptr = &D_801CE5F0.unk4[gMapNum];
+                        ptr->unk182 = D_801A1958.unk10;
+                        ptr->unk172 = D_801A1958.unkC;
+                        ptr->unk178 = D_801A1958.babes_saved;
+                        ptr->unk180 = D_801A1958.secrets_found;
+                        ptr->unk176 = D_801A1958.enemies_killed;
+                        ptr->unk164 = D_801A1958.enemies_total;
+                        ptr->unk166 = D_801A1958.babes_total;
+                        ptr->unk168 = D_801A1958.secrets_total;
+                        func_801C948C();
+                        D_801CDB04 = 2;
+                    }
+                    else if (D_800FE3FC == 0)
+                        func_801C3310();
+                    else
+                        main_80000624(func_801C7574);
+                }
+            }
+            else
+            {
+                D_8011BC40->unk10 += 16;
+                if (D_8011BC40->unk10 >= 0xEF)
+                    D_8011BC40->unk10 = 0xFF;
+            }
+        }
+        else
+        {
+            func_801C118C();
+            func_801C4B34();
+            if (D_801CA144 > 0.0f)
+            {
+                D_801CA144 -= 0.2;
+                if (D_801CA144 < 0.0f)
+                    D_801CA144 = 0.0f;
+            }
+            if (D_801CDB54 != 0)
+            {
+                if ((D_801CC910 & 0xF) < 7)
+                    D_801CF6E0[6]->unkC &= ~1;
+                else
+                    D_801CF6E0[6]->unkC |= 1;
+            }
+            if (D_801CE59C != 0)
+            {
+                if ((D_801CC910 & 0xF) < 7)
+                    D_801CF6E0[7]->unkC &= ~1;
+                else
+                    D_801CF6E0[7]->unkC |= 1;
+            }
+        }
+        break;
+    case 2:
+        if (controller_8008C8DC())
+            D_801CDB04 = 0;
+        break;
+    }
+}
 
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC5F0);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC600);
@@ -1951,7 +2107,7 @@ static void func_801C7574(void)
     D_801CE494 = 0;
 }
 
-extern const char *D_801CC6F8[]; /*TODO: mutualized rodata?*/
+extern const char D_801CC6F8[]; /*TODO: mutualized rodata?*/
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC6F8);
 /*801C764C*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C764C);
@@ -1987,7 +2143,7 @@ static void func_801C8650(void)
         func_80083700(1, &D_801CE5E8[i], 0, 0);
 
     D_800E0F58 = 1;
-    func_800802C0(D_801CC6F8, (gScreenWidth / 2), 24, 64, 1);
+    func_800802C0((void *)D_801CC6F8, (gScreenWidth / 2), 24, 64, 1);
     D_801CA144 = 0.0f;
 
     for (i = 0; i < ARRAY_COUNT(D_800E064C)-1; i++)
