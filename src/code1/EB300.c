@@ -29,6 +29,7 @@ typedef struct {
 /*801CA360*/ EXTERN_DATA STATIC _119280UnkStruct1 D_801CA360[4];
 /*801CA388*/ EXTERN_DATA STATIC _119280UnkStruct1 D_801CA388[3];
 /*801CA3B8*/ EXTERN_DATA STATIC Lights1 D_801CA3B8;
+/*801CA3D4*/ EXTERN_DATA STATIC s32 D_801CA3D4;
 /*801CA3D8*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CA3D8[5];
 /*801CA464*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CA464;
 /*801CA474*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CA474[3];
@@ -134,10 +135,14 @@ typedef struct {
 /*801CDB28*/ u8 D_801CDB28[28] ALIGNED(8);
 /*801CDB50*/ _EB300UnkStruct1 *D_801CDB50;
 /*801CDB54*/ s32 D_801CDB54;
+#if defined (MODERN) || defined (NON_MATCHING)
+char D_801CDB58[6][16] ALIGNED(8); /*Fix out of bound access in func_801C764C*/
+#else
 /*801CDB58*/ char D_801CDB58[5][16] ALIGNED(8);
+#endif
 /*801CDBA8*/ s32 D_801CDBA8;
 /*801CDBB0*/ char D_801CDBB0[20] ALIGNED(8);
-/*801CDBD0*/ code0UnkStruct16 *D_801CDBD0[5] ALIGNED(8);
+/*801CDBD0*/ code0UnkStruct16 *D_801CDBD0[6] ALIGNED(8);
 /*801CDBF8*/ code0UnkStruct16 *D_801CDBF8;
 /*801CDBFC*/ code0UnkStruct16 *D_801CDBFC;
 /*801CE474*/ s32 D_801CE474;
@@ -171,6 +176,7 @@ static void func_801C7574(void);
 static void func_801C8650(void);
 static void func_801C90E4(void);
 static void func_801C948C(void);
+static void func_801C959C(void);
 static void func_801C9B08(void);
 
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD20);
@@ -780,7 +786,10 @@ void func_801C3370(void)
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC020);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC024);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC028);
+
+extern const char D_801CC02C[]; /*TODO: mutualized rodata?*/
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC02C);
+
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC034);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC038);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC03C);
@@ -1530,24 +1539,6 @@ static s16 func_801C53E8(s16 mapnum)
         return mapnum+1;
 }
 
-/*TODO: mutualized rodata*/
-extern const char D_801CC550[];
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC550);
-extern const char D_801CC55C[];
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC55C);
-extern const char D_801CC564[];
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC564);
-extern const char D_801CC56C[];
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC56C);
-extern const char D_801CC578[];
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC578);
-extern const char D_801CC588[];
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC588);
-extern const char D_801CC594[];
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC594);
-extern const char D_801CC59C[];
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC59C);
-
 /*801C542C*/
 void func_801C542C(void)
 {
@@ -1566,11 +1557,11 @@ void func_801C542C(void)
         D_801CC88C = -1;
         D_801CF6E0[0] = func_800802C0(D_801CA14C[gMapNum].mapname, gScreenWidth / 2, -12, 180, 1);
         func_801C14C4(D_801CF6E0[0], 32, 0xFF, 32);
-        D_801CF6E0[1] = func_800802C0((void *)D_801CC550, 0, 65, 200, 0);
-        D_801CF6E0[2] = func_800802C0((void *)D_801CC55C, 0, 87, 200, 0);
-        D_801CF6E0[3] = func_800802C0((void *)D_801CC564, 0, 109, 200, 0);
-        D_801CF6E0[4] = func_800802C0((void *)D_801CC56C, 0, 131, 200, 0);
-        D_801CF6E0[5] = func_800802C0((void *)D_801CC578, 0, 153, 200, 0);
+        D_801CF6E0[1] = func_800802C0((void *)"TIME TAKEN:", 0, 65, 200, 0);
+        D_801CF6E0[2] = func_800802C0((void *)"KILLS:", 0, 87, 200, 0);
+        D_801CF6E0[3] = func_800802C0((void *)"BABES:", 0, 109, 200, 0);
+        D_801CF6E0[4] = func_800802C0((void *)"SECRETS:", 0, 131, 200, 0);
+        D_801CF6E0[5] = func_800802C0((void *)"OVERALL RATING:", 0, 153, 200, 0);
         D_801CD980 = 0;
         func_801C2BE8(&D_801CB938);
 
@@ -1579,19 +1570,19 @@ void func_801C542C(void)
         else
             D_801CE5A0 = 0;
 
-        sprintf(D_801CDB58[0], D_801CC588, D_801A1958.unkC / 1800U,
+        sprintf(D_801CDB58[0], "%d : %02d", D_801A1958.unkC / 1800U,
                 (D_801A1958.unkC / 30U) - ((D_801A1958.unkC / 1800U) * 60));
         D_801CDBD0[0] = func_800802C0(D_801CDB58[0], gScreenWidth, 65, 200, 2);
-        sprintf(D_801CDB58[1], D_801CC594, D_801A1958.enemies_killed, D_801A1958.enemies_total);
+        sprintf(D_801CDB58[1], "%d / %d", D_801A1958.enemies_killed, D_801A1958.enemies_total);
         D_801CDBD0[1] = func_800802C0(D_801CDB58[1], gScreenWidth, 87, 200, 2);
-        sprintf(D_801CDB58[2], D_801CC594, D_801A1958.babes_saved, D_801A1958.babes_total);
+        sprintf(D_801CDB58[2], "%d / %d", D_801A1958.babes_saved, D_801A1958.babes_total);
         D_801CDBD0[2] = func_800802C0(D_801CDB58[2], gScreenWidth, 109, 200, 2);
-        sprintf(D_801CDB58[3], D_801CC594, D_801A1958.secrets_found, D_801A1958.secrets_total);
+        sprintf(D_801CDB58[3], "%d / %d", D_801A1958.secrets_found, D_801A1958.secrets_total);
         D_801CDBD0[3] = func_800802C0(D_801CDB58[3], gScreenWidth, 131, 200, 2);
-        sprintf(D_801CDB58[4], D_801CC59C, D_801A1958.unk10);
+        sprintf(D_801CDB58[4], "%d%%", D_801A1958.unk10);
         D_801CDBD0[4] = func_800802C0(D_801CDB58[4], gScreenWidth, 153, 200, 2);
 
-        for (i = 0; i < ARRAY_COUNT(D_801CDBD0); i++)
+        for (i = 0; i < ARRAY_COUNT(D_801CDBD0)-1; i++)
             func_801C14C4(D_801CDBD0[i], 0, 200, 200);
 
         D_801CA144 = 0.0f;
@@ -2107,10 +2098,287 @@ static void func_801C7574(void)
     D_801CE494 = 0;
 }
 
-extern const char D_801CC6F8[]; /*TODO: mutualized rodata?*/
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC6F8);
 /*801C764C*/
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C764C);
+void func_801C764C(void)
+{
+    code1UnkStruct2 *temp_s3;
+    s32 i, j, k, l;
+
+    l = D_801CE5F0.unkFD5;
+    l = MIN(l, 21);
+    func_801C118C();
+
+    if ((D_800FE3FC != 0) && (D_801CDB04 == 0))
+    {
+        D_800BD3E8 = 1;
+        func_8007F050();
+        func_801C1114();
+        func_801C1158(0, 0, 0, 0xFF);
+        D_801CC88C = -1;
+        D_801CDB04++;
+    }
+
+    switch (D_801CDB04)
+    {
+    case 0:
+        if (controller_8008D354())
+        {
+            if (D_80138620 != 0)
+            {
+                func_801C959C();
+                D_800BD3E8 = 1;
+                func_8007F050();
+                if (D_801CE5F0.unkFD5 != 0)
+                {
+                    D_801CDB04++;
+                    main_80000450();
+                }
+                else
+                    main_80000624(func_801C3E08);
+            }
+            else
+            {
+                func_8007F050();
+                main_80000624(func_801C3E08);
+            }
+        }
+        break;
+    case 1:
+        D_801CE494++;
+        if (D_801CE494 >= 11)
+            D_801CDB04 = 2;
+        break;
+    case 2:
+        cache1d_8002AAC0();
+        allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT*2, DISPLAY_LIST_SIZE, 0);
+        setCameraPosition(0.0f, 0.0f, -90.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+        func_801C10C8();
+        D_800BD3E8 = 1;
+        func_801C0EDC(0xFFFF);
+        edl_80081688(&D_801CDB08, 20);
+        edl_80081688(&D_801CC888, 21);
+        edl_80081688(&D_801CDBC8, 23);
+        edl_80081688(&D_801CDA98, 22);
+        D_800E0F58 = 0;
+
+        for (i = 0; i < 64; i++)
+            func_80083700(1, &D_801CE5E8[i], 0, 0);
+
+        D_800E0F58 = 1;
+        func_8007FD8C(D_800DFB08, 11);
+        func_8007FD8C(&D_800E047C[0], 14);
+        func_800802C0("SELECT LEVEL", gScreenWidth/2, 24, 64, 1);
+        D_801CA144 = 0.0f;
+
+        if (D_800FE3FC == 0)
+            D_801CE5DC = l;
+        else
+            D_801CE5DC = gLoadMapNum;
+
+        for (i = 0; i < (l + 1); i++)
+        {
+            D_801CDA28[i] = func_8007FC08(&D_800E047C[i], 0, 0, (gScreenHeight / 2) - 88, 500);
+            k = D_801CE5DC * 256;
+            D_801CDA88 = ((D_801CE5DC * 16384) + k) * 2;
+            D_801CDA28[i]->unk34 = ((gScreenWidth / 2) - 60 + ((i * 130)) - (D_801CDA88 >> 8));
+
+            if ((D_801CDA28[i]->unk34 < (gScreenWidth + 80)) && (D_801CDA28[i]->unk34 > -130.0f))
+                D_801CDA28[i]->unkC |= 1;
+            else
+                D_801CDA28[i]->unkC &= ~1;
+        }
+
+        D_801CDB20 = 0;
+        D_801CA3D4 = gScreenHeight/2 + 100;
+        D_801CC8B0 = func_8007FE2C(D_801CA14C[D_801CE5DC].mapname, gScreenWidth / 2, D_801CA3D4, 64, 1, 0);
+        D_801CA3D4 += 12;
+        D_801CF6E0[1] = func_8007FE2C("TIME TAKEN:", 48, D_801CA3D4 + 12, 64, 0, 0);
+        D_801CF6E0[2] = func_8007FE2C("KILLS:", 48, D_801CA3D4 + 24, 64, 0, 0);
+        D_801CF6E0[3] = func_8007FE2C("BABES:", 48, D_801CA3D4 + 36, 64, 0, 0);
+        D_801CF6E0[4] = func_8007FE2C("SECRETS:", 48, D_801CA3D4 + 48, 64, 0, 0);
+        D_801CF6E0[6] = func_8007FE2C("TIME MACHINE PARTS:", 48, D_801CA3D4 + 60, 64, 0, 0);
+        D_801CF6E0[5] = func_8007FE2C("OVERALL RATING:", 48, D_801CA3D4 + 72, 64, 0, 0);
+
+        temp_s3 = &D_801CE5F0.unk4[D_801CE5DC];
+
+        sprintf(D_801CDB58[0], "%d : %02d", (temp_s3->unk172 / 1800U),
+                (temp_s3->unk172 / 30U) - ((temp_s3->unk172 / 1800U) * 60));
+        D_801CDBD0[0] = func_8007FE2C(D_801CDB58[0], gScreenWidth - 48, D_801CA3D4 + 12, 64, 2, 0);
+        sprintf(D_801CDB58[1], "%d / %d", temp_s3->unk176, temp_s3->unk164);
+        D_801CDBD0[1] = func_8007FE2C(D_801CDB58[1], gScreenWidth - 48, D_801CA3D4 + 24, 64, 2, 0);
+        sprintf(D_801CDB58[2], "%d / %d", temp_s3->unk178, temp_s3->unk166);
+        D_801CDBD0[2] = func_8007FE2C(D_801CDB58[2], gScreenWidth - 48, D_801CA3D4 + 36, 64, 2, 0);
+        sprintf(D_801CDB58[3], "%d / %d", temp_s3->unk180, temp_s3->unk168);
+        D_801CDBD0[3] = func_8007FE2C(D_801CDB58[3], gScreenWidth - 48, D_801CA3D4 + 48, 64, 2, 0);
+        sprintf(D_801CDB58[4], "%d%%", temp_s3->unk182);
+        D_801CDBD0[4] = func_8007FE2C(D_801CDB58[4], gScreenWidth - 48, D_801CA3D4 + 72, 64, 2, 0);
+
+        if ((D_801CE5DC == MAP_WETWORLD) || (D_801CE5DC == MAP_BOSS_HOG) ||
+            (D_801CE5DC == MAP_CYBORG_SCORPION) || (D_801CE5DC >= MAP_THE_RACK))
+            sprintf(D_801CDB58[5], D_801CC02C);
+        else if (D_801CE5F0.unkFE4 & (1 << D_801CE5DC))
+            sprintf(D_801CDB58[5], "1 / 1");
+        else
+            sprintf(D_801CDB58[5], "0 / 1");
+
+        D_801CDBD0[5] = func_8007FE2C(D_801CDB58[5], (gScreenWidth - 48), (D_801CA3D4 + 60), 64, 2, 0);
+
+        if ((D_801CE5DC == MAP_WETWORLD) || (D_801CE5DC == MAP_BOSS_HOG) ||
+            (D_801CE5DC == MAP_CYBORG_SCORPION) || (D_801CE5DC >= MAP_THE_RACK))
+            D_801CDBD0[5]->unkC |= 0x04000000;
+        else
+            D_801CDBD0[5]->unkC &= ~0x04000000;
+
+        for (i = 0; i < ARRAY_COUNT(D_801CDBD0); i++)
+        {
+            D_801CF6E0[i+1]->unkC &= ~1;
+            D_801CDBD0[i]->unkC &= ~1;
+        }
+
+        func_801C1114();
+        func_801C1158(0, 0, 0, 0xFF);
+        D_801CC88C = -1;
+        main_80002390();
+        main_80000610();
+        D_801CDB04++;
+        break;
+    case 3:
+        if (D_801CDB04 != 3)
+            break;
+
+        for (i = 0; i < (l + 1); i++)
+        {
+            D_801CDA28[i]->unk34 = ((gScreenWidth / 2) - 60 + ((i * 130)) - (D_801CDA88 >> 8));
+            if ((D_801CDA28[i]->unk34 < (gScreenWidth + 80)) && (D_801CDA28[i]->unk34 > -130.0f))
+                D_801CDA28[i]->unkC |= 1;
+            else
+                D_801CDA28[i]->unkC &= ~1;
+        }
+
+        j = D_801CE5DC * 256;
+        j = ((((D_801CE5DC * 16384) + j) * 2) - D_801CDA88) >> 1;
+        D_801CDA88 += j;
+
+        if (!(func_801C0E68() & 0x300))
+            j = 0;
+
+        if ((j > -300) && (j < 300))
+        {
+            for (i = 0; i < (l + 1); i++)
+                D_801CDA28[i]->unk10 = 110;
+
+            D_801CDA28[D_801CE5DC]->unk10 = 0xFF;
+            D_801CC8B0->unk70 = (intptr_t)D_801CA14C[D_801CE5DC].mapname;
+            temp_s3 = &D_801CE5F0.unk4[D_801CE5DC];
+            sprintf(D_801CDB58[0], "%d : %02d", (temp_s3->unk172 / 1800U),
+                                                (temp_s3->unk172 / 30U) - ((temp_s3->unk172 / 1800U) * 60));
+            sprintf(D_801CDB58[1], "%d / %d", temp_s3->unk176, temp_s3->unk164);
+            sprintf(D_801CDB58[2], "%d / %d", temp_s3->unk178, temp_s3->unk166);
+            sprintf(D_801CDB58[3], "%d / %d", temp_s3->unk180, temp_s3->unk168);
+            sprintf(D_801CDB58[4], "%d%%", temp_s3->unk182);
+
+            if (D_801CE5DC == D_801CE5F0.unkFD5)
+            {
+                for (i = 0; i < ARRAY_COUNT(D_801CDBD0); i++)
+                {
+                    D_801CF6E0[i+1]->unkC &= ~1;
+                    D_801CDBD0[i]->unkC &= ~1;
+                }
+            }
+            else
+            {
+                for (i = 0; i < ARRAY_COUNT(D_801CDBD0); i++)
+                {
+                    D_801CF6E0[i+1]->unkC |= 1;
+                    D_801CDBD0[i]->unkC |= 1;
+                }
+
+                if ((D_801CE5DC == MAP_WETWORLD) || (D_801CE5DC == MAP_BOSS_HOG) ||
+                    (D_801CE5DC == MAP_CYBORG_SCORPION) || (D_801CE5DC >= MAP_THE_RACK))
+                {
+                    sprintf(D_801CDB58[5], D_801CC02C);
+                    D_801CDBD0[5]->unkC |= 0x04000000;
+                }
+                else if (D_801CE5F0.unkFE4 & (1 << D_801CE5DC))
+                {
+                    sprintf(D_801CDB58[5], "1 / 1");
+                    D_801CDBD0[5]->unkC &= ~0x04000000;
+                }
+                else
+                {
+                    sprintf(D_801CDB58[5], "0 / 1");
+                    D_801CDBD0[5]->unkC &= ~0x04000000;
+                }
+            }
+            D_801CDB20 = 0;
+        }
+        if (D_801CDB20 == 0)
+        {
+            if (func_801C0E68() & 0x200)
+            {
+                if (D_801CE5DC != 0)
+                {
+                    playSfx(746);
+                    D_801CE5DC--;
+
+                    if ((D_801CE5DC == 3) && (D_801CE5F0.unkFD6 == 0))
+                        D_801CE5DC--;
+
+                    if ((D_801CE5DC == 17) && (D_801CE5F0.unkFD7 == 0))
+                        D_801CE5DC = 16;
+                }
+                D_801CDB20 = 1;
+            }
+            if (func_801C0E68() & 0x100)
+            {
+                if (D_801CE5DC != l)
+                {
+                    playSfx(746);
+                    D_801CE5DC++;
+
+                    if ((D_801CE5DC == 3) && (D_801CE5F0.unkFD6 == 0))
+                        D_801CE5DC++;
+
+                    if ((D_801CE5DC == 17) && (D_801CE5F0.unkFD7 == 0))
+                        D_801CE5DC = 18;
+                }
+                D_801CDB20 = 1;
+            }
+        }
+        if (func_801C0E68() & 0x8000)
+        {
+            playSfx(747);
+            func_801C0EDC(0x8000);
+            gMapNum = gLoadMapNum = D_801CE5DC;
+
+            if (D_801CE5DC != l)
+                D_800FE3FC = 1;
+            else
+                D_800FE3FC = 0;
+
+            D_801A1994 = 0;
+            D_801CDC64.unk0 = 0;
+            D_801CDC64.unk1 = 1;
+            gLoadMapNum = gMapNum;
+
+            if (D_801CE498.unk1C == 0)
+                main_80000624(main_80001F40);
+            else
+            {
+                func_801C30EC();
+                D_801CDAC8 = 0;
+            }
+        }
+        if (func_801C0E68() & 0x4000)
+        {
+            playSfx(748);
+            func_801C0EDC(0x4000);
+            func_8007F050();
+            main_80000624(func_801C3E08);
+        }
+        break;
+    }
+}
 
 /*801C8650*/
 static void func_801C8650(void)
@@ -2143,7 +2411,7 @@ static void func_801C8650(void)
         func_80083700(1, &D_801CE5E8[i], 0, 0);
 
     D_800E0F58 = 1;
-    func_800802C0((void *)D_801CC6F8, (gScreenWidth / 2), 24, 64, 1);
+    func_800802C0((void *)"SELECT LEVEL", (gScreenWidth / 2), 24, 64, 1);
     D_801CA144 = 0.0f;
 
     for (i = 0; i < ARRAY_COUNT(D_800E064C)-1; i++)

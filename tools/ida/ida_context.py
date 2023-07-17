@@ -49,7 +49,7 @@ if __name__ == '__main__':
     for src, file in sources:
         #prefix unused variables to avoid multiple definitions
         prefix = os.path.basename(file).split('.')[0]
-        src = src.replace("_unused", prefix+"_unused")
+        src = src.replace("_unused", "_"+prefix+"_unused")
         f.write(src)
 
     f.close()

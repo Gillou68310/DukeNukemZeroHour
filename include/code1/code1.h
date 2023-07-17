@@ -43,7 +43,7 @@ typedef struct
     /*0x2A*/ u16 unk2A;
     /*0x2C*/ u8 pad5[2];
     /*0x2E*/ u16 unk2E[4];
-    /*0x32*/ u16 unk36[4];
+    /*0x36*/ u16 unk36[4];
     /*0x3E*/ u16 unk3E[4];
     /*0x46*/ u16 unk46[4];
     /*0x4E*/ u16 difficulty;
@@ -59,7 +59,7 @@ typedef struct
     /*0x164*/ u16 unk164; /*enemies_total*/
     /*0x166*/ u16 unk166; /*babes_total*/
     /*0x168*/ u16 unk168; /*secrets_total*/
-    /*0x172*/ s32 unk172;
+    /*0x172*/ s32 unk172; /*time_taken*/
     /*0x176*/ u16 unk176; /*enemies_killed*/
     /*0x178*/ u16 unk178; /*babes_saved*/
     /*0x180*/ u16 unk180; /*secrets_found*/
