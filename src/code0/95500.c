@@ -1023,7 +1023,7 @@ static void func_8009B974(s32 spritenum)
                 if (D_8013B2D0[spritenum].unk6 < 251)
                     D_8013B2D0[spritenum].unk6 += 4;
                 else
-                    spr->cstat = -0x8000;
+                    spr->cstat = 0x8000;
 
                 D_801AE8F8--;
                 if ((D_801AE8F8 == 1) && (gPlayer[0].unk45 == 0))

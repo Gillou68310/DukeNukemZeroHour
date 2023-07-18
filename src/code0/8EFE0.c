@@ -61,7 +61,7 @@ static s32 func_80093450(s32 x, s32 y, s32 z, s32 sectnum, _8EFE0UnkStruct2 *arg
                 ptr->unk2C = (krand() & 0x3F) - 0x20;
                 gpSprite[spritenum].unk1C = 0;
                 gpSprite[spritenum].ang = 0;
-                gpSprite[spritenum].cstat = -0x8000;
+                gpSprite[spritenum].cstat = 0x8000;
                 D_8013B2D0[spritenum].unk0 = 0;
                 return spritenum;
             }

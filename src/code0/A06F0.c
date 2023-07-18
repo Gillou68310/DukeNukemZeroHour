@@ -64,7 +64,7 @@ void func_8009FAF0(void)
                     gpSprite[spritenum].unk1E = 5263;
                     gpSprite[spritenum].unk20 = 0;
                     gpSprite[spritenum].unk25 = 0x80;
-                    gpSprite[spritenum].cstat = -0x8000;
+                    gpSprite[spritenum].cstat = 0x8000;
                     gpSprite[spritenum].ang = 0;
                 }
             }

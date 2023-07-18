@@ -268,7 +268,7 @@ static void func_8006B278(s16 spritenum)
     func_8006B384(spritenum);
     if (gpSprite[spritenum].picnum >= 49)
     {
-        gpSprite[spritenum].cstat &= 0x7fff;
+        gpSprite[spritenum].cstat &= ~0x8000;
         gpSprite[spritenum].cstat |= 0x101;
     }
     if (gpSprite[spritenum].picnum == 2581)
