@@ -42,8 +42,125 @@ static void func_80063930(s32 sectnum)
 }
 
 /*80063A40*/
-STATIC void func_80063A40(s16, s16);
-INCLUDE_ASM("nonmatchings/src/code0/64530", func_80063A40);
+static void func_80063A40(s16 playernum, s16 spritenum)
+{
+    s16 i, j, unk18;
+    s16 sectnum1, sectnum2;
+    u8 cond;
+
+    sectnum2 = gPlayer[playernum].unk32;
+    j = gpSprite[spritenum].unk16;
+    sectnum1 = gpSprite[j].sectnum;
+    unk18 = gpSector[sectnum2].unk18;
+
+    if (unk18 == 1)
+    {
+        if ((gPlayer[playernum].zpos ==
+            ((getFlorzOfSlope(sectnum2,
+                gPlayer[playernum].xpos,
+                gPlayer[playernum].ypos) - gPlayer[playernum].unk40) + 0x2600)) &&
+            (gPlayer[playernum].unk14 >= 257))
+        {
+            gPlayer[playernum].xpos += (gpSprite[j].x - gpSprite[spritenum].x);
+            gPlayer[playernum].ypos += (gpSprite[j].y - gpSprite[spritenum].y);
+            D_80138610[playernum] += gpSprite[j].x - gpSprite[spritenum].x;
+            D_801AE480[playernum] += gpSprite[j].y - gpSprite[spritenum].y;
+            gPlayer[playernum].unk32 = sectnum1;
+            D_801A19EC = gpSprite[j].unk25;
+            updateSector(gPlayer[playernum].xpos, gPlayer[playernum].ypos, &gPlayer[playernum].unk32);
+
+            gPlayer[playernum].zpos = getCeilzOfSlope(gPlayer[playernum].unk32,
+                                                      gPlayer[playernum].xpos,
+                                                      gPlayer[playernum].ypos) + 1025;
+
+            gPlayer[playernum].unk14 = gPlayer[playernum].unk14 + 512;
+        }
+    }
+    else if (unk18 == 2)
+    {
+        if (gPlayer[playernum].zpos ==
+            (getCeilzOfSlope(sectnum2,
+                gPlayer[playernum].xpos,
+                gPlayer[playernum].ypos) + 1024))
+        {
+            gPlayer[playernum].xpos += (gpSprite[j].x - gpSprite[spritenum].x);
+            gPlayer[playernum].ypos += (gpSprite[j].y - gpSprite[spritenum].y);
+            D_80138610[playernum] += gpSprite[j].x - gpSprite[spritenum].x;
+            D_801AE480[playernum] += gpSprite[j].y - gpSprite[spritenum].y;
+            gPlayer[playernum].unk32 = sectnum1;
+            updateSector(gPlayer[playernum].xpos, gPlayer[playernum].ypos, &gPlayer[playernum].unk32);
+
+            gPlayer[playernum].zpos = getFlorzOfSlope(gPlayer[playernum].unk32,
+                                                      gPlayer[playernum].xpos,
+                                                      gPlayer[playernum].ypos) - 4864;
+
+            gPlayer[playernum].unk14 = 0;
+            gPlayer[playernum].unk44 = 1;
+        }
+    }
+    else if (gpSprite[spritenum].unk25 != 0)
+    {
+        cond = 0;
+        if (gpSprite[spritenum].cstat & 8)
+            cond = gPlayer[playernum].zpos < (gpSprite[spritenum].z - 1);
+        else if ((gpSprite[spritenum].z + 1) < gPlayer[playernum].zpos)
+            cond = 1;
+
+        if (cond)
+        {
+            gPlayer[playernum].xpos += (gpSprite[j].x - gpSprite[spritenum].x);
+            gPlayer[playernum].ypos += (gpSprite[j].y - gpSprite[spritenum].y);
+            gPlayer[playernum].zpos += (gpSprite[j].z - gpSprite[spritenum].z);
+            D_80138610[playernum] += gpSprite[j].x - gpSprite[spritenum].x;
+            D_801AE480[playernum] += gpSprite[j].y - gpSprite[spritenum].y;
+
+            if (gPlayer[playernum].unk58 != 0)
+            {
+                for (i = gpSector[sectnum1].wallptr; i < (gpSector[sectnum1].wallptr + gpSector[sectnum1].wallnum); i++)
+                {
+                    if (gpWall[i].unk14 == 50)
+                    {
+                        gPlayer[playernum].unk5E = i;
+                        goto label1;
+                    }
+                }
+
+                i = gHeadSpriteSect[sectnum1];
+                while (i >= 0)
+                {
+                    if (gpSprite[i].statnum == 115)
+                    {
+                        gPlayer[playernum].unk5E = i + 0x1000;
+                        goto label1;
+                    }
+                    i = gNextSpriteSect[i];
+                }
+                gPlayer[playernum].unk58 = 0;
+            }
+        label1:
+            gPlayer[playernum].unk32 = sectnum1;
+            gPlayer[playernum].unk68 = sectnum1;
+            updateSector(gPlayer[playernum].xpos, gPlayer[playernum].ypos, &gPlayer[playernum].unk32);
+        }
+    }
+    else
+    {
+        gPlayer[playernum].xpos = gpSprite[j].x;
+        gPlayer[playernum].ypos = gpSprite[j].y;
+        gPlayer[playernum].unk38 = gpSprite[j].ang;
+
+        gPlayer[playernum].zpos = getFlorzOfSlope(sectnum1,
+                                                  gPlayer[playernum].xpos,
+                                                  gPlayer[playernum].ypos) - gPlayer[playernum].unk40;
+
+        gPlayer[playernum].unkC = gPlayer[playernum].unk10 = gPlayer[playernum].unk14 = 0;
+        gPlayer[playernum].unk32 = sectnum1;
+        updateSector(gPlayer[playernum].xpos, gPlayer[playernum].ypos, &gPlayer[playernum].unk32);
+        func_8008E3E0(gpSprite[j].x, gpSprite[j].y, gpSprite[j].z, gpSprite[j].sectnum, 43, 0);
+        audio_800077F4(704, j);
+        D_800DEEE4[playernum] = 1;
+    }
+}
 
 /*800642CC*/
 static void func_800642CC(s16 spritenum1, s16 spritenum2)
