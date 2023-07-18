@@ -5,6 +5,7 @@
 #include "code0/37090.h"
 #include "code0/41940.h"
 #include "code0/6ACA0.h"
+#include "code0/7BA50.h"
 #include "code0/8EFE0.h"
 #include "code0/A06F0.h"
 #include "code0/code0.h"
@@ -45,8 +46,124 @@ STATIC void func_80063A40(s16, s16);
 INCLUDE_ASM("nonmatchings/src/code0/64530", func_80063A40);
 
 /*800642CC*/
-STATIC void func_800642CC(s16, s16);
-INCLUDE_ASM("nonmatchings/src/code0/64530", func_800642CC);
+static void func_800642CC(s16 spritenum1, s16 spritenum2)
+{
+    s16 sectnum1, sectnum2;
+    s16 i, unk18;
+    s32 floorz, ceilz, z;
+    u8 cond, cond2;
+
+    cond = 0;
+    z = gpSprite[spritenum1].unk1C;
+    i = gpSprite[spritenum2].unk16;
+    sectnum2 = gpSprite[spritenum1].sectnum;
+    sectnum1 = gpSprite[i].sectnum;
+
+    if ((gpSprite[spritenum1].statnum == 4) && (gpSprite[spritenum1].unk1E == 18))
+    {
+        if (z > 0)
+            z += 1440;
+        else
+            z -= 1440;
+    }
+
+    if ((gpSprite[spritenum1].statnum != 1) || (D_8019B940[D_80106D50[spritenum1]].unk84 != 5))
+    {
+        unk18 = gpSector[sectnum2].unk18;
+        if (unk18 == 1)
+        {
+            floorz = getFlorzOfSlope(sectnum2, gpSprite[spritenum1].x, gpSprite[spritenum1].y);
+            if ((gpSprite[spritenum1].z + z) >= floorz)
+            {
+                if (gpSprite[spritenum1].statnum == unk18)
+                    audio_800077F4(((krand() % 3) + 533), spritenum1);
+
+                func_8008E3E0(gpSprite[spritenum1].x, gpSprite[spritenum1].y, floorz, sectnum2, 28, 0);
+                if (krand() & 1)
+                    func_8008E3E0(gpSprite[spritenum1].x, gpSprite[spritenum1].y, floorz, sectnum2, 3, 0);
+
+                gpSprite[spritenum1].x += (gpSprite[i].x - gpSprite[spritenum2].x);
+                gpSprite[spritenum1].y += (gpSprite[i].y - gpSprite[spritenum2].y);
+                updateSector(gpSprite[spritenum1].x, gpSprite[spritenum1].y, &sectnum1);
+                changeSpriteSect(spritenum1, sectnum1);
+                gpSprite[spritenum1].z = getCeilzOfSlope(gpSprite[spritenum1].sectnum,
+                                                         gpSprite[spritenum1].x, gpSprite[spritenum1].y) + 1024;
+                cond = 1;
+            }
+        }
+        else if (unk18 == 2)
+        {
+            ceilz = getCeilzOfSlope(sectnum2, gpSprite[spritenum1].x, gpSprite[spritenum1].y);
+            if (ceilz >= (gpSprite[spritenum1].z + z))
+            {
+                if (krand() & 1)
+                    func_8008E3E0(gpSprite[spritenum1].x, gpSprite[spritenum1].y, ceilz, sectnum2, 3, 0);
+
+                gpSprite[spritenum1].x += (gpSprite[i].x - gpSprite[spritenum2].x);
+                gpSprite[spritenum1].y += (gpSprite[i].y - gpSprite[spritenum2].y);
+                updateSector(gpSprite[spritenum1].x, gpSprite[spritenum1].y, &sectnum1);
+                changeSpriteSect(spritenum1, sectnum1);
+                gpSprite[spritenum1].z = getFlorzOfSlope(gpSprite[spritenum1].sectnum,
+                                                         gpSprite[spritenum1].x, gpSprite[spritenum1].y) - 1;
+                cond = 1;
+            }
+        }
+        else if (gpSprite[spritenum2].unk25 != 0)
+        {
+            cond2 = 0;
+            if (gpSprite[spritenum2].cstat & 8)
+                cond2 = gpSprite[spritenum1].z < gpSprite[spritenum2].z;
+            else if (gpSprite[spritenum1].z > gpSprite[spritenum2].z)
+                cond2 = 1;
+
+            if (cond2)
+            {
+                if (gpSprite[spritenum1].statnum == 1)
+                {
+                    switch (D_8019B940[D_80106D50[spritenum1]].unk84)
+                    {
+                    case 1:
+                    case 9:
+                    case 17:
+                        func_8004BD24(spritenum1);
+                        return;
+                    }
+                }
+
+                gpSprite[spritenum1].x += (gpSprite[i].x - gpSprite[spritenum2].x);
+                gpSprite[spritenum1].y += (gpSprite[i].y - gpSprite[spritenum2].y);
+                gpSprite[spritenum1].z += (gpSprite[i].z - gpSprite[spritenum2].z);
+                updateSector(gpSprite[spritenum1].x, gpSprite[spritenum1].y, &sectnum1);
+                changeSpriteSect(spritenum1, sectnum1);
+                cond = 1;
+            }
+        }
+        else
+        {
+            gpSprite[spritenum1].x = gpSprite[i].x;
+            gpSprite[spritenum1].y = gpSprite[i].y;
+            gpSprite[spritenum1].ang = gpSprite[i].ang;
+            gpSprite[spritenum1].z += gpSprite[i].z - gpSprite[spritenum2].z;
+            updateSector(gpSprite[spritenum1].x, gpSprite[spritenum1].y, &sectnum1);
+            changeSpriteSect(spritenum1, sectnum1);
+            func_8008E3E0(gpSprite[i].x, gpSprite[i].y, gpSprite[i].z, gpSprite[i].sectnum, 43, 0);
+            audio_800077F4(704, i);
+            cond = 1;
+        }
+
+        if (cond != 0)
+        {
+            if (gpSprite[spritenum1].statnum == 4)
+            {
+                if (gpSprite[spritenum1].unk1E == 18)
+                    gpSprite[spritenum1].unk1A = func_8007AE50();
+
+                if (gpSprite[spritenum1].unk1E == 21)
+                    gpSprite[spritenum1].unk2A = func_8007AE50();
+            }
+        }
+    }
+}
 
 /*80064AA0*/
 void func_80064AA0(void)
@@ -68,19 +185,19 @@ void func_80064AA0(void)
             {
             case 10:
                 cond2 = 0;
-                if (((gpSprite[i].unk22 == 0) || cond1))
+                if ((gpSprite[i].unk22 == 0) || cond1)
                     func_80063A40(gpSprite[j].unk16, i);
                 break;
 
             case 1:
                 cond2 = 0;
-                if (((gpSprite[i].unk22 == 0) || cond1))
+                if ((gpSprite[i].unk22 == 0) || cond1)
                     func_800642CC(j, i);
                 break;
 
             case 4:
                 cond2 = 0;
-                if (((gpSprite[i].unk22 == 0) || cond1))
+                if ((gpSprite[i].unk22 == 0) || cond1)
                     func_800642CC(j, i);
                 break;
             }
@@ -302,7 +419,7 @@ void func_80069160(void)
             case 3:
                 for (j = 0; j < D_8012C470; j++)
                 {
-                    if ((gPlayer[j].unk32 == spr->sectnum) && ((gPlayer[j].unk88[spr->ang])))
+                    if ((gPlayer[j].unk32 == spr->sectnum) && (gPlayer[j].unk88[spr->ang]))
                     {
                         cond = 1;
                         break;

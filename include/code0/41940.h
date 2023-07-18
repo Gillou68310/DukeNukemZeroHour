@@ -18,7 +18,7 @@ void func_80047820(s32 spritenum, s32, s32);
 void func_800494DC(s32 spritenum1, s32, s32 spritenum2, s32);
 void func_8004AB6C(s32 spritenum, s32, s32, s32, s32, s32, s32);
 s32 func_8004BC64(s32 x, s32 y, s32 z, s32 sectnum, s32, s32, s32);
-s32 func_8004BD24(s32);
+s32 func_8004BD24(s32 spritenum);
 s32 func_8004BE90(void);
 void func_8004BFDC(s32 spritenum, s32, s32 z, s32);
 s32 func_8004CC90(s32 spritenum, s32, s32);
