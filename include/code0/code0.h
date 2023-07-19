@@ -526,7 +526,7 @@ typedef struct
 /*8012FD8C*/ _extern code0UnkStruct16 *D_8012FD8C;
 /*80137DE0*/ _extern code0UnkStruct3 *D_80137DE0;
 /*801385F0*/ _extern u8 D_801385F0;
-/*80138610*/ _extern s32 D_80138610[MAXPLAYERS];
+/*80138610*/ _extern s32 D_80138610[MAXPLAYERS] ALIGNED(8);
 /*80138620*/ _extern u8 D_80138620;
 /*80138678*/ _extern s32 D_80138678;
 /*80138680*/ _extern s32 D_80138680;
@@ -595,6 +595,7 @@ typedef struct
 /*801A2690*/ _extern u16 D_801A2690[128] ALIGNED(8);
 /*801A2790*/ _extern code0UnkStruct17 D_801A2790[MAXPLAYERS] ALIGNED(8);
 /*801A68D0*/ _extern u16 D_801A68D0[256] ALIGNED(8);
+/*801A6AD4*/ _extern u8 D_801A6AD4[MAXPLAYERS];
 /*801A6D80*/ _extern u16 D_801A6D80;
 /*801A6D84*/ _extern s32 D_801A6D84; /*xs*/
 /*801AC8E0*/ _extern f32 D_801AC8E0;
@@ -605,7 +606,7 @@ typedef struct
 /*801ACC60*/ _extern s32 D_801ACC60;
 /*801AD470*/ _extern u8 D_801AD470;
 /*801AD474*/ _extern u8 *D_801AD474;
-/*801AE480*/ _extern s32 D_801AE480[MAXPLAYERS];
+/*801AE480*/ _extern s32 D_801AE480[MAXPLAYERS] ALIGNED(8);
 /*801AE490*/ _extern s32 gSnoozingAliens;
 /*801AE4A0*/ _extern Fog gFog[MAXPLAYERS] ALIGNED(8);
 /*801AE528*/ _extern s32 D_801AE528;
