@@ -1089,7 +1089,7 @@ void func_8005BFD8(s32 spritenum, s32 arg1)
     D_80137DE0->unk7C = (D_80118248->ang -
                          getAngle(gPlayer[0].xpos - D_80118248->x, gPlayer[0].ypos - D_80118248->y)) & 0x7FF;
 
-    if (((klabs(D_80137DE0->unk32) >= 9) & (~arg1 != 0)) && (D_80137DE0->unk97 != 0))
+    if ((klabs(D_80137DE0->unk32) >= 9) && (arg1 != -1) && (D_80137DE0->unk97 != 0))
     {
         if (klabs((D_8013B2D0[spritenum].unk0 - (D_80137DE0->unk32 / 2))) < 0x300)
             D_8013B2D0[spritenum].unk0 -= D_80137DE0->unk32 / 2;

@@ -137,5 +137,5 @@ s32 klabs_(s32 arg0)
 /*8002B674*/
 s32 ksgn(s32 arg0)
 {
-    return (arg0 >> 31) | 1;
+    return (arg0 < 0) ? -1 : 1;
 }

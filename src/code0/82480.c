@@ -129,7 +129,7 @@ void func_80081E20(ProcPointer arg0, ProcPointer arg1, s8 arg2)
 
     for (i = 0; i < D_8012FD8C->unk98;)
     {
-        D_80118168.unk0 = ((swap16(ptr) & 0xFFFF) * 8) + D_8012FD8C->unk74;
+        D_80118168.unk0 = ((u16)swap16(ptr) * 8) + D_8012FD8C->unk74;
         ptr += 2;
         D_80118168.unk8 = swap16(ptr);
         ptr += 2;

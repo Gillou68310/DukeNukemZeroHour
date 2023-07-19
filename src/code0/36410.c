@@ -187,7 +187,7 @@ void func_800360A0(s32 spritenum)
 
     D_8011BC54 = &D_8019B940[D_80106D50[spritenum]];
 
-    if ((D_8011BC54->unk0 & 0x8000)==0)
+    if ((D_8011BC54->unk0 & 0x8000) == 0)
         func_80035B88(spritenum);
 
     unk84 = D_8011BC54->unk84;

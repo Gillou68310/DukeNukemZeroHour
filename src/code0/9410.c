@@ -911,7 +911,7 @@ static void func_8000AEE0(u16 wallnum)
 
                 if (j == 0)
                 {
-                    if ((gpWall[wallnum].unk14 == 4) & (k == 0))
+                    if ((gpWall[wallnum].unk14 == 4) && (k == 0))
                     {
                         gpVertexN64->v.cn[0] = CLAMP_MAX((gpWall[wallnum].unk1D+a), 0xFF);
                         gpVertexN64->v.cn[1] = CLAMP_MAX((gpWall[wallnum].unk1E+b), 0xFF);
@@ -926,7 +926,7 @@ static void func_8000AEE0(u16 wallnum)
                 }
                 else
                 {
-                    if ((gpWall[wallnum].unk14 == 4) & (k == 0))
+                    if ((gpWall[wallnum].unk14 == 4) && (k == 0))
                     {
                         gpVertexN64->v.cn[0] = CLAMP_MAX((gpWall[point2].unk1D+d), 0xFF);
                         gpVertexN64->v.cn[1] = CLAMP_MAX((gpWall[point2].unk1E+e), 0xFF);

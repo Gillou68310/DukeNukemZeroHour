@@ -322,7 +322,7 @@ void func_8006B4E4(s16 arg0)
     if (D_801AE91E[arg0+1] == 70)
         D_801AE91E[arg0+1] = 67;
 
-    if ((gMapNum == MAP_NUCLEAR_WINTER) & (arg0 == 1))
+    if ((gMapNum == MAP_NUCLEAR_WINTER) && (arg0 == 1))
     {
         D_801AE91E[2] = 67;
         D_801AE91E[3] = 67;
@@ -600,7 +600,7 @@ void func_8006B590(s16 arg0)
             i = nexti;
         }
 
-        if ((gMapNum == MAP_BASE) & (arg0 == 1301))
+        if ((gMapNum == MAP_BASE) && (arg0 == 1301))
             D_800E192C = D_801A1958.unkC;
 
         if (gMapNum == MAP_UNDER_SIEGE)
@@ -2534,7 +2534,7 @@ STATIC void func_80075E28(s32 spritenum)
         i = -(spr->unk1C / 2);
         spr->unk1C = i;
 
-        if (((i + 49) & 0xFFFF) < 99U)
+        if (((u16)(i + 49)) < 99) /*TODO: if ((i > -50) && (i < 50)) ?*/
             spr->unk1C = 0;
         spr->unk18 = spr->unk18 / 2;
     }

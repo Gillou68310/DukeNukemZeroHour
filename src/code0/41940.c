@@ -3008,7 +3008,7 @@ s32 func_8004CE58(SpriteType *spr, s16 arg1, s16 arg2)
     _41940UnkStruct3 stat;
     s32 x, y;
     s32 i, m;
-    s32 cond1, cond2;
+    s16 cond1, cond2;
     s16 j;
     s32 temp;
 
@@ -3069,10 +3069,10 @@ s32 func_8004CE58(SpriteType *spr, s16 arg1, s16 arg2)
                             if (!(m < 513) && (m < e))
                             {
                                 cond1 = klabs_(scale(gpSprite[j].z - spr->z, 10, m) - f) < 100;
-                                cond2 = (canSee(gpSprite[j].x, gpSprite[j].y, (gpSprite[j].z - 8192), gpSprite[j].sectnum,
-                                    spr->x, spr->y, (spr->z - 8192), spr->sectnum) << 16) != 0; /*TODO*/
+                                cond2 = (canSee(gpSprite[j].x, gpSprite[j].y, (gpSprite[j].z - 0x2000), gpSprite[j].sectnum,
+                                    spr->x, spr->y, (spr->z - 0x2000), spr->sectnum));
 
-                                if (cond1 & cond2)
+                                if (cond1 && cond2)
                                 {
                                     e = m;
                                     ret = j;
@@ -3274,7 +3274,7 @@ void func_8004D884(void)
     {
         z1 = func_80036490(D_80118248->sectnum);
         z2 = (D_80118248->z - D_801B0D30) + 0x400;
-        if (!(z2 < (z1 - 0x1300)) & (z2 < z1))
+        if (!(z2 < (z1 - 0x1300)) && (z2 < z1))
             D_80118248->z = (D_801B0D30 + z1) - 0xF00;
     }
 
@@ -5312,7 +5312,7 @@ void func_800533C4(s32 arg0, s32 spritenum)
             spr->unk18 = sp10.unk0[j % 3];
         }
 
-        if (((~j) == 0) & (i != 0))
+        if ((j == -1) && (i != 0))
         {
             changeSpriteStat(spritenum_, 65);
             spr->unk22 = -1;
@@ -5542,7 +5542,7 @@ void func_80056600(s32 spritenum)
                     gpSprite[spritenum_].picnum = 1910;
             }
 
-            if ((gpSprite[spritenum].unk2B == 1) & (i != 34))
+            if ((gpSprite[spritenum].unk2B == 1) && (i != 34))
             {
                 if (gpSprite[spritenum_].picnum == 1914)
                     gpSprite[spritenum_].picnum = 1813;
@@ -5680,7 +5680,7 @@ static void func_80056C00(s32 spritenum)
                     d2 = klabs_(gpSprite[spritenum].x - spr->x) + klabs_(gpSprite[spritenum].y - spr->y);
                     d3 = D_800DEED4;
 
-                    if ((gMapNum == MAP_UP_SHIP_CREEK) & (cond == 0))
+                    if ((gMapNum == MAP_UP_SHIP_CREEK) && (cond == 0))
                         d3 >>= 1;
 
                     if (gpSprite[i].picnum == 2468)
@@ -5951,7 +5951,7 @@ s32 func_80058B3C(s32 x1, s32 y1, s32 z1, s32 sectnum, s32 x2, s32 y2, s32 z2, s
     if (unk18 == 3)
     {
         z = func_80036490(sectnum);
-        if ((z < z1) & (z2 < z))
+        if ((z < z1) && (z2 < z))
         {
             f1 = z - z2;
             f1 /= (z1 - z2);

@@ -929,7 +929,7 @@ void audio_80007AB8(void)
         if (gPlayer[i].unk55 != 0)
             j = 1;
 
-        if ((~gPlayer[i].unk52 != 0) & (gPlayer[i].unk52 < 0x800))
+        if ((gPlayer[i].unk52 != -1) && (gPlayer[i].unk52 < 0x800))
         {
             if (gpSprite[gPlayer[i].unk52].picnum != 1423)
                 k = 1;
