@@ -607,7 +607,7 @@ STATIC s32 func_80041D10(s32 spritenum)
         if (gpSector[D_80118248->sectnum].unk18 == 3)
         {
             z2 = D_80118248->z - i;
-            cond &= -((func_80036490(D_80118248->sectnum) >= (z2)));
+            cond = (func_80036490(D_80118248->sectnum) < z2) ? 0 : cond;
         }
     }
 
@@ -895,7 +895,7 @@ STATIC s32 func_80042598(s32 spritenum)
         if (gpSector[D_80118248->sectnum].unk18 == 3)
         {
             z2 = D_80118248->z - l;
-            cond &= -((func_80036490(D_80118248->sectnum) >= z2));
+            cond = (func_80036490(D_80118248->sectnum) < z2) ? 0 : cond;
         }
     }
 

@@ -366,7 +366,7 @@ typedef struct
     /*0x1A*/ s16 unk1A;
     /*0x1C*/ s16 unk1C;
     /*0x1E*/ s16 unk1E;
-    /*0x20*/ s8 unk20;
+    /*0x20*/ u8 unk20;
     /*0x24*/ s32 unk24;
 } code0UnkStruct17;
 
