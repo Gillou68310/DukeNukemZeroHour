@@ -15,6 +15,11 @@
 STATIC void func_80079F60(s32 playernum);
 static void func_8007ADBC(s32 playernum);
 
+static inline u16 *get_D_800DF8E0(s32 i, s32 j)
+{
+    return &D_800DF8E0[i][j];
+}
+
 /*80079830*/
 void func_80079830(void)
 {
@@ -211,7 +216,23 @@ void func_8007AC6C(s32 arg0, s32 arg1, s32 arg2)
 }
 
 /*8007AD30*/
-INCLUDE_ASM("nonmatchings/src/code0/7A430", func_8007AD30);
+void func_8007AD30(void)
+{
+    s32 i, j;
+    s32 temp;
+
+    for (i = 0; i < ARRAY_COUNT(D_8011A680); i++)
+    {
+        for (j = 0; j < ARRAY_COUNT(D_8011A680[0]) - 1; j++)
+        {
+            D_8011A680[i][j][5] = *get_D_800DF8E0(j, 0);
+            D_8011A680[i][j][2] = *get_D_800DF8E0(j, 1);
+            temp = i; i = temp; /*FAKEMATCH*/
+            D_8011A680[i][j][3] = 0;
+            D_8011A680[i][j][4] = 0;
+        }
+    }
+}
 
 /*8007ADBC*/
 static void func_8007ADBC(s32 playernum)
