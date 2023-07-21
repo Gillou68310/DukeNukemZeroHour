@@ -5,7 +5,10 @@
 #include "code0/9410.h"
 #include "code0/audio.h"
 #include "code0/pragmas.h"
+#include "code0/FDE0.h"
 #include "code0/17B30.h"
+#include "code0/1E7A0.h"
+#include "code0/36410.h"
 #include "code0/37090.h"
 #include "code0/41940.h"
 #include "code0/6ACA0.h"
@@ -1166,7 +1169,281 @@ static void func_8009E734(s32 spritenum)
 }
 
 /*8009E8C8*/
-INCLUDE_ASM("nonmatchings/src/code0/95500", func_8009E8C8);
+void func_8009E8C8(s32 spritenum)
+{
+    SpriteType *spr;
+    SpriteType *spr2;
+    code0UnkStruct3 *ptr;
+    code0UnkStruct5 *ptr2;
+
+    s16 ang;
+    s32 x, y, z;
+    s32 x1, y1, z1;
+    u16 cstat;
+    s32 i, j, k, l, m;
+
+    s32 s1, s2, s3;
+    s32 ang2;
+
+    s1 = -1;
+    s2 = -1;
+    s3 = -1;
+
+    ptr = &D_8019B940[D_80106D50[spritenum]];
+    spr = &gpSprite[spritenum];
+    ptr2 = &D_8013B2D0[spritenum];
+
+    ang = gHeadSpriteStat[302];
+    i = ang; /*FAKEMATCH*/
+
+    while (i >= 0)
+    {
+        spr2 = &gpSprite[i];
+        if (spr2->picnum == 2562)
+            s1 = i;
+
+        if (spr2->picnum == 2563)
+            s2 = i;
+
+        if (spr2->picnum == 2564)
+            s3 = i;
+
+        i = gNextSpriteStat[i];
+    }
+
+    spr->xrepeat = 0x80;
+    spr->yrepeat = 0x80;
+
+    if (spr->unk2B != 21)
+    {
+        func_80036280(spritenum, 0);
+        func_80017268(spritenum);
+
+        if (s1 != -1)
+        {
+            ang = getAngle(gPlayer[0].xpos - gpSprite[s1].x, gPlayer[0].ypos - gpSprite[s1].y);
+            ang2 = getAngleDelta(ang, (spr->ang - 512) & 0x7FF);
+
+            ang2 = MIN(MAX(ang2, -290), 290);
+            D_8013B2D0[s1].unk4 = func_80095FCC(D_8013B2D0[s1].unk4, ang2, 5);
+        }
+
+        if (s2 != -1)
+        {
+            ang = getAngle(gPlayer[0].xpos - gpSprite[s2].x, gPlayer[0].ypos - gpSprite[s2].y);
+            ang2 = getAngleDelta(ang, (spr->ang + 512) & 0x7FF);
+
+            ang2 = MIN(MAX(ang2, -290), 290);
+            ang = D_8013B2D0[s2].unk4; /*FAKEMATCH*/
+            D_8013B2D0[s2].unk4 = func_80095FCC(ang, ang2, 5);
+        }
+
+        if (s3 != -1)
+        {
+            ang = getAngle(gPlayer[0].xpos - gpSprite[s3].x, gPlayer[0].ypos - gpSprite[s3].y);
+            ang2 = getAngleDelta(ang, (spr->ang + 1024) & 0x7FF);
+            D_8013B2D0[s3].unk4 = func_80095FCC(D_8013B2D0[s3].unk4, ang2, 5);
+        }
+
+        if (D_80199948 == 0)
+        {
+            if (ptr2->handle != 0)
+                ptr2->handle = audio_80007A80(ptr2->handle, spritenum, 40000);
+            else
+                ptr2->handle = audio_80007A44(1068, spritenum, 40000);
+        }
+
+        x = gPlayer[0].xpos;
+        y = gPlayer[0].ypos;
+        z = gpSprite[gPlayer[0].unk4A].z;
+
+        if (ptr->unk8 < 3750)
+        {
+            z1 = 0x1000;
+            if (ptr->unk8 < 2500)
+                z1 = 0x2000;
+
+            if (ptr->unk8 < 1250)
+                z1 = 0x4000;
+
+            if ((D_8012FD88 & 3) && ((krand() & 0x7FFF) < z1))
+            {
+                x1 = spr->x + ((gpSinTable[(spr->ang + 0x600) & 0x7FF] * 625) >> 12);
+                y1 = spr->y + ((gpSinTable[(spr->ang + 0x400) & 0x7FF] * 625) >> 12);
+                z1 = spr->z - 16000;
+
+                func_8001DBA0((x1 / 2), (y1 / 2), (z1 / 32), 11, 11, 5);
+            }
+        }
+
+    loop_38:
+        j = func_80095F58(0, spr->unk22);
+        if (j == -1)
+        {
+            spr->unk22 = 0;
+            goto loop_38;
+        }
+
+        ang = getAngle(gPlayer[0].xpos - spr->x, gPlayer[0].ypos - spr->y);
+        switch (spr->unk2B)
+        {
+        case 0:
+            if (D_8012F908 != 0)
+            {
+                D_8012F908 = 0;
+                if (D_80105540 != 0)
+                {
+                    D_80105540 = 0;
+                    func_80042124(ptr, 70);
+                }
+                else if ((krand() & 0x7FFF) < 10000)
+                {
+                    func_80042124(ptr, 66);
+                }
+            }
+
+            if (((ptr->unk86 & 0x7FFF) == 70) && (func_80042140(spritenum) == 21))
+                func_80042124(ptr, 71);
+
+            if (((ptr->unk86 & 0x7FFF) == 66) && (func_80042140(spritenum) == 60))
+                func_80042124(ptr, 71);
+
+
+            ang2 = getAngleDelta(spr->ang, getAngle(gpSprite[j].x - spr->x, gpSprite[j].y - spr->y));
+            spr->ang = (((spr->ang << 16) + ((ang2 << 13))) >> 16) & 0x7FF;
+
+            l = func_80040D40(spr->x, spr->y, gpSprite[j].x, gpSprite[j].y);
+            if ((klabs(getAngleDelta((spr->ang + 0x400) & 0x7FF, ang)) < 64) && ((krand() & 0x7FFF) < 2000))
+            {
+                D_80199964 ^= 1;
+                if (D_80199964 == 0)
+                    spr->unk22++;
+                else
+                    spr->unk22--;
+
+                if (spr->unk22 < 0)
+                    spr->unk22 = 3;
+
+                if (spr->unk22 >= 4)
+                    spr->unk22 = 0;
+
+                spr->unk2B = 1;
+            }
+            else
+            {
+                if (l < 600)
+                {
+                    if (D_80199964 == 0)
+                        spr->unk22++;
+                    else
+                        spr->unk22--;
+
+                    if (spr->unk22 < 0)
+                        spr->unk22 = 3;
+
+                    if (spr->unk22 >= 4)
+                        spr->unk22 = 0;
+
+                    spr->unk2B = 1;
+                }
+
+                ang2 = (gpSinTable[(spr->ang + 0x200) & 0x7FF] * 325) >> 13;
+                m = func_8004E5F8(spritenum, ang2,
+                                  (gpSinTable[spr->ang & 0x7FF] * 325) >> 13, 1000);
+
+                if ((m >= 0xC000) && (gpSprite[(m + 0x4000) & 0xFFFF].statnum == 10))
+                    func_800365C0(0);
+
+                if ((ptr->unk86 & 0x7FFF) == 71)
+                {
+                    D_801AC594++;
+                    if (D_801AC594 > 32)
+                    {
+                        D_801AC594 = 64;
+                        if (((krand() & 0x7FFF) < 1000) &&
+                            (canSee(spr->x, spr->y, (spr->z - 16000), spr->sectnum,
+                                x, y, z, gpSprite[gPlayer[0].unk4A].sectnum) != 0))
+                        {
+                            D_801AC594 = 0;
+                            playSfx(1594);
+                            cstat = spr->cstat;
+                            spr->cstat = cstat & 0xFEFE;
+                            func_80095B20(s3, 36, 0.0f, -35.0f, -215.0f, 0x400);
+                            spr->cstat = cstat;
+                        }
+
+                        if ((krand() & 0x7FFF) < 1000)
+                        {
+                            D_801AC594 = 0;
+                            if (klabs(getAngleDelta((spr->ang + 0x200) & 0x7FF, ang)) < 290)
+                            {
+                                playSfx(705);
+                                cstat = spr->cstat;
+                                spr->cstat = cstat & 0xFEFE;
+                                func_80095B20(s2, 47, -210.0f, 0.0f, 16.0f, 0x200);
+                                spr->cstat = cstat;
+                            }
+                            else if (klabs(getAngleDelta((spr->ang - 0x200) & 0x7FF, ang)) < 290)
+                            {
+                                playSfx(705);
+                                cstat = spr->cstat;
+                                spr->cstat = cstat & 0xFEFE;
+                                func_80095B20(s1, 47, 210.0f, 0.0f, 16.0f, -0x200);
+                                spr->cstat = cstat;
+                            }
+                        }
+                    }
+                }
+            }
+            break;
+        case 1:
+            i = getAngleDelta(spr->ang, getAngle(gpSprite[j].x - spr->x, gpSprite[j].y - spr->y));
+
+            spr->ang = (((spr->ang << 16) + (i << 12)) >> 16) & 0x7FF;
+            if (klabs(i) < 24)
+            {
+                if ((ptr->unk86 & 0x7FFF) != 71)
+                    playSfx(((krand() % 3) + 1071) & 0xFFFF);
+
+                func_80042124(ptr, 71);
+                spr->unk2B = 0;
+            }
+            else if (i < 0)
+            {
+                if ((ptr->unk86 & 0x7FFF) != 68)
+                    playSfx(((krand() % 3) + 1071) & 0xFFFF);
+
+                func_80042124(ptr, 68);
+            }
+            else
+            {
+                if ((ptr->unk86 & 0x7FFF) != 69)
+                {
+                    playSfx(((krand() % 3) + 1071) & 0xFFFF);
+                }
+                func_80042124(ptr, 69);
+            }
+            break;
+        case 20:
+            if (func_80042140(spritenum) == 104)
+            {
+                spr->unk2B = 21;
+                func_8006B590(3001);
+                return;
+            }
+            break;
+        }
+
+        func_8009E734(spritenum);
+        k = func_80096240(spr);
+        func_8009635C(spritenum, 16000, 3000);
+
+        if (k < spr->z)
+            spr->z = k;
+
+        func_80015DE0(spritenum);
+    }
+}
 
 /*8009F648*/
 static s32 func_8009F648(s32 spritenum)

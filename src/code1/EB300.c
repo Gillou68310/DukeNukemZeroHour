@@ -2369,7 +2369,7 @@ void func_801C764C(void)
             D_801CDA28[i] = func_8007FC08(&D_800E047C[i], 0, 0, (gScreenHeight / 2) - 88, 500);
             k = D_801CE5DC * 256;
             D_801CDA88 = ((D_801CE5DC * 16384) + k) * 2;
-            D_801CDA28[i]->unk34 = ((gScreenWidth / 2) - 60 + ((i * 130)) - (D_801CDA88 >> 8));
+            D_801CDA28[i]->unk34 = ((gScreenWidth / 2) - 60 + (i * 130) - (D_801CDA88 >> 8));
 
             if ((D_801CDA28[i]->unk34 < (gScreenWidth + 80)) && (D_801CDA28[i]->unk34 > -130.0f))
                 D_801CDA28[i]->unkC |= 1;
@@ -2437,7 +2437,7 @@ void func_801C764C(void)
 
         for (i = 0; i < (l + 1); i++)
         {
-            D_801CDA28[i]->unk34 = ((gScreenWidth / 2) - 60 + ((i * 130)) - (D_801CDA88 >> 8));
+            D_801CDA28[i]->unk34 = ((gScreenWidth / 2) - 60 + (i * 130) - (D_801CDA88 >> 8));
             if ((D_801CDA28[i]->unk34 < (gScreenWidth + 80)) && (D_801CDA28[i]->unk34 > -130.0f))
                 D_801CDA28[i]->unkC |= 1;
             else
@@ -2605,7 +2605,7 @@ static void func_801C8650(void)
 
     for (i = 0; i < ARRAY_COUNT(D_800E064C)-1; i++)
     {
-        D_801CDA28[i] = func_8007FC08(&D_800E064C[i], 0, (gScreenWidth / 2) - 60 + ((i * 130)), (gScreenHeight / 2) - 88, 500);
+        D_801CDA28[i] = func_8007FC08(&D_800E064C[i], 0, (gScreenWidth / 2) - 60 + (i * 130), (gScreenHeight / 2) - 88, 500);
         D_801CDA28[i]->unkC &= ~1;
     }
 
@@ -2629,7 +2629,7 @@ void func_801C899C(void)
 
     for (i = 0; i < 14; i++)
     {
-        D_801CDA28[i]->unk34 = ((gScreenWidth / 2) - 60 + ((i * 130)) - (D_801CDA88 >> 8));
+        D_801CDA28[i]->unk34 = ((gScreenWidth / 2) - 60 + (i * 130) - (D_801CDA88 >> 8));
         if ((D_801CDA28[i]->unk34 < (gScreenWidth + 80)) && (D_801CDA28[i]->unk34 > -130.0f))
             D_801CDA28[i]->unkC |= 1;
         else

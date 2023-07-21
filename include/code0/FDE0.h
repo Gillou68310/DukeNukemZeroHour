@@ -15,6 +15,7 @@ void func_80012174(void);
 void func_80012318(void);
 void func_80013FFC(code0unkStruct10 *);
 code0unkStruct10 *func_80014040(s16);
+void func_80015DE0(s32 spritenum);
 
 extern s32 D_800BD788;
 

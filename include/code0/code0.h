@@ -181,7 +181,7 @@ typedef struct
 {
     /*0x00*/ s16 unk0;
     /*0x02*/ s16 unk2;
-    /*0x04*/ s16 unk4;
+    /*0x04*/ s16 unk4; /*ang*/
     /*0x06*/ s16 unk6;
     /*0x08*/ musHandle handle;
 } code0UnkStruct5;
@@ -515,6 +515,7 @@ typedef struct
 /*8012F6F0*/ _extern s8 D_8012F6F0[4];
 /*8012F6F4*/ _extern s16 D_8012F6F4; /*sectnum*/
 /*8012F6FC*/ _extern volatile u16 D_8012F6FC[MAXPLAYERS];
+/*8012F908*/ _extern s32 D_8012F908;
 /*8012F914*/ _extern s16 D_8012F914[MAXPLAYERS];
 /*8012FC40*/ _extern u8 D_8012FC40;
 /*8012FC48*/ _extern code0unkStruct12 D_8012FC48[2] ALIGNED(8);
