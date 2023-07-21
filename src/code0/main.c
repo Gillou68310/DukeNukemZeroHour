@@ -349,16 +349,11 @@ static void main_8000071C(void)
 void boot(void)
 {
 #if defined (MODERN) || defined (NON_MATCHING)
-    assert((u32)code0_TEXT_SIZE <= 0x100000);
     if ((code0_ROM_END - code0_ROM_START) > 0x100000)
     {
-        osInvalDCache(code0_VRAM+0x100000, (code0_ROM_END-(code0_ROM_START+0x100000)));
-        osPiRawStartDma(OS_READ,
-                        (u32)(code0_ROM_START+0x100000),
-                        (code0_VRAM+0x100000),
-                        (code0_ROM_END-(code0_ROM_START+0x100000)));
-
-        while (IO_READ(PI_STATUS_REG) & PI_STATUS_DMA_BUSY);
+        Bmemcpy(code0_VRAM+0x100000,
+                (void *)(0xB0000000+code0_ROM_START+0x100000),
+                (code0_ROM_END-(code0_ROM_START+0x100000)));
     }
 #endif
     osViBlack(1);

@@ -1,5 +1,6 @@
 #include "common.h"
 #include "code0/main.h"
+#include "code0/audio.h"
 #include "code0/graphics.h"
 #include "code0/9410.h"
 #include "code0/41940.h"
