@@ -109,7 +109,7 @@ static void func_80020BA0(u16 wallnum, s16 arg1)
 }
 
 /*80020DC4*/
-static void func_80020DC4(s32 arg0)
+static void func_80020DC4(s16 arg0)
 {
     f32 f1, prev;
     s32 i;
@@ -204,7 +204,98 @@ u8 func_800213B8(s32 sectnum, s32 wallnum)
 INCLUDE_ASM("nonmatchings/src/code0/21500", func_80021464);
 
 /*800226C0*/
-INCLUDE_ASM("nonmatchings/src/code0/21500", func_800226C0);
+s32 func_800226C0(u16 wallnum)
+{
+    s32 x1, y1, z1;
+    s32 x2, y2, z2;
+    s32 floorz1, floorz2;
+    s32 ceilz1, ceilz2;
+    u16 i;
+    u8 ret;
+    u16 cstat;
+
+    ret = 0;
+    i = 0;
+    D_801A1984 = 0;
+
+    x1 = gpWall[wallnum].x;
+    y1 = gpWall[wallnum].y;
+    x2 = gpWall[gpWall[wallnum].point2].x;
+    y2 = gpWall[gpWall[wallnum].point2].y;
+    ceilz1 = getCeilzOfSlope(gpWall[wallnum].unk1A, x1, y1) >> 4;
+    ceilz2 = getCeilzOfSlope(gpWall[wallnum].unk1A, x2, y2) >> 4;
+    z1 = getCeilzOfSlope(gpWall[wallnum].nextsector, x1, y1) >> 4;
+    z2 = getCeilzOfSlope(gpWall[wallnum].nextsector, x2, y2) >> 4;
+
+    if (ceilz1 < z1)
+    {
+        ceilz1 = z1;
+        ceilz2 = z2;
+    }
+
+    floorz1 = getFlorzOfSlope(gpWall[wallnum].unk1A, x1, y1) >> 4;
+    floorz2 = getFlorzOfSlope(gpWall[wallnum].unk1A, x2, y2) >> 4;
+    z1 = getFlorzOfSlope(gpWall[wallnum].nextsector, x1, y1) >> 4;
+    z2 = getFlorzOfSlope(gpWall[wallnum].nextsector, x2, y2) >> 4;
+
+    if (z1 < floorz1)
+    {
+        floorz1 = z1;
+        floorz2 = z2;
+    }
+
+    if (!(gpWall[wallnum].cstat & 4))
+    {
+        z1 = MAX((gpSector[gpWall[wallnum].unk1A].ceilingz >> 4),
+                 (gpSector[gpWall[wallnum].nextsector].ceilingz >> 4));
+        cstat = gpWall[wallnum].cstat & 0xFFFB;
+    }
+    else
+    {
+        z1 = MIN((gpSector[gpWall[wallnum].unk1A].floorz >> 4),
+                 (gpSector[gpWall[wallnum].nextsector].floorz >> 4));
+        cstat = gpWall[wallnum].cstat & 0xFFFB;
+    }
+
+    func_80020900(gpWall[wallnum].overpicnum);
+    func_800209BC(wallnum, cstat);
+    ret |= 4;
+    D_801ACBE4 = ((z1 - ceilz1) * D_8013877C) + D_80168D00;
+    D_80168CA0 = ((z1 - floorz1) * D_8013877C) + D_80168D00;
+    D_80138814 = ((z1 - floorz2) * D_8013877C) + D_80168D00;
+    D_80118154 = ((z1 - ceilz2) * D_8013877C) + D_80168D00;
+    func_80020DC4(cstat);
+
+    D_800FE950[i].ob[0] = x1 >> 1;
+    D_800FE950[i].ob[2] = ceilz1 >> 1;
+    D_800FE950[i].ob[1] = y1 >> 1;
+    D_800FE950[i].tc[0] = (s32)D_8012FD90;
+    D_800FE950[i].tc[1] = (s32)D_801ACBE4;
+    i++;
+
+    D_800FE950[i].ob[0] = x1 >> 1;
+    D_800FE950[i].ob[2] = floorz1 >> 1;
+    D_800FE950[i].ob[1] = y1 >> 1;
+    D_800FE950[i].tc[0] = (s32)D_8012FD90;
+    D_800FE950[i].tc[1] = (s32)D_80168CA0;
+    i++;
+
+    D_800FE950[i].ob[0] = x2 >> 1;
+    D_800FE950[i].ob[2] = floorz2 >> 1;
+    D_800FE950[i].ob[1] = y2 >> 1;
+    D_800FE950[i].tc[0] = (s32)D_800FE3F8;
+    D_800FE950[i].tc[1] = (s32)D_80138814;
+    i++;
+
+    D_800FE950[i].ob[0] = x2 >> 1;
+    D_800FE950[i].ob[2] = ceilz2 >> 1;
+    D_800FE950[i].ob[1] = y2 >> 1;
+    D_800FE950[i].tc[0] = (s32)D_800FE3F8;
+    D_800FE950[i].tc[1] = (s32)D_80118154;
+
+    D_801A1984++;
+    return ret;
+}
 
 /*80022C30*/
 static s32 func_80022C30(s32 sectnum, s32 wallnum)
