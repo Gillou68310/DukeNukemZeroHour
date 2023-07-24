@@ -21,11 +21,12 @@
 /*80168D14*/ u16 D_80168D14; /*tilenum*/
 /*80199104*/ f32 D_80199104;
 /*80199568*/ f32 D_80199568;
+/*801A1984*/ s32 D_801A1984;
 /*801ACBE4*/ f32 D_801ACBE4;
 
 /*.text*/
 STATIC s32 func_80021464(s32 sectnum, s32 wallnum);
-STATIC s32 func_80022C30(s32 sectnum, s32 wallnum);
+static s32 func_80022C30(s32 sectnum, s32 wallnum);
 
 /*80020900*/
 static void func_80020900(u16 tileid)
@@ -206,4 +207,280 @@ INCLUDE_ASM("nonmatchings/src/code0/21500", func_80021464);
 INCLUDE_ASM("nonmatchings/src/code0/21500", func_800226C0);
 
 /*80022C30*/
-INCLUDE_ASM("nonmatchings/src/code0/21500", func_80022C30);
+static s32 func_80022C30(s32 sectnum, s32 wallnum)
+{
+    s32 x2, y2, z2;
+    s32 x1, y1, z1;
+    s32 z, m, l;
+    s32 nextsector;
+    s16 cstat;
+    u16 i;
+    u8 ret;
+
+    nextsector = gpWall[wallnum].nextsector;
+    i = 0;
+    D_801A1984 = 0;
+    ret = 0;
+
+    if (nextsector == -1)
+    {
+        z1 = gpSector[sectnum].ceilingz >> 4;
+        z2 = gpSector[sectnum].floorz >> 4;
+
+        if (z1 == z2)
+            return 0;
+
+        x1 = gpWall[wallnum].x;
+        y1 = gpWall[wallnum].y;
+        x2 = gpWall[gpWall[wallnum].point2].x;
+        y2 = gpWall[gpWall[wallnum].point2].y;
+
+        if (gpWall[wallnum].cstat & 4)
+            z = z2;
+        else
+            z = z1;
+
+        func_80020900(gpWall[wallnum].picnum);
+        func_800209BC(wallnum, gpWall[wallnum].cstat);
+        D_801ACBE4 = ((z - z1) * D_8013877C) + D_80168D00;
+        D_80168CA0 = ((z - z2) * D_8013877C) + D_80168D00;
+        func_800211D0(gpWall[wallnum].cstat);
+
+        D_800FE950[0].ob[0] = x1 >> 1;
+        D_800FE950[0].ob[2] = z1 >> 1;
+        D_800FE950[0].ob[1] = y1 >> 1;
+        D_800FE950[0].tc[0] = (s32)D_8012FD90;
+        D_800FE950[0].tc[1] = (s32)D_801ACBE4;
+
+        D_800FE950[1].ob[0] = x1 >> 1;
+        D_800FE950[1].ob[2] = z2 >> 1;
+        D_800FE950[1].ob[1] = y1 >> 1;
+        D_800FE950[1].tc[0] = (s32)D_8012FD90;
+        D_800FE950[1].tc[1] = (s32)D_80168CA0;
+
+        D_800FE950[2].ob[0] = x2 >> 1;
+        D_800FE950[2].ob[2] = z2 >> 1;
+        D_800FE950[2].ob[1] = y2 >> 1;
+        D_800FE950[2].tc[0] = (s32)D_800FE3F8;
+        D_800FE950[2].tc[1] = (s32)D_80168CA0;
+
+        D_800FE950[3].ob[0] = x2 >> 1;
+        D_800FE950[3].ob[2] = z1 >> 1;
+        D_800FE950[3].ob[1] = y2 >> 1;
+        D_800FE950[3].tc[0] = (s32)D_800FE3F8;
+        D_800FE950[3].tc[1] = (s32)D_801ACBE4;
+
+        D_801A1984++;
+        return 8;
+    }
+
+    if (!(gpWall[wallnum].cstat & 0x400))
+    {
+        z1 = gpSector[sectnum].ceilingz >> 4;
+        z2 = gpSector[nextsector].ceilingz >> 4;
+        if (z1 < z2)
+        {
+            x1 = gpWall[wallnum].x;
+            y1 = gpWall[wallnum].y;
+            x2 = gpWall[gpWall[wallnum].point2].x;
+            y2 = gpWall[gpWall[wallnum].point2].y;
+
+            if (gpWall[wallnum].cstat & 4)
+            {
+                z = z1;
+                cstat = gpWall[wallnum].cstat & ~4;
+            }
+            else
+            {
+                z = z2;
+                cstat = gpWall[wallnum].cstat | 4;
+            }
+
+            func_80020900(gpWall[wallnum].picnum);
+            func_800209BC(wallnum, cstat);
+            ret |= 1;
+            D_801ACBE4 = ((z - z1) * D_8013877C) + D_80168D00;
+            D_80168CA0 = ((z - z2) * D_8013877C) + D_80168D00;
+            func_800211D0(cstat);
+
+            D_800FE950[i].ob[0] = x1 >> 1;
+            D_800FE950[i].ob[2] = z1 >> 1;
+            D_800FE950[i].ob[1] = y1 >> 1;
+            D_800FE950[i].tc[0] = (s32)D_8012FD90;
+            D_800FE950[i].tc[1] = (s32)D_801ACBE4;
+            i++;
+
+            D_800FE950[i].ob[0] = x1 >> 1;
+            D_800FE950[i].ob[2] = z2 >> 1;
+            D_800FE950[i].ob[1] = y1 >> 1;
+            D_800FE950[i].tc[0] = (s32)D_8012FD90;
+            D_800FE950[i].tc[1] = (s32)D_80168CA0;
+            i++;
+
+            D_800FE950[i].ob[0] = x2 >> 1;
+            D_800FE950[i].ob[2] = z2 >> 1;
+            D_800FE950[i].ob[1] = y2 >> 1;
+            D_800FE950[i].tc[0] = (s32)D_800FE3F8;
+            D_800FE950[i].tc[1] = (s32)D_80168CA0;
+            i++;
+
+            D_800FE950[i].ob[0] = x2 >> 1;
+            D_800FE950[i].ob[2] = z1 >> 1;
+            D_800FE950[i].ob[1] = y2 >> 1;
+            D_800FE950[i].tc[0] = (s32)D_800FE3F8;
+            D_800FE950[i].tc[1] = (s32)D_801ACBE4;
+            i++;
+            D_801A1984++;
+        }
+    }
+
+    if (!(gpWall[wallnum].cstat & 0x800))
+    {
+        z1 = gpSector[gpWall[wallnum].nextsector].floorz >> 4;
+        z2 = gpSector[sectnum].floorz >> 4;
+        if (z1 < z2)
+        {
+            x1 = gpWall[wallnum].x;
+            y1 = gpWall[wallnum].y;
+            x2 = gpWall[gpWall[wallnum].point2].x;
+            y2 = gpWall[gpWall[wallnum].point2].y;
+            if (gpWall[wallnum].cstat & 2)
+            {
+                func_80020900(gpWall[gpWall[wallnum].nextwall].picnum);
+
+                if (gpWall[gpWall[wallnum].nextwall].cstat & 4)
+                {
+                    cstat = gpWall[wallnum].cstat;
+                    z = gpSector[sectnum].ceilingz >> 4;
+                    func_80020BA0(wallnum, gpWall[gpWall[wallnum].nextwall].cstat & ~4);
+                }
+                else
+                {
+                    cstat = gpWall[wallnum].cstat;
+                    z = gpSector[gpWall[wallnum].nextsector].floorz >> 4;
+                    func_80020BA0(wallnum, gpWall[gpWall[wallnum].nextwall].cstat & ~4);
+                }
+            }
+            else
+            {
+                cstat = gpWall[wallnum].cstat & ~4;
+
+                if (gpWall[wallnum].cstat & 4)
+                    z = gpSector[sectnum].ceilingz >> 4;
+                else
+                    z = z1;
+
+                func_80020900(gpWall[wallnum].picnum);
+                func_800209BC(wallnum, cstat);
+            }
+
+            D_801ACBE4 = ((z - z1) * D_8013877C) + D_80168D00;
+            D_80168CA0 = ((z - z2) * D_8013877C) + D_80168D00;
+            func_800211D0(cstat);
+            ret |= 2;
+
+            D_800FE950[i].ob[0] = x1 >> 1;
+            D_800FE950[i].ob[2] = z1 >> 1;
+            D_800FE950[i].ob[1] = y1 >> 1;
+            D_800FE950[i].tc[0] = (s32)D_8012FD90;
+            D_800FE950[i].tc[1] = (s32)D_801ACBE4;
+            i++;
+
+            D_800FE950[i].ob[0] = x1 >> 1;
+            D_800FE950[i].ob[2] = z2 >> 1;
+            D_800FE950[i].ob[1] = y1 >> 1;
+            D_800FE950[i].tc[0] = (s32)D_8012FD90;
+            D_800FE950[i].tc[1] = (s32)D_80168CA0;
+            i++;
+
+            D_800FE950[i].ob[0] = x2 >> 1;
+            D_800FE950[i].ob[2] = z2 >> 1;
+            D_800FE950[i].ob[1] = y2 >> 1;
+            D_800FE950[i].tc[0] = (s32)D_800FE3F8;
+            D_800FE950[i].tc[1] = (s32)D_80168CA0;
+            i++;
+
+            D_800FE950[i].ob[0] = x2 >> 1;
+            D_800FE950[i].ob[2] = z1 >> 1;
+            D_800FE950[i].ob[1] = y2 >> 1;
+            D_800FE950[i].tc[0] = (s32)D_800FE3F8;
+            D_800FE950[i].tc[1] = (s32)D_801ACBE4;
+            i++;
+            D_801A1984++;
+        }
+    }
+
+    if (gpWall[wallnum].cstat & 0x20)
+    {
+        x1 = gpWall[wallnum].x;
+        y1 = gpWall[wallnum].y;
+        x2 = gpWall[gpWall[wallnum].point2].x;
+        y2 = gpWall[gpWall[wallnum].point2].y;
+        z1 = getCeilzOfSlope(gpWall[wallnum].nextsector, x1, y1) >> 4;
+        z2 = getFlorzOfSlope(gpWall[wallnum].nextsector, x1, y1) >> 4;
+
+        if (gpWall[wallnum].cstat & 4)
+        {
+            z = gpSector[sectnum].ceilingz >> 4;
+            cstat = gpWall[wallnum].cstat & ~4;
+        }
+        else
+        {
+            z = gpSector[gpWall[wallnum].nextsector].floorz >> 4;
+            cstat = gpWall[wallnum].cstat & ~4;
+        }
+
+        func_80020900(gpWall[wallnum].overpicnum);
+        func_800209BC(wallnum, cstat);
+        ret |= 4;
+        D_801ACBE4 = ((z - z1) * D_8013877C) + D_80168D00;
+        D_80168CA0 = ((z - z2) * D_8013877C) + D_80168D00;
+        func_800211D0(cstat);
+
+        D_800FE950[i].ob[0] = x1 >> 1;
+        D_800FE950[i].ob[2] = z1 >> 1;
+        D_800FE950[i].ob[1] = y1 >> 1;
+        D_800FE950[i].tc[0] = (s32)D_8012FD90;
+        D_800FE950[i].tc[1] = (s32)D_801ACBE4;
+        i++;
+
+        D_800FE950[i].ob[0] = x1 >> 1;
+        D_800FE950[i].ob[2] = z2 >> 1;
+        D_800FE950[i].ob[1] = y1 >> 1;
+        D_800FE950[i].tc[0] = (s32)D_8012FD90;
+        D_800FE950[i].tc[1] = (s32)D_80168CA0;
+        i++;
+
+        D_800FE950[i].ob[0] = x2 >> 1;
+        D_800FE950[i].ob[2] = z2 >> 1;
+        D_800FE950[i].ob[1] = y2 >> 1;
+        D_800FE950[i].tc[0] = (s32)D_800FE3F8;
+        D_800FE950[i].tc[1] = (s32)D_80168CA0;
+        i++;
+
+        D_800FE950[i].ob[0] = x2 >> 1;
+        D_800FE950[i].ob[2] = z1 >> 1;
+        D_800FE950[i].ob[1] = y2 >> 1;
+        D_800FE950[i].tc[0] = (s32)D_800FE3F8;
+        D_800FE950[i].tc[1] = (s32)D_801ACBE4;
+
+        D_801A1984++;
+        return ret;
+    }
+
+    if (!(gpWall[wallnum].cstat & 0x10))
+        return ret;
+
+    x1 = gpWall[wallnum].x;
+    y1 = gpWall[wallnum].y;
+    x2 = gpWall[gpWall[wallnum].point2].x;
+    y2 = gpWall[gpWall[wallnum].point2].y;
+
+    m = klabs((D_801A6D84 - ((x1 + x2) / 2)));
+    l = klabs((D_800FE3F0 - ((y1 + y2) / 2)));
+
+    D_8012BC70[D_80138830].unk4 = MAX(m, l) + (MIN(m, l) >> 2) + (MIN(m, l) >> 3);
+    D_8012BC70[D_80138830].unk0 = wallnum | 0x8000;
+    D_80138830++;
+    return ret;
+}

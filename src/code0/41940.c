@@ -1061,7 +1061,47 @@ INCLUDE_ASM("nonmatchings/src/code0/41940", func_80042C98);
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_800433D4);
 
 /*8004364C*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004364C);
+static s32 func_8004364C(s32 arg0)
+{
+    switch (arg0)
+    {
+    case 3138:
+    case 3150:
+    case 3172:
+    case 3185:
+    case 3305:
+    case 3357:
+    case 3382:
+    case 3678:
+    case 4706:
+    case 4765:
+    case 4766:
+    case 4767:
+    case 4768:
+    case 4769:
+    case 4770:
+    case 4773:
+    case 4814:
+    case 5162:
+    case 5200:
+    case 5205:
+    case 5215:
+    case 5220:
+    case 5231:
+    case 5300:
+    case 5390:
+    case 5519:
+    case 5651:
+    case 5865:
+    case 5905:
+    case 5968:
+    case 5969:
+        return 1;
+
+    default:
+        return 0;
+    }
+}
 
 /*800437F4*/
 STATIC s32 func_800437F4(s32 spritenum)
