@@ -4,6 +4,7 @@
 #include "code0/pragmas.h"
 #include "code0/audio.h"
 #include "code0/9410.h"
+#include "code0/17B30.h"
 #include "code0/37090.h"
 #include "code0/41940.h"
 #include "code0/6ACA0.h"
@@ -21,6 +22,7 @@ typedef struct {
 } _37090UnkStruct;
 
 /*.data*/
+/*800DEDC0*/ EXTERN_DATA STATIC s8 D_800DEDC0;
 /*800DEDD0*/ EXTERN_DATA STATIC u8 D_800DEDD0[MAXPLAYERS];
 /*800DEDE0*/ EXTERN_DATA u8 D_800DEDE0;
 /*800DEE14*/ EXTERN_DATA STATIC _37090UnkStruct D_800DEE14[13];
@@ -28,6 +30,7 @@ typedef struct {
 
 /*.comm*/
 /*8011BC44*/ code0UnkStruct3 *D_8011BC44;
+/*80138850*/ u8 D_80138850;
 
 /*.text*/
 
@@ -347,7 +350,284 @@ static void func_80039344(void)
 }
 
 /*80039774*/
-INCLUDE_ASM("nonmatchings/src/code0/37090", func_80039774);
+void func_80039774(void)
+{
+    code0unkStruct8 *ptr;
+    f32 f1, f2;
+    s16 i, j;
+    s32 k, l, m;
+    s32 ang1, ang2;
+
+    if (gPlayer[D_801B0820].zpos < D_80138860)
+    {
+        if (gPlayer[D_801B0820].unk5B != 0)
+            gPlayer[D_801B0820].unk14 *= 0.667;
+        else if (gPlayer[D_801B0820].unk56 == 0)
+            gPlayer[D_801B0820].unk14 += 0x100;
+    }
+    else if ((D_80138860 < gPlayer[D_801B0820].zpos) &&
+             (((gPlayer[D_801B0820].zpos - D_80138860) < 0x1200) ||
+                 (D_80129804 < gPlayer[D_801B0820].zpos)))
+    {
+        gPlayer[D_801B0820].zpos += ((D_80138860 - gPlayer[D_801B0820].zpos) / 2);
+    }
+
+    if (gPlayer[D_801B0820].unk58 != 0)
+        gPlayer[D_801B0820].unk14 = (-D_800DEDC0 * 0x800) / 7;
+
+    if (gPlayer[D_801B0820].unk5B != 0)
+    {
+        s32 temp = D_801B0820; /*FAKEMATCH?*/
+        f1 = gPlayer[D_801B0820].unk14;
+        f2 = gPlayer[D_801B0820].unk20;
+        gPlayer[temp].unk14 = (f1 + (f2 * sinf((gPlayer[D_801B0820].unk3E * 0.0030679615757714844)) * 16.0f));
+    }
+
+    if ((gPlayer[D_801B0820].unk56 != 0) &&
+        (gPlayer[D_801B0820].unk3E > 200) &&
+        (gPlayer[D_801B0820].unk20 > 0))
+    {
+        gPlayer[D_801B0820].unk14 = CLAMP_MAX((gPlayer[D_801B0820].unk14 + 0x101), 0x800);
+    }
+
+    if (gPlayer[D_801B0820].unk45 != 0)
+    {
+        if (gPlayer[D_801B0820].unk50 != -1)
+        {
+            gPlayer[D_801B0820].unk50 = -1;
+            if (gPlayer[D_801B0820].unk6C == 0)
+                gPlayer[D_801B0820].unk60 = gPlayer[D_801B0820].unk61;
+        }
+
+        if (gPlayer[D_801B0820].unk56 != 0)
+            gPlayer[D_801B0820].unk14 += 0x100;
+    }
+
+    D_801A6AD4[D_801B0820] = 0;
+    gPlayer[D_801B0820].unk5C = 0;
+
+    if ((gPlayer[D_801B0820].unk50 >= 0) &&
+        (gpSector[gPlayer[D_801B0820].unk32].floorstat & 0x800) &&
+        (func_8003779C(9) != 0))
+    {
+        gPlayer[D_801B0820].unk5C = 1;
+    }
+    else if (D_80138850 != 0)
+    {
+        if (gPlayer[D_801B0820].unk6C == 0)
+        {
+            i = 0;
+            if (gPlayer[D_801B0820].unk36 > 0x1000)
+            {
+                switch (gpSprite[(s16)(gPlayer[D_801B0820].unk36 - 0x1000)].statnum)
+                {
+                case 1:
+                    i = gpSprite[(s16)(gPlayer[D_801B0820].unk36 - 0x1000)].picnum != 2222;
+                    break;
+
+                case 10:
+                    i = 1;
+                    break;
+
+                default:
+                    i = 0;
+                    break;
+                }
+            }
+
+            if (((gPlayer[D_801B0820].unk59 != 0) ||
+                (gPlayer[D_801B0820].unk5B != 0) ||
+                (gPlayer[D_801B0820].unk56 != 0) ||
+                (gPlayer[D_801B0820].unk58 != 0)) &&
+                ((gPlayer[D_801B0820].unk5A == 0) && (i != 1)))
+            {
+
+                if (func_8003779C(0) != 0)
+                {
+                    if (gPlayer[D_801B0820].unk58 != 0)
+                    {
+                        if (gPlayer[D_801B0820].unk44 == 0)
+                        {
+                            s32 temp = -320; /*FAKEMATCH*/
+                            D_80119A30[D_801B0820] |= 2;
+                            ang1 = (gpSinTable[(gPlayer[D_801B0820].unk38 + 512) & 0x7FF] * temp);
+                            ang2 = (gpSinTable[gPlayer[D_801B0820].unk38 & 0x7FF] * temp);
+                            gPlayer[D_801B0820].unkC += ang1;
+                            gPlayer[D_801B0820].unk10 += ang2;
+                            D_8012F914[D_801B0820] = -1;
+                            gPlayer[D_801B0820].unk44 = 1;
+                            D_801A6AD4[D_801B0820] = 1;
+                            gPlayer[D_801B0820].unk58 = 0;
+                            D_8011BC44->unk99 = gPlayer[D_801B0820].unk72;
+                        }
+                    }
+                    else if (gPlayer[D_801B0820].unk5B != 0)
+                    {
+                        gPlayer[D_801B0820].unk14 = CLAMP_MIN((gPlayer[D_801B0820].unk14 - 682), -682);
+                    }
+                    else if (gPlayer[D_801B0820].unk44 == 0)
+                    {
+                        if ((D_80119A30[D_801B0820] != 0) || (gPlayer[D_801B0820].unk60 == 0))
+                            D_8012F914[D_801B0820] = 6;
+                        else
+                            D_8012F914[D_801B0820] = 27;
+
+                        gPlayer[D_801B0820].unk44 = 1;
+                        D_801A6AD4[D_801B0820] = 1;
+                    }
+                }
+                else
+                    gPlayer[D_801B0820].unk44 = 0;
+            }
+            else if (func_8003779C(0) != 0)
+                gPlayer[D_801B0820].unk44 = 1;
+
+            if (D_8012F914[D_801B0820] > 0)
+            {
+                D_8012F914[D_801B0820]--;
+                gPlayer[D_801B0820].unk44 = 1;
+            }
+
+            if (D_8012F914[D_801B0820] == 0)
+            {
+                s32 temp = -0xA00; /*FAKEMATCH*/
+                D_8012F914[D_801B0820] = -1;
+                gPlayer[D_801B0820].unk14 = temp;
+            }
+        }
+    }
+
+    gPlayer[D_801B0820].zpos += gPlayer[D_801B0820].unk14;
+
+    if (gPlayer[D_801B0820].zpos >= D_80138860)
+        gPlayer[D_801B0820].unk59 = 1;
+    else
+        gPlayer[D_801B0820].unk59 = 0;
+
+    if (D_801A1998 >= gPlayer[D_801B0820].zpos)
+    {
+        gPlayer[D_801B0820].zpos = D_801A1998;
+        if (gPlayer[D_801B0820].unk14 < 0)
+            gPlayer[D_801B0820].unk14 = 0x100;
+    }
+
+    if (gPlayer[D_801B0820].unk14 > 0)
+    {
+        if (gPlayer[D_801B0820].zpos >= D_80138860)
+        {
+            gPlayer[D_801B0820].zpos = D_80138860;
+
+            if ((gPlayer[D_801B0820].unk45 == 0) &&
+                ((gpSector[gPlayer[D_801B0820].unk32].unk18 != 1) ||
+                    (D_80138860 != D_80129804)))
+            {
+                if (gPlayer[D_801B0820].unk14 > 0x500)
+                    audio_80007820(((krand() % 3) + 1401), gPlayer[D_801B0820].unk4A);
+
+                if (gPlayer[D_801B0820].unk14 > 0xC00)
+                {
+                    if (gPlayer[D_801B0820].unk14 - 0xC00 < 0)
+                        m = gPlayer[D_801B0820].unk14 - 0x801;
+                    else
+                        m = gPlayer[D_801B0820].unk14 - 0xC00;
+
+                    j = m >> 10; /*TODO?*/
+                    j = (j * j) * 2;
+
+                    if (gpSector[gPlayer[D_801B0820].unk32].unk18 == 4)
+                        j /= 2;
+
+                    if (gpSector[gPlayer[D_801B0820].unk32].unk18 == 5)
+                        j /= 4;
+
+                    if (j >= 11)
+                    {
+                        audio_80007820(1407, gPlayer[D_801B0820].unk4A);
+
+                        if (j > 75)
+                            j = 500;
+
+                        func_8003671C(D_801B0820, j, -1, -2);
+                    }
+                }
+                gPlayer[D_801B0820].unk14 = 0;
+            }
+        }
+
+        if (gPlayer[D_801B0820].unk58 != 0)
+        {
+            k = 0x40000000;
+            if (gPlayer[D_801B0820].unk5E >= 0x1000)
+            {
+                k = gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].z -
+                    (D_800D52E0[gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].picnum-1280]->unk28 *
+                     (gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].yrepeat << 6) / 64) -
+                    gPlayer[D_801B0820].unk40;
+            }
+
+            k = MIN(D_80138860, k);
+            if (gPlayer[D_801B0820].zpos >= k)
+            {
+                gPlayer[D_801B0820].unk58 = 0;
+                D_8011BC44->unk99 = gPlayer[D_801B0820].unk72;
+            }
+            goto block_98;
+        }
+    }
+    else
+    {
+    block_98:
+        l = 0xC0000000;
+        if (gPlayer[D_801B0820].unk58 != 0)
+        {
+            if (gPlayer[D_801B0820].unk5E < 0x1000)
+            {
+                if (gpWall[gPlayer[D_801B0820].unk5E].nextsector != -1)
+                {
+                    l = getFlorzOfSlope(gpWall[gPlayer[D_801B0820].unk5E].nextsector,
+                                               gPlayer[D_801B0820].xpos, gPlayer[D_801B0820].ypos);
+                }
+            }
+            else
+            {
+                l = gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].z -
+                    ((D_800D52E0[gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].picnum-1280]->unk2E *
+                        (gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].yrepeat << 6)) / 64);
+            }
+
+            if ((gPlayer[D_801B0820].zpos + gPlayer[D_801B0820].unk40 / 4) < l)
+            {
+                gPlayer[D_801B0820].unk58 = 0;
+                gPlayer[D_801B0820].unk14 = -0xA00;
+                D_8011BC44->unk99 = gPlayer[D_801B0820].unk72;
+            }
+        }
+    }
+
+    if (gPlayer[D_801B0820].unk14 < 0)
+    {
+        if ((gpSector[gPlayer[D_801B0820].unk32].unk18 == 3) &&
+            (gPlayer[D_801B0820].zpos < func_80036490(gPlayer[D_801B0820].unk32)))
+        {
+            if (gPlayer[D_801B0820].unk54 != 0)
+            {
+                gPlayer[D_801B0820].zpos = func_80036490(gPlayer[D_801B0820].unk32) - 0x1300;
+                gPlayer[D_801B0820].unk14 = 0;
+                gPlayer[D_801B0820].unk44 = 1;
+                gPlayer[D_801B0820].unk56 = 1;
+            }
+        }
+    }
+
+    if ((gPlayer[D_801B0820].unk59 != 0) && (gPlayer[D_801B0820].unk45 != 0))
+    {
+        ptr = &D_80197E40[D_80106D50[gPlayer[D_801B0820].unk4A]];
+        if (ptr->unk8 == &D_800D8E34)
+        {
+            func_800171D0(ptr, &D_800D980C, 5);
+        }
+    }
+}
 
 /*8003A910*/
 static void func_8003A910(void)

@@ -1,6 +1,7 @@
 #include "common.h"
 #include "code0/main.h"
 #include "code0/cache1d.h"
+#include "code0/D8D20.h"
 #include "code0/edl.h"
 #include "code0/4600.h"
 #include "code0/8EFE0.h"
@@ -23,7 +24,7 @@ void func_80016F30(void)
 }
 
 /*80016F7C*/
-void func_80016F7C(code0unkStruct7 *arg0)
+void func_80016F7C(_D8D20UnkStruct2 *arg0)
 {
     u8 *romaddr;
     s32 size;
@@ -45,12 +46,12 @@ void func_80016F7C(code0unkStruct7 *arg0)
 
         suckCache(&D_80138854);
         arg0->unk18 = (u16 *)arg0->ramaddr;
-        arg0->unk1C = &((code0UnkStruct23 *)arg0->ramaddr)[arg0->unk14];
+        arg0->unk1C = &((_D8D20UnkStruct1 *)arg0->ramaddr)[arg0->unk14];
     }
 }
 
 /*80017090*/
-static void func_80017090(code0unkStruct8 *arg0, code0unkStruct7 *arg1, s16 arg2)
+static void func_80017090(code0unkStruct8 *arg0, _D8D20UnkStruct2 *arg1, s16 arg2)
 {
     if (arg0->unkC < (arg0->unk10 / 2))
     {
@@ -64,7 +65,7 @@ static void func_80017090(code0unkStruct8 *arg0, code0unkStruct7 *arg1, s16 arg2
 }
 
 /*800170E0*/
-static void func_800170E0(code0unkStruct8 *arg0, code0unkStruct7 *arg1, s16 arg2)
+static void func_800170E0(code0unkStruct8 *arg0, _D8D20UnkStruct2 *arg1, s16 arg2)
 {
     if (arg0->unkC < (arg0->unk10 / 2))
     {
@@ -78,7 +79,7 @@ static void func_800170E0(code0unkStruct8 *arg0, code0unkStruct7 *arg1, s16 arg2
 }
 
 /*80017134*/
-static void func_80017134(code0unkStruct8 *arg0, code0unkStruct7 *arg1, s16 arg2)
+static void func_80017134(code0unkStruct8 *arg0, _D8D20UnkStruct2 *arg1, s16 arg2)
 {
     if (arg0->unkC < (arg0->unk10 / 2))
     {
@@ -91,7 +92,7 @@ static void func_80017134(code0unkStruct8 *arg0, code0unkStruct7 *arg1, s16 arg2
 }
 
 /*80017180*/
-static void func_80017180(code0unkStruct8 *arg0, code0unkStruct7 *arg1, s16 arg2)
+static void func_80017180(code0unkStruct8 *arg0, _D8D20UnkStruct2 *arg1, s16 arg2)
 {
     if (arg0->unkE < (arg0->unk12 / 2))
     {
@@ -105,7 +106,7 @@ static void func_80017180(code0unkStruct8 *arg0, code0unkStruct7 *arg1, s16 arg2
 }
 
 /*800171D0*/
-void func_800171D0(code0unkStruct8 *arg0, code0unkStruct7 *arg1, s16 arg2)
+void func_800171D0(code0unkStruct8 *arg0, _D8D20UnkStruct2 *arg1, s16 arg2)
 {
     if (arg0->unkC < (arg0->unk10 / 2))
     {

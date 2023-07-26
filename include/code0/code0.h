@@ -5,6 +5,7 @@
 #include "libmus.h"
 #include "code0/engine.h"
 #include "code0/modelinfo.h"
+#include "code0/D8D20.h"
 
 #define MAXPLAYERS 4
 
@@ -193,38 +194,19 @@ typedef struct
     /*0x04*/ s32 unk4;
 } code0UnkStruct6;
 
-typedef struct
-{
-    /*0x00*/ u16 unk0;
-    /*0x02*/ u16 unk2;
-    /*0x04*/ u16 unk4;
-} code0UnkStruct23;
-
-typedef struct {
-    /*0x00*/ s32 fileoff;
-    /*0x04*/ u8 *ramaddr;
-    /*0x08*/ s8 lock;
-    /*0x0C*/ s32 unkC;
-    /*0x10*/ s32 unk10;
-    /*0x14*/ s16 unk14;
-    /*0x18*/ u16 *unk18;
-    /*0x1C*/ code0UnkStruct23 *unk1C;
-    /*0x20*/ u8 pad[4];
-}code0unkStruct7;
-
 typedef struct {
     /*0x00*/ s16 unk0;
     /*0x02*/ s16 unk2;
-    /*0x04*/ code0unkStruct7 *unk4;
-    /*0x08*/ code0unkStruct7 *unk8;
+    /*0x04*/ _D8D20UnkStruct2 *unk4;
+    /*0x08*/ _D8D20UnkStruct2 *unk8;
     /*0x0C*/ s16 unkC;
     /*0x0E*/ s16 unkE;
     /*0x10*/ s16 unk10;
     /*0x12*/ s16 unk12;
     /*0x14*/ s16 unk14;
     /*0x16*/ s16 unk16;
-    /*0x18*/ code0unkStruct7 *unk18;
-    /*0x1C*/ code0unkStruct7 *unk1C;
+    /*0x18*/ _D8D20UnkStruct2 *unk18;
+    /*0x1C*/ _D8D20UnkStruct2 *unk1C;
 } code0unkStruct8;
 
 typedef struct
