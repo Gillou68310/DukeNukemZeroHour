@@ -9,6 +9,11 @@
 #include "code0/A06F0.h"
 #include "code0/code0.h"
 
+typedef struct {
+    Color unk0;
+    Color unk1;
+} _FDE0UnkStruct1;
+
 /*TODO: include math.h from libkmc*/
 double sqrt(double);
 
@@ -30,7 +35,7 @@ double sqrt(double);
 /*.text*/
 STATIC void func_8000F474(s16, f32, f32, f32);
 STATIC f32 func_80011410(ModelInfo *model);
-STATIC s32 func_800117A4(u8 *, u8 *, u8 *);
+static void func_800117A4(u8 *, code0UnkStruct18 *, _FDE0UnkStruct1 *);
 STATIC void func_8001270C(code0unkStruct10 *, s32);
 
 /*8000F1E0*/
@@ -46,7 +51,10 @@ void func_8000F1E0(void)
     gSPSetLights2(gpDisplayList++, _light2);
     gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_TEX_EDGE2);
     gDPSetCombineMode(gpDisplayList++, G_CC_MODULATEIDECALA, G_CC_PASS2);
-    gSPClearGeometryMode(gpDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_SHADING_SMOOTH);
+
+    gSPClearGeometryMode(gpDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING |
+                                          G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_SHADING_SMOOTH);
+
     gSPSetGeometryMode(gpDisplayList++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH);
     gSPTexture(gpDisplayList++, 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON);
     gDPSetAlphaCompare(gpDisplayList++, G_AC_NONE);
@@ -148,15 +156,15 @@ static s32 func_800115E0(ModelInfo *model)
 void func_80011700(ModelInfo *model)
 {
     u8 *ramaddr1;
-    u8 *ramaddr2;
-    u8 *ramaddr3;
+    code0UnkStruct18 *ramaddr2;
+    _FDE0UnkStruct1 *ramaddr3;
     ModelInfoUnkStruct1 *ptr;
 
     loadModel(model);
     ramaddr1 = model->ramaddr + model->unkE;
     ptr = model->unk18;
-    ramaddr2 = ptr->ramaddr;
-    ramaddr3 = model->ramaddr + model->unk10;
+    ramaddr2 = (code0UnkStruct18 *)ptr->ramaddr;
+    ramaddr3 = (_FDE0UnkStruct1 *)(model->ramaddr + model->unk10);
     gpModelTile = model->ramaddr;
     gpModelTileInfo = (ModelTileInfo *)(model->ramaddr + model->tileinfo);
 
@@ -165,7 +173,161 @@ void func_80011700(ModelInfo *model)
 }
 
 /*800117A4*/
-INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_800117A4);
+static void func_800117A4(u8 *arg0, code0UnkStruct18 *arg1, _FDE0UnkStruct1 *arg2)
+{
+    s16 pixel;
+    s16 cond;
+    s32 i, s, t, u;
+    u8 j, k, l, m, n, o, p;
+    u8 r, g, b;
+    s8 tc0, tc1;
+    s8 tc0_, tc1_;
+
+    cond = 0;
+    while (1)
+    {
+        m = *arg0++;
+        switch (m)
+        {
+        case 13:
+            l = *arg0++;
+            u = *arg0++;
+            pixel = (l << 8) | u;
+            if (D_801A2688 == 0)
+            {
+                if (D_8010A9AC != 0)
+                {
+                    r = 0;
+                    g = 0xFF;
+                    b = 0xFF;
+                }
+                else
+                {
+                    /*ARGB1555*/
+                    r = ((pixel & 0x7C00) >> 10) << 3;
+                    g = ((pixel & 0x3E0) >> 5) << 3;
+                    b = (pixel & 0x1F) << 3;
+                }
+                gDPSetPrimColor(gpDisplayList++, 0, 0, r, g, b, 0xFF);
+                if (cond != 2)
+                {
+                    gDPSetCombineLERP(gpDisplayList++, PRIMITIVE, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT,
+                                                       0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+                    cond = 2;
+                }
+            }
+            break;
+        case 0:
+            n = *arg0++;
+            o = *arg0++;
+
+            gSPVertex(gpDisplayList++, D_80199114, o, n);
+            D_80199114 = &D_80199114[o];
+
+            for (i = 0; i < o; i++)
+            {
+                t = *arg0++;
+                tc0_ = *arg0++;
+                tc1_ = *arg0++;
+                gpVertexN64->v.ob[0] = arg1[t].unk0;
+                gpVertexN64->v.ob[1] = arg1[t].unk2;
+                gpVertexN64->v.ob[2] = arg1[t].unk4;
+                gpVertexN64->v.tc[0] = tc0_ << 6;
+                gpVertexN64->v.tc[1] = tc1_ << 6;
+                gpVertexN64->v.cn[0] = arg2[t].unk0.r;
+                gpVertexN64->v.cn[1] = arg2[t].unk0.g;
+                gpVertexN64->v.cn[2] = arg2[t].unk0.b;
+                gpVertexN64++;
+            }
+            break;
+        case 1:
+            n = *arg0++;
+            o = *arg0++;
+
+            gSPVertex(gpDisplayList++, D_80199114, o, n);
+            D_80199114 = &D_80199114[o];
+
+            for (i = 0; i < o; i++)
+            {
+                t = *arg0++;
+                p = *arg0++;
+                s = (t << 8) | p;
+                tc0 = *arg0++;
+                tc1 = *arg0++;
+                gpVertexN64->v.ob[0] = arg1[s].unk0;
+                gpVertexN64->v.ob[1] = arg1[s].unk2;
+                gpVertexN64->v.ob[2] = arg1[s].unk4;
+                gpVertexN64->v.tc[0] = tc0 << 6;
+                gpVertexN64->v.tc[1] = tc1 << 6;
+                gpVertexN64->v.cn[0] = arg2[s].unk0.r;
+                gpVertexN64->v.cn[1] = arg2[s].unk0.g;
+                gpVertexN64->v.cn[2] = arg2[s].unk0.b;
+                gpVertexN64++;
+            }
+            break;
+        case 2:
+        case 3:
+            func_800163F0(*arg0++);
+            break;
+        case 4:
+            func_8001660C(*arg0++);
+            if (cond != 1)
+            {
+                if (D_8019956C == 1)
+                {
+                    gDPSetCombineLERP(gpDisplayList++, TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0,
+                                                       0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+                }
+                else if (D_801A2688 == 1)
+                {
+                    gDPSetCombineLERP(gpDisplayList++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0,
+                                                       0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+
+                    gDPSetPrimColor(gpDisplayList++, 0, 0, gpAlphaPalette[D_80168810].primary.r,
+                                                           gpAlphaPalette[D_80168810].primary.g,
+                                                           gpAlphaPalette[D_80168810].primary.b, D_8012FD87);
+                }
+                else
+                {
+                    gDPSetCombineMode(gpDisplayList++, G_CC_MODULATEIDECALA, G_CC_PASS2);
+                }
+                cond = 1;
+            }
+            break;
+        case 5:
+            func_8001660C(*arg0++);
+            if (cond != 1)
+            {
+                if (D_8019956C == 1)
+                {
+                    gDPSetCombineLERP(gpDisplayList++, TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0,
+                                                       0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+                }
+                else if (D_801A2688 == 1)
+                {
+                    gDPSetCombineLERP(gpDisplayList++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0,
+                                                       0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+                }
+                else
+                {
+                    gDPSetCombineMode(gpDisplayList++, G_CC_MODULATEIDECALA, G_CC_PASS2);
+                }
+                cond = 1;
+            }
+            break;
+        case 6:
+            j = *arg0++;
+            k = *arg0++;
+            l = *arg0++;
+            gSP1Triangle(gpDisplayList++, j, k, l, j);
+            break;
+        case 7:
+            return;
+        default:
+            while (1);
+        }
+    }
+}
 
 /*80011DA8*/
 void func_80011DA8(void)
@@ -251,10 +413,21 @@ static void func_800124EC(s16 arg0)
         D_801A2688 = 1;
         D_80168810 = arg0;
         gDPSetTextureLUT(gpDisplayList++, G_TT_NONE);
-        gDPSetCombineLERP(gpDisplayList++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+
+        gDPSetCombineLERP(gpDisplayList++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE,
+                                           0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+
         gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_XLU_SURF2);
-        gDPSetPrimColor(gpDisplayList++, 0, 0, gpAlphaPalette[arg0].primary.r, gpAlphaPalette[arg0].primary.g, gpAlphaPalette[arg0].primary.b, D_8012FD87);
-        gDPSetEnvColor(gpDisplayList++, gpAlphaPalette[arg0].env.r, gpAlphaPalette[arg0].env.g, gpAlphaPalette[arg0].env.b, D_8012FD87);
+
+        gDPSetPrimColor(gpDisplayList++, 0, 0, gpAlphaPalette[arg0].primary.r,
+                                               gpAlphaPalette[arg0].primary.g,
+                                               gpAlphaPalette[arg0].primary.b,
+                                               D_8012FD87);
+
+        gDPSetEnvColor(gpDisplayList++, gpAlphaPalette[arg0].env.r,
+                                        gpAlphaPalette[arg0].env.g,
+                                        gpAlphaPalette[arg0].env.b,
+                                        D_8012FD87);
     }
 }
 
@@ -273,7 +446,8 @@ static void func_80012630(void)
         else
         {
             gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_XLU_SURF2);
-            gDPSetCombineLERP(gpDisplayList++, TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+            gDPSetCombineLERP(gpDisplayList++, TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0,
+                                               0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
         }
     }
 }

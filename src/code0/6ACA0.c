@@ -577,7 +577,7 @@ void func_8006B590(s16 arg0)
             {
                 j = D_800DEE80;
                 func_8005E4C4(-1, 1);
-                gPlayer->unk52 = i + 0x1000;
+                gPlayer[0].unk52 = i + 0x1000;
                 D_800DEE80 = j;
                 D_800DEE70 = gpSprite[i].unk1E;
                 changeSpriteStat(i, 0);
