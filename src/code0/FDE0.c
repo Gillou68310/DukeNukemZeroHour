@@ -4,6 +4,7 @@
 #include "code0/9410.h"
 #include "code0/16FF0.h"
 #include "code0/17B30.h"
+#include "code0/24610.h"
 #include "code0/41940.h"
 #include "code0/graphics.h"
 #include "code0/A06F0.h"
