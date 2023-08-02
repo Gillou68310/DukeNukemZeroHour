@@ -51,7 +51,7 @@ static void func_8006AD70(s16 spritenum)
     sec = &gpSector[spr->sectnum];
     if (!(spr->cstat & 0x8000))
     {
-        switch (spr->unk1E)
+        switch (spr->lotag)
         {
         case 12:
             spr->unk2B = 1;
@@ -228,9 +228,9 @@ s8 func_8006B170(s16 arg0)
     ret = -1;
     while (i >= 0)
     {
-        if (gpSprite[i].unk20 == arg0)
+        if (gpSprite[i].hitag == arg0)
         {
-            switch (gpSprite[i].unk1E)
+            switch (gpSprite[i].lotag)
             {
             case 50:
             case 51:
@@ -345,7 +345,7 @@ void func_8006B590(s16 arg0)
         i = gHeadSpriteStat[3];
         while (i >= 0)
         {
-            if (gpSprite[i].unk20 == arg0)
+            if (gpSprite[i].hitag == arg0)
                 func_8006AD70(i);
 
             i = gNextSpriteStat[i];
@@ -355,10 +355,10 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if (gpSprite[i].unk20 == arg0)
+            if (gpSprite[i].hitag == arg0)
                 D_8019B940[D_80106D50[i]].unk0 |= 0x400000;
 
-            if ((gpSprite[i].unk1E == arg0) &&
+            if ((gpSprite[i].lotag == arg0) &&
                 ((gpSprite[i].picnum == 2219) || (gpSprite[i].picnum == 2220) ||
                     (gpSprite[i].picnum == 1299) || (gpSprite[i].picnum == 1300)))
             {
@@ -377,7 +377,7 @@ void func_8006B590(s16 arg0)
             nexti = gNextSpriteStat[i];
             if (((gpSprite[i].picnum == 2219) || (gpSprite[i].picnum == 2220) ||
                 (gpSprite[i].picnum == 1299) || (gpSprite[i].picnum == 1300)) &&
-                 (gpSprite[i].unk1E == arg0))
+                 (gpSprite[i].lotag == arg0))
             {
                 if (gpSprite[i].unk25 == 1)
                 {
@@ -409,7 +409,7 @@ void func_8006B590(s16 arg0)
                 if ((gpSprite[i].picnum == 2219) || (gpSprite[i].picnum == 2220) ||
                      (gpSprite[i].picnum == 1299) || (gpSprite[i].picnum == 1300))
                 {
-                    if ((gpSprite[i].unk1E == arg0) && (gpSprite[i].unk25 == 1))
+                    if ((gpSprite[i].lotag == arg0) && (gpSprite[i].unk25 == 1))
                     {
                         changeSpriteStat(i, 1);
                         cond = 2;
@@ -428,7 +428,7 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if ((gpSprite[i].unk20 == arg0) && (gpSprite[i].picnum == 1841) && (gpSprite[i].unk2B == 0xFF))
+            if ((gpSprite[i].hitag == arg0) && (gpSprite[i].picnum == 1841) && (gpSprite[i].unk2B == 0xFF))
                 gpSprite[i].unk2B = 0;
 
             i = nexti;
@@ -438,7 +438,7 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if (gpSprite[i].unk20 == arg0)
+            if (gpSprite[i].hitag == arg0)
                 func_8006B278(i);
             i = nexti;
         }
@@ -447,7 +447,7 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if (gpSprite[i].unk20 == arg0)
+            if (gpSprite[i].hitag == arg0)
                 func_8004EA40(i);
 
             i = nexti;
@@ -457,7 +457,7 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if (gpSprite[i].unk20 == arg0)
+            if (gpSprite[i].hitag == arg0)
             {
                 if (gpSprite[i].unk25 != 0)
                 {
@@ -485,7 +485,7 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if (gpSprite[i].unk20 == arg0)
+            if (gpSprite[i].hitag == arg0)
                 changeSpriteStat(i, 57);
 
             i = nexti;
@@ -495,7 +495,7 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if (gpSprite[i].unk20 == arg0)
+            if (gpSprite[i].hitag == arg0)
             {
                 if ((gpSprite[i].picnum == 2326))
                 {
@@ -514,7 +514,7 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if (gpSprite[i].unk20 == arg0)
+            if (gpSprite[i].hitag == arg0)
             {
                 switch (gpSprite[i].picnum)
                 {
@@ -541,7 +541,7 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if (gpSprite[i].unk20 == arg0)
+            if (gpSprite[i].hitag == arg0)
                 gpSprite[i].unk25 ^= 1;
 
             i = nexti;
@@ -551,7 +551,7 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if ((gpSprite[i].unk20 == arg0) && (gpSprite[i].picnum == 1307) && (gpSprite[i].unk2B == 0))
+            if ((gpSprite[i].hitag == arg0) && (gpSprite[i].picnum == 1307) && (gpSprite[i].unk2B == 0))
                 gpSprite[i].unk2B = 1;
 
             i = nexti;
@@ -561,7 +561,7 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if (gpSprite[i].unk20 == arg0)
+            if (gpSprite[i].hitag == arg0)
             {
                 gpSprite[i].cstat &= ~0x8000;
                 changeSpriteStat(i, 666);
@@ -573,13 +573,13 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if (gpSprite[i].unk20 == arg0)
+            if (gpSprite[i].hitag == arg0)
             {
                 j = D_800DEE80;
                 func_8005E4C4(-1, 1);
                 gPlayer[0].unk52 = i + 0x1000;
                 D_800DEE80 = j;
-                D_800DEE70 = gpSprite[i].unk1E;
+                D_800DEE70 = gpSprite[i].lotag;
                 changeSpriteStat(i, 0);
             }
             i = nexti;
@@ -589,7 +589,7 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if (gpSprite[i].unk20 == arg0)
+            if (gpSprite[i].hitag == arg0)
             {
                 func_8008E01C(30, 1);
                 if (gpSprite[i].unk25 != 0)
@@ -625,12 +625,12 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if (gpSprite[i].unk20 == arg0)
+            if (gpSprite[i].hitag == arg0)
             {
                 switch (gpSprite[i].unk25)
                 {
                 case 0:
-                    func_8006B4E4(gpSprite[i].unk1E);
+                    func_8006B4E4(gpSprite[i].lotag);
                     deleteSprite(i);
                     break;
 
@@ -647,11 +647,11 @@ void func_8006B590(s16 arg0)
                         }
                     }
 
-                    if (D_801AE91E[gpSprite[i].unk1E] != 68)
+                    if (D_801AE91E[gpSprite[i].lotag] != 68)
                     {
                         if (gMapNum == MAP_BASE)
                         {
-                            if (gpSprite[i].unk1E == 1)
+                            if (gpSprite[i].lotag == 1)
                             {
                                 D_800E192C = -1;
                                 D_80138678 = D_801A1958.unkC;
@@ -659,9 +659,9 @@ void func_8006B590(s16 arg0)
                             }
                         }
 
-                        if (gpSprite[i].unk1E != k)
+                        if (gpSprite[i].lotag != k)
                             func_800A419C(0, "NEW OBJECTIVE");
-                        D_801AE91E[gpSprite[i].unk1E] = 67;
+                        D_801AE91E[gpSprite[i].lotag] = 67;
                     }
                     break;
 
@@ -691,7 +691,7 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if (gpSprite[i].unk20 == arg0)
+            if (gpSprite[i].hitag == arg0)
             {
                 switch (gpSprite[i].picnum)
                 {
@@ -724,7 +724,7 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if ((gpSprite[i].unk20 == arg0) && (gpSprite[i].unk16 == 52))
+            if ((gpSprite[i].hitag == arg0) && (gpSprite[i].unk16 == 52))
             {
                 if (!(gpSprite[i].cstat & 4))
                 {
@@ -745,7 +745,7 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if ((gpSprite[i].unk20 == arg0) && (gpSprite[i].picnum >= 2520) && (gpSprite[i].picnum < 2530))
+            if ((gpSprite[i].hitag == arg0) && (gpSprite[i].picnum >= 2520) && (gpSprite[i].picnum < 2530))
                 changeSpriteStat(i, 0);
 
             i = nexti;
@@ -764,7 +764,7 @@ void func_8006B590(s16 arg0)
             while (i >= 0)
             {
                 nexti = gNextSpriteStat[i];
-                if (gpSprite[i].unk20 == arg0)
+                if (gpSprite[i].hitag == arg0)
                 {
                     switch (gpSprite[i].picnum)
                     {
@@ -779,7 +779,7 @@ void func_8006B590(s16 arg0)
 
                         changeSpriteStat(i, 118);
                         gpSprite[i].unk25 = 1;
-                        gpSprite[i].unk20 = 0;
+                        gpSprite[i].hitag = 0;
                         break;
                     }
                 }
@@ -818,10 +818,10 @@ static void func_8006C9AC(s16 spritenum)
         {
         case 28:
             MusHandleStop(D_8013B2D0[spritenum].handle, 0);
-            D_8013B2D0[spritenum].handle = audio_80007820(gpSprite[spritenum].unk1E, spritenum);
+            D_8013B2D0[spritenum].handle = audio_80007820(gpSprite[spritenum].lotag, spritenum);
             break;
         case 29:
-            audio_80008574(0, gpSprite[spritenum].unk1E);
+            audio_80008574(0, gpSprite[spritenum].lotag);
             deleteSprite(spritenum);
             break;
         }
@@ -839,7 +839,7 @@ static void func_8006CA90(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if (gpSprite[i].unk20 == arg0)
+            if (gpSprite[i].hitag == arg0)
                 func_8006C9AC(i);
             i = nexti;
         }
@@ -920,9 +920,9 @@ static void func_8006CD38(s16 playernum)
     i = gHeadSpriteStat[4];
     while (i >= 0)
     {
-        if (gpSprite[i].unk1E == 10)
+        if (gpSprite[i].lotag == 10)
         {
-            if (gPlayer[playernum].unk4A == gpSprite[i].unk20)
+            if (gPlayer[playernum].unk4A == gpSprite[i].hitag)
                 gpSprite[i].unk22 = 1;
         }
         i = gNextSpriteStat[i];
@@ -1130,7 +1130,7 @@ static u8 func_800722A0(s16 spritenum)
         nexti = gNextSpriteStat[i];
         if ((klabs_(gpSprite[i].x - gpSprite[spritenum].x) + klabs_(gpSprite[i].y - gpSprite[spritenum].y)) < 500)
         {
-            func_8004CC90(i, gpSprite[spritenum].unk1E, gpSprite[spritenum].picnum);
+            func_8004CC90(i, gpSprite[spritenum].lotag, gpSprite[spritenum].picnum);
             return 1;
         }
         i = nexti;
@@ -1193,16 +1193,16 @@ void func_800724B4(s32 spritenum)
     D_8013B2D0[spritenum].unk2 = (D_8013B2D0[spritenum].unk2 + spr->unk2B) & 0x7FF;
     D_8013B2D0[spritenum].unk0 = (D_8013B2D0[spritenum].unk0 - (spr->unk2B >> 1)) & 0x7FF;
 
-    cstat2 = gpSprite[spr->unk20].cstat;
+    cstat2 = gpSprite[spr->hitag].cstat;
     cstat = spr->cstat;
     spr->cstat = cstat & ~0x101;
-    gpSprite[spr->unk20].cstat &= ~0x101;
+    gpSprite[spr->hitag].cstat &= ~0x101;
 
     getzRange(spr->x, spr->y, (spr->z - 2048), spr->sectnum,
               &ceilz, &ceilhit, &florz, &florhit, 64, 0x10001);
 
     spr->cstat = cstat;
-    gpSprite[spr->unk20].cstat = cstat2;
+    gpSprite[spr->hitag].cstat = cstat2;
 
     if ((florz - ceilz) < 256)
         spr->unk22 = 0;
@@ -1327,16 +1327,16 @@ STATIC void func_80072ABC(s32 spritenum)
     D_8013B2D0[spritenum].unk2 = (D_8013B2D0[spritenum].unk2 + spr->unk2B) & 0x7FF;
     D_8013B2D0[spritenum].unk0 = (D_8013B2D0[spritenum].unk0 - (spr->unk2B >> 1)) & 0x7FF;
 
-    cstat2 = gpSprite[spr->unk20].cstat;
+    cstat2 = gpSprite[spr->hitag].cstat;
     cstat = spr->cstat;
     spr->cstat = cstat & ~0x101;
-    gpSprite[spr->unk20].cstat &= ~0x101;
+    gpSprite[spr->hitag].cstat &= ~0x101;
 
     getzRange(spr->x, spr->y, (spr->z - 2048), spr->sectnum,
               &ceilz, &ceilhit, &florz, &florhit, 64, 0x10001);
 
     spr->cstat = cstat;
-    gpSprite[spr->unk20].cstat = cstat2;
+    gpSprite[spr->hitag].cstat = cstat2;
 
     if ((florz - ceilz) >= 256)
     {
@@ -1465,15 +1465,15 @@ STATIC void func_800730CC(s32 spritenum)
     if (!func_800722A0(spritenum))
     {
         cstat = spr->cstat;
-        cstat2 = gpSprite[spr->unk20].cstat;
+        cstat2 = gpSprite[spr->hitag].cstat;
         spr->cstat = cstat & ~0x101;
-        gpSprite[spr->unk20].cstat &= ~0x101;
+        gpSprite[spr->hitag].cstat &= ~0x101;
 
         getzRange(spr->x, spr->y, (spr->z - 2048), spr->sectnum,
                   &ceilz, &ceilhit, &florz, &florhit, 64, 0x10001);
 
         spr->cstat = cstat;
-        gpSprite[spr->unk20].cstat = cstat2;
+        gpSprite[spr->hitag].cstat = cstat2;
 
         if (ceilz > spr->z)
         {
@@ -1590,15 +1590,15 @@ STATIC void func_80073670(s32 spritenum)
                         spr->unk1C);
 
     cstat = spr->cstat;
-    cstat2 = gpSprite[spr->unk20].cstat;
+    cstat2 = gpSprite[spr->hitag].cstat;
     spr->cstat = cstat & ~0x101;
-    gpSprite[spr->unk20].cstat &= ~0x101;
+    gpSprite[spr->hitag].cstat &= ~0x101;
 
     getzRange(spr->x, spr->y, (spr->z - 2048), spr->sectnum,
               &ceilz, &ceilhit, &florz, &florhit, 64, 0x10001);
 
     spr->cstat = cstat;
-    gpSprite[spr->unk20].cstat = cstat2;
+    gpSprite[spr->hitag].cstat = cstat2;
 
     if (spr->sectnum != -1)
     {
@@ -1779,15 +1779,15 @@ STATIC void func_80073E0C(s32 spritenum)
     }
 
     cstat = spr->cstat;
-    cstat2 = gpSprite[spr->unk20].cstat;
+    cstat2 = gpSprite[spr->hitag].cstat;
     spr->cstat = cstat & ~0x101;
-    gpSprite[spr->unk20].cstat &= ~0x101;
+    gpSprite[spr->hitag].cstat &= ~0x101;
 
     getzRange(spr->x, spr->y, (spr->z - 2048), spr->sectnum,
               &ceilz, &ceilhit, &florz, &florhit, 64, 0x10001);
 
     spr->cstat = cstat;
-    gpSprite[spr->unk20].cstat = cstat2;
+    gpSprite[spr->hitag].cstat = cstat2;
 
     if ((florz - ceilz) < 256)
     {
@@ -1909,15 +1909,15 @@ STATIC void func_800743C0(s32 spritenum)
         func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 24, 19);
 
     cstat = spr->cstat;
-    cstat2 = gpSprite[spr->unk20].cstat;
+    cstat2 = gpSprite[spr->hitag].cstat;
     spr->cstat = cstat & ~0x101;
-    gpSprite[spr->unk20].cstat &= ~0x101;
+    gpSprite[spr->hitag].cstat &= ~0x101;
 
     getzRange(spr->x, spr->y, (spr->z - 2048), spr->sectnum,
              &ceilz, &ceilhit, &florz, &florhit, 64, 0x10001);
 
     spr->cstat = cstat;
-    gpSprite[spr->unk20].cstat = cstat2;
+    gpSprite[spr->hitag].cstat = cstat2;
 
     if ((florz < spr->z) || (spr->z < ceilz))
     {
@@ -2144,7 +2144,7 @@ STATIC void func_80074C70(s32 spritenum)
                     num -= 0xC000;
                     if (num >= 0)
                     {
-                        if (gpSprite[spritenum].unk20 != num)
+                        if (gpSprite[spritenum].hitag != num)
                         {
                             func_80047820(spritenum, num, (krand() % 5) + 10);
                             if ((D_8012C470 == 1) && (D_800DEEA0 != 0))
@@ -2261,7 +2261,7 @@ STATIC void func_80075380(s32 spritenum)
         num -= 0xC000;
         if (num >= 0)
         {
-            if (gpSprite[spritenum].unk20 != num)
+            if (gpSprite[spritenum].hitag != num)
             {
                 func_80047820(spritenum, num, (krand() % 5) + 2);
                 deleteSprite(spritenum);
@@ -2327,7 +2327,7 @@ STATIC void func_800756B0(s32 spritenum)
     else if (num & 0xC000)
     {
         num -= 0xC000;
-        if ((num >= 0) && (gpSprite[spritenum].unk20 != num))
+        if ((num >= 0) && (gpSprite[spritenum].hitag != num))
         {
             func_8004BFDC(spritenum, 12, florz, 1);
             deleteSprite(spritenum);
@@ -2401,7 +2401,7 @@ STATIC void func_8007599C(s32 spritenum)
     else if (num & 0xC000)
     {
         num -= 0xC000;
-        if ((num >= 0) && (gpSprite[spritenum].unk20 != num))
+        if ((num >= 0) && (gpSprite[spritenum].hitag != num))
         {
             func_8004BFDC(spritenum, 12, florz, 1);
             deleteSprite(spritenum);
@@ -2867,7 +2867,7 @@ STATIC void func_80076C14(s32 spritenum)
                 j = func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 30, 0);
                 if (j != -1)
                 {
-                    gpSprite[j].unk1E = spritenum;
+                    gpSprite[j].lotag = spritenum;
                     gpSprite[j].unk22 = spr->unk22;
                 }
                 spr->unk1A++;
@@ -3185,7 +3185,7 @@ STATIC void func_80077AB0(s32 spritenum)
         num -= 0xC000;
         if (num >= 0)
         {
-            if (gpSprite[spritenum].unk20 != num)
+            if (gpSprite[spritenum].hitag != num)
                 func_80047820(spritenum, num, 12);
         }
         deleteSprite(spritenum);
@@ -3237,7 +3237,7 @@ STATIC void func_80077C70(s32 spritenum)
     {
         num -= 0xC000;
 
-        if ((num >= 0) && (gpSprite[spritenum].unk20 != num))
+        if ((num >= 0) && (gpSprite[spritenum].hitag != num))
             func_80047820(spritenum, num, 69);
 
         func_8004BFDC(spritenum, 1, spr->z, 1);
@@ -3290,7 +3290,7 @@ STATIC void func_80077E80(s32 spritenum)
         num -= 0xC000;
         if (num >= 0)
         {
-            if (gpSprite[spritenum].unk20 != num)
+            if (gpSprite[spritenum].hitag != num)
                 func_80047820(spritenum, num, (krand() % 5) + 10);
         }
         else
@@ -3310,7 +3310,7 @@ STATIC void func_800780AC(s32 spritenum)
     s32 num;
 
     spr = &gpSprite[spritenum];
-    ptr = &D_8019B940[D_80106D50[spr->unk20]];
+    ptr = &D_8019B940[D_80106D50[spr->hitag]];
 
     hitScan(spr->x,
             spr->y,
@@ -3368,7 +3368,7 @@ STATIC void func_80078300(s32 spritenum)
         if (num >= 0)
         {
             func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 14, 0);
-            if (gpSprite[spritenum].unk20 != num)
+            if (gpSprite[spritenum].hitag != num)
                 func_80047820(spritenum, num, (krand() % 5) + 6);
         }
         else
@@ -3422,7 +3422,7 @@ STATIC void func_80078564(s32 spritenum)
         if (num >= 0)
         {
             func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 6, 0);
-            if (gpSprite[spritenum].unk20 != num)
+            if (gpSprite[spritenum].hitag != num)
                 func_80047820(spritenum, num, (krand() % 5) + 2);
         }
         else
@@ -3589,7 +3589,7 @@ STATIC void func_80078B70(s32 spritenum)
         num -= 0xC000;
         if (num >= 0)
         {
-            if (gpSprite[spritenum].unk20 != num)
+            if (gpSprite[spritenum].hitag != num)
                 func_80047820(spritenum, num, 5000);
         }
         else
@@ -3642,7 +3642,7 @@ STATIC void func_80078DA8(s32 spritenum)
         num -= 0xC000;
         if (num >= 0)
         {
-            if (gpSprite[spritenum].unk20 != num)
+            if (gpSprite[spritenum].hitag != num)
                 func_80047820(spritenum, num, 8);
         }
         else
@@ -3751,9 +3751,9 @@ STATIC void func_800791A8(s32 spritenum)
     }
 
     cstat = spr->cstat;
-    cstat2 = gpSprite[spr->unk20].cstat;
+    cstat2 = gpSprite[spr->hitag].cstat;
     spr->cstat = spr->cstat & ~0x101;
-    gpSprite[spr->unk20].cstat &= ~0x101;
+    gpSprite[spr->hitag].cstat &= ~0x101;
 
     getzRange(spr->x,
               spr->y,
@@ -3762,7 +3762,7 @@ STATIC void func_800791A8(s32 spritenum)
               &ceilz, &ceilhit, &florz, &florhit, 64, 0x10001);
 
     spr->cstat = cstat;
-    gpSprite[spr->unk20].cstat = cstat2;
+    gpSprite[spr->hitag].cstat = cstat2;
     spr->unk1C += 200;
     if (num & 0xC000)
     {
@@ -3823,20 +3823,20 @@ void func_80079560(void)
     {
         nexti = gNextSpriteStat[i];
         D_80118248 = &gpSprite[i];
-        if (D_80118248->unk1E > 0)
+        if (D_80118248->lotag > 0)
         {
-            if (D_80118248->unk1E < 100)
+            if (D_80118248->lotag < 100)
             {
-                if (D_80118248->unk1E < ARRAY_COUNT(D_800DF5A0))
+                if (D_80118248->lotag < ARRAY_COUNT(D_800DF5A0))
                 {
                     ptr = D_800DF5A0;
-                    if (ptr[D_80118248->unk1E] != NULL)
-                        ptr[D_80118248->unk1E](i);
+                    if (ptr[D_80118248->lotag] != NULL)
+                        ptr[D_80118248->lotag](i);
                 }
             }
             else
             {
-                j = D_80118248->unk1E - 100;
+                j = D_80118248->lotag - 100;
                 if (j < ARRAY_COUNT(D_800DF668))
                 {
                     ptr = D_800DF668;

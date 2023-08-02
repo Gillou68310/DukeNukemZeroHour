@@ -151,8 +151,8 @@ typedef struct
     /*0x18*/ s16 unk18;
     /*0x18*/ s16 unk1A;
     /*0x1C*/ s16 unk1C;
-    /*0x1E*/ s16 unk1E; /*sfxnum?*/
-    /*0x20*/ s16 unk20;
+    /*0x1E*/ s16 lotag;
+    /*0x20*/ s16 hitag;
     /*0x22*/ s16 unk22; /*spritenum?*/
     /*0x24*/ u8 unk24;
     /*0x25*/ u8 unk25;

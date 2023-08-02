@@ -88,7 +88,7 @@ s32 func_8008E3E0(s32 x, s32 y, s32 z, s32 sectnum, s32 arg4, s32 arg5)
         if (spr->unk25 != 0)
             spr->unk18 = spr->unk24;
         else
-            spr->unk18 = D_800DCA40[spr->unk1E].unkE;
+            spr->unk18 = D_800DCA40[spr->lotag].unkE;
 
         spr->unk1A = 0;
         spr->unk22 = -1;
@@ -124,7 +124,7 @@ s32 func_8008E3E0(s32 x, s32 y, s32 z, s32 sectnum, s32 arg4, s32 arg5)
             gpSprite[n].picnum = 5;
             gpSprite[n].unk1A = 2000;
             gpSprite[n].unk25 = 0xFF;
-            gpSprite[n].unk1E = 75;
+            gpSprite[n].lotag = 75;
             gpSprite[n].unk18 = 0;
             gpSprite[n].cstat = 0x8000;
         }

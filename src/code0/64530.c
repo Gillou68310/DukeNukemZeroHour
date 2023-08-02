@@ -25,7 +25,7 @@ static void func_80063930(s32 sectnum)
             j = gHeadSpriteStat[301];
             while (j >= 0)
             {
-                if (gpSprite[j].unk20 == gpSprite[i].unk20)
+                if (gpSprite[j].hitag == gpSprite[i].hitag)
                 {
                     if (gpSprite[j].picnum == 2326)
                     {
@@ -176,7 +176,7 @@ static void func_800642CC(s16 spritenum1, s16 spritenum2)
     sectnum2 = gpSprite[spritenum1].sectnum;
     sectnum1 = gpSprite[i].sectnum;
 
-    if ((gpSprite[spritenum1].statnum == 4) && (gpSprite[spritenum1].unk1E == 18))
+    if ((gpSprite[spritenum1].statnum == 4) && (gpSprite[spritenum1].lotag == 18))
     {
         if (z > 0)
             z += 1440;
@@ -272,10 +272,10 @@ static void func_800642CC(s16 spritenum1, s16 spritenum2)
         {
             if (gpSprite[spritenum1].statnum == 4)
             {
-                if (gpSprite[spritenum1].unk1E == 18)
+                if (gpSprite[spritenum1].lotag == 18)
                     gpSprite[spritenum1].unk1A = func_8007AE50();
 
-                if (gpSprite[spritenum1].unk1E == 21)
+                if (gpSprite[spritenum1].lotag == 21)
                     gpSprite[spritenum1].unk2A = func_8007AE50();
             }
         }
@@ -353,8 +353,8 @@ static void func_80064D30(s16 *arg0, s16 *arg1, s16 sectnum)
 
         if (gpSprite[i].picnum == 10)
         {
-            *arg0 = gpSprite[i].unk1E;
-            *arg1 = gpSprite[i].unk20;
+            *arg0 = gpSprite[i].lotag;
+            *arg1 = gpSprite[i].hitag;
             if (*arg1 == 0)
                 *arg1 = *arg0;
 
@@ -394,7 +394,7 @@ static void func_80068D74(s16 sectnum)
     {
         if (gpSprite[i].picnum == 1)
         {
-            if (gpSprite[i].unk1E == 10)
+            if (gpSprite[i].lotag == 10)
                 gpSprite[i].unk18 = gpSprite[i].unk1A;
         }
         i = gNextSpriteSect[i];
@@ -411,7 +411,7 @@ void func_80068E0C(s16 sectnum)
     {
         if (gpSprite[i].picnum == 1)
         {
-            if (gpSprite[i].unk1E == 10)
+            if (gpSprite[i].lotag == 10)
                 gpSprite[i].unk18 = 0;
         }
         i = gNextSpriteSect[i];
@@ -444,7 +444,7 @@ void func_80068E9C(void)
                 if (gpSprite[i].unk18 <= 0)
                 {
                     if (gpSprite[i].cstat & 8)
-                        func_8006B590(gpSprite[i].unk1E);
+                        func_8006B590(gpSprite[i].lotag);
                     else
                         func_8006CB38(gpSprite[i].sectnum);
 
@@ -462,14 +462,14 @@ void func_80068E9C(void)
                 k = gHeadSpriteStat[sp10.unk0[j]];
                 while (k >= 0)
                 {
-                    if ((gpSprite[k].picnum >= 49) && (gpSprite[i].unk1E == gpSprite[k].unk20))
+                    if ((gpSprite[k].picnum >= 49) && (gpSprite[i].lotag == gpSprite[k].hitag))
                         goto label1;
                     k = gNextSpriteStat[k];
                 }
             }
             if (l == 0)
             {
-                func_8006B590(gpSprite[i].unk20);
+                func_8006B590(gpSprite[i].hitag);
                 deleteSprite(i);
             }
         }
@@ -577,13 +577,13 @@ void func_80069160(void)
             {
                 if (spr->unk24 == 0)
                 {
-                    if (spr->unk20 != 0)
-                        func_8006B590(spr->unk20);
+                    if (spr->hitag != 0)
+                        func_8006B590(spr->hitag);
                     else
                         func_8006CB38(spr->sectnum);
 
                     spr->unk24 = 1;
-                    if ((spr->unk1E > 0) && (--spr->unk1E == 0))
+                    if ((spr->lotag > 0) && (--spr->lotag == 0))
                         deleteSprite(i);
                 }
             }
@@ -597,7 +597,7 @@ void func_80069160(void)
     while (i >= 0)
     {
         nexti = gNextSpriteStat[i];
-        if ((gpSprite[i].unk20 == 0) && (gpSprite[i].picnum == 29))
+        if ((gpSprite[i].hitag == 0) && (gpSprite[i].picnum == 29))
         {
             cond = 0;
             for (j = 0; j < D_8012C470; j++)
@@ -608,7 +608,7 @@ void func_80069160(void)
 
             if (cond)
             {
-                audio_80008574(0, gpSprite[i].unk1E);
+                audio_80008574(0, gpSprite[i].lotag);
                 deleteSprite(i);
             }
         }

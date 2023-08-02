@@ -370,7 +370,7 @@ static s32 func_800413CC(s32 spritenum)
         }
     }
     if ((D_80137DE0->unk4 & 4) &&
-        (ldist(&gpSprite[D_80118248->unk16], D_80118248) >= gpSprite[D_80118248->unk16].unk1E) &&
+        (ldist(&gpSprite[D_80118248->unk16], D_80118248) >= gpSprite[D_80118248->unk16].lotag) &&
         (D_80137DE0->unk92 != 4))
     {
         func_800418B8(1);
@@ -1979,8 +1979,8 @@ STATIC s32 func_80045DA8(s32 spritenum)
     i = *gpInst++;
     spr = &gpSprite[spritenum];
     ptr = &ptr[getVar(spritenum, i)];
-    *(intptr_t *)&spr->unk20 = (intptr_t)ptr; /*TODO: addr or integer?*/
-    spr->unk1E = 0;
+    *(intptr_t *)&spr->hitag = (intptr_t)ptr; /*TODO: addr or integer?*/
+    spr->lotag = 0;
     return 0;
 }
 
@@ -2089,10 +2089,10 @@ s32 getVar(s32 spritenum, s32 id)
         id = gAiDebugGvar3;
         break;
     case 0x4000002B:
-        id = D_80118248->unk1E;
+        id = D_80118248->lotag;
         break;
     case 0x4000002C:
-        id = D_80118248->unk20;
+        id = D_80118248->hitag;
         break;
     case 0x40000031:
         id = D_80118248->unk22;
@@ -2404,7 +2404,7 @@ static void func_8004A4D4(SpriteType *spr, s32 arg1, s32 arg2)
     {
         spr2 = &gpSprite[spritenum];
         spr2->xrepeat = 96;
-        spr2->unk1E = 80;
+        spr2->lotag = 80;
         spr2->cstat = 0x1000;
         spr2->unk22 = 0x1234;
         spr2->unk1C = 0;
@@ -2480,7 +2480,7 @@ static void func_8004A590(s32 spritenum)
                     }
                 }
                 func_80057540(&gpSprite[spritenum], 1781, 5, 0);
-                gpSprite[spritenum].unk1E = 12;
+                gpSprite[spritenum].lotag = 12;
                 func_8004BFDC(spritenum, 11, gpSprite[spritenum].z, 1);
             }
             else
@@ -2498,15 +2498,15 @@ static void func_8004A590(s32 spritenum)
 
             if (gMapNum == MAP_THE_RACK)
             {
-                if (gpSprite[spritenum].unk20 == 837)
+                if (gpSprite[spritenum].hitag == 837)
                     func_8004A4D4(&gpSprite[spritenum], 2364, 4);
             }
             if (gMapNum == MAP_ALIEN_MOTHER)
             {
-                if (gpSprite[spritenum].unk20 == 806)
+                if (gpSprite[spritenum].hitag == 806)
                     func_8004A4D4(&gpSprite[spritenum], 2364, 1);
 
-                if (gpSprite[spritenum].unk20 == 818)
+                if (gpSprite[spritenum].hitag == 818)
                     func_8004A4D4(&gpSprite[spritenum], 2364, 3);
             }
             func_8004BD24(spritenum);
@@ -2527,8 +2527,8 @@ static void func_8004B2B0(s32 spritenum, s32 arg1, s32 arg2)
     s16 i, nexti;
     s16 unk20, unk1E;
 
-    unk20 = gpSprite[spritenum].unk20;
-    unk1E = gpSprite[spritenum].unk1E;
+    unk20 = gpSprite[spritenum].hitag;
+    unk1E = gpSprite[spritenum].lotag;
     sectnum = gpSprite[spritenum].sectnum;
     spritenum_ = func_80058934(gpSprite[spritenum].x, gpSprite[spritenum].y, gpSprite[spritenum].z, sectnum, 72);
 
@@ -2537,8 +2537,8 @@ static void func_8004B2B0(s32 spritenum, s32 arg1, s32 arg2)
         spr = &gpSprite[spritenum_];
         spr->picnum = 1560;
         spr->cstat = 0x8000;
-        spr->unk20 = unk20;
-        spr->unk1E = unk1E;
+        spr->hitag = unk20;
+        spr->lotag = unk1E;
 
         i = gHeadSpriteStat[65];
         while (i >= 0)
@@ -2665,10 +2665,10 @@ STATIC s32 func_8004B440(s32 spritenum)
         j = gAiDebugGvar3;
         break;
     case 0x4000002B:
-        j = D_80118248->unk1E;
+        j = D_80118248->lotag;
         break;
     case 0x4000002C:
-        j = D_80118248->unk20;
+        j = D_80118248->hitag;
         break;
     case 0x40000031:
         j = D_80118248->unk22;
@@ -2791,10 +2791,10 @@ STATIC s32 func_8004B440(s32 spritenum)
         k = gAiDebugGvar3;
         break;
     case 0x4000002B:
-        k = D_80118248->unk1E;
+        k = D_80118248->lotag;
         break;
     case 0x4000002C:
-        k = D_80118248->unk20;
+        k = D_80118248->hitag;
         break;
     case 0x40000031:
         k = D_80118248->unk22;
@@ -3007,14 +3007,14 @@ s32 func_8004CC90(s32 spritenum, s32 arg1, s32 arg2)
              || ((arg1 == 18) || (arg1 == 14))
              || ((arg1 == 21) || (arg2 == 1560))))
     {
-        if (gpSprite[spritenum].unk20 != 0)
+        if (gpSprite[spritenum].hitag != 0)
         {
             if (gpSprite[spritenum].unk25 == 1)
             {
                 D_800DEE98 = gpSprite[spritenum].unk25;
                 func_80050E40();
             }
-            func_8006B590(gpSprite[spritenum].unk20);
+            func_8006B590(gpSprite[spritenum].hitag);
             deleteSprite(spritenum);
             return -1;
         }
@@ -3197,7 +3197,7 @@ s32 func_8004D304(SpriteType *arg0, s16 arg1, s16 arg2)
 STATIC void func_8004D65C(s32 spritenum)
 {
     s16 i, nexti;
-    s32 unk20;
+    s32 hitag;
 
     spritenum &= 0xFFFF;
     if (spritenum & 0xC000)
@@ -3205,18 +3205,18 @@ STATIC void func_8004D65C(s32 spritenum)
         spritenum -= 0xC000;
         if (spritenum >= 0)
         {
-            if ((gpSprite[spritenum].statnum == 4) && (gpSprite[spritenum].unk1E == 102))
+            if ((gpSprite[spritenum].statnum == 4) && (gpSprite[spritenum].lotag == 102))
             {
                 i = gHeadSpriteStat[4];
-                unk20 = gpSprite[spritenum].unk20;
+                hitag = gpSprite[spritenum].hitag;
                 while (i > 0)
                 {
                     nexti = gNextSpriteStat[i];
-                    if (gpSprite[i].unk20 == unk20)
+                    if (gpSprite[i].hitag == hitag)
                     {
-                        if ((gpSprite[i].unk1E == 101) || (gpSprite[i].unk1E == 102))
+                        if ((gpSprite[i].lotag == 101) || (gpSprite[i].lotag == 102))
                         {
-                            if (gpSprite[i].unk1E == 101)
+                            if (gpSprite[i].lotag == 101)
                             {
                                 D_80106D50[i] = -1;
                                 D_8019B89C = 0;
@@ -3226,7 +3226,7 @@ STATIC void func_8004D65C(s32 spritenum)
                     }
                     i = nexti;
                 }
-                D_8019B940[D_80106D50[unk20]].unk5C = 1;
+                D_8019B940[D_80106D50[hitag]].unk5C = 1;
             }
         }
     }
@@ -3786,7 +3786,7 @@ static void func_8004F704(s32 arg0)
 
         if (spritenum != -1)
         {
-            gpSprite[spritenum].unk1E = arg0;
+            gpSprite[spritenum].lotag = arg0;
             D_8013B2D0[spritenum].unk6 = (krand() & 0x1F) + 0x40;
             gpSprite[spritenum].xrepeat += (krand() & 0x1F) - 0xF;
             gpSprite[spritenum].yrepeat += (krand() & 0x1F) - 0xF;
@@ -3910,7 +3910,7 @@ void func_8004FC4C(void)
     while (i >= 0)
     {
         nexti = gNextSpriteStat[i];
-        if (gpSprite[i].unk1E <= 0)
+        if (gpSprite[i].lotag <= 0)
         {
             switch (gpSprite[i].unk25)
             {
@@ -3939,7 +3939,7 @@ void func_8004FC4C(void)
             deleteSprite(i);
         }
         else
-            gpSprite[i].unk1E--;
+            gpSprite[i].lotag--;
 
         i = nexti;
     }
@@ -4022,7 +4022,7 @@ void func_800502A0(void)
                         gpSprite[k].picnum = 5;
                         gpSprite[k].unk1A = 18000;
                         gpSprite[k].unk25 = 0xff;
-                        gpSprite[k].unk1E = 32;
+                        gpSprite[k].lotag = 32;
                         gpSprite[k].unk18 = 0;
                         gpSprite[k].unk1C = 0;
                         gpSprite[i].unk16 = 1;
@@ -4538,7 +4538,7 @@ static u8 func_800516EC(s16 spritenum)
         if (spr->picnum < 1562)
         {
             func_800A419C(0, D_800DF1C0[spr->picnum-1559]);
-            func_8006B590(spr->unk20);
+            func_8006B590(spr->hitag);
             ret = 1;
         }
         else if (spr->picnum < 2483)
@@ -4754,7 +4754,7 @@ static void func_800519AC(void)
             {
                 nexti = gNextSpriteStat[i];
                 if (func_80051684(gpSprite[i].sectnum) &&
-                    (gpSprite[i].unk1E == 10) && (gpSprite[i].unk22 == 2) &&
+                    (gpSprite[i].lotag == 10) && (gpSprite[i].unk22 == 2) &&
                     (func_80040D40(gpSprite[i].x, gpSprite[i].y, gPlayer[j].xpos, gPlayer[j].ypos) < k))
                 {
                     if (klabs((gpSprite[i].z - florz)) < gPlayer[j].unk40)
@@ -5408,28 +5408,28 @@ static void func_80053650(s32 arg0, s32 spritenum)
             changeSpriteStat(spritenum, 70);
             spr->unk18 = 2;
             spr->unk25 = 0;
-            spr->unk20 = 2538;
+            spr->hitag = 2538;
             break;
 
         case 1466:
             changeSpriteStat(spritenum, 70);
             spr->unk18 = 2;
             spr->unk25 = 0;
-            spr->unk20 = 2536;
+            spr->hitag = 2536;
             break;
 
         case 2266:
             changeSpriteStat(spritenum, 70);
             spr->unk18 = 2;
             spr->unk25 = 0;
-            spr->unk20 = 2537;
+            spr->hitag = 2537;
             break;
 
         case 1483:
             changeSpriteStat(spritenum, 70);
             spr->unk18 = 2;
             spr->unk25 = 0;
-            spr->unk20 = 1603;
+            spr->hitag = 1603;
             break;
 
         case 5215:
@@ -5556,7 +5556,7 @@ void func_80056600(s32 spritenum)
             gpSprite[spritenum_].xrepeat = 80;
             gpSprite[spritenum_].unk1C = 0;
             gpSprite[spritenum_].unk18 = 0;
-            gpSprite[spritenum_].unk1E = 80;
+            gpSprite[spritenum_].lotag = 80;
             gpSprite[spritenum_].picnum = D_801AE8F0[i] + 0x700;
             gpSprite[spritenum_].cstat = 0x1000;
             gpSprite[spritenum_].unk22 = 0x1234;
@@ -5840,7 +5840,7 @@ static s32 func_80058538(SpriteType *spr, s32 arg1)
 
     while (i >= 0)
     {
-        if (gpSprite[i].unk1E != arg1)
+        if (gpSprite[i].lotag != arg1)
         {
             d2 = dist(&gpSprite[i], spr);
             if (d2 < d1)

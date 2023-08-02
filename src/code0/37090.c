@@ -1168,7 +1168,7 @@ static void func_8003E8D0(void)
         while (j >= 0)
         {
             k = gNextSpriteStat[j];
-            if ((gpSprite[j].unk20 == 0) && (dist(&gpSprite[j], &gpSprite[gPlayer[D_801B0820].unk4A]) < 1024))
+            if ((gpSprite[j].hitag == 0) && (dist(&gpSprite[j], &gpSprite[gPlayer[D_801B0820].unk4A]) < 1024))
             {
                 if (gMapNum == MAP_ALIEN_MOTHER)
                     func_8006B590(2031);

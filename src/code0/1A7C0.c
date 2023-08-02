@@ -310,7 +310,7 @@ void func_8001B2D0(void)
 
         while (i >= 0)
         {
-            if (gpSprite[i].unk1E == 21)
+            if (gpSprite[i].lotag == 21)
             {
                 x1 = gpSprite[i].x;
                 y1 = gpSprite[i].y;

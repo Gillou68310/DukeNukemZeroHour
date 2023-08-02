@@ -2,6 +2,7 @@
 #include "code0/pragmas.h"
 #include "code0/engine.h"
 #include "code0/35D90.h"
+#include "code0/41940.h"
 #include "code0/code0.h"
 
 #define MAXCLIPNUM 512
@@ -48,6 +49,8 @@ static s16 insertSpriteSect(s16 sectnum);
 static s32 deleteSpriteStat(s16 deleteme);
 static s32 deleteSpriteSect(s16 deleteme);
 static s16 lastWall(s16 point);
+static s32 lIntersect(s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2, s32 x3,
+                      s32 y3, s32 x4, s32 y4, s32 *intx, s32 *inty, s32 *intz);
 
 /*8002B680*/
 void engine_8002B680(void)
@@ -519,7 +522,177 @@ s32 canSee(s32 x1, s32 y1, s32 z1, s16 sect1, s32 x2, s32 y2, s32 z2, s16 sect2)
 INCLUDE_ASM("nonmatchings/src/code0/engine", hitScan);
 
 /*8002F1B4*/
-INCLUDE_ASM("nonmatchings/src/code0/engine", nearTag);
+s32 nearTag(s32 xs, s32 ys, s32 zs, s16 sectnum, s16 ange, s16 *neartagsector, s16 *neartagwall, s16 *neartagsprite, s32 *neartaghitdist, s32 neartagrange, u8 tagsearch)
+{
+    ModelInfo *ptr;
+    WallType *wal2;
+    WallType *wall;
+    SpriteType *spr;
+
+    s32 z, zz;
+    s32 intx, inty, intz;
+    s32 x3, y3;
+    s32 xe, ye, ze;
+    s32 x1, y1;
+    s32 x2, y2;
+
+    s16 tempshortcnt;
+    s16 tempshortnum;
+    s16 dasector;
+    s16 endwall;
+    s16 startwall;
+    s16 nextsector;
+    s16 good;
+
+    s32 i, j, k, l, m;
+    s32 z1, z2;
+    s32 neartagrange2;
+    s32 neartagrange1;
+
+    *neartagsector = -1;
+    *neartagwall = -1;
+    *neartagsprite = -1;
+    *neartaghitdist = 0;
+
+    if (sectnum < 0)
+        return 0;
+
+    if ((tagsearch < 1) || (tagsearch > 3))
+        return 0;
+
+    xe = xs + mulscale14(gpSinTable[(ange + 0xA00) & 0x7FF], neartagrange);
+    ye = ys + mulscale14(gpSinTable[(ange + 0x800) & 0x7FF], neartagrange);
+    ze = 0;
+    tempshortcnt = 0;
+    _clipSectorList[0] = sectnum;
+    tempshortnum = 1;
+
+    do
+    {
+        dasector = _clipSectorList[tempshortcnt];
+        startwall = gpSector[dasector].wallptr;
+        endwall = (startwall + gpSector[dasector].wallnum) - 1;
+
+        for (z = startwall, wall = &gpWall[z]; endwall >= z; z++, wall++)
+        {
+            wal2 = &gpWall[wall->point2];
+            x1 = wall->x;
+            y1 = wall->y;
+            x2 = wal2->x;
+            y2 = wal2->y;
+            nextsector = wall->nextsector;
+
+            good = 0;
+            if ((tagsearch&1) && (wall->unk14 >= 11))
+                good |= 2;
+
+            if ((good == 0) && (nextsector < 0))
+                continue;
+
+            if ((x1-xs)*(y2-ys) < (x2-xs)*(y1-ys))
+                continue;
+
+            if (lIntersect(xs, ys, zs, xe, ye, ze, x1, y1, x2, y2, &intx, &inty, &intz) == 1)
+            {
+                if (good != 0)
+                {
+                    if (good & 1)
+                        *neartagsector = nextsector;
+                    if (good & 2)
+                        *neartagwall = z;
+
+                    *neartaghitdist = dmulscale14((intx - xs), gpSinTable[(ange + 0xA00) & 0x7FF],
+                                                  (inty - ys), gpSinTable[((ange + 0x800) & 0x7FF)]);
+                    xe = intx;
+                    ye = inty;
+                    ze = intz;
+                }
+
+                if (nextsector >= 0)
+                {
+                    for (zz = tempshortnum-1; zz>=0; zz--)
+                    {
+                        if (_clipSectorList[zz] == nextsector)
+                            break;
+                    }
+
+                    if (zz < 0)
+                        _clipSectorList[tempshortnum++] = nextsector;
+                }
+            }
+        }
+
+        neartagrange1 = neartagrange;
+        for (z = gHeadSpriteSect[dasector]; z >= 0; z = gNextSpriteSect[z])
+        {
+            spr = &gpSprite[z];
+            if (spr->picnum < 0x31)
+                continue;
+
+            if (spr->cstat & 0x8000)
+                continue;
+
+            if (spr->statnum == 1)
+                continue;
+
+            if (spr->statnum == 0x136)
+                continue;
+
+            good = 0;
+            if ((tagsearch&1) && spr->lotag)
+                good |= 1;
+
+            if ((tagsearch&2) && spr->hitag)
+                good |= 1;
+
+            if (good != 0)
+            {
+                neartagrange2 = func_80040D40(spr->x, spr->y, xs, ys);
+                if (spr->cstat & 0x1000)
+                {
+                    ptr = D_800D52E0[spr->picnum-1280];
+                    if (ptr == NULL)
+                        continue;
+
+                    i = ((ptr->unk2A - ptr->unk24) * spr->xrepeat) / 16;
+                    j = ((ptr->unk2C - ptr->unk26) * spr->xrepeat) / 16;
+                    k = (i + j) / 4;
+                    neartagrange2 = CLAMP_MIN((neartagrange2 - k), 0);
+                }
+
+                if (neartagrange2 < neartagrange1)
+                {
+                    if (spr->cstat & 0x1000)
+                    {
+                        l = (ptr->unk2E * (spr->yrepeat << 6)) / 64;
+                        z1 = spr->z - l;
+                        m = (ptr->unk28 * (spr->yrepeat << 6)) / 64;
+                        z2 = spr->z - m;
+                    }
+                    else
+                    {
+                        z1 = spr->z - (getTileSizeY(spr->picnum) * spr->yrepeat * 2);
+                        z2 = spr->z;
+                    }
+                    if ((z2 >= (zs - 0x3900)) && (zs >= z1))
+                    {
+                        rotatePoint(0, 0, spr->x - xs, spr->y - ys, (0x800 - ange), &x3, &y3);
+                        if (klabs(y3) < x3)
+                        {
+                            *neartagsprite = z;
+                            neartagrange1 = neartagrange2;
+                            *neartaghitdist = dmulscale14((spr->x - xs), gpSinTable[(ange + 0xA00) & 0x7FF],
+                                                          (spr->y - ys), gpSinTable[(ange + 0x800) & 0x7FF]);
+                        }
+                    }
+                }
+            }
+        }
+        tempshortcnt++;
+    } while (tempshortcnt < tempshortnum);
+
+    return 0;
+}
 
 /*8002F994*/
 static s32 lIntersect(s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2, s32 x3,

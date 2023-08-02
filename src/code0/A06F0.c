@@ -61,8 +61,8 @@ void func_8009FAF0(void)
                     gpSprite[spritenum].y = gpWall[gpSector[temp].wallptr].y;
                     gpSprite[spritenum].z = D_801AC9E8;
                     gpSprite[spritenum].picnum = 15;
-                    gpSprite[spritenum].unk1E = 5263;
-                    gpSprite[spritenum].unk20 = 0;
+                    gpSprite[spritenum].lotag = 5263;
+                    gpSprite[spritenum].hitag = 0;
                     gpSprite[spritenum].unk25 = 0x80;
                     gpSprite[spritenum].cstat = 0x8000;
                     gpSprite[spritenum].ang = 0;
@@ -599,7 +599,7 @@ void func_800A4478(void)
             while (j >= 0)
             {
                 nextj = gNextSpriteStat[j];
-                if ((gpSprite[j].picnum == 9) && (gpSprite[j].unk20 == 1221))
+                if ((gpSprite[j].picnum == 9) && (gpSprite[j].hitag == 1221))
                     deleteSprite(j);
 
                 j = nextj;

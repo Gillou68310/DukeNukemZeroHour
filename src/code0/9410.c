@@ -372,8 +372,8 @@ static void func_80009314(u8 playernum)
                 fog->color[1].r = gpSprite[i].unk18;
                 fog->color[1].g = gpSprite[i].unk1A;
                 fog->color[1].b = gpSprite[i].unk1C;
-                fog->scale[1].nr = gpSprite[i].unk20;
-                fog->scale[1].fr = gpSprite[i].unk1E;
+                fog->scale[1].nr = gpSprite[i].hitag;
+                fog->scale[1].fr = gpSprite[i].lotag;
                 fog->unk1E = gpSprite[i].ang;
 
                 if (fog->unk1E == 0)
@@ -568,8 +568,8 @@ static void func_80009A14(u8 playernum)
 
             if (gMapNum == MAP_BASE)
             {
-                if ((gpSprite[gPlayer[D_801B0820].unk52 & 0x7FF].unk20 == 400) ||
-                    (gpSprite[gPlayer[D_801B0820].unk52 & 0x7FF].unk20 == 402))
+                if ((gpSprite[gPlayer[D_801B0820].unk52 & 0x7FF].hitag == 400) ||
+                    (gpSprite[gPlayer[D_801B0820].unk52 & 0x7FF].hitag == 402))
                     cond = 1;
             }
 
@@ -1144,7 +1144,7 @@ static void func_8000C8EC(void)
         {
             floorVtxToN64Z(gpSprite[spriteIndex].sectnum, gpSprite[spriteIndex].z / 32);
             gDPSetEnvColor(gpDisplayList++, 0xFF, 0xFF, 0xFF, gpSprite[spriteIndex].unk25);
-            func_8000B9C0(gpSprite[spriteIndex].unk1E);
+            func_8000B9C0(gpSprite[spriteIndex].lotag);
             func_8000B570(D_80199554);
         }
     }
@@ -1444,7 +1444,7 @@ void func_8000DCF0(s32 x, s32 y, s32 z, s16 sectnum)
         {
             x1 = gpSprite[i].x;
             y1 = gpSprite[i].y;
-            unk20 = gpSprite[i].unk20;
+            unk20 = gpSprite[i].hitag;
             k = func_80040D40(x, y, x1, y1);
             if (k < unk20)
             {

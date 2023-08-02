@@ -602,9 +602,9 @@ static s32 func_80095F58(s32 arg0, s32 arg1)
     i = gHeadSpriteStat[7];
     while (i >= 0)
     {
-        if (gpSprite[i].unk1E == arg0)
+        if (gpSprite[i].lotag == arg0)
         {
-            if (gpSprite[i].unk20 == arg1)
+            if (gpSprite[i].hitag == arg1)
                 return i;
         }
         i = gNextSpriteStat[i];
@@ -876,8 +876,8 @@ void func_8009A43C(s32 spritenum)
                 audio_80007A44(1582, spritenum, 32768);
                 func_8008E3E0(gpSprite[i].x, gpSprite[i].y, gpSprite[i].z - 24000, gpSprite[i].sectnum, 52, 32);
                 spritenum3 = func_80058934(gpSprite[i].x, gpSprite[i].y, gpSprite[i].z, gpSprite[i].sectnum, 105);
-                gpSprite[spritenum3].unk20 = 3000;
-                gpSprite[spritenum3].unk1E = 1;
+                gpSprite[spritenum3].hitag = 3000;
+                gpSprite[spritenum3].lotag = 1;
                 gpSprite[spritenum3].picnum = 3;
                 gpSprite[spritenum3].ang = 0;
                 gpSprite[spritenum3].unk24 = 0;
@@ -972,7 +972,7 @@ static void func_8009B974(s32 spritenum)
             while (i >= 0)
             {
                 spr2 = &gpSprite[i];
-                if (spr2->unk1E == 100)
+                if (spr2->lotag == 100)
                 {
                     setSprite(spritenum, spr2->x, spr2->y, spr2->z);
                     spr->ang = 1024;

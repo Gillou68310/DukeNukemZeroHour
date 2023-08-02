@@ -134,9 +134,9 @@ static s16 func_80079D38(s16 playernum, s16 arg1)
     j = 0;
     while (i >= 0)
     {
-        if (gpSprite[i].unk1E == arg1)
+        if (gpSprite[i].lotag == arg1)
         {
-            if (gPlayer[playernum].unk4A == gpSprite[i].unk20)
+            if (gPlayer[playernum].unk4A == gpSprite[i].hitag)
                 j++;
         }
         i = gNextSpriteStat[i];

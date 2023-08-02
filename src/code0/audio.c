@@ -1043,7 +1043,7 @@ void audio_80007AB8(void)
                 D_800BD610 = (u16)spr->unk1A;
                 D_800BD614 = spr->unk25;
                 if (D_8013B2D0[i].handle == 0)
-                    D_8013B2D0[i].handle = audio_800077F4(spr->unk1E, i);
+                    D_8013B2D0[i].handle = audio_800077F4(spr->lotag, i);
                 else
                     D_8013B2D0[i].handle = audio_8000784C(D_8013B2D0[i].handle, i);
             }
