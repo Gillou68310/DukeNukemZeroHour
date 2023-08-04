@@ -4,6 +4,7 @@
 #include "code0/35D90.h"
 #include "code0/41940.h"
 #include "code0/code0.h"
+#include "static/mapinfo.h"
 
 #define MAXCLIPNUM 512
 #define MAXCLIPDIST 1024
@@ -12,7 +13,7 @@ typedef struct { s32 x1, y1, x2, y2; } LineType;
 
 /*.data*/
 /*800DD440*/ EXTERN_DATA STATIC s16 _editStatus;
-/*800DD448*/ EXTERN_DATA s8 D_800DD448;
+/*800DD448*/ EXTERN_DATA u8 D_800DD448;
 
 /*.bss*/
 /*800F70A0*/ EXTERN_BSS STATIC s16 D_800F70A0;
@@ -1125,7 +1126,348 @@ s32 krand(void)
 }
 
 /*8003331C*/
-INCLUDE_ASM("nonmatchings/src/code0/engine", getzRange);
+void getzRange(s32 x, s32 y, s32 z, s16 sectnum, s32 *ceilz, s32 *ceilhit, s32 *florz, s32 *florhit, s32 walldist, u32 cliptype)
+{
+    ModelInfo *ptr;
+    SectorType *sec;
+    WallType *wall, *wal2;
+    SpriteType *spr;
+    s32 clipsectcnt, startwall, endwall, tilenum, xoff, yoff, dax, day;
+    s32 xmin, ymin, xmax, ymax, i, j, k, l, daz, daz2, dx, dy;
+    s32 x1, y1, x2, y2, x3, y3, x4, y4, ang, cosang, sinang;
+    s32 xspan, yspan, xrepeat, yrepeat, dasprclipmask, dawalclipmask;
+    s16 cstat;
+    u8 clipyou;
+    s16 m;
+    s32 n, o, p, q, r, s, t, u;
+
+    if (sectnum < 0)
+    {
+        *ceilz = 0x80000000;
+        *ceilhit = -1;
+        *florz = 0x7FFFFFFF;
+        *florhit = -1;
+        return;
+    }
+
+    i = walldist + MAXCLIPDIST+1;
+    getzsOfSlope(sectnum, x, y, ceilz, florz);
+    *ceilhit = sectnum + 0x4000;
+    *florhit = sectnum + 0x4000;
+    xmin = x - i;
+    ymin = y - i;
+    xmax = x + i;
+    ymax = y + i;
+
+    dawalclipmask = cliptype & 0xFFFF;
+    dasprclipmask = cliptype >> 0x10;
+
+    _clipSectorList[0] = sectnum;
+    _clipSectNum = 1;
+    clipsectcnt = 0;
+
+    m = gHeadSpriteStat[305];
+    if (m >= 0)
+    {
+        _clipSectNum = 2;
+        _clipSectorList[1] = gpSprite[m].sectnum;
+    }
+
+    if (gMapNum == MAP_DAWN_OF_THE_DUKE)
+    {
+        m = gHeadSpriteStat[302];
+        while (m >= 0)
+        {
+            if ((gpSprite[m].picnum >= 2310) && (gpSprite[m].picnum < 2315))
+            {
+                _clipSectorList[_clipSectNum++] = gpSprite[m].sectnum;
+                break;
+            }
+            m = gNextSpriteStat[m];
+        }
+    }
+
+    do
+    {
+        sec = &gpSector[_clipSectorList[clipsectcnt]];
+        startwall = sec->wallptr;
+        endwall = startwall + sec->wallnum;
+        for (j = startwall, wall = &gpWall[startwall]; j < endwall; j++, wall++)
+        {
+            k = wall->nextsector;
+            if (k >= 0)
+            {
+                wal2 = &gpWall[wall->point2];
+                x1 = wall->x; x2 = wal2->x;
+                if ((x1 < xmin) && (x2 < xmin)) continue;
+                if ((x1 > xmax) && (x2 > xmax)) continue;
+                y1 = wall->y; y2 = wal2->y;
+                if ((y1 < ymin) && (y2 < ymin)) continue;
+                if ((y1 > ymax) && (y2 > ymax)) continue;
+
+                dx = x2-x1; dy = y2-y1;
+                if (dx*(y-y1) < (x-x1)*dy) continue; //back
+                if (dx > 0) dax = dx*(ymin-y1); else dax = dx*(ymax-y1);
+                if (dy > 0) day = dy*(xmax-x1); else day = dy*(xmin-x1);
+                if (dax >= day) continue;
+
+                if (wall->cstat&dawalclipmask) continue;
+
+                sec = &gpSector[k];
+                if (_editStatus == 0)
+                {
+                    if (z <= sec->ceilingz+(3<<8)) continue;
+                    if (z >= sec->floorz-(3<<8)) continue;
+                }
+
+                for (i = _clipSectNum-1; i>=0; i--)
+                {
+                    if (_clipSectorList[i] == k)
+                        break;
+                }
+
+                if (i < 0)
+                    _clipSectorList[_clipSectNum++] = k;
+
+                if ((x1 < xmin+MAXCLIPDIST) && (x2 < xmin+MAXCLIPDIST)) continue;
+                if ((x1 > xmax-MAXCLIPDIST) && (x2 > xmax-MAXCLIPDIST)) continue;
+                if ((y1 < ymin+MAXCLIPDIST) && (y2 < ymin+MAXCLIPDIST)) continue;
+                if ((y1 > ymax-MAXCLIPDIST) && (y2 > ymax-MAXCLIPDIST)) continue;
+                if (dx > 0) dax += dx*MAXCLIPDIST; else dax -= dx*MAXCLIPDIST;
+                if (dy > 0) day -= dy*MAXCLIPDIST; else day += dy*MAXCLIPDIST;
+                if (dax >= day) continue;
+
+                getzsOfSlope(k, x, y, &daz, &daz2);
+
+                if (daz > *ceilz)
+                {
+                    *ceilz = daz;
+                    *ceilhit = k+16384;
+                }
+
+                if (daz2 < *florz)
+                {
+                    *florz = daz2;
+                    *florhit = k+16384;
+                }
+            }
+        }
+        clipsectcnt++;
+    } while (clipsectcnt < _clipSectNum);
+
+
+    for (i = 0; i<_clipSectNum; i++)
+    {
+        for (j = gHeadSpriteSect[_clipSectorList[i]]; j>=0; j = gNextSpriteSect[j])
+        {
+            spr = &gpSprite[j];
+
+            if ((D_800DD448 != 0) && (spr->statnum == 1)) continue;
+            if ((D_800DD448 != 0) && (spr->statnum == 10)) continue;
+            if ((D_800DD448 != 0) && (spr->statnum == 52)) continue;
+            if ((D_800DD448 != 0) && (spr->statnum == 305)) continue;
+
+            if (spr->picnum == 1295) continue;
+            if (spr->picnum == 1688) continue;
+
+            cstat = spr->cstat;
+            if (cstat & dasprclipmask)
+            {
+                x1 = spr->x;
+                y1 = spr->y;
+                clipyou = 0;
+                if (cstat & 0x1000)
+                {
+                    ptr = D_800D52E0[spr->picnum-1280];
+                    if (ptr != NULL)
+                    {
+                        s32 x_[4];
+                        s32 y_[4];
+
+                        n = (ptr->unk24 * (spr->xrepeat << 2)) / 64;
+                        x_[0] = (x1 + n) - 164;
+                        q = (ptr->unk2A * (spr->xrepeat << 2)) / 64;
+                        x_[2] = spr->x + q + 164;
+                        r = (ptr->unk26 * (spr->xrepeat << 2)) / 64;
+                        y_[0] = (spr->y - r) + 164;
+                        o = ptr->unk2C * (spr->xrepeat << 2) / 64;
+                        y_[2] = (spr->y - o) - 164;
+
+                        x_[1] = x_[2];
+                        y_[1] = y_[0];
+                        x_[3] = x_[0];
+                        y_[3] = y_[2];
+
+                        if ((spr->statnum != 1) & (spr->statnum != 0xA))
+                        {
+                            rotatePoint(spr->x, spr->y, x_[0], y_[0], ((spr->ang + 0x600) & 0x7FF), &t, &u);
+                            x_[0] = t; y_[0] = u;
+                            rotatePoint(spr->x, spr->y, x_[1], y_[1], ((spr->ang + 0x600) & 0x7FF), &t, &u);
+                            x_[1] = t; y_[1] = u;
+                            rotatePoint(spr->x, spr->y, x_[2], y_[2], ((spr->ang + 0x600) & 0x7FF), &t, &u);
+                            x_[2] = t; y_[2] = u;
+                            rotatePoint(spr->x, spr->y, x_[3], y_[3], ((spr->ang + 0x600) & 0x7FF), &t, &u);
+                            x_[3] = t; y_[3] = u;
+                        }
+                        s = (ptr->unk28 * (spr->yrepeat << 6)) / 64;
+                        daz = spr->z - s;
+                        p = (ptr->unk2E * (spr->yrepeat << 6)) / 64;
+                        daz2 = spr->z - p;
+
+                        for (k = 0; k < 4; k++)
+                        {
+                            x_[k] -= x;
+                            y_[k] -= y;
+                        }
+
+                        if ((y_[0]^y_[1]) < 0)
+                        {
+                            if ((x_[0]^x_[1]) < 0) clipyou ^= (x_[0]*y_[1]<x_[1]*y_[0])^(y_[0]<y_[1]);
+                            else if (x_[0] >= 0) clipyou ^= 1;
+                        }
+                        if ((y_[1]^y_[2]) < 0)
+                        {
+                            if ((x_[1]^x_[2]) < 0) clipyou ^= (x_[1]*y_[2]<x_[2]*y_[1])^(y_[1]<y_[2]);
+                            else if (x_[1] >= 0) clipyou ^= 1;
+                        }
+                        if ((y_[2]^y_[3]) < 0)
+                        {
+                            if ((x_[2]^x_[3]) < 0) clipyou ^= (x_[2]*y_[3]<x_[3]*y_[2])^(y_[2]<y_[3]);
+                            else if (x_[2] >= 0) clipyou ^= 1;
+                        }
+                        if ((y_[3]^y_[0]) < 0)
+                        {
+                            if ((x_[3]^x_[0]) < 0) clipyou ^= (x_[3]*y_[0]<x_[0]*y_[3])^(y_[3]<y_[0]);
+                            else if (x_[3] >= 0) clipyou ^= 1;
+                        }
+                    }
+                }
+                else
+                {
+                    switch (cstat & 0x30)
+                    {
+                    case 0:
+                    case 48:
+                        k = walldist + (spr->clipdist * 4) + 1;
+                        if ((klabs(x1-x) <= k) && (klabs(y1-y) <= k))
+                        {
+                            daz = spr->z;
+                            k = (getTileSizeY(spr->picnum) * spr->yrepeat) << 1;
+                            if (cstat&128) daz += k;
+                            if (getTilePicanm(spr->picnum) & 0x00FF0000)
+                                daz -= ((s32)((s8)((getTilePicanm(spr->picnum)>>16)&255))*spr->yrepeat<<2);
+                            daz2 = daz-(k<<1);
+                            clipyou = 1;
+                        }
+                        break;
+                    case 16:
+                        tilenum = spr->picnum;
+                        xoff = (s32)((s8)((getTilePicanm(tilenum)>>8)&255));
+                        if ((cstat & 4) > 0) xoff = -xoff;
+
+                        k = spr->ang;
+                        l = spr->xrepeat;
+                        dax = gpSinTable[k & 0x7FF] * l;
+                        day = gpSinTable[(k + 0x600) & 0x7FF] * l;
+                        l = getTileSizeX(tilenum);
+                        k = (l>>1) + xoff;
+                        x1 -= mulscale16(dax, k);
+                        x2 = x1 + mulscale16(dax, l);
+                        y1 -= mulscale16(day, k);
+                        y2 = y1 + mulscale16(day, l);
+                        if (clipInsideBoxLine(x, y, x1, y1, x2, y2, walldist + 1) != 0)
+                        {
+                            daz = spr->z;
+                            k = (getTileSizeY(spr->picnum) * spr->yrepeat) << 1;
+                            if (cstat&128) daz += k;
+                            if (getTilePicanm(spr->picnum) & 0x00FF0000)
+                                daz -= ((s32)((s8)((getTilePicanm(spr->picnum)>>16)&255))*spr->yrepeat<<2);
+                            daz2 = daz-(k<<1);
+                            clipyou = 1;
+                        }
+                        break;
+                    case 32:
+                        daz = spr->z;
+                        daz2 = daz;
+
+                        if ((cstat&64) != 0)
+                            if ((z > daz) == ((cstat&8)==0))
+                                continue;
+
+                        tilenum = spr->picnum;
+                        xoff = (s32)((s8)((getTilePicanm(tilenum)>>8)&255));
+                        yoff = (s32)((s8)((getTilePicanm(tilenum)>>16)&255));
+
+                        if ((cstat & 4) > 0) xoff = -xoff;
+                        if ((cstat & 8) > 0) yoff = -yoff;
+
+                        ang = spr->ang;
+                        cosang = gpSinTable[(ang + 0x200) & 0x7FF];
+                        sinang = gpSinTable[ang];
+
+                        xspan = getTileSizeX(tilenum);
+                        xrepeat = spr->xrepeat;
+                        yspan = getTileSizeY(tilenum);
+                        yrepeat = spr->yrepeat;
+
+                        dax = ((xspan >> 1) + xoff) * xrepeat;
+                        day = ((yspan >> 1) + yoff) * yrepeat;
+                        x1 += (dmulscale16(sinang, dax, cosang, day) - x);
+                        y1 += (dmulscale16(sinang, day, -cosang, dax) - y);
+                        l = xspan * xrepeat;
+                        x2 = x1 - mulscale16(sinang, l);
+                        y2 = y1 + mulscale16(cosang, l);
+                        l = yspan * yrepeat;
+                        k = -mulscale16(cosang, l); x3 = x2+k; x4 = x1+k;
+                        k = -mulscale16(sinang, l); y3 = y2+k; y4 = y1+k;
+
+                        dax = mulscale14(gpSinTable[(spr->ang-256+512)&2047], walldist+4);
+                        day = mulscale14(gpSinTable[(spr->ang-256)&2047], walldist+4);
+                        x1 += dax; x2 -= day; x3 -= dax; x4 += day;
+                        y1 += day; y2 += dax; y3 -= day; y4 -= dax;
+
+                        if ((y1^y2) < 0)
+                        {
+                            if ((x1^x2) < 0) clipyou ^= (x1*y2<x2*y1)^(y1<y2);
+                            else if (x1 >= 0) clipyou ^= 1;
+                        }
+                        if ((y2^y3) < 0)
+                        {
+                            if ((x2^x3) < 0) clipyou ^= (x2*y3<x3*y2)^(y2<y3);
+                            else if (x2 >= 0) clipyou ^= 1;
+                        }
+                        if ((y3^y4) < 0)
+                        {
+                            if ((x3^x4) < 0) clipyou ^= (x3*y4<x4*y3)^(y3<y4);
+                            else if (x3 >= 0) clipyou ^= 1;
+                        }
+                        if ((y4^y1) < 0)
+                        {
+                            if ((x4^x1) < 0) clipyou ^= (x4*y1<x1*y4)^(y4<y1);
+                            else if (x4 >= 0) clipyou ^= 1;
+                        }
+
+                        break;
+                    }
+                }
+
+                if (clipyou != 0)
+                {
+                    if ((daz < z) && (*ceilz < daz))
+                    {
+                        *ceilz = daz;
+                        *ceilhit = j + 0xC000;
+                    }
+                    if ((z < daz2) && (daz2 < *florz))
+                    {
+                        *florz = daz2;
+                        *florhit = j + 0xC000;
+                    }
+                }
+            }
+        }
+    }
+}
 
 /*800348F8*/
 s32 getCeilzOfSlope(s16 sectnum, s32 dax, s32 day)

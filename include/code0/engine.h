@@ -233,6 +233,6 @@ extern s32 gTotalClockLock;
 extern s16 *gpSinTable;
 extern WallType *gpWall;
 extern s32 D_801AC9F4;
-extern s8 D_800DD448;
+extern u8 D_800DD448;
 
 #endif
