@@ -13,7 +13,7 @@ import os
         
 def get_scratches_decompme(sessionid):
     scratches = []
-    url = "https://decomp.me/api/user/scratches?page_size=100" 
+    url = "{api_base}/api/user/scratches?page_size=100" 
     while(1):
         try:
             request = urllib.request.Request(url)
@@ -27,7 +27,7 @@ def get_scratches_decompme(sessionid):
                 break
         except Exception:
             print("Failed to get scratches from decomp.me")
-            sys.exit(1)
+            break
 
     dico = {}
     for s in scratches:
@@ -38,6 +38,8 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print('upload.py [function]')
         sys.exit(1)
+
+    api_base = os.environ.get("DECOMPME_API_BASE", "https://decomp.me")
     
     # Check if function is already on decompme
     if os.path.exists('sessionid'):
@@ -91,7 +93,6 @@ if __name__ == "__main__":
     f.close()
     
     func_name = os.path.basename(path).split('.')[0]
-    api_base = os.environ.get("DECOMPME_API_BASE", "https://decomp.me")
     print("Uploading...")
     try:
         post_data = urllib.parse.urlencode(
@@ -110,7 +111,7 @@ if __name__ == "__main__":
             json_data: Dict[str, str] = json.loads(resp)
             if "slug" in json_data:
                 slug = json_data["slug"]
-                print(f"https://decomp.me/scratch/{slug}")
+                print(f"{api_base}/scratch/{slug}")
             else:
                 error = json_data.get("error", resp)
                 print(f"Server error: {error}")

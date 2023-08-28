@@ -16,16 +16,16 @@ def download_decompme(url_str, dir):
         slug = parsed_url.path[1:].split("/")[1]
     except Exception:
         print(
-            f"Failed to parse decomp.me url, it should look like:  https://decomp.me/scratch/<id>"
+            f"Failed to parse decomp.me url, it should look like:{api_base}/scratch/<id>"
         )
         sys.exit(1)
 
     print(f"Downloading scratch with ID {slug}...")
     try:
-        response_str = urllib.request.urlopen(f"https://decomp.me/api/scratch/{slug}")
+        response_str = urllib.request.urlopen(f"{api_base}/api/scratch/{slug}")
 
         content = urllib.request.urlopen(
-            f"https://decomp.me/api/scratch/{slug}/export"
+            f"{api_base}/api/scratch/{slug}/export"
         )
         zip = zipfile.ZipFile(BytesIO(content.read()))
         zip.extractall(dir)
@@ -46,6 +46,8 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print('permute.py [url]')
         sys.exit(1)
+
+    api_base = os.environ.get("DECOMPME_API_BASE", "https://decomp.me")
     
     tempdir = tempfile.TemporaryDirectory(dir='./')
     download_decompme(sys.argv[1], tempdir.name)
