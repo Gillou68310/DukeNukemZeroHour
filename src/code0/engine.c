@@ -12,20 +12,23 @@
 typedef struct { s32 x1, y1, x2, y2; } LineType;
 
 /*.data*/
-/*800DD440*/ EXTERN_DATA STATIC s16 _editStatus;
-/*800DD444*/ EXTERN_DATA STATIC s32 _clipMoveBoxTraceNum;
-/*800DD448*/ EXTERN_DATA u8 D_800DD448;
+static s32 _unused1[12] = {0,0,0,0,0,0,0,0,0,0,0,0};
+/*800DD440*/ static s16 _editStatus = 0;
+/*800DD444*/ static s32 _clipMoveBoxTraceNum = 3;
+/*800DD448*/ u8 D_800DD448 = 0;
 
 /*.bss*/
-/*800F7060*/ EXTERN_BSS STATIC s32 _rxi[8];
-/*800F7080*/ EXTERN_BSS STATIC s32 _ryi[8];
-/*800F70A0*/ EXTERN_BSS STATIC s16 D_800F70A0;
-/*800F70A2*/ EXTERN_BSS STATIC s16 _clipNum;
-/*800F70A4*/ EXTERN_BSS STATIC s16 _hitWalls[4];
-/*800F70B0*/ EXTERN_BSS STATIC LineType _clipIt[MAXCLIPNUM];
-/*800F90B0*/ EXTERN_BSS STATIC s16 _clipSectorList[MAXCLIPNUM];
-/*800F94B0*/ EXTERN_BSS STATIC s16 _clipSectNum;
-/*800F94C0*/ EXTERN_BSS STATIC s32 _clipObjectVal[MAXCLIPNUM];
+/*800F7060*/ static s32 _rxi[8] ALIGNED(8);
+/*800F7080*/ static s32 _ryi[8] ALIGNED(8);
+/*800F70A0*/ static s16 D_800F70A0;
+/*800F70A2*/ static s16 _clipNum;
+/*800F70A4*/ static s16 _hitWalls[4];
+static s32 _unused2;
+/*800F70B0*/ static LineType _clipIt[MAXCLIPNUM] ALIGNED(16);
+/*800F90B0*/ static s16 _clipSectorList[MAXCLIPNUM] ALIGNED(16);
+/*800F94B0*/ static s16 _clipSectNum;
+static s32 _unused3[3];
+/*800F94C0*/ static s32 _clipObjectVal[MAXCLIPNUM] ALIGNED(16);
 
 /*.comm*/
 /*800FE420*/ s16 gHeadSpriteSect[MAXSECTORS+1] ALIGNED(16);
