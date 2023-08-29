@@ -133,7 +133,99 @@ INCLUDE_ASM("nonmatchings/src/code0/1A7C0", func_80019BC0);
 #endif
 
 /*8001A1A4*/
-INCLUDE_ASM("nonmatchings/src/code0/1A7C0", func_8001A1A4);
+void func_8001A1A4(void)
+{
+    s16 hitsect;
+    s16 hitwall;
+    s16 hitsprite;
+    s32 hitx, hity, hitz;
+    AlphaPalette *pal;
+    f32 fx, fy, fz;
+    f32 f1, f2, f3, f4, f5, f6;
+    s16 i, spritenum;
+    s32 vx, vy, vz;
+    s32 unk25;
+    u16 cstat;
+
+    if ((D_80105720 != 0) && (D_8012C470 < 2) && (D_800DEEA0 != 0))
+    {
+        func_8000A070();
+        func_80028F04(0xFF, 0xFF, 0xFF, 0xFF, 0x80, 0);
+
+        cstat = gpSprite[gPlayer[D_801B0820].unk4A].cstat;
+
+        if ((gPlayer[D_801B0820].unk6A < 0xFF) || ((gPlayer[D_801B0820].unk60 == 0)))
+            gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & 0xFEFE;
+
+        for (i = 0; i < D_80105720; i++)
+        {
+
+            spritenum = D_800FCBA0[i];
+            vx = gpSprite[spritenum].x - D_801A6D84;
+            vy = gpSprite[spritenum].y - D_800FE3F0;
+            vz = gpSprite[spritenum].z - D_80199640;
+
+            hitScan(D_801A6D84, D_800FE3F0, D_80199640, D_8012F6F4, vx, vy, vz,
+                    &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x10001);
+
+            if ((klabs((hitx - D_801A6D84)) + klabs((hity - D_800FE3F0))) < (klabs(vx) + klabs(vy)) &&
+                (hitsprite != gpSprite[spritenum].unk16))
+            {
+                gpSprite[spritenum].unk22 = CLAMP_MIN((gpSprite[spritenum].unk22 - 0x40), 0);
+            }
+            else
+            {
+                gpSprite[spritenum].unk22 = CLAMP_MAX((gpSprite[spritenum].unk22 + 0x20), 0xFF);
+            }
+
+            if (gpSprite[spritenum].unk22 > 0)
+            {
+                unk25 = gpSprite[spritenum].unk25;
+                gDPSetPrimColor(gpDisplayList++, 0, 0, gpAlphaPalette[unk25].primary.r,
+                                                       gpAlphaPalette[unk25].primary.g,
+                                                       gpAlphaPalette[unk25].primary.b,
+                                                       gpSprite[spritenum].unk22);
+
+                gDPSetEnvColor(gpDisplayList++, gpAlphaPalette[unk25].env.r,
+                                                gpAlphaPalette[unk25].env.g,
+                                                gpAlphaPalette[unk25].env.b,
+                                                gpSprite[spritenum].unk22);
+
+                fx = gpSprite[spritenum].x / 4.0;
+                fy = gpSprite[spritenum].y / 4.0;
+                fz = gpSprite[spritenum].z / 64.0;
+
+                f1 = (D_8012B948[0][0] * fx) + (D_8012B948[1][0] * fy) + (D_8012B948[2][0] * fz) + D_8012B948[3][0];
+                f2 = (D_8012B948[0][1] * fx) + (D_8012B948[1][1] * fy) + (D_8012B948[2][1] * fz) + D_8012B948[3][1];
+                f3 = (D_8012B948[0][2] * fx) + (D_8012B948[1][2] * fy) + (D_8012B948[2][2] * fz) + D_8012B948[3][2];
+                f4 = (D_8012B948[0][3] * fx) + (D_8012B948[1][3] * fy) + (D_8012B948[2][3] * fz) + D_8012B948[3][3];
+
+                if (f4 > 0.0f)
+                {
+                    fx = f1 / f4;
+                    fy = f2 / f4;
+                    fz = f3 / f4;
+
+                    if ((fy > -2.0f) && (fy < 2.0f) && (fx > -2.0f) && (fx < 2.0f) && (fz > 0.0f) && (fz < 1.0f))
+                    {
+                        fx = fx * D_80199110;
+                        fy = -fy * D_801A1980;
+                        fz = (1.0f - fz);
+                        f6 = ((fz * gpSprite[spritenum].xrepeat * 4.0f) * (D_80199110 / 160.0));
+                        f5 = ((fz * gpSprite[spritenum].xrepeat * 4.0f) * (D_801A1980 / 120.0));
+                        func_80027C18(fx + D_80168C9C,
+                                      fy + D_801A2684,
+                                      f6,
+                                      f5,
+                                      getTileNum(gpSprite[spritenum].picnum),
+                                      0);
+                    }
+                }
+            }
+        }
+        gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat;
+    }
+}
 
 /*8001A8EC*/
 INCLUDE_ASM("nonmatchings/src/code0/1A7C0", func_8001A8EC);
