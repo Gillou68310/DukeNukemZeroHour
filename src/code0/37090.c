@@ -80,7 +80,209 @@ void func_800365C0(s16 playernum)
 }
 
 /*8003671C*/
-INCLUDE_ASM("nonmatchings/src/code0/37090", func_8003671C);
+void func_8003671C(s16 playernum, u16 arg1, s16 arg2, s16 arg3)
+{
+    char buf[48];
+    code0UnkStruct3 *ptr;
+    s32 m, n, o;
+    s16 unk16;
+    s16 i, j;
+    u8 r, g, b;
+
+    ptr = &D_8019B940[D_80106D50[gPlayer[playernum].unk4A]];
+    if ((gPlayer[playernum].unk52 < 0x800) && (D_800E1748 < 0))
+    {
+        if (arg3 == 30)
+        {
+            playSfx(1593);
+            gPlayer[playernum].unk82 = 240;
+        }
+
+        if ((arg1 != 0) && (gInvulnerability == 0))
+        {
+            if (ptr->unk8 <= 0)
+            {
+                ptr->unk8 = 0;
+                return;
+            }
+
+            if ((D_801AD470 != 4) ||
+                (D_801CE498.unk28 != 0) ||
+                (gpSprite[arg2].statnum != 10) ||
+                (D_800E16A0[gpSprite[arg2].unk16] != D_800E16A0[playernum]))
+            {
+                if (arg1 > 1000)
+                    arg1 = 1000;
+
+                ptr->unk9E = arg3;
+                if (arg1 > 30)
+                    D_801AC9F8 = 15;
+
+                gPlayer[playernum].unk52 = -1;
+                gPlayer[playernum].unk4E = 0;
+                D_801A2790[playernum].unk20 = 0;
+
+                if (arg2 >= 0)
+                {
+                    if ((arg3 == 9) || (arg3 == 44))
+                    {
+                        if (D_8010A940[playernum].unk2[6] != 0)
+                            return;
+                    }
+                    else
+                    {
+                        if (ptr->unk7E > 0)
+                        {
+                            m = (arg1 * ptr->unk7E) / 100;
+                            n = 1;
+                            if (m > 0)
+                                n = m;
+
+                            arg1 -= n;
+                            ptr->unk7E -= n;
+                            if (ptr->unk7E < 0)
+                            {
+                                arg1 -= ptr->unk7E;
+                                ptr->unk7E = 0;
+                            }
+                        }
+                    }
+                }
+
+                ptr->unk8 -= arg1;
+                func_801C363C(playernum, 10, CLAMP_MAX((arg1*6), 0xFF));
+
+                switch (arg3)
+                {
+                case 9:
+                case 30:
+                case 44:
+                    r = 8;
+                    g = 0xFF;
+                    b = 0x31;
+                    break;
+                case 15:
+                    r = 0;
+                    g = 0xFF;
+                    b = 0xFF;
+                    o = func_801C0FDC(100);
+                    if (ptr->unk8 < o)
+                        ptr->unk8 = 0;
+                    break;
+                case 20:
+                    r = krand() | 0x80;
+                    g = 0xFF;
+                    b = 0xFF;
+                    break;
+                case 21:
+                    r = 0x8C;
+                    g = 8;
+                    b = 0xFF;
+                    break;
+                default:
+                    r = 0xFF;
+                    g = 0;
+                    b = 0;
+                    break;
+                }
+                func_8000EB90(playernum, r, g, b, 0xA0);
+
+                if (ptr->unk8 <= 0)
+                {
+                    ptr->unk8 = 0;
+                    if (arg2 >= 0)
+                    {
+                        if (arg3 == 21)
+                        {
+                            gpSprite[gPlayer[playernum].unk4A].cstat |= 0x800;
+                            gpSprite[gPlayer[playernum].unk4A].unk25 = 0x1F;
+                        }
+
+                        if (arg3 == 15)
+                            ptr->unk0 |= 0x40;
+
+                        if (gpSprite[arg2].statnum == 10)
+                        {
+                            unk16 = gpSprite[arg2].unk16;
+                            if (unk16 != playernum)
+                            {
+                                audio_800080E0(unk16, 6);
+
+                                D_800FF4F0[unk16].unk4[playernum]++;
+                                if (D_801AD470 == 4)
+                                {
+                                    for (i = 0; i < D_8012C470; i++)
+                                    {
+                                        if (D_800E16A0[i] == D_800E16A0[unk16])
+                                        {
+                                            if (D_800E16A0[i] == D_800E16A0[playernum])
+                                                D_800FF4F0[i].unk2++;
+                                            else
+                                                D_800FF4F0[i].unk0++;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    D_800FF4F0[unk16].unk0++;
+                                    if ((D_801AD470 == 3) && ((playernum == D_800FE9D0) || (D_800FE9D0 == -1)))
+                                    {
+                                        D_800FE9D0 = unk16;
+                                        D_800FF4F0[unk16].unk0 += 4;
+                                    }
+                                }
+
+                                sprintf(buf, "KILLED PLAYER %d\n", playernum + 1);
+                                func_800A419C(unk16, buf);
+                                sprintf(buf, "KILLED BY PLAYER %d", unk16 + 1);
+                                func_800A419C(playernum, buf);
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            if (D_80106D50[arg2] != -1)
+                                D_8019B940[D_80106D50[arg2]].unk0 |= 0x10000;
+                        }
+                    }
+
+                    D_800FF4F0[playernum].unk2++;
+                    if (D_801AD470 == 4)
+                    {
+                        for (j = 0; j < D_8012C470; j++)
+                        {
+                            if ((D_800E16A0[j] == D_800E16A0[playernum]) & (j != playernum))
+                                D_800FF4F0[j].unk2++;
+                        }
+                    }
+
+                    D_800FF4F0[playernum].unk4[playernum]++;
+                    if (playernum == D_800FE9D0)
+                        D_800FE9D0 = -1;
+                }
+                else
+                {
+                    if ((arg2 >= 0) && ((krand() & 0x3FF) > 0x300))
+                        audio_800080E0(playernum, 2);
+                    else
+                    {
+                        if ((arg3 == 9) || (arg3 == 44))
+                            audio_800080E0(playernum, 19);
+                        else
+                        {
+                            if (ptr->unk8 > 70)
+                                audio_800080E0(playernum, 8);
+                            else if (ptr->unk8 > 30)
+                                audio_800080E0(playernum, 9);
+                            else
+                                audio_800080E0(playernum, 10);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 /*80036FEC*/
 static void func_80036FEC(void)

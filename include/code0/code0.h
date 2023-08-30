@@ -394,9 +394,10 @@ typedef struct
 
 typedef struct
 {
-    /*0x02*/ s16 unk0;
-    /*0x04*/ s16 unk2;
-    /*0x06*/ u8 pad[10];
+    /*0x00*/ s16 unk0;
+    /*0x02*/ s16 unk2;
+    /*0x04*/ s16 unk4[4];
+    /*0x06*/ u8 pad[2];
 } code0UnkStruct22;
 
 typedef struct {
