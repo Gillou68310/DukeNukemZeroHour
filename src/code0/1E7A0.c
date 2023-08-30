@@ -1,6 +1,9 @@
 #include "common.h"
+#include "code0/main.h"
 #include "code0/audio.h"
 #include "code0/engine.h"
+#include "code0/9410.h"
+#include "code0/24610.h"
 #include "code0/41940.h"
 #include "code0/1E7A0.h"
 #include "code0/code0.h"
@@ -96,7 +99,101 @@ void func_8001DE5C(void)
 INCLUDE_ASM("nonmatchings/src/code0/1E7A0", func_8001DE9C);
 
 /*8001EB2C*/
-INCLUDE_ASM("nonmatchings/src/code0/1E7A0", func_8001EB2C);
+void func_8001EB2C(void)
+{
+    f32 fx, fy, fz;
+    f32 f1, f2, f3, f4, f5, f6, f7;
+    f32 fx_, fy_, fz_;
+    s16 primr, primg, primb;
+    s16 envr, envg, envb;
+    s32 a, prima, enva;
+    s16 i, j;
+
+    D_801A2688 = 0;
+    gSPClearGeometryMode(gpDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN |
+                                          G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
+
+    gSPSetGeometryMode(gpDisplayList++, G_ZBUFFER | G_SHADE | G_SHADING_SMOOTH);
+    gDPSetRenderMode(gpDisplayList++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
+    gDPSetDepthSource(gpDisplayList++, G_ZS_PRIM);
+    gDPSetTexturePersp(gpDisplayList++, G_TP_NONE);
+
+    func_80028F04(0xFF, 0xFF, 0xFF, 0, 0, 0);
+
+    gDPSetCombineLERP(gpDisplayList++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0,
+                                       0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+
+    gDPSetColorDither(gpDisplayList++, G_CD_NOISE);
+    gDPSetAlphaDither(gpDisplayList++, G_AD_NOISE);
+
+    for (i = 0; i < 32; i++)
+    {
+        if (D_801AE538[i].unk0 != 0)
+        {
+            fx = D_801AE538[i].unk2 / 2;
+            fy = D_801AE538[i].unk4 / 2;
+            fz = D_801AE538[i].unk6 / 2;
+
+            f1 = ((D_8012B948[0][0] * fx) + (D_8012B948[1][0] * fy) + (D_8012B948[2][0] * fz) + D_8012B948[3][0]);
+            f2 = ((D_8012B948[0][1] * fx) + (D_8012B948[1][1] * fy) + (D_8012B948[2][1] * fz) + D_8012B948[3][1]);
+            f3 = ((D_8012B948[0][2] * fx) + (D_8012B948[1][2] * fy) + (D_8012B948[2][2] * fz) + D_8012B948[3][2]);
+            f4 = ((D_8012B948[0][3] * fx) + (D_8012B948[1][3] * fy) + (D_8012B948[2][3] * fz) + D_8012B948[3][3]);
+
+            if (f4 != 0.0f)
+            {
+                fx_ = f1 / f4;
+                fy_ = f2 / f4;
+                fz_ = f3 / f4;
+
+                if (!(fx_ < -2.0f) && !(fy_ < -2.0f) && !(fx_ > 2.0f) && !(fy_ > 2.0f) && !(fz_ < 0.0f) && !(fz_ > 1.0f))
+                {
+                    f7 = ((fz_ * 511.0f) + 511.0f) * 32.0f;
+                    gDPSetPrimDepth(gpDisplayList++, f7, 0);
+                    enva = (D_801AE538[i].unk14 * D_800DCA40[D_801AE538[i].unk1].unkC);
+                    a = (enva - 0x80) * 2;
+                    j = CLAMP_MIN(a, 0);
+                    fz_ = (-fz_ + 1.0f);
+
+                    primr = gpAlphaPalette[D_801AE538[i].unk19].primary.r +
+                        ((gpAlphaPalette[D_801AE538[i].unk18].primary.r - gpAlphaPalette[D_801AE538[i].unk19].primary.r) * j) / 256;
+                    primg = gpAlphaPalette[D_801AE538[i].unk19].primary.g +
+                        ((gpAlphaPalette[D_801AE538[i].unk18].primary.g - gpAlphaPalette[D_801AE538[i].unk19].primary.g) * j) / 256;
+                    primb = gpAlphaPalette[D_801AE538[i].unk19].primary.b +
+                        ((gpAlphaPalette[D_801AE538[i].unk18].primary.b - gpAlphaPalette[D_801AE538[i].unk19].primary.b) * j) / 256;
+                    envr = gpAlphaPalette[D_801AE538[i].unk19].env.r +
+                        ((gpAlphaPalette[D_801AE538[i].unk18].env.r - gpAlphaPalette[D_801AE538[i].unk19].env.r) * j) / 256;
+                    envg = gpAlphaPalette[D_801AE538[i].unk19].env.g +
+                        ((gpAlphaPalette[D_801AE538[i].unk18].env.g - gpAlphaPalette[D_801AE538[i].unk19].env.g) * j) / 256;
+                    envb = gpAlphaPalette[D_801AE538[i].unk19].env.b +
+                        ((gpAlphaPalette[D_801AE538[i].unk18].env.b - gpAlphaPalette[D_801AE538[i].unk19].env.b) * j) / 256;
+
+                    if (D_801CE5AC == 2)
+                    {
+                        prima = (enva * 0x180) / 256;
+                        if (prima > 0xFF)
+                            prima = 0xFF;
+                    }
+                    else
+                        prima = enva;
+
+                    gDPSetPrimColor(gpDisplayList++, 0, 0, primr, primg, primb, prima);
+                    gDPSetEnvColor(gpDisplayList++, envr, envg, envb, enva);
+
+                    f5 = (fz_ * D_801AE538[i].unk10 * 4.0f * gPlayer[D_801B0820].unk6E * D_80199110) / 40960.0;
+                    f6 = (fz_ * D_801AE538[i].unk10 * 4.0f * gPlayer[D_801B0820].unk6E * D_801A1980) / 30720.0;
+                    func_80027C18((fx_ * D_80199110) + D_80168C9C,
+                                  (-fy_ * D_801A1980) + D_801A2684,
+                                  f5,
+                                  f6,
+                                  getTileNum(D_801AE538[i].unk8),
+                                  D_801AE538[i].unkA);
+                }
+            }
+        }
+    }
+    func_8000A070();
+    gDPSetDepthSource(gpDisplayList++, G_ZS_PIXEL);
+}
 
 /*8001F388*/
 void func_8001F388(void)
