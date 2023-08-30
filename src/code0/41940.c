@@ -80,6 +80,7 @@ typedef struct
 /*80138718*/ s32 *gpInst;
 /*80138794*/ s32 *D_80138794;
 /*80138820*/ s16 D_80138820[8] ALIGNED(8); /*sectornum array*/
+/*80169524*/ s32 D_80169524;
 /*80197E30*/ s32 D_80197E30;
 /*8019955C*/ s16 D_8019955C;
 /*8019B89C*/ s32 D_8019B89C; /*unused*/
@@ -94,7 +95,7 @@ static void func_800418B8(s32);
 STATIC s32 func_80042C98(s32 spritenum);
 STATIC s32 func_800433D4(s32 spritenum);
 static s32 func_8004BC24(s32, s32);
-STATIC s32 func_8004DE60(s32 spritenum, s32);
+static s32 func_8004DE60(s32 spritenum, s32);
 static s32 func_8004EB60(s32 spritenum);
 static void func_8004ED40(s32 spritenum);
 static s32 func_8004F284(SpriteType *spr, s32 *, s32 spritenum);
@@ -3414,7 +3415,178 @@ void func_8004DC74(void)
 }
 
 /*8004DE60*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004DE60);
+static s32 func_8004DE60(s32 spritenum, s32 arg1)
+{
+    ModelInfo *ptr;
+    s32 x, y, z, z2;
+    s32 sectnum_;
+    s32 cond;
+    s32 unk18, unk1A;
+    s32 spritenum_;
+    s32 i, j;
+    s32 cliptype;
+    s32 walldist;
+    s16 sectnum;
+    s16 ret, ret2;
+    u16 cstat;
+
+    cond = 0;
+    cond = (D_80137DE0->unk4 & 0x10) != cond;
+    x = 0;
+    y = 0;
+    sectnum_ = 0;
+    sectnum = gpSprite[spritenum].sectnum;
+    z = gpSprite[spritenum].z;
+    unk18 = gpSprite[spritenum].unk18;
+    unk1A = gpSprite[spritenum].unk1A;
+
+    if (gpSprite[spritenum].cstat & 0x1000)
+    {
+        i = D_800D52E0[gpSprite[spritenum].picnum-1280]->unk2E << 6;
+        i = i - (i >> 2);
+    }
+    else
+    {
+        i = getTileSizeY(gpSprite[spritenum].picnum) * gpSprite[spritenum].yrepeat * 4;
+    }
+
+    z -= i;
+    if (gpSprite[spritenum].cstat & 0x1000)
+    {
+        ptr = D_800D52E0[gpSprite[spritenum].picnum-1280];
+        walldist = ((ptr->unk2A - ptr->unk24) * gpSprite[spritenum].xrepeat / 64);
+        walldist *= 2;
+    }
+    else
+    {
+        walldist = gpSprite[spritenum].xrepeat;
+    }
+
+    if ((D_80137DE0->unk4 & 1) && (D_8010A918 < D_80137DE0->unkA))
+        D_80137DE0->unk4 |= 0x100;
+
+    cliptype = 0x10001;
+    if (gpSprite[spritenum].statnum == 4)
+        cliptype = 0x01000040;
+
+    cliptype = (gpSprite[spritenum].picnum != 46) ? cliptype : 0;
+    if (cond != 0)
+    {
+        x = gpSprite[spritenum].x;
+        y = gpSprite[spritenum].y;
+        sectnum_ = gpSprite[spritenum].sectnum;
+        D_8019B940[D_80106D50[spritenum]].unk4 &= ~0x80;
+    }
+
+    cstat = gpSprite[spritenum].cstat;
+    gpSprite[spritenum].cstat = cstat & ~0x101;
+
+    if (((u16)gpSprite[spritenum].unk1C | ((u16)gpSprite[spritenum].unk18 | (u16)gpSprite[spritenum].unk1A)) == 0)
+    {
+        ret = 0;
+    }
+    else
+    {
+        ret = clipMove(&gpSprite[spritenum].x,
+                       &gpSprite[spritenum].y,
+                       &z,
+                       &sectnum,
+                       (unk18 << arg1),
+                       (unk1A << arg1),
+                       walldist,
+                       1024,
+                       CLAMP_MIN((i - 0x1200), 1024),
+                       cliptype);
+    }
+
+    spritenum_ = ret;
+    if (!(D_8019B940[D_80106D50[spritenum]].unk0 & 0x40000))
+    {
+        ret2 = pushMove(&gpSprite[spritenum].x,
+                        &gpSprite[spritenum].y,
+                        &z,
+                        &sectnum,
+                        walldist,
+                        1024,
+                        CLAMP_MIN((i - 0x1200), 1024),
+                        cliptype);
+    }
+    else
+    {
+        ret2 = 0;
+    }
+
+    gpSprite[spritenum].cstat = cstat;
+    if (ret2 == -1)
+    {
+        func_80058E44(spritenum);
+        func_8004BD24(spritenum);
+        return -1;
+    }
+
+    if ((sectnum >= 0) && (sectnum != gpSprite[spritenum].sectnum))
+        changeSpriteSect(spritenum, sectnum);
+
+    if (cond != 0)
+    {
+        if (gpSprite[spritenum].sectnum != sectnum_)
+        {
+            if (D_8019B940[D_80106D50[spritenum]].unk92 != 3)
+            {
+                gpSprite[spritenum].x = x;
+                gpSprite[spritenum].y = y;
+                setSprite(spritenum, x, y, gpSprite[spritenum].z);
+                spritenum_ = 0;
+                ret = 0;
+                D_8019B940[D_80106D50[spritenum]].unk4 |= 0x80;
+            }
+        }
+    }
+
+    spritenum_ &= 0xFFFF;
+    if (D_80137DE0->unk4 & 0x8000)
+    {
+        if ((spritenum_ & 0xC000) && (gpSprite[spritenum_-0xC000].statnum == 10))
+            D_80137DE0->unk4 |= 0x20000;
+
+        if (D_8010A918 < 1200)
+        {
+            z2 = (D_80118248->z - 0x3900);
+            D_80169524 = z2 - gPlayer->zpos;
+
+            if ((D_80169524 >= -0x7FF) && (D_80169524 < 0x12C0) && (gPlayer->unk45 == 0))
+                D_80137DE0->unk4 |= 0x10000;
+        }
+    }
+
+    if (func_8005A240(spritenum) == 1)
+    {
+        if (spritenum_ & 0xC000)
+        {
+            spritenum_ -= 0xC000;
+            if (spritenum_ > 0)
+            {
+                if (gpSprite[spritenum_].cstat & 0x1000)
+                    j = D_800D52E0[gpSprite[spritenum_].picnum-1280]->unk2E << 6;
+                else
+                    j = getTileSizeY(gpSprite[spritenum_].picnum) * gpSprite[spritenum_].yrepeat * 4;
+
+                if (((gpSprite[spritenum].z - (gpSprite[spritenum_].z - j)) >= 0x1200) &&
+                    ((gpSprite[spritenum].z - (gpSprite[spritenum_].z - j)) < 0x3800))
+                {
+                    D_8019B940[D_80106D50[spritenum]].unk4 |= 0x4000;
+                }
+            }
+            else
+            {
+                spritenum_ += 0xC000;
+                if (gpWall[spritenum_ & 0x7FFF].unk16 == 0x7D00)
+                    D_8019B940[D_80106D50[spritenum]].unk4 |= 0x4000;
+            }
+        }
+    }
+    return ret & 0xFFFF;
+}
 
 /*8004E5F8*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004E5F8);
