@@ -215,8 +215,8 @@ void debugMenu(void)
         if (D_8012F6FC[D_801B0814] & 0x400)
             D_801AE904[i] = (D_801AE904[i]-4) & 0x7FF;
 
-        ptr2->unk8 = (-cosf((D_801AE904[i] * 0.0030679615757714844)) * D_800FE9C8[i]) / 50.0f;
-        ptr2->unkC = (-sinf((D_801AE904[i] * 0.0030679615757714844)) * D_800FE9C8[i]) / 50.0f;
+        ptr2->unk8 = (-cosf((D_801AE904[i] * (PI/1024))) * D_800FE9C8[i]) / 50.0f;
+        ptr2->unkC = (-sinf((D_801AE904[i] * (PI/1024))) * D_800FE9C8[i]) / 50.0f;
 
         sprintf(buffer, "CLOUDS %d", i + 1);
         displayDebug(25, 20, buffer);

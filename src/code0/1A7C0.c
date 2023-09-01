@@ -104,8 +104,8 @@ void func_80019BC0(void)
             }
 
             ptr2->unk18 = gpSprite[i].unk1E;
-            ptr2->unk8 = ((-cosf((gpSprite[i].ang * 0.0030679615757714844)) * gpSprite[i].unk18) / 50.0f);
-            ptr2->unkC = ((-sinf((gpSprite[i].ang * 0.0030679615757714844)) * gpSprite[i].unk18) / 50.0f);
+            ptr2->unk8 = ((-cosf((gpSprite[i].ang * (PI/1024))) * gpSprite[i].unk18) / 50.0f);
+            ptr2->unkC = ((-sinf((gpSprite[i].ang * (PI/1024))) * gpSprite[i].unk18) / 50.0f);
             ptr2->unk0 = gpSprite[i].unk20 * 10;
 
             if (gpSprite[i].unk25 == 0)
@@ -118,9 +118,9 @@ void func_80019BC0(void)
         case 25:
             D_801AE91C = gpSprite[i].unk1E;
             D_801AE90C = gpSprite[i].unk25 == 0;
-            D_80105714 = (cosf((gpSprite[i].ang * 0.0030679615757714844)) * 10240.0f);
-            D_8010570C = (sinf((gpSprite[i].ang * 0.0030679615757714844)) * 10240.0f);
-            D_8013860C = (tanf((gpSprite[i].unk20 * 0.0030679615757714844)) * 10240.0f * -16.0f);
+            D_80105714 = (cosf((gpSprite[i].ang * (PI/1024))) * 10240.0f);
+            D_8010570C = (sinf((gpSprite[i].ang * (PI/1024))) * 10240.0f);
+            D_8013860C = (tanf((gpSprite[i].unk20 * (PI/1024))) * 10240.0f * -16.0f);
             break;
         }
         deleteSprite(i);

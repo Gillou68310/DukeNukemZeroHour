@@ -23,7 +23,7 @@
 STATIC void func_8002433C(s16 spritenum, s32);
 STATIC void func_80025C3C(s16 spritenum, s32);
 static void func_800273EC(s16 spritenum, s32);
-STATIC void func_8002935C(s16 spritenum);
+static void func_8002935C(s16 spritenum);
 
 /*80023A10*/
 void func_80023A10(void)
@@ -427,4 +427,152 @@ void func_80029238(u8 r1, u8 g1, u8 b1, u8 r2, u8 g2, u8 b2, u8 a)
 }
 
 /*8002935C*/
-INCLUDE_ASM("nonmatchings/src/code0/24610", func_8002935C);
+static void func_8002935C(s16 spritenum)
+{
+    f32 fx, fy, fz;
+    f32 f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11;
+    s32 x, y, z;
+    s32 a, b, c, d, e, f, g, h, i, j;
+    u16 dimx, dimx1, dimy, dimy1, sizex, sizey;
+
+    fx = (D_8010A9A8->x / 4.0);
+    fy = (D_8010A9A8->y / 4.0);
+    fz = (D_8010A9A8->z / 64.0);
+
+    f1 = (D_8012B948[0][0] * fx) + (D_8012B948[1][0] * fy) + (D_8012B948[2][0] * fz) + D_8012B948[3][0];
+    f2 = (D_8012B948[0][1] * fx) + (D_8012B948[1][1] * fy) + (D_8012B948[2][1] * fz) + D_8012B948[3][1];
+    f3 = (D_8012B948[0][2] * fx) + (D_8012B948[1][2] * fy) + (D_8012B948[2][2] * fz) + D_8012B948[3][2];
+    f4 = (D_8012B948[0][3] * fx) + (D_8012B948[1][3] * fy) + (D_8012B948[2][3] * fz) + D_8012B948[3][3];
+
+    if (f4 != 0.0f)
+    {
+        f5 = f1 / f4;
+        f6 = f2 / f4;
+        f7 = f3 / f4;
+
+        if (!(f5 < -2.0f) && !(f6 < -2.0f) && !(f5 > 2.0f) && !(f6 > 2.0f) && !(f7 < 0.0f) && !(f7 > 1.0f))
+        {
+            f7 = (-f7 + 1.0f);
+            func_8000C76C();
+            D_801A689C = 0;
+
+            if (D_801A2688 != 0)
+                func_8000BDB0(D_8010A9A8->picnum);
+            else if (D_8010A9A8->cstat & 0x2000)
+                func_8000C3E4(D_800F7054);
+            else
+                func_8000C0D0(D_800F7054);
+
+            dimy1 = 0;
+            if (D_8010A9A8->cstat & 8)
+                dimy = gpTileInfo[D_800F7054].dimy;
+            else
+            {
+                dimy = 0;
+                dimy1 = gpTileInfo[D_800F7054].dimy;
+            }
+
+            dimx1 = 0;
+            if (D_8010A9A8->cstat & 4)
+                dimx = gpTileInfo[D_800F7054].dimx;
+            else
+            {
+                dimx = 0;
+                dimx1 = gpTileInfo[D_800F7054].dimx;
+            }
+
+            f7 = f7 * 16.0f;
+            sizex = (f7 * (gpTileInfo[D_800F7054].sizex * D_8010A9A8->xrepeat)) / 16.0f;
+            sizey = (f7 * (gpTileInfo[D_800F7054].sizey * D_8010A9A8->yrepeat)) / 16.0f;
+
+            i = (D_8013B2D0[spritenum].unk0 << 5) & 0xFFE0;
+            f8 = sins(i) / 32768.0;
+            j = (D_8013B2D0[spritenum].unk0 << 5) & 0xFFE0;
+            f9 = coss(j) / 32768.0;
+
+            f10 = (f5 * 4.0f * D_80199110) + (D_80168C9C * 4.0f);
+            f11 = (-f6 * 4.0f * D_801A1980) + (D_801A2684 * 4.0f);
+            a = (sizex * f9) + (sizey * f8);
+            e = (-sizey * f9) + (sizex * f8);
+            b = (-sizex * f9) + (sizey * f8);
+            f = (-sizey * f9) + (-sizex * f8);
+            c = (-sizex * f9) + (-sizey * f8);
+            g = (sizey * f9) + (-sizex * f8);
+            d = (sizex * f9) + (-sizey * f8);
+            h = (sizey * f9) + (sizex * f8);
+            a = (((a * 4) * D_80199110) / 160.0f) + f10;
+            b = (((b * 4) * D_80199110) / 160.0f) + f10;
+            c = (((c * 4) * D_80199110) / 160.0f) + f10;
+            d = (((d * 4) * D_80199110) / 160.0f) + f10;
+            e = (((e * 4) * D_801A1980) / 120.0f) + f11;
+            f = (((f * 4) * D_801A1980) / 120.0f) + f11;
+            g = (((g * 4) * D_801A1980) / 120.0f) + f11;
+            h = (((h * 4) * D_801A1980) / 120.0f) + f11;
+
+            if (D_80197DD4 == 0)
+            {
+                D_80197DD4 = 32;
+                D_801A2620 = 0;
+
+                gSPVertex(gpDisplayList++, gpVertexN64, 32, 0);
+                gSPModifyVertex(gpDisplayList++, 0, G_MWO_POINT_XYSCREEN, ((a << 16) + e));
+                gSPModifyVertex(gpDisplayList++, 1, G_MWO_POINT_XYSCREEN, ((b << 16) + f));
+                gSPModifyVertex(gpDisplayList++, 2, G_MWO_POINT_XYSCREEN, ((c << 16) + g));
+                gSPModifyVertex(gpDisplayList++, 3, G_MWO_POINT_XYSCREEN, ((d << 16) + h));
+            }
+
+            gSP2Triangles(gpDisplayList++, D_801A2620, D_801A2620+1, D_801A2620+2, D_801A2620,
+                                           D_801A2620, D_801A2620+2, D_801A2620+3, D_801A2620);
+
+            D_801A2620 = D_801A2620 + 4;
+            D_80197DD4 = D_80197DD4 - 4;
+            x = D_8010A9A8->x / 2;
+            y = D_8010A9A8->y / 2;
+            z = D_8010A9A8->z / 32;
+
+            gpVertexN64->v.ob[0] = x;
+            gpVertexN64->v.ob[1] = y;
+            gpVertexN64->v.ob[2] = z;
+            gpVertexN64->v.tc[0] = dimx1 << 5;
+            gpVertexN64->v.tc[1] = dimy << 5;
+            gpVertexN64->v.cn[0] = D_8016A148;
+            gpVertexN64->v.cn[1] = D_800FE410;
+            gpVertexN64->v.cn[2] = D_80138680;
+            gpVertexN64->v.cn[3] = 0xFF;
+            gpVertexN64++;
+
+            gpVertexN64->v.ob[0] = x;
+            gpVertexN64->v.ob[1] = y;
+            gpVertexN64->v.ob[2] = z;
+            gpVertexN64->v.tc[0] = dimx << 5;
+            gpVertexN64->v.tc[1] = dimy << 5;
+            gpVertexN64->v.cn[0] = D_8016A148;
+            gpVertexN64->v.cn[1] = D_800FE410;
+            gpVertexN64->v.cn[2] = D_80138680;
+            gpVertexN64->v.cn[3] = 0xFF;
+            gpVertexN64++;
+
+            gpVertexN64->v.ob[0] = x;
+            gpVertexN64->v.ob[1] = y;
+            gpVertexN64->v.ob[2] = z;
+            gpVertexN64->v.tc[0] = dimx << 5;
+            gpVertexN64->v.tc[1] = dimy1 << 5;
+            gpVertexN64->v.cn[0] = D_8016A148;
+            gpVertexN64->v.cn[1] = D_800FE410;
+            gpVertexN64->v.cn[2] = D_80138680;
+            gpVertexN64->v.cn[3] = 0xFF;
+            gpVertexN64++;
+
+            gpVertexN64->v.ob[0] = x;
+            gpVertexN64->v.ob[1] = y;
+            gpVertexN64->v.ob[2] = z;
+            gpVertexN64->v.tc[0] = dimx1 << 5;
+            gpVertexN64->v.tc[1] = dimy1 << 5;
+            gpVertexN64->v.cn[0] = D_8016A148;
+            gpVertexN64->v.cn[1] = D_800FE410;
+            gpVertexN64->v.cn[2] = D_80138680;
+            gpVertexN64->v.cn[3] = 0xFF;
+            gpVertexN64++;
+        }
+    }
+}

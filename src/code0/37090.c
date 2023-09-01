@@ -582,7 +582,7 @@ void func_80039774(void)
         s32 temp = D_801B0820; /*FAKEMATCH?*/
         f1 = gPlayer[D_801B0820].unk14;
         f2 = gPlayer[D_801B0820].unk20;
-        gPlayer[temp].unk14 = (f1 + (f2 * sinf((gPlayer[D_801B0820].unk3E * 0.0030679615757714844)) * 16.0f));
+        gPlayer[temp].unk14 = (f1 + (f2 * sinf((gPlayer[D_801B0820].unk3E * (PI/1024))) * 16.0f));
     }
 
     if ((gPlayer[D_801B0820].unk56 != 0) &&
@@ -1057,8 +1057,8 @@ void func_8003DACC(void)
     f32 f1;
     s32 i;
 
-    D_801AEA10 = (D_801A2790[D_801B0820].unk16 + D_801A2790[D_801B0820].unk1C) * 0.0030679615757714844;
-    D_801AC8E0 = (D_801A2790[D_801B0820].unk1A * 0.0030679615757714844);
+    D_801AEA10 = (D_801A2790[D_801B0820].unk16 + D_801A2790[D_801B0820].unk1C) * (PI/1024);
+    D_801AC8E0 = (D_801A2790[D_801B0820].unk1A * (PI/1024));
     if (D_801A2790[D_801B0820].unk14 != 0)
     {
         if (gPlayer[D_801B0820].unk82 != 0)
@@ -1087,7 +1087,7 @@ void func_8003DACC(void)
     D_800FE3F0 = D_801A2790[D_801B0820].unk4;
     D_80199640 = D_801A2790[D_801B0820].unk8;
     D_8012F6F4 = gPlayer[D_801B0820].unk68;
-    D_8016A15C = i * 0.0030679615757714844;
+    D_8016A15C = i * (PI/1024);
     gMapXpos = (D_801A6D84 / 2);
     gMapYpos = ((D_800FE3F0 /2));
     gMapZpos = D_80199640 / 32;

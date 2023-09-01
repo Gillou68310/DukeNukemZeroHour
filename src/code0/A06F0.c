@@ -295,8 +295,8 @@ static void func_800A0698(void)
     y = gpSprite[D_801AE8F4].y;
     z = (gpSprite[D_801AE8F4].z - 0x1964);
 
-    x += (cosf(gpSprite[D_801AE8F4].ang * 0.0030679615757714844) * 1204.0f);
-    y += (sinf(gpSprite[D_801AE8F4].ang * 0.0030679615757714844) * 1204.0f);
+    x += (cosf(gpSprite[D_801AE8F4].ang * (PI/1024)) * 1204.0f);
+    y += (sinf(gpSprite[D_801AE8F4].ang * (PI/1024)) * 1204.0f);
 
     temp = D_8012FD88 % 360; /*FAKEMATCH*/
     grPosition(

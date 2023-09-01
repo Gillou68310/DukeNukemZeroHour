@@ -254,9 +254,9 @@ void func_8001F44C(void)
                 {
                     ang = getAngle(gPlayer[playernum].xpos - (D_801AE538[i].unk2 * 2), gPlayer[playernum].ypos - (D_801AE538[i].unk4 * 2));
                     f1 = D_801AE538[i].unk2;
-                    D_801AE538[i].unk2 = f1 + (cosf(ang * 0.00306796157577148444) * 8.0f);
+                    D_801AE538[i].unk2 = f1 + (cosf(ang * (PI/1024)) * 8.0f);
                     f2 = D_801AE538[i].unk4;
-                    D_801AE538[i].unk4 = f2 + (sinf(ang * 0.00306796157577148444) * 8.0f);
+                    D_801AE538[i].unk4 = f2 + (sinf(ang * (PI/1024)) * 8.0f);
                 }
             }
         }

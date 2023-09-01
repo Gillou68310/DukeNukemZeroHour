@@ -1414,7 +1414,7 @@ void func_8005CBC4(s32 spritenum, s32 arg1)
     cstat = D_80118248->cstat;
     D_80118248->cstat = cstat & 0xFEFE;
     sectnum = D_80118248->sectnum;
-    f4 = D_80137DE0->unk60 * 0.0030679615757714844;
+    f4 = D_80137DE0->unk60 * (PI/1024);
     f5 = sinf(f4) / cosf(f4) * 16384.0f * 16.0f;
 
     hitScan(x,

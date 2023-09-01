@@ -245,9 +245,9 @@ s32 func_8008E3E0(s32 x, s32 y, s32 z, s32 sectnum, s32 arg4, s32 arg5)
         spr->unk2A = func_8007AE50();
         spr->ang = krand() & 0x7FF;
         fx1 = spr->x;
-        spr->x = fx1 + (cosf(spr->ang * 0.0030679615757714844) * 8191.0f);
+        spr->x = fx1 + (cosf(spr->ang * (PI/1024)) * 8191.0f);
         fy1 = spr->y;
-        spr->y = fy1 + (sinf(spr->ang * 0.0030679615757714844) * 8191.0f);
+        spr->y = fy1 + (sinf(spr->ang * (PI/1024)) * 8191.0f);
         spr->z = spr->z + (((krand() & 0x1FFF) - 0x1000) * 16);
         spr->unk18 = (x1 - spr->x) / 8;
         spr->unk1A = (y1 - spr->y) / 8;
@@ -259,9 +259,9 @@ s32 func_8008E3E0(s32 x, s32 y, s32 z, s32 sectnum, s32 arg4, s32 arg5)
         spr->unk25 = 20;
         spr->picnum = 0x168B;
         spr->cstat = 0x8000;
-        x1 = fx2 + (cosf(spr->ang * 0.0030679615757714844) * 8191.0f);
+        x1 = fx2 + (cosf(spr->ang * (PI/1024)) * 8191.0f);
         fy2 = spr->y;
-        y1 = fy2 + (sinf(spr->ang * 0.0030679615757714844) * 8191.0f);
+        y1 = fy2 + (sinf(spr->ang * (PI/1024)) * 8191.0f);
         z1 = spr->z + (((krand() & 0x1FFF) - 0x1000) * 16);
         spr->unk2A = func_8007AE50();
         spr->ang = (krand() & 0x7FF);
@@ -308,9 +308,9 @@ s32 func_8008E3E0(s32 x, s32 y, s32 z, s32 sectnum, s32 arg4, s32 arg5)
         spr->ang = krand() & 0x7FF;
         fx3 = spr->x;
         f1 = arg5;
-        spr->x = fx3 + (f1 * cosf(spr->ang * 0.0030679615757714844));
+        spr->x = fx3 + (f1 * cosf(spr->ang * (PI/1024)));
         fy3 = spr->y;
-        spr->y = fy3 + (f1 * sinf(spr->ang * 0.0030679615757714844));
+        spr->y = fy3 + (f1 * sinf(spr->ang * (PI/1024)));
         spr->unk1C = arg5;
         spr->unk2A = func_8007AE50();
         break;
