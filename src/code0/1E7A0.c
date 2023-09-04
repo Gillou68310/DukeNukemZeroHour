@@ -11,6 +11,7 @@
 #include "code1/EB300.h"
 
 /*.data*/
+/*800DCA20*/ EXTERN_DATA STATIC u8 D_800DCA20[16];
 /*800DCA30*/ EXTERN_DATA _1E7A0UnkStruct1 D_800DCA30[8];
 /*800DCA40*/ EXTERN_DATA _1E7A0UnkStruct2 D_800DCA40[13];
 
@@ -96,7 +97,163 @@ void func_8001DE5C(void)
 }
 
 /*8001DE9C*/
-INCLUDE_ASM("nonmatchings/src/code0/1E7A0", func_8001DE9C);
+void func_8001DE9C(void)
+{
+    code0UnkStruct14 *ptr;
+    f32 fx, fy, fz;
+    f32 f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13;
+    s32 a, b, c, d, e, f, g, h, j, k;
+    s32 x, y, z;
+    s16 i;
+    s32 tilenum;
+    u16 sizex, sizey;
+    s32 dimy, dimx, dimx1, dimy1;
+
+    gSPClearGeometryMode(gpDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING |G_TEXTURE_GEN |
+                                          G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
+
+    gSPSetGeometryMode(gpDisplayList++, G_ZBUFFER | G_SHADE | G_SHADING_SMOOTH);
+    gDPSetRenderMode(gpDisplayList++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
+    gDPSetTextureLUT(gpDisplayList++, G_TT_NONE);
+
+    gDPSetCombineLERP(gpDisplayList++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0,
+                                       0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+
+    gDPSetColorDither(gpDisplayList++, G_CD_DISABLE);
+    gDPSetAlphaDither(gpDisplayList++, G_AD_DISABLE);
+    gDPSetDepthSource(gpDisplayList++, G_ZS_PRIM);
+
+    for (ptr = D_8012DF10, i = 0; i < ARRAY_COUNT(D_8012DF10); i++, ptr++)
+    {
+        if (ptr->unk0 != 0)
+        {
+            tilenum = getTileNum(ptr->unk1C);
+
+            fx = ptr->unk4 / 4.0;
+            fy = ptr->unk8 / 4.0;
+            fz = ptr->unkC / 64.0;
+
+            f1 = (D_8012B948[0][0] * fx) + (D_8012B948[1][0] * fy) + (D_8012B948[2][0] * fz) + D_8012B948[3][0];
+            f2 = (D_8012B948[0][1] * fx) + (D_8012B948[1][1] * fy) + (D_8012B948[2][1] * fz) + D_8012B948[3][1];
+            f3 = (D_8012B948[0][2] * fx) + (D_8012B948[1][2] * fy) + (D_8012B948[2][2] * fz) + D_8012B948[3][2];
+            f4 = (D_8012B948[0][3] * fx) + (D_8012B948[1][3] * fy) + (D_8012B948[2][3] * fz) + D_8012B948[3][3];
+
+            if (f4 != 0.0f)
+            {
+                f5 = f1 / f4;
+                f6 = f2 / f4;
+                f7 = f3 / f4;
+
+                if (!(f5 < -2.0f) && !(f6 < -2.0f) && !(f5 > 2.0f) && !(f6 > 2.0f) && !(f7 < 0.0f) && !(f7 > 1.0f))
+                {
+                    f12 = ((f7 * 511.0f) + 511.0f) * 32.0f;
+
+                    gDPSetPrimDepth(gpDisplayList++, f12, 0);
+                    f7 = (-f7 + 1.0f);
+                    func_8000C76C();
+                    f13 = f7 * 16.0f;
+                    func_8000BDB0(ptr->unk1C);
+
+                    dimy = gpTileInfo[tilenum].dimy;
+                    dimy1 = 0;
+                    dimx = gpTileInfo[tilenum].dimx;
+                    dimx1 = 0;
+
+                    sizex = (f13 *  (gpTileInfo[tilenum].sizex * ptr->unk1E)) / 16.0f;
+                    sizey = (f13 * (gpTileInfo[tilenum].sizey * ptr->unk1E)) / 16.0f;
+
+                    k = (ptr->unk20 << 5) & 0xFFE0;
+                    f8 = sins(k) / 32768.0;
+                    j = (ptr->unk20 << 5) & 0xFFE0;
+                    f9 = coss(j) / 32768.0;
+
+                    f10 = (f5 * 4.0f * D_80199110) + (D_80168C9C * 4.0f);
+                    f11 = (-f6 * 4.0f * D_801A1980) + (D_801A2684 * 4.0f);
+
+                    a = ((sizex * f9) + (sizey * f8));
+                    e = ((-sizey * f9) + (sizex * f8));
+                    b = ((-sizex * f9) + (sizey * f8));
+                    f = ((-sizey * f9) + (-sizex * f8));
+                    c = ((-sizex * f9) + (-sizey * f8));
+                    g = ((sizey * f9) + (-sizex * f8));
+                    d = ((sizex * f9) + (-sizey * f8));
+                    h = ((sizey * f9) + (sizex * f8));
+
+                    a = (((a * 4) * D_80199110) / 160.0f) + f10;
+                    b = (((b * 4) * D_80199110) / 160.0f) + f10;
+                    c = (((c * 4) * D_80199110) / 160.0f) + f10;
+                    d = (((d * 4) * D_80199110) / 160.0f) + f10;
+                    e = (((e * 4) * D_801A1980) / 120.0f) + f11;
+                    f = (((f * 4) * D_801A1980) / 120.0f) + f11;
+                    g = (((g * 4) * D_801A1980) / 120.0f) + f11;
+                    h = (((h * 4) * D_801A1980) / 120.0f) + f11;
+
+                    if (D_80197DD4 == 0)
+                    {
+                        D_80197DD4 = 32;
+                        D_801A2620 = 0;
+
+                        gSPVertex(gpDisplayList++, gpVertexN64, 32, 0);
+
+                        gSPModifyVertex(gpDisplayList++, 0, G_MWO_POINT_XYSCREEN, ((a << 16) + e));
+                        gSPModifyVertex(gpDisplayList++, 1, G_MWO_POINT_XYSCREEN, ((b << 16) + f));
+                        gSPModifyVertex(gpDisplayList++, 2, G_MWO_POINT_XYSCREEN, ((c << 16) + g));
+                        gSPModifyVertex(gpDisplayList++, 3, G_MWO_POINT_XYSCREEN, ((d << 16) + h));
+                    }
+
+                    if (ptr->unk1F >= 8)
+                    {
+                        gDPSetPrimColor(gpDisplayList++, 0, 0, 0xFF, D_800DCA20[ptr->unk1F], 0, ~((ptr->unk1F - 8) * 42));
+                    }
+                    else
+                    {
+                        gDPSetPrimColor(gpDisplayList++, 0, 0, 0xFF, D_800DCA20[ptr->unk1F], 0, 0xFF);
+                    }
+
+                    gDPSetEnvColor(gpDisplayList++, D_800DCA20[ptr->unk1F], 0, 0, 0);
+
+                    gSP2Triangles(gpDisplayList++, D_801A2620, D_801A2620+1, D_801A2620+2, D_801A2620,
+                                                   D_801A2620, D_801A2620+2, D_801A2620+3, D_801A2620);
+
+                    D_801A2620 = D_801A2620 + 4;
+                    D_80197DD4 = D_80197DD4 - 4;
+                    x = ptr->unk4 / 2;
+                    y = ptr->unk8 / 2;
+                    z = ptr->unkC / 32;
+
+                    gpVertexN64->v.ob[0] = x;
+                    gpVertexN64->v.ob[1] = y;
+                    gpVertexN64->v.ob[2] = z;
+                    gpVertexN64->v.tc[0] = dimx << 5;
+                    gpVertexN64->v.tc[1] = dimy1 << 5;
+                    gpVertexN64++;
+
+                    gpVertexN64->v.ob[0] = x;
+                    gpVertexN64->v.ob[1] = y;
+                    gpVertexN64->v.ob[2] = z;
+                    gpVertexN64->v.tc[0] = dimx1 << 5;
+                    gpVertexN64->v.tc[1] = dimy1 << 5;
+                    gpVertexN64++;
+
+                    gpVertexN64->v.ob[0] = x;
+                    gpVertexN64->v.ob[1] = y;
+                    gpVertexN64->v.ob[2] = z;
+                    gpVertexN64->v.tc[0] = dimx1 << 5;
+                    gpVertexN64->v.tc[1] = dimy << 5;
+                    gpVertexN64++;
+
+                    gpVertexN64->v.ob[0] = x;
+                    gpVertexN64->v.ob[1] = y;
+                    gpVertexN64->v.ob[2] = z;
+                    gpVertexN64->v.tc[0] = dimx << 5;
+                    gpVertexN64->v.tc[1] = dimy << 5;
+                    gpVertexN64++;
+                }
+            }
+        }
+    }
+    gDPSetDepthSource(gpDisplayList++, G_ZS_PIXEL);
+}
 
 /*8001EB2C*/
 void func_8001EB2C(void)
@@ -126,7 +283,7 @@ void func_8001EB2C(void)
     gDPSetColorDither(gpDisplayList++, G_CD_NOISE);
     gDPSetAlphaDither(gpDisplayList++, G_AD_NOISE);
 
-    for (i = 0; i < 32; i++)
+    for (i = 0; i < ARRAY_COUNT(D_801AE538); i++)
     {
         if (D_801AE538[i].unk0 != 0)
         {
