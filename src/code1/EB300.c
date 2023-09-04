@@ -330,7 +330,7 @@ f32 tanf(f32 angle)
 /*801C1088*/
 STATIC f32 func_801C1088(s32 x1, s32 x2, s32 y1, s32 y2)
 {
-    return ((f32)getAngle(x2 - x1, y2 - y1) * 0.0030679615234375);
+    return ((f32)getAngle(x2 - x1, y2 - y1) * (3.1415926/1024.0));
 }
 
 /*801C10C8*/

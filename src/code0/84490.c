@@ -135,8 +135,95 @@ static void func_80083BF4(code0UnkStruct18 *arg0, s32 arg1, code0UnkStruct18 *ar
 }
 
 /*80083C40*/
-STATIC void func_80083C40(void);
-INCLUDE_ASM("nonmatchings/src/code0/84490", func_80083C40);
+static void func_80083C40(void)
+{
+    s32 i, v;
+
+    if (D_8012F6EC > 0)
+    {
+        gSPVertex(D_8012F6F8++, &D_8013F924[D_800FE3F4], D_8012F6EC, 0)
+    }
+
+    for (i = 0; i < D_8011815C; i++)
+    {
+        if ((D_8012EB50[i][0] != D_80138810) || ((D_8012EB50[i][6] & 0x210) != D_80119AA0))
+        {
+            if (D_8012EB50[i][6] & 8)
+            {
+                gDPPipeSync(D_8012F6F8++);
+                if (D_8012EB50[i][6] & 0x10000000)
+                {
+                    gDPLoadTextureBlock_4b(D_8012F6F8++, D_8012EB50[i][0], G_IM_FMT_I, D_8012EB50[i][3], D_8012EB50[i][4], 0,
+                                                         G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP,
+                                                         6, 6, G_TX_NOLOD, G_TX_NOLOD);
+                }
+                else
+                {
+                    gDPLoadTextureBlock_4b(D_8012F6F8++, D_8012EB50[i][0], G_IM_FMT_CI, D_8012EB50[i][3], D_8012EB50[i][4], 0,
+                                                                           G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP,
+                                                                           G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+                }
+            }
+            else if (D_8012EB50[i][6] & 0x10000000)
+            {
+
+                gDPPipeSync(D_8012F6F8++);
+                gDPLoadTextureBlock_4b(D_8012F6F8++, D_8012EB50[i][0], G_IM_FMT_I, D_8012EB50[i][3], D_8012EB50[i][4], 0,
+                                                                       G_TX_MIRROR | G_TX_CLAMP, G_TX_MIRROR | G_TX_CLAMP,
+                                                                       G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+            }
+            else
+            {
+                if (D_8012EB50[i][6] & 0x40000000)
+                {
+                    gDPPipeSync(D_8012F6F8++);
+                    gDPLoadTextureBlock(D_8012F6F8++, D_8012EB50[i][0], G_IM_FMT_CI, G_IM_SIZ_8b, D_8012EB50[i][3], D_8012EB50[i][4], 0,
+                                                                        G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP,
+                                                                        5, 5, G_TX_NOLOD, G_TX_NOLOD);
+                }
+                else
+                {
+                    gDPPipeSync(D_8012F6F8++);
+                    gDPLoadTextureBlock(D_8012F6F8++, D_8012EB50[i][0], G_IM_FMT_CI, G_IM_SIZ_8b, D_8012EB50[i][3], D_8012EB50[i][4], 0,
+                                                                        G_TX_MIRROR | G_TX_WRAP, G_TX_MIRROR | G_TX_WRAP,
+                                                                        G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+                }
+            }
+            D_80138810 = D_8012EB50[i][0];
+            D_80119AA0 = D_8012EB50[i][6] & 0x210;
+        }
+
+        if (D_8012EB50[i][2] != D_800FCBE4)
+        {
+            if (!(D_8012FD8C->unkC & 0x10000))
+            {
+                gDPPipeSync(D_8012F6F8++);
+                if (!(D_8012FD8C->unkC & 0x800000))
+                {
+                    gDPLoadTLUT_pal256(D_8012F6F8++, D_8012EB50[i][2]);
+                }
+            }
+            D_800FCBE4 = D_8012EB50[i][2];
+        }
+
+        func_80083908(i);
+        if (D_8012EB50[i][6] & 1)
+        {
+            v = D_8012EB50[i][5];
+            gSP2Triangles(D_8012F6F8++, v, v+1, v+2, 0,
+                                        v, v+2, v+3, 1);
+        }
+        else
+        {
+            v = D_8012EB50[i][5];
+            gSP1Triangle(D_8012F6F8++, v, v+1, v+2, 0);
+        }
+    }
+
+    D_8011815C = 0;
+    D_800FE3F4 += D_8012F6EC;
+    D_8012F6EC = 0;
+}
 
 /*800847F8*/
 static void func_800847F8(void)
