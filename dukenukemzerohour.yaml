@@ -297,7 +297,7 @@ segments:
       - [0xE05A0, .data,    src/code0/7F6A0]
       - [0xE0640, data,     code0/7FCE0]
       - [0xE1740, .data,    src/code0/edl]
-      - [0xE1B20, data,     code0/84490]
+      - [0xE1B20, .data,    src/code0/84490]
       - [0xE1B60, .data,    src/code0/controller]
       - [0xE22A0, .data,    src/code0/8E670]
       - [0xE2350, data,     code0/8EFE0]
