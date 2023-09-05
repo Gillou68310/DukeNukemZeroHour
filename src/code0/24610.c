@@ -576,3 +576,4 @@ static void func_8002935C(s16 spritenum)
         }
     }
 }
+

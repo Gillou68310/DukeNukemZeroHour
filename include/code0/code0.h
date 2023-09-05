@@ -541,6 +541,7 @@ typedef struct
 /*8016A148*/ _extern s32 D_8016A148;
 /*8016A14C*/ _extern s32 D_8016A14C; /*y*/
 /*8016A150*/ _extern s32 D_8016A150;
+/*8016A154*/ _extern u8 D_8016A154[MAXPLAYERS];
 /*8016A15C*/ _extern f32 D_8016A15C;
 /*8016D174*/ _extern u8 D_8016D174[MAXPLAYERS];
 /*8016D180*/ _extern u16 D_8016D180;

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "code0/main.h"
 #include "code0/audio.h"
 #include "code0/pragmas.h"
 #include "code0/4600.h"
@@ -36,9 +37,375 @@ void func_800867CC(s16 spritenum, s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2
 static void func_8006CA90(s16 arg0);
 static void func_8006B384(s32 spritenum);
 static void func_8007963C(s32 spritenum, s32);
+static void func_8006CD38(s16 playernum);
 
 /*8006A0A0*/
-INCLUDE_ASM("nonmatchings/src/code0/6ACA0", func_8006A0A0);
+void func_8006A0A0(s16 spritenum)
+{
+    s16 neartagsector, neartagwall, neartagsprite;
+    s32 neartaghitdist, neartagrange;
+
+    SpriteType *spr1;
+    SpriteType *spr2;
+    char *ptr;
+    s16 *ptr2;
+
+    s16 i, j, nextj, playernum;
+    s32 unk99;
+
+    s16 a, b, d, e;
+    u32 c;
+
+    spr1 = &gpSprite[spritenum];
+    if (spr1->statnum == 10)
+    {
+        playernum = spr1->unk16;
+        neartagrange = 768;
+    }
+    else
+    {
+        neartagrange = 1024;
+        playernum = -1;
+    }
+
+    nearTag(spr1->x, spr1->y, spr1->z, spr1->sectnum, spr1->ang,
+            &neartagsector, &neartagwall, &neartagsprite, &neartaghitdist, neartagrange, 3);
+
+    if (playernum >= 0)
+    {
+        unk99 = D_8019B940[D_80106D50[spritenum]].unk99;
+        if (unk99 == 10)
+            func_8006CD38(playernum);
+
+        if (D_8010A940[playernum].unkA[7] == 0x6000)
+        {
+            D_8012C989 = D_8012C989 == 0;
+            playSfx(1433);
+        }
+
+        if ((neartagwall == -1) && (neartagsprite == neartagwall))
+        {
+            ptr2 = D_8011A680[playernum][unk99];
+            a = ptr2[5];
+            if (a > 0)
+            {
+                b = ptr2[4];
+                if (b > 0)
+                {
+                    c = (u16)ptr2[0]; /*FAKEMATCH?*/
+                    d = ptr2[1];
+
+                    if (((c >> 2) & 1) && (unk99 != 4))
+                        d = ptr2[7];
+
+                    e = (d + b) - a;
+
+                    if (c & 2)
+                        e -= a;
+
+                    if (e > 0)
+                    {
+                        if (c & 2)
+                        {
+                            if (unk99 == 2)
+                                ptr2[3] = 40;
+                            else
+                                ptr2[3] = 30;
+                        }
+                        else
+                            ptr2[3] = ptr2[2];
+
+                        ptr2[4] = 0;
+                        D_8016A154[playernum] = 1;
+                    }
+                }
+            }
+        }
+
+        i = gHeadSpriteStat[50];
+        while (i>=0)
+        {
+            if (gpSprite[i].unk16 == 50)
+            {
+                if (func_80040D40(gpSprite[i].x, gpSprite[i].y, gpSprite[spritenum].x, gpSprite[spritenum].y) < neartagrange)
+                {
+                    if (D_8019B940[D_80106D50[spritenum]].unk8 < gPlayer[playernum].unk48)
+                    {
+                        D_8019B940[D_80106D50[spritenum]].unk8++;
+                        if ((krand() & 0x3FF) < 0x100)
+                            audio_80008574(playernum, 1527);
+                    }
+                }
+            }
+            i = gNextSpriteStat[i];
+        }
+    }
+
+    if (neartagsprite != -1)
+    {
+        spr2 = &gpSprite[neartagsprite];
+        if (spr2->statnum == 108)
+        {
+            if ((playernum == -1) || (gPlayer[playernum].unk88[spr2->unk25]))
+            {
+                switch (spr2->unk18)
+                {
+                case 0:
+                    if (spr2->unk2B != 0)
+                    {
+                        spr2->unk2B = 0;
+                        spr2->picnum--;
+                    }
+                    else
+                    {
+                        spr2->unk2B = 1;
+                        spr2->picnum++;
+                    }
+                    break;
+                case 1:
+                    if (spr2->unk2B == 0)
+                    {
+                        spr2->unk2B = 1;
+                        spr2->unk1A = 30;
+                        spr2->picnum++;
+                    }
+                    else
+                        return;
+                    break;
+                case 3:
+                    break;
+                case 2:
+                    if (spr2->unk2B != 0)
+                    {
+                        spr2->unk2B = 0;
+                        spr2->picnum--;
+                    }
+                    else
+                    {
+                        spr2->unk2B = 1;
+                        spr2->picnum++;
+                    }
+
+                    spr2->lotag = 0;
+                    changeSpriteStat(neartagsprite, 0);
+                    break;
+                case 4:
+                    spr2->lotag = 0;
+                    changeSpriteStat(neartagsprite, 0);
+                    if (spr2->picnum == 2365)
+                        spr2->picnum = 2411;
+                    break;
+                default:
+                    break;
+                }
+
+                if (spr2->hitag != 0)
+                    func_8006B590(spr2->hitag);
+                else
+                    func_8006CB38(spr2->sectnum);
+            }
+            else
+            {
+                char sp40[32];
+
+                sprintf(sp40, "KEY WITH NO NAME REQUIRED");
+                if (gpKeyStrInfo[gMapNum] != NULL)
+                {
+                    ptr = gpKeyStrInfo[gMapNum][spr2->unk25-1];
+                    if (*ptr != 0)
+                        sprintf(sp40, "%s REQUIRED", ptr);
+                }
+                func_800A419C(playernum, sp40);
+            }
+        }
+
+        if (spr1->statnum == 10)
+        {
+            if (spr2->lotag == 70)
+            {
+                if (gPlayer[playernum].unk5A == 0)
+                {
+                    gPlayer[playernum].unk5A = 1;
+                    gPlayer[playernum].unk60 = 0;
+                    gPlayer[playernum].unk64 = 0;
+                }
+            }
+
+            if (spr2->statnum == 113)
+            {
+                if (gPlayer[playernum].unk52 == -1)
+                    gPlayer[playernum].unk52 = gHeadSpriteStat[114];
+                else
+                    gPlayer[playernum].unk52 = gNextSpriteStat[gPlayer[playernum].unk52];
+
+                while (gPlayer[playernum].unk52 >= 0)
+                {
+                    if (gpSprite[gPlayer[playernum].unk52].hitag != spr2->hitag)
+                        gPlayer[playernum].unk52 = gNextSpriteStat[gPlayer[playernum].unk52];
+                    else
+                        break;
+                }
+
+                if (gPlayer[playernum].unk52 == -1)
+                    playSfx(1331);
+                else
+                    playSfx(1330);
+            }
+
+            if ((spr2->statnum == 119) || (spr2->picnum == 2361))
+                audio_800080E0(playernum, 17);
+
+            if (spr2->statnum == 130)
+            {
+                changeSpriteStat(neartagsprite, 131);
+                D_8013B2D0[neartagsprite].handle = audio_80008604();
+            }
+
+            if ((spr2->picnum == 2484) && (spr2->statnum == 0))
+            {
+                if ((gPlayer[playernum].unk88[1] != 0) && (gPlayer[playernum].unk88[2] != 0) && (gPlayer[playernum].unk88[3] != 0))
+                {
+                    changeSpriteStat(neartagsprite, 120);
+                    func_8006B590(spr2->hitag);
+                }
+            }
+
+            if (((spr2->picnum == 1462) || (spr2->picnum == 1466)) || (spr2->picnum == 2266))
+            {
+                if ((gPlayer[playernum].unk58 == 0) && (gPlayer[playernum].unk5A == 0) && (gPlayer[playernum].unk59 != 0) && (gPlayer[playernum].unk86 == 0))
+                {
+                    gPlayer[playernum].unk60 = 0;
+                    gPlayer[playernum].unk64 = 0;
+                    gPlayer[playernum].unk86 = 90;
+                    audio_80008574(playernum, ((krand() % 3) + 667) & 0xFFFF);
+                    func_80036520(playernum, 10);
+                }
+            }
+
+            if ((spr2->picnum >= 1520) && (spr2->picnum < 1523))
+                audio_80008574(playernum, 908);
+
+            if (spr2->statnum == 301)
+            {
+                switch (spr2->picnum)
+                {
+                case 1329:
+                    spr2->unk22 = 0x200;
+                    break;
+                case 2326:
+                    if (spr2->unk2B == 0)
+                    {
+                        if (spr2->unk25 & 0x20)
+                        {
+                            if (spr1->statnum == 10)
+                            {
+                                char sp60[32];
+                                sprintf(sp60, "PULL SWITCHES TOGETHER");
+                                func_800A419C(playernum, sp60);
+                            }
+                        }
+                        else if (!(spr2->unk25 & 8))
+                        {
+                            if (!(spr2->unk25 & 0x10))
+                            {
+                                audio_800077F4(222, neartagsprite);
+                                if (spr2->hitag != 0)
+                                    func_8006B590(spr2->hitag);
+                                else
+                                    func_8006CB38(spr2->sectnum);
+                            }
+                        }
+                    }
+                    break;
+                case 2261:
+                case 2324:
+                    if (spr2->unk2B == 0)
+                    {
+                        audio_800077F4(222, neartagsprite);
+                        if (spr2->hitag != 0)
+                            func_8006B590(spr2->hitag);
+                        else
+                            func_8006CB38(spr2->sectnum);
+                    }
+                    break;
+                }
+            }
+        }
+        else if ((spr2->picnum == 2326) && (spr2->unk2B == 0) && (spr2->unk25 & 32))
+        {
+            spr2->unk2B = 1;
+            j = gHeadSpriteStat[301];
+            while (j>=0)
+            {
+                nextj = gNextSpriteStat[j];
+                if ((gpSprite[j].hitag == spr2->hitag))
+                {
+                    audio_800077F4(222, j);
+                    if (gpSprite[j].picnum == 2326)
+                    {
+                        if (gpSprite[j].unk25 & 0x10)
+                        {
+                            gpSprite[j].unk25 = 0;
+                            break;
+                        }
+                    }
+                }
+                j = nextj;
+            }
+        }
+
+        if (spr2->statnum == 302)
+        {
+            switch (spr2->picnum)
+            {
+            case 1405:
+                if ((spr2->hitag != 0) && (spr2->unk2B == 0) && (spr1->statnum != 10))
+                    spr2->unk2B = 1;
+                break;
+            case 2002:
+            case 2005:
+                switch (spr2->unk2B)
+                {
+                case 10:
+                case 11:
+                    spr2->unk2B = 12;
+                    break;
+                case 20:
+                case 21:
+                    spr2->unk2B = 25;
+                    break;
+                case 0:
+                    spr2->unk2B = 35;
+                    break;
+                case 40:
+                case 41:
+                    spr2->unk2B = 45;
+                    break;
+                }
+                break;
+            }
+        }
+    }
+
+    if (neartagwall != -1)
+    {
+        if (gpWall[neartagwall].unk14 == 66)
+        {
+            if (gpWall[neartagwall].unk16 != 0)
+                func_8006B590(gpWall[neartagwall].unk16);
+            else
+            {
+                if (gpWall[neartagwall].nextsector != -1)
+                    func_8006CB38(gpWall[neartagwall].nextsector);
+                else
+                    func_8006CB38(gpWall[neartagwall].unk1A);
+            }
+        }
+
+        if ((spr1->statnum == 10) && (gpWall[neartagwall].unk14 == 119))
+            audio_800080E0(playernum, 17);
+    }
+}
 
 /*8006AD70*/
 static void func_8006AD70(s16 spritenum)

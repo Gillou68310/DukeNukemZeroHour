@@ -1197,7 +1197,7 @@ void audio_80008574(s16 playernum, u16 sfxnum)
 }
 
 /*80008604*/
-void audio_80008604(void)
+musHandle audio_80008604(void)
 {
     u16 sfxnum;
 
@@ -1213,7 +1213,7 @@ void audio_80008604(void)
         sfxnum = D_800BD66C[func_801C0FDC(7)];
         break;
     }
-    playSfx(sfxnum);
+    return playSfx(sfxnum);
 }
 
 /*800086B0*/
