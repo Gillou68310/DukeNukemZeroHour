@@ -11,9 +11,9 @@ import glob
 import sys
 import os
         
-def get_scratches_decompme(sessionid):
+def get_scratches_decompme(api_base, sessionid):
     scratches = []
-    url = "{api_base}/api/user/scratches?page_size=100" 
+    url = f"{api_base}/api/user/scratches?page_size=100" 
     while(1):
         try:
             request = urllib.request.Request(url)
@@ -26,7 +26,7 @@ def get_scratches_decompme(sessionid):
             else:
                 break
         except Exception:
-            print("Failed to get scratches from decomp.me")
+            print(f"Failed to get scratches from {api_base}")
             break
 
     dico = {}
@@ -47,11 +47,11 @@ if __name__ == "__main__":
         lines = f.readlines()
         f.close()
         assert(len(lines) == 1)
-        scrathes = get_scratches_decompme(lines[0])
+        scrathes = get_scratches_decompme(api_base, lines[0])
         s = scrathes.get(sys.argv[1])
         if s != None:
             print("Already existing function at")
-            print(f"https://decomp.me/scratch/{s['slug']}")
+            print(f"{api_base}/scratch/{s['slug']}")
             sys.exit(1)
     
     path = list(Path('nonmatchings/').rglob(sys.argv[1] + '*'))

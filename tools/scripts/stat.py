@@ -77,13 +77,16 @@ def write_output_file(path, funcs, scratches):
         if s != None:
             percent = 100.0 - ((s['score'] * 100) / s['max_score'])
             f.write(f";{percent:.1f}")
-            f.write(f";https://decomp.me/scratch/{s['slug']}")
+            f.write(f";{api_base}/scratch/{s['slug']}")
         else:
             f.write(';0.0;') 
         f.write('\n')
     f.close()
 
 if __name__ == "__main__":
+
+    api_base = os.environ.get("DECOMPME_API_BASE", "https://decomp.me")
+
     dirs = glob.glob("nonmatchings/src/code0/*")
     dirs += glob.glob("nonmatchings/src/code1/*")
 
@@ -106,7 +109,7 @@ if __name__ == "__main__":
         lines = f.readlines()
         f.close()
         assert(len(lines) == 1)
-        scrathes = upload.get_scratches_decompme(lines[0])
+        scrathes = upload.get_scratches_decompme(api_base, lines[0])
 
     all_func = []
     for dir in dirs:
