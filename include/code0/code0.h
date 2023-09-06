@@ -483,6 +483,7 @@ typedef struct
 /*8012BC70*/ _extern code0UnkStruct6 D_8012BC70[256] ALIGNED(16);
 /*8012C470*/ _extern s16 D_8012C470; /*playernum?*/
 /*8012C478*/ _extern Gfx *D_8012C478[200] ALIGNED(8);
+/*8012C798*/ _extern s32 D_8012C798;
 /*8012C989*/ _extern u8 D_8012C989;
 /*8012D218*/ _extern u32 D_8012D218[MAXPLAYERS][18] ALIGNED(8);
 /*8012D338*/ _extern s8 D_8012D338; /*angle*/
@@ -570,6 +571,7 @@ typedef struct
 /*801A1998*/ _extern s32 D_801A1998; /*ceilz*/
 /*801A19EC*/ _extern u8 D_801A19EC;
 /*801A19F0*/ _extern musHandle D_801A19F0;
+/*801A19F4*/ _extern s32 D_801A19F4;
 /*801A2620*/ _extern s16 D_801A2620;
 /*801A2628*/ _extern s16 D_801A2628; /*playernum?*/
 /*801A2684*/ _extern f32 D_801A2684;

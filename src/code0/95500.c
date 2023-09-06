@@ -11,6 +11,7 @@
 #include "code0/36410.h"
 #include "code0/37090.h"
 #include "code0/41940.h"
+#include "code0/59D40.h"
 #include "code0/6ACA0.h"
 #include "code0/8E670.h"
 #include "code0/8EFE0.h"
@@ -901,7 +902,341 @@ void func_8009A9B8(void)
 }
 
 /*8009A9F0*/
-INCLUDE_ASM("nonmatchings/src/code0/95500", func_8009A9F0);
+void func_8009A9F0(s32 spritenum)
+{
+    s16 sectnum;
+    SpriteType *spr;
+    code0UnkStruct3 *ptr;
+    s32 d1, d2;
+    s32 x, y, z, x1, y1;
+    s32 i, j, k;
+    s32 ang, spritenum_;
+
+    ptr = &D_8019B940[D_80106D50[spritenum]];
+    spr = &gpSprite[spritenum];
+    if (spr->unk2B != 0)
+    {
+        x = gPlayer[0].xpos;
+        y = gPlayer[0].ypos;
+        z = gpSprite[gPlayer[0].unk4A].z;
+
+        if (spr->unk22 == 123)
+        {
+            ang = getAngle(x - spr->x, y - spr->y);
+            if (func_80040D94(spr->x, spr->y, (spr->z - 32000) >> 4, x, y, z >> 4) < 6000)
+            {
+                gPlayer[0].xpos += (gpSinTable[(ang + 0x200) & 0x7FF] * 25) >> 10;
+                gPlayer[0].ypos += (gpSinTable[ang & 0x7FF] * 25) >> 10;
+            }
+
+            if (!(D_8012FD88 & 0x1F))
+                audio_80007820(1413, spritenum);
+
+            func_8008E3E0((spr->x + ((krand() & 0xFFF) - 0x800)),
+                          (spr->y + ((krand() & 0xFFF) - 0x800)),
+                           spr->z - (krand() & 0x7FF), spr->sectnum, 41, 32);
+
+            if (func_80042140(spritenum) < 119)
+                func_80017268(spritenum);
+            else
+                func_8004BD24(spritenum);
+
+            return;
+        }
+
+        func_80036280(spritenum, 0);
+        func_80017268(spritenum);
+        if (D_8012FCAC != 0)
+        {
+            D_8012FCAC -= 1;
+            return;
+        }
+
+        ang = getAngle(x - spr->x, y - spr->y);
+        if (func_80040D40(spr->x, spr->y, x, y) < 3300)
+        {
+            func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 59, 0);
+            gPlayer[0].xpos += (gpSinTable[(ang + 0x200) & 0x7FF] * 25) >> 10;
+            gPlayer[0].ypos += (gpSinTable[ang & 0x7FF] * 25) >> 10;
+            func_8003671C(0, 1, -1, -1);
+            audio_80007820(1429, spritenum);
+        }
+
+        x = gPlayer[0].xpos;
+        y = gPlayer[0].ypos;
+        if (D_8019910C != 0)
+        {
+            x += gPlayer[0].unkC >> 8;
+            y += gPlayer[0].unk10 >> 8;
+        }
+
+        if ((gPlayer[0].unkC == 0) && (gPlayer[0].unk10 == 0))
+            D_8019910C = 0;
+        else
+        {
+            if (D_8019910C != 0)
+                D_8019910C--;
+            else if ((krand() & 0x7FFF) < 3500)
+                D_8019910C = 45;
+        }
+
+        ang = getAngle(x - spr->x, y - spr->y);
+        i = func_80040D40(spr->x, spr->y, x, y);
+        if (D_8012F908 != 0)
+        {
+            D_8012F908 = 0;
+            d1 = getAngleDelta(getAngle(D_801A19F4 - spr->x, D_8012C798 - spr->y), spr->ang);
+
+            /*TODO: klabs?*/
+            if ((d1 > 0) && (d1 < 350))
+            {
+                if (D_801AE9C4 != 0)
+                {
+                    D_801AE9C4--;
+                    if (D_801AE9C4 == 0)
+                        goto block_37;
+                }
+                else if (D_80118250 != 0)
+                {
+                    D_80118250--;
+                    if (D_80118250 == 0)
+                        goto block_32;
+                }
+            }
+
+            if ((d1 > -350) && (d1 < 0))
+            {
+                if (D_80118250 != 0)
+                {
+                    D_80118250--;
+                    if (D_80118250 == 0)
+                    {
+                    block_32:
+                        ptr->unk68 |= 0x1C0000;
+                        spritenum_ = func_8008E3E0(spr->x, spr->y, spr->z - 0x800, spr->sectnum, 41, 32);
+                        if (spritenum_ != -1)
+                        {
+                            gpSprite[spritenum_].x += (gpSinTable[(spr->ang + 0x300) & 0x7FF] * 375) >> 12;
+                            gpSprite[spritenum_].y += (gpSinTable[(spr->ang + 0x100) & 0x7FF] * 375) >> 12;
+                        }
+
+                        func_8008E3E0(gpSprite[spritenum_].x, gpSprite[spritenum_].y, gpSprite[spritenum_].z, spr->sectnum, 41, 32);
+                        audio_80007A44(1413, spritenum_, 40000);
+                        func_8008E3E0(gpSprite[spritenum_].x, gpSprite[spritenum_].y, gpSprite[spritenum_].z, spr->sectnum, 60, 2);
+                        func_8008E3E0(gpSprite[spritenum_].x, gpSprite[spritenum_].y, gpSprite[spritenum_].z, spr->sectnum, 60, 3);
+                    }
+                }
+                else if (D_801AE9C4 != 0)
+                {
+                    D_801AE9C4--;
+                    if (D_801AE9C4 == 0)
+                    {
+                    block_37:
+                        ptr->unk68 |= 0x38000;
+                        spritenum_ = func_8008E3E0(spr->x, spr->y, spr->z - 0x800, spr->sectnum, 41, 32);
+                        if (spritenum_ != -1)
+                        {
+                            gpSprite[spritenum_].x += (gpSinTable[(spr->ang + 0x100) & 0x7FF] * 375) >> 12;
+                            gpSprite[spritenum_].y += (gpSinTable[(spr->ang - 0x100) & 0x7FF] * 375) >> 12;
+                        }
+
+                        func_8008E3E0(gpSprite[spritenum_].x, gpSprite[spritenum_].y, gpSprite[spritenum_].z, spr->sectnum, 41, 32);
+                        audio_80007A44(1413, spritenum_, 40000);
+                        func_8008E3E0(gpSprite[spritenum_].x, gpSprite[spritenum_].y, gpSprite[spritenum_].z, spr->sectnum, 60, 0);
+                        func_8008E3E0(gpSprite[spritenum_].x, gpSprite[spritenum_].y, gpSprite[spritenum_].z, spr->sectnum, 60, 1);
+                    }
+                }
+            }
+        }
+
+        if (D_8019964C != 0)
+        {
+            switch (D_8019964C)
+            {
+            case 1:
+                if ((func_80042140(spritenum) == 30) && (ptr->unk70 == 0))
+                    ptr->unk70 = playSfx(1074);
+
+                if (func_80042140(spritenum) == 59)
+                {
+                    if (ptr->unk70 != 0)
+                    {
+                        MusHandleStop(ptr->unk70, 0);
+                        playSfx(1075);
+                        ptr->unk70 = 0;
+                    }
+                }
+
+                if (func_80042140(spritenum) != 79)
+                {
+                    if ((func_80042140(spritenum) >= 30) && (func_80042140(spritenum) < 61) && (D_8012FD88 & 1))
+                    {
+                        func_8006D3B8(spritenum, 38, 0, 220, -70);
+                        func_8006D3B8(spritenum, 38, 0, 220, -70);
+                        func_8006D3B8(spritenum, 38, 0, 220, -70);
+                    }
+                }
+                else
+                    D_8019964C = 0;
+                break;
+
+            case 2:
+            case 3:
+            case 4:
+                if ((func_80042140(spritenum) == 35) && (ptr->unk70 == 0))
+                {
+                    ptr->unk70 = playSfx(705);
+                    switch (D_8019964C)
+                    {
+                    case 2:
+                        func_8006D3B8(spritenum, 39, 249, 274, -72);
+                        func_8006D3B8(spritenum, 39, 1799, 274, -72);
+                        break;
+                    case 3:
+                        func_8006D3B8(spritenum, 39, 249, 274, -72);
+                        break;
+                    case 4:
+                        func_8006D3B8(spritenum, 39, 1799, 274, -72);
+                        break;
+                    }
+                }
+
+                if (func_80042140(spritenum) == 99)
+                    D_8019964C = 0;
+                break;
+            case 5:
+                if (func_80042140(spritenum) == 30)
+                    D_8019964C = 0;
+                break;
+            }
+        }
+        else
+        {
+            if (gPlayer[0].unk45 != 0)
+                func_80042124(ptr, 83);
+            else
+            {
+                d2 = getAngleDelta(spr->ang, ang);
+                spr->ang = (((spr->ang << 8) + (d2 * 16)) >> 8) & 0x7FF;
+                j = 0;
+                if (spr->sectnum != gPlayer[0].unk32)
+                {
+                    if ((i > 3000) && (i < 5000))
+                        j = 50;
+                    else
+                    {
+                        if (i >= 8000)
+                        {
+                            if (i > 9500)
+                                j = 50;
+                        }
+                        else
+                            j = -50;
+                    }
+                }
+                else
+                {
+                    if (klabs(d2) < 0x100)
+                    {
+                        if (i > 3000)
+                            j = 50;
+                    }
+                    else if (i < 2900)
+                        j = -50;
+                }
+
+                x1 = (j * gpSinTable[(spr->ang + 0x200) & 0x7FF]) >> 14;
+                y1 = (j * gpSinTable[spr->ang & 0x7FF]) >> 14;
+
+                if (((x1 != 0) || (y1 != 0)))
+                {
+                    sectnum = spr->sectnum;
+                    updateSector(spr->x + (x1 * 15), spr->y + (y1 * 15), &sectnum);
+                    if (sectnum == spr->sectnum)
+                    {
+                        func_80042124(ptr, 85);
+                        func_8004E5F8(spritenum, x1 * 8, y1 * 8, 0);
+                    }
+                    else
+                    {
+                        goto block_1; /*FAKEMATCH?*/
+                    }
+                    /*else if ((ptr->unk86 & 0x7FFF) != 83) {
+                        audio_80007A44(1412, spritenum, 40000);
+                        func_80042124(ptr, 83);
+                    }*/
+                }
+                else
+                {
+                    if ((d2 >> 5) != 0)
+                        func_80042124(ptr, 85);
+                    else
+                    {
+                    block_1:
+                        if ((ptr->unk86 & 0x7FFF) != 83)
+                        {
+                            audio_80007A44(1412, spritenum, 40000);
+                            func_80042124(ptr, 83);
+                        }
+                    }
+                }
+
+                if (((ptr->unk86 & 0x7FFF) == 85) && ((func_80042140(spritenum) == 1) || (func_80042140(spritenum) == 20)))
+                    audio_80007A44(1412, spritenum, 40000);
+
+                if ((D_8019964C == 0))
+                {
+                    if ((i > 3000) && (((krand() & 0x3FFF) < 350)))
+                    {
+                        if ((krand() & 0x3FF) < 0x200)
+                        {
+                            ptr->unk70 = 0;
+                            D_8019964C = 1;
+                            func_80042124(ptr, 84);
+                        }
+                        else
+                        {
+                            k = krand() & 0x3FF;
+                            if (k < 340)
+                            {
+                                if ((D_801AE9C4 != 0) && (D_80118250 != 0))
+                                {
+                                    ptr->unk70 = 0;
+                                    D_8019964C = 2;
+                                    playSfx((krand() & 1) + 1569);
+                                    func_80042124(ptr, 88);
+                                }
+                            }
+                            else if ((k >= 340) && (k < 680))
+                            {
+                                if (D_801AE9C4 != 0)
+                                {
+                                    ptr->unk70 = 0;
+                                    D_8019964C = 4;
+                                    playSfx((krand() & 1) + 1569);
+                                    func_80042124(ptr, 89);
+                                }
+                            }
+                            else if (D_80118250 != 0)
+                            {
+                                ptr->unk70 = 0;
+                                D_8019964C = 3;
+                                playSfx((krand() & 1) + 1569);
+                                func_80042124(ptr, 90);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        D_80118248 = spr;
+        D_80137DE0 = ptr;
+        D_800FE400 = spritenum;
+        D_8012F6E8 = func_8005A240(spritenum);
+        func_8004D884();
+        func_8004DC74();
+    }
+}
 
 /*8009B838*/
 void func_8009B838(s32 spritenum)
