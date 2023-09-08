@@ -1969,7 +1969,7 @@ void func_8005E4C4(s32 spritenum, s32 arg1)
 /*8005E57C*/
 void func_8005E57C(s32 spritenum, s32 arg1)
 {
-    gpSprite[D_8012FCA0].cstat |= 0x8000;
+    gpSprite[D_8012FCA0[0]].cstat |= 0x8000;
     gpSprite[gPlayer[0].unk4A].xrepeat = 0;
     gpSprite[gPlayer[0].unk4A].yrepeat = 0;
 }

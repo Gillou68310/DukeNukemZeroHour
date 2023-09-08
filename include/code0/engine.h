@@ -3,6 +3,8 @@
 
 #include "common.h"
 
+#define MAXPLAYERS 4
+
 #define MAXSECTORS 657
 #define MAXWALLS 3912
 #define MAXSPRITES 1500

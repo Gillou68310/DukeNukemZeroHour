@@ -7,8 +7,6 @@
 #include "code0/modelinfo.h"
 #include "code0/D8D20.h"
 
-#define MAXPLAYERS 4
-
 typedef struct
 {
     /*0x0000*/ Mtx mtx1[MAXPLAYERS];
@@ -504,7 +502,7 @@ typedef struct
 /*8012FC40*/ _extern u8 D_8012FC40;
 /*8012FC48*/ _extern code0unkStruct12 D_8012FC48[2] ALIGNED(8);
 /*8012FC90*/ _extern s32 D_8012FC90;
-/*8012FCA0*/ _extern s16 D_8012FCA0;
+/*8012FCA0*/ _extern s16 D_8012FCA0[MAXPLAYERS];
 /*8012FCB0*/ _extern char D_8012FCB0[4][48] ALIGNED(8);
 /*8012FD80*/ _extern s32 gAlertAliens;
 /*8012FD88*/ _extern s32 D_8012FD88;

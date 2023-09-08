@@ -3,6 +3,7 @@
 
 #include "common.h"
 
+void func_8003F340(void);
 void func_8003FD5C(void);
 void func_80040890(void);
 

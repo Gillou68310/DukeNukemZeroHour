@@ -45,6 +45,10 @@ void func_801C9E7C(void);
 void func_801C9F74(void);
 
 extern f32 D_801CA144;
+extern code1UnkStruct6 D_801CB6E0;
+extern code1UnkStruct6 D_801CB870;
+extern code1UnkStruct6 D_801CB8F0;
 extern _EB300UnkStruct1 D_801CA14C[MAP_NUM+1];
+extern code1UnkStruct5 D_801CB538[9];
 
 #endif

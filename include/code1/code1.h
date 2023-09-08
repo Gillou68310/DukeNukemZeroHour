@@ -2,6 +2,7 @@
 #define _CODE1_H_
 
 #include "common.h"
+#include "code0/engine.h"
 #include "static/119280.h"
 
 typedef struct
@@ -42,10 +43,10 @@ typedef struct
     /*0x28*/ u16 unk28;
     /*0x2A*/ u16 unk2A;
     /*0x2C*/ u8 pad5[2];
-    /*0x2E*/ u16 unk2E[4];
-    /*0x36*/ u16 unk36[4];
-    /*0x3E*/ u16 unk3E[4];
-    /*0x46*/ u16 unk46[4];
+    /*0x2E*/ u16 unk2E[MAXPLAYERS];
+    /*0x36*/ u16 unk36[MAXPLAYERS];
+    /*0x3E*/ u16 unk3E[MAXPLAYERS];
+    /*0x46*/ u16 unk46[MAXPLAYERS];
     /*0x4E*/ u16 difficulty;
     /*0x50*/ u8 unk50;
 } code1UnkStruct1;
