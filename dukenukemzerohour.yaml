@@ -287,7 +287,7 @@ segments:
       - [0xDDFF0, .data,    src/code0/cache1d]
       - [0xDE010, .data,    src/code0/engine]
       - [0xDE050, .data,    src/code0/DE050]
-      - [0xDF9C0, data,     code0/37090]
+      - [0xDF9C0, .data,    src/code0/37090]
       - [0xDFA70, data,     code0/41940]
       - [0xDFEE0, data,     code0/59D40]
       - [0xDFEF0, data,     code0/6ACA0]

@@ -26,18 +26,62 @@ typedef struct {
 } _37090UnkStruct;
 
 /*.data*/
-/*800DEDC0*/ EXTERN_DATA STATIC s8 D_800DEDC0;
-/*800DEDC4*/ EXTERN_DATA STATIC u8 D_800DEDC4[MAXPLAYERS];
-/*800DEDC8*/ EXTERN_DATA STATIC u8 D_800DEDC8[MAXPLAYERS];
-/*800DEDCC*/ EXTERN_DATA STATIC u8 D_800DEDCC[MAXPLAYERS];
-/*800DEDD0*/ EXTERN_DATA STATIC u8 D_800DEDD0[MAXPLAYERS];
-/*800DEDD4*/ EXTERN_DATA STATIC u8 D_800DEDD4[MAXPLAYERS];
-/*800DEDD8*/ EXTERN_DATA STATIC u8 D_800DEDD8[MAXPLAYERS];
-/*800DEDDC*/ EXTERN_DATA STATIC u8 D_800DEDDC[MAXPLAYERS];
-/*800DEDE0*/ EXTERN_DATA u8 D_800DEDE0;
-/*800DEDE4*/ EXTERN_DATA STATIC s16 D_800DEDE4[24];
-/*800DEE14*/ EXTERN_DATA STATIC _37090UnkStruct D_800DEE14[13];
-/*800DEE64*/ EXTERN_DATA STATIC musHandle D_800DEE64;
+/*800DEDC0*/ static s8 D_800DEDC0 = 0;
+/*800DEDC4*/ static u8 D_800DEDC4[4] = {0, 0, 0, 0};
+/*800DEDC8*/ static u8 D_800DEDC8[4] = {0, 0, 0, 0};
+/*800DEDCC*/ static u8 D_800DEDCC[4] = {0, 0, 0, 0};
+/*800DEDD0*/ static u8 D_800DEDD0[4] = {0, 0, 0, 0};
+/*800DEDD4*/ static u8 D_800DEDD4[4] = {0, 0, 0, 0};
+/*800DEDD8*/ static u8 D_800DEDD8[4] = {0, 0, 0, 0};
+/*800DEDDC*/ static u8 D_800DEDDC[4] = {0, 0, 0, 0};
+/*800DEDE0*/ u8 D_800DEDE0 = 0;
+
+/*800DEDE4*/
+static s16 D_800DEDE4[24] = {
+    -1,
+    -1,
+    1792,
+    1852,
+    1797,
+    1858,
+    1803,
+    1879,
+    1808,
+    1914,
+    1816,
+    -1,
+    1868,
+    1872,
+    1841,
+    1820,
+    1884,
+    1829,
+    1834,
+    1834,
+    1863,
+    1846,
+    1852,
+    1910,
+};
+
+/*800DEE14*/
+static _37090UnkStruct D_800DEE14[13] = {
+    { 3, 520, 647 },
+    { 3, 525, 525 },
+    { 3, 1017, 655 },
+    { 3, 528, 658 },
+    { 2, 523, 653 },
+    { 4, 720, 724 },
+    { 4, 1092, 1141 },
+    { 5, 1087, 1136 },
+    { 4, 1021, 1132 },
+    { 2, 1616, 1618 },
+    { 3, 1025, 1123 },
+    { 3, 1636, 1642 },
+    { 3, 1639, 1645 },
+};
+
+/*800DEE64*/ static u32 D_800DEE64 = 0;
 
 /*.comm*/
 /*8011BC44*/ code0UnkStruct3 *D_8011BC44;
