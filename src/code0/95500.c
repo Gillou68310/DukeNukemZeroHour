@@ -948,7 +948,7 @@ void func_8009A9F0(s32 spritenum)
         func_80017268(spritenum);
         if (D_8012FCAC != 0)
         {
-            D_8012FCAC -= 1;
+            D_8012FCAC--;
             return;
         }
 
