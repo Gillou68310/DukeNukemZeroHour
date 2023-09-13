@@ -10,6 +10,13 @@ typedef struct
     /*0x04*/ u16 unk4;
 } _D8D20UnkStruct1;
 
+typedef struct
+{
+    /*0x00*/ s16 unk0;
+    /*0x02*/ s16 unk2;
+    /*0x04*/ s16 unk4;
+} _D8D20UnkStruct3;
+
 typedef struct {
     /*0x00*/ s32 fileoff;
     /*0x04*/ u8 *ramaddr;
@@ -17,7 +24,7 @@ typedef struct {
     /*0x0C*/ s32 unkC;
     /*0x10*/ s32 unk10;
     /*0x14*/ s16 unk14;
-    /*0x18*/ u16 *unk18;
+    /*0x18*/ _D8D20UnkStruct3 *unk18;
     /*0x1C*/ _D8D20UnkStruct1 *unk1C;
     /*0x20*/ u8 pad[4];
 }_D8D20UnkStruct2;

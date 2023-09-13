@@ -816,8 +816,160 @@ static void func_800152AC(s32 spritenum1, s32 spritenum2, Matrix4f mf, s32 x, s3
 }
 
 /*80015458*/
-STATIC void func_80015458(code0unkStruct10 *, s32);
-INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_80015458);
+static void func_80015458(code0unkStruct10 *arg0, s16 arg1)
+{
+    Matrix4f mf2, mf1, mf3, mf4, mf5;
+    code0unkStruct8 *ptr;
+
+    f32 fx, fy, fz;
+    f32 f1, f2, f3, f4, f5, f6, f7;
+    f32 ftemp;
+
+    s32 unk54;
+
+    s16 i, j, k, l;
+
+    ptr = &D_80197E40[D_80106D50[D_801AE8F4]];
+
+    f2 = 0.0f;
+    f1 = 0.0f;
+    f3 = 0.0f;
+    fx = 0.0f; /*FAKEMATCH?*/
+
+    if (ptr->unk8 == NULL)
+    {
+        fx = arg0->unk8[arg1].unk0 * 50.0f;
+        fy = arg0->unk8[arg1].unk8 * 50.0f;
+        fz = arg0->unk8[arg1].unk4 * 50.0f;
+    }
+    else
+    {
+        if (arg1 >= 8)
+        {
+            func_80016F7C(ptr->unk4);
+            j = ptr->unk0 + (arg1 * ptr->unk4->unk14);
+            if (ptr->unk14 == -1)
+            {
+                f2 = ptr->unk4->unk1C[j].unk4;
+                f1 = ptr->unk4->unk1C[j].unk2;
+                f3 = ptr->unk4->unk1C[j].unk0;
+            }
+            else
+            {
+                func_80016F7C(ptr->unk18);
+                k = ptr->unk14 + (arg1 * klabs(ptr->unk18->unk14));
+                f4 = (f32)klabs(ptr->unkC) / (f32)ptr->unk10;
+                f2 = func_80040DFC(ptr->unk4->unk1C[j].unk4, ptr->unk18->unk1C[k].unk4, f4);
+                f1 = func_80040DFC(ptr->unk4->unk1C[j].unk2, ptr->unk18->unk1C[k].unk2, f4);
+                f3 = func_80040DFC(ptr->unk4->unk1C[j].unk0, ptr->unk18->unk1C[k].unk0, f4);
+            }
+        }
+        else
+        {
+            func_80016F7C(ptr->unk8);
+            j = ptr->unk2 + (arg1 * ptr->unk8->unk14);
+            if (ptr->unk16 == -1)
+            {
+                f2 = ptr->unk8->unk1C[j].unk4;
+                f1 = ptr->unk8->unk1C[j].unk2;
+                f3 = ptr->unk8->unk1C[j].unk0;
+            }
+            else
+            {
+                func_80016F7C(ptr->unk1C);
+                k = ptr->unk16 + (arg1 * klabs(ptr->unk1C->unk14));
+                f4 = (f32)klabs(ptr->unkE) / (f32)ptr->unk12;
+                f2 = func_80040DFC(ptr->unk8->unk1C[j].unk4, ptr->unk1C->unk1C[k].unk4, f4);
+                f1 = func_80040DFC(ptr->unk8->unk1C[j].unk2, ptr->unk1C->unk1C[k].unk2, f4);
+                f3 = func_80040DFC(ptr->unk8->unk1C[j].unk0, ptr->unk1C->unk1C[k].unk0, f4);
+            }
+        }
+
+        unk54 = gPlayer[gpSprite[D_801AE8F4].unk16].unk54;
+        f5 = (gPlayer[gpSprite[D_801AE8F4].unk16].unk3E << 5);
+
+        if (gPlayer[gpSprite[D_801AE8F4].unk16].unk58 != 0)
+            f5 = 0.0f;
+        if (unk54 != 0)
+        {
+            if (arg1 == 1)
+                f1 += f5;
+        }
+        else
+        {
+            if (f5 >= 0.0f)
+            {
+                f6 = CLAMP_MAX(f5, 5461.0f);
+                f7 = CLAMP_MIN((f5 - 5461.0f), 0.0f);
+            }
+            else
+            {
+                f6 = CLAMP_MIN(f5, -7281.0f);
+                f7 = CLAMP_MAX((f5 + 7281.0f), 0.0f);
+            }
+
+            if ((arg1 >= 9 && arg1 < 11) || (arg1 == 13))
+                f1 += f6;
+            if (arg1 == 8)
+                f1 += f7;
+        }
+
+        fx = arg0->unk8[arg1].unk0 * 50.0f;
+        fy = arg0->unk8[arg1].unk8 * 50.0f;
+
+        if (arg1 == 1)
+        {
+            if (ptr->unk16 != -1)
+            {
+                f4 = (f32)ptr->unkE / (f32)ptr->unk12;
+                ftemp = ptr->unk8->unk18[ptr->unk2].unk0;
+                fx += ftemp;
+                ftemp = ptr->unk8->unk18[ptr->unk2].unk4;
+                fy += ftemp;
+                fz = (ptr->unk8->unk18[ptr->unk2].unk2 * (1.0f - f4)) +
+                    (ptr->unk1C->unk18[ptr->unk16].unk2 * f4);
+            }
+            else
+            {
+                fx += ptr->unk8->unk18[ptr->unk2].unk0;
+                fy += ptr->unk8->unk18[ptr->unk2].unk4;
+                fz = ptr->unk8->unk18[ptr->unk2].unk2;
+            }
+        }
+        else
+            fz = arg0->unk8[arg1].unk4 * 50.0f;
+    }
+
+    if (arg0->unk8[arg1].unk18 != -1)
+    {
+        fx -= arg0->unk8[arg0->unk8[arg1].unk18].unk0 * 50.0f;
+        fy -= arg0->unk8[arg0->unk8[arg1].unk18].unk8 * 50.0f;
+        fz -= arg0->unk8[arg0->unk8[arg1].unk18].unk4 * 50.0f;
+    }
+
+    f1 = (f1 * 360.0f) / 65536.0f;
+    f2 = (f2 * 360.0f) / 65536.0f;
+    f3 = (f3 * 360.0f) / 65536.0f;
+    guRotateRPYF(mf1, -f1, 0.0f, 0.0f);
+    guRotateRPYF(mf2, 0.0f, f2, 0.0f);
+    guRotateRPYF(mf3, 0.0f, 0.0f, -f3);
+    grTranslateF(mf4, fx, -fy, fz);
+    grMtxCatF(mf2, mf1, mf5);
+    grMtxCatF(mf5, mf3, mf5);
+    grMtxCatF(mf5, mf4, mf5);
+    func_80014D04(mf5);
+
+    if (arg1 == 15)
+        copyMatrix(D_801AFDE0, D_801B0830[D_801ACC60]);
+
+    for (i = 0; i <arg0->unk2; i++)
+    {
+        if (arg0->unk8[i].unk18 == arg1)
+            func_80015458(arg0, i);
+    }
+
+    func_80014D4C();
+}
 
 /*80015DE0*/
 void func_80015DE0(s32 spritenum)
