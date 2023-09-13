@@ -454,8 +454,109 @@ static void func_80082B44(code0UnkStruct21 *arg0, f32 arg1, f32 arg2, f32 arg3)
 }
 
 /*80082BA0*/
-STATIC void func_80082BA0(void);
-INCLUDE_ASM("nonmatchings/src/code0/82480", func_80082BA0);
+static void func_80082BA0(void)
+{
+    code0UnkStruct21 sp10;
+    code0UnkStruct21 sp20;
+    code0UnkStruct18 *ptr1;
+    code0UnkStruct18 *ptr2;
+    code0UnkStruct18 *ptr3;
+    code0UnkStruct18 *ptr4;
+    code0UnkStruct21 *ptr5;
+
+    f32 f1, f2, f3, f4, f5;
+    s32 i, j, k, l, m, n;
+
+    ptr1 = &D_80118168.unk14[D_80118168.unk18];
+    ptr2 = &D_80118168.unk14[D_80118168.unk1A];
+    ptr3 = &D_80118168.unk14[D_80118168.unk1C];
+    ptr4 = &D_80118168.unk14[D_80118168.unk1E];
+    i = (ptr2->unk0 - ptr1->unk0);
+    j = (ptr2->unk2 - ptr1->unk2);
+    k = (ptr2->unk4 - ptr1->unk4);
+    l = (ptr3->unk0 - ptr1->unk0);
+    m = (ptr3->unk2 - ptr1->unk2);
+    n = (ptr3->unk4 - ptr1->unk4);
+
+    i *= 16;
+    j *= 16;
+    k *= 16;
+    l *= 16;
+    m *= 16;
+    n *= 16;
+
+    if (i == 0)
+        i = 1;
+    if (j == 0)
+        j = 1;
+    if (k == 0)
+        k = 1;
+    if (l == 0)
+        l = 1;
+    if (m == 0)
+        m = 1;
+    if (n == 0)
+        n = 1;
+
+    f2 = ((f32)(k * m) - (f32)(j * n));
+    f2 = -f2;
+    f1 = (f32)(i * n) - (f32)(k * l);
+    f3 = (f32)(j * l) - (f32)(i * m);
+    f4 = (f1 * f1) + (f2 * f2) + (f3 * f3);
+    f5 = 8000.0f / sqrtf(f4);
+
+    sp20.unk0 = (f1 * f5);
+    sp20.unk4 = (f2 * f5);
+    sp20.unk8 = (f3 * f5);
+
+    sp10.unk0 = -ptr1->unk0;
+    sp10.unk4 = -ptr1->unk2;
+    sp10.unk8 = -ptr1->unk4;
+
+    f5 = func_800829BC(&sp10, &sp20);
+    func_80082B44(&D_8012FC9C[D_80118168.unk18],
+        sp10.unk0 + (sp20.unk0 * f5),
+        sp10.unk4 + (sp20.unk4 * f5),
+        sp10.unk8 + (sp20.unk8 * f5));
+
+    sp10.unk0 = -ptr2->unk0;
+    sp10.unk4 = -ptr2->unk2;
+    sp10.unk8 = -ptr2->unk4;
+
+    f5 = func_800829BC(&sp10, &sp20);
+    func_80082B44(&D_8012FC9C[D_80118168.unk1A],
+        sp10.unk0 + (sp20.unk0 * f5),
+        sp10.unk4 + (sp20.unk4 * f5),
+        sp10.unk8 + (sp20.unk8 * f5));
+
+    sp10.unk0 = -ptr3->unk0;
+    sp10.unk4 = -ptr3->unk2;
+    sp10.unk8 = -ptr3->unk4;
+
+    f5 = func_800829BC(&sp10, &sp20);
+    func_80082B44(&D_8012FC9C[D_80118168.unk1C],
+        sp10.unk0 + (sp20.unk0 * f5),
+        sp10.unk4 + (sp20.unk4 * f5),
+        sp10.unk8 + (sp20.unk8 * f5));
+
+    if (D_80118168.unk1C != D_80118168.unk1E)
+    {
+        sp10.unk0 = -ptr4->unk0;
+        sp10.unk4 = -ptr4->unk2;
+        sp10.unk8 = -ptr4->unk4;
+        f5 = func_800829BC(&sp10, &sp20);
+
+        func_80082B44(&D_8012FC9C[D_80118168.unk1E],
+            sp10.unk0 + (sp20.unk0 * f5),
+            sp10.unk4 + (sp20.unk4 * f5),
+            sp10.unk8 + (sp20.unk8 * f5));
+    }
+    ptr5 = &D_800FF3E0[D_8010A910];
+    f5 = (126.0 / sqrtf(f4));
+    ptr5->unk0 = (s8)(f1 * f5);
+    ptr5->unk4 = (s8)(f2 * f5);
+    ptr5->unk8 = (s8)(f3 * f5);
+}
 
 /*800831D8*/
 void func_800831D8(void *arg0, s32 arg1)
