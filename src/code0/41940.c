@@ -110,7 +110,7 @@ static void func_800519AC(void);
 static s32 func_80052AB0(s16, s16, s32);
 static void func_80053650(s32, s32 spritenum);
 static void func_80056C00(s32);
-STATIC void func_80057E7C(void);
+static void func_80057E7C(void);
 static s32 func_80058538(SpriteType *spr, s32);
 static s32 func_80058DE0(SpriteType *spr, s32 *);
 
@@ -5986,7 +5986,142 @@ void func_800574A4(s32 spritenum)
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80057540);
 
 /*80057E7C*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_80057E7C);
+static void func_80057E7C(void)
+{
+    s32 nexti;
+    s32 i, j;
+    s32 z1, z2;
+    s16 sectnum;
+    SpriteType *spr;
+    s32 temp;
+
+    temp = 0x32; /*FAKEMATCH?*/
+    i = gHeadSpriteStat[94];
+    while (i >= 0)
+    {
+        nexti = gNextSpriteStat[i];
+        spr = &gpSprite[i];
+        D_80137DE0 = &D_8019B940[D_80106D50[i]];
+        sectnum = spr->sectnum;
+
+        if (spr->unk18 > 0)
+            spr->unk18--;
+        else
+            spr->unk18 = 0;
+
+        if (D_80137DE0->unk58 < 300)
+            D_80137DE0->unk58++;
+        else
+            spr->xrepeat = 0;
+
+        if ((spr->unk1C > 0x400) && (spr->unk1C < 0x500))
+        {
+            setSprite(i, spr->x, spr->y, spr->z);
+            sectnum = spr->sectnum;
+        }
+
+        z1 = getFlorzOfSlope(sectnum, spr->x, spr->y);
+        z2 = getCeilzOfSlope(sectnum, spr->x, spr->y);
+
+        if ((z2 == z1) || (sectnum < 0) || (sectnum > 656))
+            spr->xrepeat = 0;
+
+        if (spr->z < (z1 - 0x200))
+        {
+            if (D_80137DE0->unk48 < 2)
+                D_80137DE0->unk48++;
+            else if (gpSector[sectnum].unk18 != 2)
+            {
+                D_80137DE0->unk48 = 0;
+                if (D_80137DE0->unk44 >= 3)
+                    D_80137DE0->unk44 = 0;
+                else
+                    D_80137DE0->unk44++;
+            }
+
+            if (spr->unk1C < 0x1800)
+            {
+                if (gpSector[sectnum].unk18 == 2)
+                {
+                    if (spr->unk1C >= 0x400)
+                        spr->unk1C = 0x400;
+                    else
+                        spr->unk1C += 48;
+                }
+                else
+                {
+                    spr->unk1C -= temp;
+                    spr->unk1C += 176;
+                }
+            }
+            spr->x += ((spr->unk18 * gpSinTable[(spr->ang + 0x200) & 0x7FF]) >> 14);
+            spr->y += ((spr->unk18 * gpSinTable[spr->ang & 0x7FF]) >> 14);
+            spr->z += spr->unk1C;
+
+            if ((spr->picnum >= 2038) && (spr->picnum < 2099))
+            {
+                if (!(D_80137DE0->unk0 & 0x40))
+                    func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 15, 20);
+            }
+        }
+        else
+        {
+            z1 = D_80137DE0->unk4C == 0; /*FAKEMATCH*/
+            if (z1)
+            {
+                if (spr->sectnum == -1)
+                    spr->xrepeat = 0;
+                D_80137DE0->unk4C++;
+            }
+            spr->z = (getFlorzOfSlope(spr->sectnum, spr->x, spr->y) - 0x200);
+            spr->unk18 = 0;
+            spr->xrepeat = 0;
+        }
+
+        D_8013B2D0[i].unk0 += D_80137DE0->unk5C;
+        D_8013B2D0[i].unk2 += D_80137DE0->unk60;
+
+        if (D_80137DE0->unk54 == 1)
+        {
+            if (gMapNum == MAP_BRAINSTORM)
+                func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 15, 1);
+            else
+                func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 15, 20);
+        }
+        else if (D_80137DE0->unk54 == 2)
+            func_80058844(i, D_80137DE0->unk50, 20, 16);
+        else if (D_80137DE0->unk54 == 3)
+            func_80058844(i, D_80137DE0->unk50, 20, 16);
+
+        if ((D_8012FD88 & 3) && (krand() & 1))
+        {
+            if (spr->picnum == 1500)
+            {
+                if (gMapNum == MAP_BRAINSTORM)
+                    func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 15, 1);
+                else
+                    func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 34, 20);
+            }
+            if (spr->picnum == 1501)
+                func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 34, 9);
+        }
+
+        if (spr->xrepeat == 0)
+        {
+            if (spr->picnum == 1510)
+            {
+                if ((gpSector[sectnum].unk18 == 0) || (gpSector[sectnum].unk18 >= 4))
+                {
+                    j = func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 38, 100);
+                    if (j != -1)
+                        gpSprite[j].lotag = -1;
+                }
+            }
+            func_8004BD24(i);
+        }
+        i = nexti;
+    }
+}
 
 /*80058468*/
 STATIC s32 func_80058468(s32 spritenum)
