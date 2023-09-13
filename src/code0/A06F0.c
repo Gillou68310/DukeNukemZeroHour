@@ -2,6 +2,8 @@
 #include "code0/main.h"
 #include "code0/audio.h"
 #include "code0/graphics.h"
+#include "code0/pragmas.h"
+#include "code0/debug.h"
 #include "code0/9410.h"
 #include "code0/FDE0.h"
 #include "code0/17B30.h"
@@ -24,6 +26,8 @@ size_t strlen(const char *);
 /*.data*/
 /*800E18F8*/ EXTERN_DATA STATIC Lights2 D_800E18F8;
 /*800E192C*/ EXTERN_DATA s32 D_800E192C;
+/*800E1934*/ EXTERN_DATA STATIC s16 D_800E1934[24];
+/*800E1964*/ EXTERN_DATA STATIC s16 D_800E1964[14];
 
 /*.comm*/
 /*80106D40*/ u8 D_80106D40;
@@ -399,7 +403,10 @@ INCLUDE_RODATA("nonmatchings/src/code0/A06F0", D_800E9EBC);
 INCLUDE_RODATA("nonmatchings/src/code0/A06F0", D_800E9ED4);
 INCLUDE_RODATA("nonmatchings/src/code0/A06F0", D_800E9EDC);
 INCLUDE_RODATA("nonmatchings/src/code0/A06F0", D_800E9EE8);
+
+extern const char D_800E9EF4[]; /*TODO: mutualized rodata?*/
 INCLUDE_RODATA("nonmatchings/src/code0/A06F0", D_800E9EF4);
+
 /*800A0F84*/
 INCLUDE_ASM("nonmatchings/src/code0/A06F0", func_800A0F84);
 
@@ -416,7 +423,7 @@ static void func_800A34CC(s32 x, s32 y, u16 tileid, s16 arg3)
 }
 
 /*800A359C*/
-static void func_800A359C(s32 x, s32 y, u16 tileid, s16 arg3)
+static void func_800A359C(s32 x, s32 y, s16 tileid, s16 arg3)
 {
     f32 f1, f2;
 
@@ -432,7 +439,174 @@ static void func_800A359C(s32 x, s32 y, u16 tileid, s16 arg3)
 }
 
 /*800A3688*/
-INCLUDE_ASM("nonmatchings/src/code0/A06F0", func_800A3688);
+void func_800A3688(void)
+{
+    char buffer[8];
+    s16 hitsect, hitwall, hitsprite;
+    s32 hitx, hity, hitz;
+
+    code0UnkStruct3 *ptr;
+    f32 fx, fy, fz;
+    f32 f1, f2, f3, f4, f5, f6, f7;
+    s32 x, y, z;
+
+    s16 i, j, k, l;
+    u16 cstat;
+
+    if ((gPlayer[D_801B0820].unk45 == 0) && (D_800DF98C != 0))
+    {
+        ptr = &D_8019B940[D_80106D50[gPlayer[D_801B0820].unk4A]];
+        l = D_800E1934[ptr->unk99];
+
+        if (D_801CE498.unk36[D_801B0820] != 0)
+            l = D_800E1964[D_801CE498.unk36[D_801B0820]];
+
+        func_8000A070();
+
+        if ((u16)gPlayer[D_801B0820].unk52 < 0x800)
+        {
+            if (gpSprite[gPlayer[D_801B0820].unk52].picnum == 1423)
+            {
+                func_80028F04(0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF);
+                func_800A34CC(50, 190, 6070, 0);
+                func_800A34CC(270, 190, 6070, 4);
+                func_800A34CC(50, 50, 6070, 8);
+                func_800A34CC(270, 50, 6070, 12);
+                func_80029130(0, 0xFF, 0xFF, 0, 0xFF, 0xFF);
+                func_8001D238(230, 185, 6069);
+                if ((D_8012FD88 & 0x1F) > 16)
+                {
+                    func_80028F04(0xFF, 0, 0, 0xFF, 0, 0);
+                    func_8001D238(260, 185, 6071);
+                }
+            }
+            else
+            {
+                func_80028F04(0, 0xFF, 0, 0, 0xFF, 0);
+                func_800A34CC(50, 200, 3836, 8);
+                func_800A34CC(270, 200, 3836, 12);
+                func_800A34CC(50, 0x28, 3836, 0);
+                func_800A34CC(270, 0x28, 3836, 4);
+
+                j = (D_8012FD88 >> 3) & 0xFF;
+                for (i = 0; i < 8; i++)
+                {
+                    if ((j >> i) & 1)
+                        func_8001D238(14, (i * 15) + 50, 6071);
+                }
+            }
+        }
+        else if ((l != -1) || (gPlayer[D_801B0820].unk6C != 0))
+        {
+            if (gPlayer[D_801B0820].unk60 == 0)
+            {
+                if (gPlayer[D_801B0820].unk6C != 0)
+                {
+                    func_80028F04(0, 0, 0, 0, 0xFF, 0);
+                    func_800A34CC(160, 120, 5868, 0);
+                    func_80029130(0, 0xFF, 0, 0, 0, 0);
+                    displayMessage1(190, 160, "X");
+                    sprintf(buffer, D_800E9EF4, gPlayer[D_801B0820].unk6E / 256);
+                    displayNumbers(200, 160, buffer);
+                    if (D_8012C470 == 1)
+                    {
+                        sprintf(buffer, "%03d", (s16)((gPlayer[D_801B0820].unk38 & 0x7FF) * 0.17578125));
+                        displayMessage2(0x98, 0xAA, buffer);
+                        k = ((gPlayer[D_801B0820].unk3E & 0x7FF) * 0.17578125);
+                        if (k > 180)
+                            k = k - 360;
+
+                        sprintf(buffer, D_800E9EF4, klabs(k));
+                        displayMessage2(220, 107, buffer);
+                    }
+                }
+                else
+                {
+                    func_80028F04(0xFF, 0, 0, 0xFF, 0, 0);
+                    func_800A359C(160, 120, l, 0);
+                }
+            }
+            else
+            {
+                hitsprite = func_8004CE58(&gpSprite[gPlayer[D_801B0820].unk4A],
+                                          D_8013F920[ptr->unk99], ptr->unk99);
+                if (hitsprite < 0)
+                {
+                    f1 = (gPlayer[D_801B0820].unk38 * (PI/1024));
+                    f2 = (gPlayer[D_801B0820].unk3E * (PI/1024));
+                    fx = cosf(f1);
+                    fy = sinf(f1);
+                    f1 = sinf(f2) / cosf(f2);
+                    x = fx* 16384.0f;
+                    y = fy* 16384.0f;
+                    z = f1* 16384.0f * 16.0f;
+                }
+                else
+                {
+                    f1 = ((s16)getAngle(gpSprite[hitsprite].x - gPlayer[D_801B0820].xpos,
+                        gpSprite[hitsprite].y - gPlayer[D_801B0820].ypos) * (PI/1024));
+
+                    f2 = (gPlayer[D_801B0820].unk3E * (PI/1024));
+                    fx = cosf(f1);
+                    fy = sinf(f1);
+                    f1 = ((sinf(f2) / cosf(f2)));
+                    x = fx* 16384.0f;
+                    y = fy* 16384.0f;
+                    z = f1* 16384.0f * 16.0f;
+                }
+
+                cstat = gpSprite[gPlayer[D_801B0820].unk4A].cstat;
+                gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & 0xFEFE;
+
+                hitScan(gPlayer[D_801B0820].xpos,
+                        gPlayer[D_801B0820].ypos,
+                        gPlayer[D_801B0820].zpos + 0x300,
+                        gPlayer[D_801B0820].unk32,
+                        x,
+                        y,
+                        z, &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x01000040);
+
+                gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat;
+                f1 = (hitx / 4.0);
+                f2 = (hity / 4.0);
+                f5 = (hitz / 64.0);
+
+                fx = ((D_8012B948[0][0] * f1) +
+                      (D_8012B948[1][0] * f2) +
+                      (D_8012B948[2][0] * f5) +
+                       D_8012B948[3][0]);
+
+                fy = ((D_8012B948[0][1] * f1) +
+                      (D_8012B948[1][1] * f2) +
+                      (D_8012B948[2][1] * f5) +
+                       D_8012B948[3][1]);
+
+                fz = ((D_8012B948[0][3] * f1) +
+                      (D_8012B948[1][3] * f2) +
+                      (D_8012B948[2][3] * f5) +
+                       D_8012B948[3][3]);
+
+                if (fz > 0.0f)
+                {
+                    f6 = fx / fz;
+                    f7 = fy / fz;
+
+                    if ((f7 < -2.0f) || (f7 > 2.0f) || (f6 < -2.0f) || (f6 > 2.0f))
+                        return;
+                    else
+                    {
+                        func_80028F04(0xFF, 0, 0, 0xFF, 0, 0);
+                        func_80027C18((f6 * D_80199110) + D_80168C9C,
+                                      (-f7 * D_801A1980) + D_801A2684,
+                                      ((D_80199110 * 3.0f) / 160.0),
+                                      ((D_801A1980 * 3.0f) / 120.0),
+                                      getTileNum(l), 0);
+                    }
+                }
+            }
+        }
+    }
+}
 
 /*800A419C*/
 void func_800A419C(s16 arg0, char *arg1)
@@ -441,7 +615,7 @@ void func_800A419C(s16 arg0, char *arg1)
 
     if (D_8012C470 == 1)
     {
-        for (i = 3; i > 0; i--)
+        for (i = ARRAY_COUNT(D_80138858)-1; i > 0; i--)
         {
             D_80138858[i] = D_80138858[i-1];
             strcpy(D_8012FCB0[i], D_8012FCB0[i-1]);
@@ -521,7 +695,7 @@ void func_800A4478(void)
         }
     }
 
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < ARRAY_COUNT(D_80138858); i++)
     {
         if (gPlayer[i].unk52 < 0x800)
         {

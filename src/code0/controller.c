@@ -1385,11 +1385,11 @@ static u8 func_80089724(void)
         {
             D_800FA150[D_800F9CF0].unk0 = 0;
 
-            for (i = 0; i < 16; i++)
+            for (i = 0; i < ARRAY_COUNT(D_800FA150[D_800F9CF0].unk1)-1; i++)
                 D_800FA150[D_800F9CF0].unk1[i] = ' ';
             D_800FA150[D_800F9CF0].unk1[i] = '\0';
 
-            for (i = 0; i < 4; i++)
+            for (i = 0; i < ARRAY_COUNT(D_800FA150[D_800F9CF0].unk12)-1; i++)
                 D_800FA150[D_800F9CF0].unk12[i] = ' ';
             D_800FA150[D_800F9CF0].unk12[i] = '\0';
 
@@ -1422,7 +1422,7 @@ static u8 func_80089724(void)
             *D_800FA2C4 = 'A';
             do
             {
-                for (i = 0; i < 16; i++)
+                for (i = 0; i < ARRAY_COUNT(D_800FA150); i++)
                 {
                     if (D_800FA150[i].unk0 == 0)
                         continue;
@@ -1540,13 +1540,13 @@ static s8 func_80089F14(s8 arg0, u8 arg1)
     s32 num;
     s32 ret;
 
-    for (i = 0; i < 16; i++)
+    for (i = 0; i < ARRAY_COUNT(D_800FA150); i++)
     {
         if (D_800FA150[i].unk0 == 0)
             break;
     }
 
-    for (num = 0; num < 16; num++)
+    for (num = 0; num < ARRAY_COUNT(D_800FA150); num++)
     {
         if (func_80089CF4(num) != 0)
             break;
@@ -3356,16 +3356,16 @@ u8 controller_8008C8DC(void)
         {
             if (D_800FE408 == 0)
             {
-                for (_fileNumber = 0; _fileNumber < 16; _fileNumber++)
+                for (_fileNumber = 0; _fileNumber < ARRAY_COUNT(D_800FA150); _fileNumber++)
                 {
                     if (D_800FA150[_fileNumber].unk0 == 0)
                         break;
                 }
 
                 if ((D_800F9F48 / 256) < D_800F9F3C)
-                    _fileNumber = 16;
+                    _fileNumber = ARRAY_COUNT(D_800FA150);
 
-                if (_fileNumber >= 16)
+                if (_fileNumber >= ARRAY_COUNT(D_800FA150))
                     D_800E1690 = 25;
                 else
                     D_800E1690 = 23;

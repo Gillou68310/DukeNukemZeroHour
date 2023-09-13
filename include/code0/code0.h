@@ -528,7 +528,7 @@ typedef struct
 /*8013A43C*/ _extern volatile s16 D_8013A43C[MAXPLAYERS];
 /*8013A448*/ _extern u16 D_8013A448[256] ALIGNED(8);
 /*8013B2D0*/ _extern code0UnkStruct5 D_8013B2D0[MAXSPRITES] ALIGNED(16);
-/*8013F920*/ _extern u8 *D_8013F920;
+/*8013F920*/ _extern s16 *D_8013F920;
 /*8013F950*/ _extern s32 D_8013F950;
 /*80168C9C*/ _extern f32 D_80168C9C;
 /*80168D0C*/ _extern s16 D_80168D0C;

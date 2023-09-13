@@ -1665,7 +1665,7 @@ static void func_8000E56C(void)
     grPerspectiveF(projection,
                    &perspNorm,
                    (15360.0 / gPlayer[D_801B0820].unk6E),
-                   1.3333334f,
+                   (4.0f / 3.0f),
                    ((gPlayer[D_801B0820].unk6E * 5) / 256.0),
                    16384.0f,
                    (256.0 / gPlayer[D_801B0820].unk6E));
@@ -1673,7 +1673,7 @@ static void func_8000E56C(void)
     grPerspective(&gpDynamic->mtx1[D_801B0820],
                   &perspNorm,
                   (15360.0 / gPlayer[D_801B0820].unk6E),
-                  1.3333334f,
+                  (4.0f / 3.0f),
                   ((gPlayer[D_801B0820].unk6E * 5) / 256.0),
                   16384.0f,
                   (256.0 / gPlayer[D_801B0820].unk6E));

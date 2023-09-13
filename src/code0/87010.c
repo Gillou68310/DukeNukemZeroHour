@@ -202,7 +202,7 @@ void func_80086A24(void)
                                             gpAlphaPalette[ptr->unk0[0].u.s1.unk1].env.b,
                                             ptr->unk0[0].u.s1.unk2);
 
-            for (j = 0; j < 8; j++)
+            for (j = 0; j < ARRAY_COUNT(ptr->unk0)-1; j++)
             {
                 tc1 = k & 0xFFF;
                 k += func_80040D94(ptr->unk0[j].x, ptr->unk0[j].y, ptr->unk0[j].z,

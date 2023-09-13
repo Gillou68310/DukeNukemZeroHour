@@ -457,7 +457,7 @@ void func_80068E9C(void)
         {
             l = 0;
             sp10 = D_800E8954;
-            for (j = 0; j < 8; j++)
+            for (j = 0; j < ARRAY_COUNT(sp10.unk0); j++)
             {
                 k = gHeadSpriteStat[sp10.unk0[j]];
                 while (k >= 0)

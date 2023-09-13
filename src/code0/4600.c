@@ -134,7 +134,7 @@ void func_800043F4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s16 arg4)
     {
         if (D_8012C7A0[i] != 0)
         {
-            for (j = 0; j < 8; j++)
+            for (j = 0; j < ARRAY_COUNT(D_800BD430)-1; j++)
             {
                 if (D_8012C7A0[i] & D_800BD430[j])
                 {
@@ -149,7 +149,7 @@ void func_800043F4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s16 arg4)
     {
         if (D_8012BBD0[i] != 0)
         {
-            for (j = 0; j < 8; j++)
+            for (j = 0; j < ARRAY_COUNT(D_800BD430)-1; j++)
             {
                 if (D_8012BBD0[i] & D_800BD430[j])
                 {
@@ -164,7 +164,7 @@ void func_800043F4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s16 arg4)
     {
         if (D_801A2630[i] != 0)
         {
-            for (j = 0; j < 8; j++)
+            for (j = 0; j < ARRAY_COUNT(D_800BD430)-1; j++)
             {
                 if (D_801A2630[i] & D_800BD430[j])
                 {
@@ -179,7 +179,7 @@ void func_800043F4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s16 arg4)
     {
         if (D_80197D78[i] != 0)
         {
-            for (j = 0; j < 8; j++)
+            for (j = 0; j < ARRAY_COUNT(D_800BD430)-1; j++)
             {
                 if (D_80197D78[i] & D_800BD430[j])
                 {

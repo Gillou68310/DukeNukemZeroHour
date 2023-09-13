@@ -94,7 +94,7 @@ static void func_80081AEC(s32 arg0)
 
     if (D_80118168.unk30 & 0x20000000)
     {
-        for (i = 0; i < 4; i++)
+        for (i = 0; i < ARRAY_COUNT(D_80118168.unk34); i++)
         {
             f1 = (f32)(D_80118168.unk34[i].unk0 - D_800FF3E0[arg0].unk0);
             f2 = (f32)(D_80118168.unk34[i].unk4 + D_800FF3E0[arg0].unk4);

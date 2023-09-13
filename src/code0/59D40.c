@@ -1176,9 +1176,9 @@ void func_8005C374(s32 spritenum, s32 arg1)
     for (i = 0; i < 3; i++)
     {
         spritenum_ = func_80045400(D_80118248->x + r1,
-                                  D_80118248->y + r2,
-                                  D_80118248->z - (r3 *256),
-                                  D_80118248->sectnum, 80, r4, 0xF, 1);
+                                   D_80118248->y + r2,
+                                   D_80118248->z - (r3 *256),
+                                   D_80118248->sectnum, 80, r4, 0xF, 1);
 
         if (spritenum_ >= 0)
         {

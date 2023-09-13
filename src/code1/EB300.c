@@ -2734,14 +2734,14 @@ STATIC void func_801C8DE0(void)
 
     func_801C2F98();
     j = -110;
-    for (i = 0; i < 16; i++)
+    for (i = 0; i < ARRAY_COUNT(D_801CE558); i++)
     {
         D_801CE558[i] = func_8007FE2C(D_801CBCA8[i], (gScreenWidth / 2) - 136,
                                       (gScreenHeight / 2) + (j + (i * 14)), 64, 0, 0);
         D_801CE558[i]->unk10 = 0;
     }
     j = -110;
-    for (i = 0; i < 16; i++)
+    for (i = 0; i < ARRAY_COUNT(D_801CC8D0); i++)
     {
         D_801CC8D0[i] = func_8007FE2C(gpControlPreset[D_801CE498.unk2E[D_801CDACC]].mapping[i],
                                       (gScreenWidth / 2) + 136, (gScreenHeight / 2) + (j + (i * 14)), 64, 2, 0);

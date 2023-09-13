@@ -204,7 +204,7 @@ void func_8001FD60(u8 arg0, u8 arg1)
     else
         j = arg0 + 1;
 
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < ARRAY_COUNT(D_801995B8); i++)
     {
         D_801995B8[arg0][arg1].vp.vscale[i] = D_800DCB10[j].vp.vscale[i];
         D_801995B8[arg0][arg1].vp.vtrans[i] = D_800DCB10[j].vp.vtrans[i];

@@ -45,8 +45,8 @@ void initCache(u8 *dacachestart, s32 dacachesize)
         gCache[i].leng = 0;
     }
 
-    for (i = 1; i < 200; i++)
-        gLockRecip[i] = (1 << 28) / (200 - i);
+    for (i = 1; i < ARRAY_COUNT(gLockRecip); i++)
+        gLockRecip[i] = (1 << 28) / (ARRAY_COUNT(gLockRecip) - i);
 
     _cachestart = dacachestart;
     _cachesize = dacachesize;

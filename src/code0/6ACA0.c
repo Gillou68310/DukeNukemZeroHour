@@ -1003,14 +1003,14 @@ void func_8006B590(s16 arg0)
 
                 case 1:
                     k = -1;
-                    for (j = 1; j < 8; j++)
+                    for (j = 1; j < ARRAY_COUNT(D_801AE91E); j++)
                     {
-                        if (D_801AE91E[j] != 0x44)
+                        if (D_801AE91E[j] != 68)
                         {
-                            if (D_801AE91E[j] == 0x43)
+                            if (D_801AE91E[j] == 67)
                                 k = j;
 
-                            D_801AE91E[j] = 0x53;
+                            D_801AE91E[j] = 83;
                         }
                     }
 
@@ -1033,7 +1033,7 @@ void func_8006B590(s16 arg0)
                     break;
 
                 case 2:
-                    for (j = 1; j < 8; j++)
+                    for (j = 1; j < ARRAY_COUNT(D_801AE91E); j++)
                     {
                         if (D_801AE91E[j] != 68)
                             D_801AE91E[j] = 83;

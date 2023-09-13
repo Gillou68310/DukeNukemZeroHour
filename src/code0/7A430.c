@@ -325,7 +325,7 @@ static void func_80079F60(s32 playernum)
     l = i;
     if (!func_80079DE8(playernum, i))
     {
-        for (i = 23; i >= 0; i--)
+        for (i = 23; i >= 0; i--) /*TODO: ARRAY_COUNT(D_8011A680[playernum])-1*/
         {
             if (func_80079CB4(playernum, i) && func_80079DE8(playernum, i))
             {
