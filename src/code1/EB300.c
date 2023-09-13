@@ -101,6 +101,10 @@ typedef struct {
 /*801CB900*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CB900[2];
 /*801CB938*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CB938;
 /*801CB948*/ EXTERN_DATA STATIC s32 D_801CB948[6];
+/*801CB960*/ EXTERN_DATA STATIC char *D_801CB960[4];
+/*801CB970*/ EXTERN_DATA STATIC char *D_801CB970[4];
+/*801CB980*/ EXTERN_DATA STATIC char *D_801CB980[2];
+/*801CB988*/ EXTERN_DATA STATIC char *D_801CB988[4];
 /*801CB998*/ EXTERN_DATA STATIC _EB300UnkStruct2 D_801CB998[28];
 /*801CBCA8*/ EXTERN_DATA STATIC char *D_801CBCA8[16];
 /*801CBCE8*/ EXTERN_DATA STATIC u8 *D_801CBCE8[12];
@@ -158,6 +162,7 @@ char D_801CDB58[6][16] ALIGNED(8); /*Fix out of bound access in func_801C764C*/
 /*801CF638*/ u8 *D_801CF638; /*edlHandle*/
 /*801CF63C*/ s32 D_801CF63C;
 /*801CF640*/ s16 D_801CF640;
+/*801CF648*/ char D_801CF648[30][5] ALIGNED(8);
 /*801CF6E0*/ code0UnkStruct16 *D_801CF6E0[8] ALIGNED(8);
 /*801CF708*/ u16 D_801CF708;
 /*801CF70C*/ code0UnkStruct16 *D_801CF70C;
@@ -169,7 +174,7 @@ static void func_801C37B8(void);
 STATIC void func_801C38DC(void);
 static void func_801C3A88(s32);
 static s16 func_801C53E8(s16);
-STATIC void func_801C5C68(void);
+static void func_801C5C68(void);
 static void func_801C7108(void);
 static void func_801C73A0(void);
 static void func_801C7574(void);
@@ -1885,8 +1890,119 @@ INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC66C);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC670);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC674);
 INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC678);
+
 /*801C5C68*/
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C5C68);
+static void func_801C5C68(void)
+{
+    code0UnkStruct16 *sp28[2];
+    code0UnkStruct16 *ptr;
+    s32 i, j, k, l, m, n, o;
+
+    allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT*2, DISPLAY_LIST_SIZE*2, 0);
+    func_801C10C8();
+    setCameraPosition(0.0f, 0.0f, -90.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+    edl_80081688(&D_801CDB08, 20);
+    edl_80081688(&D_801CC888, 21);
+    edl_80081688(&D_801CDBC8, 23);
+    edl_80081688(&D_801CDA98, 22);
+    func_8007FD8C(D_800DFB08, 11);
+    func_8007FD8C(D_800E0454, D_801CB948[D_801CA14C[gMapNum].unk0]);
+    D_800E0F58 = 0;
+
+    for (i = 0; i < 64; i++)
+        func_80083700(1, &D_801CE5E8[i], 0, 0);
+
+    D_800E0F58 = 1;
+    func_801C1114();
+    D_801CDA20 = func_8007FC08(D_800E0454, 0, 0, 0, 500);
+    func_801C1158(0, 0, 0, 0xFF);
+    D_801CC88C = -1;
+    D_801CF6E0[0] = func_800802C0(D_801CA14C[gMapNum].mapname, gScreenWidth / 2, 24, 200, 1);
+    func_801C14C4(D_801CF6E0[0], 32, 0xFF, 32);
+    D_801CF6E0[1] = func_800802C0("PRESS START TO ENTER", gScreenWidth/2, 186, 200, 1);
+    D_801CF6E0[2] = func_800802C0(D_801CA14C[gMapNum + 1].mapname, gScreenWidth / 2, 208, 200, 1);
+
+    if (D_801CDC64.unk2 == 5)
+    {
+
+        m = (gScreenWidth / 2) - 72;
+        k = 0;
+        for (i = 0; i < 2; i++)
+        {
+            sp28[i] = func_800802C0(D_801CB980[i], 104, m+i*28, 200, 0);
+
+            for (l = 0; l < D_801CDC64.unk1; l++)
+            {
+                if (D_800E16A0[l] == i)
+                    break;
+            }
+
+            o = CLAMP_MAX((D_800FF4F0[l].unk0 - D_800FF4F0[l].unk2), 9999);
+
+            sprintf(D_801CF648[k], "%4d", o);
+            func_800802C0(D_801CF648[k], 170, m+i*28, 200, 0);
+            k++;
+        }
+
+        sp28[0]->unk6B.r = 0;
+        sp28[0]->unk6B.g = 0xFF;
+        sp28[0]->unk6B.b = 0xFF;
+        sp28[1]->unk6B.r = 0xFF;
+        sp28[1]->unk6B.g = 0x32;
+        sp28[1]->unk6B.b = 0x32;
+    }
+    else if (D_801CDC64.unk2 == 3)
+    {
+        n = -1;
+        for (i = 0; i < D_801CDC64.unk1; i++)
+        {
+            if (gPlayer[i].unk45 == 0)
+            {
+                n = i;
+                break;
+            }
+        }
+
+        if (n != -1)
+            D_801CF6E0[3] = func_800802C0(D_801CB960[n], gScreenWidth/2, 102, 200, 1);
+        else
+            D_801CF6E0[3] = func_800802C0("DRAW", gScreenWidth/2, 102, 200, 1);
+    }
+    else
+    {
+        m = (gScreenWidth / 2) + 40;
+        ptr = func_8007FE2C("TOTAL", (D_801CDC64.unk1 * 40) + 118, (gScreenWidth / 2) + 20, 64, 1, 0);
+        ptr->unkC |= 0x08000000;
+
+        k = 0;
+        for (i = 0; i < D_801CDC64.unk1; i++)
+        {
+
+            ptr = func_8007FE2C(D_801CB970[i], 24, m+i*20, 64, 0, 0);
+            ptr->unkC |= 0x08000000;
+            ptr = func_8007FE2C(D_801CB988[i], 126 + i*40, m - 20, 64, 2, 0);
+            ptr->unkC |= 0x08000000;
+
+            for (j = 0; j < D_801CDC64.unk1; j++)
+            {
+                o = MIN(D_800FF4F0[i].unk4[j], 9999);
+                sprintf(D_801CF648[k], "%d", o);
+                func_8007FE2C(D_801CF648[k], 118+j*40, m+i*20, 64, 1, 0);
+                k++;
+            }
+
+            o = CLAMP_MAX((D_800FF4F0[i].unk0 - D_800FF4F0[i].unk2), 9999);
+            sprintf(D_801CF648[k], "%d", o);
+            func_8007FE2C(D_801CF648[k], (D_801CDC64.unk1 * 40) + 118, m+i*20, 64, 1, 0);
+            k++;
+
+        }
+    }
+    D_801CA144 = 0.0f;
+    D_800BD3F9 = 4;
+    main_80002390();
+    main_80000610();
+}
 
 /*801C63CC*/
 void func_801C63CC(void)
