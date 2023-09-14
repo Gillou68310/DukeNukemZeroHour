@@ -28,6 +28,7 @@ typedef struct {
 /*801CA310*/ EXTERN_DATA STATIC _119280UnkStruct1 D_801CA310[8];
 /*801CA360*/ EXTERN_DATA STATIC _119280UnkStruct1 D_801CA360[4];
 /*801CA388*/ EXTERN_DATA STATIC _119280UnkStruct1 D_801CA388[3];
+/*801CA3A8*/ EXTERN_DATA STATIC _119280UnkStruct1 D_801CA3A8;
 /*801CA3B8*/ EXTERN_DATA STATIC Lights1 D_801CA3B8;
 /*801CA3D4*/ EXTERN_DATA STATIC s32 D_801CA3D4;
 /*801CA3D8*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CA3D8[5];
@@ -111,6 +112,7 @@ typedef struct {
 /*801CBD18*/ EXTERN_DATA STATIC u32 D_801CBD18;
 
 /*.comm*/
+/*801CC7F0*/ u8 *D_801CC7F0;
 /*801CC800*/ code0UnkStruct16 *D_801CC800[34] ALIGNED(8);
 /*801CC890*/ code0UnkStruct16 *D_801CC890;
 /*801CC8B0*/ code0UnkStruct16 *D_801CC8B0;
@@ -2072,7 +2074,224 @@ void func_801C6560(void)
 }
 
 /*801C66D8*/
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C66D8);
+void func_801C66D8(void)
+{
+    s32 i;
+
+    switch (D_801CE494)
+    {
+    case 0:
+        i = D_801CC88C;
+        if (i == 1)
+        {
+            if (D_8011BC40->unk10 == 0xFF)
+            {
+                if (D_801CDA8C == 0)
+                    func_8007F050();
+
+                D_801CDA8C++;
+                if (D_801CDA8C >= 5)
+                {
+                    if (osMemSize > 0x400000)
+                    {
+                        edl_80081688(&D_801CC7F0, 24);
+                        edl_80081688(&D_801CDB10, 25);
+                        edl_80081688(&D_801CDB44, 27);
+                        edl_80081688(&D_801CDB18, 26);
+                        func_8007F050();
+                        D_801CDBF8 = func_8008372C(2, &D_801CA3A8, 0x9080, &D_801CA3B8, 0);
+                        D_801CDBF8->unk3C = 100.0f;
+                        func_801C1114();
+                        func_801C1158(0, 0, 0, 0xFF);
+                        D_801CC88C = -1;
+                        func_8007FE2C("EXPANSION PAK FOUND", gScreenWidth / 2, (gScreenHeight / 2) + 150, 0, i, 0);
+                    }
+                    else
+                    {
+                        D_801CE494++;
+                        cache1d_8002AAC0();
+                        allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT, DISPLAY_LIST_SIZE*2, 0);
+                        func_801C10C8();
+                        func_8007FD8C(D_800DFB08, 11);
+                        func_8007FD8C(&D_800E0404[0], 13);
+                        D_800BD3F8 = 1;
+                        func_801C1114();
+                        func_8007FC08(&D_800E0404[0], 0, 0, 0, 500);
+                        func_801C1158(0, 0, 0, 0xFF);
+                        D_801CC88C = -1;
+                        main_80002390();
+                        main_80000610();
+                    }
+                    D_801CDB04 = 100;
+                    D_801CE494++;
+                }
+            }
+            else
+            {
+                D_8011BC40->unk10 += 0x10;
+                if (D_8011BC40->unk10 >= 0xEF)
+                    D_8011BC40->unk10 = 0xFF;
+            }
+            return;
+        }
+        if (D_801CDB04 != 0)
+        {
+            D_801CDB04--;
+            if (D_801CDB04 == 0)
+                break;
+        }
+        goto block_39;
+    case 1:
+        if (D_801CC88C == 1)
+        {
+            if (D_8011BC40->unk10 == 0xFF)
+            {
+                if (D_801CDA8C == 0)
+                    func_8007F050();
+
+                D_801CDA8C++;
+                if (D_801CDA8C >= 5)
+                {
+                    cache1d_8002AAC0();
+                    allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT, DISPLAY_LIST_SIZE*2, 0);
+                    func_801C10C8();
+                    func_8007FD8C(D_800DFB08, 11);
+                    func_8007FD8C(&D_800E0404[0], 13);
+                    D_800BD3F8 = 1;
+                    func_801C1114();
+                    func_8007FC08(&D_800E0404[0], 0, 0, 0, 500);
+                    func_801C1158(0, 0, 0, 0xFF);
+                    D_801CC88C = -1;
+                    main_80002390();
+                    main_80000610();
+                    D_801CDB04 = 100;
+                    D_801CE494++;
+                }
+            }
+            else
+            {
+                D_801CDBF8->unk4C += 0.02;
+                D_801CDBF8->unk50 += 0.03;
+                D_8011BC40->unk10 += 0x10;
+                if (D_8011BC40->unk10 >= 0xEF)
+                    D_8011BC40->unk10 = 0xFF;
+            }
+            return;
+        }
+        if (D_801CDB04 != 0)
+        {
+            D_801CDBF8->unk4C += 0.02;
+            D_801CDBF8->unk50 += 0.03;
+        }
+        if (D_801CDB04 != 0)
+        {
+            D_801CDB04--;
+            if (D_801CDB04 == 0)
+                break;
+        }
+        goto block_39;
+    case 2:
+        if (D_801CC88C == 1)
+        {
+            if (D_8011BC40->unk10 == 0xFF)
+            {
+                func_8007F050();
+                func_801C1114();
+                func_8007FC08(&D_800E0404[1], 0, 0, 0, 500);
+                func_801C1158(0, 0, 0, 0xFF);
+                D_801CC88C = -1;
+                D_801CDB04 = 100;
+                D_801CE494++;
+            }
+            else
+            {
+                D_8011BC40->unk10 += 0x10;
+                if (D_8011BC40->unk10 >= 0xEF)
+                    D_8011BC40->unk10 = 0xFF;
+            }
+            return;
+        }
+        if (D_801CDB04 != 0)
+        {
+            D_801CDB04--;
+            if (D_801CDB04 == 0)
+                break;
+        }
+        goto block_39;
+    case 3:
+        if (D_801CC88C == 1)
+        {
+            if (D_8011BC40->unk10 == 0xFF)
+            {
+                func_8007F050();
+                func_801C1114();
+                func_8007FC08(&D_800E0404[2], 0, 0, 0, 500);
+                func_801C1158(0, 0, 0, 0xFF);
+                D_801CC88C = -1;
+                D_801CDB04 = 100;
+                D_801CE494++;
+            }
+            else
+            {
+                D_8011BC40->unk10 += 0x10;
+                if (D_8011BC40->unk10 >= 0xEF)
+                    D_8011BC40->unk10 = 0xFF;
+            }
+            return;
+        }
+        if (D_801CDB04 != 0)
+        {
+            D_801CDB04--;
+            if (D_801CDB04 == 0)
+                break;
+        }
+        goto block_39;
+    case 4:
+        if (D_801CC88C == 1)
+        {
+            if (D_8011BC40->unk10 == 0xFF)
+            {
+                if (D_801CDA8C == 0)
+                    func_8007F050();
+
+                D_801CDA8C++;
+                if (D_801CDA8C >= 5)
+                {
+                    cache1d_8002AAC0();
+                    func_801C15CC();
+                }
+            }
+            else
+            {
+                D_8011BC40->unk10 += 0x10;
+                if (D_8011BC40->unk10 >= 0xEF)
+                    D_8011BC40->unk10 = 0xFF;
+            }
+            return;
+        }
+        if (D_801CDB04 != 0)
+        {
+            D_801CDB04--;
+            if (D_801CDB04 == 0)
+                break;
+        }
+        goto block_39;
+    default:
+    block_39:
+        if (*D_801CD986 & 0x1000)
+        {
+            *D_801CD986 &= 0xEFFF;
+            if (D_801CE494 > 0)
+                D_801CDB04 = 1;
+        }
+        func_801C118C();
+        return;
+    }
+
+    func_801C1158(0, 0, 0, 0);
+    D_801CC88C = 1;
+    D_801CDA8C = 0;
+}
 
 /*801C6CA4*/
 STATIC void func_801C6CA4(void)
