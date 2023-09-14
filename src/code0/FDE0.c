@@ -35,7 +35,7 @@ double sqrt(double);
 
 /*.text*/
 STATIC void func_8000F474(s16, f32, f32, f32);
-STATIC f32 func_80011410(ModelInfo *model);
+static f32 func_80011410(ModelInfo *model);
 static void func_800117A4(u8 *, code0UnkStruct18 *, _FDE0UnkStruct1 *);
 STATIC void func_8001270C(code0unkStruct10 *, s32);
 
@@ -128,7 +128,49 @@ void func_80011180(void)
 }
 
 /*80011410*/
-INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_80011410);
+static f32 func_80011410(ModelInfo *model)
+{
+    f32 f1, f2, f5, f3, f4, f6, f7, f8;
+
+    f1 = model->unk24;
+    f2 = model->unk26;
+    f3 = model->unk28;
+    f4 = model->unk2A;
+    f5 = model->unk2C;
+    f6 = model->unk2E;
+
+    f7 = (f1 * f1) + (f5 * f5) + (f3 * f3);
+
+    f8 = (f4 * f4) + (f5 * f5) + (f3 * f3);
+    if (f7 < f8)
+        f7 = f8;
+
+    f8 = (f4 * f4) + (f2 * f2) + (f3 * f3);
+    if (f7 < f8)
+        f7 = f8;
+
+    f8 = (f1 * f1) + (f2 * f2) + (f3 * f3);
+    if (f7 < f8)
+        f7 = f8;
+
+    f8 = (f1 * f1) + (f5 * f5) + (f6 * f6);
+    if (f7 < f8)
+        f7 = f8;
+
+    f8 = (f4 * f4) + (f5 * f5) + (f6 * f6);
+    if (f7 < f8)
+        f7 = f8;
+
+    f8 = (f4 * f4) + (f2 * f2) + (f6 * f6);
+    if (f7 < f8)
+        f7 = f8;
+
+    f8 = (f1 * f1) + (f2 * f2) + (f6 * f6);
+    if (f7 < f8)
+        f7 = f8;
+
+    return ((sqrtf(f7) * gpSprite[D_801AE8F4].xrepeat) / 64.0);
+}
 
 /*800115E0*/
 static s32 func_800115E0(ModelInfo *model)
