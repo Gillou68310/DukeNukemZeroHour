@@ -17,6 +17,7 @@
 #include "code0/87010.h"
 #include "code0/A06F0.h"
 #include "code0/8EFE0.h"
+#include "code0/95500.h"
 #include "code0/code0.h"
 #include "code1/code1.h"
 #include "code1/EB300.h"
@@ -76,16 +77,23 @@ typedef struct
 
 /*.comm*/
 /*800FE9D4*/ s32 D_800FE9D4;
+/*800FEA94*/ s32 D_800FEA94;
 /*80137DF0*/ s16 D_80137DF0[1024] ALIGNED(16); /*spritenum array*/
 /*80138718*/ s32 *gpInst;
 /*80138794*/ s32 *D_80138794;
 /*80138820*/ s16 D_80138820[8] ALIGNED(8); /*sectornum array*/
+/*80168CF8*/ s32 D_80168CF8;
 /*80169524*/ s32 D_80169524;
 /*80197E30*/ s32 D_80197E30;
 /*8019955C*/ s16 D_8019955C;
+/*8019995C*/ s32 D_8019995C;
 /*8019B89C*/ s32 D_8019B89C; /*unused*/
 /*801A1974*/ s32 D_801A1974;
 /*801A1978*/ s16 D_801A1978; /*sector count*/
+/*801A68A0*/ s32 D_801A68A0;
+/*801A68C8*/ s32 D_801A68C8;
+/*801AC590*/ s32 D_801AC590;
+/*801AC8D0*/ s32 D_801AC8D0;
 /*801ACC70*/ _41940UnkStruct1 D_801ACC70[32] ALIGNED(16);
 /*801C0D68*/ s32 D_801C0D68;
 
@@ -2392,7 +2400,376 @@ static void func_80047710(void)
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80047820);
 
 /*800494DC*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_800494DC);
+s32 func_800494DC(s32 spritenum1, s32 arg1, s32 spritenum2, s32 arg3)
+{
+    SpriteType *spr;
+    code0UnkStruct3 *ptr;
+    s16 *ptr2;
+    s32 cond, ret;
+    s32 ang;
+    s32 lotag1, lotag2;
+    s32 i, j, k, z;
+    u32 l;
+    s16 m;
+    u8 cond2;
+
+    ret = 0;
+
+    if ((D_8013B2D0[spritenum1].unk6 != 0) && (gpSprite[spritenum1].statnum != 10))
+        return 0;
+
+    ptr = &D_8019B940[D_80106D50[spritenum1]];
+    lotag2 = 0;
+
+    if ((ptr->unk4 & 2))
+        return 0;
+
+    if (gpSprite[spritenum1].statnum == 2)
+    {
+        changeSpriteStat(spritenum1, 1);
+        ptr->unk0 |= 0x40000;
+    }
+
+    cond = 0;
+    if ((gpSprite[spritenum1].statnum == 59) && (gpSprite[spritenum2].lotag != 15))
+    {
+        gpSprite[spritenum1].unk22 = 90;
+        return 0;
+    }
+
+    if (gpSprite[gpSprite[spritenum2].hitag].statnum == 10)
+    {
+        cond2 = 1;
+        if (D_801CDBC4 != 0)
+            arg1 = 5000;
+    }
+    else
+        cond2 = 0;
+
+    if (gpSprite[spritenum1].statnum == 305)
+    {
+        spr = &gpSprite[spritenum2];
+        D_8012F908 = 1;
+        D_801A19F4 = spr->x;
+        D_8012C798 = spr->y;
+        D_801AC590 = spr->z;
+
+        if (gpSprite[spritenum1].picnum == 1306)
+        {
+            ang = getAngleDelta(getAngle(D_801A19F4 - gpSprite[spritenum1].x, D_8012C798 - gpSprite[spritenum1].y),
+                                gpSprite[spritenum1].ang);
+
+            z = D_801AC590 - gpSprite[spritenum1].z;
+
+            if (gpSprite[spritenum2].lotag == 10)
+                D_80105540 = 1;
+
+            else if (ang < -850 || ang > 850)
+            {
+                if (z >= -0x7CFF)
+                {
+                    cond = 1;
+                    if (gpSprite[spritenum1].unk2B < 20)
+                    {
+                        i = gHeadSpriteStat[302];
+                        while (i >= 0)
+                        {
+                            if (gpSprite[i].picnum == 2559)
+                            {
+                                gpSprite[i].picnum = 2560;
+                                break;
+                            }
+                            i = gNextSpriteStat[i];
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    if (arg3 == 0)
+    {
+        if ((ptr->unk0 & 0x2000) && (gpSprite[gpSprite[spritenum2].hitag].statnum != 10))
+            return 0;
+        else
+            lotag2 = gpSprite[spritenum2].lotag;
+    }
+
+    if ((gpSprite[spritenum1].statnum == 10) && (arg3 == 0))
+    {
+        if (D_8012C470 == 1)
+        {
+            k = D_801AD474[D_80197DE8[lotag2]];
+            arg1 = (arg1 * k) / 100;
+
+            if (!cond2)
+            {
+                if (gpSprite[spritenum2].hitag >= 0)
+                {
+                    m = D_80106D50[gpSprite[spritenum2].hitag];
+                    if (m >= 0)
+                    {
+                        k = D_80105550[D_8019B940[m].unk84];
+                        arg1 = (arg1 * k) / 100;
+                    }
+                }
+            }
+
+            if (arg1 >= 5)
+                arg1 = (arg1 * D_800DEF18) / 100;
+        }
+
+        func_8003671C(gpSprite[spritenum1].unk16, arg1, gpSprite[spritenum2].hitag, gpSprite[spritenum2].lotag);
+        D_800FEA94 = ptr->unk8;
+        D_801AC8D0 = ptr->unk7E;
+        if (D_8012C470 >= 2)
+        {
+            lotag1 = gpSprite[spritenum2].lotag;
+            if (((lotag1 >= 3 && lotag1 < 5) ||
+                (lotag1 == 16) ||
+                (lotag1 == 5) ||
+                (lotag1 == 2) ||
+                (lotag1 >= 6 && lotag1 < 8)||
+                (lotag1 == 22) ||
+                (lotag1 == 2) ||
+                (lotag1 == 23) ||
+                (lotag1 == 17)) &&
+                !(krand() & 3))
+            {
+                func_8008E3E0(gpSprite[spritenum2].x, gpSprite[spritenum2].y,
+                              gpSprite[spritenum2].z, gpSprite[spritenum2].sectnum, 42, 20);
+            }
+        }
+        return 0;
+    }
+
+    k = 100;
+    if (D_80106D50[spritenum1] != -1)
+    {
+        if (D_8019B940[D_80106D50[spritenum1]].unk84 == -1)
+            return 0;
+
+        if (arg3 == 0)
+        {
+            ptr2 = D_80129808[D_8019B940[D_80106D50[spritenum1]].unk84];
+            if (D_80129808[D_8019B940[D_80106D50[spritenum1]].unk84] == 0)
+                return 0;
+
+            ptr2 = &ptr2[D_80197DE8[lotag2]];
+            D_801A68A0 = k = *ptr2;
+        }
+    }
+
+    if (arg3 == 0)
+    {
+        ptr->unk9E = lotag2;
+        arg1 = (arg1 * k) / 100;
+    }
+
+    if (ptr->unk7E > 0)
+    {
+        j = (arg1 * ((krand() % 30) + 0x14)) / 100;
+        ptr->unk7E += j;
+        arg1 -= j;
+        if (ptr->unk7E < 0)
+        {
+            arg1 += ptr->unk7E;
+            ptr->unk7E = 0;
+        }
+    }
+
+    if ((ptr->unk98 != 0xFF))
+    {
+        if ((ptr->unk98 < 19))
+        {
+            if (gpSprite[spritenum1].statnum != 10)
+            {
+                if (func_8004D7D8(spritenum1) != 0)
+                {
+                    l = func_8005A240(spritenum1);
+                    if ((l < 2) || (l == 2))
+                        arg1 += arg1 / 2;
+                }
+            }
+        }
+    }
+
+    if (arg1 >= 2)
+        arg1 = (arg1 * D_800DEF14) / 100;
+
+    if ((gpSprite[spritenum1].picnum == 1306))
+    {
+        if (cond != 0)
+            arg1 *= 2;
+    }
+
+    if (arg1 > 0)
+        func_800360A0(spritenum1, 0);
+
+    ptr->unk8 -= arg1;
+    D_801A68C8 = ptr->unk7E;
+    ptr->unk8E += arg1;
+
+    if (ptr->unk8 < 0)
+        ptr->unk8 = -1;
+
+    D_8019995C = arg1;
+    D_80168CF8 = ptr->unk8;
+
+    if (D_80168CF8 > 0)
+    {
+        if (arg1 > 0)
+        {
+            l = func_8005A240(spritenum1);
+
+            if (((l < 2) || (l == 2)) && (gpSprite[spritenum2].lotag != 9))
+                func_8006D3B8(spritenum1, 100, 0, 0, 0);
+
+            if ((ptr->unk10 != NULL) && (ptr->unk18 == NULL))
+            {
+                ptr->unk18 = ptr->unkC;
+                ptr->unkC = ptr->unk10;
+                ptr->unk34 = ptr->unk30;
+                ptr->unk82 = ptr->unk80;
+                ptr->unk8A = ptr->unk86;
+                ptr->unk93 = ptr->unk92;
+                ptr->unk0 |= 8;
+                ptr->unk30 = 0;
+                ptr->unk80 = 0;
+            }
+        }
+    }
+    else
+    {
+        if (gpSprite[spritenum1].statnum == 305)
+        {
+            switch (gpSprite[spritenum1].picnum)
+            {
+            case 1307:
+                func_8009A43C(spritenum1);
+                break;
+            case 1309:
+                func_8009B8A4(spritenum1);
+                break;
+            case 1306:
+                func_8009E638(spritenum1);
+                break;
+            }
+        }
+        else
+        {
+            if ((gpSprite[spritenum1].picnum == 2002) || (gpSprite[spritenum1].picnum == 2005))
+            {
+                if (cond2)
+                    audio_80008574(0, 1670);
+            }
+            else if ((ptr->unk14 != NULL) && !(ptr->unk0 & 0x4000))
+            {
+                ret = 1;
+                if ((cond2) && (func_8004D7D8(spritenum1) != 0))
+                {
+                    switch (func_8005A240(spritenum1))
+                    {
+                    case 1:
+                        if (func_801C0FDC(100) < 25)
+                            audio_800080E0(0, 14);
+                        else
+                            audio_800080E0(0, 6);
+                        break;
+                    case 0:
+                        if (func_801C0FDC(100) < 50)
+                            audio_800080E0(0, 13);
+                        else
+                            audio_800080E0(0, 6);
+                        break;
+                    case 2:
+                        if (func_801C0FDC(100) < 5)
+                            audio_800080E0(0, 12);
+                        else
+                            audio_800080E0(0, 6);
+                        break;
+                    default:
+                        if (gpSprite[spritenum1].picnum == 1292)
+                        {
+                            if (func_801C0FDC(100) < 15)
+                                audio_800080E0(0, 15);
+                            else
+                                audio_800080E0(0, 6);
+                        }
+                        else
+                            audio_800080E0(0, 6);
+                        break;
+                    }
+                }
+                if (!(gpSprite[spritenum1].cstat & 8) && !(ptr->unk0 & 0x01000000))
+                    D_801A1958.enemies_killed++;
+
+                if (gpSprite[spritenum1].statnum == 72)
+                    changeSpriteStat(spritenum1, 1);
+
+                ptr->unk30 = 0;
+                ptr->unk80 = 0;
+                ptr->unkC = ptr->unk14;
+                ptr->unk0 |= 0x4000;
+            }
+        }
+    }
+
+    lotag1 = lotag2;
+    if (arg3 == 0)
+    {
+        if ((lotag1 >= 3 && lotag1 < 5) || (lotag1 == 16) ||
+            (lotag1 == 5) || (lotag1 == 2) ||
+            (lotag1 >= 6 && lotag1 < 8) || (lotag1 == 22) ||
+            (lotag1 == 2) || (lotag1 == 23) ||
+            (lotag1 == 17) || (lotag1 == 26))
+        {
+            if (((lotag1 == 4) || (lotag1 == 16) || (lotag1 >= 5 && lotag1 < 7)) && (krand() & 1))
+                return ret;
+
+            ang = gpSprite[spritenum1].x - gPlayer->xpos;
+            if (((klabs_(ang) + klabs_(gpSprite[spritenum1].y - gPlayer->ypos)) > 1200) &&
+                (func_8004D7D8(spritenum1) != 0) && (arg1 > 0) && !(ptr->unk0 & 0x20000))
+            {
+                if (ptr->unkA0 < 3)
+                {
+                    ptr->unkA0++;
+                    if ((lotag1 != 9) || (lotag1 != 15))
+                    {
+                        if ((ptr->unk84 == 0) || (ptr->unk84 == 11) || (ptr->unk84 == 8) || (ptr->unk84 == 18))
+                        {
+                            func_80057540(&gpSprite[spritenum2], 1501, 1, 0);
+                            func_8008E3E0(gpSprite[spritenum2].x, gpSprite[spritenum2].y,
+                                          gpSprite[spritenum2].z, gpSprite[spritenum2].sectnum, 42, 9);
+                        }
+                        else
+                        {
+                            if (gMapNum != MAP_BRAINSTORM)
+                            {
+                                func_80057540(&gpSprite[spritenum2], 1500, 1, 0);
+                                func_8008E3E0(gpSprite[spritenum2].x, gpSprite[spritenum2].y,
+                                              gpSprite[spritenum2].z, gpSprite[spritenum2].sectnum, 42, 20);
+                            }
+                            else
+                                func_80057540(&gpSprite[spritenum2], 1500, 1, 0);
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            if ((((u32)ptr->unk4 >> 1) & 1) && (lotag1 != 20))
+            {
+                ptr->unk9E = lotag1;
+                ret = 1;
+                func_80055EC0(spritenum1, 0);
+            }
+        }
+    }
+
+    return ret;
+}
 
 /*8004A4D4*/
 static void func_8004A4D4(SpriteType *spr, s32 arg1, s32 arg2)

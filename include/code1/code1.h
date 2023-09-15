@@ -151,7 +151,7 @@ typedef struct _code1UnkStruct6
 /*801CDB44*/ _extern u8 *D_801CDB44;
 /*801CDB48*/ _extern u16 D_801CDB48;
 /*801CDB4C*/ _extern s32 D_801CDB4C;
-/*801CDBC4*/ _extern s16 D_801CDBC4;
+/*801CDBC4*/ _extern u16 D_801CDBC4;
 /*801CDBC6*/ _extern u16 D_801CDBC6;
 /*801CDBC8*/ _extern u8 *D_801CDBC8; /*edlHandle*/
 /*801CDBCC*/ _extern u16 D_801CDBCC;

@@ -179,7 +179,7 @@ void func_80035FB0(s32 spritenum)
 }
 
 /*800360A0*/
-void func_800360A0(s32 spritenum)
+void func_800360A0(s32 spritenum, s32 arg1)
 {
     u16 *ptr;
     u16 **ptr2;
