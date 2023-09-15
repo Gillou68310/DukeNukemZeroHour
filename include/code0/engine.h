@@ -186,7 +186,7 @@ s32 getAngle(s32 xvect, s32 yvect);
 s32 setSprite(s16 spritenum, s32 newx, s32 newy, s32 newz);
 s32 animateOffs(s16 tileid, s16 fakevar);
 void initSpriteLists(void);
-s32 insertSprite(s16 sectnum, s16 statnum);
+s16 insertSprite(s16 sectnum, s16 statnum);
 s32 deleteSprite(s16 spritenum);
 s32 changeSpriteSect(s16 spritenum, s16 newsectnum);
 s32 changeSpriteStat(s16 spritenum, s16 newstatnum);

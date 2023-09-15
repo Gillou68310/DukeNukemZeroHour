@@ -251,7 +251,7 @@ void initSpriteLists(void)
 }
 
 /*8002BFF8*/
-s32 insertSprite(s16 sectnum, s16 statnum)
+s16 insertSprite(s16 sectnum, s16 statnum)
 {
     s16 stat;
     s16 sect;

@@ -69,7 +69,7 @@ typedef struct
     /*0x5E*/ s16 unk5E;
     /*0x60*/ u8 unk60;
     /*0x61*/ u8 unk61;
-    /*0x64*/ s32 unk64;
+    /*0x64*/ f32 unk64;
     /*0x68*/ s16 unk68;
     /*0x6A*/ s16 unk6A;
     /*0x6C*/ u8 unk6C;
