@@ -8,7 +8,7 @@ void func_8007F0E0(void);
 code0UnkStruct16 *func_8007FC08(code0UnkStruct15 *, s32, s32, s32, s32);
 void func_8007FCC8(void);
 void func_8007FD8C(code0UnkStruct15 *, s32);
-void func_8007FE04(s32 unused, s32 id, void *dst);
+void func_8007FE04(void *unused, s32 id, void *dst);
 code0UnkStruct16 *func_8007FE2C(void *, s32, s32, s32, s32, s32);
 void func_8007FEDC(void *src, u8);
 void func_8007FF94(void *src, u8);

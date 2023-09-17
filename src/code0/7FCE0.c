@@ -181,7 +181,7 @@ void func_8007FD8C(code0UnkStruct15 *arg0, s32 arg1)
 }
 
 /*8007FE04*/
-void func_8007FE04(s32 unused, s32 id, void *dst)
+void func_8007FE04(void *unused, s32 id, void *dst)
 {
     edl_80081760(&D_8010A938, id, dst);
 }

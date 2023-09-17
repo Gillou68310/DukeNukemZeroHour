@@ -698,7 +698,7 @@ code0UnkStruct16 *func_8008372C(s32 arg0, _119280UnkStruct1 *arg1, s32 arg2, Lig
 }
 
 /*800837B8*/
-code0UnkStruct16 *func_800837B8(u16 *arg0, s32 arg1, Lights1 *arg2)
+code0UnkStruct16 *func_800837B8(_119280UnkStruct1 *arg0, s32 arg1, Lights1 *arg2)
 {
     code0UnkStruct16 *ptr;
 
@@ -709,7 +709,7 @@ code0UnkStruct16 *func_800837B8(u16 *arg0, s32 arg1, Lights1 *arg2)
     ptr->unk50 = 0;
     ptr->unkC |= 0x20;
     ptr->unkC |= arg1;
-    ptr->unkA4 = D_8012C478[*arg0];
+    ptr->unkA4 = D_8012C478[arg0->unk0];
     ptr->unkAC = arg2;
     return ptr;
 }

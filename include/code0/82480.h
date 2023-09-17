@@ -12,7 +12,7 @@ void func_80082448(void);
 void func_80083200(_119280UnkStruct1 *, s32);
 void func_80083700(s32, _119280UnkStruct1 *, s32, s32);
 code0UnkStruct16 *func_8008372C(s32, _119280UnkStruct1 *, s32, Lights1 *, s32);
-code0UnkStruct16 *func_800837B8(u16 *, s32, Lights1 *);
+code0UnkStruct16 *func_800837B8(_119280UnkStruct1 *, s32, Lights1 *);
 void func_8008383C(void);
 
 #endif
