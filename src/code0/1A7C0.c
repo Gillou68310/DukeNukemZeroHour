@@ -12,6 +12,7 @@
 
 /*.data*/
 /*800DCA00*/ EXTERN_DATA STATIC s16 D_800DCA00;
+/*800DCA04*/ EXTERN_DATA STATIC u8 D_800DCA04[9][3];
 
 /*.comm*/
 /*80105548*/ s32 D_80105548; /*vz*/
@@ -32,7 +33,7 @@
 /*801B0D34*/ s16 D_801B0D34;
 
 /*.text*/
-STATIC void func_8001A8EC(s16, s16, s32 tileid, s16, u8);
+static void func_8001A8EC(s16, s16, s32 tileid, s16, u8);
 static void func_8001BFB0(code0unkStruct12 *);
 static void func_8001C490(s16);
 
@@ -228,7 +229,24 @@ void func_8001A1A4(void)
 }
 
 /*8001A8EC*/
-INCLUDE_ASM("nonmatchings/src/code0/1A7C0", func_8001A8EC);
+static void func_8001A8EC(s16 arg0, s16 arg1, s32 tileid, s16 arg3, u8 arg4)
+{
+    f32 f1, f2;
+    s32 alpha;
+
+    f1 = (D_801A1990 * arg0) / 256.0f;
+    f2 = (D_801387C0 * arg0) / 256.0f;
+    alpha = (arg3 * D_800DCA00) / 256;
+
+    gDPSetPrimColor(gpDisplayList++, 0, 0, D_800DCA04[arg4][0], D_800DCA04[arg4][1], D_800DCA04[arg4][2], alpha);
+    /*TODO: buffer index out of bound*/
+    gDPSetEnvColor(gpDisplayList++, D_800DCA04[arg4][3], D_800DCA04[arg4][4], D_800DCA04[arg4][5], alpha);
+    func_80027C18(f1 + D_80168C9C,
+                  f2 + D_801A2684,
+                  (arg1 * (D_80199110 / (SCREEN_WIDTH / 2.0))),
+                  (arg1 * (D_801A1980 / (SCREEN_HEIGHT / 2.0))),
+                  getTileNum(tileid), 0);
+}
 
 /*8001AAEC*/
 static void func_8001AAEC(void)

@@ -4078,7 +4078,7 @@ void func_8004EC38(void)
     {
         if (D_800DEEE4[i])
         {
-            if ((u8)(D_800DEEE4[i] - 6) >= 4) /*TODO?*/
+            if (D_800DEEE4[i] < 6 || D_800DEEE4[i] >= 10)
             {
                 if (D_800DEEE4[i] < 5)
                     D_800DF1AC[i] += 64;
