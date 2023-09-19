@@ -3456,7 +3456,7 @@ void func_801C8F54(void)
         {
             if (D_801CC8D0[i] != NULL)
             {
-                if (D_801CC8D0[i]->unk10 >= 49)
+                if (D_801CC8D0[i]->unk10 > 48)
                     D_801CC8D0[i]->unk10 -= 32;
                 else
                 {
@@ -3466,7 +3466,7 @@ void func_801C8F54(void)
             }
             if (D_801CE558[i] != NULL)
             {
-                if (D_801CE558[i]->unk10 >= 49)
+                if (D_801CE558[i]->unk10 > 48)
                     D_801CE558[i]->unk10 -= 32;
                 else
                 {

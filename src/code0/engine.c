@@ -255,7 +255,6 @@ s16 insertSprite(s16 sectnum, s16 statnum)
 {
     s16 stat;
     s16 sect;
-    s32 temp;
 
     stat = insertSpriteStat(statnum);
     sect = insertSpriteSect(sectnum);
@@ -264,13 +263,8 @@ s16 insertSprite(s16 sectnum, s16 statnum)
     {
         if (stat == sect)
         {
-            temp = D_80199950;
             D_801A2624++;
-            if (temp < D_801A2624)
-            {
-                temp = D_801A2624;
-            }
-            D_80199950 = temp;
+            D_80199950 = MAX(D_80199950, D_801A2624);
         }
     }
     return sect;

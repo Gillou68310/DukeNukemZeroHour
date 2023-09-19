@@ -2727,8 +2727,8 @@ s32 func_800494DC(s32 spritenum1, s32 arg1, s32 spritenum2, s32 arg3)
             if (((lotag1 == 4) || (lotag1 == 16) || (lotag1 >= 5 && lotag1 < 7)) && (krand() & 1))
                 return ret;
 
-            ang = gpSprite[spritenum1].x - gPlayer->xpos;
-            if (((klabs_(ang) + klabs_(gpSprite[spritenum1].y - gPlayer->ypos)) > 1200) &&
+            ang = gpSprite[spritenum1].x - gPlayer[0].xpos;
+            if (((klabs_(ang) + klabs_(gpSprite[spritenum1].y - gPlayer[0].ypos)) > 1200) &&
                 (func_8004D7D8(spritenum1) != 0) && (arg1 > 0) && !(ptr->unk0 & 0x20000))
             {
                 if (ptr->unkA0 < 3)
@@ -3477,7 +3477,7 @@ s32 func_8004CE58(SpriteType *spr, s16 arg1, s16 arg2)
                 {
                     x = gpSprite[j].x - spr->x;
                     y = gpSprite[j].y - spr->y;
-                    temp = b * x;
+                    temp = b * x; /*FAKEMATCH?*/
 
                     if ((a * y) >= (temp))
                     {
@@ -3929,9 +3929,9 @@ static s32 func_8004DE60(s32 spritenum, s32 arg1)
         if (D_8010A918 < 1200)
         {
             z2 = (D_80118248->z - 0x3900);
-            D_80169524 = z2 - gPlayer->zpos;
+            D_80169524 = z2 - gPlayer[0].zpos;
 
-            if ((D_80169524 >= -0x7FF) && (D_80169524 < 0x12C0) && (gPlayer->unk45 == 0))
+            if ((D_80169524 >= -0x7FF) && (D_80169524 < 0x12C0) && (gPlayer[0].unk45 == 0))
                 D_80137DE0->unk4 |= 0x10000;
         }
     }
@@ -4180,7 +4180,7 @@ void func_8004F044(void)
                     else
                         j = func_80058DE0(spr, &sp10);
 
-                    if (temp == 0)
+                    if (temp == 0) /*FAKEMATCH?*/
                         D_801C0D68++;
 
                     func_80040EF0(i, j, sp10);
@@ -6326,7 +6326,7 @@ STATIC s32 func_8005731C(s32 spritenum)
     SpriteType *spr;
     s32 unk16;
     s32 unk1C;
-    s32 temp;
+    s32 i;
     s32 z;
     s32 ang;
 
@@ -6336,8 +6336,8 @@ STATIC s32 func_8005731C(s32 spritenum)
         return 0;
 
     z = spr->z;
-    temp = func_80058600(unk16);
-    unk1C = (((gpSprite[unk16].z - z) - temp) * 2000) / ldist(&gpSprite[spritenum], &gpSprite[unk16]);
+    i = func_80058600(unk16);
+    unk1C = (((gpSprite[unk16].z - z) - i) * 2000) / ldist(&gpSprite[spritenum], &gpSprite[unk16]);
     unk1C /= 8;
     ang = (getAngleDelta(gpSprite[spritenum].ang,
         getAngle(gpSprite[unk16].x - gpSprite[spritenum].x, gpSprite[unk16].y - gpSprite[spritenum].y))) >> 3;
@@ -6542,7 +6542,7 @@ static s32 func_80058538(SpriteType *spr, s32 arg1)
 /*80058600*/
 s32 func_80058600(s32 spritenum)
 {
-    s32 ret, temp;
+    s32 ret, i;
     ModelInfo *model;
 
     ret = 0x3900;
@@ -6552,8 +6552,8 @@ s32 func_80058600(s32 spritenum)
         if (model != NULL)
         {
             ret = (model->unk2E - model->unk28) * 32;
-            temp = gpSprite[spritenum].xrepeat * ret;
-            ret = temp / 64;
+            i = gpSprite[spritenum].xrepeat * ret;
+            ret = i / 64;
         }
         ret -= 2048;
     }
@@ -6598,7 +6598,7 @@ void func_80058844(s32 spritenum, s32 arg1, s32 arg2, s16 arg3)
 {
     s32 x, y, temp;
 
-    temp = 0x10;
+    temp = 0x10; /*FAKEMATCH?*/
     x = (arg2 * (gpSinTable[(gpSprite[spritenum].ang + 1024) & 0x7FF] * temp)) / 16384;
     y = (arg2 * (gpSinTable[(gpSprite[spritenum].ang + 512) & 0x7FF] * temp)) / 16384;
 

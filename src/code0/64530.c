@@ -59,7 +59,7 @@ static void func_80063A40(s16 playernum, s16 spritenum)
             ((getFlorzOfSlope(sectnum2,
                 gPlayer[playernum].xpos,
                 gPlayer[playernum].ypos) - gPlayer[playernum].unk40) + 0x2600)) &&
-            (gPlayer[playernum].unk14 >= 257))
+            (gPlayer[playernum].unk14 > 256))
         {
             gPlayer[playernum].xpos += (gpSprite[j].x - gpSprite[spritenum].x);
             gPlayer[playernum].ypos += (gpSprite[j].y - gpSprite[spritenum].y);

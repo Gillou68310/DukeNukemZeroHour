@@ -904,7 +904,7 @@ void func_8005B5C8(s32 spritenum, s32 arg1)
 /*8005B82C*/
 void func_8005B82C(s32 spritenum, s32 arg1)
 {
-    if (gPlayer[0].unk36 >= 0x1001)
+    if (gPlayer[0].unk36 > 0x1000)
     {
         if (((gPlayer[0].unk36 - 0x1000) == spritenum) && (gPlayer[0].unk59 != 0))
         {
@@ -1643,7 +1643,7 @@ void func_8005D83C(s32 spritenum, s32 arg1)
     s16 hitsect, hitwall, hitsprite;
     s32 hitx, hity, hitz;
     s16 cstat;
-    s32 i, ang, ang2, d1, d2, temp;
+    s32 i, ang, ang2, d1, d2, j;
 
     d2 = -1;
     ang2 = -1;
@@ -1680,8 +1680,8 @@ void func_8005D83C(s32 spritenum, s32 arg1)
         }
     }
 
-    temp = ang2 - 256;
-    ang2 = temp + (krand() & 0x1FF);
+    j = ang2 - 256;
+    ang2 = j + (krand() & 0x1FF);
     setVar(spritenum, arg1, ang2);
 }
 
@@ -2300,13 +2300,13 @@ void func_8005F358(s32 spritenum, s32 arg1)
 /*8005F38C*/
 void func_8005F38C(s32 spritenum, s32 arg1)
 {
-    s32 x, y, z, x1, y1, z1, ang, ang1, m, temp;
+    s32 x, y, z, x1, y1, z1, ang, ang1, m, i;
 
     if ((D_8012FD88 & 3) == 3)
     {
         ang = krand() & 0x3FF;
-        temp = (krand() & 0x1FFF) + 8000;
-        m = temp + (krand() & 0x7FF);
+        i = (krand() & 0x1FFF) + 8000;
+        m = i + (krand() & 0x7FF);
         ang1 = ang + 1;
         x1 = (m * gpSinTable[ang1]) >> 14;
         y1 = (m * gpSinTable[(ang - 511) & 0x7FF]) >> 14;

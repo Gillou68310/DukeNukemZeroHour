@@ -168,7 +168,7 @@ static void func_8007B64C(s32 arg0)
     k = 0;
     gDPSetCombineMode(gpDisplayList++, G_CC_SHADE, G_CC_PASS2);
     func_8000C76C();
-    temp = arg0;
+    temp = arg0; /*FAKEMATCH?*/
     for (i = 127; i >= 0; i--)
     {
         l = func_8007B5D8(temp, i);
@@ -228,7 +228,7 @@ static void func_8007B930(s32 arg0)
     gDPSetEnvColor(gpDisplayList++, gpAlphaPalette->env.r,
                    gpAlphaPalette->env.g, gpAlphaPalette->env.b, 0);
 
-    temp = arg0;
+    temp = arg0; /*FAKEMATCH?*/
     m = 0;
     l = 16;
 

@@ -1793,7 +1793,7 @@ static s32 func_8009F648(s32 spritenum)
             if (func_80040D40(gpSprite[i].x,
                 gpSprite[i].y,
                 gpSprite[spritenum].x,
-                gpSprite[spritenum].y) >= 4001)
+                gpSprite[spritenum].y) > 4000)
             {
                 return i;
             }

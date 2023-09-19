@@ -486,7 +486,7 @@ static void main_80000F68(s16 playernum)
 static void main_80001038(void)
 {
     s16 playernum;
-    s16 temp;
+    s16 unk4E;
 
     if (D_800BD3F0 != 0)
     {
@@ -591,13 +591,13 @@ static void main_80001038(void)
 
             if (gPlayer[playernum].unk45 != 0)
             {
-                temp = gPlayer[playernum].unk4E;
+                unk4E = gPlayer[playernum].unk4E;
                 if (gPlayer[playernum].unk45 == 4)
-                    func_8000EA0C(playernum, 0xFF - temp, 0xFF - temp, 0xFF - temp, 0xFF);
+                    func_8000EA0C(playernum, 0xFF - unk4E, 0xFF - unk4E, 0xFF - unk4E, 0xFF);
                 else if (gPlayer[playernum].unk45 == 3)
-                    func_8000EA0C(playernum, 0xFF - temp, -temp, -temp, 0xFF);
+                    func_8000EA0C(playernum, 0xFF - unk4E, -unk4E, -unk4E, 0xFF);
                 else
-                    func_8000EA0C(playernum, -temp, -temp, -temp, temp);
+                    func_8000EA0C(playernum, -unk4E, -unk4E, -unk4E, unk4E);
             }
         }
 

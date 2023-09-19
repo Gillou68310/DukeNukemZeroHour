@@ -212,8 +212,8 @@ void func_8001A1A4(void)
                         fx = fx * D_80199110;
                         fy = -fy * D_801A1980;
                         fz = (1.0f - fz);
-                        f6 = ((fz * gpSprite[spritenum].xrepeat * 4.0f) * (D_80199110 / 160.0));
-                        f5 = ((fz * gpSprite[spritenum].xrepeat * 4.0f) * (D_801A1980 / 120.0));
+                        f6 = ((fz * gpSprite[spritenum].xrepeat * 4.0f) * (D_80199110 / (SCREEN_WIDTH/2.0)));
+                        f5 = ((fz * gpSprite[spritenum].xrepeat * 4.0f) * (D_801A1980 / (SCREEN_HEIGHT/2.0)));
                         func_80027C18(fx + D_80168C9C,
                                       fy + D_801A2684,
                                       f6,

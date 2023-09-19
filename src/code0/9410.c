@@ -1660,7 +1660,7 @@ static void func_8000E56C(void)
 
     xAt = sinf(D_801AEA10) * 512.0;
     yAt = cosf(D_801AEA10) * -512.0;
-    zAt = (f64)(sinf(D_8016A15C) * 512.0) / cosf(D_8016A15C);
+    zAt = (sinf(D_8016A15C) * 512.0) / cosf(D_8016A15C);
 
     grPerspectiveF(projection,
                    &perspNorm,
@@ -1836,8 +1836,8 @@ static void func_8000EBF0(u8 playernum, u8 arg1)
         }
         gDPSetPrimColor(gpDisplayList++, 0, 0, D_80138798[playernum].r, D_80138798[playernum].g, D_80138798[playernum].b, alpha);
 
-        f1 = (D_80199110 / 160.0 * 60.0);
-        f2 = (D_801A1980 / 120.0 * 46.875);
+        f1 = (D_80199110 / (SCREEN_WIDTH/2.0) * 60.0);
+        f2 = (D_801A1980 / (SCREEN_HEIGHT/2.0) * 46.875);
         if (playernum >= 4)
         {
             func_80027C18((gScreenWidth/2), (gScreenHeight / 2), f1, f2, getTileNum(5948), 0);
@@ -1850,8 +1850,8 @@ static void func_8000EBF0(u8 playernum, u8 arg1)
     {
         if (D_8013F930[playernum].a > 0)
         {
-            f1 = (D_80199110 / 160.0 * 13.875);
-            f2 = (D_801A1980 / 120.0 * 10.40625);
+            f1 = (D_80199110 / (SCREEN_WIDTH/2.0) * 13.875);
+            f2 = (D_801A1980 / (SCREEN_HEIGHT/2.0) * 10.40625);
 
             alpha = CLAMP_MIN(CLAMP_MAX(D_8013F930[playernum].a, 255), 0);
 

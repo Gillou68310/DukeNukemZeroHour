@@ -122,7 +122,7 @@ s32 nsqrtasm(s32 arg0)
     if (arg0 < 0)
         return 1;
 
-    return (s32)sqrtf((f64)arg0);
+    return sqrtf((f64)arg0);
 }
 
 /*8002B660*/

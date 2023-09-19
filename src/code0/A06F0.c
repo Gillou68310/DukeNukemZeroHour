@@ -54,7 +54,7 @@ void func_8009FAF0(void)
         if (D_800DEE98 == 2)
         {
             sectnum = D_800FF3E8[i];
-            temp = sectnum;
+            temp = sectnum; /*FAKEMATCH?*/
             if (gpSector[sectnum].unk18 == 0)
             {
                 gpSector[temp].unk18 = 3;
@@ -416,8 +416,8 @@ static void func_800A34CC(s32 x, s32 y, u16 tileid, s16 arg3)
     func_8001D128(&x, &y);
     func_80027C18(x,
                   y,
-                  (D_80199110 * 3.0f) / 160.0,
-                  (D_801A1980 * 3.0f) / 120.0,
+                  (D_80199110 * 3.0f) / (SCREEN_WIDTH / 2.0),
+                  (D_801A1980 * 3.0f) / (SCREEN_HEIGHT / 2.0),
                   getTileNum(tileid),
                   arg3);
 }
@@ -428,8 +428,8 @@ static void func_800A359C(s32 x, s32 y, s16 tileid, s16 arg3)
     f32 f1, f2;
 
     func_8001D128(&x, &y);
-    f1 = (gScreenWidth * 3) / 320.0;
-    f2 = (gScreenHeight * 3) / 240.0;
+    f1 = (gScreenWidth * 3) / (f64)SCREEN_WIDTH;
+    f2 = (gScreenHeight * 3) / (f64)SCREEN_HEIGHT;
     func_80027C18(x,
                   y,
                   f1,
@@ -503,7 +503,7 @@ void func_800A3688(void)
                 if (gPlayer[D_801B0820].unk6C != 0)
                 {
                     func_80028F04(0, 0, 0, 0, 0xFF, 0);
-                    func_800A34CC(160, 120, 5868, 0);
+                    func_800A34CC((SCREEN_WIDTH/2), (SCREEN_HEIGHT/2), 5868, 0);
                     func_80029130(0, 0xFF, 0, 0, 0, 0);
                     displayMessage1(190, 160, "X");
                     sprintf(buffer, D_800E9EF4, gPlayer[D_801B0820].unk6E / 256);
@@ -523,7 +523,7 @@ void func_800A3688(void)
                 else
                 {
                     func_80028F04(0xFF, 0, 0, 0xFF, 0, 0);
-                    func_800A359C(160, 120, l, 0);
+                    func_800A359C((SCREEN_WIDTH/2), (SCREEN_HEIGHT/2), l, 0);
                 }
             }
             else
@@ -598,8 +598,8 @@ void func_800A3688(void)
                         func_80028F04(0xFF, 0, 0, 0xFF, 0, 0);
                         func_80027C18((f6 * D_80199110) + D_80168C9C,
                                       (-f7 * D_801A1980) + D_801A2684,
-                                      ((D_80199110 * 3.0f) / 160.0),
-                                      ((D_801A1980 * 3.0f) / 120.0),
+                                      ((D_80199110 * 3.0f) / (SCREEN_WIDTH/2.0)),
+                                      ((D_801A1980 * 3.0f) / (SCREEN_HEIGHT/2.0)),
                                       getTileNum(l), 0);
                     }
                 }

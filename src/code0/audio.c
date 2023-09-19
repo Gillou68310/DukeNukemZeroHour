@@ -958,7 +958,7 @@ void audio_80007AB8(void)
     }
     else
     {
-        if (get_D_800BD61C(0)!= 0)
+        if (get_D_800BD61C(0) != 0)
         {
             MusHandleStop(get_D_800BD61C(0), 10);
             D_800BD61C[0] = 0;

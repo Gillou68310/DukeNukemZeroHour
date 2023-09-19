@@ -211,7 +211,7 @@ void func_80086A24(void)
                 if (tc2 < tc1)
                     tc2 |= 0x1000;
 
-                temp = 0x3FF;
+                temp = 0x3FF; /*FAKEMATCH?*/
                 gpVertexN64->v.ob[0] = (ptr->unk0[j].x / 2) - ptr->unk0[0].u.s1.unk6;
                 gpVertexN64->v.ob[1] = (ptr->unk0[j].y / 2) - ptr->unk0[0].u.s1.unk8;
                 gpVertexN64->v.ob[2] = (ptr->unk0[j].z / 2);

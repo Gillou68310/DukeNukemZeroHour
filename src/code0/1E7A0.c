@@ -206,14 +206,14 @@ void func_8001DE9C(void)
                     d = ((sizex * f9) + (-sizey * f8));
                     h = ((sizey * f9) + (sizex * f8));
 
-                    a = (((a * 4) * D_80199110) / 160.0f) + f10;
-                    b = (((b * 4) * D_80199110) / 160.0f) + f10;
-                    c = (((c * 4) * D_80199110) / 160.0f) + f10;
-                    d = (((d * 4) * D_80199110) / 160.0f) + f10;
-                    e = (((e * 4) * D_801A1980) / 120.0f) + f11;
-                    f = (((f * 4) * D_801A1980) / 120.0f) + f11;
-                    g = (((g * 4) * D_801A1980) / 120.0f) + f11;
-                    h = (((h * 4) * D_801A1980) / 120.0f) + f11;
+                    a = (((a * 4) * D_80199110) / (SCREEN_WIDTH/2.f)) + f10;
+                    b = (((b * 4) * D_80199110) / (SCREEN_WIDTH/2.f)) + f10;
+                    c = (((c * 4) * D_80199110) / (SCREEN_WIDTH/2.f)) + f10;
+                    d = (((d * 4) * D_80199110) / (SCREEN_WIDTH/2.f)) + f10;
+                    e = (((e * 4) * D_801A1980) / (SCREEN_HEIGHT/2.f)) + f11;
+                    f = (((f * 4) * D_801A1980) / (SCREEN_HEIGHT/2.f)) + f11;
+                    g = (((g * 4) * D_801A1980) / (SCREEN_HEIGHT/2.f)) + f11;
+                    h = (((h * 4) * D_801A1980) / (SCREEN_HEIGHT/2.f)) + f11;
 
                     if (D_80197DD4 == 0)
                     {
@@ -434,7 +434,7 @@ void func_8001F44C(void)
                     D_801AE538[i].unk0 = 0;
 
                 playernum = audio_80007510(D_801AE538[i].unk2 * 2, D_801AE538[i].unk4 * 2);
-                if (D_8013871C >= 0x101)
+                if (D_8013871C > 0x100)
                 {
                     ang = getAngle(gPlayer[playernum].xpos - (D_801AE538[i].unk2 * 2), gPlayer[playernum].ypos - (D_801AE538[i].unk4 * 2));
                     f1 = D_801AE538[i].unk2;

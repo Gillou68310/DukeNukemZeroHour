@@ -2322,7 +2322,7 @@ STATIC void func_80074664(s32 spritenum)
                     func_80087174(spritenum, spr->x, spr->y, z, hitx, hity, z, 32, 8);
 
                 spr->unk18++;
-                if (spr->unk18 >= 11)
+                if (spr->unk18 > 10)
                 {
                     func_8004BFDC(spritenum, 7, spr->z, 1);
                     func_8004BD24(spritenum);
@@ -2339,7 +2339,7 @@ STATIC void func_80074664(s32 spritenum)
                 if (spr->unk1A == 0)
                 {
                     spr->unk18++;
-                    if (spr->unk18 >= 61)
+                    if (spr->unk18 > 60)
                     {
                         audio_800077F4(780, spritenum);
                         spr->unk1A = 1;

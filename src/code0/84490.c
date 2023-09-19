@@ -353,7 +353,7 @@ static void func_8008482C(void)
         D_80168D18++;
     }
 
-    temp = D_8012F6EC;
+    temp = D_8012F6EC; /*FAKEMATCH?*/
     D_8012EB50[D_8011815C][5] = temp;
     D_8012EB50[D_8011815C][1] = D_80118168.unk4;
     D_8012EB50[D_8011815C][0] = D_80118168.unk0;
@@ -520,7 +520,7 @@ static void func_80085128(void)
         D_80168D18++;
     }
 
-    temp = D_8012F6EC;
+    temp = D_8012F6EC; /*FAKEMATCH?*/
     D_8012EB50[D_8011815C][5] = temp;
     D_8012EB50[D_8011815C][1] = D_80118168.unk4;
     D_8012EB50[D_8011815C][0] = D_80118168.unk0;

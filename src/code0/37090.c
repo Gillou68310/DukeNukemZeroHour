@@ -724,106 +724,99 @@ static void func_80037B84(void)
                 if (gPlayer[D_801B0820].unk6C == 0)
                     gPlayer[D_801B0820].unk6E = 0x100;
             }
-            goto block2;
-
-        block1:
+        }
+        else
+        {
+            gPlayer[D_801B0820].unk6E = 0x100;
+            if (gPlayer[D_801B0820].unk52 < 0x800)
             {
-                gPlayer[D_801B0820].unk6E = 0x100;
-                if (gPlayer[D_801B0820].unk52 < 0x800)
+                spr = &gpSprite[gPlayer[D_801B0820].unk52 & 0x7FF];
+                if (spr->unk2A != 81)
                 {
-                    spr = &gpSprite[gPlayer[D_801B0820].unk52 & 0x7FF];
-                    if (spr->unk2A != 81)
+                    if (D_8011A670[D_801B0820] > 32)
                     {
-                        if (D_8011A670[D_801B0820] > 32)
+                        spr->ang += 4;
+                        spr->unk18 += 4;
+                        if (spr->unk18 >= spr->unk1A)
                         {
-                            spr->ang += 4;
-                            spr->unk18 += 4;
-                            if (spr->unk18 >= spr->unk1A)
-                            {
-                                spr->ang -= (spr->unk18 - spr->unk1A);
-                                spr->unk18 = spr->unk1A;
-                            }
-                        }
-
-                        if (D_8011A670[D_801B0820] < -32)
-                        {
-                            spr->ang -= 4;
-                            spr->unk18 -= 4;
-                            if (spr->unk18 <= -spr->unk1A)
-                            {
-                                spr->ang -= (spr->unk18 + spr->unk1A);
-                                spr->unk18 = -spr->unk1A;
-                            }
-                        }
-
-                        spr->ang &= 0x7FF;
-                        if (spr->unk2A == 83)
-                        {
-                            if (D_8013A43C[D_801B0820] > 32)
-                                spr->unk22 = CLAMP_MAX((spr->unk22 * 1.025), 2048.0);
-
-                            if (D_8013A43C[D_801B0820] < -32)
-                                spr->unk22 = CLAMP_MIN((spr->unk22 / 1.025), 256.0);
-
-                            gPlayer[D_801B0820].unk6E = spr->unk22;
+                            spr->ang -= (spr->unk18 - spr->unk1A);
+                            spr->unk18 = spr->unk1A;
                         }
                     }
+
+                    if (D_8011A670[D_801B0820] < -32)
+                    {
+                        spr->ang -= 4;
+                        spr->unk18 -= 4;
+                        if (spr->unk18 <= -spr->unk1A)
+                        {
+                            spr->ang -= (spr->unk18 + spr->unk1A);
+                            spr->unk18 = -spr->unk1A;
+                        }
+                    }
+
+                    spr->ang &= 0x7FF;
+                    if (spr->unk2A == 83)
+                    {
+                        if (D_8013A43C[D_801B0820] > 32)
+                            spr->unk22 = CLAMP_MAX((spr->unk22 * 1.025), 2048.0);
+
+                        if (D_8013A43C[D_801B0820] < -32)
+                            spr->unk22 = CLAMP_MIN((spr->unk22 / 1.025), 256.0);
+
+                        gPlayer[D_801B0820].unk6E = spr->unk22;
+                    }
                 }
-                D_80138850 = 0;
-                return;
             }
+            D_80138850 = 0;
+            return;
+        }
 
-        block2:
+        gPlayer[D_801B0820].unk20 = i;
+        gPlayer[D_801B0820].unk24 = j;
+        n = 162;
+        f1 = 0.8f;
+
+        if (gPlayer[D_801B0820].unk5B != 0)
+        {
+            if (gPlayer[D_801B0820].unk54 != 0)
             {
-                f1 = 0.8f;
-                gPlayer[D_801B0820].unk20 = i;
-                gPlayer[D_801B0820].unk24 = j;
-                n = 162;
-                if (gPlayer[D_801B0820].unk5B != 0)
+                n = 81;
+                f1 = 0.9f;
+            }
+            i *= cosf((gPlayer[D_801B0820].unk3E * (PI/1024)));
+        }
+
+        D_8013B2D0[gPlayer[D_801B0820].unk4A].unk0 *= f1;
+        D_8013B2D0[gPlayer[D_801B0820].unk4A].unk0 -= ((k * klabs(i)) / n);
+
+        k = 0;
+        if (!(gPlayer[D_801B0820].unk80 & 1))
+        {
+            if (func_8003779C(15) == 0)
+            {
+                if (klabs(D_8013A43C[D_801B0820]) >= 4)
                 {
-                    if (gPlayer[D_801B0820].unk54 != 0)
-                    {
-                        n = 81;
-                        f1 = 0.9f;
-                    }
-                    i *= cosf((gPlayer[D_801B0820].unk3E * (PI/1024)));
+                    k = (D_8013A43C[D_801B0820] * gPlayer[D_801B0820].unk7C * 256.0f) / gPlayer[D_801B0820].unk6E;
+                    if (D_8013A43C[D_801B0820] > 0)
+                        k = MAX(1, k);
+
+                    if (D_8013A43C[D_801B0820] < 0)
+                        k = MIN(-1, k);
                 }
-
-                D_8013B2D0[gPlayer[D_801B0820].unk4A].unk0 *= f1;
-                D_8013B2D0[gPlayer[D_801B0820].unk4A].unk0 -= ((k * klabs(i)) / n);
-
-                k = 0;
-                if (!(gPlayer[D_801B0820].unk80 & 1))
-                {
-                    if (func_8003779C(15) == 0)
-                    {
-                        if (klabs(D_8013A43C[D_801B0820]) >= 4)
-                        {
-                            k = (D_8013A43C[D_801B0820] * gPlayer[D_801B0820].unk7C * 256.0f) / gPlayer[D_801B0820].unk6E;
-                            if (D_8013A43C[D_801B0820] > 0)
-                                k = MAX(1, k);
-
-                            if (D_8013A43C[D_801B0820] < 0)
-                                k = MIN(-1, k);
-                        }
-                    }
-                }
-                else
-                {
-                    if (func_8003779C(3) != 0)
-                        k = 0xB00 / gPlayer[D_801B0820].unk6E;
-
-                    if (func_8003779C(4) != 0)
-                        k -= 0xB00 / gPlayer[D_801B0820].unk6E;
-                }
-
-                gPlayer[D_801B0820].unk3E = CLAMP_MIN(CLAMP_MAX((gPlayer[D_801B0820].unk3E + k), 301.5111111111111), -301.5111111111111);
             }
         }
         else
         {
-            goto block1;
+            if (func_8003779C(3) != 0)
+                k = 0xB00 / gPlayer[D_801B0820].unk6E;
+
+            if (func_8003779C(4) != 0)
+                k -= 0xB00 / gPlayer[D_801B0820].unk6E;
         }
+
+        gPlayer[D_801B0820].unk3E = CLAMP_MIN(CLAMP_MAX((gPlayer[D_801B0820].unk3E + k), 301.5111111111111), -301.5111111111111);
+
     }
 
     o = (i * gpSinTable[(gPlayer[D_801B0820].unk38 + 0x200) & 0x7FF]);
@@ -842,7 +835,7 @@ static void func_800390F0(void)
 {
     s32 ang, i1, i2;
     s16 sectnum;
-    s32 e, temp1;
+    s32 a, b;
 
     if (gPlayer[D_801B0820].unk54 != 0)
         return;
@@ -865,10 +858,10 @@ static void func_800390F0(void)
             ang = (getAngle(gpWall[gpWall[gpSector[sectnum].wallptr].point2].x - gpWall[gpSector[sectnum].wallptr].x,
                 gpWall[gpWall[gpSector[sectnum].wallptr].point2].y - gpWall[gpSector[sectnum].wallptr].y) + 512) & 0x7FF;
 
-            e = (gpSector[sectnum].floorheinum < 0) ? -1 : 1;
-            temp1 = klabs(gpSector[sectnum].floorheinum) / 256;
-            i1 = e * temp1 * gpSinTable[(ang + 512) & 0x7FF];
-            i2 = e * temp1 * gpSinTable[ang];
+            a = (gpSector[sectnum].floorheinum < 0) ? -1 : 1;
+            b = klabs(gpSector[sectnum].floorheinum) / 256;
+            i1 = a * b * gpSinTable[(ang + 512) & 0x7FF];
+            i2 = a * b * gpSinTable[ang];
             gPlayer[D_801B0820].unkC += i1;
             gPlayer[D_801B0820].unk10 += i2;
         }
@@ -879,8 +872,7 @@ static void func_800390F0(void)
 static void func_80039344(void)
 {
     f64 f1, f2, f3;
-    s32 i1;
-    s32 e;
+    s32 i1, i3;
     u8 i2;
 
     i1 = 0x240000;
@@ -897,8 +889,8 @@ static void func_80039344(void)
 
     if (f1 != 0.0)
     {
-        e = (32 - i2) * 16384;
-        i1 += e * 3;
+        i3 = (32 - i2) * 16384;
+        i1 += i3 * 3;
 
         if (D_8010A940[D_801B0820].unk2[2] && D_800DEE80 == -1)
             i1 *= 2;
@@ -964,10 +956,10 @@ void func_80039774(void)
 
     if (gPlayer[D_801B0820].unk5B != 0)
     {
-        s32 e = D_801B0820; /*FAKEMATCH?*/
+        s32 temp = D_801B0820; /*FAKEMATCH?*/
         f1 = gPlayer[D_801B0820].unk14;
         f2 = gPlayer[D_801B0820].unk20;
-        gPlayer[e].unk14 = (f1 + (f2 * sinf((gPlayer[D_801B0820].unk3E * (PI/1024))) * 16.0f));
+        gPlayer[temp].unk14 = (f1 + (f2 * sinf((gPlayer[D_801B0820].unk3E * (PI/1024))) * 16.0f));
     }
 
     if ((gPlayer[D_801B0820].unk56 != 0) &&
@@ -1035,10 +1027,10 @@ void func_80039774(void)
                     {
                         if (gPlayer[D_801B0820].unk44 == 0)
                         {
-                            s32 e = -320; /*FAKEMATCH*/
+                            s32 temp = -320; /*FAKEMATCH*/
                             D_80119A30[D_801B0820] |= 2;
-                            ang1 = (gpSinTable[(gPlayer[D_801B0820].unk38 + 512) & 0x7FF] * e);
-                            ang2 = (gpSinTable[gPlayer[D_801B0820].unk38 & 0x7FF] * e);
+                            ang1 = (gpSinTable[(gPlayer[D_801B0820].unk38 + 512) & 0x7FF] * temp);
+                            ang2 = (gpSinTable[gPlayer[D_801B0820].unk38 & 0x7FF] * temp);
                             gPlayer[D_801B0820].unkC += ang1;
                             gPlayer[D_801B0820].unk10 += ang2;
                             D_8012F914[D_801B0820] = -1;
@@ -1077,9 +1069,9 @@ void func_80039774(void)
 
             if (D_8012F914[D_801B0820] == 0)
             {
-                s32 e = -0xA00; /*FAKEMATCH*/
+                s32 temp = -0xA00; /*FAKEMATCH*/
                 D_8012F914[D_801B0820] = -1;
-                gPlayer[D_801B0820].unk14 = e;
+                gPlayer[D_801B0820].unk14 = temp;
             }
         }
     }
@@ -1118,7 +1110,7 @@ void func_80039774(void)
                     else
                         m = gPlayer[D_801B0820].unk14 - 0xC00;
 
-                    j = m >> 10; /*TODO?*/
+                    j = m >> 10;
                     j = (j * j) * 2;
 
                     if (gpSector[gPlayer[D_801B0820].unk32].unk18 == 4)
@@ -1127,7 +1119,7 @@ void func_80039774(void)
                     if (gpSector[gPlayer[D_801B0820].unk32].unk18 == 5)
                         j /= 4;
 
-                    if (j >= 11)
+                    if (j > 10)
                     {
                         audio_80007820(1407, gPlayer[D_801B0820].unk4A);
 
@@ -1749,7 +1741,7 @@ static void func_8003B5F8(void)
             if (gPlayer[D_801B0820].unk58 != 0)
             {
                 s32 e, f, g, h;
-                g = -320;
+                g = -320; /*FAKEMATCH?*/
                 D_80119A30[D_801B0820] = D_80119A30[D_801B0820] | 2;
                 h = gPlayer[D_801B0820].unk38;
                 e = (gpSinTable[h & 0x7FF]) * g;
