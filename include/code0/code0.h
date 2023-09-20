@@ -468,7 +468,7 @@ typedef struct
 /*80118248*/ _extern SpriteType *D_80118248;
 /*80118260*/ _extern u8 D_80118260[6096] ALIGNED(16);
 /*80119A30*/ _extern u8 D_80119A30[MAXPLAYERS];
-/*80119A38*/ _extern s8 D_80119A38;
+/*80119A38*/ _extern u8 D_80119A38;
 /*80119A64*/ _extern s32 D_80119A64;
 /*8011A670*/ _extern volatile s16 D_8011A670[MAXPLAYERS];
 /*8011A680*/ _extern s16 D_8011A680[MAXPLAYERS][24][10] ALIGNED(16);

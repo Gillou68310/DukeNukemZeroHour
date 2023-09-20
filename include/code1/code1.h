@@ -125,13 +125,13 @@ typedef struct _code1UnkStruct6
 /*801CC88C*/ _extern s32 D_801CC88C;
 /*801CC8A8*/ _extern s16 D_801CC8A8;
 /*801CC8B8*/ _extern u16 D_801CC8B8;
-/*801CC8C8*/ _extern s16 D_801CC8C8;
+/*801CC8C8*/ _extern u16 D_801CC8C8;
 /*801CC8CC*/ _extern u16 D_801CC8CC;
 /*801CC8CA*/ _extern u16 D_801CC8CA;
 /*801CC91C*/ _extern u8 *D_801CC91C; /*edlHandle*/
 /*801CC920*/ _extern u8 *D_801CC920; /*edlHandle*/
 /*801CC924*/ _extern u16 D_801CC924;
-/*801CC926*/ _extern s16 D_801CC926;
+/*801CC926*/ _extern u16 D_801CC926;
 /*801CC930*/ _extern code1UnkStruct3 D_801CC930 ALIGNED(16);
 /*801CD96C*/ _extern u8 *D_801CD96C;
 /*801CD980*/ _extern s32 D_801CD980;
