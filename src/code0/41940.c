@@ -68,7 +68,7 @@ typedef struct
 /*800DEF20*/ EXTERN_DATA STATIC s16 D_800DEF20;
 /*800DEF38*/ EXTERN_DATA STATIC s32 D_800DEF38;
 /*800DEF3C*/ EXTERN_DATA STATIC _41940UnkFuncPointer2 D_800DEF3C[84];
-/*800DF08C*/ EXTERN_DATA STATIC intptr_t D_800DF08C;
+/*800DF08C*/ EXTERN_DATA STATIC u8 *D_800DF08C;
 /*800DF1A8*/ EXTERN_DATA s32 D_800DF1A8;
 /*800DF1AC*/ EXTERN_DATA s16 D_800DF1AC[MAXPLAYERS];
 /*800DF1B4*/ EXTERN_DATA s16 D_800DF1B4[9];
@@ -266,7 +266,7 @@ static void func_80040EF0(s32 spritenum, s16 playernum, s32 arg2)
                 {
                     D_80138794 = D_80137DE0->unkC;
                     D_80137DE0->unkC = gpInst;
-                    D_800DF08C = ((intptr_t)gpInst - (intptr_t)D_0100F1E0_STATIC_START) - (intptr_t)gStaticSegment;
+                    D_800DF08C = (u8 *)(((intptr_t)gpInst - (intptr_t)D_0100F1E0_STATIC_START) - (intptr_t)gStaticSegment);
                 }
                 else
                     return;

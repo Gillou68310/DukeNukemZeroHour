@@ -524,11 +524,11 @@ void func_801C15CC(void)
     allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT*2, DISPLAY_LIST_SIZE*2, 0);
     setCameraPosition(0.0f, 0.0f, -500.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     func_801C10C8();
-    func_8007FD8C(D_800DFA40, 0);
+    func_8007FD8C(&D_800DFA40[0], 0);
     D_801CDA94 = D_8010A938;
-    func_8007FD8C(D_800DFB08, 11);
+    func_8007FD8C(&D_800DFB08[0], 11);
     func_8007FD8C(&D_800E0778[0], 5);
-    D_801CDA20 = func_8007FC08(D_800DFA40, 0, 0, 0, 500);
+    D_801CDA20 = func_8007FC08(&D_800DFA40[0], NULL, 0, 0, 500);
     edl_80081688(&D_801CF638, 16);
     edl_80081688(&D_801CC91C, 17);
     edl_80081688(&D_801CC920, 19);
@@ -838,8 +838,8 @@ void func_801C1950(void)
             D_801CDB04++;
             break;
         case 6:
-            D_801CE5E4 = func_8007FC08(&D_800E0778[0], 0, -181, gScreenHeight - 175, -2000);
-            D_801CC914 = func_8007FC08(&D_800E0778[1], 0, gScreenWidth + 58, gScreenHeight - 175, -2000);
+            D_801CE5E4 = func_8007FC08(&D_800E0778[0], NULL, -181, gScreenHeight - 175, -2000);
+            D_801CC914 = func_8007FC08(&D_800E0778[1], NULL, gScreenWidth + 58, gScreenHeight - 175, -2000);
             D_801CDB04++;
             break;
         case 7:
@@ -967,7 +967,7 @@ void func_801C2BE8(code1UnkStruct6 *arg0)
             else if (gScreenWidth == 512)
                 j += 96;
 
-            D_801CD990[D_801CE490-1]->unk7C = (intptr_t)func_800802C0(ptr->unk14->unk4[ptr->unk18[0]].unk8,
+            D_801CD990[D_801CE490-1]->unk7C = func_800802C0(ptr->unk14->unk4[ptr->unk18[0]].unk8,
                                                                       j,
                                                                       arg0->unk8 + (i * arg0->unkA),
                                                                       200,
@@ -1047,7 +1047,7 @@ static void func_801C30EC(void)
     edl_80081688(&D_801CC888, 21);
     edl_80081688(&D_801CDBC8, 23);
     edl_80081688(&D_801CDA98, 22);
-    func_8007FD8C(D_800DFAE0, 4);
+    func_8007FD8C(&D_800DFAE0[0], 4);
     D_800E0F58 = 0;
 
     for (i = 0; i < ARRAY_COUNT(D_01022510); i++)
@@ -1055,7 +1055,7 @@ static void func_801C30EC(void)
 
     D_800E0F58 = 1;
     func_8007F050();
-    D_801CDA20 = func_8007FC08(D_800DFAE0, 0, 0, 0, 500);
+    D_801CDA20 = func_8007FC08(&D_800DFAE0[0], NULL, 0, 0, 500);
     func_801C1114();
     func_801C1158(0, 0, 0, 0xFF);
     D_801CC88C = -1;
@@ -1476,8 +1476,8 @@ static void func_801C3AD8(void)
     edl_80081688(&D_801CC888, 21);
     edl_80081688(&D_801CDBC8, 23);
     edl_80081688(&D_801CDA98, 22);
-    func_8007FD8C(D_800DFB08, 11);
-    func_8007FD8C(D_800DFAB8, 3);
+    func_8007FD8C(&D_800DFB08[0], 11);
+    func_8007FD8C(&D_800DFAB8[0], 3);
     D_800E0F58 = 0;
 
     for (i = 0; i < ARRAY_COUNT(D_01022510); i++)
@@ -1485,7 +1485,7 @@ static void func_801C3AD8(void)
 
     D_800E0F58 = 1;
     func_8007F050();
-    D_801CDA20 = func_8007FC08(D_800DFAB8, 0, 0, 0, 500);
+    D_801CDA20 = func_8007FC08(&D_800DFAB8[0], NULL, 0, 0, 500);
     func_801C1114();
     func_801C1158(0, 0, 0, 0xFF);
     D_801CC88C = -1;
@@ -1651,7 +1651,7 @@ static void func_801C3E5C(void)
                             {
                                 *ptr2->unk18 = 1;
                                 ptr3 = (code0UnkStruct16 *)D_801CD990[3]->unk7C;
-                                ptr3->unk70 = (intptr_t)ptr2->unk14[0].unk4[*ptr2->unk18].unk8;
+                                ptr3->unk70 = ptr2->unk14[0].unk4[*ptr2->unk18].unk8;
                             }
                         }
                     }
@@ -1664,7 +1664,7 @@ static void func_801C3E5C(void)
                             {
                                 *ptr2->unk18 = 1;
                                 ptr3 = (code0UnkStruct16 *)D_801CD990[2]->unk7C;
-                                ptr3->unk70 = (intptr_t)ptr2->unk14[0].unk4[*ptr2->unk18].unk8;
+                                ptr3->unk70 = ptr2->unk14[0].unk4[*ptr2->unk18].unk8;
                             }
                         }
                     }
@@ -1674,7 +1674,7 @@ static void func_801C3E5C(void)
                     setVolume((D_801CE498.musicvol * 100) / 7, (D_801CE498.mastervol * 100) / 7);
 
                 ptr3 = (code0UnkStruct16 *)D_801CD990[D_801CE5A0]->unk7C;
-                ptr3->unk70 = (intptr_t)ptr1->unk14->unk4[ptr1->unk18[0]].unk8;
+                ptr3->unk70 = ptr1->unk14->unk4[ptr1->unk18[0]].unk8;
                 if (ptr1->unk14 == &D_801CA970)
                 {
                     if (ptr1->unk18[0] == 0)
@@ -1704,7 +1704,7 @@ static void func_801C3E5C(void)
                             {
                                 *ptr2->unk18 = 1;
                                 ptr3 = (code0UnkStruct16 *)D_801CD990[3]->unk7C;
-                                ptr3->unk70 = (intptr_t)ptr2->unk14[0].unk4[*ptr2->unk18].unk8;
+                                ptr3->unk70 = ptr2->unk14[0].unk4[*ptr2->unk18].unk8;
                             }
                         }
                     }
@@ -1717,7 +1717,7 @@ static void func_801C3E5C(void)
                             {
                                 *ptr2->unk18 = 1;
                                 ptr3 = (code0UnkStruct16 *)D_801CD990[2]->unk7C;
-                                ptr3->unk70 = (intptr_t)ptr2->unk14[0].unk4[*ptr2->unk18].unk8;
+                                ptr3->unk70 = ptr2->unk14[0].unk4[*ptr2->unk18].unk8;
                             }
                         }
                     }
@@ -1727,7 +1727,7 @@ static void func_801C3E5C(void)
                     setVolume((D_801CE498.musicvol * 100) / 7, (D_801CE498.mastervol * 100) / 7);
 
                 ptr3 = (code0UnkStruct16 *)D_801CD990[D_801CE5A0]->unk7C;
-                ptr3->unk70 = (intptr_t)ptr1->unk14->unk4[ptr1->unk18[0]].unk8;
+                ptr3->unk70 = ptr1->unk14->unk4[ptr1->unk18[0]].unk8;
                 if (ptr1->unk14 == &D_801CA970)
                 {
                     if (ptr1->unk18[0] == 0)
@@ -1818,7 +1818,7 @@ static void func_801C45C0(void)
                     setVolume((D_801CE498.musicvol * 100) / 7, (D_801CE498.mastervol * 100) / 7);
 
                 ptr2 = (code0UnkStruct16 *)D_801CD990[D_801CE5A0]->unk7C;
-                ptr2->unk70 = (intptr_t)ptr->unk14->unk4[*ptr->unk18].unk8;
+                ptr2->unk70 = ptr->unk14->unk4[*ptr->unk18].unk8;
                 if (ptr->unk14 == &D_801CA970)
                 {
                     if (*ptr->unk18 == 0)
@@ -1841,7 +1841,7 @@ static void func_801C45C0(void)
                     setVolume((D_801CE498.musicvol * 100) / 7, (D_801CE498.mastervol * 100) / 7);
 
                 ptr2 = (code0UnkStruct16 *)D_801CD990[D_801CE5A0]->unk7C;
-                ptr2->unk70 = (intptr_t)ptr->unk14->unk4[*ptr->unk18].unk8;
+                ptr2->unk70 = ptr->unk14->unk4[*ptr->unk18].unk8;
                 if (ptr->unk14 == &D_801CA970)
                 {
                     if (*ptr->unk18 == 0)
@@ -2047,9 +2047,9 @@ static void func_801C509C(void)
     edl_80081688(&D_801CC888, 21);
     edl_80081688(&D_801CDBC8, 23);
     edl_80081688(&D_801CDA98, 22);
-    func_8007FD8C(D_800DFB08, 11);
-    func_8007FD8C(D_800E0454, D_801CB948[D_801CA14C[gMapNum].unk0]);
-    func_8007FD8C(D_800DFA90, 2);
+    func_8007FD8C(&D_800DFB08[0], 11);
+    func_8007FD8C(&D_800E0454[0], D_801CB948[D_801CA14C[gMapNum].unk0]);
+    func_8007FD8C(&D_800DFA90[0], 2);
     D_800E0F58 = 0;
 
     for (i = 0; i < ARRAY_COUNT(D_01022510); i++)
@@ -2106,17 +2106,17 @@ void func_801C542C(void)
         func_801C53E8(gMapNum);
         func_801C0EDC(0x9000);
         func_8007F050();
-        D_801CDA20 = func_8007FC08(D_800E0454, 0, 0, 0, 500);
+        D_801CDA20 = func_8007FC08(&D_800E0454[0], NULL, 0, 0, 500);
         func_801C1114();
         func_801C1158(0, 0, 0, 0xFF);
         D_801CC88C = -1;
         D_801CF6E0[0] = func_800802C0(D_801CA14C[gMapNum].mapname, gScreenWidth / 2, -12, 180, 1);
         func_801C14C4(D_801CF6E0[0], 32, 0xFF, 32);
-        D_801CF6E0[1] = func_800802C0((void *)"TIME TAKEN:", 0, 65, 200, 0);
-        D_801CF6E0[2] = func_800802C0((void *)"KILLS:", 0, 87, 200, 0);
-        D_801CF6E0[3] = func_800802C0((void *)"BABES:", 0, 109, 200, 0);
-        D_801CF6E0[4] = func_800802C0((void *)"SECRETS:", 0, 131, 200, 0);
-        D_801CF6E0[5] = func_800802C0((void *)"OVERALL RATING:", 0, 153, 200, 0);
+        D_801CF6E0[1] = func_800802C0("TIME TAKEN:", 0, 65, 200, 0);
+        D_801CF6E0[2] = func_800802C0("KILLS:", 0, 87, 200, 0);
+        D_801CF6E0[3] = func_800802C0("BABES:", 0, 109, 200, 0);
+        D_801CF6E0[4] = func_800802C0("SECRETS:", 0, 131, 200, 0);
+        D_801CF6E0[5] = func_800802C0("OVERALL RATING:", 0, 153, 200, 0);
         D_801CD980 = 0;
         func_801C2BE8(&D_801CB938);
 
@@ -2266,8 +2266,8 @@ static void func_801C5C68(void)
     edl_80081688(&D_801CC888, 21);
     edl_80081688(&D_801CDBC8, 23);
     edl_80081688(&D_801CDA98, 22);
-    func_8007FD8C(D_800DFB08, 11);
-    func_8007FD8C(D_800E0454, D_801CB948[D_801CA14C[gMapNum].unk0]);
+    func_8007FD8C(&D_800DFB08[0], 11);
+    func_8007FD8C(&D_800E0454[0], D_801CB948[D_801CA14C[gMapNum].unk0]);
     D_800E0F58 = 0;
 
     for (i = 0; i < 64; i++)
@@ -2275,7 +2275,7 @@ static void func_801C5C68(void)
 
     D_800E0F58 = 1;
     func_801C1114();
-    D_801CDA20 = func_8007FC08(D_800E0454, 0, 0, 0, 500);
+    D_801CDA20 = func_8007FC08(&D_800E0454[0], NULL, 0, 0, 500);
     func_801C1158(0, 0, 0, 0xFF);
     D_801CC88C = -1;
     D_801CF6E0[0] = func_800802C0(D_801CA14C[gMapNum].mapname, gScreenWidth / 2, 24, 200, 1);
@@ -2415,8 +2415,8 @@ void func_801C6560(void)
     allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT*2, DISPLAY_LIST_SIZE*4, 0);
     func_801C10C8();
     setCameraPosition(0.0f, 0.0f, -500.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-    func_8007FD8C(D_800DFB08, 11);
-    func_8007FD8C(D_800E0404, 13);
+    func_8007FD8C(&D_800DFB08[0], 11);
+    func_8007FD8C(&D_800E0404[0], 13);
 
     for (i = 0; gpLicenceStrInfo[i]; i++)
         func_8007FE2C(gpLicenceStrInfo[i], gScreenWidth / 2, (46 + i * 12), 64, 1, 0);
@@ -2471,11 +2471,11 @@ void func_801C66D8(void)
                         cache1d_8002AAC0();
                         allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT, DISPLAY_LIST_SIZE*2, 0);
                         func_801C10C8();
-                        func_8007FD8C(D_800DFB08, 11);
+                        func_8007FD8C(&D_800DFB08[0], 11);
                         func_8007FD8C(&D_800E0404[0], 13);
                         D_800BD3F8 = 1;
                         func_801C1114();
-                        func_8007FC08(&D_800E0404[0], 0, 0, 0, 500);
+                        func_8007FC08(&D_800E0404[0], NULL, 0, 0, 500);
                         func_801C1158(0, 0, 0, 0xFF);
                         D_801CC88C = -1;
                         main_80002390();
@@ -2514,11 +2514,11 @@ void func_801C66D8(void)
                     cache1d_8002AAC0();
                     allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT, DISPLAY_LIST_SIZE*2, 0);
                     func_801C10C8();
-                    func_8007FD8C(D_800DFB08, 11);
+                    func_8007FD8C(&D_800DFB08[0], 11);
                     func_8007FD8C(&D_800E0404[0], 13);
                     D_800BD3F8 = 1;
                     func_801C1114();
-                    func_8007FC08(&D_800E0404[0], 0, 0, 0, 500);
+                    func_8007FC08(&D_800E0404[0], NULL, 0, 0, 500);
                     func_801C1158(0, 0, 0, 0xFF);
                     D_801CC88C = -1;
                     main_80002390();
@@ -2556,7 +2556,7 @@ void func_801C66D8(void)
             {
                 func_8007F050();
                 func_801C1114();
-                func_8007FC08(&D_800E0404[1], 0, 0, 0, 500);
+                func_8007FC08(&D_800E0404[1], NULL, 0, 0, 500);
                 func_801C1158(0, 0, 0, 0xFF);
                 D_801CC88C = -1;
                 D_801CDB04 = 100;
@@ -2584,7 +2584,7 @@ void func_801C66D8(void)
             {
                 func_8007F050();
                 func_801C1114();
-                func_8007FC08(&D_800E0404[2], 0, 0, 0, 500);
+                func_8007FC08(&D_800E0404[2], NULL, 0, 0, 500);
                 func_801C1158(0, 0, 0, 0xFF);
                 D_801CC88C = -1;
                 D_801CDB04 = 100;
@@ -2972,8 +2972,8 @@ static void func_801C7574(void)
     setCameraPosition(0.0f, 0.0f, -90.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     func_801C10C8();
     D_800BD3E8 = 1;
-    func_8007FD8C(D_800DFA90, 2);
-    func_8007FD8C(D_800DFB08, 11);
+    func_8007FD8C(&D_800DFA90[0], 2);
+    func_8007FD8C(&D_800DFB08[0], 11);
     D_800BD3F9 = 10;
     main_80002390();
     main_80000610();
@@ -3048,7 +3048,7 @@ void func_801C764C(void)
             func_80083700(1, &D_801CE5E8[i], 0, 0);
 
         D_800E0F58 = 1;
-        func_8007FD8C(D_800DFB08, 11);
+        func_8007FD8C(&D_800DFB08[0], 11);
         func_8007FD8C(&D_800E047C[0], 14);
         func_800802C0("SELECT LEVEL", gScreenWidth/2, 24, 64, 1);
         D_801CA144 = 0.0f;
@@ -3060,7 +3060,7 @@ void func_801C764C(void)
 
         for (i = 0; i < (l + 1); i++)
         {
-            D_801CDA28[i] = func_8007FC08(&D_800E047C[i], 0, 0, (gScreenHeight / 2) - 88, 500);
+            D_801CDA28[i] = func_8007FC08(&D_800E047C[i], NULL, 0, (gScreenHeight / 2) - 88, 500);
             k = D_801CE5DC * 256;
             D_801CDA88 = ((D_801CE5DC * 16384) + k) * 2;
             D_801CDA28[i]->unk34 = ((gScreenWidth / 2) - 60 + (i * 130) - (D_801CDA88 >> 8));
@@ -3151,7 +3151,7 @@ void func_801C764C(void)
                 D_801CDA28[i]->unk10 = 110;
 
             D_801CDA28[D_801CE5DC]->unk10 = 0xFF;
-            D_801CC8B0->unk70 = (intptr_t)D_801CA14C[D_801CE5DC].mapname;
+            D_801CC8B0->unk70 = D_801CA14C[D_801CE5DC].mapname;
             temp_s3 = &D_801CE5F0.unk4[D_801CE5DC];
             sprintf(D_801CDB58[0], "%d : %02d", (temp_s3->unk172 / 1800U),
                                                 (temp_s3->unk172 / 30U) - ((temp_s3->unk172 / 1800U) * 60));
@@ -3279,8 +3279,8 @@ static void func_801C8650(void)
     D_801CDB50 = &D_801CA14C[i];
     func_8007F050();
     setCameraPosition(0.0f, 0.0f, -90.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-    func_8007FD8C(D_800E064C, 15);
-    func_8007FD8C(D_800DFB08, 11);
+    func_8007FD8C(&D_800E064C[0], 15);
+    func_8007FD8C(&D_800DFB08[0], 11);
     edl_80081688(&D_801CDB08, 20);
     edl_80081688(&D_801CC888, 21);
     edl_80081688(&D_801CDBC8, 23);
@@ -3294,12 +3294,12 @@ static void func_801C8650(void)
         func_80083700(1, &D_801CE5E8[i], 0, 0);
 
     D_800E0F58 = 1;
-    func_800802C0((void *)"SELECT LEVEL", (gScreenWidth / 2), 24, 64, 1);
+    func_800802C0("SELECT LEVEL", (gScreenWidth / 2), 24, 64, 1);
     D_801CA144 = 0.0f;
 
     for (i = 0; i < ARRAY_COUNT(D_800E064C)-1; i++)
     {
-        D_801CDA28[i] = func_8007FC08(&D_800E064C[i], 0, (gScreenWidth / 2) - 60 + (i * 130), (gScreenHeight / 2) - 88, 500);
+        D_801CDA28[i] = func_8007FC08(&D_800E064C[i], NULL, (gScreenWidth / 2) - 60 + (i * 130), (gScreenHeight / 2) - 88, 500);
         D_801CDA28[i]->unkC &= ~1;
     }
 
@@ -3345,7 +3345,7 @@ void func_801C899C(void)
 
         D_801CDA28[D_801CE5DC]->unk10 = 0xFF;
         D_801CDB20 = 0;
-        D_801CC8B0->unk70 = (intptr_t)D_801CDB50[D_801CE5DC].mapname;
+        D_801CC8B0->unk70 = D_801CDB50[D_801CE5DC].mapname;
     }
 
     if (D_801CDB20 == 0)
@@ -3487,7 +3487,7 @@ void func_801C8F54(void)
                 else
                     D_801CC8D0[i]->unk10 = 0xFF;
 
-                D_801CC8D0[i]->unk70 = (intptr_t)gpControlPreset[D_801CE498.unk2E[D_801CDACC]].mapping[i];
+                D_801CC8D0[i]->unk70 = gpControlPreset[D_801CE498.unk2E[D_801CDACC]].mapping[i];
             }
             if (D_801CE558[i] != NULL)
             {
@@ -3647,10 +3647,10 @@ void func_801C97F8(void)
     func_801C10C8();
     D_800BD3E8 = 1;
     func_801C0EDC(0xD000);
-    func_8007FD8C(D_800DFB08, 11);
-    func_8007FD8C(D_800E07DC, 28);
+    func_8007FD8C(&D_800DFB08[0], 11);
+    func_8007FD8C(&D_800E07DC[0], 28);
     func_8007F050();
-    D_801CDA20 = func_8007FC08(D_800E07DC, 0, 0, 0, 500);
+    D_801CDA20 = func_8007FC08(&D_800E07DC[0], NULL, 0, 0, 500);
     main_80002390();
     main_80000610();
     func_801C1114();
@@ -3686,7 +3686,7 @@ void func_801C9924(void)
         if (D_801CC800[D_801CD970] != NULL)
         {
             D_801CC800[D_801CD970]->unk38 = 484.0f;
-            D_801CC800[D_801CD970]->unk70 = (intptr_t)gpCreditStrInfo[D_801CE474];
+            D_801CC800[D_801CD970]->unk70 = gpCreditStrInfo[D_801CE474];
         }
         else
             D_801CC800[D_801CD970] = func_8007FE2C(gpCreditStrInfo[D_801CE474],

@@ -242,8 +242,8 @@ void func_8001DE9C(void)
                     gSP2Triangles(gpDisplayList++, D_801A2620, D_801A2620+1, D_801A2620+2, D_801A2620,
                                                    D_801A2620, D_801A2620+2, D_801A2620+3, D_801A2620);
 
-                    D_801A2620 = D_801A2620 + 4;
-                    D_80197DD4 = D_80197DD4 - 4;
+                    D_801A2620 += 4;
+                    D_80197DD4 -= 4;
                     x = ptr->unk4 / 2;
                     y = ptr->unk8 / 2;
                     z = ptr->unkC / 32;

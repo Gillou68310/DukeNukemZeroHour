@@ -34,11 +34,11 @@ void func_800818A8(code0UnkStruct16 *arg0, s16 id, s16 off, void *arg3, void *ar
     u8 *ptr2;
 
     ptr = edl_80081840(id, off);
-    arg0->unk70 = (intptr_t)ptr;
+    arg0->unk70 = ptr;
     arg0->unk74 = (intptr_t)arg3;
     arg0->unk78 = (intptr_t)arg4;
-    arg0->unk7C = (intptr_t)arg5;
-    arg0->unk80 = (intptr_t)arg6;
+    arg0->unk7C = arg5;
+    arg0->unk80 = arg6;
     arg0->unk88 = swap16(ptr);
     arg0->unk84 = (code0UnkStruct18 *)&ptr[2];
     ptr2 = (u8 *)&arg0->unk84[arg0->unk88];
@@ -129,13 +129,13 @@ void func_80081E20(ProcPointer arg0, ProcPointer arg1, s8 arg2)
 
     for (i = 0; i < D_8012FD8C->unk98;)
     {
-        D_80118168.unk0 = ((u16)swap16(ptr) * 8) + D_8012FD8C->unk74;
+        D_80118168.texture = (u8 *)(((u16)swap16(ptr) * 8) + D_8012FD8C->unk74);
         ptr += 2;
-        D_80118168.unk8 = swap16(ptr);
+        D_80118168.width = swap16(ptr);
         ptr += 2;
-        D_80118168.unkC = swap16(ptr);
+        D_80118168.height = swap16(ptr);
         ptr += 2;
-        D_80118168.unk10 = D_8012FD8C->unk78 + swap16(ptr);
+        D_80118168.palette = (u8 *)(D_8012FD8C->unk78 + swap16(ptr));
         ptr += 2;
         k = swap16(ptr);
         ptr += 2;

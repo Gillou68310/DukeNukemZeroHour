@@ -5,7 +5,10 @@ compiler_command = "tools/gcc_2.7.2/linux/gcc -Iinclude -Ilibs/libultra/include/
 assembler_command = "mips-linux-gnu-as -EB -march=vr4300 -mtune=vr4300 -Iinclude -G 0 -I include -mips3 -mabi=32"
 
 [preserve_macros]
-"gs?[DS]P.*" = "void"
+"_*gs?[DS]P.*" = "void"
+"gs?Dma.*" = "void"
+"gs?Imm.*" = "void"
+"gs?MoveWd.*" = "void"
 OVERRIDE_FLAG_CHECK = "int"
 OS_K0_TO_PHYSICAL = "int"
 "G_.*" = "int"
@@ -14,10 +17,8 @@ PRIMITIVE = "int"
 "gSetImage" = "void"
 "MAX" = "void"
 "MIN" = "void"
-"GCCc0w0" = "void"
-"GCCc0w1" = "void"
-"GCCc1w0" = "void"
-"GCCc1w1" = "void"
+"GCCc*." = "void"
+"CALC_DXT" = "void"
 
 [decompme.compilers]
 "tools/gcc_2.7.2/linux/gcc" = "gcc2.7.2kmc"

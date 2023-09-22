@@ -53,7 +53,7 @@ void func_800163F0(u8 arg0)
 /*8001660C*/
 void func_8001660C(u8 arg0)
 {
-    u8 *pTile;
+    intptr_t pTile;
     s16 dimx, dimy;
     s32 dimx2, dimy2;
     s32 masks, maskt;
@@ -126,8 +126,8 @@ void func_8001660C(u8 arg0)
             break;
         }
 
-        pTile = gpModelTile;
-        pTile = &pTile[gpModelTileInfo[arg0].offset];
+        pTile = (intptr_t)gpModelTile;
+        pTile = (intptr_t)&((u8 *)pTile)[gpModelTileInfo[arg0].offset];
 
         if (D_801A2688 != 0)
         {
@@ -135,26 +135,26 @@ void func_8001660C(u8 arg0)
             {
                 tilenum = 6050;
                 tilenum += animateOffs(6050, 0);
-                pTile = loadTile(getTileNum(tilenum));
+                pTile = (intptr_t)loadTile(getTileNum(tilenum));
             }
             gDPLoadTextureBlock_4b(gpDisplayList++, pTile+32, G_IM_FMT_I,
-                           dimx, dimy, 0, 0, 0,
-                           masks, maskt, 0, 0);
+                                   dimx, dimy, 0, 0, 0,
+                                   masks, maskt, 0, 0);
         }
         else
         {
             gDPLoadTextureBlock_4b(gpDisplayList++, pTile+32, G_IM_FMT_CI,
-                           dimx, dimy, 0, 0, 0,
-                           masks, maskt, 0, 0);
+                                   dimx, dimy, 0, 0, 0,
+                                   masks, maskt, 0, 0);
         }
     }
     else
     {
         /*FAKEMATCH?*/
         pTile = getTileNum(5741);
-        gDPLoadTextureBlock_4b(gpDisplayList++, loadTile((s32)pTile)+32, G_IM_FMT_CI,
-                               gpTileInfo[(s32)pTile].dimx, gpTileInfo[(s32)pTile].dimy, 0, 0, 0,
-                               tileMasks((s32)pTile), tileMaskt((s32)pTile), 0, 0);
+        gDPLoadTextureBlock_4b(gpDisplayList++, loadTile(pTile)+32, G_IM_FMT_CI,
+                               gpTileInfo[pTile].dimx, gpTileInfo[pTile].dimy, 0, 0, 0,
+                               tileMasks(pTile), tileMaskt(pTile), 0, 0);
     }
 }
 

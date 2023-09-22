@@ -272,18 +272,9 @@ typedef struct
 
 typedef struct
 {
-    /*0x00*/ intptr_t unk0;
-    /*0x04*/ intptr_t unk4;
-    /*0x08*/ s32 unk8;
-    /*0x0C*/ s32 unkC;
-    /*0x10*/ s32 unk10;
-} code0UnkStruct15;
-
-typedef struct
-{
-    /*0x00*/ s16 unk0;
-    /*0x02*/ s16 unk2;
-    /*0x04*/ s16 unk4;
+    /*0x00*/ s16 unk0; /*x*/
+    /*0x02*/ s16 unk2; /*y*/
+    /*0x04*/ s16 unk4; /*z*/
 } code0UnkStruct18;
 
 typedef struct
@@ -314,11 +305,11 @@ typedef struct
     /*0x68*/ Color unk68;
     /*0x6B*/ Color unk6B;
     /*0x6E*/ u8 pad7[2];
-    /*0x70*/ intptr_t unk70;
+    /*0x70*/ void *unk70;
     /*0k74*/ intptr_t unk74;
     /*0k78*/ intptr_t unk78;
-    /*0k7C*/ intptr_t unk7C;
-    /*0k80*/ intptr_t unk80;
+    /*0k7C*/ void *unk7C;
+    /*0k80*/ void *unk80;
     /*0k84*/ code0UnkStruct18 *unk84;
     /*0k88*/ s32 unk88; /*unk84 element count*/
     /*0k8C*/ u8 *unk8C;
@@ -358,11 +349,11 @@ typedef struct {
 
 typedef struct
 {
-    /*0x00*/ s32 unk0;
+    /*0x00*/ u8 *texture;
     /*0x04*/ s32 unk4;
-    /*0x08*/ s32 unk8;
-    /*0x0C*/ s32 unkC;
-    /*0x10*/ s32 unk10;
+    /*0x08*/ s32 width;
+    /*0x0C*/ s32 height;
+    /*0x10*/ u8 *palette;
     /*0x14*/ code0UnkStruct18 *unk14;
     /*0x18*/ s16 unk18;
     /*0x1A*/ s16 unk1A;
@@ -466,7 +457,7 @@ typedef struct
 /*8011814A*/ _extern s16 D_8011814A[5];
 /*80118168*/ _extern code0UnkStruct19 D_80118168 ALIGNED(8);
 /*80118248*/ _extern SpriteType *D_80118248;
-/*80118260*/ _extern u8 D_80118260[6096] ALIGNED(16);
+/*80118260*/ _extern char D_80118260[6096] ALIGNED(16);
 /*80119A30*/ _extern u8 D_80119A30[MAXPLAYERS];
 /*80119A38*/ _extern u8 D_80119A38;
 /*80119A64*/ _extern s32 D_80119A64;
@@ -517,7 +508,7 @@ typedef struct
 /*8013869C*/ _extern s16 gSkyBottomB;
 /*80138714*/ _extern ModelTileInfo *gpModelTileInfo;
 /*8013871C*/ _extern s32 D_8013871C;
-/*80138778*/ _extern u8 *D_80138778;
+/*80138778*/ _extern u8 *D_80138778; /*palette*/
 /*80138780*/ _extern s16 D_80138780;
 /*80138790*/ _extern s32 D_80138790;
 /*80138830*/ _extern s32 D_80138830;

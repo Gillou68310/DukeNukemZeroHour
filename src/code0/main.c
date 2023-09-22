@@ -993,8 +993,8 @@ static void main_80002494(void)
     allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT*2, DISPLAY_LIST_SIZE*2, 0);
     func_801C10C8();
     setCameraPosition(0.0f, 0.0f, -500.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-    func_8007FD8C(D_800DFB08, 11);
-    func_8007FD8C(D_800DFA90, 2);
+    func_8007FD8C(&D_800DFB08[0], 11);
+    func_8007FD8C(&D_800DFA90[0], 2);
     D_800BD3F9 = 0;
     D_800BD3E8 = 1;
     main_80002390();

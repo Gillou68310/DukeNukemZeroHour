@@ -323,8 +323,8 @@ static void func_800273EC(s16 spritenum, s32 arg1)
     gSP2Triangles(gpDisplayList++, D_801A2620, D_801A2620+1, D_801A2620+2, D_801A2620,
                                    D_801A2620, D_801A2620+2, D_801A2620+3, D_801A2620);
 
-    D_801A2620 = D_801A2620 + 4;
-    D_80197DD4 = D_80197DD4 - 4;
+    D_801A2620 += 4;
+    D_80197DD4 -= 4;
 
     gpVertexN64->v.ob[0] = f3;
     gpVertexN64->v.ob[1] = f4;
