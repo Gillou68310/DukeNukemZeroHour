@@ -3966,7 +3966,65 @@ static s32 func_8004DE60(s32 spritenum, s32 arg1)
 }
 
 /*8004E5F8*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004E5F8);
+s32 func_8004E5F8(s16 spritenum, s32 arg1, s32 arg2, s32 arg3)
+{
+    s32 z;
+    s32 picnum;
+    s32 walldist;
+    s32 cliptype;
+    u16 ret;
+    s32 temp;
+    s16 sectnum;
+    s16 spritenum_;
+
+    temp = -0x200;
+    sectnum = gpSprite[spritenum].sectnum;
+    z = gpSprite[spritenum].z - 4096;
+
+    if ((gpSprite[spritenum].cstat & 0x1000))
+    {
+        picnum = gpSprite[spritenum].picnum;
+        walldist = (D_800D52E0[picnum-1280]->unk2A
+                  - D_800D52E0[picnum-1280]->unk24)
+            * gpSprite[spritenum].xrepeat
+            / 64;
+
+        switch (gpSprite[spritenum].statnum)
+        {
+        case 302:
+            if (picnum == 1426)
+                walldist = 1500;
+            break;
+
+        case 305:
+            walldist = 600;
+            if (picnum == 1309)
+                walldist = 2500;
+            if (picnum == 1306)
+                walldist = 2600;
+            break;
+        }
+    }
+    else
+    {
+        walldist = gpSprite[spritenum].xrepeat;
+        walldist *= 2;
+    }
+
+    spritenum_ = spritenum;
+    if (gpSprite[spritenum_].statnum == 4)
+        cliptype = 0x01000040;
+    else
+        cliptype = 0x10001;
+
+    z = gpSprite[spritenum_].z + arg3;
+    ret = clipMove(&gpSprite[spritenum_].x, &gpSprite[spritenum_].y, &z, &sectnum,
+                   arg1<<11, arg2 << 11, walldist, 1024, MAX(1024, spritenum_ = temp), cliptype); /*FAKEMATCH?*/
+    gpSprite[spritenum].z = z;
+    if (sectnum >= 0 && sectnum != gpSprite[spritenum].sectnum)
+        changeSpriteSect(spritenum, sectnum);
+    return ret;
+}
 
 /*8004E7F0*/
 s32 func_8004E7F0(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4,
