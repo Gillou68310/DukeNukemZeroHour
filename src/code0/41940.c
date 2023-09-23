@@ -5408,8 +5408,28 @@ static void func_800519AC(void)
 }
 
 /*80052358*/
-STATIC u8 func_80052358(s16, s16);
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_80052358);
+static u8 func_80052358(s16 arg0, s16 arg1)
+{
+    if (D_8010A940[arg0].unkA[arg1] >= D_800E17E0[arg1])
+        return 0;
+
+    switch (D_8012F6E4[gPlayer[arg0].unk4C].unkB)
+    {
+    case 3:
+        if (arg1 == 1)
+            return 0;
+        break;
+    case 5:
+        if ((arg1 == 1) || (arg1 == 5) || (arg1 == 6) || (arg1 == 4))
+            return 0;
+        break;
+    }
+    D_8010A940[arg0].unkA[arg1] = D_800E17E0[arg1];
+
+    if (D_8010A940[arg0].unk0 == -1)
+        D_8010A940[arg0].unk0 = arg1;
+    return 1;
+}
 
 /*800524BC*/
 static void func_800524BC(s16 playernum, s16 arg1, s16 arg2)
@@ -5463,23 +5483,23 @@ static s32 func_80052AB0(s16 arg0, s16 arg1, s32 arg2)
 
     switch (arg1)
     {
-    case 0x0:
+    case 0:
         i = 2;
         j |= 1;
         break;
-    case 0x2:
+    case 2:
         i = 2;
         j |= 2;
         break;
-    case 0x5:
+    case 5:
         i = 4;
         j |= 1;
         break;
-    case 0x7:
+    case 7:
         i = 4;
         j |= 2;
         break;
-    case 0xA:
+    case 10:
         if (D_8011A680[arg0][4][7] < 24)
         {
             D_8011A680[arg0][4][7] = 24;
@@ -5487,59 +5507,59 @@ static s32 func_80052AB0(s16 arg0, s16 arg1, s32 arg2)
             ret = 1;
         }
         break;
-    case 0xB:
+    case 11:
         i = 6;
         j |= 1;
         break;
-    case 0xD:
+    case 13:
         i = 6;
         j |= 2;
         break;
-    case 0x10:
+    case 16:
         i = 8;
         j |= 1;
         break;
-    case 0x12:
+    case 18:
         i = 8;
         j |= 2;
         break;
-    case 0x15:
+    case 21:
         i = 9;
         j |= 2;
         break;
-    case 0x18:
+    case 24:
         i = 10;
         j |= 1;
         break;
-    case 0x1A:
+    case 26:
         i = 10;
         j |= 2;
         break;
-    case 0x1C:
+    case 28:
         i = 15;
         j |= 1;
         break;
-    case 0x1E:
+    case 30:
         i = 15;
         j |= 2;
         break;
-    case 0x25:
+    case 37:
         i = 17;
         j |= 1;
         break;
-    case 0x27:
+    case 39:
         i = 17;
         j |= 2;
         break;
-    case 0x2A:
+    case 42:
         i = 18;
         j |= 1;
         break;
-    case 0x2C:
+    case 44:
         i = 18;
         j |= 2;
         break;
-    case 0x2F:
+    case 47:
         if (D_8011A680[arg0][18][7] < 6)
         {
             D_8011A680[arg0][18][0] |= 4;
@@ -5547,39 +5567,39 @@ static s32 func_80052AB0(s16 arg0, s16 arg1, s32 arg2)
             D_8011A680[arg0][18][7] = CLAMP_MAX((D_8011A680[arg0][18][7] + 6), 6);
         }
         break;
-    case 0x31:
+    case 49:
         i = 14;
         j |= 1;
         break;
-    case 0x75:
+    case 117:
         i = 14;
         j |= 2;
         break;
-    case 0x34:
+    case 52:
         if (D_8011A680[arg0][14][7] < 12)
         {
             D_8011A680[arg0][14][0] |= 5;
             ret = 1;
-            D_8011A680[arg0][14][7] = CLAMP_MAX((D_8011A680[arg0][0xE][7] + 4), 12);
+            D_8011A680[arg0][14][7] = CLAMP_MAX((D_8011A680[arg0][14][7] + 4), 12);
         }
         break;
-    case 0x36:
+    case 54:
         i = 21;
         j |= 1;
         break;
-    case 0x38:
+    case 56:
         i = 21;
         j |= 2;
         break;
-    case 0x3C:
+    case 60:
         i = 3;
         j |= 1;
         break;
-    case 0x3E:
+    case 62:
         i = 3;
         j |= 2;
         break;
-    case 0x41:
+    case 65:
         if (D_8011A680[arg0][3][7] < 12)
         {
             D_8011A680[arg0][3][0] |= 4;
@@ -5587,63 +5607,63 @@ static s32 func_80052AB0(s16 arg0, s16 arg1, s32 arg2)
             D_8011A680[arg0][3][7] = CLAMP_MAX((D_8011A680[arg0][3][7] + 12), 12);
         }
         break;
-    case 0x42:
+    case 66:
         i = 5;
         j |= 1;
         break;
-    case 0x44:
+    case 68:
         i = 5;
         j |= 2;
         break;
-    case 0x47:
+    case 71:
         i = 20;
         j |= 1;
         break;
-    case 0x49:
+    case 73:
         i = 20;
         j |= 2;
         break;
-    case 0x4C:
+    case 76:
         i = 12;
         j |= 1;
         break;
-    case 0x4E:
+    case 78:
         i = 12;
         j |= 2;
         break;
-    case 0x50:
+    case 80:
         i = 13;
         j |= 1;
         break;
-    case 0x52:
+    case 82:
         i = 13;
         j |= 2;
         break;
-    case 0x57:
+    case 87:
         i = 7;
         j |= 1;
         break;
-    case 0x59:
+    case 89:
         i = 7;
         j |= 2;
         break;
-    case 0x5C:
+    case 92:
         i = 16;
         j |= 1;
         break;
-    case 0x5E:
+    case 94:
         i = 16;
         j |= 2;
         break;
-    case 0x76:
+    case 118:
         i = 23;
         j |= 1;
         break;
-    case 0x77:
+    case 119:
         i = 23;
         j |= 2;
         break;
-    case 0x78:
+    case 120:
         if (D_8011A680[arg0][23][7] < 12)
         {
             D_8011A680[arg0][23][0] |= 4;
@@ -5651,11 +5671,11 @@ static s32 func_80052AB0(s16 arg0, s16 arg1, s32 arg2)
             D_8011A680[arg0][23][7] = CLAMP_MAX((D_8011A680[arg0][23][7] + 4), 12);
         }
         break;
-    case 0x7A:
+    case 122:
         i = 9;
         j |= 1;
         break;
-    case 0x61:
+    case 97:
         if ((D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk8 < gPlayer[arg0].unk48) &&
             (D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk8 != 0))
         {
@@ -5663,9 +5683,9 @@ static s32 func_80052AB0(s16 arg0, s16 arg1, s32 arg2)
             func_80036520(arg0, 10);
         }
         break;
-    case 0x62:
-    case 0x63:
-    case 0x64:
+    case 98:
+    case 99:
+    case 100:
         if ((D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk8 < gPlayer[arg0].unk48) &&
             (D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk8 != 0))
         {
@@ -5673,17 +5693,17 @@ static s32 func_80052AB0(s16 arg0, s16 arg1, s32 arg2)
             func_80036520(arg0, 30);
         }
         break;
-    case 0x65:
-    case 0x66:
-    case 0x67:
+    case 101:
+    case 102:
+    case 103:
         k = 4;
         break;
-    case 0x68:
+    case 104:
         k = 3;
         break;
-    case 0x69:
-    case 0x6B:
-    case 0x6D:
+    case 105:
+    case 107:
+    case 109:
         if (D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk7E < 100)
         {
             ret = 1;
@@ -5694,20 +5714,20 @@ static s32 func_80052AB0(s16 arg0, s16 arg1, s32 arg2)
                 D_8010A940[arg0].unk0 = 0;
         }
         break;
-    case 0x6F:
+    case 111:
         k = 2;
         break;
-    case 0x70:
+    case 112:
         k = 5;
         break;
-    case 0x71:
+    case 113:
         k = 6;
         break;
-    case 0x72:
-    case 0x73:
+    case 114:
+    case 115:
         k = 1;
         break;
-    case 0x7C:
+    case 124:
         if ((((D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk8 >= 200)) ||
             (D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk8 == 0)) == 0)
         {
