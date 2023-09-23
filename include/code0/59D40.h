@@ -127,6 +127,7 @@ void func_8005F0F0(s32 spritenum, s32);
 void func_8005F290(s32 spritenum, s32);
 void func_8005F358(s32 spritenum, s32);
 void func_8005F38C(s32 spritenum, s32);
+void func_8005F560(s32 spritenum, s32);
 void func_8005F6A8(s32 spritenum, s32);
 void func_8005F6DC(s32 spritenum, s32);
 void func_8005F730(s32 spritenum, s32);

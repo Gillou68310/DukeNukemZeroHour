@@ -2335,7 +2335,39 @@ void func_8005F38C(s32 spritenum, s32 arg1)
 }
 
 /*8005F560*/
-INCLUDE_ASM("nonmatchings/src/code0/59D40", func_8005F560);
+void func_8005F560(s32 spritenum, s32 arg1)
+{
+    s16 sectnum;
+    s32 temp_s0;
+    s32 x, y, z;
+    s32 ang;
+    s32 a, b, c, d;
+
+    updateSector(0x70FE, 0xA102, &sectnum);
+    if (D_8012FD88 & 1)
+    {
+        z = -0x18DB0;
+        y = 0xA102;
+        ang = krand() & 0x3FF;
+        temp_s0 = (krand() & 0x3FF) + 0x3E8;
+        temp_s0 = temp_s0 + (krand() & 0x7FF);
+        a = ang + 512;
+        x = gpSinTable[a]; /*FAKEMATCH*/
+        x = temp_s0 * gpSinTable[a];
+        c = (temp_s0 * gpSinTable[ang]) >> 14;
+        x = x >> 14;
+        b = krand() & 0x7FFF;
+        y += c;
+        z += b;
+        d = krand() & 3;
+        x += 0x70FE;
+
+        if (d >= 3)
+            func_8004BFDC(spritenum, 3, z, 0);
+        else
+            func_8008E3E0(x, y, z, sectnum, 41, 32);
+    }
+}
 
 /*8005F6A8*/
 void func_8005F6A8(s32 spritenum, s32 arg1)
