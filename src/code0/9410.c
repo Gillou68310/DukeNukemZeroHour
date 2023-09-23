@@ -108,7 +108,7 @@ static u8 func_800099D0(void);
 static void floorVtxToN64(s32 sectnum);
 static void floorVtxToN64Z(s32 sectnum, s32 z);
 static void ceilingVtxToN64(s32 sectnum);
-STATIC void decompressMap(void);
+static void decompressMap(void);
 static void func_80009A14(u8 playernum);
 static void func_8000A938(u16 wallnum);
 static void func_8000AEE0(u16 wallnum);
@@ -188,27 +188,26 @@ void loadMap(s32 mapnum)
     D_800E1748 = -1;
 }
 
-#ifdef NON_MATCHING
 /*80008B88*/
-STATIC void decompressMap(void)
+static void decompressMap(void)
 {
     s32 i;
     s32 count;
     s32 floorz;
-    s32 offset;
+    u8 *addr;
 
-    gMapXpos = (f32)gpMapInfo[gMapNum].xpos;
-    gMapYpos = (f32)gpMapInfo[gMapNum].ypos;
-    gMapZpos = (f32)gpMapInfo[gMapNum].zpos;
+    gMapXpos = gpMapInfo[gMapNum].xpos;
+    gMapYpos = gpMapInfo[gMapNum].ypos;
+    gMapZpos = gpMapInfo[gMapNum].zpos;
 
-    offset = gpMapInfo[gMapNum].sector_offset;
-    decompressEDL(&gpMapBuffer[offset], gpSector);
+    addr = (u8 *)(gpMapInfo[gMapNum].sector_offset + (intptr_t)gpMapBuffer);
+    decompressEDL(addr, gpSector);
 
-    offset = gpMapInfo[gMapNum].wall_offset;
-    decompressEDL(&gpMapBuffer[offset], gpWall);
+    addr = (u8 *)(gpMapInfo[gMapNum].wall_offset + (intptr_t)gpMapBuffer);
+    decompressEDL(addr, gpWall);
 
-    offset = gpMapInfo[gMapNum].sprite_offset;
-    decompressEDL(&gpMapBuffer[offset], gpSprite);
+    addr = (u8 *)(gpMapInfo[gMapNum].sprite_offset + (intptr_t)gpMapBuffer);
+    decompressEDL(addr, gpSprite);
 
     count = 0;
     for (i = 0; i < gNumSectors; i++)
@@ -225,19 +224,15 @@ STATIC void decompressMap(void)
 
     for (i = 0; i < MAXPLAYERS; i++)
     {
-        gPlayer[i].xpos = (s32)(2.0f * gMapXpos);
-        gPlayer[i].ypos = (s32)(2.0f * gMapYpos);
-        gPlayer[i].zpos = (s32)(32.0f * gMapZpos);
+        gPlayer[i].xpos = (2.0f * gMapXpos);
+        gPlayer[i].ypos = (2.0f * gMapYpos);
+        gPlayer[i].zpos = (32.0f * gMapZpos);
         updateSector(gPlayer[i].xpos, gPlayer[i].ypos, &gPlayer[i].unk32);
         floorz = getFlorzOfSlope(gPlayer[i].unk32, gPlayer[i].xpos, gPlayer[i].ypos);
         gPlayer[i].zpos = floorz - 0x3900;
         gPlayer[i].unk38 = gpMapInfo[gMapNum].unk2C;
     }
 }
-#else
-/*80008B88*/
-INCLUDE_ASM("nonmatchings/src/code0/9410", decompressMap);
-#endif
 
 /*80008E3C*/
 void func_80008E3C(void)
