@@ -13,6 +13,7 @@
 #include "code0/41940.h"
 #include "code0/59D40.h"
 #include "code0/6ACA0.h"
+#include "code0/87010.h"
 #include "code0/8E670.h"
 #include "code0/8EFE0.h"
 #include "code0/A06F0.h"
@@ -815,7 +816,70 @@ static s32 func_8009A020(s16 spritenum1, s16 spritenum2)
 }
 
 /*8009A1A0*/
-INCLUDE_ASM("nonmatchings/src/code0/95500", func_8009A1A0);
+void func_8009A1A0(s32 spritenum)
+{
+    SpriteType *spr2;
+    SpriteType *spr;
+    s32 k, l;
+    s16 i, j, nexti;
+    s16 unk16;
+
+    j = -1;
+    spr = &gpSprite[spritenum];
+    if (spr->unk2B == 0)
+    {
+        if (func_801C0FDC(0x800) < spr->ang)
+        {
+            i = gHeadSpriteStat[303];
+            while (i >= 0)
+            {
+                spr2 = &gpSprite[i];
+                nexti = gNextSpriteStat[i];
+                if (i != spritenum)
+                {
+                    if (spr->hitag == spr2->hitag)
+                    {
+                        k = func_801C0FDC(10000);
+                        j = i;
+                        if (k < 5000)
+                            goto label1;
+                    }
+                }
+                i = nexti;
+            }
+            if (j != -1)
+            {
+                i = j;
+            label1:
+                spr->unk16 = i;
+                spr->unk2B = 5;
+                audio_80007820(((krand() % 2) + 57), spritenum);
+            }
+        }
+    }
+    else
+    {
+        spr->unk2B--;
+        unk16 = spr->unk16;
+        spr2 = &gpSprite[unk16];
+        func_800867CC(unk16, spr2->x, spr2->y, spr2->z, spr->x, spr->y, spr->z, 64, 18);
+        l = func_8009A020(spritenum, unk16);
+        if (l != 0)
+        {
+            if (D_80106D50[l] != -1)
+            {
+                if ((D_8019B940[D_80106D50[l]].unk84 != 2) &&
+                    (D_8019B940[D_80106D50[l]].unk84 != 5) &&
+                    !(D_8019B940[D_80106D50[l]].unk0 & 0x2000))
+                {
+                    func_80057540(&gpSprite[l], 1500, 1, 0);
+                    func_800494DC(l, 10, spritenum, 0);
+                    audio_800077F4(870, spritenum);
+                }
+            }
+        }
+    }
+}
 
 /*8009A43C*/
 void func_8009A43C(s32 spritenum)
