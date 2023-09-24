@@ -101,7 +101,7 @@ typedef struct
 static s32 func_800413CC(s32 spritenum);
 static void func_800418B8(s32);
 STATIC s32 func_80042C98(s32 spritenum);
-STATIC s32 func_800433D4(s32 spritenum);
+static s32 func_800433D4(s32 spritenum);
 static s32 func_8004BC24(s32, s32);
 static s32 func_8004DE60(s32 spritenum, s32);
 static s32 func_8004EB60(s32 spritenum);
@@ -1067,7 +1067,68 @@ STATIC s32 func_80042C18(s32 spritenum)
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80042C98);
 
 /*800433D4*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_800433D4);
+static s32 func_800433D4(s32 spritenum)
+{
+    s16 hitsect, hitwall, hitsprite;
+    s32 hitx, hity, hitz;
+    SpriteType *spr;
+    SpriteType *spr2;
+    u16 cstat;
+    s32 vx, vy, vz;
+    s32 cond;
+    s32 z1, z2, z3;
+
+    spr = &gpSprite[spritenum];
+    cstat = spr->cstat;
+    spr2 = &gpSprite[gPlayer->unk4A];
+    vx = spr2->x - spr->x;
+    vy = spr2->y - spr->y;
+    z1 = (spr->z - D_801B0D30) + 0x3500;
+    vz = spr2->z - z1;
+    spr->cstat = cstat & 0xFEFE;
+    z2 = (spr->z - 0x400);
+
+    hitScan(spr->x,
+            spr->y,
+            z2 - D_801B0D30,
+            spr->sectnum,
+            vx,
+            vy,
+            vz,
+            &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x01000040);
+
+    cond = 0;
+    spr->cstat = cstat;
+
+    if ((hitsect != -1) && (hitsprite != -1))
+        cond = gpSprite[hitsprite].statnum == 10;
+
+    cstat = spr->cstat;
+    z3 = ((spr->z - (D_801B0D30 / 2)) + 0x1E80);
+    vz = spr2->z - z3;
+    spr->cstat = cstat & 0xFEFE;
+
+    hitScan(spr->x,
+        spr->y,
+        spr->z - (D_801B0D30 / 2),
+        spr->sectnum,
+        vx,
+        vy,
+        vz,
+        &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x01000040);
+
+    spr->cstat = cstat;
+
+    if (hitsect != -1)
+    {
+        if ((hitsprite != -1) || (hitwall != -1))
+        {
+            if ((gpSprite[hitsprite].statnum != 10) || (hitwall != -1))
+                cond++;
+        }
+    }
+    return (cond == 2);
+}
 
 /*8004364C*/
 static s32 func_8004364C(s32 arg0)
