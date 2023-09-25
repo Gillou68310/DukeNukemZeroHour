@@ -14,7 +14,7 @@ void func_8009584C(s16 playernum);
 void func_800965F8(s32);
 void func_8009A1A0(s32 spritenum);
 void func_8009A43C(s32 spritenum);
-void func_8009A9B8(void);
+void func_8009A9B8(s32 spritenum);
 void func_8009A9F0(s32 spritenum);
 void func_8009B838(s32 spritenum);
 void func_8009B8A4(s32 spritenum);

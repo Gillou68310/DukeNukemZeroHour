@@ -956,7 +956,7 @@ void func_8009A43C(s32 spritenum)
 }
 
 /*8009A9B8*/
-void func_8009A9B8(void)
+void func_8009A9B8(s32 spritenum)
 {
     D_801AE9C4 = 50;
     D_80118250 = 50;

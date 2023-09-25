@@ -23,6 +23,53 @@
 #include "code1/EB300.h"
 
 DECL_STATIC_SEG_SYM(D_0100F1E0);
+DECL_STATIC_SEG_SYM(D_01012FCC);
+DECL_STATIC_SEG_SYM(D_01013404);
+DECL_STATIC_SEG_SYM(D_01013B0C);
+DECL_STATIC_SEG_SYM(D_01013E74);
+DECL_STATIC_SEG_SYM(D_01014468);
+DECL_STATIC_SEG_SYM(D_010151EC);
+DECL_STATIC_SEG_SYM(D_01017850);
+DECL_STATIC_SEG_SYM(D_01017854);
+DECL_STATIC_SEG_SYM(D_01017AFC);
+DECL_STATIC_SEG_SYM(D_010189A4);
+DECL_STATIC_SEG_SYM(D_010198B4);
+DECL_STATIC_SEG_SYM(D_0101999C);
+DECL_STATIC_SEG_SYM(D_0101A220);
+DECL_STATIC_SEG_SYM(D_0101A624);
+DECL_STATIC_SEG_SYM(D_0101AA1C);
+DECL_STATIC_SEG_SYM(D_0101ACAC);
+DECL_STATIC_SEG_SYM(D_0101B9C8);
+DECL_STATIC_SEG_SYM(D_0101BC88);
+DECL_STATIC_SEG_SYM(D_0101C310);
+DECL_STATIC_SEG_SYM(D_0101C458);
+DECL_STATIC_SEG_SYM(D_0101C8A0);
+DECL_STATIC_SEG_SYM(D_0101CF20);
+DECL_STATIC_SEG_SYM(D_0101D440);
+DECL_STATIC_SEG_SYM(D_0101D470);
+DECL_STATIC_SEG_SYM(D_0101DFC4);
+DECL_STATIC_SEG_SYM(D_0101E524);
+DECL_STATIC_SEG_SYM(D_0101E560);
+DECL_STATIC_SEG_SYM(D_0101E594);
+DECL_STATIC_SEG_SYM(D_0101E5C8);
+DECL_STATIC_SEG_SYM(D_0101EB64);
+DECL_STATIC_SEG_SYM(D_0101F1B4);
+DECL_STATIC_SEG_SYM(D_0101F4B4);
+DECL_STATIC_SEG_SYM(D_0101F5E8);
+DECL_STATIC_SEG_SYM(D_0101F780);
+DECL_STATIC_SEG_SYM(D_0101F8F8);
+DECL_STATIC_SEG_SYM(D_0101FB20);
+DECL_STATIC_SEG_SYM(D_0101FF1C);
+DECL_STATIC_SEG_SYM(D_010200C8);
+DECL_STATIC_SEG_SYM(D_010201B8);
+DECL_STATIC_SEG_SYM(D_01020284);
+DECL_STATIC_SEG_SYM(D_0102037C);
+DECL_STATIC_SEG_SYM(D_0102040C);
+DECL_STATIC_SEG_SYM(D_01020DDC);
+DECL_STATIC_SEG_SYM(D_01020EDC);
+DECL_STATIC_SEG_SYM(D_01020F10);
+DECL_STATIC_SEG_SYM(D_01021228);
+DECL_STATIC_SEG_SYM(D_01021464);
 
 typedef void (*_41940UnkFuncPointer1)(s32 spritenum, s32 arg1);
 typedef s32(*_41940UnkFuncPointer2)(s32 spritenum);
@@ -117,6 +164,7 @@ static void func_80051330(s32 spritenum);
 static void func_800519AC(void);
 static s32 func_80052AB0(s16, s16, s32);
 static void func_80053650(s32, s32 spritenum);
+static void func_80055DDC(s32 spritenum);
 static void func_80056C00(s32);
 static void func_80057E7C(void);
 static s32 func_80058538(SpriteType *spr, s32);
@@ -6156,7 +6204,1061 @@ static code0UnkStruct3 *func_80053900(s32 spritenum)
 }
 
 /*800539A8*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_800539A8);
+void func_800539A8(s32 arg0, s32 spritenum)
+{
+    SpriteType *spr;
+    code0UnkStruct3 *ptr;
+    s32 i, j;
+    s32 spritenum_;
+    u16 unk4A;
+
+    spr = &gpSprite[spritenum];
+    spritenum_ = spritenum;
+
+    switch (arg0)
+    {
+    case 2559:
+    case 2562:
+    case 2563:
+    case 2564:
+        spr->cstat |= 0x1101;
+        break;
+
+    case 2597:
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 34;
+        ptr->unkC = NULL;
+        ptr->unk8 = 100;
+        changeSpriteStat(spritenum_, 302);
+        break;
+
+    case 2533:
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 34;
+        ptr->unkC = NULL;
+        ptr->unk8 = 100;
+        changeSpriteStat(spritenum_, 302);
+        break;
+
+    case 2002:
+    case 2005:
+        spr->xrepeat = 0x40;
+        spr->yrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 34;
+        ptr->unk99 = 4;
+        ptr->unkC = NULL;
+        ptr->unk8 = 30;
+        if (((spr->unk25 & 0x7F) >= 4) && ((spr->unk25 & 0x7F) < 8))
+        {
+            func_80055DDC(spritenum_);
+            ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101F780);
+            ptr->unk0 |= 0x100000;
+        }
+        else
+            changeSpriteStat(spritenum_, 302);
+        break;
+
+    case 2539:
+        spr->xrepeat = 0x40;
+        spr->yrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = -1;
+        ptr->unk8 = -1;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_010201B8);
+        func_80055DDC(spritenum_);
+        break;
+
+    case 2581:
+        spr->xrepeat = 0;
+        spr->yrepeat = 0;
+        spr->cstat = -0x7000;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = -1;
+        ptr->unk8 = -1;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_01020F10);
+        func_80055DDC(spritenum_);
+        break;
+
+    case 2487:
+        if (spr->unk25 == 1)
+        {
+            spr->xrepeat = 0;
+            spr->yrepeat = 0;
+            spr->cstat = 0x1000;
+            ptr = func_80053900(spritenum_);
+            ptr->unk84 = -1;
+            ptr->unk8 = -1;
+            ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_01021464);
+            func_80055DDC(spritenum_);
+        }
+        break;
+
+    case 2553:
+        spr->xrepeat = 0;
+        spr->yrepeat = 0;
+        spr->cstat = 0x1000;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = -1;
+        ptr->unk8 = -1;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_01021228);
+        func_80055DDC(spritenum_);
+        break;
+
+    case 2577:
+        spr->xrepeat = 0x40;
+        spr->yrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = -1;
+        ptr->unk8 = -1;
+        ptr->unkC = NULL;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101FB20);
+        ptr->unk48 = spr->unk24;
+        if (spr->unk25 == 0)
+        {
+            spr->picnum = 1535;
+            ptr->unk99 = 2;
+        }
+        else if (spr->unk25 == 1)
+            spr->picnum = 1532;
+        else if (spr->unk25 == 2)
+            spr->picnum = 1533;
+        else if (spr->unk25 == 3)
+            spr->picnum = 1534;
+        else if (spr->unk25 == 4)
+            spr->picnum = 2000;
+        else if (spr->unk25 == 5)
+            spr->picnum = 2001;
+        else if (spr->unk25 == 6)
+            spr->picnum = 2003;
+        else if (spr->unk25 == 7)
+            spr->picnum = 2382;
+        else if (spr->unk25 == 8)
+            spr->picnum = 1535;
+        func_80055DDC(spritenum_);
+        break;
+
+    case 11:
+        spr->xrepeat = 0x40;
+        spr->yrepeat = 0x40;
+        changeSpriteStat(spritenum_, 50);
+        gpSprite[spritenum_].unk16 = 8;
+        break;
+
+    case 1296:
+        spr->xrepeat = 0x40;
+        spr->yrepeat = 0x40;
+        ptr = func_80053900(spritenum_);
+        spr->cstat |= 0x1101;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_01014468);
+        ptr->unk84 = 12;
+        ptr->unk8 = 50;
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+
+        func_80055DDC(spritenum_);
+        break;
+
+    case 1841:
+        spr->xrepeat = 0x40;
+        if ((spr->statnum != 4) && (spr->unk25 != 0))
+        {
+            spr->x += (gpSinTable[(spr->ang + 0x200) & 0x7FF] * 25) >> 13;
+            spr->y += (gpSinTable[spr->ang & 0x7FF] * 25) >> 13;
+            gPlayer[0].unk38 = (spr->ang - 0x400) & 0x7FF;
+            gPlayer[0].xpos = spr->x;
+            gPlayer[0].ypos = spr->y;
+            gPlayer[0].zpos = spr->z;
+            gPlayer[0].unk3E = 0;
+            gPlayer[0].unk32 = -69;
+            unk4A = gPlayer[0].unk4A;
+            i = insertSprite(spr->sectnum, 10);
+            if (i != -1)
+            {
+                gpSprite[i].unk16 = 0;
+                gPlayer[0].unk4A = i;
+                j = func_8006D3B8(i, 14, 0, 0, 0);
+                gPlayer[0].unk4A = unk4A;
+                deleteSprite(i);
+                if (j != -1)
+                {
+                    gpSprite[j].hitag = spr->hitag;
+                    if (spr->unk25 == 1)
+                        gpSprite[j].unk2B = 0xFF;
+                    else
+                        gpSprite[j].unk2B = 0;
+                    deleteSprite(spritenum_);
+                }
+            }
+        }
+        break;
+
+    case 1378:
+        spr->xrepeat = 0x40;
+        ptr = func_80053900(spritenum_);
+        spr->cstat |= 0x1000;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101AA1C);
+        ptr->unk84 = -1;
+        func_80055DDC(spritenum_);
+        break;
+
+    case 1717:
+        spr->xrepeat = 0x40;
+        if (spr->unk25 == 1)
+        {
+            ptr = func_80053900(spritenum_);
+            spr->cstat |= 0x1000;
+            ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101C310);
+            ptr->unk84 = -1;
+            ptr->unk8 = -1;
+            changeSpriteStat(spritenum_, 1);
+        }
+        break;
+
+    case 1709:
+        spr->xrepeat = 0x40;
+        if (spr->unk25 == 1)
+        {
+            ptr = func_80053900(spritenum_);
+            spr->cstat |= 0x1000;
+            ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101C458);
+            ptr->unk84 = -1;
+            ptr->unk8 = -1;
+            func_80055DDC(spritenum_);
+        }
+        break;
+
+    case 1297:
+        spr->xrepeat = 0x40;
+        ptr = func_80053900(spritenum_);
+        spr->cstat |= 0x1101;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_01013B0C);
+        ptr->unk84 = 13;
+        ptr->unk8 = 50;
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1298:
+        spr->xrepeat = 0x40;
+        ptr = func_80053900(spritenum_);
+        spr->cstat |= 0x1101;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_01013E74);
+        ptr->unk84 = 14;
+        ptr->unk8 = 50;
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1295:
+        spr->xrepeat = 0x40;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 11;
+        ptr->unk8 = 10;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101A220);
+        spr->cstat = 0x1101;
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1531:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 18;
+        ptr->unk8 = 350;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_010198B4);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1302:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 16;
+        ptr->unk8 = 12;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101A624);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 2443:
+        if (spr->unk25 == 1)
+        {
+            spr->xrepeat = 0x40;
+            spr->cstat |= 0x1000;
+            ptr = func_80053900(spritenum_);
+            ptr->unk84 = -1;
+            ptr->unk8 = -1;
+            ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101F5E8);
+            func_80055DDC(spritenum_);
+        }
+        break;
+
+    case 2219:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 30;
+        ptr->unk8 = 600;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101C8A0);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 2220:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 30;
+        ptr->unk8 = 600;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101CF20);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 0x7D6:
+    case 2574:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = -1;
+        ptr->unk8 = -1;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101F4B4);
+        func_80055DDC(spritenum_);
+        break;
+
+    case 2283:
+        if (spr->unk25 == 2)
+        {
+            spr->xrepeat = 0x40;
+            spr->cstat |= 0x1101;
+            ptr = func_80053900(spritenum_);
+            ptr->unk84 = -1;
+            ptr->unk8 = -1;
+            ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101FF1C);
+            func_80055DDC(spritenum_);
+        }
+        break;
+
+    case 2580:
+        spr->xrepeat = 0x40;
+        spr->cstat = 0x1000;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = -1;
+        ptr->unk8 = -1;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_01020DDC);
+        func_80055DDC(spritenum_);
+        break;
+
+    case 2596:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = -1;
+        ptr->unk8 = -1;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_01020EDC);
+        func_80055DDC(spritenum_);
+        break;
+
+    case 2284:
+        if (spr->unk25 == 2)
+        {
+            spr->xrepeat = 0x40;
+            spr->cstat |= 0x1101;
+            ptr = func_80053900(spritenum_);
+            ptr->unk84 = -1;
+            ptr->unk8 = -1;
+            ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_010200C8);
+            func_80055DDC(spritenum_);
+        }
+        break;
+
+    case 2290:
+        if (spr->unk25 == 1)
+        {
+            spr->xrepeat = 0x40;
+            spr->cstat |= 0x1000;
+            ptr = func_80053900(spritenum_);
+            ptr->unk84 = -1;
+            ptr->unk8 = -1;
+            ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0102037C);
+            func_80055DDC(spritenum_);
+        }
+        else
+        {
+            spr->xrepeat = 0x40;
+            spr->cstat |= 0x1000;
+            spr->xrepeat = 0x40;
+            spr->unk22 = 0;
+            spr->z -= 0x4000;
+            spr->ang += 48;
+            func_80055DDC(spritenum_);
+        }
+        break;
+
+    case 1299:
+    case 1300:
+        spr->xrepeat = 0x80;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        if (spr->picnum == 1299)
+        {
+            ptr->unk84 = 19;
+            ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_01017854);
+        }
+        if (spr->picnum == 1300)
+        {
+            ptr->unk84 = 20;
+            ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_01017850);
+        }
+        ptr->unk8 = 20;
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 2468:
+        spr->xrepeat = 0x48;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 4;
+        ptr->unk8 = 100;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0100F1E0);
+        if (spr->unk25 == 1)
+            ptr->unk0 |= 0x800;
+
+        spr->unk25 = 50;
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1287:
+        spr->xrepeat = 0x48;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 24;
+        ptr->unk8 = 100;
+        ptr->unk7E = 100;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_010151EC);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1288:
+        spr->xrepeat = 0x48;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 23;
+        ptr->unk8 = 100;
+        ptr->unk7E = 100;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_010151EC);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1290:
+        spr->xrepeat = 0x48;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 25;
+        ptr->unk8 = 100;
+        ptr->unk7E = 50;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_010151EC);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1998:
+        spr->xrepeat = 0x48;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 28;
+        ptr->unk8 = 100;
+        ptr->unk7E = 100;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_010151EC);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1291:
+        spr->xrepeat = 0x48;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 26;
+        ptr->unk8 = 100;
+        ptr->unk7E = 100;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_010151EC);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1999:
+        spr->xrepeat = 0x48;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 27;
+        ptr->unk8 = 100;
+        ptr->unk7E = 100;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_010151EC);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1289:
+        spr->xrepeat = 0x48;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 7;
+        ptr->unk8 = 100;
+        ptr->unk7E = 25;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_010151EC);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1286:
+        spr->xrepeat = 0x48;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 6;
+        ptr->unk8 = 100;
+        ptr->unk7E = 5;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_010151EC);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 2566:
+        spr->xrepeat = 0x40;
+        spr->picnum = 1533;
+        D_800DEF10 = 1;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 38;
+        ptr->unk8 = 400;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101EB64);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 2567:
+        spr->xrepeat = 0x40;
+        spr->picnum = 1534;
+        D_800DEF10 = 1;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 39;
+        ptr->unk8 = 400;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101EB64);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 2401:
+        if (spr->unk25 == 1)
+            spr->cstat &= 0xFEFE;
+        break;
+
+    case 2568:
+        spr->xrepeat = 0x40;
+        spr->picnum = 2003;
+        D_800DEF10 = 1;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 40;
+        ptr->unk8 = 600;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101EB64);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 2569:
+        spr->xrepeat = 0x40;
+        spr->picnum = 2000;
+        D_800DEF10 = 1;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 41;
+        ptr->unk8 = 600;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101EB64);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 2570:
+        spr->xrepeat = 0x40;
+        spr->picnum = 2366;
+        D_800DEF10 = 1;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 42;
+        ptr->unk8 = 600;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101EB64);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 2571:
+        spr->xrepeat = 0x40;
+        spr->picnum = 2382;
+        D_800DEF10 = 1;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 43;
+        ptr->unk8 = 1000;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101EB64);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 2309:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 36;
+        ptr->unk8 = 500;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101DFC4);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 2004:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 37;
+        ptr->unk8 = 750;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101E5C8);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1282:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 2;
+        ptr->unk8 = 30;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0100F1E0);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1283:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 3;
+        ptr->unk8 = 50;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0100F1E0);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1284:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 4;
+        ptr->unk8 = 100;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0100F1E0);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1285:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 5;
+        ptr->unk8 = 400;
+        ptr->unk7E = 50;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0102040C);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 2262:
+        spr->xrepeat = 0x40;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = -1;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101E560);
+        func_80055DDC(spritenum_);
+        spr->cstat &= 0x7FFF;
+        break;
+
+    case 2263:
+        spr->xrepeat = 0x40;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = -1;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101E594);
+        func_80055DDC(spritenum_);
+        spr->cstat &= 0x7FFF;
+        break;
+
+    case 2222:
+        spr->xrepeat = 0x40;
+        spr->unk16 = -1;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = -1;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101BC88);
+        func_80055DDC(spritenum_);
+        break;
+
+    case 1449:
+    case 2254:
+        spr->xrepeat = 0x40;
+        spr->unk16 = -1;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = -1;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101B9C8);
+        func_80055DDC(spritenum_);
+        break;
+
+    case 1303:
+    case 1304:
+    case 1724:
+    case 1725:
+    case 1726:
+    case 1727:
+    case 1728:
+        spr->xrepeat = 0x40;
+        spr->yrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        spr->unk22 = spr->unk24;
+        ptr = func_80053900(spritenum_);
+        if ((spr->unk22 == 0) || (spr->unk25 == 20))
+        {
+            spr->cstat |= 0x8000;
+            ptr->unk86 = -32669;
+        }
+        ptr->unk84 = 9;
+        ptr->unk8 = 80;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_01017AFC);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1292:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 8;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_010189A4);
+        if (spr->unk25 == 6)
+            ptr->unk8 = 750;
+        else
+            ptr->unk8 = 250;
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1426:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        if ((spr->statnum >= 301) && (spr->statnum < 303))
+            spr->cstat |= 0x8000;
+        spr->unk22 = 0;
+        spr->unk2B = 0;
+        ptr = func_80053900(spritenum_);
+        ptr->unkC = NULL;
+        ptr->unk84 = 21;
+        break;
+
+    case 1404:
+        spr->xrepeat = 0x40;
+        spr->cstat = 0x1000;
+        changeSpriteStat(spritenum_, 302);
+        break;
+
+    case 26:
+        spr->xrepeat = 0x40;
+        changeSpriteStat(spritenum_, 7);
+        spr->cstat = 0x8000;
+        spr->picnum = 0;
+        spr->xrepeat = 0x20;
+        spr->yrepeat = 0x20;
+        spr->unk2B = 0;
+        break;
+
+    case 1442:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        if (spr->unk25 == 0)
+            changeSpriteStat(spritenum_, 0);
+        else
+        {
+            ptr->unk84 = 22;
+            ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101999C);
+            func_80055DDC(spritenum_);
+            if (spr->unk25 == 2)
+                changeSpriteStat(spritenum_, 1);
+        }
+        spr->cstat &= 0x7FFF;
+        break;
+
+    case 1294:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 10;
+        ptr->unk8 = 400;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_01012FCC);
+        func_80055DDC(spritenum_);
+        spr->unk2A = 0;
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1956:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1000;
+        ptr = func_80053900(spritenum_);
+        changeSpriteStat(spritenum_, 1);
+        ptr->unk84 = -1;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101D440);
+        spr->unk2A = 0;
+        break;
+
+    case 1293:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 10;
+        ptr->unk8 = 400;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_01013404);
+        func_80055DDC(spritenum_);
+        spr->unk2A = 0;
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 2301:
+    case 2302:
+    case 2303:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = -1;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101D470);
+        func_80055DDC(spritenum_);
+        if (spr->unk25 == 0)
+            D_801A1958.babes_total++;
+        break;
+
+    case 44:
+        spr->xrepeat = 0x20;
+        spr->cstat = 0x8000;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = -1;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101E524);
+        func_80055DDC(spritenum_);
+        break;
+
+    case 1280:
+        spr->xrepeat = 0x40;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = 0;
+        ptr->unk8 = 400;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101ACAC);
+        func_80055DDC(spritenum_);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1532:
+        if (spr->unk25 == 50)
+        {
+            spr->xrepeat = 0x40;
+            spr->cstat |= 0x1101;
+            ptr = func_80053900(spritenum_);
+            ptr->unk84 = -1;
+            ptr->unk8 = -1;
+            ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101F8F8);
+            func_80055DDC(spritenum_);
+        }
+        break;
+
+    case 1306:
+        spr->unk2B = 0;
+        spr->unk22 = 0;
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        func_8009E5B0(spritenum_);
+        ptr->unk84 = 31;
+        ptr->unkC = NULL;
+        ptr->unk8 = 5000;
+        changeSpriteStat(spritenum_, 305);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 1309:
+        spr->unk2B = 0;
+        spr->unk22 = 0;
+        spr->cstat |= 0x1101;
+        func_8009B838(spritenum_);
+        ptr = func_80053900(spritenum_);
+        spr->xrepeat = 0x20;
+        ptr->unk84 = 33;
+        if (spr->unk25 == 1)
+        {
+            ptr->unk8 = 0;
+            ptr->unk84 = -1;
+            ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_01020284);
+            changeSpriteStat(spritenum_, 1);
+        }
+        else
+        {
+            ptr->unkC = NULL;
+            ptr->unk8 = 10000;
+            changeSpriteStat(spritenum_, 305);
+
+            if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+                D_801A1958.enemies_total++;
+        }
+        break;
+
+    case 1308:
+        spr->cstat |= 0x1101;
+        changeSpriteStat(spritenum_, 302);
+        func_80053900(spritenum_);
+        break;
+
+    case 33:
+        spr->xrepeat = 0x40;
+        changeSpriteStat(spritenum_, 8);
+        spr->cstat = 0x8000;
+        spr->picnum = 0;
+        spr->xrepeat = 0x20;
+        spr->yrepeat = 0x20;
+        break;
+
+    case 2341:
+        changeSpriteStat(spritenum_, 302);
+        spr->unk18 = 0;
+        spr->unk1A = 0;
+        spr->unk1C = 0;
+        if (spr->unk25 == 1)
+        {
+            ptr = func_80053900(spritenum_);
+            ptr->unk84 = 32;
+            ptr->unkC = NULL;
+            ptr->unk8 = 300;
+        }
+        break;
+
+    case 2356:
+        spr->cstat |= 0x1101;
+        ptr = func_80053900(spritenum_);
+        ptr->unk0 |= 2;
+        spr->unk22 = 0;
+        break;
+
+    case 1307:
+        spr->lotag = 140;
+        spr->cstat |= 0x1101;
+        func_8009A9B8(spritenum_);
+        ptr = func_80053900(spritenum_);
+        ptr->unk0 |= 2;
+        ptr->unkC = NULL;
+        ptr->unk84 = 35;
+        ptr->unk8 = 5000;
+        spr->unk22 = 0;
+        changeSpriteStat(spritenum_, 305);
+
+        if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
+            D_801A1958.enemies_total++;
+        break;
+
+    case 46:
+        spr->cstat = 0x8000;
+        spr->picnum = 46;
+        ptr = func_80053900(spritenum_);
+        ptr->unk84 = -1;
+        ptr->unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101F1B4);
+        ptr->unk0 |= 0x240000;
+        func_80055DDC(spritenum_);
+        break;
+    }
+}
 
 /*80055DDC*/
 static void func_80055DDC(s32 spritenum)
