@@ -37,14 +37,11 @@ static void func_8001A8EC(s16, s16, s32 tileid, s16, u8);
 static void func_8001BFB0(code0unkStruct12 *);
 static void func_8001C490(s16);
 
-/*FIXME: This breaks sky*/
-#ifdef NON_EQUIVALENT
 /*80019BC0*/
 void func_80019BC0(void)
 {
     s16 i;
     code0unkStruct12 *ptr;
-    code0unkStruct12 *ptr2;
     s16 nexti;
 
     i = gHeadSpriteStat[104];
@@ -95,43 +92,39 @@ void func_80019BC0(void)
             {
                 D_801AE904[1] = gpSprite[i].ang;
                 D_800FE9C8[1] = gpSprite[i].unk18;
-                ptr2 = &D_8012FC48[1];
+                ptr = &D_8012FC48[1];
             }
             else
             {
                 D_801AE904[0] = gpSprite[i].ang;
                 D_800FE9C8[0] = gpSprite[i].unk18;
-                ptr2 = &D_8012FC48[0];
+                ptr = &D_8012FC48[0];
             }
 
-            ptr2->unk18 = gpSprite[i].unk1E;
-            ptr2->unk8 = ((-cosf((gpSprite[i].ang * (PI/1024))) * gpSprite[i].unk18) / 50.0f);
-            ptr2->unkC = ((-sinf((gpSprite[i].ang * (PI/1024))) * gpSprite[i].unk18) / 50.0f);
-            ptr2->unk0 = gpSprite[i].unk20 * 10;
+            ptr->unk18 = gpSprite[i].lotag;
+            ptr->unk8 = ((-cosf((gpSprite[i].ang * (PI/1024))) * gpSprite[i].unk18) / 50.0f);
+            ptr->unkC = ((-sinf((gpSprite[i].ang * (PI/1024))) * gpSprite[i].unk18) / 50.0f);
+            ptr->unk1C = gpSprite[i].hitag * 10;
 
             if (gpSprite[i].unk25 == 0)
-                ptr2->unk0 = -ptr2->unk0;
+                ptr->unk1C = -ptr->unk1C;
             break;
         case 24:
-            D_8012EB44 = gpSprite[i].unk1E;
-            D_80199942 = gpSprite[i].unk20;
+            D_8012EB44 = gpSprite[i].lotag;
+            D_80199942 = gpSprite[i].hitag;
             break;
         case 25:
-            D_801AE91C = gpSprite[i].unk1E;
+            D_801AE91C = gpSprite[i].lotag;
             D_801AE90C = gpSprite[i].unk25 == 0;
             D_80105714 = (cosf((gpSprite[i].ang * (PI/1024))) * 10240.0f);
             D_8010570C = (sinf((gpSprite[i].ang * (PI/1024))) * 10240.0f);
-            D_8013860C = (tanf((gpSprite[i].unk20 * (PI/1024))) * 10240.0f * -16.0f);
+            D_8013860C = (tanf((gpSprite[i].hitag * (PI/1024))) * 10240.0f * -16.0f);
             break;
         }
         deleteSprite(i);
         i = nexti;
     }
 }
-#else
-/*80019BC0*/
-INCLUDE_ASM("nonmatchings/src/code0/1A7C0", func_80019BC0);
-#endif
 
 /*8001A1A4*/
 void func_8001A1A4(void)
