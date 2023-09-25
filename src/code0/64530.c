@@ -2,6 +2,7 @@
 #include "code0/main.h"
 #include "code0/audio.h"
 #include "code0/engine.h"
+#include "code0/pragmas.h"
 #include "code0/37090.h"
 #include "code0/41940.h"
 #include "code0/6ACA0.h"
@@ -664,7 +665,128 @@ static void func_800697D8(s16 playernum, s16 arg1, s16 arg2)
 }
 
 /*800698E8*/
-INCLUDE_ASM("nonmatchings/src/code0/64530", func_800698E8);
+void func_800698E8(void)
+{
+    SpriteType *spr;
+    s32 t2, t4;
+    s32 k, l;
+    s16 i, j, nexti;
+    s16 t3;
+    u16 t1;
+
+    i = gHeadSpriteStat[666];
+    while (i >= 0)
+    {
+        spr = &gpSprite[i];
+        nexti = gNextSpriteStat[i];
+        if ((spr->picnum == 2267) || (spr->picnum == 2268))
+        {
+            if ((gPlayer[0].unk50 >= 0) && (gPlayer[0].unk5C == 0) &&
+                (func_80040D40(spr->x, spr->y, gPlayer[0].xpos, gPlayer[0].ypos) < 0x200))
+            {
+                audio_800077F4((krand() & 1) | 1364, i);
+                func_8003671C(0, 25, -1, -1);
+                deleteSprite(i);
+            }
+        }
+        else
+        {
+            spr->unk1A++;
+            if (spr->unk1A >= spr->lotag)
+                spr->unk1A = 0;
+
+            if (spr->unk1A == 0)
+            {
+                if (spr->unk1C == 1)
+                {
+                    for (j = 0; j < D_8012C470; j++)
+                    {
+                        if (gPlayer[j].unk32 == spr->sectnum)
+                        {
+                            switch (spr->unk22)
+                            {
+                            case 0:
+                                if (gPlayer[j].unk59 != 0)
+                                {
+                                    if (gPlayer[j].unk36 == gPlayer[j].unk32)
+                                        func_800697D8(j, spr->unk18, spr->unk2A);
+                                }
+                                break;
+
+                            case 1:
+                                k = klabs(((gpSector[gPlayer[j].unk32].floorz - gpSprite[gPlayer[j].unk4A].z)));
+                                k = 0x4000 - k;
+                                if (k > 0)
+                                    func_800697D8(j, (k * spr->unk18) / 0x4000, spr->unk2A);
+                                break;
+
+                            case 2:
+                                func_800697D8(j, spr->unk18, spr->unk2A);
+                                break;
+
+                            case 3:
+                                if (gpSprite[gPlayer[j].unk4A].z > func_80036490(gPlayer[j].unk32))
+                                    func_800697D8(j, spr->unk18, spr->unk2A);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    for (j = 0; j < D_8012C470; j++)
+                    {
+                        l = func_80040D94(gpSprite[gPlayer[j].unk4A].x,
+                                          gpSprite[gPlayer[j].unk4A].y,
+                                          gpSprite[gPlayer[j].unk4A].z / 16,
+                                          spr->x, spr->y, spr->z / 16);
+
+                        if (l < spr->unk22)
+                        {
+                            l = spr->unk22 - l;
+                            func_800697D8(j, (l * spr->unk18) / spr->unk22, spr->unk2A);
+                        }
+                    }
+
+                }
+            }
+
+            if (spr->unk2B != 0)
+            {
+                if ((gpSector[spr->sectnum].unk18 == 2) ||
+                    ((gpSector[spr->sectnum].unk18 == 3) && (func_80036490(spr->sectnum) < spr->z)))
+                {
+                    spr->xrepeat--;
+                    spr->yrepeat--;
+                    if ((spr->xrepeat == 0) || (spr->yrepeat == 0))
+                        deleteSprite(i);
+                }
+                else
+                {
+                    /*FAKEMATCH*/
+                    do
+                    {
+                        t1 = spr->unk16;
+                        t2 = t1 << 16;
+                        t3 = t1 & 0xFF;
+                    } while (0);
+
+                    if (t2 != 0)
+                    {
+                        t4 = t2 >> 24;
+                        if (spr->xrepeat < t4)
+                            spr->xrepeat++;
+                        if (spr->yrepeat < t3)
+                            spr->yrepeat++;
+                        if ((spr->xrepeat == t4) && (spr->yrepeat == t3))
+                            spr->unk16 = 0;
+                    }
+                }
+            }
+        }
+        i = nexti;
+    }
+}
 
 /*80069E50*/
 void func_80069E50(void)
