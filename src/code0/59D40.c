@@ -17,9 +17,9 @@
 #include "code1/EB300.h"
 
 /*.data*/
-/*800DF2E0*/ EXTERN_DATA STATIC s32 D_800DF2E0;
-/*800DF2E4*/ EXTERN_DATA STATIC s32 D_800DF2E4;
-/*800DF2E8*/ EXTERN_DATA STATIC s32 D_800DF2E8;
+/*800DF2E0*/ static s32 D_800DF2E0 = 0;
+/*800DF2E4*/ static s32 D_800DF2E4 = 0;
+/*800DF2E8*/ static s32 D_800DF2E8 = 0;
 
 /*.text*/
 static void func_8005B014(s32 spritenum);
