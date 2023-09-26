@@ -3747,7 +3747,7 @@ static void func_801C9C18(void)
     i = *D_801CDC68;
     if ((i == 0) || (gPlayer[0].unk45 != 0))
     {
-        func_8008E01C(0x1E, 5);
+        func_8008E01C(30, 5);
         D_8012FC90 = 0;
         return;
     }
@@ -3776,7 +3776,57 @@ static void func_801C9C18(void)
 }
 
 /*801C9D68*/
+#ifdef NON_MATCHING
+void func_801C9D68(void)
+{
+    s32 i, j;
+    u8 k, l, m;
+    u8 **ptr;
+
+    for (i = 0; i < D_801CC8CA; i++)
+    {
+        if (gController[i].button & 0x1000)
+        {
+            func_8008E01C(30, 0);
+            D_8012FC90 = 0;
+            return;
+        }
+    }
+
+    l = *D_801CDC68;
+    if ((l == 0) || (gPlayer[0].unk45 != 0))
+    {
+        func_8008E01C(30, 5);
+        D_8012FC90 = 0;
+    }
+    else
+    {
+        k = *D_801CDC68;
+        m = D_801CDC68[1];
+        if ((k&3) < 2)
+        {
+            do { j = k >> 2; } while (0); /*FAKE*/
+
+            if ((k&3) != 0)
+                j += (m << 6);
+
+            if (D_801CDB0C < j)
+            {
+                D_801CDB0C++;
+                return;
+            }
+
+            D_801CDB0C = 0;
+            k = (k&3) + 1;
+            ptr = &D_801CDC68;
+            D_801CDC68 = &(*ptr)[k];
+        }
+        func_801C9C18();
+    }
+}
+#else
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C9D68);
+#endif
 
 /*801C9E7C*/
 void func_801C9E7C(void)
