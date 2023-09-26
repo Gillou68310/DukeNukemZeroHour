@@ -1154,4 +1154,80 @@ void func_8001D128(s32 *x, s32 *y)
 }
 
 /*8001D238*/
-INCLUDE_ASM("nonmatchings/src/code0/1A7C0", func_8001D238);
+void func_8001D238(s32 x, s32 y, u16 tileid)
+{
+    u8 *pTile;
+    f32 f1, f2, f3, f4;
+    s32 xl, yl, xh, yh;
+    s32 dsdx, dtdy;
+    s32 width, height;
+    s32 i, j, k, l, m, n, o;
+    u16 tilenum;
+
+    tilenum = getTileNum(tileid);
+    if (gpTileInfo[tilenum].picanm & 0xC0)
+        tilenum += animateOffs(tileid, 0);
+
+    if (tilenum != 1)
+    {
+        width = gpTileInfo[tilenum].dimx;
+        if ((D_8012C470 == 1) || (D_801B0820 == D_8012C470))
+            f1 = 1.0f;
+        else
+            f1 = 1.5f;
+
+        func_8001D128(&x, &y);
+        f2 = SCREEN_HEIGHT/2.0f;
+        f3 = gpTileInfo[tilenum].sizex * f1 * D_80199110;
+        f4 = (gpTileInfo[tilenum].sizey * f1 * D_801A1980);
+
+        xl = x;
+        xh = (xl + (f3 / 160.0f));
+        yl = y;
+
+        dsdx = (((gpTileInfo[tilenum].dimx << 10) * (SCREEN_WIDTH/2.0)) / f3);
+        dtdy = (((gpTileInfo[tilenum].dimy << 10) * (SCREEN_HEIGHT/2.0)) / f4);
+        j = ((gpTileInfo[tilenum].dimx * gpTileInfo[tilenum].dimy) + 0xFFF) / 4096;
+
+        pTile = loadTile(tilenum) + 0x20;
+        k = gpTileInfo[tilenum].dimy / j;
+        l = gpTileInfo[tilenum].dimy;
+
+        m = (((gpTileInfo[tilenum].sizey * 4) * f1) * D_801A1980) / f2;
+        n = m / j;
+        o = m;
+
+        yl = yl * 4;
+        gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(tilenum));
+
+        for (i = 0; i < j; i++)
+        {
+            height = l;
+            if (k < height)
+                height = k;
+
+            l -= height;
+
+            if (D_801A2688 != 0)
+            {
+                gDPLoadTextureBlock_4b(gpDisplayList++, pTile, G_IM_FMT_I, width, height, 0,
+                                                        G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP,
+                                                        G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+            }
+            else
+            {
+                gDPLoadTextureBlock_4b(gpDisplayList++, pTile, G_IM_FMT_CI, width, height, 0,
+                                                        G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP,
+                                                        G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+            }
+
+            pTile += (gpTileInfo[tilenum].dimx * height / 8) * 4;
+            height = MIN(o, n);
+            o -= height;
+
+            gSPScisTextureRectangle(gpDisplayList++, (xl*4), (yl), (xh*4), (yl + height), 0, 0, 0, dsdx, dtdy);
+            yl += height;
+        }
+    }
+}
+

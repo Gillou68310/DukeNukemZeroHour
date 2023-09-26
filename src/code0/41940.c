@@ -5574,7 +5574,7 @@ static void func_800524BC(s16 playernum, s16 arg1, s16 arg2)
 
 #ifdef NON_MATCHING
 /*8005259C*/
-static u8 func_8005259C(s16 playernum, s16 arg1, u32 arg2, s16 spritenum) /*Pickup Ammo+weapon?*/
+STATIC u8 func_8005259C(s16 playernum, s16 arg1, u32 arg2, s16 spritenum) /*Pickup Ammo+weapon?*/
 {
     u8 cond;
     s16 i;
@@ -5645,7 +5645,7 @@ static u8 func_8005259C(s16 playernum, s16 arg1, u32 arg2, s16 spritenum) /*Pick
 }
 #else
 /*8005259C*/
-static u8 func_8005259C(s16 playernum, s16 arg1, u32 arg2, s16 spritenum);
+STATIC u8 func_8005259C(s16 playernum, s16 arg1, u32 arg2, s16 spritenum);
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8005259C);
 #endif
 
