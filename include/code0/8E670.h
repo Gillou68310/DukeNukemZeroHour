@@ -9,7 +9,7 @@ void func_8008DE14(void);
 void func_8008E01C(s16, s32);
 void func_8008E04C(s16 playernum);
 
-extern u8 D_800E16A0[4];
+extern u8 D_800E16A0[MAXPLAYERS];
 extern s32 D_800E16BC;
 extern s32 D_800E16C0;
 extern s32 D_800E1748;

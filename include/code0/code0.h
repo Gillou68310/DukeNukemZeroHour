@@ -433,11 +433,11 @@ typedef struct
 /*800FE944*/ _extern u8 *gpModelTile;
 /*800FE950*/ _extern VertexC D_800FE950[12] ALIGNED(8);
 /*800FE9C8*/ _extern s32 D_800FE9C8[2]; /*CLOUDS SP*/
-/*800FE9D0*/ _extern s8 D_800FE9D0;
+/*800FE9D0*/ _extern s8 D_800FE9D0; /*playernum2*/
 /*800FE9D8*/ _extern u8 D_800FE9D8[8];
 /*800FE9E0*/ _extern _volatile s64 D_800FE9E0;
 /*800FEA90*/ _extern u8 D_800FEA90;
-/*800FF4F0*/ _extern code0UnkStruct22 D_800FF4F0[4] ALIGNED(8);
+/*800FF4F0*/ _extern code0UnkStruct22 D_800FF4F0[MAXPLAYERS] ALIGNED(8);
 /*800FF528*/ _extern s32 *D_800FF528;
 /*80105540*/ _extern s32 D_80105540;
 /*8010554C*/ _extern u8 D_8010554C;

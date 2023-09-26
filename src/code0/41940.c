@@ -5517,12 +5517,12 @@ static void func_800519AC(void)
 }
 
 /*80052358*/
-static u8 func_80052358(s16 arg0, s16 arg1)
+static u8 func_80052358(s16 playernum, s16 arg1)
 {
-    if (D_8010A940[arg0].unkA[arg1] >= D_800E17E0[arg1])
+    if (D_8010A940[playernum].unkA[arg1] >= D_800E17E0[arg1])
         return 0;
 
-    switch (D_8012F6E4[gPlayer[arg0].unk4C].unkB)
+    switch (D_8012F6E4[gPlayer[playernum].unk4C].unkB)
     {
     case 3:
         if (arg1 == 1)
@@ -5533,10 +5533,10 @@ static u8 func_80052358(s16 arg0, s16 arg1)
             return 0;
         break;
     }
-    D_8010A940[arg0].unkA[arg1] = D_800E17E0[arg1];
+    D_8010A940[playernum].unkA[arg1] = D_800E17E0[arg1];
 
-    if (D_8010A940[arg0].unk0 == -1)
-        D_8010A940[arg0].unk0 = arg1;
+    if (D_8010A940[playernum].unk0 == -1)
+        D_8010A940[playernum].unk0 = arg1;
     return 1;
 }
 
@@ -5572,12 +5572,85 @@ static void func_800524BC(s16 playernum, s16 arg1, s16 arg2)
     }
 }
 
+#ifdef NON_MATCHING
 /*8005259C*/
-STATIC u8 func_8005259C(s16, s16, s16, s16);
+static u8 func_8005259C(s16 playernum, s16 arg1, u32 arg2, s16 spritenum) /*Pickup Ammo+weapon?*/
+{
+    u8 cond;
+    s16 i;
+    u32 j;
+    s16 spritenum_;
+
+    j = arg2;
+    arg2 &= 1;
+    spritenum_ = spritenum;
+
+    cond = (D_8011A680[playernum][arg1][1] >= D_800DF1D0[arg1][0]);
+    if (arg2)
+    {
+        cond = ((D_8011A680[playernum][arg1][0] & 1) ? cond : 0);
+
+        if ((arg1 == 2) ||(arg1 == 3) || (arg1 == 6))
+            cond = ((D_8011A680[playernum][arg1][0] & 2) ? cond : 0);
+    }
+
+    if (cond)
+        return 0;
+
+    if (j & 1)
+    {
+        if ((arg1 == 2) ||(arg1 == 3) || (arg1 == 6))
+        {
+            if (D_8011A680[playernum][arg1][0] & 1)
+                D_8011A680[playernum][arg1][0] |= 2;
+        }
+        D_8011A680[playernum][arg1][0] |= 1;
+
+        if (D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk99 == 0)
+        {
+            D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk99 = arg1;
+            D_800DEED0[playernum] = 0;
+        }
+        i = D_800DF1D0[arg1][1];
+
+        if (((j >> 2) & 1) && (i >= 3))
+            i -= krand() % (i / 2);
+
+        if (arg1 == 5)
+            i &= 0xFFFE;
+
+        if (j & 8)
+        {
+            i = gpSprite[spritenum_].lotag;
+
+            if (gpSprite[spritenum_].hitag != 0)
+                func_800524BC(playernum, arg1, gpSprite[spritenum_].hitag);
+        }
+        D_8011A680[playernum][arg1][1] = MIN(D_800DF1D0[arg1][0], (D_8011A680[playernum][arg1][1] + i));
+    }
+
+    if (j & 2)
+    {
+        if ((arg1 == 10) || (arg1 == 12) || (arg1 == 13) || (arg1 == 14))
+            D_8011A680[playernum][arg1][0] |= 1;
+
+        i = D_800DF1D0[arg1][2];
+
+        if (((j >> 2) & 1) && (i >= 3))
+            i -= krand() % (i / 2);
+
+        D_8011A680[playernum][arg1][1] = MIN(D_800DF1D0[arg1][0], (D_8011A680[playernum][arg1][1] + i));
+    }
+    return 1;
+}
+#else
+/*8005259C*/
+static u8 func_8005259C(s16 playernum, s16 arg1, u32 arg2, s16 spritenum);
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8005259C);
+#endif
 
 /*80052AB0*/
-static s32 func_80052AB0(s16 arg0, s16 arg1, s32 arg2)
+static s32 func_80052AB0(s16 playernum, s16 arg1, s32 spritenum)
 {
     s16 i, k, ret;
     u8 j;
@@ -5586,8 +5659,8 @@ static s32 func_80052AB0(s16 arg0, s16 arg1, s32 arg2)
     k = -1;
     ret = 0;
 
-    j = (gpSprite[arg2].unk22 == 0x1234) * 4;
-    if (gpSprite[arg2].unk22 == 0x5678)
+    j = (gpSprite[spritenum].unk22 == 0x1234) * 4;
+    if (gpSprite[spritenum].unk22 == 0x5678)
         j = 8;
 
     switch (arg1)
@@ -5609,10 +5682,10 @@ static s32 func_80052AB0(s16 arg0, s16 arg1, s32 arg2)
         j |= 2;
         break;
     case 10:
-        if (D_8011A680[arg0][4][7] < 24)
+        if (D_8011A680[playernum][4][7] < 24)
         {
-            D_8011A680[arg0][4][7] = 24;
-            D_8011A680[arg0][4][0] |= 4;
+            D_8011A680[playernum][4][7] = 24;
+            D_8011A680[playernum][4][0] |= 4;
             ret = 1;
         }
         break;
@@ -5669,11 +5742,11 @@ static s32 func_80052AB0(s16 arg0, s16 arg1, s32 arg2)
         j |= 2;
         break;
     case 47:
-        if (D_8011A680[arg0][18][7] < 6)
+        if (D_8011A680[playernum][18][7] < 6)
         {
-            D_8011A680[arg0][18][0] |= 4;
+            D_8011A680[playernum][18][0] |= 4;
             ret = 1;
-            D_8011A680[arg0][18][7] = CLAMP_MAX((D_8011A680[arg0][18][7] + 6), 6);
+            D_8011A680[playernum][18][7] = CLAMP_MAX((D_8011A680[playernum][18][7] + 6), 6);
         }
         break;
     case 49:
@@ -5685,11 +5758,11 @@ static s32 func_80052AB0(s16 arg0, s16 arg1, s32 arg2)
         j |= 2;
         break;
     case 52:
-        if (D_8011A680[arg0][14][7] < 12)
+        if (D_8011A680[playernum][14][7] < 12)
         {
-            D_8011A680[arg0][14][0] |= 5;
+            D_8011A680[playernum][14][0] |= 5;
             ret = 1;
-            D_8011A680[arg0][14][7] = CLAMP_MAX((D_8011A680[arg0][14][7] + 4), 12);
+            D_8011A680[playernum][14][7] = CLAMP_MAX((D_8011A680[playernum][14][7] + 4), 12);
         }
         break;
     case 54:
@@ -5709,11 +5782,11 @@ static s32 func_80052AB0(s16 arg0, s16 arg1, s32 arg2)
         j |= 2;
         break;
     case 65:
-        if (D_8011A680[arg0][3][7] < 12)
+        if (D_8011A680[playernum][3][7] < 12)
         {
-            D_8011A680[arg0][3][0] |= 4;
+            D_8011A680[playernum][3][0] |= 4;
             ret = 1;
-            D_8011A680[arg0][3][7] = CLAMP_MAX((D_8011A680[arg0][3][7] + 12), 12);
+            D_8011A680[playernum][3][7] = CLAMP_MAX((D_8011A680[playernum][3][7] + 12), 12);
         }
         break;
     case 66:
@@ -5773,11 +5846,11 @@ static s32 func_80052AB0(s16 arg0, s16 arg1, s32 arg2)
         j |= 2;
         break;
     case 120:
-        if (D_8011A680[arg0][23][7] < 12)
+        if (D_8011A680[playernum][23][7] < 12)
         {
-            D_8011A680[arg0][23][0] |= 4;
+            D_8011A680[playernum][23][0] |= 4;
             ret = 1;
-            D_8011A680[arg0][23][7] = CLAMP_MAX((D_8011A680[arg0][23][7] + 4), 12);
+            D_8011A680[playernum][23][7] = CLAMP_MAX((D_8011A680[playernum][23][7] + 4), 12);
         }
         break;
     case 122:
@@ -5785,21 +5858,21 @@ static s32 func_80052AB0(s16 arg0, s16 arg1, s32 arg2)
         j |= 1;
         break;
     case 97:
-        if ((D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk8 < gPlayer[arg0].unk48) &&
-            (D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk8 != 0))
+        if ((D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk8 < gPlayer[playernum].unk48) &&
+            (D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk8 != 0))
         {
             ret = 1;
-            func_80036520(arg0, 10);
+            func_80036520(playernum, 10);
         }
         break;
     case 98:
     case 99:
     case 100:
-        if ((D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk8 < gPlayer[arg0].unk48) &&
-            (D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk8 != 0))
+        if ((D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk8 < gPlayer[playernum].unk48) &&
+            (D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk8 != 0))
         {
             ret = 1;
-            func_80036520(arg0, 30);
+            func_80036520(playernum, 30);
         }
         break;
     case 101:
@@ -5813,14 +5886,14 @@ static s32 func_80052AB0(s16 arg0, s16 arg1, s32 arg2)
     case 105:
     case 107:
     case 109:
-        if (D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk7E < 100)
+        if (D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk7E < 100)
         {
             ret = 1;
-            D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk7E =
-                CLAMP_MAX((D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk7E+gpSprite[arg2].unk22), 100);
-            D_8010A940[arg0].unkA[0] = D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk7E;
-            if (D_8010A940[arg0].unk0 == -1)
-                D_8010A940[arg0].unk0 = 0;
+            D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk7E =
+                CLAMP_MAX((D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk7E+gpSprite[spritenum].unk22), 100);
+            D_8010A940[playernum].unkA[0] = D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk7E;
+            if (D_8010A940[playernum].unk0 == -1)
+                D_8010A940[playernum].unk0 = 0;
         }
         break;
     case 111:
@@ -5837,35 +5910,35 @@ static s32 func_80052AB0(s16 arg0, s16 arg1, s32 arg2)
         k = 1;
         break;
     case 124:
-        if ((((D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk8 >= 200)) ||
-            (D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk8 == 0)) == 0)
+        if ((((D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk8 >= 200)) ||
+            (D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk8 == 0)) == 0)
         {
             ret = 1;
-            D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk8 =
-                CLAMP_MAX((D_8019B940[D_80106D50[gPlayer[arg0].unk4A]].unk8 + 50), 200);
+            D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk8 =
+                CLAMP_MAX((D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk8 + 50), 200);
         }
         break;
     }
 
     if (i != -1)
-        ret = func_8005259C(arg0, i, j, arg2);
+        ret = func_8005259C(playernum, i, j, spritenum);
 
     if (k != -1)
-        ret = func_80052358(arg0, k);
+        ret = func_80052358(playernum, k);
 
     if (ret != 0)
     {
-        func_800A419C(arg0, gpWeaponStrInfo[arg1]);
+        func_800A419C(playernum, gpWeaponStrInfo[arg1]);
         if (i != -1)
         {
-            audio_800080E0(arg0, 0);
-            audio_800077F4(697, arg2);
+            audio_800080E0(playernum, 0);
+            audio_800077F4(697, spritenum);
         }
         else
         {
             if (k != -1)
-                audio_800080E0(arg0, 18);
-            audio_800077F4(695, arg2);
+                audio_800080E0(playernum, 18);
+            audio_800077F4(695, spritenum);
         }
     }
     return ret;

@@ -143,7 +143,7 @@ void func_8003671C(s16 playernum, u16 arg1, s16 arg2, s16 arg3)
     char buf[48];
     code0UnkStruct3 *ptr;
     s32 m, n, o;
-    s16 unk16;
+    s16 playernum2;
     s16 i, j;
     u8 r, g, b;
 
@@ -261,17 +261,17 @@ void func_8003671C(s16 playernum, u16 arg1, s16 arg2, s16 arg3)
 
                         if (gpSprite[arg2].statnum == 10)
                         {
-                            unk16 = gpSprite[arg2].unk16;
-                            if (unk16 != playernum)
+                            playernum2 = gpSprite[arg2].unk16;
+                            if (playernum2 != playernum)
                             {
-                                audio_800080E0(unk16, 6);
+                                audio_800080E0(playernum2, 6);
 
-                                D_800FF4F0[unk16].unk4[playernum]++;
+                                D_800FF4F0[playernum2].unk4[playernum]++;
                                 if (D_801AD470 == 4)
                                 {
                                     for (i = 0; i < D_8012C470; i++)
                                     {
-                                        if (D_800E16A0[i] == D_800E16A0[unk16])
+                                        if (D_800E16A0[i] == D_800E16A0[playernum2])
                                         {
                                             if (D_800E16A0[i] == D_800E16A0[playernum])
                                                 D_800FF4F0[i].unk2++;
@@ -282,17 +282,17 @@ void func_8003671C(s16 playernum, u16 arg1, s16 arg2, s16 arg3)
                                 }
                                 else
                                 {
-                                    D_800FF4F0[unk16].unk0++;
+                                    D_800FF4F0[playernum2].unk0++;
                                     if ((D_801AD470 == 3) && ((playernum == D_800FE9D0) || (D_800FE9D0 == -1)))
                                     {
-                                        D_800FE9D0 = unk16;
-                                        D_800FF4F0[unk16].unk0 += 4;
+                                        D_800FE9D0 = playernum2;
+                                        D_800FF4F0[playernum2].unk0 += 4;
                                     }
                                 }
 
                                 sprintf(buf, "KILLED PLAYER %d\n", playernum + 1);
-                                func_800A419C(unk16, buf);
-                                sprintf(buf, "KILLED BY PLAYER %d", unk16 + 1);
+                                func_800A419C(playernum2, buf);
+                                sprintf(buf, "KILLED BY PLAYER %d", playernum2 + 1);
                                 func_800A419C(playernum, buf);
                                 return;
                             }

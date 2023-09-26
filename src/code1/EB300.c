@@ -3781,7 +3781,7 @@ void func_801C9D68(void)
 {
     s32 i, j;
     u8 k, l, m;
-    u8 **ptr;
+    s8 **ptr;
 
     for (i = 0; i < D_801CC8CA; i++)
     {

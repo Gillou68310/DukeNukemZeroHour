@@ -149,7 +149,7 @@ typedef struct
     /*0x12*/ s16 statnum;
     /*0x14*/ s16 ang;
 
-    /*0x16*/ s16 unk16; /*spritenum?*/
+    /*0x16*/ s16 unk16; /*spritenum? / playernum?*/
     /*0x18*/ s16 unk18;
     /*0x18*/ s16 unk1A;
     /*0x1C*/ s16 unk1C;
