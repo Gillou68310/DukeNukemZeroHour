@@ -2,10 +2,14 @@
 #include "code0/main.h"
 #include "code0/audio.h"
 #include "code0/engine.h"
+#include "code0/pragmas.h"
 #include "code0/4600.h"
 #include "code0/9410.h"
+#include "code0/16DF0.h"
+#include "code0/17B30.h"
 #include "code0/3FAD0.h"
 #include "code0/41940.h"
+#include "code0/609D0.h"
 #include "code0/6ACA0.h"
 #include "code0/8E670.h"
 #include "code0/8EFE0.h"
@@ -22,6 +26,9 @@ typedef struct {
     /*0x0C*/ s16 unkC;
     /*0x0E*/ s16 unkE;
 } _609D0UnkStruct1;
+
+/*.bss*/
+/*800F9CC0*/ EXTERN_BSS STATIC s16 D_800F9CC0;
 
 /*.comm*/
 /*80107908*/ s16 D_80107908;
@@ -53,10 +60,108 @@ static void func_8005FE84(s16 wallnum)
 }
 
 /*8005FEE0*/
+STATIC void func_8005FEE0(s16);
 INCLUDE_ASM("nonmatchings/src/code0/609D0", func_8005FEE0);
 
+#ifdef NON_MATCHING
+/*80062300*/
+void func_80062300(void)
+{
+    s32 i, j, k, l;
+    u8 pad[2]; /*FAKE*/
+
+    func_8004F31C();
+    func_80016F30();
+    D_800F9CC0 = 0;
+    D_80107908 = 0;
+    D_800DEE98 = 0;
+    D_800DEE80 = -1;
+
+    for (i = 0; i < gNumSprites; i++)
+        func_8005FEE0(i);
+
+    i = gHeadSpriteStat[3];
+    while (i >= 0)
+    {
+        if (gpSprite[i].lotag != 8)
+        {
+            if (gpSprite[i].lotag == 43)
+            {
+                if (gpSprite[i].unk25 != 0)
+                {
+                    j = gpSector[gpSprite[gpSprite[i].unk16].sectnum].floorz - gpSector[gpSprite[i].sectnum].floorz;
+                    gpSector[gpSprite[i].sectnum].floorz = gpSector[gpSprite[gpSprite[i].unk16].sectnum].floorz;
+                    gpSector[gpSprite[i].sectnum].ceilingz += j;
+                }
+            }
+        }
+        else
+        {
+            gpSprite[i].unk16 = -1;
+            j = gHeadSpriteStat[3];
+            while (j >= 0)
+            {
+                if (((gpSprite[j].lotag >= 50) && (gpSprite[j].lotag < 55)) && (gpSprite[j].hitag == gpSprite[i].hitag))
+                {
+                    gpSprite[i].unk16 = j;
+                    l = 0;
+                    switch (gpSprite[j].lotag)
+                    {
+                    case 50:
+                    case 51:
+                    case 52:
+                        k = gpSector[gpSprite[j].sectnum].floorz - gpSprite[j].z;
+                        l = klabs(k);
+                        break;
+                    case 53:
+                        l = 0x200;
+                        break;
+                    case 54:
+                        l = gpSprite[j].unk1C;
+                        break;
+                    default:
+                        break;
+                    }
+                    gpSprite[i].z = l;
+                    break;
+                }
+                j = gNextSpriteStat[j];
+            }
+        }
+        i = gNextSpriteStat[i];
+    }
+
+    i = gHeadSpriteStat[106];
+    while (i >= 0)
+    {
+        if (gpSprite[i].picnum == 4)
+        {
+            if (gpSprite[i].unk25 == 0)
+            {
+                j = gHeadSpriteSect[gpSprite[i].sectnum];
+                while (j >= 0)
+                {
+                    l = gpSprite[j].picnum; /*FAKE*/
+
+                    if ((l == 1) || (l == 3) || (l == 28))
+                        gpSprite[j].cstat |= 0x8000;
+
+                    j = gNextSpriteSect[j];
+                }
+            }
+        }
+        i = gNextSpriteStat[i];
+    }
+
+    for (i = 0; i < D_8012C470; i++)
+        func_80062950(i, 1);
+
+    func_80016218();
+}
+#else
 /*80062300*/
 INCLUDE_ASM("nonmatchings/src/code0/609D0", func_80062300);
+#endif
 
 /*80062688*/
 static s16 func_80062688(s16 arg0)

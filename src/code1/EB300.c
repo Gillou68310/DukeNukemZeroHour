@@ -3775,8 +3775,8 @@ static void func_801C9C18(void)
     }
 }
 
-/*801C9D68*/
 #ifdef NON_MATCHING
+/*801C9D68*/
 void func_801C9D68(void)
 {
     s32 i, j;
@@ -3825,6 +3825,7 @@ void func_801C9D68(void)
     }
 }
 #else
+/*801C9D68*/
 INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C9D68);
 #endif
 
