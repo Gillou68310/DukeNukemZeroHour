@@ -5,7 +5,8 @@
 #include "code0/engine.h"
 #include "code0/code0.h"
 
-s32 func_80040D40(s32 x1, s32 y1, s32 x2, s32 y2);
+/*s32 func_80040D40(s32 x1, s32 y1, s32 x2, s32 y2);*/
+s32 func_80040D40();
 s32 func_80040D94(s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2);
 u16 func_80040DFC(s32, s32, f32);
 s16 getAngleDelta(s16 currAngle, s16 newAngle);

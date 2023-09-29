@@ -2,6 +2,7 @@
 #define _8E670_H_
 
 #include "common.h"
+#include "code0/engine.h"
 
 u8 func_8008DA70(s16 mapnum);
 void func_8008DC24(void);
