@@ -1128,7 +1128,7 @@ static s32 func_800433D4(s32 spritenum)
 
     spr = &gpSprite[spritenum];
     cstat = spr->cstat;
-    spr2 = &gpSprite[gPlayer->unk4A];
+    spr2 = &gpSprite[gPlayer[0].unk4A];
     vx = spr2->x - spr->x;
     vy = spr2->y - spr->y;
     z1 = (spr->z - D_801B0D30) + 0x3500;

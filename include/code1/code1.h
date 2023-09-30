@@ -123,7 +123,7 @@ typedef struct _code1UnkStruct6
 /*801CC7F4*/ _extern u16 D_801CC7F4;
 /*801CC888*/ _extern u8 *D_801CC888; /*edlHandle*/
 /*801CC88C*/ _extern s32 D_801CC88C;
-/*801CC8A8*/ _extern s16 D_801CC8A8;
+/*801CC8A8*/ _extern u16 D_801CC8A8;
 /*801CC8B8*/ _extern u16 D_801CC8B8;
 /*801CC8C8*/ _extern u16 D_801CC8C8;
 /*801CC8CC*/ _extern u16 D_801CC8CC;

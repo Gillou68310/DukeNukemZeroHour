@@ -1516,7 +1516,7 @@ void func_8009C248(s32 spritenum)
 
     if (D_8012FC94 != 0)
     {
-        D_8012FC94 -= 1;
+        D_8012FC94--;
         func_80017268(spritenum);
         return;
     }
@@ -2298,7 +2298,7 @@ void func_8009C248(s32 spritenum)
             func_80047820(spritenum, (i + 0x4000) & 0xFFFF, 200);
 
         if (D_80199984 != 0)
-            D_80199984 -= 1;
+            D_80199984--;
         else if ((krand() & 0x7FFF) < 0x1000)
             spr->unk2B = 0;
         else if (func_8009BED0(spr, xpos, ypos, z1, sectnum) != 0)

@@ -1,12 +1,14 @@
 #include "common.h"
 #include "code0/main.h"
 #include "code0/pragmas.h"
+#include "code0/FDE0.h"
 #include "code0/9410.h"
 #include "code0/16FF0.h"
 #include "code0/17B30.h"
 #include "code0/24610.h"
 #include "code0/41940.h"
 #include "code0/graphics.h"
+#include "code0/8E670.h"
 #include "code0/A06F0.h"
 #include "code0/code0.h"
 #include "code1/EB300.h"
@@ -28,17 +30,19 @@ double sqrt(double);
 /*800FE414*/ u8 D_800FE414;
 /*800FF3A0*/ Matrix4f D_800FF3A0 ALIGNED(8);
 /*80106D3C*/ f32 D_80106D3C;
+/*8012E154*/ u16 D_8012E154;
 /*8012EB48*/ f32 D_8012EB48;
-/*8012FD87*/ u8 D_8012FD87; /*alpha*/
+/*8012FD86*/ s16 D_8012FD86; /*alpha*/
 /*80197DF0*/ Matrix4f D_80197DF0 ALIGNED(8);
 /*80199578*/ Matrix4f D_80199578 ALIGNED(8);
 /*801AE9D0*/ Matrix4f D_801AE9D0 ALIGNED(8);
 /*801AFDE0*/ Matrix4f D_801AFDE0 ALIGNED(8);
 
 /*.text*/
-STATIC void func_8000F474(s16, f32, f32, f32);
 static f32 func_80011410(ModelInfo *model);
 static void func_800117A4(u8 *, code0UnkStruct18 *, _FDE0UnkStruct1 *);
+static void func_800124EC(s16);
+static void func_80012630(void);
 
 /*8000F1E0*/
 void func_8000F1E0(void)
@@ -72,7 +76,448 @@ void func_8000F3C4(s16 r1, s16 g1, s16 b1, s16 r2, s16 g2, s16 b2)
 }
 
 /*8000F474*/
-INCLUDE_ASM("nonmatchings/src/code0/FDE0", func_8000F474);
+static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
+{
+    Mtx mtx2, mtx1, mtx3, mtx4, mtx5;
+    Gfx *dlist;
+    ModelInfo *model;
+    code0unkStruct10 *ptr;
+    f32 f1;
+    s32 x, y, z;
+    s32 m, n, o, p;
+    s16 j, l;
+    s32 size;
+    s16 playernum;
+    s16 sectnum;
+    u16 i;
+    u16 r, g, b;
+    u8 k;
+    u8 cond1, cond2;
+
+    cond2 = 0;
+    cond1 = 0;
+    dlist = NULL;
+    playernum = 0;
+
+    if ((D_801A6D80 < 0x100) && (D_8012BBCC < 0x80))
+    {
+        D_801AE8F4 = spritenum;
+        D_8012E154 = gpSprite[spritenum].picnum;
+        D_8012FD86 = 0xFF - D_8013B2D0[spritenum].unk6;
+        D_8012FD86 = CLAMP_MIN(CLAMP_MAX((D_8012FD86), 0xFF), 0);
+
+        if ((gpSprite[D_801AE8F4].statnum != 10))
+        {
+            size = (((intptr_t)gpDisplayList) - ((intptr_t)gDisplayList[gGfxTaskIndex])) / (sizeof(Gfx));
+            size = gDisplayListMaxSize - size;
+            if (size < 0xA00)
+                return;
+        }
+
+        if (gpSprite[spritenum].cstat & 0x800)
+        {
+            if (D_801A2688 == 0)
+            {
+                if (D_8010A9AC == 1)
+                {
+                    D_8010A9AC = 0;
+                    gSPClearGeometryMode(gpDisplayList++, G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR);
+                    gSPTexture(gpDisplayList++, 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON);
+                }
+                D_801A2688 = 1;
+                gSPClearGeometryMode(gpDisplayList++, G_CULL_BACK);
+                gDPSetTextureLUT(gpDisplayList++, G_TT_NONE);
+                gDPSetCombineLERP(gpDisplayList++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0,
+                                                   0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+                gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_XLU_SURF2);
+            }
+        } if (!(gpSprite[spritenum].cstat & 0x800))
+        {
+            if (D_801A2688 == 1)
+            {
+                D_801A2688 = 0;
+                D_8010A9AC = 0;
+                D_8019956C = 0;
+                gSPSetGeometryMode(gpDisplayList++, G_CULL_BACK);
+                gDPSetTextureLUT(gpDisplayList++, G_TT_RGBA16);
+                gDPSetCombineMode(gpDisplayList++, G_CC_MODULATEIDECALA, G_CC_PASS2);
+                gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_TEX_EDGE2);
+            }
+        }
+
+        D_80105718 = 0;
+        if (D_801A2688 != 0)
+        {
+            D_8010A9AC = 0;
+            D_8019956C = 0;
+            i = gpSprite[spritenum].unk25;
+            D_80168810 = i;
+
+            if (i == 31)
+                D_80105718 = 1;
+
+            if (gpSprite[spritenum].picnum == 2253)
+                D_80105718 = 1;
+
+            gDPSetPrimColor(gpDisplayList++, 0, 0, gpAlphaPalette[i].primary.r,
+                                                   gpAlphaPalette[i].primary.g,
+                                                   gpAlphaPalette[i].primary.b,
+                                                   D_8012FD86);
+
+            gDPSetEnvColor(gpDisplayList++, gpAlphaPalette[i].env.r,
+                                            gpAlphaPalette[i].env.g,
+                                            gpAlphaPalette[i].env.b,
+                                            D_8012FD86);
+            D_80119A9C = i;
+        }
+        else
+        {
+            j = 0;
+            if (D_80106D50[spritenum] != -1)
+                j = D_8019B940[D_80106D50[spritenum]].unk0 & 0x40;
+
+            if (D_801CC8A8 != 0)
+                j = 1;
+
+            if (j != 0)
+            {
+                if (D_8010A9AC == 0)
+                {
+                    D_8010A9AC = 1;
+                    gSPSetGeometryMode(gpDisplayList++, G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR);
+                    gSPTexture(gpDisplayList++, 0x0FF8, 0x0FF8, 0, G_TX_RENDERTILE, G_ON);
+                }
+            }
+            else if (D_8010A9AC == 1)
+            {
+                D_8010A9AC = 0;
+                gSPClearGeometryMode(gpDisplayList++, G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR);
+                gSPTexture(gpDisplayList++, 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON);
+            }
+            if (D_8012FD86 == 0xFF)
+            {
+                if (D_8019956C == 1)
+                {
+                    D_8019956C = 0;
+                    gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_TEX_EDGE2);
+                    gDPSetCombineMode(gpDisplayList++, G_CC_MODULATEIDECALA, G_CC_PASS2);
+                }
+            }
+            else if (D_8019956C == 0)
+            {
+                if (gpSprite[D_801AE8F4].statnum == 10)
+                {
+                    gDPSetRenderMode(gpDisplayList++, 0xC8104B70, 0); /*TODO*/
+                }
+                else
+                {
+                    gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_XLU_SURF2);
+                }
+                D_8019956C = 1;
+                gDPSetCombineLERP(gpDisplayList++, TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0,
+                                                   0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+            }
+            gDPSetEnvColor(gpDisplayList++, 0xFF, 0xFF, 0xFF, D_8012FD86);
+        }
+
+        func_8000C76C();
+        if (gpSprite[spritenum].statnum == 55)
+        {
+            r = 0x80;
+            g = 0x80;
+            b = 0x80;
+            cond1 = 1;
+            D_8016A148 = 0;
+            D_800FE410 = 0;
+            D_80138680 = 0;
+        }
+        else if ((gpSprite[spritenum].picnum >= 2547) && (gpSprite[spritenum].picnum < 2553))
+        {
+            r = 0x64;
+            g = 0x64;
+            b = 0x64;
+            cond1 = 1;
+            D_8016A148 = 0;
+            D_800FE410 = 0;
+            D_80138680 = 0;
+        }
+        else if ((gpSprite[spritenum].statnum == 150) || (gpSprite[spritenum].statnum == 160))
+        {
+            cond1 = 1;
+            r = (sins(gTotalClockLock << 7) >> 9) + 0x80;
+            g = (sins(gTotalClockLock << 7) >> 9) + 0x80;
+            b = (sins(gTotalClockLock << 7) >> 9) + 0x80;
+            D_8016A148 = 0;
+            D_800FE410 = 0;
+            D_80138680 = 0;
+        }
+        else
+        {
+            j = gpSprite[spritenum].unk24;
+            sectnum = gpSprite[spritenum].sectnum;
+            if (j != 0xFF)
+            {
+                if ((D_80106D50[spritenum] == -1) || ((D_8019B940[D_80106D50[spritenum]].unk0 & 0x10) == 0))
+                {
+                    k = gpSector[sectnum].unk26;
+                    if (gMapNum == 21)
+                        k = 200;
+
+                    j = j + ((k - j) / 2);
+
+                    if (j > 254)
+                        j = 254;
+                }
+                func_8000DBDC(gpSector[sectnum].unk27, j);
+                gpSprite[spritenum].unk24 = j;
+            }
+            else
+            {
+                cond1 = 1;
+                func_8000DBDC(gpSector[sectnum].unk27, gpSector[sectnum].unk26);
+            }
+
+            r = D_8016A148;
+            g = D_800FE410;
+            b = D_80138680;
+            D_80119A38 = 0;
+            if ((D_80106D50[spritenum] != -1) && (D_8019B940[D_80106D50[spritenum]].unk0 & 0x100))
+            {
+                if (gpSprite[spritenum].statnum != 10)
+                    D_8019B940[D_80106D50[spritenum]].unk0 &= ~0x100;
+
+                l = D_800D6964[D_8019B940[D_80106D50[spritenum]].unk99];
+                if (l != -1)
+                {
+                    D_80119A38 = 1;
+                    D_8016A148 = (gpAlphaPalette[l].primary.r + gpAlphaPalette[l].env.r) >> 1;
+                    D_800FE410 = (gpAlphaPalette[l].primary.g + gpAlphaPalette[l].env.g) >> 1;
+                    D_80138680 = (gpAlphaPalette[l].primary.b + gpAlphaPalette[l].env.b) >> 1;
+                    D_801B080C = gpSprite[spritenum].x + (cosf((gpSprite[spritenum].ang * (PI/1024))) * 256.0f);
+                    D_8016A14C = gpSprite[spritenum].y + (sinf((gpSprite[spritenum].ang * (PI/1024))) * 256.0f);
+                    D_8013A438 = gpSprite[spritenum].z;
+                    cond2 = 1;
+                }
+                else
+                {
+                    goto block_66;
+                }
+            }
+            else
+            {
+            block_66:
+                func_8000DCF0(gpSprite[spritenum].x, gpSprite[spritenum].y, gpSprite[spritenum].z, sectnum);
+            }
+        }
+
+        if (D_8012C470 >= 2)
+        {
+            if (gpSprite[spritenum].statnum == 10)
+            {
+                if (D_801AD470 == 4)
+                {
+                    if (D_800E16A0[gpSprite[spritenum].unk16] == D_800E16A0[D_801B0820])
+                    {
+                        cond1 = 1;
+                        D_80138680 = 0;
+                        D_800FE410 = 0;
+                        D_8016A148 = 0;
+                        r = D_8012DF04[D_801B0820].r;
+                        g = D_8012DF04[D_801B0820].g;
+                        b = D_8012DF04[D_801B0820].b;
+                    }
+                }
+
+                if (D_801AD470 == 3)
+                {
+                    if (gpSprite[spritenum].unk16 == D_800FE9D0)
+                    {
+                        cond1 = 1;
+                        r = 0;
+                        g = 0xFF;
+                        b = 0xFF;
+                        D_80138680 = 0;
+                        D_800FE410 = 0;
+                        D_8016A148 = 0;
+                    }
+                }
+            }
+        }
+
+        if (cond1 != 0)
+        {
+            gSPLightColor(gpDisplayList++, LIGHT_1, 0);
+            gSPLightColor(gpDisplayList++, LIGHT_2, 0);
+            r = CLAMP_MAX((r+D_8016A148), 0xFF);
+            g = CLAMP_MAX((g+D_800FE410), 0xFF);
+            b = CLAMP_MAX((b+D_80138680), 0xFF);
+            gSPLightColor(gpDisplayList++, LIGHT_3, (r << 24) + (g << 16) + (b << 8));
+        }
+        else
+        {
+            if ((D_8016A148 | D_800FE410 | D_80138680) != 0)
+            {
+                D_801B080C -= gpSprite[spritenum].x;
+                D_8016A14C -= gpSprite[spritenum].y;
+                D_8013A438 -= gpSprite[spritenum].z;
+                D_8013A438 /= 16;
+                m = MAX(klabs(D_801B080C), MAX(klabs(D_8016A14C), klabs(D_8013A438)));
+                if (m == 0)
+                {
+                    D_801B080C = 0;
+                    D_8016A14C = 0;
+                    D_8013A438 = -127;
+                }
+                else
+                {
+                    D_801B080C = (D_801B080C * 127) / m;
+                    D_8016A14C = (D_8016A14C * 127) / m;
+                    D_8013A438 = (D_8013A438 * 127) / m;
+                }
+
+                gpDynamic->light[D_8012BBCC].l.dir[0] = D_801B080C;
+                gpDynamic->light[D_8012BBCC].l.dir[1] = D_8016A14C;
+                gpDynamic->light[D_8012BBCC].l.dir[2] = D_8013A438;
+                gSPLight(gpDisplayList++, &gpDynamic->light[D_8012BBCC], 1);
+                gSPNumLights(gpDisplayList++, 2);
+            }
+
+            gSPLightColor(gpDisplayList++, LIGHT_1, ((D_8016A148 << 24) + (D_800FE410 << 16) + (D_80138680 << 8)));
+            gSPLightColor(gpDisplayList++, LIGHT_2, (r << 24) + (g << 16) + (b << 8));
+
+            if (!cond2)
+            {
+                r += D_8016A148 / 2;
+                g += D_800FE410 / 2;
+                b += D_80138680 / 2;
+            }
+            r *= 0.25;
+            g *= 0.25;
+            b *= 0.25;
+            gSPLightColor(gpDisplayList++, LIGHT_3, (r << 24) + (g << 16) + (b << 8));
+        }
+
+        if (gpSprite[D_801AE8F4].statnum == 10)
+        {
+            n = playernum = gpSprite[D_801AE8F4].unk16;
+            if (D_8012F6F0[n] != 0)
+            {
+                gSPDisplayList(gpDisplayList++, D_801297E0[n][gGfxTaskIndex]);
+                return;
+            }
+            D_8012F6F0[n] = 1;
+            dlist = gpDisplayList;
+            gpDisplayList = D_801297E0[n][gGfxTaskIndex];
+        }
+
+        x = gpSprite[spritenum].x;
+        y = gpSprite[spritenum].y;
+        z = gpSprite[spritenum].z;
+        arg1 = arg1 + 180.0f;
+
+        if (gpSprite[spritenum].cstat & 0x4000)
+        {
+            if ((gpSprite[spritenum].cstat & 0x30) == 0x20)
+            {
+                o = klabs((D_80199640 - z));
+                if (z == gpSector[gpSprite[spritenum].sectnum].ceilingz)
+                {
+                    z += ((o+16) / 32);
+                }
+                if (z == gpSector[gpSprite[spritenum].sectnum].floorz)
+                {
+                    z -= ((o+16) / 32);
+                }
+            }
+
+            if ((gpSprite[spritenum].cstat & 0x30) == 0x10)
+            {
+                o = (func_80040D40(D_801A6D84,
+                    D_800FE3F0,
+                    gpSprite[spritenum].x,
+                    gpSprite[spritenum].y) << 8) / (gPlayer[D_801B0820].unk6E * 60);
+
+                if (o < 8)
+                    o = 8;
+
+                x = x + (sinf((gpSprite[spritenum].ang * (PI / 1024)) + (PI / 2)) * o);
+                y = y - (cosf((gpSprite[spritenum].ang * (PI / 1024)) + (PI / 2)) * o);
+            }
+        }
+
+        p = 0;
+        if (gpSprite[spritenum].statnum == 302)
+        {
+            if (gpSprite[spritenum].picnum < 2565)
+            {
+                if (gpSprite[spritenum].picnum >= 2562)
+                    p = 1;
+            }
+        }
+
+        if (p == 0)
+        {
+            grPosition(&gpDynamic->mtx3[D_801A6D80 + 1],
+                arg2,
+                arg1,
+                arg3,
+                gpSprite[spritenum].xrepeat / 64.0,
+                x / 4.0,
+                y / 4.0,
+                z / 64.0);
+        }
+        else
+        {
+            arg3 = ((gpSprite[spritenum].ang * 180) / 1024.0) + 90.0;
+            f1 = ((D_8013B2D0[spritenum].unk4) * 180) / 1024.0;
+            guRotateRPY(&mtx1, arg2, 0.0f, 0.0f);
+            guRotateRPY(&mtx2, 0.0f, arg1, 0.0f);
+            guRotateRPY(&mtx3, 0.0f, 0.0f, arg3);
+            guRotateRPY(&mtx4, 0.0f, 0.0f, f1);
+
+            grPosition(&mtx5, 0.0f, 0.0f, 0.0f,
+                gpSprite[spritenum].xrepeat / 64.0,
+                x / 4.0,
+                y / 4.0,
+                z / 64.0);
+
+            grMtxCatL(&mtx4, &mtx1, &gpDynamic->mtx3[D_801A6D80 + 1]);
+            grMtxCatL(&gpDynamic->mtx3[D_801A6D80 + 1], &mtx2, &gpDynamic->mtx3[D_801A6D80 + 1]);
+            grMtxCatL(&gpDynamic->mtx3[D_801A6D80 + 1], &mtx3, &gpDynamic->mtx3[D_801A6D80 + 1]);
+            grMtxCatL(&gpDynamic->mtx3[D_801A6D80 + 1], &mtx5, &gpDynamic->mtx3[D_801A6D80 + 1]);
+        }
+
+        gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx3[D_801A6D80+1]),
+                                   G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+        D_801A6D80++;
+        D_8012BBCC++;
+        ptr = func_80014040(gpSprite[spritenum].picnum);
+        if (ptr == NULL)
+        {
+            model = D_800D52E0[gpSprite[spritenum].picnum-1280];
+            if (model != NULL)
+            {
+                func_80011700(model);
+                if ((gpSprite[spritenum].picnum == 1296) && (D_80119A38 != 0) && (D_8010A9AC == 0))
+                {
+                    func_800124EC(D_800D6964[D_8019B940[D_80106D50[spritenum]].unk99]);
+                    func_80011700(&D_800D06C0);
+                    func_80012630();
+                }
+            }
+        }
+        else
+            func_80013FFC(ptr);
+
+        gSPPopMatrix(gpDisplayList++, G_MTX_MODELVIEW);
+        if (gpSprite[D_801AE8F4].statnum == 10)
+        {
+            gSPEndDisplayList(gpDisplayList++);
+            gSPDisplayList(dlist, D_801297E0[playernum][gGfxTaskIndex]);
+            gpDisplayList = dlist+1;
+        }
+    }
+}
 
 /*80011148*/
 static f32 func_80011148(Vec4f vec1, Vec4f vec2)
@@ -329,7 +774,7 @@ static void func_800117A4(u8 *arg0, code0UnkStruct18 *arg1, _FDE0UnkStruct1 *arg
 
                     gDPSetPrimColor(gpDisplayList++, 0, 0, gpAlphaPalette[D_80168810].primary.r,
                                                            gpAlphaPalette[D_80168810].primary.g,
-                                                           gpAlphaPalette[D_80168810].primary.b, D_8012FD87);
+                                                           gpAlphaPalette[D_80168810].primary.b, D_8012FD86);
                 }
                 else
                 {
@@ -466,12 +911,12 @@ static void func_800124EC(s16 arg0)
         gDPSetPrimColor(gpDisplayList++, 0, 0, gpAlphaPalette[arg0].primary.r,
                                                gpAlphaPalette[arg0].primary.g,
                                                gpAlphaPalette[arg0].primary.b,
-                                               D_8012FD87);
+                                               D_8012FD86);
 
         gDPSetEnvColor(gpDisplayList++, gpAlphaPalette[arg0].env.r,
                                         gpAlphaPalette[arg0].env.g,
                                         gpAlphaPalette[arg0].env.b,
-                                        D_8012FD87);
+                                        D_8012FD86);
     }
 }
 
