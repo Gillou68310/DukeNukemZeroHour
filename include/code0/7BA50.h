@@ -3,7 +3,7 @@
 
 #include "common.h"
 
-s32 func_8007AE50(void);
+s16 func_8007AE50(void);
 void func_8007AED8(s32 x1, s32 y1, s32 z1,
                   s32 x2, s32 y2, s32 z2,
                   u8, u8, u8, s16, s32);

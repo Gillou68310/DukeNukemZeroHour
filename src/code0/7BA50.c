@@ -31,7 +31,7 @@ typedef struct
 /*.text*/
 
 /*8007AE50*/
-s32 func_8007AE50(void)
+s16 func_8007AE50(void)
 {
     D_800DF940 = (D_800DF940 + 1) & 0x3FFF;
     return D_800DF940;

@@ -505,7 +505,7 @@ static void func_800418B8(s32 arg0)
 }
 
 /*80041968*/
-s32 func_80041968(s32 spritenum)
+STATIC s32 func_80041968(s32 spritenum)
 {
     s32 i, j;
     s16 ang;
@@ -7674,7 +7674,242 @@ void func_800574A4(s32 spritenum)
 }
 
 /*80057540*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_80057540);
+s32 func_80057540(SpriteType *spr, s16 picnum, s16 arg2, s32 arg3)
+{
+    ModelInfo *model;
+    s32 x, y;
+    s32 z, z1;
+    s32 sizey;
+    s32 cond;
+    s16 ang;
+    s16 spritenum;
+    s16 i, j;
+
+    if (arg2 >= 2)
+    {
+        if (D_800DEEA0 == 0)
+            arg2 /= 2;
+    }
+
+    if (((picnum < 1500) || (picnum >= 1502)) && (picnum != 5700) && (arg2 >= 2))
+    {
+        for (i = 0; i != (arg2 / 2); i++)
+            func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 55, picnum);
+    }
+
+    z1 = (arg3 << 8) + 0x800;
+    z = spr->z - z1;
+    z1 = getFlorzOfSlope(spr->sectnum, spr->x, spr->y) - 0x800;
+
+    if (z1 < z)
+        z = z1;
+
+    sizey = 0;
+    if (spr->cstat & 0x1000)
+    {
+        model = D_800D52E0[spr->picnum-1280];
+        if (model != NULL)
+            sizey = (model->unk2E - model->unk28) << 6;
+    }
+    else
+        sizey = getTileSizeY(spr->picnum) * spr->yrepeat * 4;
+
+    for (j = 0; j < arg2; j++)
+    {
+        ang = krand() & 0x7FF;
+        x = (spr->x + (krand() & 0xFF)) - 0x80;
+        y = (spr->y + (krand() & 0xFF)) - 0x80;
+        spritenum = func_80058934(x, y, z - (krand() & 0x1FFF), spr->sectnum, 94);
+
+        if (spritenum == -1)
+            return -1;
+
+        gpSprite[spritenum].cstat = 0;
+        gpSprite[spritenum].unk25 = 0;
+        cond = func_8004EFB4(spritenum) != 0;
+
+        switch (picnum)
+        {
+        case 1500:
+        case 1501:
+            cond = 1;
+            gpSprite[spritenum].picnum = 1500;
+            gpSprite[spritenum].cstat |= 0x8000;
+            break;
+        case 1505:
+        case 1506:
+        case 1507:
+        case 1508:
+        case 1509:
+        case 1510:
+            gpSprite[spritenum].xrepeat = (krand() & 0x1F) + 0x18;
+            gpSprite[spritenum].yrepeat = (krand() & 0x1F) + 0x18;
+            gpSprite[spritenum].cstat |= 0x1000;
+            break;
+
+        case 1777:
+        case 1778:
+        case 1779:
+        case 1780:
+        case 1781:
+        case 1782:
+        case 1783:
+            gpSprite[spritenum].xrepeat = (krand() & 0x7F) + 0x20;
+            gpSprite[spritenum].yrepeat = (krand() & 0x7F) + 0x20;
+            gpSprite[spritenum].cstat |= 0x1000;
+            break;
+
+        case 1713:
+        case 1714:
+        case 1715:
+        case 1716:
+            gpSprite[spritenum].xrepeat = 0x40;
+            gpSprite[spritenum].cstat |= 0x1000;
+            break;
+
+        case 2130:
+            gpSprite[spritenum].picnum = picnum + (krand() & 3);
+            gpSprite[spritenum].xrepeat = (krand() & 0x1F) + 0x40;
+            cond = 1;
+            gpSprite[spritenum].cstat |= 0x1000;
+            break;
+
+        case 2414:
+            gpSprite[spritenum].picnum = picnum + (krand() % 3);
+            gpSprite[spritenum].xrepeat = (krand() & 0x1F) - 0x80;
+            cond = 1;
+            gpSprite[spritenum].cstat |= 0x1000;
+            break;
+
+        case 2038:
+        case 2039:
+        case 2040:
+        case 2041:
+        case 2042:
+        case 2043:
+        case 2044:
+        case 2045:
+        case 2046:
+        case 2047:
+        case 2048:
+        case 2049:
+        case 2050:
+        case 2051:
+        case 2052:
+        case 2053:
+        case 2054:
+        case 2055:
+        case 2056:
+        case 2057:
+        case 2058:
+        case 2059:
+        case 2060:
+        case 2061:
+        case 2062:
+        case 2063:
+        case 2064:
+        case 2065:
+        case 2066:
+        case 2067:
+        case 2068:
+        case 2069:
+        case 2070:
+        case 2071:
+        case 2072:
+        case 2073:
+        case 2074:
+        case 2075:
+        case 2076:
+        case 2077:
+        case 2078:
+        case 2079:
+        case 2080:
+        case 2081:
+        case 2082:
+        case 2083:
+        case 2084:
+        case 2085:
+        case 2086:
+        case 2087:
+        case 2088:
+        case 2089:
+        case 2090:
+        case 2091:
+        case 2092:
+        case 2093:
+        case 2094:
+        case 2095:
+        case 2096:
+        case 2097:
+        case 2098:
+            gpSprite[spritenum].xrepeat = 0x40;
+            gpSprite[spritenum].cstat |= 0x1000;
+            cond = 1;
+            gpSprite[spritenum].z = spr->z - sizey;
+            break;
+
+        case 5700:
+            gpSprite[spritenum].xrepeat = 28;
+            break;
+        }
+
+        gpSprite[spritenum].picnum = picnum;
+        gpSprite[spritenum].ang = ang;
+
+        if ((picnum < 1500) && (picnum >= 1502))
+        {
+            gpSprite[spritenum].unk18 = (krand() & 0x1F) + 0x30;
+            gpSprite[spritenum].unk1C = -0x200 - (krand() & 0x7FF);
+        }
+        else if ((picnum >= 1777) && (picnum < 1784))
+        {
+            gpSprite[spritenum].unk18 = (krand() & 6) + 0x4C;
+            gpSprite[spritenum].unk1C = -0x310 - (krand() & 0x3FF);
+        }
+        else
+        {
+            gpSprite[spritenum].unk18 = (krand() & 0xF) + 0x14;
+            gpSprite[spritenum].unk1C = -0x11C - (krand() & 0x1FF);
+        }
+
+        if (picnum == 0x1644)
+        {
+            gpSprite[spritenum].picnum = 1510;
+            gpSprite[spritenum].unk1C = -0x7D0 - (krand() & 0x3FF);
+            gpSprite[spritenum].unk18 = (krand() & 0x3F) + 0x44;
+        }
+
+        D_80106D50[spritenum] = func_8004BE90();
+
+        if (D_80106D50[spritenum] == -1)
+            return deleteSprite(spritenum);
+
+
+        D_8019B940[D_80106D50[spritenum]].unk5C = (krand() & 0x3F) + 0x40;
+        D_8019B940[D_80106D50[spritenum]].unk60 = (krand() & 0x3F) + 0x40;
+        D_8019B940[D_80106D50[spritenum]].unk54 = 0;
+
+        if (arg3 == 0x1234)
+            D_8019B940[D_80106D50[spritenum]].unk0 |= 0x40;
+
+        if (cond == 0)
+        {
+            if (picnum != 5700)
+            {
+                if (((krand() & 3) == 1) && (picnum == 1781))
+                {
+                    D_8019B940[D_80106D50[spritenum]].unk50 = func_8007AE50();
+                    D_8019B940[D_80106D50[spritenum]].unk54 = 2;
+                }
+            }
+            else
+            {
+                D_8019B940[D_80106D50[spritenum]].unk50 = func_8007AE50();
+                D_8019B940[D_80106D50[spritenum]].unk54 = 3;
+            }
+        }
+    }
+}
 
 /*80057E7C*/
 static void func_80057E7C(void)
@@ -7825,7 +8060,7 @@ STATIC s32 func_80058468(s32 spritenum)
     b = getVar(spritenum, *gpInst++);
     c = getVar(spritenum, *gpInst++);
 
-    return func_80057540(&gpSprite[spritenum], a, b, c);
+    return func_80057540(&gpSprite[spritenum], a, b, c); /*TODO*/
 }
 
 /*80058538*/

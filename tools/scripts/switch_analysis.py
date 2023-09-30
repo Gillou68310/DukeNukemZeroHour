@@ -58,7 +58,7 @@ def run_instruction(line,registers):
     if line[0] == 'nop':
         return
     #I haven't seen sll contribute to switch logic so we will assume it's in a delay slot and irrelevant
-    if line[0] == 'sll':
+    if line[0] == 'sll' or line[0] == 'sra':
         return
     #Same with addu
     if line[0] == 'addu':
@@ -95,18 +95,18 @@ def run_switch(switchval,switchlines):
                     print(f"{hex(switchval)};{hex(final_destination)};{final_destination}")
                 return
 
-with open('nonmatchings/src/code0/41940/func_800539A8.s') as f:
+with open('nonmatchings/src/code0/41940/func_80057540.s') as f:
     switchlines = f.readlines()
 
 #The register which holds the value we're switching on
-switchvar = 'a0'
+switchvar = 's2'
 
 #The register we compare against
 compvar = 'v0'
 
 #The starting address of the function (makes for easier switch labels)
 #Can set to zero if you just want to see raw addresses
-func_start = 0x800539A8
+func_start = 0x80057540
 #Whatever is the default, could be after the switch. Set to 0 if unknown.
 default_address = 0
 
