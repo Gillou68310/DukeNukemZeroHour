@@ -2759,6 +2759,94 @@ static s32 func_8009F648(s32 spritenum)
 }
 
 /*8009F71C*/
-INCLUDE_ASM("nonmatchings/src/code0/95500", func_8009F71C);
+static void func_8009F71C(s32 spritenum)
+{
+    SpriteType *spr;
+    SpriteType *spr2;
+    code0UnkStruct3 *ptr;
+    s32 i, j, k, l;
+    u16 m;
+
+    spr2 = gpSprite; /*FAKEMATCH?*/
+    ptr = &D_8019B940[D_80106D50[spritenum]];
+    spr = &spr2[spritenum];
+
+    if (spr->unk2B == 1)
+    {
+        if (ptr->unk6C == 0)
+            ptr->unk6C = audio_80007A44(150, spritenum, 40000);
+
+        spr->unk1A = 0;
+        spr->unk2B = 2;
+        spr->cstat &= 0x7FFF;
+    }
+
+    if (ptr->unk6C != 0)
+        audio_80007A80(ptr->unk6C, spritenum, 40000);
+
+    if (spr->unk2B != 0xFF)
+    {
+        i = func_80095F58(spr->unk1A, spr->lotag);
+        if (i == -1)
+        {
+            if (spr->unk25 != 0)
+                playSfx(1446);
+
+            if (ptr->unk6C != 0)
+                MusHandleStop(ptr->unk6C, 0);
+
+            spr->unk2B = 0xFF;
+        }
+        else
+        {
+            if (func_80040D40(gpSprite[i].x, gpSprite[i].y, spr->x, spr->y) < 500)
+                spr->unk1A++;
+
+            i = (getAngleDelta(spr->ang, getAngle(gpSprite[i].x - spr->x, gpSprite[i].y - spr->y)) << 0x10) >> 5;
+            spr->ang = (((spr->ang << 0x10) + (i)) >> 0x10) & 0x7FF;
+            ptr->unk7C = (((ptr->unk7C << 0x10) + i) >> 0x10) & 0x7FF;
+
+            j = (gpSinTable[(spr->ang + 0x200) & 0x7FF] * 5) >> 8;
+            k = (gpSinTable[spr->ang & 0x7FF] * 5) >> 8;
+            l = func_8004E5F8(spritenum, j, k, 0);
+
+            if (l >= 0xC000)
+            {
+                m = (l + 0x4000);
+                if (gpSprite[m].statnum == 10)
+                    func_800365C0(0);
+                else
+                    func_80047820(spritenum, m, 300);
+            }
+        }
+    }
+
+    if (spr->unk25 == 0)
+        i = func_80096028(spritenum);
+    else
+    {
+        i = -1;
+        if (spr->unk1A == 2)
+            i = func_8009F648(spritenum);
+    }
+
+    if (i != -1)
+    {
+        ptr->unk44 = i;
+        ptr->unk7C = func_80095FCC(ptr->unk7C,
+                                   getAngleDelta(getAngle(gpSprite[i].x - spr->x, gpSprite[i].y - spr->y), spr->ang) & 0x7FF, 5);
+        spr->unk22++;
+        if (spr->unk22 > 32)
+        {
+            spr->unk22 = 0;
+            audio_80007A44(217, spritenum, 40000);
+            func_8006D3B8(spritenum, 37, -ptr->unk7C, 310, 0);
+        }
+    }
+
+    if (spr->unk2B != 0xFF)
+        func_80096494(spritenum, 20000, 1500);
+}
+
 
 
