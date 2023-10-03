@@ -3353,6 +3353,7 @@ s32 func_8004BC64(s32 x, s32 y, s32 z, s32 sectnum, s32 arg4, s32 arg5, s32 arg6
         func_800539A8(arg4, spritenum);
         return spritenum;
     }
+    /*TODO: return?*/
 }
 
 /*8004BD24*/
@@ -7909,6 +7910,7 @@ s32 func_80057540(SpriteType *spr, s16 picnum, s16 arg2, s32 arg3)
             }
         }
     }
+    /*TODO: return?*/
 }
 
 /*80057E7C*/
@@ -8060,7 +8062,7 @@ STATIC s32 func_80058468(s32 spritenum)
     b = getVar(spritenum, *gpInst++);
     c = getVar(spritenum, *gpInst++);
 
-    return func_80057540(&gpSprite[spritenum], a, b, c); /*TODO*/
+    return func_80057540(&gpSprite[spritenum], a, b, c);
 }
 
 /*80058538*/
