@@ -445,6 +445,7 @@ typedef struct
 /*80105550*/ _extern s16 *D_80105550;
 /*80105718*/ _extern u8 D_80105718;
 /*80105720*/ _extern s16 D_80105720;
+/*80105730*/ _extern s32 D_80105730[1024] ALIGNED(16);
 /*80106D30*/ _extern u8 D_80106D30[MAXPLAYERS];
 /*80106D50*/ _extern s16 D_80106D50[MAXSPRITES] ALIGNED(16);
 /*8010A914*/ _extern Vertex *gpVertex;
@@ -581,6 +582,7 @@ typedef struct
 /*801ACC60*/ _extern s32 D_801ACC60;
 /*801AD470*/ _extern u8 D_801AD470;
 /*801AD474*/ _extern s16 *D_801AD474;
+/*801AD480*/ _extern s32 D_801AD480[1024] ALIGNED(16);
 /*801AE480*/ _extern s32 D_801AE480[MAXPLAYERS] ALIGNED(8);
 /*801AE490*/ _extern s32 gSnoozingAliens;
 /*801AE4A0*/ _extern Fog gFog[MAXPLAYERS] ALIGNED(8);

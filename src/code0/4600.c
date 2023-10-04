@@ -390,7 +390,7 @@ static void func_80004CFC(u16 sectnum)
 }
 
 /*80004ECC*/
-void func_80004ECC(s32 sectnum, s32 arg1, s32 arg2)
+void func_80004ECC(u16 sectnum, s32 arg1, s32 arg2)
 {
     D_800FF52C = arg1 / 2;
     D_8016A160 = arg2 / 2;

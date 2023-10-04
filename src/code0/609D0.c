@@ -7,10 +7,13 @@
 #include "code0/9410.h"
 #include "code0/16DF0.h"
 #include "code0/17B30.h"
+#include "code0/37090.h"
 #include "code0/3FAD0.h"
 #include "code0/41940.h"
 #include "code0/609D0.h"
+#include "code0/64530.h"
 #include "code0/6ACA0.h"
+#include "code0/7BA50.h"
 #include "code0/8E670.h"
 #include "code0/8EFE0.h"
 #include "code0/95500.h"
@@ -60,8 +63,1002 @@ static void func_8005FE84(s16 wallnum)
 }
 
 /*8005FEE0*/
-STATIC void func_8005FEE0(s16);
-INCLUDE_ASM("nonmatchings/src/code0/609D0", func_8005FEE0);
+static void func_8005FEE0(s16 spritenum)
+{
+    s16 hitsprite;
+    s32 hitx;
+    s32 hity;
+    SectorType *sec;
+    SpriteType *spr;
+
+    s16 temp_v0_15;
+
+    s32 z;
+    s32 temp_v0_2;
+    s32 temp_v0_7;
+    s32 i;
+
+    u8 cond;
+
+    u8 temp_a0_2;
+    u8 temp_v1_8;
+
+    spr = &gpSprite[spritenum];
+    sec = &gpSector[spr->sectnum];
+
+    if ((spr->x < -0x10000) || (spr->x > 0x10000) || (spr->y < -0x10000) || (spr->y > 0x10000))
+    {
+        deleteSprite(spritenum);
+        return;
+    }
+
+    z = ((spr->cstat & 2)) ? 0xC0 : 0xFF;
+    if (spr->cstat & 0x200)
+        z = 0x80;
+
+    D_8013B2D0[spritenum].unk6 = 0xFF - z;
+
+    if ((spr->picnum > 48) && (spr->lotag == 66))
+        spr->cstat |= 0x100;
+
+    func_800539A8(spr->picnum, spritenum);
+    func_800533C4(spr->picnum, spritenum);
+
+    if (spr->picnum == 1688)
+        spr->z -= 8000;
+
+    if (spr->statnum == 303)
+    {
+        spr->cstat = 0x8000;
+        spr->unk2B = 0;
+    }
+    else if (spr->statnum == 301)
+    {
+        spr->unk2B = 0;
+        spr->unk22 = 0;
+        spr->unk18 = 0;
+
+        if ((spr->picnum == 2326) && (spr->unk25 & 1))
+        {
+            spr->unk18 = 1;
+            D_8013B2D0[spritenum].unk2 = 500;
+        }
+
+        if ((spr->picnum >= 2367) && (spr->picnum < 2373))
+        {
+            spr->unk18 = 0;
+            spr->unk1A = spr->unk24;
+            if (spr->unk25 == 0)
+            {
+                spr->cstat |= 0x8000;
+                spr->z += 23000;
+            }
+        }
+
+        if (spr->picnum == 1960)
+            spr->z -= 8700;
+    }
+    else if (spr->statnum == 302)
+    {
+        spr->unk2B = 0;
+        if ((spr->picnum >= 2367) && (spr->picnum < 2373))
+            spr->unk1A = spr->unk24;
+
+        switch (spr->picnum)
+        {
+        case 36:
+            spr->cstat = 0x8000;
+            spr->x += ((gpSinTable[(spr->ang + 0x200) & 0x7FF] * 15) >> 13);
+            spr->y += ((gpSinTable[spr->ang & 0x7FF] * 15) >> 13);
+            setSprite(spritenum, spr->x, spr->y, spr->z);
+            func_80058A14(spritenum, &hitsprite, &hitx, &hity);
+            i = func_80058934(spr->x, spr->y, spr->z - 0x300, spr->sectnum, 4);
+            spr->unk22 = i;
+            D_80106D50[i] = func_8004BE90();
+            gpSprite[i].lotag = 101;
+            gpSprite[i].hitag = spritenum;
+            gpSprite[i].cstat = 0x8000;
+            gpSprite[i].unk25 = 1;
+            gpSprite[i].unk18 = func_8007AE50();
+            gpSprite[i].unk22 = 0;
+            D_8019B940[D_80106D50[i]].unk44 = hitx;
+            D_8019B940[D_80106D50[i]].unk48 = hity;
+            D_8019B940[D_80106D50[i]].unk4C = spr->x;
+            D_8019B940[D_80106D50[i]].unk50 = spr->y;
+            D_8019B940[D_80106D50[i]].unkC = 0;
+            break;
+        case 2432:
+        case 1527:
+            spr->unk1A = 0;
+            spr->unk22 = 0;
+            spr->xrepeat = 0x60;
+            break;
+        case 2311:
+            spr->unk1A = 0;
+            spr->unk22 = 0;
+            break;
+        case 1405:
+            temp_v0_2 = func_8004BC64(spr->x + (-(gpSinTable[(spr->ang + 0x100) & 0x7FF] * 700) >> 14),
+                                      spr->y + (-(gpSinTable[(spr->ang - 0x100) & 0x7FF] * 700) >> 14),
+                                      spr->z, spr->sectnum, 1282, 0, 0);
+            gpSprite[temp_v0_2].unk25 = 7;
+            gpSprite[temp_v0_2].hitag = spr->hitag;
+            break;
+        case 1426:
+        case 1672:
+            spr->unk22 = 0;
+            spr->unk18 = 0;
+            break;
+        case 2002:
+        case 2005:
+            spr->unk22 = 0;
+            if ((spr->unk25 & 0x7F) == 2)
+                spr->unk2B = 10;
+
+            if ((spr->unk25 & 0x7F) == 3)
+                spr->unk2B = 20;
+
+            if ((spr->unk25 & 0x7F) == 20)
+                spr->unk2B = 40;
+
+            spr->lotag = 1;
+            spr->unk2A = 0;
+            break;
+        case 2282:
+            spr->z -= 2500;
+            break;
+        case 2533:
+            spr->unk22 = 0;
+            spr->unk18 = 0;
+            spr->z -= 37500;
+            break;
+        }
+    }
+
+    switch (spr->picnum)
+    {
+    case 1:
+        changeSpriteStat(spritenum, 3);
+        switch (spr->lotag)
+        {
+        case 0:
+            if (spr->hitag != 0)
+            {
+                for (i = 0; i < gNumSprites; i++)
+                {
+                    if (gpSprite[i].picnum == 1)
+                    {
+                        if ((gpSprite[i].lotag == gpSprite[i].picnum) && (gpSprite[i].hitag == spr->hitag))
+                        {
+                            spr->x = gpSprite[i].x;
+                            spr->y = gpSprite[i].y;
+                        }
+                    }
+                }
+            }
+            func_80004ECC(spr->sectnum, spr->x, spr->y);
+            spr->unk18 = 1;
+            spr->unk16 = D_800F9CC0;
+
+            if (spr->ang > 0x400)
+                spr->unk18 = -1;
+
+            spr->ang = 0;
+            for (i = sec->wallptr; i < (sec->wallptr + sec->wallnum); i++)
+            {
+                func_8005FE84(i);
+                D_801AD480[D_800F9CC0] = gpWall[i].x - spr->x;
+                D_80105730[D_800F9CC0] = gpWall[i].y - spr->y;
+                D_800F9CC0++;
+            }
+            break;
+        case 4:
+            spr->unk1A = sec->unk26;
+            spr->unk1C = sec->unk27;
+            break;
+        case 12:
+            spr->clipdist = 0;
+            if (spr->ang < 0x400)
+            {
+                temp_a0_2 = spr->unk25;
+                temp_v1_8 = spr->unk24;
+                spr->unk25 = sec->unk27;
+                spr->unk24 = sec->unk26;
+                sec->unk27 = temp_a0_2;
+                sec->unk26 = temp_v1_8;
+                spr->clipdist = 1;
+            }
+            spr->unk1A = sec->unk26;
+            spr->unk1C = sec->unk27;
+            func_80064DE0(sec, sec->unk26, sec->unk27);
+            spr->unk2B = 0;
+            break;
+        case 13:
+            z = sec->floorz;
+            spr->unk18 = (z >> 0x10);
+            spr->unk1A = z;
+            z = sec->ceilingz;
+            spr->unk1C = (z >> 0x10);
+            spr->unk22 = z;
+            sec->floorz = sec->ceilingz = spr->z;
+            spr->ang = sec->floorheinum;
+            spr->unk16 = sec->ceilingheinum;
+            sec->floorheinum = 0;
+            sec->ceilingheinum = 0;
+            spr->unk25 = 0;
+
+            for (i = sec->wallptr; i < (sec->wallptr + sec->wallnum); i++)
+                func_8005FE84(i);
+
+            break;
+        case 7:
+            for (i = 0; i < gNumSprites; i++)
+            {
+                if ((i != spritenum) && (gpSprite[i].picnum == 1) &&
+                    ((gpSprite[i].lotag == 7) || (gpSprite[i].lotag == 23)))
+                {
+                    if (gpSprite[i].hitag == spr->hitag)
+                    {
+                        spr->unk16 = i;
+                        break;
+                    }
+                }
+            }
+            spr->unk22 = 0;
+            changeSpriteStat(spritenum, 9);
+            break;
+        case 8:
+            spr->clipdist = 0;
+            spr->unk1A = sec->unk26;
+            spr->unk1C = sec->unk27;
+            func_80064DE0(sec, sec->unk26, sec->unk27);
+            spr->unk2B = 0;
+            break;
+        case 10:
+            spr->unk1A = spr->hitag;
+            spr->hitag = 0;
+            break;
+        case 29:
+            if ((sec->unk18 == 3) && !(spr->cstat & 4))
+                z = func_80036490(spr->sectnum);
+            else if (spr->cstat & 8)
+                z = sec->ceilingz;
+            else
+                z = sec->floorz;
+
+            for (i = sec->wallptr; i < (sec->wallptr + sec->wallnum); i++)
+                func_8005FE84(i);
+
+            spr->z = (spr->z + z) / 2;
+            spr->unk18 = klabs((z-(spr->z))) / 4;
+            break;
+        case 30:
+            if (spr->cstat & 8)
+            {
+                z = spr->z;
+                spr->z = sec->ceilingz;
+                sec->ceilingz = z;
+            }
+            z = sec->ceilingz;
+            spr->unk1C = 0;
+            spr->unk2B = 0;
+            spr->unk18 = (z >> 0x10);
+            spr->unk1A = z;
+            break;
+        case 40:
+        case 41:
+            temp_v0_7 = gpSector[nextSectorNeighborZ(spr->sectnum, sec->floorz, 1, 0)].floorz;
+            spr->unk1C = 0;
+            spr->unk2B = 0;
+            spr->z = temp_v0_7;
+
+            for (i = sec->wallptr; i < (sec->wallptr + sec->wallnum); i++)
+                func_8005FE84(i);
+            break;
+        case 42:
+            if (spr->cstat & 8)
+            {
+                z = spr->z;
+                spr->z = sec->floorz;
+                sec->floorz = z;
+            }
+            z = sec->floorz;
+            spr->unk1C = 0;
+            spr->unk2B = 0;
+            spr->unk18 = (z >> 0x10);
+            spr->unk1A = z;
+
+            for (i = sec->wallptr; i < (sec->wallptr + sec->wallnum); i++)
+                func_8005FE84(i);
+            break;
+        case 43:
+            for (i = 0; i < gNumSprites; i++)
+            {
+                if ((i != spritenum) && (gpSprite[i].picnum == 1) && (gpSprite[i].lotag == 43))
+                {
+                    if (gpSprite[i].hitag == spr->hitag)
+                    {
+                        spr->unk16 = i;
+                        break;
+                    }
+                }
+            }
+            if (spr->unk25 == 0)
+            {
+                z = sec->floorz;
+                spr->z = gpSector[gpSprite[i].sectnum].floorz;
+            }
+            else
+            {
+                spr->z = sec->floorz;
+                z = gpSector[gpSprite[i].sectnum].floorz;
+            }
+            spr->unk18 = (z >> 0x10);
+            spr->unk1A = z;
+            spr->unk1C = 0;
+            spr->unk2B = 0;
+
+            for (i = sec->wallptr; i < (sec->wallptr + sec->wallnum); i++)
+                func_8005FE84(i);
+            break;
+        case 44:
+        case 46:
+            spr->unk1C = 0;
+            spr->unk2B = 0;
+            spr->unk16 = -1;
+            i = gHeadSpriteSect[spr->sectnum];
+            while (i >= 0)
+            {
+                if (gpSprite[i].picnum > 48)
+                {
+                    if ((gpSprite[i].lotag == 44) && ((spr->picnum < 0x500) || ((D_800D6780 + 0x500) < spr->picnum)))
+                        spr->unk16 = i;
+                }
+                i = gNextSpriteSect[i];
+            }
+
+            if (spr->unk16 != -1)
+            {
+                z = gpSprite[spr->unk16].z;
+                spr->unk18 = (z >> 0x10);
+                spr->unk1A = z;
+                if (spr->cstat & 8)
+                {
+                    i = gHeadSpriteSect[spr->sectnum];
+                    while (i >= 0)
+                    {
+                        if (gpSprite[i].picnum > 48)
+                        {
+                            if (z >= gpSprite[i].z)
+                            {
+                                /*TODO*/
+                                if ((*(s32 *)&gpSprite[i].cstat & 0x40300000) != 0x40100000)
+                                    gpSprite[i].z += (spr->z - z);
+                            }
+                        }
+                        i = gNextSpriteSect[i];
+                    }
+                }
+            }
+            else
+                deleteSprite(spritenum);
+
+            break;
+        case 0x2D:
+            for (i = 0; i < gNumSprites; i++)
+            {
+                if ((i != spritenum) && (gpSprite[i].picnum == 1) && (gpSprite[i].lotag == 45))
+                {
+                    if (gpSprite[i].hitag == spr->hitag)
+                    {
+                        spr->unk16 = i;
+                        break;
+                    }
+                }
+            }
+
+            if (spritenum < i)
+                spr->unk25 = 1;
+            else
+                spr->unk25 = 0;
+
+            spr->unk18 = 0;
+            spr->unk2B = 0;
+            spr->unk24 = CLAMP_MIN(spr->unk24, 2);
+            break;
+        case 50:
+        case 51:
+        case 52:
+            if (spr->lotag != 50)
+                spr->z = gpSector[nextSectorNeighborZ(spr->sectnum, sec->floorz, 1, 1)].floorz;
+            else
+                spr->z = gpSector[nextSectorNeighborZ(spr->sectnum, sec->ceilingz, 0, 0)].ceilingz;
+
+            spr->unk1C = 0;
+
+            if (spr->unk25 == 0)
+                func_8005FDD0(sec, spr->hitag);
+
+            for (i = sec->wallptr; i < (sec->wallptr + sec->wallnum); i++)
+                func_8005FE84(i);
+            break;
+        case 53:
+            if (spr->hitag != 0)
+            {
+                for (i = 0; i < gNumSprites; i++)
+                {
+                    if (gpSprite[i].picnum == 1)
+                    {
+                        if ((gpSprite[i].lotag == gpSprite[i].picnum) && (gpSprite[i].hitag == spr->hitag))
+                        {
+                            spr->x = gpSprite[i].x;
+                            spr->y = gpSprite[i].y;
+                        }
+                    }
+                }
+            }
+            func_80004ECC(spr->sectnum, spr->x, spr->y);
+            spr->unk18 = 0;
+            spr->unk16 = D_800F9CC0;
+            spr->clipdist = 0;
+
+            if (spr->ang > 0x400)
+            {
+                spr->unk1C = 1;
+                spr->unk1A = 0;
+            }
+            else
+            {
+                spr->unk1C = -1;
+                spr->unk1A = 0x200;
+            }
+            spr->ang = 0;
+
+            for (i = sec->wallptr; i < (sec->wallptr + sec->wallnum); i++)
+            {
+                func_8005FE84(i);
+                D_801AD480[D_800F9CC0] = gpWall[i].x - spr->x;
+                D_80105730[D_800F9CC0] = gpWall[i].y - spr->y;
+                D_800F9CC0++;
+            }
+            if (spr->unk25 == 0)
+                func_8005FDD0(sec, spr->hitag);
+
+            spr->unk25 = 0;
+            break;
+        case 54:
+            func_80004ECC(spr->sectnum, spr->x, spr->y);
+            spr->unk18 = 0;
+            spr->unk1A = 0;
+            spr->unk1C = 0;
+            spr->unk16 = D_800F9CC0;
+            spr->clipdist = 0;
+            for (i = sec->wallptr; i < (sec->wallptr + sec->wallnum); i++)
+            {
+                func_8005FE84(i);
+                z = findDistance2D(gpWall[i].x - gpWall[gpWall[i].point2].x,
+                                   gpWall[i].y - gpWall[gpWall[i].point2].y);
+                spr->unk1C = MAX(spr->unk1C, z);
+                D_801AD480[D_800F9CC0] = gpWall[i].x - spr->x;
+                D_80105730[D_800F9CC0] = gpWall[i].y - spr->y;
+                D_800F9CC0++;
+            }
+
+            for (i = 0; i < gNumSprites; i++)
+            {
+                if ((gpSprite[i].picnum == 10) && (gpSprite[i].sectnum == spr->sectnum) && (gpSprite[i].cstat & 8))
+                {
+                    spr->unk1C = gpSprite[i].lotag;
+                    deleteSprite(i);
+                    break;
+                }
+            }
+
+            if (spr->unk25 == 0)
+                func_8005FDD0(sec, spr->hitag);
+
+            spr->unk25 = 0;
+            break;
+        case 60:
+            if (gMapNum != MAP_GOING_DOWN_THE_RACK)
+            {
+                z = 0xC0000000;
+                if (spr->unk25 != 0)
+                {
+                    i = gHeadSpriteStat[102];
+                    while (i >= 0)
+                    {
+                        if (gpSprite[i].hitag == spr->hitag)
+                            z = MAX(z, gpSector[gpSprite[i].sectnum].floorz);
+
+                        i = gNextSpriteStat[i];
+                    }
+
+                    i = gHeadSpriteStat[102];
+                    while (i >= 0)
+                    {
+                        if (gpSprite[i].hitag == spr->hitag)
+                            gpSprite[i].z = (z + 0x400);
+
+                        i = gNextSpriteStat[i];
+                    }
+                }
+
+                z = func_80036490(spr->sectnum);
+                spr->unk18 = (z >> 0x10);
+                spr->unk1A = z;
+                spr->unk1C = 0;
+
+                if (spr->z < z)
+                    spr->unk25 = 0;
+                else
+                    spr->unk25 = 1;
+
+                spr->unk2B = 0;
+            }
+            break;
+        case 24:
+            spr->unk2B = 1;
+            break;
+        }
+        break;
+    case 5:
+    case 37:
+        changeSpriteStat(spritenum, 110);
+        D_8013B2D0[spritenum].handle = 0;
+        spr->unk1A = spr->hitag;
+
+        if (spr->unk1A == 0)
+            spr->unk1A = 0x4000;
+
+        spr->hitag = 0;
+        spr->unk25 = ~spr->unk25;
+
+        if ((spr->picnum == 37) && (spr->unk24 == 0))
+            spr->unk24 = 1;
+
+        break;
+    case 28:
+    case 29:
+        changeSpriteStat(spritenum, 111);
+        D_8013B2D0[spritenum].handle = 0;
+        break;
+    case 2:
+    case 8:
+        spr->unk2B = 0;
+        spr->unk25 = 0;
+    case 9:
+    case 4:
+        changeSpriteStat(spritenum, 106);
+        break;
+    case 3:
+        changeSpriteStat(spritenum, 105);
+        spr->ang = spr->unk24;
+        spr->unk24 = 0;
+        break;
+    case 17:
+        sec->unk2A = spr->lotag;
+        deleteSprite(spritenum);
+        break;
+    case 22:
+        if (D_80107908 < 0x20)
+        {
+            D_8012F708[D_80107908].unk0 = spr->x;
+            D_8012F708[D_80107908].unk4 = spr->y;
+            D_8012F708[D_80107908].unk8 = spr->z;
+            D_8012F708[D_80107908].unkC = spr->ang;
+            D_8012F708[D_80107908].unkE = spr->sectnum;
+            D_80107908++;
+        }
+        deleteSprite(spritenum);
+        break;
+    case 27:
+        sec->unk27 = spr->unk25;
+        sec->unk23 = spr->unk25;
+
+        for (i = sec->wallptr; i < (sec->wallptr + sec->wallnum); i++)
+            gpWall[i].unk21 = spr->unk25;
+
+        deleteSprite(spritenum);
+        break;
+    case 30:
+        spr->unk2A = spr->statnum;
+        changeSpriteStat(spritenum, 666);
+        spr->unk1A = 0;
+        spr->unk1C = 0;
+        spr->unk2B = 0;
+        spr->unk18 = spr->unk25;
+        spr->unk22 = spr->hitag;
+        spr->hitag = 0;
+        break;
+    case 31:
+        spr->unk2A = spr->statnum;
+        changeSpriteStat(spritenum, 666);
+        spr->unk1A = 0;
+        spr->unk1C = 1;
+        spr->unk2B = 0;
+        spr->unk18 = spr->unk25;
+        spr->unk22 = spr->hitag;
+        spr->hitag = 0;
+        break;
+    case 34:
+        if ((spr->cstat & 8) || (spr->hitag != 0))
+        {
+            spr->cstat |= 0x8000;
+            changeSpriteStat(spritenum, 118);
+        }
+        else
+        {
+            if (spr->unk25 != 0)
+                sec->floorstat |= 0x1000;
+            else
+                sec->floorstat |= 0x80;
+
+            spr->picnum = 2253;
+            spr->cstat |= 0x800;
+            changeSpriteStat(spritenum, 120);
+        }
+        break;
+    case 35:
+        sec->floorstat |= 0x100;
+        deleteSprite(spritenum);
+        D_801A1958.secrets_total++;
+        break;
+    case 39:
+        switch (spr->lotag)
+        {
+        case 0:
+            sec->floorstat |= 0x200;
+            break;
+        case 1:
+            sec->floorstat |= 0x400;
+            break;
+        case 2:
+            sec->floorstat |= 0x800;
+            break;
+        case 3:
+            sec->floorstat |= 0x2000;
+            break;
+        case 4:
+            sec->floorstat |= 0x4000;
+            break;
+        case 5:
+            sec->floorstat |= 0x8000;
+            break;
+        }
+
+        if (spr->lotag == 4)
+        {
+            changeSpriteStat(spritenum, 121);
+            break;
+        }
+
+        if (spr->lotag == 5)
+        {
+            changeSpriteStat(spritenum, 0);
+            break;
+        }
+        deleteSprite(spritenum);
+        break;
+    case 546:
+    case 547:
+    case 548:
+    case 549:
+        if ((spr->picnum >= 546) && (spr->picnum < 548))
+            spr->picnum = 6083;
+
+        if ((spr->picnum >= 548) && (spr->picnum < 550))
+            spr->picnum = 6084;
+    case 6083:
+    case 6084:
+        spr->cstat |= 0x4100;
+        changeSpriteStat(spritenum, 58);
+        break;
+    case 40:
+        for (i = 0; i < gNumSprites; i++)
+        {
+            if (i != spritenum)
+            {
+                if ((spr->x == gpSprite[i].x) && (spr->y == gpSprite[i].y))
+                {
+                    gpSprite[i].x = (spr->x + (spr->lotag * cosf((spr->ang * (PI/1024)))));
+                    gpSprite[i].y = (gpSprite[i].y + (spr->lotag * sinf((spr->ang * (PI/1024)))));
+                    gpSprite[i].z = (gpSprite[i].z + (spr->hitag * 16));
+                }
+            }
+        }
+        deleteSprite(spritenum);
+        break;
+    case 1247:
+        spr->cstat |= 0x8000;
+        changeSpriteStat(spritenum, 112);
+        spr->unk2B = 0;
+        break;
+    case 6:
+        spr->cstat = 0x8000;
+        spr->unk24 = 0;
+        changeSpriteStat(spritenum, 122);
+        break;
+    case 12:
+        spr->picnum = 5655;
+        spr->xrepeat = 0;
+        break;
+    case 43:
+        spr->cstat |= 0x8000;
+        spr->unk16 = (s8)spr->unk24;
+        changeSpriteStat(spritenum, 116);
+        break;
+    case 45:
+        spr->cstat |= 0x8000;
+        changeSpriteStat(spritenum, 117);
+        break;
+    case 2304:
+    case 2305:
+    case 2306:
+    case 2307:
+    case 2308:
+    case 2452:
+    case 2453:
+    case 2454:
+    case 2455:
+    case 2456:
+    case 2457:
+    case 2458:
+    case 2459:
+    case 2460:
+    case 2461:
+    case 2242:
+    case 2243:
+    case 2244:
+    case 2245:
+    case 2246:
+    case 2247:
+    case 2248:
+        changeSpriteStat(spritenum, 130);
+        spr->hitag = 1;
+        D_801A1958.babes_total++;
+        break;
+    case 2365:
+        changeSpriteStat(spritenum, 108);
+        spr->unk18 = 4;
+        break;
+    case 2496:
+    case 2597:
+        spr->z += 0x2600;
+        break;
+    case 5772:
+        if (gMapNum == MAP_THE_RACK)
+        {
+            spr->cstat |= 0x8000;
+            changeSpriteStat(spritenum, 123);
+        }
+        else
+        {
+            i = func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 52, spr->unk25);
+            if (i >= 0)
+            {
+                gpSprite[i].hitag = spr->hitag;
+                if (spr->cstat & 0x202)
+                    gpSprite[i].cstat |= 4;
+            }
+            deleteSprite(spritenum);
+        }
+        break;
+    case 5773:
+        if (D_8012C470 == 1)
+            func_8008E3E0(spr->x, spr->y, gpSector[spr->sectnum].floorz, spr->sectnum, 64, 358);
+
+        deleteSprite(spritenum);
+        break;
+    case 5774:
+        if (D_8012C470 == 1)
+            func_8008E3E0(spr->x, spr->y, gpSector[spr->sectnum].floorz, spr->sectnum, 74, 358);
+
+        deleteSprite(spritenum);
+        break;
+    case 2591:
+    case 2592:
+        changeSpriteStat(spritenum, 120);
+        break;
+    }
+
+    switch (spr->picnum)
+    {
+    case 3824:
+    case 5658:
+    case 5700:
+        spr->unk2B = 1;
+        break;
+    case 2553:
+    case 2581:
+        spr->cstat |= 0x800;
+        break;
+    }
+
+    if (spr->picnum == 1405)
+        spr->unk22 = 0;
+
+    if ((spr->picnum >= 1792) && (spr->picnum < 1916) && (spr->statnum != 4))
+    {
+        spr->lotag = 80;
+        if (spr->statnum != 152)
+        {
+            changeSpriteStat(spritenum, 150);
+            spr->unk18 = -1;
+        }
+        else
+            spr->cstat |= 0x8000;
+
+        spr->cstat &= 0xFEFE;
+
+        if ((spr->picnum >= 1897) && (spr->picnum < 1903))
+            spr->unk22 = 100;
+
+        if (D_801CA14C[gMapNum].unk0 == 5)
+        {
+            switch (spr->picnum)
+            {
+            case 1894:
+            case 1895:
+                spr->picnum = 1893;
+                break;
+            case 1899:
+            case 1901:
+                spr->picnum = 1897;
+                break;
+            case 1907:
+                spr->picnum = 1906;
+                break;
+            }
+        }
+    }
+
+    if (spr->picnum == 1916)
+    {
+        spr->cstat = 0x8000;
+        if (spr->statnum != 152)
+        {
+            temp_v0_15 = func_8008E3E0(spr->x, spr->y, spr->z - 4800, spr->sectnum, 57, 0);
+
+            if (temp_v0_15 >= 0)
+                gpSprite[temp_v0_15].unk22 = spritenum;
+
+            changeSpriteStat(spritenum, 150);
+        }
+        spr->unk18 = -1;
+    }
+
+    if ((spr->picnum >= 2469) && (spr->picnum < 2483))
+    {
+        changeSpriteStat(spritenum, 150);
+        spr->unk18 = -1;
+        spr->cstat &= 0xFEFE;
+    }
+
+    if (spr->statnum == 114)
+    {
+        spr->unk18 = 0;
+        spr->unk22 = 0x100;
+        spr->unk2A = spr->lotag;
+        spr->lotag = 0;
+        spr->unk2B = 0;
+    }
+
+    if (spr->statnum == 119)
+        spr->lotag = 1;
+
+    if ((spr->picnum >= 1280) && ((D_800D6780 + 1280) >= spr->picnum))
+    {
+        if (spr->statnum != 4)
+        {
+            cond = 1;
+            spr->cstat |= 0x1101;
+
+            if ((spr->statnum == 150) || ((spr->statnum >= 20) && (spr->statnum < 23)))
+                spr->cstat &= 0xFEFE;
+
+            if ((spr->picnum == 2200) || (spr->picnum == 2253) ||
+                (spr->picnum == 2231) || (spr->picnum == 2487) ||
+                (spr->picnum == 2488) || (spr->picnum == 2262) || (spr->picnum == 2263))
+            {
+                spr->cstat &= 0xFEFE;
+            }
+
+            switch (spr->statnum)
+            {
+            case 1:
+            case 2:
+            case 20:
+            case 21:
+            case 22:
+            case 52:
+            case 76:
+                cond = 0;
+                break;
+            }
+
+            switch (spr->picnum)
+            {
+            case 2005:
+            case 1426:
+            case 1309:
+            case 1527:
+            case 2002:
+            case 2254:
+            case 2432:
+            case 2310:
+            case 2311:
+            case 2312:
+            case 2313:
+            case 2314:
+                cond = 0;
+                break;
+            }
+
+            if (cond != 0)
+            {
+                if (spr->lotag == 0)
+                    spr->xrepeat = 0x40;
+                else
+                    spr->xrepeat = CLAMP_MAX(spr->lotag, 0xFF);
+
+                spr->lotag = 0;
+            }
+
+            switch (spr->picnum)
+            {
+            case 2191:
+            case 2433:
+            case 2434:
+            case 2435:
+            case 2467:
+            case 2489:
+            case 2490:
+            case 2491:
+                changeSpriteStat(spritenum, 115);
+                break;
+            }
+
+            spr->yrepeat = spr->xrepeat;
+        }
+    }
+
+    if (spr->lotag == 66)
+        spr->unk1A = 0;
+
+    if (spr->statnum == 0xA0)
+        spr->cstat &= 0xFEFE;
+
+    if (spr->picnum == 2484)
+    {
+        changeSpriteStat(spritenum, 0);
+        spr->lotag = 1;
+    }
+
+    if (((spr->picnum == 1462) || (spr->picnum == 1466) || (spr->picnum == 2266)) && (spr->lotag == 0))
+        spr->lotag = 1;
+
+    if ((spr->picnum >= 1520) && (spr->picnum < 1523) && (spr->lotag == 0))
+        spr->lotag = 1;
+
+    if (spr->picnum == 4870)
+    {
+        spr->picnum = 4857;
+        spr->ang = (spr->ang + 0x400) & 0x7FF;
+    }
+
+    if (spr->picnum == 4871)
+    {
+        spr->picnum = 4858;
+        spr->ang = (spr->ang + 0x400) & 0x7FF;
+    }
+
+    if ((spr->picnum == 1417) && (gMapNum == MAP_THE_RACK))
+    {
+        spr->cstat = (spr->cstat & 0xFEFE) | 0x8000;
+        changeSpriteStat(spritenum, 123);
+    }
+}
 
 #ifdef NON_MATCHING
 /*80062300*/
