@@ -1123,7 +1123,7 @@ static void drawWalls(void)
 static void func_8000C8EC(void)
 {
     s32 i;
-    int spriteIndex;
+    s32 spriteIndex;
 
     D_8012DEFC = -1;
     gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_XLU_SURF2);

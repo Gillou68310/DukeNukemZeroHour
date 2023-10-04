@@ -5974,175 +5974,175 @@ void func_800533C4(s32 arg0, s32 spritenum)
     {
         switch (arg0)
         {
-        case 0x6E7:case 0x6E8:case 0x886:case 0x887:case 0x8B4:case 0x8B5:
-        case 0x8B6:case 0x8BE:case 0x8BF:case 0x8C0:case 0x8C1:case 0x967:
+        case 1767: case 1768: case 2182: case 2183: case 2228: case 2229:
+        case 2230: case 2238: case 2239: case 2240: case 2241: case 2407:
             i = 1;
 
         default:
             j = -1;
             break;
 
-        case 0x6E9:case 0x6ED:case 0x6EE:
+        case 1769: case 1773: case 1774:
             i = 1;
             j = 1;
             break;
 
-        case 0x597:case 0x599:case 0x59B:case 0x59F:case 0x5F4:case 0x5F5:
-        case 0x60D:case 0x60E:case 0x610:case 0x62A:case 0x658:case 0x6AE:
-        case 0x6AF:case 0x6D6:case 0x785:case 0x78E:case 0x791:case 0x796:
-        case 0x7C0:case 0x86C:case 0x8FB:case 0x945:case 0x96C:case 0xA27:
+        case 1431: case 1433: case 1435: case 1439: case 1524: case 1525:
+        case 1549: case 1550: case 1552: case 1578: case 1624: case 1710:
+        case 1711: case 1750: case 1925: case 1934: case 1937: case 1942:
+        case 1984: case 2156: case 2299: case 2373: case 2412: case 2599:
             j = 1;
             break;
 
-        case 0x6F0:
+        case 1776:
             j = 5;
             i = 1;
             break;
 
-        case 0x6C3:case 0x6C4:
+        case 1731: case 1732:
             j = 3;
             i = 1;
             break;
 
-        case 0x6D7:case 0x6EA:case 0x7A9:
+        case 1751: case 1770: case 1961:
             i = 1;
             j = 0;
             break;
 
-        case 0x534:case 0x548:case 0x549:case 0x57F:case 0x58C:case 0x58D:
-        case 0x58E:case 0x5B1:case 0x5B4:case 0x5BB:case 0x5BE:case 0x5BF:
-        case 0x5C9:case 0x5CA:case 0x5EE:case 0x5EF:case 0x622:case 0x627:
-        case 0x628:case 0x629:case 0x643:case 0x647:case 0x648:case 0x649:
-        case 0x64A:case 0x64B:case 0x64C:case 0x67A:case 0x684:case 0x69E:
-        case 0x6B2:case 0x6B3:case 0x6B4:case 0x6C6:case 0x6C7:case 0x6EF:
-        case 0x6F8:case 0x6F9:case 0x6FE:case 0x6FF:case 0x788:case 0x7BA:
-        case 0x7BB:case 0x7BC:case 0x7C2:case 0x7C6:case 0x7C7:case 0x867:
-        case 0x869:case 0x86D:case 0x873:case 0x874:case 0x875:case 0x877:
-        case 0x878:case 0x87E:case 0x880:case 0x88C:case 0x89F:case 0x8A2:
-        case 0x926:case 0x927:case 0xA17:case 0xA26:
+        case 1332: case 1352: case 1353: case 1407: case 1420: case 1421:
+        case 1422: case 1457: case 1460: case 1467: case 1470: case 1471:
+        case 1481: case 1482: case 1518: case 1519: case 1570: case 1575:
+        case 1576: case 1577: case 1603: case 1607: case 1608: case 1609:
+        case 1610: case 1611: case 1612: case 1658: case 1668: case 1694:
+        case 1714: case 1715: case 1716: case 1734: case 1735: case 1775:
+        case 1784: case 1785: case 1790: case 1791: case 1928: case 1978:
+        case 1979: case 1980: case 1986: case 1990: case 1991: case 2151:
+        case 2153: case 2157: case 2163: case 2164: case 2165: case 2167:
+        case 2168: case 2174: case 2176: case 2188: case 2207: case 2210:
+        case 2342: case 2343: case 2583: case 2598:
             j = 0;
             break;
 
-        case 0x7B0:
+        case 1968:
             i = 1;
-            j = 0xD;
+            j = 13;
             break;
 
-        case 0x545:case 0x546:case 0x5CD:case 0x5CE:case 0x5D7:
-            j = 0xD;
+        case 1349: case 1350: case 1485: case 1486: case 1495:
+            j = 13;
             break;
 
-        case 0x6D8:case 0x8C9:case 0x8CA:case 0x993:case 0x99E:
+        case 1752: case 2249: case 2250: case 2451: case 2462:
             i = 1;
-            j = 0x15;
+            j = 21;
             break;
 
-        case 0x571:case 0x57E:case 0x584:case 0x585:case 0x5B8:case 0x5D6:
-        case 0x5F9:case 0x6BA:case 0x6BB:case 0x6FD:case 0x794:case 0x7AB:
-        case 0x7AF:case 0x7B1:case 0x889:case 0x92E:case 0x92F:case 0xA22:
-            j = 0x15;
+        case 1393: case 1406: case 1412: case 1413: case 1464: case 1494:
+        case 1529: case 1722: case 1723: case 1789: case 1940: case 1963:
+        case 1967: case 1969: case 2185: case 2350: case 2351: case 2594:
+            j = 21;
             break;
 
-        case 0x5B5:
+        case 1461:
             j = 2;
             k = 1;
             break;
 
-        case 0x5A2:case 0x5DD:case 0x5DE:case 0x615:case 0x616:case 0x635:
-        case 0x6DD:case 0x784:case 0x883:case 0x90E:case 0x959:
+        case 1442: case 1501: case 1502: case 1557: case 1558: case 1589:
+        case 1757: case 1924: case 2179: case 2318: case 2393:
             j = 2;
             break;
 
-        case 0x51E:case 0x51F:case 0x522:case 0x523:case 0x525:case 0x526:
-        case 0x527:case 0x528:case 0x52B:case 0x52F:case 0x533:case 0x538:
-        case 0x539:case 0x543:case 0x554:case 0x556:case 0x55C:case 0x5BC:
-        case 0x5C5:case 0x5C6:case 0x5D2:case 0x5F0:case 0x5F1:case 0x5F2:
-        case 0x5F3:case 0x600:case 0x609:case 0x60C:case 0x611:case 0x612:
-        case 0x613:case 0x614:case 0x61D:case 0x61F:case 0x620:case 0x621:
-        case 0x623:case 0x62D:case 0x62E:case 0x62F:case 0x630:case 0x631:
-        case 0x636:case 0x639:case 0x63A:case 0x641:case 0x644:case 0x646:
-        case 0x650:case 0x651:case 0x654:case 0x662:case 0x666:case 0x667:
-        case 0x668:case 0x679:case 0x6E0:case 0x6E4:case 0x797:case 0x798:
-        case 0x799:case 0x79A:case 0x79B:case 0x79C:case 0x79D:case 0x7AD:
-        case 0x7B5:case 0x7B6:case 0x7B7:case 0x7CA:case 0x85D:case 0x861:
-        case 0x862:case 0x863:case 0x865:case 0x872:case 0x876:case 0x87A:
-        case 0x87C:case 0x87D:case 0x890:case 0x891:case 0x892:case 0x893:
-        case 0x894:case 0x895:case 0x896:case 0x899:case 0x8D9:case 0x8DD:
-        case 0x8DE:case 0x8DF:case 0x8E0:case 0x8E1:case 0x8E2:case 0x8E3:
-        case 0x8E4:case 0x8E5:case 0x8E6:case 0x8EA:case 0x965:case 0x966:
-        case 0x974:case 0xA12:case 0xF6C:
+        case 1310: case 1311: case 1314: case 1315: case 1317: case 1318:
+        case 1319: case 1320: case 1323: case 1327: case 1331: case 1336:
+        case 1337: case 1347: case 1364: case 1366: case 1372: case 1468:
+        case 1477: case 1478: case 1490: case 1520: case 1521: case 1522:
+        case 1523: case 1536: case 1545: case 1548: case 1553: case 1554:
+        case 1555: case 1556: case 1565: case 1567: case 1568: case 1569:
+        case 1571: case 1581: case 1582: case 1583: case 1584: case 1585:
+        case 1590: case 1593: case 1594: case 1601: case 1604: case 1606:
+        case 1616: case 1617: case 1620: case 1634: case 1638: case 1639:
+        case 1640: case 1657: case 1760: case 1764: case 1943: case 1944:
+        case 1945: case 1946: case 1947: case 1948: case 1949: case 1965:
+        case 1973: case 1974: case 1975: case 1994: case 2141: case 2145:
+        case 2146: case 2147: case 2149: case 2162: case 2166: case 2170:
+        case 2172: case 2173: case 2192: case 2193: case 2194: case 2195:
+        case 2196: case 2197: case 2198: case 2201: case 2265: case 2269:
+        case 2270: case 2271: case 2272: case 2273: case 2274: case 2275:
+        case 2276: case 2277: case 2278: case 2282: case 2405: case 2406:
+        case 2420: case 2578: case 3948:
             j = 3;
             break;
 
-        case 0x520:case 0x521:case 0x524:case 0x5A6:case 0x5AD:case 0x5AE:
-        case 0x5AF:case 0x5C4:case 0x5D8:case 0x5FA:case 0x657:case 0x6FB:
-        case 0x6FC:case 0x78F:case 0x86E:case 0x879:case 0x882:case 0x946:
-        case 0x947:case 0x948:case 0x949:case 0x94A:
+        case 1312: case 1313: case 1316: case 1446: case 1453: case 1454:
+        case 1455: case 1476: case 1496: case 1530: case 1623: case 1787:
+        case 1788: case 1935: case 2158: case 2169: case 2178: case 2374:
+        case 2375: case 2376: case 2377: case 2378:
             j = 4;
             break;
 
-        case 0x53D:case 0x607:case 0x7AC:
+        case 1341: case 1543: case 1964:
             j = 5;
             break;
 
-        case 0x5C3:case 0x60F:case 0x6DA:case 0x86F:case 0x885:
+        case 1475: case 1551: case 1754: case 2159: case 2181:
             j = 6;
             break;
 
-        case 0x529:case 0x52A:case 0x52E:case 0x530:case 0x54A:case 0x5CF:
-        case 0x5D0:case 0x5D1:case 0x5E2:case 0x5E3:case 0x5E5:case 0x5E6:
-        case 0x5E7:case 0x602:case 0x603:case 0x604:case 0x605:case 0x6C5:
-        case 0x6E5:case 0x782:case 0x789:case 0x78A:case 0x78B:case 0x795:
-        case 0x7C8:case 0x85F:case 0x860:case 0x864:case 0x88A:case 0x8B8:
-        case 0x8B9:case 0x8BA:case 0x8BB:case 0x8BC:case 0x8CF:case 0x8D0:
-        case 0x8D1:case 0x8D2:case 0x8D3:
-            j = 0xC;
+        case 1321: case 1322: case 1326: case 1328: case 1354: case 1487:
+        case 1488: case 1489: case 1506: case 1507: case 1509: case 1510:
+        case 1511: case 1538: case 1539: case 1540: case 1541: case 1733:
+        case 1765: case 1922: case 1929: case 1930: case 1931: case 1941:
+        case 1992: case 2143: case 2144: case 2148: case 2186: case 2232:
+        case 2233: case 2234: case 2235: case 2236: case 2255: case 2256:
+        case 2257: case 2258: case 2259:
+            j = 12;
             break;
 
-        case 0x7AE:
-            j = 0xE;
+        case 1966:
+            j = 14;
             break;
 
-        case 0x52C:case 0x52D:case 0x532:case 0x558:case 0x55A:case 0x655:
-        case 0x678:case 0x6D9:case 0x6DB:case 0x6DC:case 0x6DE:case 0x6DF:
-        case 0x780:case 0x7B2:case 0x7B3:case 0x7B4:case 0xA21:
-            j = 0xF;
+        case 1324: case 1325: case 1330: case 1368: case 1370: case 1621:
+        case 1656: case 1753: case 1755: case 1756: case 1758: case 1759:
+        case 1920: case 1970: case 1971: case 1972: case 2593:
+            j = 15;
             break;
 
-        case 0x559:
-            j = 0x10;
+        case 1369:
+            j = 16;
             break;
 
-        case 0x7C3:case 0x7C4:
-            j = 0x11;
+        case 1987: case 1988:
+            j = 17;
             break;
 
-        case 0x881:
-            j = 0x12;
+        case 2177:
+            j = 18;
             break;
 
-        case 0x53C:case 0x540:case 0x580:case 0x589:case 0x5B7:case 0x92C:
-        case 0x92D:
-            j = 0x16;
+        case 1340: case 1344: case 1408: case 1417: case 1463: case 2348:
+        case 2349:
+            j = 22;
             break;
 
-        case 0x55B:
-            j = 0x18;
+        case 1371:
+            j = 24;
             break;
 
-        case 0x637:case 0x638:
-            j = 0x19;
+        case 1591: case 1592:
+            j = 25;
             break;
 
-        case 0x54C:case 0x54D:case 0x54E:
-            j = 0x3E7;
+        case 1356: case 1357: case 1358:
+            j = 999;
             break;
 
-        case 0x8E9:
-            j = 0x3E8;
+        case 2281:
+            j = 1000;
             break;
 
-        case 0x575:case 0x576:case 0x577:
+        case 1397: case 1398: case 1399:
             if (spr->statnum == 0)
             {
                 i = 2;

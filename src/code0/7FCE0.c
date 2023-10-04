@@ -5,37 +5,92 @@
 #include "code0/7FCE0.h"
 #include "code0/82480.h"
 #include "code0/edl.h"
+#include "code0/E0640.h"
 #include "code0/code0.h"
 #include "code1/code1.h"
 #include "code1/EB300.h"
 
 typedef struct {
-    /*0x00*/ _7FCE0UnkStruct2 *unk0;
+    /*0x00*/ _E0640UnkStruct *unk0;
     /*0x04*/ s8 *unk4;
     /*0x08*/ s8 *unk8;
     /*0x0C*/ s8 *unkC;
 } _7FCE0UnkStruct1;
 
 /*.data*/
-/*800DFA40*/ EXTERN_DATA _7FCE0UnkStruct2 D_800DFA40[2];
-/*800DFA68*/ EXTERN_DATA _7FCE0UnkStruct2 D_800DFA68[2];
-/*800DFA90*/ EXTERN_DATA _7FCE0UnkStruct2 D_800DFA90[2];
-/*800DFAB8*/ EXTERN_DATA _7FCE0UnkStruct2 D_800DFAB8[2];
-/*800DFAE0*/ EXTERN_DATA _7FCE0UnkStruct2 D_800DFAE0[2];
-/*800DFB08*/ EXTERN_DATA _7FCE0UnkStruct2 D_800DFB08[61];
-/*800DFFCC*/ EXTERN_DATA _7FCE0UnkStruct2 D_800DFFCC[54];
-/*800E0404*/ EXTERN_DATA _7FCE0UnkStruct2 D_800E0404[4];
-/*800E0454*/ EXTERN_DATA _7FCE0UnkStruct2 D_800E0454[2];
-/*800E047C*/ EXTERN_DATA _7FCE0UnkStruct2 D_800E047C[23];
-/*800E064C*/ EXTERN_DATA _7FCE0UnkStruct2 D_800E064C[15];
-/*800E0778*/ EXTERN_DATA _7FCE0UnkStruct2 D_800E0778[3];
-/*800E07B4*/ EXTERN_DATA _7FCE0UnkStruct2 D_800E07B4[2];
-/*800E07DC*/ EXTERN_DATA _7FCE0UnkStruct2 D_800E07DC[2];
-/*800E0804*/ EXTERN_DATA _7FCE0UnkStruct2 D_800E0804[8];
-/*800E08B0*/ EXTERN_DATA STATIC u8 D_800E08B0[62]; /*texture*/
-/*800E08EE*/ EXTERN_DATA STATIC u16 D_800E08EE[81];
-/*800E0990*/ EXTERN_DATA STATIC s32 D_800E0990;
-/*800E0B14*/ EXTERN_DATA STATIC _7FCE0UnkStruct1 D_800E0B14[2];
+/*800E08B0*/
+static u8 D_800E08B0[64] = {
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+};
+
+/*800E08F0*/
+static u16 D_800E08F0[80] = {
+    0x200, 0x100, 0xA8, 0x80, 0x64, 0x54, 0x48, 0x40, 0x38, 0x32,
+    0x2C, 0x2A, 0x24, 0x24, 0x20, 0x20, 0x1C, 0x1C, 0x18, 0x18,
+    0x18, 0x16, 0x14, 0x14, 0x14, 0x12, 0x10, 0x12, 0x10, 0x10,
+    0x10, 0x10, 0xC, 0xE, 0xC, 0xE, 0xC, 0xC, 0xC, 0xC,
+    0xC, 0xC, 8, 0xA, 8, 0xA, 8, 0xA, 8, 0xA,
+    8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
+    8, 8, 8, 8, 4, 6, 4, 7, 4, 6,
+    4, 6, 4, 6, 4, 6, 4, 6, 4, 6,
+};
+
+/*800E0990*/ static s32 D_800E0990 = 0;
+
+/*800E0994*/
+static u8 D_800E0994[96] = {
+    0xFF, 8, 0x35, 9, 0xFF, 0xB, 0, 1, 0xA, 3, 0x3B, 0xC,
+    4, 5, 6, 0xF, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18,
+    0x19, 0x1A, 0xE, 0x37, 0x39, 7, 0x38, 0x10, 2, 0x1B, 0x1C, 0x1D,
+    0x1E, 0x1F, 0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29,
+    0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F, 0x30, 0x31, 0x32, 0x33, 0x34, 0xFF,
+    0xD, 0xFF, 0x3A, 0x36, 0xFF, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F, 0x20, 0x21,
+    0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D,
+    0x2E, 0x2F, 0x30, 0x31, 0x32, 0x33, 0x34, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+};
+
+/*800E09F4*/
+static u8 D_800E09F4[96] = {
+    9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
+    9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
+    9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
+    9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
+    9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
+    9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
+    9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
+    9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
+};
+
+/*800E0A54*/
+static u8 D_800E0A54[96] = {
+    0xFF, 8, 0xFF, 9, 0xFF, 0xB, 0, 1, 0xA, 3, 0xFF, 0xC,
+    4, 5, 6, 0xF, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18,
+    0x19, 0x1A, 0xE, 0xFF, 0xFF, 7, 0xFF, 0x10, 2, 0x1B, 0x1C, 0x1D,
+    0x1E, 0x1F, 0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29,
+    0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F, 0x30, 0x31, 0x32, 0x33, 0x34, 0xFF,
+    0xD, 0xFF, 0xFF, 0xFF, 0xFF, 0x37, 0x38, 0x39, 0x3A, 0x3B, 0x3C, 0x3D,
+    0x3E, 0x3F, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D,
+    0x2E, 0x2F, 0x30, 0x31, 0x32, 0x33, 0x34, 0xFF, 0x35, 0xFF, 0x36, 0xFF,
+};
+
+/*800E0AB4*/
+static u8 D_800E0AB4[96] = {
+    0xC, 5, 1, 0xF, 1, 0x13, 0xE, 5, 7, 7, 1, 9,
+    6, 6, 5, 0xC, 0x11, 0xC, 0x11, 0x11, 0x12, 0x11, 0x11, 0xF,
+    0x13, 0x12, 5, 1, 1, 9, 1, 0xD, 0x12, 0x15, 0x15, 0x12,
+    0x15, 0x13, 0x12, 0x13, 0x17, 0xD, 0x12, 0x17, 0x11, 0x19, 0x14, 0x13,
+    0x14, 0x15, 0x15, 0x11, 0x13, 0x15, 0x15, 0x1A, 0x15, 0x13, 0x11, 1,
+    0xC, 1, 0xBA, 1, 0x12, 0x15, 0x15, 0x15, 0x15, 0x15, 0x15, 0x15,
+    0x15, 0x15, 0x15, 0x17, 0x11, 0x19, 0x14, 0x13, 0x14, 0x15, 0x15, 0x11,
+    0x13, 0x15, 0x15, 0x1A, 0x15, 0x13, 0x11, 1, 0, 0xD, 0xAD, 1,
+};
+
+/*800E0B14*/
+static _7FCE0UnkStruct1 D_800E0B14[2] = {
+    { D_800DFB08, NULL, (s8 *)D_800E0994, (s8 *)D_800E09F4 },
+    { D_800DFFCC, NULL, (s8 *)D_800E0A54, (s8 *)D_800E0AB4 },
+};
 
 /*.comm*/
 /*80199980*/ u8 *D_80199980; /*pal256*/
@@ -128,7 +183,7 @@ static void func_8007F71C(void)
 }
 
 /*8007F7E8*/
-static void func_8007F7E8(_7FCE0UnkStruct2 *arg0, u8 *pal, s32 x, s32 y, f32 arg4)
+static void func_8007F7E8(_E0640UnkStruct *arg0, u8 *pal, s32 x, s32 y, f32 arg4)
 {
     s16 height;
     s16 i, j;
@@ -140,7 +195,7 @@ static void func_8007F7E8(_7FCE0UnkStruct2 *arg0, u8 *pal, s32 x, s32 y, f32 arg
     y -= 16;
     ptr2 = arg0->texture;
     D_80199980 = pal;
-    j = D_800E08EE[arg0->width>>2];
+    j = D_800E08F0[(arg0->width>>2)-1];
     i = arg0->height;
 
     while (i > 0)
@@ -162,7 +217,7 @@ static void func_8007F7E8(_7FCE0UnkStruct2 *arg0, u8 *pal, s32 x, s32 y, f32 arg
 }
 
 /*8007FC08*/
-code0UnkStruct16 *func_8007FC08(_7FCE0UnkStruct2 *arg0, void *arg1, s32 arg2, s32 arg3, s32 arg4)
+code0UnkStruct16 *func_8007FC08(_E0640UnkStruct *arg0, void *arg1, s32 arg2, s32 arg3, s32 arg4)
 {
     code0UnkStruct16 *ptr;
 
@@ -195,13 +250,13 @@ STATIC void func_8007FCC8(void)
     if (!(unk40 <= 0.1) && (D_8012FD8C->unk70 != NULL))
     {
         func_8007F540(D_8012FD8C->unkC, D_8012FD8C->unk10, D_8012FD8C->unk11, D_8012FD8C->unk78);
-        func_8007F7E8((_7FCE0UnkStruct2 *)D_8012FD8C->unk70, (u8 *)D_8012FD8C->unk74, unk34, unk38, unk40);
+        func_8007F7E8((_E0640UnkStruct *)D_8012FD8C->unk70, (u8 *)D_8012FD8C->unk74, unk34, unk38, unk40);
         func_8007F71C();
     }
 }
 
 /*8007FD8C*/
-void func_8007FD8C(_7FCE0UnkStruct2 *arg0, s32 arg1)
+void func_8007FD8C(_E0640UnkStruct *arg0, s32 arg1)
 {
     edl_80081688(&D_8010A938, arg1);
     for (; (intptr_t)arg0->texture != -1; arg0++)
@@ -284,7 +339,7 @@ STATIC s32 func_800800D8(u8 *arg0, s32 arg1)
 /*8008011C*/
 void func_8008011C(void)
 {
-    _7FCE0UnkStruct2 *ptr;
+    _E0640UnkStruct *ptr;
     s8 *ptr2;
     s8 *ptr3;
     u8 *unk70;

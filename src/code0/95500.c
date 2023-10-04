@@ -2693,7 +2693,7 @@ void func_8009E8C8(s32 spritenum)
             if (klabs(i) < 24)
             {
                 if ((ptr->unk86 & 0x7FFF) != 71)
-                    playSfx(((krand() % 3) + 1071) & 0xFFFF);
+                    playSfx(((krand() % 3) + 1071));
 
                 func_80042124(ptr, 71);
                 spr->unk2B = 0;
@@ -2701,7 +2701,7 @@ void func_8009E8C8(s32 spritenum)
             else if (i < 0)
             {
                 if ((ptr->unk86 & 0x7FFF) != 68)
-                    playSfx(((krand() % 3) + 1071) & 0xFFFF);
+                    playSfx(((krand() % 3) + 1071));
 
                 func_80042124(ptr, 68);
             }
@@ -2709,7 +2709,7 @@ void func_8009E8C8(s32 spritenum)
             {
                 if ((ptr->unk86 & 0x7FFF) != 69)
                 {
-                    playSfx(((krand() % 3) + 1071) & 0xFFFF);
+                    playSfx(((krand() % 3) + 1071));
                 }
                 func_80042124(ptr, 69);
             }

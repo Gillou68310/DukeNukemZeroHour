@@ -31,7 +31,7 @@ typedef struct {
 } _609D0UnkStruct1;
 
 /*.bss*/
-/*800F9CC0*/ EXTERN_BSS STATIC s16 D_800F9CC0;
+/*800F9CC0*/ static s16 D_800F9CC0;
 
 /*.comm*/
 /*80107908*/ s16 D_80107908;
@@ -66,22 +66,14 @@ static void func_8005FE84(s16 wallnum)
 static void func_8005FEE0(s16 spritenum)
 {
     s16 hitsprite;
-    s32 hitx;
-    s32 hity;
+    s32 hitx, hity;
     SectorType *sec;
     SpriteType *spr;
-
-    s16 temp_v0_15;
-
+    s32 i, j, k;
     s32 z;
-    s32 temp_v0_2;
-    s32 temp_v0_7;
-    s32 i;
-
+    s16 l;
     u8 cond;
-
-    u8 temp_a0_2;
-    u8 temp_v1_8;
+    u8 unk24, unk25;
 
     spr = &gpSprite[spritenum];
     sec = &gpSector[spr->sectnum];
@@ -178,11 +170,11 @@ static void func_8005FEE0(s16 spritenum)
             spr->unk22 = 0;
             break;
         case 1405:
-            temp_v0_2 = func_8004BC64(spr->x + (-(gpSinTable[(spr->ang + 0x100) & 0x7FF] * 700) >> 14),
+            j = func_8004BC64(spr->x + (-(gpSinTable[(spr->ang + 0x100) & 0x7FF] * 700) >> 14),
                                       spr->y + (-(gpSinTable[(spr->ang - 0x100) & 0x7FF] * 700) >> 14),
                                       spr->z, spr->sectnum, 1282, 0, 0);
-            gpSprite[temp_v0_2].unk25 = 7;
-            gpSprite[temp_v0_2].hitag = spr->hitag;
+            gpSprite[j].unk25 = 7;
+            gpSprite[j].hitag = spr->hitag;
             break;
         case 1426:
         case 1672:
@@ -260,12 +252,12 @@ static void func_8005FEE0(s16 spritenum)
             spr->clipdist = 0;
             if (spr->ang < 0x400)
             {
-                temp_a0_2 = spr->unk25;
-                temp_v1_8 = spr->unk24;
+                unk25 = spr->unk25;
+                unk24 = spr->unk24;
                 spr->unk25 = sec->unk27;
                 spr->unk24 = sec->unk26;
-                sec->unk27 = temp_a0_2;
-                sec->unk26 = temp_v1_8;
+                sec->unk27 = unk25;
+                sec->unk26 = unk24;
                 spr->clipdist = 1;
             }
             spr->unk1A = sec->unk26;
@@ -347,10 +339,10 @@ static void func_8005FEE0(s16 spritenum)
             break;
         case 40:
         case 41:
-            temp_v0_7 = gpSector[nextSectorNeighborZ(spr->sectnum, sec->floorz, 1, 0)].floorz;
+            k = gpSector[nextSectorNeighborZ(spr->sectnum, sec->floorz, 1, 0)].floorz;
             spr->unk1C = 0;
             spr->unk2B = 0;
-            spr->z = temp_v0_7;
+            spr->z = k;
 
             for (i = sec->wallptr; i < (sec->wallptr + sec->wallnum); i++)
                 func_8005FE84(i);
@@ -918,10 +910,10 @@ static void func_8005FEE0(s16 spritenum)
         spr->cstat = 0x8000;
         if (spr->statnum != 152)
         {
-            temp_v0_15 = func_8008E3E0(spr->x, spr->y, spr->z - 4800, spr->sectnum, 57, 0);
+            l = func_8008E3E0(spr->x, spr->y, spr->z - 4800, spr->sectnum, 57, 0);
 
-            if (temp_v0_15 >= 0)
-                gpSprite[temp_v0_15].unk22 = spritenum;
+            if (l >= 0)
+                gpSprite[l].unk22 = spritenum;
 
             changeSpriteStat(spritenum, 150);
         }

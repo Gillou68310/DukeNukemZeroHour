@@ -309,7 +309,7 @@ void func_8003671C(s16 playernum, u16 arg1, s16 arg2, s16 arg3)
                     {
                         for (j = 0; j < D_8012C470; j++)
                         {
-                            if ((D_800E16A0[j] == D_800E16A0[playernum]) & (j != playernum))
+                            if ((D_800E16A0[j] == D_800E16A0[playernum]) && (j != playernum))
                                 D_800FF4F0[j].unk2++;
                         }
                     }
@@ -641,7 +641,7 @@ static void func_80037B84(void)
                 gPlayer[D_801B0820].unk52 = -1;
         }
 
-        if ((i != 0) & (j != 0))
+        if ((i != 0) && (j != 0))
         {
             i *= 0.707;
             j *= 0.707;

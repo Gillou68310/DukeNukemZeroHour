@@ -1316,13 +1316,13 @@ s32 clipMove(s32 *x, s32 *y, s32 *z, s16 *sectnum, s32 xvect,
     WallType *wal, *wal2;
     SpriteType *spr;
     SectorType *sec, *sec2;
-    long i, j, templong1, templong2;
-    long oxvect, oyvect, goalx, goaly, intx, inty, lx, ly, retval;
-    long k, l, clipsectcnt, startwall, endwall, cstat, dasect;
-    long x1, y1, x2, y2, cx, cy, rad, xmin, ymin, xmax, ymax, daz, daz2;
-    long bsz, dax, day, xoff, yoff, xspan, yspan, cosang, sinang, tilenum;
-    long xrepeat, yrepeat, gx, gy, dx, dy, dasprclipmask, dawalclipmask;
-    long hitwall, cnt, clipyou;
+    s32 i, j, templong1, templong2;
+    s32 oxvect, oyvect, goalx, goaly, intx, inty, lx, ly, retval;
+    s32 k, l, clipsectcnt, startwall, endwall, cstat, dasect;
+    s32 x1, y1, x2, y2, cx, cy, rad, xmin, ymin, xmax, ymax, daz, daz2;
+    s32 bsz, dax, day, xoff, yoff, xspan, yspan, cosang, sinang, tilenum;
+    s32 xrepeat, yrepeat, gx, gy, dx, dy, dasprclipmask, dawalclipmask;
+    s32 hitwall, cnt, clipyou;
     s32 x1_, x2_, x3_, x4_, x5_;
     s32 y1_, y2_, y3_, y4_, y5_;
     s32 a, b, c, d, e, f;
@@ -1492,7 +1492,7 @@ s32 clipMove(s32 *x, s32 *y, s32 *z, s16 *sectnum, s32 xvect,
                         x4_ = x1_;
                         y4_ = y3_;
 
-                        if ((spr->statnum != 1) & (spr->statnum != 10))
+                        if ((spr->statnum != 1) && (spr->statnum != 10))
                         {
                             daang = (spr->ang + 0x600) & 0x7FF;
                             rotatePoint(spr->x, spr->y, x1_, y1_, daang, &x5_, &y5_);
@@ -2230,7 +2230,7 @@ void getzRange(s32 x, s32 y, s32 z, s16 sectnum, s32 *ceilz, s32 *ceilhit, s32 *
                         x_[3] = x_[0];
                         y_[3] = y_[2];
 
-                        if ((spr->statnum != 1) & (spr->statnum != 0xA))
+                        if ((spr->statnum != 1) && (spr->statnum != 10))
                         {
                             rotatePoint(spr->x, spr->y, x_[0], y_[0], ((spr->ang + 0x600) & 0x7FF), &t, &u);
                             x_[0] = t; y_[0] = u;
