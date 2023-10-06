@@ -465,7 +465,7 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
 
         if (p == 0)
         {
-            grPosition(&gpDynamic->mtx3[D_801A6D80 + 1],
+            grPosition(&gpDynamic->mtx3[D_801A6D80],
                 arg2,
                 arg1,
                 arg3,
@@ -489,13 +489,13 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
                 y / 4.0,
                 z / 64.0);
 
-            grMtxCatL(&mtx4, &mtx1, &gpDynamic->mtx3[D_801A6D80 + 1]);
-            grMtxCatL(&gpDynamic->mtx3[D_801A6D80 + 1], &mtx2, &gpDynamic->mtx3[D_801A6D80 + 1]);
-            grMtxCatL(&gpDynamic->mtx3[D_801A6D80 + 1], &mtx3, &gpDynamic->mtx3[D_801A6D80 + 1]);
-            grMtxCatL(&gpDynamic->mtx3[D_801A6D80 + 1], &mtx5, &gpDynamic->mtx3[D_801A6D80 + 1]);
+            grMtxCatL(&mtx4, &mtx1, &gpDynamic->mtx3[D_801A6D80]);
+            grMtxCatL(&gpDynamic->mtx3[D_801A6D80], &mtx2, &gpDynamic->mtx3[D_801A6D80]);
+            grMtxCatL(&gpDynamic->mtx3[D_801A6D80], &mtx3, &gpDynamic->mtx3[D_801A6D80]);
+            grMtxCatL(&gpDynamic->mtx3[D_801A6D80], &mtx5, &gpDynamic->mtx3[D_801A6D80]);
         }
 
-        gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx3[D_801A6D80+1]),
+        gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx3[D_801A6D80]),
                                    G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
         D_801A6D80++;
         D_8012BBCC++;
@@ -636,7 +636,7 @@ static s32 func_800115E0(ModelInfo *model)
     s32 i;
 
     f = func_80011410(model);
-    grMtxL2F(mtx, &gpDynamic->mtx3[D_801A6D80]);
+    grMtxL2F(mtx, &gpDynamic->mtx3[D_801A6D80-1]);
     vec[0] = mtx[3][0] - gMapXpos * 0.5;
     vec[2] = -(mtx[3][1] - gMapYpos * 0.5);
     vec[1] = -(mtx[3][2] - gMapZpos * 0.5);
@@ -1169,10 +1169,10 @@ static void func_8001270C(code0unkStruct10 *arg0, s16 arg1)
         guRotateRPY(&mtx1, f1, 0.0f, 0.0f);
         guRotateRPY(&mtx2, 0.0f, f2, 0.0f);
         guRotateRPY(&mtx3, 0.0f, 0.0f, f3);
-        grMtxCatL(&mtx2, &mtx1, &gpDynamic->mtx3[D_801A6D80 + 1]);
-        grMtxCatL(&gpDynamic->mtx3[D_801A6D80 + 1], &mtx3, &gpDynamic->mtx3[D_801A6D80 + 1]);
-        grMtxCatL(&gpDynamic->mtx3[D_801A6D80 + 1], &mtx4, &gpDynamic->mtx3[D_801A6D80 + 1]);
-        gSPMatrix(gpDisplayList++, &gpDynamic->mtx3[D_801A6D80 + 1], G_MTX_PUSH | G_MTX_MUL | G_MTX_MODELVIEW);
+        grMtxCatL(&mtx2, &mtx1, &gpDynamic->mtx3[D_801A6D80]);
+        grMtxCatL(&gpDynamic->mtx3[D_801A6D80], &mtx3, &gpDynamic->mtx3[D_801A6D80]);
+        grMtxCatL(&gpDynamic->mtx3[D_801A6D80], &mtx4, &gpDynamic->mtx3[D_801A6D80]);
+        gSPMatrix(gpDisplayList++, &gpDynamic->mtx3[D_801A6D80], G_MTX_PUSH | G_MTX_MUL | G_MTX_MODELVIEW);
         prev = D_800BD788;
         D_800BD788 = 0;
         D_801A6D80++;

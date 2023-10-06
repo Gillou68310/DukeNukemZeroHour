@@ -2338,7 +2338,7 @@ void func_80094278(void)
         func_8000C76C();
         if (D_801A6D80 < ARRAY_COUNT(gpDynamic->mtx3))
         {
-            grPosition(&gpDynamic->mtx3[D_801A6D80+1],
+            grPosition(&gpDynamic->mtx3[D_801A6D80],
                        0.0f,
                        (D_8013B2D0[i].unk0 * 0.17578125),
                        (gpSprite[i].ang * 0.17578125),
@@ -2347,7 +2347,7 @@ void func_80094278(void)
                        (gpSprite[i].y / 4),
                        (gpSprite[i].z / 4.0));
 
-            gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx3[D_801A6D80+1]),
+            gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx3[D_801A6D80]),
                                        G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 
             D_801A6D80++;
