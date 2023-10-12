@@ -11,7 +11,7 @@ void func_8006CB38(s16 sectnum);
 void func_8006CCCC(s32 spritenum);
 void func_8006D0E4(s16 playernum);
 s32 func_8006D3B8(s32 spritenum, s32, s32, s32, s32);
-s32 func_800720FC(s16 spritenum);
+//s32 func_800720FC(s16 spritenum);
 void func_80079560(void);
 
 extern s8 D_800DF2F4[657];

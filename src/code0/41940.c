@@ -4076,7 +4076,7 @@ static s32 func_8004DE60(s32 spritenum, s32 arg1)
 }
 
 /*8004E5F8*/
-s32 func_8004E5F8(s16 spritenum, s32 arg1, s32 arg2, s32 arg3)
+s32 func_8004E5F8(s16 spritenum, s32 xvect, s32 yvect, s32 zvect)
 {
     s32 z;
     s32 picnum;
@@ -4127,9 +4127,9 @@ s32 func_8004E5F8(s16 spritenum, s32 arg1, s32 arg2, s32 arg3)
     else
         cliptype = 0x10001;
 
-    z = gpSprite[spritenum_].z + arg3;
+    z = gpSprite[spritenum_].z + zvect;
     ret = clipMove(&gpSprite[spritenum_].x, &gpSprite[spritenum_].y, &z, &sectnum,
-                   arg1<<11, arg2 << 11, walldist, 1024, MAX(1024, spritenum_ = temp), cliptype); /*FAKEMATCH?*/
+                   xvect << 11, yvect << 11, walldist, 1024, MAX(1024, spritenum_ = temp), cliptype); /*FAKEMATCH?*/
     gpSprite[spritenum].z = z;
     if (sectnum >= 0 && sectnum != gpSprite[spritenum].sectnum)
         changeSpriteSect(spritenum, sectnum);
