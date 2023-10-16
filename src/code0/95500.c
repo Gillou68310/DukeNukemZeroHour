@@ -35,11 +35,67 @@ typedef struct {
     (((A << 0x10) + (B << C)) >> 0x10) & 0x7FF;
 
 /*.data*/
-/*800E1770*/ EXTERN_DATA STATIC s32 D_800E1770;
-/*800E1780*/ EXTERN_DATA STATIC char *D_800E1780[8];
-/*800E17A0*/ EXTERN_DATA STATIC char *D_800E17A0[8];
-/*800E17C0*/ EXTERN_DATA STATIC char *D_800E17C0[8];
-/*800E17E0*/ EXTERN_DATA s16 D_800E17E0[8];
+/*800E1770*/ static s32 D_800E1770 = 0;
+static s32 _unused[3] = {0,0,0};
+
+/*800E1780*/
+static char *D_800E1780[8] = {
+    "ARMOR",
+    "SCUBA GEAR",
+    "VITAMIN X",
+    "PROTECTIVE BOOTS",
+    "MEDKIT",
+    "NIGHT VISION",
+    "GAS MASK",
+    "COMPUTER",
+};
+
+/*800E17A0*/
+static char *D_800E17A0[8] = {
+    "ARMOR",
+    "DIVING HELMET",
+    "VITAMIN X",
+    "PROTECTIVE BOOTS",
+    "DOCTOR'S BAG",
+    "NIGHT VISION",
+    "GAS MASK",
+    "COMPUTER",
+};
+
+/*800E17C0*/
+static char *D_800E17C0[8] = {
+    "",
+    "ON",
+    "USED",
+    "",
+    "USED",
+    "ACTIVATED",
+    "ON",
+    "",
+};
+
+/*800E17E0*/
+s16 D_800E17E0[8] = {
+    100, 1800, 900, 1000, 100, 2700, 1800, -1
+};
+
+/*800E17F0*/
+u8 D_800E17F0[224] = {
+    0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0,
+    0, 0, 12,0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 7, 0,
+    0, 0, 0, 0, 0, 12,0, 0, 0, 0, 0, 0, 0, 4, 0, 0,
+    0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 12,0, 0, 0, 0,
+    0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0,
+    0, 0, 12,0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0,
+    0, 7, 0, 0, 0, 0, 0, 0, 12,0, 0, 2, 0, 2, 0, 0,
+    0, 0, 4, 0, 4, 0, 0, 0, 0, 6, 0, 6, 0, 0, 0, 0,
+    0, 2, 2, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 6,
+    6, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 4, 0,
+    4, 0, 0, 0, 0, 6, 0, 6, 0, 0, 2, 0, 0, 0, 2, 0,
+    0, 4, 0, 0, 0, 4, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0,
+    2, 0, 0, 2, 0, 0, 0, 4, 0, 0, 4, 0, 0, 0, 6, 0,
+    0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+};
 
 /*.comm*/
 /*800FE9E8*/ s32 D_800FE9E8;
@@ -71,21 +127,6 @@ typedef struct {
 /*801AE8F8*/ s32 D_801AE8F8;
 /*801AE9C4*/ s32 D_801AE9C4;
 /*801AEE40*/ _95500UnkStruct1 D_801AEE40[200] ALIGNED(16);
-
-INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9B60);
-INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9B6C);
-INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9B78);
-INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9B88);
-INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9B90);
-INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9BA4);
-INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9BB0);
-INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9BBC);
-INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9BC4);
-INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9BD4);
-INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9BE4);
-INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9BF0);
-INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9BF8);
-INCLUDE_RODATA("nonmatchings/src/code0/95500", D_800E9BFC);
 
 /*.text*/
 static void func_8009F71C(s32 spritenum);

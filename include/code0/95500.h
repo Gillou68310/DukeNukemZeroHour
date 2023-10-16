@@ -24,5 +24,6 @@ void func_8009E638(s32 spritenum);
 void func_8009E8C8(s32 spritenum);
 
 extern s16 D_800E17E0[8];
+extern u8 D_800E17F0[224];
 
 #endif
