@@ -442,7 +442,7 @@ rotate:
 }
 
 /*80005118*/
-void func_80005118(s32 sectnum, s16 arg1, s32 arg2, s32 arg3)
+void func_80005118(u16 sectnum, s16 arg1, s32 arg2, s32 arg3)
 {
     D_8012DEF8 = arg1;
     D_800FF52C = arg2;

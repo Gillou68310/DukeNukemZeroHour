@@ -3,6 +3,8 @@
 #include "code0/audio.h"
 #include "code0/engine.h"
 #include "code0/pragmas.h"
+#include "code0/4600.h"
+#include "code0/1E7A0.h"
 #include "code0/37090.h"
 #include "code0/41940.h"
 #include "code0/6ACA0.h"
@@ -11,7 +13,12 @@
 #include "code0/A06F0.h"
 #include "code0/code0.h"
 
+/*.comm*/
+/*8012E15C*/ s16 D_8012E15C;
+/*8013B280*/ s16 D_8013B280[40] ALIGNED(8);
+
 /*.text*/
+static void func_80068D74(s16 sectnum);
 
 /*80063930*/
 static void func_80063930(s32 sectnum)
@@ -366,24 +373,1332 @@ static void func_80064D30(s16 *arg0, s16 *arg1, s16 sectnum)
 }
 
 /*80064DE0*/
-void func_80064DE0(SectorType *sec, u8 arg1, u8 arg2)
+void func_80064DE0(SectorType *sec, s16 x, s16 y)
 {
     s16 i;
 
-    sec->unk27 = arg2;
-    sec->unk23 = arg2;
-    sec->unk26 = arg1;
-    sec->unk22 = arg1;
+    sec->unk27 = y;
+    sec->unk23 = y;
+    sec->unk26 = x;
+    sec->unk22 = x;
 
     for (i = sec->wallptr; i < (sec->wallptr + sec->wallnum); i++)
     {
-        gpWall[i].unk21 = arg2;
-        gpWall[i].unk1C = arg1;
+        gpWall[i].unk21 = y;
+        gpWall[i].unk1C = x;
     }
 }
 
 /*80064E78*/
-INCLUDE_ASM("nonmatchings/src/code0/64530", func_80064E78);
+void func_80064E78(void)
+{
+    s32 x2, y2;
+    WallType *wall;
+    SectorType *sec;
+    SpriteType *spr;
+    s16 i, j, k, l, m, n, o, nexti;
+    u8 cond, cond2, cond3, cond4;
+    u16 cstat;
+
+    Bmemset(&D_8013B280, 0, sizeof(D_8013B280));
+    D_8012E15C = 0;
+    if (D_800DEE98 == 1)
+    {
+        D_801AC9E8 = 231424;
+        D_800DEE98 = 2;
+
+        i = gHeadSpriteStat[101];
+        while (i >= 0)
+        {
+            nexti = gNextSpriteStat[i];
+            deleteSprite(i);
+            i = nexti;
+        }
+        i = gHeadSpriteStat[102];
+        while (i >= 0)
+        {
+            nexti = gNextSpriteStat[i];
+            deleteSprite(i);
+            i = nexti;
+        }
+        D_8012FC48[0].unk18 = -1;
+        D_8012FC48[1].unk18 = -1;
+        gSkyTopR = 30;
+        gSkyTopG = 30;
+        gSkyTopB = 90;
+        gSkyBottomR = 30;
+        gSkyBottomG = 30;
+        gSkyBottomB = 90;
+    }
+    else if (D_800DEE98 == 2)
+    {
+        if (D_801AC9E8 > -231424)
+            D_801AC9E8 -= 64;
+
+        i = gHeadSpriteStat[102];
+        while (i >= 0)
+        {
+            nexti = gNextSpriteStat[i];
+            gpSprite[i].z = D_801AC9E8;
+            if (D_801AC9E8 < gpSector[gpSprite[i].sectnum].ceilingz)
+            {
+                cond = 0;
+                if (!(gpSector[gpSprite[i].sectnum].ceilingstat & 1))
+                {
+                    j = gHeadSpriteSect[gpSprite[i].sectnum];
+                    while (j >= 0)
+                    {
+                        if (gpSprite[j].statnum == 3)
+                        {
+                            cond = 1;
+                            break;
+                        }
+                        j = gNextSpriteSect[j];
+
+                    }
+                }
+                if (!cond)
+                {
+                    gpSector[gpSprite[i].sectnum].unk18 = 2;
+                    deleteSprite(i);
+                }
+            }
+            i = nexti;
+        }
+    }
+    i = gHeadSpriteStat[3];
+    while (i >= 0)
+    {
+        nexti = gNextSpriteStat[i];
+        spr = &gpSprite[i];
+        sec = &gpSector[spr->sectnum];
+
+        switch (spr->lotag)
+        {
+        case 0:
+            func_80064D30(&m, &n, spr->sectnum);
+            m = (spr->unk18 * m) / 128;
+            spr->ang = (spr->ang + m) & 0x7FF;
+            func_80005118(spr->sectnum, spr->ang, spr->x, spr->y);
+
+            k = spr->unk16;
+            for (l = sec->wallptr; l < (sec->wallptr + sec->wallnum); l++)
+            {
+                rotatePoint(0, 0, D_801AD480[k], D_80105730[k], spr->ang, &x2, &y2);
+                dragPoint(l, spr->x + x2, spr->y + y2);
+                k++;
+            }
+
+            for (k = 0; k < D_8012C470; k++)
+            {
+                if (gPlayer[k].unk59 != 0)
+                {
+                    if (gPlayer[k].unk32 == spr->sectnum)
+                    {
+                        gPlayer[k].unk38 = (gPlayer[k].unk38 + m) & 0x7FF;
+                        rotatePoint(spr->x, spr->y, gPlayer[k].xpos, gPlayer[k].ypos, m, &x2, &y2);
+                        gPlayer[k].xpos = x2;
+                        gPlayer[k].ypos = y2;
+                    }
+                }
+            }
+            break;
+        case 4:
+            if (spr->ang < (D_80168D0C % 2048))
+            {
+                x2 = spr->unk24;
+                y2 = spr->unk25;
+            }
+            else
+            {
+                x2 = spr->unk1A;
+                y2 = spr->unk1C;
+            }
+            func_80064DE0(sec, x2, y2);
+            break;
+        case 10:
+            if (spr->unk18 != 0)
+            {
+                spr->unk18--;
+                if (spr->unk18 == 0)
+                    func_8006CB38(spr->sectnum);
+            }
+            break;
+        case 12:
+            if (spr->unk2B != 0)
+            {
+                switch (spr->unk18)
+                {
+                case 0:
+                    if (spr->clipdist == 0)
+                    {
+                        x2 = spr->unk1A;
+                        y2 = spr->unk1C;
+                    }
+                    else
+                    {
+                        x2 = spr->unk24;
+                        y2 = spr->unk25;
+                    }
+
+                    m = sec->unk26 + (x2 - sec->unk26) / 4;
+
+                    if (m < x2)
+                        m++;
+
+                    if (x2 < m)
+                        m--;
+
+                    func_80064DE0(sec, m, y2);
+                    if (m == x2)
+                        spr->unk2B = 0;
+                    break;
+                case 1:
+                    if (spr->clipdist == 0)
+                        func_80064DE0(sec, spr->unk1A, spr->unk1C);
+                    else
+                        func_80064DE0(sec, spr->unk24, spr->unk25);
+                    spr->unk2B = 0;
+                    break;
+                case 2:
+                    if (spr->clipdist == 0)
+                    {
+                        func_80064DE0(sec, spr->unk1A, spr->unk1C);
+                        spr->unk2B = 0;
+                        break;
+                    }
+                    spr->unk2B++;
+                    spr->unk22 += D_80168D0C % 128;
+                    if (spr->unk22 > 0x100)
+                    {
+                        x2 = spr->unk24;
+                        spr->unk22 = 0;
+                        y2 = spr->unk25;
+                    }
+                    else
+                    {
+                        x2 = spr->unk1A;
+                        y2 = spr->unk1C;
+                    }
+                    if (spr->unk2B >= 30)
+                    {
+                        func_80064DE0(sec, spr->unk24, spr->unk25);
+                        spr->unk2B = 0;
+                        break;
+                    }
+
+                    func_80064DE0(sec, x2, y2);
+                    break;
+                case 3:
+                    if ((spr->ang < (D_80168D0C % 2048)) && (spr->clipdist != 0))
+                    {
+                        x2 = spr->unk24;
+                        y2 = spr->unk25;
+                    }
+                    else
+                    {
+                        x2 = spr->unk1A;
+                        y2 = spr->unk1C;
+                    }
+                    func_80064DE0(sec, x2, y2);
+                    if (spr->clipdist == 0)
+                        spr->unk2B = 0;
+                    break;
+                }
+            }
+            break;
+        case 8:
+            if (gpSprite[spr->unk16].lotag >= 50)
+            {
+                if (gpSprite[spr->unk16].lotag < 53)
+                    y2 = gpSector[gpSprite[spr->unk16].sectnum].floorz - gpSector[gpSprite[spr->unk16].sectnum].ceilingz;
+                else if (gpSprite[spr->unk16].lotag < 55)
+                    y2 = gpSprite[spr->unk16].unk1A;
+            }
+
+            if (spr->z == 0)
+                x2 = 0;
+            else
+                x2 = (y2 << 8) / spr->z;
+
+            y2 = spr->unk1A + ((spr->unk24 - spr->unk1A) * x2) / 256;
+
+            if (x2 > 0)
+                x2 = spr->unk25;
+            else
+                x2 = spr->unk1C;
+
+            func_80064DE0(sec, y2, x2);
+            break;
+        case 13:
+            if (spr->unk25 == 1)
+            {
+                s32 a, b;
+                a = (spr->unk18 << 16) + (spr->unk1A & 0xFFFF);
+                b = (spr->unk1C << 16) + (spr->unk22 & 0xFFFF);
+                sec->floorz = a;
+                sec->ceilingz = b;
+                sec->floorheinum = spr->ang;
+                sec->ceilingheinum = spr->unk16;
+                x2 = a;
+                y2 = b;
+                D_800DF2F4[spr->sectnum] |= 3;
+                func_8004FAD8(i);
+                deleteSprite(i);
+            }
+            break;
+        case 29:
+            y2 = mulscale12(spr->unk18, gpSinTable[spr->ang]);
+            spr->ang = (spr->ang + spr->unk1A) & 0x7FF;
+            x2 = mulscale12(spr->unk18, gpSinTable[spr->ang]);
+
+            if ((spr->cstat & 8) == 0)
+            {
+                for (k = 0; k < D_8012C470; k++)
+                {
+                    if (gPlayer[k].unk59 != 0)
+                    {
+                        if (gPlayer[k].unk36 == spr->sectnum)
+                            gPlayer[k].zpos = gPlayer[k].zpos + (x2 - y2);
+                    }
+                }
+                o = gHeadSpriteSect[spr->sectnum];
+                while (o >= 0)
+                {
+                    if (gpSprite[o].z == sec->floorz)
+                    {
+                        if (gpSprite[o].picnum > 48)
+                            gpSprite[o].z = spr->z + x2;
+                    }
+                    o = gNextSpriteSect[o];
+                }
+            }
+
+            if ((sec->unk18 == 3) && !(spr->cstat & 4))
+            {
+                o = gHeadSpriteSect[spr->sectnum];
+                while (o >= 0)
+                {
+                    if (gpSprite[o].picnum == 15)
+                    {
+                        gpSprite[o].z = spr->z + x2;
+                        break;
+                    }
+                    o = gNextSpriteSect[o];
+                }
+            }
+            else if (spr->cstat & 8)
+            {
+                sec->ceilingz = spr->z + x2;
+                D_800DF2F4[spr->sectnum] |= 2;
+            }
+            else
+            {
+                sec->floorz = spr->z + x2;
+                D_800DF2F4[spr->sectnum] |= 1;
+            }
+            break;
+        case 30:
+            if (spr->unk2B != 0)
+            {
+                if (spr->unk1C == 0)
+                {
+                    if (sec->ceilingz >= spr->z)
+                        spr->unk1C = -1;
+                    else
+                        spr->unk1C = 1;
+                }
+                func_80064D30(&m, &n, spr->sectnum);
+
+                if (spr->unk1C > 0)
+                    spr->unk1C = MIN(spr->unk1C, (spr->z - sec->ceilingz));
+
+                if (spr->unk1C < 0)
+                    spr->unk1C = MAX(spr->unk1C, (spr->z - sec->ceilingz));
+
+                sec->ceilingz += spr->unk1C;
+                if (spr->unk1C > 0)
+                {
+                    spr->unk1C = MIN(m, (spr->unk1C + n));
+
+                    if (sec->ceilingz >= spr->z)
+                    {
+                        sec->ceilingz = spr->z;
+                        spr->z = (spr->unk18 << 16) + (spr->unk1A & 0xFFFF);
+                        spr->unk18 = sec->ceilingz >> 16;
+                        spr->unk1A = sec->ceilingz;
+                        spr->unk1C = 0;
+                        spr->unk2B = 0;
+                    }
+
+                    D_800DF2F4[spr->sectnum] |= 2;
+                }
+
+                if (spr->unk1C < 0)
+                {
+                    spr->unk1C = MAX(-m, (spr->unk1C - n));
+
+                    if (sec->ceilingz <= spr->z)
+                    {
+                        sec->ceilingz = spr->z;
+                        spr->z = (spr->unk18 << 16) + (spr->unk1A & 0xFFFF);
+                        spr->unk18 = sec->ceilingz >> 16;
+                        spr->unk1A = sec->ceilingz;
+                        spr->unk1C = 0;
+                        spr->unk2B = 0;
+                    }
+                    D_800DF2F4[spr->sectnum] |= 2;
+                }
+            }
+            break;
+        case 40:
+            if (spr->unk2B != 0)
+            {
+                func_80064D30(&m, &n, spr->sectnum);
+                if (spr->unk1C > 0)
+                    spr->unk1C = MIN(spr->unk1C, (spr->z - sec->floorz));
+
+                if (spr->unk1C < 0)
+                    spr->unk1C = MAX(spr->unk1C, (spr->z - sec->floorz));
+
+                for (k = 0; k < D_8012C470; k++)
+                {
+                    if (gPlayer[k].unk32 == spr->sectnum)
+                        gPlayer[k].zpos += spr->unk1C;
+                }
+
+                o = gHeadSpriteSect[spr->sectnum];
+                while (o >= 0)
+                {
+                    if (gpSprite[o].picnum > 48)
+                    {
+                        if ((*(s32 *)&gpSprite[o].cstat & 0x40300000) != 0x40100000)
+                            gpSprite[o].z += spr->unk1C;
+                    }
+                    o = gNextSpriteSect[o];
+                }
+
+                if (sec->floorz < spr->z)
+                {
+                    sec->floorz += spr->unk1C;
+                    spr->unk1C = MIN(m, (spr->unk1C + n));
+
+                    if (sec->floorz >= spr->z)
+                    {
+                        sec->floorz = spr->z;
+                        spr->z = gpSector[nextSectorNeighborZ(spr->sectnum, spr->z, 1, 0)].floorz;
+                        spr->unk1C = 0;
+                        spr->unk2B = 0;
+                    }
+                    D_800DF2F4[spr->sectnum] |= 1;
+                }
+
+                if (sec->floorz > spr->z)
+                {
+                    sec->floorz += spr->unk1C;
+                    spr->unk1C = MAX(-m, (spr->unk1C - n));
+
+                    if (sec->floorz <= spr->z)
+                    {
+                        sec->floorz = spr->z;
+                        spr->z = gpSector[nextSectorNeighborZ(spr->sectnum, spr->z, 1, 1)].floorz;
+                        spr->unk1C = 0;
+                        spr->unk2B = 0;
+                    }
+                    D_800DF2F4[spr->sectnum] |= 1;
+                }
+            }
+            break;
+        case 41:
+            if (spr->unk2B != 0)
+            {
+                func_80064D30(&m, &n, spr->sectnum);
+                if (spr->unk1C > 0)
+                    spr->unk1C = MIN(spr->unk1C, (spr->z - sec->floorz));
+
+                if (spr->unk1C < 0)
+                    spr->unk1C = MAX(spr->unk1C, (spr->z - sec->floorz));
+
+                for (k = 0; k < D_8012C470; k++)
+                {
+                    if (gPlayer[k].unk32 == spr->sectnum)
+                        gPlayer[k].zpos += spr->unk1C;
+                }
+
+                o = gHeadSpriteSect[spr->sectnum];
+                while (o >= 0)
+                {
+                    if (gpSprite[o].picnum > 48)
+                        gpSprite[o].z += spr->unk1C;
+                    o = gNextSpriteSect[o];
+                }
+
+                if (sec->floorz < spr->z)
+                {
+                    sec->floorz += spr->unk1C;
+                    sec->ceilingz += spr->unk1C;
+                    spr->unk1C = MIN(m, (spr->unk1C + n));
+
+                    if (sec->floorz >= spr->z)
+                    {
+                        sec->floorz = spr->z;
+                        spr->z = gpSector[nextSectorNeighborZ(spr->sectnum, spr->z, 1, 0)].floorz;
+                        spr->unk1C = 0;
+                        spr->unk2B = 0;
+                    }
+                    D_800DF2F4[spr->sectnum] |= 3;
+                }
+
+                if (sec->floorz > spr->z)
+                {
+                    sec->floorz += spr->unk1C;
+                    sec->ceilingz += spr->unk1C;
+                    spr->unk1C = MAX(-m, (spr->unk1C - n));
+
+                    if (sec->floorz <= spr->z)
+                    {
+                        sec->floorz = spr->z;
+                        spr->z = gpSector[nextSectorNeighborZ(spr->sectnum, spr->z, 1, 1)].floorz;
+                        spr->unk1C = 0;
+                        spr->unk2B = 0;
+                    }
+                    D_800DF2F4[spr->sectnum] |= 3;
+                }
+            }
+            break;
+        case 42:
+            if (spr->unk2B != 0)
+            {
+                if (spr->unk1C == 0)
+                {
+                    if (sec->floorz >= spr->z)
+                        spr->unk1C = -1;
+                    else
+                        spr->unk1C = 1;
+                }
+                func_80064D30(&m, &n, spr->sectnum);
+
+                if (spr->unk1C > 0)
+                    spr->unk1C = MIN(spr->unk1C, (spr->z - sec->floorz));
+
+                if (spr->unk1C < 0)
+                    spr->unk1C = MAX(spr->unk1C, (spr->z - sec->floorz));
+
+                for (k = 0; k < D_8012C470; k++)
+                {
+                    if (gPlayer[k].unk32 == spr->sectnum)
+                        gPlayer[k].zpos += spr->unk1C;
+                }
+
+                o = gHeadSpriteSect[spr->sectnum];
+                while (o >= 0)
+                {
+                    if (gpSprite[o].picnum > 48)
+                    {
+                        if ((*(s32 *)&gpSprite[o].cstat & 0x40300000) != 0x40100000)
+                            gpSprite[o].z += spr->unk1C;
+                    }
+                    o = gNextSpriteSect[o];
+                }
+
+                sec->floorz += spr->unk1C;
+                if (spr->unk1C > 0)
+                {
+                    spr->unk1C = MIN(m, (spr->unk1C + n));
+
+                    if (sec->floorz >= spr->z)
+                    {
+                        sec->floorz = spr->z;
+                        spr->z = (spr->unk18 << 16) + (spr->unk1A & 0xFFFF);
+                        spr->unk18 = sec->floorz >> 16;
+                        spr->unk1A = sec->floorz;
+                        spr->unk1C = 0;
+                        spr->unk2B = 0;
+                    }
+                    D_800DF2F4[spr->sectnum] |= 1;
+                }
+
+                if (spr->unk1C < 0)
+                {
+                    spr->unk1C = MAX(-m, (spr->unk1C - n));
+                    if (sec->floorz <= spr->z)
+                    {
+                        sec->floorz = spr->z;
+                        spr->z = (spr->unk18 << 16) + (spr->unk1A & 0xFFFF);
+                        spr->unk18 = sec->floorz >> 16;
+                        spr->unk1A = sec->floorz;
+                        spr->unk1C = 0;
+                        spr->unk2B = 0;
+                    }
+                    D_800DF2F4[spr->sectnum] |= 1;
+                }
+            }
+            break;
+        case 43:
+            if ((spr->unk2B != 0) && (spr->unk25 == 0))
+            {
+                i = gpSprite[spr->unk16].sectnum;
+                if (spr->unk1C == 0)
+                {
+                    if (sec->floorz >= spr->z)
+                        spr->unk1C = -1;
+                    else
+                        spr->unk1C = 1;
+
+                    spr->clipdist = 0;
+                }
+                x2 = (spr->unk18 << 16) + (spr->unk1A & 0xFFFF);
+                func_80064D30(&m, &n, spr->sectnum);
+                cond2 = 0;
+                if (spr->unk1C > 0)
+                {
+                    spr->unk1C = MIN(spr->unk1C, (spr->z - sec->floorz));
+                    if (((spr->z + x2) / 2) < sec->floorz)
+                        cond2 = 1;
+                }
+
+                if (spr->unk1C < 0)
+                {
+                    spr->unk1C = MAX(spr->unk1C, (spr->z - sec->floorz));
+                    if (sec->floorz < ((spr->z + x2)/2))
+                        cond2 = 1;
+                }
+
+                if (cond2 != 0)
+                {
+                    if (spr->clipdist != 0)
+                        cond2 = 0;
+                    else
+                    {
+                        spr->clipdist = 1;
+                        gpSprite[spr->unk16].clipdist = 1;
+                        spr->unk25 = spr->unk25 == 0;
+                        gpSprite[spr->unk16].unk25 = gpSprite[spr->unk16].unk25 == 0;
+                    }
+                }
+
+                for (k = 0; k < D_8012C470; k++)
+                {
+                    if (gPlayer[k].unk32 == spr->sectnum)
+                    {
+                        gPlayer[k].zpos += spr->unk1C;
+                        if (cond2)
+                        {
+                            gPlayer[k].xpos += (gpSprite[spr->unk16].x - spr->x);
+                            gPlayer[k].ypos += (gpSprite[spr->unk16].y - spr->y);
+                            D_80138610[k] += gpSprite[spr->unk16].x - spr->x;
+                            D_801AE480[k] += gpSprite[spr->unk16].y - spr->y;
+                            gPlayer[k].unk32 = i;
+                            updateSector(gPlayer[k].xpos, gPlayer[k].ypos, &gPlayer[k].unk32);
+                            gPlayer[k].unk68 = i;
+                        }
+                    }
+                }
+
+                o = gHeadSpriteSect[spr->sectnum];
+                while (o >= 0)
+                {
+                    k = gNextSpriteSect[o];
+                    if (gpSprite[o].picnum > 48)
+                    {
+                        gpSprite[o].z += spr->unk1C;
+                        if (cond2)
+                        {
+                            gpSprite[o].x += gpSprite[spr->unk16].x - spr->x;
+                            gpSprite[o].y += gpSprite[spr->unk16].y - spr->y;
+                            changeSpriteSect(o, i);
+                        }
+                    }
+                    o = k;
+                }
+
+                sec->floorz += spr->unk1C;
+                sec->ceilingz += spr->unk1C;
+                gpSector[i].floorz = sec->floorz;
+                gpSector[i].ceilingz = sec->ceilingz;
+                D_800DF2F4[i] |= 3;
+
+                if (spr->unk1C > 0)
+                {
+                    spr->unk1C = MIN(m, (spr->unk1C + n));
+                    gpSprite[spr->unk16].unk1C = spr->unk1C;
+                    if (sec->floorz >= spr->z)
+                    {
+                        spr->z = (spr->unk18 << 16) + (spr->unk1A & 0xFFFF);
+                        x2 = spr->z;
+                        spr->unk18 = sec->floorz >> 16;
+                        spr->unk1A = sec->floorz;
+                        spr->unk1C = 0;
+                        spr->unk2B = 0;
+                        gpSprite[spr->unk16].z = x2;
+                        gpSprite[spr->unk16].unk18 = sec->floorz >> 16;
+                        gpSprite[spr->unk16].unk1A = sec->floorz;
+                        gpSprite[spr->unk16].unk1C = 0;
+                        gpSprite[spr->unk16].unk2B = 0;
+                    }
+                    D_800DF2F4[spr->sectnum] |= 3;
+                }
+
+                if (spr->unk1C < 0)
+                {
+                    spr->unk1C = MAX(-m, (spr->unk1C - n));
+                    gpSprite[spr->unk16].unk1C = spr->unk1C;
+                    if (sec->floorz <= spr->z)
+                    {
+                        spr->z = (spr->unk18 << 16) + (spr->unk1A & 0xFFFF);
+                        x2 = spr->z;
+                        spr->unk18 = sec->floorz >> 16;
+                        spr->unk1A = sec->floorz;
+                        spr->unk1C = 0;
+                        spr->unk2B = 0;
+                        gpSprite[spr->unk16].z = x2;
+                        gpSprite[spr->unk16].unk18 = sec->floorz >> 16;
+                        gpSprite[spr->unk16].unk1A = sec->floorz;
+                        gpSprite[spr->unk16].unk1C = 0;
+                        gpSprite[spr->unk16].unk2B = 0;
+                    }
+                    D_800DF2F4[spr->sectnum] |= 3;
+                }
+            }
+            break;
+        case 44:
+        case 46:
+            if (spr->unk2B != 0)
+            {
+                x2 = (spr->unk18 << 16) + (spr->unk1A & 0xFFFF);
+                y2 = gpSprite[spr->unk16].z;
+                if (spr->unk1C == 0)
+                {
+                    if (y2 >= x2)
+                        spr->unk1C = -1;
+                    else
+                        spr->unk1C = 1;
+                }
+                func_80064D30(&m, &n, spr->sectnum);
+
+                if (spr->unk1C > 0)
+                    spr->unk1C = MIN(spr->unk1C, (x2 - y2));
+
+                if (spr->unk1C < 0)
+                    spr->unk1C = MAX(spr->unk1C, (spr->z - y2));
+
+                for (k = 0; k < D_8012C470; k++)
+                {
+                    if (y2 >= gPlayer[k].zpos)
+                    {
+                        if (gPlayer[k].unk59 != 0)
+                        {
+                            if (gPlayer[k].unk32 == spr->sectnum)
+                                gPlayer[k].zpos += spr->unk1C;
+                        }
+                    }
+                }
+
+                o = gHeadSpriteSect[spr->sectnum];
+                while (o >= 0)
+                {
+                    if (gpSprite[o].picnum > 48)
+                    {
+                        if (y2 >= gpSprite[o].z)
+                        {
+                            if ((*(s32 *)&gpSprite[o].cstat & 0x40300000) != 0x40100000)
+                                gpSprite[o].z += spr->unk1C;
+                        }
+                    }
+                    o = gNextSpriteSect[o];
+                }
+
+                if (spr->unk1C > 0)
+                {
+                    spr->unk1C = MIN(m, (spr->unk1C + n));
+
+                    if (gpSprite[spr->unk16].z >= x2)
+                    {
+                        gpSprite[spr->unk16].z = x2;
+                        spr->unk1C = 0;
+                        spr->unk2B = 0;
+                        if (spr->lotag == 46)
+                        {
+                            MusHandleStop(D_801A19F0, 0);
+                            playSfx(1600);
+                            func_8001F7B4(10, 15);
+                            o = gHeadSpriteSect[spr->sectnum];
+                            while (o >= 0)
+                            {
+                                if ((gpSprite[o].picnum >= 2548) && (gpSprite[o].picnum < 2552))
+                                    changeSpriteStat(o, 0);
+
+                                o = gNextSpriteSect[o];
+                            }
+                        }
+                    }
+                }
+
+                if (spr->unk1C < 0)
+                {
+                    spr->unk1C = MAX(-m, (spr->unk1C - n));
+
+                    if (gpSprite[spr->unk16].z <= spr->z)
+                    {
+                        gpSprite[spr->unk16].z = spr->z;
+                        spr->unk1C = 0;
+                        spr->unk2B = 0;
+                    }
+                }
+            }
+            break;
+        case 45:
+            if (spr->unk2B != 0)
+            {
+                if (spr->unk25 == 0)
+                {
+                    spr->unk18++;
+                    if (spr->unk18 == 1)
+                    {
+                        D_800DF590 = 0;
+                        D_800DF591 = 1;
+                        func_8006B590((spr->hitag + 1));
+                        D_800DF590 = 0;
+                        D_800DF591 = 0;
+                    }
+
+                    if (spr->unk18 == 60)
+                    {
+                        s8 a;
+                        a = func_8006B170((spr->hitag + 1));
+                        if (a == 0)
+                            spr->unk18 = 0;
+
+                        if (a == 1)
+                        {
+                            for (k = 0; k < D_8012C470; k++)
+                            {
+                                if (gPlayer[k].unk32 == spr->sectnum)
+                                {
+                                    gPlayer[k].xpos = gPlayer[k].xpos + (gpSprite[spr->unk16].x - spr->x);
+                                    gPlayer[k].ypos = gPlayer[k].ypos + (gpSprite[spr->unk16].y - spr->y);
+                                    gPlayer[k].zpos = gPlayer[k].zpos + (gpSprite[spr->unk16].z - spr->z);
+                                    D_80138610[k] += gpSprite[spr->unk16].x - spr->x;
+                                    D_801AE480[k] += gpSprite[spr->unk16].y - spr->y;
+                                    gPlayer[k].unk32 = gpSprite[spr->unk16].sectnum;
+                                    updateSector(gPlayer[k].xpos, gPlayer[k].ypos, &gPlayer[k].unk32);
+                                    o = gHeadSpriteSect[spr->sectnum];
+                                    while (o >= 0)
+                                    {
+                                        x2 = gNextSpriteSect[o];
+                                        if (gpSprite[o].picnum > 48)
+                                        {
+                                            gpSprite[o].x += gpSprite[spr->unk16].x - spr->x;
+                                            gpSprite[o].y += gpSprite[spr->unk16].y - spr->y;
+                                            gpSprite[o].z += gpSprite[spr->unk16].z - spr->z;
+                                            changeSpriteSect(o, gpSprite[spr->unk16].sectnum);
+                                        }
+                                        o = x2;
+                                    }
+                                }
+                                else
+                                {
+                                    if (gPlayer[k].unk32 == gpSprite[spr->unk16].sectnum)
+                                    {
+                                        gPlayer[k].xpos = gPlayer[k].xpos + (spr->x - gpSprite[spr->unk16].x);
+                                        gPlayer[k].ypos = gPlayer[k].ypos + (spr->y - gpSprite[spr->unk16].y);
+                                        gPlayer[k].zpos = gPlayer[k].zpos + (spr->z - gpSprite[spr->unk16].z);
+                                        D_80138610[k] += spr->x - gpSprite[spr->unk16].x;
+                                        D_801AE480[k] += spr->y - gpSprite[spr->unk16].y;
+                                        gPlayer[k].unk32 = spr->sectnum;
+                                        updateSector(gPlayer[k].xpos, gPlayer[k].ypos, &gPlayer[k].unk32);
+                                        o = gHeadSpriteSect[gpSprite[spr->unk16].sectnum];
+                                        while (o >= 0)
+                                        {
+                                            x2 = gNextSpriteSect[o];
+                                            if (gpSprite[o].picnum > 48)
+                                            {
+                                                gpSprite[o].x += spr->x - gpSprite[spr->unk16].x;
+                                                gpSprite[o].y += spr->y - gpSprite[spr->unk16].y;
+                                                gpSprite[o].z += spr->z - gpSprite[spr->unk16].z;
+                                                changeSpriteSect(o, spr->sectnum);
+                                            }
+                                            o = x2;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (spr->unk18 == ((spr->unk24 * 30) + 60))
+                    {
+                        D_800DF590 = 1;
+                        D_800DF591 = 0;
+                        func_8006B590((spr->hitag + 1));
+                        D_800DF590 = 0;
+                        D_800DF591 = 0;
+                    }
+                    if (spr->unk18 >= ((((spr->unk24 * 16) - spr->unk24) * 2) + 120))
+                    {
+                        spr->unk2B = 0;
+                        spr->unk18 = 0;
+                    }
+                }
+            }
+            break;
+        case 50:
+            if (spr->unk1C != 0)
+            {
+                func_80064D30(&m, &n, spr->sectnum);
+                if (spr->unk1C > 0)
+                {
+                    sec->ceilingz += spr->unk1C;
+                    spr->unk1C = MIN(m, (spr->unk1C + n));
+
+                    if (sec->ceilingz >= sec->floorz)
+                    {
+                        sec->ceilingz = sec->floorz;
+                        spr->unk1C = 0;
+                        func_80063930(spr->sectnum);
+                    }
+
+                    D_800DF2F4[spr->sectnum] |= 2;
+                }
+                if (spr->unk1C < 0)
+                {
+                    sec->ceilingz += spr->unk1C;
+                    spr->unk1C = MAX(-m, (spr->unk1C - n));
+                    if (sec->ceilingz <= spr->z)
+                    {
+                        sec->ceilingz = spr->z;
+                        func_80068D74(spr->sectnum);
+                        spr->unk1C = 0;
+                    }
+                    D_800DF2F4[spr->sectnum] |= 2;
+                }
+            }
+            break;
+        case 51:
+            if (spr->unk1C != 0)
+            {
+                func_80064D30(&m, &n, spr->sectnum);
+                if (spr->unk1C < 0)
+                {
+                    sec->floorz += spr->unk1C;
+                    sec->ceilingz -= spr->unk1C;
+
+                    spr->unk1C = MAX(-m, (spr->unk1C - n));
+
+                    if (sec->floorz <= sec->ceilingz)
+                    {
+                        sec->floorz = sec->ceilingz;
+                        spr->unk1C = 0;
+                    }
+
+                    D_800DF2F4[spr->sectnum] |= 3;
+                }
+
+                if (spr->unk1C > 0)
+                {
+                    sec->floorz += spr->unk1C;
+                    sec->ceilingz -= spr->unk1C;
+
+                    spr->unk1C = MIN(m, (spr->unk1C + n));
+                    if (sec->floorz >= spr->z)
+                    {
+                        sec->floorz = spr->z;
+                        func_80068D74(spr->sectnum);
+                        spr->unk1C = 0;
+                    }
+
+                    D_800DF2F4[spr->sectnum] |= 3;
+                }
+            }
+            break;
+        case 52:
+            if (spr->unk1C != 0)
+            {
+                func_80064D30(&m, &n, spr->sectnum);
+                if (spr->unk1C < 0)
+                {
+                    sec->floorz += spr->unk1C;
+                    spr->unk1C = MAX(-m, (spr->unk1C - n));
+
+                    if (sec->floorz <= sec->ceilingz)
+                    {
+                        sec->floorz = sec->ceilingz;
+                        spr->unk1C = 0;
+                    }
+
+                    D_800DF2F4[spr->sectnum] |= 1;
+                }
+
+                if (spr->unk1C > 0)
+                {
+                    sec->floorz += spr->unk1C;
+                    spr->unk1C = MIN(m, (spr->unk1C + n));
+
+                    if (sec->floorz >= spr->z)
+                    {
+                        sec->floorz = spr->z;
+                        func_80068D74(spr->sectnum);
+                        spr->unk1C = 0;
+                    }
+
+                    D_800DF2F4[spr->sectnum] |= 1;
+                }
+            }
+            break;
+        case 53:
+            if (spr->unk18 != 0)
+            {
+                func_80064D30(&m, &n, spr->sectnum);
+                m = m / 128;
+                n = MAX((n /128), 1);
+
+                if (spr->unk18 > 0)
+                    spr->unk18 = MIN(m, (spr->unk18 + n));
+                else
+                    spr->unk18 = MAX(-m, (spr->unk18 - n));
+
+                spr->ang += spr->unk18;
+                spr->unk1A += spr->unk18;
+
+                if (spr->unk1A > 0x200)
+                {
+                    spr->ang -= (spr->unk1A - 0x200);
+                    spr->unk1A = 0x200;
+                }
+
+                if (spr->unk1A < 0)
+                {
+                    spr->ang -= spr->unk1A;
+                    spr->unk1A = 0;
+                }
+
+                spr->ang &= 0x7FF;
+                func_80005118(spr->sectnum, spr->ang, spr->x, spr->y);
+
+                k = spr->unk16;
+                for (l = sec->wallptr; l < (sec->wallptr + sec->wallnum); l++)
+                {
+                    rotatePoint(0, 0, D_801AD480[k], D_80105730[k], spr->ang, &x2, &y2);
+                    dragPoint(l, spr->x + x2, spr->y + y2);
+                    k++;
+                }
+
+                o = gHeadSpriteSect[spr->sectnum];
+                while (o >= 0)
+                {
+                    if (gpSprite[o].picnum > 48)
+                    {
+                        gpSprite[o].ang = (gpSprite[o].ang + spr->unk18) & 0x7FF;
+                        rotatePoint(spr->x, spr->y, gpSprite[o].x, gpSprite[o].y, spr->unk18, &x2, &y2);
+                        gpSprite[o].x = x2;
+                        gpSprite[o].y = y2;
+                    }
+                    o = gNextSpriteSect[o];
+                }
+
+                for (k = 0; k < D_8012C470; k++)
+                {
+                    if ((gPlayer[k].unk59 != 0) && (gPlayer[k].unk32 == spr->sectnum))
+                    {
+                        gPlayer[k].unk38 = (gPlayer[k].unk38 + spr->unk18) & 0x7FF;
+                        rotatePoint(spr->x, spr->y, gPlayer[k].xpos, gPlayer[k].ypos, spr->unk18, &x2, &y2);
+                        gPlayer[k].xpos = x2;
+                        gPlayer[k].ypos = y2;
+                    }
+
+                    for (o = sec->wallptr; o < (sec->wallptr + sec->wallnum); o++)
+                    {
+                        if (clipInsideBox(gPlayer[k].xpos, gPlayer[k].ypos, o, 164) != 0)
+                        {
+                            D_8013B280[D_8012E15C++] = i;
+                            break;
+                        }
+                    }
+                }
+
+                if (((spr->unk1A >= 0x200) && (spr->unk18 > 0)) || ((spr->unk1A <= 0) && (spr->unk18 < 0)))
+                {
+                    spr->unk18 = 0;
+                    spr->unk25 = spr->unk25 == 0;
+                    if (spr->unk25 != 0)
+                        func_80068D74(spr->sectnum);
+                }
+            }
+            break;
+        case 54:
+            if (spr->unk18 != 0)
+            {
+                func_80064D30(&m, &n, spr->sectnum);
+                m = m / 16;
+                n = MAX((n /16), 1);
+
+                if (spr->unk18 > 0)
+                    spr->unk18 = MIN(m, (spr->unk18 + n));
+                else
+                    spr->unk18 = MAX(-m, (spr->unk18 - n));
+
+                spr->unk1A += spr->unk18;
+                if (spr->unk1A > spr->unk1C)
+                {
+                    spr->unk18 -= (spr->unk1A  - spr->unk1C);
+                    spr->unk1A = spr->unk1C;
+                }
+
+                if (spr->unk1A < 0)
+                {
+                    spr->unk18 -= spr->unk1A;
+                    spr->unk1A = 0;
+                }
+
+                x2 = (spr->unk18 * gpSinTable[(spr->ang + 0x200) & 0x7FF]) / 16384;
+                y2 = (spr->unk18 * gpSinTable[spr->ang]) / 16384;
+                spr->x += x2;
+                spr->y += y2;
+                func_80005118(spr->sectnum, 0, spr->x, spr->y);
+
+                k = spr->unk16;
+                for (l = sec->wallptr; l < (sec->wallptr + sec->wallnum); l++)
+                {
+                    dragPoint(l, spr->x + D_801AD480[k], spr->y + D_80105730[k]);
+                    k++;
+                }
+
+                for (k = 0; k < D_8012C470; k++)
+                {
+                    if ((gPlayer[k].unk59 != 0) && (gPlayer[k].unk32 == spr->sectnum))
+                    {
+                        gPlayer[k].xpos += x2;
+                        gPlayer[k].ypos += y2;
+                    }
+
+                    if (spr->clipdist == 0)
+                    {
+                        for (l = sec->wallptr; l < (sec->wallptr + sec->wallnum); l++)
+                        {
+                            if (clipInsideBox(gPlayer[k].xpos, gPlayer[k].ypos, l, 164) != 0)
+                            {
+                                D_8013B280[D_8012E15C++] = i;
+                                spr->clipdist = 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if ((spr->unk1A >= spr->unk1C) || (spr->unk1A <= 0))
+                {
+                    spr->unk25 = spr->unk25 == 0;
+                    spr->unk18 = 0;
+                    spr->clipdist = 0;
+                    if (spr->unk25 != 0)
+                        func_80068D74(spr->sectnum);
+                }
+            }
+            break;
+        case 60:
+            if (spr->unk2B != 0)
+            {
+                if (gMapNum == MAP_GOING_DOWN_THE_RACK)
+                {
+                    D_801AC9E8 = MIN(D_801AC9E8, spr->z);
+                    spr->unk2B = 0;
+                }
+                else
+                {
+                    func_80064D30(&m, &n, spr->sectnum);
+                    cond2 = 0;
+                    spr->unk1C = MIN(m, (spr->unk1C + n));
+
+                    o = gHeadSpriteStat[102];
+                    while (o >= 0)
+                    {
+                        if (gpSprite[o].hitag == spr->hitag)
+                        {
+                            if (spr->unk25 != 0)
+                                gpSprite[o].z = MIN(spr->z, (gpSprite[o].z + spr->unk1C));
+                            else
+                                gpSprite[o].z = MAX(spr->z, (gpSprite[o].z - spr->unk1C));
+
+                            if (gpSprite[o].z == spr->z)
+                                cond2 = 1;
+                        }
+                        o = gNextSpriteStat[o];
+                    }
+
+                    if (cond2 != 0)
+                    {
+                        spr->unk25 = 1 - spr->unk25;
+                        spr->unk2B = 0;
+                        spr->unk1C = 0;
+                        x2 = (spr->unk18 << 16) + (spr->unk1A & 0xFFFF);
+                        spr->unk18 = spr->z >> 16;
+                        spr->unk1A = spr->z;
+                        spr->z = x2;
+                    }
+                }
+            }
+            break;
+        case 24:
+            if (spr->unk2B != 0)
+            {
+                for (k = 0; k < D_8012C470; k++)
+                {
+                    if (gPlayer[k].unk32 == spr->sectnum)
+                    {
+                        if (gPlayer[k].unk45 == 0)
+                        {
+                            cond3 = 0;
+                            switch (spr->unk25)
+                            {
+                            case 0:
+                                cond3 = 1;
+                                break;
+                            case 1:
+                                if (gPlayer[k].unk59 != 0)
+                                    cond3 = 1;
+                                break;
+                            case 2:
+                                if (gpSprite[gPlayer[k].unk4A].z > func_80036490(gPlayer[k].unk32))
+                                    cond3 = 1;
+                                break;
+                            }
+
+                            if (cond3 != 0)
+                            {
+                                s32 a, b, c;
+                                a = spr->unk24 * gpSinTable[(spr->ang + 0x200) & 0x7FF];
+                                b = spr->unk24 * gpSinTable[spr->ang & 0x7FF];
+
+                                c = CLAMP_MIN((gPlayer[k].unk40 - 0x1200), 0x400);
+                                clipMove(&gPlayer[k].xpos,
+                                        &gPlayer[k].ypos,
+                                        &gPlayer[k].zpos,
+                                        &gPlayer[k].unk32,
+                                        a, b, 164, 0x400, c, 0x10001);
+                            }
+                        }
+                    }
+                }
+            }
+            break;
+        }
+        i = nexti;
+    }
+    D_800DF2F0 = 1;
+
+    for (k = 0; k < D_8012C470; k++)
+    {
+        sec = &gpSector[gPlayer[k].unk32];
+        i = gHeadSpriteSect[gPlayer[k].unk32];
+        while (i>= 0)
+        {
+            spr = &gpSprite[i];
+            cond4 = 0;
+            if (spr->picnum == 1)
+            {
+                switch (spr->lotag)
+                {
+                case 50:
+                    cond4 = spr->unk1C > 0;
+                    break;
+                case 51:
+                case 52:
+                    cond4 = spr->unk1C < 0;
+                    break;
+                }
+
+                if (cond4 != 0)
+                {
+                    if ((sec->floorz - sec->ceilingz) < (gPlayer[k].unk40 + 0x400))
+                    {
+                        audio_800077F4(1325, gPlayer[k].unk4A);
+                        if (spr->hitag != 0)
+                            func_8006B590(spr->hitag);
+                        else
+                        {
+                            func_8006CB38(spr->sectnum);
+                            func_80063930(spr->sectnum);
+                        }
+                    }
+                }
+            }
+            i = gNextSpriteSect[i];
+        }
+    }
+
+    for (i = 0; i < D_8012E15C; i++)
+    {
+        spr = &gpSprite[D_8013B280[i]];
+        k = 0;
+        if (spr->hitag != 0)
+        {
+            for (o = 0; o < i; o++)
+            {
+                if (spr->hitag == gpSprite[D_8013B280[o]].hitag)
+                {
+                    k = 1;
+                    break;
+                }
+            }
+            if (k == 0)
+                func_8006B590(spr->hitag);
+        }
+        else
+            func_8006CB38(spr->sectnum);
+    }
+
+    D_800DF2F0 = 0;
+
+    for (k = 0; k < D_8012C470; k++)
+    {
+        if (gPlayer[k].unk45 == 0)
+        {
+            s16 a;
+            cstat = gpSprite[gPlayer[k].unk4A].cstat;
+            gpSprite[gPlayer[k].unk4A].cstat = cstat & 0xFEFE;
+            x2 = CLAMP_MIN((gPlayer[k].unk40 - 0x1200), 0x400);
+            a = pushMove(&gPlayer[k].xpos,
+                                  &gPlayer[k].ypos,
+                                  &gPlayer[k].zpos,
+                                  &gPlayer[k].unk32,
+                                  0xA4, 0x400, x2, 0x10001);
+            gpSprite[gPlayer[k].unk4A].cstat = cstat;
+            if (a == -1)
+            {
+                func_800365C0(k);
+                D_8019B940[D_80106D50[gPlayer[k].unk4A]].unk8 = 0;
+            }
+        }
+    }
+
+    i = gHeadSpriteStat[3];
+    while (i >= 0)
+    {
+        spr = &gpSprite[i];
+        if (spr->lotag == 29)
+        {
+            if (spr->unk25 != 0)
+            {
+                sec = &gpSector[spr->sectnum];
+                if (sec->wallnum == 4)
+                {
+                    wall = &gpWall[sec->wallptr+2];
+                    if (spr->cstat & 8)
+                    {
+                        alignCeilSlope(spr->sectnum, wall->x, wall->y, gpSector[wall->nextsector].ceilingz);
+                        D_800DF2F4[spr->sectnum] |= 2;
+                    }
+                    else
+                    {
+                        alignFlorSlope(spr->sectnum, wall->x, wall->y, gpSector[wall->nextsector].floorz);
+                        D_800DF2F4[spr->sectnum] |= 1;
+                    }
+                }
+            }
+        }
+        i = gNextSpriteStat[i];
+    }
+}
 
 /*80068D74*/
 static void func_80068D74(s16 sectnum)

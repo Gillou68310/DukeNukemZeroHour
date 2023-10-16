@@ -5191,9 +5191,7 @@ void func_800514C8(void)
 /*80051508*/
 s32 func_80051508(s32 ang1, s32 ang2, s32 arg2)
 {
-    ang1 = (ang1 << 16) + (getAngleDelta(ang1, ang2) << (16 - arg2));
-    ang1 = (ang1 >> 16);
-    return ang1 & 0x7FF;
+    return (((ang1 << 0x10) + (getAngleDelta(ang1, ang2) << (0x10 - arg2))) >> 0x10) & 0x7FF;
 }
 
 /*80051568*/

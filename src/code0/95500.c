@@ -31,6 +31,9 @@ typedef struct {
     s16 unk12;
 }_95500UnkStruct1;
 
+#define GET_ANGLE(A,B,C) \
+    (((A << 0x10) + (B << C)) >> 0x10) & 0x7FF;
+
 /*.data*/
 /*800E1770*/ EXTERN_DATA STATIC s32 D_800E1770;
 /*800E1780*/ EXTERN_DATA STATIC char *D_800E1780[8];
@@ -630,7 +633,7 @@ static s32 func_80095F58(s32 arg0, s32 arg1)
 /*80095FCC*/
 static s32 func_80095FCC(s32 ang1, s32 ang2, s32 arg2)
 {
-    return (((ang1 << 16) + (getAngleDelta(ang1, ang2) << (arg2 + 8))) >> 16) & 0x7FF;
+    return GET_ANGLE(ang1, getAngleDelta(ang1, ang2), arg2+8);
 }
 
 /*80096028*/
@@ -1477,7 +1480,7 @@ void func_800965F8(s32 spritenum)
                 }
 
                 ang = getAngleDelta(spr->ang, (getAngle(gpSprite[j].x - spr->x, gpSprite[j].y - spr->y) - 0x200) & 0x7FF);
-                spr->ang = (((spr->ang << 0x10) + (ang << 0xC)) >> 0x10) & 0x7FF;
+                spr->ang = GET_ANGLE(spr->ang, ang, 0xC);
                 if ((spr->unk22 == 0xF))
                 {
                     k = gHeadSpriteStat[106];
@@ -1533,7 +1536,7 @@ void func_800965F8(s32 spritenum)
                         rotatePoint(spr2->x, spr2->y, gPlayer[0].xpos, gPlayer[0].ypos, (ang >> 4), &x2, &y2);
                         gPlayer[0].xpos = x2;
                         gPlayer[0].ypos = y2;
-                        gPlayer[0].unk38 = ((((gPlayer[0].unk38 << 0x10) + (ang << 0xC)) >> 0x10) & 0x7FF);
+                        gPlayer[0].unk38 = GET_ANGLE(gPlayer[0].unk38, ang, 12);
                         updateSector(x2, y2, &gPlayer[0].unk32);
                     }
                 }
@@ -1697,8 +1700,8 @@ void func_800965F8(s32 spritenum)
                         spr->unk22++;
                 }
 
-                ang = ((getAngleDelta(spr->ang, getAngle(gpSprite[j].x - spr->x, gpSprite[j].y - spr->y)) << 0x10) >> 3); /*TODO?*/
-                spr->ang = (((spr->ang << 0x10) + ang) >> 0x10) & 0x7FF;
+                ang = getAngleDelta(spr->ang, getAngle(gpSprite[j].x - spr->x, gpSprite[j].y - spr->y)) << 13;
+                spr->ang = GET_ANGLE(spr->ang, ang, 0);
                 l = (gpSinTable[(spr->ang + 0x200) & 0x7FF] * 175) >> 11;
                 m = (gpSinTable[spr->ang] * 175) >> 11;
                 ptr2->unk2 = (ptr2->unk2 + 80) & 0x7FF;
@@ -1884,8 +1887,8 @@ void func_800965F8(s32 spritenum)
                     a = func_8009614C(spritenum);
                     if (a != -1)
                     {
-                        ang = ((getAngleDelta(spr->ang, getAngle(gpSprite[a].x - gpSprite[spritenum].x, gpSprite[a].y - gpSprite[spritenum].y)) << 0x10) >> 3);
-                        spr->ang = (((spr->ang << 0x10) + ang) >> 0x10) & 0x7FF;
+                        ang = getAngleDelta(spr->ang, getAngle(gpSprite[a].x - gpSprite[spritenum].x, gpSprite[a].y - gpSprite[spritenum].y)) << 13;
+                        spr->ang = GET_ANGLE(spr->ang, ang, 0);
                     }
 
                     if (func_80042140(spritenum) == 25)
@@ -3315,9 +3318,9 @@ void func_8009C248(s32 spritenum)
                     if (func_80040D40(spr->x, spr->y, spr->z >> 4, gpSprite[spritenum1].x, gpSprite[spritenum1].y, gpSprite[spritenum1].z>>4) < 3000)
                     {
                         s32 temp;
-                        temp = (getAngleDelta(spr->ang, getAngle(xpos - spr->x, ypos - spr->y)) << 0x10) >> 3;
+                        temp = getAngleDelta(spr->ang, getAngle(xpos - spr->x, ypos - spr->y)) << 13;
                         D_801B081C = 0;
-                        spr->ang = (((spr->ang << 0x10) + temp) >> 0x10) & 0x7FF;
+                        spr->ang = GET_ANGLE(spr->ang, temp, 0);
                         return;
                     }
                     spritenum2 = gpSprite[spritenum2].hitag;
@@ -3463,7 +3466,7 @@ void func_8009C248(s32 spritenum)
             {
                 spr->unk1C = ((D_80119A34 - spr->z) >> 4);
                 delta = (getAngleDelta(spr->ang, getAngle(D_801AE530 - spr->x, D_80138698 - spr->y)) << (D_801AC8DC + 8));
-                spr->ang = (((spr->ang << 0x10) + delta) >> 0x10) & 0x7FF;
+                spr->ang = GET_ANGLE(spr->ang, delta, 0);
                 i = func_8004E5F8(spritenum,
                     (D_800FE9E8 * gpSinTable[(spr->ang + 0x200) & 0x7FF]) >> 14,
                     (D_800FE9E8 * gpSinTable[spr->ang]) >> 14, spr->unk1C);
@@ -3531,7 +3534,7 @@ void func_8009C248(s32 spritenum)
             f5 = (func_80029FE0((z5 /16), f3) * 325.9493234521802);
             ptr2->unk2 = f5;
             delta = getAngleDelta(spr->ang, getAngle(xpos - spr->x, ypos - spr->y));
-            spr->ang = (((spr->ang << 0x10) + ((delta << 0x10) >> 3)) >> 0x10) & 0x7FF;
+            spr->ang = GET_ANGLE(spr->ang, delta, 13);
 
             if (klabs(delta) < 32)
             {
@@ -3575,8 +3578,8 @@ void func_8009C248(s32 spritenum)
         }
         break;
     case 5:
-        delta = (getAngleDelta(spr->ang, getAngle(xpos - spr->x, ypos - spr->y)) << 0x10) >> 3;
-        spr->ang = (((spr->ang << 0x10) + delta) >> 0x10) & 0x7FF;
+        delta = getAngleDelta(spr->ang, getAngle(xpos - spr->x, ypos - spr->y)) << 13;
+        spr->ang = GET_ANGLE(spr->ang, delta, 0);
         i = func_8004E5F8(spritenum, 0, 0, spr->unk1C);
 
         if (i >= 0xC000)
@@ -3687,7 +3690,7 @@ void func_8009C248(s32 spritenum)
         {
             s32 temp;
             delta = (getAngleDelta(spr->ang, getAngle(D_801AE530 - spr->x, D_80138698 - spr->y)) << (D_801AC8DC + 8));
-            spr->ang = (((spr->ang << 0x10) + delta) >> 0x10) & 0x7FF;
+            spr->ang = GET_ANGLE(spr->ang, delta, 0);
             temp = ((gpSinTable[(spr->ang + 0x200) & 0x7FF] * 325) >> 13);
             i = func_8004E5F8(spritenum,
                 (temp),
@@ -3739,8 +3742,8 @@ void func_8009C248(s32 spritenum)
             spr->unk2B = 6;
         break;
     case 9:
-        delta = (getAngleDelta(spr->ang, getAngle(xpos - spr->x, ypos - spr->y)) << 0x10) >> 3;
-        spr->ang = (((spr->ang << 0x10) + delta) >> 0x10) & 0x7FF;
+        delta = getAngleDelta(spr->ang, getAngle(xpos - spr->x, ypos - spr->y)) << 13;
+        spr->ang = GET_ANGLE(spr->ang, delta, 0);
         if (func_80042140(spritenum) == 26)
         {
             spr->unk22 = (krand() & 1) + 20;
@@ -3837,7 +3840,7 @@ void func_8009C248(s32 spritenum)
         {
             spr->unk1C = ((D_80119A34 - spr->z) >> 4);
             delta = (getAngleDelta(spr->ang, getAngle(D_801AE530 - spr->x, D_80138698 - spr->y)) << (D_801AC8DC + 8));
-            spr->ang = (((spr->ang << 0x10) + delta) >> 0x10) & 0x7FF;
+            spr->ang = GET_ANGLE(spr->ang, delta, 0);
             i = func_8004E5F8(spritenum,
                 (D_800FE9E8 * gpSinTable[(spr->ang + 0x200) & 0x7FF]) >> 14,
                 (D_800FE9E8 * gpSinTable[spr->ang]) >> 14, spr->unk1C);
@@ -3876,8 +3879,8 @@ void func_8009C248(s32 spritenum)
             D_80119A34 = (z -65536);
 
         ang1 = getAngle(xpos - spr->x, ypos - spr->y);
-        delta = (getAngleDelta(spr->ang, ang1) << 0x10) >> 3;
-        ang = (((spr->ang << 0x10) + delta) >> 0x10) & 0x7FF;
+        delta = (getAngleDelta(spr->ang, ang1) << 13);
+        ang = GET_ANGLE(spr->ang, delta, 0);
         spr->ang = ang;
         delta = (ang1 + D_80118244) & 0x7FF;
         i = func_8004E5F8(spritenum,
@@ -3916,7 +3919,7 @@ void func_8009C248(s32 spritenum)
             f5 = (func_80029FE0((z6 / 16), f4) * 325.9493234521802);
             ptr2->unk2 = f5;
             delta = getAngleDelta(spr->ang, getAngle(xpos - spr->x, ypos - spr->y));
-            spr->ang = (((spr->ang << 0x10) + ((delta << 0x10) >> 3)) >> 0x10) & 0x7FF;
+            spr->ang = GET_ANGLE(spr->ang, delta, 13);
             if (klabs(delta) < 32)
             {
                 m = krand() & 1;
@@ -4190,7 +4193,7 @@ void func_8009E8C8(s32 spritenum)
 
 
             ang2 = getAngleDelta(spr->ang, getAngle(gpSprite[j].x - spr->x, gpSprite[j].y - spr->y));
-            spr->ang = (((spr->ang << 16) + ((ang2 << 13))) >> 16) & 0x7FF;
+            spr->ang = GET_ANGLE(spr->ang, ang2, 13);
 
             l = func_80040D40(spr->x, spr->y, gpSprite[j].x, gpSprite[j].y);
             if ((klabs(getAngleDelta((spr->ang + 0x400) & 0x7FF, ang)) < 64) && ((krand() & 0x7FFF) < 2000))
@@ -4278,8 +4281,7 @@ void func_8009E8C8(s32 spritenum)
             break;
         case 1:
             i = getAngleDelta(spr->ang, getAngle(gpSprite[j].x - spr->x, gpSprite[j].y - spr->y));
-
-            spr->ang = (((spr->ang << 16) + (i << 12)) >> 16) & 0x7FF;
+            spr->ang = GET_ANGLE(spr->ang, i, 12);
             if (klabs(i) < 24)
             {
                 if ((ptr->unk86 & 0x7FFF) != 71)
@@ -4392,9 +4394,9 @@ static void func_8009F71C(s32 spritenum)
             if (func_80040D40(gpSprite[i].x, gpSprite[i].y, spr->x, spr->y) < 500)
                 spr->unk1A++;
 
-            i = (getAngleDelta(spr->ang, getAngle(gpSprite[i].x - spr->x, gpSprite[i].y - spr->y)) << 0x10) >> 5;
-            spr->ang = (((spr->ang << 0x10) + (i)) >> 0x10) & 0x7FF;
-            ptr->unk7C = (((ptr->unk7C << 0x10) + i) >> 0x10) & 0x7FF;
+            i = getAngleDelta(spr->ang, getAngle(gpSprite[i].x - spr->x, gpSprite[i].y - spr->y)) << 11;
+            spr->ang = GET_ANGLE(spr->ang, i, 0);
+            ptr->unk7C = GET_ANGLE(ptr->unk7C, i, 0);
 
             j = (gpSinTable[(spr->ang + 0x200) & 0x7FF] * 5) >> 8;
             k = (gpSinTable[spr->ang & 0x7FF] * 5) >> 8;
