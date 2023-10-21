@@ -674,7 +674,7 @@ static s32 func_80095F58(s32 arg0, s32 arg1)
 /*80095FCC*/
 static s32 func_80095FCC(s32 ang1, s32 ang2, s32 arg2)
 {
-    return GET_ANGLE(ang1, getAngleDelta(ang1, ang2), arg2+8);
+    return GET_ANGLE(ang1, getAngleDelta(ang1, ang2), (arg2+8));
 }
 
 /*80096028*/

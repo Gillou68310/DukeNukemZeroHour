@@ -480,10 +480,10 @@ typedef struct
 /*8012D338*/ _extern s8 D_8012D338; /*angle*/
 /*8012DEFA*/ _extern u16 D_8012DEFA;
 /*8012DEFC*/ _extern u16 D_8012DEFC;
-/*8012DF00*/ _extern u8 *D_8012DF00;
+/*8012DF00*/ _extern s16 *D_8012DF00;
 /*8012DF04*/ _extern Color D_8012DF04[MAXPLAYERS];
 /*8012DF10*/ _extern code0UnkStruct14 D_8012DF10[16] ALIGNED(8);
-/*8012E150*/ _extern u8 *D_8012E150;
+/*8012E150*/ _extern s16 *D_8012E150;
 /*8012EB4C*/ _extern s32 D_8012EB4C;
 /*8012F6E8*/ _extern s32 D_8012F6E8;
 /*8012F6F0*/ _extern u8 D_8012F6F0[MAXPLAYERS];

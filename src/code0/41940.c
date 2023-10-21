@@ -3530,7 +3530,7 @@ typedef struct
 static const _41940UnkStruct3 D_800E58F4 = {1, 10, 305};
 
 /*8004CE58*/
-s32 func_8004CE58(SpriteType *spr, s16 arg1, s16 arg2)
+s16 func_8004CE58(SpriteType *spr, s16 arg1, s16 arg2)
 {
     s32 a, b, c, d, e, ret, f, g, h;
     _41940UnkStruct3 stat;

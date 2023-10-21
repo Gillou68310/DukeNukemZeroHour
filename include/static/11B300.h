@@ -35,20 +35,20 @@ typedef struct
     /*0x04*/ u16 b;
 } GlobalPalette;
 
-/*01024590*/ extern u8 D_01024590[];
+/*01024590*/ extern s16 D_01024590[];
 /*010245E8*/ extern s16 D_010245E8[];
 /*0102464C*/ extern _11B300UnkStruct2 D_0102464C[44];
 /*010247AC*/ extern s16 D_010247AC[];
 /*01025734*/ extern s16 D_01025734[];
 /*0102578C*/ extern s16 *D_0102578C[];
-/*0102583C*/ extern u8 D_0102583C[];
-/*01025840*/ extern u8 D_01025840[];
-/*010258D8*/ extern u8 D_010258D8[];
-/*01025908*/ extern u8 D_01025908[];
-/*01025968*/ extern u8 D_01025968[];
+/*0102583C*/ extern s16 D_0102583C[];
+/*01025840*/ extern s32 D_01025840[];
+/*010258D8*/ extern s16 D_010258D8[];
+/*01025908*/ extern s16 D_01025908[];
+/*01025968*/ extern s16 D_01025968[];
 /*010259B0*/ extern GlobalPalette gGlobalPalette[42];
 /*01025AAC*/ extern AlphaPalette gAlphaPalette[40];
 /*01025BA0*/ extern _11B300UnkStruct1 D_01025BA0[29];
-/*01025CFC*/ extern u8 D_01025CFC[];
+/*01025CFC*/ extern u16 D_01025CFC[];
 
 #endif
