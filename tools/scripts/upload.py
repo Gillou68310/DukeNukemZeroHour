@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-
+from pycparser import c_parser, c_ast, c_generator
 from pathlib import Path
 from typing import Dict
 import urllib.request
 import urllib.parse
 import tempfile
+import argparse
 import m2ctx
 import json
 import glob
@@ -34,30 +35,50 @@ def get_scratches_decompme(api_base, sessionid):
         dico[s['name']] = s
     return dico
 
+def generate_context(file: str, prune: False) -> None:            
+    source = m2ctx.import_c_file(file, macro=True, linemarker=False)
+    if not prune:
+        return source
+    
+    lines = source.splitlines()
+    macro = ""
+    source = ""
+    for line in lines:
+        if line.startswith('#define'):
+            macro += line + '\n'
+        else:
+            source += line + '\n'
+
+    parser = c_parser.CParser()
+    try:
+        ast = parser.parse(source, filename='<stdin>')
+    except:
+        e = sys.exc_info()[1]
+        print("Parse error:" + str(e) + ' from ' + file)
+        sys.exit()
+
+    #prune function def and variable init
+    for i, node in enumerate(ast.ext):
+        if isinstance(node, c_ast.FuncDef):
+            ast.ext[i] = node.decl
+        elif isinstance(node, c_ast.Decl):
+            ast.ext[i].init = None
+
+    return macro + c_generator.CGenerator().visit(ast)
+
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print('upload.py [function]')
-        sys.exit(1)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("c_file")
+    parser.add_argument('-p', '--prune', action='store_true', help='Prune context')
+    parser.add_argument('-d', '--dump', action='store_true', help='Dump context')
+    args = parser.parse_args()
 
     api_base = os.environ.get("DECOMPME_API_BASE", "https://decomp.me")
-    
-    # Check if function is already on decompme
-    if os.path.exists('sessionid'):
-        f = open('sessionid', 'r')
-        lines = f.readlines()
-        f.close()
-        assert(len(lines) == 1)
-        scrathes = get_scratches_decompme(api_base, lines[0])
-        s = scrathes.get(sys.argv[1])
-        if s != None:
-            print("Already existing function at")
-            print(f"{api_base}/scratch/{s['slug']}")
-            sys.exit(1)
-    
-    path = list(Path('nonmatchings/').rglob(sys.argv[1] + '*'))
+
+    path = list(Path('nonmatchings/').rglob(args.c_file + '*'))
     
     if len(path) == 0:
-        print('Cannot find function ' + sys.argv[1])
+        print('Cannot find function ' + args.c_file)
         sys.exit(1)
     
     assert(len(path) == 1)
@@ -85,13 +106,32 @@ if __name__ == "__main__":
     f.close()
     
     print("Generating context...")
-    context = m2ctx.import_c_file(temp, True, False)
+    context = generate_context(temp, args.prune)
     os.remove(temp)
+
+    if args.dump:
+        f = open("ctx.c", 'w')
+        f.write(context)
+        f.close()
+        sys.exit(1)
     
     f = open(path, 'r')
     asm_cont = f.read()
     f.close()
     
+    # Check if function is already on decompme
+    if os.path.exists('sessionid'):
+        f = open('sessionid', 'r')
+        lines = f.readlines()
+        f.close()
+        assert(len(lines) == 1)
+        scrathes = get_scratches_decompme(api_base, lines[0])
+        s = scrathes.get(args.c_file)
+        if s != None:
+            print("Already existing function at")
+            print(f"{api_base}/scratch/{s['slug']}")
+            sys.exit(1)
+
     func_name = os.path.basename(path).split('.')[0]
     print("Uploading...")
     try:
