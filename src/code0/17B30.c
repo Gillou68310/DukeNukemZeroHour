@@ -175,8 +175,8 @@ void func_80017268(s16 spritenum)
         ptr->unk2 = 0;
         ptr->unk0 = 0;
 
-        if ((gpSprite[spritenum].picnum >= 2219 && gpSprite[spritenum].picnum < 2221) ||
-            (gpSprite[spritenum].picnum >= 1293 && gpSprite[spritenum].picnum < 1295))
+        if ((gpSprite[spritenum].picnum == 2219) || (gpSprite[spritenum].picnum == 2220) ||
+            (gpSprite[spritenum].picnum == 1293) || (gpSprite[spritenum].picnum == 1294))
             return;
 
         func_800171D0(ptr, &D_800D81D4, 0);

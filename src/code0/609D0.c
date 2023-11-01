@@ -736,10 +736,10 @@ static void func_8005FEE0(s16 spritenum)
     case 547:
     case 548:
     case 549:
-        if ((spr->picnum >= 546) && (spr->picnum < 548))
+        if ((spr->picnum == 546) || (spr->picnum == 547))
             spr->picnum = 6083;
 
-        if ((spr->picnum >= 548) && (spr->picnum < 550))
+        if ((spr->picnum == 548) || (spr->picnum == 549))
             spr->picnum = 6084;
     case 6083:
     case 6084:

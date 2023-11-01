@@ -15,7 +15,7 @@ s32 func_80042140(s32 spritenum);
 s32 getVar(s32 spritenum, s32 id);
 s32 func_80045400(s32 x, s32 y, s32 z, s32 sectnum, s32, s32 ang, s32, s32);
 s32 setVar(s32 spritenum, s32 id, s32 value);
-s32 func_80047820(s32 spritenum, s32, s32);
+s32 func_80047820(s32 spritenum1, s32 spritenum2, s32);
 s32 func_800494DC(s32 spritenum1, s32, s32 spritenum2, s32);
 void func_8004AB6C(s32 spritenum, s32, s32, s32, s32, s32, s32);
 s32 func_8004BC64(s32 x, s32 y, s32 z, s32 sectnum, s32, s32, s32);

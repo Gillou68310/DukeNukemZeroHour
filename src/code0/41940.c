@@ -37,6 +37,7 @@ DECL_STATIC_SEG_SYM(D_010198B4);
 DECL_STATIC_SEG_SYM(D_0101999C);
 DECL_STATIC_SEG_SYM(D_0101A220);
 DECL_STATIC_SEG_SYM(D_0101A624);
+DECL_STATIC_SEG_SYM(D_0101A9A0);
 DECL_STATIC_SEG_SYM(D_0101AA1C);
 DECL_STATIC_SEG_SYM(D_0101ACAC);
 DECL_STATIC_SEG_SYM(D_0101B9C8);
@@ -169,6 +170,9 @@ static void func_80056C00(s32);
 static void func_80057E7C(void);
 static s32 func_80058538(SpriteType *spr, s32);
 static s32 func_80058DE0(SpriteType *spr, s32 *);
+static void func_8004EBE4(s32 spritenum);
+static void func_80050480(s16, s16 spritenum);
+static void func_8004B2B0(s32 spritenum, s32, s32);
 
 /*80040D40*/
 s32 func_80040D40(s32 x1, s32 y1, s32 x2, s32 y2)
@@ -2506,7 +2510,623 @@ static void func_80047710(void)
 }
 
 /*80047820*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_80047820);
+s32 func_80047820(s32 spritenum1, s32 spritenum2, s32 arg2)
+{
+    s32 cond2;
+    s32 ret;
+    SpriteType *spr;
+    volatile u8 *ptr;
+    s32 lotag;
+    u8 cond;
+    s32 nexti;
+    s32 i, j, k, l, m, n;
+
+    ret = 0;
+    spr = &gpSprite[spritenum1];
+
+    if (gpSprite[spritenum2].picnum == 1688)
+    {
+        if ((gpSprite[spritenum2].unk2B != 0) && (gpSprite[spritenum2].unk2B < 4) && (gpSprite[spritenum2].unk25 == 0))
+            gpSprite[spritenum2].unk2B = 4;
+    }
+
+    if ((gpSprite[spritenum2].picnum == 1398) || (gpSprite[spritenum2].picnum == 1399))
+    {
+        if ((gpSprite[spritenum1].lotag < 12 || gpSprite[spritenum1].lotag >= 14))
+        {
+            if (gpSprite[spritenum1].lotag != 10)
+            {
+                changeSpriteStat(spritenum2, 65);
+                gpSprite[spritenum2].unk2B = 2;
+                gpSprite[spritenum2].unk22 = -1;
+            }
+        }
+    }
+
+    switch (gpSprite[spritenum2].statnum)
+    {
+    case 4:
+        if (((gpSprite[spritenum2].picnum == 1841) || (gpSprite[spritenum2].picnum == 1844)) &&
+            (gpSprite[spritenum2].unk1A != gpSprite[spritenum2].statnum))
+        {
+            gpSprite[spritenum2].unk18 = 15;
+            gpSprite[spritenum2].unk1A = 4;
+        }
+
+        if (gpSprite[spritenum2].picnum == 1817)
+            gpSprite[spritenum2].unk22 = 1;
+
+        return 0;
+    case 302:
+        switch (gpSprite[spritenum2].picnum)
+        {
+        case 1346:
+        case 1574:
+        case 2437:
+        case 2441:
+            if (gpSprite[spritenum2].unk2B == 0)
+            {
+                gpSprite[spritenum2].unk2B = 1;
+                if (gpSprite[spritenum2].hitag != 0)
+                    func_8006B590(gpSprite[spritenum2].hitag);
+            }
+            break;
+        case 1458:
+            if (gpSprite[spritenum2].unk2B != 0)
+                audio_800077F4(61, spritenum2);
+            else
+                gpSprite[spritenum2].unk2B = 1;
+            break;
+        case 1672:
+            gpSprite[spritenum2].unk22 = 0x200;
+            break;
+        case 2533:
+            gpSprite[spritenum2].unk22 = 200;
+            goto label1;
+        case 2395:
+            if (gpSprite[spritenum1].lotag == 37)
+            {
+                if (gpSprite[spritenum2].unk2B == 0)
+                    gpSprite[spritenum2].unk2B = 1;
+            }
+            break;
+        case 1625:
+            if (gpSprite[spritenum2].unk2B == 0)
+                gpSprite[spritenum2].unk2B = 1;
+            break;
+        case 2002:
+        case 2005:
+        case 2341:
+        case 2597:
+        label1:
+            if (func_8004CC90(spritenum2, spr->lotag, spr->picnum) == -1)
+                return 0;
+            goto label2;
+        }
+        return 0;
+    default:
+        goto label1;
+    }
+label2:
+    D_8019B940[D_80106D50[spritenum2]].unk98 = 0xFF;
+    lotag = gpSprite[spritenum1].lotag;
+    cond2 = 0;
+    cond2 = ((lotag == 3) || (lotag == 4) || (lotag == 0x10) || (lotag == 5) ||
+            (lotag == 2) || (lotag == 6) || (lotag == 7) || (lotag == 0x16) ||
+            (lotag == 0x17) || (lotag == 0x2B) || (lotag == 0x1A));
+
+    if ((D_80106D50[spritenum2] != -1) && (gpSprite[spritenum2].cstat & 0x1000))
+    {
+        s32 a, b;
+        b = (D_800D52E0[gpSprite[spritenum2].picnum-1280]->unk2E -
+             D_800D52E0[gpSprite[spritenum2].picnum-1280]->unk28) << 6;
+        a = klabs((gpSprite[spritenum1].z - gpSprite[spritenum2].z));
+        a *= 100;
+        if (b != 0)
+            a /= b;
+
+        if (cond2 != 0)
+            D_8019B940[D_80106D50[spritenum2]].unk98 = 100 - a;
+        else
+            D_8019B940[D_80106D50[spritenum2]].unk98 = 0xFF;
+
+        if (gpSprite[spritenum2].picnum == 2341)
+        {
+            s32 a;
+            a = gpSprite[spritenum2].unk25;
+            if (gpSprite[spritenum2].unk25 != 1)
+                return 0;
+
+            func_800494DC(spritenum2, arg2, spritenum1, 1);
+            if ((krand() & 0x3FF) < 0x100)
+                func_8008E3E0(D_801AE918, D_8010A9B0, D_8016A150, gpSprite[spritenum2].sectnum, 44, a);
+
+            if (D_8019B940[D_80106D50[spritenum2]].unk8 <= 0)
+            {
+                for (i = 0; i < 4; i++)
+                {
+                    k = func_8008E3E0(gpSprite[spritenum2].x + ((krand() & 0x3FF) - 0x200),
+                                            gpSprite[spritenum2].y + ((krand() & 0x3FF)- 0x200),
+                                            gpSprite[spritenum2].z,
+                                            gpSprite[spritenum2].sectnum, 38, 500);
+                    if (k != -1)
+                        gpSprite[k].lotag = -1;
+
+                    func_8008E3E0(gpSprite[spritenum2].x + ((krand() & 0x3FF) - 0x200),
+                                  gpSprite[spritenum2].y + ((krand() & 0x3FF) - 0x200),
+                                  gpSprite[spritenum2].z - (krand() & 0xFFF),
+                                  gpSprite[spritenum2].sectnum, 41, 32);
+                }
+
+                D_80106D50[spritenum2] = -1;
+                func_8006B590(gpSprite[spritenum2].hitag);
+                gpSprite[spritenum2].picnum = 2342;
+
+                switch (gpSprite[spritenum2].hitag)
+                {
+                case 601:
+                    func_8006B590(1001);
+                    break;
+
+                case 604:
+                    func_8006B590(1004);
+                    break;
+                }
+
+                i = gHeadSpriteStat[1];
+                while (i >= 0)
+                {
+                    nexti = gNextSpriteStat[i];
+                    if (gpSprite[i].hitag == gpSprite[spritenum2].hitag)
+                        func_80055EC0(i, 0);
+                    i = nexti;
+                }
+
+                i = gHeadSpriteStat[2];
+                while (i >= 0)
+                {
+                    nexti = gNextSpriteStat[i];
+                    if (gpSprite[i].hitag == gpSprite[spritenum2].hitag)
+                        func_80055EC0(i, 0);
+                    i = nexti;
+                }
+            }
+        }
+        else
+            ret = func_800494DC(spritenum2, arg2, spritenum1, 0);
+    }
+    else
+    {
+        if ((gpSprite[spritenum2].picnum == 2209) || (gpSprite[spritenum2].picnum == 2210))
+        {
+            if ((gpSprite[spritenum1].lotag == 19) || (spr->picnum == 1560))
+            {
+                m = 14;
+                for (j = 0; j < 7; j++)
+                {
+                    if (D_800E17F0[m] != 0)
+                    {
+                        if (D_800DEEA0 == 0)
+                            l = (D_800E17F0[m] >> 1);
+                        else
+                            l = D_800E17F0[m];
+                        func_80057540(&gpSprite[spritenum2], j + 1777, l, 0);
+                    }
+                    m++;
+                }
+                func_8006B590(gpSprite[spritenum2].hitag);
+                func_8008E3E0(gpSprite[spritenum2].x, gpSprite[spritenum2].y, gpSprite[spritenum2].z, gpSprite[spritenum2].sectnum, 39, 0);
+                func_800574A4(spritenum2);
+            }
+            else if (cond2 != 0)
+            {
+                spr->unk22++;
+                m = 14;
+                if (spr->unk22 >= 13)
+                {
+                    for (j = 0; j < 7; j++)
+                    {
+                        if (D_800E17F0[m] != 0)
+                        {
+                            if (D_800DEEA0 == 0)
+                                l = (D_800E17F0[m] >> 1);
+                            else
+                                l = D_800E17F0[m];
+                            func_80057540(&gpSprite[spritenum2], j + 1777, l, 0);
+                        }
+                        m++;
+                    }
+                    func_8006B590(gpSprite[spritenum2].hitag);
+                    func_8008E3E0(gpSprite[spritenum2].x, gpSprite[spritenum2].y, gpSprite[spritenum2].z, gpSprite[spritenum2].sectnum, 39, 0);
+                    func_800574A4(spritenum2);
+                }
+            }
+        }
+
+        if (gpSprite[spritenum2].statnum >= 64 && gpSprite[spritenum2].statnum < 72)
+        {
+            cond = 0;
+            switch (gpSprite[spritenum2].statnum)
+            {
+            case 64:
+                if ((lotag == 19) || (spr->picnum == 1560))
+                {
+                    if (gpSprite[spritenum2].unk16 == 1)
+                    {
+                        MusHandleStop(D_8013B2D0[gpSprite[i].unk22].handle, 0);
+                        deleteSprite(gpSprite[spritenum2].unk22);
+                    }
+                    gpSprite[spritenum2].unk18 = 0;
+                    audio_80007A44(1014, spritenum2, 48000);
+                    cond = 1;
+                    func_8008E3E0(gpSprite[spritenum2].x, gpSprite[spritenum2].y, gpSprite[spritenum2].z, gpSprite[spritenum2].sectnum, 55, 1713);
+                    func_8008E3E0(gpSprite[spritenum2].x, gpSprite[spritenum2].y, gpSprite[spritenum2].z, gpSprite[spritenum2].sectnum, 55, 1715);
+                    func_8008E3E0(gpSprite[spritenum2].x, gpSprite[spritenum2].y, gpSprite[spritenum2].z, gpSprite[spritenum2].sectnum, 55, 1716);
+                    func_80057540(spr, 5700, (krand() & 3) + 1, 0);
+                    changeSpriteStat(spritenum2, 74);
+                    break;
+                }
+
+                if (cond2 != 0)
+                    func_8004EBE4(spritenum2);
+
+                if (gpSprite[spritenum2].unk18 > 0)
+                {
+                    gpSprite[spritenum2].unk18 -= 10;
+                    break;
+                }
+
+                if (gpSprite[spritenum2].unk16 == 0)
+                {
+                    k = func_80058934(gpSprite[spritenum2].x,
+                                      gpSprite[spritenum2].y,
+                                      gpSprite[spritenum2].z,
+                                      gpSprite[spritenum2].sectnum, 110);
+                    gpSprite[k].picnum = 5;
+                    gpSprite[k].unk1A = 18000;
+                    gpSprite[k].unk25 = 0xFF;
+                    gpSprite[k].unk18 = 0;
+                    gpSprite[k].unk1C = 0;
+                    gpSprite[k].lotag = 0x20;
+                    gpSprite[spritenum2].unk16 = 1;
+                    gpSprite[spritenum2].unk22 = k;
+                }
+                break;
+            case 65:
+                if ((lotag == 19) || (spr->picnum == 1560))
+                {
+                    if (gpSprite[spritenum2].unk22 != -1)
+                    {
+                        m = gpSprite[spritenum2].unk22;
+                        if (m == 999)
+                        {
+                            n = func_8008E3E0(gpSprite[spritenum2].x,
+                                              gpSprite[spritenum2].y,
+                                              gpSprite[spritenum2].z,
+                                              gpSprite[spritenum2].sectnum, 44, 5);
+                            if (n > 0)
+                                gpSprite[n].unk25 = 4;
+                            goto label3;
+                        }
+                        else if (m == 1000)
+                        {
+                            n = func_8008E3E0(gpSprite[spritenum2].x,
+                                              gpSprite[spritenum2].y,
+                                              gpSprite[spritenum2].z,
+                                              gpSprite[spritenum2].sectnum, 44, 6);
+                            if (n > 0)
+                                gpSprite[n].unk25 = 37;
+                            goto label3;
+                        }
+                        else
+                        {
+                            m *= 7;
+                            if (gMapNum == MAP_ZERO_HOUR)
+                                func_8004BFDC(spritenum2, 4, gpSprite[spritenum2].z, 9999);
+
+                            func_80050480(gpSprite[spritenum2].unk22, spritenum2);
+                            for (j = 0; j < 7; j++)
+                            {
+                                if (D_800E17F0[m] != 0)
+                                {
+                                    if (D_800DEEA0 == 0)
+                                        l = (D_800E17F0[m] >> 1);
+                                    else
+                                        l = D_800E17F0[m];
+                                    func_80057540(&gpSprite[spritenum2], j + 1777, l, 0);
+                                }
+                                m++;
+                            }
+                        }
+                    }
+
+                    if (gpSprite[spritenum2].unk2A != 0)
+                    {
+                        l = (D_800DEEA0 != 0) ? 7 : 3;
+                        for (i = 0; i < l; i++)
+                        {
+                            k = func_8008E3E0(gpSprite[spritenum2].x,
+                                              gpSprite[spritenum2].y,
+                                              gpSprite[spritenum2].z,
+                                              gpSprite[spritenum2].sectnum, 55, 1782);
+                            if (k != -1)
+                            {
+                                gpSprite[k].xrepeat += krand() & 0x7F;
+                                gpSprite[k].yrepeat += krand() & 0x7F;
+                            }
+                        }
+                    }
+
+                    if (gpSprite[spritenum2].unk2B == 1)
+                    {
+                        func_80057540(&gpSprite[spritenum2], 2130, 4, 0);
+                        func_80057540(&gpSprite[spritenum2], 1500, 1, 0);
+                        if ((gpSprite[spritenum2].picnum < 2182) || (gpSprite[spritenum2].picnum >= 2184))
+                        {
+                            if ((gpSprite[spritenum2].unk22 == -1) && (D_800DEEA0 != 0))
+                                func_80057540(&gpSprite[spritenum2], 2130, 4, 0);
+                            audio_800077F4(((krand() % 3) + 538), spritenum2);
+                        }
+                    }
+
+                    if (gpSprite[spritenum2].unk2B == 2)
+                    {
+                        k = gpSprite[spritenum2].z;
+                        gpSprite[spritenum2].z = k - 0x2000;
+                        func_80057540(&gpSprite[spritenum2], 2414, 6, 0);
+
+                        if (gpSprite[spritenum2].unk22 == -1)
+                            func_80057540(&gpSprite[spritenum2], 2414, 6, 0);
+                        gpSprite[spritenum2].z = k;
+
+                        audio_800077F4(((krand() % 3) + 538), spritenum2);
+                    }
+
+                label3:
+                    cond = 1;
+                    func_800574A4(spritenum2);
+                    break;
+                }
+
+                if (gpSprite[spritenum2].unk2A == 0)
+                {
+                    if ((cond2 != 0) && (gpSprite[spritenum2].unk22 < 3))
+                        func_8004EBE4(spritenum2);
+
+                    if (gpSprite[spritenum1].unk2A != 0xFF)
+                    {
+                        if (lotag == 0)
+                        {
+                            arg2 = arg2 * ((krand() & 3) + 1);
+                            arg2 += arg2/2;
+                        }
+                        gpSprite[spritenum2].unk18 -= arg2;
+                        if ((gpSprite[spritenum2].unk18) <= 0)
+                        {
+                            if (gpSprite[spritenum2].unk22 != -1)
+                            {
+                                m = gpSprite[spritenum2].unk22*7;
+                                if (gpSprite[spritenum2].unk22 == 999)
+                                {
+                                    n = func_8008E3E0(gpSprite[spritenum2].x,
+                                                      gpSprite[spritenum2].y,
+                                                      gpSprite[spritenum2].z,
+                                                      gpSprite[spritenum2].sectnum, 44, 5);
+                                    if (n > 0)
+                                        gpSprite[n].unk25 = 4;
+                                    goto label3;
+                                }
+                                else if (gpSprite[spritenum2].unk22 == 1000)
+                                {
+                                    n = func_8008E3E0(gpSprite[spritenum2].x,
+                                                      gpSprite[spritenum2].y,
+                                                      gpSprite[spritenum2].z,
+                                                      gpSprite[spritenum2].sectnum, 44, 6);
+                                    if (n > 0)
+                                        gpSprite[n].unk25 = 37;
+                                    goto label3;
+                                }
+                                else
+                                {
+                                    if (gMapNum == MAP_ZERO_HOUR)
+                                        func_8004BFDC(spritenum2, 4, gpSprite[spritenum2].z, 9999);
+
+                                    func_80050480(gpSprite[spritenum2].unk22, spritenum2);
+                                    for (j = 0; j < 7; j++)
+                                    {
+                                        if (D_800E17F0[m] != 0)
+                                        {
+                                            if (D_800DEEA0 == 0)
+                                                l = (D_800E17F0[m] >> 1);
+                                            else
+                                                l = D_800E17F0[m];
+                                            func_80057540(&gpSprite[spritenum2], j + 1777, l, 0);
+                                        }
+                                        m++;
+                                    }
+                                }
+                            }
+
+                            if (gpSprite[spritenum2].unk2B == 1)
+                            {
+                                func_80057540(&gpSprite[spritenum2], 2130, 4, 0);
+                                func_80057540(&gpSprite[spritenum2], 1500, 1, 0);
+                                if ((gpSprite[spritenum2].picnum < 2182) || (gpSprite[spritenum2].picnum >= 2184))
+                                {
+                                    if ((gpSprite[spritenum2].unk22 == -1) && (D_800DEEA0 != 0))
+                                        func_80057540(&gpSprite[spritenum2], 2130, 4, 0);
+                                    audio_800077F4(((krand() % 3) + 538), spritenum2);
+                                }
+                            }
+                            if (gpSprite[spritenum2].unk2B == 2)
+                            {
+                                k = gpSprite[spritenum2].z;
+                                gpSprite[spritenum2].z = k - 0x2000;
+                                func_80057540(&gpSprite[spritenum2], 2414, 6, 0);
+
+                                if (gpSprite[spritenum2].unk22 == -1)
+                                    func_80057540(&gpSprite[spritenum2], 2414, 6, 0);
+                                gpSprite[spritenum2].z = k;
+                                audio_800077F4(((krand() % 3) + 538), spritenum2);
+                            }
+                            changeSpriteStat(spritenum2, 0);
+                            func_8004B2B0(spritenum2, 1500, 100);
+                            cond = 1;
+                            func_800574A4(spritenum2);
+                        }
+                    }
+                }
+                break;
+            case 66:
+                changeSpriteStat(spritenum2, 1);
+                switch (gpSprite[spritenum2].picnum)
+                {
+                case 1338:
+                case 1926:
+                    func_8004BFDC(spritenum2, 3, gpSprite[spritenum2].z, 1);
+                    func_8004AB6C(spritenum2, 1000, 25, 50, 75, 100, 0);
+                    cond = 1;
+                    func_800574A4(spritenum2);
+                    break;
+                case 1352:
+                    if (cond2 != 0)
+                        func_8004EBE4(spritenum2);
+                    else
+                    {
+                        s16 a;
+                        a = func_8004BE90();
+                        D_80106D50[spritenum2] = a;
+                        D_8019B940[a].unkC = (s32 *)GET_STATIC_SEG_SYM(D_0101A9A0);
+                        D_8019B940[D_80106D50[spritenum2]].unk30 = 0;
+                        D_8019B940[D_80106D50[spritenum2]].unk80 = 0;
+                    }
+                    break;
+                }
+                break;
+            case 67:
+                changeSpriteStat(spritenum2, 0);
+                audio_80007A44(1323, spritenum2, 30000);
+                gpSprite[spritenum2].picnum = 5214;
+                gpSprite[spritenum2].cstat &= 0xFEFE;
+                k = krand() & 3;
+                for (j = 0; j < (k); j++)
+                    func_80057540(&gpSprite[spritenum2], 1781, 1, 0);
+                break;
+            case 68:
+            case 69:
+                break;
+            case 70:
+                if ((lotag == 19) || (spr->picnum == 1560))
+                {
+                    m = gpSprite[spritenum2].unk25*7;
+                    func_80050480(gpSprite[spritenum2].unk25, spritenum2);
+                    for (j = 0; j < 7; j++)
+                    {
+                        ptr = &D_800E17F0[m];
+                        if (*ptr != 0)
+                            func_80057540(&gpSprite[spritenum2], j + 1777, *ptr, 0);
+                        m++;
+                    }
+
+                    if ((gpSprite[spritenum2].picnum == 2266) || (gpSprite[spritenum2].picnum == 1466))
+                    {
+                        func_80045400(gpSprite[spritenum2].x,
+                                      gpSprite[spritenum2].y,
+                                      gpSprite[spritenum2].z - 0xC00,
+                                      gpSprite[spritenum2].sectnum, 300, gpSprite[spritenum2].ang, 50, 0);
+                    }
+                    else if (gpSprite[spritenum2].picnum == 1418)
+                    {
+                        func_80045400(gpSprite[spritenum2].x,
+                                      gpSprite[spritenum2].y,
+                                      gpSprite[spritenum2].z - 0x1300,
+                                      gpSprite[spritenum2].sectnum, 500, (gpSprite[spritenum2].ang + 460) & 0x7FF, 50, 0);
+                    }
+                    else
+                    {
+                        func_8008E3E0(gpSprite[spritenum2].x,
+                                      gpSprite[spritenum2].y,
+                                      gpSprite[spritenum2].z - 0x1200,
+                                      gpSprite[spritenum2].sectnum, 50, 0);
+                    }
+                }
+                else
+                {
+                    if ((cond2 != 0) && (gpSprite[spritenum2].unk25 < 3))
+                        func_8004EBE4(spritenum2);
+
+                    if (gpSprite[spritenum1].unk2A == 0xFF)
+                        break;
+
+                    gpSprite[spritenum2].unk18--;
+                    if (gpSprite[spritenum2].unk18 > 0)
+                        break;
+
+                    m = gpSprite[spritenum2].unk25*7;
+                    func_80050480(gpSprite[spritenum2].unk25, spritenum2);
+                    for (j = 0; j < 7; j++)
+                    {
+                        ptr = &D_800E17F0[m];
+                        if (*ptr != 0)
+                            func_80057540(&gpSprite[spritenum2], j + 1777, *ptr, 0);
+                        m++;
+                    }
+
+                    if ((gpSprite[spritenum2].picnum == 2266) || (gpSprite[spritenum2].picnum == 1466))
+                    {
+                        func_80045400(gpSprite[spritenum2].x,
+                                      gpSprite[spritenum2].y,
+                                      gpSprite[spritenum2].z - 0xC00,
+                                      gpSprite[spritenum2].sectnum, 300, gpSprite[spritenum2].ang, 50, 0);
+                    }
+                    else if (gpSprite[spritenum2].picnum == 1418)
+                    {
+                        func_80045400(gpSprite[spritenum2].x,
+                                      gpSprite[spritenum2].y,
+                                      gpSprite[spritenum2].z - 0x1300,
+                                      gpSprite[spritenum2].sectnum, 500, (gpSprite[spritenum2].ang + 460) & 0x7FF, 50, 0);
+                    }
+                    else
+                    {
+                        func_8008E3E0(gpSprite[spritenum2].x,
+                                      gpSprite[spritenum2].y,
+                                      gpSprite[spritenum2].z - 0x1200,
+                                      gpSprite[spritenum2].sectnum, 50, 0);
+                    }
+                }
+                gpSprite[spritenum2].picnum = gpSprite[spritenum2].hitag;
+                changeSpriteStat(spritenum2, 0);
+                func_8004B2B0(spritenum2, 1500, 100);
+                break;
+            case 71:
+                if ((lotag == 19) || (spr->picnum == 1560))
+                {
+                    gpSprite[spritenum2].unk18 = 0;
+                    changeSpriteStat(spritenum2, 74);
+                }
+                else if (gpSprite[spritenum1].unk2A != 0xFF)
+                {
+                    gpSprite[spritenum2].unk18 -= arg2;
+                    if ((gpSprite[spritenum2].unk18) <= 0)
+                    {
+                        gpSprite[spritenum2].unk18 = 0;
+                        changeSpriteStat(spritenum2, 75);
+                    }
+                }
+                break;
+            default:
+                break;
+            }
+
+            if (cond != 0)
+            {
+                if (gpSprite[spritenum2].hitag != 0)
+                    func_8006B590(gpSprite[spritenum2].hitag);
+            }
+        }
+    }
+    return ret;
+}
 
 /*800494DC*/
 s32 func_800494DC(s32 spritenum1, s32 arg1, s32 spritenum2, s32 arg3)
@@ -2827,13 +3447,12 @@ s32 func_800494DC(s32 spritenum1, s32 arg1, s32 spritenum2, s32 arg3)
     lotag1 = lotag2;
     if (arg3 == 0)
     {
-        if ((lotag1 >= 3 && lotag1 < 5) || (lotag1 == 16) ||
-            (lotag1 == 5) || (lotag1 == 2) ||
-            (lotag1 >= 6 && lotag1 < 8) || (lotag1 == 22) ||
-            (lotag1 == 2) || (lotag1 == 23) ||
-            (lotag1 == 17) || (lotag1 == 26))
+        if ((lotag1 == 3)  || (lotag1 == 4)  || (lotag1 == 16) ||
+            (lotag1 == 5)  || (lotag1 == 2)  || (lotag1 == 6)  ||
+            (lotag1 == 7)  || (lotag1 == 22) || (lotag1 == 2)  ||
+            (lotag1 == 23) || (lotag1 == 17) || (lotag1 == 26))
         {
-            if (((lotag1 == 4) || (lotag1 == 16) || (lotag1 >= 5 && lotag1 < 7)) && (krand() & 1))
+            if (((lotag1 == 4) || (lotag1 == 16) || (lotag1 == 5) || (lotag1 == 6)) && (krand() & 1))
                 return ret;
 
             ang = gpSprite[spritenum1].x - gPlayer[0].xpos;
@@ -3004,7 +3623,6 @@ static void func_8004A590(s32 spritenum)
 INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5618);
 /*8004AB6C*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004AB6C);
-
 
 /*8004B2B0*/
 static void func_8004B2B0(s32 spritenum, s32 arg1, s32 arg2)
@@ -7099,7 +7717,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
     case 1426:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
-        if ((spr->statnum >= 301) && (spr->statnum < 303))
+        if ((spr->statnum == 301) || (spr->statnum == 302))
             spr->cstat |= 0x8000;
         spr->unk22 = 0;
         spr->unk2B = 0;

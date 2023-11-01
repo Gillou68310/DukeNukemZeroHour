@@ -521,7 +521,7 @@ static void func_80079F60(s32 playernum)
 block_80:
     D_80199970[playernum] = 1;
 
-    if ((D_80197DEC->unk99 >= 4) && (D_80197DEC->unk99 < 6))
+    if ((D_80197DEC->unk99 == 4) || (D_80197DEC->unk99 == 5))
     {
         func_8006D3B8(gPlayer[playernum].unk4A, D_80197DEC->unk99, 0, 0, 0);
         func_8006D3B8(gPlayer[playernum].unk4A, D_80197DEC->unk99, 0, 0, 0);
