@@ -148,7 +148,7 @@ typedef struct
 /*.text*/
 static s32 func_800413CC(s32 spritenum);
 static void func_800418B8(s32);
-STATIC s32 func_80042C98(s32 spritenum);
+static s32 func_80042C98(s32 spritenum);
 static s32 func_800433D4(s32 spritenum);
 static s32 func_8004BC24(s32, s32);
 static s32 func_8004DE60(s32 spritenum, s32);
@@ -173,6 +173,7 @@ static s32 func_80058DE0(SpriteType *spr, s32 *);
 static void func_8004EBE4(s32 spritenum);
 static void func_80050480(s16, s16 spritenum);
 static void func_8004B2B0(s32 spritenum, s32, s32);
+static s32 func_8004364C(s32);
 
 /*80040D40*/
 s32 func_80040D40(s32 x1, s32 y1, s32 x2, s32 y2)
@@ -1116,7 +1117,156 @@ STATIC s32 func_80042C18(s32 spritenum)
 }
 
 /*80042C98*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_80042C98);
+static s32 func_80042C98(s32 spritenum)
+{
+    u16 cstat2;
+    s16 hitsect, hitwall, hitsprite;
+    s32 hitx, hity, hitz;
+    s32 vx, vy, vz;
+
+    SpriteType *spr;
+    SpriteType *spr2;
+    code0UnkStruct3 *ptr;
+
+    s32 ret;
+    s32 i, j, k;
+    u16 cstat;
+
+    cstat2 = 0;
+    ptr = &D_8019B940[D_80106D50[spritenum]];
+    i = ptr->unk28;
+    spr = &gpSprite[spritenum];
+
+    if ((ptr->unk0 & 0x1800)&&(hitsprite == i))
+    {
+        D_80137DE0->unk38 = gpSprite[i].x;
+        D_80137DE0->unk3C = gpSprite[i].y;
+        D_80137DE0->unk40 = gpSprite[i].z;
+        if (i == -1)
+            return 0;
+    }
+
+    if ((ptr->unk0 & 0x1800) && (ptr->unk28 != -1))
+        spr2 = &gpSprite[ptr->unk28];
+    else
+        spr2 = &gpSprite[gPlayer[0].unk4A];
+
+    vx = spr2->x - spr->x;
+    vy = spr2->y - spr->y;
+    if (D_80197E30 == 0)
+        j = D_801B0D30;
+    else
+        j = -D_801B0D30;
+
+    if (ptr->unk0 & 0x800)
+    {
+        k = (spr->z - (j / 2)) + 0x1000;
+        vz = spr2->z - k;
+    }
+    else
+    {
+        k = (spr->z - (j / 2)) + 0x1E80;
+        vz = spr2->z - k;
+    }
+
+    cstat = spr->cstat;
+    spr->cstat = cstat & 0xFEFE;
+    hitScan(spr->x, spr->y, spr->z - (j /2), spr->sectnum, vx, vy, vz,
+            &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x01000040);
+    ret = 0;
+    spr->cstat = cstat;
+    if ((hitwall != -1) && (func_8004364C(gpWall[hitwall].overpicnum) != 0))
+    {
+        s32 a = hitwall;
+        i = ~0x41;
+        cstat = gpWall[hitwall].cstat;
+        gpWall[hitwall].cstat = cstat & i;
+        if (gpWall[hitwall].nextwall != -1)
+        {
+            cstat2 = gpWall[gpWall[hitwall].nextwall].cstat;
+            gpWall[gpWall[hitwall].nextwall].cstat = cstat2 & i;
+        }
+
+        hitScan(hitx, hity, hitz, hitsect, vx, vy, vz, &hitsect,
+                &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x01000040);
+        gpWall[a].cstat = cstat;
+        if (gpWall[a].nextwall != -1)
+            gpWall[gpWall[a].nextwall].cstat = cstat2;
+    }
+
+    if ((hitsect != -1) && (hitsprite != -1))
+    {
+        i = ptr->unk28;
+        if ((ptr->unk0 & 0x1800) && (hitsprite == i))
+        {
+            D_80137DE0->unk38 = gpSprite[i].x;
+            D_80137DE0->unk3C = gpSprite[i].y;
+            D_80137DE0->unk40 = gpSprite[i].z;
+            ret = 1;
+        }
+        else if (gpSprite[hitsprite].statnum == 10)
+        {
+            D_80137DE0->unk38 = gPlayer[0].xpos;
+            D_80137DE0->unk3C = gPlayer[0].ypos;
+            D_80137DE0->unk40 = gPlayer[0].zpos;
+            ret = 1;
+        }
+    }
+
+    if (ret == 0)
+    {
+        cstat = spr->cstat;
+        vz = (spr2->z - (spr->z - j)) - 0x3100;
+        spr->cstat = cstat & 0xFEFE;
+
+        hitScan(spr->x, spr->y, (spr->z - (0x400 + j)), spr->sectnum, vx, vy, vz,
+                &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x01000040);
+
+        spr->cstat = cstat;
+        if ((hitwall != -1))
+        {
+            if ((func_8004364C(gpWall[hitwall].overpicnum) != 0))
+            {
+                s32 a = hitwall;
+                i = ~0x41;
+                cstat = gpWall[a].cstat;
+                gpWall[a].cstat = cstat & i;
+                if (gpWall[a].nextwall != -1)
+                {
+                    cstat2 = gpWall[gpWall[a].nextwall].cstat;
+                    gpWall[gpWall[a].nextwall].cstat = cstat2 & i;
+                }
+
+                hitScan(hitx, hity, hitz, hitsect, vx, vy, vz,
+                        &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x01000040);
+
+                gpWall[a].cstat = cstat;
+                if (gpWall[a].nextwall != -1)
+                    gpWall[gpWall[a].nextwall].cstat = cstat2;
+            }
+        }
+
+        if ((hitsect != -1) && (hitsprite != -1))
+        {
+            i = ptr->unk28;
+            if ((ptr->unk0 & 0x1800) && (hitsprite == i))
+            {
+                D_80137DE0->unk38 = gpSprite[i].x;
+                D_80137DE0->unk3C = gpSprite[i].y;
+                D_80137DE0->unk40 = gpSprite[i].z;
+                ret = 1;
+            }
+            else if (gpSprite[hitsprite].statnum == 10)
+            {
+                D_80137DE0->unk38 = gPlayer[0].xpos;
+                D_80137DE0->unk3C = gPlayer[0].ypos;
+                D_80137DE0->unk40 = gPlayer[0].zpos;
+                ret = 1;
+            }
+        }
+    }
+    return ret;
+}
 
 /*800433D4*/
 static s32 func_800433D4(s32 spritenum)
