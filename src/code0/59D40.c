@@ -2244,14 +2244,11 @@ void func_8005F050(s32 spritenum, s32 arg1)
 void func_8005F0F0(s32 spritenum, s32 arg1)
 {
     s32 unk38, unk3E;
-    s32 spritenum_;
-    s32 ang;
+    s32 i;
     f32 f1, f2, f3;
 
     D_80138690 = 1;
-    ang = getAngle(D_80137DE0->unk44 - D_80137DE0->unk48, D_80118248->x - D_80118248->y);
-
-    spritenum_ = ang; /*FAKEMATCH*/
+    i = getAngle(D_80137DE0->unk44 - D_80137DE0->unk48, D_80118248->x - D_80118248->y);
 
     f1 = (D_80137DE0->unk4C - D_80118248->z) / 16;
     f2 = func_80040D40(D_80137DE0->unk44,
@@ -2261,17 +2258,17 @@ void func_8005F0F0(s32 spritenum, s32 arg1)
     f3 = func_80029FE0(f1, f2) * 325.9493234521802;
 
     unk38 = gPlayer[0].unk38;
-    gPlayer[0].unk38 = ang;
+    gPlayer[0].unk38 = i;
     unk3E = gPlayer[0].unk3E;
     gPlayer[0].unk3E = f3;
-    spritenum_ = func_8006D3B8(gPlayer[0].unk4A, 19, 0, 0, 0);
+    i = func_8006D3B8(gPlayer[0].unk4A, 19, 0, 0, 0);
     gPlayer[0].unk38 = unk38;
     gPlayer[0].unk3E = unk3E;
 
-    if (spritenum_ > 0)
+    if (i > 0)
     {
-        setSprite(spritenum_, D_80137DE0->unk44, D_80137DE0->unk48, D_80137DE0->unk4C);
-        gpSprite[spritenum_].unk16 = spritenum;
+        setSprite(i, D_80137DE0->unk44, D_80137DE0->unk48, D_80137DE0->unk4C);
+        gpSprite[i].unk16 = spritenum;
     }
 }
 

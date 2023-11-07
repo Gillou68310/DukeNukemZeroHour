@@ -1716,7 +1716,6 @@ static void func_80014D6C(code0unkStruct10 *arg0, s16 arg1)
         f6 = arg0->unk8[arg1].unk4;
     }
 
-
     j = arg0->unk8[arg1].unk18;
     if (j != -1)
     {
