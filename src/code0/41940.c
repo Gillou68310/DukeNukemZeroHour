@@ -174,6 +174,7 @@ static void func_8004EBE4(s32 spritenum);
 static void func_80050480(s16, s16 spritenum);
 static void func_8004B2B0(s32 spritenum, s32, s32);
 static s32 func_8004364C(s32);
+static void func_800515A0(s16 sectnum);
 
 /*80040D40*/
 s32 func_80040D40(s32 x1, s32 y1, s32 x2, s32 y2)
@@ -3770,9 +3771,130 @@ static void func_8004A590(s32 spritenum)
     }
 }
 
-INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5618);
+typedef struct {
+    u16 unk0[16];
+} _41940UnkStruct4;
+static const _41940UnkStruct4 D_800E5618 = {1,2,58,64,65,66,67,70,71,72,10,120,302,4,305,301};
+
 /*8004AB6C*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004AB6C);
+void func_8004AB6C(s32 spritenum, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6)
+{
+    _41940UnkStruct4 sp20;
+    s16 sectnum;
+    s16 spritenum_;
+    s16 i, j, k, l;
+    s16 hitag, lotag;
+    s16 nexti;
+    SpriteType *spr2;
+    SpriteType *spr1;
+    WallType *wall;
+    s32 m, n;
+    s32 temp;
+
+    sp20 = D_800E5618;
+    sectnum = gpSprite[spritenum].sectnum;
+    hitag = gpSprite[spritenum].hitag;
+    lotag = gpSprite[spritenum].lotag;
+    spritenum_ = func_80058934(gpSprite[spritenum].x, gpSprite[spritenum].y, gpSprite[spritenum].z, sectnum, 72);
+
+    if (spritenum_ != -1)
+    {
+        spr1 = &gpSprite[spritenum_];
+        spr1->picnum = 1560;
+        spr1->cstat = 0x8000;
+        spr1->hitag = hitag;
+        spr1->lotag = lotag;
+
+        for (j = 0; j < ARRAY_COUNT(sp20.unk0); j++)
+        {
+            i = gHeadSpriteStat[sp20.unk0[j]];
+            while (i >= 0)
+            {
+                spr2 = &gpSprite[i];
+                nexti = gNextSpriteStat[i];
+                m = dist(spr1, spr2);
+                n = arg5;
+
+                if (sp20.unk0[j] == 305)
+                    m = m / 2;
+
+                /*FAKEMATCH*/
+                if (((temp = arg6 != 0) && (m < arg1)) ||
+                    ((m < arg1) && (canSee(spr2->x, spr2->y, spr2->z - 0x800, spr2->sectnum, spr1->x, spr1->y, spr1->z - 0xC00, spr1->sectnum) != 0)))
+                {
+                    if (m < (arg1 / 3))
+                    {
+                        arg5 += arg5 == arg4;
+                        n = arg4 + (krand() % (arg5 - arg4));
+                    }
+                    else if (m < ((arg1 * 2) / 3))
+                    {
+                        arg4 += arg4 == arg3;
+                        n = arg3 + (krand() % (arg4 - arg3));
+                    }
+                    else if (m < arg1)
+                    {
+                        arg3 += arg3 == arg2;
+                        n = arg2 + (krand() % (arg3 - arg2));
+                    }
+
+                    if ((gpSprite[i].picnum == 1293) || (gpSprite[i].picnum == 1300))
+                    {
+                        if (hitag != i)
+                            func_80047820(spritenum_, i, n);
+                    }
+                    else
+                    {
+                        if ((gpSprite[i].picnum == 1398) || (gpSprite[i].picnum == 1399))
+                        {
+                            if (gpSprite[i].statnum >= 301)
+                                gpSprite[i].unk2B = 1;
+                            else
+                                goto block_29;
+                        }
+                        else if ((gpSprite[i].picnum == 2002) || (gpSprite[i].picnum == 2005))
+                        {
+                            if (arg1 == 0x800)
+                                gpSprite[i].unk2B = 1;
+                            else
+                                goto block_29;
+                        }
+                        else if ((lotag != 21) || (gpSprite[spritenum].hitag != i))
+                        {
+                        block_29:
+                            func_80047820(spritenum_, i, n);
+                        }
+                    }
+                }
+                i = nexti;
+            }
+        }
+
+        func_800515A0(spr1->sectnum);
+        D_80199638 = 0;
+        for (i = 0; i < D_801A1978; i++)
+        {
+            k = gpSector[D_80138820[i]].wallptr + gpSector[D_80138820[i]].wallnum;
+            for (l = gpSector[D_80138820[i]].wallptr, wall = &gpWall[l]; l < k; l++, wall++)
+            {
+                if ((klabs_(wall->x - spr1->x) + klabs_(wall->y - spr1->y)) < arg1)
+                {
+                    s32 a, b;
+                    a = (((wall->x + gpWall[wall->point2].x) >> 1) + spr1->x) >> 1;
+                    b = (((wall->y + gpWall[wall->point2].y) >> 1) + spr1->y) >> 1;
+                    updateSector(a, b, &sectnum);
+                    if (sectnum >= 0)
+                    {
+                        if (canSee(a, b, spr1->z, sectnum, spr1->x, spr1->y, spr1->z, spr1->sectnum) != 0)
+                            func_8004CB3C(l);
+                    }
+                }
+
+            }
+        }
+        deleteSprite(spritenum_);
+    }
+}
 
 /*8004B2B0*/
 static void func_8004B2B0(s32 spritenum, s32 arg1, s32 arg2)
