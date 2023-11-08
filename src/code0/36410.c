@@ -213,19 +213,19 @@ void func_800360A0(s32 spritenum, s32 arg1)
 }
 
 /*800361F4*/
-void func_800361F4(s32 arg0)
+void func_800361F4(s32 spritenum, s32 arg1)
 {
     u16 *ptr;
     s32 unk84;
 
-    D_8011BC54 = &D_8019B940[D_80106D50[arg0]];
+    D_8011BC54 = &D_8019B940[D_80106D50[spritenum]];
     unk84 = D_8011BC54->unk84;
     if (unk84 != -1)
     {
         if ((intptr_t)D_800DD450[unk84] != -1)
         {
             ptr = D_800DD450[unk84][9];
-            audio_80007A44(((_36410UnkStruct1 *)&ptr[1])[0].sfxnum, arg0, ((_36410UnkStruct1 *)&ptr[1])[0].unk2);
+            audio_80007A44(((_36410UnkStruct1 *)&ptr[1])[0].sfxnum, spritenum, ((_36410UnkStruct1 *)&ptr[1])[0].unk2);
         }
     }
 }

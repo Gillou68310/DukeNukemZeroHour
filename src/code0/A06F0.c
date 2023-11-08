@@ -791,7 +791,7 @@ void func_800A0F84(void)
             }
 
             n = gHeadSpriteStat[305];
-            if (gMapNum == 0x12)
+            if (gMapNum == MAP_BRAINSTORM)
             {
                 i = gHeadSpriteStat[302];
                 while (i>=0)

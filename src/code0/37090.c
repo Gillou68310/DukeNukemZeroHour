@@ -1973,7 +1973,7 @@ static void func_8003B5F8(void)
     if (gPlayer[D_801B0820].unk45 != 0)
         D_8013B2D0[D_8012FCA0[D_801B0820]].unk6 = CLAMP_MAX((D_8013B2D0[D_8012FCA0[D_801B0820]].unk6+8), 0xFF);
 
-    if (gMapNum == 2)
+    if (gMapNum == MAP_NUCLEAR_WINTER)
     {
         if (gPlayer[D_801B0820].unk45 == 0)
         {

@@ -1681,7 +1681,7 @@ label1:
 
             if (arg1 == 100)
             {
-                if (gMapNum != 18)
+                if (gMapNum != MAP_BRAINSTORM)
                     sp12E = func_80045400(hitx, hity, hitz, hitsect, 5, n, 25, 20);
             }
             else
@@ -1728,7 +1728,7 @@ label1:
                             }
                             else
                             {
-                                if (gMapNum != 18)
+                                if (gMapNum != MAP_BRAINSTORM)
                                     func_8008E3E0(hitx, hity, hitz, hitsect, 42, 20);
                             }
 

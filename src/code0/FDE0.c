@@ -268,7 +268,7 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
                 if ((D_80106D50[spritenum] == -1) || ((D_8019B940[D_80106D50[spritenum]].unk0 & 0x10) == 0))
                 {
                     k = gpSector[sectnum].unk26;
-                    if (gMapNum == 21)
+                    if (gMapNum == MAP_ZERO_HOUR)
                         k = 200;
 
                     j = j + ((k - j) / 2);
