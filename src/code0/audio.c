@@ -813,7 +813,7 @@ static u32 audio_800075EC(u16 sfxnum, s16 spritenum, u8 restartflag)
         playernum = 0;
         spritenum1 = gPlayer[0].unk52 & 0x7FF;
         spritenum2 = func_80040D40(gpSprite[spritenum1].x, gpSprite[spritenum1].y,
-                                  gpSprite[spritenum].x, gpSprite[spritenum].y);
+                                   gpSprite[spritenum].x, gpSprite[spritenum].y);
     }
     else
     {
@@ -915,7 +915,6 @@ void audio_80007AB8(void)
     s16 i;
 
     u8 j, k, l, m, n;
-
 
     audio_80007FF4();
     n = 0;

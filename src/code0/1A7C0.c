@@ -1242,4 +1242,3 @@ void func_8001D238(s32 x, s32 y, u16 tileid)
         }
     }
 }
-

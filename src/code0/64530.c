@@ -2155,4 +2155,3 @@ void func_80069E50(void)
         i = nexti;
     }
 }
-

@@ -2721,7 +2721,7 @@ static void func_80046540(void)
                 {
                     j = 74;
                     gpSprite[i].unk18 = 2;
-                    goto test;
+                    goto label1;
                 }
                 else if ((D_80137DE0->unk86 == 121) && (D_8012F6E8 == 1))
                 {
@@ -2736,7 +2736,7 @@ static void func_80046540(void)
                 {
                     j = 97;
                     gpSprite[i].unk18 = 2;
-                    goto test;
+                    goto label1;
                 }
                 else if (D_80118248->picnum == 1280)
                 {
@@ -2794,7 +2794,7 @@ static void func_80046540(void)
                                                 do
                                                 {
                                                     gpSprite[spritenum].ang = (getAngle(gPlayer[0].xpos - gpSprite[i].x, gPlayer[0].ypos - gpSprite[i].y) - 0x400) & 0x7FF;
-                                                } while (0); //FAKEMATCH
+                                                } while (0); /*FAKEMATCH*/
                                                 gpSprite[spritenum].ang += (krand() & 0xFF) - 0x80;
                                             }
                                         }
@@ -2856,7 +2856,7 @@ static void func_80046540(void)
             gpSprite[i].unk18 = 1;
             D_80137DE0->unk0 |= 2;
 
-        test:
+        label1:
             D_80137DE0->unk86 = j | 0x8000;
         }
 
@@ -2905,7 +2905,7 @@ static void func_80046540(void)
                 }
             }
             unk86 = D_80137DE0->unk86;
-            if (((unk86 == 6) && (gpSprite[temp = i].unk1A == 43)) || //FAKEMATCH
+            if (((unk86 == 6) && (gpSprite[temp = i].unk1A == 43)) || /*FAKEMATCH*/
                 ((unk86 == 6) && (gpSprite[i].unk1A == 99)) ||
                 ((unk86 == 7) && (gpSprite[i].unk1A == 18)) ||
                 ((unk86 == 8) && (gpSprite[i].unk1A == 22)) ||
@@ -3074,9 +3074,9 @@ label2:
     D_8019B940[D_80106D50[spritenum2]].unk98 = 0xFF;
     lotag = gpSprite[spritenum1].lotag;
     cond2 = 0;
-    cond2 = ((lotag == 3) || (lotag == 4) || (lotag == 0x10) || (lotag == 5) ||
-            (lotag == 2) || (lotag == 6) || (lotag == 7) || (lotag == 0x16) ||
-            (lotag == 0x17) || (lotag == 0x2B) || (lotag == 0x1A));
+    cond2 = ((lotag == 3) || (lotag == 4) || (lotag == 16) || (lotag == 5) ||
+            (lotag == 2) || (lotag == 6) || (lotag == 7) || (lotag == 22) ||
+            (lotag == 23) || (lotag == 43) || (lotag == 26));
 
     if ((D_80106D50[spritenum2] != -1) && (gpSprite[spritenum2].cstat & 0x1000))
     {
@@ -3109,9 +3109,9 @@ label2:
                 for (i = 0; i < 4; i++)
                 {
                     k = func_8008E3E0(gpSprite[spritenum2].x + ((krand() & 0x3FF) - 0x200),
-                                            gpSprite[spritenum2].y + ((krand() & 0x3FF)- 0x200),
-                                            gpSprite[spritenum2].z,
-                                            gpSprite[spritenum2].sectnum, 38, 500);
+                                      gpSprite[spritenum2].y + ((krand() & 0x3FF)- 0x200),
+                                      gpSprite[spritenum2].z,
+                                      gpSprite[spritenum2].sectnum, 38, 500);
                     if (k != -1)
                         gpSprite[k].lotag = -1;
 
@@ -3717,16 +3717,9 @@ s32 func_800494DC(s32 spritenum1, s32 arg1, s32 spritenum2, s32 arg3)
         if (D_8012C470 >= 2)
         {
             lotag1 = gpSprite[spritenum2].lotag;
-            if (((lotag1 >= 3 && lotag1 < 5) ||
-                (lotag1 == 16) ||
-                (lotag1 == 5) ||
-                (lotag1 == 2) ||
-                (lotag1 >= 6 && lotag1 < 8)||
-                (lotag1 == 22) ||
-                (lotag1 == 2) ||
-                (lotag1 == 23) ||
-                (lotag1 == 17)) &&
-                !(krand() & 3))
+            if (((lotag1 == 3 || lotag1 == 4) || (lotag1 == 16) || (lotag1 == 5) ||
+                (lotag1 == 2) || (lotag1 == 6 || lotag1 == 7) || (lotag1 == 22) ||
+                (lotag1 == 2) || (lotag1 == 23) || (lotag1 == 17)) &&!(krand() & 3))
             {
                 func_8008E3E0(gpSprite[spritenum2].x, gpSprite[spritenum2].y,
                               gpSprite[spritenum2].z, gpSprite[spritenum2].sectnum, 42, 20);
@@ -4214,10 +4207,10 @@ static void func_8004B2B0(s32 spritenum, s32 arg1, s32 arg2)
     SpriteType *spr;
     s16 sectnum, spritenum_;
     s16 i, nexti;
-    s16 unk20, unk1E;
+    s16 hitag, lotag;
 
-    unk20 = gpSprite[spritenum].hitag;
-    unk1E = gpSprite[spritenum].lotag;
+    hitag = gpSprite[spritenum].hitag;
+    lotag = gpSprite[spritenum].lotag;
     sectnum = gpSprite[spritenum].sectnum;
     spritenum_ = func_80058934(gpSprite[spritenum].x, gpSprite[spritenum].y, gpSprite[spritenum].z, sectnum, 72);
 
@@ -4226,8 +4219,8 @@ static void func_8004B2B0(s32 spritenum, s32 arg1, s32 arg2)
         spr = &gpSprite[spritenum_];
         spr->picnum = 1560;
         spr->cstat = 0x8000;
-        spr->hitag = unk20;
-        spr->lotag = unk1E;
+        spr->hitag = hitag;
+        spr->lotag = lotag;
 
         i = gHeadSpriteStat[65];
         while (i >= 0)
@@ -5000,12 +4993,9 @@ s32 func_8004CB3C(s32 wallnum)
 /*8004CC90*/
 s32 func_8004CC90(s32 spritenum, s32 arg1, s32 arg2)
 {
-    if ((gpSprite[spritenum].statnum == 58)
-         && (((arg1 == 19) || (arg1 == 13))
-             || ((arg1 == 12) || (arg1 == 10))
-             || ((arg1 == 32) || (arg1 == 8))
-             || ((arg1 == 18) || (arg1 == 14))
-             || ((arg1 == 21) || (arg2 == 1560))))
+    if ((gpSprite[spritenum].statnum == 58) &&
+        ((arg1 == 19) || (arg1 == 13) || (arg1 == 12) || (arg1 == 10) || (arg1 == 32) ||
+            (arg1 == 8) || (arg1 == 18) || (arg1 == 14) || (arg1 == 21) || (arg2 == 1560)))
     {
         if (gpSprite[spritenum].hitag != 0)
         {

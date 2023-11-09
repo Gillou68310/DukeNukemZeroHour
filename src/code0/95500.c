@@ -4500,6 +4500,3 @@ static void func_8009F71C(s32 spritenum)
     if (spr->unk2B != 0xFF)
         func_80096494(spritenum, 20000, 1500);
 }
-
-
-

@@ -2387,4 +2387,3 @@ static void func_8003E8D0(void)
         }
     }
 }
-

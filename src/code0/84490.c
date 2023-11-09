@@ -108,7 +108,7 @@ static void func_80083908(s32 arg0)
             gDPSetTextureLUT(D_8012F6F8++, G_TT_NONE);
             gDPSetRenderMode(D_8012F6F8++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
             gDPSetCombineLERP(D_8012F6F8++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0,
-                               PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0);
+                              PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0);
             return;
         }
         else
@@ -196,8 +196,8 @@ static void func_80083C40(void)
                 {
                     gDPPipeSync(D_8012F6F8++);
                     gDPLoadTextureBlock(D_8012F6F8++, D_8012EB50[i].texture, G_IM_FMT_CI, G_IM_SIZ_8b, D_8012EB50[i].width, D_8012EB50[i].height, 0,
-                                                                        G_TX_MIRROR | G_TX_WRAP, G_TX_MIRROR | G_TX_WRAP,
-                                                                        G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+                                                                             G_TX_MIRROR | G_TX_WRAP, G_TX_MIRROR | G_TX_WRAP,
+                                                                             G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
                 }
             }
             D_80138810 = D_8012EB50[i].texture;

@@ -359,7 +359,7 @@ static void func_8008736C(void)
     s16 i;
 
     gSPClearGeometryMode(gpDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN |
-                                           G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
+                                          G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
 
     gSPSetGeometryMode(gpDisplayList++, G_ZBUFFER | G_SHADE | G_SHADING_SMOOTH);
 

@@ -134,4 +134,3 @@ void func_80035794(s16 playernum)
         break;
     }
 }
-

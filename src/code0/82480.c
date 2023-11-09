@@ -724,4 +724,3 @@ void func_8008383C(void)
         D_8012FD8C->unk54 += D_8012FD8C->unk60;
     }
 }
-

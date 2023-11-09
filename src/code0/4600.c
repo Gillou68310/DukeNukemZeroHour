@@ -68,7 +68,7 @@ static f32 func_80003A74(f32 arg0, f32 arg1)
 /*80003B00*/
 static f32 func_80003B00(f32 arg0, f32 arg1, f32 arg2, f32 arg3)
 {
-    return -func_80029FE0(arg3 - arg1, arg2 - arg0) + 4.712388980385;
+    return -func_80029FE0(arg3 - arg1, arg2 - arg0) + 4.712388980385/*(PI*1.5)*/;
 }
 
 /*80003B4C*/
@@ -98,7 +98,7 @@ void func_800043F4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s16 arg4)
     s32 i, j;
 
     D_8012FC40 = 1;
-    f1 = (klabs(D_8016A15C) * 0.7999999999999999) + 0.6283185307179999;
+    f1 = (klabs(D_8016A15C) * 0.7999999999999999)/*(1/1.25)*/ + 0.6283185307179999/*(PI/5)*/;
 
     if (sinf(D_801AC8E0) > 0.0f)
         f2 = sinf(D_801AC8E0);

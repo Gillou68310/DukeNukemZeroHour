@@ -333,4 +333,3 @@ void func_80040890(void)
         i = gNextSpriteStat[i];
     }
 }
-

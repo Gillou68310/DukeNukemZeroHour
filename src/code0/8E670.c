@@ -276,4 +276,3 @@ void func_8008E04C(s16 playernum)
     if (D_8012F6E4[gPlayer[playernum].unk4C].unkB == 5)
         gPlayer[playernum].unk48 = 0;
 }
-
