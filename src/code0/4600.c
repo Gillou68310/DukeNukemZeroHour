@@ -5,9 +5,10 @@
 #include "code0/code0.h"
 
 /*.text*/
-STATIC void func_80003B4C(f32, f32, s16);
+static void func_80003B4C(f32, f32, s32 sectnum);
 static void func_80004CFC(u16 sectnum);
 static void func_80004F14(u16 sectnum);
+static s8 func_800042D8(s32, f32, f32);
 
 /*.data*/
 /*800BD430*/ static u16 D_800BD430[9] = {0x1, 0x2, 0x4, 0x8, 0x10, 0x20, 0x40, 0x80, 0x100};
@@ -72,10 +73,103 @@ static f32 func_80003B00(f32 arg0, f32 arg1, f32 arg2, f32 arg3)
 }
 
 /*80003B4C*/
-INCLUDE_ASM("nonmatchings/src/code0/4600", func_80003B4C);
+static void func_80003B4C(f32 arg0, f32 arg1, s32 sectnum)
+{
+    s32 sp14;
+    f32 f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12;
+    s32 i, j, k;
+    s16 cond;
+
+    sp14 = k = D_801A1988;
+    if ((gpSector[sectnum].floorheinum != 0) || (gpSector[sectnum].floorz > D_80199640))
+        D_8012BBD0[sectnum >> 3] |= D_800BD430[sectnum & 7];
+
+    if ((gpSector[sectnum].ceilingheinum != 0) || ((gpSector[sectnum].ceilingz < D_80199640)))
+        D_801A2630[sectnum >> 3] |= D_800BD430[sectnum & 7];
+
+    D_80197D78[sectnum >> 3] |= D_800BD430[sectnum & 7];
+
+    f1 = D_801AE9C8 + (sinf(arg0) * 5000.0f);
+    f2 = D_801AE9C8 + (sinf(arg1) * 5000.0f);
+    f3 = D_8012D210 + (cosf(arg0) * 5000.0f);
+    f4 = D_8012D210 + (cosf(arg1) * 5000.0f);
+
+    j = gpSector[sectnum].wallptr + gpSector[sectnum].wallnum;
+    for (i = gpSector[sectnum].wallptr; i < j; i++)
+    {
+        if (!(D_80199758[i >> 3] & D_800BD430[i & 7]))
+        {
+            f32 ft1, ft2, ft3, ft4;
+            f5 = D_801AE9C8;
+            f6 = gpWall[i].x;
+            f7 = D_8012D210;
+            f8 = gpWall[i].y;
+            f9 = gpWall[gpWall[i].point2].x;
+            f10 = gpWall[gpWall[i].point2].y;
+
+            ft1 = f6 - f5;
+            ft2 = f10 - f7;
+            ft3 = f9 - f5;
+            ft4 = f8 - f7;
+            if (((ft1) * (ft2)) < ((ft3) * (ft4)))
+            {
+                D_80199758[i >> 3] |= D_800BD430[i & 7];
+                continue;
+            }
+
+            if (((((f5 - f6) * (f4 - f8)) < ((f2 - f6) * (f7 - f8))) || (!(((f5 - f6) * (f3 - f8)) < ((f1 - f6) * (f7 - f8)))))  &&
+                ((((f5 - f9) * (f4 - f10)) < ((f2 - f9) * (f7 - f10))) || (!(((f5 - f9) * (f3 - f10)) < ((f1 - f9) * (f7 - f10))))) &&
+                (!(((f5 - f6) * (f4 - f8)) < ((f2 - f6) * (f7 - f8))) || !(((f5 - f6) * (f3 - f8)) < ((f1 - f6) * (f7 - f8))) ||
+                    (((f5 - f9) * (f4 - f10)) < ((f2 - f9) * (f7 - f10))) || (((f5 - f9) * (f3 - f10)) < ((f1 - f9) * (f7 - f10)))))
+            {
+                continue;
+            }
+
+            D_8012C7A0[i >> 3] |= D_800BD430[i & 7];
+            if ((gpWall[i].nextsector == -1) ||
+                ((gpSector[gpWall[i].nextsector].ceilingz == gpSector[gpWall[i].nextsector].floorz) &&
+                    (gpSector[gpWall[i].nextsector].ceilingheinum == gpSector[gpWall[i].nextsector].floorheinum)))
+            {
+                D_80199758[i >> 3] |= D_800BD430[i & 7];
+                continue;
+            }
+            cond = 1;
+            f12 = func_80003B00(f9, f10, D_801AE9C8, D_8012D210);
+            f11 = func_80003B00(f6, f8, D_801AE9C8, D_8012D210);
+            if (func_80003A74(arg0, f12) < 0.0f)
+            {
+                f12 = arg0;
+                cond = 0;
+            }
+            if (func_80003A74(arg1, f11) > 0.0f)
+            {
+                f11 = arg1;
+                cond = 0;
+            }
+
+            if (cond != 0)
+                D_80199758[i >> 3] |= D_800BD430[(i & 7)];
+
+            if (func_800042D8(i, f12, f11) == 0)
+                continue;
+
+            D_80169D40[D_801A1988] = i;
+            D_800FEBA0[D_801A1988] = f12;
+            D_80168D20[D_801A1988] = f11;
+            D_801A1988++;
+            k += 1;
+
+            if (D_801A1988 >= 0x200)
+                return;
+        }
+    }
+
+    for (i = sp14; i < k; i++)
+        func_80003B4C(D_800FEBA0[i], D_80168D20[i], gpWall[D_80169D40[i]].nextsector);
+}
 
 /*800042D8*/
-s32 func_800042D8(s32 arg0, f32 arg1, f32 arg2)
+static s8 func_800042D8(s32 arg0, f32 arg1, f32 arg2)
 {
     s32 i;
 
