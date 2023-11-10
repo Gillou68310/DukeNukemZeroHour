@@ -128,6 +128,7 @@ typedef struct
 /*800DF1B4*/ EXTERN_DATA s16 D_800DF1B4[9];
 /*800DF1C0*/ EXTERN_DATA STATIC char *D_800DF1C0[4];
 /*800DF1D0*/ EXTERN_DATA s16 D_800DF1D0[24][3];
+/*800DF260*/ EXTERN_DATA STATIC s32 D_800DF260[32];
 
 /*.comm*/
 /*800FE9D4*/ s32 D_800FE9D4;
@@ -8853,8 +8854,125 @@ static void func_80055DDC(s32 spritenum)
         changeSpriteStat(spritenum, 1);
 }
 
+#ifdef NON_MATCHING
+/*80055EC0*/
+void func_80055EC0(s32 spritenum, s32 arg1)
+{
+    s32 i;
+    s32 unk9E;
+
+    if (gMapNum == MAP_BRAINSTORM)
+    {
+        audio_80007A44(704, spritenum, 40000);
+        changeSpriteStat(spritenum, 320);
+        gpSprite[spritenum].cstat |= 0x800;
+        gpSprite[spritenum].unk25 = 31;
+        D_801A1958.enemies_killed++;
+    }
+
+    if (gMapNum == MAP_UP_SHIP_CREEK)
+    {
+        if (gpSprite[spritenum].hitag == 0x10E1)
+            func_8004A4D4(&gpSprite[spritenum], 2189, 1);
+    }
+
+    if (D_80137DE0->unk70 != 0)
+    {
+        MusHandleStop(D_80137DE0->unk70, 0);
+        D_80137DE0->unk70 = 0;
+    }
+
+    if (D_80137DE0->unk6C != 0)
+    {
+        MusHandleStop(D_80137DE0->unk6C, 0);
+        D_80137DE0->unk6C = 0;
+    }
+
+    if (gMapNum != MAP_BRAINSTORM)
+    {
+        if ((D_80137DE0->unk84 != -1) && (gpSprite[spritenum].unk2B != 2))
+            func_80056600(spritenum);
+
+        D_80137DE0->unk99 = 0;
+        i = func_8005A240(spritenum);
+        unk9E = D_80137DE0->unk9E;
+        if ((unk9E != 15) & (unk9E != 9))
+        {
+            if (!(D_80137DE0->unk0 & 0x20000))
+                func_8006D3B8(spritenum, 100, 0, 0, 0);
+        }
+
+        if ((unk9E == 19) || (unk9E == 32) ||
+            (unk9E == 18) || (unk9E == 8) ||
+            (unk9E == 10) || (unk9E == 13) ||
+            (unk9E == 12) || (unk9E == 14) ||
+            (unk9E == 37) || (D_80137DE0->unk9F >> 7) || (i == 2))
+        {
+            if ((i != 1) || (D_80118248->picnum != 1285))
+            {
+                if ((i == 2) && (D_801CA14C[gMapNum].unk0 == 3))
+                    func_8008E3E0(gpSprite[spritenum].x, gpSprite[spritenum].y,
+                                  gpSprite[spritenum].z, gpSprite[spritenum].sectnum, 0x38, 0);
+
+                func_80058E44(spritenum);
+                if ((D_800DEF10 != 0) && ((D_80137DE0->unk84 >= 38) && (D_80137DE0->unk84 < 44)))
+                    func_8005E2B0(spritenum);
+                else
+                    func_8004BD24(spritenum);
+                return;
+            }
+        }
+        else
+        {
+            D_80137DE0->unk44 = 0;
+            if (((D_80137DE0->unk84 == 1) || (D_80137DE0->unk84 == 9) || (D_80137DE0->unk84 == 17)) &&
+                ((D_80137DE0->unk86 == 44) || (D_80137DE0->unk86 == 40) || (D_80137DE0->unk86 == 36)))
+            {
+                func_80035A98(spritenum, 0);
+                changeSpriteStat(spritenum, 53);
+                gpSprite[spritenum].unk18 = 0;
+                gpSprite[spritenum].unk1A = 0;
+                if ((unk9E == 21) && (gpSprite[spritenum].picnum != 1285))
+                {
+                    gpSprite[spritenum].cstat |= 0x800;
+                    gpSprite[spritenum].unk25 = 31;
+                }
+            }
+
+            if ((unk9E != 0) || (D_8010A940->unk2[2] != 0))
+            {
+                if ((D_80137DE0->unk98 != 0xFF))
+                {
+                    s16 tmp;
+                    tmp = D_80137DE0->unk84;
+                    if ((D_80137DE0->unk98 < 19))
+                    {
+                        arg1 = D_800DF260[tmp];
+                        if (arg1 != -1)
+                        {
+                            D_80137DE0->unk44 = 1;
+                            D_80137DE0->unk48 = arg1;
+                        }
+                    }
+                }
+            }
+        }
+
+        func_80035A98(spritenum, 0);
+        changeSpriteStat(spritenum, 53);
+        gpSprite[spritenum].unk18 = 0;
+        gpSprite[spritenum].unk1A = 0;
+        if (unk9E == 21)
+        {
+            gpSprite[spritenum].cstat |= 0x800;
+            gpSprite[spritenum].unk25 = 0x1F;
+        }
+    }
+}
+#else
 /*80055EC0*/
 INCLUDE_ASM("nonmatchings/src/code0/41940", func_80055EC0);
+#endif
 
 /*800563D4*/
 void func_800563D4(s32 spritenum)

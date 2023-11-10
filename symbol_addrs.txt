@@ -5599,6 +5599,7 @@ D_800DF1AC                         = 0x800DF1AC; // type:data     size:0x8      
 D_800DF1B4                         = 0x800DF1B4; // type:data     size:0x12                              (global, .data,   src/code0/41940.c)
 D_800DF1C0                         = 0x800DF1C0; // type:data     size:0x10                              (local,  .data,   src/code0/41940.c)
 D_800DF1D0                         = 0x800DF1D0; // type:data     size:0x90                              (global, .data,   src/code0/41940.c)
+D_800DF260                         = 0x800DF260; // type:data     size:0x80                              (local,  .data,   src/code0/41940.c)
 D_800DF2E0                         = 0x800DF2E0; // type:data     size:0x4                               (local,  .data,   src/code0/59D40.c)
 D_800DF2E4                         = 0x800DF2E4; // type:data     size:0x4                               (local,  .data,   src/code0/59D40.c)
 D_800DF2E8                         = 0x800DF2E8; // type:data     size:0x4                               (local,  .data,   src/code0/59D40.c)
