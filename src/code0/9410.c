@@ -417,8 +417,7 @@ static void func_80009314(u8 playernum)
 
     fog->scale[0].fr = MAX((fog->scale[0].nr + 5), fog->scale[0].fr);
     gDPSetFogColor(gpDisplayList++, fog->color[0].r, fog->color[0].g, fog->color[0].b, 0);
-    gSPFogFactor(gpDisplayList++, (0x1F400 / (fog->scale[0].fr - fog->scale[0].nr)),
-                                  (((0x1F4-fog->scale[0].nr) << 8) / (fog->scale[0].fr - fog->scale[0].nr)));
+    gSPFogPosition(gpDisplayList++, fog->scale[0].nr, fog->scale[0].fr);
 }
 
 /*80009998*/
