@@ -1,13 +1,20 @@
+import struct
+from ctypes import cdll, pointer, create_string_buffer
+
 class EDL:
-    tbl1 = [0,1,2,3,4,5,6,7,8,0xA,0xC,0xE,0x10,0x14,0x18,0x1C,0x20,0x28,0x30,0x38,0x40,0x50,0x60,0x70,0x80,0xA0,0xC0,0xE0,0xFF,0,0,0]
-    tbl2 = [0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0,0,0,0]
-    tbl3 = [0,1,2,3,4,6,8,0xC,0x10,0x18,0x20,0x30,0x40,0x60,0x80,0xC0,0x100,0x180,0x200,0x300,0x400,0x600,0x800,0xC00,0x1000,0x1800,0x2000,0x3000,0x4000,0x6000]
-    tbl4 = [0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,0xA,0xA,0xB,0xB,0xC,0xC,0xD,0xD,0,0]
+    def __init__(self, debug=False):
+        self.tablenum = 0
+        self.debug = debug
 
-    def __init__():
-        pass
+        self._libc = cdll.LoadLibrary("tools/libEDL/build/libEDL.so")
+        self._p_buffer = pointer(create_string_buffer(1048576))
 
-    def _grab(data, bits=0, mode='read', order='big'):
+        self._tbl1 = [0,1,2,3,4,5,6,7,8,0xA,0xC,0xE,0x10,0x14,0x18,0x1C,0x20,0x28,0x30,0x38,0x40,0x50,0x60,0x70,0x80,0xA0,0xC0,0xE0,0xFF,0,0,0]
+        self._tbl2 = [0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0,0,0,0]
+        self._tbl3 = [0,1,2,3,4,6,8,0xC,0x10,0x18,0x20,0x30,0x40,0x60,0x80,0xC0,0x100,0x180,0x200,0x300,0x400,0x600,0x800,0xC00,0x1000,0x1800,0x2000,0x3000,0x4000,0x6000]
+        self._tbl4 = [0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,0xA,0xA,0xB,0xB,0xC,0xC,0xD,0xD,0,0]
+
+    def _grab(self, data, bits=0, mode='read', order='big'):
         """Iterates stream data using either 'big' or 'little' endian order.
         The mode can be either 'read' or 'peek'.
         By default, n bits are read off of the stream and the stream is advanced.
@@ -27,7 +34,7 @@ class EDL:
                     b>>=bits        # bitfield without said bits
                 bits, mode = yield v  # yield the value, retrieving next #bits
 
-    def _fillBuffer(buffer, num , count, size):
+    def _fillBuffer(self, buffer, num, count, size):
         """Returns a buffer filled with bitdata.
         Original entry format:
             000F    bitcount
@@ -37,6 +44,9 @@ class EDL:
             0070    backtrack bitcount
             FF80    data
             """
+        self.tablenum += 1
+        self._dump_table("what", buffer, num , 4)
+
         # initialize buffers
         when = list(bytes(count))
         samp = list(bytes(count))
@@ -62,6 +72,9 @@ class EDL:
                     when[i]=x
                     i+=1
                     n[y]+=1
+        
+        self._dump_table("when", when, count, 4)
+
         # set counts in the buffer
         i=0
         for y in range(1,16):
@@ -69,6 +82,8 @@ class EDL:
                 buffer[i]=y
                 i+=1
         del n
+
+        self._dump_table("order", buffer, count, 4)
 
         # generate bitsample table
         z, back = buffer[0], 0
@@ -89,6 +104,8 @@ class EDL:
                 if y==1:
                     break
 
+        self._dump_table("samples", samp, count, 4)
+
         # fills temp buffer with formatted bitsamples
         for x in range(count):
             back = buffer[x]
@@ -104,6 +121,9 @@ class EDL:
                 y = (1<<size)-1
                 z = samp[x]&y
                 b[z] = buffer[x]
+
+        self._dump_table("table1", table, 1<<size, 2)
+        self._dump_table("buf", b, 1<<size, 1)
 
         # Read coded types > size
         z, x = 0, 0
@@ -121,6 +141,8 @@ class EDL:
         if z>0x1FF:
             return None
 
+        self._dump_table("table2", table, 1<<size, 2)
+
         # Aliased entries
         back = 1<<size
         for x in range(count):
@@ -137,11 +159,13 @@ class EDL:
                 i = (z>>4)&7
                 if (y>>i):
                     break
+
+        self._dump_table("table3", table, (1<<size)+0x200, 2)
         del samp
         del when
         return table
 
-    def header(data):
+    def _header(self, data):
         """Retrieves format and swapping from header.
         Returns type(0-2), endianness (str), compressed size, decompressed size"""
         name = data[0:3].decode(errors='ignore')
@@ -159,17 +183,17 @@ class EDL:
         dec_s = int.from_bytes(data[8:12],byteorder=endian)
         return data_t, endian, cmp_s, dec_s
 
-    def decEDL0(data, cmp_s, dec_s, *args):
+    def _decEDL0(self, data, cmp_s, dec_s, *args):
         """Store: copy data to output.
         Data should be actual start of compressed data."""
         sz = dec_s if cmp_s>dec_s else cmp_s
         return data[0:sz]
 
-    def decEDL1(data, cmp_s, dec_s, endian, *args):
+    def _decEDL1(self, data, cmp_s, dec_s, endian, *args):
         """LZW variant: generate bittables and decompress."""
         output = bytearray()
         # initialize the data stream
-        d = EDL._grab(data, order=endian)
+        d = self._grab(data, order=endian)
         next(d)
         stack = 0
 
@@ -192,7 +216,7 @@ class EDL:
                         # count nonzero entries
                         if stack:
                             c+=1
-                    large = EDL._fillBuffer(buf,x,c,10)
+                    large = self._fillBuffer(buf,x,c,10)
                 # small table
                 x = d.send((9, 'read'))
                 if x:
@@ -207,7 +231,7 @@ class EDL:
                         # count nonzero entries
                         if stack:
                             c+=1
-                    small = EDL._fillBuffer(buf,x,c,8)
+                    small = self._fillBuffer(buf,x,c,8)
                 # write data using tables
                 x = 0
                 while x!=0x100:
@@ -228,10 +252,10 @@ class EDL:
                     elif x>0x100:   # Copy previous
                         # Determine length
                         l = 0
-                        z = EDL.tbl2[x-0x101]
+                        z = self._tbl2[x-0x101]
                         if z:
                             l = d.send((z, 'read'))
-                        l+= EDL.tbl1[x-0x101] + 3
+                        l+= self._tbl1[x-0x101] + 3
                         # Determine backtrack
                         x = small[d.send((8, 'peek'))]
                         if not (x&0xF):
@@ -247,14 +271,14 @@ class EDL:
                         # Position from next sample
                         p = 0
                         x>>=7
-                        z = EDL.tbl4[x]
+                        z = self._tbl4[x]
                         if z:
                             p = d.send((z, 'read'))
-                        p+= EDL.tbl3[x] + 1
+                        p+= self._tbl3[x] + 1
                         # Copy and append l bytes from cur-p
                         p = len(output)-p
                         for i in range(l):
-                            v = output[p+i] if (0<(p+i)<len(output)) else 0
+                            v = output[p+i] if (0<=(p+i)<len(output)) else 0
                             output.append(v)
             else:
                 # direct write
@@ -267,17 +291,39 @@ class EDL:
                 break
 
         return output
+    
+    def decompress_libEDL(self, data):
+        data_t, endian, cmp_s, dec_s = self._header(data)
+        if data_t == -1:
+            return data
+        ret = self._libc.decompressEDL(data, self._p_buffer)
+        assert(ret == 0)
+        return self._p_buffer.contents[0:dec_s]
 
-def decompressEDL(data):
-    data_t, endian, cmp_s, dec_s = EDL.header(data)
-    if data_t==0:
-        d = EDL.decEDL0(data[12:12+cmp_s], cmp_s, dec_s, endian)
-    if data_t==1:
-        d = EDL.decEDL1(data[12:12+cmp_s], cmp_s, dec_s, endian)
-        assert(len(d) == dec_s)
-    elif data_t==-1:
-        return data
-    else:
-        print("\tThis feature not yet implemented!\n",('warning'))
-        return
-    return d
+    def decompress_pyEDL(self, data):
+        data_t, endian, cmp_s, dec_s = self._header(data)
+        if data_t == 0:
+            d = self._decEDL0(data[12:12+cmp_s], cmp_s, dec_s, endian)
+        if data_t == 1:
+            d = self._decEDL1(data[12:12+cmp_s], cmp_s, dec_s, endian)
+            assert(len(d) == dec_s)
+        elif data_t == -1:
+            return data
+        else:
+            print("This feature not yet implemented!")
+            return
+        return d
+    
+    def _dump_table(self, name, data, size, bytecount):
+        if not self.debug:
+            return
+        f = open(name+f"{self.tablenum:04x}"+".bin", 'wb')
+        for i in range(0, size):
+            if bytecount == 1:
+                d = struct.pack('>B', data[i])
+            elif bytecount == 2:
+                d = struct.pack('>H', data[i])
+            elif bytecount == 4:
+                d = struct.pack('>I', data[i])
+            f.write(d)
+        f.close()

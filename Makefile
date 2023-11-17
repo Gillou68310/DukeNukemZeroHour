@@ -63,6 +63,7 @@ N64CKSUM   := $(PYTHON) tools/scripts/n64cksum.py
 SPLAT_YAML := dukenukemzerohour.yaml
 SPLAT      := $(PYTHON) tools/splat/split.py $(SPLAT_YAML)
 DIFF       := diff
+EXTRACT	   := $(PYTHON) tools/scripts/extract_assets.py
 
 CROSS    := mips-linux-gnu-
 AS       := tools/gcc_2.7.2/$(DETECTED_OS)/as
@@ -162,6 +163,10 @@ setup: distclean split
 
 split:
 	$(V)$(SPLAT)
+
+extract:
+	make -C tools/libEDL
+	$(V)$(EXTRACT)
 	
 compare:
 	$(V)$(PYTHON) tools/scripts/first_diff.py
@@ -214,7 +219,7 @@ endif
 
 ### Make Settings ###
 
-.PHONY: all clean distclean test setup split
+.PHONY: all clean distclean setup split compare extract
 
 # Remove built-in implicit rules to improve performance
 MAKEFLAGS += --no-builtin-rules

@@ -31,8 +31,8 @@ rom:0x302F4 symbol:D_800D52E0 reloc:MIPS_LO16 addend:-0x1400
 rom:0x11B80 symbol:D_800D52E0 reloc:MIPS_HI16 addend:-0x1400
 rom:0x11B88 symbol:D_800D52E0 reloc:MIPS_LO16 addend:-0x1400
 
-rom:0x81DC0 symbol:D_800E0B60 reloc:MIPS_HI16 addend:-0x101
-rom:0x81DC8 symbol:D_800E0B60 reloc:MIPS_LO16 addend:-0x101
+rom:0x81DC0 symbol:_table2 reloc:MIPS_HI16 addend:-0x101
+rom:0x81DC8 symbol:_table2 reloc:MIPS_LO16 addend:-0x101
 
-rom:0x81E24 symbol:D_800E0B40 reloc:MIPS_HI16 addend:-0x101
-rom:0x81E2C symbol:D_800E0B40 reloc:MIPS_LO16 addend:-0x101
+rom:0x81E24 symbol:_table1 reloc:MIPS_HI16 addend:-0x101
+rom:0x81E2C symbol:_table1 reloc:MIPS_LO16 addend:-0x101

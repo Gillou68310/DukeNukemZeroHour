@@ -1,4 +1,5 @@
 #include "common.h"
+#include "math.h"
 #include "code0/main.h"
 #include "code0/pragmas.h"
 #include "code0/FDE0.h"
@@ -18,9 +19,6 @@ typedef struct {
     Color unk0;
     Color unk1;
 } _FDE0UnkStruct1;
-
-/*TODO: include math.h from libkmc*/
-double sqrt(double);
 
 /*.data*/
 /*800BD760*/

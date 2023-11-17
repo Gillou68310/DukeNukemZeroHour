@@ -5,7 +5,7 @@
 #include "code0/code0.h"
 #include "code1/code1.h"
 
-/*TODO: include string.h from libkmc instead of libultra*/
+/*TODO: from libkmc*/
 s32 strcmp(const char *, const char *);
 
 #define CONTROLLER_EEPROM_LONG_READ 1

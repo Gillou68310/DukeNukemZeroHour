@@ -9,6 +9,5 @@ tools\debugger\win32\mupen64plus\mupen64plus-ui-console.exe ^
 --rsp mupen64plus-rsp-hle.dll ^
 --emumode 0 ^
 --windowed ^
---resolution 320x240 ^
 --gdbstub 4600 ^
 build\dukenukemzerohour.z64

@@ -34,7 +34,8 @@ def get_symbols_from_subsegment(subsegname, type, segment):
     return symbols
 
 class TileInfo:
-    def __init__(self, data):
+    def __init__(self, data, num):
+        self.num = num
         self.fileoff, self.ramaddr, self.picanm, self.sizex, \
         self.sizey, self.filesize, self.dimx, self.dimy, \
         self.flags, self.tileid \
@@ -123,8 +124,10 @@ def extract_tiles(rom):
 
     tiles = []
     tiles_table = rom[symbols[0].rom:symbols[0].rom_end]
+    j = 0
     for i in range(0, len(tiles_table), 0x1C):
-        tiles.append(TileInfo(tiles_table[i:i+0x1C]))
+        tiles.append(TileInfo(tiles_table[i:i+0x1C],j))
+        j += 1
 
     # Get tiles data
     tile_segment = get_segment('files/tiles', all_segments)
@@ -136,9 +139,15 @@ def extract_tiles(rom):
 
     # Extract tiles
     bar = tqdm.tqdm(tiles, total=len(tiles))
+
+    _edl = edl.EDL()
     for tile in bar:
         bar.set_description("Extracting tiles")
-        d = edl.decompressEDL(tiles_data[tile.fileoff:tile.fileoff+tile.filesize])
+        d = _edl.decompress_libEDL(tiles_data[tile.fileoff:tile.fileoff+tile.filesize])
+        d1 = _edl.decompress_pyEDL(tiles_data[tile.fileoff:tile.fileoff+tile.filesize])
+
+        if d != d1:
+            print("EDL decompress mismatch for tileid: " + str(tile.tileid) + " tilenum: " +  str(tile.num) + " offset: " +  str(tile.fileoff))
 
         if len(d) == 32:
             # CI4 Palettes

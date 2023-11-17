@@ -1,9 +1,11 @@
 #include "common.h"
+#ifndef LIBEDL
 #include "code0/main.h"
 #include "code0/4600.h"
 #include "code0/cache1d.h"
 #include "code0/edl.h"
 #include "code1/code1.h"
+#endif
 
 typedef struct
 {
@@ -112,6 +114,7 @@ static s8 _table4[36] = {
     8, 8, 9, 9, 0xA, 0xA, 0xB, 0xB, 0xC, 0xC, 0xD, 0xD, 0, 0, 0, 0, 0, 0,
 };
 
+#ifndef LIBEDL
 /*800E0BE0*/
 static s32 D_800E0BE0 = 0;
 
@@ -163,6 +166,7 @@ static edlUnkStruct1 D_800E0D18[32] = {
     { NULL, NULL, NULL, NULL },
     { NULL, NULL, NULL, NULL },
 };
+#endif
 
 /*comm*/
 /*8012CD90*/ u32 _what[288] ALIGNED(16);
@@ -200,6 +204,12 @@ static void decodeEDL0(EDLInfo *info)
     }
 }
 
+#if SYS_ENDIAN == SYS_BIG_ENDIAN
+#define SWAP32(A) A
+#else
+#define SWAP32(A) swap(info, A)
+#endif
+
 #define GET_BITS_(OUTVAR,BITCOUNT,M) \
     { \
     count -= BITCOUNT; \
@@ -207,7 +217,7 @@ static void decodeEDL0(EDLInfo *info)
     { \
         OUTVAR = data; \
         data = next; \
-        next = *in++; \
+        next = SWAP32(*in++); \
         OUTVAR = (OUTVAR + (data << (count + BITCOUNT))) & ((M<<BITCOUNT)-1); \
         data >>= -count; \
         count += 0x20; \
@@ -268,8 +278,8 @@ static void decodeEDL1(EDLInfo *info)
     }
 
     in = (s32 *)src;
-    data = *in++;
-    next = *in++;
+    data = SWAP32(*in++);
+    next = SWAP32(*in++);
     out = info->dst;
 
     count = 32;
@@ -310,9 +320,10 @@ static void decodeEDL1(EDLInfo *info)
                 s = j;
                 if (j != 0)
                 {
-                    for (k = 1; k < 0x21; k++)
+                    for (k = 1; k < ARRAY_COUNT(number); k++)
                         number[k] = 0;
 
+                    /*iterate to grab entries*/
                     k = 0;
                     do
                     {
@@ -603,7 +614,7 @@ static s32 getEDLDecompressedSize(u8 *src)
     EDLInfo info;
 
     info.src = src;
-    info.sys_endian = BYTE_ORDER;
+    info.sys_endian = SYS_ENDIAN;
     parseEDLheader(&info);
     if (info.result == 0)
         return info.dsize;
@@ -617,7 +628,7 @@ s32 decompressEDL(void *src, void *dst)
     EDLInfo info;
 
     info.src = src;
-    info.sys_endian = BYTE_ORDER;
+    info.sys_endian = SYS_ENDIAN;
     info.dst = dst;
     decodeEDL(&info);
     return info.result;
@@ -634,6 +645,7 @@ static s32 isEDL(u8 *src)
     return info.result != -3;
 }
 
+#ifndef LIBEDL
 /*80081600*/
 static void _decompressEDL(u8 **handle, u8 *src, u8 *dst)
 {
@@ -649,7 +661,7 @@ static void _decompressEDL(u8 **handle, u8 *src, u8 *dst)
         alloCache(handle, dsize, &gCacheLock[1]);
 
     info.dst = *handle;
-    info.sys_endian = BYTE_ORDER;
+    info.sys_endian = SYS_ENDIAN;
     decodeEDL(&info);
 }
 
@@ -717,3 +729,4 @@ u8 *edl_80081840(s16 id, s16 off)
     s32 *offset = D_800E0D18[id].offset;
     return *D_800E0D18[id].handle + offset[off];
 }
+#endif

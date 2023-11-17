@@ -1,4 +1,5 @@
 #include "common.h"
+#include "string.h"
 #include "code0/main.h"
 #include "code0/audio.h"
 #include "code0/graphics.h"
@@ -23,9 +24,8 @@
 #include "code1/EB300.h"
 #include "static/mapinfo.h"
 
-/*TODO: include string.h from libkmc instead of libultra*/
+/*TODO: from libkmc*/
 char *strcpy(char *, const char *);
-size_t strlen(const char *);
 
 /*.data*/
 /*800E18D0*/
