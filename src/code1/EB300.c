@@ -4,6 +4,7 @@
 #include "code0/audio.h"
 #include "code0/edl.h"
 #include "code0/debug.h"
+#include "code0/4590.h"
 #include "code0/6ACA0.h"
 #include "code0/7F6A0.h"
 #include "code0/7FCE0.h"
@@ -437,24 +438,24 @@ static void func_801C127C(void)
 
         if (cond != 0)
         {
-            if (D_8013A43C[i] > 60)
-                D_8012F6FC[i] |= 0x800;
+            if (gStickY[i] > 60)
+                gButton[i] |= U_JPAD;
 
-            if (D_8013A43C[i] < -60)
-                D_8012F6FC[i] |= 0x400;
+            if (gStickY[i] < -60)
+                gButton[i] |= D_JPAD;
 
-            if (D_8011A670[i] > 60)
-                D_8012F6FC[i] |= 0x100;
+            if (gStickX[i] > 60)
+                gButton[i] |= R_JPAD;
 
-            if (D_8011A670[i] < -60)
-                D_8012F6FC[i] |= 0x200;
+            if (gStickX[i] < -60)
+                gButton[i] |= L_JPAD;
         }
 
         for (j = 0; j < 16; j++)
         {
             if (!((D_801CDAD4[i] >> j) & 1))
             {
-                if ((D_8012F6FC[i] >> j) & 1)
+                if ((gButton[i] >> j) & 1)
                 {
                     D_801CD986[i] |= 1 << j;
                     D_801CDAD4[i] |= 1 << j;
@@ -462,7 +463,7 @@ static void func_801C127C(void)
             }
             if ((D_801CDAD4[i] >> j) & 1)
             {
-                if (!((D_8012F6FC[i] >> j) & 1))
+                if (!((gButton[i] >> j) & 1))
                 {
                     D_801CD986[i] &= ~(1 << j);
                     D_801CDAD4[i] &= ~(1 << j);
@@ -2925,7 +2926,7 @@ static void func_801C73CC(void)
     {
         if (!((D_801CC918 >> i) & 1))
         {
-            if ((D_8012F6FC[0] >> i) & 1)
+            if ((gButton[0] >> i) & 1)
             {
                 D_801CC918 = 1 << i;
                 D_801CC8BC = 1 << i;
@@ -2934,7 +2935,7 @@ static void func_801C73CC(void)
         }
         if (((D_801CC918 >> i) & 1))
         {
-            if (!((D_8012F6FC[0] >> i) & 1))
+            if (!((gButton[0] >> i) & 1))
             {
                 D_801CF640 = D_801CF640 & (~(1 << i));
                 D_801CC918 = D_801CC918 & (~(1 << i));
@@ -3757,20 +3758,20 @@ static void func_801C9C18(void)
     {
     case 2:
         D_801CDC68++;
-        D_8011A670[0] = *D_801CDC68++;
-        D_8013A43C[0] = *D_801CDC68++;
+        gStickX[0] = *D_801CDC68++;
+        gStickY[0] = *D_801CDC68++;
         break;
     case 3:
         D_801CDC68++;
-        D_8012F6FC[0] = *D_801CDC68++ << 8;
-        D_8012F6FC[0] += *D_801CDC68++;
-        D_8012F6FC[0] &= 0xEFFF;
+        gButton[0] = *D_801CDC68++ << 8;
+        gButton[0] += *D_801CDC68++;
+        gButton[0] &= ~START_BUTTON;
         i = *D_801CDC68;
         if ((i & 3) == 2)
         {
             D_801CDC68++;
-            D_8011A670[0] = *D_801CDC68++;
-            D_8013A43C[0] = *D_801CDC68++;
+            gStickX[0] = *D_801CDC68++;
+            gStickY[0] = *D_801CDC68++;
         }
         break;
     }
@@ -3786,7 +3787,7 @@ void func_801C9D68(void)
 
     for (i = 0; i < D_801CC8CA; i++)
     {
-        if (gController[i].button & 0x1000)
+        if (gController[i].button & START_BUTTON)
         {
             func_8008E01C(30, 0);
             D_8012FC90 = 0;
@@ -3874,24 +3875,24 @@ void func_801C9F74(void)
     }
     cond = 0;
 
-    if (D_801CF708 != *D_8012F6FC)
+    if (D_801CF708 != gButton[0])
     {
-        D_801CF708 = *D_8012F6FC;
+        D_801CF708 = gButton[0];
         func_801C9EDC();
         *D_801CDC68++ = 3;
-        *D_801CDC68++ = *D_8012F6FC >> 8;
-        *D_801CDC68++ = *D_8012F6FC;
+        *D_801CDC68++ = gButton[0] >> 8;
+        *D_801CDC68++ = gButton[0];
         cond = 1;
     }
 
-    if ((D_801CF710 != *D_8011A670) || (D_801CD97C != *D_8013A43C))
+    if ((D_801CF710 != gStickX[0]) || (D_801CD97C != gStickY[0]))
     {
-        D_801CF710 = *D_8011A670;
-        D_801CD97C = *D_8013A43C;
+        D_801CF710 = gStickX[0];
+        D_801CD97C = gStickY[0];
         func_801C9EDC();
         *D_801CDC68++ = 2;
-        *D_801CDC68++ = *D_8011A670;
-        *D_801CDC68++ = *D_8013A43C;
+        *D_801CDC68++ = gStickX[0];
+        *D_801CDC68++ = gStickY[0];
         cond = 1;
     }
 

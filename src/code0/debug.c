@@ -1,5 +1,6 @@
 #include "common.h"
 #include "code0/main.h"
+#include "code0/4590.h"
 #include "code0/9410.h"
 #include "code0/audio.h"
 #include "code0/cache1d.h"
@@ -69,7 +70,7 @@ void debugMenu(void)
         return;
 
     D_801B0814 = CLAMP_MAX(D_8012C470, 3);
-    if (D_8012F6FC[D_801B0814] & 0x1000)
+    if (gButton[D_801B0814] & START_BUTTON)
     {
         if (D_800DF989 == 0)
         {
@@ -101,25 +102,25 @@ void debugMenu(void)
     switch (D_800DF988)
     {
     case 0:
-        if (D_8012F6FC[D_801B0814] & 0x8000)
+        if (gButton[D_801B0814] & A_BUTTON)
             gFog[0].color[0].r = CLAMP_MAX(gFog[0].color[0].r+1, 255);
-        if (D_8012F6FC[D_801B0814] & 4)
+        if (gButton[D_801B0814] & D_CBUTTONS)
             gFog[0].color[0].g = CLAMP_MAX(gFog[0].color[0].g+1, 255);
-        if (D_8012F6FC[D_801B0814] & 1)
+        if (gButton[D_801B0814] & R_CBUTTONS)
             gFog[0].color[0].b = CLAMP_MAX(gFog[0].color[0].b+1, 255);
-        if (D_8012F6FC[D_801B0814] & 0x4000)
+        if (gButton[D_801B0814] & B_BUTTON)
             gFog[0].color[0].r = CLAMP_MIN(gFog[0].color[0].r-1, 0);
-        if (D_8012F6FC[D_801B0814] & 2)
+        if (gButton[D_801B0814] & L_CBUTTONS)
             gFog[0].color[0].g = CLAMP_MIN(gFog[0].color[0].g-1, 0);
-        if (D_8012F6FC[D_801B0814] & 8)
+        if (gButton[D_801B0814] & U_CBUTTONS)
             gFog[0].color[0].b = CLAMP_MIN(gFog[0].color[0].b-1, 0);
-        if (D_8012F6FC[D_801B0814] & 0x10)
+        if (gButton[D_801B0814] & R_TRIG)
             gFog[0].scale[0].fr = CLAMP_MAX(gFog[0].scale[0].fr+1, 3000);
-        if (D_8012F6FC[D_801B0814] & 0x100)
+        if (gButton[D_801B0814] & R_JPAD)
             gFog[0].scale[0].nr = CLAMP_MAX(gFog[0].scale[0].nr+1, 3000);
-        if (D_8012F6FC[D_801B0814] & 0x20)
+        if (gButton[D_801B0814] & L_TRIG)
             gFog[0].scale[0].fr = CLAMP_MIN(gFog[0].scale[0].fr-1, 0);
-        if (D_8012F6FC[D_801B0814] & 0x200)
+        if (gButton[D_801B0814] & L_JPAD)
             gFog[0].scale[0].nr = CLAMP_MIN(gFog[0].scale[0].nr-1, 0);
 
         gFog[0].scale[0].fr = MAX(gFog[0].scale[0].fr, gFog[0].scale[0].nr+3);
@@ -143,17 +144,17 @@ void debugMenu(void)
         displayDebug(25, 70, buffer);
         break;
     case 1:
-        if (D_8012F6FC[D_801B0814] & 0x8000)
+        if (gButton[D_801B0814] & A_BUTTON)
             gSkyTopR = CLAMP_MAX(gSkyTopR+1, 255);
-        if (D_8012F6FC[D_801B0814] & 4)
+        if (gButton[D_801B0814] & D_CBUTTONS)
             gSkyTopG = CLAMP_MAX(gSkyTopG+1, 255);
-        if (D_8012F6FC[D_801B0814] & 1)
+        if (gButton[D_801B0814] & R_CBUTTONS)
             gSkyTopB = CLAMP_MAX(gSkyTopB+1, 255);
-        if (D_8012F6FC[D_801B0814] & 0x4000)
+        if (gButton[D_801B0814] & B_BUTTON)
             gSkyTopR = CLAMP_MIN(gSkyTopR-1, 0);
-        if (D_8012F6FC[D_801B0814] & 2)
+        if (gButton[D_801B0814] & L_CBUTTONS)
             gSkyTopG = CLAMP_MIN(gSkyTopG-1, 0);
-        if (D_8012F6FC[D_801B0814] & 8)
+        if (gButton[D_801B0814] & U_CBUTTONS)
             gSkyTopB = CLAMP_MIN(gSkyTopB-1, 0);
 
         displayDebug(25, 20, "SKY TOP");
@@ -165,17 +166,17 @@ void debugMenu(void)
         displayDebug(25, 50, buffer);
         break;
     case 2:
-        if (D_8012F6FC[D_801B0814] & 0x8000)
+        if (gButton[D_801B0814] & A_BUTTON)
             gSkyBottomR = CLAMP_MAX(gSkyBottomR+1, 255);
-        if (D_8012F6FC[D_801B0814] & 4)
+        if (gButton[D_801B0814] & D_CBUTTONS)
             gSkyBottomG = CLAMP_MAX(gSkyBottomG+1, 255);
-        if (D_8012F6FC[D_801B0814] & 1)
+        if (gButton[D_801B0814] & R_CBUTTONS)
             gSkyBottomB = CLAMP_MAX(gSkyBottomB+1, 255);
-        if (D_8012F6FC[D_801B0814] & 0x4000)
+        if (gButton[D_801B0814] & B_BUTTON)
             gSkyBottomR = CLAMP_MIN(gSkyBottomR-1, 0);
-        if (D_8012F6FC[D_801B0814] & 2)
+        if (gButton[D_801B0814] & L_CBUTTONS)
             gSkyBottomG = CLAMP_MIN(gSkyBottomG-1, 0);
-        if (D_8012F6FC[D_801B0814] & 8)
+        if (gButton[D_801B0814] & U_CBUTTONS)
             gSkyBottomB = CLAMP_MIN(gSkyBottomB-1, 0);
 
         displayDebug(25, 20, "SKY BOTTOM");
@@ -190,29 +191,29 @@ void debugMenu(void)
     case 4:
         i = D_800DF988 - 3;
         ptr2 = &D_8012FC48[i];
-        if (D_8012F6FC[D_801B0814] & 0x8000)
+        if (gButton[D_801B0814] & A_BUTTON)
             ptr2->fog.r = CLAMP_MAX(ptr2->fog.r+1, 255);
-        if (D_8012F6FC[D_801B0814] & 4)
+        if (gButton[D_801B0814] & D_CBUTTONS)
             ptr2->fog.g = CLAMP_MAX(ptr2->fog.g+1, 255);
-        if (D_8012F6FC[D_801B0814] & 1)
+        if (gButton[D_801B0814] & R_CBUTTONS)
             ptr2->fog.b = CLAMP_MAX(ptr2->fog.b+1, 255);
-        if (D_8012F6FC[D_801B0814] & 0x4000)
+        if (gButton[D_801B0814] & B_BUTTON)
             ptr2->fog.r = CLAMP_MIN(ptr2->fog.r-1, 0);
-        if (D_8012F6FC[D_801B0814] & 2)
+        if (gButton[D_801B0814] & L_CBUTTONS)
             ptr2->fog.g = CLAMP_MIN(ptr2->fog.g-1, 0);
-        if (D_8012F6FC[D_801B0814] & 8)
+        if (gButton[D_801B0814] & U_CBUTTONS)
             ptr2->fog.b = CLAMP_MIN(ptr2->fog.b-1, 0);
-        if (D_8012F6FC[D_801B0814] & 0x10)
+        if (gButton[D_801B0814] & R_TRIG)
             ptr2->unk1C += 300;
-        if (D_8012F6FC[D_801B0814] & 0x20)
+        if (gButton[D_801B0814] & L_TRIG)
             ptr2->unk1C -= 300;
-        if (D_8012F6FC[D_801B0814] & 0x100)
+        if (gButton[D_801B0814] & R_JPAD)
             D_800FE9C8[i] = CLAMP_MAX(D_800FE9C8[i]+1, 1023);
-        if (D_8012F6FC[D_801B0814] & 0x200)
+        if (gButton[D_801B0814] & L_JPAD)
             D_800FE9C8[i] = CLAMP_MIN(D_800FE9C8[i]-1, 0);
-        if (D_8012F6FC[D_801B0814] & 0x800)
+        if (gButton[D_801B0814] & U_JPAD)
             D_801AE904[i] = (D_801AE904[i]+4) & 0x7FF;
-        if (D_8012F6FC[D_801B0814] & 0x400)
+        if (gButton[D_801B0814] & D_JPAD)
             D_801AE904[i] = (D_801AE904[i]-4) & 0x7FF;
 
         ptr2->unk8 = (-cosf((D_801AE904[i] * (PI/1024))) * D_800FE9C8[i]) / 50.0f;
@@ -252,7 +253,7 @@ void debugMenu(void)
 
         if (D_800DF98A == 0)
         {
-            if (D_8012F6FC[D_801B0814] & 0x20)
+            if (gButton[D_801B0814] & L_TRIG)
             {
                 gPlayer[0].unk4C--;
                 if (gPlayer[0].unk4C < 0)
@@ -260,7 +261,7 @@ void debugMenu(void)
                 D_800DF98A = 1;
                 gpSprite[gPlayer[0].unk4A].picnum = D_8012F6E4[gPlayer[0].unk4C].unk0;
             }
-            if (D_8012F6FC[D_801B0814] & 0x10)
+            if (gButton[D_801B0814] & R_TRIG)
             {
                 gPlayer[0].unk4C++;
                 if (gPlayer[0].unk4C >= D_80138780)
@@ -269,7 +270,7 @@ void debugMenu(void)
                 gpSprite[gPlayer[0].unk4A].picnum = D_8012F6E4[gPlayer[0].unk4C].unk0;
             }
         }
-        else if ((D_8012F6FC[D_801B0814] & 0x30) == 0)
+        else if ((gButton[D_801B0814] & (L_TRIG|R_TRIG)) == 0)
         {
             D_800DF98A = 0;
         }
@@ -314,7 +315,7 @@ void debugMenu(void)
 
         if ((D_800DF98A == 0))
         {
-            if (D_8012F6FC[D_801B0814] & 0x8000)
+            if (gButton[D_801B0814] & A_BUTTON)
             {
                 D_800DF98A = 1;
                 D_800DEE84 ^= 1;
@@ -322,7 +323,7 @@ void debugMenu(void)
         }
         if ((D_800DF98A == 0))
         {
-            if (D_8012F6FC[D_801B0814] & 0x20)
+            if (gButton[D_801B0814] & L_TRIG)
             {
                 D_801CE498.difficulty++;
                 if (D_801CE498.difficulty >= 3)
@@ -333,43 +334,43 @@ void debugMenu(void)
         }
         if ((D_800DF98A == 0))
         {
-            if (D_8012F6FC[D_801B0814] & 0x10)
+            if (gButton[D_801B0814] & R_TRIG)
             {
                 D_800DF98A = 1;
                 gAutoAim ^= 1;
             }
             break;
         }
-        else if ((D_8012F6FC[D_801B0814] & 0xC030) == 0)
+        else if ((gButton[D_801B0814] & (A_BUTTON|B_BUTTON|L_TRIG|R_TRIG)) == 0)
         {
             D_800DF98A = 0;
         }
         break;
     case 8:
         ptr = gpAlphaPalette;
-        if (D_8012F6FC[D_801B0814] & 0x8000)
+        if (gButton[D_801B0814] & A_BUTTON)
             ptr->primary.r = CLAMP_MAX(ptr->primary.r+1, 255);
-        if (D_8012F6FC[D_801B0814] & 4)
+        if (gButton[D_801B0814] & D_CBUTTONS)
             ptr->primary.g = CLAMP_MAX(ptr->primary.g+1, 255);
-        if (D_8012F6FC[D_801B0814] & 1)
+        if (gButton[D_801B0814] & R_CBUTTONS)
             ptr->primary.b = CLAMP_MAX(ptr->primary.b+1, 255);
-        if (D_8012F6FC[D_801B0814] & 0x4000)
+        if (gButton[D_801B0814] & B_BUTTON)
             ptr->primary.r = CLAMP_MIN(ptr->primary.r-1, 0);
-        if (D_8012F6FC[D_801B0814] & 2)
+        if (gButton[D_801B0814] & L_CBUTTONS)
             ptr->primary.g = CLAMP_MIN(ptr->primary.g-1, 0);
-        if (D_8012F6FC[D_801B0814] & 8)
+        if (gButton[D_801B0814] & U_CBUTTONS)
             ptr->primary.b = CLAMP_MIN(ptr->primary.b-1, 0);
-        if (D_8012F6FC[D_801B0814] & 0x10)
+        if (gButton[D_801B0814] & R_TRIG)
             ptr->env.r = CLAMP_MAX(ptr->env.r+1, 255);
-        if (D_8012F6FC[D_801B0814] & 0x100)
+        if (gButton[D_801B0814] & R_JPAD)
             ptr->env.g = CLAMP_MAX(ptr->env.g+1, 255);
-        if (D_8012F6FC[D_801B0814] & 0x800)
+        if (gButton[D_801B0814] & U_JPAD)
             ptr->env.b = CLAMP_MAX(ptr->env.b+1, 255);
-        if (D_8012F6FC[D_801B0814] & 0x20)
+        if (gButton[D_801B0814] & L_TRIG)
             ptr->env.r = CLAMP_MIN(ptr->env.r-1, 0);
-        if (D_8012F6FC[D_801B0814] & 0x200)
+        if (gButton[D_801B0814] & L_JPAD)
             ptr->env.g = CLAMP_MIN(ptr->env.g-1, 0);
-        if (D_8012F6FC[D_801B0814] & 0x400)
+        if (gButton[D_801B0814] & D_JPAD)
             ptr->env.b = CLAMP_MIN(ptr->env.b-1, 0);
 
         displayDebug(25, 20, "ALPHA PALETTE");
@@ -395,46 +396,46 @@ void debugMenu(void)
 
         if (D_800DF98A == 0)
         {
-            if (D_8012F6FC[D_801B0814] & 0x8000)
+            if (gButton[D_801B0814] & A_BUTTON)
             {
                 D_800DF98A = 1;
                 gPlayer[0].unk60 = 1;
                 gPlayer[0].unk64 = 0;
             }
-            if (D_8012F6FC[D_801B0814] & 0x4000)
+            if (gButton[D_801B0814] & B_BUTTON)
             {
                 D_800DF98A = 1;
                 gPlayer[0].unk60 = 0;
                 gPlayer[0].unk64 = 0;
             }
-            if (D_8012F6FC[D_801B0814] & 0x10)
+            if (gButton[D_801B0814] & R_TRIG)
             {
                 D_800DF98A = 1;
                 _sfxnum = CLAMP_MAX(_sfxnum+1, 2000);
             }
-            if (D_8012F6FC[D_801B0814] & 0x20)
+            if (gButton[D_801B0814] & L_TRIG)
             {
                 D_800DF98A = 1;
                 _sfxnum = CLAMP_MIN(_sfxnum-1, 1);
             }
-            if (D_8012F6FC[D_801B0814] & 0x100)
+            if (gButton[D_801B0814] & R_JPAD)
             {
                 D_800DF98A = 1;
                 _sfxnum = CLAMP_MAX(_sfxnum+10, 2000);
             }
-            if (D_8012F6FC[D_801B0814] & 0x200)
+            if (gButton[D_801B0814] & L_JPAD)
             {
                 D_800DF98A = 1;
                 _sfxnum = CLAMP_MIN(_sfxnum-10, 1);
             }
-            if (D_8012F6FC[D_801B0814] & 0x2000)
+            if (gButton[D_801B0814] & Z_TRIG)
             {
                 D_800DF98A = 1;
                 MusHandleStop(D_800DF958, 0);
                 D_800DF958 = MusStartEffect(_sfxnum);
             }
         }
-        else if ((D_8012F6FC[D_801B0814] & 0xE030) == 0)
+        else if ((gButton[D_801B0814] & (A_BUTTON|B_BUTTON|Z_TRIG|L_TRIG|R_TRIG)) == 0)
         {
             D_800DF98A = 0;
         }
@@ -447,33 +448,33 @@ void debugMenu(void)
 
         if (D_800DF98A == 0)
         {
-            if (D_8012F6FC[D_801B0814] & 0x4000)
+            if (gButton[D_801B0814] & B_BUTTON)
             {
                 func_8008E01C(30, 1);
                 break;
             }
-            if (D_8012F6FC[D_801B0814] & 0x20)
+            if (gButton[D_801B0814] & L_TRIG)
             {
                 D_800DF98A = 1;
                 gLoadMapNum--;
                 if (gLoadMapNum < 0)
                     for (gLoadMapNum = 0; D_801CA14C[gLoadMapNum+1].unk0 != 99; gLoadMapNum++);
             }
-            if (D_8012F6FC[D_801B0814] & 0x10)
+            if (gButton[D_801B0814] & R_TRIG)
             {
                 D_800DF98A = 1;
                 gLoadMapNum++;
                 if (D_801CA14C[gLoadMapNum].unk0 == 99)
                     gLoadMapNum = 0;
             }
-            if (D_8012F6FC[D_801B0814] & 0x2000)
+            if (gButton[D_801B0814] & Z_TRIG)
             {
                 D_800DF98A = 1;
                 func_8008E01C(30, 2);
                 break;
             }
         }
-        else if ((D_8012F6FC[D_801B0814] & 0xA030) == 0)
+        else if ((gButton[D_801B0814] & (A_BUTTON|Z_TRIG|L_TRIG|R_TRIG)) == 0)
         {
             D_800DF98A = 0;
         }
@@ -492,7 +493,7 @@ void debugMenu(void)
 
         if (D_800DF98A == 0)
         {
-            if (D_8012F6FC[D_801B0814] & 0x8000)
+            if (gButton[D_801B0814] & A_BUTTON)
             {
                 D_800DF98A = 1;
                 if (D_800DF954 == 0)
@@ -500,12 +501,12 @@ void debugMenu(void)
                 else
                     playAmbient(_musicnum);
             }
-            if (D_8012F6FC[D_801B0814] & 0x4000)
+            if (gButton[D_801B0814] & B_BUTTON)
             {
                 D_800DF98A = 1;
                 MusStop(2, 0);
             }
-            if (D_8012F6FC[D_801B0814] & 0x10)
+            if (gButton[D_801B0814] & R_TRIG)
             {
                 D_800DF98A = 1;
                 if (D_800DF954 == 0)
@@ -513,34 +514,34 @@ void debugMenu(void)
                 else
                     _musicnum = CLAMP_MAX(_musicnum+1, 8);
             }
-            if (D_8012F6FC[D_801B0814] & 0x20)
+            if (gButton[D_801B0814] & L_TRIG)
             {
                 D_800DF98A = 1;
                 _musicnum = CLAMP_MIN(_musicnum-1, 0);
             }
-            if (D_8012F6FC[D_801B0814] & 0x2000)
+            if (gButton[D_801B0814] & Z_TRIG)
             {
                 D_800DF98A = 1;
                 D_800DF954 = D_800DF954 == 0;
             }
         }
-        else if ((D_8012F6FC[D_801B0814] & 0xE030) == 0)
+        else if ((gButton[D_801B0814] & (A_BUTTON|B_BUTTON|Z_TRIG|L_TRIG|R_TRIG)) == 0)
         {
             D_800DF98A = 0;
         }
         break;
     case 12:
-        if (D_8012F6FC[D_801B0814] & 0x8000)
+        if (gButton[D_801B0814] & A_BUTTON)
             gpGlobalPalette->r = CLAMP_MAX(gpGlobalPalette->r+1, 256);
-        if (D_8012F6FC[D_801B0814] & 4)
+        if (gButton[D_801B0814] & D_CBUTTONS)
             gpGlobalPalette->g = CLAMP_MAX(gpGlobalPalette->g+1, 256);
-        if (D_8012F6FC[D_801B0814] & 1)
+        if (gButton[D_801B0814] & R_CBUTTONS)
             gpGlobalPalette->b = CLAMP_MAX(gpGlobalPalette->b+1, 256);
-        if (D_8012F6FC[D_801B0814] & 0x4000)
+        if (gButton[D_801B0814] & B_BUTTON)
             gpGlobalPalette->r = CLAMP_MIN(gpGlobalPalette->r-1, 0);
-        if (D_8012F6FC[D_801B0814] & 2)
+        if (gButton[D_801B0814] & L_CBUTTONS)
             gpGlobalPalette->g = CLAMP_MIN(gpGlobalPalette->g-1, 0);
-        if (D_8012F6FC[D_801B0814] & 8)
+        if (gButton[D_801B0814] & U_CBUTTONS)
             gpGlobalPalette->b = CLAMP_MIN(gpGlobalPalette->b-1, 0);
 
         displayDebug(25, 20, "GLOBAL PALETTE");
@@ -558,7 +559,7 @@ void debugMenu(void)
         displayDebug(25, 50, "R FOR ALL KEYS");
         displayDebug(25, 60, "A FOR INVUL");
 
-        if (D_8012F6FC[D_801B0814] & 0x2000)
+        if (gButton[D_801B0814] & Z_TRIG)
         {
             for (j = 0; j < 50; j++)
             {
@@ -578,18 +579,18 @@ void debugMenu(void)
             }
         }
 
-        if (D_8012F6FC[D_801B0814] & 0x20)
+        if (gButton[D_801B0814] & L_TRIG)
         {
             D_8019B940[D_80106D50[gPlayer[0].unk4A]].unk7E = 100;
             for (j = 0; j < ARRAY_COUNT(D_8010A940[0].unkA); j++)
                 D_8010A940[0].unkA[j] = D_800E17E0[j];
         }
-        if (D_8012F6FC[D_801B0814] & 0x10)
+        if (gButton[D_801B0814] & R_TRIG)
         {
             for (j = 1; j < ARRAY_COUNT(gPlayer[0].unk88); j++)
                 gPlayer[0].unk88[j] = 1;
         }
-        if (D_8012F6FC[D_801B0814] & 0x8000)
+        if (gButton[D_801B0814] & A_BUTTON)
         {
             if (D_800DF98A == 0)
             {
@@ -618,56 +619,56 @@ void debugMenu(void)
 
         if (D_800DF98A == 0)
         {
-            if (D_8012F6FC[D_801B0814] & 0x8000)
+            if (gButton[D_801B0814] & A_BUTTON)
             {
                 D_800DF98A = 1;
-                if (D_8012F6FC[D_801B0814] & 0x20)
+                if (gButton[D_801B0814] & L_TRIG)
                     gAiDebugGvar1 += 10;
                 else
                     gAiDebugGvar1++;
             }
-            if (D_8012F6FC[D_801B0814] & 4)
+            if (gButton[D_801B0814] & D_CBUTTONS)
             {
                 D_800DF98A = 1;
-                if (D_8012F6FC[D_801B0814] & 0x20)
+                if (gButton[D_801B0814] & L_TRIG)
                     gAiDebugGvar2 += 10;
                 else
                     gAiDebugGvar2++;
             }
-            if (D_8012F6FC[D_801B0814] & 1)
+            if (gButton[D_801B0814] & R_CBUTTONS)
             {
                 D_800DF98A = 1;
-                if (D_8012F6FC[D_801B0814] & 0x20)
+                if (gButton[D_801B0814] & L_TRIG)
                     gAiDebugGvar3 += 10;
                 else
                     gAiDebugGvar3++;
             }
-            if (D_8012F6FC[D_801B0814] & 0x4000)
+            if (gButton[D_801B0814] & B_BUTTON)
             {
                 D_800DF98A = 1;
-                if (D_8012F6FC[D_801B0814] & 0x20)
+                if (gButton[D_801B0814] & L_TRIG)
                     gAiDebugGvar1 -= 10;
                 else
                     gAiDebugGvar1--;
             }
-            if (D_8012F6FC[D_801B0814] & 2)
+            if (gButton[D_801B0814] & L_CBUTTONS)
             {
                 D_800DF98A = 1;
-                if (D_8012F6FC[D_801B0814] & 0x20)
+                if (gButton[D_801B0814] & L_TRIG)
                     gAiDebugGvar2 -= 10;
                 else
                     gAiDebugGvar2--;
             }
-            if (D_8012F6FC[D_801B0814] & 8)
+            if (gButton[D_801B0814] & U_CBUTTONS)
             {
                 D_800DF98A = 1;
-                if (D_8012F6FC[D_801B0814] & 0x20)
+                if (gButton[D_801B0814] & L_TRIG)
                     gAiDebugGvar3 -= 10;
                 else
                     gAiDebugGvar3--;
             }
         }
-        else if ((D_8012F6FC[D_801B0814] & 0xC00F) == 0)
+        else if ((gButton[D_801B0814] & (A_BUTTON|B_BUTTON|U_CBUTTONS|L_CBUTTONS|R_CBUTTONS|D_CBUTTONS)) == 0)
         {
             D_800DF98A = 0;
         }

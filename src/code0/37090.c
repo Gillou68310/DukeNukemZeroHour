@@ -3,6 +3,7 @@
 #include "code0/engine.h"
 #include "code0/pragmas.h"
 #include "code0/audio.h"
+#include "code0/4590.h"
 #include "code0/9410.h"
 #include "code0/17B30.h"
 #include "code0/37090.h"
@@ -451,7 +452,7 @@ static void func_80036FEC(void)
 /*8003779C*/
 static s32 func_8003779C(u8 arg0)
 {
-    return D_8012F6FC[D_801B0820] & D_8012D218[D_801B0820][arg0];
+    return gButton[D_801B0820] & D_8012D218[D_801B0820][arg0];
 }
 
 /*800377E8*/
@@ -530,7 +531,7 @@ static void func_80037B84(void)
             {
                 if (D_80106D30[D_801B0820] == 1)
                 {
-                    if (D_8011A670[D_801B0820] > 32)
+                    if (gStickX[D_801B0820] > 32)
                     {
                         gPlayer[D_801B0820].unk4C++;
 
@@ -547,7 +548,7 @@ static void func_80037B84(void)
                         playSfx(1367);
                     }
 
-                    if (D_8011A670[D_801B0820] < -32)
+                    if (gStickX[D_801B0820] < -32)
                     {
                         gPlayer[D_801B0820].unk4C--;
 
@@ -566,7 +567,7 @@ static void func_80037B84(void)
                 }
                 else
                 {
-                    if (klabs(D_8011A670[D_801B0820]) > 32)
+                    if (klabs(gStickX[D_801B0820]) > 32)
                     {
                         D_800E16A0[D_801B0820] = D_800E16A0[D_801B0820] == 0;
                         D_80199520[D_801B0820] = 10;
@@ -575,7 +576,7 @@ static void func_80037B84(void)
                 }
             }
 
-            if (klabs(D_8011A670[D_801B0820]) < 32)
+            if (klabs(gStickX[D_801B0820]) < 32)
                 D_80199520[D_801B0820] = 0;
 
             D_80199520[D_801B0820] = CLAMP_MIN((D_80199520[D_801B0820]-1), 0);
@@ -604,12 +605,12 @@ static void func_80037B84(void)
             }
             else if (func_8003779C(15) == 0)
             {
-                if (D_8013A43C[D_801B0820] > 32)
+                if (gStickY[D_801B0820] > 32)
                 {
                     i += 40;
                     D_80119A30[D_801B0820] |= 1;
                 }
-                if (D_8013A43C[D_801B0820] < -32)
+                if (gStickY[D_801B0820] < -32)
                 {
                     i -= 40;
                     D_80119A30[D_801B0820] |= 2;
@@ -703,15 +704,15 @@ static void func_80037B84(void)
         }
         else
         {
-            if (klabs(D_8011A670[D_801B0820]) < 4)
+            if (klabs(gStickX[D_801B0820]) < 4)
                 k = 0;
             else
             {
-                k = (D_8011A670[D_801B0820] * gPlayer[D_801B0820].unk78 * 256.0f) / gPlayer[D_801B0820].unk6E;
-                if (D_8011A670[D_801B0820] > 0)
+                k = (gStickX[D_801B0820] * gPlayer[D_801B0820].unk78 * 256.0f) / gPlayer[D_801B0820].unk6E;
+                if (gStickX[D_801B0820] > 0)
                     k = MAX(1, k);
 
-                if (D_8011A670[D_801B0820] < 0)
+                if (gStickX[D_801B0820] < 0)
                     k = MIN(-1, k);
             }
         }
@@ -733,7 +734,7 @@ static void func_80037B84(void)
                 spr = &gpSprite[gPlayer[D_801B0820].unk52 & 0x7FF];
                 if (spr->unk2A != 81)
                 {
-                    if (D_8011A670[D_801B0820] > 32)
+                    if (gStickX[D_801B0820] > 32)
                     {
                         spr->ang += 4;
                         spr->unk18 += 4;
@@ -744,7 +745,7 @@ static void func_80037B84(void)
                         }
                     }
 
-                    if (D_8011A670[D_801B0820] < -32)
+                    if (gStickX[D_801B0820] < -32)
                     {
                         spr->ang -= 4;
                         spr->unk18 -= 4;
@@ -758,10 +759,10 @@ static void func_80037B84(void)
                     spr->ang &= 0x7FF;
                     if (spr->unk2A == 83)
                     {
-                        if (D_8013A43C[D_801B0820] > 32)
+                        if (gStickY[D_801B0820] > 32)
                             spr->unk22 = CLAMP_MAX((spr->unk22 * 1.025), 2048.0);
 
-                        if (D_8013A43C[D_801B0820] < -32)
+                        if (gStickY[D_801B0820] < -32)
                             spr->unk22 = CLAMP_MIN((spr->unk22 / 1.025), 256.0);
 
                         gPlayer[D_801B0820].unk6E = spr->unk22;
@@ -795,13 +796,13 @@ static void func_80037B84(void)
         {
             if (func_8003779C(15) == 0)
             {
-                if (klabs(D_8013A43C[D_801B0820]) >= 4)
+                if (klabs(gStickY[D_801B0820]) >= 4)
                 {
-                    k = (D_8013A43C[D_801B0820] * gPlayer[D_801B0820].unk7C * 256.0f) / gPlayer[D_801B0820].unk6E;
-                    if (D_8013A43C[D_801B0820] > 0)
+                    k = (gStickY[D_801B0820] * gPlayer[D_801B0820].unk7C * 256.0f) / gPlayer[D_801B0820].unk6E;
+                    if (gStickY[D_801B0820] > 0)
                         k = MAX(1, k);
 
-                    if (D_8013A43C[D_801B0820] < 0)
+                    if (gStickY[D_801B0820] < 0)
                         k = MIN(-1, k);
                 }
             }
@@ -1509,10 +1510,10 @@ static void func_8003B5F8(void)
 
             if (func_8003779C(0xF) != 0)
             {
-                if (D_8011A670[D_801B0820] > 32)
+                if (gStickX[D_801B0820] > 32)
                     m = 1;
 
-                if (D_8011A670[D_801B0820] < -32)
+                if (gStickX[D_801B0820] < -32)
                     m = -1;
             }
 
@@ -1561,10 +1562,10 @@ static void func_8003B5F8(void)
 
                 if (func_8003779C(15) != 0)
                 {
-                    if (D_8013A43C[D_801B0820] > 32)
+                    if (gStickY[D_801B0820] > 32)
                         m = 7;
 
-                    if (D_8013A43C[D_801B0820] < -32)
+                    if (gStickY[D_801B0820] < -32)
                         m = 1;
                 }
 
@@ -1590,7 +1591,7 @@ static void func_8003B5F8(void)
                 }
             }
         }
-        if (D_8012F6FC[D_801B0820] & 0x1000)
+        if (gButton[D_801B0820] & START_BUTTON)
         {
             if (D_800DEDD4[D_801B0820] == 0)
             {
@@ -1803,7 +1804,7 @@ static void func_8003B5F8(void)
             D_8013B2D0[spritenum].unk6 = CLAMP_MAX(D_8013B2D0[spritenum].unk6++, 0xFF);
 
         gPlayer[D_801B0820].unk3E = (gPlayer[D_801B0820].unk3E / 2);
-        if (D_8012F6FC[D_801B0820] & 0x1000)
+        if (gButton[D_801B0820] & START_BUTTON)
         {
             cond2 = 1;
             D_800DEDD4[D_801B0820] = 1;

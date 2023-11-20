@@ -2,6 +2,7 @@
 #include "code0/pragmas.h"
 #include "code0/audio.h"
 #include "code0/graphics.h"
+#include "code0/4590.h"
 #include "code0/2ABE0.h"
 #include "code0/37090.h"
 #include "code0/41940.h"
@@ -221,9 +222,9 @@ void func_8003FD5C(void)
 
     if (gPlayer[D_801B0820].unk45 == 0)
     {
-        if ((D_8012F6FC[D_801B0820] != 0) ||
-            (klabs(D_8011A670[D_801B0820]) >= 4) ||
-            (klabs(D_8013A43C[D_801B0820]) >= 4))
+        if ((gButton[D_801B0820] != 0) ||
+            (klabs(gStickX[D_801B0820]) >= 4) ||
+            (klabs(gStickY[D_801B0820]) >= 4))
         {
             gPlayer[D_801B0820].unk4E = 0;
             D_801A2790[D_801B0820].unk20 = 0;

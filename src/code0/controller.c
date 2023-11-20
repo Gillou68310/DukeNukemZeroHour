@@ -273,7 +273,7 @@ static u8 func_80087CB0(void)
         {
             if (D_8016D174[i])
             {
-                if (gController[i].button2 & CONT_START)
+                if (gController[i].button2 & START_BUTTON)
                     return 1;
             }
         }
@@ -313,23 +313,23 @@ static u8 func_80087D24(void)
 static s8 func_80087DF4(void)
 {
 
-    if (gController[D_801A6D82].button2 & CONT_A)
+    if (gController[D_801A6D82].button2 & A_BUTTON)
         return 0;
     else
-        return (gController[D_801A6D82].button2 & CONT_B) ? 1 : -1;
+        return (gController[D_801A6D82].button2 & B_BUTTON) ? 1 : -1;
 }
 
 /*80087E30*/
 static s8 func_80087E30(void)
 {
-    if (gController[D_801A6D82].button2 & CONT_A)
+    if (gController[D_801A6D82].button2 & A_BUTTON)
         return 0;
     else
     {
-        if (gController[D_801A6D82].button2 & CONT_B)
+        if (gController[D_801A6D82].button2 & B_BUTTON)
             return 1;
         else
-            return (gController[D_801A6D82].button2 & CONT_G) ? 2 : -1;
+            return (gController[D_801A6D82].button2 & Z_TRIG) ? 2 : -1;
     }
 }
 
@@ -1851,24 +1851,24 @@ void controller_8008A724(void)
             if ((D_800F9EF8[i] != 0) || (D_800F9EFC != 0))
             {
                 if (gController[i].stick_x < -30)
-                    D_800F9D40[i].button |= CONT_LEFT;
+                    D_800F9D40[i].button |= L_JPAD;
 
                 if (gController[i].stick_x > 30)
-                    D_800F9D40[i].button |= CONT_RIGHT;
+                    D_800F9D40[i].button |= R_JPAD;
 
                 if (gController[i].stick_y < -31)
-                    D_800F9D40[i].button |= CONT_DOWN;
+                    D_800F9D40[i].button |= D_JPAD;
 
                 if (gController[i].stick_y > 31)
-                    D_800F9D40[i].button |= CONT_UP;
+                    D_800F9D40[i].button |= U_JPAD;
 
             }
 
-            if ((D_800F9D40[i].button & (CONT_LEFT|CONT_RIGHT)) == (CONT_LEFT|CONT_RIGHT))
-                D_800F9D40[i].button ^= (CONT_LEFT|CONT_RIGHT);
+            if ((D_800F9D40[i].button & (L_JPAD|R_JPAD)) == (L_JPAD|R_JPAD))
+                D_800F9D40[i].button ^= (L_JPAD|R_JPAD);
 
-            if ((D_800F9D40[i].button & (CONT_DOWN|CONT_UP)) == (CONT_DOWN|CONT_UP))
-                D_800F9D40[i].button ^= (CONT_DOWN|CONT_UP);
+            if ((D_800F9D40[i].button & (D_JPAD|U_JPAD)) == (D_JPAD|U_JPAD))
+                D_800F9D40[i].button ^= (D_JPAD|U_JPAD);
 
 
             gController[i].button2 = D_800F9D40[i].button & (gController[i].button ^ D_800F9D40[i].button);
@@ -2029,7 +2029,7 @@ u8 controller_8008AD94(void)
     controller_8008A724();
     D_800FA2F7 = 0;
 
-    if (gController[0].button & CONT_START)
+    if (gController[0].button & START_BUTTON)
         D_800FA2F7 = 1;
 
     return pattern;
@@ -2054,7 +2054,7 @@ u8 controller_8008AEF0(void)
         {
             if (D_801B0815 == 0)
             {
-                if ((gController[0].button & (CONT_R|CONT_L|CONT_A|CONT_B|CONT_G)) != (CONT_R|CONT_L|CONT_A|CONT_B|CONT_G))
+                if ((gController[0].button & (R_TRIG|L_TRIG|A_BUTTON|B_BUTTON|Z_TRIG)) != (R_TRIG|L_TRIG|A_BUTTON|B_BUTTON|Z_TRIG))
                 {
                     func_800800A8(9);
                     func_8007FF94(D_800E11D0, 0xFF);
@@ -2549,21 +2549,21 @@ static u8 func_8008B8B0(void)
             D_800E168E = 5;
             break;
         }
-        if (gController[D_801A6D82].button2 & CONT_UP)
+        if (gController[D_801A6D82].button2 & U_JPAD)
         {
             if (func_80089F14(-1, 2) != 0)
                 MusStartEffect(746);
 
             D_800E168E = 3;
         }
-        else if (gController[D_801A6D82].button2 & CONT_DOWN)
+        else if (gController[D_801A6D82].button2 & D_JPAD)
         {
             if (func_80089F14(1, 2) != 0)
                 MusStartEffect(746);
 
             D_800E168E = 3;
         }
-        else if (gController[D_801A6D82].button2 & CONT_A)
+        else if (gController[D_801A6D82].button2 & A_BUTTON)
         {
             if (_fileNumber != 16)
             {
@@ -2838,21 +2838,21 @@ static s32 func_8008C0C8(void)
             D_800E168F = 5;
             break;
         }
-        if (gController[D_801A6D82].button2 & CONT_UP)
+        if (gController[D_801A6D82].button2 & U_JPAD)
         {
             if (func_80089F14(-1, 2) != 0)
                 MusStartEffect(746);
 
             D_800E168F = 3;
         }
-        else if (gController[D_801A6D82].button2 & CONT_DOWN)
+        else if (gController[D_801A6D82].button2 & D_JPAD)
         {
             if (func_80089F14(1, 2) != 0)
                 MusStartEffect(746);
 
             D_800E168F = 3;
         }
-        else if (gController[D_801A6D82].button2 & CONT_A)
+        else if (gController[D_801A6D82].button2 & A_BUTTON)
         {
             if (_fileNumber != 16)
             {
@@ -3129,12 +3129,12 @@ u8 controller_8008C8DC(void)
         }
         break;
     case 20:
-        if (gController[D_801A6D82].button2 & CONT_B)
+        if (gController[D_801A6D82].button2 & B_BUTTON)
         {
             MusStartEffect(747);
             D_800E1690 = 5;
         }
-        else if (gController[D_801A6D82].button2 & CONT_UP)
+        else if (gController[D_801A6D82].button2 & U_JPAD)
         {
             if (func_80089F14(-1, 1) != 0)
             {
@@ -3144,7 +3144,7 @@ u8 controller_8008C8DC(void)
             else
                 D_800E1690 = 3;
         }
-        else if (gController[D_801A6D82].button2 & CONT_DOWN)
+        else if (gController[D_801A6D82].button2 & D_JPAD)
         {
             if (func_80089F14(1, 1) != 0)
             {
@@ -3154,7 +3154,7 @@ u8 controller_8008C8DC(void)
             else
                 D_800E1690 = 3;
         }
-        else if (gController[D_801A6D82].button2 & CONT_A)
+        else if (gController[D_801A6D82].button2 & A_BUTTON)
         {
             MusStartEffect(747);
             if (_fileNumber == 16)
@@ -3524,26 +3524,26 @@ u8 controller_8008D354(void)
             D_800E1691 = 0;
         break;
     case 20:
-        if (gController[D_801A6D82].button2 & CONT_B)
+        if (gController[D_801A6D82].button2 & B_BUTTON)
         {
             MusStartEffect(747);
             D_800E1691 = 5;
         }
-        else if (gController[D_801A6D82].button2 & CONT_UP)
+        else if (gController[D_801A6D82].button2 & U_JPAD)
         {
             if (func_80089F14(-1, 0) != 0)
                 MusStartEffect(746);
 
             D_800E1691 = 3;
         }
-        else if (gController[D_801A6D82].button2 & CONT_DOWN)
+        else if (gController[D_801A6D82].button2 & D_JPAD)
         {
             if (func_80089F14(1, 0) != 0)
                 MusStartEffect(746);
 
             D_800E1691 = 3;
         }
-        else if (gController[D_801A6D82].button2 & CONT_A)
+        else if (gController[D_801A6D82].button2 & A_BUTTON)
         {
             if (_fileNumber != 16)
             {
