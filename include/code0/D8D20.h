@@ -27,7 +27,6 @@ typedef struct {
     /*0x18*/ _D8D20UnkStruct3 *unk18;
     /*0x1C*/ _D8D20UnkStruct1 *unk1C;
     /*0x20*/ s16 unk20;
-    /*0x22*/ u8 pad[2];
 }_D8D20UnkStruct2;
 
 extern _D8D20UnkStruct2 D_800D8120;
