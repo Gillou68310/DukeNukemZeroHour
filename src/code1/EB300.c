@@ -5,6 +5,7 @@
 #include "code0/edl.h"
 #include "code0/debug.h"
 #include "code0/4590.h"
+#include "code0/64530.h"
 #include "code0/6ACA0.h"
 #include "code0/7F6A0.h"
 #include "code0/7FCE0.h"

@@ -13,4 +13,10 @@ void func_80069160(void);
 void func_800698E8(void);
 void func_80069E50(void);
 
+extern u8 D_800DF585;
+extern u8 D_800DF2F0;
+extern s8 D_800DF2F4[MAXSECTORS];
+extern u8 D_800DF590;
+extern u8 D_800DF591;
+
 #endif

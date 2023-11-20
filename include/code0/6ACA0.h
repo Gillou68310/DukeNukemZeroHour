@@ -14,10 +14,4 @@ s32 func_8006D3B8(s32 spritenum, s32, s32, s32, s32);
 //s32 func_800720FC(s16 spritenum);
 void func_80079560(void);
 
-extern s8 D_800DF2F4[657];
-extern u8 D_800DF2F0;
-extern u8 D_800DF585;
-extern u8 D_800DF590;
-extern u8 D_800DF591;
-
 #endif

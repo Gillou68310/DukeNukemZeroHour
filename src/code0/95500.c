@@ -13,6 +13,7 @@
 #include "code0/37090.h"
 #include "code0/41940.h"
 #include "code0/59D40.h"
+#include "code0/64530.h"
 #include "code0/6ACA0.h"
 //#include "code0/87010.h"
 #include "code0/8E670.h"
@@ -1139,22 +1140,22 @@ void func_800965F8(s32 spritenum)
                     spr->unk18++;
                     audio_80007820(((krand() % 2) + 0x39), k);
                     func_800867CC(k,
-                        gpSprite[k].x,
-                        gpSprite[k].y,
-                        gpSprite[k].z - 12000,
-                        spr->x,
-                        spr->y,
-                        spr->z - 8000,
-                        64, 24);
+                                  gpSprite[k].x,
+                                  gpSprite[k].y,
+                                  gpSprite[k].z - 12000,
+                                  spr->x,
+                                  spr->y,
+                                  spr->z - 8000,
+                                  64, 24);
 
                     if (spr->unk18 >= 9)
                     {
                         spr->unk1C = 0;
                         l = func_8004BC64(gpSprite[k].x,
-                            gpSprite[k].y,
-                            gpSprite[k].z,
-                            gpSprite[k].sectnum,
-                            gpSprite[k].picnum, 0, 0);
+                                          gpSprite[k].y,
+                                          gpSprite[k].z,
+                                          gpSprite[k].sectnum,
+                                          gpSprite[k].picnum, 0, 0);
 
                         if (l >= 0)
                         {

@@ -26,18 +26,100 @@ typedef void (*_6ACA0UnkFuncPointer)(s32 spritenum);
 /*#include "code0/87010.h"*/
 /*void func_80087174(s16 spritenum, s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2, s16, u8);*/
 void func_800867CC(s16 spritenum, s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2, s16, u8);
+static void func_800730CC(s32 spritenum);
+static void func_80073670(s32 spritenum);
+static void func_80073E0C(s32 spritenum);
+static void func_800724B4(s32 spritenum);
+static void func_80072ABC(s32 spritenum);
+static void func_80074664(s32 spritenum);
+static void func_800749A8(s32 spritenum);
+static void func_80074C70(s32 spritenum);
+static void func_80076364(s32 spritenum);
+static void func_8007675C(s32 spritenum);
+static void func_80076C14(s32 spritenum);
+static void func_800780AC(s32 spritenum);
+static s32 func_80077908(s32 spritenum);
+static void func_80077E80(s32 spritenum);
+static void func_80078F84(s32 spritenum);
+static void func_80078924(s32 spritenum);
+static void func_80078300(s32 spritenum);
+static void func_80077C70(s32 spritenum);
+static void func_80077AB0(s32 spritenum);
+static void func_800743C0(s32 spritenum);
+static void func_80078B70(s32 spritenum);
+static void func_80075380(s32 spritenum);
+static void func_800756B0(s32 spritenum);
+static void func_80075C88(s32 spritenum);
+static void func_80075E28(s32 spritenum);
+static void func_800791A8(s32 spritenum);
+static void func_80078564(s32 spritenum);
+static void func_80076144(s32 spritenum);
+static void func_80078DA8(s32 spritenum);
+static void func_8007599C(s32 spritenum);
+static void func_80077320(s32 spritenum);
+static void func_80077608(s32 spritenum);
+static void func_8007939C(s32 spritenum);
 
 /*.data*/
-/*800DF2F0*/ EXTERN_DATA u8 D_800DF2F0;
-/*800DF2F4*/ EXTERN_DATA s8 D_800DF2F4[657];
-/*800DF585*/ EXTERN_DATA u8 D_800DF585;
-/*800DF590*/ EXTERN_DATA u8 D_800DF590;
-/*800DF591*/ EXTERN_DATA u8 D_800DF591;
-/*800DF5A0*/ EXTERN_DATA STATIC _6ACA0UnkFuncPointer D_800DF5A0[50];
-/*800DF668*/ EXTERN_DATA STATIC _6ACA0UnkFuncPointer D_800DF668[4];
+
+/*800DF5A0*/
+static _6ACA0UnkFuncPointer D_800DF5A0[50] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    func_800730CC,
+    func_80073670,
+    func_80073E0C,
+    NULL,
+    func_800724B4,
+    func_80072ABC,
+    func_80074664,
+    func_800749A8,
+    NULL,
+    func_80074C70,
+    func_80076364,
+    func_8007675C,
+    NULL,
+    func_80076C14,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    func_800780AC,
+    (_6ACA0UnkFuncPointer)func_80077908,
+    NULL,
+    func_80077E80,
+    func_80078F84,
+    func_80078924,
+    func_80078300,
+    func_80077C70,
+    func_80077AB0,
+    func_800743C0,
+    func_80078B70,
+    func_80075380,
+    func_800756B0,
+    func_80075C88,
+    func_80075E28,
+    func_800791A8,
+    func_80078564,
+    func_80076144,
+    NULL,
+    func_80078DA8,
+    func_8007599C,
+    func_80077320,
+    func_80077608,
+};
+
+/*800DF668*/ static _6ACA0UnkFuncPointer D_800DF668[4] = {NULL, func_8007939C, NULL, NULL};
 
 /*.bss*/
-/*800F9CD0*/ EXTERN_BSS STATIC s32 D_800F9CD0;
+/*800F9CD0*/ static s32 D_800F9CD0;
 
 /*.text*/
 static void func_8006CA90(s16 arg0);
@@ -2990,7 +3072,7 @@ static s16 func_800723BC(s16 spritenum)
 }
 
 /*800724B4*/
-void func_800724B4(s32 spritenum)
+static void func_800724B4(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -3124,7 +3206,7 @@ void func_800724B4(s32 spritenum)
 }
 
 /*80072ABC*/
-STATIC void func_80072ABC(s32 spritenum)
+static void func_80072ABC(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -3260,7 +3342,7 @@ STATIC void func_80072ABC(s32 spritenum)
 }
 
 /*800730CC*/
-STATIC void func_800730CC(s32 spritenum)
+static void func_800730CC(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -3407,7 +3489,7 @@ STATIC void func_800730CC(s32 spritenum)
 }
 
 /*80073670*/
-STATIC void func_80073670(s32 spritenum)
+static void func_80073670(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -3580,7 +3662,7 @@ STATIC void func_80073670(s32 spritenum)
 }
 
 /*80073E0C*/
-STATIC void func_80073E0C(s32 spritenum)
+static void func_80073E0C(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -3716,7 +3798,7 @@ STATIC void func_80073E0C(s32 spritenum)
 }
 
 /*800743C0*/
-STATIC void func_800743C0(s32 spritenum)
+static void func_800743C0(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -3767,7 +3849,7 @@ STATIC void func_800743C0(s32 spritenum)
 }
 
 /*80074664*/
-STATIC void func_80074664(s32 spritenum)
+static void func_80074664(s32 spritenum)
 {
     s16 hitsprite;
     s32 hitx, hity;
@@ -3846,7 +3928,7 @@ STATIC void func_80074664(s32 spritenum)
 }
 
 /*800749A8*/
-STATIC void func_800749A8(s32 spritenum)
+static void func_800749A8(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -3887,7 +3969,7 @@ STATIC void func_800749A8(s32 spritenum)
 }
 
 /*80074C70*/
-STATIC void func_80074C70(s32 spritenum)
+static void func_80074C70(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -4033,7 +4115,7 @@ STATIC void func_80074C70(s32 spritenum)
 }
 
 /*80075380*/
-STATIC void func_80075380(s32 spritenum)
+static void func_80075380(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -4107,7 +4189,7 @@ STATIC void func_80075380(s32 spritenum)
 }
 
 /*800756B0*/
-STATIC void func_800756B0(s32 spritenum)
+static void func_800756B0(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -4181,7 +4263,7 @@ STATIC void func_800756B0(s32 spritenum)
 }
 
 /*8007599C*/
-STATIC void func_8007599C(s32 spritenum)
+static void func_8007599C(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -4255,7 +4337,7 @@ STATIC void func_8007599C(s32 spritenum)
 }
 
 /*80075C88*/
-STATIC void func_80075C88(s32 spritenum)
+static void func_80075C88(s32 spritenum)
 {
     SpriteType *spr;
     s32 i;
@@ -4308,7 +4390,7 @@ STATIC void func_80075C88(s32 spritenum)
 }
 
 /*80075E28*/
-STATIC void func_80075E28(s32 spritenum)
+static void func_80075E28(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr2;
@@ -4383,7 +4465,7 @@ STATIC void func_80075E28(s32 spritenum)
 }
 
 /*80076144*/
-STATIC void func_80076144(s32 spritenum)
+static void func_80076144(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -4430,7 +4512,7 @@ STATIC void func_80076144(s32 spritenum)
 }
 
 /*80076364*/
-STATIC void func_80076364(s32 spritenum)
+static void func_80076364(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -4514,7 +4596,7 @@ STATIC void func_80076364(s32 spritenum)
 }
 
 /*8007675C*/
-STATIC void func_8007675C(s32 spritenum)
+static void func_8007675C(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -4605,7 +4687,7 @@ STATIC void func_8007675C(s32 spritenum)
 }
 
 /*80076C14*/
-STATIC void func_80076C14(s32 spritenum)
+static void func_80076C14(s32 spritenum)
 {
     s32 x1, y1, z1;
     s32 x2, y2, z2;
@@ -4773,7 +4855,7 @@ STATIC void func_80076C14(s32 spritenum)
 }
 
 /*80077320*/
-STATIC void func_80077320(s32 spritenum)
+static void func_80077320(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -4845,7 +4927,7 @@ STATIC void func_80077320(s32 spritenum)
 }
 
 /*80077608*/
-STATIC void func_80077608(s32 spritenum)
+static void func_80077608(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -4923,7 +5005,7 @@ STATIC void func_80077608(s32 spritenum)
 }
 
 /*80077908*/
-STATIC s32 func_80077908(s32 spritenum)
+static s32 func_80077908(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -4979,7 +5061,7 @@ STATIC s32 func_80077908(s32 spritenum)
 }
 
 /*80077AB0*/
-STATIC void func_80077AB0(s32 spritenum)
+static void func_80077AB0(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -5027,7 +5109,7 @@ STATIC void func_80077AB0(s32 spritenum)
 }
 
 /*80077C70*/
-STATIC void func_80077C70(s32 spritenum)
+static void func_80077C70(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -5080,7 +5162,7 @@ STATIC void func_80077C70(s32 spritenum)
 }
 
 /*80077E80*/
-STATIC void func_80077E80(s32 spritenum)
+static void func_80077E80(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -5135,7 +5217,7 @@ STATIC void func_80077E80(s32 spritenum)
 }
 
 /*800780AC*/
-STATIC void func_800780AC(s32 spritenum)
+static void func_800780AC(s32 spritenum)
 {
     s16 hitsect, hitwall, hitsprite;
     s32 hitx, hity, hitz;
@@ -5175,7 +5257,7 @@ STATIC void func_800780AC(s32 spritenum)
 }
 
 /*80078300*/
-STATIC void func_80078300(s32 spritenum)
+static void func_80078300(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -5229,7 +5311,7 @@ STATIC void func_80078300(s32 spritenum)
 }
 
 /*80078564*/
-STATIC void func_80078564(s32 spritenum)
+static void func_80078564(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -5310,7 +5392,7 @@ STATIC void func_80078564(s32 spritenum)
 }
 
 /*80078924*/
-STATIC void func_80078924(s32 spritenum)
+static void func_80078924(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -5376,7 +5458,7 @@ STATIC void func_80078924(s32 spritenum)
 }
 
 /*80078B70*/
-STATIC void func_80078B70(s32 spritenum)
+static void func_80078B70(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -5439,7 +5521,7 @@ STATIC void func_80078B70(s32 spritenum)
 }
 
 /*80078DA8*/
-STATIC void func_80078DA8(s32 spritenum)
+static void func_80078DA8(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -5487,7 +5569,7 @@ STATIC void func_80078DA8(s32 spritenum)
 }
 
 /*80078F84*/
-STATIC void func_80078F84(s32 spritenum)
+static void func_80078F84(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -5564,7 +5646,7 @@ STATIC void func_80078F84(s32 spritenum)
 }
 
 /*800791A8*/
-STATIC void func_800791A8(s32 spritenum)
+static void func_800791A8(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
@@ -5611,7 +5693,7 @@ STATIC void func_800791A8(s32 spritenum)
 }
 
 /*8007939C*/
-STATIC void func_8007939C(s32 spritenum)
+static void func_8007939C(s32 spritenum)
 {
     SpriteType *spr;
     s32 x, y;

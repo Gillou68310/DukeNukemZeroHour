@@ -1721,7 +1721,7 @@ s32 func_8008FE88(s32 spritenum)
         x = getFlorzOfSlope(sectnum, spr1->x, spr1->y);
         y = getCeilzOfSlope(sectnum, spr1->x, spr1->y);
 
-        if ((y == x) || (sectnum < 0) || (sectnum >= 657) || (y >= spr1->z))
+        if ((y == x) || (sectnum < 0) || (sectnum >= MAXSECTORS) || (y >= spr1->z))
             deleteSprite(spritenum);
         else
         {

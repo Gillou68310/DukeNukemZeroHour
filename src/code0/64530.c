@@ -13,6 +13,14 @@
 #include "code0/A06F0.h"
 #include "code0/code0.h"
 
+/*.data*/
+/*800DF2F0*/ u8 D_800DF2F0 = 0;
+/*800DF2F4*/ s8 D_800DF2F4[MAXSECTORS] = {0};
+/*800DF585*/ u8 D_800DF585 = 0;
+static s32 _unused[2] = {0};
+/*800DF590*/ u8 D_800DF590 = 0;
+/*800DF591*/ u8 D_800DF591 = 0;
+
 /*.comm*/
 /*8012E15C*/ s16 D_8012E15C;
 /*8013B280*/ s16 D_8013B280[40] ALIGNED(8);

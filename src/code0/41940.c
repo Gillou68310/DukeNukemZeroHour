@@ -6854,7 +6854,7 @@ static void func_800519AC(void)
             sectnum = spr->sectnum;
             getzsOfSlope(sectnum, spr->x, spr->y, &ceilz, &florz);
 
-            if ((ceilz == florz) || (sectnum < 0) || (sectnum >= 657))
+            if ((ceilz == florz) || (sectnum < 0) || (sectnum >= MAXSECTORS))
                 deleteSprite(i);
             else if (florz < spr->z)
             {
