@@ -1090,7 +1090,7 @@ static void mainLoop(void *arg)
     gpGlobalPalette = (GlobalPalette *)GET_STATIC_SEG_SYM(gGlobalPalette);
     gpAlphaPalette = (AlphaPalette *)GET_STATIC_SEG_SYM(gAlphaPalette);
     D_8012F6E4 = (_11B300UnkStruct1 *)GET_STATIC_SEG_SYM(D_01025BA0);
-    count2 = *(u16 *)GET_STATIC_SEG_SYM(D_01025CFC);
+    count2 = *(s16 *)GET_STATIC_SEG_SYM(D_01025CFC);
     D_80138780 = count2;
 
 #ifdef TARGET_N64

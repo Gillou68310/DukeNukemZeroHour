@@ -41,7 +41,7 @@ typedef struct
 /*010247AC*/ extern s16 D_010247AC[];
 /*01025734*/ extern s16 D_01025734[];
 /*0102578C*/ extern s16 *D_0102578C[];
-/*0102583C*/ extern s16 D_0102583C[];
+/*0102583C*/ extern s16 D_0102583C;
 /*01025840*/ extern s32 D_01025840[];
 /*010258D8*/ extern s16 D_010258D8[];
 /*01025908*/ extern s16 D_01025908[];
@@ -49,6 +49,5 @@ typedef struct
 /*010259B0*/ extern GlobalPalette gGlobalPalette[42];
 /*01025AAC*/ extern AlphaPalette gAlphaPalette[40];
 /*01025BA0*/ extern _11B300UnkStruct1 D_01025BA0[29];
-/*01025CFC*/ extern u16 D_01025CFC[];
-
+/*01025CFC*/ extern s16 D_01025CFC;
 #endif

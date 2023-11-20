@@ -279,7 +279,7 @@ segments:
       - [0xBE360, .data,    src/code0/FDE0]
       - [0xBE390, data,     code0/modelinfo]
       - [0xD8D20, data,     code0/D8D20]
-      - [0xDA790, data,     code0/17B30]
+      - [0xDA790, data,     code0/DA790]
       - [0xDD600, .data,    src/code0/1A7C0]
       - [0xDD620, .data,    src/code0/1E7A0]
       - [0xDD710, .data,    src/code0/20490]

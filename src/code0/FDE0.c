@@ -87,7 +87,7 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
     Mtx mtx2, mtx1, mtx3, mtx4, mtx5;
     Gfx *dlist;
     ModelInfo *model;
-    code0unkStruct10 *ptr;
+    _DA790UnkStruct2 *ptr;
     f32 f1;
     s32 x, y, z;
     s32 m, n, o, p;
@@ -948,7 +948,7 @@ static void func_80012630(void)
 }
 
 /*8001270C*/
-static void func_8001270C(code0unkStruct10 *arg0, s16 arg1)
+static void func_8001270C(_DA790UnkStruct2 *arg0, s16 arg1)
 {
     Mtx mtx1;
     Mtx mtx2;
@@ -1416,14 +1416,14 @@ static void func_8001270C(code0unkStruct10 *arg0, s16 arg1)
 }
 
 /*80013FFC*/
-void func_80013FFC(code0unkStruct10 *arg0)
+void func_80013FFC(_DA790UnkStruct2 *arg0)
 {
     if (D_80106D50[D_801AE8F4] != -1)
         func_8001270C(arg0, 0);
 }
 
 /*80014040*/
-code0unkStruct10 *func_80014040(s16 arg0)
+_DA790UnkStruct2 *func_80014040(s16 arg0)
 {
     switch (arg0)
     {
@@ -1667,7 +1667,7 @@ static void func_80014D4C(void)
 }
 
 /*80014D6C*/
-static void func_80014D6C(code0unkStruct10 *arg0, s16 arg1)
+static void func_80014D6C(_DA790UnkStruct2 *arg0, s16 arg1)
 {
     Matrix4f mf1, mf2, mf3, mf4, mf5;
     code0unkStruct8 *ptr;
@@ -1774,7 +1774,7 @@ static void func_800152AC(s32 spritenum1, s32 spritenum2, Matrix4f mf, s32 x, s3
 }
 
 /*80015458*/
-static void func_80015458(code0unkStruct10 *arg0, s16 arg1)
+static void func_80015458(_DA790UnkStruct2 *arg0, s16 arg1)
 {
     Matrix4f mf2, mf1, mf3, mf4, mf5;
     code0unkStruct8 *ptr;

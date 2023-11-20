@@ -1,3 +1,9 @@
+D_01000000                         = 0x01000000; // ignore:true
+D_01000004                         = 0x01000004; // ignore:true
+D_01000180                         = 0x01000180; // ignore:true
+D_010002BC                         = 0x010002BC; // ignore:true
+D_01000400                         = 0x01000400; // ignore:true
+D_01000800                         = 0x01000800; // ignore:true
 gRspInitDl                         = 0x01001860; // type:data     size:0x28                              (global, .data,   src/static/spinit.c)
 gRdpInitDl                         = 0x01001888; // type:data     size:0x78                              (global, .data,   src/static/spinit.c)
 D_01001900                         = 0x01001900; // type:data     size:0xC0                              (global, .data,   src/static/spinit.c)

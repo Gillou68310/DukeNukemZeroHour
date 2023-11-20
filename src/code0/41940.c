@@ -5840,7 +5840,7 @@ void func_8004F044(void)
         nexti = gNextSpriteStat[i];
         if (D_80106D50[i] != -1)
         {
-            if (D_8019B940[D_80106D50[i]].unkC != 0)
+            if (D_8019B940[D_80106D50[i]].unkC != NULL)
             {
                 if (D_8019B940[D_80106D50[i]].unk0 & 1)
                 {
@@ -9149,7 +9149,7 @@ static void func_80056C00(s32 spritenum)
         else
             d1 = 30000;
 
-        if ((D_8019B940[D_80106D50[i]].unkC != 0) && (D_8019B940[D_80106D50[i]].unk0 & 1))
+        if ((D_8019B940[D_80106D50[i]].unkC != NULL) && (D_8019B940[D_80106D50[i]].unk0 & 1))
         {
             spr = &gpSprite[i];
             d2 = klabs_(gpSprite[spritenum].x - spr->x) + klabs_(gpSprite[spritenum].y - spr->y);
@@ -9192,7 +9192,7 @@ static void func_80056C00(s32 spritenum)
             if (ptr->unk70 != 0)
                 ptr->unk70 = audio_80007A80(ptr->unk70, i, ptr->unk78);
 
-            if (D_8019B940[D_80106D50[i]].unkC != 0)
+            if (D_8019B940[D_80106D50[i]].unkC != NULL)
             {
                 if ((D_8019B940[D_80106D50[i]].unk0 & 1) &&
                     !(D_8019B940[D_80106D50[i]].unk0 & 0x40000) &&
