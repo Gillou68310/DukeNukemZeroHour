@@ -93,7 +93,7 @@ static _6ACA0UnkFuncPointer D_800DF5A0[50] = {
     NULL,
     NULL,
     func_800780AC,
-    (_6ACA0UnkFuncPointer)func_80077908,
+    func_80077908,
     NULL,
     func_80077E80,
     func_80078F84,

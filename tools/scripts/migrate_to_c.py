@@ -63,7 +63,7 @@ def parse_source_file(file: str) -> None:
 
 if __name__ == '__main__':
     #TODO: check arg
-    c_file = sys.argv[1].replace('data/', 'src/').replace('.data.s', '.c')
+    c_file = sys.argv[1].replace('data/', 'src/', 1).replace('.data.s', '.c')
 
     symbols = {}
     includes = []

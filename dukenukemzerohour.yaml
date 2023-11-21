@@ -277,7 +277,7 @@ segments:
       - [0xBE060, .data,    src/code0/audio]
       - [0xBE310, .data,    src/code0/9410]
       - [0xBE360, .data,    src/code0/FDE0]
-      - [0xBE390, data,     code0/data/modelinfo]
+      - [0xBE390, .data,    src/code0/data/modelinfo]
       - [0xD8D20, .data,    src/code0/data/D8D20]
       - [0xDA790, .data,    src/code0/data/DA790]
       - [0xDADB0, .data,    src/code0/data/DADB0]
