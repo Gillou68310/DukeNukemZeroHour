@@ -2,7 +2,7 @@
 #define _16FF0_H_
 
 #include "common.h"
-#include "code0/modelinfo.h"
+#include "code0/data/modelinfo.h"
 
 void func_800163F0(u8);
 void func_8001660C(u8);

@@ -3,7 +3,7 @@
 #include "code0/cache1d.h"
 #include "code0/edl.h"
 #include "code0/4600.h"
-#include "code0/modelinfo.h"
+#include "code0/data/modelinfo.h"
 #include "code0/code0.h"
 
 /*Skip following declaration so it defaults to s32*/

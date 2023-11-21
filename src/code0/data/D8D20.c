@@ -1,5 +1,7 @@
 #include "common.h"
-#include "code0/D8D20.h"
+#include "code0/data/D8D20.h"
+
+/*.data*/
 
 /*800D8120*/ _D8D20UnkStruct2 D_800D8120 = {0, NULL, 0, 0x1260, 0x1260, 0x31, NULL, NULL, 0};
 /*800D8144*/ _D8D20UnkStruct2 D_800D8144 = {0x1260, NULL, 0, 0x13EC, 0x13EC, 0x32, NULL, NULL, 0};

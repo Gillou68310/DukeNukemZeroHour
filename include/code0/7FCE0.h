@@ -2,7 +2,7 @@
 #define _7FCE0_H_
 
 #include "common.h"
-#include "code0/E0640.h"
+#include "code0/data/E0640.h"
 #include "code0/code0.h"
 
 void func_8007F0E0(void);

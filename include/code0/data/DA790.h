@@ -2,22 +2,20 @@
 #define _DA790_H_
 
 #include "common.h"
-#include "modelinfo.h"
+#include "code0/data/modelinfo.h"
 
 typedef struct
 {
     /*0x00*/ f32 unk0;
     /*0x04*/ f32 unk4;
     /*0x08*/ f32 unk8;
-    /*0x0C*/ u8 pad[12];
+    /*0x0C*/ u8 unused[12];
     /*0x18*/ s16 unk18;
-    /*0x1A*/ u8 pad1[2];
-}  _DA790UnkStruct1;
+}_DA790UnkStruct1;
 
 typedef struct {
     /*0x00*/ u8 unk0;
-    /*0x01*/ u8 unk1; /*pad?*/
-    /*0x02*/ s16 unk2; /*size of unk4?*/
+    /*0x02*/ s16 unk2; /*count of unk4/unk8*/
     /*0x04*/ ModelInfo **unk4;
     /*0x08*/ _DA790UnkStruct1 *unk8;
 }_DA790UnkStruct2;

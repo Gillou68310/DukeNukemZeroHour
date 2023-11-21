@@ -1,6 +1,6 @@
 #include "common.h"
 #include "code0/audio.h"
-#include "code0/DE050.h"
+#include "code0/data/DE050.h"
 #include "code0/code0.h"
 
 typedef struct {

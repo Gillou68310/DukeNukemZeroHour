@@ -1,5 +1,5 @@
 #include "common.h"
-#include "code0/modelinfo.h"
+#include "code0/data/modelinfo.h"
 
 /*.data*/
 /*800BD790*/ EXTERN_DATA ModelInfoUnkStruct1 D_800BD790;

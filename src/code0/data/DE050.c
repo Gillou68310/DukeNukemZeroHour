@@ -1,5 +1,6 @@
 #include "common.h"
 
+/*.data*/
 extern u16 *D_800DD500[10];
 extern u16 D_800DD528[8];
 extern u16 D_800DD538[14];

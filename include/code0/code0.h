@@ -4,8 +4,8 @@
 #include "common.h"
 #include "libmus.h"
 #include "code0/engine.h"
-#include "code0/modelinfo.h"
-#include "code0/D8D20.h"
+#include "code0/data/modelinfo.h"
+#include "code0/data/D8D20.h"
 
 typedef struct
 {

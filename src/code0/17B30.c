@@ -2,7 +2,7 @@
 #include "code0/main.h"
 #include "code0/cache1d.h"
 #include "code0/audio.h"
-#include "code0/D8D20.h"
+#include "code0/data/D8D20.h"
 #include "code0/edl.h"
 #include "code0/4600.h"
 #include "code0/41940.h"

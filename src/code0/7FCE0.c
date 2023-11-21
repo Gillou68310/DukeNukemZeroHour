@@ -5,7 +5,7 @@
 #include "code0/7FCE0.h"
 #include "code0/82480.h"
 #include "code0/edl.h"
-#include "code0/E0640.h"
+#include "code0/data/E0640.h"
 #include "code0/code0.h"
 #include "code1/code1.h"
 #include "code1/EB300.h"

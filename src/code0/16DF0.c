@@ -1,5 +1,5 @@
 #include "common.h"
-#include "code0/modelinfo.h"
+#include "code0/data/modelinfo.h"
 
 /*.text*/
 

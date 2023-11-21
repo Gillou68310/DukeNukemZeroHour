@@ -1,5 +1,7 @@
 #include "common.h"
-#include "code0/E0640.h"
+#include "code0/data/E0640.h"
+
+/*.data*/
 
 /*800DFA40*/
 _E0640UnkStruct D_800DFA40[2] = {

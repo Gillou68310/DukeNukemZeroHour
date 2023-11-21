@@ -3,8 +3,8 @@
 
 #include "common.h"
 #include "code0/code0.h"
-#include "code0/modelinfo.h"
-#include "code0/DA790.h"
+#include "code0/data/modelinfo.h"
+#include "code0/data/DA790.h"
 
 void func_8000F1E0(void);
 /*Skip following declaration so it defaults to s32*/
