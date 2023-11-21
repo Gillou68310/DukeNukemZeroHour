@@ -12,7 +12,7 @@
 typedef struct { s32 x1, y1, x2, y2; } LineType;
 
 /*.data*/
-static s32 _unused1[12] = {0,0,0,0,0,0,0,0,0,0,0,0};
+static s32 _unused1[12] = {0};
 /*800DD440*/ static s16 _editStatus = 0;
 /*800DD444*/ static s32 _clipMoveBoxTraceNum = 3;
 /*800DD448*/ u8 D_800DD448 = 0;

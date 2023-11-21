@@ -26,8 +26,9 @@ typedef struct {
 } _8EFE0UnkStruct1;
 
 /*.data*/
-/*800E1750*/ EXTERN_DATA STATIC u8 D_800E1750[16];
-/*800E1760*/ EXTERN_DATA STATIC s32 D_800E1760;
+/*800E1750*/ static u8 D_800E1750[16] = {1, 11, 12, 13, 14, 15, 17, 18, 21, 24, 25, 30, 31, 32, 33, 37};
+/*800E1760*/ static s32 D_800E1760 = -1;
+static s32 _unused = 1;
 
 /*.comm*/
 /*80106730*/ _8EFE0UnkStruct1 D_80106730[32] ALIGNED(16);

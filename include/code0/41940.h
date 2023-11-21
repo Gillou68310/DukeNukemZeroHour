@@ -68,7 +68,6 @@ void func_80058A14(s16 spritenum, s16 *hitsprite, s32 *hitx, s32 *hity);
 s32 func_80058B3C(s32 x1, s32 y1, s32 z1, s32 sectnum, s32 x2, s32 y2, s32 z2, s32);
 void func_80058E44(s32 spritenum);
 
-extern s16 D_800DEE70;
 extern s32 D_800DEE80; /*spritenum?*/
 extern s32 D_800DEE84;
 extern s32 D_800DEE88;
@@ -88,7 +87,7 @@ extern s32 gAutoAim;
 extern s32 D_800DEF1C;
 extern s32 D_800DF1A8;
 extern s16 D_800DF1AC[MAXPLAYERS];
-extern s16 D_800DF1B4[9];
+extern s16 D_800DF1B4[4];
 extern s16 D_800DF1D0[24][3];
 
 #endif

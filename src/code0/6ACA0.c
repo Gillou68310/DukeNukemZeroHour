@@ -7,6 +7,7 @@
 #include "code0/1E7A0.h"
 #include "code0/2ABE0.h"
 #include "code0/37090.h"
+#include "code0/3FAD0.h"
 #include "code0/41940.h"
 #include "code0/59D40.h"
 #include "code0/64530.h"

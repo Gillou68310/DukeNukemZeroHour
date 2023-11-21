@@ -8,6 +8,9 @@
 #include "code0/41940.h"
 #include "code1/code1.h"
 
+/*.data*/
+/*800DEE70*/ s16 D_800DEE70 = 0;
+
 /*.comm*/
 /*800FE40C*/ f32 D_800FE40C;
 /*800FF4E8*/ f32 D_800FF4E8;

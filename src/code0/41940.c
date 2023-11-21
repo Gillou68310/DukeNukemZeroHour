@@ -89,46 +89,231 @@ typedef struct
     /*0x1D*/ s8 unk1D;
 } _41940UnkStruct1;
 
+static s32 func_80041968(s32 spritenum);
+static s32 func_80043878(s32 spritenum);
+static s32 ifNotVarAnd(s32 spritenum);
+static s32 func_80042A6C(s32 spritenum);
+static s32 func_80043DE4(s32 spritenum);
+static s32 func_80043870(s32 spritenum);
+static s32 func_80042598(s32 spritenum);
+static s32 func_800437F4(s32 spritenum);
+static s32 func_80042AE4(s32 spritenum);
+static s32 func_800422BC(s32 spritenum);
+static s32 func_80044000(s32 spritenum);
+static s32 func_8004201C(s32 spritenum);
+static s32 func_8004204C(s32 spritenum);
+static s32 func_80042094(s32 spritenum);
+static s32 func_8004BE48(s32 spritenum);
+static s32 func_80042B98(s32 spritenum);
+static s32 func_80043A74(s32 spritenum);
+static s32 func_80043B10(s32 spritenum);
+static s32 func_80044394(s32 spritenum);
+static s32 setVarVar(s32 spritenum);
+static s32 addVarVar(s32 spritenum);
+static s32 subVarVar(s32 spritenum);
+static s32 func_80044B38(s32 spritenum);
+static s32 andVarVar(s32 spritenum);
+static s32 ifVarVarLE(s32 spritenum);
+static s32 ifVarVarAE(s32 spritenum);
+static s32 func_80043894(s32 spritenum);
+static s32 func_80042434(s32 spritenum);
+static s32 ifVarVarN(s32 spritenum);
+static s32 ifVarVarE(s32 spritenum);
+static s32 multVarVar(s32 spritenum);
+static s32 divVarVar(s32 spritenum);
+static s32 func_80046494(s32 spritenum);
+static s32 orVarVar(s32 spritenum);
+static s32 func_80045704(s32 spritenum);
+static s32 func_80043BAC(s32 spritenum);
+static s32 func_8004B440(s32 spritenum);
+static s32 func_80045690(s32 spritenum);
+static s32 absVarVar(s32 spritenum);
+static s32 func_80044F9C(s32 spritenum);
+static s32 func_80045DA8(s32 spritenum);
+static s32 negVarVar(s32 spritenum);
+static s32 func_80045228(s32 spritenum);
+static s32 func_80045B64(s32 spritenum);
+static s32 func_80045C44(s32 spritenum);
+static s32 func_80045D34(s32 spritenum);
+static s32 func_80042178(s32 spritenum);
+static s32 func_800450E0(s32 spritenum);
+static s32 func_8004BE20(s32 spritenum);
+static s32 func_80041D10(s32 spritenum);
+static s32 func_80058468(s32 spritenum);
+static s32 func_80045CB8(s32 spritenum);
+static s32 func_80042210(s32 spritenum);
+static s32 func_800420C8(s32 spritenum);
+static s32 func_80043D64(s32 spritenum);
+static s32 func_80043938(s32 spritenum);
+static s32 func_800457BC(s32 spritenum);
+static s32 func_8004587C(s32 spritenum);
+static s32 func_80043E7C(s32 spritenum);
+static s32 func_8004423C(s32 spritenum);
+static s32 modVarVar(s32 spritenum);
+static s32 func_800458D0(s32 spritenum);
+static s32 func_80045988(s32 spritenum);
+static s32 func_80045A48(s32 spritenum);
+static s32 func_80042380(s32 spritenum);
+static s32 func_80044120(s32 spritenum);
+static s32 func_80042C18(s32 spritenum);
+static s32 func_80042B40(s32 spritenum);
+static s32 func_800439D0(s32 spritenum);
+static s32 func_80043F3C(s32 spritenum);
+
 /*.data*/
-/*800DEE70*/ EXTERN_DATA s16 D_800DEE70;
-/*800DEE80*/ EXTERN_DATA s32 D_800DEE80; /*spritenum?*/
-/*800DEE84*/ EXTERN_DATA s32 D_800DEE84;
-/*800DEE88*/ EXTERN_DATA s32 D_800DEE88;
-/*800DEE8C*/ EXTERN_DATA s32 D_800DEE8C;
-/*800DEE98*/ EXTERN_DATA s32 D_800DEE98;
-/*800DEE9C*/ EXTERN_DATA s32 D_800DEE9C;
-/*800DEEA0*/ EXTERN_DATA s32 D_800DEEA0;
-/*800DEEA8*/ EXTERN_DATA s32 gAiDebugGvar1;
-/*800DEEAC*/ EXTERN_DATA s32 gAiDebugGvar2;
-/*800DEEB0*/ EXTERN_DATA s32 gAiDebugGvar3;
-/*800DEEB8*/ EXTERN_DATA s32 D_800DEEB8;
-/*800DEEBC*/ EXTERN_DATA s32 D_800DEEBC;
-/*800DEEC0*/ EXTERN_DATA s32 gInvulnerability;
-/*800DEEC8*/ EXTERN_DATA STATIC s32 D_800DEEC8;
-/*800DEED0*/ EXTERN_DATA u8 D_800DEED0[MAXPLAYERS];
-/*800DEED4*/ EXTERN_DATA STATIC s32 D_800DEED4;
-/*800DEEE4*/ EXTERN_DATA u8 D_800DEEE4[MAXPLAYERS];
-/*800DEEE8*/ EXTERN_DATA s32 gAutoAim;
-/*800DEF10*/ EXTERN_DATA STATIC s32 D_800DEF10;
-/*800DEF14*/ EXTERN_DATA STATIC s32 D_800DEF14; /*damage?*/
-/*800DEF18*/ EXTERN_DATA STATIC s32 D_800DEF18; /*damage?*/
-/*800DEF1C*/ EXTERN_DATA s32 D_800DEF1C;
-/*800DEF20*/ EXTERN_DATA STATIC s16 D_800DEF20;
-/*800DEF38*/ EXTERN_DATA STATIC s32 D_800DEF38;
-/*800DEF3C*/ EXTERN_DATA STATIC _41940UnkFuncPointer2 D_800DEF3C[84];
-/*800DF08C*/ EXTERN_DATA STATIC u8 *D_800DF08C;
-/*800DF090*/ EXTERN_DATA STATIC s16 D_800DF090[32];
-/*800DF0D0*/ EXTERN_DATA STATIC s16 D_800DF0D0[32];
-/*800DF110*/ EXTERN_DATA STATIC s16 D_800DF110[32];
-/*800DF150*/ EXTERN_DATA STATIC s16 D_800DF150[32];
-/*800DF190*/ EXTERN_DATA STATIC s16 D_800DF190[32];
-/*800DF1A0*/ EXTERN_DATA STATIC s16 D_800DF1A0[8];
-/*800DF1A8*/ EXTERN_DATA s32 D_800DF1A8;
-/*800DF1AC*/ EXTERN_DATA s16 D_800DF1AC[MAXPLAYERS];
-/*800DF1B4*/ EXTERN_DATA s16 D_800DF1B4[9];
-/*800DF1C0*/ EXTERN_DATA STATIC char *D_800DF1C0[4];
-/*800DF1D0*/ EXTERN_DATA s16 D_800DF1D0[24][3];
-/*800DF260*/ EXTERN_DATA STATIC s32 D_800DF260[32];
+/*800DEE80*/ s32 D_800DEE80 = 0;
+/*800DEE84*/ s32 D_800DEE84 = 0;
+/*800DEE88*/ s32 D_800DEE88 = 0;
+/*800DEE8C*/ s32 D_800DEE8C = 0;
+static s32 _unused1[2] = {0};
+/*800DEE98*/ s32 D_800DEE98 = 0;
+/*800DEE9C*/ s32 D_800DEE9C = 1;
+/*800DEEA0*/ s32 D_800DEEA0 = 0;
+static s32 _unused2 = 0;
+/*800DEEA8*/ s32 gAiDebugGvar1 = 0;
+/*800DEEAC*/ s32 gAiDebugGvar2 = 0;
+/*800DEEB0*/ s32 gAiDebugGvar3 = 0;
+static s32 _unused3 = -1;
+/*800DEEB8*/ s32 D_800DEEB8 = 0;
+/*800DEEBC*/ s32 D_800DEEBC = -1;
+/*800DEEC0*/ s32 gInvulnerability = 0;
+static s32 _unused4 = 0;
+/*800DEEC8*/ static s32 D_800DEEC8 = 0;
+static s32 _unused5 = 0;
+/*800DEED0*/ u8 D_800DEED0[MAXPLAYERS] = {0};
+/*800DEED4*/ static s32 D_800DEED4 = 35000;
+static s32 _unused6[3] = {255, 111, 0};
+/*800DEEE4*/ u8 D_800DEEE4[MAXPLAYERS] = {0};
+/*800DEEE8*/ s32 gAutoAim = 1;
+static s32 _unused7[9] = {-1, -1, -1, -1, -1, -1, -1, -1, 0};
+/*800DEF10*/ static s32 D_800DEF10 = 0;
+/*800DEF14*/ static s32 D_800DEF14 = 100; /*damage?*/
+/*800DEF18*/ static s32 D_800DEF18 = 100; /*damage?*/
+/*800DEF1C*/ s32 D_800DEF1C = -1;
+/*800DEF20*/ static s16 D_800DEF20 = 64;
+static s32 _unused9[5] = {0, 0, 0, 4, 0};
+/*800DEF38*/ static s32 D_800DEF38 = 0;
+
+/*800DEF3C*/
+static _41940UnkFuncPointer2 D_800DEF3C[84] = {
+    func_80041968,
+    func_80043878,
+    ifNotVarAnd,
+    func_80042A6C,
+    func_80043DE4,
+    func_80043870,
+    func_80042598,
+    func_80043870,
+    func_80043870,
+    func_80043870,
+    func_800437F4,
+    func_80042AE4,
+    func_800422BC,
+    func_80044000,
+    func_80043870,
+    func_80043870,
+    func_8004201C,
+    func_8004204C,
+    func_80042094,
+    func_80043870,
+    func_8004BE48,
+    func_80042B98,
+    func_80043A74,
+    func_80043B10,
+    func_80044394,
+    setVarVar,
+    addVarVar,
+    subVarVar,
+    func_80044B38,
+    andVarVar,
+    ifVarVarLE,
+    ifVarVarAE,
+    func_80043894,
+    func_80042434,
+    ifVarVarN,
+    ifVarVarE,
+    multVarVar,
+    divVarVar,
+    func_80046494,
+    orVarVar,
+    func_80045704,
+    func_80043BAC,
+    func_8004B440,
+    func_80045690,
+    absVarVar,
+    func_80043870,
+    func_80043870,
+    func_80043870,
+    func_80044F9C,
+    func_8004BD24,
+    func_80045DA8,
+    negVarVar,
+    func_80045228,
+    func_80045B64,
+    func_80043870,
+    func_80045C44,
+    func_80045D34,
+    func_80042178,
+    func_800450E0,
+    func_8004BE20,
+    func_80041D10,
+    func_80058468,
+    func_80045CB8,
+    func_80042210,
+    func_800420C8,
+    func_80043D64,
+    func_80043938,
+    func_800457BC,
+    func_8004587C,
+    func_80043870,
+    func_80043E7C,
+    func_8004423C,
+    modVarVar,
+    func_800458D0,
+    func_80045988,
+    func_80045A48,
+    func_80042380,
+    func_80043870,
+    func_80043870,
+    func_80044120,
+    func_80042C18,
+    func_80042B40,
+    func_800439D0,
+    func_80043F3C,
+};
+
+/*800DF08C*/ static u8 *D_800DF08C = NULL;
+
+/*800DF090*/
+static s16 D_800DF090[32] = {
+    -1, -1, 1801, 1814, 1795, -1, 1824, 1828, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, 1875, 1853, 1861, 1867, 1845, 1838, -1, -1, 0,
+};
+
+/*800DF0D0*/
+static s16 D_800DF0D0[32] = {
+    -1, -1, 1806, 1815, 1796, -1, 1825, 1830, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, 1877, 1855, 1862, 1880, 1847, 1840, -1, -1, 0,
+};
+
+/*800DF110*/
+static s16 D_800DF110[32] = {
+    -1, -1, 1800, 1812, 1793, -1, 1821, 1827, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, 1882, 1851, 1859, 1866, 1843, 1835, -1, -1, 0,
+};
+
+/*800DF150*/
+static s16 D_800DF150[32] = {
+    -1, -1, 1807, 1819, 1798, -1, 1826, 1833, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, 1878, 1856, 1864, 1871, 1850, 1842, -1, -1, 0,
+};
+
+/*800DF190*/ static s16 D_800DF190[8] = {47, 54, 43, 54, 6, 7, 8, 0};
+/*800DF1A0*/ static s16 D_800DF1A0[4] = {6, 7, 8, 0};
+/*800DF1A8*/ s32 D_800DF1A8 = -1;
+/*800DF1AC*/ s16 D_800DF1AC[MAXPLAYERS] = {0};
+/*800DF1B4*/ s16 D_800DF1B4[4] = {650, 651, 652, 702};
+static s32 _unused10 = 0; /*TODO: File split?*/
 
 /*.comm*/
 /*800FE9D4*/ s32 D_800FE9D4;
@@ -519,7 +704,7 @@ static void func_800418B8(s32 arg0)
 }
 
 /*80041968*/
-STATIC s32 func_80041968(s32 spritenum)
+static s32 func_80041968(s32 spritenum)
 {
     s32 i, j;
     s16 ang;
@@ -590,7 +775,7 @@ STATIC s32 func_80041968(s32 spritenum)
 }
 
 /*80041D10*/
-STATIC s32 func_80041D10(s32 spritenum)
+static s32 func_80041D10(s32 spritenum)
 {
     s32 i, j, k, l;
     s32 x, y, z1, z2;
@@ -707,7 +892,7 @@ STATIC s32 func_80041D10(s32 spritenum)
 }
 
 /*8004201C*/
-STATIC s32 func_8004201C(s32 spritenum)
+static s32 func_8004201C(s32 spritenum)
 {
     s32 i;
 
@@ -718,7 +903,7 @@ STATIC s32 func_8004201C(s32 spritenum)
 }
 
 /*8004204C*/
-STATIC s32 func_8004204C(s32 spritenum)
+static s32 func_8004204C(s32 spritenum)
 {
     s32 i;
 
@@ -735,7 +920,7 @@ STATIC s32 func_8004204C(s32 spritenum)
 }
 
 /*80042094*/
-STATIC s32 func_80042094(s32 spritenum)
+static s32 func_80042094(s32 spritenum)
 {
     gpInst++;
     gpInst = D_80137DE0->unk1C;
@@ -744,7 +929,7 @@ STATIC s32 func_80042094(s32 spritenum)
 }
 
 /*800420C8*/
-STATIC s32 func_800420C8(s32 spritenum)
+static s32 func_800420C8(s32 spritenum)
 {
     s32 i;
     s32 result;
@@ -785,7 +970,7 @@ s32 func_80042140(s32 spritenum)
 }
 
 /*80042178*/
-STATIC s32 func_80042178(s32 spritenum)
+static s32 func_80042178(s32 spritenum)
 {
     gpInst++;
     gpInst = D_80137DE0->unk18;
@@ -808,7 +993,7 @@ STATIC s32 func_80042178(s32 spritenum)
 }
 
 /*80042210*/
-STATIC s32 func_80042210(s32 spritenum)
+static s32 func_80042210(s32 spritenum)
 {
     gpInst++;
     gpInst = D_80137DE0->unk24;
@@ -832,7 +1017,7 @@ STATIC s32 func_80042210(s32 spritenum)
 }
 
 /*800422BC*/
-STATIC s32 func_800422BC(s32 spritenum)
+static s32 func_800422BC(s32 spritenum)
 {
     s32 i, j, result;
 
@@ -853,7 +1038,7 @@ STATIC s32 func_800422BC(s32 spritenum)
 }
 
 /*80042380*/
-STATIC s32 func_80042380(s32 spritenum)
+static s32 func_80042380(s32 spritenum)
 {
     s32 i, j, result;
 
@@ -873,7 +1058,7 @@ STATIC s32 func_80042380(s32 spritenum)
 }
 
 /*80042434*/
-STATIC s32 func_80042434(s32 spritenum)
+static s32 func_80042434(s32 spritenum)
 {
     s32 i, j, result, result2, result3;
 
@@ -899,7 +1084,7 @@ STATIC s32 func_80042434(s32 spritenum)
 }
 
 /*80042598*/
-STATIC s32 func_80042598(s32 spritenum)
+static s32 func_80042598(s32 spritenum)
 {
     s32 x, y, z1, z2;
     s32 i, j, k, l, m;
@@ -992,7 +1177,7 @@ STATIC s32 func_80042598(s32 spritenum)
 }
 
 /*80042860*/
-STATIC s32 ifVarVarN(s32 spritenum)
+static s32 ifVarVarN(s32 spritenum)
 {
     s32 i, j, result, result2;
 
@@ -1011,7 +1196,7 @@ STATIC s32 ifVarVarN(s32 spritenum)
 }
 
 /*80042914*/
-STATIC s32 ifNotVarAnd(s32 spritenum)
+static s32 ifNotVarAnd(s32 spritenum)
 {
     s32 i, j, k, result;
 
@@ -1030,7 +1215,7 @@ STATIC s32 ifNotVarAnd(s32 spritenum)
 }
 
 /*800429B4*/
-STATIC s32 ifVarVarE(s32 spritenum)
+static s32 ifVarVarE(s32 spritenum)
 {
     s32 i, j, result, result2;
 
@@ -1049,7 +1234,7 @@ STATIC s32 ifVarVarE(s32 spritenum)
 }
 
 /*80042A6C*/
-STATIC s32 func_80042A6C(s32 spritenum)
+static s32 func_80042A6C(s32 spritenum)
 {
     s32 i, j, k;
 
@@ -1068,7 +1253,7 @@ STATIC s32 func_80042A6C(s32 spritenum)
 }
 
 /*80042AE4*/
-STATIC s32 func_80042AE4(s32 spritenum)
+static s32 func_80042AE4(s32 spritenum)
 {
     s32 i, j;
 
@@ -1082,7 +1267,7 @@ STATIC s32 func_80042AE4(s32 spritenum)
 }
 
 /*80042B40*/
-STATIC s32 func_80042B40(s32 spritenum)
+static s32 func_80042B40(s32 spritenum)
 {
     s32 i, j;
 
@@ -1096,7 +1281,7 @@ STATIC s32 func_80042B40(s32 spritenum)
 }
 
 /*80042B98*/
-STATIC s32 func_80042B98(s32 spritenum)
+static s32 func_80042B98(s32 spritenum)
 {
     s32 i, j;
 
@@ -1111,7 +1296,7 @@ STATIC s32 func_80042B98(s32 spritenum)
 }
 
 /*80042C18*/
-STATIC s32 func_80042C18(s32 spritenum)
+static s32 func_80042C18(s32 spritenum)
 {
     s32 i, j;
 
@@ -1385,7 +1570,7 @@ static s32 func_8004364C(s32 arg0)
 }
 
 /*800437F4*/
-STATIC s32 func_800437F4(s32 spritenum)
+static s32 func_800437F4(s32 spritenum)
 {
     gpInst++;
     D_80118248->xrepeat = getVar(spritenum, *gpInst++);
@@ -1394,19 +1579,19 @@ STATIC s32 func_800437F4(s32 spritenum)
 }
 
 /*80043870*/
-STATIC s32 func_80043870(s32 spritenum)
+static s32 func_80043870(s32 spritenum)
 {
 }
 
 /*80043878*/
-STATIC s32 func_80043878(s32 spritenum)
+static s32 func_80043878(s32 spritenum)
 {
     gpInst++;
     return 2;
 }
 
 /*80043894*/
-STATIC s32 func_80043894(s32 spritenum)
+static s32 func_80043894(s32 spritenum)
 {
     gpInst++;
     if (D_80137DE0->unk80 == 0)
@@ -1426,7 +1611,7 @@ STATIC s32 func_80043894(s32 spritenum)
 }
 
 /*80043938*/
-STATIC s32 func_80043938(s32 spritenum)
+static s32 func_80043938(s32 spritenum)
 {
     s32 i, j, result;
 
@@ -1444,7 +1629,7 @@ STATIC s32 func_80043938(s32 spritenum)
 }
 
 /*800439D0*/
-STATIC s32 func_800439D0(s32 spritenum)
+static s32 func_800439D0(s32 spritenum)
 {
     s32 i, j, result;
 
@@ -1462,7 +1647,7 @@ STATIC s32 func_800439D0(s32 spritenum)
 }
 
 /*80043A74*/
-STATIC s32 func_80043A74(s32 spritenum)
+static s32 func_80043A74(s32 spritenum)
 {
     s32 i, j, result;
 
@@ -1480,7 +1665,7 @@ STATIC s32 func_80043A74(s32 spritenum)
 }
 
 /*80043B10*/
-STATIC s32 func_80043B10(s32 spritenum)
+static s32 func_80043B10(s32 spritenum)
 {
     s32 i, j, result;
 
@@ -1498,7 +1683,7 @@ STATIC s32 func_80043B10(s32 spritenum)
 }
 
 /*80043BAC*/
-STATIC s32 func_80043BAC(s32 spritenum)
+static s32 func_80043BAC(s32 spritenum)
 {
     s32 i, j, result, result2, result3;
 
@@ -1519,7 +1704,7 @@ STATIC s32 func_80043BAC(s32 spritenum)
 }
 
 /*80043CA8*/
-STATIC s32 ifVarVarLE(s32 spritenum)
+static s32 ifVarVarLE(s32 spritenum)
 {
     s32 i, j, result, result2;
 
@@ -1538,7 +1723,7 @@ STATIC s32 ifVarVarLE(s32 spritenum)
 }
 
 /*80043D64*/
-STATIC s32 func_80043D64(s32 spritenum)
+static s32 func_80043D64(s32 spritenum)
 {
     s32 result;
 
@@ -1554,7 +1739,7 @@ STATIC s32 func_80043D64(s32 spritenum)
 }
 
 /*80043DE4*/
-STATIC s32 func_80043DE4(s32 spritenum)
+static s32 func_80043DE4(s32 spritenum)
 {
     s32 i, j, result;
 
@@ -1572,7 +1757,7 @@ STATIC s32 func_80043DE4(s32 spritenum)
 }
 
 /*80043E7C*/
-STATIC s32 func_80043E7C(s32 spritenum)
+static s32 func_80043E7C(s32 spritenum)
 {
     s32 i, j, result;
     code0unkStruct8 *ptr;
@@ -1594,7 +1779,7 @@ STATIC s32 func_80043E7C(s32 spritenum)
 }
 
 /*80043F3C*/
-STATIC s32 func_80043F3C(s32 spritenum)
+static s32 func_80043F3C(s32 spritenum)
 {
     s32 i, j, result;
     code0unkStruct8 *ptr;
@@ -1616,7 +1801,7 @@ STATIC s32 func_80043F3C(s32 spritenum)
 }
 
 /*80044000*/
-STATIC s32 func_80044000(s32 spritenum)
+static s32 func_80044000(s32 spritenum)
 {
     s32 i, j, result, result2, result3;
 
@@ -1647,7 +1832,7 @@ STATIC s32 func_80044000(s32 spritenum)
 }
 
 /*80044120*/
-STATIC s32 func_80044120(s32 spritenum)
+static s32 func_80044120(s32 spritenum)
 {
     s32 i, j, result, result2, result3;
 
@@ -1678,7 +1863,7 @@ STATIC s32 func_80044120(s32 spritenum)
 }
 
 /*8004423C*/
-STATIC s32 func_8004423C(s32 spritenum)
+static s32 func_8004423C(s32 spritenum)
 {
     s32 i, j, result;
 
@@ -1696,7 +1881,7 @@ STATIC s32 func_8004423C(s32 spritenum)
 }
 
 /*800442D8*/
-STATIC s32 ifVarVarAE(s32 spritenum)
+static s32 ifVarVarAE(s32 spritenum)
 {
     s32 i, j, result, result2;
 
@@ -1715,7 +1900,7 @@ STATIC s32 ifVarVarAE(s32 spritenum)
 }
 
 /*80044394*/
-STATIC s32 func_80044394(s32 spritenum)
+static s32 func_80044394(s32 spritenum)
 {
     s16 ang;
     s32 i, j, k, l, m, n;
@@ -1804,7 +1989,7 @@ STATIC s32 func_80044394(s32 spritenum)
 }
 
 /*80044854*/
-STATIC s32 setVarVar(s32 spritenum)
+static s32 setVarVar(s32 spritenum)
 {
     s32 i, result;
 
@@ -1816,7 +2001,7 @@ STATIC s32 setVarVar(s32 spritenum)
 }
 
 /*800448C0*/
-STATIC s32 addVarVar(s32 spritenum)
+static s32 addVarVar(s32 spritenum)
 {
     s32 i;
     s32 result;
@@ -1830,7 +2015,7 @@ STATIC s32 addVarVar(s32 spritenum)
 }
 
 /*8004494C*/
-STATIC s32 subVarVar(s32 spritenum)
+static s32 subVarVar(s32 spritenum)
 {
     s32 i;
     s32 result;
@@ -1844,7 +2029,7 @@ STATIC s32 subVarVar(s32 spritenum)
 }
 
 /*800449DC*/
-STATIC s32 multVarVar(s32 spritenum)
+static s32 multVarVar(s32 spritenum)
 {
     s32 i;
     s32 result;
@@ -1858,7 +2043,7 @@ STATIC s32 multVarVar(s32 spritenum)
 }
 
 /*80044A78*/
-STATIC s32 divVarVar(s32 spritenum)
+static s32 divVarVar(s32 spritenum)
 {
     s32 i;
     s32 result;
@@ -1872,7 +2057,7 @@ STATIC s32 divVarVar(s32 spritenum)
 }
 
 /*80044B38*/
-STATIC s32 func_80044B38(s32 spritenum)
+static s32 func_80044B38(s32 spritenum)
 {
     s32 ang, ang1, ang2, ang3;
     s32 i, j, k, l, m, n;
@@ -1940,7 +2125,7 @@ STATIC s32 func_80044B38(s32 spritenum)
 }
 
 /*80044F9C*/
-STATIC s32 func_80044F9C(s32 spritenum)
+static s32 func_80044F9C(s32 spritenum)
 {
     s32 x, y, z, a, b;
 
@@ -1958,7 +2143,7 @@ STATIC s32 func_80044F9C(s32 spritenum)
 }
 
 /*800450E0*/
-STATIC s32 func_800450E0(s32 spritenum)
+static s32 func_800450E0(s32 spritenum)
 {
     s32 x, y, z, a, b;
 
@@ -1976,7 +2161,7 @@ STATIC s32 func_800450E0(s32 spritenum)
 }
 
 /*80045228*/
-STATIC s32 func_80045228(s32 spritenum)
+static s32 func_80045228(s32 spritenum)
 {
     s32 x, y, z, ang, b, c, d, e, spritenum_;
 
@@ -2016,7 +2201,7 @@ s32 func_80045400(s32 x, s32 y, s32 z, s32 sectnum, s32 arg4, s32 ang, s32 arg6,
 }
 
 /*800454BC*/
-STATIC s32 andVarVar(s32 spritenum)
+static s32 andVarVar(s32 spritenum)
 {
     s32 i;
     s32 result;
@@ -2030,7 +2215,7 @@ STATIC s32 andVarVar(s32 spritenum)
 }
 
 /*80045548*/
-STATIC s32 modVarVar(s32 spritenum)
+static s32 modVarVar(s32 spritenum)
 {
     s32 i;
     s32 result;
@@ -2044,7 +2229,7 @@ STATIC s32 modVarVar(s32 spritenum)
 }
 
 /*80045604*/
-STATIC s32 orVarVar(s32 spritenum)
+static s32 orVarVar(s32 spritenum)
 {
     s32 i;
     s32 result;
@@ -2058,7 +2243,7 @@ STATIC s32 orVarVar(s32 spritenum)
 }
 
 /*80045690*/
-STATIC s32 func_80045690(s32 spritenum)
+static s32 func_80045690(s32 spritenum)
 {
     s32 i;
 
@@ -2069,7 +2254,7 @@ STATIC s32 func_80045690(s32 spritenum)
 }
 
 /*80045704*/
-STATIC s32 func_80045704(s32 spritenum)
+static s32 func_80045704(s32 spritenum)
 {
     s32 sfxnum, result;
 
@@ -2086,7 +2271,7 @@ STATIC s32 func_80045704(s32 spritenum)
 }
 
 /*800457BC*/
-STATIC s32 func_800457BC(s32 spritenum)
+static s32 func_800457BC(s32 spritenum)
 {
     s32 sfxnum, result;
 
@@ -2103,7 +2288,7 @@ STATIC s32 func_800457BC(s32 spritenum)
 }
 
 /*8004587C*/
-STATIC s32 func_8004587C(s32 spritenum)
+static s32 func_8004587C(s32 spritenum)
 {
     musHandle handle;
 
@@ -2118,7 +2303,7 @@ STATIC s32 func_8004587C(s32 spritenum)
 }
 
 /*800458D0*/
-STATIC s32 func_800458D0(s32 spritenum)
+static s32 func_800458D0(s32 spritenum)
 {
     s32 sfxnum, result;
 
@@ -2135,7 +2320,7 @@ STATIC s32 func_800458D0(s32 spritenum)
 }
 
 /*80045988*/
-STATIC s32 func_80045988(s32 spritenum)
+static s32 func_80045988(s32 spritenum)
 {
     s32 sfxnum, result;
 
@@ -2152,7 +2337,7 @@ STATIC s32 func_80045988(s32 spritenum)
 }
 
 /*80045A48*/
-STATIC s32 func_80045A48(s32 spritenum)
+static s32 func_80045A48(s32 spritenum)
 {
     musHandle handle;
 
@@ -2167,7 +2352,7 @@ STATIC s32 func_80045A48(s32 spritenum)
 }
 
 /*80045A9C*/
-STATIC s32 absVarVar(s32 spritenum)
+static s32 absVarVar(s32 spritenum)
 {
     s32 i, result;
 
@@ -2179,7 +2364,7 @@ STATIC s32 absVarVar(s32 spritenum)
 }
 
 /*80045B04*/
-STATIC s32 negVarVar(s32 spritenum)
+static s32 negVarVar(s32 spritenum)
 {
     s32 i, result;
 
@@ -2191,7 +2376,7 @@ STATIC s32 negVarVar(s32 spritenum)
 }
 
 /*80045B64*/
-STATIC s32 func_80045B64(s32 spritenum)
+static s32 func_80045B64(s32 spritenum)
 {
     s32 a, b, c, d;
 
@@ -2205,7 +2390,7 @@ STATIC s32 func_80045B64(s32 spritenum)
 }
 
 /*80045C44*/
-STATIC s32 func_80045C44(s32 spritenum)
+static s32 func_80045C44(s32 spritenum)
 {
     s32 i;
     s32 *ptr;
@@ -2219,7 +2404,7 @@ STATIC s32 func_80045C44(s32 spritenum)
 }
 
 /*80045CB8*/
-STATIC s32 func_80045CB8(s32 spritenum)
+static s32 func_80045CB8(s32 spritenum)
 {
     s32 i;
     s32 *ptr;
@@ -2235,7 +2420,7 @@ STATIC s32 func_80045CB8(s32 spritenum)
 }
 
 /*80045D34*/
-STATIC s32 func_80045D34(s32 spritenum)
+static s32 func_80045D34(s32 spritenum)
 {
     s32 i;
     s32 *ptr;
@@ -2249,7 +2434,7 @@ STATIC s32 func_80045D34(s32 spritenum)
 }
 
 /*80045DA8*/
-STATIC s32 func_80045DA8(s32 spritenum)
+static s32 func_80045DA8(s32 spritenum)
 {
     s32 i;
     s32 *ptr;
@@ -2509,7 +2694,7 @@ s32 setVar(s32 spritenum, s32 id, s32 value)
 }
 
 /*80046494*/
-STATIC s32 func_80046494(s32 spritenum)
+static s32 func_80046494(s32 spritenum)
 {
     gpInst++;
     switch (*gpInst++)
@@ -4239,7 +4424,7 @@ static void func_8004B2B0(s32 spritenum, s32 arg1, s32 arg2)
 }
 
 /*8004B440*/
-STATIC s32 func_8004B440(s32 spritenum)
+static s32 func_8004B440(s32 spritenum)
 {
     s32 i, j, k, l, m;
 
@@ -4587,14 +4772,14 @@ s32 func_8004BD24(s32 spritenum)
 }
 
 /*8004BE20*/
-STATIC s32 func_8004BE20(s32 spritenum)
+static s32 func_8004BE20(s32 spritenum)
 {
     changeSpriteStat(spritenum, 0);
     return -1;
 }
 
 /*8004BE48*/
-STATIC s32 func_8004BE48(s32 spritenum)
+static s32 func_8004BE48(s32 spritenum)
 {
     _41940UnkFuncPointer1 func;
     s32 i;
@@ -5185,7 +5370,7 @@ s32 func_8004D304(SpriteType *arg0, s16 arg1, s16 arg2)
 }
 
 /*8004D65C*/
-STATIC void func_8004D65C(s32 spritenum)
+static void func_8004D65C(s32 spritenum)
 {
     s16 i, nexti;
     s32 hitag;
@@ -6743,6 +6928,14 @@ static u8 func_80051684(s16 sectnum)
     return 0;
 }
 
+/*800DF1C0*/
+static char *D_800DF1C0[4] = {
+    "TNT BARREL",
+    "FUSE WIRE",
+    "PLUNGER BOX",
+    "TIME MACHINE PART"
+};
+
 /*800516EC*/
 static u8 func_800516EC(s16 spritenum)
 {
@@ -6825,11 +7018,6 @@ static void func_80051808(s16 spritenum)
             func_8006B4E4(2);
     }
 }
-
-INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5A40);
-INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5A54);
-INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5A60);
-INCLUDE_RODATA("nonmatchings/src/code0/41940", D_800E5A6C);
 
 /*800519AC*/
 static void func_800519AC(void)
@@ -7074,9 +7262,37 @@ static void func_800524BC(s16 playernum, s16 arg1, s16 arg2)
     }
 }
 
+/*800DF1D0*/
+s16 D_800DF1D0[24][3] = {
+    { 0, 0, 0 },
+    { 0, 0, 0 },
+    { 280, 14, 42 },
+    { 96, 6, 12 },
+    { 96, 8, 12 },
+    { 60, 12, 12 },
+    { 500, 50, 25 },
+    { 100, 5, 10 },
+    { 48, 12, 12 },
+    { 48, 12, 12 },
+    { 48, 1, 6 },
+    { 0, 0, 0 },
+    { 48, 1, 6 },
+    { 48, 1, 6 },
+    { 12, 1, 4 },
+    { 600, 200, 200 },
+    { 500, 50, 50 },
+    { 750, 75, 75 },
+    { 60, 12, 12 },
+    { 6, 0, 6 },
+    { 2400, 240, 240 },
+    { 12, 3, 3 },
+    { 12, 12, 12 },
+    { 30, 5, 5 },
+};
+
 #ifdef NON_MATCHING
 /*8005259C*/
-STATIC u8 func_8005259C(s16 playernum, s16 arg1, u32 arg2, s16 spritenum) /*Pickup Ammo+weapon?*/
+static u8 func_8005259C(s16 playernum, s16 arg1, u32 arg2, s16 spritenum) /*Pickup Ammo+weapon?*/
 {
     u8 cond;
     s16 i;
@@ -8854,6 +9070,12 @@ static void func_80055DDC(s32 spritenum)
         changeSpriteStat(spritenum, 1);
 }
 
+/*800DF260*/
+static s32 D_800DF260[32] = {
+    4, 32768, 512, 512, 512, 512, 512, 512, -1, 32768, -1, -1, -1, -1, -1, -1,
+    -1, 32768, -1, -1, -1, -1, -1, 512, 512, 512, 512, 512, 512, 512, 0, 0,
+};
+
 #ifdef NON_MATCHING
 /*80055EC0*/
 void func_80055EC0(s32 spritenum, s32 arg1)
@@ -9254,7 +9476,7 @@ static void func_80056C00(s32 spritenum)
 }
 
 /*8005731C*/
-STATIC s32 func_8005731C(s32 spritenum)
+static s32 func_8005731C(s32 spritenum)
 {
     SpriteType *spr;
     s32 unk16;
@@ -9670,7 +9892,7 @@ static void func_80057E7C(void)
 }
 
 /*80058468*/
-STATIC s32 func_80058468(s32 spritenum)
+static s32 func_80058468(s32 spritenum)
 {
     s16 a, b;
     s32 c;

@@ -13,6 +13,7 @@
 #include "code0/20490.h"
 #include "code0/24610.h"
 #include "code0/37090.h"
+#include "code0/3FAD0.h"
 #include "code0/41940.h"
 #include "code0/64530.h"
 #include "code0/6ACA0.h"

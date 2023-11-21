@@ -29,13 +29,13 @@ typedef struct {
 
 /*.data*/
 /*800DEDC0*/ static s8 D_800DEDC0 = 0;
-/*800DEDC4*/ static u8 D_800DEDC4[4] = {0, 0, 0, 0};
-/*800DEDC8*/ static u8 D_800DEDC8[4] = {0, 0, 0, 0};
-/*800DEDCC*/ static u8 D_800DEDCC[4] = {0, 0, 0, 0};
-/*800DEDD0*/ static u8 D_800DEDD0[4] = {0, 0, 0, 0};
-/*800DEDD4*/ static u8 D_800DEDD4[4] = {0, 0, 0, 0};
-/*800DEDD8*/ static u8 D_800DEDD8[4] = {0, 0, 0, 0};
-/*800DEDDC*/ static u8 D_800DEDDC[4] = {0, 0, 0, 0};
+/*800DEDC4*/ static u8 D_800DEDC4[4] = {0};
+/*800DEDC8*/ static u8 D_800DEDC8[4] = {0};
+/*800DEDCC*/ static u8 D_800DEDCC[4] = {0};
+/*800DEDD0*/ static u8 D_800DEDD0[4] = {0};
+/*800DEDD4*/ static u8 D_800DEDD4[4] = {0};
+/*800DEDD8*/ static u8 D_800DEDD8[4] = {0};
+/*800DEDDC*/ static u8 D_800DEDDC[4] = {0};
 /*800DEDE0*/ u8 D_800DEDE0 = 0;
 
 /*800DEDE4*/

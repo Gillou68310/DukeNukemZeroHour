@@ -11,7 +11,7 @@
 #include "static/mapinfo.h"
 
 /*.data*/
-/*800E16A0*/ u8 D_800E16A0[MAXPLAYERS] = {0, 0, 0, 0};
+/*800E16A0*/ u8 D_800E16A0[MAXPLAYERS] = {0};
 
 /*800E16A4*/
 static s16 D_800E16A4[12] = {-1, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
