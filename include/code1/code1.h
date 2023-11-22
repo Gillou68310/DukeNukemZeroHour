@@ -4,6 +4,23 @@
 #include "common.h"
 #include "code0/engine.h"
 #include "static/119280.h"
+#include "static/mapinfo.h"
+
+#define CONFIG_OFF 0
+#define CONFIG_ON  1
+
+#define CONFIG_SOUND_MONO   0
+#define CONFIG_SOUND_STEREO 1
+
+#define CONFIG_GRAPHICS_NORMAL  0
+#define CONFIG_GRAPHICS_MEDIUM  1
+#define CONFIG_GRAPHICS_HIGHRES 2
+
+#define CONFIG_2P_SPLIT_HORZ 0
+#define CONFIG_2P_SPLIT_VERT 1
+
+#define CONFIG_3P_SPLIT_EQUAL 0
+#define CONFIG_3P_SPLIT_FULL 1
 
 typedef struct
 {
@@ -18,38 +35,56 @@ typedef struct
     f32 zUp;
 } Position;
 
-/*Config?*/
 typedef struct
 {
-    /*0x00*/ u8 pad[3];
-    /*0x03*/ u8 unk3;
-    /*0x04*/ u8 pad1;
-    /*0x05*/ u8 unk5;
-    /*0x06*/ u8 pad2[2];
-    /*0x08*/ u8 unk8;
-    /*0x09*/ u8 pad3[2];
-    /*0x0B*/ u8 unkB;
-    /*0x0C*/ u8 unkC;
-    /*0x0D*/ u8 pad4[9];
-    /*0x16*/ u16 unk16;
+    struct {
+        /*0x00*/ u8 main;
+        /*0x01*/ u8 options_2P;
+        /*0x02*/ u8 select_single_multi_player;
+        /*0x03*/ u8 multiplayer_options;
+        /*0x04*/ u8 unk4;
+        /*0x05*/ u8 unk5;
+        /*0x06*/ u8 controller_config;
+        /*0x07*/ u8 options_1P;
+        /*0x08*/ u8 select_difficulty;
+        /*0x09*/ u8 select_multiplayer_gametype;
+        /*0x0A*/ u8 unkA;
+        /*0x0B*/ u8 unkB;
+        /*0x0C*/ u8 unkC;
+        /*0x0D*/ u8 unkD;
+        /*0x0E*/ u8 select_player;
+        /*0x0F*/ u8 unkF;
+        /*0x10*/ u8 player_setup;
+        /*0x11*/ u8 unk11;
+        /*0x12*/ u8 cheats;
+        /*0x13*/ u8 cheats_others;
+        /*0x14*/ u8 cheats_game_type;
+        /*0x15*/ u8 cheats_weapons;
+    } menuIndex;
+
+    /*0x16*/ u16 sound;
     /*0x18*/ u16 mastervol;
     /*0x1A*/ u16 musicvol;
-    /*0x1C*/ u16 unk1C;
-    /*0x1E*/ u16 unk1E;
-    /*0x20*/ u16 unk20;
-    /*0x22*/ u16 unk22;
-    /*0x24*/ u16 unk24;
-    /*0x26*/ u16 unk26;
-    /*0x28*/ u16 unk28;
-    /*0x2A*/ u16 unk2A;
-    /*0x2C*/ u8 pad5[2];
-    /*0x2E*/ u16 unk2E[MAXPLAYERS];
-    /*0x36*/ u16 unk36[MAXPLAYERS];
-    /*0x3E*/ u16 unk3E[MAXPLAYERS];
-    /*0x46*/ u16 unk46[MAXPLAYERS];
+    /*0x1C*/ u16 rumblepak;
+
+    struct {
+        /*0x1E*/ u16 radar;
+        /*0x20*/ u16 time_limit;
+        /*0x22*/ u16 frag_count;
+        /*0x24*/ u16 split_2P;
+        /*0x26*/ u16 split_3P;
+        /*0x28*/ u16 friendly_fire;
+        /*0x2A*/ u16 players;
+    } multiplayer;
+
+    /*0x2C*/ u16 unused;
+    /*0x2E*/ u16 controller_preset[MAXPLAYERS];
+    /*0x36*/ u16 crosshair[MAXPLAYERS];
+    /*0x3E*/ u16 autoaim[MAXPLAYERS];
+    /*0x46*/ u16 autocenter[MAXPLAYERS];
     /*0x4E*/ u16 difficulty;
     /*0x50*/ u8 unk50;
-} code1UnkStruct1;
+} Config;
 
 typedef struct
 {
@@ -71,16 +106,16 @@ typedef struct
 {
     /*0x0000*/ u16 unk0;
     /*0x0002*/ u16 unk2;
-    /*0x0004*/ code1UnkStruct2 unk4[22];
+    /*0x0004*/ code1UnkStruct2 unk4[MAP_THE_END];
     /*0x0FD4*/ u8 unkFD4;
-    /*0x0FD5*/ u8 unkFD5;
+    /*0x0FD5*/ u8 unkFD5; /*mapnum*/
     /*0x0FD6*/ u8 unkFD6;
     /*0x0FD7*/ u8 unkFD7;
     /*0x0FD8*/ s32 unkFD8;
     /*0x0FDC*/ s32 unkFDC;
     /*0x0FE0*/ u16 unkFE0;
     /*0x0FE4*/ s32 unkFE4; /*time machine part?*/
-    /*0x0FE8*/ code1UnkStruct1 unkFE8;
+    /*0x0FE8*/ Config unkFE8;
     /*0x103A*/ u8 unk103A;
     /*0x103C*/ u8 pad2;
 } code1UnkStruct3;
@@ -162,11 +197,11 @@ typedef struct _code1UnkStruct6
 /*801CE478*/ _extern u16 D_801CE478;
 /*801CE480*/ _extern u16 D_801CE480;
 /*801CE48C*/ _extern u16 D_801CE48C;
-/*801CE498*/ _extern code1UnkStruct1 D_801CE498 ALIGNED(8);
+/*801CE498*/ _extern Config gConfig ALIGNED(8);
 /*801CE4EA*/ _extern u16 gPerspNorm;
 /*801CE4EC*/ _extern u16 D_801CE4EC;
 /*801CE5A0*/ _extern s32 D_801CE5A0;
-/*801CE5AC*/ _extern u16 D_801CE5AC;
+/*801CE5AC*/ _extern u16 gGraphicsOption;
 /*801CE5B0*/ _extern Position gPosition ALIGNED(8);
 /*801CE5D4*/ _extern char **gpCreditStrInfo;
 /*801CE5D8*/ _extern s32 D_801CE5D8;

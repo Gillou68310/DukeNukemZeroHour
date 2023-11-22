@@ -167,7 +167,7 @@ void func_8003671C(s16 playernum, u16 arg1, s16 arg2, s16 arg3)
             }
 
             if ((D_801AD470 != 4) ||
-                (D_801CE498.unk28 != 0) ||
+                (gConfig.multiplayer.friendly_fire != CONFIG_OFF) ||
                 (gpSprite[arg2].statnum != 10) ||
                 (D_800E16A0[gpSprite[arg2].unk16] != D_800E16A0[playernum]))
             {
@@ -1659,12 +1659,12 @@ static void func_8003B5F8(void)
                     func_8007F050();
 
                     D_801CDACC = D_801B0820;
-                    D_801CB538[4].unk18 = &D_801CE498.unk2E[D_801B0820];
-                    D_801CB538[5].unk18 = &D_801CE498.unk36[D_801B0820];
-                    D_801CB538[6].unk18 = &D_801CE498.unk3E[D_801B0820];
-                    D_801CB538[7].unk18 = &D_801CE498.unk46[D_801B0820];
-                    D_801CE498.unkB = 0;
-                    D_801CE498.unkC = 0;
+                    D_801CB538[4].unk18 = &gConfig.controller_preset[D_801B0820];
+                    D_801CB538[5].unk18 = &gConfig.crosshair[D_801B0820];
+                    D_801CB538[6].unk18 = &gConfig.autoaim[D_801B0820];
+                    D_801CB538[7].unk18 = &gConfig.autocenter[D_801B0820];
+                    gConfig.menuIndex.unkB = 0;
+                    gConfig.menuIndex.unkC = 0;
                     D_801CD980 = 0;
 
                     if (D_801CDC64.unk1 >= 2)

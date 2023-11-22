@@ -351,7 +351,7 @@ void func_8001EB2C(void)
                     envb = gpAlphaPalette[D_801AE538[i].unk19].env.b +
                         ((gpAlphaPalette[D_801AE538[i].unk18].env.b - gpAlphaPalette[D_801AE538[i].unk19].env.b) * j) / 256;
 
-                    if (D_801CE5AC == 2)
+                    if (gGraphicsOption == CONFIG_GRAPHICS_HIGHRES)
                     {
                         prima = (enva * 0x180) / 256;
                         if (prima > 0xFF)
@@ -413,7 +413,7 @@ void func_8001F44C(void)
     s16 i, j, k, playernum, ang;
     f32 f1, f2;
 
-    if (D_801CE5AC == 2)
+    if (gGraphicsOption == CONFIG_GRAPHICS_HIGHRES)
         k = 2;
     else
         k = 1;

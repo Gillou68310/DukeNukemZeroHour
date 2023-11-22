@@ -704,7 +704,7 @@ void func_800A0F84(void)
 
             if (gMapNum == MAP_PROBING_THE_DEPTHS)
             {
-                switch (D_801CE498.difficulty)
+                switch (gConfig.difficulty)
                 {
                 default:
                 case 0:
@@ -753,7 +753,7 @@ void func_800A0F84(void)
 
             if ((gMapNum == MAP_UNDER_SIEGE) && (D_80138678 != -1))
             {
-                switch (D_801CE498.difficulty)
+                switch (gConfig.difficulty)
                 {
                 default:
                 case 0:
@@ -890,7 +890,7 @@ void func_800A0F84(void)
                 func_80029130(D_8012DF04[D_801B0820].r, D_8012DF04[D_801B0820].g, D_8012DF04[D_801B0820].b, 0, 0, 0);
                 displayMessage1(254, 200, sp20);
 
-                if (D_801CE498.unk1E != 0)
+                if (gConfig.multiplayer.radar != CONFIG_OFF)
                 {
                     for (p = 0; p < D_8012C470; p++)
                     {
@@ -1040,8 +1040,8 @@ void func_800A3688(void)
         ptr = &D_8019B940[D_80106D50[gPlayer[D_801B0820].unk4A]];
         l = D_800E1934[ptr->unk99];
 
-        if (D_801CE498.unk36[D_801B0820] != 0)
-            l = D_800E1964[D_801CE498.unk36[D_801B0820]];
+        if (gConfig.crosshair[D_801B0820] != 0)
+            l = D_800E1964[gConfig.crosshair[D_801B0820]];
 
         func_8000A070();
 
@@ -1304,7 +1304,7 @@ void func_800A4478(void)
 
     if (gMapNum == MAP_PROBING_THE_DEPTHS)
     {
-        switch (D_801CE498.difficulty)
+        switch (gConfig.difficulty)
         {
         case 0:
         default:
@@ -1330,7 +1330,7 @@ void func_800A4478(void)
 
     if ((gMapNum == MAP_UNDER_SIEGE) && (D_80138678 != -1))
     {
-        switch (D_801CE498.difficulty)
+        switch (gConfig.difficulty)
         {
         case 0:
         default:

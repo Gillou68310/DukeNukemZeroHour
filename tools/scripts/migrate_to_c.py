@@ -84,13 +84,17 @@ if __name__ == '__main__':
 
     # Add original headers
     decomp = ''.join(includes) + decomp
+    lines = decomp.splitlines()
 
     # Write decompiled data
     f = open('data.c', 'w')
-    f.write(decomp)
+    for line in lines:
+        if 'extern' in line and '+' in line:
+            f.write('\n')
+        else:
+            f.write(line+'\n')
     f.close()
 
-    lines = decomp.splitlines()
 
     # Parse decompiled data
     v, ctx = parse_source_file('data.c')

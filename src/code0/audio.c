@@ -4,6 +4,7 @@
 #include "code0/41940.h"
 #include "code1/code1.h"
 #include "code1/EB300.h"
+#include "code1/code1.h"
 
 #define DMA_LEN 16384
 #define MUSIC_COUNT 12
@@ -743,7 +744,7 @@ static musHandle audio_8000730C(u16 arg0, u32 arg1, s32 pan, u8 restartflag)
 {
     s32 volume;
 
-    if (D_801CE498.unk16 == 0)
+    if (gConfig.sound == CONFIG_SOUND_MONO)
         pan = 128;
 
     if (arg1 >= (u32)D_800BD610)
@@ -760,7 +761,7 @@ static musHandle audio_80007418(musHandle handle, s32 arg1, s32 pan)
 {
     s32 volume;
 
-    if (D_801CE498.unk16 == 0)
+    if (gConfig.sound == CONFIG_SOUND_MONO)
         pan = 128;
 
     if (MusHandleAsk(handle) != 0)
@@ -822,7 +823,7 @@ static u32 audio_800075EC(u16 sfxnum, s16 spritenum, u8 restartflag)
         spritenum1 = gPlayer[playernum].unk4A;
     }
 
-    if ((spritenum2 < 512) || (D_801CE498.unk16 == 0))
+    if ((spritenum2 < 512) || (gConfig.sound == CONFIG_SOUND_MONO))
         pan = 128;
     else
     {
@@ -872,7 +873,7 @@ u32 audio_8000784C(u32 handle, s16 spritenum)
         spritenum1 = gPlayer[playernum].unk4A;
     }
 
-    if ((spritenum2 < 512) || (D_801CE498.unk16 == 0))
+    if ((spritenum2 < 512) || (gConfig.sound == CONFIG_SOUND_MONO))
         pan = 128;
     else
     {
@@ -1231,7 +1232,7 @@ void audio_800086B0(u16 arg0)
 /*80008710*/
 void audio_80008710(s16 arg0)
 {
-    setVolume((D_801CE498.musicvol * 100) / 7, (D_801CE498.mastervol * 100) / 7);
+    setVolume((gConfig.musicvol * 100) / 7, (gConfig.mastervol * 100) / 7);
     if (arg0 == -1)
     {
         playMusic(2);

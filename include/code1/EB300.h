@@ -26,7 +26,7 @@ void func_801C3524(void);
 void func_801C363C(u8 playernum, u16, u8);
 void func_801C3E08(void);
 void func_801C4B34(void);
-void func_801C4F38(void);
+void configInitialize(void);
 void func_801C542C(void);
 void func_801C63CC(void);
 void func_801C6560(void);

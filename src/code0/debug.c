@@ -308,7 +308,7 @@ void debugMenu(void)
         displayDebug(25, 50, buffer);
         sprintf(buffer, "AutoAim: %d", gAutoAim);
         displayDebug(25, 60, buffer);
-        sprintf(buffer, "Difficulty (0=E, 1=M, 2=H) : %d", D_801CE498.difficulty);
+        sprintf(buffer, "Difficulty (0=E, 1=M, 2=H) : %d", gConfig.difficulty);
         displayDebug(25, 70, buffer);
         sprintf(buffer, "Invul: %d", gInvulnerability);
         displayDebug(25, 80, buffer);
@@ -325,9 +325,9 @@ void debugMenu(void)
         {
             if (gButton[D_801B0814] & L_TRIG)
             {
-                D_801CE498.difficulty++;
-                if (D_801CE498.difficulty >= 3)
-                    D_801CE498.difficulty = 0;
+                gConfig.difficulty++;
+                if (gConfig.difficulty >= 3)
+                    gConfig.difficulty = 0;
                 func_80050408();
                 D_800DF98A = 1;
             }

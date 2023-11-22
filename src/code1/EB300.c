@@ -25,95 +25,101 @@ typedef struct {
     /*0x06*/ u16 unk6[11];
 } _EB300UnkStruct2;
 
+extern u8 files_1003A60_ROM_START[];
+extern u8 files_1004260_ROM_START[];
+extern u8 files_1004A60_ROM_START[];
+extern u8 files_1005260_ROM_START[];
+extern u8 files_1005A60_ROM_START[];
+extern u8 files_1006260_ROM_START[];
+extern u8 files_1006A60_ROM_START[];
+extern u8 files_1007260_ROM_START[];
+extern u8 files_1007A60_ROM_START[];
+extern u8 files_1008260_ROM_START[];
+extern u8 files_1008A60_ROM_START[];
+extern u8 files_1009260_ROM_START[];
+
 /*.data*/
-/*801CA144*/ EXTERN_DATA f32 D_801CA144;
-/*801CA14C*/ EXTERN_DATA _EB300UnkStruct1 D_801CA14C[MAP_NUM+1];
-/*801CA310*/ EXTERN_DATA STATIC _119280UnkStruct1 D_801CA310[8];
-/*801CA360*/ EXTERN_DATA STATIC _119280UnkStruct1 D_801CA360[4];
-/*801CA388*/ EXTERN_DATA STATIC _119280UnkStruct1 D_801CA388[3];
-/*801CA3A8*/ EXTERN_DATA STATIC _119280UnkStruct1 D_801CA3A8;
-/*801CA3B8*/ EXTERN_DATA STATIC Lights1 D_801CA3B8;
-/*801CA3D0*/ EXTERN_DATA STATIC s32 D_801CA3D0;
-/*801CA3D4*/ EXTERN_DATA STATIC s32 D_801CA3D4;
-/*801CA3D8*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CA3D8[5];
-/*801CA464*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CA464;
-/*801CA474*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CA474[3];
-/*801CA4C8*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CA4C8;
-/*801CA4D8*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CA4D8[11];
-/*801CA60C*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CA60C;
-/*801CA61C*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CA61C[3];
-/*801CA670*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CA670;
-/*801CA680*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CA680[8];
-/*801CA760*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CA760;
-/*801CA770*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CA770[2];
-/*801CA7A8*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CA7A8;
-/*801CA7B8*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CA7B8[2];
-/*801CA7F0*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CA7F0;
-/*801CA800*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CA800[2];
-/*801CA838*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CA838;
-/*801CA848*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CA848[2];
-/*801CA880*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CA880;
-/*801CA890*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CA890[8];
-/*801CA970*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CA970;
-/*801CA980*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CA980[3];
-/*801CA9D4*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CA9D4;
-/*801CA9E4*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CA9E4[2];
-/*801CAA1C*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CAA1C;
-/*801CAA2C*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CAA2C[5];
-/*801CAAB8*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CAAB8;
-/*801CAAC8*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CAAC8[4];
-/*801CAB38*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CAB38;
-/*801CAB48*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CAB48[8];
-/*801CAC28*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CAC28;
-/*801CAC38*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CAC38[12];
-/*801CAD88*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CAD88;
-/*801CAD98*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CAD98[8];
-/*801CAE78*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CAE78;
-/*801CAE88*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CAE88[6];
-/*801CAF30*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CAF30;
-/*801CAF40*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CAF40[9];
-/*801CB03C*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CB03C;
-/*801CB04C*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CB04C[4];
-/*801CB0BC*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CB0BC;
-/*801CB0CC*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CB0CC[4];
-/*801CB13C*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CB13C;
-/*801CB14C*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CB14C[12];
-/*801CB29C*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CB29C;
-/*801CB2AC*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CB2AC[4];
-/*801CB31C*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CB31C;
-/*801CB32C*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CB32C[7];
-/*801CB3F0*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CB3F0;
-/*801CB400*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CB400[5];
-/*801CB48C*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CB48C;
-/*801CB49C*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CB49C[5]; /*TODO: Size=4 ?*/
-/*801CB528*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CB528;
-/*801CB538*/ EXTERN_DATA code1UnkStruct5 D_801CB538[9];
-/*801CB634*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CB634;
-/*801CB644*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CB644[3];
-/*801CB698*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CB698;
-/*801CB6A8*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CB6A8[2];
-/*801CB6E0*/ EXTERN_DATA code1UnkStruct6 D_801CB6E0;
-/*801CB6F0*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CB6F0[2];
-/*801CB728*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CB728;
-/*801CB738*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CB738[3];
-/*801CB78C*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CB78C;
-/*801CB79C*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CB79C[3];
-/*801CB7F0*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CB7F0;
-/*801CB800*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CB800[4];
-/*801CB870*/ EXTERN_DATA code1UnkStruct6 D_801CB870;
-/*801CB880*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CB880[4];
-/*801CB8F0*/ EXTERN_DATA code1UnkStruct6 D_801CB8F0;
-/*801CB900*/ EXTERN_DATA STATIC code1UnkStruct5 D_801CB900[2];
-/*801CB938*/ EXTERN_DATA STATIC code1UnkStruct6 D_801CB938;
-/*801CB948*/ EXTERN_DATA STATIC s32 D_801CB948[6];
-/*801CB960*/ EXTERN_DATA STATIC char *D_801CB960[4];
-/*801CB970*/ EXTERN_DATA STATIC char *D_801CB970[4];
-/*801CB980*/ EXTERN_DATA STATIC char *D_801CB980[2];
-/*801CB988*/ EXTERN_DATA STATIC char *D_801CB988[4];
-/*801CB998*/ EXTERN_DATA STATIC _EB300UnkStruct2 D_801CB998[28];
-/*801CBCA8*/ EXTERN_DATA STATIC char *D_801CBCA8[16];
-/*801CBCE8*/ EXTERN_DATA STATIC u8 *D_801CBCE8[12];
-/*801CBD18*/ EXTERN_DATA STATIC u32 D_801CBD18;
+/*801CA140*/ static s32 D_801CA140 = 2048;
+/*801CA144*/ f32 D_801CA144 = 0.0f;
+/*801CA148*/ static char D_801CA148 = ' ';
+
+/*801CA14C*/
+_EB300UnkStruct1 D_801CA14C[MAP_NUM+1] = {
+    { 1, 0, "MEAN STREETS" },
+    { 1, 0, "LIBERTY OR DEATH" },
+    { 1, 0, "NUCLEAR WINTER" },
+    { 1, 0, "WETWORLD" },
+    { 1, 0, "FALLOUT" },
+    { 1, 0, "UNDER SIEGE" },
+    { 1, 0, "BOSS HOG" },
+    { 2, 0, "DRY TOWN" },
+    { 2, 0, "JAIL BREAK" },
+    { 2, 0, "UP SHIP CREEK" },
+    { 2, 0, "FORT ROSWELL" },
+    { 2, 0, "PROBING THE DEPTHS" },
+    { 2, 0, "CYBORG SCORPION" },
+    { 3, 0, "THE WHITECHAPEL KILLINGS" },
+    { 3, 0, "DAWN OF THE DUKE" },
+    { 3, 0, "HYDROGEN BOMB" },
+    { 3, 0, "THE RACK" },
+    { 3, 0, "GOING DOWN" },
+    { 3, 0, "BRAINSTORM" },
+    { 4, 0, "THE BROTHERS NUKEM" },
+    { 4, 0, "ALIEN MOTHER..." },
+    { 4, 0, "ZERO HOUR" },
+    { 9, 0, "THE END" },
+    { 10, 0, "BASE" },
+    { 5, 0, "COOL AS ICE" },
+    { 5, 0, "MIND FUNK" },
+    { 5, 0, "CHIMERA" },
+    { 5, 0, "SLIDERS" },
+    { 5, 0, "ATOMIC" },
+    { 5, 0, "HIGH NOON" },
+    { 5, 0, "ROCKY KNOLL" },
+    { 5, 0, "CASHING IN" },
+    { 5, 0, "HIVE 8" },
+    { 5, 0, "CASTLEMANIA" },
+    { 5, 0, "TOXIC SHOCK" },
+    { 5, 0, "FOGGING HELL" },
+    { 5, 0, "CATACOMBS" },
+    { 5, 0, "INFERNO" },
+    { 99, 0, "COOL AS ICE" },
+};
+
+static s16 _unused1[24] = {0, 8, 4, 1, 7, 3, 2, 6, 5, 4, 5, 1, 3, 5, 7, 4, 4, 2, 5, 3, 4, 6, 0, 3};
+static s32 _unused2[23] = {0};
+
+/*801CA310*/
+static _119280UnkStruct1 D_801CA310[8] = {
+    { 0, 16, 1, 2300, 1400 },
+    { 1, 16, 0, 1500, 500 },
+    { 2, 16, 2, 600, 300 },
+    { 3, 16, 3, 600, 300 },
+    { 11, 16, 11, 600, 300 },
+    { 20, 16, 12, 100, 300 },
+    { 21, 16, 21, 1200, 400 },
+    { 22, 16, 22, 100, 300 },
+};
+
+/*801CA360*/
+static _119280UnkStruct1 D_801CA360[4] = {
+    { 4, 16, 4, 100, 300 },
+    { 5, 16, 5, 100, 300 },
+    { 6, 16, 6, 100, 300 },
+    { 7, 16, 7, 100, 300 },
+};
+
+/*801CA388*/ static _119280UnkStruct1 D_801CA388[3] = {{ 8, 16, 8, 600, 300 }, { 9, 16, 9, 600, 300 }, { 10, 16, 10, 600, 300 }};
+/*801CA3A8*/ static _119280UnkStruct1 D_801CA3A8 = {0, 24, 0, 2300, 1400};
+
+/*801CA3B8*/
+static Lights1 D_801CA3B8 = {
+    { { { 48, 48, 48 }, 0, { 48, 48, 48 }, 0 } },
+    { { { { 255, 255, 255 }, 0, { 255, 255, 255 }, 0, { 176, 176, 60 }, 0 } } },
+};
+
+/*801CA3D0*/ static s32 D_801CA3D0 = 0;
+/*801CA3D4*/ static s32 D_801CA3D4 = 0;
 
 /*.comm*/
 /*801CC7F0*/ u8 *D_801CC7F0;
@@ -135,7 +141,7 @@ typedef struct {
 /*801CD97C*/ s16 D_801CD97C;
 /*801CD990*/ code0UnkStruct16 *D_801CD990[36] ALIGNED(8);
 /*801CDA20*/ code0UnkStruct16 *D_801CDA20;
-/*801CDA28*/ code0UnkStruct16 *D_801CDA28[22] ALIGNED(8);
+/*801CDA28*/ code0UnkStruct16 *D_801CDA28[MAP_THE_END] ALIGNED(8);
 /*801CDA84*/ code0UnkStruct16 *D_801CDA84;
 /*801CDA88*/ s32 D_801CDA88;
 /*801CDA8C*/ s32 D_801CDA8C;
@@ -171,7 +177,7 @@ char D_801CDB58[6][16] ALIGNED(8); /*Fix out of bound access in func_801C764C*/
 /*801CE59C*/ s32 D_801CE59C;
 /*801CE5A4*/ s32 D_801CE5A4;
 /*801CE5A8*/ code1UnkStruct6 *D_801CE5A8;
-/*801CE5DC*/ s32 D_801CE5DC;
+/*801CE5DC*/ s32 D_801CE5DC; /*mapnum*/
 /*801CE5E0*/ code0UnkStruct16 *D_801CE5E0;
 /*801CE5E4*/ code0UnkStruct16 *D_801CE5E4;
 /*801CF62C*/ Gfx *D_801CF62C;
@@ -188,7 +194,7 @@ char D_801CDB58[6][16] ALIGNED(8); /*Fix out of bound access in func_801C764C*/
 /*.text*/
 static void func_801C3608(void);
 static void func_801C37B8(void);
-STATIC void func_801C38DC(void);
+static void func_801C38DC(void);
 static void func_801C3A88(s32);
 static void func_801C3AD8(void);
 static s16 func_801C53E8(s16);
@@ -202,48 +208,18 @@ static void func_801C90E4(void);
 static void func_801C948C(void);
 static void func_801C959C(void);
 static void func_801C9B08(void);
-
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD20);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD28);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD34);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD44);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD50);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD5C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD64);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD70);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD7C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD88);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD90);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBD98);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBDA0);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBDAC);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBDB8);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBDC0);
-
-extern const char D_801CBDC8[]; /*TODO: mutualized rodata?*/
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBDC8);
-
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBDD4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBDE4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBDF8);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBE04);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBE10);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBE1C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBE2C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBE40);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBE5C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBE6C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBE80);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBE90);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBEA0);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBEAC);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBEB8);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBEC4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBED0);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBED8);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBEE4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBEF4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBF08);
+static void menuControllerConfig(void);
+static void menuSelectPlayer(void);
+static void menuMultiplayerSelectGameType(void);
+static void menuSelectDifficulty(void);
+static void menuLoadGame(void);
+static void menuBack(void);
+static void func_801C3874(void);
+static void func_801C392C(void);
+static void func_801C399C(void);
+static void func_801C3974(void);
+static void menuSaveGame(void);
+static void func_801C39C4(void);
 
 /*801C0D80*/
 static u16 func_801C0D80(void)
@@ -352,7 +328,7 @@ f32 tanf(f32 angle)
 }
 
 /*801C1088*/
-STATIC f32 func_801C1088(s32 x1, s32 x2, s32 y1, s32 y2)
+static f32 func_801C1088(s32 x1, s32 x2, s32 y1, s32 y2)
 {
     return ((f32)getAngle(x2 - x1, y2 - y1) * (3.1415926/1024.0));
 }
@@ -922,11 +898,7 @@ void func_801C1950(void)
     }
 }
 
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBFA8);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBFB8);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBFC8);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBFDC);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CBFF0);
+extern code1UnkStruct6 D_801CA970;
 
 /*801C2BE8*/
 void func_801C2BE8(code1UnkStruct6 *arg0)
@@ -971,10 +943,10 @@ void func_801C2BE8(code1UnkStruct6 *arg0)
                 j += 96;
 
             D_801CD990[D_801CE490-1]->unk7C = func_800802C0(ptr->unk14->unk4[ptr->unk18[0]].unk8,
-                                                                      j,
-                                                                      arg0->unk8 + (i * arg0->unkA),
-                                                                      200,
-                                                                      ptr->unk14->unk4[ptr->unk18[0]].unk0);
+                                                            j,
+                                                            arg0->unk8 + (i * arg0->unkA),
+                                                            200,
+                                                            ptr->unk14->unk4[ptr->unk18[0]].unk0);
 
             if ((ptr->unk14 == &D_801CA970) && ((ptr->unk18[0] != 0)))
                 func_801C14C4((code0UnkStruct16 *)D_801CD990[D_801CE490-1]->unk7C, 0xFF, 0xFF, 0xFF);
@@ -1003,13 +975,13 @@ static void func_801C2F1C(void)
 }
 
 /*801C2F98*/
-STATIC void func_801C2F98(void)
+static void menuEnter(void)
 {
     code1UnkStruct6 *ptr;
 
     func_801C2F1C();
-    D_801CE498.unk3 = 8;
-    D_801CE498.unk5 = 1;
+    gConfig.menuIndex.multiplayer_options = 8;
+    gConfig.menuIndex.unk5 = 1;
     D_801CDAA0[D_801CD980] = D_801CE5A8;
     D_801CD980++;
     *D_801CE5A8->unkC = D_801CE5A0;
@@ -1020,7 +992,7 @@ STATIC void func_801C2F98(void)
 }
 
 /*801C305C*/
-STATIC void func_801C305C(void)
+static void menuExit(void)
 {
     code1UnkStruct6 *ptr;
 
@@ -1035,6 +1007,17 @@ STATIC void func_801C305C(void)
         func_801C2BE8(ptr);
     }
 }
+
+/*801CA3D8*/
+static code1UnkStruct5 D_801CA3D8[5] = {
+    { 1, 65535, 1, 0, "IF RUMBLE PAKS ARE", NULL, NULL, NULL, NULL },
+    { 1, 65535, 1, 0, "TO BE USED, PLEASE", NULL, NULL, NULL, NULL },
+    { 1, 65535, 1, 0, "INSERT THEM INTO", NULL, NULL, NULL, NULL },
+    { 1, 65535, 1, 0, "THE CONTROLLERS", NULL, NULL, NULL, NULL },
+    { 1, 65535, 1, 0, "AND PRESS START", NULL, NULL, NULL, NULL },
+};
+
+/*801CA464*/ static code1UnkStruct6 D_801CA464 = {ARRAY_COUNT(D_801CA3D8), D_801CA3D8, 68, 24, NULL};
 
 /*801C30EC*/
 static void func_801C30EC(void)
@@ -1069,7 +1052,7 @@ static void func_801C30EC(void)
 }
 
 /*801C328C*/
-STATIC void func_801C328C(void)
+static void menuMultiplayerSelectLevel(void)
 {
     D_801CDC64.unk2 = D_801CE5A0;
     main_80000624(func_801C8650);
@@ -1078,7 +1061,7 @@ STATIC void func_801C328C(void)
 /*801C32C4*/
 static void func_801C32C4(void)
 {
-    if (D_801CE498.unk1C == 0)
+    if (gConfig.rumblepak == 0)
     {
         main_80000624(func_801C9B08);
     }
@@ -1092,7 +1075,7 @@ static void func_801C32C4(void)
 /*801C3310*/
 static void func_801C3310(void)
 {
-    if ((gLoadMapNum == MAP_THE_END) || (D_801CE498.unk1C == 0))
+    if ((gLoadMapNum == MAP_THE_END) || (gConfig.rumblepak == 0))
         main_80000624(func_801C9B08);
     else
     {
@@ -1152,139 +1135,6 @@ void func_801C3370(void)
     }
 }
 
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC020);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC024);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC028);
-
-extern const char D_801CC02C[]; /*TODO: mutualized rodata?*/
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC02C);
-
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC034);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC038);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC03C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC040);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC044);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC048);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC04C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC050);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC054);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC058);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC060);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC068);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC070);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC074);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC07C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC084);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC08C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC094);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC09C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC0A4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC0AC);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC0B0);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC0B4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC0BC);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC0C4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC0CC);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC0D4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC0DC);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC0E4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC0F0);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC0FC);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC104);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC10C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC114);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC11C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC120);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC128);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC130);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC138);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC140);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC150);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC15C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC164);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC170);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC188);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC198);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC1A4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC1B4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC1C0);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC1CC);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC1D4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC1E0);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC1EC);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC1F4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC204);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC210);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC218);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC21C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC220);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC224);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC228);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC22C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC230);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC234);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC238);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC23C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC240);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC244);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC254);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC268);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC27C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC288);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC29C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC2A4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC2B4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC2C0);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC2CC);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC2D4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC2E0);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC2EC);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC2F4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC308);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC310);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC324);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC334);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC344);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC34C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC35C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC36C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC378);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC384);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC38C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC394);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC3A0);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC3A8);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC3B0);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC3B8);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC3BC);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC3C8);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC3D8);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC3E8);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC3F8);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC404);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC40C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC414);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC424);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC434);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC43C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC448);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC450);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC458);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC464);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC470);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC47C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC480);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC484);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC490);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC4A0);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC4B0);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC4C4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC4D4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC4E0);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC4E8);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC4F4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC50C);
-
 /*801C3524*/
 void func_801C3524(void)
 {
@@ -1297,21 +1147,396 @@ void func_801C3524(void)
     }
 }
 
+/*801CA474*/
+static code1UnkStruct5 D_801CA474[3] = {
+    { 1, 280, 0, 0, "2", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "3", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "4", NULL, NULL, NULL, NULL },
+};
+
+/*801CA4C8*/ static code1UnkStruct6 D_801CA4C8 = {ARRAY_COUNT(D_801CA474), D_801CA474, 0, 0, NULL};
+
+/*801CA4D8*/
+static code1UnkStruct5 D_801CA4D8[11] = {
+    { 1, 280, 0, 0, "DEFAULT", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "a", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "b", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "c", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "d", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "e", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "f", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "g", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "h", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "i", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "NONE", NULL, NULL, NULL, NULL },
+};
+
+/*801CA60C*/ static code1UnkStruct6 D_801CA60C = {ARRAY_COUNT(D_801CA4D8), D_801CA4D8, 0, 0, NULL};
+
+/*801CA61C*/
+static code1UnkStruct5 D_801CA61C[3] = {
+    { 1, 280, 0, 0, "LOW", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "MEDIUM", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "HIGH", NULL, NULL, NULL, NULL },
+};
+
+/*801CA670*/ static code1UnkStruct6 D_801CA670 = {ARRAY_COUNT(D_801CA61C), D_801CA61C, 0, 0, NULL};
+
+/*801CA680*/
+static code1UnkStruct5 D_801CA680[8] = {
+    { 1, 280, 0, 0, "DUKE", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "ATOMIC", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "SHAKEN", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "STIRRED", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "NUKE", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "NITRO", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "GOLDEN", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "DIAMOND", NULL, NULL, NULL, NULL },
+};
+
+/*801CA760*/ static code1UnkStruct6 D_801CA760 = {ARRAY_COUNT(D_801CA680), D_801CA680, 0, 0, NULL};
+
+/*801CA770*/
+static code1UnkStruct5 D_801CA770[2] = {
+    { 1, 280, 0, 0, "OFF", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "ON", NULL, NULL, NULL, NULL },
+};
+
+/*801CA7A8*/ static code1UnkStruct6 D_801CA7A8 = {ARRAY_COUNT(D_801CA770), D_801CA770, 0, 0, NULL};
+
+/*801CA7B8*/
+static code1UnkStruct5 D_801CA7B8[2] = {
+    { 1, 280, 0, 0, "HORZ", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "VERT", NULL, NULL, NULL, NULL },
+};
+
+/*801CA7F0*/ static code1UnkStruct6 D_801CA7F0 = {ARRAY_COUNT(D_801CA7B8), D_801CA7B8, 0, 0, NULL};
+
+/*801CA800*/
+static code1UnkStruct5 D_801CA800[2] = {
+    { 1, 280, 0, 0, "EQUAL", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "FULL", NULL, NULL, NULL, NULL },
+};
+
+/*801CA838*/ static code1UnkStruct6 D_801CA838 = {ARRAY_COUNT(D_801CA800), D_801CA800, 0, 0, NULL};
+
+/*801CA848*/
+static code1UnkStruct5 D_801CA848[2] = {
+    { 1, 280, 0, 0, "MONO", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "STEREO", NULL, NULL, NULL, NULL },
+};
+
+/*801CA880*/ static code1UnkStruct6 D_801CA880 = {ARRAY_COUNT(D_801CA848), D_801CA848, 0, 0, NULL};
+
+/*801CA890*/
+static code1UnkStruct5 D_801CA890[8] = {
+    { 0, 332, 0, 0, "^OFF", NULL, NULL, NULL, NULL },
+    { 0, 332, 0, 0, "~}|", NULL, NULL, NULL, NULL },
+    { 0, 332, 0, 0, "~}}|", NULL, NULL, NULL, NULL },
+    { 0, 332, 0, 0, "~}}}|", NULL, NULL, NULL, NULL },
+    { 0, 332, 0, 0, "~}}}}|", NULL, NULL, NULL, NULL },
+    { 0, 332, 0, 0, "~}}}}}|", NULL, NULL, NULL, NULL },
+    { 0, 332, 0, 0, "~}}}}}}|", NULL, NULL, NULL, NULL },
+    { 0, 332, 0, 0, "~}}}}}}}|", NULL, NULL, NULL, NULL },
+};
+
+/*801CA970*/ code1UnkStruct6 D_801CA970 = {ARRAY_COUNT(D_801CA890), D_801CA890, 0, 0, NULL};
+
+/*801CA980*/
+static code1UnkStruct5 D_801CA980[3] = {
+    { 1, 280, 0, 0, "NORMAL", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "MEDIUM", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "HIGHRES", NULL, NULL, NULL, NULL },
+};
+
+/*801CA9D4*/ static code1UnkStruct6 D_801CA9D4 = {ARRAY_COUNT(D_801CA980), D_801CA980, 0, 0, NULL};
+
+/*801CA9E4*/
+static code1UnkStruct5 D_801CA9E4[2] = {
+    { 1, 65535, 1, 0, "CONFIGURATION", NULL, NULL, NULL, NULL },
+    { 0, 16, 0, 0, "PRESET", NULL, NULL, &D_801CA760, gConfig.controller_preset },
+};
+
+/*801CAA1C*/ static code1UnkStruct6 D_801CAA1C = {ARRAY_COUNT(D_801CA9E4), D_801CA9E4, 0, 230, &gConfig.menuIndex.controller_config};
+
+/*801CAA2C*/
+static code1UnkStruct5 D_801CAA2C[5] = {
+    { 1, 65535, 1, 0, "PLAYER SETUP", NULL, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "CONTROL CONFIGURATION", menuControllerConfig, &D_801CAA1C, NULL, NULL, },
+    { 0, 0, 0, 0, "CROSSHAIR", NULL, NULL, &D_801CA60C, gConfig.crosshair },
+    { 0, 0, 0, 0, "AUTOAIM", NULL, NULL, &D_801CA670, gConfig.autoaim },
+    { 0, 0, 0, 0, "AUTO CENTER", NULL, NULL, &D_801CA7A8, gConfig.autocenter },
+};
+
+/*801CAAB8*/ static code1UnkStruct6 D_801CAAB8 = {ARRAY_COUNT(D_801CAA2C), D_801CAA2C, 56, 24, &gConfig.menuIndex.player_setup};
+
+/*801CAAC8*/
+static code1UnkStruct5 D_801CAAC8[4] = {
+    { 1, 65535, 0, 0, "PLAYER ONE", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+    { 1, 65535, 0, 0, "PLAYER TWO", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+    { 1, 65535, 0, 0, "PLAYER THREE", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+    { 1, 65535, 0, 0, "PLAYER FOUR", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+};
+
+/*801CAB38*/ static code1UnkStruct6 D_801CAB38 = {ARRAY_COUNT(D_801CAAC8), D_801CAAC8, 84, 24, &gConfig.menuIndex.select_player};
+
+/*801CAB48*/
+static code1UnkStruct5 D_801CAB48[8] = {
+    { 1, 65535, 1, 0, "OPTIONS", NULL, NULL, NULL, NULL },
+    { 0, 0, 0, 0, "SFX VOLUME", NULL, NULL, &D_801CA970, &gConfig.mastervol },
+    { 0, 0, 0, 0, "MUSIC VOLUME", NULL, NULL, &D_801CA970, &gConfig.musicvol },
+    { 0, 0, 0, 0, "SOUND", NULL, NULL, &D_801CA880, &gConfig.sound },
+    { 0, 0, 0, 0, "RUMBLE PAK", NULL, NULL, &D_801CA970, &gConfig.rumblepak },
+    { 0, 0, 0, 0, "GRAPHICS", NULL, NULL, &D_801CA9D4, &gGraphicsOption },
+    { 1, 65535, 0, 0, "PLAYER SETUP", menuEnter, &D_801CAB38, NULL, NULL },
+    { 1, 65535, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+};
+
+/*801CAC28*/ static code1UnkStruct6 D_801CAC28 = {ARRAY_COUNT(D_801CAB48), D_801CAB48, 12, 32, &gConfig.menuIndex.options_2P};
+
+/*801CAC38*/
+static code1UnkStruct5 D_801CAC38[12] = {
+    { 1, 280, 0, 0, "OFF", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "5", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "10", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "20", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "30", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "40", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "50", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "60", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "70", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "80", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "90", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "100", NULL, NULL, NULL, NULL },
+};
+
+/*801CAD88*/ static code1UnkStruct6 D_801CAD88 = {ARRAY_COUNT(D_801CAC38), D_801CAC38, 0, 0, NULL};
+
+/*801CAD98*/
+static code1UnkStruct5 D_801CAD98[8] = {
+    { 1, 280, 0, 0, "OFF", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "5", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "10", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "20", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "30", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "40", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "50", NULL, NULL, NULL, NULL },
+    { 1, 280, 0, 0, "60", NULL, NULL, NULL, NULL },
+};
+
+/*801CAE78*/ static code1UnkStruct6 D_801CAE78 = {ARRAY_COUNT(D_801CAD98), D_801CAD98, 0, 0, NULL};
+
+/*801CAE88*/
+static code1UnkStruct5 D_801CAE88[6] = {
+    { 1, 65535, 1, 0, "SELECT GAME TYPE", NULL, NULL, NULL, NULL },
+    { 1, 65535, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "DUKEMATCH", menuMultiplayerSelectLevel, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "LAST MAN STANDING", menuMultiplayerSelectLevel, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "KING OF THE HILL", menuMultiplayerSelectLevel, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "TEAM DUKEMATCH", menuMultiplayerSelectLevel, NULL, NULL, NULL },
+};
+
+/*801CAF30*/ static code1UnkStruct6 D_801CAF30 = {ARRAY_COUNT(D_801CAE88), D_801CAE88, 34, 24, &gConfig.menuIndex.select_multiplayer_gametype};
+
+/*801CAF40*/
+static code1UnkStruct5 D_801CAF40[9] = {
+    { 1, 65535, 1, 0, "MULTIPLAYER OPTIONS", NULL, NULL, NULL, NULL },
+    { 0, 0, 0, 0, "PLAYERS", NULL, NULL, &D_801CA4C8, &gConfig.multiplayer.players },
+    { 0, 0, 0, 0, "TIME LIMIT", NULL, NULL, &D_801CAE78, &gConfig.multiplayer.time_limit },
+    { 0, 0, 0, 0, "FRAG COUNT", NULL, NULL, &D_801CAD88, &gConfig.multiplayer.frag_count },
+    { 0, 0, 0, 0, "RADAR", NULL, NULL, &D_801CA7A8, &gConfig.multiplayer.radar },
+    { 0, 0, 0, 0, "2P SPLIT", NULL, NULL, &D_801CA7F0, &gConfig.multiplayer.split_2P },
+    { 0, 0, 0, 0, "3P SPLIT", NULL, NULL, &D_801CA838, &gConfig.multiplayer.split_3P },
+    { 0, 0, 0, 0, "FRIENDLY FIRE", NULL, NULL, &D_801CA7A8, &gConfig.multiplayer.friendly_fire },
+    { 1, 65535, 0, 0, "PLAY", menuMultiplayerSelectGameType, &D_801CAF30, NULL, NULL },
+};
+
+/*801CB03C*/ static code1UnkStruct6 D_801CB03C = {ARRAY_COUNT(D_801CAF40), D_801CAF40, 30, 24, &gConfig.menuIndex.multiplayer_options};
+
+/*801CB04C*/
+static code1UnkStruct5 D_801CB04C[4] = {
+    { 1, 65535, 1, 0, "SELECT DIFFICULTY", NULL, NULL, NULL, NULL },
+    { 1, 65535, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "NORMAL", menuSelectDifficulty, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "HARD", menuSelectDifficulty, NULL, NULL, NULL },
+};
+
+/*801CB0BC*/ static code1UnkStruct6 D_801CB0BC = {ARRAY_COUNT(D_801CB04C), D_801CB04C, 60, 24, &gConfig.menuIndex.select_difficulty};
+
+/*801CB0CC*/
+static code1UnkStruct5 D_801CB0CC[4] = {
+    { 1, 65535, 1, 0, "SELECT", NULL, NULL, NULL, NULL },
+    { 1, 65535, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "SINGLE PLAYER", menuEnter, &D_801CB0BC, NULL, NULL },
+    { 1, 65535, 0, 0, "MULTI-PLAYER", menuEnter, &D_801CB03C, NULL, NULL },
+};
+
+/*801CB13C*/ static code1UnkStruct6 D_801CB13C = {ARRAY_COUNT(D_801CB0CC), D_801CB0CC, 60, 24, &gConfig.menuIndex.select_single_multi_player};
+
+/*801CB14C*/
+static code1UnkStruct5 D_801CB14C[12] = {
+    { 0, 65520, 2, 0, "SMG", NULL, NULL, &D_801CA7A8, &D_801CC924 },
+    { 0, 65520, 2, 0, "BLASTER", NULL, NULL, &D_801CA7A8, &D_801CDB48 },
+    { 0, 65520, 2, 0, "SNIPER", NULL, NULL, &D_801CA7A8, &D_801CE4EC },
+    { 0, 65520, 2, 0, "FREEZER", NULL, NULL, &D_801CA7A8, &D_801CF634 },
+    { 0, 65520, 2, 0, "REVOLVER", NULL, NULL, &D_801CA7A8, &D_801CE478 },
+    { 0, 65520, 2, 0, "CLAW-12", NULL, NULL, &D_801CA7A8, &D_801CDA80 },
+    { 0, 65520, 2, 0, ".30-30", NULL, NULL, &D_801CA7A8, &D_801CC8B8 },
+    { 0, 65520, 2, 0, "SAWED OFF", NULL, NULL, &D_801CA7A8, &D_801CDB14 },
+    { 0, 65520, 2, 0, "VOLT CANNON", NULL, NULL, &D_801CA7A8, &D_801CDB16 },
+    { 0, 65520, 2, 0, "GATTLING GUN", NULL, NULL, &D_801CA7A8, &D_801CD984 },
+    { 0, 65520, 2, 0, "GAMMA CANNON", NULL, NULL, &D_801CA7A8, &D_801CE480 },
+    { 1, 65535, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+};
+
+/*801CB29C*/ static code1UnkStruct6 D_801CB29C = {ARRAY_COUNT(D_801CB14C), D_801CB14C, -20, 24, &gConfig.menuIndex.cheats_weapons};
+
+/*801CB2AC*/
+static code1UnkStruct5 D_801CB2AC[4] = {
+    { 0, 65520, 2, 0, "FIRST PERSON", NULL, NULL, &D_801CA7A8, &D_801CDBC6 },
+    { 0, 65520, 2, 0, "ACTION NUKEM", NULL, NULL, &D_801CA7A8, &D_801CDBC4 },
+    { 0, 65520, 2, 0, "SELECT SKIN", NULL, NULL, &D_801CA7A8, &D_801CC8CC },
+    { 1, 65535, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+};
+
+/*801CB31C*/ static code1UnkStruct6 D_801CB31C = {ARRAY_COUNT(D_801CB2AC), D_801CB2AC, 76, 24, &gConfig.menuIndex.cheats_game_type};
+
+/*801CB32C*/
+static code1UnkStruct5 D_801CB32C[7] = {
+    { 0, 65520, 2, 0, "BIG HEAD MODE", NULL, NULL, &D_801CA7A8, &D_801CC926 },
+    { 0, 65520, 2, 0, "FLAT SHADING", NULL, NULL, &D_801CA7A8, &D_801CDBCC },
+    { 0, 65520, 2, 0, "WEATHER", NULL, NULL, &D_801CA7A8, &D_801CC7F4 },
+    { 0, 65520, 2, 0, "BIG GUN", NULL, NULL, &D_801CA7A8, &D_801CC8C8 },
+    { 0, 65520, 2, 0, "ICE SKINS", NULL, NULL, &D_801CA7A8, &D_801CC8A8 },
+    { 0, 65520, 2, 0, "FAST ZOMBIES", NULL, NULL, &D_801CA7A8, &D_801CE48C },
+    { 1, 65535, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+};
+
+/*801CB3F0*/ static code1UnkStruct6 D_801CB3F0 = {ARRAY_COUNT(D_801CB32C), D_801CB32C, 24, 32, &gConfig.menuIndex.cheats_others};
+
+/*801CB400*/
+static code1UnkStruct5 D_801CB400[5] = {
+    { 1, 65535, 1, 0, "CHEATS", NULL, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "WEAPONS", menuEnter, &D_801CB29C, NULL, NULL },
+    { 1, 65535, 0, 0, "GAME TYPE", menuEnter, &D_801CB31C, NULL, NULL },
+    { 1, 65535, 0, 0, "OTHERS", menuEnter, &D_801CB3F0, NULL, NULL },
+    { 1, 65535, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+};
+
+/*801CB48C*/ static code1UnkStruct6 D_801CB48C = {ARRAY_COUNT(D_801CB400), D_801CB400, 68, 24, &gConfig.menuIndex.cheats};
+
+/*801CB49C*/
+static code1UnkStruct5 D_801CB49C[5] = {
+    { 1, 65535, 1, 0, D_801CDBB0, NULL, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "START GAME", menuEnter, &D_801CB13C, NULL, NULL },
+    { 1, 65535, 0, 0, "LOAD GAME", menuLoadGame, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "OPTIONS", menuEnter, &D_801CAC28, NULL, NULL },
+    { 1, 65535, 0, 0, "CHEATS", menuEnter, &D_801CB48C, NULL, NULL },
+};
+
+/*801CB528*/ static code1UnkStruct6 D_801CB528 = {ARRAY_COUNT(D_801CB49C)-1, D_801CB49C, 64, 24, &gConfig.menuIndex.main};
+
+/*801CB538*/
+code1UnkStruct5 D_801CB538[9] = {
+    { 0, 65520, 0, 0, "SFX VOLUME", NULL, NULL, &D_801CA970, &gConfig.mastervol },
+    { 0, 65520, 0, 0, "MUSIC VOLUME", NULL, NULL, &D_801CA970, &gConfig.musicvol },
+    { 0, 65520, 0, 0, "SOUND", NULL, NULL, &D_801CA880, &gConfig.sound },
+    { 0, 65520, 0, 0, "RUMBLE PAK", NULL, NULL, &D_801CA970, &gConfig.rumblepak },
+    { 0, 65520, 0, 0, "CONTROLLER", NULL, NULL, &D_801CA760, gConfig.controller_preset },
+    { 0, 65520, 0, 0, "CROSSHAIR", NULL, NULL, &D_801CA60C, gConfig.crosshair },
+    { 0, 65520, 0, 0, "AUTOAIM", NULL, NULL, &D_801CA670, gConfig.autoaim },
+    { 0, 65520, 0, 0, "AUTO CENTER", NULL, NULL, &D_801CA7A8, gConfig.autocenter },
+    { 1, 65535, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+};
+
+/*801CB634*/ static code1UnkStruct6 D_801CB634 = {ARRAY_COUNT(D_801CB538), D_801CB538, 16, 25, &gConfig.menuIndex.options_1P};
+
+/*801CB644*/
+static code1UnkStruct5 D_801CB644[3] = {
+    { 1, 65535, 1, 0, "QUIT GAME?", NULL, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "NO", menuBack, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "YES", func_801C3874, NULL, NULL, NULL },
+};
+
+/*801CB698*/ static code1UnkStruct6 D_801CB698 = {ARRAY_COUNT(D_801CB644), D_801CB644, 94, 24, &gConfig.menuIndex.unkB};
+
+/*801CB6A8*/
+static code1UnkStruct5 D_801CB6A8[2] = {
+    { 1, 65535, 0, 0, "CONTINUE GAME", func_801C392C, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "RESTART LEVEL", func_801C38DC, NULL, NULL, NULL },
+};
+
+/*801CB6E0*/ code1UnkStruct6 D_801CB6E0 = {ARRAY_COUNT(D_801CB6A8), D_801CB6A8, 102, 24, &gConfig.menuIndex.unkF};
+
+/*801CB6F0*/
+static code1UnkStruct5 D_801CB6F0[2] = {
+    { 1, 65535, 0, 0, "REPLAY SAVED GAME", func_801C399C, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "RESTART LEVEL", func_801C3974, NULL, NULL, NULL },
+};
+
+/*801CB728*/ static code1UnkStruct6 D_801CB728 = {ARRAY_COUNT(D_801CB6F0), D_801CB6F0, 100, 24, &gConfig.menuIndex.unkD};
+
+/*801CB738*/
+static code1UnkStruct5 D_801CB738[3] = {
+    { 1, 65535, 1, 0, "RESTART LEVEL?", NULL, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "NO", menuBack, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "YES", menuEnter, &D_801CB728, NULL, NULL },
+};
+
+/*801CB78C*/ static code1UnkStruct6 D_801CB78C = {ARRAY_COUNT(D_801CB738), D_801CB738, 94, 24, &gConfig.menuIndex.unkC};
+
+/*801CB79C*/
+static code1UnkStruct5 D_801CB79C[3] = {
+    { 1, 65535, 1, 0, "RESTART LEVEL?", NULL, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "NO", menuBack, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "YES", func_801C38DC, NULL, NULL, NULL },
+};
+
+/*801CB7F0*/ static code1UnkStruct6 D_801CB7F0 = {ARRAY_COUNT(D_801CB79C), D_801CB79C, 94, 24, &gConfig.menuIndex.unkC};
+
+/*801CB800*/
+static code1UnkStruct5 D_801CB800[4] = {
+    { 1, 65535, 0, 0, "CONTINUE", menuBack, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "OPTIONS", menuEnter, &D_801CB634, NULL, NULL },
+    { 1, 65535, 0, 0, "RESTART", menuEnter, &D_801CB78C, NULL, NULL },
+    { 1, 65535, 0, 0, "QUIT GAME", menuEnter, &D_801CB698, NULL, NULL },
+};
+
+/*801CB870*/ code1UnkStruct6 D_801CB870 = {ARRAY_COUNT(D_801CB800), D_801CB800, 76, 24, &gConfig.menuIndex.unkA};
+
+/*801CB880*/
+static code1UnkStruct5 D_801CB880[4] = {
+    { 1, 65535, 0, 0, "CONTINUE", menuBack, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "OPTIONS", menuEnter, &D_801CB634, NULL, NULL },
+    { 1, 65535, 0, 0, "RESTART", menuEnter, &D_801CB7F0, NULL, NULL },
+    { 1, 65535, 0, 0, "QUIT GAME", menuEnter, &D_801CB698, NULL, NULL },
+};
+
+/*801CB8F0*/ code1UnkStruct6 D_801CB8F0 = {ARRAY_COUNT(D_801CB880), D_801CB880, 76, 24, &gConfig.menuIndex.unkA};
+
+/*801CB900*/
+static code1UnkStruct5 D_801CB900[2] = {
+    { 1, 65535, 0, 0, "SAVE", menuSaveGame, NULL, NULL, NULL },
+    { 1, 65535, 0, 0, "CONTINUE WITHOUT SAVING", func_801C39C4, NULL, NULL, NULL },
+};
+
+/*801CB938*/ static code1UnkStruct6 D_801CB938 = {ARRAY_COUNT(D_801CB900), D_801CB900, 224, 24, &gConfig.menuIndex.unk11};
+
 /*801C3580*/
-STATIC void func_801C3580(void)
+static void menuMultiplayerSelectGameType(void)
 {
-    D_801CDC64.unk1 = D_801CE498.unk2A + 2;
+    D_801CDC64.unk1 = gConfig.multiplayer.players + 2;
 
     if (D_801CDC64.unk1 < 3)
         D_801CAE88[5].unk4 = 2;
     else
         D_801CAE88[5].unk4 = 0;
 
-    func_801C2F98();
+    menuEnter();
 }
 
 /*801C35DC*/
-STATIC void func_801C35DC(void)
+static void menuSelectDifficulty(void)
 {
     func_8007F07C();
     D_800BD3F9 = 17;
@@ -1331,32 +1556,32 @@ void func_801C363C(u8 playernum, u16 arg1, u8 arg2)
     {
         if (gPlayer[playernum].unk45 == 0)
         {
-            if (D_801CE498.unk1C != 0)
-                controller_8008A4C4(playernum, arg1, ((arg2 * D_801CE498.unk1C) / 7));
+            if (gConfig.rumblepak != 0)
+                controller_8008A4C4(playernum, arg1, ((arg2 * gConfig.rumblepak) / 7));
         }
     }
 }
 
 /*801C36E4*/
-STATIC void func_801C36E4(void)
+static void menuSelectPlayer(void)
 {
     D_801CDACC = D_801CE5A0;
-    D_801CA9E4[1].unk18 = &D_801CE498.unk2E[D_801CE5A0];
-    D_801CAA2C[2].unk18 = &D_801CE498.unk36[D_801CE5A0];
-    D_801CAA2C[3].unk18 = &D_801CE498.unk3E[D_801CE5A0];
-    D_801CAA2C[4].unk18 = &D_801CE498.unk46[D_801CE5A0];
-    func_801C2F98();
+    D_801CA9E4[1].unk18 = &gConfig.controller_preset[D_801CE5A0];
+    D_801CAA2C[2].unk18 = &gConfig.crosshair[D_801CE5A0];
+    D_801CAA2C[3].unk18 = &gConfig.autoaim[D_801CE5A0];
+    D_801CAA2C[4].unk18 = &gConfig.autocenter[D_801CE5A0];
+    menuEnter();
 }
 
 /*801C375C*/
 static void func_801C375C(void)
 {
-    D_801CA9E4[1].unk18 = D_801CE498.unk2E;
-    D_801CAA2C[2].unk18 = D_801CE498.unk36;
+    D_801CA9E4[1].unk18 = gConfig.controller_preset;
+    D_801CAA2C[2].unk18 = gConfig.crosshair;
     D_801CDACC = 0;
-    D_801CAA2C[3].unk18 = D_801CE498.unk3E;
-    D_801CAA2C[4].unk18 = D_801CE498.unk46;
-    func_801C2F98();
+    D_801CAA2C[3].unk18 = gConfig.autoaim;
+    D_801CAA2C[4].unk18 = gConfig.autocenter;
+    menuEnter();
 }
 
 /*801C37B8*/
@@ -1378,7 +1603,7 @@ static void func_801C37B8(void)
 }
 
 /*801C3874*/
-STATIC void func_801C3874(void)
+static void func_801C3874(void)
 {
     func_8008E01C(30, 0);
     D_801AE914 = 0;
@@ -1386,7 +1611,7 @@ STATIC void func_801C3874(void)
 }
 
 /*801C38A8*/
-STATIC void func_801C38A8(void)
+static void menuBack(void)
 {
     D_801AE914 = 0;
     func_8007F050();
@@ -1394,7 +1619,7 @@ STATIC void func_801C38A8(void)
 }
 
 /*801C38DC*/
-STATIC void func_801C38DC(void)
+static void func_801C38DC(void)
 {
     D_801A1994 = 1;
     D_801AE914 = 0;
@@ -1404,7 +1629,7 @@ STATIC void func_801C38DC(void)
 }
 
 /*801C392C*/
-STATIC void func_801C392C(void)
+static void func_801C392C(void)
 {
     D_801A1994 = 0;
     D_801AE914 = 0;
@@ -1414,21 +1639,21 @@ STATIC void func_801C392C(void)
 }
 
 /*801C3974*/
-STATIC void func_801C3974(void)
+static void func_801C3974(void)
 {
     D_800DF585 = 0;
     func_801C38DC();
 }
 
 /*801C399C*/
-STATIC void func_801C399C(void)
+static void func_801C399C(void)
 {
     D_800DF585 = 0;
     func_801C392C();
 }
 
 /*801C39C4*/
-STATIC void func_801C39C4(void)
+static void func_801C39C4(void)
 {
     func_8007F07C();
     D_801CDBA8 = 0;
@@ -1443,7 +1668,7 @@ STATIC void func_801C39C4(void)
 }
 
 /*801C3A4C*/
-STATIC void func_801C3A4C(void)
+static void menuSaveGame(void)
 {
     func_8007F07C();
     D_801CDBA8 = 1;
@@ -1494,9 +1719,9 @@ static void func_801C3AD8(void)
     D_801CC88C = -1;
 
     if ((D_800E16BC != 0) || (D_801CE470 != 0))
-        D_801CE498.unk50 = 1;
+        gConfig.unk50 = 1;
 
-    if (D_801CE498.unk50 == 0)
+    if (gConfig.unk50 == 0)
         D_801CB528.unk0 = 4;
     else
         D_801CB528.unk0 = 5;
@@ -1519,7 +1744,7 @@ static void func_801C3AD8(void)
     if (i == 2)
         D_801CDC64.unk1 = 2;
 
-    D_801CE498.unk2A = i - 2;
+    gConfig.multiplayer.players = i - 2;
     D_801CA4C8.unk0 = i - 1;
     D_8010554C = 0;
 
@@ -1556,7 +1781,6 @@ static void func_801C3E5C(void)
     code1UnkStruct5 *ptr1;
     code1UnkStruct5 *ptr2;
     code0UnkStruct16 *ptr3;
-
 
     ptr1 = &D_801CE5A8->unk4[D_801CE5A0];
     if (func_801C0E68() & 0x800)
@@ -1602,8 +1826,8 @@ static void func_801C3E5C(void)
                     playSfx(747);
                 else
                 {
-                    D_801CE498.difficulty = D_801CE5A0 - 1;
-                    switch (D_801CE498.difficulty)
+                    gConfig.difficulty = D_801CE5A0 - 1;
+                    switch (gConfig.difficulty)
                     {
                     case 0:
                         D_801CDA90 = playSfx(915);
@@ -1673,8 +1897,8 @@ static void func_801C3E5C(void)
                     }
                 }
 
-                if ((ptr1->unk18 == &D_801CE498.musicvol) || (ptr1->unk18 == (&D_801CE498.mastervol)))
-                    setVolume((D_801CE498.musicvol * 100) / 7, (D_801CE498.mastervol * 100) / 7);
+                if ((ptr1->unk18 == &gConfig.musicvol) || (ptr1->unk18 == (&gConfig.mastervol)))
+                    setVolume((gConfig.musicvol * 100) / 7, (gConfig.mastervol * 100) / 7);
 
                 ptr3 = (code0UnkStruct16 *)D_801CD990[D_801CE5A0]->unk7C;
                 ptr3->unk70 = ptr1->unk14->unk4[ptr1->unk18[0]].unk8;
@@ -1726,8 +1950,8 @@ static void func_801C3E5C(void)
                     }
                 }
 
-                if ((ptr1->unk18 == &D_801CE498.musicvol) || (ptr1->unk18 == (&D_801CE498.mastervol)))
-                    setVolume((D_801CE498.musicvol * 100) / 7, (D_801CE498.mastervol * 100) / 7);
+                if ((ptr1->unk18 == &gConfig.musicvol) || (ptr1->unk18 == (&gConfig.mastervol)))
+                    setVolume((gConfig.musicvol * 100) / 7, (gConfig.mastervol * 100) / 7);
 
                 ptr3 = (code0UnkStruct16 *)D_801CD990[D_801CE5A0]->unk7C;
                 ptr3->unk70 = ptr1->unk14->unk4[ptr1->unk18[0]].unk8;
@@ -1817,8 +2041,8 @@ static void func_801C45C0(void)
                 else
                     ptr->unk18[0]--;
 
-                if ((ptr->unk18 == &D_801CE498.musicvol) || (ptr->unk18 == &D_801CE498.mastervol))
-                    setVolume((D_801CE498.musicvol * 100) / 7, (D_801CE498.mastervol * 100) / 7);
+                if ((ptr->unk18 == &gConfig.musicvol) || (ptr->unk18 == &gConfig.mastervol))
+                    setVolume((gConfig.musicvol * 100) / 7, (gConfig.mastervol * 100) / 7);
 
                 ptr2 = (code0UnkStruct16 *)D_801CD990[D_801CE5A0]->unk7C;
                 ptr2->unk70 = ptr->unk14->unk4[*ptr->unk18].unk8;
@@ -1840,8 +2064,8 @@ static void func_801C45C0(void)
                 else
                     ptr->unk18[0] = 0;
 
-                if ((ptr->unk18 == &D_801CE498.musicvol) || (ptr->unk18 == &D_801CE498.mastervol))
-                    setVolume((D_801CE498.musicvol * 100) / 7, (D_801CE498.mastervol * 100) / 7);
+                if ((ptr->unk18 == &gConfig.musicvol) || (ptr->unk18 == &gConfig.mastervol))
+                    setVolume((gConfig.musicvol * 100) / 7, (gConfig.mastervol * 100) / 7);
 
                 ptr2 = (code0UnkStruct16 *)D_801CD990[D_801CE5A0]->unk7C;
                 ptr2->unk70 = ptr->unk14->unk4[*ptr->unk18].unk8;
@@ -1922,7 +2146,7 @@ void func_801C4B34(void)
             {
                 D_801CC8C0 = 0;
                 D_801CA144 = 1.8f;
-                func_801C305C();
+                menuExit();
             }
         }
     }
@@ -1945,7 +2169,7 @@ void func_801C4B34(void)
 }
 
 /*801C4E90*/
-STATIC void func_801C4E90(void)
+static void func_801C4E90(void)
 {
     D_801CDBC6 = 0;
     D_801CDBC4 = 0;
@@ -1970,34 +2194,34 @@ STATIC void func_801C4E90(void)
 }
 
 /*801C4F38*/
-void func_801C4F38(void)
+void configInitialize(void)
 {
     memset(&D_801CE5F0, 0, sizeof(D_801CE5F0));
-    memset(&D_801CE498, 0, sizeof(D_801CE498));
-    D_801CE5AC = 0;
+    memset(&gConfig, 0, sizeof(gConfig));
+    gGraphicsOption = CONFIG_GRAPHICS_NORMAL;
     D_801CE5F0.unk103A = 0;
-    D_801CE498.unk20 = 1;
-    D_801CE498.unk22 = 0;
-    D_801CE498.unk1E = 1;
-    D_801CE498.unk28 = 0;
-    D_801CE498.mastervol = 7;
-    D_801CE498.musicvol = 3;
-    D_801CE498.unk8 = 2;
-    D_801CE498.unk1C = 7;
-    D_801CE498.unk16 = 1;
-    D_801CE498.difficulty = 1;
+    gConfig.multiplayer.time_limit = 1;
+    gConfig.multiplayer.frag_count = 0;
+    gConfig.multiplayer.radar = CONFIG_ON;
+    gConfig.multiplayer.friendly_fire = CONFIG_OFF;
+    gConfig.mastervol = 7;
+    gConfig.musicvol = 3;
+    gConfig.menuIndex.select_difficulty = 2;
+    gConfig.rumblepak = 7;
+    gConfig.sound = CONFIG_SOUND_STEREO;
+    gConfig.difficulty = 1;
 
     if (osMemSize > 0x400000)
-        D_801CE5AC = 2;
+        gGraphicsOption = CONFIG_GRAPHICS_HIGHRES;
 
-    D_801CE498.unk36[0] = 0;
-    D_801CE498.unk36[1] = 0;
-    D_801CE498.unk36[2] = 0;
-    D_801CE498.unk36[3] = 0;
-    D_801CE498.unk3E[0] = 2;
-    D_801CE498.unk3E[1] = 2;
-    D_801CE498.unk3E[2] = 2;
-    D_801CE498.unk3E[3] = 2;
+    gConfig.crosshair[0] = 0;
+    gConfig.crosshair[1] = 0;
+    gConfig.crosshair[2] = 0;
+    gConfig.crosshair[3] = 0;
+    gConfig.autoaim[0] = 2;
+    gConfig.autoaim[1] = 2;
+    gConfig.autoaim[2] = 2;
+    gConfig.autoaim[3] = 2;
     D_801AE914 = 0;
     D_801A1994 = 0;
     D_80199524 = 0;
@@ -2005,8 +2229,10 @@ void func_801C4F38(void)
     D_801CE470 = 0;
     D_800E16BC = 0;
     func_801C4E90();
-    sprintf(D_801CDBB0, D_801CBDC8); /*TODO: mutualized rodata?*/
+    sprintf(D_801CDBB0, "ZERO HOUR");
 }
+
+/*801CB948*/ static s32 D_801CB948[6] = {0, 10, 6, 8, 7, 9};
 
 /*801C509C*/
 static void func_801C509C(void)
@@ -2240,20 +2466,15 @@ void func_801C542C(void)
     }
 }
 
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC5F0);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC600);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC610);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC620);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC630);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC634);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC63C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC648);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC654);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC660);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC66C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC670);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC674);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC678);
+/*801CB960*/ static char *D_801CB960[4] = {"PLAYER 1 WINS", "PLAYER 2 WINS", "PLAYER 3 WINS", "PLAYER 4 WINS"};
+
+typedef struct {
+    /*0x00*/ char *unk0[4];
+    /*0x10*/ char *unk10[2];
+} _EB300UnkStruct3;
+
+/*801CB970*/ static _EB300UnkStruct3 D_801CB970 = {{"PLAYER 1", "PLAYER 2", "PLAYER 3", "PLAYER 4"},{"BLUE", "RED"}};
+/*801CB988*/ static char *D_801CB988[4] = {"P1", "P2", "P3", "P4"};
 
 /*801C5C68*/
 static void func_801C5C68(void)
@@ -2273,7 +2494,7 @@ static void func_801C5C68(void)
     func_8007FD8C(&D_800E0454[0], D_801CB948[D_801CA14C[gMapNum].unk0]);
     D_800E0F58 = 0;
 
-    for (i = 0; i < 64; i++)
+    for (i = 0; i < ARRAY_COUNT(D_01022510); i++)
         func_80083700(1, &D_801CE5E8[i], 0, 0);
 
     D_800E0F58 = 1;
@@ -2291,9 +2512,9 @@ static void func_801C5C68(void)
 
         m = (gScreenWidth / 2) - 72;
         k = 0;
-        for (i = 0; i < 2; i++)
+        for (i = 0; i < ARRAY_COUNT(D_801CB970.unk10); i++)
         {
-            sp28[i] = func_800802C0(D_801CB980[i], 104, m+i*28, 200, 0);
+            sp28[i] = func_800802C0(D_801CB970.unk10[i], 104, m+i*28, 200, 0);
 
             for (l = 0; l < D_801CDC64.unk1; l++)
             {
@@ -2342,7 +2563,7 @@ static void func_801C5C68(void)
         for (i = 0; i < D_801CDC64.unk1; i++)
         {
 
-            ptr = func_8007FE2C(D_801CB970[i], 24, m+i*20, 64, 0, 0);
+            ptr = func_8007FE2C(D_801CB970.unk0[i], 24, m+i*20, 64, 0, 0);
             ptr->unkC |= 0x08000000;
             ptr = func_8007FE2C(D_801CB988[i], 126 + i*40, m - 20, 64, 2, 0);
             ptr->unkC |= 0x08000000;
@@ -2656,183 +2877,183 @@ void func_801C66D8(void)
 }
 
 /*801C6CA4*/
-STATIC void func_801C6CA4(void)
+static void func_801C6CA4(void)
 {
     D_800E16C0 |= 0x1C000000;
 }
 
 /*801C6CC4*/
-STATIC void func_801C6CC4(void)
+static void func_801C6CC4(void)
 {
     D_800E16C0 |= 0x03FC0000;
 }
 
 /*801C6CE4*/
-STATIC void func_801C6CE4(void)
+static void func_801C6CE4(void)
 {
     D_800E16C0 |= 0x70;
 }
 
 /*801C6D00*/
-STATIC void func_801C6D00(void)
+static void func_801C6D00(void)
 {
     D_800E16C0 |= 0x3E000;
 }
 
 /*801C6D24*/
-STATIC void func_801C6D24(void)
+static void func_801C6D24(void)
 {
     D_800E16C0 |= 0x1C80;
 }
 
 /*801C6D40*/
-STATIC void func_801C6D40(void)
+static void func_801C6D40(void)
 {
     D_800E16C0 |= 0x300;
 }
 
 /*801C6D5C*/
-STATIC void func_801C6D5C(void)
+static void func_801C6D5C(void)
 {
     D_801CDBC6 = 1;
     D_800E16BC |= 1;
 }
 
 /*801C6D84*/
-STATIC void func_801C6D84(void)
+static void func_801C6D84(void)
 {
     D_801CC926 = 1;
     D_800E16BC |= 2;
 }
 
 /*801C6DAC*/
-STATIC void func_801C6DAC(void)
+static void func_801C6DAC(void)
 {
     D_801CDBCC = 1;
     D_800E16BC |= 4;
 }
 
 /*801C6DD4*/
-STATIC void func_801C6DD4(void)
+static void func_801C6DD4(void)
 {
     D_801CC7F4 = 1;
     D_800E16BC |= 8;
 }
 
 /*801C6DFC*/
-STATIC void func_801C6DFC(void)
+static void func_801C6DFC(void)
 {
     D_801CC8C8 = 1;
     D_800E16BC |= 0x10;
 }
 
 /*801C6E24*/
-STATIC void func_801C6E24(void)
+static void func_801C6E24(void)
 {
     D_801CC8A8 = 1;
     D_800E16BC |= 0x20;
 }
 
 /*801C6E4C*/
-STATIC void func_801C6E4C(void)
+static void func_801C6E4C(void)
 {
     D_801CDBC4 = 1;
     D_800E16BC |= 0x40;
 }
 
 /*801C6E74*/
-STATIC void func_801C6E74(void)
+static void func_801C6E74(void)
 {
     D_801CC8CC = 1;
     D_800E16BC |= 0x80;
 }
 
 /*801C6E9C*/
-STATIC void func_801C6E9C(void)
+static void func_801C6E9C(void)
 {
     D_801CE48C = 1;
     D_800E16BC |= 0x100;
 }
 
 /*801C6EC4*/
-STATIC void func_801C6EC4(void)
+static void func_801C6EC4(void)
 {
     D_801CC924 = 1;
     D_801CE470 |= 1;
 }
 
 /*801C6EEC*/
-STATIC void func_801C6EEC(void)
+static void func_801C6EEC(void)
 {
     D_801CDB48 = 1;
     D_801CE470 |= 2;
 }
 
 /*801C6F14*/
-STATIC void func_801C6F14(void)
+static void func_801C6F14(void)
 {
     D_801CE4EC = 1;
     D_801CE470 |= 4;
 }
 
 /*801C6F3C*/
-STATIC void func_801C6F3C(void)
+static void func_801C6F3C(void)
 {
     D_801CF634 = 1;
     D_801CE470 |= 8;
 }
 
 /*801C6F64*/
-STATIC void func_801C6F64(void)
+static void func_801C6F64(void)
 {
     D_801CE478 = 1;
     D_801CE470 |= 0x10;
 }
 
 /*801C6F8C*/
-STATIC void func_801C6F8C(void)
+static void func_801C6F8C(void)
 {
     D_801CDA80 = 1;
     D_801CE470 |= 0x20;
 }
 
 /*801C6FB4*/
-STATIC void func_801C6FB4(void)
+static void func_801C6FB4(void)
 {
     D_801CC8B8 = 1;
     D_801CE470 |= 0x40;
 }
 
 /*801C6FDC*/
-STATIC void func_801C6FDC(void)
+static void func_801C6FDC(void)
 {
     D_801CDB14 = 1;
     D_801CE470 |= 0x80;
 }
 
 /*801C7004*/
-STATIC void func_801C7004(void)
+static void func_801C7004(void)
 {
     D_801CDB16 = 1;
     D_801CE470 |= 0x100;
 }
 
 /*801C702C*/
-STATIC void func_801C702C(void)
+static void func_801C702C(void)
 {
     D_801CD984 = 1;
     D_801CE470 |= 0x200;
 }
 
 /*801C7054*/
-STATIC void func_801C7054(void)
+static void func_801C7054(void)
 {
     D_801CE480 = 1;
     D_801CE470 |= 0x400;
 }
 
 /*801C707C*/
-STATIC void func_801C707C(void)
+static void func_801C707C(void)
 {
     func_801C6EC4();
     func_801C6EEC();
@@ -2848,7 +3069,7 @@ STATIC void func_801C707C(void)
 }
 
 /*801C70EC*/
-STATIC void func_801C70EC(void)
+static void func_801C70EC(void)
 {
     D_800DF990 = D_800DF990 == 0;
 }
@@ -2917,6 +3138,38 @@ static void func_801C73A0(void)
     D_801CC8BC = 0;
 }
 
+/*801CB998*/
+static _EB300UnkStruct2 D_801CB998[28] = {
+    { func_801C6CA4, 7, { 32768, 32, 16, 512, 16384, 1024, 2048, 0, 0, 0, 0 } },
+    { func_801C6CC4, 5, { 16384, 32768, 32768, 16, 32, 0, 0, 0, 0, 0, 0 } },
+    { func_801C6CE4, 7, { 32, 32, 2048, 1024, 16, 16384, 32768, 0, 0, 0, 0 } },
+    { func_801C6D00, 6, { 16384, 16384, 16384, 16, 512, 32768, 0, 0, 0, 0, 0 } },
+    { func_801C6D24, 6, { 256, 16384, 512, 32, 32768, 8192, 0, 0, 0, 0, 0 } },
+    { func_801C6D40, 6, { 2048, 1024, 16384, 32768, 32768, 512, 0, 0, 0, 0, 0 } },
+    { func_801C6D5C, 10, { 1024, 2048, 32, 16384, 8192, 512, 8, 1, 2, 8192, 0 } },
+    { func_801C6D84, 8, { 16384, 2048, 1024, 1024, 32768, 8192, 32768, 256, 0, 0, 0 } },
+    { func_801C6DAC, 7, { 1024, 2048, 512, 512, 32768, 256, 1024, 0, 0, 0, 0 } },
+    { func_801C6DD4, 7, { 8192, 32768, 32, 16384, 1024, 2048, 16, 0, 0, 0, 0 } },
+    { func_801C6DFC, 7, { 8, 2, 8192, 16384, 32, 8192, 32768, 0, 0, 0, 0 } },
+    { func_801C6E24, 7, { 16384, 8192, 2048, 32, 32768, 1, 32768, 0, 0, 0, 0 } },
+    { func_801C6E4C, 7, { 1024, 1024, 32768, 8192, 8192, 512, 32768, 0, 0, 0, 0 } },
+    { func_801C6E74, 8, { 2, 16, 512, 2048, 1024, 16384, 32768, 8192, 0, 0, 0 } },
+    { func_801C6E9C, 7, { 32768, 32768, 8192, 32768, 16, 4, 16384, 0, 0, 0, 0 } },
+    { func_801C6EC4, 6, { 32, 16384, 16384, 16, 8192, 32768, 0, 0, 0, 0, 0 } },
+    { func_801C6EEC, 6, { 16384, 512, 32768, 16, 16, 16384, 0, 0, 0, 0, 0 } },
+    { func_801C6F14, 6, { 512, 256, 2048, 16384, 1024, 32768, 0, 0, 0, 0, 0 } },
+    { func_801C6F3C, 6, { 1024, 2048, 32768, 32, 16, 8192, 0, 0, 0, 0, 0 } },
+    { func_801C6F64, 6, { 256, 32768, 16, 8192, 16384, 32768, 0, 0, 0, 0, 0 } },
+    { func_801C6F8C, 6, { 16384, 8192, 8192, 32768, 8192, 32, 0, 0, 0, 0, 0 } },
+    { func_801C6FB4, 6, { 8, 4, 2, 1, 32, 16, 0, 0, 0, 0, 0 } },
+    { func_801C6FDC, 6, { 16384, 32768, 4, 8192, 32, 2, 0, 0, 0, 0, 0 } },
+    { func_801C7004, 6, { 32, 8192, 8192, 32768, 8192, 16, 0, 0, 0, 0, 0 } },
+    { func_801C702C, 6, { 1, 16, 256, 8192, 16384, 32768, 0, 0, 0, 0, 0 } },
+    { func_801C7054, 6, { 8, 1024, 32768, 32768, 2, 16, 0, 0, 0, 0, 0 } },
+    { func_801C707C, 10, { 1024, 32768, 2048, 32, 8192, 16, 8, 4, 16384, 2, 0 } },
+    { func_801C70EC, 10, { 8, 2048, 2, 256, 4, 1024, 1, 16, 32768, 16384, 0 } },
+};
+
 /*801C73CC*/
 static void func_801C73CC(void)
 {
@@ -2955,7 +3208,7 @@ static void func_801C73CC(void)
                 if ((D_801CDB28[i]) == ptr->unk4)
                 {
                     playSfx(46);
-                    D_801CE498.unk50 = 1;
+                    gConfig.unk50 = 1;
                     ptr->unk0();
                     func_801C73A0();
                 }
@@ -3047,7 +3300,7 @@ void func_801C764C(void)
         edl_80081688(&D_801CDA98, 22);
         D_800E0F58 = 0;
 
-        for (i = 0; i < 64; i++)
+        for (i = 0; i < ARRAY_COUNT(D_01022510); i++)
             func_80083700(1, &D_801CE5E8[i], 0, 0);
 
         D_800E0F58 = 1;
@@ -3101,7 +3354,7 @@ void func_801C764C(void)
 
         if ((D_801CE5DC == MAP_WETWORLD) || (D_801CE5DC == MAP_BOSS_HOG) ||
             (D_801CE5DC == MAP_CYBORG_SCORPION) || (D_801CE5DC >= MAP_THE_RACK))
-            sprintf(D_801CDB58[5], D_801CC02C);
+            sprintf(D_801CDB58[5], "NONE");
         else if (D_801CE5F0.unkFE4 & (1 << D_801CE5DC))
             sprintf(D_801CDB58[5], "1 / 1");
         else
@@ -3182,7 +3435,7 @@ void func_801C764C(void)
                 if ((D_801CE5DC == MAP_WETWORLD) || (D_801CE5DC == MAP_BOSS_HOG) ||
                     (D_801CE5DC == MAP_CYBORG_SCORPION) || (D_801CE5DC >= MAP_THE_RACK))
                 {
-                    sprintf(D_801CDB58[5], D_801CC02C);
+                    sprintf(D_801CDB58[5], "NONE");
                     D_801CDBD0[5]->unkC |= 0x04000000;
                 }
                 else if (D_801CE5F0.unkFE4 & (1 << D_801CE5DC))
@@ -3202,16 +3455,16 @@ void func_801C764C(void)
         {
             if (func_801C0E68() & 0x200)
             {
-                if (D_801CE5DC != 0)
+                if (D_801CE5DC != MAP_MEAN_STREETS)
                 {
                     playSfx(746);
                     D_801CE5DC--;
 
-                    if ((D_801CE5DC == 3) && (D_801CE5F0.unkFD6 == 0))
+                    if ((D_801CE5DC == MAP_WETWORLD) && (D_801CE5F0.unkFD6 == 0))
                         D_801CE5DC--;
 
-                    if ((D_801CE5DC == 17) && (D_801CE5F0.unkFD7 == 0))
-                        D_801CE5DC = 16;
+                    if ((D_801CE5DC == MAP_GOING_DOWN_THE_RACK) && (D_801CE5F0.unkFD7 == 0))
+                        D_801CE5DC = MAP_THE_RACK;
                 }
                 D_801CDB20 = 1;
             }
@@ -3222,11 +3475,11 @@ void func_801C764C(void)
                     playSfx(746);
                     D_801CE5DC++;
 
-                    if ((D_801CE5DC == 3) && (D_801CE5F0.unkFD6 == 0))
+                    if ((D_801CE5DC == MAP_WETWORLD) && (D_801CE5F0.unkFD6 == 0))
                         D_801CE5DC++;
 
-                    if ((D_801CE5DC == 17) && (D_801CE5F0.unkFD7 == 0))
-                        D_801CE5DC = 18;
+                    if ((D_801CE5DC == MAP_GOING_DOWN_THE_RACK) && (D_801CE5F0.unkFD7 == 0))
+                        D_801CE5DC = MAP_BRAINSTORM;
                 }
                 D_801CDB20 = 1;
             }
@@ -3247,7 +3500,7 @@ void func_801C764C(void)
             D_801CDC64.unk1 = 1;
             gLoadMapNum = gMapNum;
 
-            if (D_801CE498.unk1C == 0)
+            if (gConfig.rumblepak == 0)
                 main_80000624(main_80001F40);
             else
             {
@@ -3309,7 +3562,7 @@ static void func_801C8650(void)
     D_800BD3F9 = 11;
     main_80002390();
     main_80000610();
-    D_801CE5DC = 0;
+    D_801CE5DC = MAP_MEAN_STREETS;
     D_801CDA88 = 0;
     D_801CDB20 = 0;
     D_801CC8B0 = func_8007FE2C(D_801CDB50->mapname, gScreenWidth / 2, (gScreenHeight / 2) + 100, 64, 1, 0);
@@ -3355,7 +3608,7 @@ void func_801C899C(void)
     {
         if (func_801C0E68() & 0x200)
         {
-            if (D_801CE5DC != 0)
+            if (D_801CE5DC != MAP_MEAN_STREETS)
             {
                 playSfx(746);
                 D_801CE5DC--;
@@ -3364,7 +3617,7 @@ void func_801C899C(void)
         }
         if (func_801C0E68() & 0x100)
         {
-            if (D_801CE5DC != 13)
+            if (D_801CE5DC != MAP_THE_WHITECHAPEL_KILLINGS)
             {
                 playSfx(746);
                 D_801CE5DC++;
@@ -3378,7 +3631,7 @@ void func_801C899C(void)
         playSfx(747);
         for (gLoadMapNum = 0; D_801CA14C[gLoadMapNum].unk0 != 5; gLoadMapNum++);
         gLoadMapNum += D_801CE5DC;
-        if (D_801CE498.unk1C == 0)
+        if (gConfig.rumblepak == 0)
         {
             func_801C3608();
             return;
@@ -3407,29 +3660,32 @@ void func_801C899C(void)
     }
 }
 
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC72C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC73C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC74C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC758);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC764);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC770);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC778);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC780);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC788);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC794);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC79C);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC7A8);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC7B4);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC7C0);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC7D0);
-INCLUDE_RODATA("nonmatchings/src/code1/EB300", D_801CC7DC);
+/*801CBCA8*/
+static char *D_801CBCA8[16] = {
+    "TURN LEFT",
+    "TURN RIGHT",
+    "MOVE FORWARD",
+    "MOVE BACK",
+    "MOVE LEFT",
+    "MOVE RIGHT",
+    "LOOK UP",
+    "LOOK DOWN",
+    "JUMP",
+    "FIRE",
+    "OPEN",
+    "NEXT WEAPON",
+    "LAST WEAPON",
+    "NEXT ITEM",
+    "PREVIOUS ITEM",
+    "ACTIVATE ITEM",
+};
 
 /*801C8DE0*/
-STATIC void func_801C8DE0(void)
+static void menuControllerConfig(void)
 {
     s32 i, j;
 
-    func_801C2F98();
+    menuEnter();
     j = -110;
     for (i = 0; i < ARRAY_COUNT(D_801CE558); i++)
     {
@@ -3440,7 +3696,7 @@ STATIC void func_801C8DE0(void)
     j = -110;
     for (i = 0; i < ARRAY_COUNT(D_801CC8D0); i++)
     {
-        D_801CC8D0[i] = func_8007FE2C(gpControlPreset[D_801CE498.unk2E[D_801CDACC]].mapping[i],
+        D_801CC8D0[i] = func_8007FE2C(gpControlPreset[gConfig.controller_preset[D_801CDACC]].mapping[i],
                                       (gScreenWidth / 2) + 136, (gScreenHeight / 2) + (j + (i * 14)), 64, 2, 0);
         D_801CC8D0[i]->unk10 = 0;
     }
@@ -3490,7 +3746,7 @@ void func_801C8F54(void)
                 else
                     D_801CC8D0[i]->unk10 = 0xFF;
 
-                D_801CC8D0[i]->unk70 = gpControlPreset[D_801CE498.unk2E[D_801CDACC]].mapping[i];
+                D_801CC8D0[i]->unk70 = gpControlPreset[gConfig.controller_preset[D_801CDACC]].mapping[i];
             }
             if (D_801CE558[i] != NULL)
             {
@@ -3514,7 +3770,7 @@ static void func_801C90E4(void)
     ptr = &D_801CE5F0;
     ptr->unk103A = 1;
     ptr->unk2 = 31;
-    ptr->unkFE8 = D_801CE498;
+    ptr->unkFE8 = gConfig;
 
     ret = func_801C53E8(gMapNum);
     if (ptr->unkFD5 < ret)
@@ -3594,14 +3850,13 @@ void func_801C936C(void)
     }
 }
 
-
 /*801C948C*/
 static void func_801C948C(void)
 {
     code1UnkStruct3 *ptr;
     ptr = &D_801CE5F0;
     ptr->unk2 = 31;
-    ptr->unkFE8 = D_801CE498;
+    ptr->unkFE8 = gConfig;
     D_801CC930 = *ptr;
 }
 
@@ -3615,11 +3870,11 @@ static void func_801C959C(void)
     ptr = &D_801CE5F0;
 
     if (ptr2->unk2 == 31)
-        D_801CE498 = ptr2->unkFE8;
+        gConfig = ptr2->unkFE8;
 
     *ptr = *ptr2;
 
-    setVolume((D_801CE498.musicvol * 100) / 7, (D_801CE498.mastervol * 100) / 7);
+    setVolume((gConfig.musicvol * 100) / 7, (gConfig.mastervol * 100) / 7);
     D_800E16C0 |= ptr->unkFD8;
     D_800E16BC |= ptr->unkFDC;
     D_801CE470 |= ptr->unkFE0;
@@ -3627,7 +3882,7 @@ static void func_801C959C(void)
 }
 
 /*801C97A8*/
-STATIC void func_801C97A8(void)
+static void menuLoadGame(void)
 {
     *D_801CE5A8->unkC = D_801CE5A0;
     D_800FE3FC = 0;
@@ -3725,6 +3980,24 @@ void func_801C9B28(void)
 {
     func_801C509C();
 }
+
+/*801CBCE8*/
+static u8 *D_801CBCE8[12] = {
+    files_1003A60_ROM_START,
+    files_1004260_ROM_START,
+    files_1004A60_ROM_START,
+    files_1005260_ROM_START,
+    files_1005A60_ROM_START,
+    files_1006260_ROM_START,
+    files_1006A60_ROM_START,
+    files_1007260_ROM_START,
+    files_1007A60_ROM_START,
+    files_1008260_ROM_START,
+    files_1008A60_ROM_START,
+    files_1009260_ROM_START,
+};
+
+/*801CBD18*/ static u32 D_801CBD18 = 0;
 
 /*801C9B48*/
 void func_801C9B48(void)

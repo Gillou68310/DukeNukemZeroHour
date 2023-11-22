@@ -471,13 +471,13 @@ static void main_80000F68(s16 playernum)
 {
     gPlayer[playernum].unk80 = 0;
 
-    if (D_801CE498.unk2E[playernum] >= 4)
+    if (gConfig.controller_preset[playernum] >= 4)
         gPlayer[playernum].unk80 = 4;
 
-    if ((D_801CE498.unk2E[playernum] & 3) >= 2)
+    if ((gConfig.controller_preset[playernum] & 3) >= 2)
         gPlayer[playernum].unk80 |= 1;
 
-    if (D_801CE498.unk2E[playernum] & 1)
+    if (gConfig.controller_preset[playernum] & 1)
         gPlayer[playernum].unk80 |= 2;
 
     func_80035794(playernum);
@@ -795,17 +795,17 @@ static void main_80001D44(void)
 
     cache1d_8002AAC0();
     MusStop(MUSFLAG_EFFECTS | MUSFLAG_SONGS, 0);
-    switch (D_801CE5AC)
+    switch (gGraphicsOption)
     {
-    case 0:
+    case CONFIG_GRAPHICS_NORMAL:
         width = SCREEN_WIDTH;
         height = SCREEN_HEIGHT;
         break;
-    case 1:
+    case CONFIG_GRAPHICS_MEDIUM:
         width = SCREEN_WIDTH;
         height = SCREEN_HEIGHT*2;
         break;
-    case 2:
+    case CONFIG_GRAPHICS_HIGHRES:
         width = 512;
         height = 384;
         break;
@@ -1194,7 +1194,7 @@ static void mainLoop(void *arg)
     osViBlack(1U);
     osCreateThread(&_viLoopThread, 7, viLoop, arg, &_viLoopThreadStack[VILOOP_STACKSIZE / sizeof(u64)], 20);
     initAudio();
-    func_801C4F38();
+    configInitialize();
     controller_8008AD94();
     controller_8008A3EC("DUKE ZERO HOUR.A", &D_801CC930, sizeof(D_801CC930));
     switch (osTvType)

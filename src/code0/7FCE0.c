@@ -239,7 +239,7 @@ code0UnkStruct16 *func_8007FC08(_E0640UnkStruct *arg0, void *arg1, s32 arg2, s32
 }
 
 /*8007FCC8*/
-STATIC void func_8007FCC8(void)
+void func_8007FCC8(void)
 {
     f32 unk34, unk38, unk40;
 
@@ -321,7 +321,7 @@ void func_800800A8(s32 arg0)
 }
 
 /*800800D8*/
-STATIC s32 func_800800D8(u8 *arg0, s32 arg1)
+static s32 func_800800D8(u8 *arg0, s32 arg1)
 {
     s32 ret;
     u8 i;

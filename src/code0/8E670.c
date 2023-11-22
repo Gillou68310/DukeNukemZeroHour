@@ -88,7 +88,7 @@ u8 func_8008DA70(s16 mapnum)
         return 0;
 
     D_800E16C0 |= D_800E16C4[mapnum];
-    if (D_801CE498.difficulty == 0)
+    if (gConfig.difficulty == 0)
         return 0;
 
     if (D_800E171C[mapnum] != 0)
@@ -110,7 +110,7 @@ u8 func_8008DA70(s16 mapnum)
         }
         if (ret != 0)
         {
-            D_801CE498.unk50 = 1;
+            gConfig.unk50 = 1;
             if (D_800E171C[mapnum] & 0x2000)
                 D_801CE470 |= (1 << D_800E171C[mapnum]);
             else
@@ -120,7 +120,7 @@ u8 func_8008DA70(s16 mapnum)
 
     if (mapnum == MAP_ZERO_HOUR)
     {
-        D_801CE498.unk50 = 1;
+        gConfig.unk50 = 1;
         D_800E16BC |= 0x41;
         ret = 1;
     }
@@ -147,14 +147,14 @@ void func_8008DC24(void)
     D_80119A64 = 0;
     D_800DCBD4 = 0;
     D_800DCBD5 = 0;
-    D_80199558 = D_800E16A4[D_801CE498.unk20] * 1800;
-    D_8019963C = D_800E16A4[D_801CE498.unk22];
+    D_80199558 = D_800E16A4[gConfig.multiplayer.time_limit] * 1800;
+    D_8019963C = D_800E16A4[gConfig.multiplayer.frag_count];
 
     if (D_8012C470 == 2)
-        D_800DCBD4 = D_801CE498.unk24 == 0;
+        D_800DCBD4 = gConfig.multiplayer.split_2P == CONFIG_2P_SPLIT_HORZ;
 
     if (D_8012C470 == 3)
-        D_800DCBD5 = D_801CE498.unk26;
+        D_800DCBD5 = gConfig.multiplayer.split_3P;
 
     switch (D_801CDC64.unk2)
     {

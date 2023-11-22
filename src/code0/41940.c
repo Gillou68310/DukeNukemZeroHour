@@ -5234,7 +5234,7 @@ s16 func_8004CE58(SpriteType *spr, s16 arg1, s16 arg2)
         i = spr->unk16;
         if (arg2 != 20)
         {
-            j = 2 - D_801CE498.unk3E[i];
+            j = 2 - gConfig.autoaim[i];
             switch (j)
             {
             case 0:
@@ -6445,7 +6445,7 @@ void func_800502A0(void)
 /*80050408*/
 void func_80050408(void)
 {
-    switch (D_801CE498.difficulty)
+    switch (gConfig.difficulty)
     {
     case 0:
         D_800DEF14 = 200;

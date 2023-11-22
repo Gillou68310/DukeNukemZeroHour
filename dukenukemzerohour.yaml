@@ -467,7 +467,7 @@ segments:
     #.text section
       - [0xEB300,  c,        src/code1/EB300]
     #.data section
-      - [0xF46C0,  data,     code1/EB300]
+      - [0xF46C0,  .data,    src/code1/EB300]
     #.rodata section
       - [0xF62A0, .rodata,   src/code1/EB300]
     #.bss section

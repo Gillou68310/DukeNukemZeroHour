@@ -247,7 +247,7 @@ void func_8003FD5C(void)
 
     if (D_801A2790[D_801B0820].unk20 == 0)
     {
-        if (D_801CE498.unk46[D_801B0820] != 0)
+        if (gConfig.autocenter[D_801B0820] != 0)
         {
             if (gPlayer[D_801B0820].unk4E > 150)
                 gPlayer[D_801B0820].unk3E /= 2;
