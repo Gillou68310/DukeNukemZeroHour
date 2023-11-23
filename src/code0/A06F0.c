@@ -1092,9 +1092,9 @@ void func_800A3688(void)
                     displayNumbers(200, 160, buffer);
                     if (D_8012C470 == 1)
                     {
-                        sprintf(buffer, "%03d", (s16)((gPlayer[D_801B0820].unk38 & 0x7FF) * 0.17578125));
+                        sprintf(buffer, "%03d", (s16)((gPlayer[D_801B0820].unk38 & 0x7FF) * (45.0/256)));
                         displayMessage2(0x98, 0xAA, buffer);
-                        k = ((gPlayer[D_801B0820].unk3E & 0x7FF) * 0.17578125);
+                        k = ((gPlayer[D_801B0820].unk3E & 0x7FF) * (45.0/256));
                         if (k > 180)
                             k = k - 360;
 

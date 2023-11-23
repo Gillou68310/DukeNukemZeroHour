@@ -47,8 +47,8 @@ typedef struct
     u16 unk8;
 } _119280UnkStruct1;
 
-/*01022510*/ extern _119280UnkStruct1 D_01022510[64];
-/*01022790*/ extern u8 D_01022790[];
-/*01022990*/ extern ControlMapping gControlPreset[CONTROL_PRESET_NUM];
+extern _119280UnkStruct1 D_01022510[64];
+extern u8 D_01022790[512];
+extern ControlMapping gControlPreset[CONTROL_PRESET_NUM];
 
 #endif

@@ -165,10 +165,10 @@ void func_8003F340(void)
         cstat = gpSprite[i].cstat;
         gpSprite[i].cstat = cstat & 0xFEFE;
         f1 = func_8003EED0(0.0f, 0.0f);
-        sp10[0] = func_8003EED0(0.1308997f, 0.0f);
-        sp10[1] = func_8003EED0(-0.1308997f, 0.0f);
-        sp10[2] = func_8003EED0(0.0f, 0.1308997f);
-        sp10[3] = func_8003EED0(0.0f, -0.1308997f);
+        sp10[0] = func_8003EED0((PI/24), 0.0f);
+        sp10[1] = func_8003EED0(-(PI/24), 0.0f);
+        sp10[2] = func_8003EED0(0.0f, (PI/24));
+        sp10[3] = func_8003EED0(0.0f, -(PI/24));
         gpSprite[i].cstat = cstat;
 
         if (D_80119A30[D_801B0820] != 0)

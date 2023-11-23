@@ -2341,8 +2341,8 @@ void func_80094278(void)
         {
             grPosition(&gpDynamic->mtx3[D_801A6D80],
                        0.0f,
-                       (D_8013B2D0[i].unk0 * 0.17578125),
-                       (gpSprite[i].ang * 0.17578125),
+                       (D_8013B2D0[i].unk0 * (45.0/256)),
+                       (gpSprite[i].ang * (45.0/256)),
                        0.5,
                        (gpSprite[i].x / 4),
                        (gpSprite[i].y / 4),
