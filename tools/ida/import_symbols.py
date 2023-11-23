@@ -41,7 +41,7 @@ def parse_symbol_addrs(file):
             addr = int(s[1].strip().split(';')[0], 16)
             info = s[1].strip().split(';')[1].split()
             size = 0
-            type = None
+            type = 'data'
             ignore = False
             for i in info:
                 if 'size:' in i:

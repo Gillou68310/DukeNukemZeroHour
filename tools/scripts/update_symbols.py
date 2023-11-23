@@ -197,10 +197,10 @@ def parse_object_file(file: str, symbols: SYMBOLS) -> None:
             visibility = 'local'
         else:
             visibility = 'global'
+
+        t = None
         if type == 't' or type == 'T':
             t = 'func'
-        else:
-            t = 'data'
 
         if type == 'b' or type == 'B':
             section = '.bss'
@@ -255,6 +255,7 @@ if __name__ == '__main__':
         config = split.yaml.load(f.read(), Loader=split.yaml.SafeLoader)
     split.options.initialize(config, 'dukenukemzerohour.yaml', None, None)
     all_segments = split.initialize_segments(config["segments"])
+    split.disassembler_instance.create_disassembler_instance("n64")
     split.symbols.initialize(all_segments)
 
     # Parse symbols from config file

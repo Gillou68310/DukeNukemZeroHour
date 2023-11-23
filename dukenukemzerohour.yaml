@@ -29,6 +29,19 @@ options:
   use_legacy_include_asm: False
   include_macro_inc: False
   ld_wildcard_sections: True
+  asm_emit_size_directive: False
+  ld_discard_section: False
+  ld_sections_denylist:
+    - .text
+    - .rodata
+    - .bss
+    - .COMMON
+    - .data
+    - .MIPS.abiflags
+    - .reginfo
+    - .rel.dyn
+    - .debug
+
 segments:
   - name: gen/header
     type: header
@@ -44,6 +57,7 @@ segments:
     vram: 0x80000400
     subalign: null
     bss_size: 0xD6680
+    bss_contains_common: True
     subsegments:
     #.text section
       - [0x1000,  hasm,     src/code0/entrypoint]
@@ -436,25 +450,204 @@ segments:
       - [0xEB2E0, .rodata,  libs/libkmc/src/sqrt]
     #.bss section
       - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/main}
+      - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/main}
+      - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/4590}
+      - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/4600}
+      - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/graphics}
+      - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/audio}
+      - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/9410}
+      - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/FDE0}
+      - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/16DF0}
+      - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/16FF0}
+      - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/17B30}
+      - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/1A7C0}
+      - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/1E7A0}
+      - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/20490}
+      - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/21500}
       - {start: 0xEB300, type:  bss, vram: 0x800F7040, name: code0/24610}
+      - {start: 0xEB300, type: .bss, vram: 0x800F7040, name: src/code0/24610}
+      - {start: 0xEB300, type: .bss, vram: 0x800F7040, name: src/code0/2ABE0}
+      - {start: 0xEB300, type: .bss, vram: 0x800F7040, name: src/code0/cache1d}
+      - {start: 0xEB300, type: .bss, vram: 0x800F7040, name: src/code0/pragmas}
       - {start: 0xEB300, type: .bss, vram: 0x800F7060, name: src/code0/engine}
+      - {start: 0xEB300, type: .bss, vram: 0x800F7060, name: src/code0/35D90}
+      - {start: 0xEB300, type: .bss, vram: 0x800F7060, name: src/code0/35EA0}
+      - {start: 0xEB300, type: .bss, vram: 0x800F7060, name: src/code0/36410}
+      - {start: 0xEB300, type: .bss, vram: 0x800F7060, name: src/code0/37090}
+      - {start: 0xEB300, type: .bss, vram: 0x800F7060, name: src/code0/3FAD0}
+      - {start: 0xEB300, type: .bss, vram: 0x800F7060, name: src/code0/416A0}
+      - {start: 0xEB300, type: .bss, vram: 0x800F7060, name: src/code0/41940}
+      - {start: 0xEB300, type: .bss, vram: 0x800F7060, name: src/code0/59D40}
       - {start: 0xEB300, type: .bss, vram: 0x800F9CC0, name: src/code0/609D0}
+      - {start: 0xEB300, type: .bss, vram: 0x800F9CC0, name: src/code0/64530}
       - {start: 0xEB300, type: .bss, vram: 0x800F9CD0, name: src/code0/6ACA0}
+      - {start: 0xEB300, type: .bss, vram: 0x800F9CD0, name: src/code0/7A430}
+      - {start: 0xEB300, type: .bss, vram: 0x800F9CD0, name: src/code0/7BA50}
+      - {start: 0xEB300, type: .bss, vram: 0x800F9CD0, name: src/code0/debug}
+      - {start: 0xEB300, type: .bss, vram: 0x800F9CD0, name: src/code0/7F6A0}
+      - {start: 0xEB300, type: .bss, vram: 0x800F9CD0, name: src/code0/7FCE0}
+      - {start: 0xEB300, type: .bss, vram: 0x800F9CD0, name: src/code0/edl}
+      - {start: 0xEB300, type: .bss, vram: 0x800F9CD0, name: src/code0/82480}
+      - {start: 0xEB300, type: .bss, vram: 0x800F9CD0, name: src/code0/84490}
+      - {start: 0xEB300, type: .bss, vram: 0x800F9CD0, name: src/code0/87010}
       - {start: 0xEB300, type: .bss, vram: 0x800F9CE0, name: src/code0/controller}
+      - {start: 0xEB300, type: .bss, vram: 0x800F9CE0, name: src/code0/8E670}
+      - {start: 0xEB300, type: .bss, vram: 0x800F9CE0, name: src/code0/8EFE0}
+      - {start: 0xEB300, type: .bss, vram: 0x800F9CE0, name: src/code0/95500}
+      - {start: 0xEB300, type: .bss, vram: 0x800F9CE0, name: src/code0/A06F0}
       - {start: 0xEB300, type: .bss, vram: 0x800FA3B0, name: libs/libmus/src/player}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA3B0, name: libs/libmus/src/player_fx}
       - {start: 0xEB300, type: .bss, vram: 0x800FA420, name: libs/libmus/src/aud_dma}
       - {start: 0xEB300, type: .bss, vram: 0x800FA460, name: libs/libmus/src/aud_sched}
       - {start: 0xEB300, type: .bss, vram: 0x800FA470, name: libs/libmus/src/aud_thread}
       - {start: 0xEB300, type: .bss, vram: 0x800FA630, name: libs/libmus/src/lib_memory}
       - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libmus/src/aud_samples}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/os/kdebugserver}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/gu/cosf}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/gu/coss}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/gu/lookat}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/gu/lookatref}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/gu/mtxutil}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/gu/mtxcatl}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/gu/ortho}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/gu/perspective}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/gu/rotateRPY}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/gu/scale}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/gu/sinf}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/gu/sins}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/gu/translate}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/gu/position}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/gu/random}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/os/createmesgqueue}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/os/createthread}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/os/gettime}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/os/recvmesg}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/os/sendmesg}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/os/setthreadpri}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/os/startthread}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/os/thread}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/os/timerintr}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/os/virtualtophysical}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/load}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/auxbus}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/filter}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/mainbus}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/resample}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/sl}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/heapinit}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/heapalloc}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/copy}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/syndelete}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/synaddplayer}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/synallocvoice}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/synstopvoice}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/synstartvoice}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/synsetpitch}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/synsetvol}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/synsetpan}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/io/aigetlen}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/io/aigetstat}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/io/aisetnextbuf}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/io/visetmode}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/io/viblack}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/io/contquery}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/io/controller}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/io/conteeplongwrite}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/io/conteeplongread}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/io/epidma}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/io/pidma}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/libc/string}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/libc/sprintf}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/sched/sched}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/drvrNew}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/env}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/reverb}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/save}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/synsetfxmix}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/audio/synthesizer}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/io/aisetfreq}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/io/cartrominit}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/io/conteepprobe}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/io/conteepread}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/io/conteepwrite}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA640, name: libs/libultra/src/io/contreaddata}
       - {start: 0xEB300, type: .bss, vram: 0x800FA650, name: libs/libultra/src/io/motor}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA650, name: libs/libultra/src/io/pfsallocatefile}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA650, name: libs/libultra/src/io/pfsdeletefile}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA650, name: libs/libultra/src/io/pfsfilestate}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA650, name: libs/libultra/src/io/pfsfreeblocks}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA650, name: libs/libultra/src/io/pfsinitpak}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA650, name: libs/libultra/src/io/pfsnumfiles}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA650, name: libs/libultra/src/io/pfsreadwritefile}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA650, name: libs/libultra/src/io/pfsrepairid}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA650, name: libs/libultra/src/io/pfssearchfile}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA650, name: libs/libultra/src/io/pfsselectbank}
       - {start: 0xEB300, type: .bss, vram: 0x800FA750, name: libs/libultra/src/io/pimgr}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA750, name: libs/libultra/src/io/pirawdma}
+      - {start: 0xEB300, type: .bss, vram: 0x800FA750, name: libs/libultra/src/io/sirawdma}
       - {start: 0xEB300, type: .bss, vram: 0x800FB920, name: libs/libultra/src/io/vimgr}
+      - {start: 0xEB300, type: .bss, vram: 0x800FB920, name: libs/libultra/src/io/visetspecial}
+      - {start: 0xEB300, type: .bss, vram: 0x800FB920, name: libs/libultra/src/io/viswapcontext}
+      - {start: 0xEB300, type: .bss, vram: 0x800FB920, name: libs/libultra/src/os/afterprenmi}
+      - {start: 0xEB300, type: .bss, vram: 0x800FB920, name: libs/libultra/src/os/initialize}
+      - {start: 0xEB300, type: .bss, vram: 0x800FB920, name: libs/libultra/src/os/seteventmesg}
+      - {start: 0xEB300, type: .bss, vram: 0x800FB920, name: libs/libultra/src/gu/mtxcatf}
+      - {start: 0xEB300, type: .bss, vram: 0x800FB920, name: libs/libultra/src/os/destroythread}
+      - {start: 0xEB300, type: .bss, vram: 0x800FB920, name: libs/libultra/src/os/getthreadpri}
+      - {start: 0xEB300, type: .bss, vram: 0x800FB920, name: libs/libultra/src/os/jammesg}
+      - {start: 0xEB300, type: .bss, vram: 0x800FB920, name: libs/libultra/src/os/settimer}
+      - {start: 0xEB300, type: .bss, vram: 0x800FB920, name: src/code0/assert}
+      - {start: 0xEB300, type: .bss, vram: 0x800FB920, name: libs/libultra/src/audio/synallocfx}
+      - {start: 0xEB300, type: .bss, vram: 0x800FB920, name: libs/libultra/src/io/ai}
+      - {start: 0xEB300, type: .bss, vram: 0x800FB920, name: libs/libultra/src/io/dpsetnextbuf}
+      - {start: 0xEB300, type: .bss, vram: 0x800FB920, name: libs/libultra/src/io/spsetpc}
       - {start: 0xEB300, type: .bss, vram: 0x800FCB40, name: libs/libultra/src/io/sptask}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB40, name: libs/libultra/src/io/sptaskyield}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB40, name: libs/libultra/src/io/sptaskyielded}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB40, name: libs/libultra/src/io/vi}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB40, name: libs/libultra/src/io/vigetcurrcontext}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB40, name: libs/libultra/src/io/vigetcurrframebuf}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB40, name: libs/libultra/src/io/vigetnextframebuf}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB40, name: libs/libultra/src/io/visetevent}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB40, name: libs/libultra/src/io/viswapbuf}
       - {start: 0xEB300, type: .bss, vram: 0x800FCB80, name: libs/libultra/src/io/siacs}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB80, name: libs/libultra/src/io/pigetcmdq}
       - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/piacs}
-      - {start: 0xEB300, type:  bss, vram: 0x800FCBA0, name: code0/code0}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/libc/xprintf}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/contpfs}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/contramread}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/contramwrite}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/crc}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/devmgr}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/epirawdma}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/epirawread}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/epirawwrite}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/pfschecker}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/pfsgetstatus}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/sirawread}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/sirawwrite}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/sprawdma}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/os/resetglobalintmask}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/os/setglobalintmask}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/os/yieldthread}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/dp}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/sp}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/spgetstat}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/spsetstat}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/si}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/io/pfsisplug}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/libc/xlitob}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/libc/xldtob}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libultra/src/libc/ldiv}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libkmc/src/errno}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libkmc/src/sqrt}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libkmc/src/strcmp}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libkmc/src/strcpy}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libkmc/src/toupper}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libkmc/src/_matherr}
+      - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libkmc/src/matherr}
       - {start: 0xEB300, type: .bss, vram: 0x800FCBA0, name: src/code0/code0}
+      - {start: 0xEB300, type:  bss, vram: 0x800FCBA0, name: code0/common}
 
   - name: code1
     type: code
@@ -462,6 +655,7 @@ segments:
     follows_vram: code0
     vram: 0x801C0D80
     bss_size: 0x2F30
+    bss_contains_common: True
     subalign: null
     subsegments:
     #.text section
@@ -471,8 +665,9 @@ segments:
     #.rodata section
       - [0xF62A0, .rodata,   src/code1/EB300]
     #.bss section
-      - {start: 0xF6D70, type:  bss, vram: 0x801CC7F0, name: code1/code1}
+      - {start: 0xF6D70, type:  .bss, vram: 0x801CC7F0, name: src/code1/EB300}
       - {start: 0xF6D70, type:  .bss, vram: 0x801CC7F0, name: src/code1/code1}
+      - {start: 0xF6D70, type:   bss, vram: 0x801CC7F0, name: code1/common}
 
   - name: static
     type: code

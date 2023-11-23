@@ -7,7 +7,7 @@ COPY tools/splat/requirements.txt /pip3/tools/splat/
 WORKDIR /pip3
 
 RUN apt update
-RUN apt install -yq make git build-essential binutils-mips-linux-gnu cpp-mips-linux-gnu gcc-mips-linux-gnu python3 python3-pip curl
+RUN apt install -yq make git build-essential binutils-mips-linux-gnu cpp-mips-linux-gnu gcc-mips-linux-gnu python3 python3-pip curl gdb
 RUN sh -c 'curl https://practicerom.com/public/packages/debian/pgp.pub | apt-key add - && echo deb http://practicerom.com/public/packages/debian staging main >/etc/apt/sources.list.d/practicerom.list && apt update'
 RUN apt install -yq n64-ultra
 RUN pip3 install --upgrade pip
