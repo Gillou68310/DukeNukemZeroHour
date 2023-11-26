@@ -6,8 +6,8 @@
 
 void func_80003990(s32);
 
-volatile u16 gButton[MAXPLAYERS];
-volatile s16 gStickX[MAXPLAYERS];
-volatile s16 gStickY[MAXPLAYERS];
+extern volatile u16 gButton[MAXPLAYERS];
+extern volatile s16 gStickX[MAXPLAYERS];
+extern volatile s16 gStickY[MAXPLAYERS];
 
 #endif
