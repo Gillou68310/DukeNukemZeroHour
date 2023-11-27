@@ -450,7 +450,6 @@ segments:
       - [0xEB2E0, .rodata,  libs/libkmc/src/sqrt]
     #.bss section
       - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/main}
-      - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/main}
       - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/4590}
       - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/4600}
       - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/graphics}
@@ -464,7 +463,6 @@ segments:
       - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/1E7A0}
       - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/20490}
       - {start: 0xEB300, type: .bss, vram: 0x800EA700, name: src/code0/21500}
-      - {start: 0xEB300, type:  bss, vram: 0x800F7040, name: code0/24610}
       - {start: 0xEB300, type: .bss, vram: 0x800F7040, name: src/code0/24610}
       - {start: 0xEB300, type: .bss, vram: 0x800F7040, name: src/code0/2ABE0}
       - {start: 0xEB300, type: .bss, vram: 0x800F7040, name: src/code0/cache1d}
