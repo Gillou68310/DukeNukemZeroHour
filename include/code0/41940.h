@@ -47,14 +47,14 @@ void func_800502A0(void);
 void func_80050408(void);
 void func_800504F4(void);
 void func_8005087C(void);
-void func_80050C14(s32 spritenum);
+void func_80050C14(s32 spritenum);  /*TODO: arg1?*/
 void func_800514C8(void);
 s32 func_80051508(s32 ang1, s32 ang2, s32);
 void func_80051568(void);
 void func_800533C4(s32, s32 spritenum);
 void func_800539A8(s32, s32 spritenum);
 void func_80055EC0(s32, s32);
-void func_800563D4(s32 spritenum);
+void func_800563D4(s32 spritenum, s32);
 void func_80056600(s32 spritenum);
 void func_80056A54(s16 spritenum);
 void func_800574A4(s32 spritenum);
@@ -66,7 +66,7 @@ void func_80058844(s32 spritenum, s32, s32, s16);
 s16 func_80058934(s32 x, s32 y, s32 z, s32 sectnum, s32);
 void func_80058A14(s16 spritenum, s16 *hitsprite, s32 *hitx, s32 *hity);
 s32 func_80058B3C(s32 x1, s32 y1, s32 z1, s32 sectnum, s32 x2, s32 y2, s32 z2, s32);
-void func_80058E44(s32 spritenum);
+void func_80058E44(s32 spritenum); /*TODO: arg1?*/
 
 extern s32 D_800DEE80; /*spritenum?*/
 extern s32 D_800DEE84;

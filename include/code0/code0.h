@@ -101,13 +101,13 @@ typedef struct
     /*0x04*/ s32 unk4;
     /*0x08*/ s16 unk8;
     /*0x0A*/ u16 unkA;
-    /*0x0C*/ s32 *unkC;
-    /*0x10*/ s32 *unk10;
-    /*0x14*/ s32 *unk14;
-    /*0x18*/ s32 *unk18;
-    /*0x1C*/ s32 *unk1C;
-    /*0x20*/ s32 *unk20;
-    /*0x24*/ s32 *unk24;
+    /*0x0C*/ intptr_t *unkC;
+    /*0x10*/ intptr_t *unk10;
+    /*0x14*/ intptr_t *unk14;
+    /*0x18*/ intptr_t *unk18;
+    /*0x1C*/ intptr_t *unk1C;
+    /*0x20*/ intptr_t *unk20;
+    /*0x24*/ intptr_t *unk24;
     /*0x28*/ s16 unk28; /*spritenum?*/
     /*0x2A*/ s16 unk2A;
     /*0x2C*/ s16 unk2C;

@@ -2514,7 +2514,7 @@ void func_8005FBFC(s32 spritenum, s32 arg1)
 /*8005FC20*/
 void func_8005FC20(s32 spritenum, s32 arg1)
 {
-    D_80137DE0->unk1C = (s32 *)D_80137DE0->unk64;
+    D_80137DE0->unk1C = (intptr_t *)D_80137DE0->unk64;
 }
 
 /*8005FC34*/

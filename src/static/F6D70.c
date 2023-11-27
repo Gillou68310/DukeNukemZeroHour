@@ -1,5 +1,4 @@
 #include "common.h"
-#include "static/F6D70.h"
 
 /*.data*/
 

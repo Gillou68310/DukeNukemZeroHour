@@ -14,7 +14,7 @@ typedef struct {
 /*.text*/
 
 /*80035810*/
-void func_80035810(s32 spritenum)
+void func_80035810(s32 spritenum, s32 arg1)
 {
     u16 *ptr;
     s32 i, j, unk84;
@@ -36,7 +36,7 @@ void func_80035810(s32 spritenum)
 }
 
 /*80035954*/
-void func_80035954(s32 spritenum)
+void func_80035954(s32 spritenum, s32 arg1)
 {
     u16 *ptr;
     s32 i, j, unk84;
@@ -109,7 +109,7 @@ void func_80035B88(s32 spritenum)
 }
 
 /*80035D90*/
-void func_80035D90(s32 spritenum)
+void func_80035D90(s32 spritenum, s32 arg1)
 {
     u16 *ptr;
     s32 j, unk84;
@@ -129,7 +129,7 @@ void func_80035D90(s32 spritenum)
 }
 
 /*80035E80*/
-void func_80035E80(s32 spritenum)
+void func_80035E80(s32 spritenum, s32 arg1)
 {
     u16 *ptr;
     u16 **ptr2;
@@ -159,7 +159,7 @@ void func_80035E80(s32 spritenum)
 }
 
 /*80035FB0*/
-void func_80035FB0(s32 spritenum)
+void func_80035FB0(s32 spritenum, s32 arg1)
 {
     u16 *ptr;
     s32 j, unk84;
