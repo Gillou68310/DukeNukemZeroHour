@@ -673,7 +673,7 @@ segments:
     vram: 0x01000000 #0x801CF720
     subalign: 4 #Is it?
     subsegments:
-    - {start: 0xF6D70,  type:  data,    vram: 0x01000000, name: static/F6D70}
+    - {start: 0xF6D70,  type:  .data,   vram: 0x01000000, name: src/static/F6D70}
     - {start: 0xF85D0,  type:  .data,   vram: 0x01001860, name: src/static/spinit}
     - {start: 0xF8730,  type:  .data,   vram: 0x010019C0, name: src/static/tileinfo}
     - {start: 0x105F50, type:  data,    vram: 0x0100F1E0, name: static/105F50}

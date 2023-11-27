@@ -37,7 +37,7 @@ typedef struct {
 
 /*.data*/
 /*800E1770*/ static s32 D_800E1770 = 0;
-static s32 _unused[3] = {0,0,0};
+static s32 _unused[3] = {0};
 
 /*800E1780*/
 static char *D_800E1780[8] = {

@@ -78,7 +78,7 @@ if __name__ == '__main__':
     f.close()
 
     # Decompile data
-    decomp = subprocess.check_output(['tools/m2c/m2c.py', '--globals', 'all', '--context', 'data.c', '--force-decimal', sys.argv[1]], encoding="utf-8")
+    decomp = subprocess.check_output(['tools/m2c/m2c.py', '--globals', 'all', '--context', 'data.c', sys.argv[1]], encoding="utf-8")
 
     #TODO: check for 'unable to generate initializer'?
 
@@ -89,8 +89,8 @@ if __name__ == '__main__':
     # Write decompiled data
     f = open('data.c', 'w')
     for line in lines:
-        if 'extern' in line and '+' in line:
-            f.write('\n')
+        if 'extern' in line and '+' in line or '?' in line:
+            f.write('//'+line+'\n')
         else:
             f.write(line+'\n')
     f.close()
