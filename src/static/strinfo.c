@@ -133,7 +133,7 @@ char *gWeaponStrInfo[125] = {
 };
 
 /*01021754*/
-s16 gWeaponStrInfoCount = sizeof(gWeaponStrInfo) / sizeof(char *);
+s16 gWeaponStrInfoCount = ARRAY_COUNT(gWeaponStrInfo);
 
 /*01021758*/
 static char *_keyStrTable1[KEY_STRINFO_NUM] = {
@@ -834,30 +834,30 @@ static char *_objectiveStrTable24[7] = {
 
 /*01021F30*/
 ObjectiveStrInfo gObjectiveStrInfo[MAP_COUNT] = {
-    { sizeof(_objectiveStrTable1) / sizeof(char *), _objectiveStrTable1 },
-    { sizeof(_objectiveStrTable2) / sizeof(char *), _objectiveStrTable2 },
-    { sizeof(_objectiveStrTable3) / sizeof(char *), _objectiveStrTable3 },
-    { sizeof(_objectiveStrTable4) / sizeof(char *), _objectiveStrTable4 },
-    { sizeof(_objectiveStrTable5) / sizeof(char *), _objectiveStrTable5 },
-    { sizeof(_objectiveStrTable6) / sizeof(char *), _objectiveStrTable6 },
-    { sizeof(_objectiveStrTable7) / sizeof(char *), _objectiveStrTable7 },
-    { sizeof(_objectiveStrTable8) / sizeof(char *), _objectiveStrTable8 },
-    { sizeof(_objectiveStrTable9) / sizeof(char *), _objectiveStrTable9 },
-    { sizeof(_objectiveStrTable10) / sizeof(char *), _objectiveStrTable10 },
-    { sizeof(_objectiveStrTable11) / sizeof(char *), _objectiveStrTable11 },
-    { sizeof(_objectiveStrTable12) / sizeof(char *), _objectiveStrTable12 },
-    { sizeof(_objectiveStrTable13) / sizeof(char *), _objectiveStrTable13 },
-    { sizeof(_objectiveStrTable14) / sizeof(char *), _objectiveStrTable14 },
-    { sizeof(_objectiveStrTable15) / sizeof(char *), _objectiveStrTable15 },
-    { sizeof(_objectiveStrTable16) / sizeof(char *), _objectiveStrTable16 },
-    { sizeof(_objectiveStrTable18) / sizeof(char *), _objectiveStrTable18 },
-    { sizeof(_objectiveStrTable17) / sizeof(char *), _objectiveStrTable17 },
-    { sizeof(_objectiveStrTable19) / sizeof(char *), _objectiveStrTable19 },
-    { sizeof(_objectiveStrTable20) / sizeof(char *), _objectiveStrTable20 },
-    { sizeof(_objectiveStrTable21) / sizeof(char *), _objectiveStrTable21 },
-    { sizeof(_objectiveStrTable22) / sizeof(char *), _objectiveStrTable22 },
-    { sizeof(_objectiveStrTable23) / sizeof(char *), _objectiveStrTable23 },
-    { sizeof(_objectiveStrTable24) / sizeof(char *), _objectiveStrTable24 },
+    { ARRAY_COUNT(_objectiveStrTable1), _objectiveStrTable1 },
+    { ARRAY_COUNT(_objectiveStrTable2), _objectiveStrTable2 },
+    { ARRAY_COUNT(_objectiveStrTable3), _objectiveStrTable3 },
+    { ARRAY_COUNT(_objectiveStrTable4), _objectiveStrTable4 },
+    { ARRAY_COUNT(_objectiveStrTable5), _objectiveStrTable5 },
+    { ARRAY_COUNT(_objectiveStrTable6), _objectiveStrTable6 },
+    { ARRAY_COUNT(_objectiveStrTable7), _objectiveStrTable7 },
+    { ARRAY_COUNT(_objectiveStrTable8), _objectiveStrTable8 },
+    { ARRAY_COUNT(_objectiveStrTable9), _objectiveStrTable9 },
+    { ARRAY_COUNT(_objectiveStrTable10), _objectiveStrTable10 },
+    { ARRAY_COUNT(_objectiveStrTable11), _objectiveStrTable11 },
+    { ARRAY_COUNT(_objectiveStrTable12), _objectiveStrTable12 },
+    { ARRAY_COUNT(_objectiveStrTable13), _objectiveStrTable13 },
+    { ARRAY_COUNT(_objectiveStrTable14), _objectiveStrTable14 },
+    { ARRAY_COUNT(_objectiveStrTable15), _objectiveStrTable15 },
+    { ARRAY_COUNT(_objectiveStrTable16), _objectiveStrTable16 },
+    { ARRAY_COUNT(_objectiveStrTable18), _objectiveStrTable18 },
+    { ARRAY_COUNT(_objectiveStrTable17), _objectiveStrTable17 },
+    { ARRAY_COUNT(_objectiveStrTable19), _objectiveStrTable19 },
+    { ARRAY_COUNT(_objectiveStrTable20), _objectiveStrTable20 },
+    { ARRAY_COUNT(_objectiveStrTable21), _objectiveStrTable21 },
+    { ARRAY_COUNT(_objectiveStrTable22), _objectiveStrTable22 },
+    { ARRAY_COUNT(_objectiveStrTable23), _objectiveStrTable23 },
+    { ARRAY_COUNT(_objectiveStrTable24), _objectiveStrTable24 },
 };
 
 /*01021FF0*/
@@ -910,7 +910,7 @@ char *gActionStrInfo[17] = {
 };
 
 /*01022094*/
-s16 gActionStrInfoCount = sizeof(gActionStrInfo) / sizeof(char *);
+s16 gActionStrInfoCount = ARRAY_COUNT(gActionStrInfo);
 
 /*01022098*/
 s32 D_01022098 = 0x20000000;
@@ -955,7 +955,7 @@ char *gLicenceStrInfo[35] = {
 };
 
 /*01022128*/
-s16 gLicenceStrInfoCount = (sizeof(gLicenceStrInfo) / sizeof(char *)) - 1;
+s16 gLicenceStrInfoCount = ARRAY_COUNT(gLicenceStrInfo) - 1;
 
 /*0102212C*/
 char *gCreditStrInfo[248] = {
@@ -1210,6 +1210,6 @@ char *gCreditStrInfo[248] = {
 };
 
 /*0102250C*/
-s16 gCreditStrInfoCount = (sizeof(gCreditStrInfo) / sizeof(char *)) - 1;
+s16 gCreditStrInfoCount = ARRAY_COUNT(gCreditStrInfo) - 1;
 
 /*.text*/

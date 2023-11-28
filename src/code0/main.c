@@ -1120,7 +1120,7 @@ static void mainLoop(void *arg)
     D_801ACBD8 = (_11D520UnkStruct1 *)GET_STATIC_SEG_SYM(D_01026910);
 
 #ifdef TARGET_N64
-    for (i = 0; i < D_01026910_NUM; i++)
+    for (i = 0; i < ARRAY_COUNT(D_01026910); i++)
     {
         intptr_t *addr = (intptr_t *)D_801ACBD8;
         intptr_t offset = (intptr_t)gStaticSegment - STATIC_SEGMENT_VRAM;
