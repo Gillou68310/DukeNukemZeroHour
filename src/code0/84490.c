@@ -58,7 +58,6 @@ typedef struct
 /*80083890*/
 s32 swap32(u8 *arg0)
 {
-    /*TODO: endianess?*/
     u8 byte[4];
 
     byte[0] = *arg0++;
@@ -72,7 +71,6 @@ s32 swap32(u8 *arg0)
 /*800838E0*/
 s32 swap16(u8 *arg0)
 {
-    /*TODO: endianess?*/
     u8 byte[2];
 
     byte[0] = *arg0++;
@@ -152,7 +150,7 @@ static void func_80083C40(void)
 
     if (D_8012F6EC > 0)
     {
-        gSPVertex(D_8012F6F8++, &D_8013F924[D_800FE3F4], D_8012F6EC, 0)
+        gSPVertex(D_8012F6F8++, &D_8013F924[D_800FE3F4], D_8012F6EC, 0);
     }
 
     for (i = 0; i < D_8011815C; i++)

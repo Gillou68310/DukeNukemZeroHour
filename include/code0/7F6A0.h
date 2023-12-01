@@ -4,7 +4,7 @@
 #include "common.h"
 #include "code0/code0.h"
 
-void memset(void *dst, s32 value, s32 size);
+void Amemset(void *dst, s32 value, s32 size);
 void func_8007EB24(void);
 code0UnkStruct16 *func_8007EC10(s32);
 void func_8007EC7C(code0UnkStruct16 *);

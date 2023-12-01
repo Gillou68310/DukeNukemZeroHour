@@ -1,4 +1,5 @@
 #include "common.h"
+#include "ld_symbols.h"
 #include "code0/main.h"
 #include "code0/cache1d.h"
 #include "code0/audio.h"
@@ -24,19 +25,6 @@ typedef struct {
     /*0x04*/ u8 unk4;
     /*0x06*/ u16 unk6[11];
 } _EB300UnkStruct2;
-
-extern u8 files_1003A60_ROM_START[];
-extern u8 files_1004260_ROM_START[];
-extern u8 files_1004A60_ROM_START[];
-extern u8 files_1005260_ROM_START[];
-extern u8 files_1005A60_ROM_START[];
-extern u8 files_1006260_ROM_START[];
-extern u8 files_1006A60_ROM_START[];
-extern u8 files_1007260_ROM_START[];
-extern u8 files_1007A60_ROM_START[];
-extern u8 files_1008260_ROM_START[];
-extern u8 files_1008A60_ROM_START[];
-extern u8 files_1009260_ROM_START[];
 
 /*.data*/
 /*801CA140*/ static s32 D_801CA140 = 2048;
@@ -156,7 +144,7 @@ static Lights1 D_801CA3B8 = {
 /*801CDB28*/ u8 D_801CDB28[28] ALIGNED(8);
 /*801CDB50*/ _EB300UnkStruct1 *D_801CDB50;
 /*801CDB54*/ s32 D_801CDB54;
-#if defined (MODERN) || defined (NON_MATCHING)
+#ifdef AVOID_UB
 char D_801CDB58[6][16] ALIGNED(8); /*Fix out of bound access in func_801C764C*/
 #else
 /*801CDB58*/ char D_801CDB58[5][16] ALIGNED(8);
@@ -1025,8 +1013,10 @@ static void func_801C30EC(void)
     s32 i;
     s64 prev;
 
+#ifdef TARGET_N64
     prev = D_800FE9E0;
     while (prev == D_800FE9E0);
+#endif
 
     cache1d_8002AAEC();
     edl_80081688(&D_801CDB08, 20);
@@ -1593,7 +1583,7 @@ static void func_801C37B8(void)
     D_801CDC64.unk0 = 0;
     D_801CDC64.unk1 = 1;
     gLoadMapNum = 0;
-    memset(&D_801CE5F0, 0, sizeof(D_801CE5F0));
+    Amemset(&D_801CE5F0, 0, sizeof(D_801CE5F0));
 
     for (i = 0; D_801CA14C[gLoadMapNum].unk0 != 10; i++)
         gLoadMapNum++;
@@ -2196,8 +2186,8 @@ static void func_801C4E90(void)
 /*801C4F38*/
 void configInitialize(void)
 {
-    memset(&D_801CE5F0, 0, sizeof(D_801CE5F0));
-    memset(&gConfig, 0, sizeof(gConfig));
+    Amemset(&D_801CE5F0, 0, sizeof(D_801CE5F0));
+    Amemset(&gConfig, 0, sizeof(gConfig));
     gGraphicsOption = CONFIG_GRAPHICS_NORMAL;
     D_801CE5F0.unk103A = 0;
     gConfig.multiplayer.time_limit = 1;
@@ -2232,7 +2222,11 @@ void configInitialize(void)
     sprintf(D_801CDBB0, "ZERO HOUR");
 }
 
+#ifdef AVOID_UB
+/*801CB948*/ static s32 D_801CB948[11] = {0, 10, 6, 8, 7, 9, 0, 0, 0, 0, 0}; /*Fix out of bound access*/
+#else
 /*801CB948*/ static s32 D_801CB948[6] = {0, 10, 6, 8, 7, 9};
+#endif
 
 /*801C509C*/
 static void func_801C509C(void)
@@ -3645,8 +3639,10 @@ void func_801C899C(void)
         playSfx(748);
         func_801C0EDC(0x4000);
 
+#ifdef TARGET_N64
         prev = D_800FE9E0;
         while (prev == D_800FE9E0);
+#endif
 
         func_8007F050();
         cache1d_8002AAEC();

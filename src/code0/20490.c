@@ -48,7 +48,7 @@ void func_8001F928(s32 arg0, s32 arg1)
     s32 i, j;
     s16 k, l, m, n;
 
-    i = (arg0 * 12) / 320;
+    i = (arg0 * 12) / SCREEN_WIDTH;
     l = ((arg0 / 2) + i) * 2;
     k = ((arg0 - i) + (arg0 / 2)) * 2;
 

@@ -13,7 +13,7 @@ typedef struct
 typedef struct {
     /*0x00*/ s32 fileoff;
     /*0x04*/ u8 *ramaddr;
-    /*0x08*/ s16 unk8;
+    /*0x08*/ s16 unused;
     /*0x0A*/ s16 unkA;
 } ModelInfoUnkStruct1;
 
@@ -1665,8 +1665,7 @@ extern ModelInfo D_800D52B0;
 extern ModelInfo *D_800D52E0[1320];
 extern s16 D_800D6780; /*D_800D52E0 count*/
 
-extern ModelInfo *D_800D6784[11];
-extern ModelInfo *D_800D67B0[35];
+extern ModelInfo *D_800D6784[46];
 extern ModelInfo *D_800D683C[24];
 
 extern ModelInfo *D_800D689C[50];

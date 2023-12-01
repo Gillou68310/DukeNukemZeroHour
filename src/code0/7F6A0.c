@@ -56,7 +56,7 @@ static ProcPointer D_800DFA10[12] = {
 /*.text*/
 
 /*8007EAA0*/
-void memset(void *dst, s32 value, s32 size)
+void Amemset(void *dst, s32 value, s32 size)
 {
     s32 i;
     s32 val;
@@ -83,7 +83,7 @@ void memset(void *dst, s32 value, s32 size)
 /*8007EB24*/
 void func_8007EB24(void)
 {
-    memset(D_801A6D90, 0, sizeof(D_801A6D90));
+    Amemset(D_801A6D90, 0, sizeof(D_801A6D90));
     D_8016D17C = 0;
 }
 
@@ -113,7 +113,7 @@ static code0UnkStruct16 *func_8007EBB0(void)
     {
         if (ptr->unk0 == 0)
         {
-            memset(ptr, 0, sizeof(code0UnkStruct16));
+            Amemset(ptr, 0, sizeof(code0UnkStruct16));
             return ptr;
         }
         ptr++;
@@ -140,7 +140,7 @@ code0UnkStruct16 *func_8007EC10(s32 arg0)
 /*8007EC7C*/
 void func_8007EC7C(code0UnkStruct16 *arg0)
 {
-    memset(arg0, 0, sizeof(code0UnkStruct16));
+    Amemset(arg0, 0, sizeof(code0UnkStruct16));
     arg0->unk12 = 0xFF;
     arg0->unk10 = 0xFF;
     arg0->unk40 = 1.0f;
@@ -172,7 +172,7 @@ static s32 func_8007ED34(void)
     s16 j;
 
     ret = 0;
-    memset(&D_80199990, 0, sizeof(D_80199990));
+    Amemset(&D_80199990, 0, sizeof(D_80199990));
 
     ptr = D_801A6D90;
     for (i = 0; i < ARRAY_COUNT(D_801A6D90); i++)

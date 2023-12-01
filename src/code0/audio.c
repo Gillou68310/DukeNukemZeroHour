@@ -1,4 +1,5 @@
 #include "common.h"
+#include "ld_symbols.h"
 #include "code0/main.h"
 #include "code0/audio.h"
 #include "code0/41940.h"
@@ -57,97 +58,6 @@ extern u8 WBANK0_START[];
 extern u8 WBANK0_END[];
 extern u8 SFX_BANK_START[];
 extern u8 SFX_BANK_END[];
-
-extern u8 sounds_bank0_ptr_ROM_START[];
-extern u8 sounds_bank0_wbk_ROM_START[];
-extern u8 sounds_sfx_bfx_ROM_START[];
-extern u8 sounds_training_base_ROM_START[];
-extern u8 sounds_bank1_ptr_ROM_START[];
-extern u8 sounds_bank1_wbk_ROM_START[];
-extern u8 sounds_western1_ROM_START[];
-extern u8 sounds_western2_ROM_START[];
-extern u8 sounds_bank2_ptr_ROM_START[];
-extern u8 sounds_bank2_wbk_ROM_START[];
-extern u8 sounds_western_mine_cart_ROM_START[];
-extern u8 sounds_bank3_ptr_ROM_START[];
-extern u8 sounds_bank3_wbk_ROM_START[];
-extern u8 sounds_present_day2_ROM_START[];
-extern u8 sounds_present_day1_ROM_START[];
-extern u8 sounds_title_screen_ROM_START[];
-extern u8 sounds_present_day_boss_hog_ROM_START[];
-extern u8 sounds_bank4_ptr_ROM_START[];
-extern u8 sounds_bank4_wbk_ROM_START[];
-extern u8 sounds_victorian1_ROM_START[];
-extern u8 sounds_victorian2_ROM_START[];
-extern u8 sounds_bank5_ptr_ROM_START[];
-extern u8 sounds_bank5_wbk_ROM_START[];
-extern u8 sounds_boss_ROM_START[];
-extern u8 sounds_bank6_ptr_ROM_START[];
-extern u8 sounds_bank6_wbk_ROM_START[];
-extern u8 sounds_final_alien_mother_ROM_START[];
-extern u8 sounds_bank7_ptr_ROM_START[];
-extern u8 sounds_bank7_wbk_ROM_START[];
-extern u8 sounds_ambient1_ROM_START[];
-extern u8 sounds_bank8_ptr_ROM_START[];
-extern u8 sounds_bank8_wbk_ROM_START[];
-extern u8 sounds_ambient2_ROM_START[];
-extern u8 sounds_bank9_ptr_ROM_START[];
-extern u8 sounds_bank9_wbk_ROM_START[];
-extern u8 sounds_ambient3_ROM_START[];
-extern u8 sounds_bank10_ptr_ROM_START[];
-extern u8 sounds_bank10_wbk_ROM_START[];
-extern u8 sounds_ambient4_ROM_START[];
-extern u8 sounds_bank11_ptr_ROM_START[];
-extern u8 sounds_bank11_wbk_ROM_START[];
-extern u8 sounds_ambient5_ROM_START[];
-extern u8 sounds_bank12_ptr_ROM_START[];
-extern u8 sounds_bank12_wbk_ROM_START[];
-extern u8 sounds_ambient6_ROM_START[];
-extern u8 sounds_bank13_ptr_ROM_START[];
-extern u8 sounds_bank13_wbk_ROM_START[];
-extern u8 sounds_ambient7_ROM_START[];
-extern u8 sounds_bank14_ptr_ROM_START[];
-extern u8 sounds_bank14_wbk_ROM_START[];
-extern u8 sounds_ambient8_ROM_START[];
-extern u8 sounds_bank15_ptr_ROM_START[];
-extern u8 sounds_bank15_wbk_ROM_START[];
-extern u8 sounds_ambient9_ROM_START[];
-extern u8 sounds_present_day2_ROM_END[];
-extern u8 sounds_present_day1_ROM_END[];
-extern u8 sounds_title_screen_ROM_END[];
-extern u8 sounds_western1_ROM_END[];
-extern u8 sounds_western2_ROM_END[];
-extern u8 sounds_western_mine_cart_ROM_END[];
-extern u8 sounds_victorian1_ROM_END[];
-extern u8 sounds_victorian2_ROM_END[];
-extern u8 sounds_final_alien_mother_ROM_END[];
-extern u8 sounds_boss_ROM_END[];
-extern u8 sounds_present_day_boss_hog_ROM_END[];
-extern u8 sounds_training_base_ROM_END[];
-extern u8 sounds_ambient1_ROM_END[];
-extern u8 sounds_ambient2_ROM_END[];
-extern u8 sounds_ambient3_ROM_END[];
-extern u8 sounds_ambient4_ROM_END[];
-extern u8 sounds_ambient5_ROM_END[];
-extern u8 sounds_ambient6_ROM_END[];
-extern u8 sounds_ambient7_ROM_END[];
-extern u8 sounds_ambient8_ROM_END[];
-extern u8 sounds_ambient9_ROM_END[];
-extern u8 sounds_bank1_ptr_ROM_END[];
-extern u8 sounds_bank2_ptr_ROM_END[];
-extern u8 sounds_bank3_ptr_ROM_END[];
-extern u8 sounds_bank4_ptr_ROM_END[];
-extern u8 sounds_bank5_ptr_ROM_END[];
-extern u8 sounds_bank6_ptr_ROM_END[];
-extern u8 sounds_bank7_ptr_ROM_END[];
-extern u8 sounds_bank8_ptr_ROM_END[];
-extern u8 sounds_bank9_ptr_ROM_END[];
-extern u8 sounds_bank10_ptr_ROM_END[];
-extern u8 sounds_bank11_ptr_ROM_END[];
-extern u8 sounds_bank12_ptr_ROM_END[];
-extern u8 sounds_bank13_ptr_ROM_END[];
-extern u8 sounds_bank14_ptr_ROM_END[];
-extern u8 sounds_bank15_ptr_ROM_END[];
 
 /*data*/
 

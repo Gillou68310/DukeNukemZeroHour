@@ -1,4 +1,5 @@
 #include "common.h"
+#include "ld_symbols.h"
 #include "code0/4600.h"
 #include "code0/cache1d.h"
 #include "code0/edl.h"
@@ -37,9 +38,6 @@ typedef struct {
     s16 b;
     s16 a;
 } Color16;
-
-extern u8 files_tiles_ROM_START[];
-extern u8 files_tiles_ROM_END[];
 
 /*.comm*/
 /*800FE404*/ s16 D_800FE404;
@@ -84,8 +82,8 @@ _9410UnkStruct1 D_800BD710[5] = {
     { 22, 77, 17, 128 },
 };
 
-/*800BD724*/ static u8 *_tileROMAddr = files_tiles_ROM_START;
-static u8 *_unused1 = files_tiles_ROM_END;
+/*800BD724*/ static u8 *_tileROMAddr = tiles_ROM_START;
+static u8 *_unused1 = tiles_ROM_END;
 /*800BD72C*/ f32 gMapXpos = 0.0f;
 /*800BD730*/ f32 gMapYpos = 256.0f;
 /*800BD734*/ f32 gMapZpos = 0.0f;
@@ -201,13 +199,29 @@ static void decompressMap(void)
     gMapZpos = gpMapInfo[gMapNum].zpos;
 
     addr = (u8 *)(gpMapInfo[gMapNum].sector_offset + (intptr_t)gpMapBuffer);
+
+#ifdef NON_MATCHING
+    if (decompressEDL(addr, gpSector) != 0)
+        Bmemcpy(gpSector, addr, gNumSectors * sizeof(SectorType));
+#else
     decompressEDL(addr, gpSector);
+#endif
 
     addr = (u8 *)(gpMapInfo[gMapNum].wall_offset + (intptr_t)gpMapBuffer);
+#ifdef NON_MATCHING
+    if (decompressEDL(addr, gpWall) != 0)
+        Bmemcpy(gpWall, addr, gNumWalls * sizeof(WallType));
+#else
     decompressEDL(addr, gpWall);
+#endif
 
     addr = (u8 *)(gpMapInfo[gMapNum].sprite_offset + (intptr_t)gpMapBuffer);
+#ifdef NON_MATCHING
+    if (decompressEDL(addr, gpSprite) != 0)
+        Bmemcpy(gpSprite, addr, gNumSprites * sizeof(SpriteType));
+#else
     decompressEDL(addr, gpSprite);
+#endif
 
     count = 0;
     for (i = 0; i < gNumSectors; i++)
@@ -218,7 +232,13 @@ static void decompressMap(void)
 
     count *= 3;
     alloCache(&gpVertex, (count * sizeof(Vertex)), &_vertexLock);
+#ifdef NON_MATCHING
+    if (decompressEDL(&gpMapBuffer[0], gpVertex) != 0)
+        Bmemcpy(gpVertex, &gpMapBuffer[0], count * sizeof(Vertex));
+#else
     decompressEDL(&gpMapBuffer[0], gpVertex);
+#endif
+
     suckCache(&gpMapBuffer);
     initTiles();
 

@@ -41843,7 +41843,7 @@ ModelInfo *D_800D52E0[0x528] = {
 /*800D6780*/ s16 D_800D6780 = 0x528;
 
 /*800D6784*/
-ModelInfo *D_800D6784[0xB] = {
+ModelInfo *D_800D6784[0x2E] = {
     NULL,
     NULL,
     &D_800C1A50,
@@ -41855,10 +41855,6 @@ ModelInfo *D_800D6784[0xB] = {
     &D_800C1B40,
     &D_800D2934,
     &D_800C1C6C,
-};
-
-/*800D67B0*/
-ModelInfo *D_800D67B0[0x23] = {
     &D_800D0738,
     &D_800C1B7C,
     &D_800C1AC8,

@@ -1305,7 +1305,7 @@ static void func_8001270C(_DA790UnkStruct2 *arg0, s16 arg1)
                 if ((arg1 == 12) && (cond2))
                 {
                     if (l == 10)
-                        func_80011700(D_800D67B0[0]);
+                        func_80011700(D_800D6784[l+1]);
                     else
                         func_80011700(D_800D6784[l]);
 

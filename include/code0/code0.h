@@ -397,7 +397,7 @@ typedef struct
 #define _extern extern
 #endif
 
-#ifdef MODERN
+#ifdef AVOID_UB
 #define _volatile volatile
 #else
 #define _volatile

@@ -41,8 +41,8 @@ typedef union
 typedef struct
 {
     u16 unk0;
-    u16 unk2;
-    u16 unk4;
+    u16 id;
+    u16 offset;
     u16 unk6;
     u16 unk8;
 } _119280UnkStruct1;

@@ -53,7 +53,7 @@ static u8 _unused4 = 188;
 /*8007BFC0*/
 void debugMenu(void)
 {
-#if defined (MODERN) || defined (NON_MATCHING)
+#ifdef AVOID_UB
     char buffer[64];
 #else
     char buffer[16];

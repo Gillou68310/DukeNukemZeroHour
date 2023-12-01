@@ -1,4 +1,5 @@
 #include "common.h"
+#include "ld_symbols.h"
 #ifndef LIBEDL
 #include "code0/main.h"
 #include "code0/4600.h"
@@ -26,67 +27,6 @@ typedef struct
     u8 **handle;
     s32 *offset;
 } edlUnkStruct1;
-
-extern u8 files_1009A60_ROM_START[];
-extern u8 files_1009A60_ROM_END[];
-extern u8 files_10271A0_ROM_START[];
-extern u8 files_10271A0_ROM_END[];
-extern u8 files_1041D90_ROM_START[];
-extern u8 files_1041D90_ROM_END[];
-extern u8 files_105ADA0_ROM_START[];
-extern u8 files_105ADA0_ROM_END[];
-extern u8 files_106D8B0_ROM_START[];
-extern u8 files_106D8B0_ROM_END[];
-extern u8 files_1057DF0_ROM_START[];
-extern u8 files_1057DF0_ROM_END[];
-extern u8 files_1081080_ROM_START[];
-extern u8 files_1081080_ROM_END[];
-extern u8 files_1095D20_ROM_START[];
-extern u8 files_1095D20_ROM_END[];
-extern u8 files_10A4BF0_ROM_START[];
-extern u8 files_10A4BF0_ROM_END[];
-extern u8 files_10B6DC0_ROM_START[];
-extern u8 files_10B6DC0_ROM_END[];
-extern u8 files_10C6040_ROM_START[];
-extern u8 files_10C6040_ROM_END[];
-extern u8 files_10DA3B0_ROM_START[];
-extern u8 files_10DA3B0_ROM_END[];
-extern u8 files_10DAB40_ROM_START[];
-extern u8 files_10DAB40_ROM_END[];
-extern u8 files_10DC260_ROM_START[];
-extern u8 files_10DC260_ROM_END[];
-extern u8 files_10E8750_ROM_START[];
-extern u8 files_10E8750_ROM_END[];
-extern u8 files_11437F0_ROM_START[];
-extern u8 files_11437F0_ROM_END[];
-extern u8 files_11736E0_ROM_START[];
-extern u8 files_11736E0_ROM_END[];
-extern u8 files_1175AD0_ROM_START[];
-extern u8 files_1175AD0_ROM_END[];
-extern u8 files_1175ED0_ROM_START[];
-extern u8 files_1175ED0_ROM_END[];
-extern u8 files_1176420_ROM_START[];
-extern u8 files_1176420_ROM_END[];
-extern u8 files_117AD40_ROM_START[];
-extern u8 files_117AD40_ROM_END[];
-extern u8 files_117B0C0_ROM_START[];
-extern u8 files_117B0C0_ROM_END[];
-extern u8 files_117B140_ROM_START[];
-extern u8 files_117B140_ROM_END[];
-extern u8 files_117B1F0_ROM_START[];
-extern u8 files_117B1F0_ROM_END[];
-extern u8 files_117A400_ROM_START[];
-extern u8 files_117A400_ROM_END[];
-extern u8 files_117AAA0_ROM_START[];
-extern u8 files_117AAA0_ROM_END[];
-extern u8 files_117AB20_ROM_START[];
-extern u8 files_117AB20_ROM_END[];
-extern u8 files_117AB30_ROM_START[];
-extern u8 files_117AB30_ROM_END[];
-extern u8 files_117CB90_ROM_START[];
-extern u8 files_117CB90_ROM_END[];
-extern u8 files_1189460_ROM_START[];
-extern u8 files_1189460_ROM_END[];
 
 /*data*/
 
@@ -639,7 +579,7 @@ static s32 isEDL(u8 *src)
 {
     EDLInfo info;
 
-#if defined(NON_MATCHING) || defined(MODERN)
+#ifdef AVOID_UB
     info.sys_endian = SYS_ENDIAN;
 #endif
     info.src = src;
@@ -656,7 +596,7 @@ static void _decompressEDL(u8 **handle, u8 *src, u8 *dst)
     s32 dsize;
 
     info.src = src;
-#if defined(NON_MATCHING) || defined(MODERN)
+#ifdef AVOID_UB
     info.sys_endian = SYS_ENDIAN;
     parseEDLheader(&info);
     dsize = info.dsize;

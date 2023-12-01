@@ -1,4 +1,5 @@
 #include "common.h"
+#include "ld_symbols.h"
 #include "code0/main.h"
 #include "code0/cache1d.h"
 #include "code0/edl.h"
@@ -12,8 +13,6 @@
 /*s32 tileMasks(u16);*/
 /*s32 tileMaskt(u16);*/
 u8 *loadTile(u16 tilenum);
-
-extern u8 files_models_ROM_START[];
 
 /*.text*/
 

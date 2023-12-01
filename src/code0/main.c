@@ -1,4 +1,5 @@
 #include "common.h"
+#include "ld_symbols.h"
 #include "code0/audio.h"
 #include "code0/9410.h"
 #include "code0/4590.h"
@@ -71,22 +72,6 @@ DECL_STATIC_SEG_SYM(D_01025BA0);
 DECL_STATIC_SEG_SYM(D_01025CFC);
 DECL_STATIC_SEG_SYM(gMapInfo);
 DECL_STATIC_SEG_SYM(D_01026910);
-
-extern u8 code0_ROM_START[];
-extern u8 code0_ROM_END[];
-extern u8 code0_TEXT_SIZE[];
-extern u8 code0_VRAM[];
-extern u8 code0_VRAM_END[];
-extern u8 code1_VRAM[];
-extern u8 code1_VRAM_END[];
-extern u8 code1_BSS_START[];
-extern u8 code1_BSS_END[];
-extern u8 code1_ROM_START[];
-extern u8 code1_ROM_END[];
-extern u8 code1_TEXT_START[];
-extern u8 code1_TEXT_END[];
-extern u8 static_ROM_START[];
-extern u8 static_ROM_END[];
 
 #define IDLELOOP_STACKSIZE 0x1000
 #define VILOOP_STACKSIZE 0x1000
@@ -349,7 +334,7 @@ static void main_8000071C(void)
 /*8000090C*/
 void boot(void)
 {
-#if defined (MODERN) || defined (NON_MATCHING)
+#if (defined (MODERN) || defined (NON_MATCHING)) && defined (TARGET_N64)
     if ((code0_ROM_END - code0_ROM_START) > 0x100000)
     {
         Bmemcpy(code0_VRAM+0x100000,
@@ -876,7 +861,7 @@ void main_80001FAC(void)
 }
 
 /*80002014*/
-void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size)
+void allocMemory(s32 width, s32 height, s32 dlist_size, s32 vertex_size)
 {
     s16 i;
     u8 *plock;
@@ -890,8 +875,8 @@ void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size)
     main_80000450();
     if ((D_800BD3F8 == 0))
     {
-        if (width == SCREEN_HEIGHT*2)
-            width = 512;
+        if (height == SCREEN_HEIGHT*2)
+            height = 512;
     }
 
     if (osMemSize == 0x400000)
@@ -902,7 +887,7 @@ void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size)
     gCacheMemEnd = (u8 *)(osMemSize - 0x80000000);
     initCache(gCacheMemStart, (gCacheMemEnd - gCacheMemStart));
 
-    fb_size = height * width * 2;
+    fb_size = width * height * 2;
     alloCache(&gFramebuffer[0], ((fb_size + FRAMEBUFFER_ALIGN) * _framebufferCount), &gCacheLock[0]);
     fb_addr = (u8 *)(((intptr_t)gFramebuffer[0] + (FRAMEBUFFER_ALIGN-1)) & ~(FRAMEBUFFER_ALIGN-1));
     gFramebuffer[0] = fb_addr;
@@ -941,8 +926,8 @@ void allocMemory(s32 height, s32 width, s32 dlist_size, s32 vertex_size)
     suckCache(&handler);
     Bmemset(gFramebuffer[0], 0, ((fb_size + FRAMEBUFFER_ALIGN) * _framebufferCount));
     _framebufferIndex = 0;
-    gScreenWidth = height;
-    gScreenHeight = width;
+    gScreenWidth = width;
+    gScreenHeight = height;
     D_800E0F58 = 1;
 }
 

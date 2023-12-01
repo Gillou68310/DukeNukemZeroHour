@@ -9,6 +9,7 @@ VERBOSE      ?= 0
 BUILD_DIR    ?= build
 EXTERN       ?= 1
 MODERN       ?= 0
+AVOID_UB     ?= 0
 
 # Fail early if baserom does not exist
 ifeq ($(wildcard $(BASEROM)),)
@@ -18,12 +19,14 @@ endif
 # NON_MATCHING=1 implies COMPARE=0
 ifeq ($(NON_MATCHING),1)
 override COMPARE=0
+override AVOID_UB=1
 endif
 
 # MODERN=1 implies COMPARE=0
 ifeq ($(MODERN),1)
 override COMPARE=0
 override CHECK=0
+override AVOID_UB=1
 endif
 
 ifeq ($(VERBOSE),0)
@@ -94,7 +97,7 @@ ENDLINE := \n'
 OPTFLAGS       := -O2 -g2
 ASFLAGS        := -G0 -mips3 -I include
 CFLAGS         := -G0 -mips3 -mgp32 -mfp32 -funsigned-char #-save-temps #-Wa,--vr4300mul-off
-CPPFLAGS       := -I include -I $(LIBULTRA_DIR)/include/2.0I -D_LANGUAGE_C -DF3DEX_GBI_2 -D_MIPS_SZLONG=32 -D_FINALROM -DTARGET_N64
+CPPFLAGS       := -I include -I gen -I $(LIBULTRA_DIR)/include/2.0I -D_LANGUAGE_C -DF3DEX_GBI_2 -D_MIPS_SZLONG=32 -D_FINALROM -DTARGET_N64
 LDFLAGS        := -T undefined_syms.txt -T undefined_funcs.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(LD_MAP) --no-check-sections
 CHECK_WARNINGS := -Wall -Wextra -Wno-missing-braces -Wno-format-security -Wno-unused-parameter -Wno-unused-variable -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -Wno-unused-function
 CFLAGS_CHECK   := -m32 -fsyntax-only -funsigned-char -nostdinc -fno-builtin -std=gnu90
@@ -108,6 +111,10 @@ endif
 
 ifeq ($(NON_MATCHING),1)
 CPPFLAGS += -DNON_MATCHING
+endif
+
+ifeq ($(AVOID_UB),1)
+CPPFLAGS += -DAVOID_UB
 endif
 
 ### Sources ###

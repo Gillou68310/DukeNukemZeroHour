@@ -595,11 +595,11 @@ void func_80083200(_119280UnkStruct1 *arg0, s32 arg1)
         D_8012FD8C->unk3C = 0.0f;
         D_8012FD8C->unk50 = 0.0f;
         D_8012FD8C->unkC = arg1 | 0x20;
-        func_800818A8(D_8012FD8C, arg0->unk2, arg0->unk4, ptr1, ptr2, NULL, ptr3);
+        func_800818A8(D_8012FD8C, arg0->id, arg0->offset, ptr1, ptr2, NULL, ptr3);
         func_80081E20(func_80082920, func_80082BA0, 1);
     }
-    sp30.unk0 = arg0->unk2;
-    sp30.unk2 = arg0->unk4;
+    sp30.unk0 = arg0->id;
+    sp30.unk2 = arg0->offset;
     sp30.unk4 = ptr1;
     sp30.unk8 = ptr2;
     sp30.unkC = ptr3;
@@ -657,11 +657,11 @@ static void func_80083430(s32 arg0, _119280UnkStruct1 *arg1, s32 arg2, s32 arg3,
         D_8012FD8C->unk3C = 0.0f;
         D_8012FD8C->unk50 = 0.0f;
         D_8012FD8C->unkC = arg2 | 0x20;
-        func_800818A8(D_8012FD8C, arg1->unk2, arg1->unk4, ptr3, ptr2, NULL, ptr1);
+        func_800818A8(D_8012FD8C, arg1->id, arg1->offset, ptr3, ptr2, NULL, ptr1);
         func_80081E20(func_80082920, func_80082BA0, 1);
     }
-    sp30.unk0 = arg1->unk2;
-    sp30.unk2 = arg1->unk4;
+    sp30.unk0 = arg1->id;
+    sp30.unk2 = arg1->offset;
     sp30.unk4 = ptr3;
     sp30.unk8 = ptr2;
     sp30.unkC = ptr1;

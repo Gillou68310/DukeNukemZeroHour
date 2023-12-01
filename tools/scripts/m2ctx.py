@@ -20,6 +20,7 @@ CFLAGS = [
 
 CPP_FLAGS = [
     "-Iinclude",
+    "-Igen",
     "-Ilibs/libultra/include/2.0I",
     "-Ilibs/libmus/include",
     "-Ilibs/libkmc/include",
