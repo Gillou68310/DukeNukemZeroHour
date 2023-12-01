@@ -1016,6 +1016,8 @@ static void func_801C30EC(void)
 #ifdef TARGET_N64
     prev = D_800FE9E0;
     while (prev == D_800FE9E0);
+#else
+    (void)prev;
 #endif
 
     cache1d_8002AAEC();
@@ -3642,6 +3644,8 @@ void func_801C899C(void)
 #ifdef TARGET_N64
         prev = D_800FE9E0;
         while (prev == D_800FE9E0);
+#else
+        (void)prev;
 #endif
 
         func_8007F050();
@@ -3978,7 +3982,7 @@ void func_801C9B28(void)
 }
 
 /*801CBCE8*/
-static u8 *D_801CBCE8[12] = {
+u8 *D_801CBCE8[12] = {
     files_1003A60_ROM_START,
     files_1004260_ROM_START,
     files_1004A60_ROM_START,
@@ -4138,7 +4142,7 @@ void func_801C9F74(void)
 {
     s32 cond;
 
-    if ((D_801CDC70 + 2040) < D_801CDC68)
+    if ((&D_801CDC70[sizeof(D_801CDC70)-8]) < D_801CDC68)
     {
         main_80003940();
         return;

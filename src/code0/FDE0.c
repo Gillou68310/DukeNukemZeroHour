@@ -1,5 +1,5 @@
-#include "common.h"
 #include "math.h"
+#include "common.h"
 #include "code0/main.h"
 #include "code0/pragmas.h"
 #include "code0/FDE0.h"
@@ -1780,7 +1780,7 @@ static void func_80015458(_DA790UnkStruct2 *arg0, s16 arg1)
 
     s32 unk54;
 
-    s16 i, j, k, l;
+    s16 i, j, k;
 
     ptr = &D_80197E40[D_80106D50[D_801AE8F4]];
 

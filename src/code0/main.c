@@ -376,7 +376,7 @@ static void idleLoop(void *arg)
 /*80000A6C*/
 void readRom(u8 *segStart, u8 *romStart, s32 size)
 {
-    return dmaRomToRam(romStart, segStart, size);
+    dmaRomToRam(romStart, segStart, size);
 }
 
 /*80000A94*/

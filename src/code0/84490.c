@@ -380,6 +380,7 @@ static void func_80085128(void)
     u8 pad[16];
     s32 temp;
 
+    (void)pad;
     if ((D_8012F6EC + 4) >= D_800E0F28)
         func_80083C40();
 
@@ -663,6 +664,7 @@ static void func_80086100(s32 arg0)
 {
     u8 pad[64];
 
+    (void)pad;
     gDPPipeSync(D_8012F6F8++);
 
     if (arg0 & 0x4000)

@@ -1,6 +1,6 @@
 #include "common.h"
-#include "ld_symbols.h"
 #ifndef LIBEDL
+#include "ld_symbols.h"
 #include "code0/main.h"
 #include "code0/4600.h"
 #include "code0/cache1d.h"

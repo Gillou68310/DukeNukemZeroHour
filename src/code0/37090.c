@@ -1435,6 +1435,7 @@ static void func_8003B5F8(void)
     u8 cond1, cond2;
     u8 pad[8]; /*FAKEMATCH?*/
 
+    (void)pad;
     spritenum = gPlayer[D_801B0820].unk4A;
     D_8011BC44 = &D_8019B940[D_80106D50[spritenum]];
     D_80138850 = 1;

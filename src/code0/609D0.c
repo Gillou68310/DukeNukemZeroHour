@@ -1059,6 +1059,7 @@ void func_80062300(void)
     s32 i, j, k, l;
     u8 pad[2]; /*FAKE*/
 
+    (void)pad;
     func_8004F31C();
     func_80016F30();
     D_800F9CC0 = 0;

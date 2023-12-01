@@ -1036,7 +1036,7 @@ void func_8005BB88(s32 spritenum, s32 arg1)
 /*8005BD28*/
 void func_8005BD28(s32 spritenum, s32 arg1)
 {
-    s32 x1, x2, y1, y2, z, z1, z2;
+    s32 z2;
     f32 f1, f2, f3;
 
     if ((D_80137DE0->unk0 & 0x1800) && (D_80137DE0->unk28 != -1))
@@ -1369,7 +1369,7 @@ void func_8005CAB4(s32 spritenum, s32 arg1)
 /*8005CAE0*/
 void func_8005CAE0(s32 spritenum, s32 arg1)
 {
-    s32 i, nexti;
+    s32 i;
     s32 x, y;
 
     i = gHeadSpriteStat[24];

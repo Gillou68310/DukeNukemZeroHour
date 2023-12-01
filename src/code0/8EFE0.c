@@ -933,7 +933,6 @@ s32 func_8008FE88(s32 spritenum)
     s32 florhit;
 
     SpriteType *spr1;
-    SpriteType *spr2;
 
     f32 f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12;
 
@@ -941,7 +940,6 @@ s32 func_8008FE88(s32 spritenum)
     s16 a, b, unk16;
 
     s32 x, y;
-    s32 spritenum2;
     s32 i, j, k, l, m;
     s32 unk22;
     u16 cstat;

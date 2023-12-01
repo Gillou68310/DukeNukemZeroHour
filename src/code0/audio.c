@@ -8,8 +8,6 @@
 #include "code1/code1.h"
 
 #define DMA_LEN 16384
-#define MUSIC_COUNT 12
-#define AMBIENT_COUNT 9
 #define SFX_BANK_SIZE 54152
 #define SFX_PBANK_SIZE 167600
 #define AUDIO_HEAP_SIZE 163840
@@ -17,21 +15,6 @@
 #define MUSIC_BUFFER_SIZE 8496
 #define AMBIENT_PBANK_SIZE 3836
 #define AMBIENT_BUFFER_SIZE 10000
-
-typedef struct
-{
-    u8 *wbank_start;
-    u8 *pbank_start;
-    u8 *pbank_end;
-    u8 *music_start;
-    u8 *music_end;
-} MusicInfo;
-
-typedef struct
-{
-    MusicInfo music[MUSIC_COUNT];
-    MusicInfo ambient[AMBIENT_COUNT];
-} Music;
 
 typedef struct {
     musHandle handle;
@@ -52,17 +35,10 @@ typedef struct
 #define SFX_BANK_START sounds_sfx_bfx_ROM_START
 #define SFX_BANK_END sounds_sfx_bfx_ROM_END
 
-extern u8 PBANK0_START[];
-extern u8 PBANK0_END[];
-extern u8 WBANK0_START[];
-extern u8 WBANK0_END[];
-extern u8 SFX_BANK_START[];
-extern u8 SFX_BANK_END[];
-
 /*data*/
 
 /*800BD460*/
-static Music _music = {
+Music gMusic = {
     {
         {
             sounds_bank3_wbk_ROM_START,
@@ -368,6 +344,7 @@ static void initBank(u8 *pbank_rom, s32 size, u8 *wbank, u8 *pbank_ram)
 static void initSfxBank(u8 *sfx_bank_rom, s32 size)
 {
     readRom(gSfxBankBuffer, sfx_bank_rom, size);
+    assert(size <= sizeof(gSfxBankBuffer));
     MusFxBankInitialize(gSfxBankBuffer);
     gSfxCount = MusFxBankNumberOfEffects(gSfxBankBuffer);
 }
@@ -398,6 +375,7 @@ void initAudio(void)
     initMusicDriver();
     MusSetMasterVolume(MUSFLAG_EFFECTS | MUSFLAG_SONGS, 32767);
     setVolume(50, 100);
+    assert((PBANK0_END - PBANK0_START) <= sizeof(gSfxPbankBuffer));
     initBank(PBANK0_START, (PBANK0_END - PBANK0_START), WBANK0_START, gSfxPbankBuffer);
     initSfxBank(SFX_BANK_START, (SFX_BANK_END - SFX_BANK_START));
     MusPtrBankSetCurrent(gMusicPbankBuffer);
@@ -419,22 +397,25 @@ void playMusic(s32 musicnum)
             gMusicHandle = 0;
         else
         {
-            if (_music.music[musicnum].pbank_start)
+            if (gMusic.music[musicnum].pbank_start)
             {
-                initBank(_music.music[musicnum].pbank_start,
-                        _music.music[musicnum].pbank_end - _music.music[musicnum].pbank_start,
-                        _music.music[musicnum].wbank_start, gMusicPbankBuffer);
-                readMusic(_music.music[musicnum].music_start,
-                        _music.music[musicnum].music_end - _music.music[musicnum].music_start,
-                        gMusicBuffer);
+                initBank(gMusic.music[musicnum].pbank_start,
+                         gMusic.music[musicnum].pbank_end - gMusic.music[musicnum].pbank_start,
+                         gMusic.music[musicnum].wbank_start, gMusicPbankBuffer);
+                assert((gMusic.music[musicnum].pbank_end - gMusic.music[musicnum].pbank_start) <= sizeof(gMusicPbankBuffer));
+                readMusic(gMusic.music[musicnum].music_start,
+                          gMusic.music[musicnum].music_end - gMusic.music[musicnum].music_start,
+                          gMusicBuffer);
+                assert((gMusic.music[musicnum].music_end - gMusic.music[musicnum].music_start) <= sizeof(gMusicBuffer));
                 MusPtrBankSetSingle(gMusicPbankBuffer);
                 gMusicHandle = MusStartSong(gMusicBuffer);
             }
             else
             {
-                readMusic(_music.music[musicnum].music_start,
-                        _music.music[musicnum].music_end - _music.music[musicnum].music_start,
-                        gMusicBuffer);
+                readMusic(gMusic.music[musicnum].music_start,
+                          gMusic.music[musicnum].music_end - gMusic.music[musicnum].music_start,
+                          gMusicBuffer);
+                assert((gMusic.music[musicnum].music_end - gMusic.music[musicnum].music_start) <= sizeof(gMusicBuffer));
                 gMusicHandle = MusStartSong(gMusicBuffer);
             }
 
@@ -455,15 +436,15 @@ void playAmbient(s32 ambientnum)
         gAmbientHandle = 0;
     else
     {
-        initBank(
-          _music.ambient[ambientnum].pbank_start,
-          _music.ambient[ambientnum].pbank_end - _music.ambient[ambientnum].pbank_start,
-          _music.ambient[ambientnum].wbank_start,
-          gAmbientPbankBuffer);
-        readMusic(
-          _music.ambient[ambientnum].music_start,
-          _music.ambient[ambientnum].music_end - _music.ambient[ambientnum].music_start,
-          gAmbientBuffer);
+        initBank(gMusic.ambient[ambientnum].pbank_start,
+                 gMusic.ambient[ambientnum].pbank_end - gMusic.ambient[ambientnum].pbank_start,
+                 gMusic.ambient[ambientnum].wbank_start,
+                 gAmbientPbankBuffer);
+        assert((gMusic.ambient[ambientnum].pbank_end - gMusic.ambient[ambientnum].pbank_start) <= sizeof(gAmbientPbankBuffer));
+        readMusic(gMusic.ambient[ambientnum].music_start,
+                  gMusic.ambient[ambientnum].music_end - gMusic.ambient[ambientnum].music_start,
+                  gAmbientBuffer);
+        assert((gMusic.ambient[ambientnum].music_end - gMusic.ambient[ambientnum].music_start) <= sizeof(gAmbientBuffer));
         MusPtrBankSetSingle(gAmbientPbankBuffer);
         gAmbientHandle = MusStartSong(gAmbientBuffer);
         MusHandleSetVolume(gAmbientHandle, (gMasterVolume * 128) / 100U);

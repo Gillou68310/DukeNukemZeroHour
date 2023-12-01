@@ -742,7 +742,6 @@ static void func_8006B278(s16 spritenum)
 static void func_8006B384(s32 spritenum)
 {
     s32 i, x, y;
-    s32 ret;
     u16 num;
 
     num = gpSprite[spritenum].picnum - 1293;
@@ -3976,7 +3975,7 @@ static void func_80074C70(s32 spritenum)
     SpriteType *spr;
     s16 ang, num2;
     s32 ang2, num, i, point2;
-    s16 cstat, cstat2;
+    s16 cstat;
 
     spr = &gpSprite[spritenum];
     i = spr->unk22 & 0x7F;
@@ -5574,7 +5573,7 @@ static void func_80078F84(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
-    s32 num, ang, ang2;
+    s32 num, ang;
     u16 cstat;
     s32 temp;
 

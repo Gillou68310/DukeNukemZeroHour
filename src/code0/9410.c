@@ -621,6 +621,7 @@ static void func_8000A174(s32 arg0, s32 arg1)
     u8 pad[20];
     (void)arg0;
     (void)arg1;
+    (void)pad;
 }
 
 /*8000A184*/
@@ -1559,12 +1560,14 @@ static void func_8000E024(s32 arg0, s32 arg1)
 static void func_8000E02C(s32 arg0, s32 arg1)
 {
     u8 pad[10];
+    (void)pad;
 }
 
 /*8000E03C*/
 static void func_8000E03C(s32 arg0, s32 arg1)
 {
     u8 pad[10];
+    (void)pad;
 }
 
 /*8000E04C*/

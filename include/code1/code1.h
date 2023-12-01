@@ -124,7 +124,7 @@ typedef struct
 {
     code1UnkStruct3 unk0;
 #ifdef AVOID_UB
-    ALIGNED(256) u8 pad;
+    u8 pad[0xC4]; /*Align 256 bytes*/
 #endif
 } code1UnkStruct7;
 

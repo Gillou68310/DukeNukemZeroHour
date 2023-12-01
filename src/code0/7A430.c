@@ -325,6 +325,7 @@ static void func_80079F60(s32 playernum)
     s16 n;
     u8 pad[16]; /*FAKEMATCH*/
 
+    (void)pad;
     temp2 = gPlayer[playernum].unk4A;
     D_800FE9D8[playernum] = 0;
     D_80197DEC = &D_8019B940[D_80106D50[gPlayer[playernum].unk4A]];
