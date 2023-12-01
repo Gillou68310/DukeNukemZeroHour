@@ -50,7 +50,7 @@ class ModelInfo:
         self.unk28, self.unk2A, self.unk2C, self.unk2E, \
             = struct.unpack('>iiHHHHHHxxxxIxxxxbxxxhhhhhh', data)
     
-class ModelTileInfo:
+class ModelTextureInfo:
     def __init__(self, data):
         self.dimx, self.dimy, self.offset = struct.unpack('>hhi', data)
 
@@ -90,7 +90,7 @@ def extract_models(rom):
         tiles = []
         tiles_table = model_data[model.tileinfo:model.unkE]
         for i in range(0, len(tiles_table), 8):
-            tiles.append(ModelTileInfo(tiles_table[i:i+8]))
+            tiles.append(ModelTextureInfo(tiles_table[i:i+8]))
         
         # Extract model tiles
         i = 0

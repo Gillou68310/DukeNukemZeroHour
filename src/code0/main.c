@@ -36,7 +36,6 @@
 #include "static/sintable.h"
 #include "static/radarang.h"
 #include "libmus.h"
-#include "assert.h"
 
 DECL_STATIC_SEG_SYM(gTileInfo);
 DECL_STATIC_SEG_SYM(gWeaponStrInfo);

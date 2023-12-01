@@ -132,6 +132,12 @@ CFLAGS += $(CFLAGS_MODERN) $(CHECK_WARNINGS)
 CC := $(CROSS)gcc
 endif
 
+ifneq ($(NON_MATCHING),1)
+ifneq ($(MODERN),1)
+$(BUILD_DIR)/src/%.o: CPPFLAGS += -DNDEBUG
+endif
+endif
+
 $(BUILD_DIR)/src/%.o: CPPFLAGS += -I $(LIBKMC_DIR)/include -I $(LIBMUS_DIR)/include
 
 $(BUILD_DIR)/$(LIBULTRA_DIR)/src/%.o: OPTFLAGS := -O3 -g0

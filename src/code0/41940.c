@@ -5751,8 +5751,13 @@ s32 func_8004E5F8(s16 spritenum, s32 xvect, s32 yvect, s32 zvect)
         cliptype = 0x10001;
 
     z = gpSprite[spritenum_].z + zvect;
+#ifdef AVOID_UB
     ret = clipMove(&gpSprite[spritenum_].x, &gpSprite[spritenum_].y, &z, &sectnum,
-                   xvect << 11, yvect << 11, walldist, 1024, MAX(1024, spritenum_ = temp), cliptype); /*FAKEMATCH?*/
+                   xvect << 11, yvect << 11, walldist, 1024, 1024, cliptype);
+#else
+    ret = clipMove(&gpSprite[spritenum_].x, &gpSprite[spritenum_].y, &z, &sectnum,
+                   xvect << 11, yvect << 11, walldist, 1024, MAX(1024, spritenum_ = temp), cliptype); /*FAKEMATCH*/
+#endif
     gpSprite[spritenum].z = z;
     if (sectnum >= 0 && sectnum != gpSprite[spritenum].sectnum)
         changeSpriteSect(spritenum, sectnum);

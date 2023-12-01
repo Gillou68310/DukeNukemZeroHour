@@ -244,8 +244,11 @@ static void func_8001A8EC(s16 arg0, s16 arg1, s32 tileid, s16 arg3, u8 arg4)
     alpha = (arg3 * D_800DCA00) / 256;
 
     gDPSetPrimColor(gpDisplayList++, 0, 0, D_800DCA04[arg4][0], D_800DCA04[arg4][1], D_800DCA04[arg4][2], alpha);
-    /*TODO: buffer index out of bound*/
+#ifdef AVOID_UB
+    gDPSetEnvColor(gpDisplayList++, D_800DCA04[arg4+1][0], D_800DCA04[arg4+1][1], D_800DCA04[arg4+1][2], alpha);
+#else
     gDPSetEnvColor(gpDisplayList++, D_800DCA04[arg4][3], D_800DCA04[arg4][4], D_800DCA04[arg4][5], alpha);
+#endif
     func_80027C18(f1 + D_80168C9C,
                   f2 + D_801A2684,
                   (arg1 * (D_80199110 / (SCREEN_WIDTH / 2.0))),

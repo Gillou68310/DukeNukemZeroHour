@@ -471,12 +471,12 @@ static void func_80082BA0(void)
     ptr2 = &D_80118168.unk14[D_80118168.unk1A];
     ptr3 = &D_80118168.unk14[D_80118168.unk1C];
     ptr4 = &D_80118168.unk14[D_80118168.unk1E];
-    i = (ptr2->unk0 - ptr1->unk0);
-    j = (ptr2->unk2 - ptr1->unk2);
-    k = (ptr2->unk4 - ptr1->unk4);
-    l = (ptr3->unk0 - ptr1->unk0);
-    m = (ptr3->unk2 - ptr1->unk2);
-    n = (ptr3->unk4 - ptr1->unk4);
+    i = (ptr2->x - ptr1->x);
+    j = (ptr2->y - ptr1->y);
+    k = (ptr2->z - ptr1->z);
+    l = (ptr3->x - ptr1->x);
+    m = (ptr3->y - ptr1->y);
+    n = (ptr3->z - ptr1->z);
 
     i *= 16;
     j *= 16;
@@ -509,9 +509,9 @@ static void func_80082BA0(void)
     sp20.unk4 = (f2 * f5);
     sp20.unk8 = (f3 * f5);
 
-    sp10.unk0 = -ptr1->unk0;
-    sp10.unk4 = -ptr1->unk2;
-    sp10.unk8 = -ptr1->unk4;
+    sp10.unk0 = -ptr1->x;
+    sp10.unk4 = -ptr1->y;
+    sp10.unk8 = -ptr1->z;
 
     f5 = func_800829BC(&sp10, &sp20);
     func_80082B44(&D_8012FC9C[D_80118168.unk18],
@@ -519,9 +519,9 @@ static void func_80082BA0(void)
         sp10.unk4 + (sp20.unk4 * f5),
         sp10.unk8 + (sp20.unk8 * f5));
 
-    sp10.unk0 = -ptr2->unk0;
-    sp10.unk4 = -ptr2->unk2;
-    sp10.unk8 = -ptr2->unk4;
+    sp10.unk0 = -ptr2->x;
+    sp10.unk4 = -ptr2->y;
+    sp10.unk8 = -ptr2->z;
 
     f5 = func_800829BC(&sp10, &sp20);
     func_80082B44(&D_8012FC9C[D_80118168.unk1A],
@@ -529,9 +529,9 @@ static void func_80082BA0(void)
         sp10.unk4 + (sp20.unk4 * f5),
         sp10.unk8 + (sp20.unk8 * f5));
 
-    sp10.unk0 = -ptr3->unk0;
-    sp10.unk4 = -ptr3->unk2;
-    sp10.unk8 = -ptr3->unk4;
+    sp10.unk0 = -ptr3->x;
+    sp10.unk4 = -ptr3->y;
+    sp10.unk8 = -ptr3->z;
 
     f5 = func_800829BC(&sp10, &sp20);
     func_80082B44(&D_8012FC9C[D_80118168.unk1C],
@@ -541,9 +541,9 @@ static void func_80082BA0(void)
 
     if (D_80118168.unk1C != D_80118168.unk1E)
     {
-        sp10.unk0 = -ptr4->unk0;
-        sp10.unk4 = -ptr4->unk2;
-        sp10.unk8 = -ptr4->unk4;
+        sp10.unk0 = -ptr4->x;
+        sp10.unk4 = -ptr4->y;
+        sp10.unk8 = -ptr4->z;
         f5 = func_800829BC(&sp10, &sp20);
 
         func_80082B44(&D_8012FC9C[D_80118168.unk1E],

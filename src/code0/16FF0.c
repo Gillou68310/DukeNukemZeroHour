@@ -27,8 +27,8 @@ void func_800163F0(u8 arg0)
     {
         if (D_8010A9AC == 0)
         {
-            ptr = gpModelTile;
-            pal = (u16 *)&ptr[gpModelTileInfo[arg0].offset];
+            ptr = gpModelTexture;
+            pal = (u16 *)&ptr[gpModelTextureInfo[arg0].offset];
             ptr = (u8 *)pal;
 
             for (i = 0; i < 16; i++)
@@ -60,8 +60,8 @@ void func_8001660C(u8 arg0)
 
     if (D_8010A9AC == 0)
     {
-        dimx = gpModelTileInfo[arg0].dimx;
-        dimy = gpModelTileInfo[arg0].dimy;
+        dimx = gpModelTextureInfo[arg0].dimx;
+        dimy = gpModelTextureInfo[arg0].dimy;
 
         switch (dimx)
         {
@@ -125,8 +125,8 @@ void func_8001660C(u8 arg0)
             break;
         }
 
-        pTile = (intptr_t)gpModelTile;
-        pTile = (intptr_t)&((u8 *)pTile)[gpModelTileInfo[arg0].offset];
+        pTile = (intptr_t)gpModelTexture;
+        pTile = (intptr_t)&((u8 *)pTile)[gpModelTextureInfo[arg0].offset];
 
         if (D_801A2688 != 0)
         {
@@ -167,30 +167,30 @@ void loadModel(ModelInfo *model)
     if (model->ramaddr == NULL)
     {
         size = (model->unk8 + 1) & ~1;
-        alloCache(&model->ramaddr, (((size + model->unk12) + 1) & ~1), (u8 *)&model->lock);
-        model->unk18->ramaddr = &model->ramaddr[size];
+        alloCache(&model->ramaddr, (((size + model->vertex_size) + 1) & ~1), (u8 *)&model->lock);
+        model->vertex_info->ramaddr = &model->ramaddr[size];
 
         size = model->unkA;
-        if (size < model->unk18->unkA)
-            size = model->unk18->unkA;
+        if (size < model->vertex_info->size)
+            size = model->vertex_info->size;
 
         D_80169520 = 200;
         alloCache(&D_80138854, size, &D_80169520);
         size = model->unkA;
-        romaddr = files_models_ROM_START;
+        romaddr = models_ROM_START;
         romaddr += model->fileoff;
         readRom(D_80138854, romaddr, ((size + 1) & ~1));
 
         if (decompressEDL(D_80138854, model->ramaddr) != 0)
             Bmemcpy(model->ramaddr, D_80138854, size);
 
-        size = model->unk18->unkA;
-        romaddr = files_models_ROM_START;
-        romaddr += model->unk18->fileoff;
+        size = model->vertex_info->size;
+        romaddr = models_ROM_START;
+        romaddr += model->vertex_info->fileoff;
         readRom(D_80138854, romaddr, ((size + 1) & ~1));
 
-        if (decompressEDL(D_80138854, model->unk18->ramaddr) != 0)
-            Bmemcpy(model->unk18->ramaddr, D_80138854, size);
+        if (decompressEDL(D_80138854, model->vertex_info->ramaddr) != 0)
+            Bmemcpy(model->vertex_info->ramaddr, D_80138854, size);
 
         suckCache(&D_80138854);
     }

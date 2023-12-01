@@ -8,26 +8,26 @@ typedef struct
     /*0x00*/ s16 dimx;
     /*0x00*/ s16 dimy;
     /*0x04*/ s32 offset;
-} ModelTileInfo;
+} ModelTextureInfo;
 
 typedef struct {
     /*0x00*/ s32 fileoff;
     /*0x04*/ u8 *ramaddr;
     /*0x08*/ s16 unused;
-    /*0x0A*/ s16 unkA;
-} ModelInfoUnkStruct1;
+    /*0x0A*/ s16 size;
+} ModelVertexInfo;
 
 typedef struct {
     /*0x00*/ s32 fileoff;
     /*0x04*/ u8 *ramaddr;
     /*0x08*/ u16 unk8;
     /*0x0A*/ u16 unkA;
-    /*0x0C*/ u16 tileinfo;
-    /*0x0E*/ u16 unkE; /*tileinfo end?*/
-    /*0x10*/ u16 unk10;
-    /*0x12*/ u16 unk12;
+    /*0x0C*/ u16 texture_info_off;
+    /*0x0E*/ u16 cmd_off;
+    /*0x10*/ u16 lights_off;
+    /*0x12*/ u16 vertex_size;
     /*0x14*/ u8 pad2[4];
-    /*0x18*/ ModelInfoUnkStruct1 *unk18;
+    /*0x18*/ ModelVertexInfo *vertex_info;
     /*0x1C*/ u8 pad3[4];
     /*0x20*/ s8 lock;
     /*0x21*/ u8 pad4[3];
@@ -38,6 +38,11 @@ typedef struct {
     /*0x2C*/ s16 unk2C;
     /*0x2E*/ s16 unk2E;
 } ModelInfo;
+
+typedef struct {
+    /*0x00*/ s8 n[3]; /*normal*/
+    /*0x03*/ s8 unused[3];
+} ModelLight;
 
 extern ModelInfo D_800BD79C;
 extern ModelInfo D_800BD7D8;

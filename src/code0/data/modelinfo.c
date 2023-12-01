@@ -1,12 +1,13 @@
 #include "common.h"
+#include "ld_symbols.h"
 #include "code0/data/modelinfo.h"
 
 /*.data*/
-/*800BD790*/ static ModelInfoUnkStruct1 D_800BD790 = {0x10F0, NULL, 0, 0x60};
+/*800BD790*/ static ModelVertexInfo D_800BD790 = {(s32)models_3866B0_bin+0x3C0, NULL, 0, 0x60};
 
 /*800BD79C*/
 ModelInfo D_800BD79C = {
-    0xD30,
+    (s32)models_3866B0_bin,
     NULL,
     0x3C0,
     0x3C0,
@@ -27,16 +28,16 @@ ModelInfo D_800BD79C = {
     0x4B,
 };
 
-/*800BD7CC*/ static ModelInfoUnkStruct1 D_800BD7CC = {0x13D0, NULL, 0, 0xD8};
+/*800BD7CC*/ static ModelVertexInfo D_800BD7CC = {(s32)models_386AD0_bin+0x280, NULL, 0, 0xD8};
 
 /*800BD7D8*/
 ModelInfo D_800BD7D8 = {
-    0x1150,
+    (s32)models_386AD0_bin,
     NULL,
     0x280,
     0x280,
-    0,
-    0,
+    0x0,
+    0x0,
     0x1A8,
     0xD8,
     { 0, 0, 0, 0 },
@@ -52,11 +53,11 @@ ModelInfo D_800BD7D8 = {
     0x54,
 };
 
-/*800BD808*/ static ModelInfoUnkStruct1 D_800BD808 = {0x1BA8, NULL, 0, 0x2D0};
+/*800BD808*/ static ModelVertexInfo D_800BD808 = {(s32)models_386E30_bin+0x6F8, NULL, 0, 0x2D0};
 
 /*800BD814*/
 ModelInfo D_800BD814 = {
-    0x14B0,
+    (s32)models_386E30_bin,
     NULL,
     0x6F8,
     0x6F8,
@@ -77,11 +78,11 @@ ModelInfo D_800BD814 = {
     0x1E,
 };
 
-/*800BD844*/ static ModelInfoUnkStruct1 D_800BD844 = {0xA3C, NULL, 0, 0x2F4};
+/*800BD844*/ static ModelVertexInfo D_800BD844 = {(s32)models_385980_bin+0xA3C, NULL, 0, 0x2F4};
 
 /*800BD850*/
 ModelInfo D_800BD850 = {
-    0,
+    (s32)models_385980_bin,
     NULL,
     0xA3C,
     0xA3C,
@@ -102,11 +103,11 @@ ModelInfo D_800BD850 = {
     0x80,
 };
 
-/*800BD880*/ static ModelInfoUnkStruct1 D_800BD880 = {0x3E68, NULL, 0, 0x2A0};
+/*800BD880*/ static ModelVertexInfo D_800BD880 = {(s32)models_388E80_bin+0x968, NULL, 0, 0x2A0};
 
 /*800BD88C*/
 ModelInfo D_800BD88C = {
-    0x3500,
+    (s32)models_388E80_bin,
     NULL,
     0x968,
     0x968,
@@ -127,11 +128,11 @@ ModelInfo D_800BD88C = {
     0x7F,
 };
 
-/*800BD8BC*/ static ModelInfoUnkStruct1 D_800BD8BC = {0x2E20, NULL, 0, 0x6D8};
+/*800BD8BC*/ static ModelVertexInfo D_800BD8BC = {(s32)models_387800_bin+0xFA0, NULL, 0, 0x6D8};
 
 /*800BD8C8*/
 ModelInfo D_800BD8C8 = {
-    0x1E80,
+    (s32)models_387800_bin,
     NULL,
     0xFA0,
     0xFA0,
@@ -152,11 +153,11 @@ ModelInfo D_800BD8C8 = {
     0xA3,
 };
 
-/*800BD8F8*/ static ModelInfoUnkStruct1 D_800BD8F8 = {0x62B4, NULL, 0, 0x3B4};
+/*800BD8F8*/ static ModelVertexInfo D_800BD8F8 = {(s32)models_389A90_bin+0x21A4, NULL, 0, 0x3B4};
 
 /*800BD904*/
 ModelInfo D_800BD904 = {
-    0x4110,
+    (s32)models_389A90_bin,
     NULL,
     0x21A4,
     0x21A4,
@@ -177,11 +178,11 @@ ModelInfo D_800BD904 = {
     0x302,
 };
 
-/*800BD934*/ static ModelInfoUnkStruct1 D_800BD934 = {0x73CC, NULL, 0, 0x29A};
+/*800BD934*/ static ModelVertexInfo D_800BD934 = {(s32)models_38BFF0_bin+0xD5C, NULL, 0, 0x29A};
 
 /*800BD940*/
 ModelInfo D_800BD940 = {
-    0x6670,
+    (s32)models_38BFF0_bin,
     NULL,
     0xD5A,
     0xD5A,
@@ -202,11 +203,11 @@ ModelInfo D_800BD940 = {
     0x258,
 };
 
-/*800BD970*/ static ModelInfoUnkStruct1 D_800BD970 = {0x8290, NULL, 0, 0x1F8};
+/*800BD970*/ static ModelVertexInfo D_800BD970 = {(s32)models_38CFF0_bin+0xC20, NULL, 0, 0x1F8};
 
 /*800BD97C*/
 ModelInfo D_800BD97C = {
-    0x7670,
+    (s32)models_38CFF0_bin,
     NULL,
     0xC20,
     0xC20,
@@ -227,11 +228,11 @@ ModelInfo D_800BD97C = {
     0x34,
 };
 
-/*800BD9AC*/ static ModelInfoUnkStruct1 D_800BD9AC = {0x8960, NULL, 0, 0x150};
+/*800BD9AC*/ static ModelVertexInfo D_800BD9AC = {(s32)models_38DE10_bin+0x4D0, NULL, 0, 0x150};
 
 /*800BD9B8*/
 ModelInfo D_800BD9B8 = {
-    0x8490,
+    (s32)models_38DE10_bin,
     NULL,
     0x4D0,
     0x4D0,
@@ -252,11 +253,11 @@ ModelInfo D_800BD9B8 = {
     0x1E,
 };
 
-/*800BD9E8*/ static ModelInfoUnkStruct1 D_800BD9E8 = {0x9410, NULL, 0, 0x7E};
+/*800BD9E8*/ static ModelVertexInfo D_800BD9E8 = {(s32)models_38E430_bin+0x960, NULL, 0, 0x7E};
 
 /*800BD9F4*/
 ModelInfo D_800BD9F4 = {
-    0x8AB0,
+    (s32)models_38E430_bin,
     NULL,
     0x95E,
     0x95E,
@@ -277,11 +278,11 @@ ModelInfo D_800BD9F4 = {
     0x2E,
 };
 
-/*800BDA24*/ static ModelInfoUnkStruct1 D_800BDA24 = {0x9E18, NULL, 0, 0x78};
+/*800BDA24*/ static ModelVertexInfo D_800BDA24 = {(s32)models_38EE10_bin+0x988, NULL, 0, 0x78};
 
 /*800BDA30*/
 ModelInfo D_800BDA30 = {
-    0x9490,
+    (s32)models_38EE10_bin,
     NULL,
     0x988,
     0x988,
@@ -302,11 +303,11 @@ ModelInfo D_800BDA30 = {
     0x2F,
 };
 
-/*800BDA60*/ static ModelInfoUnkStruct1 D_800BDA60 = {0xA7F0, NULL, 0, 0x7E};
+/*800BDA60*/ static ModelVertexInfo D_800BDA60 = {(s32)models_38F810_bin+0x960, NULL, 0, 0x7E};
 
 /*800BDA6C*/
 ModelInfo D_800BDA6C = {
-    0x9E90,
+    (s32)models_38F810_bin,
     NULL,
     0x95E,
     0x95E,
@@ -327,11 +328,11 @@ ModelInfo D_800BDA6C = {
     0x12,
 };
 
-/*800BDA9C*/ static ModelInfoUnkStruct1 D_800BDA9C = {0xBC58, NULL, 0, 0x2B8};
+/*800BDA9C*/ static ModelVertexInfo D_800BDA9C = {(s32)models_3901F0_bin+0x13E8, NULL, 0, 0x2B8};
 
 /*800BDAA8*/
 ModelInfo D_800BDAA8 = {
-    0xA870,
+    (s32)models_3901F0_bin,
     NULL,
     0x13E8,
     0x13E8,
@@ -352,11 +353,11 @@ ModelInfo D_800BDAA8 = {
     0x5A,
 };
 
-/*800BDAD8*/ static ModelInfoUnkStruct1 D_800BDAD8 = {0xC830, NULL, 0, 0x60};
+/*800BDAD8*/ static ModelVertexInfo D_800BDAD8 = {(s32)models_391890_bin+0x920, NULL, 0, 0x60};
 
 /*800BDAE4*/
 ModelInfo D_800BDAE4 = {
-    0xBF10,
+    (s32)models_391890_bin,
     NULL,
     0x920,
     0x920,
@@ -377,11 +378,11 @@ ModelInfo D_800BDAE4 = {
     0xE,
 };
 
-/*800BDB14*/ static ModelInfoUnkStruct1 D_800BDB14 = {0xCB30, NULL, 0, 0x30};
+/*800BDB14*/ static ModelVertexInfo D_800BDB14 = {(s32)models_392210_bin+0x2A0, NULL, 0, 0x30};
 
 /*800BDB20*/
 ModelInfo D_800BDB20 = {
-    0xC890,
+    (s32)models_392210_bin,
     NULL,
     0x2A0,
     0x2A0,
@@ -402,11 +403,11 @@ ModelInfo D_800BDB20 = {
     0,
 };
 
-/*800BDB50*/ static ModelInfoUnkStruct1 D_800BDB50 = {0xD44C, NULL, 0, 0x11A};
+/*800BDB50*/ static ModelVertexInfo D_800BDB50 = {(s32)models_3924E0_bin+0x8EC, NULL, 0, 0x11A};
 
 /*800BDB5C*/
 ModelInfo D_800BDB5C = {
-    0xCB60,
+    (s32)models_3924E0_bin,
     NULL,
     0x8EA,
     0x8EA,
@@ -427,11 +428,11 @@ ModelInfo D_800BDB5C = {
     0x54,
 };
 
-/*800BDB8C*/ static ModelInfoUnkStruct1 D_800BDB8C = {0xD8B4, NULL, 0, 0x72};
+/*800BDB8C*/ static ModelVertexInfo D_800BDB8C = {(s32)models_392EF0_bin+0x344, NULL, 0, 0x72};
 
 /*800BDB98*/
 ModelInfo D_800BDB98 = {
-    0xD570,
+    (s32)models_392EF0_bin,
     NULL,
     0x342,
     0x342,
@@ -452,11 +453,11 @@ ModelInfo D_800BDB98 = {
     0x3E,
 };
 
-/*800BDBC8*/ static ModelInfoUnkStruct1 D_800BDBC8 = {0xDFE4, NULL, 0, 0x132};
+/*800BDBC8*/ static ModelVertexInfo D_800BDBC8 = {(s32)models_3932B0_bin+0x6B4, NULL, 0, 0x132};
 
 /*800BDBD4*/
 ModelInfo D_800BDBD4 = {
-    0xD930,
+    (s32)models_3932B0_bin,
     NULL,
     0x6B2,
     0x6B2,
@@ -477,11 +478,11 @@ ModelInfo D_800BDBD4 = {
     6,
 };
 
-/*800BDC04*/ static ModelInfoUnkStruct1 D_800BDC04 = {0xE448, NULL, 0, 0x60};
+/*800BDC04*/ static ModelVertexInfo D_800BDC04 = {(s32)models_393AA0_bin+0x328, NULL, 0, 0x60};
 
 /*800BDC10*/
 ModelInfo D_800BDC10 = {
-    0xE120,
+    (s32)models_393AA0_bin,
     NULL,
     0x328,
     0x328,
@@ -502,11 +503,11 @@ ModelInfo D_800BDC10 = {
     0x236,
 };
 
-/*800BDC40*/ static ModelInfoUnkStruct1 D_800BDC40 = {0xE840, NULL, 0, 0xA8};
+/*800BDC40*/ static ModelVertexInfo D_800BDC40 = {(s32)models_393E30_bin+0x390, NULL, 0, 0xA8};
 
 /*800BDC4C*/
 ModelInfo D_800BDC4C = {
-    0xE4B0,
+    (s32)models_393E30_bin,
     NULL,
     0x390,
     0x390,
@@ -527,11 +528,11 @@ ModelInfo D_800BDC4C = {
     0x125,
 };
 
-/*800BDC7C*/ static ModelInfoUnkStruct1 D_800BDC7C = {0xEBE8, NULL, 0, 0x66};
+/*800BDC7C*/ static ModelVertexInfo D_800BDC7C = {(s32)models_394270_bin+0x2F8, NULL, 0, 0x66};
 
 /*800BDC88*/
 ModelInfo D_800BDC88 = {
-    0xE8F0,
+    (s32)models_394270_bin,
     NULL,
     0x2F6,
     0x2F6,
@@ -552,11 +553,11 @@ ModelInfo D_800BDC88 = {
     0,
 };
 
-/*800BDCB8*/ static ModelInfoUnkStruct1 D_800BDCB8 = {0xF868, NULL, 0, 0xF0};
+/*800BDCB8*/ static ModelVertexInfo D_800BDCB8 = {(s32)models_3945D0_bin+0xC18, NULL, 0, 0xF0};
 
 /*800BDCC4*/
 ModelInfo D_800BDCC4 = {
-    0xEC50,
+    (s32)models_3945D0_bin,
     NULL,
     0xC18,
     0xC18,
@@ -577,11 +578,11 @@ ModelInfo D_800BDCC4 = {
     0x39,
 };
 
-/*800BDCF4*/ static ModelInfoUnkStruct1 D_800BDCF4 = {0x10F20, NULL, 0, 0x1B6};
+/*800BDCF4*/ static ModelVertexInfo D_800BDCF4 = {(s32)models_3952E0_bin+0x15C0, NULL, 0, 0x1B6};
 
 /*800BDD00*/
 ModelInfo D_800BDD00 = {
-    0xF960,
+    (s32)models_3952E0_bin,
     NULL,
     0x15BE,
     0x15BE,
@@ -602,11 +603,11 @@ ModelInfo D_800BDD00 = {
     0xF9,
 };
 
-/*800BDD30*/ static ModelInfoUnkStruct1 D_800BDD30 = {0x125F4, NULL, 0, 0x15C};
+/*800BDD30*/ static ModelVertexInfo D_800BDD30 = {(s32)models_396A60_bin+0x1514, NULL, 0, 0x15C};
 
 /*800BDD3C*/
 ModelInfo D_800BDD3C = {
-    0x110E0,
+    (s32)models_396A60_bin,
     NULL,
     0x1514,
     0x1514,
@@ -627,11 +628,11 @@ ModelInfo D_800BDD3C = {
     0xD5,
 };
 
-/*800BDD6C*/ static ModelInfoUnkStruct1 D_800BDD6C = {0x12BC4, NULL, 0, 0x12C};
+/*800BDD6C*/ static ModelVertexInfo D_800BDD6C = {(s32)models_3980D0_bin+0x474, NULL, 0, 0x12C};
 
 /*800BDD78*/
 ModelInfo D_800BDD78 = {
-    0x12750,
+    (s32)models_3980D0_bin,
     NULL,
     0x474,
     0x474,
@@ -652,16 +653,16 @@ ModelInfo D_800BDD78 = {
     0x5C,
 };
 
-/*800BDDA8*/ static ModelInfoUnkStruct1 D_800BDDA8 = {0x12E34, NULL, 0, 0x6C};
+/*800BDDA8*/ static ModelVertexInfo D_800BDDA8 = {(s32)models_398670_bin+0x144, NULL, 0, 0x6C};
 
 /*800BDDB4*/
 ModelInfo D_800BDDB4 = {
-    0x12CF0,
+    (s32)models_398670_bin,
     NULL,
     0x144,
     0x144,
-    0,
-    0,
+    0x0,
+    0x0,
     0xD8,
     0x6C,
     { 0, 0, 0, 0 },
@@ -677,11 +678,11 @@ ModelInfo D_800BDDB4 = {
     0x71,
 };
 
-/*800BDDE4*/ static ModelInfoUnkStruct1 D_800BDDE4 = {0x13298, NULL, 0, 0xC6};
+/*800BDDE4*/ static ModelVertexInfo D_800BDDE4 = {(s32)models_398820_bin+0x3F8, NULL, 0, 0xC6};
 
 /*800BDDF0*/
 ModelInfo D_800BDDF0 = {
-    0x12EA0,
+    (s32)models_398820_bin,
     NULL,
     0x3F6,
     0x3F6,
@@ -702,11 +703,11 @@ ModelInfo D_800BDDF0 = {
     0x2E,
 };
 
-/*800BDE20*/ static ModelInfoUnkStruct1 D_800BDE20 = {0x15770, NULL, 0, 0x1E0};
+/*800BDE20*/ static ModelVertexInfo D_800BDE20 = {(s32)models_398CE0_bin+0x2410, NULL, 0, 0x1E0};
 
 /*800BDE2C*/
 ModelInfo D_800BDE2C = {
-    0x13360,
+    (s32)models_398CE0_bin,
     NULL,
     0x2410,
     0x2410,
@@ -727,11 +728,11 @@ ModelInfo D_800BDE2C = {
     0xBE,
 };
 
-/*800BDE5C*/ static ModelInfoUnkStruct1 D_800BDE5C = {0x17D60, NULL, 0, 0x1E0};
+/*800BDE5C*/ static ModelVertexInfo D_800BDE5C = {(s32)models_39B2D0_bin+0x2410, NULL, 0, 0x1E0};
 
 /*800BDE68*/
 ModelInfo D_800BDE68 = {
-    0x15950,
+    (s32)models_39B2D0_bin,
     NULL,
     0x2410,
     0x2410,
@@ -752,11 +753,11 @@ ModelInfo D_800BDE68 = {
     0x70,
 };
 
-/*800BDE98*/ static ModelInfoUnkStruct1 D_800BDE98 = {0x191A8, NULL, 0, 0xDE};
+/*800BDE98*/ static ModelVertexInfo D_800BDE98 = {(s32)models_39D8C0_bin+0x1268, NULL, 0, 0xDE};
 
 /*800BDEA4*/
 ModelInfo D_800BDEA4 = {
-    0x17F40,
+    (s32)models_39D8C0_bin,
     NULL,
     0x1266,
     0x1266,
@@ -777,11 +778,11 @@ ModelInfo D_800BDEA4 = {
     0x7A,
 };
 
-/*800BDED4*/ static ModelInfoUnkStruct1 D_800BDED4 = {0x1BA10, NULL, 0, 0x228};
+/*800BDED4*/ static ModelVertexInfo D_800BDED4 = {(s32)models_39EC10_bin+0x2780, NULL, 0, 0x228};
 
 /*800BDEE0*/
 ModelInfo D_800BDEE0 = {
-    0x19290,
+    (s32)models_39EC10_bin,
     NULL,
     0x2780,
     0x2780,
@@ -802,11 +803,11 @@ ModelInfo D_800BDEE0 = {
     0x197,
 };
 
-/*800BDF10*/ static ModelInfoUnkStruct1 D_800BDF10 = {0x1E3C0, NULL, 0, 0x228};
+/*800BDF10*/ static ModelVertexInfo D_800BDF10 = {(s32)models_3A15C0_bin+0x2780, NULL, 0, 0x228};
 
 /*800BDF1C*/
 ModelInfo D_800BDF1C = {
-    0x1BC40,
+    (s32)models_3A15C0_bin,
     NULL,
     0x2780,
     0x2780,
@@ -827,11 +828,11 @@ ModelInfo D_800BDF1C = {
     0x198,
 };
 
-/*800BDF4C*/ static ModelInfoUnkStruct1 D_800BDF4C = {0x20398, NULL, 0, 0x270};
+/*800BDF4C*/ static ModelVertexInfo D_800BDF4C = {(s32)models_3A3F70_bin+0x1DA8, NULL, 0, 0x270};
 
 /*800BDF58*/
 ModelInfo D_800BDF58 = {
-    0x1E5F0,
+    (s32)models_3A3F70_bin,
     NULL,
     0x1DA8,
     0x1DA8,
@@ -852,11 +853,11 @@ ModelInfo D_800BDF58 = {
     0xBC,
 };
 
-/*800BDF88*/ static ModelInfoUnkStruct1 D_800BDF88 = {0x239C8, NULL, 0, 0xA20};
+/*800BDF88*/ static ModelVertexInfo D_800BDF88 = {(s32)models_3A5F90_bin+0x33B8, NULL, 0, 0xA20};
 
 /*800BDF94*/
 ModelInfo D_800BDF94 = {
-    0x20610,
+    (s32)models_3A5F90_bin,
     NULL,
     0x33B8,
     0x33B8,
@@ -877,11 +878,11 @@ ModelInfo D_800BDF94 = {
     0xA2,
 };
 
-/*800BDFC4*/ static ModelInfoUnkStruct1 D_800BDFC4 = {0x26838, NULL, 0, 0x1C8};
+/*800BDFC4*/ static ModelVertexInfo D_800BDFC4 = {(s32)models_3A9D70_bin+0x2448, NULL, 0, 0x1C8};
 
 /*800BDFD0*/
 ModelInfo D_800BDFD0 = {
-    0x243F0,
+    (s32)models_3A9D70_bin,
     NULL,
     0x2448,
     0x2448,
@@ -902,11 +903,11 @@ ModelInfo D_800BDFD0 = {
     0x3E,
 };
 
-/*800BE000*/ static ModelInfoUnkStruct1 D_800BE000 = {0x28198, NULL, 0, 0x13E};
+/*800BE000*/ static ModelVertexInfo D_800BE000 = {(s32)models_3AC380_bin+0x1798, NULL, 0, 0x13E};
 
 /*800BE00C*/
 ModelInfo D_800BE00C = {
-    0x26A00,
+    (s32)models_3AC380_bin,
     NULL,
     0x1796,
     0x1796,
@@ -927,11 +928,11 @@ ModelInfo D_800BE00C = {
     0x43,
 };
 
-/*800BE03C*/ static ModelInfoUnkStruct1 D_800BE03C = {0x2A010, NULL, 0, 0x228};
+/*800BE03C*/ static ModelVertexInfo D_800BE03C = {(s32)models_3ADC60_bin+0x1D30, NULL, 0, 0x228};
 
 /*800BE048*/
 ModelInfo D_800BE048 = {
-    0x282E0,
+    (s32)models_3ADC60_bin,
     NULL,
     0x1D30,
     0x1D30,
@@ -952,11 +953,11 @@ ModelInfo D_800BE048 = {
     0xB2,
 };
 
-/*800BE078*/ static ModelInfoUnkStruct1 D_800BE078 = {0x2BF70, NULL, 0, 0x228};
+/*800BE078*/ static ModelVertexInfo D_800BE078 = {(s32)models_3AFBC0_bin+0x1D30, NULL, 0, 0x228};
 
 /*800BE084*/
 ModelInfo D_800BE084 = {
-    0x2A240,
+    (s32)models_3AFBC0_bin,
     NULL,
     0x1D30,
     0x1D30,
@@ -977,11 +978,11 @@ ModelInfo D_800BE084 = {
     0x63,
 };
 
-/*800BE0B4*/ static ModelInfoUnkStruct1 D_800BE0B4 = {0x2C8B4, NULL, 0, 0x26A};
+/*800BE0B4*/ static ModelVertexInfo D_800BE0B4 = {(s32)models_3B1B20_bin+0x714, NULL, 0, 0x26A};
 
 /*800BE0C0*/
 ModelInfo D_800BE0C0 = {
-    0x2C1A0,
+    (s32)models_3B1B20_bin,
     NULL,
     0x712,
     0x712,
@@ -1002,11 +1003,11 @@ ModelInfo D_800BE0C0 = {
     0xB3,
 };
 
-/*800BE0F0*/ static ModelInfoUnkStruct1 D_800BE0F0 = {0x2D74C, NULL, 0, 0x234};
+/*800BE0F0*/ static ModelVertexInfo D_800BE0F0 = {(s32)models_3B24A0_bin+0xC2C, NULL, 0, 0x234};
 
 /*800BE0FC*/
 ModelInfo D_800BE0FC = {
-    0x2CB20,
+    (s32)models_3B24A0_bin,
     NULL,
     0xC2C,
     0xC2C,
@@ -1027,11 +1028,11 @@ ModelInfo D_800BE0FC = {
     0x1BB,
 };
 
-/*800BE12C*/ static ModelInfoUnkStruct1 D_800BE12C = {0x2E338, NULL, 0, 0xD8};
+/*800BE12C*/ static ModelVertexInfo D_800BE12C = {(s32)models_3B3300_bin+0x9B8, NULL, 0, 0xD8};
 
 /*800BE138*/
 ModelInfo D_800BE138 = {
-    0x2D980,
+    (s32)models_3B3300_bin,
     NULL,
     0x9B8,
     0x9B8,
@@ -1052,11 +1053,11 @@ ModelInfo D_800BE138 = {
     0x127,
 };
 
-/*800BE168*/ static ModelInfoUnkStruct1 D_800BE168 = {0x2ED14, NULL, 0, 0x54};
+/*800BE168*/ static ModelVertexInfo D_800BE168 = {(s32)models_3B3D90_bin+0x904, NULL, 0, 0x54};
 
 /*800BE174*/
 ModelInfo D_800BE174 = {
-    0x2E410,
+    (s32)models_3B3D90_bin,
     NULL,
     0x904,
     0x904,
@@ -1077,11 +1078,11 @@ ModelInfo D_800BE174 = {
     0x149,
 };
 
-/*800BE1A4*/ static ModelInfoUnkStruct1 D_800BE1A4 = {0x2F69C, NULL, 0, 0x84};
+/*800BE1A4*/ static ModelVertexInfo D_800BE1A4 = {(s32)models_3B46F0_bin+0x92C, NULL, 0, 0x84};
 
 /*800BE1B0*/
 ModelInfo D_800BE1B0 = {
-    0x2ED70,
+    (s32)models_3B46F0_bin,
     NULL,
     0x92C,
     0x92C,
@@ -1102,11 +1103,11 @@ ModelInfo D_800BE1B0 = {
     0xE3,
 };
 
-/*800BE1E0*/ static ModelInfoUnkStruct1 D_800BE1E0 = {0x301E8, NULL, 0, 0x13E};
+/*800BE1E0*/ static ModelVertexInfo D_800BE1E0 = {(s32)models_3B50A0_bin+0xAC8, NULL, 0, 0x13E};
 
 /*800BE1EC*/
 ModelInfo D_800BE1EC = {
-    0x2F720,
+    (s32)models_3B50A0_bin,
     NULL,
     0xAC6,
     0xAC6,
@@ -1127,11 +1128,11 @@ ModelInfo D_800BE1EC = {
     0x102,
 };
 
-/*800BE21C*/ static ModelInfoUnkStruct1 D_800BE21C = {0x30DF8, NULL, 0, 0x13E};
+/*800BE21C*/ static ModelVertexInfo D_800BE21C = {(s32)models_3B5CB0_bin+0xAC8, NULL, 0, 0x13E};
 
 /*800BE228*/
 ModelInfo D_800BE228 = {
-    0x30330,
+    (s32)models_3B5CB0_bin,
     NULL,
     0xAC6,
     0xAC6,
@@ -1152,11 +1153,11 @@ ModelInfo D_800BE228 = {
     -1,
 };
 
-/*800BE258*/ static ModelInfoUnkStruct1 D_800BE258 = {0x32CB0, NULL, 0, 0x4CE};
+/*800BE258*/ static ModelVertexInfo D_800BE258 = {(s32)models_3B68C0_bin+0x1D70, NULL, 0, 0x4CE};
 
 /*800BE264*/
 ModelInfo D_800BE264 = {
-    0x30F40,
+    (s32)models_3B68C0_bin,
     NULL,
     0x1D6E,
     0x1D6E,
@@ -1177,11 +1178,11 @@ ModelInfo D_800BE264 = {
     0x381,
 };
 
-/*800BE294*/ static ModelInfoUnkStruct1 D_800BE294 = {0x34014, NULL, 0, 0x342};
+/*800BE294*/ static ModelVertexInfo D_800BE294 = {(s32)models_3B8B00_bin+0xE94, NULL, 0, 0x342};
 
 /*800BE2A0*/
 ModelInfo D_800BE2A0 = {
-    0x33180,
+    (s32)models_3B8B00_bin,
     NULL,
     0xE92,
     0xE92,
@@ -1225,11 +1226,11 @@ ModelInfo D_800BE2D0 = {
     0x33,
 };
 
-/*800BE300*/ static ModelInfoUnkStruct1 D_800BE300 = {0x35944, NULL, 0, 0x192};
+/*800BE300*/ static ModelVertexInfo D_800BE300 = {(s32)models_3BAED0_bin+0x3F4, NULL, 0, 0x192};
 
 /*800BE30C*/
 ModelInfo D_800BE30C = {
-    0x35550,
+    (s32)models_3BAED0_bin,
     NULL,
     0x3F2,
     0x3F2,
@@ -1250,11 +1251,11 @@ ModelInfo D_800BE30C = {
     0x5B,
 };
 
-/*800BE33C*/ static ModelInfoUnkStruct1 D_800BE33C = {0x367A4, NULL, 0, 0x23A};
+/*800BE33C*/ static ModelVertexInfo D_800BE33C = {(s32)models_3BB460_bin+0xCC4, NULL, 0, 0x23A};
 
 /*800BE348*/
 ModelInfo D_800BE348 = {
-    0x35AE0,
+    (s32)models_3BB460_bin,
     NULL,
     0xCC2,
     0xCC2,
@@ -1275,11 +1276,11 @@ ModelInfo D_800BE348 = {
     0xF7,
 };
 
-/*800BE378*/ static ModelInfoUnkStruct1 D_800BE378 = {0x377D0, NULL, 0, 0x2E8};
+/*800BE378*/ static ModelVertexInfo D_800BE378 = {(s32)models_3BC360_bin+0xDF0, NULL, 0, 0x2E8};
 
 /*800BE384*/
 ModelInfo D_800BE384 = {
-    0x369E0,
+    (s32)models_3BC360_bin,
     NULL,
     0xDF0,
     0xDF0,
@@ -1300,11 +1301,11 @@ ModelInfo D_800BE384 = {
     0x1E1,
 };
 
-/*800BE3B4*/ static ModelInfoUnkStruct1 D_800BE3B4 = {0x353A0, NULL, 0, 0x1B0};
+/*800BE3B4*/ static ModelVertexInfo D_800BE3B4 = {(s32)models_3B9CE0_bin+0x1040, NULL, 0, 0x1B0};
 
 /*800BE3C0*/
 ModelInfo D_800BE3C0 = {
-    0x34360,
+    (s32)models_3B9CE0_bin,
     NULL,
     0x1040,
     0x1040,
@@ -1325,11 +1326,11 @@ ModelInfo D_800BE3C0 = {
     0x6C,
 };
 
-/*800BE3F0*/ static ModelInfoUnkStruct1 D_800BE3F0 = {0x38954, NULL, 0, 0xD2};
+/*800BE3F0*/ static ModelVertexInfo D_800BE3F0 = {(s32)models_3BD440_bin+0xE94, NULL, 0, 0xD2};
 
 /*800BE3FC*/
 ModelInfo D_800BE3FC = {
-    0x37AC0,
+    (s32)models_3BD440_bin,
     NULL,
     0xE92,
     0xE92,
@@ -1373,11 +1374,11 @@ ModelInfo D_800BE42C = {
     0x116,
 };
 
-/*800BE45C*/ static ModelInfoUnkStruct1 D_800BE45C = {0x3B81C, NULL, 0, 0x3FC};
+/*800BE45C*/ static ModelVertexInfo D_800BE45C = {(s32)models_3BE3B0_bin+0x2DEC, NULL, 0, 0x3FC};
 
 /*800BE468*/
 ModelInfo D_800BE468 = {
-    0x38A30,
+    (s32)models_3BE3B0_bin,
     NULL,
     0x2DEC,
     0x2DEC,
@@ -1398,11 +1399,11 @@ ModelInfo D_800BE468 = {
     0xE7,
 };
 
-/*800BE498*/ static ModelInfoUnkStruct1 D_800BE498 = {0x415C8, NULL, 0, 0x540};
+/*800BE498*/ static ModelVertexInfo D_800BE498 = {(s32)models_3C15A0_bin+0x59A8, NULL, 0, 0x540};
 
 /*800BE4A4*/
 ModelInfo D_800BE4A4 = {
-    0x3BC20,
+    (s32)models_3C15A0_bin,
     NULL,
     0x59A8,
     0x59A8,
@@ -1423,11 +1424,11 @@ ModelInfo D_800BE4A4 = {
     0xC2,
 };
 
-/*800BE4D4*/ static ModelInfoUnkStruct1 D_800BE4D4 = {0x46308, NULL, 0, 0x5D0};
+/*800BE4D4*/ static ModelVertexInfo D_800BE4D4 = {(s32)models_3C7490_bin+0x47F8, NULL, 0, 0x5D0};
 
 /*800BE4E0*/
 ModelInfo D_800BE4E0 = {
-    0x41B10,
+    (s32)models_3C7490_bin,
     NULL,
     0x47F8,
     0x47F8,
@@ -1448,11 +1449,11 @@ ModelInfo D_800BE4E0 = {
     0xC0,
 };
 
-/*800BE510*/ static ModelInfoUnkStruct1 D_800BE510 = {0x4CA7C, NULL, 0, 0x504};
+/*800BE510*/ static ModelVertexInfo D_800BE510 = {(s32)models_3CC260_bin+0x619C, NULL, 0, 0x504};
 
 /*800BE51C*/
 ModelInfo D_800BE51C = {
-    0x468E0,
+    (s32)models_3CC260_bin,
     NULL,
     0x619C,
     0x619C,
@@ -1473,11 +1474,11 @@ ModelInfo D_800BE51C = {
     0xAA,
 };
 
-/*800BE54C*/ static ModelInfoUnkStruct1 D_800BE54C = {0x4F5E0, NULL, 0, 0x4FE};
+/*800BE54C*/ static ModelVertexInfo D_800BE54C = {(s32)models_3D2900_bin+0x2660, NULL, 0, 0x4FE};
 
 /*800BE558*/
 ModelInfo D_800BE558 = {
-    0x4CF80,
+    (s32)models_3D2900_bin,
     NULL,
     0x265E,
     0x265E,
@@ -1498,11 +1499,11 @@ ModelInfo D_800BE558 = {
     0x21D,
 };
 
-/*800BE588*/ static ModelInfoUnkStruct1 D_800BE588 = {0x504DC, NULL, 0, 0x102};
+/*800BE588*/ static ModelVertexInfo D_800BE588 = {(s32)models_3D5460_bin+0x9FC, NULL, 0, 0x102};
 
 /*800BE594*/
 ModelInfo D_800BE594 = {
-    0x4FAE0,
+    (s32)models_3D5460_bin,
     NULL,
     0x9FA,
     0x9FA,
@@ -1523,11 +1524,11 @@ ModelInfo D_800BE594 = {
     0x110,
 };
 
-/*800BE5C4*/ static ModelInfoUnkStruct1 D_800BE5C4 = {0x50FF0, NULL, 0, 0x10E};
+/*800BE5C4*/ static ModelVertexInfo D_800BE5C4 = {(s32)models_3D5F60_bin+0xA10, NULL, 0, 0x10E};
 
 /*800BE5D0*/
 ModelInfo D_800BE5D0 = {
-    0x505E0,
+    (s32)models_3D5F60_bin,
     NULL,
     0xA0E,
     0xA0E,
@@ -1548,11 +1549,11 @@ ModelInfo D_800BE5D0 = {
     0xF6,
 };
 
-/*800BE600*/ static ModelInfoUnkStruct1 D_800BE600 = {0x51538, NULL, 0, 0xD8};
+/*800BE600*/ static ModelVertexInfo D_800BE600 = {(s32)models_3D6A80_bin+0x438, NULL, 0, 0xD8};
 
 /*800BE60C*/
 ModelInfo D_800BE60C = {
-    0x51100,
+    (s32)models_3D6A80_bin,
     NULL,
     0x438,
     0x438,
@@ -1573,11 +1574,11 @@ ModelInfo D_800BE60C = {
     6,
 };
 
-/*800BE63C*/ static ModelInfoUnkStruct1 D_800BE63C = {0x51AC4, NULL, 0, 0xA2};
+/*800BE63C*/ static ModelVertexInfo D_800BE63C = {(s32)models_3D6F90_bin+0x4B4, NULL, 0, 0xA2};
 
 /*800BE648*/
 ModelInfo D_800BE648 = {
-    0x51610,
+    (s32)models_3D6F90_bin,
     NULL,
     0x4B2,
     0x4B2,
@@ -1598,11 +1599,11 @@ ModelInfo D_800BE648 = {
     0x34,
 };
 
-/*800BE678*/ static ModelInfoUnkStruct1 D_800BE678 = {0x52208, NULL, 0, 0x138};
+/*800BE678*/ static ModelVertexInfo D_800BE678 = {(s32)models_3D74F0_bin+0x698, NULL, 0, 0x138};
 
 /*800BE684*/
 ModelInfo D_800BE684 = {
-    0x51B70,
+    (s32)models_3D74F0_bin,
     NULL,
     0x698,
     0x698,
@@ -1623,11 +1624,11 @@ ModelInfo D_800BE684 = {
     0x4F,
 };
 
-/*800BE6B4*/ static ModelInfoUnkStruct1 D_800BE6B4 = {0x52B58, NULL, 0, 0xD8};
+/*800BE6B4*/ static ModelVertexInfo D_800BE6B4 = {(s32)models_3D7CC0_bin+0x818, NULL, 0, 0xD8};
 
 /*800BE6C0*/
 ModelInfo D_800BE6C0 = {
-    0x52340,
+    (s32)models_3D7CC0_bin,
     NULL,
     0x818,
     0x818,
@@ -1648,16 +1649,16 @@ ModelInfo D_800BE6C0 = {
     0x13D,
 };
 
-/*800BE6F0*/ static ModelInfoUnkStruct1 D_800BE6F0 = {0x52D80, NULL, 0, 0x7E};
+/*800BE6F0*/ static ModelVertexInfo D_800BE6F0 = {(s32)models_3D85B0_bin+0x150, NULL, 0, 0x7E};
 
 /*800BE6FC*/
 ModelInfo D_800BE6FC = {
-    0x52C30,
+    (s32)models_3D85B0_bin,
     NULL,
     0x14E,
     0x14E,
-    0,
-    0,
+    0x0,
+    0x0,
     0xD0,
     0x7E,
     { 0, 0, 0, 0 },
@@ -1673,11 +1674,11 @@ ModelInfo D_800BE6FC = {
     0,
 };
 
-/*800BE72C*/ static ModelInfoUnkStruct1 D_800BE72C = {0x53538, NULL, 0, 0x156};
+/*800BE72C*/ static ModelVertexInfo D_800BE72C = {(s32)models_3D8780_bin+0x738, NULL, 0, 0x156};
 
 /*800BE738*/
 ModelInfo D_800BE738 = {
-    0x52E00,
+    (s32)models_3D8780_bin,
     NULL,
     0x736,
     0x736,
@@ -1721,11 +1722,11 @@ ModelInfo D_800BE768 = {
     0x209,
 };
 
-/*800BE798*/ static ModelInfoUnkStruct1 D_800BE798 = {0x53C5C, NULL, 0, 0x5A};
+/*800BE798*/ static ModelVertexInfo D_800BE798 = {(s32)models_3D9010_bin+0x5CC, NULL, 0, 0x5A};
 
 /*800BE7A4*/
 ModelInfo D_800BE7A4 = {
-    0x53690,
+    (s32)models_3D9010_bin,
     NULL,
     0x5CA,
     0x5CA,
@@ -1746,11 +1747,11 @@ ModelInfo D_800BE7A4 = {
     0,
 };
 
-/*800BE7D4*/ static ModelInfoUnkStruct1 D_800BE7D4 = {0x54584, NULL, 0, 0x35A};
+/*800BE7D4*/ static ModelVertexInfo D_800BE7D4 = {(s32)models_3D9640_bin+0x8C4, NULL, 0, 0x35A};
 
 /*800BE7E0*/
 ModelInfo D_800BE7E0 = {
-    0x53CC0,
+    (s32)models_3D9640_bin,
     NULL,
     0x8C2,
     0x8C2,
@@ -1771,11 +1772,11 @@ ModelInfo D_800BE7E0 = {
     0x80,
 };
 
-/*800BE810*/ static ModelInfoUnkStruct1 D_800BE810 = {0x5516C, NULL, 0, 0x35A};
+/*800BE810*/ static ModelVertexInfo D_800BE810 = {(s32)models_3DA260_bin+0x88C, NULL, 0, 0x35A};
 
 /*800BE81C*/
 ModelInfo D_800BE81C = {
-    0x548E0,
+    (s32)models_3DA260_bin,
     NULL,
     0x88A,
     0x88A,
@@ -1796,11 +1797,11 @@ ModelInfo D_800BE81C = {
     0x82,
 };
 
-/*800BE84C*/ static ModelInfoUnkStruct1 D_800BE84C = {0x559B0, NULL, 0, 0x150};
+/*800BE84C*/ static ModelVertexInfo D_800BE84C = {(s32)models_3DAE50_bin+0x4E0, NULL, 0, 0x150};
 
 /*800BE858*/
 ModelInfo D_800BE858 = {
-    0x554D0,
+    (s32)models_3DAE50_bin,
     NULL,
     0x4E0,
     0x4E0,
@@ -1821,16 +1822,16 @@ ModelInfo D_800BE858 = {
     0x80,
 };
 
-/*800BE888*/ static ModelInfoUnkStruct1 D_800BE888 = {0x55E90, NULL, 0, 0x180};
+/*800BE888*/ static ModelVertexInfo D_800BE888 = {(s32)models_3DB480_bin+0x390, NULL, 0, 0x180};
 
 /*800BE894*/
 ModelInfo D_800BE894 = {
-    0x55B00,
+    (s32)models_3DB480_bin,
     NULL,
     0x390,
     0x390,
-    0,
-    0,
+    0x0,
+    0x0,
     0x210,
     0x180,
     { 0, 0, 0, 0 },
@@ -1846,11 +1847,11 @@ ModelInfo D_800BE894 = {
     0x71,
 };
 
-/*800BE8C4*/ static ModelInfoUnkStruct1 D_800BE8C4 = {0x566C8, NULL, 0, 0x288};
+/*800BE8C4*/ static ModelVertexInfo D_800BE8C4 = {(s32)models_3DB990_bin+0x6B8, NULL, 0, 0x288};
 
 /*800BE8D0*/
 ModelInfo D_800BE8D0 = {
-    0x56010,
+    (s32)models_3DB990_bin,
     NULL,
     0x6B8,
     0x6B8,
@@ -1871,11 +1872,11 @@ ModelInfo D_800BE8D0 = {
     0x85,
 };
 
-/*800BE900*/ static ModelInfoUnkStruct1 D_800BE900 = {0x57240, NULL, 0, 0x390};
+/*800BE900*/ static ModelVertexInfo D_800BE900 = {(s32)models_3DC2D0_bin+0x8F0, NULL, 0, 0x390};
 
 /*800BE90C*/
 ModelInfo D_800BE90C = {
-    0x56950,
+    (s32)models_3DC2D0_bin,
     NULL,
     0x8F0,
     0x8F0,
@@ -1896,11 +1897,11 @@ ModelInfo D_800BE90C = {
     0x80,
 };
 
-/*800BE93C*/ static ModelInfoUnkStruct1 D_800BE93C = {0x58180, NULL, 0, 0x3D8};
+/*800BE93C*/ static ModelVertexInfo D_800BE93C = {(s32)models_3DCF50_bin+0xBB0, NULL, 0, 0x3D8};
 
 /*800BE948*/
 ModelInfo D_800BE948 = {
-    0x575D0,
+    (s32)models_3DCF50_bin,
     NULL,
     0xBB0,
     0xBB0,
@@ -1921,11 +1922,11 @@ ModelInfo D_800BE948 = {
     0x7F,
 };
 
-/*800BE978*/ static ModelInfoUnkStruct1 D_800BE978 = {0x58C20, NULL, 0, 0x288};
+/*800BE978*/ static ModelVertexInfo D_800BE978 = {(s32)models_3DDEE0_bin+0x6C0, NULL, 0, 0x288};
 
 /*800BE984*/
 ModelInfo D_800BE984 = {
-    0x58560,
+    (s32)models_3DDEE0_bin,
     NULL,
     0x6C0,
     0x6C0,
@@ -1946,11 +1947,11 @@ ModelInfo D_800BE984 = {
     0x75,
 };
 
-/*800BE9B4*/ static ModelInfoUnkStruct1 D_800BE9B4 = {0x5964C, NULL, 0, 0x2CA};
+/*800BE9B4*/ static ModelVertexInfo D_800BE9B4 = {(s32)models_3DE830_bin+0x79C, NULL, 0, 0x2CA};
 
 /*800BE9C0*/
 ModelInfo D_800BE9C0 = {
-    0x58EB0,
+    (s32)models_3DE830_bin,
     NULL,
     0x79A,
     0x79A,
@@ -1971,16 +1972,16 @@ ModelInfo D_800BE9C0 = {
     0x7F,
 };
 
-/*800BE9F0*/ static ModelInfoUnkStruct1 D_800BE9F0 = {0x59C68, NULL, 0, 0x138};
+/*800BE9F0*/ static ModelVertexInfo D_800BE9F0 = {(s32)models_3DF2A0_bin+0x348, NULL, 0, 0x138};
 
 /*800BE9FC*/
 ModelInfo D_800BE9FC = {
-    0x59920,
+    (s32)models_3DF2A0_bin,
     NULL,
     0x348,
     0x348,
-    0,
-    0,
+    0x0,
+    0x0,
     0x210,
     0x138,
     { 0, 0, 0, 0 },
@@ -1996,11 +1997,11 @@ ModelInfo D_800BE9FC = {
     0x7F,
 };
 
-/*800BEA2C*/ static ModelInfoUnkStruct1 D_800BEA2C = {0x5A8A4, NULL, 0, 0x324};
+/*800BEA2C*/ static ModelVertexInfo D_800BEA2C = {(s32)models_3DF720_bin+0xB04, NULL, 0, 0x324};
 
 /*800BEA38*/
 ModelInfo D_800BEA38 = {
-    0x59DA0,
+    (s32)models_3DF720_bin,
     NULL,
     0xB04,
     0xB04,
@@ -2021,11 +2022,11 @@ ModelInfo D_800BEA38 = {
     0x89,
 };
 
-/*800BEA68*/ static ModelInfoUnkStruct1 D_800BEA68 = {0x5BE8C, NULL, 0, 0x732};
+/*800BEA68*/ static ModelVertexInfo D_800BEA68 = {(s32)models_3E0550_bin+0x12BC, NULL, 0, 0x732};
 
 /*800BEA74*/
 ModelInfo D_800BEA74 = {
-    0x5ABD0,
+    (s32)models_3E0550_bin,
     NULL,
     0x12BA,
     0x12BA,
@@ -2046,11 +2047,11 @@ ModelInfo D_800BEA74 = {
     0xA3,
 };
 
-/*800BEAA4*/ static ModelInfoUnkStruct1 D_800BEAA4 = {0x5CC08, NULL, 0, 0x216};
+/*800BEAA4*/ static ModelVertexInfo D_800BEAA4 = {(s32)models_3E1F40_bin+0x648, NULL, 0, 0x216};
 
 /*800BEAB0*/
 ModelInfo D_800BEAB0 = {
-    0x5C5C0,
+    (s32)models_3E1F40_bin,
     NULL,
     0x646,
     0x646,
@@ -2071,11 +2072,11 @@ ModelInfo D_800BEAB0 = {
     0x52,
 };
 
-/*800BEAE0*/ static ModelInfoUnkStruct1 D_800BEAE0 = {0x5DDB8, NULL, 0, 0x288};
+/*800BEAE0*/ static ModelVertexInfo D_800BEAE0 = {(s32)models_3E27A0_bin+0xF98, NULL, 0, 0x288};
 
 /*800BEAEC*/
 ModelInfo D_800BEAEC = {
-    0x5CE20,
+    (s32)models_3E27A0_bin,
     NULL,
     0xF98,
     0xF98,
@@ -2096,11 +2097,11 @@ ModelInfo D_800BEAEC = {
     0x98,
 };
 
-/*800BEB1C*/ static ModelInfoUnkStruct1 D_800BEB1C = {0x5F8B8, NULL, 0, 0x2E8};
+/*800BEB1C*/ static ModelVertexInfo D_800BEB1C = {(s32)models_3E39C0_bin+0x1878, NULL, 0, 0x2E8};
 
 /*800BEB28*/
 ModelInfo D_800BEB28 = {
-    0x5E040,
+    (s32)models_3E39C0_bin,
     NULL,
     0x1878,
     0x1878,
@@ -2121,11 +2122,11 @@ ModelInfo D_800BEB28 = {
     0x111,
 };
 
-/*800BEB58*/ static ModelInfoUnkStruct1 D_800BEB58 = {0x5FEAC, NULL, 0, 0x72};
+/*800BEB58*/ static ModelVertexInfo D_800BEB58 = {(s32)models_3E5520_bin+0x30C, NULL, 0, 0x72};
 
 /*800BEB64*/
 ModelInfo D_800BEB64 = {
-    0x5FBA0,
+    (s32)models_3E5520_bin,
     NULL,
     0x30A,
     0x30A,
@@ -2146,11 +2147,11 @@ ModelInfo D_800BEB64 = {
     0x11B,
 };
 
-/*800BEB94*/ static ModelInfoUnkStruct1 D_800BEB94 = {0x60850, NULL, 0, 0x60};
+/*800BEB94*/ static ModelVertexInfo D_800BEB94 = {(s32)models_3E58A0_bin+0x930, NULL, 0, 0x60};
 
 /*800BEBA0*/
 ModelInfo D_800BEBA0 = {
-    0x5FF20,
+    (s32)models_3E58A0_bin,
     NULL,
     0x930,
     0x930,
@@ -2171,11 +2172,11 @@ ModelInfo D_800BEBA0 = {
     6,
 };
 
-/*800BEBD0*/ static ModelInfoUnkStruct1 D_800BEBD0 = {0x66A4C, NULL, 0, 0x504};
+/*800BEBD0*/ static ModelVertexInfo D_800BEBD0 = {(s32)models_3E6230_bin+0x619C, NULL, 0, 0x504};
 
 /*800BEBDC*/
 ModelInfo D_800BEBDC = {
-    0x608B0,
+    (s32)models_3E6230_bin,
     NULL,
     0x619C,
     0x619C,
@@ -2196,11 +2197,11 @@ ModelInfo D_800BEBDC = {
     0xAA,
 };
 
-/*800BEC0C*/ static ModelInfoUnkStruct1 D_800BEC0C = {0x6D0EC, NULL, 0, 0x504};
+/*800BEC0C*/ static ModelVertexInfo D_800BEC0C = {(s32)models_3EC8D0_bin+0x619C, NULL, 0, 0x504};
 
 /*800BEC18*/
 ModelInfo D_800BEC18 = {
-    0x66F50,
+    (s32)models_3EC8D0_bin,
     NULL,
     0x619C,
     0x619C,
@@ -2221,11 +2222,11 @@ ModelInfo D_800BEC18 = {
     0xAA,
 };
 
-/*800BEC48*/ static ModelInfoUnkStruct1 D_800BEC48 = {0x6E460, NULL, 0, 0x2EE};
+/*800BEC48*/ static ModelVertexInfo D_800BEC48 = {(s32)models_3F2F70_bin+0xE70, NULL, 0, 0x2EE};
 
 /*800BEC54*/
 ModelInfo D_800BEC54 = {
-    0x6D5F0,
+    (s32)models_3F2F70_bin,
     NULL,
     0xE6E,
     0xE6E,
@@ -2246,11 +2247,11 @@ ModelInfo D_800BEC54 = {
     0x89,
 };
 
-/*800BEC84*/ static ModelInfoUnkStruct1 D_800BEC84 = {0x6F034, NULL, 0, 0x312};
+/*800BEC84*/ static ModelVertexInfo D_800BEC84 = {(s32)models_3F40D0_bin+0x8E4, NULL, 0, 0x312};
 
 /*800BEC90*/
 ModelInfo D_800BEC90 = {
-    0x6E750,
+    (s32)models_3F40D0_bin,
     NULL,
     0x8E2,
     0x8E2,
@@ -2271,11 +2272,11 @@ ModelInfo D_800BEC90 = {
     0x98,
 };
 
-/*800BECC0*/ static ModelInfoUnkStruct1 D_800BECC0 = {0x70178, NULL, 0, 0x180};
+/*800BECC0*/ static ModelVertexInfo D_800BECC0 = {(s32)models_3F4CD0_bin+0xE28, NULL, 0, 0x180};
 
 /*800BECCC*/
 ModelInfo D_800BECCC = {
-    0x6F350,
+    (s32)models_3F4CD0_bin,
     NULL,
     0xE28,
     0xE28,
@@ -2296,11 +2297,11 @@ ModelInfo D_800BECCC = {
     0x1F2,
 };
 
-/*800BECFC*/ static ModelInfoUnkStruct1 D_800BECFC = {0x709CC, NULL, 0, 0x132};
+/*800BECFC*/ static ModelVertexInfo D_800BECFC = {(s32)models_3F5C80_bin+0x6CC, NULL, 0, 0x132};
 
 /*800BED08*/
 ModelInfo D_800BED08 = {
-    0x70300,
+    (s32)models_3F5C80_bin,
     NULL,
     0x6CA,
     0x6CA,
@@ -2321,11 +2322,11 @@ ModelInfo D_800BED08 = {
     0,
 };
 
-/*800BED38*/ static ModelInfoUnkStruct1 D_800BED38 = {0x7107C, NULL, 0, 0xE4};
+/*800BED38*/ static ModelVertexInfo D_800BED38 = {(s32)models_3F6480_bin+0x57C, NULL, 0, 0xE4};
 
 /*800BED44*/
 ModelInfo D_800BED44 = {
-    0x70B00,
+    (s32)models_3F6480_bin,
     NULL,
     0x57C,
     0x57C,
@@ -2346,11 +2347,11 @@ ModelInfo D_800BED44 = {
     0x2E,
 };
 
-/*800BED74*/ static ModelInfoUnkStruct1 D_800BED74 = {0x71604, NULL, 0, 0x8A};
+/*800BED74*/ static ModelVertexInfo D_800BED74 = {(s32)models_3F6AE0_bin+0x4A4, NULL, 0, 0x8A};
 
 /*800BED80*/
 ModelInfo D_800BED80 = {
-    0x71160,
+    (s32)models_3F6AE0_bin,
     NULL,
     0x4A2,
     0x4A2,
@@ -2371,11 +2372,11 @@ ModelInfo D_800BED80 = {
     0x2E,
 };
 
-/*800BEDB0*/ static ModelInfoUnkStruct1 D_800BEDB0 = {0x71DE0, NULL, 0, 0x2B8};
+/*800BEDB0*/ static ModelVertexInfo D_800BEDB0 = {(s32)models_3F7010_bin+0x750, NULL, 0, 0x2B8};
 
 /*800BEDBC*/
 ModelInfo D_800BEDBC = {
-    0x71690,
+    (s32)models_3F7010_bin,
     NULL,
     0x750,
     0x750,
@@ -2396,11 +2397,11 @@ ModelInfo D_800BEDBC = {
     0x9D,
 };
 
-/*800BEDEC*/ static ModelInfoUnkStruct1 D_800BEDEC = {0x72C4C, NULL, 0, 0x1F2};
+/*800BEDEC*/ static ModelVertexInfo D_800BEDEC = {(s32)models_3F7A20_bin+0xBAC, NULL, 0, 0x1F2};
 
 /*800BEDF8*/
 ModelInfo D_800BEDF8 = {
-    0x720A0,
+    (s32)models_3F7A20_bin,
     NULL,
     0xBAA,
     0xBAA,
@@ -2421,11 +2422,11 @@ ModelInfo D_800BEDF8 = {
     0x56,
 };
 
-/*800BEE28*/ static ModelInfoUnkStruct1 D_800BEE28 = {0x737B4, NULL, 0, 0xB4};
+/*800BEE28*/ static ModelVertexInfo D_800BEE28 = {(s32)models_3F87C0_bin+0x974, NULL, 0, 0xB4};
 
 /*800BEE34*/
 ModelInfo D_800BEE34 = {
-    0x72E40,
+    (s32)models_3F87C0_bin,
     NULL,
     0x974,
     0x974,
@@ -2446,11 +2447,11 @@ ModelInfo D_800BEE34 = {
     0x26,
 };
 
-/*800BEE64*/ static ModelInfoUnkStruct1 D_800BEE64 = {0x74134, NULL, 0, 0x3C};
+/*800BEE64*/ static ModelVertexInfo D_800BEE64 = {(s32)models_3F91F0_bin+0x8C4, NULL, 0, 0x3C};
 
 /*800BEE70*/
 ModelInfo D_800BEE70 = {
-    0x73870,
+    (s32)models_3F91F0_bin,
     NULL,
     0x8C4,
     0x8C4,
@@ -2471,11 +2472,11 @@ ModelInfo D_800BEE70 = {
     0x68,
 };
 
-/*800BEEA0*/ static ModelInfoUnkStruct1 D_800BEEA0 = {0x74C98, NULL, 0, 0xF6};
+/*800BEEA0*/ static ModelVertexInfo D_800BEEA0 = {(s32)models_3F9AF0_bin+0xB28, NULL, 0, 0xF6};
 
 /*800BEEAC*/
 ModelInfo D_800BEEAC = {
-    0x74170,
+    (s32)models_3F9AF0_bin,
     NULL,
     0xB26,
     0xB26,
@@ -2496,11 +2497,11 @@ ModelInfo D_800BEEAC = {
     0x42,
 };
 
-/*800BEEDC*/ static ModelInfoUnkStruct1 D_800BEEDC = {0x75F6C, NULL, 0, 0x26A};
+/*800BEEDC*/ static ModelVertexInfo D_800BEEDC = {(s32)models_3FA710_bin+0x11DC, NULL, 0, 0x26A};
 
 /*800BEEE8*/
 ModelInfo D_800BEEE8 = {
-    0x74D90,
+    (s32)models_3FA710_bin,
     NULL,
     0x11DA,
     0x11DA,
@@ -2521,11 +2522,11 @@ ModelInfo D_800BEEE8 = {
     0x95,
 };
 
-/*800BEF18*/ static ModelInfoUnkStruct1 D_800BEF18 = {0x7748C, NULL, 0, 0x1AA};
+/*800BEF18*/ static ModelVertexInfo D_800BEF18 = {(s32)models_3FBB60_bin+0x12AC, NULL, 0, 0x1AA};
 
 /*800BEF24*/
 ModelInfo D_800BEF24 = {
-    0x761E0,
+    (s32)models_3FBB60_bin,
     NULL,
     0x12AA,
     0x12AA,
@@ -2546,11 +2547,11 @@ ModelInfo D_800BEF24 = {
     0xBB,
 };
 
-/*800BEF54*/ static ModelInfoUnkStruct1 D_800BEF54 = {0x77E54, NULL, 0, 0x32A};
+/*800BEF54*/ static ModelVertexInfo D_800BEF54 = {(s32)models_3FCFC0_bin+0x814, NULL, 0, 0x32A};
 
 /*800BEF60*/
 ModelInfo D_800BEF60 = {
-    0x77640,
+    (s32)models_3FCFC0_bin,
     NULL,
     0x812,
     0x812,
@@ -2571,11 +2572,11 @@ ModelInfo D_800BEF60 = {
     0x6D,
 };
 
-/*800BEF90*/ static ModelInfoUnkStruct1 D_800BEF90 = {0x7D1E8, NULL, 0, 0x4C8};
+/*800BEF90*/ static ModelVertexInfo D_800BEF90 = {(s32)models_3FDB00_bin+0x5068, NULL, 0, 0x4C8};
 
 /*800BEF9C*/
 ModelInfo D_800BEF9C = {
-    0x78180,
+    (s32)models_3FDB00_bin,
     NULL,
     0x5068,
     0x5068,
@@ -2596,11 +2597,11 @@ ModelInfo D_800BEF9C = {
     0xC0,
 };
 
-/*800BEFCC*/ static ModelInfoUnkStruct1 D_800BEFCC = {0x7FF7C, NULL, 0, 0x522};
+/*800BEFCC*/ static ModelVertexInfo D_800BEFCC = {(s32)models_403030_bin+0x28CC, NULL, 0, 0x522};
 
 /*800BEFD8*/
 ModelInfo D_800BEFD8 = {
-    0x7D6B0,
+    (s32)models_403030_bin,
     NULL,
     0x28CA,
     0x28CA,
@@ -2621,11 +2622,11 @@ ModelInfo D_800BEFD8 = {
     0x97,
 };
 
-/*800BF008*/ static ModelInfoUnkStruct1 D_800BF008 = {0x81AEC, NULL, 0, 0x32A};
+/*800BF008*/ static ModelVertexInfo D_800BF008 = {(s32)models_405E20_bin+0x164C, NULL, 0, 0x32A};
 
 /*800BF014*/
 ModelInfo D_800BF014 = {
-    0x804A0,
+    (s32)models_405E20_bin,
     NULL,
     0x164A,
     0x164A,
@@ -2646,11 +2647,11 @@ ModelInfo D_800BF014 = {
     0x43,
 };
 
-/*800BF044*/ static ModelInfoUnkStruct1 D_800BF044 = {0x84B1C, NULL, 0, 0x36C};
+/*800BF044*/ static ModelVertexInfo D_800BF044 = {(s32)models_4077A0_bin+0x2CFC, NULL, 0, 0x36C};
 
 /*800BF050*/
 ModelInfo D_800BF050 = {
-    0x81E20,
+    (s32)models_4077A0_bin,
     NULL,
     0x2CFC,
     0x2CFC,
@@ -2671,11 +2672,11 @@ ModelInfo D_800BF050 = {
     0xBD,
 };
 
-/*800BF080*/ static ModelInfoUnkStruct1 D_800BF080 = {0x8516C, NULL, 0, 0x42};
+/*800BF080*/ static ModelVertexInfo D_800BF080 = {(s32)models_40A810_bin+0x2DC, NULL, 0, 0x42};
 
 /*800BF08C*/
 ModelInfo D_800BF08C = {
-    0x84E90,
+    (s32)models_40A810_bin,
     NULL,
     0x2DA,
     0x2DA,
@@ -2696,11 +2697,11 @@ ModelInfo D_800BF08C = {
     0x257,
 };
 
-/*800BF0BC*/ static ModelInfoUnkStruct1 D_800BF0BC = {0x85B3C, NULL, 0, 0x2DC};
+/*800BF0BC*/ static ModelVertexInfo D_800BF0BC = {(s32)models_40AB30_bin+0x98C, NULL, 0, 0x2DC};
 
 /*800BF0C8*/
 ModelInfo D_800BF0C8 = {
-    0x851B0,
+    (s32)models_40AB30_bin,
     NULL,
     0x98C,
     0x98C,
@@ -2721,11 +2722,11 @@ ModelInfo D_800BF0C8 = {
     0x88,
 };
 
-/*800BF0F8*/ static ModelInfoUnkStruct1 D_800BF0F8 = {0x8B188, NULL, 0, 0x4C8};
+/*800BF0F8*/ static ModelVertexInfo D_800BF0F8 = {(s32)models_40B7A0_bin+0x5368, NULL, 0, 0x4C8};
 
 /*800BF104*/
 ModelInfo D_800BF104 = {
-    0x85E20,
+    (s32)models_40B7A0_bin,
     NULL,
     0x5368,
     0x5368,
@@ -2746,11 +2747,11 @@ ModelInfo D_800BF104 = {
     0xC0,
 };
 
-/*800BF134*/ static ModelInfoUnkStruct1 D_800BF134 = {0x8D360, NULL, 0, 0x360};
+/*800BF134*/ static ModelVertexInfo D_800BF134 = {(s32)models_410FD0_bin+0x1D10, NULL, 0, 0x360};
 
 /*800BF140*/
 ModelInfo D_800BF140 = {
-    0x8B650,
+    (s32)models_410FD0_bin,
     NULL,
     0x1D10,
     0x1D10,
@@ -2771,11 +2772,11 @@ ModelInfo D_800BF140 = {
     0xE5,
 };
 
-/*800BF170*/ static ModelInfoUnkStruct1 D_800BF170 = {0x8E88C, NULL, 0, 0xCC};
+/*800BF170*/ static ModelVertexInfo D_800BF170 = {(s32)models_413040_bin+0x11CC, NULL, 0, 0xCC};
 
 /*800BF17C*/
 ModelInfo D_800BF17C = {
-    0x8D6C0,
+    (s32)models_413040_bin,
     NULL,
     0x11CC,
     0x11CC,
@@ -2796,11 +2797,11 @@ ModelInfo D_800BF17C = {
     0x192,
 };
 
-/*800BF1AC*/ static ModelInfoUnkStruct1 D_800BF1AC = {0x8FB2C, NULL, 0, 0xCC};
+/*800BF1AC*/ static ModelVertexInfo D_800BF1AC = {(s32)models_4142E0_bin+0x11CC, NULL, 0, 0xCC};
 
 /*800BF1B8*/
 ModelInfo D_800BF1B8 = {
-    0x8E960,
+    (s32)models_4142E0_bin,
     NULL,
     0x11CC,
     0x11CC,
@@ -2821,11 +2822,11 @@ ModelInfo D_800BF1B8 = {
     0x192,
 };
 
-/*800BF1E8*/ static ModelInfoUnkStruct1 D_800BF1E8 = {0x91318, NULL, 0, 0x588};
+/*800BF1E8*/ static ModelVertexInfo D_800BF1E8 = {(s32)models_415580_bin+0x1718, NULL, 0, 0x588};
 
 /*800BF1F4*/
 ModelInfo D_800BF1F4 = {
-    0x8FC00,
+    (s32)models_415580_bin,
     NULL,
     0x1718,
     0x1718,
@@ -2846,11 +2847,11 @@ ModelInfo D_800BF1F4 = {
     0xA8,
 };
 
-/*800BF224*/ static ModelInfoUnkStruct1 D_800BF224 = {0x974E8, NULL, 0, 0x156};
+/*800BF224*/ static ModelVertexInfo D_800BF224 = {(s32)models_41BBA0_bin+0x12C8, NULL, 0, 0x156};
 
 /*800BF230*/
 ModelInfo D_800BF230 = {
-    0x96220,
+    (s32)models_41BBA0_bin,
     NULL,
     0x12C6,
     0x12C6,
@@ -2871,11 +2872,11 @@ ModelInfo D_800BF230 = {
     0xAC,
 };
 
-/*800BF260*/ static ModelInfoUnkStruct1 D_800BF260 = {0x98108, NULL, 0, 0x168};
+/*800BF260*/ static ModelVertexInfo D_800BF260 = {(s32)models_41CFC0_bin+0xAC8, NULL, 0, 0x168};
 
 /*800BF26C*/
 ModelInfo D_800BF26C = {
-    0x97640,
+    (s32)models_41CFC0_bin,
     NULL,
     0xAC8,
     0xAC8,
@@ -2896,11 +2897,11 @@ ModelInfo D_800BF26C = {
     0xBE,
 };
 
-/*800BF29C*/ static ModelInfoUnkStruct1 D_800BF29C = {0x99208, NULL, 0, 0xD8};
+/*800BF29C*/ static ModelVertexInfo D_800BF29C = {(s32)models_41DBF0_bin+0xF98, NULL, 0, 0xD8};
 
 /*800BF2A8*/
 ModelInfo D_800BF2A8 = {
-    0x98270,
+    (s32)models_41DBF0_bin,
     NULL,
     0xF98,
     0xF98,
@@ -2921,11 +2922,11 @@ ModelInfo D_800BF2A8 = {
     0x6D,
 };
 
-/*800BF2D8*/ static ModelInfoUnkStruct1 D_800BF2D8 = {0x997A8, NULL, 0, 0x30};
+/*800BF2D8*/ static ModelVertexInfo D_800BF2D8 = {(s32)models_41EC60_bin+0x4C8, NULL, 0, 0x30};
 
 /*800BF2E4*/
 ModelInfo D_800BF2E4 = {
-    0x992E0,
+    (s32)models_41EC60_bin,
     NULL,
     0x4C8,
     0x4C8,
@@ -2946,11 +2947,11 @@ ModelInfo D_800BF2E4 = {
     0x80,
 };
 
-/*800BF314*/ static ModelInfoUnkStruct1 D_800BF314 = {0x9A734, NULL, 0, 0xB4};
+/*800BF314*/ static ModelVertexInfo D_800BF314 = {(s32)models_41F160_bin+0xF54, NULL, 0, 0xB4};
 
 /*800BF320*/
 ModelInfo D_800BF320 = {
-    0x997E0,
+    (s32)models_41F160_bin,
     NULL,
     0xF54,
     0xF54,
@@ -2971,11 +2972,11 @@ ModelInfo D_800BF320 = {
     0x6D,
 };
 
-/*800BF350*/ static ModelInfoUnkStruct1 D_800BF350 = {0x9401C, NULL, 0, 0x222};
+/*800BF350*/ static ModelVertexInfo D_800BF350 = {(s32)models_417220_bin+0x277C, NULL, 0, 0x222};
 
 /*800BF35C*/
 ModelInfo D_800BF35C = {
-    0x918A0,
+    (s32)models_417220_bin,
     NULL,
     0x277A,
     0x277A,
@@ -2996,11 +2997,11 @@ ModelInfo D_800BF35C = {
     0x64,
 };
 
-/*800BF38C*/ static ModelInfoUnkStruct1 D_800BF38C = {0x945F8, NULL, 0, 0xAE};
+/*800BF38C*/ static ModelVertexInfo D_800BF38C = {(s32)models_419BC0_bin+0x3B8, NULL, 0, 0xAE};
 
 /*800BF398*/
 ModelInfo D_800BF398 = {
-    0x94240,
+    (s32)models_419BC0_bin,
     NULL,
     0x3B6,
     0x3B6,
@@ -3021,11 +3022,11 @@ ModelInfo D_800BF398 = {
     0x120,
 };
 
-/*800BF3C8*/ static ModelInfoUnkStruct1 D_800BF3C8 = {0x94EF4, NULL, 0, 0xFC};
+/*800BF3C8*/ static ModelVertexInfo D_800BF3C8 = {(s32)models_41A030_bin+0x844, NULL, 0, 0xFC};
 
 /*800BF3D4*/
 ModelInfo D_800BF3D4 = {
-    0x946B0,
+    (s32)models_41A030_bin,
     NULL,
     0x844,
     0x844,
@@ -3046,11 +3047,11 @@ ModelInfo D_800BF3D4 = {
     0x170,
 };
 
-/*800BF404*/ static ModelInfoUnkStruct1 D_800BF404 = {0x952D8, NULL, 0, 0x48};
+/*800BF404*/ static ModelVertexInfo D_800BF404 = {(s32)models_41A970_bin+0x2E8, NULL, 0, 0x48};
 
 /*800BF410*/
 ModelInfo D_800BF410 = {
-    0x94FF0,
+    (s32)models_41A970_bin,
     NULL,
     0x2E8,
     0x2E8,
@@ -3071,11 +3072,11 @@ ModelInfo D_800BF410 = {
     0x59,
 };
 
-/*800BF440*/ static ModelInfoUnkStruct1 D_800BF440 = {0x95B48, NULL, 0, 0xD8};
+/*800BF440*/ static ModelVertexInfo D_800BF440 = {(s32)models_41ACA0_bin+0x828, NULL, 0, 0xD8};
 
 /*800BF44C*/
 ModelInfo D_800BF44C = {
-    0x95320,
+    (s32)models_41ACA0_bin,
     NULL,
     0x828,
     0x828,
@@ -3096,11 +3097,11 @@ ModelInfo D_800BF44C = {
     0x2C,
 };
 
-/*800BF47C*/ static ModelInfoUnkStruct1 D_800BF47C = {0x96144, NULL, 0, 0xD2};
+/*800BF47C*/ static ModelVertexInfo D_800BF47C = {(s32)models_41B5A0_bin+0x524, NULL, 0, 0xD2};
 
 /*800BF488*/
 ModelInfo D_800BF488 = {
-    0x95C20,
+    (s32)models_41B5A0_bin,
     NULL,
     0x522,
     0x522,
@@ -3121,11 +3122,11 @@ ModelInfo D_800BF488 = {
     0x62,
 };
 
-/*800BF4B8*/ static ModelInfoUnkStruct1 D_800BF4B8 = {0x9AF24, NULL, 0, 0x2C4};
+/*800BF4B8*/ static ModelVertexInfo D_800BF4B8 = {(s32)models_420170_bin+0x734, NULL, 0, 0x2C4};
 
 /*800BF4C4*/
 ModelInfo D_800BF4C4 = {
-    0x9A7F0,
+    (s32)models_420170_bin,
     NULL,
     0x734,
     0x734,
@@ -3146,11 +3147,11 @@ ModelInfo D_800BF4C4 = {
     0x93,
 };
 
-/*800BF4F4*/ static ModelInfoUnkStruct1 D_800BF4F4 = {0x9B924, NULL, 0, 0x2C4};
+/*800BF4F4*/ static ModelVertexInfo D_800BF4F4 = {(s32)models_420B70_bin+0x734, NULL, 0, 0x2C4};
 
 /*800BF500*/
 ModelInfo D_800BF500 = {
-    0x9B1F0,
+    (s32)models_420B70_bin,
     NULL,
     0x734,
     0x734,
@@ -3171,11 +3172,11 @@ ModelInfo D_800BF500 = {
     0x93,
 };
 
-/*800BF530*/ static ModelInfoUnkStruct1 D_800BF530 = {0x9C690, NULL, 0, 0x336};
+/*800BF530*/ static ModelVertexInfo D_800BF530 = {(s32)models_421570_bin+0xAA0, NULL, 0, 0x336};
 
 /*800BF53C*/
 ModelInfo D_800BF53C = {
-    0x9BBF0,
+    (s32)models_421570_bin,
     NULL,
     0xA9E,
     0xA9E,
@@ -3196,11 +3197,11 @@ ModelInfo D_800BF53C = {
     0x9B,
 };
 
-/*800BF56C*/ static ModelInfoUnkStruct1 D_800BF56C = {0x9D118, NULL, 0, 0x2D0};
+/*800BF56C*/ static ModelVertexInfo D_800BF56C = {(s32)models_422350_bin+0x748, NULL, 0, 0x2D0};
 
 /*800BF578*/
 ModelInfo D_800BF578 = {
-    0x9C9D0,
+    (s32)models_422350_bin,
     NULL,
     0x748,
     0x748,
@@ -3221,11 +3222,11 @@ ModelInfo D_800BF578 = {
     0x93,
 };
 
-/*800BF5A8*/ static ModelInfoUnkStruct1 D_800BF5A8 = {0x9DB38, NULL, 0, 0x2D0};
+/*800BF5A8*/ static ModelVertexInfo D_800BF5A8 = {(s32)models_422D70_bin+0x748, NULL, 0, 0x2D0};
 
 /*800BF5B4*/
 ModelInfo D_800BF5B4 = {
-    0x9D3F0,
+    (s32)models_422D70_bin,
     NULL,
     0x748,
     0x748,
@@ -3246,11 +3247,11 @@ ModelInfo D_800BF5B4 = {
     0x93,
 };
 
-/*800BF5E4*/ static ModelInfoUnkStruct1 D_800BF5E4 = {0x9EDA4, NULL, 0, 0x3FC};
+/*800BF5E4*/ static ModelVertexInfo D_800BF5E4 = {(s32)models_423790_bin+0xF94, NULL, 0, 0x3FC};
 
 /*800BF5F0*/
 ModelInfo D_800BF5F0 = {
-    0x9DE10,
+    (s32)models_423790_bin,
     NULL,
     0xF94,
     0xF94,
@@ -3271,11 +3272,11 @@ ModelInfo D_800BF5F0 = {
     0x90,
 };
 
-/*800BF620*/ static ModelInfoUnkStruct1 D_800BF620 = {0xA0040, NULL, 0, 0x37E};
+/*800BF620*/ static ModelVertexInfo D_800BF620 = {(s32)models_424B20_bin+0xEA0, NULL, 0, 0x37E};
 
 /*800BF62C*/
 ModelInfo D_800BF62C = {
-    0x9F1A0,
+    (s32)models_424B20_bin,
     NULL,
     0xE9E,
     0xE9E,
@@ -3296,11 +3297,11 @@ ModelInfo D_800BF62C = {
     0x90,
 };
 
-/*800BF65C*/ static ModelInfoUnkStruct1 D_800BF65C = {0xA14F8, NULL, 0, 0x78};
+/*800BF65C*/ static ModelVertexInfo D_800BF65C = {(s32)models_425D40_bin+0x1138, NULL, 0, 0x78};
 
 /*800BF668*/
 ModelInfo D_800BF668 = {
-    0xA03C0,
+    (s32)models_425D40_bin,
     NULL,
     0x1138,
     0x1138,
@@ -3321,11 +3322,11 @@ ModelInfo D_800BF668 = {
     0x15C,
 };
 
-/*800BF698*/ static ModelInfoUnkStruct1 D_800BF698 = {0xA3124, NULL, 0, 0x4C2};
+/*800BF698*/ static ModelVertexInfo D_800BF698 = {(s32)models_426EF0_bin+0x1BB4, NULL, 0, 0x4C2};
 
 /*800BF6A4*/
 ModelInfo D_800BF6A4 = {
-    0xA1570,
+    (s32)models_426EF0_bin,
     NULL,
     0x1BB2,
     0x1BB2,
@@ -3346,11 +3347,11 @@ ModelInfo D_800BF6A4 = {
     0x59,
 };
 
-/*800BF6D4*/ static ModelInfoUnkStruct1 D_800BF6D4 = {0xA39C0, NULL, 0, 0xC0};
+/*800BF6D4*/ static ModelVertexInfo D_800BF6D4 = {(s32)models_428F70_bin+0x3D0, NULL, 0, 0xC0};
 
 /*800BF6E0*/
 ModelInfo D_800BF6E0 = {
-    0xA35F0,
+    (s32)models_428F70_bin,
     NULL,
     0x3D0,
     0x3D0,
@@ -3371,11 +3372,11 @@ ModelInfo D_800BF6E0 = {
     0x162,
 };
 
-/*800BF710*/ static ModelInfoUnkStruct1 D_800BF710 = {0xA3EF0, NULL, 0, 0x120};
+/*800BF710*/ static ModelVertexInfo D_800BF710 = {(s32)models_429400_bin+0x470, NULL, 0, 0x120};
 
 /*800BF71C*/
 ModelInfo D_800BF71C = {
-    0xA3A80,
+    (s32)models_429400_bin,
     NULL,
     0x470,
     0x470,
@@ -3396,11 +3397,11 @@ ModelInfo D_800BF71C = {
     0x1A4,
 };
 
-/*800BF74C*/ static ModelInfoUnkStruct1 D_800BF74C = {0xA8C78, NULL, 0, 0x6DE};
+/*800BF74C*/ static ModelVertexInfo D_800BF74C = {(s32)models_429990_bin+0x4C68, NULL, 0, 0x6DE};
 
 /*800BF758*/
 ModelInfo D_800BF758 = {
-    0xA4010,
+    (s32)models_429990_bin,
     NULL,
     0x4C66,
     0x4C66,
@@ -3421,11 +3422,11 @@ ModelInfo D_800BF758 = {
     0xAA,
 };
 
-/*800BF788*/ static ModelInfoUnkStruct1 D_800BF788 = {0xAA16C, NULL, 0, 0xE4};
+/*800BF788*/ static ModelVertexInfo D_800BF788 = {(s32)models_42ECE0_bin+0xE0C, NULL, 0, 0xE4};
 
 /*800BF794*/
 ModelInfo D_800BF794 = {
-    0xA9360,
+    (s32)models_42ECE0_bin,
     NULL,
     0xE0C,
     0xE0C,
@@ -3446,11 +3447,11 @@ ModelInfo D_800BF794 = {
     0x10B,
 };
 
-/*800BF7C4*/ static ModelInfoUnkStruct1 D_800BF7C4 = {0xAB684, NULL, 0, 0x174};
+/*800BF7C4*/ static ModelVertexInfo D_800BF7C4 = {(s32)models_42FBD0_bin+0x1434, NULL, 0, 0x174};
 
 /*800BF7D0*/
 ModelInfo D_800BF7D0 = {
-    0xAA250,
+    (s32)models_42FBD0_bin,
     NULL,
     0x1434,
     0x1434,
@@ -3471,11 +3472,11 @@ ModelInfo D_800BF7D0 = {
     0xB0,
 };
 
-/*800BF800*/ static ModelInfoUnkStruct1 D_800BF800 = {0xAC690, NULL, 0, 0x138};
+/*800BF800*/ static ModelVertexInfo D_800BF800 = {(s32)models_431180_bin+0xE90, NULL, 0, 0x138};
 
 /*800BF80C*/
 ModelInfo D_800BF80C = {
-    0xAB800,
+    (s32)models_431180_bin,
     NULL,
     0xE90,
     0xE90,
@@ -3496,11 +3497,11 @@ ModelInfo D_800BF80C = {
     0x53,
 };
 
-/*800BF83C*/ static ModelInfoUnkStruct1 D_800BF83C = {0xAD5E0, NULL, 0, 0xF0};
+/*800BF83C*/ static ModelVertexInfo D_800BF83C = {(s32)models_432150_bin+0xE10, NULL, 0, 0xF0};
 
 /*800BF848*/
 ModelInfo D_800BF848 = {
-    0xAC7D0,
+    (s32)models_432150_bin,
     NULL,
     0xE10,
     0xE10,
@@ -3521,11 +3522,11 @@ ModelInfo D_800BF848 = {
     0x4B,
 };
 
-/*800BF878*/ static ModelInfoUnkStruct1 D_800BF878 = {0xAE384, NULL, 0, 0x144};
+/*800BF878*/ static ModelVertexInfo D_800BF878 = {(s32)models_433050_bin+0xCB4, NULL, 0, 0x144};
 
 /*800BF884*/
 ModelInfo D_800BF884 = {
-    0xAD6D0,
+    (s32)models_433050_bin,
     NULL,
     0xCB4,
     0xCB4,
@@ -3546,11 +3547,11 @@ ModelInfo D_800BF884 = {
     0x4B,
 };
 
-/*800BF8B4*/ static ModelInfoUnkStruct1 D_800BF8B4 = {0xAF30C, NULL, 0, 0x32A};
+/*800BF8B4*/ static ModelVertexInfo D_800BF8B4 = {(s32)models_433E50_bin+0xE3C, NULL, 0, 0x32A};
 
 /*800BF8C0*/
 ModelInfo D_800BF8C0 = {
-    0xAE4D0,
+    (s32)models_433E50_bin,
     NULL,
     0xE3A,
     0xE3A,
@@ -3571,11 +3572,11 @@ ModelInfo D_800BF8C0 = {
     0,
 };
 
-/*800BF8F0*/ static ModelInfoUnkStruct1 D_800BF8F0 = {0xB059C, NULL, 0, 0x1A4};
+/*800BF8F0*/ static ModelVertexInfo D_800BF8F0 = {(s32)models_434FC0_bin+0xF5C, NULL, 0, 0x1A4};
 
 /*800BF8FC*/
 ModelInfo D_800BF8FC = {
-    0xAF640,
+    (s32)models_434FC0_bin,
     NULL,
     0xF5C,
     0xF5C,
@@ -3596,11 +3597,11 @@ ModelInfo D_800BF8FC = {
     0xC3,
 };
 
-/*800BF92C*/ static ModelInfoUnkStruct1 D_800BF92C = {0xB25E0, NULL, 0, 0x4B0};
+/*800BF92C*/ static ModelVertexInfo D_800BF92C = {(s32)models_4360C0_bin+0x1EA0, NULL, 0, 0x4B0};
 
 /*800BF938*/
 ModelInfo D_800BF938 = {
-    0xB0740,
+    (s32)models_4360C0_bin,
     NULL,
     0x1EA0,
     0x1EA0,
@@ -3621,11 +3622,11 @@ ModelInfo D_800BF938 = {
     0x13D,
 };
 
-/*800BF968*/ static ModelInfoUnkStruct1 D_800BF968 = {0xB59F8, NULL, 0, 0x3F6};
+/*800BF968*/ static ModelVertexInfo D_800BF968 = {(s32)models_438410_bin+0x2F68, NULL, 0, 0x3F6};
 
 /*800BF974*/
 ModelInfo D_800BF974 = {
-    0xB2A90,
+    (s32)models_438410_bin,
     NULL,
     0x2F66,
     0x2F66,
@@ -3646,11 +3647,11 @@ ModelInfo D_800BF974 = {
     0xEB,
 };
 
-/*800BF9A4*/ static ModelInfoUnkStruct1 D_800BF9A4 = {0xB70F8, NULL, 0, 0x180};
+/*800BF9A4*/ static ModelVertexInfo D_800BF9A4 = {(s32)models_43B770_bin+0x1308, NULL, 0, 0x180};
 
 /*800BF9B0*/
 ModelInfo D_800BF9B0 = {
-    0xB5DF0,
+    (s32)models_43B770_bin,
     NULL,
     0x1308,
     0x1308,
@@ -3671,11 +3672,11 @@ ModelInfo D_800BF9B0 = {
     0x40,
 };
 
-/*800BF9E0*/ static ModelInfoUnkStruct1 D_800BF9E0 = {0xB76F0, NULL, 0, 0x108};
+/*800BF9E0*/ static ModelVertexInfo D_800BF9E0 = {(s32)models_43CC00_bin+0x470, NULL, 0, 0x108};
 
 /*800BF9EC*/
 ModelInfo D_800BF9EC = {
-    0xB7280,
+    (s32)models_43CC00_bin,
     NULL,
     0x470,
     0x470,
@@ -3696,11 +3697,11 @@ ModelInfo D_800BF9EC = {
     0x4C,
 };
 
-/*800BFA1C*/ static ModelInfoUnkStruct1 D_800BFA1C = {0xB857C, NULL, 0, 0x17A};
+/*800BFA1C*/ static ModelVertexInfo D_800BFA1C = {(s32)models_43D180_bin+0xD7C, NULL, 0, 0x17A};
 
 /*800BFA28*/
 ModelInfo D_800BFA28 = {
-    0xB7800,
+    (s32)models_43D180_bin,
     NULL,
     0xD7A,
     0xD7A,
@@ -3721,11 +3722,11 @@ ModelInfo D_800BFA28 = {
     0x4C,
 };
 
-/*800BFA58*/ static ModelInfoUnkStruct1 D_800BFA58 = {0xB9330, NULL, 0, 0x2D6};
+/*800BFA58*/ static ModelVertexInfo D_800BFA58 = {(s32)models_43E080_bin+0xC30, NULL, 0, 0x2D6};
 
 /*800BFA64*/
 ModelInfo D_800BFA64 = {
-    0xB8700,
+    (s32)models_43E080_bin,
     NULL,
     0xC2E,
     0xC2E,
@@ -3746,11 +3747,11 @@ ModelInfo D_800BFA64 = {
     0xE7,
 };
 
-/*800BFA94*/ static ModelInfoUnkStruct1 D_800BFA94 = {0xBA138, NULL, 0, 0x40E};
+/*800BFA94*/ static ModelVertexInfo D_800BFA94 = {(s32)models_43EF90_bin+0xB28, NULL, 0, 0x40E};
 
 /*800BFAA0*/
 ModelInfo D_800BFAA0 = {
-    0xB9610,
+    (s32)models_43EF90_bin,
     NULL,
     0xB26,
     0xB26,
@@ -3771,11 +3772,11 @@ ModelInfo D_800BFAA0 = {
     0xBC,
 };
 
-/*800BFAD0*/ static ModelInfoUnkStruct1 D_800BFAD0 = {0xBBE4C, NULL, 0, 0x3C};
+/*800BFAD0*/ static ModelVertexInfo D_800BFAD0 = {(s32)models_43FED0_bin+0x18FC, NULL, 0, 0x3C};
 
 /*800BFADC*/
 ModelInfo D_800BFADC = {
-    0xBA550,
+    (s32)models_43FED0_bin,
     NULL,
     0x18FC,
     0x18FC,
@@ -3796,11 +3797,11 @@ ModelInfo D_800BFADC = {
     0xB2,
 };
 
-/*800BFB0C*/ static ModelInfoUnkStruct1 D_800BFB0C = {0xBCF34, NULL, 0, 0x24};
+/*800BFB0C*/ static ModelVertexInfo D_800BFB0C = {(s32)models_441810_bin+0x10A4, NULL, 0, 0x24};
 
 /*800BFB18*/
 ModelInfo D_800BFB18 = {
-    0xBBE90,
+    (s32)models_441810_bin,
     NULL,
     0x10A4,
     0x10A4,
@@ -3821,11 +3822,11 @@ ModelInfo D_800BFB18 = {
     0xB2,
 };
 
-/*800BFB48*/ static ModelInfoUnkStruct1 D_800BFB48 = {0xBD998, NULL, 0, 0xD8};
+/*800BFB48*/ static ModelVertexInfo D_800BFB48 = {(s32)models_4428E0_bin+0xA38, NULL, 0, 0xD8};
 
 /*800BFB54*/
 ModelInfo D_800BFB54 = {
-    0xBCF60,
+    (s32)models_4428E0_bin,
     NULL,
     0xA38,
     0xA38,
@@ -3846,11 +3847,11 @@ ModelInfo D_800BFB54 = {
     0x6C,
 };
 
-/*800BFB84*/ static ModelInfoUnkStruct1 D_800BFB84 = {0xBE520, NULL, 0, 0x120};
+/*800BFB84*/ static ModelVertexInfo D_800BFB84 = {(s32)models_4433F0_bin+0xAB0, NULL, 0, 0x120};
 
 /*800BFB90*/
 ModelInfo D_800BFB90 = {
-    0xBDA70,
+    (s32)models_4433F0_bin,
     NULL,
     0xAB0,
     0xAB0,
@@ -3871,11 +3872,11 @@ ModelInfo D_800BFB90 = {
     0x27,
 };
 
-/*800BFBC0*/ static ModelInfoUnkStruct1 D_800BFBC0 = {0xBEF68, NULL, 0, 0x270};
+/*800BFBC0*/ static ModelVertexInfo D_800BFBC0 = {(s32)models_443FC0_bin+0x928, NULL, 0, 0x270};
 
 /*800BFBCC*/
 ModelInfo D_800BFBCC = {
-    0xBE640,
+    (s32)models_443FC0_bin,
     NULL,
     0x928,
     0x928,
@@ -3896,11 +3897,11 @@ ModelInfo D_800BFBCC = {
     0x8E,
 };
 
-/*800BFBFC*/ static ModelInfoUnkStruct1 D_800BFBFC = {0xBFEA0, NULL, 0, 0xD8};
+/*800BFBFC*/ static ModelVertexInfo D_800BFBFC = {(s32)models_444B60_bin+0xCC0, NULL, 0, 0xD8};
 
 /*800BFC08*/
 ModelInfo D_800BFC08 = {
-    0xBF1E0,
+    (s32)models_444B60_bin,
     NULL,
     0xCC0,
     0xCC0,
@@ -3921,11 +3922,11 @@ ModelInfo D_800BFC08 = {
     0x87,
 };
 
-/*800BFC38*/ static ModelInfoUnkStruct1 D_800BFC38 = {0xC0700, NULL, 0, 0xDE};
+/*800BFC38*/ static ModelVertexInfo D_800BFC38 = {(s32)models_445900_bin+0x780, NULL, 0, 0xDE};
 
 /*800BFC44*/
 ModelInfo D_800BFC44 = {
-    0xBFF80,
+    (s32)models_445900_bin,
     NULL,
     0x77E,
     0x77E,
@@ -3946,11 +3947,11 @@ ModelInfo D_800BFC44 = {
     0x26,
 };
 
-/*800BFC74*/ static ModelInfoUnkStruct1 D_800BFC74 = {0xC28C8, NULL, 0, 0x318};
+/*800BFC74*/ static ModelVertexInfo D_800BFC74 = {(s32)models_446160_bin+0x20E8, NULL, 0, 0x318};
 
 /*800BFC80*/
 ModelInfo D_800BFC80 = {
-    0xC07E0,
+    (s32)models_446160_bin,
     NULL,
     0x20E8,
     0x20E8,
@@ -3971,11 +3972,11 @@ ModelInfo D_800BFC80 = {
     0x37,
 };
 
-/*800BFCB0*/ static ModelInfoUnkStruct1 D_800BFCB0 = {0xC3564, NULL, 0, 0x132};
+/*800BFCB0*/ static ModelVertexInfo D_800BFCB0 = {(s32)models_448560_bin+0x984, NULL, 0, 0x132};
 
 /*800BFCBC*/
 ModelInfo D_800BFCBC = {
-    0xC2BE0,
+    (s32)models_448560_bin,
     NULL,
     0x982,
     0x982,
@@ -3996,11 +3997,11 @@ ModelInfo D_800BFCBC = {
     0x2D,
 };
 
-/*800BFCEC*/ static ModelInfoUnkStruct1 D_800BFCEC = {0xC5570, NULL, 0, 0x318};
+/*800BFCEC*/ static ModelVertexInfo D_800BFCEC = {(s32)models_449020_bin+0x1ED0, NULL, 0, 0x318};
 
 /*800BFCF8*/
 ModelInfo D_800BFCF8 = {
-    0xC36A0,
+    (s32)models_449020_bin,
     NULL,
     0x1ED0,
     0x1ED0,
@@ -4021,11 +4022,11 @@ ModelInfo D_800BFCF8 = {
     0x2E,
 };
 
-/*800BFD28*/ static ModelInfoUnkStruct1 D_800BFD28 = {0xC6BA0, NULL, 0, 0x168};
+/*800BFD28*/ static ModelVertexInfo D_800BFD28 = {(s32)models_44B210_bin+0x1310, NULL, 0, 0x168};
 
 /*800BFD34*/
 ModelInfo D_800BFD34 = {
-    0xC5890,
+    (s32)models_44B210_bin,
     NULL,
     0x1310,
     0x1310,
@@ -4046,11 +4047,11 @@ ModelInfo D_800BFD34 = {
     0x33,
 };
 
-/*800BFD64*/ static ModelInfoUnkStruct1 D_800BFD64 = {0xC7F18, NULL, 0, 0x3A8};
+/*800BFD64*/ static ModelVertexInfo D_800BFD64 = {(s32)models_44C690_bin+0x1208, NULL, 0, 0x3A8};
 
 /*800BFD70*/
 ModelInfo D_800BFD70 = {
-    0xC6D10,
+    (s32)models_44C690_bin,
     NULL,
     0x1208,
     0x1208,
@@ -4071,11 +4072,11 @@ ModelInfo D_800BFD70 = {
     0x96,
 };
 
-/*800BFDA0*/ static ModelInfoUnkStruct1 D_800BFDA0 = {0xC94C8, NULL, 0, 0x3A8};
+/*800BFDA0*/ static ModelVertexInfo D_800BFDA0 = {(s32)models_44DC40_bin+0x1208, NULL, 0, 0x3A8};
 
 /*800BFDAC*/
 ModelInfo D_800BFDAC = {
-    0xC82C0,
+    (s32)models_44DC40_bin,
     NULL,
     0x1208,
     0x1208,
@@ -4096,11 +4097,11 @@ ModelInfo D_800BFDAC = {
     0x96,
 };
 
-/*800BFDDC*/ static ModelInfoUnkStruct1 D_800BFDDC = {0xCB368, NULL, 0, 0x330};
+/*800BFDDC*/ static ModelVertexInfo D_800BFDDC = {(s32)models_44F1F0_bin+0x1AF8, NULL, 0, 0x330};
 
 /*800BFDE8*/
 ModelInfo D_800BFDE8 = {
-    0xC9870,
+    (s32)models_44F1F0_bin,
     NULL,
     0x1AF8,
     0x1AF8,
@@ -4121,11 +4122,11 @@ ModelInfo D_800BFDE8 = {
     0x10A,
 };
 
-/*800BFE18*/ static ModelInfoUnkStruct1 D_800BFE18 = {0xCCBA0, NULL, 0, 0x246};
+/*800BFE18*/ static ModelVertexInfo D_800BFE18 = {(s32)models_451020_bin+0x1500, NULL, 0, 0x246};
 
 /*800BFE24*/
 ModelInfo D_800BFE24 = {
-    0xCB6A0,
+    (s32)models_451020_bin,
     NULL,
     0x14FE,
     0x14FE,
@@ -4146,11 +4147,11 @@ ModelInfo D_800BFE24 = {
     0xA0,
 };
 
-/*800BFE54*/ static ModelInfoUnkStruct1 D_800BFE54 = {0xCE088, NULL, 0, 0x366};
+/*800BFE54*/ static ModelVertexInfo D_800BFE54 = {(s32)models_452770_bin+0x1298, NULL, 0, 0x366};
 
 /*800BFE60*/
 ModelInfo D_800BFE60 = {
-    0xCCDF0,
+    (s32)models_452770_bin,
     NULL,
     0x1296,
     0x1296,
@@ -4171,11 +4172,11 @@ ModelInfo D_800BFE60 = {
     0xBF,
 };
 
-/*800BFE90*/ static ModelInfoUnkStruct1 D_800BFE90 = {0xCEE90, NULL, 0, 0x156};
+/*800BFE90*/ static ModelVertexInfo D_800BFE90 = {(s32)models_453D70_bin+0xAA0, NULL, 0, 0x156};
 
 /*800BFE9C*/
 ModelInfo D_800BFE9C = {
-    0xCE3F0,
+    (s32)models_453D70_bin,
     NULL,
     0xA9E,
     0xA9E,
@@ -4196,11 +4197,11 @@ ModelInfo D_800BFE9C = {
     0x96,
 };
 
-/*800BFECC*/ static ModelInfoUnkStruct1 D_800BFECC = {0xCFAB8, NULL, 0, 0x168};
+/*800BFECC*/ static ModelVertexInfo D_800BFECC = {(s32)models_454970_bin+0xAC8, NULL, 0, 0x168};
 
 /*800BFED8*/
 ModelInfo D_800BFED8 = {
-    0xCEFF0,
+    (s32)models_454970_bin,
     NULL,
     0xAC8,
     0xAC8,
@@ -4221,11 +4222,11 @@ ModelInfo D_800BFED8 = {
     0xBE,
 };
 
-/*800BFF08*/ static ModelInfoUnkStruct1 D_800BFF08 = {0xD0B74, NULL, 0, 0xB4};
+/*800BFF08*/ static ModelVertexInfo D_800BFF08 = {(s32)models_4555A0_bin+0xF54, NULL, 0, 0xB4};
 
 /*800BFF14*/
 ModelInfo D_800BFF14 = {
-    0xCFC20,
+    (s32)models_4555A0_bin,
     NULL,
     0xF54,
     0xF54,
@@ -4246,11 +4247,11 @@ ModelInfo D_800BFF14 = {
     0x6D,
 };
 
-/*800BFF44*/ static ModelInfoUnkStruct1 D_800BFF44 = {0xD1564, NULL, 0, 0x36C};
+/*800BFF44*/ static ModelVertexInfo D_800BFF44 = {(s32)models_4565B0_bin+0x934, NULL, 0, 0x36C};
 
 /*800BFF50*/
 ModelInfo D_800BFF50 = {
-    0xD0C30,
+    (s32)models_4565B0_bin,
     NULL,
     0x934,
     0x934,
@@ -4271,11 +4272,11 @@ ModelInfo D_800BFF50 = {
     0x8D,
 };
 
-/*800BFF80*/ static ModelInfoUnkStruct1 D_800BFF80 = {0xD22F4, NULL, 0, 0xD2};
+/*800BFF80*/ static ModelVertexInfo D_800BFF80 = {(s32)models_457250_bin+0xA24, NULL, 0, 0xD2};
 
 /*800BFF8C*/
 ModelInfo D_800BFF8C = {
-    0xD18D0,
+    (s32)models_457250_bin,
     NULL,
     0xA22,
     0xA22,
@@ -4296,11 +4297,11 @@ ModelInfo D_800BFF8C = {
     0x1E,
 };
 
-/*800BFFBC*/ static ModelInfoUnkStruct1 D_800BFFBC = {0xD386C, NULL, 0, 0x204};
+/*800BFFBC*/ static ModelVertexInfo D_800BFFBC = {(s32)models_457D50_bin+0x149C, NULL, 0, 0x204};
 
 /*800BFFC8*/
 ModelInfo D_800BFFC8 = {
-    0xD23D0,
+    (s32)models_457D50_bin,
     NULL,
     0x149C,
     0x149C,
@@ -4321,11 +4322,11 @@ ModelInfo D_800BFFC8 = {
     0x3A,
 };
 
-/*800BFFF8*/ static ModelInfoUnkStruct1 D_800BFFF8 = {0xD4110, NULL, 0, 0x7E};
+/*800BFFF8*/ static ModelVertexInfo D_800BFFF8 = {(s32)models_4593F0_bin+0x6A0, NULL, 0, 0x7E};
 
 /*800C0004*/
 ModelInfo D_800C0004 = {
-    0xD3A70,
+    (s32)models_4593F0_bin,
     NULL,
     0x69E,
     0x69E,
@@ -4346,11 +4347,11 @@ ModelInfo D_800C0004 = {
     0x40,
 };
 
-/*800C0034*/ static ModelInfoUnkStruct1 D_800C0034 = {0xD6510, NULL, 0, 0x2EE};
+/*800C0034*/ static ModelVertexInfo D_800C0034 = {(s32)models_459B10_bin+0x2380, NULL, 0, 0x2EE};
 
 /*800C0040*/
 ModelInfo D_800C0040 = {
-    0xD4190,
+    (s32)models_459B10_bin,
     NULL,
     0x237E,
     0x237E,
@@ -4417,11 +4418,11 @@ ModelInfo D_800C00A0 = {
     0x107,
 };
 
-/*800C00D0*/ static ModelInfoUnkStruct1 D_800C00D0 = {0xD82DC, NULL, 0, 0x144};
+/*800C00D0*/ static ModelVertexInfo D_800C00D0 = {(s32)models_45C180_bin+0x1ADC, NULL, 0, 0x144};
 
 /*800C00DC*/
 ModelInfo D_800C00DC = {
-    0xD6800,
+    (s32)models_45C180_bin,
     NULL,
     0x1ADC,
     0x1ADC,
@@ -4442,11 +4443,11 @@ ModelInfo D_800C00DC = {
     0xA0,
 };
 
-/*800C010C*/ static ModelInfoUnkStruct1 D_800C010C = {0xD9F24, NULL, 0, 0x15C};
+/*800C010C*/ static ModelVertexInfo D_800C010C = {(s32)models_45DDA0_bin+0x1B04, NULL, 0, 0x15C};
 
 /*800C0118*/
 ModelInfo D_800C0118 = {
-    0xD8420,
+    (s32)models_45DDA0_bin,
     NULL,
     0x1B04,
     0x1B04,
@@ -4467,11 +4468,11 @@ ModelInfo D_800C0118 = {
     0x9F,
 };
 
-/*800C0148*/ static ModelInfoUnkStruct1 D_800C0148 = {0xDC298, NULL, 0, 0x3C0};
+/*800C0148*/ static ModelVertexInfo D_800C0148 = {(s32)models_45FA00_bin+0x2218, NULL, 0, 0x3C0};
 
 /*800C0154*/
 ModelInfo D_800C0154 = {
-    0xDA080,
+    (s32)models_45FA00_bin,
     NULL,
     0x2218,
     0x2218,
@@ -4492,11 +4493,11 @@ ModelInfo D_800C0154 = {
     0xDF,
 };
 
-/*800C0184*/ static ModelInfoUnkStruct1 D_800C0184 = {0xDDF5C, NULL, 0, 0x3C};
+/*800C0184*/ static ModelVertexInfo D_800C0184 = {(s32)models_461FE0_bin+0x18FC, NULL, 0, 0x3C};
 
 /*800C0190*/
 ModelInfo D_800C0190 = {
-    0xDC660,
+    (s32)models_461FE0_bin,
     NULL,
     0x18FC,
     0x18FC,
@@ -4517,11 +4518,11 @@ ModelInfo D_800C0190 = {
     0xB2,
 };
 
-/*800C01C0*/ static ModelInfoUnkStruct1 D_800C01C0 = {0xE1574, NULL, 0, 0x474};
+/*800C01C0*/ static ModelVertexInfo D_800C01C0 = {(s32)models_463920_bin+0x35D4, NULL, 0, 0x474};
 
 /*800C01CC*/
 ModelInfo D_800C01CC = {
-    0xDDFA0,
+    (s32)models_463920_bin,
     NULL,
     0x35D4,
     0x35D4,
@@ -4542,11 +4543,11 @@ ModelInfo D_800C01CC = {
     0x18A,
 };
 
-/*800C01FC*/ static ModelInfoUnkStruct1 D_800C01FC = {0xE2168, NULL, 0, 0x19E};
+/*800C01FC*/ static ModelVertexInfo D_800C01FC = {(s32)models_467370_bin+0x778, NULL, 0, 0x19E};
 
 /*800C0208*/
 ModelInfo D_800C0208 = {
-    0xE19F0,
+    (s32)models_467370_bin,
     NULL,
     0x776,
     0x776,
@@ -4567,11 +4568,11 @@ ModelInfo D_800C0208 = {
     0x80,
 };
 
-/*800C0238*/ static ModelInfoUnkStruct1 D_800C0238 = {0xE2CCC, NULL, 0, 0x1AA};
+/*800C0238*/ static ModelVertexInfo D_800C0238 = {(s32)models_467C90_bin+0x9BC, NULL, 0, 0x1AA};
 
 /*800C0244*/
 ModelInfo D_800C0244 = {
-    0xE2310,
+    (s32)models_467C90_bin,
     NULL,
     0x9BA,
     0x9BA,
@@ -4592,11 +4593,11 @@ ModelInfo D_800C0244 = {
     0x4A,
 };
 
-/*800C0274*/ static ModelInfoUnkStruct1 D_800C0274 = {0xE4400, NULL, 0, 0x258};
+/*800C0274*/ static ModelVertexInfo D_800C0274 = {(s32)models_468800_bin+0x1580, NULL, 0, 0x258};
 
 /*800C0280*/
 ModelInfo D_800C0280 = {
-    0xE2E80,
+    (s32)models_468800_bin,
     NULL,
     0x1580,
     0x1580,
@@ -4617,11 +4618,11 @@ ModelInfo D_800C0280 = {
     0x91,
 };
 
-/*800C02B0*/ static ModelInfoUnkStruct1 D_800C02B0 = {0xE65DC, NULL, 0, 0x30C};
+/*800C02B0*/ static ModelVertexInfo D_800C02B0 = {(s32)models_469FE0_bin+0x1F7C, NULL, 0, 0x30C};
 
 /*800C02BC*/
 ModelInfo D_800C02BC = {
-    0xE4660,
+    (s32)models_469FE0_bin,
     NULL,
     0x1F7C,
     0x1F7C,
@@ -4642,11 +4643,11 @@ ModelInfo D_800C02BC = {
     0x98,
 };
 
-/*800C02EC*/ static ModelInfoUnkStruct1 D_800C02EC = {0xE7288, NULL, 0, 0x10E};
+/*800C02EC*/ static ModelVertexInfo D_800C02EC = {(s32)models_46C270_bin+0x998, NULL, 0, 0x10E};
 
 /*800C02F8*/
 ModelInfo D_800C02F8 = {
-    0xE68F0,
+    (s32)models_46C270_bin,
     NULL,
     0x996,
     0x996,
@@ -4667,11 +4668,11 @@ ModelInfo D_800C02F8 = {
     0x30,
 };
 
-/*800C0328*/ static ModelInfoUnkStruct1 D_800C0328 = {0xE9250, NULL, 0, 0x2B8};
+/*800C0328*/ static ModelVertexInfo D_800C0328 = {(s32)models_46CD20_bin+0x1EB0, NULL, 0, 0x2B8};
 
 /*800C0334*/
 ModelInfo D_800C0334 = {
-    0xE73A0,
+    (s32)models_46CD20_bin,
     NULL,
     0x1EB0,
     0x1EB0,
@@ -4692,11 +4693,11 @@ ModelInfo D_800C0334 = {
     0x3C,
 };
 
-/*800C0364*/ static ModelInfoUnkStruct1 D_800C0364 = {0xEBDF4, NULL, 0, 0x2B2};
+/*800C0364*/ static ModelVertexInfo D_800C0364 = {(s32)models_46EE90_bin+0x28E4, NULL, 0, 0x2B2};
 
 /*800C0370*/
 ModelInfo D_800C0370 = {
-    0xE9510,
+    (s32)models_46EE90_bin,
     NULL,
     0x28E2,
     0x28E2,
@@ -4717,11 +4718,11 @@ ModelInfo D_800C0370 = {
     0xD6,
 };
 
-/*800C03A0*/ static ModelInfoUnkStruct1 D_800C03A0 = {0xED060, NULL, 0, 0x240};
+/*800C03A0*/ static ModelVertexInfo D_800C03A0 = {(s32)models_471A30_bin+0xFB0, NULL, 0, 0x240};
 
 /*800C03AC*/
 ModelInfo D_800C03AC = {
-    0xEC0B0,
+    (s32)models_471A30_bin,
     NULL,
     0xFB0,
     0xFB0,
@@ -4742,11 +4743,11 @@ ModelInfo D_800C03AC = {
     0x72,
 };
 
-/*800C03DC*/ static ModelInfoUnkStruct1 D_800C03DC = {0xED7D0, NULL, 0, 0x60};
+/*800C03DC*/ static ModelVertexInfo D_800C03DC = {(s32)models_472C20_bin+0x530, NULL, 0, 0x60};
 
 /*800C03E8*/
 ModelInfo D_800C03E8 = {
-    0xED2A0,
+    (s32)models_472C20_bin,
     NULL,
     0x530,
     0x530,
@@ -4767,11 +4768,11 @@ ModelInfo D_800C03E8 = {
     0x14,
 };
 
-/*800C0418*/ static ModelInfoUnkStruct1 D_800C0418 = {0xEF378, NULL, 0, 0x5E8};
+/*800C0418*/ static ModelVertexInfo D_800C0418 = {(s32)models_4731B0_bin+0x1B48, NULL, 0, 0x5E8};
 
 /*800C0424*/
 ModelInfo D_800C0424 = {
-    0xED830,
+    (s32)models_4731B0_bin,
     NULL,
     0x1B48,
     0x1B48,
@@ -4792,11 +4793,11 @@ ModelInfo D_800C0424 = {
     0x165,
 };
 
-/*800C0454*/ static ModelInfoUnkStruct1 D_800C0454 = {0xF07C0, NULL, 0, 0x4CE};
+/*800C0454*/ static ModelVertexInfo D_800C0454 = {(s32)models_4752E0_bin+0xE60, NULL, 0, 0x4CE};
 
 /*800C0460*/
 ModelInfo D_800C0460 = {
-    0xEF960,
+    (s32)models_4752E0_bin,
     NULL,
     0xE5E,
     0xE5E,
@@ -4817,11 +4818,11 @@ ModelInfo D_800C0460 = {
     0,
 };
 
-/*800C0490*/ static ModelInfoUnkStruct1 D_800C0490 = {0xF1254, NULL, 0, 0xCC};
+/*800C0490*/ static ModelVertexInfo D_800C0490 = {(s32)models_476610_bin+0x5C4, NULL, 0, 0xCC};
 
 /*800C049C*/
 ModelInfo D_800C049C = {
-    0xF0C90,
+    (s32)models_476610_bin,
     NULL,
     0x5C4,
     0x5C4,
@@ -4842,11 +4843,11 @@ ModelInfo D_800C049C = {
     0x2E,
 };
 
-/*800C04CC*/ static ModelInfoUnkStruct1 D_800C04CC = {0xF235C, NULL, 0, 0x192};
+/*800C04CC*/ static ModelVertexInfo D_800C04CC = {(s32)models_476CA0_bin+0x103C, NULL, 0, 0x192};
 
 /*800C04D8*/
 ModelInfo D_800C04D8 = {
-    0xF1320,
+    (s32)models_476CA0_bin,
     NULL,
     0x103A,
     0x103A,
@@ -4867,11 +4868,11 @@ ModelInfo D_800C04D8 = {
     0x34,
 };
 
-/*800C0508*/ static ModelInfoUnkStruct1 D_800C0508 = {0xF3308, NULL, 0, 0xF6};
+/*800C0508*/ static ModelVertexInfo D_800C0508 = {(s32)models_477E70_bin+0xE18, NULL, 0, 0xF6};
 
 /*800C0514*/
 ModelInfo D_800C0514 = {
-    0xF24F0,
+    (s32)models_477E70_bin,
     NULL,
     0xE16,
     0xE16,
@@ -4892,11 +4893,11 @@ ModelInfo D_800C0514 = {
     0x20,
 };
 
-/*800C0544*/ static ModelInfoUnkStruct1 D_800C0544 = {0xF3FD8, NULL, 0, 0x1E0};
+/*800C0544*/ static ModelVertexInfo D_800C0544 = {(s32)models_478D80_bin+0xBD8, NULL, 0, 0x1E0};
 
 /*800C0550*/
 ModelInfo D_800C0550 = {
-    0xF3400,
+    (s32)models_478D80_bin,
     NULL,
     0xBD8,
     0xBD8,
@@ -4917,11 +4918,11 @@ ModelInfo D_800C0550 = {
     0x37,
 };
 
-/*800C0580*/ static ModelInfoUnkStruct1 D_800C0580 = {0xF455C, NULL, 0, 0xEA};
+/*800C0580*/ static ModelVertexInfo D_800C0580 = {(s32)models_479B40_bin+0x39C, NULL, 0, 0xEA};
 
 /*800C058C*/
 ModelInfo D_800C058C = {
-    0xF41C0,
+    (s32)models_479B40_bin,
     NULL,
     0x39A,
     0x39A,
@@ -4942,11 +4943,11 @@ ModelInfo D_800C058C = {
     0xF,
 };
 
-/*800C05BC*/ static ModelInfoUnkStruct1 D_800C05BC = {0xF4FB0, NULL, 0, 0xA8};
+/*800C05BC*/ static ModelVertexInfo D_800C05BC = {(s32)models_479FD0_bin+0x960, NULL, 0, 0xA8};
 
 /*800C05C8*/
 ModelInfo D_800C05C8 = {
-    0xF4650,
+    (s32)models_479FD0_bin,
     NULL,
     0x960,
     0x960,
@@ -4967,11 +4968,11 @@ ModelInfo D_800C05C8 = {
     0,
 };
 
-/*800C05F8*/ static ModelInfoUnkStruct1 D_800C05F8 = {0xF59B0, NULL, 0, 0x198};
+/*800C05F8*/ static ModelVertexInfo D_800C05F8 = {(s32)models_47A9E0_bin+0x950, NULL, 0, 0x198};
 
 /*800C0604*/
 ModelInfo D_800C0604 = {
-    0xF5060,
+    (s32)models_47A9E0_bin,
     NULL,
     0x950,
     0x950,
@@ -4992,11 +4993,11 @@ ModelInfo D_800C0604 = {
     0x8D,
 };
 
-/*800C0634*/ static ModelInfoUnkStruct1 D_800C0634 = {0xF69D8, NULL, 0, 0x2D0};
+/*800C0634*/ static ModelVertexInfo D_800C0634 = {(s32)models_47B4D0_bin+0xE88, NULL, 0, 0x2D0};
 
 /*800C0640*/
 ModelInfo D_800C0640 = {
-    0xF5B50,
+    (s32)models_47B4D0_bin,
     NULL,
     0xE88,
     0xE88,
@@ -5017,11 +5018,11 @@ ModelInfo D_800C0640 = {
     0x1A1,
 };
 
-/*800C0670*/ static ModelInfoUnkStruct1 D_800C0670 = {0xF7324, NULL, 0, 0x222};
+/*800C0670*/ static ModelVertexInfo D_800C0670 = {(s32)models_47C630_bin+0x674, NULL, 0, 0x222};
 
 /*800C067C*/
 ModelInfo D_800C067C = {
-    0xF6CB0,
+    (s32)models_47C630_bin,
     NULL,
     0x672,
     0x672,
@@ -5042,11 +5043,11 @@ ModelInfo D_800C067C = {
     0x1A2,
 };
 
-/*800C06AC*/ static ModelInfoUnkStruct1 D_800C06AC = {0xFA818, NULL, 0, 0x2A0};
+/*800C06AC*/ static ModelVertexInfo D_800C06AC = {(s32)models_47CED0_bin+0x32C8, NULL, 0, 0x2A0};
 
 /*800C06B8*/
 ModelInfo D_800C06B8 = {
-    0xF7550,
+    (s32)models_47CED0_bin,
     NULL,
     0x32C8,
     0x32C8,
@@ -5067,11 +5068,11 @@ ModelInfo D_800C06B8 = {
     0x38,
 };
 
-/*800C06E8*/ static ModelInfoUnkStruct1 D_800C06E8 = {0xFBE1C, NULL, 0, 0x27C};
+/*800C06E8*/ static ModelVertexInfo D_800C06E8 = {(s32)models_480440_bin+0x135C, NULL, 0, 0x27C};
 
 /*800C06F4*/
 ModelInfo D_800C06F4 = {
-    0xFAAC0,
+    (s32)models_480440_bin,
     NULL,
     0x135C,
     0x135C,
@@ -5092,11 +5093,11 @@ ModelInfo D_800C06F4 = {
     0x30,
 };
 
-/*800C0724*/ static ModelInfoUnkStruct1 D_800C0724 = {0xFFC74, NULL, 0, 0x2AC};
+/*800C0724*/ static ModelVertexInfo D_800C0724 = {(s32)models_481A20_bin+0x3BD4, NULL, 0, 0x2AC};
 
 /*800C0730*/
 ModelInfo D_800C0730 = {
-    0xFC0A0,
+    (s32)models_481A20_bin,
     NULL,
     0x3BD4,
     0x3BD4,
@@ -5117,11 +5118,11 @@ ModelInfo D_800C0730 = {
     0x45,
 };
 
-/*800C0760*/ static ModelInfoUnkStruct1 D_800C0760 = {0x1008F8, NULL, 0, 0x150};
+/*800C0760*/ static ModelVertexInfo D_800C0760 = {(s32)models_4858A0_bin+0x9D8, NULL, 0, 0x150};
 
 /*800C076C*/
 ModelInfo D_800C076C = {
-    0xFFF20,
+    (s32)models_4858A0_bin,
     NULL,
     0x9D8,
     0x9D8,
@@ -5142,11 +5143,11 @@ ModelInfo D_800C076C = {
     0x2C,
 };
 
-/*800C079C*/ static ModelInfoUnkStruct1 D_800C079C = {0x1032F0, NULL, 0, 0x468};
+/*800C079C*/ static ModelVertexInfo D_800C079C = {(s32)models_4863D0_bin+0x28A0, NULL, 0, 0x468};
 
 /*800C07A8*/
 ModelInfo D_800C07A8 = {
-    0x100A50,
+    (s32)models_4863D0_bin,
     NULL,
     0x28A0,
     0x28A0,
@@ -5167,11 +5168,11 @@ ModelInfo D_800C07A8 = {
     -0x480,
 };
 
-/*800C07D8*/ static ModelInfoUnkStruct1 D_800C07D8 = {0x104274, NULL, 0, 0x192};
+/*800C07D8*/ static ModelVertexInfo D_800C07D8 = {(s32)models_4890E0_bin+0xB14, NULL, 0, 0x192};
 
 /*800C07E4*/
 ModelInfo D_800C07E4 = {
-    0x103760,
+    (s32)models_4890E0_bin,
     NULL,
     0xB12,
     0xB12,
@@ -5192,11 +5193,11 @@ ModelInfo D_800C07E4 = {
     -0x86,
 };
 
-/*800C0814*/ static ModelInfoUnkStruct1 D_800C0814 = {0x108648, NULL, 0, 0xCA8};
+/*800C0814*/ static ModelVertexInfo D_800C0814 = {(s32)models_489D90_bin+0x4238, NULL, 0, 0xCA8};
 
 /*800C0820*/
 ModelInfo D_800C0820 = {
-    0x104410,
+    (s32)models_489D90_bin,
     NULL,
     0x4238,
     0x4238,
@@ -5217,11 +5218,11 @@ ModelInfo D_800C0820 = {
     -0x48,
 };
 
-/*800C0850*/ static ModelInfoUnkStruct1 D_800C0850 = {0x10F748, NULL, 0, 0x498};
+/*800C0850*/ static ModelVertexInfo D_800C0850 = {(s32)models_48EC70_bin+0x6458, NULL, 0, 0x498};
 
 /*800C085C*/
 ModelInfo D_800C085C = {
-    0x1092F0,
+    (s32)models_48EC70_bin,
     NULL,
     0x6458,
     0x6458,
@@ -5242,11 +5243,11 @@ ModelInfo D_800C085C = {
     0xD9,
 };
 
-/*800C088C*/ static ModelInfoUnkStruct1 D_800C088C = {0x114324, NULL, 0, 0x48C};
+/*800C088C*/ static ModelVertexInfo D_800C088C = {(s32)models_495560_bin+0x4744, NULL, 0, 0x48C};
 
 /*800C0898*/
 ModelInfo D_800C0898 = {
-    0x10FBE0,
+    (s32)models_495560_bin,
     NULL,
     0x4744,
     0x4744,
@@ -5290,11 +5291,11 @@ ModelInfo D_800C08C8 = {
     0x140,
 };
 
-/*800C08F8*/ static ModelInfoUnkStruct1 D_800C08F8 = {0x114DC8, NULL, 0, 0x156};
+/*800C08F8*/ static ModelVertexInfo D_800C08F8 = {(s32)models_49A130_bin+0x618, NULL, 0, 0x156};
 
 /*800C0904*/
 ModelInfo D_800C0904 = {
-    0x1147B0,
+    (s32)models_49A130_bin,
     NULL,
     0x616,
     0x616,
@@ -5315,11 +5316,11 @@ ModelInfo D_800C0904 = {
     0x35,
 };
 
-/*800C0934*/ static ModelInfoUnkStruct1 D_800C0934 = {0x11532C, NULL, 0, 0x11A};
+/*800C0934*/ static ModelVertexInfo D_800C0934 = {(s32)models_49A8A0_bin+0x40C, NULL, 0, 0x11A};
 
 /*800C0940*/
 ModelInfo D_800C0940 = {
-    0x114F20,
+    (s32)models_49A8A0_bin,
     NULL,
     0x40A,
     0x40A,
@@ -5340,11 +5341,11 @@ ModelInfo D_800C0940 = {
     0xC,
 };
 
-/*800C0970*/ static ModelInfoUnkStruct1 D_800C0970 = {0x115DF8, NULL, 0, 0x1E0};
+/*800C0970*/ static ModelVertexInfo D_800C0970 = {(s32)models_49ADD0_bin+0x9A8, NULL, 0, 0x1E0};
 
 /*800C097C*/
 ModelInfo D_800C097C = {
-    0x115450,
+    (s32)models_49ADD0_bin,
     NULL,
     0x9A8,
     0x9A8,
@@ -5365,11 +5366,11 @@ ModelInfo D_800C097C = {
     0x29,
 };
 
-/*800C09AC*/ static ModelInfoUnkStruct1 D_800C09AC = {0x116944, NULL, 0, 0x18C};
+/*800C09AC*/ static ModelVertexInfo D_800C09AC = {(s32)models_49B960_bin+0x964, NULL, 0, 0x18C};
 
 /*800C09B8*/
 ModelInfo D_800C09B8 = {
-    0x115FE0,
+    (s32)models_49B960_bin,
     NULL,
     0x964,
     0x964,
@@ -5390,11 +5391,11 @@ ModelInfo D_800C09B8 = {
     0x42,
 };
 
-/*800C09E8*/ static ModelInfoUnkStruct1 D_800C09E8 = {0x119030, NULL, 0, 0x1B6};
+/*800C09E8*/ static ModelVertexInfo D_800C09E8 = {(s32)models_49C450_bin+0x2560, NULL, 0, 0x1B6};
 
 /*800C09F4*/
 ModelInfo D_800C09F4 = {
-    0x116AD0,
+    (s32)models_49C450_bin,
     NULL,
     0x255E,
     0x255E,
@@ -5415,11 +5416,11 @@ ModelInfo D_800C09F4 = {
     0x2E,
 };
 
-/*800C0A24*/ static ModelInfoUnkStruct1 D_800C0A24 = {0x11A29C, NULL, 0, 0x1F2};
+/*800C0A24*/ static ModelVertexInfo D_800C0A24 = {(s32)models_49EB70_bin+0x10AC, NULL, 0, 0x1F2};
 
 /*800C0A30*/
 ModelInfo D_800C0A30 = {
-    0x1191F0,
+    (s32)models_49EB70_bin,
     NULL,
     0x10AA,
     0x10AA,
@@ -5440,11 +5441,11 @@ ModelInfo D_800C0A30 = {
     0x15,
 };
 
-/*800C0A60*/ static ModelInfoUnkStruct1 D_800C0A60 = {0x11C478, NULL, 0, 0x1E0};
+/*800C0A60*/ static ModelVertexInfo D_800C0A60 = {(s32)models_49FE10_bin+0x1FE8, NULL, 0, 0x1E0};
 
 /*800C0A6C*/
 ModelInfo D_800C0A6C = {
-    0x11A490,
+    (s32)models_49FE10_bin,
     NULL,
     0x1FE8,
     0x1FE8,
@@ -5465,11 +5466,11 @@ ModelInfo D_800C0A6C = {
     0x30,
 };
 
-/*800C0A9C*/ static ModelInfoUnkStruct1 D_800C0A9C = {0x11D024, NULL, 0, 0x8A};
+/*800C0A9C*/ static ModelVertexInfo D_800C0A9C = {(s32)models_4A1FE0_bin+0x9C4, NULL, 0, 0x8A};
 
 /*800C0AA8*/
 ModelInfo D_800C0AA8 = {
-    0x11C660,
+    (s32)models_4A1FE0_bin,
     NULL,
     0x9C2,
     0x9C2,
@@ -5490,11 +5491,11 @@ ModelInfo D_800C0AA8 = {
     0x1F,
 };
 
-/*800C0AD8*/ static ModelInfoUnkStruct1 D_800C0AD8 = {0x11D380, NULL, 0, 0x30};
+/*800C0AD8*/ static ModelVertexInfo D_800C0AD8 = {(s32)models_4A2A30_bin+0x2D0, NULL, 0, 0x30};
 
 /*800C0AE4*/
 ModelInfo D_800C0AE4 = {
-    0x11D0B0,
+    (s32)models_4A2A30_bin,
     NULL,
     0x2D0,
     0x2D0,
@@ -5515,11 +5516,11 @@ ModelInfo D_800C0AE4 = {
     0x12,
 };
 
-/*800C0B14*/ static ModelInfoUnkStruct1 D_800C0B14 = {0x11D69C, NULL, 0, 0x42};
+/*800C0B14*/ static ModelVertexInfo D_800C0B14 = {(s32)models_4A2D30_bin+0x2EC, NULL, 0, 0x42};
 
 /*800C0B20*/
 ModelInfo D_800C0B20 = {
-    0x11D3B0,
+    (s32)models_4A2D30_bin,
     NULL,
     0x2EA,
     0x2EA,
@@ -5540,11 +5541,11 @@ ModelInfo D_800C0B20 = {
     0x16,
 };
 
-/*800C0B50*/ static ModelInfoUnkStruct1 D_800C0B50 = {0x11E7C8, NULL, 0, 0x48};
+/*800C0B50*/ static ModelVertexInfo D_800C0B50 = {(s32)models_4A3060_bin+0x10E8, NULL, 0, 0x48};
 
 /*800C0B5C*/
 ModelInfo D_800C0B5C = {
-    0x11D6E0,
+    (s32)models_4A3060_bin,
     NULL,
     0x10E8,
     0x10E8,
@@ -5565,11 +5566,11 @@ ModelInfo D_800C0B5C = {
     0xB0,
 };
 
-/*800C0B8C*/ static ModelInfoUnkStruct1 D_800C0B8C = {0x11F94C, NULL, 0, 0x72};
+/*800C0B8C*/ static ModelVertexInfo D_800C0B8C = {(s32)models_4A4190_bin+0x113C, NULL, 0, 0x72};
 
 /*800C0B98*/
 ModelInfo D_800C0B98 = {
-    0x11E810,
+    (s32)models_4A4190_bin,
     NULL,
     0x113A,
     0x113A,
@@ -5590,11 +5591,11 @@ ModelInfo D_800C0B98 = {
     0xB0,
 };
 
-/*800C0BC8*/ static ModelInfoUnkStruct1 D_800C0BC8 = {0x120A64, NULL, 0, 0x24};
+/*800C0BC8*/ static ModelVertexInfo D_800C0BC8 = {(s32)models_4A5340_bin+0x10A4, NULL, 0, 0x24};
 
 /*800C0BD4*/
 ModelInfo D_800C0BD4 = {
-    0x11F9C0,
+    (s32)models_4A5340_bin,
     NULL,
     0x10A4,
     0x10A4,
@@ -5615,11 +5616,11 @@ ModelInfo D_800C0BD4 = {
     0xB2,
 };
 
-/*800C0C04*/ static ModelInfoUnkStruct1 D_800C0C04 = {0x1223B4, NULL, 0, 0x54};
+/*800C0C04*/ static ModelVertexInfo D_800C0C04 = {(s32)models_4A6410_bin+0x1924, NULL, 0, 0x54};
 
 /*800C0C10*/
 ModelInfo D_800C0C10 = {
-    0x120A90,
+    (s32)models_4A6410_bin,
     NULL,
     0x1924,
     0x1924,
@@ -5640,11 +5641,11 @@ ModelInfo D_800C0C10 = {
     0xB2,
 };
 
-/*800C0C40*/ static ModelInfoUnkStruct1 D_800C0C40 = {0x1234E4, NULL, 0, 0x3C};
+/*800C0C40*/ static ModelVertexInfo D_800C0C40 = {(s32)models_4A7D90_bin+0x10D4, NULL, 0, 0x3C};
 
 /*800C0C4C*/
 ModelInfo D_800C0C4C = {
-    0x122410,
+    (s32)models_4A7D90_bin,
     NULL,
     0x10D4,
     0x10D4,
@@ -5665,11 +5666,11 @@ ModelInfo D_800C0C4C = {
     0xB2,
 };
 
-/*800C0C7C*/ static ModelInfoUnkStruct1 D_800C0C7C = {0x124E40, NULL, 0, 0x4E};
+/*800C0C7C*/ static ModelVertexInfo D_800C0C7C = {(s32)models_4A8EA0_bin+0x1920, NULL, 0, 0x4E};
 
 /*800C0C88*/
 ModelInfo D_800C0C88 = {
-    0x123520,
+    (s32)models_4A8EA0_bin,
     NULL,
     0x191E,
     0x191E,
@@ -5690,11 +5691,11 @@ ModelInfo D_800C0C88 = {
     0xB2,
 };
 
-/*800C0CB8*/ static ModelInfoUnkStruct1 D_800C0CB8 = {0x1266F8, NULL, 0, 0x2BE};
+/*800C0CB8*/ static ModelVertexInfo D_800C0CB8 = {(s32)models_4AA810_bin+0x1868, NULL, 0, 0x2BE};
 
 /*800C0CC4*/
 ModelInfo D_800C0CC4 = {
-    0x124E90,
+    (s32)models_4AA810_bin,
     NULL,
     0x1866,
     0x1866,
@@ -5715,11 +5716,11 @@ ModelInfo D_800C0CC4 = {
     0x43,
 };
 
-/*800C0CF4*/ static ModelInfoUnkStruct1 D_800C0CF4 = {0x1273A4, NULL, 0, 0xA2};
+/*800C0CF4*/ static ModelVertexInfo D_800C0CF4 = {(s32)models_4AC340_bin+0x9E4, NULL, 0, 0xA2};
 
 /*800C0D00*/
 ModelInfo D_800C0D00 = {
-    0x1269C0,
+    (s32)models_4AC340_bin,
     NULL,
     0x9E2,
     0x9E2,
@@ -5740,11 +5741,11 @@ ModelInfo D_800C0D00 = {
     0x2B,
 };
 
-/*800C0D30*/ static ModelInfoUnkStruct1 D_800C0D30 = {0x12934C, NULL, 0, 0x552};
+/*800C0D30*/ static ModelVertexInfo D_800C0D30 = {(s32)models_4ACDD0_bin+0x1EFC, NULL, 0, 0x552};
 
 /*800C0D3C*/
 ModelInfo D_800C0D3C = {
-    0x127450,
+    (s32)models_4ACDD0_bin,
     NULL,
     0x1EFA,
     0x1EFA,
@@ -5765,11 +5766,11 @@ ModelInfo D_800C0D3C = {
     0xA5,
 };
 
-/*800C0D6C*/ static ModelInfoUnkStruct1 D_800C0D6C = {0x12A208, NULL, 0, 0x186};
+/*800C0D6C*/ static ModelVertexInfo D_800C0D6C = {(s32)models_4AF220_bin+0x968, NULL, 0, 0x186};
 
 /*800C0D78*/
 ModelInfo D_800C0D78 = {
-    0x1298A0,
+    (s32)models_4AF220_bin,
     NULL,
     0x966,
     0x966,
@@ -5790,11 +5791,11 @@ ModelInfo D_800C0D78 = {
     0x56,
 };
 
-/*800C0DA8*/ static ModelInfoUnkStruct1 D_800C0DA8 = {0x12ADA4, NULL, 0, 0x162};
+/*800C0DA8*/ static ModelVertexInfo D_800C0DA8 = {(s32)models_4AFD10_bin+0xA14, NULL, 0, 0x162};
 
 /*800C0DB4*/
 ModelInfo D_800C0DB4 = {
-    0x12A390,
+    (s32)models_4AFD10_bin,
     NULL,
     0xA12,
     0xA12,
@@ -5815,11 +5816,11 @@ ModelInfo D_800C0DB4 = {
     0x106,
 };
 
-/*800C0DE4*/ static ModelInfoUnkStruct1 D_800C0DE4 = {0x12C694, NULL, 0, 0x18C};
+/*800C0DE4*/ static ModelVertexInfo D_800C0DE4 = {(s32)models_4B0890_bin+0x1784, NULL, 0, 0x18C};
 
 /*800C0DF0*/
 ModelInfo D_800C0DF0 = {
-    0x12AF10,
+    (s32)models_4B0890_bin,
     NULL,
     0x1784,
     0x1784,
@@ -5840,11 +5841,11 @@ ModelInfo D_800C0DF0 = {
     0x64,
 };
 
-/*800C0E20*/ static ModelInfoUnkStruct1 D_800C0E20 = {0x12D974, NULL, 0, 0x84};
+/*800C0E20*/ static ModelVertexInfo D_800C0E20 = {(s32)models_4B21A0_bin+0x1154, NULL, 0, 0x84};
 
 /*800C0E2C*/
 ModelInfo D_800C0E2C = {
-    0x12C820,
+    (s32)models_4B21A0_bin,
     NULL,
     0x1154,
     0x1154,
@@ -5865,11 +5866,11 @@ ModelInfo D_800C0E2C = {
     0x7D,
 };
 
-/*800C0E5C*/ static ModelInfoUnkStruct1 D_800C0E5C = {0x12EB54, NULL, 0, 0x84};
+/*800C0E5C*/ static ModelVertexInfo D_800C0E5C = {(s32)models_4B3380_bin+0x1154, NULL, 0, 0x84};
 
 /*800C0E68*/
 ModelInfo D_800C0E68 = {
-    0x12DA00,
+    (s32)models_4B3380_bin,
     NULL,
     0x1154,
     0x1154,
@@ -5890,11 +5891,11 @@ ModelInfo D_800C0E68 = {
     0x3E,
 };
 
-/*800C0E98*/ static ModelInfoUnkStruct1 D_800C0E98 = {0x12F14C, NULL, 0, 0x162};
+/*800C0E98*/ static ModelVertexInfo D_800C0E98 = {(s32)models_4B4560_bin+0x56C, NULL, 0, 0x162};
 
 /*800C0EA4*/
 ModelInfo D_800C0EA4 = {
-    0x12EBE0,
+    (s32)models_4B4560_bin,
     NULL,
     0x56A,
     0x56A,
@@ -5915,11 +5916,11 @@ ModelInfo D_800C0EA4 = {
     0x50,
 };
 
-/*800C0ED4*/ static ModelInfoUnkStruct1 D_800C0ED4 = {0x12F5DC, NULL, 0, 0x84};
+/*800C0ED4*/ static ModelVertexInfo D_800C0ED4 = {(s32)models_4B4C30_bin+0x32C, NULL, 0, 0x84};
 
 /*800C0EE0*/
 ModelInfo D_800C0EE0 = {
-    0x12F2B0,
+    (s32)models_4B4C30_bin,
     NULL,
     0x32C,
     0x32C,
@@ -5940,11 +5941,11 @@ ModelInfo D_800C0EE0 = {
     0x49,
 };
 
-/*800C0F10*/ static ModelInfoUnkStruct1 D_800C0F10 = {0x131480, NULL, 0, 0x180};
+/*800C0F10*/ static ModelVertexInfo D_800C0F10 = {(s32)models_4B4FE0_bin+0x1E20, NULL, 0, 0x180};
 
 /*800C0F1C*/
 ModelInfo D_800C0F1C = {
-    0x12F660,
+    (s32)models_4B4FE0_bin,
     NULL,
     0x1E20,
     0x1E20,
@@ -5965,11 +5966,11 @@ ModelInfo D_800C0F1C = {
     0x12B,
 };
 
-/*800C0F4C*/ static ModelInfoUnkStruct1 D_800C0F4C = {0x131914, NULL, 0, 0x54};
+/*800C0F4C*/ static ModelVertexInfo D_800C0F4C = {(s32)models_4B6F80_bin+0x314, NULL, 0, 0x54};
 
 /*800C0F58*/
 ModelInfo D_800C0F58 = {
-    0x131600,
+    (s32)models_4B6F80_bin,
     NULL,
     0x314,
     0x314,
@@ -5990,11 +5991,11 @@ ModelInfo D_800C0F58 = {
     0x33,
 };
 
-/*800C0F88*/ static ModelInfoUnkStruct1 D_800C0F88 = {0x131C98, NULL, 0, 0x60};
+/*800C0F88*/ static ModelVertexInfo D_800C0F88 = {(s32)models_4B72F0_bin+0x328, NULL, 0, 0x60};
 
 /*800C0F94*/
 ModelInfo D_800C0F94 = {
-    0x131970,
+    (s32)models_4B72F0_bin,
     NULL,
     0x328,
     0x328,
@@ -6015,11 +6016,11 @@ ModelInfo D_800C0F94 = {
     0x8E,
 };
 
-/*800C0FC4*/ static ModelInfoUnkStruct1 D_800C0FC4 = {0x132F04, NULL, 0, 0xCC};
+/*800C0FC4*/ static ModelVertexInfo D_800C0FC4 = {(s32)models_4B7680_bin+0x1204, NULL, 0, 0xCC};
 
 /*800C0FD0*/
 ModelInfo D_800C0FD0 = {
-    0x131D00,
+    (s32)models_4B7680_bin,
     NULL,
     0x1204,
     0x1204,
@@ -6040,11 +6041,11 @@ ModelInfo D_800C0FD0 = {
     0x17,
 };
 
-/*800C1000*/ static ModelInfoUnkStruct1 D_800C1000 = {0x135F50, NULL, 0, 0x31E};
+/*800C1000*/ static ModelVertexInfo D_800C1000 = {(s32)models_4B8950_bin+0x2F80, NULL, 0, 0x31E};
 
 /*800C100C*/
 ModelInfo D_800C100C = {
-    0x132FD0,
+    (s32)models_4B8950_bin,
     NULL,
     0x2F7E,
     0x2F7E,
@@ -6065,11 +6066,11 @@ ModelInfo D_800C100C = {
     0xF8,
 };
 
-/*800C103C*/ static ModelInfoUnkStruct1 D_800C103C = {0x1394A4, NULL, 0, 0x3B4};
+/*800C103C*/ static ModelVertexInfo D_800C103C = {(s32)models_4BBBF0_bin+0x3234, NULL, 0, 0x3B4};
 
 /*800C1048*/
 ModelInfo D_800C1048 = {
-    0x136270,
+    (s32)models_4BBBF0_bin,
     NULL,
     0x3234,
     0x3234,
@@ -6090,11 +6091,11 @@ ModelInfo D_800C1048 = {
     0x23,
 };
 
-/*800C1078*/ static ModelInfoUnkStruct1 D_800C1078 = {0x13A114, NULL, 0, 0x3C};
+/*800C1078*/ static ModelVertexInfo D_800C1078 = {(s32)models_4BF1E0_bin+0x8B4, NULL, 0, 0x3C};
 
 /*800C1084*/
 ModelInfo D_800C1084 = {
-    0x139860,
+    (s32)models_4BF1E0_bin,
     NULL,
     0x8B4,
     0x8B4,
@@ -6115,11 +6116,11 @@ ModelInfo D_800C1084 = {
     0x190,
 };
 
-/*800C10B4*/ static ModelInfoUnkStruct1 D_800C10B4 = {0x13ABC4, NULL, 0, 0x12C};
+/*800C10B4*/ static ModelVertexInfo D_800C10B4 = {(s32)models_4BFAD0_bin+0xA74, NULL, 0, 0x12C};
 
 /*800C10C0*/
 ModelInfo D_800C10C0 = {
-    0x13A150,
+    (s32)models_4BFAD0_bin,
     NULL,
     0xA74,
     0xA74,
@@ -6140,11 +6141,11 @@ ModelInfo D_800C10C0 = {
     0x190,
 };
 
-/*800C10F0*/ static ModelInfoUnkStruct1 D_800C10F0 = {0x13B738, NULL, 0, 0x10E};
+/*800C10F0*/ static ModelVertexInfo D_800C10F0 = {(s32)models_4C0670_bin+0xA48, NULL, 0, 0x10E};
 
 /*800C10FC*/
 ModelInfo D_800C10FC = {
-    0x13ACF0,
+    (s32)models_4C0670_bin,
     NULL,
     0xA46,
     0xA46,
@@ -6165,11 +6166,11 @@ ModelInfo D_800C10FC = {
     0x87,
 };
 
-/*800C112C*/ static ModelInfoUnkStruct1 D_800C112C = {0x13C4A0, NULL, 0, 0xF6};
+/*800C112C*/ static ModelVertexInfo D_800C112C = {(s32)models_4C11D0_bin+0xC50, NULL, 0, 0xF6};
 
 /*800C1138*/
 ModelInfo D_800C1138 = {
-    0x13B850,
+    (s32)models_4C11D0_bin,
     NULL,
     0xC4E,
     0xC4E,
@@ -6190,11 +6191,11 @@ ModelInfo D_800C1138 = {
     0x18F,
 };
 
-/*800C1168*/ static ModelInfoUnkStruct1 D_800C1168 = {0x13D2C4, NULL, 0, 0x162};
+/*800C1168*/ static ModelVertexInfo D_800C1168 = {(s32)models_4C1F20_bin+0xD24, NULL, 0, 0x162};
 
 /*800C1174*/
 ModelInfo D_800C1174 = {
-    0x13C5A0,
+    (s32)models_4C1F20_bin,
     NULL,
     0xD22,
     0xD22,
@@ -6215,11 +6216,11 @@ ModelInfo D_800C1174 = {
     0x190,
 };
 
-/*800C11A4*/ static ModelInfoUnkStruct1 D_800C11A4 = {0x13DE88, NULL, 0, 0xF6};
+/*800C11A4*/ static ModelVertexInfo D_800C11A4 = {(s32)models_4C2DB0_bin+0xA58, NULL, 0, 0xF6};
 
 /*800C11B0*/
 ModelInfo D_800C11B0 = {
-    0x13D430,
+    (s32)models_4C2DB0_bin,
     NULL,
     0xA56,
     0xA56,
@@ -6240,11 +6241,11 @@ ModelInfo D_800C11B0 = {
     0xE,
 };
 
-/*800C11E0*/ static ModelInfoUnkStruct1 D_800C11E0 = {0x13E834, NULL, 0, 0x3C};
+/*800C11E0*/ static ModelVertexInfo D_800C11E0 = {(s32)models_4C3900_bin+0x8B4, NULL, 0, 0x3C};
 
 /*800C11EC*/
 ModelInfo D_800C11EC = {
-    0x13DF80,
+    (s32)models_4C3900_bin,
     NULL,
     0x8B4,
     0x8B4,
@@ -6265,11 +6266,11 @@ ModelInfo D_800C11EC = {
     0xD,
 };
 
-/*800C121C*/ static ModelInfoUnkStruct1 D_800C121C = {0x13F388, NULL, 0, 0x186};
+/*800C121C*/ static ModelVertexInfo D_800C121C = {(s32)models_4C41F0_bin+0xB18, NULL, 0, 0x186};
 
 /*800C1228*/
 ModelInfo D_800C1228 = {
-    0x13E870,
+    (s32)models_4C41F0_bin,
     NULL,
     0xB16,
     0xB16,
@@ -6290,11 +6291,11 @@ ModelInfo D_800C1228 = {
     0xDF,
 };
 
-/*800C1258*/ static ModelInfoUnkStruct1 D_800C1258 = {0x143230, NULL, 0, 0x486};
+/*800C1258*/ static ModelVertexInfo D_800C1258 = {(s32)models_4C4E90_bin+0x3D20, NULL, 0, 0x486};
 
 /*800C1264*/
 ModelInfo D_800C1264 = {
-    0x13F510,
+    (s32)models_4C4E90_bin,
     NULL,
     0x3D1E,
     0x3D1E,
@@ -6315,11 +6316,11 @@ ModelInfo D_800C1264 = {
     0xA9,
 };
 
-/*800C1294*/ static ModelInfoUnkStruct1 D_800C1294 = {0x144C30, NULL, 0, 0x3F6};
+/*800C1294*/ static ModelVertexInfo D_800C1294 = {(s32)models_4C9040_bin+0x1570, NULL, 0, 0x3F6};
 
 /*800C12A0*/
 ModelInfo D_800C12A0 = {
-    0x1436C0,
+    (s32)models_4C9040_bin,
     NULL,
     0x156E,
     0x156E,
@@ -6340,11 +6341,11 @@ ModelInfo D_800C12A0 = {
     0xB9,
 };
 
-/*800C12D0*/ static ModelInfoUnkStruct1 D_800C12D0 = {0x14830C, NULL, 0, 0x77A};
+/*800C12D0*/ static ModelVertexInfo D_800C12D0 = {(s32)models_4CA9B0_bin+0x32DC, NULL, 0, 0x77A};
 
 /*800C12DC*/
 ModelInfo D_800C12DC = {
-    0x145030,
+    (s32)models_4CA9B0_bin,
     NULL,
     0x32DA,
     0x32DA,
@@ -6365,11 +6366,11 @@ ModelInfo D_800C12DC = {
     0x14A,
 };
 
-/*800C130C*/ static ModelInfoUnkStruct1 D_800C130C = {0x149420, NULL, 0, 0xA8};
+/*800C130C*/ static ModelVertexInfo D_800C130C = {(s32)models_4CE410_bin+0x990, NULL, 0, 0xA8};
 
 /*800C1318*/
 ModelInfo D_800C1318 = {
-    0x148A90,
+    (s32)models_4CE410_bin,
     NULL,
     0x990,
     0x990,
@@ -6390,11 +6391,11 @@ ModelInfo D_800C1318 = {
     0x79,
 };
 
-/*800C1348*/ static ModelInfoUnkStruct1 D_800C1348 = {0x14C2E4, NULL, 0, 0x4EC};
+/*800C1348*/ static ModelVertexInfo D_800C1348 = {(s32)models_4CEE50_bin+0x2E14, NULL, 0, 0x4EC};
 
 /*800C1354*/
 ModelInfo D_800C1354 = {
-    0x1494D0,
+    (s32)models_4CEE50_bin,
     NULL,
     0x2E14,
     0x2E14,
@@ -6415,11 +6416,11 @@ ModelInfo D_800C1354 = {
     0xD3,
 };
 
-/*800C1384*/ static ModelInfoUnkStruct1 D_800C1384 = {0x14D130, NULL, 0, 0x3F6};
+/*800C1384*/ static ModelVertexInfo D_800C1384 = {(s32)models_4D2150_bin+0x960, NULL, 0, 0x3F6};
 
 /*800C1390*/
 ModelInfo D_800C1390 = {
-    0x14C7D0,
+    (s32)models_4D2150_bin,
     NULL,
     0x95E,
     0x95E,
@@ -6440,11 +6441,11 @@ ModelInfo D_800C1390 = {
     0x82,
 };
 
-/*800C13C0*/ static ModelInfoUnkStruct1 D_800C13C0 = {0x14E330, NULL, 0, 0x1E6};
+/*800C13C0*/ static ModelVertexInfo D_800C13C0 = {(s32)models_4D2EB0_bin+0xE00, NULL, 0, 0x1E6};
 
 /*800C13CC*/
 ModelInfo D_800C13CC = {
-    0x14D530,
+    (s32)models_4D2EB0_bin,
     NULL,
     0xDFE,
     0xDFE,
@@ -6465,11 +6466,11 @@ ModelInfo D_800C13CC = {
     0x7C,
 };
 
-/*800C13FC*/ static ModelInfoUnkStruct1 D_800C13FC = {0x15134C, NULL, 0, 0x4EC};
+/*800C13FC*/ static ModelVertexInfo D_800C13FC = {(s32)models_4D3EA0_bin+0x2E2C, NULL, 0, 0x4EC};
 
 /*800C1408*/
 ModelInfo D_800C1408 = {
-    0x14E520,
+    (s32)models_4D3EA0_bin,
     NULL,
     0x2E2C,
     0x2E2C,
@@ -6490,11 +6491,11 @@ ModelInfo D_800C1408 = {
     0xD3,
 };
 
-/*800C1438*/ static ModelInfoUnkStruct1 D_800C1438 = {0x16C4B0, NULL, 0, 0x270};
+/*800C1438*/ static ModelVertexInfo D_800C1438 = {(s32)models_4F1190_bin+0xCA0, NULL, 0, 0x270};
 
 /*800C1444*/
 ModelInfo D_800C1444 = {
-    0x16B810,
+    (s32)models_4F1190_bin,
     NULL,
     0xCA0,
     0xCA0,
@@ -6515,11 +6516,11 @@ ModelInfo D_800C1444 = {
     0x39,
 };
 
-/*800C1474*/ static ModelInfoUnkStruct1 D_800C1474 = {0x16D248, NULL, 0, 0x186};
+/*800C1474*/ static ModelVertexInfo D_800C1474 = {(s32)models_4F20A0_bin+0xB28, NULL, 0, 0x186};
 
 /*800C1480*/
 ModelInfo D_800C1480 = {
-    0x16C720,
+    (s32)models_4F20A0_bin,
     NULL,
     0xB26,
     0xB26,
@@ -6540,11 +6541,11 @@ ModelInfo D_800C1480 = {
     0x17F,
 };
 
-/*800C14B0*/ static ModelInfoUnkStruct1 D_800C14B0 = {0x16E018, NULL, 0, 0x10E};
+/*800C14B0*/ static ModelVertexInfo D_800C14B0 = {(s32)models_4F2D50_bin+0xC48, NULL, 0, 0x10E};
 
 /*800C14BC*/
 ModelInfo D_800C14BC = {
-    0x16D3D0,
+    (s32)models_4F2D50_bin,
     NULL,
     0xC46,
     0xC46,
@@ -6588,11 +6589,11 @@ ModelInfo D_800C14EC = {
     0xEA,
 };
 
-/*800C151C*/ static ModelInfoUnkStruct1 D_800C151C = {0x16E454, NULL, 0, 0x8A};
+/*800C151C*/ static ModelVertexInfo D_800C151C = {(s32)models_4F3AB0_bin+0x324, NULL, 0, 0x8A};
 
 /*800C1528*/
 ModelInfo D_800C1528 = {
-    0x16E130,
+    (s32)models_4F3AB0_bin,
     NULL,
     0x322,
     0x322,
@@ -6613,11 +6614,11 @@ ModelInfo D_800C1528 = {
     6,
 };
 
-/*800C1558*/ static ModelInfoUnkStruct1 D_800C1558 = {0x1710E8, NULL, 0, 0x10E};
+/*800C1558*/ static ModelVertexInfo D_800C1558 = {(s32)models_4F5DE0_bin+0xC88, NULL, 0, 0x10E};
 
 /*800C1564*/
 ModelInfo D_800C1564 = {
-    0x170460,
+    (s32)models_4F5DE0_bin,
     NULL,
     0xC86,
     0xC86,
@@ -6638,11 +6639,11 @@ ModelInfo D_800C1564 = {
     0x22,
 };
 
-/*800C1594*/ static ModelInfoUnkStruct1 D_800C1594 = {0x1701C4, NULL, 0, 0x29A};
+/*800C1594*/ static ModelVertexInfo D_800C1594 = {(s32)models_4F3E60_bin+0x1CE4, NULL, 0, 0x29A};
 
 /*800C15A0*/
 ModelInfo D_800C15A0 = {
-    0x16E4E0,
+    (s32)models_4F3E60_bin,
     NULL,
     0x1CE2,
     0x1CE2,
@@ -6663,11 +6664,11 @@ ModelInfo D_800C15A0 = {
     0x43,
 };
 
-/*800C15D0*/ static ModelInfoUnkStruct1 D_800C15D0 = {0x173654, NULL, 0, 0x102};
+/*800C15D0*/ static ModelVertexInfo D_800C15D0 = {(s32)models_4F8B00_bin+0x4D4, NULL, 0, 0x102};
 
 /*800C15DC*/
 ModelInfo D_800C15DC = {
-    0x173180,
+    (s32)models_4F8B00_bin,
     NULL,
     0x4D2,
     0x4D2,
@@ -6688,11 +6689,11 @@ ModelInfo D_800C15DC = {
     0x8C,
 };
 
-/*800C160C*/ static ModelInfoUnkStruct1 D_800C160C = {0x174C6C, NULL, 0, 0x7BC};
+/*800C160C*/ static ModelVertexInfo D_800C160C = {(s32)models_4F90E0_bin+0x150C, NULL, 0, 0x7BC};
 
 /*800C1618*/
 ModelInfo D_800C1618 = {
-    0x173760,
+    (s32)models_4F90E0_bin,
     NULL,
     0x150C,
     0x150C,
@@ -6713,11 +6714,11 @@ ModelInfo D_800C1618 = {
     0x8A,
 };
 
-/*800C1648*/ static ModelInfoUnkStruct1 D_800C1648 = {0x176848, NULL, 0, 0x3AE};
+/*800C1648*/ static ModelVertexInfo D_800C1648 = {(s32)models_4FADB0_bin+0x1418, NULL, 0, 0x3AE};
 
 /*800C1654*/
 ModelInfo D_800C1654 = {
-    0x175430,
+    (s32)models_4FADB0_bin,
     NULL,
     0x1416,
     0x1416,
@@ -6738,11 +6739,11 @@ ModelInfo D_800C1654 = {
     0xC,
 };
 
-/*800C1684*/ static ModelInfoUnkStruct1 D_800C1684 = {0x177A70, NULL, 0, 0x1B0};
+/*800C1684*/ static ModelVertexInfo D_800C1684 = {(s32)models_4FC580_bin+0xE70, NULL, 0, 0x1B0};
 
 /*800C1690*/
 ModelInfo D_800C1690 = {
-    0x176C00,
+    (s32)models_4FC580_bin,
     NULL,
     0xE70,
     0xE70,
@@ -6763,11 +6764,11 @@ ModelInfo D_800C1690 = {
     0,
 };
 
-/*800C16C0*/ static ModelInfoUnkStruct1 D_800C16C0 = {0x1785D8, NULL, 0, 0xC6};
+/*800C16C0*/ static ModelVertexInfo D_800C16C0 = {(s32)models_4FD5A0_bin+0x9B8, NULL, 0, 0xC6};
 
 /*800C16CC*/
 ModelInfo D_800C16CC = {
-    0x177C20,
+    (s32)models_4FD5A0_bin,
     NULL,
     0x9B6,
     0x9B6,
@@ -6788,11 +6789,11 @@ ModelInfo D_800C16CC = {
     0x12A,
 };
 
-/*800C16FC*/ static ModelInfoUnkStruct1 D_800C16FC = {0x1791C8, NULL, 0, 0xF6};
+/*800C16FC*/ static ModelVertexInfo D_800C16FC = {(s32)models_4FE020_bin+0xB28, NULL, 0, 0xF6};
 
 /*800C1708*/
 ModelInfo D_800C1708 = {
-    0x1786A0,
+    (s32)models_4FE020_bin,
     NULL,
     0xB26,
     0xB26,
@@ -6813,11 +6814,11 @@ ModelInfo D_800C1708 = {
     0x129,
 };
 
-/*800C1738*/ static ModelInfoUnkStruct1 D_800C1738 = {0x179B84, NULL, 0, 0x3C};
+/*800C1738*/ static ModelVertexInfo D_800C1738 = {(s32)models_4FEC40_bin+0x8C4, NULL, 0, 0x3C};
 
 /*800C1744*/
 ModelInfo D_800C1744 = {
-    0x1792C0,
+    (s32)models_4FEC40_bin,
     NULL,
     0x8C4,
     0x8C4,
@@ -6838,11 +6839,11 @@ ModelInfo D_800C1744 = {
     0x129,
 };
 
-/*800C1774*/ static ModelInfoUnkStruct1 D_800C1774 = {0x17A59C, NULL, 0, 0x9C};
+/*800C1774*/ static ModelVertexInfo D_800C1774 = {(s32)models_4FF540_bin+0x9DC, NULL, 0, 0x9C};
 
 /*800C1780*/
 ModelInfo D_800C1780 = {
-    0x179BC0,
+    (s32)models_4FF540_bin,
     NULL,
     0x9DC,
     0x9DC,
@@ -6863,11 +6864,11 @@ ModelInfo D_800C1780 = {
     0x11A,
 };
 
-/*800C17B0*/ static ModelInfoUnkStruct1 D_800C17B0 = {0x17AF04, NULL, 0, 0x3C};
+/*800C17B0*/ static ModelVertexInfo D_800C17B0 = {(s32)models_4FFFC0_bin+0x8C4, NULL, 0, 0x3C};
 
 /*800C17BC*/
 ModelInfo D_800C17BC = {
-    0x17A640,
+    (s32)models_4FFFC0_bin,
     NULL,
     0x8C4,
     0x8C4,
@@ -6888,11 +6889,11 @@ ModelInfo D_800C17BC = {
     0x12E,
 };
 
-/*800C17EC*/ static ModelInfoUnkStruct1 D_800C17EC = {0x17BA68, NULL, 0, 0xF6};
+/*800C17EC*/ static ModelVertexInfo D_800C17EC = {(s32)models_5008C0_bin+0xB28, NULL, 0, 0xF6};
 
 /*800C17F8*/
 ModelInfo D_800C17F8 = {
-    0x17AF40,
+    (s32)models_5008C0_bin,
     NULL,
     0xB26,
     0xB26,
@@ -6913,11 +6914,11 @@ ModelInfo D_800C17F8 = {
     0x127,
 };
 
-/*800C1828*/ static ModelInfoUnkStruct1 D_800C1828 = {0x17D5D8, NULL, 0, 0x108};
+/*800C1828*/ static ModelVertexInfo D_800C1828 = {(s32)models_5014E0_bin+0x1A78, NULL, 0, 0x108};
 
 /*800C1834*/
 ModelInfo D_800C1834 = {
-    0x17BB60,
+    (s32)models_5014E0_bin,
     NULL,
     0x1A78,
     0x1A78,
@@ -6938,11 +6939,11 @@ ModelInfo D_800C1834 = {
     0xC7,
 };
 
-/*800C1864*/ static ModelInfoUnkStruct1 D_800C1864 = {0x17E8A0, NULL, 0, 0xC0};
+/*800C1864*/ static ModelVertexInfo D_800C1864 = {(s32)models_503060_bin+0x11C0, NULL, 0, 0xC0};
 
 /*800C1870*/
 ModelInfo D_800C1870 = {
-    0x17D6E0,
+    (s32)models_503060_bin,
     NULL,
     0x11C0,
     0x11C0,
@@ -6963,11 +6964,11 @@ ModelInfo D_800C1870 = {
     0xAE,
 };
 
-/*800C18A0*/ static ModelInfoUnkStruct1 D_800C18A0 = {0x17FB0C, NULL, 0, 0xB4};
+/*800C18A0*/ static ModelVertexInfo D_800C18A0 = {(s32)models_5042E0_bin+0x11AC, NULL, 0, 0xB4};
 
 /*800C18AC*/
 ModelInfo D_800C18AC = {
-    0x17E960,
+    (s32)models_5042E0_bin,
     NULL,
     0x11AC,
     0x11AC,
@@ -6988,11 +6989,11 @@ ModelInfo D_800C18AC = {
     0xAE,
 };
 
-/*800C18DC*/ static ModelInfoUnkStruct1 D_800C18DC = {0x180558, NULL, 0, 0x96};
+/*800C18DC*/ static ModelVertexInfo D_800C18DC = {(s32)models_505540_bin+0x998, NULL, 0, 0x96};
 
 /*800C18E8*/
 ModelInfo D_800C18E8 = {
-    0x17FBC0,
+    (s32)models_505540_bin,
     NULL,
     0x996,
     0x996,
@@ -7013,11 +7014,11 @@ ModelInfo D_800C18E8 = {
     0xC9,
 };
 
-/*800C1918*/ static ModelInfoUnkStruct1 D_800C1918 = {0x180890, NULL, 0, 0x30};
+/*800C1918*/ static ModelVertexInfo D_800C1918 = {(s32)models_505F70_bin+0x2A0, NULL, 0, 0x30};
 
 /*800C1924*/
 ModelInfo D_800C1924 = {
-    0x1805F0,
+    (s32)models_505F70_bin,
     NULL,
     0x2A0,
     0x2A0,
@@ -7038,11 +7039,11 @@ ModelInfo D_800C1924 = {
     0x70,
 };
 
-/*800C1954*/ static ModelInfoUnkStruct1 D_800C1954 = {0x1898B4, NULL, 0, 0xA02};
+/*800C1954*/ static ModelVertexInfo D_800C1954 = {(s32)models_506240_bin+0x8FF4, NULL, 0, 0xA02};
 
 /*800C1960*/
 ModelInfo D_800C1960 = {
-    0x1808C0,
+    (s32)models_506240_bin,
     NULL,
     0x8FF2,
     0x8FF2,
@@ -7063,11 +7064,11 @@ ModelInfo D_800C1960 = {
     0x174,
 };
 
-/*800C1990*/ static ModelInfoUnkStruct1 D_800C1990 = {0x194668, NULL, 0, 0x486};
+/*800C1990*/ static ModelVertexInfo D_800C1990 = {(s32)models_50FC40_bin+0xA3A8, NULL, 0, 0x486};
 
 /*800C199C*/
 ModelInfo D_800C199C = {
-    0x18A2C0,
+    (s32)models_50FC40_bin,
     NULL,
     0xA3A6,
     0xA3A6,
@@ -7088,11 +7089,11 @@ ModelInfo D_800C199C = {
     0xFB,
 };
 
-/*800C19CC*/ static ModelInfoUnkStruct1 D_800C19CC = {0x19AA3C, NULL, 0, 0x57C};
+/*800C19CC*/ static ModelVertexInfo D_800C19CC = {(s32)models_51A470_bin+0x5F4C, NULL, 0, 0x57C};
 
 /*800C19D8*/
 ModelInfo D_800C19D8 = {
-    0x194AF0,
+    (s32)models_51A470_bin,
     NULL,
     0x5F4C,
     0x5F4C,
@@ -7113,11 +7114,11 @@ ModelInfo D_800C19D8 = {
     0xDD,
 };
 
-/*800C1A08*/ static ModelInfoUnkStruct1 D_800C1A08 = {0x19BF18, NULL, 0, 0x138};
+/*800C1A08*/ static ModelVertexInfo D_800C1A08 = {(s32)models_520940_bin+0xF58, NULL, 0, 0x138};
 
 /*800C1A14*/
 ModelInfo D_800C1A14 = {
-    0x19AFC0,
+    (s32)models_520940_bin,
     NULL,
     0xF58,
     0xF58,
@@ -7138,11 +7139,11 @@ ModelInfo D_800C1A14 = {
     0x11,
 };
 
-/*800C1A44*/ static ModelInfoUnkStruct1 D_800C1A44 = {0x1527BC, NULL, 0, 0x1A4};
+/*800C1A44*/ static ModelVertexInfo D_800C1A44 = {(s32)models_4D71C0_bin+0xF7C, NULL, 0, 0x1A4};
 
 /*800C1A50*/
 ModelInfo D_800C1A50 = {
-    0x151840,
+    (s32)models_4D71C0_bin,
     NULL,
     0xF7C,
     0xF7C,
@@ -7163,11 +7164,11 @@ ModelInfo D_800C1A50 = {
     0xB,
 };
 
-/*800C1A80*/ static ModelInfoUnkStruct1 D_800C1A80 = {0x154EC0, NULL, 0, 0x1B6};
+/*800C1A80*/ static ModelVertexInfo D_800C1A80 = {(s32)models_4D82E0_bin+0x2560, NULL, 0, 0x1B6};
 
 /*800C1A8C*/
 ModelInfo D_800C1A8C = {
-    0x152960,
+    (s32)models_4D82E0_bin,
     NULL,
     0x255E,
     0x255E,
@@ -7188,11 +7189,11 @@ ModelInfo D_800C1A8C = {
     6,
 };
 
-/*800C1ABC*/ static ModelInfoUnkStruct1 D_800C1ABC = {0x155698, NULL, 0, 0x156};
+/*800C1ABC*/ static ModelVertexInfo D_800C1ABC = {(s32)models_4DAA00_bin+0x618, NULL, 0, 0x156};
 
 /*800C1AC8*/
 ModelInfo D_800C1AC8 = {
-    0x155080,
+    (s32)models_4DAA00_bin,
     NULL,
     0x616,
     0x616,
@@ -7213,11 +7214,11 @@ ModelInfo D_800C1AC8 = {
     0x16,
 };
 
-/*800C1AF8*/ static ModelInfoUnkStruct1 D_800C1AF8 = {0x158AB8, NULL, 0, 0x2A0};
+/*800C1AF8*/ static ModelVertexInfo D_800C1AF8 = {(s32)models_4DB170_bin+0x32C8, NULL, 0, 0x2A0};
 
 /*800C1B04*/
 ModelInfo D_800C1B04 = {
-    0x1557F0,
+    (s32)models_4DB170_bin,
     NULL,
     0x32C8,
     0x32C8,
@@ -7238,11 +7239,11 @@ ModelInfo D_800C1B04 = {
     0x27,
 };
 
-/*800C1B34*/ static ModelInfoUnkStruct1 D_800C1B34 = {0x15A6F0, NULL, 0, 0x258};
+/*800C1B34*/ static ModelVertexInfo D_800C1B34 = {(s32)models_4DE6E0_bin+0x1990, NULL, 0, 0x258};
 
 /*800C1B40*/
 ModelInfo D_800C1B40 = {
-    0x158D60,
+    (s32)models_4DE6E0_bin,
     NULL,
     0x1990,
     0x1990,
@@ -7263,11 +7264,11 @@ ModelInfo D_800C1B40 = {
     9,
 };
 
-/*800C1B70*/ static ModelInfoUnkStruct1 D_800C1B70 = {0x15AD5C, NULL, 0, 0x11A};
+/*800C1B70*/ static ModelVertexInfo D_800C1B70 = {(s32)models_4E02D0_bin+0x40C, NULL, 0, 0x11A};
 
 /*800C1B7C*/
 ModelInfo D_800C1B7C = {
-    0x15A950,
+    (s32)models_4E02D0_bin,
     NULL,
     0x40A,
     0x40A,
@@ -7288,11 +7289,11 @@ ModelInfo D_800C1B7C = {
     4,
 };
 
-/*800C1BAC*/ static ModelInfoUnkStruct1 D_800C1BAC = {0x15C6E8, NULL, 0, 0x2BE};
+/*800C1BAC*/ static ModelVertexInfo D_800C1BAC = {(s32)models_4E0800_bin+0x1868, NULL, 0, 0x2BE};
 
 /*800C1BB8*/
 ModelInfo D_800C1BB8 = {
-    0x15AE80,
+    (s32)models_4E0800_bin,
     NULL,
     0x1866,
     0x1866,
@@ -7313,11 +7314,11 @@ ModelInfo D_800C1BB8 = {
     0x1B,
 };
 
-/*800C1BE8*/ static ModelInfoUnkStruct1 D_800C1BE8 = {0x15E800, NULL, 0, 0x2E8};
+/*800C1BE8*/ static ModelVertexInfo D_800C1BE8 = {(s32)models_4E2330_bin+0x1E50, NULL, 0, 0x2E8};
 
 /*800C1BF4*/
 ModelInfo D_800C1BF4 = {
-    0x15C9B0,
+    (s32)models_4E2330_bin,
     NULL,
     0x1E50,
     0x1E50,
@@ -7338,11 +7339,11 @@ ModelInfo D_800C1BF4 = {
     0x13,
 };
 
-/*800C1C24*/ static ModelInfoUnkStruct1 D_800C1C24 = {0x160E70, NULL, 0, 0x2EE};
+/*800C1C24*/ static ModelVertexInfo D_800C1C24 = {(s32)models_4E4470_bin+0x2380, NULL, 0, 0x2EE};
 
 /*800C1C30*/
 ModelInfo D_800C1C30 = {
-    0x15EAF0,
+    (s32)models_4E4470_bin,
     NULL,
     0x237E,
     0x237E,
@@ -7363,11 +7364,11 @@ ModelInfo D_800C1C30 = {
     0x10,
 };
 
-/*800C1C60*/ static ModelInfoUnkStruct1 D_800C1C60 = {0x1614FC, NULL, 0, 0xEA};
+/*800C1C60*/ static ModelVertexInfo D_800C1C60 = {(s32)models_4E6AE0_bin+0x39C, NULL, 0, 0xEA};
 
 /*800C1C6C*/
 ModelInfo D_800C1C6C = {
-    0x161160,
+    (s32)models_4E6AE0_bin,
     NULL,
     0x39A,
     0x39A,
@@ -7388,11 +7389,11 @@ ModelInfo D_800C1C6C = {
     6,
 };
 
-/*800C1C9C*/ static ModelInfoUnkStruct1 D_800C1C9C = {0x1635D8, NULL, 0, 0x1E0};
+/*800C1C9C*/ static ModelVertexInfo D_800C1C9C = {(s32)models_4E6F70_bin+0x1FE8, NULL, 0, 0x1E0};
 
 /*800C1CA8*/
 ModelInfo D_800C1CA8 = {
-    0x1615F0,
+    (s32)models_4E6F70_bin,
     NULL,
     0x1FE8,
     0x1FE8,
@@ -7413,11 +7414,11 @@ ModelInfo D_800C1CA8 = {
     0x28,
 };
 
-/*800C1CD8*/ static ModelInfoUnkStruct1 D_800C1CD8 = {0x164ACC, NULL, 0, 0x252};
+/*800C1CD8*/ static ModelVertexInfo D_800C1CD8 = {(s32)models_4E9140_bin+0x130C, NULL, 0, 0x252};
 
 /*800C1CE4*/
 ModelInfo D_800C1CE4 = {
-    0x1637C0,
+    (s32)models_4E9140_bin,
     NULL,
     0x130A,
     0x130A,
@@ -7438,11 +7439,11 @@ ModelInfo D_800C1CE4 = {
     6,
 };
 
-/*800C1D14*/ static ModelInfoUnkStruct1 D_800C1D14 = {0x168410, NULL, 0, 0x28E};
+/*800C1D14*/ static ModelVertexInfo D_800C1D14 = {(s32)models_4EA6A0_bin+0x36F0, NULL, 0, 0x28E};
 
 /*800C1D20*/
 ModelInfo D_800C1D20 = {
-    0x164D20,
+    (s32)models_4EA6A0_bin,
     NULL,
     0x36EE,
     0x36EE,
@@ -7463,11 +7464,11 @@ ModelInfo D_800C1D20 = {
     0x12,
 };
 
-/*800C1D50*/ static ModelInfoUnkStruct1 D_800C1D50 = {0x16A2D8, NULL, 0, 0x2E8};
+/*800C1D50*/ static ModelVertexInfo D_800C1D50 = {(s32)models_4EE020_bin+0x1C38, NULL, 0, 0x2E8};
 
 /*800C1D5C*/
 ModelInfo D_800C1D5C = {
-    0x1686A0,
+    (s32)models_4EE020_bin,
     NULL,
     0x1C38,
     0x1C38,
@@ -7488,11 +7489,11 @@ ModelInfo D_800C1D5C = {
     0x11,
 };
 
-/*800C1D8C*/ static ModelInfoUnkStruct1 D_800C1D8C = {0x16B3D4, NULL, 0, 0x132};
+/*800C1D8C*/ static ModelVertexInfo D_800C1D8C = {(s32)models_4EFF40_bin+0xE14, NULL, 0, 0x132};
 
 /*800C1D98*/
 ModelInfo D_800C1D98 = {
-    0x16A5C0,
+    (s32)models_4EFF40_bin,
     NULL,
     0xE12,
     0xE12,
@@ -7513,11 +7514,11 @@ ModelInfo D_800C1D98 = {
     0xA,
 };
 
-/*800C1DC8*/ static ModelInfoUnkStruct1 D_800C1DC8 = {0x16B7E0, NULL, 0, 0x30};
+/*800C1DC8*/ static ModelVertexInfo D_800C1DC8 = {(s32)models_4F0E90_bin+0x2D0, NULL, 0, 0x30};
 
 /*800C1DD4*/
 ModelInfo D_800C1DD4 = {
-    0x16B510,
+    (s32)models_4F0E90_bin,
     NULL,
     0x2D0,
     0x2D0,
@@ -7538,11 +7539,11 @@ ModelInfo D_800C1DD4 = {
     2,
 };
 
-/*800C1E04*/ static ModelInfoUnkStruct1 D_800C1E04 = {0x172EE4, NULL, 0, 0x29A};
+/*800C1E04*/ static ModelVertexInfo D_800C1E04 = {(s32)models_4F6B80_bin+0x1CE4, NULL, 0, 0x29A};
 
 /*800C1E10*/
 ModelInfo D_800C1E10 = {
-    0x171200,
+    (s32)models_4F6B80_bin,
     NULL,
     0x1CE2,
     0x1CE2,
@@ -7563,11 +7564,11 @@ ModelInfo D_800C1E10 = {
     0x14,
 };
 
-/*800C1E40*/ static ModelInfoUnkStruct1 D_800C1E40 = {0x19D4FC, NULL, 0, 0x144};
+/*800C1E40*/ static ModelVertexInfo D_800C1E40 = {(s32)models_5219D0_bin+0x14AC, NULL, 0, 0x144};
 
 /*800C1E4C*/
 ModelInfo D_800C1E4C = {
-    0x19C050,
+    (s32)models_5219D0_bin,
     NULL,
     0x14AC,
     0x14AC,
@@ -7588,11 +7589,11 @@ ModelInfo D_800C1E4C = {
     0x45,
 };
 
-/*800C1E7C*/ static ModelInfoUnkStruct1 D_800C1E7C = {0x19E830, NULL, 0, 0x96};
+/*800C1E7C*/ static ModelVertexInfo D_800C1E7C = {(s32)models_522FC0_bin+0x11F0, NULL, 0, 0x96};
 
 /*800C1E88*/
 ModelInfo D_800C1E88 = {
-    0x19D640,
+    (s32)models_522FC0_bin,
     NULL,
     0x11EE,
     0x11EE,
@@ -7613,11 +7614,11 @@ ModelInfo D_800C1E88 = {
     0x3D,
 };
 
-/*800C1EB8*/ static ModelInfoUnkStruct1 D_800C1EB8 = {0x19FD6C, NULL, 0, 0x144};
+/*800C1EB8*/ static ModelVertexInfo D_800C1EB8 = {(s32)models_524250_bin+0x149C, NULL, 0, 0x144};
 
 /*800C1EC4*/
 ModelInfo D_800C1EC4 = {
-    0x19E8D0,
+    (s32)models_524250_bin,
     NULL,
     0x149C,
     0x149C,
@@ -7638,11 +7639,11 @@ ModelInfo D_800C1EC4 = {
     0x45,
 };
 
-/*800C1EF4*/ static ModelInfoUnkStruct1 D_800C1EF4 = {0x1A08D8, NULL, 0, 0x150};
+/*800C1EF4*/ static ModelVertexInfo D_800C1EF4 = {(s32)models_525830_bin+0xA28, NULL, 0, 0x150};
 
 /*800C1F00*/
 ModelInfo D_800C1F00 = {
-    0x19FEB0,
+    (s32)models_525830_bin,
     NULL,
     0xA28,
     0xA28,
@@ -7663,11 +7664,11 @@ ModelInfo D_800C1F00 = {
     0x42,
 };
 
-/*800C1F30*/ static ModelInfoUnkStruct1 D_800C1F30 = {0x1A2688, NULL, 0, 0x216};
+/*800C1F30*/ static ModelVertexInfo D_800C1F30 = {(s32)models_5263B0_bin+0x1C58, NULL, 0, 0x216};
 
 /*800C1F3C*/
 ModelInfo D_800C1F3C = {
-    0x1A0A30,
+    (s32)models_5263B0_bin,
     NULL,
     0x1C56,
     0x1C56,
@@ -7688,11 +7689,11 @@ ModelInfo D_800C1F3C = {
     0x45,
 };
 
-/*800C1F6C*/ static ModelInfoUnkStruct1 D_800C1F6C = {0x1A3A90, NULL, 0, 0x96};
+/*800C1F6C*/ static ModelVertexInfo D_800C1F6C = {(s32)models_528220_bin+0x11F0, NULL, 0, 0x96};
 
 /*800C1F78*/
 ModelInfo D_800C1F78 = {
-    0x1A28A0,
+    (s32)models_528220_bin,
     NULL,
     0x11EE,
     0x11EE,
@@ -7713,11 +7714,11 @@ ModelInfo D_800C1F78 = {
     0x3D,
 };
 
-/*800C1FA8*/ static ModelInfoUnkStruct1 D_800C1FA8 = {0x1A48FC, NULL, 0, 0x17A};
+/*800C1FA8*/ static ModelVertexInfo D_800C1FA8 = {(s32)models_5294B0_bin+0xDCC, NULL, 0, 0x17A};
 
 /*800C1FB4*/
 ModelInfo D_800C1FB4 = {
-    0x1A3B30,
+    (s32)models_5294B0_bin,
     NULL,
     0xDCA,
     0xDCA,
@@ -7738,11 +7739,11 @@ ModelInfo D_800C1FB4 = {
     0x3C,
 };
 
-/*800C1FE4*/ static ModelInfoUnkStruct1 D_800C1FE4 = {0x1A56F4, NULL, 0, 0x27C};
+/*800C1FE4*/ static ModelVertexInfo D_800C1FE4 = {(s32)models_52A400_bin+0xC74, NULL, 0, 0x27C};
 
 /*800C1FF0*/
 ModelInfo D_800C1FF0 = {
-    0x1A4A80,
+    (s32)models_52A400_bin,
     NULL,
     0xC74,
     0xC74,
@@ -7763,11 +7764,11 @@ ModelInfo D_800C1FF0 = {
     0x3F,
 };
 
-/*800C2020*/ static ModelInfoUnkStruct1 D_800C2020 = {0x1A61D4, NULL, 0, 0xEA};
+/*800C2020*/ static ModelVertexInfo D_800C2020 = {(s32)models_52B2F0_bin+0x864, NULL, 0, 0xEA};
 
 /*800C202C*/
 ModelInfo D_800C202C = {
-    0x1A5970,
+    (s32)models_52B2F0_bin,
     NULL,
     0x862,
     0x862,
@@ -7788,11 +7789,11 @@ ModelInfo D_800C202C = {
     0x37,
 };
 
-/*800C205C*/ static ModelInfoUnkStruct1 D_800C205C = {0x1A6C58, NULL, 0, 0x10E};
+/*800C205C*/ static ModelVertexInfo D_800C205C = {(s32)models_52BC40_bin+0x998, NULL, 0, 0x10E};
 
 /*800C2068*/
 ModelInfo D_800C2068 = {
-    0x1A62C0,
+    (s32)models_52BC40_bin,
     NULL,
     0x996,
     0x996,
@@ -7813,11 +7814,11 @@ ModelInfo D_800C2068 = {
     0x30,
 };
 
-/*800C2098*/ static ModelInfoUnkStruct1 D_800C2098 = {0x1A7248, NULL, 0, 0xF0};
+/*800C2098*/ static ModelVertexInfo D_800C2098 = {(s32)models_52C6F0_bin+0x4D8, NULL, 0, 0xF0};
 
 /*800C20A4*/
 ModelInfo D_800C20A4 = {
-    0x1A6D70,
+    (s32)models_52C6F0_bin,
     NULL,
     0x4D8,
     0x4D8,
@@ -7838,11 +7839,11 @@ ModelInfo D_800C20A4 = {
     0x14,
 };
 
-/*800C20D4*/ static ModelInfoUnkStruct1 D_800C20D4 = {0x1A7F20, NULL, 0, 0x1CE};
+/*800C20D4*/ static ModelVertexInfo D_800C20D4 = {(s32)models_52CCC0_bin+0xBE0, NULL, 0, 0x1CE};
 
 /*800C20E0*/
 ModelInfo D_800C20E0 = {
-    0x1A7340,
+    (s32)models_52CCC0_bin,
     NULL,
     0xBDE,
     0xBDE,
@@ -7863,11 +7864,11 @@ ModelInfo D_800C20E0 = {
     0x3F,
 };
 
-/*800C2110*/ static ModelInfoUnkStruct1 D_800C2110 = {0x1A8CD0, NULL, 0, 0x1CE};
+/*800C2110*/ static ModelVertexInfo D_800C2110 = {(s32)models_52DA70_bin+0xBE0, NULL, 0, 0x1CE};
 
 /*800C211C*/
 ModelInfo D_800C211C = {
-    0x1A80F0,
+    (s32)models_52DA70_bin,
     NULL,
     0xBDE,
     0xBDE,
@@ -7888,11 +7889,11 @@ ModelInfo D_800C211C = {
     0x40,
 };
 
-/*800C214C*/ static ModelInfoUnkStruct1 D_800C214C = {0x1AA754, NULL, 0, 0x1D4};
+/*800C214C*/ static ModelVertexInfo D_800C214C = {(s32)models_52E820_bin+0x18B4, NULL, 0, 0x1D4};
 
 /*800C2158*/
 ModelInfo D_800C2158 = {
-    0x1A8EA0,
+    (s32)models_52E820_bin,
     NULL,
     0x18B4,
     0x18B4,
@@ -7913,11 +7914,11 @@ ModelInfo D_800C2158 = {
     0x4C,
 };
 
-/*800C2188*/ static ModelInfoUnkStruct1 D_800C2188 = {0x1AB8C8, NULL, 0, 0xD8};
+/*800C2188*/ static ModelVertexInfo D_800C2188 = {(s32)models_5302B0_bin+0xF98, NULL, 0, 0xD8};
 
 /*800C2194*/
 ModelInfo D_800C2194 = {
-    0x1AA930,
+    (s32)models_5302B0_bin,
     NULL,
     0xF98,
     0xF98,
@@ -7938,11 +7939,11 @@ ModelInfo D_800C2194 = {
     0x52,
 };
 
-/*800C21C4*/ static ModelInfoUnkStruct1 D_800C21C4 = {0x1ACF94, NULL, 0, 0x12C};
+/*800C21C4*/ static ModelVertexInfo D_800C21C4 = {(s32)models_531320_bin+0x15F4, NULL, 0, 0x12C};
 
 /*800C21D0*/
 ModelInfo D_800C21D0 = {
-    0x1AB9A0,
+    (s32)models_531320_bin,
     NULL,
     0x15F4,
     0x15F4,
@@ -7963,11 +7964,11 @@ ModelInfo D_800C21D0 = {
     0x4F,
 };
 
-/*800C2200*/ static ModelInfoUnkStruct1 D_800C2200 = {0x1AE564, NULL, 0, 0x102};
+/*800C2200*/ static ModelVertexInfo D_800C2200 = {(s32)models_532A40_bin+0x14A4, NULL, 0, 0x102};
 
 /*800C220C*/
 ModelInfo D_800C220C = {
-    0x1AD0C0,
+    (s32)models_532A40_bin,
     NULL,
     0x14A2,
     0x14A2,
@@ -7988,11 +7989,11 @@ ModelInfo D_800C220C = {
     0x52,
 };
 
-/*800C223C*/ static ModelInfoUnkStruct1 D_800C223C = {0x1AEC00, NULL, 0, 0x10E};
+/*800C223C*/ static ModelVertexInfo D_800C223C = {(s32)models_533FF0_bin+0x590, NULL, 0, 0x10E};
 
 /*800C2248*/
 ModelInfo D_800C2248 = {
-    0x1AE670,
+    (s32)models_533FF0_bin,
     NULL,
     0x58E,
     0x58E,
@@ -8013,11 +8014,11 @@ ModelInfo D_800C2248 = {
     0x2E,
 };
 
-/*800C2278*/ static ModelInfoUnkStruct1 D_800C2278 = {0x1AF128, NULL, 0, 0xC6};
+/*800C2278*/ static ModelVertexInfo D_800C2278 = {(s32)models_534690_bin+0x418, NULL, 0, 0xC6};
 
 /*800C2284*/
 ModelInfo D_800C2284 = {
-    0x1AED10,
+    (s32)models_534690_bin,
     NULL,
     0x416,
     0x416,
@@ -8038,11 +8039,11 @@ ModelInfo D_800C2284 = {
     0x15,
 };
 
-/*800C22B4*/ static ModelInfoUnkStruct1 D_800C22B4 = {0x1B0178, NULL, 0, 0x1E0};
+/*800C22B4*/ static ModelVertexInfo D_800C22B4 = {(s32)models_534B70_bin+0xF88, NULL, 0, 0x1E0};
 
 /*800C22C0*/
 ModelInfo D_800C22C0 = {
-    0x1AF1F0,
+    (s32)models_534B70_bin,
     NULL,
     0xF88,
     0xF88,
@@ -8063,11 +8064,11 @@ ModelInfo D_800C22C0 = {
     0x11,
 };
 
-/*800C22F0*/ static ModelInfoUnkStruct1 D_800C22F0 = {0x1B0E94, NULL, 0, 0x102};
+/*800C22F0*/ static ModelVertexInfo D_800C22F0 = {(s32)models_535CE0_bin+0xB34, NULL, 0, 0x102};
 
 /*800C22FC*/
 ModelInfo D_800C22FC = {
-    0x1B0360,
+    (s32)models_535CE0_bin,
     NULL,
     0xB32,
     0xB32,
@@ -8088,11 +8089,11 @@ ModelInfo D_800C22FC = {
     0x55,
 };
 
-/*800C232C*/ static ModelInfoUnkStruct1 D_800C232C = {0x1B2688, NULL, 0, 0x10E};
+/*800C232C*/ static ModelVertexInfo D_800C232C = {(s32)models_536920_bin+0x16E8, NULL, 0, 0x10E};
 
 /*800C2338*/
 ModelInfo D_800C2338 = {
-    0x1B0FA0,
+    (s32)models_536920_bin,
     NULL,
     0x16E6,
     0x16E6,
@@ -8113,11 +8114,11 @@ ModelInfo D_800C2338 = {
     0x45,
 };
 
-/*800C2368*/ static ModelInfoUnkStruct1 D_800C2368 = {0x1B3038, NULL, 0, 0x138};
+/*800C2368*/ static ModelVertexInfo D_800C2368 = {(s32)models_538120_bin+0x898, NULL, 0, 0x138};
 
 /*800C2374*/
 ModelInfo D_800C2374 = {
-    0x1B27A0,
+    (s32)models_538120_bin,
     NULL,
     0x898,
     0x898,
@@ -8138,11 +8139,11 @@ ModelInfo D_800C2374 = {
     0x2D,
 };
 
-/*800C23A4*/ static ModelInfoUnkStruct1 D_800C23A4 = {0x1B3FD4, NULL, 0, 0x204};
+/*800C23A4*/ static ModelVertexInfo D_800C23A4 = {(s32)models_538AF0_bin+0xE64, NULL, 0, 0x204};
 
 /*800C23B0*/
 ModelInfo D_800C23B0 = {
-    0x1B3170,
+    (s32)models_538AF0_bin,
     NULL,
     0xE64,
     0xE64,
@@ -8163,11 +8164,11 @@ ModelInfo D_800C23B0 = {
     0x39,
 };
 
-/*800C23E0*/ static ModelInfoUnkStruct1 D_800C23E0 = {0x1B5044, NULL, 0, 0x204};
+/*800C23E0*/ static ModelVertexInfo D_800C23E0 = {(s32)models_539B60_bin+0xE64, NULL, 0, 0x204};
 
 /*800C23EC*/
 ModelInfo D_800C23EC = {
-    0x1B41E0,
+    (s32)models_539B60_bin,
     NULL,
     0xE64,
     0xE64,
@@ -8188,11 +8189,11 @@ ModelInfo D_800C23EC = {
     -2,
 };
 
-/*800C241C*/ static ModelInfoUnkStruct1 D_800C241C = {0x1B5DCC, NULL, 0, 0x72};
+/*800C241C*/ static ModelVertexInfo D_800C241C = {(s32)models_53ABD0_bin+0xB7C, NULL, 0, 0x72};
 
 /*800C2428*/
 ModelInfo D_800C2428 = {
-    0x1B5250,
+    (s32)models_53ABD0_bin,
     NULL,
     0xB7A,
     0xB7A,
@@ -8213,11 +8214,11 @@ ModelInfo D_800C2428 = {
     0x4C,
 };
 
-/*800C2458*/ static ModelInfoUnkStruct1 D_800C2458 = {0x1B6BF8, NULL, 0, 0xA8};
+/*800C2458*/ static ModelVertexInfo D_800C2458 = {(s32)models_53B7C0_bin+0xDB8, NULL, 0, 0xA8};
 
 /*800C2464*/
 ModelInfo D_800C2464 = {
-    0x1B5E40,
+    (s32)models_53B7C0_bin,
     NULL,
     0xDB8,
     0xDB8,
@@ -8238,11 +8239,11 @@ ModelInfo D_800C2464 = {
     0x53,
 };
 
-/*800C2494*/ static ModelInfoUnkStruct1 D_800C2494 = {0x1B71E4, NULL, 0, 0x9C};
+/*800C2494*/ static ModelVertexInfo D_800C2494 = {(s32)models_53C620_bin+0x544, NULL, 0, 0x9C};
 
 /*800C24A0*/
 ModelInfo D_800C24A0 = {
-    0x1B6CA0,
+    (s32)models_53C620_bin,
     NULL,
     0x544,
     0x544,
@@ -8263,11 +8264,11 @@ ModelInfo D_800C24A0 = {
     -0x10,
 };
 
-/*800C24D0*/ static ModelInfoUnkStruct1 D_800C24D0 = {0x1B77C4, NULL, 0, 0x9C};
+/*800C24D0*/ static ModelVertexInfo D_800C24D0 = {(s32)models_53CC00_bin+0x544, NULL, 0, 0x9C};
 
 /*800C24DC*/
 ModelInfo D_800C24DC = {
-    0x1B7280,
+    (s32)models_53CC00_bin,
     NULL,
     0x544,
     0x544,
@@ -8288,11 +8289,11 @@ ModelInfo D_800C24DC = {
     -5,
 };
 
-/*800C250C*/ static ModelInfoUnkStruct1 D_800C250C = {0x1BAB88, NULL, 0, 0x456};
+/*800C250C*/ static ModelVertexInfo D_800C250C = {(s32)models_53D1E0_bin+0x3328, NULL, 0, 0x456};
 
 /*800C2518*/
 ModelInfo D_800C2518 = {
-    0x1B7860,
+    (s32)models_53D1E0_bin,
     NULL,
     0x3326,
     0x3326,
@@ -8313,11 +8314,11 @@ ModelInfo D_800C2518 = {
     0x61,
 };
 
-/*800C2548*/ static ModelInfoUnkStruct1 D_800C2548 = {0x1BB8E8, NULL, 0, 0x78};
+/*800C2548*/ static ModelVertexInfo D_800C2548 = {(s32)models_540960_bin+0x908, NULL, 0, 0x78};
 
 /*800C2554*/
 ModelInfo D_800C2554 = {
-    0x1BAFE0,
+    (s32)models_540960_bin,
     NULL,
     0x908,
     0x908,
@@ -8338,11 +8339,11 @@ ModelInfo D_800C2554 = {
     0xE3,
 };
 
-/*800C2584*/ static ModelInfoUnkStruct1 D_800C2584 = {0x1BD5B8, NULL, 0, 0x1F8};
+/*800C2584*/ static ModelVertexInfo D_800C2584 = {(s32)models_5412E0_bin+0x1C58, NULL, 0, 0x1F8};
 
 /*800C2590*/
 ModelInfo D_800C2590 = {
-    0x1BB960,
+    (s32)models_5412E0_bin,
     NULL,
     0x1C58,
     0x1C58,
@@ -8363,11 +8364,11 @@ ModelInfo D_800C2590 = {
     0,
 };
 
-/*800C25C0*/ static ModelInfoUnkStruct1 D_800C25C0 = {0x1C48E8, NULL, 0, 0x3C0};
+/*800C25C0*/ static ModelVertexInfo D_800C25C0 = {(s32)models_543130_bin+0x7138, NULL, 0, 0x3C0};
 
 /*800C25CC*/
 ModelInfo D_800C25CC = {
-    0x1BD7B0,
+    (s32)models_543130_bin,
     NULL,
     0x7138,
     0x7138,
@@ -8388,11 +8389,11 @@ ModelInfo D_800C25CC = {
     0x1D0,
 };
 
-/*800C25FC*/ static ModelInfoUnkStruct1 D_800C25FC = {0x1C9D38, NULL, 0, 0x3C0};
+/*800C25FC*/ static ModelVertexInfo D_800C25FC = {(s32)models_54A630_bin+0x5088, NULL, 0, 0x3C0};
 
 /*800C2608*/
 ModelInfo D_800C2608 = {
-    0x1C4CB0,
+    (s32)models_54A630_bin,
     NULL,
     0x5088,
     0x5088,
@@ -8413,11 +8414,11 @@ ModelInfo D_800C2608 = {
     0x1D0,
 };
 
-/*800C2638*/ static ModelInfoUnkStruct1 D_800C2638 = {0x1D1238, NULL, 0, 0x3C0};
+/*800C2638*/ static ModelVertexInfo D_800C2638 = {(s32)models_54FA80_bin+0x7138, NULL, 0, 0x3C0};
 
 /*800C2644*/
 ModelInfo D_800C2644 = {
-    0x1CA100,
+    (s32)models_54FA80_bin,
     NULL,
     0x7138,
     0x7138,
@@ -8438,11 +8439,11 @@ ModelInfo D_800C2644 = {
     0x1D0,
 };
 
-/*800C2674*/ static ModelInfoUnkStruct1 D_800C2674 = {0x1D2760, NULL, 0, 0x90};
+/*800C2674*/ static ModelVertexInfo D_800C2674 = {(s32)models_556F80_bin+0x1160, NULL, 0, 0x90};
 
 /*800C2680*/
 ModelInfo D_800C2680 = {
-    0x1D1600,
+    (s32)models_556F80_bin,
     NULL,
     0x1160,
     0x1160,
@@ -8463,11 +8464,11 @@ ModelInfo D_800C2680 = {
     0x79,
 };
 
-/*800C26B0*/ static ModelInfoUnkStruct1 D_800C26B0 = {0x1D30E0, NULL, 0, 0x66};
+/*800C26B0*/ static ModelVertexInfo D_800C26B0 = {(s32)models_558170_bin+0x8F0, NULL, 0, 0x66};
 
 /*800C26BC*/
 ModelInfo D_800C26BC = {
-    0x1D27F0,
+    (s32)models_558170_bin,
     NULL,
     0x8EE,
     0x8EE,
@@ -8488,11 +8489,11 @@ ModelInfo D_800C26BC = {
     -0x48,
 };
 
-/*800C26EC*/ static ModelInfoUnkStruct1 D_800C26EC = {0x1D3A7C, NULL, 0, 0x8A};
+/*800C26EC*/ static ModelVertexInfo D_800C26EC = {(s32)models_558AD0_bin+0x92C, NULL, 0, 0x8A};
 
 /*800C26F8*/
 ModelInfo D_800C26F8 = {
-    0x1D3150,
+    (s32)models_558AD0_bin,
     NULL,
     0x92A,
     0x92A,
@@ -8513,11 +8514,11 @@ ModelInfo D_800C26F8 = {
     0x130,
 };
 
-/*800C2728*/ static ModelInfoUnkStruct1 D_800C2728 = {0x1D48A0, NULL, 0, 0x90};
+/*800C2728*/ static ModelVertexInfo D_800C2728 = {(s32)models_559490_bin+0xD90, NULL, 0, 0x90};
 
 /*800C2734*/
 ModelInfo D_800C2734 = {
-    0x1D3B10,
+    (s32)models_559490_bin,
     NULL,
     0xD90,
     0xD90,
@@ -8538,11 +8539,11 @@ ModelInfo D_800C2734 = {
     0x83,
 };
 
-/*800C2764*/ static ModelInfoUnkStruct1 D_800C2764 = {0x1D9C98, NULL, 0, 0x4C8};
+/*800C2764*/ static ModelVertexInfo D_800C2764 = {(s32)models_55A2B0_bin+0x5368, NULL, 0, 0x4C8};
 
 /*800C2770*/
 ModelInfo D_800C2770 = {
-    0x1D4930,
+    (s32)models_55A2B0_bin,
     NULL,
     0x5368,
     0x5368,
@@ -8563,11 +8564,11 @@ ModelInfo D_800C2770 = {
     0xC0,
 };
 
-/*800C27A0*/ static ModelInfoUnkStruct1 D_800C27A0 = {0x1DDB40, NULL, 0, 0x366};
+/*800C27A0*/ static ModelVertexInfo D_800C27A0 = {(s32)models_55FAE0_bin+0x39E0, NULL, 0, 0x366};
 
 /*800C27AC*/
 ModelInfo D_800C27AC = {
-    0x1DA160,
+    (s32)models_55FAE0_bin,
     NULL,
     0x39DE,
     0x39DE,
@@ -8588,11 +8589,11 @@ ModelInfo D_800C27AC = {
     0x96,
 };
 
-/*800C27DC*/ static ModelInfoUnkStruct1 D_800C27DC = {0x1E36F0, NULL, 0, 0x82E};
+/*800C27DC*/ static ModelVertexInfo D_800C27DC = {(s32)models_563830_bin+0x5840, NULL, 0, 0x82E};
 
 /*800C27E8*/
 ModelInfo D_800C27E8 = {
-    0x1DDEB0,
+    (s32)models_563830_bin,
     NULL,
     0x583E,
     0x583E,
@@ -8613,11 +8614,11 @@ ModelInfo D_800C27E8 = {
     0x14A,
 };
 
-/*800C2818*/ static ModelInfoUnkStruct1 D_800C2818 = {0x1E89FC, NULL, 0, 0x384};
+/*800C2818*/ static ModelVertexInfo D_800C2818 = {(s32)models_5698A0_bin+0x4ADC, NULL, 0, 0x384};
 
 /*800C2824*/
 ModelInfo D_800C2824 = {
-    0x1E3F20,
+    (s32)models_5698A0_bin,
     NULL,
     0x4ADC,
     0x4ADC,
@@ -8638,11 +8639,11 @@ ModelInfo D_800C2824 = {
     0x11F,
 };
 
-/*800C2854*/ static ModelInfoUnkStruct1 D_800C2854 = {0x1EA810, NULL, 0, 0xF0};
+/*800C2854*/ static ModelVertexInfo D_800C2854 = {(s32)models_56E700_bin+0x1A90, NULL, 0, 0xF0};
 
 /*800C2860*/
 ModelInfo D_800C2860 = {
-    0x1E8D80,
+    (s32)models_56E700_bin,
     NULL,
     0x1A90,
     0x1A90,
@@ -8663,11 +8664,11 @@ ModelInfo D_800C2860 = {
     0x31,
 };
 
-/*800C2890*/ static ModelInfoUnkStruct1 D_800C2890 = {0x1EBB8C, NULL, 0, 0x1F2};
+/*800C2890*/ static ModelVertexInfo D_800C2890 = {(s32)models_570280_bin+0x128C, NULL, 0, 0x1F2};
 
 /*800C289C*/
 ModelInfo D_800C289C = {
-    0x1EA900,
+    (s32)models_570280_bin,
     NULL,
     0x128A,
     0x128A,
@@ -8688,11 +8689,11 @@ ModelInfo D_800C289C = {
     0xC,
 };
 
-/*800C28CC*/ static ModelInfoUnkStruct1 D_800C28CC = {0x1EC664, NULL, 0, 0x42};
+/*800C28CC*/ static ModelVertexInfo D_800C28CC = {(s32)models_571700_bin+0x8E4, NULL, 0, 0x42};
 
 /*800C28D8*/
 ModelInfo D_800C28D8 = {
-    0x1EBD80,
+    (s32)models_571700_bin,
     NULL,
     0x8E2,
     0x8E2,
@@ -8719,8 +8720,8 @@ ModelInfo D_800C2908 = {
     NULL,
     0x9FC,
     0x9FC,
-    0,
-    0,
+    0x0,
+    0x0,
     0x618,
     0x3E4,
     { 0, 0, 0, 0 },
@@ -8742,8 +8743,8 @@ ModelInfo D_800C2938 = {
     NULL,
     0x9E8,
     0x9E8,
-    0,
-    0,
+    0x0,
+    0x0,
     0x610,
     0x3D8,
     { 0, 0, 0, 0 },
@@ -8765,8 +8766,8 @@ ModelInfo D_800C2968 = {
     NULL,
     0x98A,
     0x98A,
-    0,
-    0,
+    0x0,
+    0x0,
     0x600,
     0x38A,
     { 0, 0, 0, 0 },
@@ -8788,8 +8789,8 @@ ModelInfo D_800C2998 = {
     NULL,
     0xA40,
     0xA40,
-    0,
-    0,
+    0x0,
+    0x0,
     0x638,
     0x408,
     { 0, 0, 0, 0 },
@@ -8811,8 +8812,8 @@ ModelInfo D_800C29C8 = {
     NULL,
     0xA7C,
     0xA7C,
-    0,
-    0,
+    0x0,
+    0x0,
     0x680,
     0x3FC,
     { 0, 0, 0, 0 },
@@ -8834,8 +8835,8 @@ ModelInfo D_800C29F8 = {
     NULL,
     0xA9E,
     0xA9E,
-    0,
-    0,
+    0x0,
+    0x0,
     0x690,
     0x40E,
     { 0, 0, 0, 0 },
@@ -8857,8 +8858,8 @@ ModelInfo D_800C2A28 = {
     NULL,
     0xB5C,
     0xB5C,
-    0,
-    0,
+    0x0,
+    0x0,
     0x700,
     0x45C,
     { 0, 0, 0, 0 },
@@ -8920,11 +8921,11 @@ ModelInfo D_800C2A88 = {
     0x179,
 };
 
-/*800C2AB8*/ static ModelInfoUnkStruct1 D_800C2AB8 = {0x1EE208, NULL, 0, 0x150};
+/*800C2AB8*/ static ModelVertexInfo D_800C2AB8 = {(s32)models_572030_bin+0x1B58, NULL, 0, 0x150};
 
 /*800C2AC4*/
 ModelInfo D_800C2AC4 = {
-    0x1EC6B0,
+    (s32)models_572030_bin,
     NULL,
     0x1B58,
     0x1B58,
@@ -8945,11 +8946,11 @@ ModelInfo D_800C2AC4 = {
     0x12,
 };
 
-/*800C2AF4*/ static ModelInfoUnkStruct1 D_800C2AF4 = {0x1EFD00, NULL, 0, 0x66};
+/*800C2AF4*/ static ModelVertexInfo D_800C2AF4 = {(s32)models_573CE0_bin+0x19A0, NULL, 0, 0x66};
 
 /*800C2B00*/
 ModelInfo D_800C2B00 = {
-    0x1EE360,
+    (s32)models_573CE0_bin,
     NULL,
     0x199E,
     0x199E,
@@ -8970,11 +8971,11 @@ ModelInfo D_800C2B00 = {
     0x15,
 };
 
-/*800C2B30*/ static ModelInfoUnkStruct1 D_800C2B30 = {0x1F1078, NULL, 0, 0x13E};
+/*800C2B30*/ static ModelVertexInfo D_800C2B30 = {(s32)models_5756F0_bin+0x1308, NULL, 0, 0x13E};
 
 /*800C2B3C*/
 ModelInfo D_800C2B3C = {
-    0x1EFD70,
+    (s32)models_5756F0_bin,
     NULL,
     0x1306,
     0x1306,
@@ -8995,11 +8996,11 @@ ModelInfo D_800C2B3C = {
     0x45,
 };
 
-/*800C2B6C*/ static ModelInfoUnkStruct1 D_800C2B6C = {0x1F1B40, NULL, 0, 0x7E};
+/*800C2B6C*/ static ModelVertexInfo D_800C2B6C = {(s32)models_576B40_bin+0x980, NULL, 0, 0x7E};
 
 /*800C2B78*/
 ModelInfo D_800C2B78 = {
-    0x1F11C0,
+    (s32)models_576B40_bin,
     NULL,
     0x97E,
     0x97E,
@@ -9020,11 +9021,11 @@ ModelInfo D_800C2B78 = {
     7,
 };
 
-/*800C2BA8*/ static ModelInfoUnkStruct1 D_800C2BA8 = {0x1F3080, NULL, 0, 0x120};
+/*800C2BA8*/ static ModelVertexInfo D_800C2BA8 = {(s32)models_577540_bin+0x14C0, NULL, 0, 0x120};
 
 /*800C2BB4*/
 ModelInfo D_800C2BB4 = {
-    0x1F1BC0,
+    (s32)models_577540_bin,
     NULL,
     0x14C0,
     0x14C0,
@@ -9045,11 +9046,11 @@ ModelInfo D_800C2BB4 = {
     4,
 };
 
-/*800C2BE4*/ static ModelInfoUnkStruct1 D_800C2BE4 = {0x1F3DFC, NULL, 0, 0xFC};
+/*800C2BE4*/ static ModelVertexInfo D_800C2BE4 = {(s32)models_578B20_bin+0xC5C, NULL, 0, 0xFC};
 
 /*800C2BF0*/
 ModelInfo D_800C2BF0 = {
-    0x1F31A0,
+    (s32)models_578B20_bin,
     NULL,
     0xC5C,
     0xC5C,
@@ -9070,11 +9071,11 @@ ModelInfo D_800C2BF0 = {
     3,
 };
 
-/*800C2C20*/ static ModelInfoUnkStruct1 D_800C2C20 = {0x1F6ACC, NULL, 0, 0x174};
+/*800C2C20*/ static ModelVertexInfo D_800C2C20 = {(s32)models_579880_bin+0x2BCC, NULL, 0, 0x174};
 
 /*800C2C2C*/
 ModelInfo D_800C2C2C = {
-    0x1F3F00,
+    (s32)models_579880_bin,
     NULL,
     0x2BCC,
     0x2BCC,
@@ -9095,11 +9096,11 @@ ModelInfo D_800C2C2C = {
     1,
 };
 
-/*800C2C5C*/ static ModelInfoUnkStruct1 D_800C2C5C = {0x1F7D88, NULL, 0, 0x60};
+/*800C2C5C*/ static ModelVertexInfo D_800C2C5C = {(s32)models_57C5C0_bin+0x1148, NULL, 0, 0x60};
 
 /*800C2C68*/
 ModelInfo D_800C2C68 = {
-    0x1F6C40,
+    (s32)models_57C5C0_bin,
     NULL,
     0x1148,
     0x1148,
@@ -9120,11 +9121,11 @@ ModelInfo D_800C2C68 = {
     0x10,
 };
 
-/*800C2C98*/ static ModelInfoUnkStruct1 D_800C2C98 = {0x1F8770, NULL, 0, 0x7E};
+/*800C2C98*/ static ModelVertexInfo D_800C2C98 = {(s32)models_57D770_bin+0x980, NULL, 0, 0x7E};
 
 /*800C2CA4*/
 ModelInfo D_800C2CA4 = {
-    0x1F7DF0,
+    (s32)models_57D770_bin,
     NULL,
     0x97E,
     0x97E,
@@ -9145,11 +9146,11 @@ ModelInfo D_800C2CA4 = {
     7,
 };
 
-/*800C2CD4*/ static ModelInfoUnkStruct1 D_800C2CD4 = {0x1F9CB0, NULL, 0, 0x120};
+/*800C2CD4*/ static ModelVertexInfo D_800C2CD4 = {(s32)models_57E170_bin+0x14C0, NULL, 0, 0x120};
 
 /*800C2CE0*/
 ModelInfo D_800C2CE0 = {
-    0x1F87F0,
+    (s32)models_57E170_bin,
     NULL,
     0x14C0,
     0x14C0,
@@ -9170,11 +9171,11 @@ ModelInfo D_800C2CE0 = {
     4,
 };
 
-/*800C2D10*/ static ModelInfoUnkStruct1 D_800C2D10 = {0x1FAA2C, NULL, 0, 0xFC};
+/*800C2D10*/ static ModelVertexInfo D_800C2D10 = {(s32)models_57F750_bin+0xC5C, NULL, 0, 0xFC};
 
 /*800C2D1C*/
 ModelInfo D_800C2D1C = {
-    0x1F9DD0,
+    (s32)models_57F750_bin,
     NULL,
     0xC5C,
     0xC5C,
@@ -9195,11 +9196,11 @@ ModelInfo D_800C2D1C = {
     3,
 };
 
-/*800C2D4C*/ static ModelInfoUnkStruct1 D_800C2D4C = {0x1FD6F8, NULL, 0, 0x168};
+/*800C2D4C*/ static ModelVertexInfo D_800C2D4C = {(s32)models_5804B0_bin+0x2BC8, NULL, 0, 0x168};
 
 /*800C2D58*/
 ModelInfo D_800C2D58 = {
-    0x1FAB30,
+    (s32)models_5804B0_bin,
     NULL,
     0x2BC8,
     0x2BC8,
@@ -9220,11 +9221,11 @@ ModelInfo D_800C2D58 = {
     1,
 };
 
-/*800C2D88*/ static ModelInfoUnkStruct1 D_800C2D88 = {0x1FE9A8, NULL, 0, 0x60};
+/*800C2D88*/ static ModelVertexInfo D_800C2D88 = {(s32)models_5831E0_bin+0x1148, NULL, 0, 0x60};
 
 /*800C2D94*/
 ModelInfo D_800C2D94 = {
-    0x1FD860,
+    (s32)models_5831E0_bin,
     NULL,
     0x1148,
     0x1148,
@@ -9245,11 +9246,11 @@ ModelInfo D_800C2D94 = {
     0x10,
 };
 
-/*800C2DC4*/ static ModelInfoUnkStruct1 D_800C2DC4 = {0x299904, NULL, 0, 0x1BC};
+/*800C2DC4*/ static ModelVertexInfo D_800C2DC4 = {(s32)models_61DC10_bin+0x1674, NULL, 0, 0x1BC};
 
 /*800C2DD0*/
 ModelInfo D_800C2DD0 = {
-    0x298290,
+    (s32)models_61DC10_bin,
     NULL,
     0x1674,
     0x1674,
@@ -9270,11 +9271,11 @@ ModelInfo D_800C2DD0 = {
     0x18,
 };
 
-/*800C2E00*/ static ModelInfoUnkStruct1 D_800C2E00 = {0x29AEE0, NULL, 0, 0xC0};
+/*800C2E00*/ static ModelVertexInfo D_800C2E00 = {(s32)models_61F440_bin+0x1420, NULL, 0, 0xC0};
 
 /*800C2E0C*/
 ModelInfo D_800C2E0C = {
-    0x299AC0,
+    (s32)models_61F440_bin,
     NULL,
     0x1420,
     0x1420,
@@ -9295,11 +9296,11 @@ ModelInfo D_800C2E0C = {
     0x15,
 };
 
-/*800C2E3C*/ static ModelInfoUnkStruct1 D_800C2E3C = {0x29C2A8, NULL, 0, 0x13E};
+/*800C2E3C*/ static ModelVertexInfo D_800C2E3C = {(s32)models_620920_bin+0x1308, NULL, 0, 0x13E};
 
 /*800C2E48*/
 ModelInfo D_800C2E48 = {
-    0x29AFA0,
+    (s32)models_620920_bin,
     NULL,
     0x1306,
     0x1306,
@@ -9320,11 +9321,11 @@ ModelInfo D_800C2E48 = {
     0x45,
 };
 
-/*800C2E78*/ static ModelInfoUnkStruct1 D_800C2E78 = {0x29CD70, NULL, 0, 0x7E};
+/*800C2E78*/ static ModelVertexInfo D_800C2E78 = {(s32)models_621D70_bin+0x980, NULL, 0, 0x7E};
 
 /*800C2E84*/
 ModelInfo D_800C2E84 = {
-    0x29C3F0,
+    (s32)models_621D70_bin,
     NULL,
     0x97E,
     0x97E,
@@ -9345,11 +9346,11 @@ ModelInfo D_800C2E84 = {
     7,
 };
 
-/*800C2EB4*/ static ModelInfoUnkStruct1 D_800C2EB4 = {0x29E2EC, NULL, 0, 0xBA};
+/*800C2EB4*/ static ModelVertexInfo D_800C2EB4 = {(s32)models_622770_bin+0x14FC, NULL, 0, 0xBA};
 
 /*800C2EC0*/
 ModelInfo D_800C2EC0 = {
-    0x29CDF0,
+    (s32)models_622770_bin,
     NULL,
     0x14FA,
     0x14FA,
@@ -9370,11 +9371,11 @@ ModelInfo D_800C2EC0 = {
     4,
 };
 
-/*800C2EF0*/ static ModelInfoUnkStruct1 D_800C2EF0 = {0x29E830, NULL, 0, 0x4E};
+/*800C2EF0*/ static ModelVertexInfo D_800C2EF0 = {(s32)models_623D30_bin+0x480, NULL, 0, 0x4E};
 
 /*800C2EFC*/
 ModelInfo D_800C2EFC = {
-    0x29E3B0,
+    (s32)models_623D30_bin,
     NULL,
     0x47E,
     0x47E,
@@ -9395,11 +9396,11 @@ ModelInfo D_800C2EFC = {
     3,
 };
 
-/*800C2F2C*/ static ModelInfoUnkStruct1 D_800C2F2C = {0x2A143C, NULL, 0, 0x162};
+/*800C2F2C*/ static ModelVertexInfo D_800C2F2C = {(s32)models_624200_bin+0x2BBC, NULL, 0, 0x162};
 
 /*800C2F38*/
 ModelInfo D_800C2F38 = {
-    0x29E880,
+    (s32)models_624200_bin,
     NULL,
     0x2BBA,
     0x2BBA,
@@ -9420,11 +9421,11 @@ ModelInfo D_800C2F38 = {
     1,
 };
 
-/*800C2F68*/ static ModelInfoUnkStruct1 D_800C2F68 = {0x2A26E8, NULL, 0, 0x60};
+/*800C2F68*/ static ModelVertexInfo D_800C2F68 = {(s32)models_626F20_bin+0x1148, NULL, 0, 0x60};
 
 /*800C2F74*/
 ModelInfo D_800C2F74 = {
-    0x2A15A0,
+    (s32)models_626F20_bin,
     NULL,
     0x1148,
     0x1148,
@@ -9445,11 +9446,11 @@ ModelInfo D_800C2F74 = {
     0x10,
 };
 
-/*800C2FA4*/ static ModelInfoUnkStruct1 D_800C2FA4 = {0x2A30D0, NULL, 0, 0x7E};
+/*800C2FA4*/ static ModelVertexInfo D_800C2FA4 = {(s32)models_6280D0_bin+0x980, NULL, 0, 0x7E};
 
 /*800C2FB0*/
 ModelInfo D_800C2FB0 = {
-    0x2A2750,
+    (s32)models_6280D0_bin,
     NULL,
     0x97E,
     0x97E,
@@ -9470,11 +9471,11 @@ ModelInfo D_800C2FB0 = {
     7,
 };
 
-/*800C2FE0*/ static ModelInfoUnkStruct1 D_800C2FE0 = {0x2A4674, NULL, 0, 0xD2};
+/*800C2FE0*/ static ModelVertexInfo D_800C2FE0 = {(s32)models_628AD0_bin+0x1524, NULL, 0, 0xD2};
 
 /*800C2FEC*/
 ModelInfo D_800C2FEC = {
-    0x2A3150,
+    (s32)models_628AD0_bin,
     NULL,
     0x1522,
     0x1522,
@@ -9495,11 +9496,11 @@ ModelInfo D_800C2FEC = {
     4,
 };
 
-/*800C301C*/ static ModelInfoUnkStruct1 D_800C301C = {0x2A4BD0, NULL, 0, 0x4E};
+/*800C301C*/ static ModelVertexInfo D_800C301C = {(s32)models_62A0D0_bin+0x480, NULL, 0, 0x4E};
 
 /*800C3028*/
 ModelInfo D_800C3028 = {
-    0x2A4750,
+    (s32)models_62A0D0_bin,
     NULL,
     0x47E,
     0x47E,
@@ -9520,11 +9521,11 @@ ModelInfo D_800C3028 = {
     3,
 };
 
-/*800C3058*/ static ModelInfoUnkStruct1 D_800C3058 = {0x2A77F0, NULL, 0, 0x168};
+/*800C3058*/ static ModelVertexInfo D_800C3058 = {(s32)models_62A5A0_bin+0x2BD0, NULL, 0, 0x168};
 
 /*800C3064*/
 ModelInfo D_800C3064 = {
-    0x2A4C20,
+    (s32)models_62A5A0_bin,
     NULL,
     0x2BD0,
     0x2BD0,
@@ -9545,11 +9546,11 @@ ModelInfo D_800C3064 = {
     1,
 };
 
-/*800C3094*/ static ModelInfoUnkStruct1 D_800C3094 = {0x2A8AA8, NULL, 0, 0x60};
+/*800C3094*/ static ModelVertexInfo D_800C3094 = {(s32)models_62D2E0_bin+0x1148, NULL, 0, 0x60};
 
 /*800C30A0*/
 ModelInfo D_800C30A0 = {
-    0x2A7960,
+    (s32)models_62D2E0_bin,
     NULL,
     0x1148,
     0x1148,
@@ -9570,11 +9571,11 @@ ModelInfo D_800C30A0 = {
     0x10,
 };
 
-/*800C30D0*/ static ModelInfoUnkStruct1 D_800C30D0 = {0x2AA660, NULL, 0, 0x150};
+/*800C30D0*/ static ModelVertexInfo D_800C30D0 = {(s32)models_62E490_bin+0x1B50, NULL, 0, 0x150};
 
 /*800C30DC*/
 ModelInfo D_800C30DC = {
-    0x2A8B10,
+    (s32)models_62E490_bin,
     NULL,
     0x1B50,
     0x1B50,
@@ -9595,11 +9596,11 @@ ModelInfo D_800C30DC = {
     0x14,
 };
 
-/*800C310C*/ static ModelInfoUnkStruct1 D_800C310C = {0x2AB0F8, NULL, 0, 0x66};
+/*800C310C*/ static ModelVertexInfo D_800C310C = {(s32)models_630130_bin+0x948, NULL, 0, 0x66};
 
 /*800C3118*/
 ModelInfo D_800C3118 = {
-    0x2AA7B0,
+    (s32)models_630130_bin,
     NULL,
     0x946,
     0x946,
@@ -9620,11 +9621,11 @@ ModelInfo D_800C3118 = {
     0x15,
 };
 
-/*800C3148*/ static ModelInfoUnkStruct1 D_800C3148 = {0x2AC45C, NULL, 0, 0x132};
+/*800C3148*/ static ModelVertexInfo D_800C3148 = {(s32)models_630AE0_bin+0x12FC, NULL, 0, 0x132};
 
 /*800C3154*/
 ModelInfo D_800C3154 = {
-    0x2AB160,
+    (s32)models_630AE0_bin,
     NULL,
     0x12FA,
     0x12FA,
@@ -9645,11 +9646,11 @@ ModelInfo D_800C3154 = {
     0x45,
 };
 
-/*800C3184*/ static ModelInfoUnkStruct1 D_800C3184 = {0x2ACF10, NULL, 0, 0x7E};
+/*800C3184*/ static ModelVertexInfo D_800C3184 = {(s32)models_631F10_bin+0x980, NULL, 0, 0x7E};
 
 /*800C3190*/
 ModelInfo D_800C3190 = {
-    0x2AC590,
+    (s32)models_631F10_bin,
     NULL,
     0x97E,
     0x97E,
@@ -9670,11 +9671,11 @@ ModelInfo D_800C3190 = {
     7,
 };
 
-/*800C31C0*/ static ModelInfoUnkStruct1 D_800C31C0 = {0x2AD8A4, NULL, 0, 0x54};
+/*800C31C0*/ static ModelVertexInfo D_800C31C0 = {(s32)models_632910_bin+0x914, NULL, 0, 0x54};
 
 /*800C31CC*/
 ModelInfo D_800C31CC = {
-    0x2ACF90,
+    (s32)models_632910_bin,
     NULL,
     0x914,
     0x914,
@@ -9695,11 +9696,11 @@ ModelInfo D_800C31CC = {
     4,
 };
 
-/*800C31FC*/ static ModelInfoUnkStruct1 D_800C31FC = {0x2ADD80, NULL, 0, 0x4E};
+/*800C31FC*/ static ModelVertexInfo D_800C31FC = {(s32)models_633280_bin+0x480, NULL, 0, 0x4E};
 
 /*800C3208*/
 ModelInfo D_800C3208 = {
-    0x2AD900,
+    (s32)models_633280_bin,
     NULL,
     0x47E,
     0x47E,
@@ -9720,11 +9721,11 @@ ModelInfo D_800C3208 = {
     1,
 };
 
-/*800C3238*/ static ModelInfoUnkStruct1 D_800C3238 = {0x2B098C, NULL, 0, 0x162};
+/*800C3238*/ static ModelVertexInfo D_800C3238 = {(s32)models_633750_bin+0x2BBC, NULL, 0, 0x162};
 
 /*800C3244*/
 ModelInfo D_800C3244 = {
-    0x2ADDD0,
+    (s32)models_633750_bin,
     NULL,
     0x2BBA,
     0x2BBA,
@@ -9745,11 +9746,11 @@ ModelInfo D_800C3244 = {
     1,
 };
 
-/*800C3274*/ static ModelInfoUnkStruct1 D_800C3274 = {0x2B1410, NULL, 0, 0x60};
+/*800C3274*/ static ModelVertexInfo D_800C3274 = {(s32)models_636470_bin+0x920, NULL, 0, 0x60};
 
 /*800C3280*/
 ModelInfo D_800C3280 = {
-    0x2B0AF0,
+    (s32)models_636470_bin,
     NULL,
     0x920,
     0x920,
@@ -9770,11 +9771,11 @@ ModelInfo D_800C3280 = {
     0x10,
 };
 
-/*800C32B0*/ static ModelInfoUnkStruct1 D_800C32B0 = {0x2B1DF0, NULL, 0, 0x7E};
+/*800C32B0*/ static ModelVertexInfo D_800C32B0 = {(s32)models_636DF0_bin+0x980, NULL, 0, 0x7E};
 
 /*800C32BC*/
 ModelInfo D_800C32BC = {
-    0x2B1470,
+    (s32)models_636DF0_bin,
     NULL,
     0x97E,
     0x97E,
@@ -9795,11 +9796,11 @@ ModelInfo D_800C32BC = {
     7,
 };
 
-/*800C32EC*/ static ModelInfoUnkStruct1 D_800C32EC = {0x2B2784, NULL, 0, 0x54};
+/*800C32EC*/ static ModelVertexInfo D_800C32EC = {(s32)models_6377F0_bin+0x914, NULL, 0, 0x54};
 
 /*800C32F8*/
 ModelInfo D_800C32F8 = {
-    0x2B1E70,
+    (s32)models_6377F0_bin,
     NULL,
     0x914,
     0x914,
@@ -9820,11 +9821,11 @@ ModelInfo D_800C32F8 = {
     4,
 };
 
-/*800C3328*/ static ModelInfoUnkStruct1 D_800C3328 = {0x2B2C60, NULL, 0, 0x4E};
+/*800C3328*/ static ModelVertexInfo D_800C3328 = {(s32)models_638160_bin+0x480, NULL, 0, 0x4E};
 
 /*800C3334*/
 ModelInfo D_800C3334 = {
-    0x2B27E0,
+    (s32)models_638160_bin,
     NULL,
     0x47E,
     0x47E,
@@ -9845,11 +9846,11 @@ ModelInfo D_800C3334 = {
     1,
 };
 
-/*800C3364*/ static ModelInfoUnkStruct1 D_800C3364 = {0x2B5880, NULL, 0, 0x168};
+/*800C3364*/ static ModelVertexInfo D_800C3364 = {(s32)models_638630_bin+0x2BD0, NULL, 0, 0x168};
 
 /*800C3370*/
 ModelInfo D_800C3370 = {
-    0x2B2CB0,
+    (s32)models_638630_bin,
     NULL,
     0x2BD0,
     0x2BD0,
@@ -9870,11 +9871,11 @@ ModelInfo D_800C3370 = {
     1,
 };
 
-/*800C33A0*/ static ModelInfoUnkStruct1 D_800C33A0 = {0x2B6310, NULL, 0, 0x60};
+/*800C33A0*/ static ModelVertexInfo D_800C33A0 = {(s32)models_63B370_bin+0x920, NULL, 0, 0x60};
 
 /*800C33AC*/
 ModelInfo D_800C33AC = {
-    0x2B59F0,
+    (s32)models_63B370_bin,
     NULL,
     0x920,
     0x920,
@@ -9895,11 +9896,11 @@ ModelInfo D_800C33AC = {
     0x10,
 };
 
-/*800C33DC*/ static ModelInfoUnkStruct1 D_800C33DC = {0x4A0210, NULL, 0, 0x150};
+/*800C33DC*/ static ModelVertexInfo D_800C33DC = {(s32)models_824040_bin+0x1B50, NULL, 0, 0x150};
 
 /*800C33E8*/
 ModelInfo D_800C33E8 = {
-    0x49E6C0,
+    (s32)models_824040_bin,
     NULL,
     0x1B50,
     0x1B50,
@@ -9920,11 +9921,11 @@ ModelInfo D_800C33E8 = {
     0x14,
 };
 
-/*800C3418*/ static ModelInfoUnkStruct1 D_800C3418 = {0x4A2010, NULL, 0, 0xC6};
+/*800C3418*/ static ModelVertexInfo D_800C3418 = {(s32)models_825CE0_bin+0x1CB0, NULL, 0, 0xC6};
 
 /*800C3424*/
 ModelInfo D_800C3424 = {
-    0x4A0360,
+    (s32)models_825CE0_bin,
     NULL,
     0x1CAE,
     0x1CAE,
@@ -9945,11 +9946,11 @@ ModelInfo D_800C3424 = {
     0x15,
 };
 
-/*800C3454*/ static ModelInfoUnkStruct1 D_800C3454 = {0x4A33DC, NULL, 0, 0x132};
+/*800C3454*/ static ModelVertexInfo D_800C3454 = {(s32)models_827A60_bin+0x12FC, NULL, 0, 0x132};
 
 /*800C3460*/
 ModelInfo D_800C3460 = {
-    0x4A20E0,
+    (s32)models_827A60_bin,
     NULL,
     0x12FA,
     0x12FA,
@@ -9970,11 +9971,11 @@ ModelInfo D_800C3460 = {
     0x45,
 };
 
-/*800C3490*/ static ModelInfoUnkStruct1 D_800C3490 = {0x4A3A90, NULL, 0, 0x7E};
+/*800C3490*/ static ModelVertexInfo D_800C3490 = {(s32)models_828E90_bin+0x580, NULL, 0, 0x7E};
 
 /*800C349C*/
 ModelInfo D_800C349C = {
-    0x4A3510,
+    (s32)models_828E90_bin,
     NULL,
     0x57E,
     0x57E,
@@ -9995,11 +9996,11 @@ ModelInfo D_800C349C = {
     7,
 };
 
-/*800C34CC*/ static ModelInfoUnkStruct1 D_800C34CC = {0x4A4424, NULL, 0, 0x54};
+/*800C34CC*/ static ModelVertexInfo D_800C34CC = {(s32)models_829490_bin+0x914, NULL, 0, 0x54};
 
 /*800C34D8*/
 ModelInfo D_800C34D8 = {
-    0x4A3B10,
+    (s32)models_829490_bin,
     NULL,
     0x914,
     0x914,
@@ -10020,11 +10021,11 @@ ModelInfo D_800C34D8 = {
     4,
 };
 
-/*800C3508*/ static ModelInfoUnkStruct1 D_800C3508 = {0x4A4900, NULL, 0, 0x4E};
+/*800C3508*/ static ModelVertexInfo D_800C3508 = {(s32)models_829E00_bin+0x480, NULL, 0, 0x4E};
 
 /*800C3514*/
 ModelInfo D_800C3514 = {
-    0x4A4480,
+    (s32)models_829E00_bin,
     NULL,
     0x47E,
     0x47E,
@@ -10045,11 +10046,11 @@ ModelInfo D_800C3514 = {
     1,
 };
 
-/*800C3544*/ static ModelInfoUnkStruct1 D_800C3544 = {0x4A590C, NULL, 0, 0x162};
+/*800C3544*/ static ModelVertexInfo D_800C3544 = {(s32)models_82A2D0_bin+0xFBC, NULL, 0, 0x162};
 
 /*800C3550*/
 ModelInfo D_800C3550 = {
-    0x4A4950,
+    (s32)models_82A2D0_bin,
     NULL,
     0xFBA,
     0xFBA,
@@ -10070,11 +10071,11 @@ ModelInfo D_800C3550 = {
     1,
 };
 
-/*800C3580*/ static ModelInfoUnkStruct1 D_800C3580 = {0x4A6390, NULL, 0, 0x60};
+/*800C3580*/ static ModelVertexInfo D_800C3580 = {(s32)models_82B3F0_bin+0x920, NULL, 0, 0x60};
 
 /*800C358C*/
 ModelInfo D_800C358C = {
-    0x4A5A70,
+    (s32)models_82B3F0_bin,
     NULL,
     0x920,
     0x920,
@@ -10095,11 +10096,11 @@ ModelInfo D_800C358C = {
     0x10,
 };
 
-/*800C35BC*/ static ModelInfoUnkStruct1 D_800C35BC = {0x4A6970, NULL, 0, 0x7E};
+/*800C35BC*/ static ModelVertexInfo D_800C35BC = {(s32)models_82BD70_bin+0x580, NULL, 0, 0x7E};
 
 /*800C35C8*/
 ModelInfo D_800C35C8 = {
-    0x4A63F0,
+    (s32)models_82BD70_bin,
     NULL,
     0x57E,
     0x57E,
@@ -10120,11 +10121,11 @@ ModelInfo D_800C35C8 = {
     7,
 };
 
-/*800C35F8*/ static ModelInfoUnkStruct1 D_800C35F8 = {0x4A7304, NULL, 0, 0x54};
+/*800C35F8*/ static ModelVertexInfo D_800C35F8 = {(s32)models_82C370_bin+0x914, NULL, 0, 0x54};
 
 /*800C3604*/
 ModelInfo D_800C3604 = {
-    0x4A69F0,
+    (s32)models_82C370_bin,
     NULL,
     0x914,
     0x914,
@@ -10145,11 +10146,11 @@ ModelInfo D_800C3604 = {
     4,
 };
 
-/*800C3634*/ static ModelInfoUnkStruct1 D_800C3634 = {0x4A77E0, NULL, 0, 0x4E};
+/*800C3634*/ static ModelVertexInfo D_800C3634 = {(s32)models_82CCE0_bin+0x480, NULL, 0, 0x4E};
 
 /*800C3640*/
 ModelInfo D_800C3640 = {
-    0x4A7360,
+    (s32)models_82CCE0_bin,
     NULL,
     0x47E,
     0x47E,
@@ -10170,11 +10171,11 @@ ModelInfo D_800C3640 = {
     1,
 };
 
-/*800C3670*/ static ModelInfoUnkStruct1 D_800C3670 = {0x4A8800, NULL, 0, 0x168};
+/*800C3670*/ static ModelVertexInfo D_800C3670 = {(s32)models_82D1B0_bin+0xFD0, NULL, 0, 0x168};
 
 /*800C367C*/
 ModelInfo D_800C367C = {
-    0x4A7830,
+    (s32)models_82D1B0_bin,
     NULL,
     0xFD0,
     0xFD0,
@@ -10195,11 +10196,11 @@ ModelInfo D_800C367C = {
     1,
 };
 
-/*800C36AC*/ static ModelInfoUnkStruct1 D_800C36AC = {0x4A9290, NULL, 0, 0x60};
+/*800C36AC*/ static ModelVertexInfo D_800C36AC = {(s32)models_82E2F0_bin+0x920, NULL, 0, 0x60};
 
 /*800C36B8*/
 ModelInfo D_800C36B8 = {
-    0x4A8970,
+    (s32)models_82E2F0_bin,
     NULL,
     0x920,
     0x920,
@@ -10220,11 +10221,11 @@ ModelInfo D_800C36B8 = {
     0x10,
 };
 
-/*800C36E8*/ static ModelInfoUnkStruct1 D_800C36E8 = {0x59D470, NULL, 0, 0x198};
+/*800C36E8*/ static ModelVertexInfo D_800C36E8 = {(s32)models_921830_bin+0x15C0, NULL, 0, 0x198};
 
 /*800C36F4*/
 ModelInfo D_800C36F4 = {
-    0x59BEB0,
+    (s32)models_921830_bin,
     NULL,
     0x15C0,
     0x15C0,
@@ -10245,11 +10246,11 @@ ModelInfo D_800C36F4 = {
     0x1F,
 };
 
-/*800C3724*/ static ModelInfoUnkStruct1 D_800C3724 = {0x2B7EC0, NULL, 0, 0x150};
+/*800C3724*/ static ModelVertexInfo D_800C3724 = {(s32)models_63BCF0_bin+0x1B50, NULL, 0, 0x150};
 
 /*800C3730*/
 ModelInfo D_800C3730 = {
-    0x2B6370,
+    (s32)models_63BCF0_bin,
     NULL,
     0x1B50,
     0x1B50,
@@ -10270,11 +10271,11 @@ ModelInfo D_800C3730 = {
     0x14,
 };
 
-/*800C3760*/ static ModelInfoUnkStruct1 D_800C3760 = {0x2B92EC, NULL, 0, 0xD2};
+/*800C3760*/ static ModelVertexInfo D_800C3760 = {(s32)models_63D990_bin+0x12DC, NULL, 0, 0xD2};
 
 /*800C376C*/
 ModelInfo D_800C376C = {
-    0x2B8010,
+    (s32)models_63D990_bin,
     NULL,
     0x12DA,
     0x12DA,
@@ -10295,11 +10296,11 @@ ModelInfo D_800C376C = {
     0x15,
 };
 
-/*800C379C*/ static ModelInfoUnkStruct1 D_800C379C = {0x2BA6C8, NULL, 0, 0x13E};
+/*800C379C*/ static ModelVertexInfo D_800C379C = {(s32)models_63ED40_bin+0x1308, NULL, 0, 0x13E};
 
 /*800C37A8*/
 ModelInfo D_800C37A8 = {
-    0x2B93C0,
+    (s32)models_63ED40_bin,
     NULL,
     0x1306,
     0x1306,
@@ -10320,11 +10321,11 @@ ModelInfo D_800C37A8 = {
     0x45,
 };
 
-/*800C37D8*/ static ModelInfoUnkStruct1 D_800C37D8 = {0x2BB190, NULL, 0, 0x7E};
+/*800C37D8*/ static ModelVertexInfo D_800C37D8 = {(s32)models_640190_bin+0x980, NULL, 0, 0x7E};
 
 /*800C37E4*/
 ModelInfo D_800C37E4 = {
-    0x2BA810,
+    (s32)models_640190_bin,
     NULL,
     0x97E,
     0x97E,
@@ -10345,11 +10346,11 @@ ModelInfo D_800C37E4 = {
     7,
 };
 
-/*800C3814*/ static ModelInfoUnkStruct1 D_800C3814 = {0x2BBF50, NULL, 0, 0xD8};
+/*800C3814*/ static ModelVertexInfo D_800C3814 = {(s32)models_640B90_bin+0xD40, NULL, 0, 0xD8};
 
 /*800C3820*/
 ModelInfo D_800C3820 = {
-    0x2BB210,
+    (s32)models_640B90_bin,
     NULL,
     0xD40,
     0xD40,
@@ -10370,11 +10371,11 @@ ModelInfo D_800C3820 = {
     4,
 };
 
-/*800C3850*/ static ModelInfoUnkStruct1 D_800C3850 = {0x2BC4B0, NULL, 0, 0x4E};
+/*800C3850*/ static ModelVertexInfo D_800C3850 = {(s32)models_6419B0_bin+0x480, NULL, 0, 0x4E};
 
 /*800C385C*/
 ModelInfo D_800C385C = {
-    0x2BC030,
+    (s32)models_6419B0_bin,
     NULL,
     0x47E,
     0x47E,
@@ -10395,11 +10396,11 @@ ModelInfo D_800C385C = {
     3,
 };
 
-/*800C388C*/ static ModelInfoUnkStruct1 D_800C388C = {0x2BF0BC, NULL, 0, 0x162};
+/*800C388C*/ static ModelVertexInfo D_800C388C = {(s32)models_641E80_bin+0x2BBC, NULL, 0, 0x162};
 
 /*800C3898*/
 ModelInfo D_800C3898 = {
-    0x2BC500,
+    (s32)models_641E80_bin,
     NULL,
     0x2BBA,
     0x2BBA,
@@ -10420,11 +10421,11 @@ ModelInfo D_800C3898 = {
     1,
 };
 
-/*800C38C8*/ static ModelInfoUnkStruct1 D_800C38C8 = {0x2BFB40, NULL, 0, 0x60};
+/*800C38C8*/ static ModelVertexInfo D_800C38C8 = {(s32)models_644BA0_bin+0x920, NULL, 0, 0x60};
 
 /*800C38D4*/
 ModelInfo D_800C38D4 = {
-    0x2BF220,
+    (s32)models_644BA0_bin,
     NULL,
     0x920,
     0x920,
@@ -10445,11 +10446,11 @@ ModelInfo D_800C38D4 = {
     0x10,
 };
 
-/*800C3904*/ static ModelInfoUnkStruct1 D_800C3904 = {0x2C0520, NULL, 0, 0x7E};
+/*800C3904*/ static ModelVertexInfo D_800C3904 = {(s32)models_645520_bin+0x980, NULL, 0, 0x7E};
 
 /*800C3910*/
 ModelInfo D_800C3910 = {
-    0x2BFBA0,
+    (s32)models_645520_bin,
     NULL,
     0x97E,
     0x97E,
@@ -10470,11 +10471,11 @@ ModelInfo D_800C3910 = {
     7,
 };
 
-/*800C3940*/ static ModelInfoUnkStruct1 D_800C3940 = {0x2C12E0, NULL, 0, 0xD8};
+/*800C3940*/ static ModelVertexInfo D_800C3940 = {(s32)models_645F20_bin+0xD40, NULL, 0, 0xD8};
 
 /*800C394C*/
 ModelInfo D_800C394C = {
-    0x2C05A0,
+    (s32)models_645F20_bin,
     NULL,
     0xD40,
     0xD40,
@@ -10495,11 +10496,11 @@ ModelInfo D_800C394C = {
     4,
 };
 
-/*800C397C*/ static ModelInfoUnkStruct1 D_800C397C = {0x2C1840, NULL, 0, 0x4E};
+/*800C397C*/ static ModelVertexInfo D_800C397C = {(s32)models_646D40_bin+0x480, NULL, 0, 0x4E};
 
 /*800C3988*/
 ModelInfo D_800C3988 = {
-    0x2C13C0,
+    (s32)models_646D40_bin,
     NULL,
     0x47E,
     0x47E,
@@ -10520,11 +10521,11 @@ ModelInfo D_800C3988 = {
     3,
 };
 
-/*800C39B8*/ static ModelInfoUnkStruct1 D_800C39B8 = {0x2C445C, NULL, 0, 0x162};
+/*800C39B8*/ static ModelVertexInfo D_800C39B8 = {(s32)models_647210_bin+0x2BCC, NULL, 0, 0x162};
 
 /*800C39C4*/
 ModelInfo D_800C39C4 = {
-    0x2C1890,
+    (s32)models_647210_bin,
     NULL,
     0x2BCA,
     0x2BCA,
@@ -10545,11 +10546,11 @@ ModelInfo D_800C39C4 = {
     1,
 };
 
-/*800C39F4*/ static ModelInfoUnkStruct1 D_800C39F4 = {0x2C4EE0, NULL, 0, 0x60};
+/*800C39F4*/ static ModelVertexInfo D_800C39F4 = {(s32)models_649F40_bin+0x920, NULL, 0, 0x60};
 
 /*800C3A00*/
 ModelInfo D_800C3A00 = {
-    0x2C45C0,
+    (s32)models_649F40_bin,
     NULL,
     0x920,
     0x920,
@@ -10570,11 +10571,11 @@ ModelInfo D_800C3A00 = {
     0x10,
 };
 
-/*800C3A30*/ static ModelInfoUnkStruct1 D_800C3A30 = {0x36EA80, NULL, 0, 0x150};
+/*800C3A30*/ static ModelVertexInfo D_800C3A30 = {(s32)models_6F28B0_bin+0x1B50, NULL, 0, 0x150};
 
 /*800C3A3C*/
 ModelInfo D_800C3A3C = {
-    0x36CF30,
+    (s32)models_6F28B0_bin,
     NULL,
     0x1B50,
     0x1B50,
@@ -10595,11 +10596,11 @@ ModelInfo D_800C3A3C = {
     0x14,
 };
 
-/*800C3A6C*/ static ModelInfoUnkStruct1 D_800C3A6C = {0x370570, NULL, 0, 0x66};
+/*800C3A6C*/ static ModelVertexInfo D_800C3A6C = {(s32)models_6F4550_bin+0x19A0, NULL, 0, 0x66};
 
 /*800C3A78*/
 ModelInfo D_800C3A78 = {
-    0x36EBD0,
+    (s32)models_6F4550_bin,
     NULL,
     0x199E,
     0x199E,
@@ -10620,11 +10621,11 @@ ModelInfo D_800C3A78 = {
     0x15,
 };
 
-/*800C3AA8*/ static ModelInfoUnkStruct1 D_800C3AA8 = {0x3718E8, NULL, 0, 0x13E};
+/*800C3AA8*/ static ModelVertexInfo D_800C3AA8 = {(s32)models_6F5F60_bin+0x1308, NULL, 0, 0x13E};
 
 /*800C3AB4*/
 ModelInfo D_800C3AB4 = {
-    0x3705E0,
+    (s32)models_6F5F60_bin,
     NULL,
     0x1306,
     0x1306,
@@ -10645,11 +10646,11 @@ ModelInfo D_800C3AB4 = {
     0x45,
 };
 
-/*800C3AE4*/ static ModelInfoUnkStruct1 D_800C3AE4 = {0x3723B0, NULL, 0, 0x7E};
+/*800C3AE4*/ static ModelVertexInfo D_800C3AE4 = {(s32)models_6F73B0_bin+0x980, NULL, 0, 0x7E};
 
 /*800C3AF0*/
 ModelInfo D_800C3AF0 = {
-    0x371A30,
+    (s32)models_6F73B0_bin,
     NULL,
     0x97E,
     0x97E,
@@ -10670,11 +10671,11 @@ ModelInfo D_800C3AF0 = {
     7,
 };
 
-/*800C3B20*/ static ModelInfoUnkStruct1 D_800C3B20 = {0x3731A4, NULL, 0, 0x102};
+/*800C3B20*/ static ModelVertexInfo D_800C3B20 = {(s32)models_6F7DB0_bin+0xD74, NULL, 0, 0x102};
 
 /*800C3B2C*/
 ModelInfo D_800C3B2C = {
-    0x372430,
+    (s32)models_6F7DB0_bin,
     NULL,
     0xD72,
     0xD72,
@@ -10695,11 +10696,11 @@ ModelInfo D_800C3B2C = {
     4,
 };
 
-/*800C3B5C*/ static ModelInfoUnkStruct1 D_800C3B5C = {0x373730, NULL, 0, 0x4E};
+/*800C3B5C*/ static ModelVertexInfo D_800C3B5C = {(s32)models_6F8C30_bin+0x480, NULL, 0, 0x4E};
 
 /*800C3B68*/
 ModelInfo D_800C3B68 = {
-    0x3732B0,
+    (s32)models_6F8C30_bin,
     NULL,
     0x47E,
     0x47E,
@@ -10720,11 +10721,11 @@ ModelInfo D_800C3B68 = {
     3,
 };
 
-/*800C3B98*/ static ModelInfoUnkStruct1 D_800C3B98 = {0x37633C, NULL, 0, 0x162};
+/*800C3B98*/ static ModelVertexInfo D_800C3B98 = {(s32)models_6F9100_bin+0x2BBC, NULL, 0, 0x162};
 
 /*800C3BA4*/
 ModelInfo D_800C3BA4 = {
-    0x373780,
+    (s32)models_6F9100_bin,
     NULL,
     0x2BBA,
     0x2BBA,
@@ -10745,11 +10746,11 @@ ModelInfo D_800C3BA4 = {
     1,
 };
 
-/*800C3BD4*/ static ModelInfoUnkStruct1 D_800C3BD4 = {0x376DC0, NULL, 0, 0x60};
+/*800C3BD4*/ static ModelVertexInfo D_800C3BD4 = {(s32)models_6FBE20_bin+0x920, NULL, 0, 0x60};
 
 /*800C3BE0*/
 ModelInfo D_800C3BE0 = {
-    0x3764A0,
+    (s32)models_6FBE20_bin,
     NULL,
     0x920,
     0x920,
@@ -10770,11 +10771,11 @@ ModelInfo D_800C3BE0 = {
     0x10,
 };
 
-/*800C3C10*/ static ModelInfoUnkStruct1 D_800C3C10 = {0x3777A0, NULL, 0, 0x7E};
+/*800C3C10*/ static ModelVertexInfo D_800C3C10 = {(s32)models_6FC7A0_bin+0x980, NULL, 0, 0x7E};
 
 /*800C3C1C*/
 ModelInfo D_800C3C1C = {
-    0x376E20,
+    (s32)models_6FC7A0_bin,
     NULL,
     0x97E,
     0x97E,
@@ -10795,11 +10796,11 @@ ModelInfo D_800C3C1C = {
     7,
 };
 
-/*800C3C4C*/ static ModelInfoUnkStruct1 D_800C3C4C = {0x3785C4, NULL, 0, 0x11A};
+/*800C3C4C*/ static ModelVertexInfo D_800C3C4C = {(s32)models_6FD1A0_bin+0xDA4, NULL, 0, 0x11A};
 
 /*800C3C58*/
 ModelInfo D_800C3C58 = {
-    0x377820,
+    (s32)models_6FD1A0_bin,
     NULL,
     0xDA2,
     0xDA2,
@@ -10820,11 +10821,11 @@ ModelInfo D_800C3C58 = {
     4,
 };
 
-/*800C3C88*/ static ModelInfoUnkStruct1 D_800C3C88 = {0x378B60, NULL, 0, 0x4E};
+/*800C3C88*/ static ModelVertexInfo D_800C3C88 = {(s32)models_6FE060_bin+0x480, NULL, 0, 0x4E};
 
 /*800C3C94*/
 ModelInfo D_800C3C94 = {
-    0x3786E0,
+    (s32)models_6FE060_bin,
     NULL,
     0x47E,
     0x47E,
@@ -10845,11 +10846,11 @@ ModelInfo D_800C3C94 = {
     3,
 };
 
-/*800C3CC4*/ static ModelInfoUnkStruct1 D_800C3CC4 = {0x37B780, NULL, 0, 0x168};
+/*800C3CC4*/ static ModelVertexInfo D_800C3CC4 = {(s32)models_6FE530_bin+0x2BD0, NULL, 0, 0x168};
 
 /*800C3CD0*/
 ModelInfo D_800C3CD0 = {
-    0x378BB0,
+    (s32)models_6FE530_bin,
     NULL,
     0x2BD0,
     0x2BD0,
@@ -10870,11 +10871,11 @@ ModelInfo D_800C3CD0 = {
     1,
 };
 
-/*800C3D00*/ static ModelInfoUnkStruct1 D_800C3D00 = {0x37C210, NULL, 0, 0x60};
+/*800C3D00*/ static ModelVertexInfo D_800C3D00 = {(s32)models_701270_bin+0x920, NULL, 0, 0x60};
 
 /*800C3D0C*/
 ModelInfo D_800C3D0C = {
-    0x37B8F0,
+    (s32)models_701270_bin,
     NULL,
     0x920,
     0x920,
@@ -10895,11 +10896,11 @@ ModelInfo D_800C3D0C = {
     0x10,
 };
 
-/*800C3D3C*/ static ModelInfoUnkStruct1 D_800C3D3C = {0x38D7B0, NULL, 0, 0x150};
+/*800C3D3C*/ static ModelVertexInfo D_800C3D3C = {(s32)models_7115E0_bin+0x1B50, NULL, 0, 0x150};
 
 /*800C3D48*/
 ModelInfo D_800C3D48 = {
-    0x38BC60,
+    (s32)models_7115E0_bin,
     NULL,
     0x1B50,
     0x1B50,
@@ -10920,11 +10921,11 @@ ModelInfo D_800C3D48 = {
     0x14,
 };
 
-/*800C3D78*/ static ModelInfoUnkStruct1 D_800C3D78 = {0x38F2A0, NULL, 0, 0x66};
+/*800C3D78*/ static ModelVertexInfo D_800C3D78 = {(s32)models_713280_bin+0x19A0, NULL, 0, 0x66};
 
 /*800C3D84*/
 ModelInfo D_800C3D84 = {
-    0x38D900,
+    (s32)models_713280_bin,
     NULL,
     0x199E,
     0x199E,
@@ -10945,11 +10946,11 @@ ModelInfo D_800C3D84 = {
     0x15,
 };
 
-/*800C3DB4*/ static ModelInfoUnkStruct1 D_800C3DB4 = {0x390618, NULL, 0, 0x13E};
+/*800C3DB4*/ static ModelVertexInfo D_800C3DB4 = {(s32)models_714C90_bin+0x1308, NULL, 0, 0x13E};
 
 /*800C3DC0*/
 ModelInfo D_800C3DC0 = {
-    0x38F310,
+    (s32)models_714C90_bin,
     NULL,
     0x1306,
     0x1306,
@@ -10970,11 +10971,11 @@ ModelInfo D_800C3DC0 = {
     0x45,
 };
 
-/*800C3DF0*/ static ModelInfoUnkStruct1 D_800C3DF0 = {0x3910E0, NULL, 0, 0x7E};
+/*800C3DF0*/ static ModelVertexInfo D_800C3DF0 = {(s32)models_7160E0_bin+0x980, NULL, 0, 0x7E};
 
 /*800C3DFC*/
 ModelInfo D_800C3DFC = {
-    0x390760,
+    (s32)models_7160E0_bin,
     NULL,
     0x97E,
     0x97E,
@@ -10995,11 +10996,11 @@ ModelInfo D_800C3DFC = {
     7,
 };
 
-/*800C3E2C*/ static ModelInfoUnkStruct1 D_800C3E2C = {0x391ED4, NULL, 0, 0x102};
+/*800C3E2C*/ static ModelVertexInfo D_800C3E2C = {(s32)models_716AE0_bin+0xD74, NULL, 0, 0x102};
 
 /*800C3E38*/
 ModelInfo D_800C3E38 = {
-    0x391160,
+    (s32)models_716AE0_bin,
     NULL,
     0xD72,
     0xD72,
@@ -11020,11 +11021,11 @@ ModelInfo D_800C3E38 = {
     4,
 };
 
-/*800C3E68*/ static ModelInfoUnkStruct1 D_800C3E68 = {0x392460, NULL, 0, 0x4E};
+/*800C3E68*/ static ModelVertexInfo D_800C3E68 = {(s32)models_717960_bin+0x480, NULL, 0, 0x4E};
 
 /*800C3E74*/
 ModelInfo D_800C3E74 = {
-    0x391FE0,
+    (s32)models_717960_bin,
     NULL,
     0x47E,
     0x47E,
@@ -11045,11 +11046,11 @@ ModelInfo D_800C3E74 = {
     3,
 };
 
-/*800C3EA4*/ static ModelInfoUnkStruct1 D_800C3EA4 = {0x39506C, NULL, 0, 0x162};
+/*800C3EA4*/ static ModelVertexInfo D_800C3EA4 = {(s32)models_717E30_bin+0x2BBC, NULL, 0, 0x162};
 
 /*800C3EB0*/
 ModelInfo D_800C3EB0 = {
-    0x3924B0,
+    (s32)models_717E30_bin,
     NULL,
     0x2BBA,
     0x2BBA,
@@ -11070,11 +11071,11 @@ ModelInfo D_800C3EB0 = {
     1,
 };
 
-/*800C3EE0*/ static ModelInfoUnkStruct1 D_800C3EE0 = {0x395AF0, NULL, 0, 0x60};
+/*800C3EE0*/ static ModelVertexInfo D_800C3EE0 = {(s32)models_71AB50_bin+0x920, NULL, 0, 0x60};
 
 /*800C3EEC*/
 ModelInfo D_800C3EEC = {
-    0x3951D0,
+    (s32)models_71AB50_bin,
     NULL,
     0x920,
     0x920,
@@ -11095,11 +11096,11 @@ ModelInfo D_800C3EEC = {
     0x10,
 };
 
-/*800C3F1C*/ static ModelInfoUnkStruct1 D_800C3F1C = {0x3964D0, NULL, 0, 0x7E};
+/*800C3F1C*/ static ModelVertexInfo D_800C3F1C = {(s32)models_71B4D0_bin+0x980, NULL, 0, 0x7E};
 
 /*800C3F28*/
 ModelInfo D_800C3F28 = {
-    0x395B50,
+    (s32)models_71B4D0_bin,
     NULL,
     0x97E,
     0x97E,
@@ -11120,11 +11121,11 @@ ModelInfo D_800C3F28 = {
     7,
 };
 
-/*800C3F58*/ static ModelInfoUnkStruct1 D_800C3F58 = {0x3972F4, NULL, 0, 0x11A};
+/*800C3F58*/ static ModelVertexInfo D_800C3F58 = {(s32)models_71BED0_bin+0xDA4, NULL, 0, 0x11A};
 
 /*800C3F64*/
 ModelInfo D_800C3F64 = {
-    0x396550,
+    (s32)models_71BED0_bin,
     NULL,
     0xDA2,
     0xDA2,
@@ -11145,11 +11146,11 @@ ModelInfo D_800C3F64 = {
     4,
 };
 
-/*800C3F94*/ static ModelInfoUnkStruct1 D_800C3F94 = {0x397890, NULL, 0, 0x4E};
+/*800C3F94*/ static ModelVertexInfo D_800C3F94 = {(s32)models_71CD90_bin+0x480, NULL, 0, 0x4E};
 
 /*800C3FA0*/
 ModelInfo D_800C3FA0 = {
-    0x397410,
+    (s32)models_71CD90_bin,
     NULL,
     0x47E,
     0x47E,
@@ -11170,11 +11171,11 @@ ModelInfo D_800C3FA0 = {
     3,
 };
 
-/*800C3FD0*/ static ModelInfoUnkStruct1 D_800C3FD0 = {0x39A4B0, NULL, 0, 0x168};
+/*800C3FD0*/ static ModelVertexInfo D_800C3FD0 = {(s32)models_71D260_bin+0x2BD0, NULL, 0, 0x168};
 
 /*800C3FDC*/
 ModelInfo D_800C3FDC = {
-    0x3978E0,
+    (s32)models_71D260_bin,
     NULL,
     0x2BD0,
     0x2BD0,
@@ -11195,11 +11196,11 @@ ModelInfo D_800C3FDC = {
     1,
 };
 
-/*800C400C*/ static ModelInfoUnkStruct1 D_800C400C = {0x39AF40, NULL, 0, 0x60};
+/*800C400C*/ static ModelVertexInfo D_800C400C = {(s32)models_71FFA0_bin+0x920, NULL, 0, 0x60};
 
 /*800C4018*/
 ModelInfo D_800C4018 = {
-    0x39A620,
+    (s32)models_71FFA0_bin,
     NULL,
     0x920,
     0x920,
@@ -11220,11 +11221,11 @@ ModelInfo D_800C4018 = {
     0x10,
 };
 
-/*800C4048*/ static ModelInfoUnkStruct1 D_800C4048 = {0x86E160, NULL, 0, 0x1B6};
+/*800C4048*/ static ModelVertexInfo D_800C4048 = {(s32)models_BF12A0_bin+0x2840, NULL, 0, 0x1B6};
 
 /*800C4054*/
 ModelInfo D_800C4054 = {
-    0x86B920,
+    (s32)models_BF12A0_bin,
     NULL,
     0x283E,
     0x283E,
@@ -11245,11 +11246,11 @@ ModelInfo D_800C4054 = {
     0x13,
 };
 
-/*800C4084*/ static ModelInfoUnkStruct1 D_800C4084 = {0x86F5FC, NULL, 0, 0xD2};
+/*800C4084*/ static ModelVertexInfo D_800C4084 = {(s32)models_BF3CA0_bin+0x12DC, NULL, 0, 0xD2};
 
 /*800C4090*/
 ModelInfo D_800C4090 = {
-    0x86E320,
+    (s32)models_BF3CA0_bin,
     NULL,
     0x12DA,
     0x12DA,
@@ -11270,11 +11271,11 @@ ModelInfo D_800C4090 = {
     0x15,
 };
 
-/*800C40C0*/ static ModelInfoUnkStruct1 D_800C40C0 = {0x87129C, NULL, 0, 0x192};
+/*800C40C0*/ static ModelVertexInfo D_800C40C0 = {(s32)models_BF5050_bin+0x1BCC, NULL, 0, 0x192};
 
 /*800C40CC*/
 ModelInfo D_800C40CC = {
-    0x86F6D0,
+    (s32)models_BF5050_bin,
     NULL,
     0x1BCA,
     0x1BCA,
@@ -11295,11 +11296,11 @@ ModelInfo D_800C40CC = {
     0x45,
 };
 
-/*800C40FC*/ static ModelInfoUnkStruct1 D_800C40FC = {0x871DB0, NULL, 0, 0x7E};
+/*800C40FC*/ static ModelVertexInfo D_800C40FC = {(s32)models_BF6DB0_bin+0x980, NULL, 0, 0x7E};
 
 /*800C4108*/
 ModelInfo D_800C4108 = {
-    0x871430,
+    (s32)models_BF6DB0_bin,
     NULL,
     0x97E,
     0x97E,
@@ -11320,11 +11321,11 @@ ModelInfo D_800C4108 = {
     7,
 };
 
-/*800C4138*/ static ModelInfoUnkStruct1 D_800C4138 = {0x872B70, NULL, 0, 0xD8};
+/*800C4138*/ static ModelVertexInfo D_800C4138 = {(s32)models_BF77B0_bin+0xD40, NULL, 0, 0xD8};
 
 /*800C4144*/
 ModelInfo D_800C4144 = {
-    0x871E30,
+    (s32)models_BF77B0_bin,
     NULL,
     0xD40,
     0xD40,
@@ -11345,11 +11346,11 @@ ModelInfo D_800C4144 = {
     4,
 };
 
-/*800C4174*/ static ModelInfoUnkStruct1 D_800C4174 = {0x8730D0, NULL, 0, 0x4E};
+/*800C4174*/ static ModelVertexInfo D_800C4174 = {(s32)models_BF85D0_bin+0x480, NULL, 0, 0x4E};
 
 /*800C4180*/
 ModelInfo D_800C4180 = {
-    0x872C50,
+    (s32)models_BF85D0_bin,
     NULL,
     0x47E,
     0x47E,
@@ -11370,11 +11371,11 @@ ModelInfo D_800C4180 = {
     3,
 };
 
-/*800C41B0*/ static ModelInfoUnkStruct1 D_800C41B0 = {0x875CDC, NULL, 0, 0x162};
+/*800C41B0*/ static ModelVertexInfo D_800C41B0 = {(s32)models_BF8AA0_bin+0x2BBC, NULL, 0, 0x162};
 
 /*800C41BC*/
 ModelInfo D_800C41BC = {
-    0x873120,
+    (s32)models_BF8AA0_bin,
     NULL,
     0x2BBA,
     0x2BBA,
@@ -11395,11 +11396,11 @@ ModelInfo D_800C41BC = {
     1,
 };
 
-/*800C41EC*/ static ModelInfoUnkStruct1 D_800C41EC = {0x876760, NULL, 0, 0x60};
+/*800C41EC*/ static ModelVertexInfo D_800C41EC = {(s32)models_BFB7C0_bin+0x920, NULL, 0, 0x60};
 
 /*800C41F8*/
 ModelInfo D_800C41F8 = {
-    0x875E40,
+    (s32)models_BFB7C0_bin,
     NULL,
     0x920,
     0x920,
@@ -11420,11 +11421,11 @@ ModelInfo D_800C41F8 = {
     0x10,
 };
 
-/*800C4228*/ static ModelInfoUnkStruct1 D_800C4228 = {0x877140, NULL, 0, 0x7E};
+/*800C4228*/ static ModelVertexInfo D_800C4228 = {(s32)models_BFC140_bin+0x980, NULL, 0, 0x7E};
 
 /*800C4234*/
 ModelInfo D_800C4234 = {
-    0x8767C0,
+    (s32)models_BFC140_bin,
     NULL,
     0x97E,
     0x97E,
@@ -11445,11 +11446,11 @@ ModelInfo D_800C4234 = {
     7,
 };
 
-/*800C4264*/ static ModelInfoUnkStruct1 D_800C4264 = {0x877F08, NULL, 0, 0xD8};
+/*800C4264*/ static ModelVertexInfo D_800C4264 = {(s32)models_BFCB40_bin+0xD48, NULL, 0, 0xD8};
 
 /*800C4270*/
 ModelInfo D_800C4270 = {
-    0x8771C0,
+    (s32)models_BFCB40_bin,
     NULL,
     0xD48,
     0xD48,
@@ -11470,11 +11471,11 @@ ModelInfo D_800C4270 = {
     4,
 };
 
-/*800C42A0*/ static ModelInfoUnkStruct1 D_800C42A0 = {0x878460, NULL, 0, 0x4E};
+/*800C42A0*/ static ModelVertexInfo D_800C42A0 = {(s32)models_BFD960_bin+0x480, NULL, 0, 0x4E};
 
 /*800C42AC*/
 ModelInfo D_800C42AC = {
-    0x877FE0,
+    (s32)models_BFD960_bin,
     NULL,
     0x47E,
     0x47E,
@@ -11495,11 +11496,11 @@ ModelInfo D_800C42AC = {
     3,
 };
 
-/*800C42DC*/ static ModelInfoUnkStruct1 D_800C42DC = {0x87B064, NULL, 0, 0x162};
+/*800C42DC*/ static ModelVertexInfo D_800C42DC = {(s32)models_BFDE30_bin+0x2BB4, NULL, 0, 0x162};
 
 /*800C42E8*/
 ModelInfo D_800C42E8 = {
-    0x8784B0,
+    (s32)models_BFDE30_bin,
     NULL,
     0x2BB2,
     0x2BB2,
@@ -11520,11 +11521,11 @@ ModelInfo D_800C42E8 = {
     1,
 };
 
-/*800C4318*/ static ModelInfoUnkStruct1 D_800C4318 = {0x87BAF0, NULL, 0, 0x60};
+/*800C4318*/ static ModelVertexInfo D_800C4318 = {(s32)models_C00B50_bin+0x920, NULL, 0, 0x60};
 
 /*800C4324*/
 ModelInfo D_800C4324 = {
-    0x87B1D0,
+    (s32)models_C00B50_bin,
     NULL,
     0x920,
     0x920,
@@ -11545,11 +11546,11 @@ ModelInfo D_800C4324 = {
     0x10,
 };
 
-/*800C4354*/ static ModelInfoUnkStruct1 D_800C4354 = {0x86B7C8, NULL, 0, 0x150};
+/*800C4354*/ static ModelVertexInfo D_800C4354 = {(s32)models_BEF5F0_bin+0x1B58, NULL, 0, 0x150};
 
 /*800C4360*/
 ModelInfo D_800C4360 = {
-    0x869C70,
+    (s32)models_BEF5F0_bin,
     NULL,
     0x1B58,
     0x1B58,
@@ -11570,11 +11571,11 @@ ModelInfo D_800C4360 = {
     0x14,
 };
 
-/*800C4390*/ static ModelInfoUnkStruct1 D_800C4390 = {0x6F6D30, NULL, 0, 0x7E};
+/*800C4390*/ static ModelVertexInfo D_800C4390 = {(s32)models_A7BD30_bin+0x980, NULL, 0, 0x7E};
 
 /*800C439C*/
 ModelInfo D_800C439C = {
-    0x6F63B0,
+    (s32)models_A7BD30_bin,
     NULL,
     0x97E,
     0x97E,
@@ -11595,11 +11596,11 @@ ModelInfo D_800C439C = {
     7,
 };
 
-/*800C43CC*/ static ModelInfoUnkStruct1 D_800C43CC = {0x6F7730, NULL, 0, 0x7E};
+/*800C43CC*/ static ModelVertexInfo D_800C43CC = {(s32)models_A7C730_bin+0x980, NULL, 0, 0x7E};
 
 /*800C43D8*/
 ModelInfo D_800C43D8 = {
-    0x6F6DB0,
+    (s32)models_A7C730_bin,
     NULL,
     0x97E,
     0x97E,
@@ -11620,11 +11621,11 @@ ModelInfo D_800C43D8 = {
     7,
 };
 
-/*800C4408*/ static ModelInfoUnkStruct1 D_800C4408 = {0x37DE20, NULL, 0, 0x138};
+/*800C4408*/ static ModelVertexInfo D_800C4408 = {(s32)models_701BF0_bin+0x1BB0, NULL, 0, 0x138};
 
 /*800C4414*/
 ModelInfo D_800C4414 = {
-    0x37C270,
+    (s32)models_701BF0_bin,
     NULL,
     0x1BB0,
     0x1BB0,
@@ -11645,11 +11646,11 @@ ModelInfo D_800C4414 = {
     0x17,
 };
 
-/*800C4444*/ static ModelInfoUnkStruct1 D_800C4444 = {0x37F900, NULL, 0, 0x66};
+/*800C4444*/ static ModelVertexInfo D_800C4444 = {(s32)models_7038E0_bin+0x19A0, NULL, 0, 0x66};
 
 /*800C4450*/
 ModelInfo D_800C4450 = {
-    0x37DF60,
+    (s32)models_7038E0_bin,
     NULL,
     0x199E,
     0x199E,
@@ -11670,11 +11671,11 @@ ModelInfo D_800C4450 = {
     0x15,
 };
 
-/*800C4480*/ static ModelInfoUnkStruct1 D_800C4480 = {0x380C78, NULL, 0, 0x13E};
+/*800C4480*/ static ModelVertexInfo D_800C4480 = {(s32)models_7052F0_bin+0x1308, NULL, 0, 0x13E};
 
 /*800C448C*/
 ModelInfo D_800C448C = {
-    0x37F970,
+    (s32)models_7052F0_bin,
     NULL,
     0x1306,
     0x1306,
@@ -11695,11 +11696,11 @@ ModelInfo D_800C448C = {
     0x45,
 };
 
-/*800C44BC*/ static ModelInfoUnkStruct1 D_800C44BC = {0x381A0C, NULL, 0, 0xE4};
+/*800C44BC*/ static ModelVertexInfo D_800C44BC = {(s32)models_706740_bin+0xC4C, NULL, 0, 0xE4};
 
 /*800C44C8*/
 ModelInfo D_800C44C8 = {
-    0x380DC0,
+    (s32)models_706740_bin,
     NULL,
     0xC4C,
     0xC4C,
@@ -11720,11 +11721,11 @@ ModelInfo D_800C44C8 = {
     7,
 };
 
-/*800C44F8*/ static ModelInfoUnkStruct1 D_800C44F8 = {0x382864, NULL, 0, 0x102};
+/*800C44F8*/ static ModelVertexInfo D_800C44F8 = {(s32)models_707470_bin+0xD74, NULL, 0, 0x102};
 
 /*800C4504*/
 ModelInfo D_800C4504 = {
-    0x381AF0,
+    (s32)models_707470_bin,
     NULL,
     0xD72,
     0xD72,
@@ -11745,11 +11746,11 @@ ModelInfo D_800C4504 = {
     4,
 };
 
-/*800C4534*/ static ModelInfoUnkStruct1 D_800C4534 = {0x382DF0, NULL, 0, 0x4E};
+/*800C4534*/ static ModelVertexInfo D_800C4534 = {(s32)models_7082F0_bin+0x480, NULL, 0, 0x4E};
 
 /*800C4540*/
 ModelInfo D_800C4540 = {
-    0x382970,
+    (s32)models_7082F0_bin,
     NULL,
     0x47E,
     0x47E,
@@ -11770,11 +11771,11 @@ ModelInfo D_800C4540 = {
     3,
 };
 
-/*800C4570*/ static ModelInfoUnkStruct1 D_800C4570 = {0x3859FC, NULL, 0, 0x162};
+/*800C4570*/ static ModelVertexInfo D_800C4570 = {(s32)models_7087C0_bin+0x2BBC, NULL, 0, 0x162};
 
 /*800C457C*/
 ModelInfo D_800C457C = {
-    0x382E40,
+    (s32)models_7087C0_bin,
     NULL,
     0x2BBA,
     0x2BBA,
@@ -11795,11 +11796,11 @@ ModelInfo D_800C457C = {
     1,
 };
 
-/*800C45AC*/ static ModelInfoUnkStruct1 D_800C45AC = {0x386480, NULL, 0, 0x60};
+/*800C45AC*/ static ModelVertexInfo D_800C45AC = {(s32)models_70B4E0_bin+0x920, NULL, 0, 0x60};
 
 /*800C45B8*/
 ModelInfo D_800C45B8 = {
-    0x385B60,
+    (s32)models_70B4E0_bin,
     NULL,
     0x920,
     0x920,
@@ -11820,11 +11821,11 @@ ModelInfo D_800C45B8 = {
     0x10,
 };
 
-/*800C45E8*/ static ModelInfoUnkStruct1 D_800C45E8 = {0x38712C, NULL, 0, 0xE4};
+/*800C45E8*/ static ModelVertexInfo D_800C45E8 = {(s32)models_70BE60_bin+0xC4C, NULL, 0, 0xE4};
 
 /*800C45F4*/
 ModelInfo D_800C45F4 = {
-    0x3864E0,
+    (s32)models_70BE60_bin,
     NULL,
     0xC4C,
     0xC4C,
@@ -11845,11 +11846,11 @@ ModelInfo D_800C45F4 = {
     7,
 };
 
-/*800C4624*/ static ModelInfoUnkStruct1 D_800C4624 = {0x387FB4, NULL, 0, 0x11A};
+/*800C4624*/ static ModelVertexInfo D_800C4624 = {(s32)models_70CB90_bin+0xDA4, NULL, 0, 0x11A};
 
 /*800C4630*/
 ModelInfo D_800C4630 = {
-    0x387210,
+    (s32)models_70CB90_bin,
     NULL,
     0xDA2,
     0xDA2,
@@ -11870,11 +11871,11 @@ ModelInfo D_800C4630 = {
     4,
 };
 
-/*800C4660*/ static ModelInfoUnkStruct1 D_800C4660 = {0x388550, NULL, 0, 0x4E};
+/*800C4660*/ static ModelVertexInfo D_800C4660 = {(s32)models_70DA50_bin+0x480, NULL, 0, 0x4E};
 
 /*800C466C*/
 ModelInfo D_800C466C = {
-    0x3880D0,
+    (s32)models_70DA50_bin,
     NULL,
     0x47E,
     0x47E,
@@ -11895,11 +11896,11 @@ ModelInfo D_800C466C = {
     3,
 };
 
-/*800C469C*/ static ModelInfoUnkStruct1 D_800C469C = {0x38B170, NULL, 0, 0x168};
+/*800C469C*/ static ModelVertexInfo D_800C469C = {(s32)models_70DF20_bin+0x2BD0, NULL, 0, 0x168};
 
 /*800C46A8*/
 ModelInfo D_800C46A8 = {
-    0x3885A0,
+    (s32)models_70DF20_bin,
     NULL,
     0x2BD0,
     0x2BD0,
@@ -11920,11 +11921,11 @@ ModelInfo D_800C46A8 = {
     1,
 };
 
-/*800C46D8*/ static ModelInfoUnkStruct1 D_800C46D8 = {0x38BC00, NULL, 0, 0x60};
+/*800C46D8*/ static ModelVertexInfo D_800C46D8 = {(s32)models_710C60_bin+0x920, NULL, 0, 0x60};
 
 /*800C46E4*/
 ModelInfo D_800C46E4 = {
-    0x38B2E0,
+    (s32)models_710C60_bin,
     NULL,
     0x920,
     0x920,
@@ -11945,11 +11946,11 @@ ModelInfo D_800C46E4 = {
     0x10,
 };
 
-/*800C4714*/ static ModelInfoUnkStruct1 D_800C4714 = {0x869B38, NULL, 0, 0x138};
+/*800C4714*/ static ModelVertexInfo D_800C4714 = {(s32)models_BED900_bin+0x1BB8, NULL, 0, 0x138};
 
 /*800C4720*/
 ModelInfo D_800C4720 = {
-    0x867F80,
+    (s32)models_BED900_bin,
     NULL,
     0x1BB8,
     0x1BB8,
@@ -11970,11 +11971,11 @@ ModelInfo D_800C4720 = {
     0x17,
 };
 
-/*800C4750*/ static ModelInfoUnkStruct1 D_800C4750 = {0x20C54C, NULL, 0, 0x1D4};
+/*800C4750*/ static ModelVertexInfo D_800C4750 = {(s32)models_5906C0_bin+0x180C, NULL, 0, 0x1D4};
 
 /*800C475C*/
 ModelInfo D_800C475C = {
-    0x20AD40,
+    (s32)models_5906C0_bin,
     NULL,
     0x180C,
     0x180C,
@@ -11995,11 +11996,11 @@ ModelInfo D_800C475C = {
     0x63,
 };
 
-/*800C478C*/ static ModelInfoUnkStruct1 D_800C478C = {0x20D168, NULL, 0, 0x150};
+/*800C478C*/ static ModelVertexInfo D_800C478C = {(s32)models_5920A0_bin+0xA48, NULL, 0, 0x150};
 
 /*800C4798*/
 ModelInfo D_800C4798 = {
-    0x20C720,
+    (s32)models_5920A0_bin,
     NULL,
     0xA48,
     0xA48,
@@ -12020,11 +12021,11 @@ ModelInfo D_800C4798 = {
     3,
 };
 
-/*800C47C8*/ static ModelInfoUnkStruct1 D_800C47C8 = {0x20D84C, NULL, 0, 0x84};
+/*800C47C8*/ static ModelVertexInfo D_800C47C8 = {(s32)models_592C40_bin+0x58C, NULL, 0, 0x84};
 
 /*800C47D4*/
 ModelInfo D_800C47D4 = {
-    0x20D2C0,
+    (s32)models_592C40_bin,
     NULL,
     0x58C,
     0x58C,
@@ -12045,11 +12046,11 @@ ModelInfo D_800C47D4 = {
     0xA,
 };
 
-/*800C4804*/ static ModelInfoUnkStruct1 D_800C4804 = {0x20DE5C, NULL, 0, 0x84};
+/*800C4804*/ static ModelVertexInfo D_800C4804 = {(s32)models_593250_bin+0x58C, NULL, 0, 0x84};
 
 /*800C4810*/
 ModelInfo D_800C4810 = {
-    0x20D8D0,
+    (s32)models_593250_bin,
     NULL,
     0x58C,
     0x58C,
@@ -12070,11 +12071,11 @@ ModelInfo D_800C4810 = {
     0xA,
 };
 
-/*800C4840*/ static ModelInfoUnkStruct1 D_800C4840 = {0x20E8B4, NULL, 0, 0xE4};
+/*800C4840*/ static ModelVertexInfo D_800C4840 = {(s32)models_593860_bin+0x9D4, NULL, 0, 0xE4};
 
 /*800C484C*/
 ModelInfo D_800C484C = {
-    0x20DEE0,
+    (s32)models_593860_bin,
     NULL,
     0x9D4,
     0x9D4,
@@ -12095,11 +12096,11 @@ ModelInfo D_800C484C = {
     4,
 };
 
-/*800C487C*/ static ModelInfoUnkStruct1 D_800C487C = {0x20F374, NULL, 0, 0xE4};
+/*800C487C*/ static ModelVertexInfo D_800C487C = {(s32)models_594320_bin+0x9D4, NULL, 0, 0xE4};
 
 /*800C4888*/
 ModelInfo D_800C4888 = {
-    0x20E9A0,
+    (s32)models_594320_bin,
     NULL,
     0x9D4,
     0x9D4,
@@ -12120,11 +12121,11 @@ ModelInfo D_800C4888 = {
     4,
 };
 
-/*800C48B8*/ static ModelInfoUnkStruct1 D_800C48B8 = {0x20FBEC, NULL, 0, 0xBA};
+/*800C48B8*/ static ModelVertexInfo D_800C48B8 = {(s32)models_594DE0_bin+0x78C, NULL, 0, 0xBA};
 
 /*800C48C4*/
 ModelInfo D_800C48C4 = {
-    0x20F460,
+    (s32)models_594DE0_bin,
     NULL,
     0x78A,
     0x78A,
@@ -12145,11 +12146,11 @@ ModelInfo D_800C48C4 = {
     4,
 };
 
-/*800C48F4*/ static ModelInfoUnkStruct1 D_800C48F4 = {0x21043C, NULL, 0, 0xBA};
+/*800C48F4*/ static ModelVertexInfo D_800C48F4 = {(s32)models_595630_bin+0x78C, NULL, 0, 0xBA};
 
 /*800C4900*/
 ModelInfo D_800C4900 = {
-    0x20FCB0,
+    (s32)models_595630_bin,
     NULL,
     0x78A,
     0x78A,
@@ -12170,11 +12171,11 @@ ModelInfo D_800C4900 = {
     4,
 };
 
-/*800C4930*/ static ModelInfoUnkStruct1 D_800C4930 = {0x210E34, NULL, 0, 0x9C};
+/*800C4930*/ static ModelVertexInfo D_800C4930 = {(s32)models_595E80_bin+0x934, NULL, 0, 0x9C};
 
 /*800C493C*/
 ModelInfo D_800C493C = {
-    0x210500,
+    (s32)models_595E80_bin,
     NULL,
     0x934,
     0x934,
@@ -12195,11 +12196,11 @@ ModelInfo D_800C493C = {
     0x25,
 };
 
-/*800C496C*/ static ModelInfoUnkStruct1 D_800C496C = {0x211C00, NULL, 0, 0xDE};
+/*800C496C*/ static ModelVertexInfo D_800C496C = {(s32)models_596850_bin+0xD30, NULL, 0, 0xDE};
 
 /*800C4978*/
 ModelInfo D_800C4978 = {
-    0x210ED0,
+    (s32)models_596850_bin,
     NULL,
     0xD2E,
     0xD2E,
@@ -12220,11 +12221,11 @@ ModelInfo D_800C4978 = {
     0x21,
 };
 
-/*800C49A8*/ static ModelInfoUnkStruct1 D_800C49A8 = {0x21218C, NULL, 0, 0xBA};
+/*800C49A8*/ static ModelVertexInfo D_800C49A8 = {(s32)models_597660_bin+0x4AC, NULL, 0, 0xBA};
 
 /*800C49B4*/
 ModelInfo D_800C49B4 = {
-    0x211CE0,
+    (s32)models_597660_bin,
     NULL,
     0x4AA,
     0x4AA,
@@ -12245,11 +12246,11 @@ ModelInfo D_800C49B4 = {
     0x19,
 };
 
-/*800C49E4*/ static ModelInfoUnkStruct1 D_800C49E4 = {0x2126CC, NULL, 0, 0x9C};
+/*800C49E4*/ static ModelVertexInfo D_800C49E4 = {(s32)models_597BD0_bin+0x47C, NULL, 0, 0x9C};
 
 /*800C49F0*/
 ModelInfo D_800C49F0 = {
-    0x212250,
+    (s32)models_597BD0_bin,
     NULL,
     0x47C,
     0x47C,
@@ -12270,11 +12271,11 @@ ModelInfo D_800C49F0 = {
     0x19,
 };
 
-/*800C4A20*/ static ModelInfoUnkStruct1 D_800C4A20 = {0x2131B8, NULL, 0, 0x150};
+/*800C4A20*/ static ModelVertexInfo D_800C4A20 = {(s32)models_5980F0_bin+0xA48, NULL, 0, 0x150};
 
 /*800C4A2C*/
 ModelInfo D_800C4A2C = {
-    0x212770,
+    (s32)models_5980F0_bin,
     NULL,
     0xA48,
     0xA48,
@@ -12295,11 +12296,11 @@ ModelInfo D_800C4A2C = {
     3,
 };
 
-/*800C4A5C*/ static ModelInfoUnkStruct1 D_800C4A5C = {0x27377C, NULL, 0, 0x1D4};
+/*800C4A5C*/ static ModelVertexInfo D_800C4A5C = {(s32)models_5F78F0_bin+0x180C, NULL, 0, 0x1D4};
 
 /*800C4A68*/
 ModelInfo D_800C4A68 = {
-    0x271F70,
+    (s32)models_5F78F0_bin,
     NULL,
     0x180C,
     0x180C,
@@ -12320,11 +12321,11 @@ ModelInfo D_800C4A68 = {
     0x63,
 };
 
-/*800C4A98*/ static ModelInfoUnkStruct1 D_800C4A98 = {0x274398, NULL, 0, 0x150};
+/*800C4A98*/ static ModelVertexInfo D_800C4A98 = {(s32)models_5F92D0_bin+0xA48, NULL, 0, 0x150};
 
 /*800C4AA4*/
 ModelInfo D_800C4AA4 = {
-    0x273950,
+    (s32)models_5F92D0_bin,
     NULL,
     0xA48,
     0xA48,
@@ -12345,11 +12346,11 @@ ModelInfo D_800C4AA4 = {
     3,
 };
 
-/*800C4AD4*/ static ModelInfoUnkStruct1 D_800C4AD4 = {0x274A7C, NULL, 0, 0x84};
+/*800C4AD4*/ static ModelVertexInfo D_800C4AD4 = {(s32)models_5F9E70_bin+0x58C, NULL, 0, 0x84};
 
 /*800C4AE0*/
 ModelInfo D_800C4AE0 = {
-    0x2744F0,
+    (s32)models_5F9E70_bin,
     NULL,
     0x58C,
     0x58C,
@@ -12370,11 +12371,11 @@ ModelInfo D_800C4AE0 = {
     0xA,
 };
 
-/*800C4B10*/ static ModelInfoUnkStruct1 D_800C4B10 = {0x27508C, NULL, 0, 0x84};
+/*800C4B10*/ static ModelVertexInfo D_800C4B10 = {(s32)models_5FA480_bin+0x58C, NULL, 0, 0x84};
 
 /*800C4B1C*/
 ModelInfo D_800C4B1C = {
-    0x274B00,
+    (s32)models_5FA480_bin,
     NULL,
     0x58C,
     0x58C,
@@ -12395,11 +12396,11 @@ ModelInfo D_800C4B1C = {
     0xA,
 };
 
-/*800C4B4C*/ static ModelInfoUnkStruct1 D_800C4B4C = {0x275AE4, NULL, 0, 0xE4};
+/*800C4B4C*/ static ModelVertexInfo D_800C4B4C = {(s32)models_5FAA90_bin+0x9D4, NULL, 0, 0xE4};
 
 /*800C4B58*/
 ModelInfo D_800C4B58 = {
-    0x275110,
+    (s32)models_5FAA90_bin,
     NULL,
     0x9D4,
     0x9D4,
@@ -12420,11 +12421,11 @@ ModelInfo D_800C4B58 = {
     4,
 };
 
-/*800C4B88*/ static ModelInfoUnkStruct1 D_800C4B88 = {0x2765A4, NULL, 0, 0xE4};
+/*800C4B88*/ static ModelVertexInfo D_800C4B88 = {(s32)models_5FB550_bin+0x9D4, NULL, 0, 0xE4};
 
 /*800C4B94*/
 ModelInfo D_800C4B94 = {
-    0x275BD0,
+    (s32)models_5FB550_bin,
     NULL,
     0x9D4,
     0x9D4,
@@ -12445,11 +12446,11 @@ ModelInfo D_800C4B94 = {
     4,
 };
 
-/*800C4BC4*/ static ModelInfoUnkStruct1 D_800C4BC4 = {0x276E1C, NULL, 0, 0xBA};
+/*800C4BC4*/ static ModelVertexInfo D_800C4BC4 = {(s32)models_5FC010_bin+0x78C, NULL, 0, 0xBA};
 
 /*800C4BD0*/
 ModelInfo D_800C4BD0 = {
-    0x276690,
+    (s32)models_5FC010_bin,
     NULL,
     0x78A,
     0x78A,
@@ -12470,11 +12471,11 @@ ModelInfo D_800C4BD0 = {
     4,
 };
 
-/*800C4C00*/ static ModelInfoUnkStruct1 D_800C4C00 = {0x27766C, NULL, 0, 0xBA};
+/*800C4C00*/ static ModelVertexInfo D_800C4C00 = {(s32)models_5FC860_bin+0x78C, NULL, 0, 0xBA};
 
 /*800C4C0C*/
 ModelInfo D_800C4C0C = {
-    0x276EE0,
+    (s32)models_5FC860_bin,
     NULL,
     0x78A,
     0x78A,
@@ -12495,11 +12496,11 @@ ModelInfo D_800C4C0C = {
     4,
 };
 
-/*800C4C3C*/ static ModelInfoUnkStruct1 D_800C4C3C = {0x278064, NULL, 0, 0x9C};
+/*800C4C3C*/ static ModelVertexInfo D_800C4C3C = {(s32)models_5FD0B0_bin+0x934, NULL, 0, 0x9C};
 
 /*800C4C48*/
 ModelInfo D_800C4C48 = {
-    0x277730,
+    (s32)models_5FD0B0_bin,
     NULL,
     0x934,
     0x934,
@@ -12520,11 +12521,11 @@ ModelInfo D_800C4C48 = {
     0x25,
 };
 
-/*800C4C78*/ static ModelInfoUnkStruct1 D_800C4C78 = {0x278E30, NULL, 0, 0xDE};
+/*800C4C78*/ static ModelVertexInfo D_800C4C78 = {(s32)models_5FDA80_bin+0xD30, NULL, 0, 0xDE};
 
 /*800C4C84*/
 ModelInfo D_800C4C84 = {
-    0x278100,
+    (s32)models_5FDA80_bin,
     NULL,
     0xD2E,
     0xD2E,
@@ -12545,11 +12546,11 @@ ModelInfo D_800C4C84 = {
     0x21,
 };
 
-/*800C4CB4*/ static ModelInfoUnkStruct1 D_800C4CB4 = {0x2793BC, NULL, 0, 0xBA};
+/*800C4CB4*/ static ModelVertexInfo D_800C4CB4 = {(s32)models_5FE890_bin+0x4AC, NULL, 0, 0xBA};
 
 /*800C4CC0*/
 ModelInfo D_800C4CC0 = {
-    0x278F10,
+    (s32)models_5FE890_bin,
     NULL,
     0x4AA,
     0x4AA,
@@ -12570,11 +12571,11 @@ ModelInfo D_800C4CC0 = {
     0x19,
 };
 
-/*800C4CF0*/ static ModelInfoUnkStruct1 D_800C4CF0 = {0x2798FC, NULL, 0, 0x9C};
+/*800C4CF0*/ static ModelVertexInfo D_800C4CF0 = {(s32)models_5FEE00_bin+0x47C, NULL, 0, 0x9C};
 
 /*800C4CFC*/
 ModelInfo D_800C4CFC = {
-    0x279480,
+    (s32)models_5FEE00_bin,
     NULL,
     0x47C,
     0x47C,
@@ -12595,11 +12596,11 @@ ModelInfo D_800C4CFC = {
     0x19,
 };
 
-/*800C4D2C*/ static ModelInfoUnkStruct1 D_800C4D2C = {0x27A3E8, NULL, 0, 0x150};
+/*800C4D2C*/ static ModelVertexInfo D_800C4D2C = {(s32)models_5FF320_bin+0xA48, NULL, 0, 0x150};
 
 /*800C4D38*/
 ModelInfo D_800C4D38 = {
-    0x2799A0,
+    (s32)models_5FF320_bin,
     NULL,
     0xA48,
     0xA48,
@@ -12620,11 +12621,11 @@ ModelInfo D_800C4D38 = {
     3,
 };
 
-/*800C4D68*/ static ModelInfoUnkStruct1 D_800C4D68 = {0x27BD4C, NULL, 0, 0x1D4};
+/*800C4D68*/ static ModelVertexInfo D_800C4D68 = {(s32)models_5FFEC0_bin+0x180C, NULL, 0, 0x1D4};
 
 /*800C4D74*/
 ModelInfo D_800C4D74 = {
-    0x27A540,
+    (s32)models_5FFEC0_bin,
     NULL,
     0x180C,
     0x180C,
@@ -12645,11 +12646,11 @@ ModelInfo D_800C4D74 = {
     0x63,
 };
 
-/*800C4DA4*/ static ModelInfoUnkStruct1 D_800C4DA4 = {0x27C968, NULL, 0, 0x150};
+/*800C4DA4*/ static ModelVertexInfo D_800C4DA4 = {(s32)models_6018A0_bin+0xA48, NULL, 0, 0x150};
 
 /*800C4DB0*/
 ModelInfo D_800C4DB0 = {
-    0x27BF20,
+    (s32)models_6018A0_bin,
     NULL,
     0xA48,
     0xA48,
@@ -12670,11 +12671,11 @@ ModelInfo D_800C4DB0 = {
     3,
 };
 
-/*800C4DE0*/ static ModelInfoUnkStruct1 D_800C4DE0 = {0x27D04C, NULL, 0, 0x84};
+/*800C4DE0*/ static ModelVertexInfo D_800C4DE0 = {(s32)models_602440_bin+0x58C, NULL, 0, 0x84};
 
 /*800C4DEC*/
 ModelInfo D_800C4DEC = {
-    0x27CAC0,
+    (s32)models_602440_bin,
     NULL,
     0x58C,
     0x58C,
@@ -12695,11 +12696,11 @@ ModelInfo D_800C4DEC = {
     0xA,
 };
 
-/*800C4E1C*/ static ModelInfoUnkStruct1 D_800C4E1C = {0x27D65C, NULL, 0, 0x84};
+/*800C4E1C*/ static ModelVertexInfo D_800C4E1C = {(s32)models_602A50_bin+0x58C, NULL, 0, 0x84};
 
 /*800C4E28*/
 ModelInfo D_800C4E28 = {
-    0x27D0D0,
+    (s32)models_602A50_bin,
     NULL,
     0x58C,
     0x58C,
@@ -12720,11 +12721,11 @@ ModelInfo D_800C4E28 = {
     0xA,
 };
 
-/*800C4E58*/ static ModelInfoUnkStruct1 D_800C4E58 = {0x27E0B4, NULL, 0, 0xE4};
+/*800C4E58*/ static ModelVertexInfo D_800C4E58 = {(s32)models_603060_bin+0x9D4, NULL, 0, 0xE4};
 
 /*800C4E64*/
 ModelInfo D_800C4E64 = {
-    0x27D6E0,
+    (s32)models_603060_bin,
     NULL,
     0x9D4,
     0x9D4,
@@ -12745,11 +12746,11 @@ ModelInfo D_800C4E64 = {
     4,
 };
 
-/*800C4E94*/ static ModelInfoUnkStruct1 D_800C4E94 = {0x27EB74, NULL, 0, 0xE4};
+/*800C4E94*/ static ModelVertexInfo D_800C4E94 = {(s32)models_603B20_bin+0x9D4, NULL, 0, 0xE4};
 
 /*800C4EA0*/
 ModelInfo D_800C4EA0 = {
-    0x27E1A0,
+    (s32)models_603B20_bin,
     NULL,
     0x9D4,
     0x9D4,
@@ -12770,11 +12771,11 @@ ModelInfo D_800C4EA0 = {
     4,
 };
 
-/*800C4ED0*/ static ModelInfoUnkStruct1 D_800C4ED0 = {0x27F3EC, NULL, 0, 0xBA};
+/*800C4ED0*/ static ModelVertexInfo D_800C4ED0 = {(s32)models_6045E0_bin+0x78C, NULL, 0, 0xBA};
 
 /*800C4EDC*/
 ModelInfo D_800C4EDC = {
-    0x27EC60,
+    (s32)models_6045E0_bin,
     NULL,
     0x78A,
     0x78A,
@@ -12795,11 +12796,11 @@ ModelInfo D_800C4EDC = {
     4,
 };
 
-/*800C4F0C*/ static ModelInfoUnkStruct1 D_800C4F0C = {0x27FC3C, NULL, 0, 0xBA};
+/*800C4F0C*/ static ModelVertexInfo D_800C4F0C = {(s32)models_604E30_bin+0x78C, NULL, 0, 0xBA};
 
 /*800C4F18*/
 ModelInfo D_800C4F18 = {
-    0x27F4B0,
+    (s32)models_604E30_bin,
     NULL,
     0x78A,
     0x78A,
@@ -12820,11 +12821,11 @@ ModelInfo D_800C4F18 = {
     4,
 };
 
-/*800C4F48*/ static ModelInfoUnkStruct1 D_800C4F48 = {0x280654, NULL, 0, 0xB4};
+/*800C4F48*/ static ModelVertexInfo D_800C4F48 = {(s32)models_605680_bin+0x954, NULL, 0, 0xB4};
 
 /*800C4F54*/
 ModelInfo D_800C4F54 = {
-    0x27FD00,
+    (s32)models_605680_bin,
     NULL,
     0x954,
     0x954,
@@ -12845,11 +12846,11 @@ ModelInfo D_800C4F54 = {
     0x25,
 };
 
-/*800C4F84*/ static ModelInfoUnkStruct1 D_800C4F84 = {0x281440, NULL, 0, 0xDE};
+/*800C4F84*/ static ModelVertexInfo D_800C4F84 = {(s32)models_606090_bin+0xD30, NULL, 0, 0xDE};
 
 /*800C4F90*/
 ModelInfo D_800C4F90 = {
-    0x280710,
+    (s32)models_606090_bin,
     NULL,
     0xD2E,
     0xD2E,
@@ -12870,11 +12871,11 @@ ModelInfo D_800C4F90 = {
     0x21,
 };
 
-/*800C4FC0*/ static ModelInfoUnkStruct1 D_800C4FC0 = {0x281988, NULL, 0, 0x90};
+/*800C4FC0*/ static ModelVertexInfo D_800C4FC0 = {(s32)models_606EA0_bin+0x468, NULL, 0, 0x90};
 
 /*800C4FCC*/
 ModelInfo D_800C4FCC = {
-    0x281520,
+    (s32)models_606EA0_bin,
     NULL,
     0x468,
     0x468,
@@ -12895,11 +12896,11 @@ ModelInfo D_800C4FCC = {
     0x19,
 };
 
-/*800C4FFC*/ static ModelInfoUnkStruct1 D_800C4FFC = {0x281E88, NULL, 0, 0x90};
+/*800C4FFC*/ static ModelVertexInfo D_800C4FFC = {(s32)models_6073A0_bin+0x468, NULL, 0, 0x90};
 
 /*800C5008*/
 ModelInfo D_800C5008 = {
-    0x281A20,
+    (s32)models_6073A0_bin,
     NULL,
     0x468,
     0x468,
@@ -12920,11 +12921,11 @@ ModelInfo D_800C5008 = {
     0x19,
 };
 
-/*800C5038*/ static ModelInfoUnkStruct1 D_800C5038 = {0x282968, NULL, 0, 0x150};
+/*800C5038*/ static ModelVertexInfo D_800C5038 = {(s32)models_6078A0_bin+0xA48, NULL, 0, 0x150};
 
 /*800C5044*/
 ModelInfo D_800C5044 = {
-    0x281F20,
+    (s32)models_6078A0_bin,
     NULL,
     0xA48,
     0xA48,
@@ -12945,11 +12946,11 @@ ModelInfo D_800C5044 = {
     3,
 };
 
-/*800C5074*/ static ModelInfoUnkStruct1 D_800C5074 = {0x511A10, NULL, 0, 0xDE};
+/*800C5074*/ static ModelVertexInfo D_800C5074 = {(s32)models_896660_bin+0xD30, NULL, 0, 0xDE};
 
 /*800C5080*/
 ModelInfo D_800C5080 = {
-    0x510CE0,
+    (s32)models_896660_bin,
     NULL,
     0xD2E,
     0xD2E,
@@ -12970,11 +12971,11 @@ ModelInfo D_800C5080 = {
     0x21,
 };
 
-/*800C50B0*/ static ModelInfoUnkStruct1 D_800C50B0 = {0x512820, NULL, 0, 0xDE};
+/*800C50B0*/ static ModelVertexInfo D_800C50B0 = {(s32)models_897470_bin+0xD30, NULL, 0, 0xDE};
 
 /*800C50BC*/
 ModelInfo D_800C50BC = {
-    0x511AF0,
+    (s32)models_897470_bin,
     NULL,
     0xD2E,
     0xD2E,
@@ -12995,11 +12996,11 @@ ModelInfo D_800C50BC = {
     0x21,
 };
 
-/*800C50EC*/ static ModelInfoUnkStruct1 D_800C50EC = {0x513630, NULL, 0, 0xDE};
+/*800C50EC*/ static ModelVertexInfo D_800C50EC = {(s32)models_898280_bin+0xD30, NULL, 0, 0xDE};
 
 /*800C50F8*/
 ModelInfo D_800C50F8 = {
-    0x512900,
+    (s32)models_898280_bin,
     NULL,
     0xD2E,
     0xD2E,
@@ -13020,11 +13021,11 @@ ModelInfo D_800C50F8 = {
     0x21,
 };
 
-/*800C5128*/ static ModelInfoUnkStruct1 D_800C5128 = {0x5E238C, NULL, 0, 0x162};
+/*800C5128*/ static ModelVertexInfo D_800C5128 = {(s32)models_966CE0_bin+0x102C, NULL, 0, 0x162};
 
 /*800C5134*/
 ModelInfo D_800C5134 = {
-    0x5E1360,
+    (s32)models_966CE0_bin,
     NULL,
     0x102A,
     0x102A,
@@ -13045,11 +13046,11 @@ ModelInfo D_800C5134 = {
     0x25,
 };
 
-/*800C5164*/ static ModelInfoUnkStruct1 D_800C5164 = {0x5E43B0, NULL, 0, 0x22E};
+/*800C5164*/ static ModelVertexInfo D_800C5164 = {(s32)models_967E70_bin+0x1EC0, NULL, 0, 0x22E};
 
 /*800C5170*/
 ModelInfo D_800C5170 = {
-    0x5E24F0,
+    (s32)models_967E70_bin,
     NULL,
     0x1EBE,
     0x1EBE,
@@ -13070,11 +13071,11 @@ ModelInfo D_800C5170 = {
     0x63,
 };
 
-/*800C51A0*/ static ModelInfoUnkStruct1 D_800C51A0 = {0x5E5150, NULL, 0, 0x180};
+/*800C51A0*/ static ModelVertexInfo D_800C51A0 = {(s32)models_969F60_bin+0xB70, NULL, 0, 0x180};
 
 /*800C51AC*/
 ModelInfo D_800C51AC = {
-    0x5E45E0,
+    (s32)models_969F60_bin,
     NULL,
     0xB70,
     0xB70,
@@ -13095,11 +13096,11 @@ ModelInfo D_800C51AC = {
     0x16,
 };
 
-/*800C51DC*/ static ModelInfoUnkStruct1 D_800C51DC = {0x5E8C20, NULL, 0, 0x216};
+/*800C51DC*/ static ModelVertexInfo D_800C51DC = {(s32)models_96CFD0_bin+0x15D0, NULL, 0, 0x216};
 
 /*800C51E8*/
 ModelInfo D_800C51E8 = {
-    0x5E7650,
+    (s32)models_96CFD0_bin,
     NULL,
     0x15CE,
     0x15CE,
@@ -13120,11 +13121,11 @@ ModelInfo D_800C51E8 = {
     0x25,
 };
 
-/*800C5218*/ static ModelInfoUnkStruct1 D_800C5218 = {0x5E7398, NULL, 0, 0x2B8};
+/*800C5218*/ static ModelVertexInfo D_800C5218 = {(s32)models_96AC50_bin+0x20C8, NULL, 0, 0x2B8};
 
 /*800C5224*/
 ModelInfo D_800C5224 = {
-    0x5E52D0,
+    (s32)models_96AC50_bin,
     NULL,
     0x20C8,
     0x20C8,
@@ -13145,11 +13146,11 @@ ModelInfo D_800C5224 = {
     0x63,
 };
 
-/*800C5254*/ static ModelInfoUnkStruct1 D_800C5254 = {0x5E9E6C, NULL, 0, 0x162};
+/*800C5254*/ static ModelVertexInfo D_800C5254 = {(s32)models_96E7C0_bin+0x102C, NULL, 0, 0x162};
 
 /*800C5260*/
 ModelInfo D_800C5260 = {
-    0x5E8E40,
+    (s32)models_96E7C0_bin,
     NULL,
     0x102A,
     0x102A,
@@ -13170,11 +13171,11 @@ ModelInfo D_800C5260 = {
     0x25,
 };
 
-/*800C5290*/ static ModelInfoUnkStruct1 D_800C5290 = {0x5EBE90, NULL, 0, 0x22E};
+/*800C5290*/ static ModelVertexInfo D_800C5290 = {(s32)models_96F950_bin+0x1EC0, NULL, 0, 0x22E};
 
 /*800C529C*/
 ModelInfo D_800C529C = {
-    0x5E9FD0,
+    (s32)models_96F950_bin,
     NULL,
     0x1EBE,
     0x1EBE,
@@ -13195,11 +13196,11 @@ ModelInfo D_800C529C = {
     0x63,
 };
 
-/*800C52CC*/ static ModelInfoUnkStruct1 D_800C52CC = {0x5ECC30, NULL, 0, 0x180};
+/*800C52CC*/ static ModelVertexInfo D_800C52CC = {(s32)models_971A40_bin+0xB70, NULL, 0, 0x180};
 
 /*800C52D8*/
 ModelInfo D_800C52D8 = {
-    0x5EC0C0,
+    (s32)models_971A40_bin,
     NULL,
     0xB70,
     0xB70,
@@ -13220,11 +13221,11 @@ ModelInfo D_800C52D8 = {
     0x16,
 };
 
-/*800C5308*/ static ModelInfoUnkStruct1 D_800C5308 = {0x5F0700, NULL, 0, 0x216};
+/*800C5308*/ static ModelVertexInfo D_800C5308 = {(s32)models_974AB0_bin+0x15D0, NULL, 0, 0x216};
 
 /*800C5314*/
 ModelInfo D_800C5314 = {
-    0x5EF130,
+    (s32)models_974AB0_bin,
     NULL,
     0x15CE,
     0x15CE,
@@ -13245,11 +13246,11 @@ ModelInfo D_800C5314 = {
     0x25,
 };
 
-/*800C5344*/ static ModelInfoUnkStruct1 D_800C5344 = {0x5EEE78, NULL, 0, 0x2B8};
+/*800C5344*/ static ModelVertexInfo D_800C5344 = {(s32)models_972730_bin+0x20C8, NULL, 0, 0x2B8};
 
 /*800C5350*/
 ModelInfo D_800C5350 = {
-    0x5ECDB0,
+    (s32)models_972730_bin,
     NULL,
     0x20C8,
     0x20C8,
@@ -13270,11 +13271,11 @@ ModelInfo D_800C5350 = {
     0x63,
 };
 
-/*800C5380*/ static ModelInfoUnkStruct1 D_800C5380 = {0x5624DC, NULL, 0, 0x162};
+/*800C5380*/ static ModelVertexInfo D_800C5380 = {(s32)models_8E6E30_bin+0x102C, NULL, 0, 0x162};
 
 /*800C538C*/
 ModelInfo D_800C538C = {
-    0x5614B0,
+    (s32)models_8E6E30_bin,
     NULL,
     0x102A,
     0x102A,
@@ -13295,11 +13296,11 @@ ModelInfo D_800C538C = {
     0x25,
 };
 
-/*800C53BC*/ static ModelInfoUnkStruct1 D_800C53BC = {0x564500, NULL, 0, 0x22E};
+/*800C53BC*/ static ModelVertexInfo D_800C53BC = {(s32)models_8E7FC0_bin+0x1EC0, NULL, 0, 0x22E};
 
 /*800C53C8*/
 ModelInfo D_800C53C8 = {
-    0x562640,
+    (s32)models_8E7FC0_bin,
     NULL,
     0x1EBE,
     0x1EBE,
@@ -13320,11 +13321,11 @@ ModelInfo D_800C53C8 = {
     0x63,
 };
 
-/*800C53F8*/ static ModelInfoUnkStruct1 D_800C53F8 = {0x5652A0, NULL, 0, 0x180};
+/*800C53F8*/ static ModelVertexInfo D_800C53F8 = {(s32)models_8EA0B0_bin+0xB70, NULL, 0, 0x180};
 
 /*800C5404*/
 ModelInfo D_800C5404 = {
-    0x564730,
+    (s32)models_8EA0B0_bin,
     NULL,
     0xB70,
     0xB70,
@@ -13345,11 +13346,11 @@ ModelInfo D_800C5404 = {
     0x16,
 };
 
-/*800C5434*/ static ModelInfoUnkStruct1 D_800C5434 = {0x5695B0, NULL, 0, 0x216};
+/*800C5434*/ static ModelVertexInfo D_800C5434 = {(s32)models_8ED960_bin+0x15D0, NULL, 0, 0x216};
 
 /*800C5440*/
 ModelInfo D_800C5440 = {
-    0x567FE0,
+    (s32)models_8ED960_bin,
     NULL,
     0x15CE,
     0x15CE,
@@ -13370,11 +13371,11 @@ ModelInfo D_800C5440 = {
     0x25,
 };
 
-/*800C5470*/ static ModelInfoUnkStruct1 D_800C5470 = {0x567D20, NULL, 0, 0x2B8};
+/*800C5470*/ static ModelVertexInfo D_800C5470 = {(s32)models_8EADA0_bin+0x2900, NULL, 0, 0x2B8};
 
 /*800C547C*/
 ModelInfo D_800C547C = {
-    0x565420,
+    (s32)models_8EADA0_bin,
     NULL,
     0x2900,
     0x2900,
@@ -13395,11 +13396,11 @@ ModelInfo D_800C547C = {
     0x63,
 };
 
-/*800C54AC*/ static ModelInfoUnkStruct1 D_800C54AC = {0x48AF20, NULL, 0, 0x60};
+/*800C54AC*/ static ModelVertexInfo D_800C54AC = {(s32)models_810380_bin+0x520, NULL, 0, 0x60};
 
 /*800C54B8*/
 ModelInfo D_800C54B8 = {
-    0x48AA00,
+    (s32)models_810380_bin,
     NULL,
     0x520,
     0x520,
@@ -13420,11 +13421,11 @@ ModelInfo D_800C54B8 = {
     0x14,
 };
 
-/*800C54E8*/ static ModelInfoUnkStruct1 D_800C54E8 = {0x48B6A4, NULL, 0, 0x144};
+/*800C54E8*/ static ModelVertexInfo D_800C54E8 = {(s32)models_810900_bin+0x724, NULL, 0, 0x144};
 
 /*800C54F4*/
 ModelInfo D_800C54F4 = {
-    0x48AF80,
+    (s32)models_810900_bin,
     NULL,
     0x724,
     0x724,
@@ -13445,11 +13446,11 @@ ModelInfo D_800C54F4 = {
     7,
 };
 
-/*800C5524*/ static ModelInfoUnkStruct1 D_800C5524 = {0x48B9C4, NULL, 0, 0x54};
+/*800C5524*/ static ModelVertexInfo D_800C5524 = {(s32)models_811170_bin+0x1D4, NULL, 0, 0x54};
 
 /*800C5530*/
 ModelInfo D_800C5530 = {
-    0x48B7F0,
+    (s32)models_811170_bin,
     NULL,
     0x1D4,
     0x1D4,
@@ -13470,11 +13471,11 @@ ModelInfo D_800C5530 = {
     0xA,
 };
 
-/*800C5560*/ static ModelInfoUnkStruct1 D_800C5560 = {0x48BBF4, NULL, 0, 0x54};
+/*800C5560*/ static ModelVertexInfo D_800C5560 = {(s32)models_8113A0_bin+0x1D4, NULL, 0, 0x54};
 
 /*800C556C*/
 ModelInfo D_800C556C = {
-    0x48BA20,
+    (s32)models_8113A0_bin,
     NULL,
     0x1D4,
     0x1D4,
@@ -13495,11 +13496,11 @@ ModelInfo D_800C556C = {
     0xA,
 };
 
-/*800C559C*/ static ModelInfoUnkStruct1 D_800C559C = {0x48DFE0, NULL, 0, 0x49E};
+/*800C559C*/ static ModelVertexInfo D_800C559C = {(s32)models_8115D0_bin+0x2390, NULL, 0, 0x49E};
 
 /*800C55A8*/
 ModelInfo D_800C55A8 = {
-    0x48BC50,
+    (s32)models_8115D0_bin,
     NULL,
     0x238E,
     0x238E,
@@ -13520,11 +13521,11 @@ ModelInfo D_800C55A8 = {
     0x90,
 };
 
-/*800C55D8*/ static ModelInfoUnkStruct1 D_800C55D8 = {0x48F028, NULL, 0, 0xA8};
+/*800C55D8*/ static ModelVertexInfo D_800C55D8 = {(s32)models_813E00_bin+0xBA8, NULL, 0, 0xA8};
 
 /*800C55E4*/
 ModelInfo D_800C55E4 = {
-    0x48E480,
+    (s32)models_813E00_bin,
     NULL,
     0xBA8,
     0xBA8,
@@ -13545,11 +13546,11 @@ ModelInfo D_800C55E4 = {
     3,
 };
 
-/*800C5614*/ static ModelInfoUnkStruct1 D_800C5614 = {0x48FC78, NULL, 0, 0xA8};
+/*800C5614*/ static ModelVertexInfo D_800C5614 = {(s32)models_814A50_bin+0xBA8, NULL, 0, 0xA8};
 
 /*800C5620*/
 ModelInfo D_800C5620 = {
-    0x48F0D0,
+    (s32)models_814A50_bin,
     NULL,
     0xBA8,
     0xBA8,
@@ -13570,11 +13571,11 @@ ModelInfo D_800C5620 = {
     3,
 };
 
-/*800C5650*/ static ModelInfoUnkStruct1 D_800C5650 = {0x490718, NULL, 0, 0xC6};
+/*800C5650*/ static ModelVertexInfo D_800C5650 = {(s32)models_8156A0_bin+0x9F8, NULL, 0, 0xC6};
 
 /*800C565C*/
 ModelInfo D_800C565C = {
-    0x48FD20,
+    (s32)models_8156A0_bin,
     NULL,
     0x9F6,
     0x9F6,
@@ -13595,11 +13596,11 @@ ModelInfo D_800C565C = {
     3,
 };
 
-/*800C568C*/ static ModelInfoUnkStruct1 D_800C568C = {0x4911D8, NULL, 0, 0xC6};
+/*800C568C*/ static ModelVertexInfo D_800C568C = {(s32)models_816160_bin+0x9F8, NULL, 0, 0xC6};
 
 /*800C5698*/
 ModelInfo D_800C5698 = {
-    0x4907E0,
+    (s32)models_816160_bin,
     NULL,
     0x9F6,
     0x9F6,
@@ -13620,11 +13621,11 @@ ModelInfo D_800C5698 = {
     3,
 };
 
-/*800C56C8*/ static ModelInfoUnkStruct1 D_800C56C8 = {0x49197C, NULL, 0, 0x192};
+/*800C56C8*/ static ModelVertexInfo D_800C56C8 = {(s32)models_816C20_bin+0x6DC, NULL, 0, 0x192};
 
 /*800C56D4*/
 ModelInfo D_800C56D4 = {
-    0x4912A0,
+    (s32)models_816C20_bin,
     NULL,
     0x6DA,
     0x6DA,
@@ -13645,11 +13646,11 @@ ModelInfo D_800C56D4 = {
     0x10,
 };
 
-/*800C5704*/ static ModelInfoUnkStruct1 D_800C5704 = {0x4921E4, NULL, 0, 0x192};
+/*800C5704*/ static ModelVertexInfo D_800C5704 = {(s32)models_817490_bin+0x6D4, NULL, 0, 0x192};
 
 /*800C5710*/
 ModelInfo D_800C5710 = {
-    0x491B10,
+    (s32)models_817490_bin,
     NULL,
     0x6D2,
     0x6D2,
@@ -13670,11 +13671,11 @@ ModelInfo D_800C5710 = {
     0xD,
 };
 
-/*800C5740*/ static ModelInfoUnkStruct1 D_800C5740 = {0x492DF4, NULL, 0, 0xD2};
+/*800C5740*/ static ModelVertexInfo D_800C5740 = {(s32)models_817D00_bin+0xA74, NULL, 0, 0xD2};
 
 /*800C574C*/
 ModelInfo D_800C574C = {
-    0x492380,
+    (s32)models_817D00_bin,
     NULL,
     0xA72,
     0xA72,
@@ -13695,11 +13696,11 @@ ModelInfo D_800C574C = {
     0x16,
 };
 
-/*800C577C*/ static ModelInfoUnkStruct1 D_800C577C = {0x4931BC, NULL, 0, 0xE4};
+/*800C577C*/ static ModelVertexInfo D_800C577C = {(s32)models_818850_bin+0x2EC, NULL, 0, 0xE4};
 
 /*800C5788*/
 ModelInfo D_800C5788 = {
-    0x492ED0,
+    (s32)models_818850_bin,
     NULL,
     0x2EC,
     0x2EC,
@@ -13720,11 +13721,11 @@ ModelInfo D_800C5788 = {
     0x12,
 };
 
-/*800C57B8*/ static ModelInfoUnkStruct1 D_800C57B8 = {0x49358C, NULL, 0, 0xE4};
+/*800C57B8*/ static ModelVertexInfo D_800C57B8 = {(s32)models_818C20_bin+0x2EC, NULL, 0, 0xE4};
 
 /*800C57C4*/
 ModelInfo D_800C57C4 = {
-    0x4932A0,
+    (s32)models_818C20_bin,
     NULL,
     0x2EC,
     0x2EC,
@@ -13745,11 +13746,11 @@ ModelInfo D_800C57C4 = {
     0x12,
 };
 
-/*800C57F4*/ static ModelInfoUnkStruct1 D_800C57F4 = {0x493C74, NULL, 0, 0xBA};
+/*800C57F4*/ static ModelVertexInfo D_800C57F4 = {(s32)models_818FF0_bin+0x604, NULL, 0, 0xBA};
 
 /*800C5800*/
 ModelInfo D_800C5800 = {
-    0x493670,
+    (s32)models_818FF0_bin,
     NULL,
     0x602,
     0x602,
@@ -13770,11 +13771,11 @@ ModelInfo D_800C5800 = {
     0x14,
 };
 
-/*800C5830*/ static ModelInfoUnkStruct1 D_800C5830 = {0x494454, NULL, 0, 0x144};
+/*800C5830*/ static ModelVertexInfo D_800C5830 = {(s32)models_8196B0_bin+0x724, NULL, 0, 0x144};
 
 /*800C583C*/
 ModelInfo D_800C583C = {
-    0x493D30,
+    (s32)models_8196B0_bin,
     NULL,
     0x724,
     0x724,
@@ -13795,11 +13796,11 @@ ModelInfo D_800C583C = {
     7,
 };
 
-/*800C586C*/ static ModelInfoUnkStruct1 D_800C586C = {0x21D8E0, NULL, 0, 0x7E};
+/*800C586C*/ static ModelVertexInfo D_800C586C = {(s32)models_5A2F40_bin+0x320, NULL, 0, 0x7E};
 
 /*800C5878*/
 ModelInfo D_800C5878 = {
-    0x21D5C0,
+    (s32)models_5A2F40_bin,
     NULL,
     0x31E,
     0x31E,
@@ -13820,11 +13821,11 @@ ModelInfo D_800C5878 = {
     4,
 };
 
-/*800C58A8*/ static ModelInfoUnkStruct1 D_800C58A8 = {0x21DBE8, NULL, 0, 0x30};
+/*800C58A8*/ static ModelVertexInfo D_800C58A8 = {(s32)models_5A32E0_bin+0x288, NULL, 0, 0x30};
 
 /*800C58B4*/
 ModelInfo D_800C58B4 = {
-    0x21D960,
+    (s32)models_5A32E0_bin,
     NULL,
     0x288,
     0x288,
@@ -13845,11 +13846,11 @@ ModelInfo D_800C58B4 = {
     1,
 };
 
-/*800C58E4*/ static ModelInfoUnkStruct1 D_800C58E4 = {0x21DEB0, NULL, 0, 0x36};
+/*800C58E4*/ static ModelVertexInfo D_800C58E4 = {(s32)models_5A35A0_bin+0x290, NULL, 0, 0x36};
 
 /*800C58F0*/
 ModelInfo D_800C58F0 = {
-    0x21DC20,
+    (s32)models_5A35A0_bin,
     NULL,
     0x28E,
     0x28E,
@@ -13870,11 +13871,11 @@ ModelInfo D_800C58F0 = {
     1,
 };
 
-/*800C5920*/ static ModelInfoUnkStruct1 D_800C5920 = {0x21E228, NULL, 0, 0x90};
+/*800C5920*/ static ModelVertexInfo D_800C5920 = {(s32)models_5A3870_bin+0x338, NULL, 0, 0x90};
 
 /*800C592C*/
 ModelInfo D_800C592C = {
-    0x21DEF0,
+    (s32)models_5A3870_bin,
     NULL,
     0x338,
     0x338,
@@ -13895,11 +13896,11 @@ ModelInfo D_800C592C = {
     5,
 };
 
-/*800C595C*/ static ModelInfoUnkStruct1 D_800C595C = {0x21E5F4, NULL, 0, 0x8A};
+/*800C595C*/ static ModelVertexInfo D_800C595C = {(s32)models_5A3C40_bin+0x334, NULL, 0, 0x8A};
 
 /*800C5968*/
 ModelInfo D_800C5968 = {
-    0x21E2C0,
+    (s32)models_5A3C40_bin,
     NULL,
     0x332,
     0x332,
@@ -13920,11 +13921,11 @@ ModelInfo D_800C5968 = {
     6,
 };
 
-/*800C5998*/ static ModelInfoUnkStruct1 D_800C5998 = {0x21E9B8, NULL, 0, 0x90};
+/*800C5998*/ static ModelVertexInfo D_800C5998 = {(s32)models_5A4000_bin+0x338, NULL, 0, 0x90};
 
 /*800C59A4*/
 ModelInfo D_800C59A4 = {
-    0x21E680,
+    (s32)models_5A4000_bin,
     NULL,
     0x338,
     0x338,
@@ -13945,11 +13946,11 @@ ModelInfo D_800C59A4 = {
     3,
 };
 
-/*800C59D4*/ static ModelInfoUnkStruct1 D_800C59D4 = {0x21ED88, NULL, 0, 0x90};
+/*800C59D4*/ static ModelVertexInfo D_800C59D4 = {(s32)models_5A43D0_bin+0x338, NULL, 0, 0x90};
 
 /*800C59E0*/
 ModelInfo D_800C59E0 = {
-    0x21EA50,
+    (s32)models_5A43D0_bin,
     NULL,
     0x338,
     0x338,
@@ -13970,11 +13971,11 @@ ModelInfo D_800C59E0 = {
     3,
 };
 
-/*800C5A10*/ static ModelInfoUnkStruct1 D_800C5A10 = {0x221EB4, NULL, 0, 0x4A4};
+/*800C5A10*/ static ModelVertexInfo D_800C5A10 = {(s32)models_5A47A0_bin+0x3094, NULL, 0, 0x4A4};
 
 /*800C5A1C*/
 ModelInfo D_800C5A1C = {
-    0x21EE20,
+    (s32)models_5A47A0_bin,
     NULL,
     0x3094,
     0x3094,
@@ -13995,11 +13996,11 @@ ModelInfo D_800C5A1C = {
     0x3C,
 };
 
-/*800C5A4C*/ static ModelInfoUnkStruct1 D_800C5A4C = {0x2225F0, NULL, 0, 0x36};
+/*800C5A4C*/ static ModelVertexInfo D_800C5A4C = {(s32)models_5A7CE0_bin+0x290, NULL, 0, 0x36};
 
 /*800C5A58*/
 ModelInfo D_800C5A58 = {
-    0x222360,
+    (s32)models_5A7CE0_bin,
     NULL,
     0x28E,
     0x28E,
@@ -14020,11 +14021,11 @@ ModelInfo D_800C5A58 = {
     1,
 };
 
-/*800C5A88*/ static ModelInfoUnkStruct1 D_800C5A88 = {0x2228C0, NULL, 0, 0x36};
+/*800C5A88*/ static ModelVertexInfo D_800C5A88 = {(s32)models_5A7FB0_bin+0x290, NULL, 0, 0x36};
 
 /*800C5A94*/
 ModelInfo D_800C5A94 = {
-    0x222630,
+    (s32)models_5A7FB0_bin,
     NULL,
     0x28E,
     0x28E,
@@ -14045,11 +14046,11 @@ ModelInfo D_800C5A94 = {
     1,
 };
 
-/*800C5AC4*/ static ModelInfoUnkStruct1 D_800C5AC4 = {0x222C38, NULL, 0, 0x90};
+/*800C5AC4*/ static ModelVertexInfo D_800C5AC4 = {(s32)models_5A8280_bin+0x338, NULL, 0, 0x90};
 
 /*800C5AD0*/
 ModelInfo D_800C5AD0 = {
-    0x222900,
+    (s32)models_5A8280_bin,
     NULL,
     0x338,
     0x338,
@@ -14070,11 +14071,11 @@ ModelInfo D_800C5AD0 = {
     1,
 };
 
-/*800C5B00*/ static ModelInfoUnkStruct1 D_800C5B00 = {0x222FF0, NULL, 0, 0x7E};
+/*800C5B00*/ static ModelVertexInfo D_800C5B00 = {(s32)models_5A8650_bin+0x320, NULL, 0, 0x7E};
 
 /*800C5B0C*/
 ModelInfo D_800C5B0C = {
-    0x222CD0,
+    (s32)models_5A8650_bin,
     NULL,
     0x31E,
     0x31E,
@@ -14095,11 +14096,11 @@ ModelInfo D_800C5B0C = {
     1,
 };
 
-/*800C5B3C*/ static ModelInfoUnkStruct1 D_800C5B3C = {0x223390, NULL, 0, 0x7E};
+/*800C5B3C*/ static ModelVertexInfo D_800C5B3C = {(s32)models_5A89F0_bin+0x320, NULL, 0, 0x7E};
 
 /*800C5B48*/
 ModelInfo D_800C5B48 = {
-    0x223070,
+    (s32)models_5A89F0_bin,
     NULL,
     0x31E,
     0x31E,
@@ -14120,11 +14121,11 @@ ModelInfo D_800C5B48 = {
     4,
 };
 
-/*800C5B78*/ static ModelInfoUnkStruct1 D_800C5B78 = {0x224C60, NULL, 0, 0x1F8};
+/*800C5B78*/ static ModelVertexInfo D_800C5B78 = {(s32)models_5A8D90_bin+0x1850, NULL, 0, 0x1F8};
 
 /*800C5B84*/
 ModelInfo D_800C5B84 = {
-    0x223410,
+    (s32)models_5A8D90_bin,
     NULL,
     0x1850,
     0x1850,
@@ -14145,11 +14146,11 @@ ModelInfo D_800C5B84 = {
     8,
 };
 
-/*800C5BB4*/ static ModelInfoUnkStruct1 D_800C5BB4 = {0x264560, NULL, 0, 0xF0};
+/*800C5BB4*/ static ModelVertexInfo D_800C5BB4 = {(s32)models_5E8F30_bin+0xFB0, NULL, 0, 0xF0};
 
 /*800C5BC0*/
 ModelInfo D_800C5BC0 = {
-    0x2635B0,
+    (s32)models_5E8F30_bin,
     NULL,
     0xFB0,
     0xFB0,
@@ -14170,11 +14171,11 @@ ModelInfo D_800C5BC0 = {
     0x41,
 };
 
-/*800C5BF0*/ static ModelInfoUnkStruct1 D_800C5BF0 = {0x264D10, NULL, 0, 0xD8};
+/*800C5BF0*/ static ModelVertexInfo D_800C5BF0 = {(s32)models_5E9FD0_bin+0x6C0, NULL, 0, 0xD8};
 
 /*800C5BFC*/
 ModelInfo D_800C5BFC = {
-    0x264650,
+    (s32)models_5E9FD0_bin,
     NULL,
     0x6C0,
     0x6C0,
@@ -14195,11 +14196,11 @@ ModelInfo D_800C5BFC = {
     3,
 };
 
-/*800C5C2C*/ static ModelInfoUnkStruct1 D_800C5C2C = {0x265568, NULL, 0, 0x90};
+/*800C5C2C*/ static ModelVertexInfo D_800C5C2C = {(s32)models_5EA770_bin+0x778, NULL, 0, 0x90};
 
 /*800C5C38*/
 ModelInfo D_800C5C38 = {
-    0x264DF0,
+    (s32)models_5EA770_bin,
     NULL,
     0x778,
     0x778,
@@ -14220,11 +14221,11 @@ ModelInfo D_800C5C38 = {
     7,
 };
 
-/*800C5C68*/ static ModelInfoUnkStruct1 D_800C5C68 = {0x265D78, NULL, 0, 0x90};
+/*800C5C68*/ static ModelVertexInfo D_800C5C68 = {(s32)models_5EAF80_bin+0x778, NULL, 0, 0x90};
 
 /*800C5C74*/
 ModelInfo D_800C5C74 = {
-    0x265600,
+    (s32)models_5EAF80_bin,
     NULL,
     0x778,
     0x778,
@@ -14245,11 +14246,11 @@ ModelInfo D_800C5C74 = {
     7,
 };
 
-/*800C5CA4*/ static ModelInfoUnkStruct1 D_800C5CA4 = {0x2664EC, NULL, 0, 0x42};
+/*800C5CA4*/ static ModelVertexInfo D_800C5CA4 = {(s32)models_5EB790_bin+0x6DC, NULL, 0, 0x42};
 
 /*800C5CB0*/
 ModelInfo D_800C5CB0 = {
-    0x265E10,
+    (s32)models_5EB790_bin,
     NULL,
     0x6DA,
     0x6DA,
@@ -14270,11 +14271,11 @@ ModelInfo D_800C5CB0 = {
     5,
 };
 
-/*800C5CE0*/ static ModelInfoUnkStruct1 D_800C5CE0 = {0x266C0C, NULL, 0, 0x42};
+/*800C5CE0*/ static ModelVertexInfo D_800C5CE0 = {(s32)models_5EBEB0_bin+0x6DC, NULL, 0, 0x42};
 
 /*800C5CEC*/
 ModelInfo D_800C5CEC = {
-    0x266530,
+    (s32)models_5EBEB0_bin,
     NULL,
     0x6DA,
     0x6DA,
@@ -14295,11 +14296,11 @@ ModelInfo D_800C5CEC = {
     5,
 };
 
-/*800C5D1C*/ static ModelInfoUnkStruct1 D_800C5D1C = {0x267070, NULL, 0, 0x90};
+/*800C5D1C*/ static ModelVertexInfo D_800C5D1C = {(s32)models_5EC5D0_bin+0x420, NULL, 0, 0x90};
 
 /*800C5D28*/
 ModelInfo D_800C5D28 = {
-    0x266C50,
+    (s32)models_5EC5D0_bin,
     NULL,
     0x420,
     0x420,
@@ -14320,11 +14321,11 @@ ModelInfo D_800C5D28 = {
     4,
 };
 
-/*800C5D58*/ static ModelInfoUnkStruct1 D_800C5D58 = {0x267520, NULL, 0, 0x90};
+/*800C5D58*/ static ModelVertexInfo D_800C5D58 = {(s32)models_5ECA80_bin+0x420, NULL, 0, 0x90};
 
 /*800C5D64*/
 ModelInfo D_800C5D64 = {
-    0x267100,
+    (s32)models_5ECA80_bin,
     NULL,
     0x420,
     0x420,
@@ -14345,11 +14346,11 @@ ModelInfo D_800C5D64 = {
     4,
 };
 
-/*800C5D94*/ static ModelInfoUnkStruct1 D_800C5D94 = {0x268640, NULL, 0, 0x1F8};
+/*800C5D94*/ static ModelVertexInfo D_800C5D94 = {(s32)models_5ECF30_bin+0x1090, NULL, 0, 0x1F8};
 
 /*800C5DA0*/
 ModelInfo D_800C5DA0 = {
-    0x2675B0,
+    (s32)models_5ECF30_bin,
     NULL,
     0x1090,
     0x1090,
@@ -14370,11 +14371,11 @@ ModelInfo D_800C5DA0 = {
     0x23,
 };
 
-/*800C5DD0*/ static ModelInfoUnkStruct1 D_800C5DD0 = {0x268DA0, NULL, 0, 0x7E};
+/*800C5DD0*/ static ModelVertexInfo D_800C5DD0 = {(s32)models_5EE1C0_bin+0x560, NULL, 0, 0x7E};
 
 /*800C5DDC*/
 ModelInfo D_800C5DDC = {
-    0x268840,
+    (s32)models_5EE1C0_bin,
     NULL,
     0x55E,
     0x55E,
@@ -14395,11 +14396,11 @@ ModelInfo D_800C5DDC = {
     0x11,
 };
 
-/*800C5E0C*/ static ModelInfoUnkStruct1 D_800C5E0C = {0x269518, NULL, 0, 0x4E};
+/*800C5E0C*/ static ModelVertexInfo D_800C5E0C = {(s32)models_5EE7A0_bin+0x6F8, NULL, 0, 0x4E};
 
 /*800C5E18*/
 ModelInfo D_800C5E18 = {
-    0x268E20,
+    (s32)models_5EE7A0_bin,
     NULL,
     0x6F6,
     0x6F6,
@@ -14420,11 +14421,11 @@ ModelInfo D_800C5E18 = {
     5,
 };
 
-/*800C5E48*/ static ModelInfoUnkStruct1 D_800C5E48 = {0x269C68, NULL, 0, 0x4E};
+/*800C5E48*/ static ModelVertexInfo D_800C5E48 = {(s32)models_5EEEF0_bin+0x6F8, NULL, 0, 0x4E};
 
 /*800C5E54*/
 ModelInfo D_800C5E54 = {
-    0x269570,
+    (s32)models_5EEEF0_bin,
     NULL,
     0x6F6,
     0x6F6,
@@ -14445,11 +14446,11 @@ ModelInfo D_800C5E54 = {
     5,
 };
 
-/*800C5E84*/ static ModelInfoUnkStruct1 D_800C5E84 = {0x26A380, NULL, 0, 0xD8};
+/*800C5E84*/ static ModelVertexInfo D_800C5E84 = {(s32)models_5EF640_bin+0x6C0, NULL, 0, 0xD8};
 
 /*800C5E90*/
 ModelInfo D_800C5E90 = {
-    0x269CC0,
+    (s32)models_5EF640_bin,
     NULL,
     0x6C0,
     0x6C0,
@@ -14470,11 +14471,11 @@ ModelInfo D_800C5E90 = {
     3,
 };
 
-/*800C5EC0*/ static ModelInfoUnkStruct1 D_800C5EC0 = {0x62C038, NULL, 0, 0x2EE};
+/*800C5EC0*/ static ModelVertexInfo D_800C5EC0 = {(s32)models_9B0210_bin+0x17A8, NULL, 0, 0x2EE};
 
 /*800C5ECC*/
 ModelInfo D_800C5ECC = {
-    0x62A890,
+    (s32)models_9B0210_bin,
     NULL,
     0x17A6,
     0x17A6,
@@ -14495,11 +14496,11 @@ ModelInfo D_800C5ECC = {
     0x22,
 };
 
-/*800C5EFC*/ static ModelInfoUnkStruct1 D_800C5EFC = {0x62D094, NULL, 0, 0x1A4};
+/*800C5EFC*/ static ModelVertexInfo D_800C5EFC = {(s32)models_9B1CB0_bin+0xD64, NULL, 0, 0x1A4};
 
 /*800C5F08*/
 ModelInfo D_800C5F08 = {
-    0x62C330,
+    (s32)models_9B1CB0_bin,
     NULL,
     0xD64,
     0xD64,
@@ -14520,11 +14521,11 @@ ModelInfo D_800C5F08 = {
     0x12,
 };
 
-/*800C5F38*/ static ModelInfoUnkStruct1 D_800C5F38 = {0x62E8E4, NULL, 0, 0x252};
+/*800C5F38*/ static ModelVertexInfo D_800C5F38 = {(s32)models_9B2BC0_bin+0x16A4, NULL, 0, 0x252};
 
 /*800C5F44*/
 ModelInfo D_800C5F44 = {
-    0x62D240,
+    (s32)models_9B2BC0_bin,
     NULL,
     0x16A2,
     0x16A2,
@@ -14545,11 +14546,11 @@ ModelInfo D_800C5F44 = {
     0x23,
 };
 
-/*800C5F74*/ static ModelInfoUnkStruct1 D_800C5F74 = {0x62FAF0, NULL, 0, 0xF0};
+/*800C5F74*/ static ModelVertexInfo D_800C5F74 = {(s32)models_9B44C0_bin+0xFB0, NULL, 0, 0xF0};
 
 /*800C5F80*/
 ModelInfo D_800C5F80 = {
-    0x62EB40,
+    (s32)models_9B44C0_bin,
     NULL,
     0xFB0,
     0xFB0,
@@ -14570,11 +14571,11 @@ ModelInfo D_800C5F80 = {
     0x41,
 };
 
-/*800C5FB0*/ static ModelInfoUnkStruct1 D_800C5FB0 = {0x631488, NULL, 0, 0x216};
+/*800C5FB0*/ static ModelVertexInfo D_800C5FB0 = {(s32)models_9B5560_bin+0x18A8, NULL, 0, 0x216};
 
 /*800C5FBC*/
 ModelInfo D_800C5FBC = {
-    0x62FBE0,
+    (s32)models_9B5560_bin,
     NULL,
     0x18A6,
     0x18A6,
@@ -14595,11 +14596,11 @@ ModelInfo D_800C5FBC = {
     0x41,
 };
 
-/*800C5FEC*/ static ModelInfoUnkStruct1 D_800C5FEC = {0x632650, NULL, 0, 0xF0};
+/*800C5FEC*/ static ModelVertexInfo D_800C5FEC = {(s32)models_9B7020_bin+0xFB0, NULL, 0, 0xF0};
 
 /*800C5FF8*/
 ModelInfo D_800C5FF8 = {
-    0x6316A0,
+    (s32)models_9B7020_bin,
     NULL,
     0xFB0,
     0xFB0,
@@ -14620,11 +14621,11 @@ ModelInfo D_800C5FF8 = {
     0x41,
 };
 
-/*800C6028*/ static ModelInfoUnkStruct1 D_800C6028 = {0x633794, NULL, 0, 0x1DA};
+/*800C6028*/ static ModelVertexInfo D_800C6028 = {(s32)models_9B80C0_bin+0x1054, NULL, 0, 0x1DA};
 
 /*800C6034*/
 ModelInfo D_800C6034 = {
-    0x632740,
+    (s32)models_9B80C0_bin,
     NULL,
     0x1052,
     0x1052,
@@ -14645,11 +14646,11 @@ ModelInfo D_800C6034 = {
     0xE,
 };
 
-/*800C6064*/ static ModelInfoUnkStruct1 D_800C6064 = {0x75D628, NULL, 0, 0x306};
+/*800C6064*/ static ModelVertexInfo D_800C6064 = {(s32)models_AE1800_bin+0x17A8, NULL, 0, 0x306};
 
 /*800C6070*/
 ModelInfo D_800C6070 = {
-    0x75BE80,
+    (s32)models_AE1800_bin,
     NULL,
     0x17A6,
     0x17A6,
@@ -14670,11 +14671,11 @@ ModelInfo D_800C6070 = {
     0x2B,
 };
 
-/*800C60A0*/ static ModelInfoUnkStruct1 D_800C60A0 = {0x75E694, NULL, 0, 0x1A4};
+/*800C60A0*/ static ModelVertexInfo D_800C60A0 = {(s32)models_AE32B0_bin+0xD64, NULL, 0, 0x1A4};
 
 /*800C60AC*/
 ModelInfo D_800C60AC = {
-    0x75D930,
+    (s32)models_AE32B0_bin,
     NULL,
     0xD64,
     0xD64,
@@ -14695,11 +14696,11 @@ ModelInfo D_800C60AC = {
     0x12,
 };
 
-/*800C60DC*/ static ModelInfoUnkStruct1 D_800C60DC = {0x75FE14, NULL, 0, 0x1F2};
+/*800C60DC*/ static ModelVertexInfo D_800C60DC = {(s32)models_AE41C0_bin+0x15D4, NULL, 0, 0x1F2};
 
 /*800C60E8*/
 ModelInfo D_800C60E8 = {
-    0x75E840,
+    (s32)models_AE41C0_bin,
     NULL,
     0x15D2,
     0x15D2,
@@ -14720,11 +14721,11 @@ ModelInfo D_800C60E8 = {
     0x2B,
 };
 
-/*800C6118*/ static ModelInfoUnkStruct1 D_800C6118 = {0x7610AC, NULL, 0, 0xBA};
+/*800C6118*/ static ModelVertexInfo D_800C6118 = {(s32)models_AE5990_bin+0x109C, NULL, 0, 0xBA};
 
 /*800C6124*/
 ModelInfo D_800C6124 = {
-    0x760010,
+    (s32)models_AE5990_bin,
     NULL,
     0x109A,
     0x109A,
@@ -14745,11 +14746,11 @@ ModelInfo D_800C6124 = {
     0x40,
 };
 
-/*800C6154*/ static ModelInfoUnkStruct1 D_800C6154 = {0x762AF8, NULL, 0, 0x1CE};
+/*800C6154*/ static ModelVertexInfo D_800C6154 = {(s32)models_AE6AF0_bin+0x1988, NULL, 0, 0x1CE};
 
 /*800C6160*/
 ModelInfo D_800C6160 = {
-    0x761170,
+    (s32)models_AE6AF0_bin,
     NULL,
     0x1986,
     0x1986,
@@ -14770,11 +14771,11 @@ ModelInfo D_800C6160 = {
     0x40,
 };
 
-/*800C6190*/ static ModelInfoUnkStruct1 D_800C6190 = {0x763D6C, NULL, 0, 0xBA};
+/*800C6190*/ static ModelVertexInfo D_800C6190 = {(s32)models_AE8650_bin+0x109C, NULL, 0, 0xBA};
 
 /*800C619C*/
 ModelInfo D_800C619C = {
-    0x762CD0,
+    (s32)models_AE8650_bin,
     NULL,
     0x109A,
     0x109A,
@@ -14795,11 +14796,11 @@ ModelInfo D_800C619C = {
     0x40,
 };
 
-/*800C61CC*/ static ModelInfoUnkStruct1 D_800C61CC = {0x764E30, NULL, 0, 0x186};
+/*800C61CC*/ static ModelVertexInfo D_800C61CC = {(s32)models_AE97B0_bin+0x1000, NULL, 0, 0x186};
 
 /*800C61D8*/
 ModelInfo D_800C61D8 = {
-    0x763E30,
+    (s32)models_AE97B0_bin,
     NULL,
     0xFFE,
     0xFFE,
@@ -14820,11 +14821,11 @@ ModelInfo D_800C61D8 = {
     0xE,
 };
 
-/*800C6208*/ static ModelInfoUnkStruct1 D_800C6208 = {0x766234, NULL, 0, 0x27C};
+/*800C6208*/ static ModelVertexInfo D_800C6208 = {(s32)models_AEA940_bin+0x1274, NULL, 0, 0x27C};
 
 /*800C6214*/
 ModelInfo D_800C6214 = {
-    0x764FC0,
+    (s32)models_AEA940_bin,
     NULL,
     0x1274,
     0x1274,
@@ -14845,11 +14846,11 @@ ModelInfo D_800C6214 = {
     0x1A,
 };
 
-/*800C6244*/ static ModelInfoUnkStruct1 D_800C6244 = {0x767214, NULL, 0, 0x1A4};
+/*800C6244*/ static ModelVertexInfo D_800C6244 = {(s32)models_AEBE30_bin+0xD64, NULL, 0, 0x1A4};
 
 /*800C6250*/
 ModelInfo D_800C6250 = {
-    0x7664B0,
+    (s32)models_AEBE30_bin,
     NULL,
     0xD64,
     0xD64,
@@ -14870,11 +14871,11 @@ ModelInfo D_800C6250 = {
     0x12,
 };
 
-/*800C6280*/ static ModelInfoUnkStruct1 D_800C6280 = {0x7684D8, NULL, 0, 0x180};
+/*800C6280*/ static ModelVertexInfo D_800C6280 = {(s32)models_AECD40_bin+0x1118, NULL, 0, 0x180};
 
 /*800C628C*/
 ModelInfo D_800C628C = {
-    0x7673C0,
+    (s32)models_AECD40_bin,
     NULL,
     0x1118,
     0x1118,
@@ -14895,11 +14896,11 @@ ModelInfo D_800C628C = {
     0x16,
 };
 
-/*800C62BC*/ static ModelInfoUnkStruct1 D_800C62BC = {0x769E94, NULL, 0, 0x1C2};
+/*800C62BC*/ static ModelVertexInfo D_800C62BC = {(s32)models_AEDFE0_bin+0x1834, NULL, 0, 0x1C2};
 
 /*800C62C8*/
 ModelInfo D_800C62C8 = {
-    0x768660,
+    (s32)models_AEDFE0_bin,
     NULL,
     0x1832,
     0x1832,
@@ -14920,11 +14921,11 @@ ModelInfo D_800C62C8 = {
     0x40,
 };
 
-/*800C62F8*/ static ModelInfoUnkStruct1 D_800C62F8 = {0x76AFBC, NULL, 0, 0xBA};
+/*800C62F8*/ static ModelVertexInfo D_800C62F8 = {(s32)models_AEF9E0_bin+0xF5C, NULL, 0, 0xBA};
 
 /*800C6304*/
 ModelInfo D_800C6304 = {
-    0x76A060,
+    (s32)models_AEF9E0_bin,
     NULL,
     0xF5A,
     0xF5A,
@@ -14945,11 +14946,11 @@ ModelInfo D_800C6304 = {
     0x40,
 };
 
-/*800C6334*/ static ModelInfoUnkStruct1 D_800C6334 = {0x76C2B0, NULL, 0, 0x1CE};
+/*800C6334*/ static ModelVertexInfo D_800C6334 = {(s32)models_AF0A00_bin+0x1230, NULL, 0, 0x1CE};
 
 /*800C6340*/
 ModelInfo D_800C6340 = {
-    0x76B080,
+    (s32)models_AF0A00_bin,
     NULL,
     0x122E,
     0x122E,
@@ -14970,11 +14971,11 @@ ModelInfo D_800C6340 = {
     0xE,
 };
 
-/*800C6370*/ static ModelInfoUnkStruct1 D_800C6370 = {0x76DBD4, NULL, 0, 0x2E2};
+/*800C6370*/ static ModelVertexInfo D_800C6370 = {(s32)models_AF1E00_bin+0x1754, NULL, 0, 0x2E2};
 
 /*800C637C*/
 ModelInfo D_800C637C = {
-    0x76C480,
+    (s32)models_AF1E00_bin,
     NULL,
     0x1752,
     0x1752,
@@ -14995,11 +14996,11 @@ ModelInfo D_800C637C = {
     0x22,
 };
 
-/*800C63AC*/ static ModelInfoUnkStruct1 D_800C63AC = {0x76EC24, NULL, 0, 0x1A4};
+/*800C63AC*/ static ModelVertexInfo D_800C63AC = {(s32)models_AF3840_bin+0xD64, NULL, 0, 0x1A4};
 
 /*800C63B8*/
 ModelInfo D_800C63B8 = {
-    0x76DEC0,
+    (s32)models_AF3840_bin,
     NULL,
     0xD64,
     0xD64,
@@ -15020,11 +15021,11 @@ ModelInfo D_800C63B8 = {
     0x12,
 };
 
-/*800C63E8*/ static ModelInfoUnkStruct1 D_800C63E8 = {0x7707E8, NULL, 0, 0x1FE};
+/*800C63E8*/ static ModelVertexInfo D_800C63E8 = {(s32)models_AF4750_bin+0x1A18, NULL, 0, 0x1FE};
 
 /*800C63F4*/
 ModelInfo D_800C63F4 = {
-    0x76EDD0,
+    (s32)models_AF4750_bin,
     NULL,
     0x1A16,
     0x1A16,
@@ -15045,11 +15046,11 @@ ModelInfo D_800C63F4 = {
     0x2B,
 };
 
-/*800C6424*/ static ModelInfoUnkStruct1 D_800C6424 = {0x77194C, NULL, 0, 0xBA};
+/*800C6424*/ static ModelVertexInfo D_800C6424 = {(s32)models_AF6370_bin+0xF5C, NULL, 0, 0xBA};
 
 /*800C6430*/
 ModelInfo D_800C6430 = {
-    0x7709F0,
+    (s32)models_AF6370_bin,
     NULL,
     0xF5A,
     0xF5A,
@@ -15070,11 +15071,11 @@ ModelInfo D_800C6430 = {
     0x40,
 };
 
-/*800C6460*/ static ModelInfoUnkStruct1 D_800C6460 = {0x77327C, NULL, 0, 0x1EC};
+/*800C6460*/ static ModelVertexInfo D_800C6460 = {(s32)models_AF7390_bin+0x186C, NULL, 0, 0x1EC};
 
 /*800C646C*/
 ModelInfo D_800C646C = {
-    0x771A10,
+    (s32)models_AF7390_bin,
     NULL,
     0x186C,
     0x186C,
@@ -15095,11 +15096,11 @@ ModelInfo D_800C646C = {
     0x40,
 };
 
-/*800C649C*/ static ModelInfoUnkStruct1 D_800C649C = {0x7743CC, NULL, 0, 0xBA};
+/*800C649C*/ static ModelVertexInfo D_800C649C = {(s32)models_AF8DF0_bin+0xF5C, NULL, 0, 0xBA};
 
 /*800C64A8*/
 ModelInfo D_800C64A8 = {
-    0x773470,
+    (s32)models_AF8DF0_bin,
     NULL,
     0xF5A,
     0xF5A,
@@ -15120,11 +15121,11 @@ ModelInfo D_800C64A8 = {
     0x40,
 };
 
-/*800C64D8*/ static ModelInfoUnkStruct1 D_800C64D8 = {0x775688, NULL, 0, 0x1B0};
+/*800C64D8*/ static ModelVertexInfo D_800C64D8 = {(s32)models_AF9E10_bin+0x11F8, NULL, 0, 0x1B0};
 
 /*800C64E4*/
 ModelInfo D_800C64E4 = {
-    0x774490,
+    (s32)models_AF9E10_bin,
     NULL,
     0x11F8,
     0x11F8,
@@ -15145,11 +15146,11 @@ ModelInfo D_800C64E4 = {
     0xE,
 };
 
-/*800C6514*/ static ModelInfoUnkStruct1 D_800C6514 = {0x776AB4, NULL, 0, 0x27C};
+/*800C6514*/ static ModelVertexInfo D_800C6514 = {(s32)models_AFB1C0_bin+0x1274, NULL, 0, 0x27C};
 
 /*800C6520*/
 ModelInfo D_800C6520 = {
-    0x775840,
+    (s32)models_AFB1C0_bin,
     NULL,
     0x1274,
     0x1274,
@@ -15170,11 +15171,11 @@ ModelInfo D_800C6520 = {
     0x1A,
 };
 
-/*800C6550*/ static ModelInfoUnkStruct1 D_800C6550 = {0x777A94, NULL, 0, 0x1A4};
+/*800C6550*/ static ModelVertexInfo D_800C6550 = {(s32)models_AFC6B0_bin+0xD64, NULL, 0, 0x1A4};
 
 /*800C655C*/
 ModelInfo D_800C655C = {
-    0x776D30,
+    (s32)models_AFC6B0_bin,
     NULL,
     0xD64,
     0xD64,
@@ -15195,11 +15196,11 @@ ModelInfo D_800C655C = {
     0x12,
 };
 
-/*800C658C*/ static ModelInfoUnkStruct1 D_800C658C = {0x778D58, NULL, 0, 0x180};
+/*800C658C*/ static ModelVertexInfo D_800C658C = {(s32)models_AFD5C0_bin+0x1118, NULL, 0, 0x180};
 
 /*800C6598*/
 ModelInfo D_800C6598 = {
-    0x777C40,
+    (s32)models_AFD5C0_bin,
     NULL,
     0x1118,
     0x1118,
@@ -15220,11 +15221,11 @@ ModelInfo D_800C6598 = {
     0x16,
 };
 
-/*800C65C8*/ static ModelInfoUnkStruct1 D_800C65C8 = {0x77A740, NULL, 0, 0x1E0};
+/*800C65C8*/ static ModelVertexInfo D_800C65C8 = {(s32)models_AFE860_bin+0x1860, NULL, 0, 0x1E0};
 
 /*800C65D4*/
 ModelInfo D_800C65D4 = {
-    0x778EE0,
+    (s32)models_AFE860_bin,
     NULL,
     0x1860,
     0x1860,
@@ -15245,11 +15246,11 @@ ModelInfo D_800C65D4 = {
     0x40,
 };
 
-/*800C6604*/ static ModelInfoUnkStruct1 D_800C6604 = {0x77B880, NULL, 0, 0xC0};
+/*800C6604*/ static ModelVertexInfo D_800C6604 = {(s32)models_B002A0_bin+0xF60, NULL, 0, 0xC0};
 
 /*800C6610*/
 ModelInfo D_800C6610 = {
-    0x77A920,
+    (s32)models_B002A0_bin,
     NULL,
     0xF60,
     0xF60,
@@ -15270,11 +15271,11 @@ ModelInfo D_800C6610 = {
     0x40,
 };
 
-/*800C6640*/ static ModelInfoUnkStruct1 D_800C6640 = {0x77C8A0, NULL, 0, 0xC0};
+/*800C6640*/ static ModelVertexInfo D_800C6640 = {(s32)models_B012C0_bin+0xF60, NULL, 0, 0xC0};
 
 /*800C664C*/
 ModelInfo D_800C664C = {
-    0x77B940,
+    (s32)models_B012C0_bin,
     NULL,
     0xF60,
     0xF60,
@@ -15295,11 +15296,11 @@ ModelInfo D_800C664C = {
     0x40,
 };
 
-/*800C667C*/ static ModelInfoUnkStruct1 D_800C667C = {0x77DB24, NULL, 0, 0x18C};
+/*800C667C*/ static ModelVertexInfo D_800C667C = {(s32)models_B022E0_bin+0x11C4, NULL, 0, 0x18C};
 
 /*800C6688*/
 ModelInfo D_800C6688 = {
-    0x77C960,
+    (s32)models_B022E0_bin,
     NULL,
     0x11C4,
     0x11C4,
@@ -15320,11 +15321,11 @@ ModelInfo D_800C6688 = {
     0xE,
 };
 
-/*800C66B8*/ static ModelInfoUnkStruct1 D_800C66B8 = {0x77F08C, NULL, 0, 0x29A};
+/*800C66B8*/ static ModelVertexInfo D_800C66B8 = {(s32)models_B03630_bin+0x13DC, NULL, 0, 0x29A};
 
 /*800C66C4*/
 ModelInfo D_800C66C4 = {
-    0x77DCB0,
+    (s32)models_B03630_bin,
     NULL,
     0x13DA,
     0x13DA,
@@ -15345,11 +15346,11 @@ ModelInfo D_800C66C4 = {
     0x1A,
 };
 
-/*800C66F4*/ static ModelInfoUnkStruct1 D_800C66F4 = {0x780094, NULL, 0, 0x1A4};
+/*800C66F4*/ static ModelVertexInfo D_800C66F4 = {(s32)models_B04CB0_bin+0xD64, NULL, 0, 0x1A4};
 
 /*800C6700*/
 ModelInfo D_800C6700 = {
-    0x77F330,
+    (s32)models_B04CB0_bin,
     NULL,
     0xD64,
     0xD64,
@@ -15370,11 +15371,11 @@ ModelInfo D_800C6700 = {
     0x12,
 };
 
-/*800C6730*/ static ModelInfoUnkStruct1 D_800C6730 = {0x781358, NULL, 0, 0x180};
+/*800C6730*/ static ModelVertexInfo D_800C6730 = {(s32)models_B05BC0_bin+0x1118, NULL, 0, 0x180};
 
 /*800C673C*/
 ModelInfo D_800C673C = {
-    0x780240,
+    (s32)models_B05BC0_bin,
     NULL,
     0x1118,
     0x1118,
@@ -15395,11 +15396,11 @@ ModelInfo D_800C673C = {
     0x16,
 };
 
-/*800C676C*/ static ModelInfoUnkStruct1 D_800C676C = {0x783D74, NULL, 0, 0x1DA};
+/*800C676C*/ static ModelVertexInfo D_800C676C = {(s32)models_B07EA0_bin+0x1854, NULL, 0, 0x1DA};
 
 /*800C6778*/
 ModelInfo D_800C6778 = {
-    0x782520,
+    (s32)models_B07EA0_bin,
     NULL,
     0x1852,
     0x1852,
@@ -15420,11 +15421,11 @@ ModelInfo D_800C6778 = {
     0x40,
 };
 
-/*800C67A8*/ static ModelInfoUnkStruct1 D_800C67A8 = {0x782458, NULL, 0, 0xC6};
+/*800C67A8*/ static ModelVertexInfo D_800C67A8 = {(s32)models_B06E60_bin+0xF78, NULL, 0, 0xC6};
 
 /*800C67B4*/
 ModelInfo D_800C67B4 = {
-    0x7814E0,
+    (s32)models_B06E60_bin,
     NULL,
     0xF76,
     0xF76,
@@ -15445,11 +15446,11 @@ ModelInfo D_800C67B4 = {
     0x40,
 };
 
-/*800C67E4*/ static ModelInfoUnkStruct1 D_800C67E4 = {0x784EC8, NULL, 0, 0xC6};
+/*800C67E4*/ static ModelVertexInfo D_800C67E4 = {(s32)models_B098D0_bin+0xF78, NULL, 0, 0xC6};
 
 /*800C67F0*/
 ModelInfo D_800C67F0 = {
-    0x783F50,
+    (s32)models_B098D0_bin,
     NULL,
     0xF76,
     0xF76,
@@ -15470,11 +15471,11 @@ ModelInfo D_800C67F0 = {
     0x40,
 };
 
-/*800C6820*/ static ModelInfoUnkStruct1 D_800C6820 = {0x786154, NULL, 0, 0x18C};
+/*800C6820*/ static ModelVertexInfo D_800C6820 = {(s32)models_B0A910_bin+0x11C4, NULL, 0, 0x18C};
 
 /*800C682C*/
 ModelInfo D_800C682C = {
-    0x784F90,
+    (s32)models_B0A910_bin,
     NULL,
     0x11C4,
     0x11C4,
@@ -15495,11 +15496,11 @@ ModelInfo D_800C682C = {
     0xE,
 };
 
-/*800C685C*/ static ModelInfoUnkStruct1 D_800C685C = {0x317D2C, NULL, 0, 0xBA};
+/*800C685C*/ static ModelVertexInfo D_800C685C = {(s32)models_69C750_bin+0xF5C, NULL, 0, 0xBA};
 
 /*800C6868*/
 ModelInfo D_800C6868 = {
-    0x316DD0,
+    (s32)models_69C750_bin,
     NULL,
     0xF5A,
     0xF5A,
@@ -15520,11 +15521,11 @@ ModelInfo D_800C6868 = {
     0x40,
 };
 
-/*800C6898*/ static ModelInfoUnkStruct1 D_800C6898 = {0x318720, NULL, 0, 0x60};
+/*800C6898*/ static ModelVertexInfo D_800C6898 = {(s32)models_69D770_bin+0x930, NULL, 0, 0x60};
 
 /*800C68A4*/
 ModelInfo D_800C68A4 = {
-    0x317DF0,
+    (s32)models_69D770_bin,
     NULL,
     0x930,
     0x930,
@@ -15545,11 +15546,11 @@ ModelInfo D_800C68A4 = {
     7,
 };
 
-/*800C68D4*/ static ModelInfoUnkStruct1 D_800C68D4 = {0x3190EC, NULL, 0, 0xA2};
+/*800C68D4*/ static ModelVertexInfo D_800C68D4 = {(s32)models_69E100_bin+0x96C, NULL, 0, 0xA2};
 
 /*800C68E0*/
 ModelInfo D_800C68E0 = {
-    0x318780,
+    (s32)models_69E100_bin,
     NULL,
     0x96A,
     0x96A,
@@ -15570,11 +15571,11 @@ ModelInfo D_800C68E0 = {
     5,
 };
 
-/*800C6910*/ static ModelInfoUnkStruct1 D_800C6910 = {0x319AEC, NULL, 0, 0x9C};
+/*800C6910*/ static ModelVertexInfo D_800C6910 = {(s32)models_69EB10_bin+0x95C, NULL, 0, 0x9C};
 
 /*800C691C*/
 ModelInfo D_800C691C = {
-    0x319190,
+    (s32)models_69EB10_bin,
     NULL,
     0x95C,
     0x95C,
@@ -15595,11 +15596,11 @@ ModelInfo D_800C691C = {
     5,
 };
 
-/*800C694C*/ static ModelInfoUnkStruct1 D_800C694C = {0x319E78, NULL, 0, 0x30};
+/*800C694C*/ static ModelVertexInfo D_800C694C = {(s32)models_69F510_bin+0x2E8, NULL, 0, 0x30};
 
 /*800C6958*/
 ModelInfo D_800C6958 = {
-    0x319B90,
+    (s32)models_69F510_bin,
     NULL,
     0x2E8,
     0x2E8,
@@ -15620,11 +15621,11 @@ ModelInfo D_800C6958 = {
     4,
 };
 
-/*800C6988*/ static ModelInfoUnkStruct1 D_800C6988 = {0x31A198, NULL, 0, 0x30};
+/*800C6988*/ static ModelVertexInfo D_800C6988 = {(s32)models_69F830_bin+0x2E8, NULL, 0, 0x30};
 
 /*800C6994*/
 ModelInfo D_800C6994 = {
-    0x319EB0,
+    (s32)models_69F830_bin,
     NULL,
     0x2E8,
     0x2E8,
@@ -15645,11 +15646,11 @@ ModelInfo D_800C6994 = {
     4,
 };
 
-/*800C69C4*/ static ModelInfoUnkStruct1 D_800C69C4 = {0x31B190, NULL, 0, 0xF0};
+/*800C69C4*/ static ModelVertexInfo D_800C69C4 = {(s32)models_69FB50_bin+0xFC0, NULL, 0, 0xF0};
 
 /*800C69D0*/
 ModelInfo D_800C69D0 = {
-    0x31A1D0,
+    (s32)models_69FB50_bin,
     NULL,
     0xFC0,
     0xFC0,
@@ -15670,11 +15671,11 @@ ModelInfo D_800C69D0 = {
     3,
 };
 
-/*800C6A00*/ static ModelInfoUnkStruct1 D_800C6A00 = {0x31C240, NULL, 0, 0xF0};
+/*800C6A00*/ static ModelVertexInfo D_800C6A00 = {(s32)models_6A0C00_bin+0xFC0, NULL, 0, 0xF0};
 
 /*800C6A0C*/
 ModelInfo D_800C6A0C = {
-    0x31B280,
+    (s32)models_6A0C00_bin,
     NULL,
     0xFC0,
     0xFC0,
@@ -15695,11 +15696,11 @@ ModelInfo D_800C6A0C = {
     3,
 };
 
-/*800C6A3C*/ static ModelInfoUnkStruct1 D_800C6A3C = {0x31D3A4, NULL, 0, 0x174};
+/*800C6A3C*/ static ModelVertexInfo D_800C6A3C = {(s32)models_6A1CB0_bin+0x1074, NULL, 0, 0x174};
 
 /*800C6A48*/
 ModelInfo D_800C6A48 = {
-    0x31C330,
+    (s32)models_6A1CB0_bin,
     NULL,
     0x1074,
     0x1074,
@@ -15720,11 +15721,11 @@ ModelInfo D_800C6A48 = {
     0x20,
 };
 
-/*800C6A78*/ static ModelInfoUnkStruct1 D_800C6A78 = {0x31E084, NULL, 0, 0xA2};
+/*800C6A78*/ static ModelVertexInfo D_800C6A78 = {(s32)models_6A2EA0_bin+0xB64, NULL, 0, 0xA2};
 
 /*800C6A84*/
 ModelInfo D_800C6A84 = {
-    0x31D520,
+    (s32)models_6A2EA0_bin,
     NULL,
     0xB62,
     0xB62,
@@ -15745,11 +15746,11 @@ ModelInfo D_800C6A84 = {
     0x16,
 };
 
-/*800C6AB4*/ static ModelInfoUnkStruct1 D_800C6AB4 = {0x31F27C, NULL, 0, 0x6C};
+/*800C6AB4*/ static ModelVertexInfo D_800C6AB4 = {(s32)models_6A3AB0_bin+0x114C, NULL, 0, 0x6C};
 
 /*800C6AC0*/
 ModelInfo D_800C6AC0 = {
-    0x31E130,
+    (s32)models_6A3AB0_bin,
     NULL,
     0x114C,
     0x114C,
@@ -15770,11 +15771,11 @@ ModelInfo D_800C6AC0 = {
     5,
 };
 
-/*800C6AF0*/ static ModelInfoUnkStruct1 D_800C6AF0 = {0x32043C, NULL, 0, 0x6C};
+/*800C6AF0*/ static ModelVertexInfo D_800C6AF0 = {(s32)models_6A4C70_bin+0x114C, NULL, 0, 0x6C};
 
 /*800C6AFC*/
 ModelInfo D_800C6AFC = {
-    0x31F2F0,
+    (s32)models_6A4C70_bin,
     NULL,
     0x114C,
     0x114C,
@@ -15795,11 +15796,11 @@ ModelInfo D_800C6AFC = {
     5,
 };
 
-/*800C6B2C*/ static ModelInfoUnkStruct1 D_800C6B2C = {0x320DE0, NULL, 0, 0x60};
+/*800C6B2C*/ static ModelVertexInfo D_800C6B2C = {(s32)models_6A5E30_bin+0x930, NULL, 0, 0x60};
 
 /*800C6B38*/
 ModelInfo D_800C6B38 = {
-    0x3204B0,
+    (s32)models_6A5E30_bin,
     NULL,
     0x930,
     0x930,
@@ -15820,11 +15821,11 @@ ModelInfo D_800C6B38 = {
     7,
 };
 
-/*800C6B68*/ static ModelInfoUnkStruct1 D_800C6B68 = {0x321D9C, NULL, 0, 0xBA};
+/*800C6B68*/ static ModelVertexInfo D_800C6B68 = {(s32)models_6A67C0_bin+0xF5C, NULL, 0, 0xBA};
 
 /*800C6B74*/
 ModelInfo D_800C6B74 = {
-    0x320E40,
+    (s32)models_6A67C0_bin,
     NULL,
     0xF5A,
     0xF5A,
@@ -15845,11 +15846,11 @@ ModelInfo D_800C6B74 = {
     0x40,
 };
 
-/*800C6BA4*/ static ModelInfoUnkStruct1 D_800C6BA4 = {0x322790, NULL, 0, 0x60};
+/*800C6BA4*/ static ModelVertexInfo D_800C6BA4 = {(s32)models_6A77E0_bin+0x930, NULL, 0, 0x60};
 
 /*800C6BB0*/
 ModelInfo D_800C6BB0 = {
-    0x321E60,
+    (s32)models_6A77E0_bin,
     NULL,
     0x930,
     0x930,
@@ -15870,11 +15871,11 @@ ModelInfo D_800C6BB0 = {
     7,
 };
 
-/*800C6BE0*/ static ModelInfoUnkStruct1 D_800C6BE0 = {0x322B5C, NULL, 0, 0xA2};
+/*800C6BE0*/ static ModelVertexInfo D_800C6BE0 = {(s32)models_6A8170_bin+0x36C, NULL, 0, 0xA2};
 
 /*800C6BEC*/
 ModelInfo D_800C6BEC = {
-    0x3227F0,
+    (s32)models_6A8170_bin,
     NULL,
     0x36A,
     0x36A,
@@ -15895,11 +15896,11 @@ ModelInfo D_800C6BEC = {
     5,
 };
 
-/*800C6C1C*/ static ModelInfoUnkStruct1 D_800C6C1C = {0x322F5C, NULL, 0, 0x9C};
+/*800C6C1C*/ static ModelVertexInfo D_800C6C1C = {(s32)models_6A8580_bin+0x35C, NULL, 0, 0x9C};
 
 /*800C6C28*/
 ModelInfo D_800C6C28 = {
-    0x322C00,
+    (s32)models_6A8580_bin,
     NULL,
     0x35C,
     0x35C,
@@ -15920,11 +15921,11 @@ ModelInfo D_800C6C28 = {
     5,
 };
 
-/*800C6C58*/ static ModelInfoUnkStruct1 D_800C6C58 = {0x3232E8, NULL, 0, 0x30};
+/*800C6C58*/ static ModelVertexInfo D_800C6C58 = {(s32)models_6A8980_bin+0x2E8, NULL, 0, 0x30};
 
 /*800C6C64*/
 ModelInfo D_800C6C64 = {
-    0x323000,
+    (s32)models_6A8980_bin,
     NULL,
     0x2E8,
     0x2E8,
@@ -15945,11 +15946,11 @@ ModelInfo D_800C6C64 = {
     4,
 };
 
-/*800C6C94*/ static ModelInfoUnkStruct1 D_800C6C94 = {0x323608, NULL, 0, 0x30};
+/*800C6C94*/ static ModelVertexInfo D_800C6C94 = {(s32)models_6A8CA0_bin+0x2E8, NULL, 0, 0x30};
 
 /*800C6CA0*/
 ModelInfo D_800C6CA0 = {
-    0x323320,
+    (s32)models_6A8CA0_bin,
     NULL,
     0x2E8,
     0x2E8,
@@ -15970,11 +15971,11 @@ ModelInfo D_800C6CA0 = {
     4,
 };
 
-/*800C6CD0*/ static ModelInfoUnkStruct1 D_800C6CD0 = {0x324600, NULL, 0, 0xF0};
+/*800C6CD0*/ static ModelVertexInfo D_800C6CD0 = {(s32)models_6A8FC0_bin+0xFC0, NULL, 0, 0xF0};
 
 /*800C6CDC*/
 ModelInfo D_800C6CDC = {
-    0x323640,
+    (s32)models_6A8FC0_bin,
     NULL,
     0xFC0,
     0xFC0,
@@ -15995,11 +15996,11 @@ ModelInfo D_800C6CDC = {
     3,
 };
 
-/*800C6D0C*/ static ModelInfoUnkStruct1 D_800C6D0C = {0x3256B0, NULL, 0, 0xF0};
+/*800C6D0C*/ static ModelVertexInfo D_800C6D0C = {(s32)models_6AA070_bin+0xFC0, NULL, 0, 0xF0};
 
 /*800C6D18*/
 ModelInfo D_800C6D18 = {
-    0x3246F0,
+    (s32)models_6AA070_bin,
     NULL,
     0xFC0,
     0xFC0,
@@ -16020,11 +16021,11 @@ ModelInfo D_800C6D18 = {
     3,
 };
 
-/*800C6D48*/ static ModelInfoUnkStruct1 D_800C6D48 = {0x326BE8, NULL, 0, 0x186};
+/*800C6D48*/ static ModelVertexInfo D_800C6D48 = {(s32)models_6AB120_bin+0x1448, NULL, 0, 0x186};
 
 /*800C6D54*/
 ModelInfo D_800C6D54 = {
-    0x3257A0,
+    (s32)models_6AB120_bin,
     NULL,
     0x1446,
     0x1446,
@@ -16045,11 +16046,11 @@ ModelInfo D_800C6D54 = {
     0x2A,
 };
 
-/*800C6D84*/ static ModelInfoUnkStruct1 D_800C6D84 = {0x327BF8, NULL, 0, 0x138};
+/*800C6D84*/ static ModelVertexInfo D_800C6D84 = {(s32)models_6AC6F0_bin+0xE88, NULL, 0, 0x138};
 
 /*800C6D90*/
 ModelInfo D_800C6D90 = {
-    0x326D70,
+    (s32)models_6AC6F0_bin,
     NULL,
     0xE88,
     0xE88,
@@ -16070,11 +16071,11 @@ ModelInfo D_800C6D90 = {
     0x16,
 };
 
-/*800C6DC0*/ static ModelInfoUnkStruct1 D_800C6DC0 = {0x328E7C, NULL, 0, 0x6C};
+/*800C6DC0*/ static ModelVertexInfo D_800C6DC0 = {(s32)models_6AD6B0_bin+0x114C, NULL, 0, 0x6C};
 
 /*800C6DCC*/
 ModelInfo D_800C6DCC = {
-    0x327D30,
+    (s32)models_6AD6B0_bin,
     NULL,
     0x114C,
     0x114C,
@@ -16095,11 +16096,11 @@ ModelInfo D_800C6DCC = {
     5,
 };
 
-/*800C6DFC*/ static ModelInfoUnkStruct1 D_800C6DFC = {0x32A03C, NULL, 0, 0x6C};
+/*800C6DFC*/ static ModelVertexInfo D_800C6DFC = {(s32)models_6AE870_bin+0x114C, NULL, 0, 0x6C};
 
 /*800C6E08*/
 ModelInfo D_800C6E08 = {
-    0x328EF0,
+    (s32)models_6AE870_bin,
     NULL,
     0x114C,
     0x114C,
@@ -16120,11 +16121,11 @@ ModelInfo D_800C6E08 = {
     5,
 };
 
-/*800C6E38*/ static ModelInfoUnkStruct1 D_800C6E38 = {0x32A9E0, NULL, 0, 0x60};
+/*800C6E38*/ static ModelVertexInfo D_800C6E38 = {(s32)models_6AFA30_bin+0x930, NULL, 0, 0x60};
 
 /*800C6E44*/
 ModelInfo D_800C6E44 = {
-    0x32A0B0,
+    (s32)models_6AFA30_bin,
     NULL,
     0x930,
     0x930,
@@ -16145,11 +16146,11 @@ ModelInfo D_800C6E44 = {
     7,
 };
 
-/*800C6E74*/ static ModelInfoUnkStruct1 D_800C6E74 = {0x32B9B8, NULL, 0, 0xC6};
+/*800C6E74*/ static ModelVertexInfo D_800C6E74 = {(s32)models_6B03C0_bin+0xF78, NULL, 0, 0xC6};
 
 /*800C6E80*/
 ModelInfo D_800C6E80 = {
-    0x32AA40,
+    (s32)models_6B03C0_bin,
     NULL,
     0xF76,
     0xF76,
@@ -16170,11 +16171,11 @@ ModelInfo D_800C6E80 = {
     0x40,
 };
 
-/*800C6EB0*/ static ModelInfoUnkStruct1 D_800C6EB0 = {0x32BFB0, NULL, 0, 0x60};
+/*800C6EB0*/ static ModelVertexInfo D_800C6EB0 = {(s32)models_6B1400_bin+0x530, NULL, 0, 0x60};
 
 /*800C6EBC*/
 ModelInfo D_800C6EBC = {
-    0x32BA80,
+    (s32)models_6B1400_bin,
     NULL,
     0x530,
     0x530,
@@ -16195,11 +16196,11 @@ ModelInfo D_800C6EBC = {
     7,
 };
 
-/*800C6EEC*/ static ModelInfoUnkStruct1 D_800C6EEC = {0x32C97C, NULL, 0, 0xA2};
+/*800C6EEC*/ static ModelVertexInfo D_800C6EEC = {(s32)models_6B1990_bin+0x96C, NULL, 0, 0xA2};
 
 /*800C6EF8*/
 ModelInfo D_800C6EF8 = {
-    0x32C010,
+    (s32)models_6B1990_bin,
     NULL,
     0x96A,
     0x96A,
@@ -16220,11 +16221,11 @@ ModelInfo D_800C6EF8 = {
     5,
 };
 
-/*800C6F28*/ static ModelInfoUnkStruct1 D_800C6F28 = {0x32D37C, NULL, 0, 0x9C};
+/*800C6F28*/ static ModelVertexInfo D_800C6F28 = {(s32)models_6B23A0_bin+0x95C, NULL, 0, 0x9C};
 
 /*800C6F34*/
 ModelInfo D_800C6F34 = {
-    0x32CA20,
+    (s32)models_6B23A0_bin,
     NULL,
     0x95C,
     0x95C,
@@ -16245,11 +16246,11 @@ ModelInfo D_800C6F34 = {
     5,
 };
 
-/*800C6F64*/ static ModelInfoUnkStruct1 D_800C6F64 = {0x32D708, NULL, 0, 0x30};
+/*800C6F64*/ static ModelVertexInfo D_800C6F64 = {(s32)models_6B2DA0_bin+0x2E8, NULL, 0, 0x30};
 
 /*800C6F70*/
 ModelInfo D_800C6F70 = {
-    0x32D420,
+    (s32)models_6B2DA0_bin,
     NULL,
     0x2E8,
     0x2E8,
@@ -16270,11 +16271,11 @@ ModelInfo D_800C6F70 = {
     4,
 };
 
-/*800C6FA0*/ static ModelInfoUnkStruct1 D_800C6FA0 = {0x32DA28, NULL, 0, 0x30};
+/*800C6FA0*/ static ModelVertexInfo D_800C6FA0 = {(s32)models_6B30C0_bin+0x2E8, NULL, 0, 0x30};
 
 /*800C6FAC*/
 ModelInfo D_800C6FAC = {
-    0x32D740,
+    (s32)models_6B30C0_bin,
     NULL,
     0x2E8,
     0x2E8,
@@ -16295,11 +16296,11 @@ ModelInfo D_800C6FAC = {
     4,
 };
 
-/*800C6FDC*/ static ModelInfoUnkStruct1 D_800C6FDC = {0x32EA20, NULL, 0, 0xF0};
+/*800C6FDC*/ static ModelVertexInfo D_800C6FDC = {(s32)models_6B33E0_bin+0xFC0, NULL, 0, 0xF0};
 
 /*800C6FE8*/
 ModelInfo D_800C6FE8 = {
-    0x32DA60,
+    (s32)models_6B33E0_bin,
     NULL,
     0xFC0,
     0xFC0,
@@ -16320,11 +16321,11 @@ ModelInfo D_800C6FE8 = {
     3,
 };
 
-/*800C7018*/ static ModelInfoUnkStruct1 D_800C7018 = {0x32FAD0, NULL, 0, 0xF0};
+/*800C7018*/ static ModelVertexInfo D_800C7018 = {(s32)models_6B4490_bin+0xFC0, NULL, 0, 0xF0};
 
 /*800C7024*/
 ModelInfo D_800C7024 = {
-    0x32EB10,
+    (s32)models_6B4490_bin,
     NULL,
     0xFC0,
     0xFC0,
@@ -16345,11 +16346,11 @@ ModelInfo D_800C7024 = {
     3,
 };
 
-/*800C7054*/ static ModelInfoUnkStruct1 D_800C7054 = {0x33107C, NULL, 0, 0x294};
+/*800C7054*/ static ModelVertexInfo D_800C7054 = {(s32)models_6B5540_bin+0x14BC, NULL, 0, 0x294};
 
 /*800C7060*/
 ModelInfo D_800C7060 = {
-    0x32FBC0,
+    (s32)models_6B5540_bin,
     NULL,
     0x14BC,
     0x14BC,
@@ -16370,11 +16371,11 @@ ModelInfo D_800C7060 = {
     0x2C,
 };
 
-/*800C7090*/ static ModelInfoUnkStruct1 D_800C7090 = {0x331E74, NULL, 0, 0xA2};
+/*800C7090*/ static ModelVertexInfo D_800C7090 = {(s32)models_6B6C90_bin+0xB64, NULL, 0, 0xA2};
 
 /*800C709C*/
 ModelInfo D_800C709C = {
-    0x331310,
+    (s32)models_6B6C90_bin,
     NULL,
     0xB62,
     0xB62,
@@ -16395,11 +16396,11 @@ ModelInfo D_800C709C = {
     0x16,
 };
 
-/*800C70CC*/ static ModelInfoUnkStruct1 D_800C70CC = {0x33306C, NULL, 0, 0x6C};
+/*800C70CC*/ static ModelVertexInfo D_800C70CC = {(s32)models_6B78A0_bin+0x114C, NULL, 0, 0x6C};
 
 /*800C70D8*/
 ModelInfo D_800C70D8 = {
-    0x331F20,
+    (s32)models_6B78A0_bin,
     NULL,
     0x114C,
     0x114C,
@@ -16420,11 +16421,11 @@ ModelInfo D_800C70D8 = {
     5,
 };
 
-/*800C7108*/ static ModelInfoUnkStruct1 D_800C7108 = {0x33422C, NULL, 0, 0x6C};
+/*800C7108*/ static ModelVertexInfo D_800C7108 = {(s32)models_6B8A60_bin+0x114C, NULL, 0, 0x6C};
 
 /*800C7114*/
 ModelInfo D_800C7114 = {
-    0x3330E0,
+    (s32)models_6B8A60_bin,
     NULL,
     0x114C,
     0x114C,
@@ -16445,11 +16446,11 @@ ModelInfo D_800C7114 = {
     5,
 };
 
-/*800C7144*/ static ModelInfoUnkStruct1 D_800C7144 = {0x3347D0, NULL, 0, 0x60};
+/*800C7144*/ static ModelVertexInfo D_800C7144 = {(s32)models_6B9C20_bin+0x530, NULL, 0, 0x60};
 
 /*800C7150*/
 ModelInfo D_800C7150 = {
-    0x3342A0,
+    (s32)models_6B9C20_bin,
     NULL,
     0x530,
     0x530,
@@ -16470,11 +16471,11 @@ ModelInfo D_800C7150 = {
     7,
 };
 
-/*800C7180*/ static ModelInfoUnkStruct1 D_800C7180 = {0x34B7A0, NULL, 0, 0xC0};
+/*800C7180*/ static ModelVertexInfo D_800C7180 = {(s32)models_6D01C0_bin+0xF60, NULL, 0, 0xC0};
 
 /*800C718C*/
 ModelInfo D_800C718C = {
-    0x34A840,
+    (s32)models_6D01C0_bin,
     NULL,
     0xF60,
     0xF60,
@@ -16495,11 +16496,11 @@ ModelInfo D_800C718C = {
     0x40,
 };
 
-/*800C71BC*/ static ModelInfoUnkStruct1 D_800C71BC = {0x34BD90, NULL, 0, 0x60};
+/*800C71BC*/ static ModelVertexInfo D_800C71BC = {(s32)models_6D11E0_bin+0x530, NULL, 0, 0x60};
 
 /*800C71C8*/
 ModelInfo D_800C71C8 = {
-    0x34B860,
+    (s32)models_6D11E0_bin,
     NULL,
     0x530,
     0x530,
@@ -16520,11 +16521,11 @@ ModelInfo D_800C71C8 = {
     7,
 };
 
-/*800C71F8*/ static ModelInfoUnkStruct1 D_800C71F8 = {0x34C15C, NULL, 0, 0xA2};
+/*800C71F8*/ static ModelVertexInfo D_800C71F8 = {(s32)models_6D1770_bin+0x36C, NULL, 0, 0xA2};
 
 /*800C7204*/
 ModelInfo D_800C7204 = {
-    0x34BDF0,
+    (s32)models_6D1770_bin,
     NULL,
     0x36A,
     0x36A,
@@ -16545,11 +16546,11 @@ ModelInfo D_800C7204 = {
     5,
 };
 
-/*800C7234*/ static ModelInfoUnkStruct1 D_800C7234 = {0x34C55C, NULL, 0, 0x9C};
+/*800C7234*/ static ModelVertexInfo D_800C7234 = {(s32)models_6D1B80_bin+0x35C, NULL, 0, 0x9C};
 
 /*800C7240*/
 ModelInfo D_800C7240 = {
-    0x34C200,
+    (s32)models_6D1B80_bin,
     NULL,
     0x35C,
     0x35C,
@@ -16570,11 +16571,11 @@ ModelInfo D_800C7240 = {
     5,
 };
 
-/*800C7270*/ static ModelInfoUnkStruct1 D_800C7270 = {0x34C8E8, NULL, 0, 0x30};
+/*800C7270*/ static ModelVertexInfo D_800C7270 = {(s32)models_6D1F80_bin+0x2E8, NULL, 0, 0x30};
 
 /*800C727C*/
 ModelInfo D_800C727C = {
-    0x34C600,
+    (s32)models_6D1F80_bin,
     NULL,
     0x2E8,
     0x2E8,
@@ -16595,11 +16596,11 @@ ModelInfo D_800C727C = {
     4,
 };
 
-/*800C72AC*/ static ModelInfoUnkStruct1 D_800C72AC = {0x34CC08, NULL, 0, 0x30};
+/*800C72AC*/ static ModelVertexInfo D_800C72AC = {(s32)models_6D22A0_bin+0x2E8, NULL, 0, 0x30};
 
 /*800C72B8*/
 ModelInfo D_800C72B8 = {
-    0x34C920,
+    (s32)models_6D22A0_bin,
     NULL,
     0x2E8,
     0x2E8,
@@ -16620,11 +16621,11 @@ ModelInfo D_800C72B8 = {
     4,
 };
 
-/*800C72E8*/ static ModelInfoUnkStruct1 D_800C72E8 = {0x34DC00, NULL, 0, 0xF0};
+/*800C72E8*/ static ModelVertexInfo D_800C72E8 = {(s32)models_6D25C0_bin+0xFC0, NULL, 0, 0xF0};
 
 /*800C72F4*/
 ModelInfo D_800C72F4 = {
-    0x34CC40,
+    (s32)models_6D25C0_bin,
     NULL,
     0xFC0,
     0xFC0,
@@ -16645,11 +16646,11 @@ ModelInfo D_800C72F4 = {
     3,
 };
 
-/*800C7324*/ static ModelInfoUnkStruct1 D_800C7324 = {0x34ECB0, NULL, 0, 0xF0};
+/*800C7324*/ static ModelVertexInfo D_800C7324 = {(s32)models_6D3670_bin+0xFC0, NULL, 0, 0xF0};
 
 /*800C7330*/
 ModelInfo D_800C7330 = {
-    0x34DCF0,
+    (s32)models_6D3670_bin,
     NULL,
     0xFC0,
     0xFC0,
@@ -16670,11 +16671,11 @@ ModelInfo D_800C7330 = {
     3,
 };
 
-/*800C7360*/ static ModelInfoUnkStruct1 D_800C7360 = {0x34FFB8, NULL, 0, 0x13E};
+/*800C7360*/ static ModelVertexInfo D_800C7360 = {(s32)models_6D4720_bin+0x1218, NULL, 0, 0x13E};
 
 /*800C736C*/
 ModelInfo D_800C736C = {
-    0x34EDA0,
+    (s32)models_6D4720_bin,
     NULL,
     0x1216,
     0x1216,
@@ -16695,11 +16696,11 @@ ModelInfo D_800C736C = {
     0x28,
 };
 
-/*800C739C*/ static ModelInfoUnkStruct1 D_800C739C = {0x350C64, NULL, 0, 0xA2};
+/*800C739C*/ static ModelVertexInfo D_800C739C = {(s32)models_6D5A80_bin+0xB64, NULL, 0, 0xA2};
 
 /*800C73A8*/
 ModelInfo D_800C73A8 = {
-    0x350100,
+    (s32)models_6D5A80_bin,
     NULL,
     0xB62,
     0xB62,
@@ -16720,11 +16721,11 @@ ModelInfo D_800C73A8 = {
     0x16,
 };
 
-/*800C73D8*/ static ModelInfoUnkStruct1 D_800C73D8 = {0x351E5C, NULL, 0, 0x6C};
+/*800C73D8*/ static ModelVertexInfo D_800C73D8 = {(s32)models_6D6690_bin+0x114C, NULL, 0, 0x6C};
 
 /*800C73E4*/
 ModelInfo D_800C73E4 = {
-    0x350D10,
+    (s32)models_6D6690_bin,
     NULL,
     0x114C,
     0x114C,
@@ -16745,11 +16746,11 @@ ModelInfo D_800C73E4 = {
     5,
 };
 
-/*800C7414*/ static ModelInfoUnkStruct1 D_800C7414 = {0x35301C, NULL, 0, 0x6C};
+/*800C7414*/ static ModelVertexInfo D_800C7414 = {(s32)models_6D7850_bin+0x114C, NULL, 0, 0x6C};
 
 /*800C7420*/
 ModelInfo D_800C7420 = {
-    0x351ED0,
+    (s32)models_6D7850_bin,
     NULL,
     0x114C,
     0x114C,
@@ -16770,11 +16771,11 @@ ModelInfo D_800C7420 = {
     5,
 };
 
-/*800C7450*/ static ModelInfoUnkStruct1 D_800C7450 = {0x3535C0, NULL, 0, 0x60};
+/*800C7450*/ static ModelVertexInfo D_800C7450 = {(s32)models_6D8A10_bin+0x530, NULL, 0, 0x60};
 
 /*800C745C*/
 ModelInfo D_800C745C = {
-    0x353090,
+    (s32)models_6D8A10_bin,
     NULL,
     0x530,
     0x530,
@@ -16795,11 +16796,11 @@ ModelInfo D_800C745C = {
     7,
 };
 
-/*800C748C*/ static ModelInfoUnkStruct1 D_800C748C = {0x3546BC, NULL, 0, 0xBA};
+/*800C748C*/ static ModelVertexInfo D_800C748C = {(s32)models_6D8FA0_bin+0x109C, NULL, 0, 0xBA};
 
 /*800C7498*/
 ModelInfo D_800C7498 = {
-    0x353620,
+    (s32)models_6D8FA0_bin,
     NULL,
     0x109A,
     0x109A,
@@ -16820,11 +16821,11 @@ ModelInfo D_800C7498 = {
     0x40,
 };
 
-/*800C74C8*/ static ModelInfoUnkStruct1 D_800C74C8 = {0x3550B0, NULL, 0, 0x60};
+/*800C74C8*/ static ModelVertexInfo D_800C74C8 = {(s32)models_6DA100_bin+0x930, NULL, 0, 0x60};
 
 /*800C74D4*/
 ModelInfo D_800C74D4 = {
-    0x354780,
+    (s32)models_6DA100_bin,
     NULL,
     0x930,
     0x930,
@@ -16845,11 +16846,11 @@ ModelInfo D_800C74D4 = {
     7,
 };
 
-/*800C7504*/ static ModelInfoUnkStruct1 D_800C7504 = {0x355CB8, NULL, 0, 0xAE};
+/*800C7504*/ static ModelVertexInfo D_800C7504 = {(s32)models_6DAA90_bin+0xBA8, NULL, 0, 0xAE};
 
 /*800C7510*/
 ModelInfo D_800C7510 = {
-    0x355110,
+    (s32)models_6DAA90_bin,
     NULL,
     0xBA6,
     0xBA6,
@@ -16870,11 +16871,11 @@ ModelInfo D_800C7510 = {
     5,
 };
 
-/*800C7540*/ static ModelInfoUnkStruct1 D_800C7540 = {0x356918, NULL, 0, 0xAE};
+/*800C7540*/ static ModelVertexInfo D_800C7540 = {(s32)models_6DB6F0_bin+0xBA8, NULL, 0, 0xAE};
 
 /*800C754C*/
 ModelInfo D_800C754C = {
-    0x355D70,
+    (s32)models_6DB6F0_bin,
     NULL,
     0xBA6,
     0xBA6,
@@ -16895,11 +16896,11 @@ ModelInfo D_800C754C = {
     5,
 };
 
-/*800C757C*/ static ModelInfoUnkStruct1 D_800C757C = {0x356CB8, NULL, 0, 0x30};
+/*800C757C*/ static ModelVertexInfo D_800C757C = {(s32)models_6DC350_bin+0x2E8, NULL, 0, 0x30};
 
 /*800C7588*/
 ModelInfo D_800C7588 = {
-    0x3569D0,
+    (s32)models_6DC350_bin,
     NULL,
     0x2E8,
     0x2E8,
@@ -16920,11 +16921,11 @@ ModelInfo D_800C7588 = {
     4,
 };
 
-/*800C75B8*/ static ModelInfoUnkStruct1 D_800C75B8 = {0x356FD8, NULL, 0, 0x30};
+/*800C75B8*/ static ModelVertexInfo D_800C75B8 = {(s32)models_6DC670_bin+0x2E8, NULL, 0, 0x30};
 
 /*800C75C4*/
 ModelInfo D_800C75C4 = {
-    0x356CF0,
+    (s32)models_6DC670_bin,
     NULL,
     0x2E8,
     0x2E8,
@@ -16945,11 +16946,11 @@ ModelInfo D_800C75C4 = {
     4,
 };
 
-/*800C75F4*/ static ModelInfoUnkStruct1 D_800C75F4 = {0x359AD0, NULL, 0, 0xF0};
+/*800C75F4*/ static ModelVertexInfo D_800C75F4 = {(s32)models_6DC990_bin+0x2AC0, NULL, 0, 0xF0};
 
 /*800C7600*/
 ModelInfo D_800C7600 = {
-    0x357010,
+    (s32)models_6DC990_bin,
     NULL,
     0x2AC0,
     0x2AC0,
@@ -16970,11 +16971,11 @@ ModelInfo D_800C7600 = {
     3,
 };
 
-/*800C7630*/ static ModelInfoUnkStruct1 D_800C7630 = {0x35C680, NULL, 0, 0xF0};
+/*800C7630*/ static ModelVertexInfo D_800C7630 = {(s32)models_6DF540_bin+0x2AC0, NULL, 0, 0xF0};
 
 /*800C763C*/
 ModelInfo D_800C763C = {
-    0x359BC0,
+    (s32)models_6DF540_bin,
     NULL,
     0x2AC0,
     0x2AC0,
@@ -16995,11 +16996,11 @@ ModelInfo D_800C763C = {
     3,
 };
 
-/*800C766C*/ static ModelInfoUnkStruct1 D_800C766C = {0x35D938, NULL, 0, 0x16E};
+/*800C766C*/ static ModelVertexInfo D_800C766C = {(s32)models_6E20F0_bin+0x11C8, NULL, 0, 0x16E};
 
 /*800C7678*/
 ModelInfo D_800C7678 = {
-    0x35C770,
+    (s32)models_6E20F0_bin,
     NULL,
     0x11C6,
     0x11C6,
@@ -17020,11 +17021,11 @@ ModelInfo D_800C7678 = {
     0x2B,
 };
 
-/*800C76A8*/ static ModelInfoUnkStruct1 D_800C76A8 = {0x35E354, NULL, 0, 0xA2};
+/*800C76A8*/ static ModelVertexInfo D_800C76A8 = {(s32)models_6E3430_bin+0x8A4, NULL, 0, 0xA2};
 
 /*800C76B4*/
 ModelInfo D_800C76B4 = {
-    0x35DAB0,
+    (s32)models_6E3430_bin,
     NULL,
     0x8A2,
     0x8A2,
@@ -17045,11 +17046,11 @@ ModelInfo D_800C76B4 = {
     0x16,
 };
 
-/*800C76E4*/ static ModelInfoUnkStruct1 D_800C76E4 = {0x35ED24, NULL, 0, 0x6C};
+/*800C76E4*/ static ModelVertexInfo D_800C76E4 = {(s32)models_6E3D80_bin+0x924, NULL, 0, 0x6C};
 
 /*800C76F0*/
 ModelInfo D_800C76F0 = {
-    0x35E400,
+    (s32)models_6E3D80_bin,
     NULL,
     0x924,
     0x924,
@@ -17070,11 +17071,11 @@ ModelInfo D_800C76F0 = {
     5,
 };
 
-/*800C7720*/ static ModelInfoUnkStruct1 D_800C7720 = {0x35F6B4, NULL, 0, 0x6C};
+/*800C7720*/ static ModelVertexInfo D_800C7720 = {(s32)models_6E4710_bin+0x924, NULL, 0, 0x6C};
 
 /*800C772C*/
 ModelInfo D_800C772C = {
-    0x35ED90,
+    (s32)models_6E4710_bin,
     NULL,
     0x924,
     0x924,
@@ -17095,11 +17096,11 @@ ModelInfo D_800C772C = {
     5,
 };
 
-/*800C775C*/ static ModelInfoUnkStruct1 D_800C775C = {0x360050, NULL, 0, 0x60};
+/*800C775C*/ static ModelVertexInfo D_800C775C = {(s32)models_6E50A0_bin+0x930, NULL, 0, 0x60};
 
 /*800C7768*/
 ModelInfo D_800C7768 = {
-    0x35F720,
+    (s32)models_6E50A0_bin,
     NULL,
     0x930,
     0x930,
@@ -17120,11 +17121,11 @@ ModelInfo D_800C7768 = {
     7,
 };
 
-/*800C7798*/ static ModelInfoUnkStruct1 D_800C7798 = {0x26B410, NULL, 0, 0xF0};
+/*800C7798*/ static ModelVertexInfo D_800C7798 = {(s32)models_5EFDE0_bin+0xFB0, NULL, 0, 0xF0};
 
 /*800C77A4*/
 ModelInfo D_800C77A4 = {
-    0x26A460,
+    (s32)models_5EFDE0_bin,
     NULL,
     0xFB0,
     0xFB0,
@@ -17145,11 +17146,11 @@ ModelInfo D_800C77A4 = {
     0x41,
 };
 
-/*800C77D4*/ static ModelInfoUnkStruct1 D_800C77D4 = {0x26BFC0, NULL, 0, 0xD8};
+/*800C77D4*/ static ModelVertexInfo D_800C77D4 = {(s32)models_5F0E80_bin+0xAC0, NULL, 0, 0xD8};
 
 /*800C77E0*/
 ModelInfo D_800C77E0 = {
-    0x26B500,
+    (s32)models_5F0E80_bin,
     NULL,
     0xAC0,
     0xAC0,
@@ -17170,11 +17171,11 @@ ModelInfo D_800C77E0 = {
     2,
 };
 
-/*800C7810*/ static ModelInfoUnkStruct1 D_800C7810 = {0x26C740, NULL, 0, 0x60};
+/*800C7810*/ static ModelVertexInfo D_800C7810 = {(s32)models_5F1A20_bin+0x6A0, NULL, 0, 0x60};
 
 /*800C781C*/
 ModelInfo D_800C781C = {
-    0x26C0A0,
+    (s32)models_5F1A20_bin,
     NULL,
     0x6A0,
     0x6A0,
@@ -17195,11 +17196,11 @@ ModelInfo D_800C781C = {
     7,
 };
 
-/*800C784C*/ static ModelInfoUnkStruct1 D_800C784C = {0x26CE40, NULL, 0, 0x60};
+/*800C784C*/ static ModelVertexInfo D_800C784C = {(s32)models_5F2120_bin+0x6A0, NULL, 0, 0x60};
 
 /*800C7858*/
 ModelInfo D_800C7858 = {
-    0x26C7A0,
+    (s32)models_5F2120_bin,
     NULL,
     0x6A0,
     0x6A0,
@@ -17220,11 +17221,11 @@ ModelInfo D_800C7858 = {
     7,
 };
 
-/*800C7888*/ static ModelInfoUnkStruct1 D_800C7888 = {0x26D62C, NULL, 0, 0xBA};
+/*800C7888*/ static ModelVertexInfo D_800C7888 = {(s32)models_5F2820_bin+0x78C, NULL, 0, 0xBA};
 
 /*800C7894*/
 ModelInfo D_800C7894 = {
-    0x26CEA0,
+    (s32)models_5F2820_bin,
     NULL,
     0x78A,
     0x78A,
@@ -17245,11 +17246,11 @@ ModelInfo D_800C7894 = {
     5,
 };
 
-/*800C78C4*/ static ModelInfoUnkStruct1 D_800C78C4 = {0x26DE68, NULL, 0, 0xAE};
+/*800C78C4*/ static ModelVertexInfo D_800C78C4 = {(s32)models_5F3070_bin+0x778, NULL, 0, 0xAE};
 
 /*800C78D0*/
 ModelInfo D_800C78D0 = {
-    0x26D6F0,
+    (s32)models_5F3070_bin,
     NULL,
     0x776,
     0x776,
@@ -17270,11 +17271,11 @@ ModelInfo D_800C78D0 = {
     5,
 };
 
-/*800C7900*/ static ModelInfoUnkStruct1 D_800C7900 = {0x26E340, NULL, 0, 0x90};
+/*800C7900*/ static ModelVertexInfo D_800C7900 = {(s32)models_5F38A0_bin+0x420, NULL, 0, 0x90};
 
 /*800C790C*/
 ModelInfo D_800C790C = {
-    0x26DF20,
+    (s32)models_5F38A0_bin,
     NULL,
     0x420,
     0x420,
@@ -17295,11 +17296,11 @@ ModelInfo D_800C790C = {
     4,
 };
 
-/*800C793C*/ static ModelInfoUnkStruct1 D_800C793C = {0x26E7F0, NULL, 0, 0x90};
+/*800C793C*/ static ModelVertexInfo D_800C793C = {(s32)models_5F3D50_bin+0x420, NULL, 0, 0x90};
 
 /*800C7948*/
 ModelInfo D_800C7948 = {
-    0x26E3D0,
+    (s32)models_5F3D50_bin,
     NULL,
     0x420,
     0x420,
@@ -17320,11 +17321,11 @@ ModelInfo D_800C7948 = {
     4,
 };
 
-/*800C7978*/ static ModelInfoUnkStruct1 D_800C7978 = {0x26FE00, NULL, 0, 0x16E};
+/*800C7978*/ static ModelVertexInfo D_800C7978 = {(s32)models_5F4200_bin+0x1580, NULL, 0, 0x16E};
 
 /*800C7984*/
 ModelInfo D_800C7984 = {
-    0x26E880,
+    (s32)models_5F4200_bin,
     NULL,
     0x157E,
     0x157E,
@@ -17345,11 +17346,11 @@ ModelInfo D_800C7984 = {
     0x1A,
 };
 
-/*800C79B4*/ static ModelInfoUnkStruct1 D_800C79B4 = {0x2705D0, NULL, 0, 0x7E};
+/*800C79B4*/ static ModelVertexInfo D_800C79B4 = {(s32)models_5F58F0_bin+0x660, NULL, 0, 0x7E};
 
 /*800C79C0*/
 ModelInfo D_800C79C0 = {
-    0x26FF70,
+    (s32)models_5F58F0_bin,
     NULL,
     0x65E,
     0x65E,
@@ -17370,11 +17371,11 @@ ModelInfo D_800C79C0 = {
     0x11,
 };
 
-/*800C79F0*/ static ModelInfoUnkStruct1 D_800C79F0 = {0x270CB8, NULL, 0, 0x4E};
+/*800C79F0*/ static ModelVertexInfo D_800C79F0 = {(s32)models_5F5FD0_bin+0x668, NULL, 0, 0x4E};
 
 /*800C79FC*/
 ModelInfo D_800C79FC = {
-    0x270650,
+    (s32)models_5F5FD0_bin,
     NULL,
     0x666,
     0x666,
@@ -17395,11 +17396,11 @@ ModelInfo D_800C79FC = {
     5,
 };
 
-/*800C7A2C*/ static ModelInfoUnkStruct1 D_800C7A2C = {0x271378, NULL, 0, 0x4E};
+/*800C7A2C*/ static ModelVertexInfo D_800C7A2C = {(s32)models_5F6690_bin+0x668, NULL, 0, 0x4E};
 
 /*800C7A38*/
 ModelInfo D_800C7A38 = {
-    0x270D10,
+    (s32)models_5F6690_bin,
     NULL,
     0x666,
     0x666,
@@ -17420,11 +17421,11 @@ ModelInfo D_800C7A38 = {
     5,
 };
 
-/*800C7A68*/ static ModelInfoUnkStruct1 D_800C7A68 = {0x271E90, NULL, 0, 0xD8};
+/*800C7A68*/ static ModelVertexInfo D_800C7A68 = {(s32)models_5F6D50_bin+0xAC0, NULL, 0, 0xD8};
 
 /*800C7A74*/
 ModelInfo D_800C7A74 = {
-    0x2713D0,
+    (s32)models_5F6D50_bin,
     NULL,
     0xAC0,
     0xAC0,
@@ -17445,11 +17446,11 @@ ModelInfo D_800C7A74 = {
     2,
 };
 
-/*800C7AA4*/ static ModelInfoUnkStruct1 D_800C7AA4 = {0x36114C, NULL, 0, 0xBA};
+/*800C7AA4*/ static ModelVertexInfo D_800C7AA4 = {(s32)models_6E5A30_bin+0x109C, NULL, 0, 0xBA};
 
 /*800C7AB0*/
 ModelInfo D_800C7AB0 = {
-    0x3600B0,
+    (s32)models_6E5A30_bin,
     NULL,
     0x109A,
     0x109A,
@@ -17470,11 +17471,11 @@ ModelInfo D_800C7AB0 = {
     0x40,
 };
 
-/*800C7AE0*/ static ModelInfoUnkStruct1 D_800C7AE0 = {0x361B40, NULL, 0, 0x60};
+/*800C7AE0*/ static ModelVertexInfo D_800C7AE0 = {(s32)models_6E6B90_bin+0x930, NULL, 0, 0x60};
 
 /*800C7AEC*/
 ModelInfo D_800C7AEC = {
-    0x361210,
+    (s32)models_6E6B90_bin,
     NULL,
     0x930,
     0x930,
@@ -17495,11 +17496,11 @@ ModelInfo D_800C7AEC = {
     7,
 };
 
-/*800C7B1C*/ static ModelInfoUnkStruct1 D_800C7B1C = {0x362748, NULL, 0, 0xAE};
+/*800C7B1C*/ static ModelVertexInfo D_800C7B1C = {(s32)models_6E7520_bin+0xBA8, NULL, 0, 0xAE};
 
 /*800C7B28*/
 ModelInfo D_800C7B28 = {
-    0x361BA0,
+    (s32)models_6E7520_bin,
     NULL,
     0xBA6,
     0xBA6,
@@ -17520,11 +17521,11 @@ ModelInfo D_800C7B28 = {
     5,
 };
 
-/*800C7B58*/ static ModelInfoUnkStruct1 D_800C7B58 = {0x3633A8, NULL, 0, 0xAE};
+/*800C7B58*/ static ModelVertexInfo D_800C7B58 = {(s32)models_6E8180_bin+0xBA8, NULL, 0, 0xAE};
 
 /*800C7B64*/
 ModelInfo D_800C7B64 = {
-    0x362800,
+    (s32)models_6E8180_bin,
     NULL,
     0xBA6,
     0xBA6,
@@ -17545,11 +17546,11 @@ ModelInfo D_800C7B64 = {
     5,
 };
 
-/*800C7B94*/ static ModelInfoUnkStruct1 D_800C7B94 = {0x363748, NULL, 0, 0x30};
+/*800C7B94*/ static ModelVertexInfo D_800C7B94 = {(s32)models_6E8DE0_bin+0x2E8, NULL, 0, 0x30};
 
 /*800C7BA0*/
 ModelInfo D_800C7BA0 = {
-    0x363460,
+    (s32)models_6E8DE0_bin,
     NULL,
     0x2E8,
     0x2E8,
@@ -17570,11 +17571,11 @@ ModelInfo D_800C7BA0 = {
     4,
 };
 
-/*800C7BD0*/ static ModelInfoUnkStruct1 D_800C7BD0 = {0x363A68, NULL, 0, 0x30};
+/*800C7BD0*/ static ModelVertexInfo D_800C7BD0 = {(s32)models_6E9100_bin+0x2E8, NULL, 0, 0x30};
 
 /*800C7BDC*/
 ModelInfo D_800C7BDC = {
-    0x363780,
+    (s32)models_6E9100_bin,
     NULL,
     0x2E8,
     0x2E8,
@@ -17595,11 +17596,11 @@ ModelInfo D_800C7BDC = {
     4,
 };
 
-/*800C7C0C*/ static ModelInfoUnkStruct1 D_800C7C0C = {0x366560, NULL, 0, 0xF0};
+/*800C7C0C*/ static ModelVertexInfo D_800C7C0C = {(s32)models_6E9420_bin+0x2AC0, NULL, 0, 0xF0};
 
 /*800C7C18*/
 ModelInfo D_800C7C18 = {
-    0x363AA0,
+    (s32)models_6E9420_bin,
     NULL,
     0x2AC0,
     0x2AC0,
@@ -17620,11 +17621,11 @@ ModelInfo D_800C7C18 = {
     3,
 };
 
-/*800C7C48*/ static ModelInfoUnkStruct1 D_800C7C48 = {0x369110, NULL, 0, 0xF0};
+/*800C7C48*/ static ModelVertexInfo D_800C7C48 = {(s32)models_6EBFD0_bin+0x2AC0, NULL, 0, 0xF0};
 
 /*800C7C54*/
 ModelInfo D_800C7C54 = {
-    0x366650,
+    (s32)models_6EBFD0_bin,
     NULL,
     0x2AC0,
     0x2AC0,
@@ -17645,11 +17646,11 @@ ModelInfo D_800C7C54 = {
     3,
 };
 
-/*800C7C84*/ static ModelInfoUnkStruct1 D_800C7C84 = {0x36A7C0, NULL, 0, 0x168};
+/*800C7C84*/ static ModelVertexInfo D_800C7C84 = {(s32)models_6EEB80_bin+0x15C0, NULL, 0, 0x168};
 
 /*800C7C90*/
 ModelInfo D_800C7C90 = {
-    0x369200,
+    (s32)models_6EEB80_bin,
     NULL,
     0x15C0,
     0x15C0,
@@ -17670,11 +17671,11 @@ ModelInfo D_800C7C90 = {
     0x1A,
 };
 
-/*800C7CC0*/ static ModelInfoUnkStruct1 D_800C7CC0 = {0x36B1D4, NULL, 0, 0xA2};
+/*800C7CC0*/ static ModelVertexInfo D_800C7CC0 = {(s32)models_6F02B0_bin+0x8A4, NULL, 0, 0xA2};
 
 /*800C7CCC*/
 ModelInfo D_800C7CCC = {
-    0x36A930,
+    (s32)models_6F02B0_bin,
     NULL,
     0x8A2,
     0x8A2,
@@ -17695,11 +17696,11 @@ ModelInfo D_800C7CCC = {
     0x16,
 };
 
-/*800C7CFC*/ static ModelInfoUnkStruct1 D_800C7CFC = {0x36BBA4, NULL, 0, 0x6C};
+/*800C7CFC*/ static ModelVertexInfo D_800C7CFC = {(s32)models_6F0C00_bin+0x924, NULL, 0, 0x6C};
 
 /*800C7D08*/
 ModelInfo D_800C7D08 = {
-    0x36B280,
+    (s32)models_6F0C00_bin,
     NULL,
     0x924,
     0x924,
@@ -17720,11 +17721,11 @@ ModelInfo D_800C7D08 = {
     5,
 };
 
-/*800C7D38*/ static ModelInfoUnkStruct1 D_800C7D38 = {0x36C534, NULL, 0, 0x6C};
+/*800C7D38*/ static ModelVertexInfo D_800C7D38 = {(s32)models_6F1590_bin+0x924, NULL, 0, 0x6C};
 
 /*800C7D44*/
 ModelInfo D_800C7D44 = {
-    0x36BC10,
+    (s32)models_6F1590_bin,
     NULL,
     0x924,
     0x924,
@@ -17745,11 +17746,11 @@ ModelInfo D_800C7D44 = {
     5,
 };
 
-/*800C7D74*/ static ModelInfoUnkStruct1 D_800C7D74 = {0x36CED0, NULL, 0, 0x60};
+/*800C7D74*/ static ModelVertexInfo D_800C7D74 = {(s32)models_6F1F20_bin+0x930, NULL, 0, 0x60};
 
 /*800C7D80*/
 ModelInfo D_800C7D80 = {
-    0x36C5A0,
+    (s32)models_6F1F20_bin,
     NULL,
     0x930,
     0x930,
@@ -17770,11 +17771,11 @@ ModelInfo D_800C7D80 = {
     7,
 };
 
-/*800C7DB0*/ static ModelInfoUnkStruct1 D_800C7DB0 = {0x2C61FC, NULL, 0, 0x102};
+/*800C7DB0*/ static ModelVertexInfo D_800C7DB0 = {(s32)models_64A8C0_bin+0x12BC, NULL, 0, 0x102};
 
 /*800C7DBC*/
 ModelInfo D_800C7DBC = {
-    0x2C4F40,
+    (s32)models_64A8C0_bin,
     NULL,
     0x12BA,
     0x12BA,
@@ -17795,11 +17796,11 @@ ModelInfo D_800C7DBC = {
     0x11,
 };
 
-/*800C7DEC*/ static ModelInfoUnkStruct1 D_800C7DEC = {0x2C65CC, NULL, 0, 0x3C};
+/*800C7DEC*/ static ModelVertexInfo D_800C7DEC = {(s32)models_64BC80_bin+0x2CC, NULL, 0, 0x3C};
 
 /*800C7DF8*/
 ModelInfo D_800C7DF8 = {
-    0x2C6300,
+    (s32)models_64BC80_bin,
     NULL,
     0x2CC,
     0x2CC,
@@ -17820,11 +17821,11 @@ ModelInfo D_800C7DF8 = {
     0x11,
 };
 
-/*800C7E28*/ static ModelInfoUnkStruct1 D_800C7E28 = {0x2C68DC, NULL, 0, 0x3C};
+/*800C7E28*/ static ModelVertexInfo D_800C7E28 = {(s32)models_64BF90_bin+0x2CC, NULL, 0, 0x3C};
 
 /*800C7E34*/
 ModelInfo D_800C7E34 = {
-    0x2C6610,
+    (s32)models_64BF90_bin,
     NULL,
     0x2CC,
     0x2CC,
@@ -17845,11 +17846,11 @@ ModelInfo D_800C7E34 = {
     0x13,
 };
 
-/*800C7E64*/ static ModelInfoUnkStruct1 D_800C7E64 = {0x2C6BEC, NULL, 0, 0x3C};
+/*800C7E64*/ static ModelVertexInfo D_800C7E64 = {(s32)models_64C2A0_bin+0x2CC, NULL, 0, 0x3C};
 
 /*800C7E70*/
 ModelInfo D_800C7E70 = {
-    0x2C6920,
+    (s32)models_64C2A0_bin,
     NULL,
     0x2CC,
     0x2CC,
@@ -17870,11 +17871,11 @@ ModelInfo D_800C7E70 = {
     0x10,
 };
 
-/*800C7EA0*/ static ModelInfoUnkStruct1 D_800C7EA0 = {0x2C6EFC, NULL, 0, 0x3C};
+/*800C7EA0*/ static ModelVertexInfo D_800C7EA0 = {(s32)models_64C5B0_bin+0x2CC, NULL, 0, 0x3C};
 
 /*800C7EAC*/
 ModelInfo D_800C7EAC = {
-    0x2C6C30,
+    (s32)models_64C5B0_bin,
     NULL,
     0x2CC,
     0x2CC,
@@ -17895,11 +17896,11 @@ ModelInfo D_800C7EAC = {
     0x10,
 };
 
-/*800C7EDC*/ static ModelInfoUnkStruct1 D_800C7EDC = {0x2C71DC, NULL, 0, 0x2A};
+/*800C7EDC*/ static ModelVertexInfo D_800C7EDC = {(s32)models_64C8C0_bin+0x29C, NULL, 0, 0x2A};
 
 /*800C7EE8*/
 ModelInfo D_800C7EE8 = {
-    0x2C6F40,
+    (s32)models_64C8C0_bin,
     NULL,
     0x29A,
     0x29A,
@@ -17920,11 +17921,11 @@ ModelInfo D_800C7EE8 = {
     2,
 };
 
-/*800C7F18*/ static ModelInfoUnkStruct1 D_800C7F18 = {0x2C74AC, NULL, 0, 0x2A};
+/*800C7F18*/ static ModelVertexInfo D_800C7F18 = {(s32)models_64CB90_bin+0x29C, NULL, 0, 0x2A};
 
 /*800C7F24*/
 ModelInfo D_800C7F24 = {
-    0x2C7210,
+    (s32)models_64CB90_bin,
     NULL,
     0x29A,
     0x29A,
@@ -17945,11 +17946,11 @@ ModelInfo D_800C7F24 = {
     1,
 };
 
-/*800C7F54*/ static ModelInfoUnkStruct1 D_800C7F54 = {0x343B98, NULL, 0, 0x126};
+/*800C7F54*/ static ModelVertexInfo D_800C7F54 = {(s32)models_6C7F10_bin+0x1608, NULL, 0, 0x126};
 
 /*800C7F60*/
 ModelInfo D_800C7F60 = {
-    0x342590,
+    (s32)models_6C7F10_bin,
     NULL,
     0x1606,
     0x1606,
@@ -17970,11 +17971,11 @@ ModelInfo D_800C7F60 = {
     0x51,
 };
 
-/*800C7F90*/ static ModelInfoUnkStruct1 D_800C7F90 = {0x344360, NULL, 0, 0x30};
+/*800C7F90*/ static ModelVertexInfo D_800C7F90 = {(s32)models_6C9640_bin+0x6A0, NULL, 0, 0x30};
 
 /*800C7F9C*/
 ModelInfo D_800C7F9C = {
-    0x343CC0,
+    (s32)models_6C9640_bin,
     NULL,
     0x6A0,
     0x6A0,
@@ -17995,11 +17996,11 @@ ModelInfo D_800C7F9C = {
     7,
 };
 
-/*800C7FCC*/ static ModelInfoUnkStruct1 D_800C7FCC = {0x344A70, NULL, 0, 0x48};
+/*800C7FCC*/ static ModelVertexInfo D_800C7FCC = {(s32)models_6C9D10_bin+0x6E0, NULL, 0, 0x48};
 
 /*800C7FD8*/
 ModelInfo D_800C7FD8 = {
-    0x344390,
+    (s32)models_6C9D10_bin,
     NULL,
     0x6E0,
     0x6E0,
@@ -18020,11 +18021,11 @@ ModelInfo D_800C7FD8 = {
     9,
 };
 
-/*800C8008*/ static ModelInfoUnkStruct1 D_800C8008 = {0x3451A0, NULL, 0, 0x48};
+/*800C8008*/ static ModelVertexInfo D_800C8008 = {(s32)models_6CA440_bin+0x6E0, NULL, 0, 0x48};
 
 /*800C8014*/
 ModelInfo D_800C8014 = {
-    0x344AC0,
+    (s32)models_6CA440_bin,
     NULL,
     0x6E0,
     0x6E0,
@@ -18045,11 +18046,11 @@ ModelInfo D_800C8014 = {
     9,
 };
 
-/*800C8044*/ static ModelInfoUnkStruct1 D_800C8044 = {0x345890, NULL, 0, 0x30};
+/*800C8044*/ static ModelVertexInfo D_800C8044 = {(s32)models_6CAB70_bin+0x6A0, NULL, 0, 0x30};
 
 /*800C8050*/
 ModelInfo D_800C8050 = {
-    0x3451F0,
+    (s32)models_6CAB70_bin,
     NULL,
     0x6A0,
     0x6A0,
@@ -18070,11 +18071,11 @@ ModelInfo D_800C8050 = {
     2,
 };
 
-/*800C8080*/ static ModelInfoUnkStruct1 D_800C8080 = {0x345F60, NULL, 0, 0x30};
+/*800C8080*/ static ModelVertexInfo D_800C8080 = {(s32)models_6CB240_bin+0x6A0, NULL, 0, 0x30};
 
 /*800C808C*/
 ModelInfo D_800C808C = {
-    0x3458C0,
+    (s32)models_6CB240_bin,
     NULL,
     0x6A0,
     0x6A0,
@@ -18095,11 +18096,11 @@ ModelInfo D_800C808C = {
     2,
 };
 
-/*800C80BC*/ static ModelInfoUnkStruct1 D_800C80BC = {0x346138, NULL, 0, 0x30};
+/*800C80BC*/ static ModelVertexInfo D_800C80BC = {(s32)models_6CB910_bin+0x1A8, NULL, 0, 0x30};
 
 /*800C80C8*/
 ModelInfo D_800C80C8 = {
-    0x345F90,
+    (s32)models_6CB910_bin,
     NULL,
     0x1A8,
     0x1A8,
@@ -18120,11 +18121,11 @@ ModelInfo D_800C80C8 = {
     3,
 };
 
-/*800C80F8*/ static ModelInfoUnkStruct1 D_800C80F8 = {0x346318, NULL, 0, 0x30};
+/*800C80F8*/ static ModelVertexInfo D_800C80F8 = {(s32)models_6CBAF0_bin+0x1A8, NULL, 0, 0x30};
 
 /*800C8104*/
 ModelInfo D_800C8104 = {
-    0x346170,
+    (s32)models_6CBAF0_bin,
     NULL,
     0x1A8,
     0x1A8,
@@ -18145,11 +18146,11 @@ ModelInfo D_800C8104 = {
     3,
 };
 
-/*800C8134*/ static ModelInfoUnkStruct1 D_800C8134 = {0x346C24, NULL, 0, 0x84};
+/*800C8134*/ static ModelVertexInfo D_800C8134 = {(s32)models_6CBCD0_bin+0x8D4, NULL, 0, 0x84};
 
 /*800C8140*/
 ModelInfo D_800C8140 = {
-    0x346350,
+    (s32)models_6CBCD0_bin,
     NULL,
     0x8D4,
     0x8D4,
@@ -18170,11 +18171,11 @@ ModelInfo D_800C8140 = {
     9,
 };
 
-/*800C8170*/ static ModelInfoUnkStruct1 D_800C8170 = {0x347584, NULL, 0, 0x84};
+/*800C8170*/ static ModelVertexInfo D_800C8170 = {(s32)models_6CC630_bin+0x8D4, NULL, 0, 0x84};
 
 /*800C817C*/
 ModelInfo D_800C817C = {
-    0x346CB0,
+    (s32)models_6CC630_bin,
     NULL,
     0x8D4,
     0x8D4,
@@ -18195,11 +18196,11 @@ ModelInfo D_800C817C = {
     9,
 };
 
-/*800C81AC*/ static ModelInfoUnkStruct1 D_800C81AC = {0x347D38, NULL, 0, 0xD8};
+/*800C81AC*/ static ModelVertexInfo D_800C81AC = {(s32)models_6CCF90_bin+0x728, NULL, 0, 0xD8};
 
 /*800C81B8*/
 ModelInfo D_800C81B8 = {
-    0x347610,
+    (s32)models_6CCF90_bin,
     NULL,
     0x728,
     0x728,
@@ -18220,11 +18221,11 @@ ModelInfo D_800C81B8 = {
     0x13,
 };
 
-/*800C81E8*/ static ModelInfoUnkStruct1 D_800C81E8 = {0x34921C, NULL, 0, 0xD2};
+/*800C81E8*/ static ModelVertexInfo D_800C81E8 = {(s32)models_6CD790_bin+0x140C, NULL, 0, 0xD2};
 
 /*800C81F4*/
 ModelInfo D_800C81F4 = {
-    0x347E10,
+    (s32)models_6CD790_bin,
     NULL,
     0x140A,
     0x140A,
@@ -18245,11 +18246,11 @@ ModelInfo D_800C81F4 = {
     0x19,
 };
 
-/*800C8224*/ static ModelInfoUnkStruct1 D_800C8224 = {0x3499E0, NULL, 0, 0x4E};
+/*800C8224*/ static ModelVertexInfo D_800C8224 = {(s32)models_6CEC70_bin+0x6F0, NULL, 0, 0x4E};
 
 /*800C8230*/
 ModelInfo D_800C8230 = {
-    0x3492F0,
+    (s32)models_6CEC70_bin,
     NULL,
     0x6EE,
     0x6EE,
@@ -18270,11 +18271,11 @@ ModelInfo D_800C8230 = {
     9,
 };
 
-/*800C8260*/ static ModelInfoUnkStruct1 D_800C8260 = {0x34A120, NULL, 0, 0x4E};
+/*800C8260*/ static ModelVertexInfo D_800C8260 = {(s32)models_6CF3B0_bin+0x6F0, NULL, 0, 0x4E};
 
 /*800C826C*/
 ModelInfo D_800C826C = {
-    0x349A30,
+    (s32)models_6CF3B0_bin,
     NULL,
     0x6EE,
     0x6EE,
@@ -18295,11 +18296,11 @@ ModelInfo D_800C826C = {
     9,
 };
 
-/*800C829C*/ static ModelInfoUnkStruct1 D_800C829C = {0x34A810, NULL, 0, 0x30};
+/*800C829C*/ static ModelVertexInfo D_800C829C = {(s32)models_6CFAF0_bin+0x6A0, NULL, 0, 0x30};
 
 /*800C82A8*/
 ModelInfo D_800C82A8 = {
-    0x34A170,
+    (s32)models_6CFAF0_bin,
     NULL,
     0x6A0,
     0x6A0,
@@ -18320,11 +18321,11 @@ ModelInfo D_800C82A8 = {
     7,
 };
 
-/*800C82D8*/ static ModelInfoUnkStruct1 D_800C82D8 = {0x4DF1BC, NULL, 0, 0x14A};
+/*800C82D8*/ static ModelVertexInfo D_800C82D8 = {(s32)models_863430_bin+0x170C, NULL, 0, 0x14A};
 
 /*800C82E4*/
 ModelInfo D_800C82E4 = {
-    0x4DDAB0,
+    (s32)models_863430_bin,
     NULL,
     0x170A,
     0x170A,
@@ -18345,11 +18346,11 @@ ModelInfo D_800C82E4 = {
     0x51,
 };
 
-/*800C8314*/ static ModelInfoUnkStruct1 D_800C8314 = {0x4E9908, NULL, 0, 0x66};
+/*800C8314*/ static ModelVertexInfo D_800C8314 = {(s32)models_86E960_bin+0x928, NULL, 0, 0x66};
 
 /*800C8320*/
 ModelInfo D_800C8320 = {
-    0x4E8FE0,
+    (s32)models_86E960_bin,
     NULL,
     0x926,
     0x926,
@@ -18370,11 +18371,11 @@ ModelInfo D_800C8320 = {
     6,
 };
 
-/*800C8350*/ static ModelInfoUnkStruct1 D_800C8350 = {0x4E0530, NULL, 0, 0x10E};
+/*800C8350*/ static ModelVertexInfo D_800C8350 = {(s32)models_864C90_bin+0x1220, NULL, 0, 0x10E};
 
 /*800C835C*/
 ModelInfo D_800C835C = {
-    0x4DF310,
+    (s32)models_864C90_bin,
     NULL,
     0x121E,
     0x121E,
@@ -18395,11 +18396,11 @@ ModelInfo D_800C835C = {
     0xA,
 };
 
-/*800C838C*/ static ModelInfoUnkStruct1 D_800C838C = {0x4E13E8, NULL, 0, 0x90};
+/*800C838C*/ static ModelVertexInfo D_800C838C = {(s32)models_865FC0_bin+0xDA8, NULL, 0, 0x90};
 
 /*800C8398*/
 ModelInfo D_800C8398 = {
-    0x4E0640,
+    (s32)models_865FC0_bin,
     NULL,
     0xDA8,
     0xDA8,
@@ -18420,11 +18421,11 @@ ModelInfo D_800C8398 = {
     0xB,
 };
 
-/*800C83C8*/ static ModelInfoUnkStruct1 D_800C83C8 = {0x4E1750, NULL, 0, 0x4E};
+/*800C83C8*/ static ModelVertexInfo D_800C83C8 = {(s32)models_866E00_bin+0x2D0, NULL, 0, 0x4E};
 
 /*800C83D4*/
 ModelInfo D_800C83D4 = {
-    0x4E1480,
+    (s32)models_866E00_bin,
     NULL,
     0x2CE,
     0x2CE,
@@ -18445,11 +18446,11 @@ ModelInfo D_800C83D4 = {
     5,
 };
 
-/*800C8404*/ static ModelInfoUnkStruct1 D_800C8404 = {0x4E1CAC, NULL, 0, 0x54};
+/*800C8404*/ static ModelVertexInfo D_800C8404 = {(s32)models_867120_bin+0x50C, NULL, 0, 0x54};
 
 /*800C8410*/
 ModelInfo D_800C8410 = {
-    0x4E17A0,
+    (s32)models_867120_bin,
     NULL,
     0x50C,
     0x50C,
@@ -18470,11 +18471,11 @@ ModelInfo D_800C8410 = {
     2,
 };
 
-/*800C8440*/ static ModelInfoUnkStruct1 D_800C8440 = {0x4E2894, NULL, 0, 0x72};
+/*800C8440*/ static ModelVertexInfo D_800C8440 = {(s32)models_867680_bin+0xB94, NULL, 0, 0x72};
 
 /*800C844C*/
 ModelInfo D_800C844C = {
-    0x4E1D00,
+    (s32)models_867680_bin,
     NULL,
     0xB92,
     0xB92,
@@ -18495,11 +18496,11 @@ ModelInfo D_800C844C = {
     0,
 };
 
-/*800C847C*/ static ModelInfoUnkStruct1 D_800C847C = {0x4E31E8, NULL, 0, 0x30};
+/*800C847C*/ static ModelVertexInfo D_800C847C = {(s32)models_868290_bin+0x8D8, NULL, 0, 0x30};
 
 /*800C8488*/
 ModelInfo D_800C8488 = {
-    0x4E2910,
+    (s32)models_868290_bin,
     NULL,
     0x8D8,
     0x8D8,
@@ -18520,11 +18521,11 @@ ModelInfo D_800C8488 = {
     3,
 };
 
-/*800C84B8*/ static ModelInfoUnkStruct1 D_800C84B8 = {0x4E3730, NULL, 0, 0x4E};
+/*800C84B8*/ static ModelVertexInfo D_800C84B8 = {(s32)models_868BA0_bin+0x510, NULL, 0, 0x4E};
 
 /*800C84C4*/
 ModelInfo D_800C84C4 = {
-    0x4E3220,
+    (s32)models_868BA0_bin,
     NULL,
     0x50E,
     0x50E,
@@ -18545,11 +18546,11 @@ ModelInfo D_800C84C4 = {
     5,
 };
 
-/*800C84F4*/ static ModelInfoUnkStruct1 D_800C84F4 = {0x4E5A74, NULL, 0, 0x12C};
+/*800C84F4*/ static ModelVertexInfo D_800C84F4 = {(s32)models_869100_bin+0x22F4, NULL, 0, 0x12C};
 
 /*800C8500*/
 ModelInfo D_800C8500 = {
-    0x4E3780,
+    (s32)models_869100_bin,
     NULL,
     0x22F4,
     0x22F4,
@@ -18570,11 +18571,11 @@ ModelInfo D_800C8500 = {
     0x1A,
 };
 
-/*800C8530*/ static ModelInfoUnkStruct1 D_800C8530 = {0x4E717C, NULL, 0, 0xB4};
+/*800C8530*/ static ModelVertexInfo D_800C8530 = {(s32)models_86B520_bin+0x15DC, NULL, 0, 0xB4};
 
 /*800C853C*/
 ModelInfo D_800C853C = {
-    0x4E5BA0,
+    (s32)models_86B520_bin,
     NULL,
     0x15DC,
     0x15DC,
@@ -18595,11 +18596,11 @@ ModelInfo D_800C853C = {
     0x1A,
 };
 
-/*800C856C*/ static ModelInfoUnkStruct1 D_800C856C = {0x4E80F4, NULL, 0, 0xBA};
+/*800C856C*/ static ModelVertexInfo D_800C856C = {(s32)models_86CBB0_bin+0xEC4, NULL, 0, 0xBA};
 
 /*800C8578*/
 ModelInfo D_800C8578 = {
-    0x4E7230,
+    (s32)models_86CBB0_bin,
     NULL,
     0xEC2,
     0xEC2,
@@ -18620,11 +18621,11 @@ ModelInfo D_800C8578 = {
     0xE,
 };
 
-/*800C85A8*/ static ModelInfoUnkStruct1 D_800C85A8 = {0x4E8F54, NULL, 0, 0x8A};
+/*800C85A8*/ static ModelVertexInfo D_800C85A8 = {(s32)models_86DB30_bin+0xDA4, NULL, 0, 0x8A};
 
 /*800C85B4*/
 ModelInfo D_800C85B4 = {
-    0x4E81B0,
+    (s32)models_86DB30_bin,
     NULL,
     0xDA2,
     0xDA2,
@@ -18645,11 +18646,11 @@ ModelInfo D_800C85B4 = {
     0xD,
 };
 
-/*800C85E4*/ static ModelInfoUnkStruct1 D_800C85E4 = {0x470084, NULL, 0, 0x23A};
+/*800C85E4*/ static ModelVertexInfo D_800C85E4 = {(s32)models_7F38F0_bin+0x2114, NULL, 0, 0x23A};
 
 /*800C85F0*/
 ModelInfo D_800C85F0 = {
-    0x46DF70,
+    (s32)models_7F38F0_bin,
     NULL,
     0x2112,
     0x2112,
@@ -18670,11 +18671,11 @@ ModelInfo D_800C85F0 = {
     0x4C,
 };
 
-/*800C8620*/ static ModelInfoUnkStruct1 D_800C8620 = {0x4706C0, NULL, 0, 0x48};
+/*800C8620*/ static ModelVertexInfo D_800C8620 = {(s32)models_7F5C40_bin+0x400, NULL, 0, 0x48};
 
 /*800C862C*/
 ModelInfo D_800C862C = {
-    0x4702C0,
+    (s32)models_7F5C40_bin,
     NULL,
     0x400,
     0x400,
@@ -18695,11 +18696,11 @@ ModelInfo D_800C862C = {
     0xB,
 };
 
-/*800C865C*/ static ModelInfoUnkStruct1 D_800C865C = {0x4708B0, NULL, 0, 0x30};
+/*800C865C*/ static ModelVertexInfo D_800C865C = {(s32)models_7F6090_bin+0x1A0, NULL, 0, 0x30};
 
 /*800C8668*/
 ModelInfo D_800C8668 = {
-    0x470710,
+    (s32)models_7F6090_bin,
     NULL,
     0x1A0,
     0x1A0,
@@ -18720,11 +18721,11 @@ ModelInfo D_800C8668 = {
     4,
 };
 
-/*800C8698*/ static ModelInfoUnkStruct1 D_800C8698 = {0x470F80, NULL, 0, 0x30};
+/*800C8698*/ static ModelVertexInfo D_800C8698 = {(s32)models_7F6260_bin+0x6A0, NULL, 0, 0x30};
 
 /*800C86A4*/
 ModelInfo D_800C86A4 = {
-    0x4708E0,
+    (s32)models_7F6260_bin,
     NULL,
     0x6A0,
     0x6A0,
@@ -18745,11 +18746,11 @@ ModelInfo D_800C86A4 = {
     2,
 };
 
-/*800C86D4*/ static ModelInfoUnkStruct1 D_800C86D4 = {0x471650, NULL, 0, 0x30};
+/*800C86D4*/ static ModelVertexInfo D_800C86D4 = {(s32)models_7F6930_bin+0x6A0, NULL, 0, 0x30};
 
 /*800C86E0*/
 ModelInfo D_800C86E0 = {
-    0x470FB0,
+    (s32)models_7F6930_bin,
     NULL,
     0x6A0,
     0x6A0,
@@ -18770,11 +18771,11 @@ ModelInfo D_800C86E0 = {
     2,
 };
 
-/*800C8710*/ static ModelInfoUnkStruct1 D_800C8710 = {0x471A28, NULL, 0, 0x30};
+/*800C8710*/ static ModelVertexInfo D_800C8710 = {(s32)models_7F7000_bin+0x3A8, NULL, 0, 0x30};
 
 /*800C871C*/
 ModelInfo D_800C871C = {
-    0x471680,
+    (s32)models_7F7000_bin,
     NULL,
     0x3A8,
     0x3A8,
@@ -18795,11 +18796,11 @@ ModelInfo D_800C871C = {
     2,
 };
 
-/*800C874C*/ static ModelInfoUnkStruct1 D_800C874C = {0x471E08, NULL, 0, 0x30};
+/*800C874C*/ static ModelVertexInfo D_800C874C = {(s32)models_7F73E0_bin+0x3A8, NULL, 0, 0x30};
 
 /*800C8758*/
 ModelInfo D_800C8758 = {
-    0x471A60,
+    (s32)models_7F73E0_bin,
     NULL,
     0x3A8,
     0x3A8,
@@ -18820,11 +18821,11 @@ ModelInfo D_800C8758 = {
     2,
 };
 
-/*800C8788*/ static ModelInfoUnkStruct1 D_800C8788 = {0x4726E0, NULL, 0, 0x60};
+/*800C8788*/ static ModelVertexInfo D_800C8788 = {(s32)models_7F77C0_bin+0x8A0, NULL, 0, 0x60};
 
 /*800C8794*/
 ModelInfo D_800C8794 = {
-    0x471E40,
+    (s32)models_7F77C0_bin,
     NULL,
     0x8A0,
     0x8A0,
@@ -18845,11 +18846,11 @@ ModelInfo D_800C8794 = {
     3,
 };
 
-/*800C87C4*/ static ModelInfoUnkStruct1 D_800C87C4 = {0x473764, NULL, 0, 0xD2};
+/*800C87C4*/ static ModelVertexInfo D_800C87C4 = {(s32)models_7F80C0_bin+0x1024, NULL, 0, 0xD2};
 
 /*800C87D0*/
 ModelInfo D_800C87D0 = {
-    0x472740,
+    (s32)models_7F80C0_bin,
     NULL,
     0x1022,
     0x1022,
@@ -18870,11 +18871,11 @@ ModelInfo D_800C87D0 = {
     0x1A,
 };
 
-/*800C8800*/ static ModelInfoUnkStruct1 D_800C8800 = {0x474268, NULL, 0, 0xC6};
+/*800C8800*/ static ModelVertexInfo D_800C8800 = {(s32)models_7F91C0_bin+0xA28, NULL, 0, 0xC6};
 
 /*800C880C*/
 ModelInfo D_800C880C = {
-    0x473840,
+    (s32)models_7F91C0_bin,
     NULL,
     0xA26,
     0xA26,
@@ -18895,11 +18896,11 @@ ModelInfo D_800C880C = {
     0x17,
 };
 
-/*800C883C*/ static ModelInfoUnkStruct1 D_800C883C = {0x474A20, NULL, 0, 0x4E};
+/*800C883C*/ static ModelVertexInfo D_800C883C = {(s32)models_7F9CB0_bin+0x6F0, NULL, 0, 0x4E};
 
 /*800C8848*/
 ModelInfo D_800C8848 = {
-    0x474330,
+    (s32)models_7F9CB0_bin,
     NULL,
     0x6EE,
     0x6EE,
@@ -18920,11 +18921,11 @@ ModelInfo D_800C8848 = {
     0xE,
 };
 
-/*800C8878*/ static ModelInfoUnkStruct1 D_800C8878 = {0x475160, NULL, 0, 0x4E};
+/*800C8878*/ static ModelVertexInfo D_800C8878 = {(s32)models_7FA3F0_bin+0x6F0, NULL, 0, 0x4E};
 
 /*800C8884*/
 ModelInfo D_800C8884 = {
-    0x474A70,
+    (s32)models_7FA3F0_bin,
     NULL,
     0x6EE,
     0x6EE,
@@ -18945,11 +18946,11 @@ ModelInfo D_800C8884 = {
     0xE,
 };
 
-/*800C88B4*/ static ModelInfoUnkStruct1 D_800C88B4 = {0x475570, NULL, 0, 0x30};
+/*800C88B4*/ static ModelVertexInfo D_800C88B4 = {(s32)models_7FAB30_bin+0x3C0, NULL, 0, 0x30};
 
 /*800C88C0*/
 ModelInfo D_800C88C0 = {
-    0x4751B0,
+    (s32)models_7FAB30_bin,
     NULL,
     0x3C0,
     0x3C0,
@@ -18970,11 +18971,11 @@ ModelInfo D_800C88C0 = {
     7,
 };
 
-/*800C88F0*/ static ModelInfoUnkStruct1 D_800C88F0 = {0x860838, NULL, 0, 0xC6};
+/*800C88F0*/ static ModelVertexInfo D_800C88F0 = {(s32)models_BE4F90_bin+0x1228, NULL, 0, 0xC6};
 
 /*800C88FC*/
 ModelInfo D_800C88FC = {
-    0x85F610,
+    (s32)models_BE4F90_bin,
     NULL,
     0x1226,
     0x1226,
@@ -18995,11 +18996,11 @@ ModelInfo D_800C88FC = {
     0x42,
 };
 
-/*800C892C*/ static ModelInfoUnkStruct1 D_800C892C = {0x8611D4, NULL, 0, 0x42};
+/*800C892C*/ static ModelVertexInfo D_800C892C = {(s32)models_BE6280_bin+0x8D4, NULL, 0, 0x42};
 
 /*800C8938*/
 ModelInfo D_800C8938 = {
-    0x860900,
+    (s32)models_BE6280_bin,
     NULL,
     0x8D2,
     0x8D2,
@@ -19020,11 +19021,11 @@ ModelInfo D_800C8938 = {
     5,
 };
 
-/*800C8968*/ static ModelInfoUnkStruct1 D_800C8968 = {0x861B00, NULL, 0, 0x48};
+/*800C8968*/ static ModelVertexInfo D_800C8968 = {(s32)models_BE6BA0_bin+0x8E0, NULL, 0, 0x48};
 
 /*800C8974*/
 ModelInfo D_800C8974 = {
-    0x861220,
+    (s32)models_BE6BA0_bin,
     NULL,
     0x8E0,
     0x8E0,
@@ -19045,11 +19046,11 @@ ModelInfo D_800C8974 = {
     6,
 };
 
-/*800C89A4*/ static ModelInfoUnkStruct1 D_800C89A4 = {0x862430, NULL, 0, 0x48};
+/*800C89A4*/ static ModelVertexInfo D_800C89A4 = {(s32)models_BE74D0_bin+0x8E0, NULL, 0, 0x48};
 
 /*800C89B0*/
 ModelInfo D_800C89B0 = {
-    0x861B50,
+    (s32)models_BE74D0_bin,
     NULL,
     0x8E0,
     0x8E0,
@@ -19070,11 +19071,11 @@ ModelInfo D_800C89B0 = {
     6,
 };
 
-/*800C89E0*/ static ModelInfoUnkStruct1 D_800C89E0 = {0x862DC8, NULL, 0, 0x78};
+/*800C89E0*/ static ModelVertexInfo D_800C89E0 = {(s32)models_BE7E00_bin+0x948, NULL, 0, 0x78};
 
 /*800C89EC*/
 ModelInfo D_800C89EC = {
-    0x862480,
+    (s32)models_BE7E00_bin,
     NULL,
     0x948,
     0x948,
@@ -19095,11 +19096,11 @@ ModelInfo D_800C89EC = {
     1,
 };
 
-/*800C8A1C*/ static ModelInfoUnkStruct1 D_800C8A1C = {0x863788, NULL, 0, 0x78};
+/*800C8A1C*/ static ModelVertexInfo D_800C8A1C = {(s32)models_BE87C0_bin+0x948, NULL, 0, 0x78};
 
 /*800C8A28*/
 ModelInfo D_800C8A28 = {
-    0x862E40,
+    (s32)models_BE87C0_bin,
     NULL,
     0x948,
     0x948,
@@ -19120,11 +19121,11 @@ ModelInfo D_800C8A28 = {
     1,
 };
 
-/*800C8A58*/ static ModelInfoUnkStruct1 D_800C8A58 = {0x863CA8, NULL, 0, 0x30};
+/*800C8A58*/ static ModelVertexInfo D_800C8A58 = {(s32)models_BE9180_bin+0x4A8, NULL, 0, 0x30};
 
 /*800C8A64*/
 ModelInfo D_800C8A64 = {
-    0x863800,
+    (s32)models_BE9180_bin,
     NULL,
     0x4A8,
     0x4A8,
@@ -19145,11 +19146,11 @@ ModelInfo D_800C8A64 = {
     2,
 };
 
-/*800C8A94*/ static ModelInfoUnkStruct1 D_800C8A94 = {0x864188, NULL, 0, 0x30};
+/*800C8A94*/ static ModelVertexInfo D_800C8A94 = {(s32)models_BE9660_bin+0x4A8, NULL, 0, 0x30};
 
 /*800C8AA0*/
 ModelInfo D_800C8AA0 = {
-    0x863CE0,
+    (s32)models_BE9660_bin,
     NULL,
     0x4A8,
     0x4A8,
@@ -19170,11 +19171,11 @@ ModelInfo D_800C8AA0 = {
     2,
 };
 
-/*800C8AD0*/ static ModelInfoUnkStruct1 D_800C8AD0 = {0x864460, NULL, 0, 0x30};
+/*800C8AD0*/ static ModelVertexInfo D_800C8AD0 = {(s32)models_BE9B40_bin+0x2A0, NULL, 0, 0x30};
 
 /*800C8ADC*/
 ModelInfo D_800C8ADC = {
-    0x8641C0,
+    (s32)models_BE9B40_bin,
     NULL,
     0x2A0,
     0x2A0,
@@ -19195,11 +19196,11 @@ ModelInfo D_800C8ADC = {
     2,
 };
 
-/*800C8B0C*/ static ModelInfoUnkStruct1 D_800C8B0C = {0x864730, NULL, 0, 0x30};
+/*800C8B0C*/ static ModelVertexInfo D_800C8B0C = {(s32)models_BE9E10_bin+0x2A0, NULL, 0, 0x30};
 
 /*800C8B18*/
 ModelInfo D_800C8B18 = {
-    0x864490,
+    (s32)models_BE9E10_bin,
     NULL,
     0x2A0,
     0x2A0,
@@ -19220,11 +19221,11 @@ ModelInfo D_800C8B18 = {
     2,
 };
 
-/*800C8B48*/ static ModelInfoUnkStruct1 D_800C8B48 = {0x865960, NULL, 0, 0xC0};
+/*800C8B48*/ static ModelVertexInfo D_800C8B48 = {(s32)models_BEA0E0_bin+0x1200, NULL, 0, 0xC0};
 
 /*800C8B54*/
 ModelInfo D_800C8B54 = {
-    0x864760,
+    (s32)models_BEA0E0_bin,
     NULL,
     0x1200,
     0x1200,
@@ -19245,11 +19246,11 @@ ModelInfo D_800C8B54 = {
     0x1A,
 };
 
-/*800C8B84*/ static ModelInfoUnkStruct1 D_800C8B84 = {0x8663A8, NULL, 0, 0xAE};
+/*800C8B84*/ static ModelVertexInfo D_800C8B84 = {(s32)models_BEB3A0_bin+0x988, NULL, 0, 0xAE};
 
 /*800C8B90*/
 ModelInfo D_800C8B90 = {
-    0x865A20,
+    (s32)models_BEB3A0_bin,
     NULL,
     0x986,
     0x986,
@@ -19270,11 +19271,11 @@ ModelInfo D_800C8B90 = {
     0xA,
 };
 
-/*800C8BC0*/ static ModelInfoUnkStruct1 D_800C8BC0 = {0x866D1C, NULL, 0, 0x3C};
+/*800C8BC0*/ static ModelVertexInfo D_800C8BC0 = {(s32)models_BEBDE0_bin+0x8BC, NULL, 0, 0x3C};
 
 /*800C8BCC*/
 ModelInfo D_800C8BCC = {
-    0x866460,
+    (s32)models_BEBDE0_bin,
     NULL,
     0x8BC,
     0x8BC,
@@ -19295,11 +19296,11 @@ ModelInfo D_800C8BCC = {
     3,
 };
 
-/*800C8BFC*/ static ModelInfoUnkStruct1 D_800C8BFC = {0x86761C, NULL, 0, 0x3C};
+/*800C8BFC*/ static ModelVertexInfo D_800C8BFC = {(s32)models_BEC6E0_bin+0x8BC, NULL, 0, 0x3C};
 
 /*800C8C08*/
 ModelInfo D_800C8C08 = {
-    0x866D60,
+    (s32)models_BEC6E0_bin,
     NULL,
     0x8BC,
     0x8BC,
@@ -19320,11 +19321,11 @@ ModelInfo D_800C8C08 = {
     3,
 };
 
-/*800C8C38*/ static ModelInfoUnkStruct1 D_800C8C38 = {0x867F34, NULL, 0, 0x42};
+/*800C8C38*/ static ModelVertexInfo D_800C8C38 = {(s32)models_BECFE0_bin+0x8D4, NULL, 0, 0x42};
 
 /*800C8C44*/
 ModelInfo D_800C8C44 = {
-    0x867660,
+    (s32)models_BECFE0_bin,
     NULL,
     0x8D2,
     0x8D2,
@@ -19345,11 +19346,11 @@ ModelInfo D_800C8C44 = {
     5,
 };
 
-/*800C8C74*/ static ModelInfoUnkStruct1 D_800C8C74 = {0x42D270, NULL, 0, 0x2D6};
+/*800C8C74*/ static ModelVertexInfo D_800C8C74 = {(s32)models_7B0750_bin+0x24A0, NULL, 0, 0x2D6};
 
 /*800C8C80*/
 ModelInfo D_800C8C80 = {
-    0x42ADD0,
+    (s32)models_7B0750_bin,
     NULL,
     0x249E,
     0x249E,
@@ -19370,11 +19371,11 @@ ModelInfo D_800C8C80 = {
     0x50,
 };
 
-/*800C8CB0*/ static ModelInfoUnkStruct1 D_800C8CB0 = {0x42D6F0, NULL, 0, 0x30};
+/*800C8CB0*/ static ModelVertexInfo D_800C8CB0 = {(s32)models_7B2ED0_bin+0x1A0, NULL, 0, 0x30};
 
 /*800C8CBC*/
 ModelInfo D_800C8CBC = {
-    0x42D550,
+    (s32)models_7B2ED0_bin,
     NULL,
     0x1A0,
     0x1A0,
@@ -19395,11 +19396,11 @@ ModelInfo D_800C8CBC = {
     3,
 };
 
-/*800C8CEC*/ static ModelInfoUnkStruct1 D_800C8CEC = {0x42DB20, NULL, 0, 0x48};
+/*800C8CEC*/ static ModelVertexInfo D_800C8CEC = {(s32)models_7B30A0_bin+0x400, NULL, 0, 0x48};
 
 /*800C8CF8*/
 ModelInfo D_800C8CF8 = {
-    0x42D720,
+    (s32)models_7B30A0_bin,
     NULL,
     0x400,
     0x400,
@@ -19420,11 +19421,11 @@ ModelInfo D_800C8CF8 = {
     0xA,
 };
 
-/*800C8D28*/ static ModelInfoUnkStruct1 D_800C8D28 = {0x42E38C, NULL, 0, 0x54};
+/*800C8D28*/ static ModelVertexInfo D_800C8D28 = {(s32)models_7B34F0_bin+0x81C, NULL, 0, 0x54};
 
 /*800C8D34*/
 ModelInfo D_800C8D34 = {
-    0x42DB70,
+    (s32)models_7B34F0_bin,
     NULL,
     0x81C,
     0x81C,
@@ -19445,11 +19446,11 @@ ModelInfo D_800C8D34 = {
     2,
 };
 
-/*800C8D64*/ static ModelInfoUnkStruct1 D_800C8D64 = {0x42EA80, NULL, 0, 0x30};
+/*800C8D64*/ static ModelVertexInfo D_800C8D64 = {(s32)models_7B3D60_bin+0x6A0, NULL, 0, 0x30};
 
 /*800C8D70*/
 ModelInfo D_800C8D70 = {
-    0x42E3E0,
+    (s32)models_7B3D60_bin,
     NULL,
     0x6A0,
     0x6A0,
@@ -19470,11 +19471,11 @@ ModelInfo D_800C8D70 = {
     2,
 };
 
-/*800C8DA0*/ static ModelInfoUnkStruct1 D_800C8DA0 = {0x42F50C, NULL, 0, 0x6C};
+/*800C8DA0*/ static ModelVertexInfo D_800C8DA0 = {(s32)models_7B4430_bin+0xA5C, NULL, 0, 0x6C};
 
 /*800C8DAC*/
 ModelInfo D_800C8DAC = {
-    0x42EAB0,
+    (s32)models_7B4430_bin,
     NULL,
     0xA5C,
     0xA5C,
@@ -19495,11 +19496,11 @@ ModelInfo D_800C8DAC = {
     0,
 };
 
-/*800C8DDC*/ static ModelInfoUnkStruct1 D_800C8DDC = {0x42FFDC, NULL, 0, 0x6C};
+/*800C8DDC*/ static ModelVertexInfo D_800C8DDC = {(s32)models_7B4F00_bin+0xA5C, NULL, 0, 0x6C};
 
 /*800C8DE8*/
 ModelInfo D_800C8DE8 = {
-    0x42F580,
+    (s32)models_7B4F00_bin,
     NULL,
     0xA5C,
     0xA5C,
@@ -19520,11 +19521,11 @@ ModelInfo D_800C8DE8 = {
     0,
 };
 
-/*800C8E18*/ static ModelInfoUnkStruct1 D_800C8E18 = {0x430904, NULL, 0, 0x6C};
+/*800C8E18*/ static ModelVertexInfo D_800C8E18 = {(s32)models_7B59D0_bin+0x8B4, NULL, 0, 0x6C};
 
 /*800C8E24*/
 ModelInfo D_800C8E24 = {
-    0x430050,
+    (s32)models_7B59D0_bin,
     NULL,
     0x8B4,
     0x8B4,
@@ -19545,11 +19546,11 @@ ModelInfo D_800C8E24 = {
     6,
 };
 
-/*800C8E54*/ static ModelInfoUnkStruct1 D_800C8E54 = {0x43169C, NULL, 0, 0x15C};
+/*800C8E54*/ static ModelVertexInfo D_800C8E54 = {(s32)models_7B62F0_bin+0xD2C, NULL, 0, 0x15C};
 
 /*800C8E60*/
 ModelInfo D_800C8E60 = {
-    0x430970,
+    (s32)models_7B62F0_bin,
     NULL,
     0xD2C,
     0xD2C,
@@ -19570,11 +19571,11 @@ ModelInfo D_800C8E60 = {
     0x16,
 };
 
-/*800C8E90*/ static ModelInfoUnkStruct1 D_800C8E90 = {0x432DFC, NULL, 0, 0xEA};
+/*800C8E90*/ static ModelVertexInfo D_800C8E90 = {(s32)models_7B7180_bin+0x15FC, NULL, 0, 0xEA};
 
 /*800C8E9C*/
 ModelInfo D_800C8E9C = {
-    0x431800,
+    (s32)models_7B7180_bin,
     NULL,
     0x15FA,
     0x15FA,
@@ -19595,11 +19596,11 @@ ModelInfo D_800C8E9C = {
     0x19,
 };
 
-/*800C8ECC*/ static ModelInfoUnkStruct1 D_800C8ECC = {0x4335E0, NULL, 0, 0x4E};
+/*800C8ECC*/ static ModelVertexInfo D_800C8ECC = {(s32)models_7B8870_bin+0x6F0, NULL, 0, 0x4E};
 
 /*800C8ED8*/
 ModelInfo D_800C8ED8 = {
-    0x432EF0,
+    (s32)models_7B8870_bin,
     NULL,
     0x6EE,
     0x6EE,
@@ -19620,11 +19621,11 @@ ModelInfo D_800C8ED8 = {
     0xC,
 };
 
-/*800C8F08*/ static ModelInfoUnkStruct1 D_800C8F08 = {0x433D20, NULL, 0, 0x4E};
+/*800C8F08*/ static ModelVertexInfo D_800C8F08 = {(s32)models_7B8FB0_bin+0x6F0, NULL, 0, 0x4E};
 
 /*800C8F14*/
 ModelInfo D_800C8F14 = {
-    0x433630,
+    (s32)models_7B8FB0_bin,
     NULL,
     0x6EE,
     0x6EE,
@@ -19645,11 +19646,11 @@ ModelInfo D_800C8F14 = {
     0xC,
 };
 
-/*800C8F44*/ static ModelInfoUnkStruct1 D_800C8F44 = {0x434130, NULL, 0, 0x30};
+/*800C8F44*/ static ModelVertexInfo D_800C8F44 = {(s32)models_7B96F0_bin+0x3C0, NULL, 0, 0x30};
 
 /*800C8F50*/
 ModelInfo D_800C8F50 = {
-    0x433D70,
+    (s32)models_7B96F0_bin,
     NULL,
     0x3C0,
     0x3C0,
@@ -19670,11 +19671,11 @@ ModelInfo D_800C8F50 = {
     6,
 };
 
-/*800C8F80*/ static ModelInfoUnkStruct1 D_800C8F80 = {0x4353A0, NULL, 0, 0xDE};
+/*800C8F80*/ static ModelVertexInfo D_800C8F80 = {(s32)models_7B9AE0_bin+0x1240, NULL, 0, 0xDE};
 
 /*800C8F8C*/
 ModelInfo D_800C8F8C = {
-    0x434160,
+    (s32)models_7B9AE0_bin,
     NULL,
     0x123E,
     0x123E,
@@ -19695,11 +19696,11 @@ ModelInfo D_800C8F8C = {
     0x3F,
 };
 
-/*800C8FBC*/ static ModelInfoUnkStruct1 D_800C8FBC = {0x4356A8, NULL, 0, 0x30};
+/*800C8FBC*/ static ModelVertexInfo D_800C8FBC = {(s32)models_7BAE00_bin+0x228, NULL, 0, 0x30};
 
 /*800C8FC8*/
 ModelInfo D_800C8FC8 = {
-    0x435480,
+    (s32)models_7BAE00_bin,
     NULL,
     0x228,
     0x228,
@@ -19720,11 +19721,11 @@ ModelInfo D_800C8FC8 = {
     3,
 };
 
-/*800C8FF8*/ static ModelInfoUnkStruct1 D_800C8FF8 = {0x435C70, NULL, 0, 0x90};
+/*800C8FF8*/ static ModelVertexInfo D_800C8FF8 = {(s32)models_7BB060_bin+0x590, NULL, 0, 0x90};
 
 /*800C9004*/
 ModelInfo D_800C9004 = {
-    0x4356E0,
+    (s32)models_7BB060_bin,
     NULL,
     0x590,
     0x590,
@@ -19745,11 +19746,11 @@ ModelInfo D_800C9004 = {
     6,
 };
 
-/*800C9034*/ static ModelInfoUnkStruct1 D_800C9034 = {0x436290, NULL, 0, 0x90};
+/*800C9034*/ static ModelVertexInfo D_800C9034 = {(s32)models_7BB680_bin+0x590, NULL, 0, 0x90};
 
 /*800C9040*/
 ModelInfo D_800C9040 = {
-    0x435D00,
+    (s32)models_7BB680_bin,
     NULL,
     0x590,
     0x590,
@@ -19770,11 +19771,11 @@ ModelInfo D_800C9040 = {
     6,
 };
 
-/*800C9070*/ static ModelInfoUnkStruct1 D_800C9070 = {0x436DE4, NULL, 0, 0x72};
+/*800C9070*/ static ModelVertexInfo D_800C9070 = {(s32)models_7BBCA0_bin+0xAC4, NULL, 0, 0x72};
 
 /*800C907C*/
 ModelInfo D_800C907C = {
-    0x436320,
+    (s32)models_7BBCA0_bin,
     NULL,
     0xAC2,
     0xAC2,
@@ -19795,11 +19796,11 @@ ModelInfo D_800C907C = {
     7,
 };
 
-/*800C90AC*/ static ModelInfoUnkStruct1 D_800C90AC = {0x437924, NULL, 0, 0x72};
+/*800C90AC*/ static ModelVertexInfo D_800C90AC = {(s32)models_7BC7E0_bin+0xAC4, NULL, 0, 0x72};
 
 /*800C90B8*/
 ModelInfo D_800C90B8 = {
-    0x436E60,
+    (s32)models_7BC7E0_bin,
     NULL,
     0xAC2,
     0xAC2,
@@ -19820,11 +19821,11 @@ ModelInfo D_800C90B8 = {
     7,
 };
 
-/*800C90E8*/ static ModelInfoUnkStruct1 D_800C90E8 = {0x438A20, NULL, 0, 0x7E};
+/*800C90E8*/ static ModelVertexInfo D_800C90E8 = {(s32)models_7BD320_bin+0x1080, NULL, 0, 0x7E};
 
 /*800C90F4*/
 ModelInfo D_800C90F4 = {
-    0x4379A0,
+    (s32)models_7BD320_bin,
     NULL,
     0x107E,
     0x107E,
@@ -19845,11 +19846,11 @@ ModelInfo D_800C90F4 = {
     1,
 };
 
-/*800C9124*/ static ModelInfoUnkStruct1 D_800C9124 = {0x439B20, NULL, 0, 0x7E};
+/*800C9124*/ static ModelVertexInfo D_800C9124 = {(s32)models_7BE420_bin+0x1080, NULL, 0, 0x7E};
 
 /*800C9130*/
 ModelInfo D_800C9130 = {
-    0x438AA0,
+    (s32)models_7BE420_bin,
     NULL,
     0x107E,
     0x107E,
@@ -19870,11 +19871,11 @@ ModelInfo D_800C9130 = {
     1,
 };
 
-/*800C9160*/ static ModelInfoUnkStruct1 D_800C9160 = {0x43A43C, NULL, 0, 0x6C};
+/*800C9160*/ static ModelVertexInfo D_800C9160 = {(s32)models_7BF520_bin+0x89C, NULL, 0, 0x6C};
 
 /*800C916C*/
 ModelInfo D_800C916C = {
-    0x439BA0,
+    (s32)models_7BF520_bin,
     NULL,
     0x89C,
     0x89C,
@@ -19895,11 +19896,11 @@ ModelInfo D_800C916C = {
     2,
 };
 
-/*800C919C*/ static ModelInfoUnkStruct1 D_800C919C = {0x43AD4C, NULL, 0, 0x6C};
+/*800C919C*/ static ModelVertexInfo D_800C919C = {(s32)models_7BFE30_bin+0x89C, NULL, 0, 0x6C};
 
 /*800C91A8*/
 ModelInfo D_800C91A8 = {
-    0x43A4B0,
+    (s32)models_7BFE30_bin,
     NULL,
     0x89C,
     0x89C,
@@ -19920,11 +19921,11 @@ ModelInfo D_800C91A8 = {
     2,
 };
 
-/*800C91D8*/ static ModelInfoUnkStruct1 D_800C91D8 = {0x43C058, NULL, 0, 0x10E};
+/*800C91D8*/ static ModelVertexInfo D_800C91D8 = {(s32)models_7C0740_bin+0x1298, NULL, 0, 0x10E};
 
 /*800C91E4*/
 ModelInfo D_800C91E4 = {
-    0x43ADC0,
+    (s32)models_7C0740_bin,
     NULL,
     0x1296,
     0x1296,
@@ -19945,11 +19946,11 @@ ModelInfo D_800C91E4 = {
     0x1C,
 };
 
-/*800C9214*/ static ModelInfoUnkStruct1 D_800C9214 = {0x43C614, NULL, 0, 0x9C};
+/*800C9214*/ static ModelVertexInfo D_800C9214 = {(s32)models_7C1AF0_bin+0x4A4, NULL, 0, 0x9C};
 
 /*800C9220*/
 ModelInfo D_800C9220 = {
-    0x43C170,
+    (s32)models_7C1AF0_bin,
     NULL,
     0x4A4,
     0x4A4,
@@ -19970,11 +19971,11 @@ ModelInfo D_800C9220 = {
     0x23,
 };
 
-/*800C9250*/ static ModelInfoUnkStruct1 D_800C9250 = {0x43CDE0, NULL, 0, 0xC6};
+/*800C9250*/ static ModelVertexInfo D_800C9250 = {(s32)models_7C2030_bin+0x730, NULL, 0, 0xC6};
 
 /*800C925C*/
 ModelInfo D_800C925C = {
-    0x43C6B0,
+    (s32)models_7C2030_bin,
     NULL,
     0x72E,
     0x72E,
@@ -19995,11 +19996,11 @@ ModelInfo D_800C925C = {
     5,
 };
 
-/*800C928C*/ static ModelInfoUnkStruct1 D_800C928C = {0x43D3BC, NULL, 0, 0x84};
+/*800C928C*/ static ModelVertexInfo D_800C928C = {(s32)models_7C2830_bin+0x50C, NULL, 0, 0x84};
 
 /*800C9298*/
 ModelInfo D_800C9298 = {
-    0x43CEB0,
+    (s32)models_7C2830_bin,
     NULL,
     0x50C,
     0x50C,
@@ -20020,11 +20021,11 @@ ModelInfo D_800C9298 = {
     5,
 };
 
-/*800C92C8*/ static ModelInfoUnkStruct1 D_800C92C8 = {0x43D5E8, NULL, 0, 0x30};
+/*800C92C8*/ static ModelVertexInfo D_800C92C8 = {(s32)models_7C2DC0_bin+0x1A8, NULL, 0, 0x30};
 
 /*800C92D4*/
 ModelInfo D_800C92D4 = {
-    0x43D440,
+    (s32)models_7C2DC0_bin,
     NULL,
     0x1A8,
     0x1A8,
@@ -20045,11 +20046,11 @@ ModelInfo D_800C92D4 = {
     3,
 };
 
-/*800C9304*/ static ModelInfoUnkStruct1 D_800C9304 = {0x476CF0, NULL, 0, 0x16E};
+/*800C9304*/ static ModelVertexInfo D_800C9304 = {(s32)models_7FAF20_bin+0x1750, NULL, 0, 0x16E};
 
 /*800C9310*/
 ModelInfo D_800C9310 = {
-    0x4755A0,
+    (s32)models_7FAF20_bin,
     NULL,
     0x174E,
     0x174E,
@@ -20070,11 +20071,11 @@ ModelInfo D_800C9310 = {
     0x45,
 };
 
-/*800C9340*/ static ModelInfoUnkStruct1 D_800C9340 = {0x4839F8, NULL, 0, 0x66};
+/*800C9340*/ static ModelVertexInfo D_800C9340 = {(s32)models_808A50_bin+0x928, NULL, 0, 0x66};
 
 /*800C934C*/
 ModelInfo D_800C934C = {
-    0x4830D0,
+    (s32)models_808A50_bin,
     NULL,
     0x926,
     0x926,
@@ -20095,11 +20096,11 @@ ModelInfo D_800C934C = {
     4,
 };
 
-/*800C937C*/ static ModelInfoUnkStruct1 D_800C937C = {0x477790, NULL, 0, 0x60};
+/*800C937C*/ static ModelVertexInfo D_800C937C = {(s32)models_7FC7E0_bin+0x930, NULL, 0, 0x60};
 
 /*800C9388*/
 ModelInfo D_800C9388 = {
-    0x476E60,
+    (s32)models_7FC7E0_bin,
     NULL,
     0x930,
     0x930,
@@ -20120,11 +20121,11 @@ ModelInfo D_800C9388 = {
     6,
 };
 
-/*800C93B8*/ static ModelInfoUnkStruct1 D_800C93B8 = {0x478120, NULL, 0, 0x60};
+/*800C93B8*/ static ModelVertexInfo D_800C93B8 = {(s32)models_7FD170_bin+0x930, NULL, 0, 0x60};
 
 /*800C93C4*/
 ModelInfo D_800C93C4 = {
-    0x4777F0,
+    (s32)models_7FD170_bin,
     NULL,
     0x930,
     0x930,
@@ -20145,11 +20146,11 @@ ModelInfo D_800C93C4 = {
     6,
 };
 
-/*800C93F4*/ static ModelInfoUnkStruct1 D_800C93F4 = {0x478E98, NULL, 0, 0x48};
+/*800C93F4*/ static ModelVertexInfo D_800C93F4 = {(s32)models_7FDB00_bin+0xD18, NULL, 0, 0x48};
 
 /*800C9400*/
 ModelInfo D_800C9400 = {
-    0x478180,
+    (s32)models_7FDB00_bin,
     NULL,
     0xD18,
     0xD18,
@@ -20170,11 +20171,11 @@ ModelInfo D_800C9400 = {
     1,
 };
 
-/*800C9430*/ static ModelInfoUnkStruct1 D_800C9430 = {0x479C0C, NULL, 0, 0x54};
+/*800C9430*/ static ModelVertexInfo D_800C9430 = {(s32)models_7FE860_bin+0xD2C, NULL, 0, 0x54};
 
 /*800C943C*/
 ModelInfo D_800C943C = {
-    0x478EE0,
+    (s32)models_7FE860_bin,
     NULL,
     0xD2C,
     0xD2C,
@@ -20195,11 +20196,11 @@ ModelInfo D_800C943C = {
     1,
 };
 
-/*800C946C*/ static ModelInfoUnkStruct1 D_800C946C = {0x47A9B8, NULL, 0, 0x66};
+/*800C946C*/ static ModelVertexInfo D_800C946C = {(s32)models_7FF5E0_bin+0xD58, NULL, 0, 0x66};
 
 /*800C9478*/
 ModelInfo D_800C9478 = {
-    0x479C60,
+    (s32)models_7FF5E0_bin,
     NULL,
     0xD56,
     0xD56,
@@ -20220,11 +20221,11 @@ ModelInfo D_800C9478 = {
     3,
 };
 
-/*800C94A8*/ static ModelInfoUnkStruct1 D_800C94A8 = {0x47B778, NULL, 0, 0x66};
+/*800C94A8*/ static ModelVertexInfo D_800C94A8 = {(s32)models_8003A0_bin+0xD58, NULL, 0, 0x66};
 
 /*800C94B4*/
 ModelInfo D_800C94B4 = {
-    0x47AA20,
+    (s32)models_8003A0_bin,
     NULL,
     0xD56,
     0xD56,
@@ -20245,11 +20246,11 @@ ModelInfo D_800C94B4 = {
     3,
 };
 
-/*800C94E4*/ static ModelInfoUnkStruct1 D_800C94E4 = {0x47BD04, NULL, 0, 0x5A};
+/*800C94E4*/ static ModelVertexInfo D_800C94E4 = {(s32)models_801160_bin+0x524, NULL, 0, 0x5A};
 
 /*800C94F0*/
 ModelInfo D_800C94F0 = {
-    0x47B7E0,
+    (s32)models_801160_bin,
     NULL,
     0x522,
     0x522,
@@ -20270,11 +20271,11 @@ ModelInfo D_800C94F0 = {
     5,
 };
 
-/*800C9520*/ static ModelInfoUnkStruct1 D_800C9520 = {0x47C2B8, NULL, 0, 0x7E};
+/*800C9520*/ static ModelVertexInfo D_800C9520 = {(s32)models_8016E0_bin+0x558, NULL, 0, 0x7E};
 
 /*800C952C*/
 ModelInfo D_800C952C = {
-    0x47BD60,
+    (s32)models_8016E0_bin,
     NULL,
     0x556,
     0x556,
@@ -20295,11 +20296,11 @@ ModelInfo D_800C952C = {
     5,
 };
 
-/*800C955C*/ static ModelInfoUnkStruct1 D_800C955C = {0x47F1BC, NULL, 0, 0x2AC};
+/*800C955C*/ static ModelVertexInfo D_800C955C = {(s32)models_801CC0_bin+0x2E7C, NULL, 0, 0x2AC};
 
 /*800C9568*/
 ModelInfo D_800C9568 = {
-    0x47C340,
+    (s32)models_801CC0_bin,
     NULL,
     0x2E7C,
     0x2E7C,
@@ -20320,11 +20321,11 @@ ModelInfo D_800C9568 = {
     0x25,
 };
 
-/*800C9598*/ static ModelInfoUnkStruct1 D_800C9598 = {0x480A0C, NULL, 0, 0x8A};
+/*800C9598*/ static ModelVertexInfo D_800C9598 = {(s32)models_804DF0_bin+0x159C, NULL, 0, 0x8A};
 
 /*800C95A4*/
 ModelInfo D_800C95A4 = {
-    0x47F470,
+    (s32)models_804DF0_bin,
     NULL,
     0x159A,
     0x159A,
@@ -20345,11 +20346,11 @@ ModelInfo D_800C95A4 = {
     0x12,
 };
 
-/*800C95D4*/ static ModelInfoUnkStruct1 D_800C95D4 = {0x481858, NULL, 0, 0x96};
+/*800C95D4*/ static ModelVertexInfo D_800C95D4 = {(s32)models_806420_bin+0xDB8, NULL, 0, 0x96};
 
 /*800C95E0*/
 ModelInfo D_800C95E0 = {
-    0x480AA0,
+    (s32)models_806420_bin,
     NULL,
     0xDB6,
     0xDB6,
@@ -20370,11 +20371,11 @@ ModelInfo D_800C95E0 = {
     0xF,
 };
 
-/*800C9610*/ static ModelInfoUnkStruct1 D_800C9610 = {0x4826A8, NULL, 0, 0x96};
+/*800C9610*/ static ModelVertexInfo D_800C9610 = {(s32)models_807270_bin+0xDB8, NULL, 0, 0x96};
 
 /*800C961C*/
 ModelInfo D_800C961C = {
-    0x4818F0,
+    (s32)models_807270_bin,
     NULL,
     0xDB6,
     0xDB6,
@@ -20395,11 +20396,11 @@ ModelInfo D_800C961C = {
     0xF,
 };
 
-/*800C964C*/ static ModelInfoUnkStruct1 D_800C964C = {0x483068, NULL, 0, 0x66};
+/*800C964C*/ static ModelVertexInfo D_800C964C = {(s32)models_8080C0_bin+0x928, NULL, 0, 0x66};
 
 /*800C9658*/
 ModelInfo D_800C9658 = {
-    0x482740,
+    (s32)models_8080C0_bin,
     NULL,
     0x926,
     0x926,
@@ -20420,11 +20421,11 @@ ModelInfo D_800C9658 = {
     4,
 };
 
-/*800C9688*/ static ModelInfoUnkStruct1 D_800C9688 = {0x41E9B8, NULL, 0, 0x19E};
+/*800C9688*/ static ModelVertexInfo D_800C9688 = {(s32)models_7A3330_bin+0x1008, NULL, 0, 0x19E};
 
 /*800C9694*/
 ModelInfo D_800C9694 = {
-    0x41D9B0,
+    (s32)models_7A3330_bin,
     NULL,
     0x1006,
     0x1006,
@@ -20445,11 +20446,11 @@ ModelInfo D_800C9694 = {
     0,
 };
 
-/*800C96C4*/ static ModelInfoUnkStruct1 D_800C96C4 = {0x41FB4C, NULL, 0, 0x21C};
+/*800C96C4*/ static ModelVertexInfo D_800C96C4 = {(s32)models_7A44E0_bin+0xFEC, NULL, 0, 0x21C};
 
 /*800C96D0*/
 ModelInfo D_800C96D0 = {
-    0x41EB60,
+    (s32)models_7A44E0_bin,
     NULL,
     0xFEC,
     0xFEC,
@@ -20470,11 +20471,11 @@ ModelInfo D_800C96D0 = {
     1,
 };
 
-/*800C9700*/ static ModelInfoUnkStruct1 D_800C9700 = {0x420F60, NULL, 0, 0x120};
+/*800C9700*/ static ModelVertexInfo D_800C9700 = {(s32)models_7A56F0_bin+0x11F0, NULL, 0, 0x120};
 
 /*800C970C*/
 ModelInfo D_800C970C = {
-    0x41FD70,
+    (s32)models_7A56F0_bin,
     NULL,
     0x11F0,
     0x11F0,
@@ -20495,11 +20496,11 @@ ModelInfo D_800C970C = {
     0,
 };
 
-/*800C973C*/ static ModelInfoUnkStruct1 D_800C973C = {0x4223A4, NULL, 0, 0x20A};
+/*800C973C*/ static ModelVertexInfo D_800C973C = {(s32)models_7A6A00_bin+0x1324, NULL, 0, 0x20A};
 
 /*800C9748*/
 ModelInfo D_800C9748 = {
-    0x421080,
+    (s32)models_7A6A00_bin,
     NULL,
     0x1322,
     0x1322,
@@ -20520,11 +20521,11 @@ ModelInfo D_800C9748 = {
     1,
 };
 
-/*800C9778*/ static ModelInfoUnkStruct1 D_800C9778 = {0x446994, NULL, 0, 0xB7C};
+/*800C9778*/ static ModelVertexInfo D_800C9778 = {(s32)models_7C2FA0_bin+0x9374, NULL, 0, 0xB7C};
 
 /*800C9784*/
 ModelInfo D_800C9784 = {
-    0x43D620,
+    (s32)models_7C2FA0_bin,
     NULL,
     0x9374,
     0x9374,
@@ -20545,16 +20546,16 @@ ModelInfo D_800C9784 = {
     0x1B3,
 };
 
-/*800C97B4*/ static ModelInfoUnkStruct1 D_800C97B4 = {0x4475D4, NULL, 0, 0x54};
+/*800C97B4*/ static ModelVertexInfo D_800C97B4 = {(s32)models_7CCE90_bin+0xC4, NULL, 0, 0x54};
 
 /*800C97C0*/
 ModelInfo D_800C97C0 = {
-    0x447510,
+    (s32)models_7CCE90_bin,
     NULL,
     0xC4,
     0xC4,
-    0,
-    0,
+    0x0,
+    0x0,
     0x70,
     0x54,
     { 0, 0, 0, 0 },
@@ -20570,11 +20571,11 @@ ModelInfo D_800C97C0 = {
     0x59,
 };
 
-/*800C97F0*/ static ModelInfoUnkStruct1 D_800C97F0 = {0x44A860, NULL, 0, 0x588};
+/*800C97F0*/ static ModelVertexInfo D_800C97F0 = {(s32)models_7CCFB0_bin+0x3230, NULL, 0, 0x588};
 
 /*800C97FC*/
 ModelInfo D_800C97FC = {
-    0x447630,
+    (s32)models_7CCFB0_bin,
     NULL,
     0x3230,
     0x3230,
@@ -20595,11 +20596,11 @@ ModelInfo D_800C97FC = {
     0x14B,
 };
 
-/*800C982C*/ static ModelInfoUnkStruct1 D_800C982C = {0x44D708, NULL, 0, 0x2D6};
+/*800C982C*/ static ModelVertexInfo D_800C982C = {(s32)models_7D0770_bin+0x2918, NULL, 0, 0x2D6};
 
 /*800C9838*/
 ModelInfo D_800C9838 = {
-    0x44ADF0,
+    (s32)models_7D0770_bin,
     NULL,
     0x2916,
     0x2916,
@@ -20620,11 +20621,11 @@ ModelInfo D_800C9838 = {
     0x14A,
 };
 
-/*800C9868*/ static ModelInfoUnkStruct1 D_800C9868 = {0x456380, NULL, 0, 0x4E};
+/*800C9868*/ static ModelVertexInfo D_800C9868 = {(s32)models_7DB810_bin+0x4F0, NULL, 0, 0x4E};
 
 /*800C9874*/
 ModelInfo D_800C9874 = {
-    0x455E90,
+    (s32)models_7DB810_bin,
     NULL,
     0x4EE,
     0x4EE,
@@ -20645,11 +20646,11 @@ ModelInfo D_800C9874 = {
     0xB,
 };
 
-/*800C98A4*/ static ModelInfoUnkStruct1 D_800C98A4 = {0x4568C0, NULL, 0, 0x4E};
+/*800C98A4*/ static ModelVertexInfo D_800C98A4 = {(s32)models_7DBD50_bin+0x4F0, NULL, 0, 0x4E};
 
 /*800C98B0*/
 ModelInfo D_800C98B0 = {
-    0x4563D0,
+    (s32)models_7DBD50_bin,
     NULL,
     0x4EE,
     0x4EE,
@@ -20670,11 +20671,11 @@ ModelInfo D_800C98B0 = {
     9,
 };
 
-/*800C98E0*/ static ModelInfoUnkStruct1 D_800C98E0 = {0x456E00, NULL, 0, 0x4E};
+/*800C98E0*/ static ModelVertexInfo D_800C98E0 = {(s32)models_7DC290_bin+0x4F0, NULL, 0, 0x4E};
 
 /*800C98EC*/
 ModelInfo D_800C98EC = {
-    0x456910,
+    (s32)models_7DC290_bin,
     NULL,
     0x4EE,
     0x4EE,
@@ -20695,11 +20696,11 @@ ModelInfo D_800C98EC = {
     9,
 };
 
-/*800C991C*/ static ModelInfoUnkStruct1 D_800C991C = {0x4572DC, NULL, 0, 0x24};
+/*800C991C*/ static ModelVertexInfo D_800C991C = {(s32)models_7DC7D0_bin+0x48C, NULL, 0, 0x24};
 
 /*800C9928*/
 ModelInfo D_800C9928 = {
-    0x456E50,
+    (s32)models_7DC7D0_bin,
     NULL,
     0x48C,
     0x48C,
@@ -20720,11 +20721,11 @@ ModelInfo D_800C9928 = {
     4,
 };
 
-/*800C9958*/ static ModelInfoUnkStruct1 D_800C9958 = {0x45778C, NULL, 0, 0x24};
+/*800C9958*/ static ModelVertexInfo D_800C9958 = {(s32)models_7DCC80_bin+0x48C, NULL, 0, 0x24};
 
 /*800C9964*/
 ModelInfo D_800C9964 = {
-    0x457300,
+    (s32)models_7DCC80_bin,
     NULL,
     0x48C,
     0x48C,
@@ -20745,11 +20746,11 @@ ModelInfo D_800C9964 = {
     4,
 };
 
-/*800C9994*/ static ModelInfoUnkStruct1 D_800C9994 = {0x459828, NULL, 0, 0x378};
+/*800C9994*/ static ModelVertexInfo D_800C9994 = {(s32)models_7DD130_bin+0x2078, NULL, 0, 0x378};
 
 /*800C99A0*/
 ModelInfo D_800C99A0 = {
-    0x4577B0,
+    (s32)models_7DD130_bin,
     NULL,
     0x2078,
     0x2078,
@@ -20770,11 +20771,11 @@ ModelInfo D_800C99A0 = {
     0x1C,
 };
 
-/*800C99D0*/ static ModelInfoUnkStruct1 D_800C99D0 = {0x45B190, NULL, 0, 0x180};
+/*800C99D0*/ static ModelVertexInfo D_800C99D0 = {(s32)models_7DF520_bin+0x15F0, NULL, 0, 0x180};
 
 /*800C99DC*/
 ModelInfo D_800C99DC = {
-    0x459BA0,
+    (s32)models_7DF520_bin,
     NULL,
     0x15F0,
     0x15F0,
@@ -20795,11 +20796,11 @@ ModelInfo D_800C99DC = {
     2,
 };
 
-/*800C9A0C*/ static ModelInfoUnkStruct1 D_800C9A0C = {0x45B7D0, NULL, 0, 0x36};
+/*800C9A0C*/ static ModelVertexInfo D_800C9A0C = {(s32)models_7E0C90_bin+0x4C0, NULL, 0, 0x36};
 
 /*800C9A18*/
 ModelInfo D_800C9A18 = {
-    0x45B310,
+    (s32)models_7E0C90_bin,
     NULL,
     0x4BE,
     0x4BE,
@@ -20820,11 +20821,11 @@ ModelInfo D_800C9A18 = {
     0xB,
 };
 
-/*800C9A48*/ static ModelInfoUnkStruct1 D_800C9A48 = {0x45BBB8, NULL, 0, 0x30};
+/*800C9A48*/ static ModelVertexInfo D_800C9A48 = {(s32)models_7E1190_bin+0x3A8, NULL, 0, 0x30};
 
 /*800C9A54*/
 ModelInfo D_800C9A54 = {
-    0x45B810,
+    (s32)models_7E1190_bin,
     NULL,
     0x3A8,
     0x3A8,
@@ -20845,11 +20846,11 @@ ModelInfo D_800C9A54 = {
     0xC,
 };
 
-/*800C9A84*/ static ModelInfoUnkStruct1 D_800C9A84 = {0x45C074, NULL, 0, 0x24};
+/*800C9A84*/ static ModelVertexInfo D_800C9A84 = {(s32)models_7E1570_bin+0x484, NULL, 0, 0x24};
 
 /*800C9A90*/
 ModelInfo D_800C9A90 = {
-    0x45BBF0,
+    (s32)models_7E1570_bin,
     NULL,
     0x484,
     0x484,
@@ -20870,11 +20871,11 @@ ModelInfo D_800C9A90 = {
     0x19,
 };
 
-/*800C9AC0*/ static ModelInfoUnkStruct1 D_800C9AC0 = {0x45C560, NULL, 0, 0x36};
+/*800C9AC0*/ static ModelVertexInfo D_800C9AC0 = {(s32)models_7E1A20_bin+0x4C0, NULL, 0, 0x36};
 
 /*800C9ACC*/
 ModelInfo D_800C9ACC = {
-    0x45C0A0,
+    (s32)models_7E1A20_bin,
     NULL,
     0x4BE,
     0x4BE,
@@ -20895,11 +20896,11 @@ ModelInfo D_800C9ACC = {
     0xC,
 };
 
-/*800C9AFC*/ static ModelInfoUnkStruct1 D_800C9AFC = {0x45C948, NULL, 0, 0x30};
+/*800C9AFC*/ static ModelVertexInfo D_800C9AFC = {(s32)models_7E1F20_bin+0x3A8, NULL, 0, 0x30};
 
 /*800C9B08*/
 ModelInfo D_800C9B08 = {
-    0x45C5A0,
+    (s32)models_7E1F20_bin,
     NULL,
     0x3A8,
     0x3A8,
@@ -20920,11 +20921,11 @@ ModelInfo D_800C9B08 = {
     0xB,
 };
 
-/*800C9B38*/ static ModelInfoUnkStruct1 D_800C9B38 = {0x45CE04, NULL, 0, 0x24};
+/*800C9B38*/ static ModelVertexInfo D_800C9B38 = {(s32)models_7E2300_bin+0x484, NULL, 0, 0x24};
 
 /*800C9B44*/
 ModelInfo D_800C9B44 = {
-    0x45C980,
+    (s32)models_7E2300_bin,
     NULL,
     0x484,
     0x484,
@@ -20945,11 +20946,11 @@ ModelInfo D_800C9B44 = {
     0x1B,
 };
 
-/*800C9B74*/ static ModelInfoUnkStruct1 D_800C9B74 = {0x45D540, NULL, 0, 0x1E};
+/*800C9B74*/ static ModelVertexInfo D_800C9B74 = {(s32)models_7E27B0_bin+0x710, NULL, 0, 0x1E};
 
 /*800C9B80*/
 ModelInfo D_800C9B80 = {
-    0x45CE30,
+    (s32)models_7E27B0_bin,
     NULL,
     0x70E,
     0x70E,
@@ -20970,11 +20971,11 @@ ModelInfo D_800C9B80 = {
     3,
 };
 
-/*800C9BB0*/ static ModelInfoUnkStruct1 D_800C9BB0 = {0x45DC98, NULL, 0, 0x30};
+/*800C9BB0*/ static ModelVertexInfo D_800C9BB0 = {(s32)models_7E2EE0_bin+0x738, NULL, 0, 0x30};
 
 /*800C9BBC*/
 ModelInfo D_800C9BBC = {
-    0x45D560,
+    (s32)models_7E2EE0_bin,
     NULL,
     0x738,
     0x738,
@@ -20995,11 +20996,11 @@ ModelInfo D_800C9BBC = {
     0x11,
 };
 
-/*800C9BEC*/ static ModelInfoUnkStruct1 D_800C9BEC = {0x45E428, NULL, 0, 0x36};
+/*800C9BEC*/ static ModelVertexInfo D_800C9BEC = {(s32)models_7E3650_bin+0x758, NULL, 0, 0x36};
 
 /*800C9BF8*/
 ModelInfo D_800C9BF8 = {
-    0x45DCD0,
+    (s32)models_7E3650_bin,
     NULL,
     0x756,
     0x756,
@@ -21020,11 +21021,11 @@ ModelInfo D_800C9BF8 = {
     0x13,
 };
 
-/*800C9C28*/ static ModelInfoUnkStruct1 D_800C9C28 = {0x45E9B4, NULL, 0, 0x6C};
+/*800C9C28*/ static ModelVertexInfo D_800C9C28 = {(s32)models_7E3DE0_bin+0x554, NULL, 0, 0x6C};
 
 /*800C9C34*/
 ModelInfo D_800C9C34 = {
-    0x45E460,
+    (s32)models_7E3DE0_bin,
     NULL,
     0x554,
     0x554,
@@ -21045,11 +21046,11 @@ ModelInfo D_800C9C34 = {
     0x12,
 };
 
-/*800C9C64*/ static ModelInfoUnkStruct1 D_800C9C64 = {0x45EF74, NULL, 0, 0x6C};
+/*800C9C64*/ static ModelVertexInfo D_800C9C64 = {(s32)models_7E43A0_bin+0x554, NULL, 0, 0x6C};
 
 /*800C9C70*/
 ModelInfo D_800C9C70 = {
-    0x45EA20,
+    (s32)models_7E43A0_bin,
     NULL,
     0x554,
     0x554,
@@ -21070,11 +21071,11 @@ ModelInfo D_800C9C70 = {
     0x12,
 };
 
-/*800C9CA0*/ static ModelInfoUnkStruct1 D_800C9CA0 = {0x45F4D0, NULL, 0, 0x4E};
+/*800C9CA0*/ static ModelVertexInfo D_800C9CA0 = {(s32)models_7E4960_bin+0x4F0, NULL, 0, 0x4E};
 
 /*800C9CAC*/
 ModelInfo D_800C9CAC = {
-    0x45EFE0,
+    (s32)models_7E4960_bin,
     NULL,
     0x4EE,
     0x4EE,
@@ -21095,11 +21096,11 @@ ModelInfo D_800C9CAC = {
     0xB,
 };
 
-/*800C9CDC*/ static ModelInfoUnkStruct1 D_800C9CDC = {0x45FE24, NULL, 0, 0x114};
+/*800C9CDC*/ static ModelVertexInfo D_800C9CDC = {(s32)models_7E4EA0_bin+0x904, NULL, 0, 0x114};
 
 /*800C9CE8*/
 ModelInfo D_800C9CE8 = {
-    0x45F520,
+    (s32)models_7E4EA0_bin,
     NULL,
     0x904,
     0x904,
@@ -21120,11 +21121,11 @@ ModelInfo D_800C9CE8 = {
     0x38,
 };
 
-/*800C9D18*/ static ModelInfoUnkStruct1 D_800C9D18 = {0x460EE4, NULL, 0, 0xD2};
+/*800C9D18*/ static ModelVertexInfo D_800C9D18 = {(s32)models_7E58C0_bin+0xFA4, NULL, 0, 0xD2};
 
 /*800C9D24*/
 ModelInfo D_800C9D24 = {
-    0x45FF40,
+    (s32)models_7E58C0_bin,
     NULL,
     0xFA2,
     0xFA2,
@@ -21145,11 +21146,11 @@ ModelInfo D_800C9D24 = {
     0x9B,
 };
 
-/*800C9D54*/ static ModelInfoUnkStruct1 D_800C9D54 = {0x4618E8, NULL, 0, 0x60};
+/*800C9D54*/ static ModelVertexInfo D_800C9D54 = {(s32)models_7E6940_bin+0x928, NULL, 0, 0x60};
 
 /*800C9D60*/
 ModelInfo D_800C9D60 = {
-    0x460FC0,
+    (s32)models_7E6940_bin,
     NULL,
     0x928,
     0x928,
@@ -21170,11 +21171,11 @@ ModelInfo D_800C9D60 = {
     0x1B,
 };
 
-/*800C9D90*/ static ModelInfoUnkStruct1 D_800C9D90 = {0x462910, NULL, 0, 0xF0};
+/*800C9D90*/ static ModelVertexInfo D_800C9D90 = {(s32)models_7E72D0_bin+0xFC0, NULL, 0, 0xF0};
 
 /*800C9D9C*/
 ModelInfo D_800C9D9C = {
-    0x461950,
+    (s32)models_7E72D0_bin,
     NULL,
     0xFC0,
     0xFC0,
@@ -21195,11 +21196,11 @@ ModelInfo D_800C9D9C = {
     0x1B,
 };
 
-/*800C9DCC*/ static ModelInfoUnkStruct1 D_800C9DCC = {0x4639C0, NULL, 0, 0xF0};
+/*800C9DCC*/ static ModelVertexInfo D_800C9DCC = {(s32)models_7E8380_bin+0xFC0, NULL, 0, 0xF0};
 
 /*800C9DD8*/
 ModelInfo D_800C9DD8 = {
-    0x462A00,
+    (s32)models_7E8380_bin,
     NULL,
     0xFC0,
     0xFC0,
@@ -21220,11 +21221,11 @@ ModelInfo D_800C9DD8 = {
     0x19,
 };
 
-/*800C9E08*/ static ModelInfoUnkStruct1 D_800C9E08 = {0x463EF8, NULL, 0, 0xA8};
+/*800C9E08*/ static ModelVertexInfo D_800C9E08 = {(s32)models_7E9430_bin+0x448, NULL, 0, 0xA8};
 
 /*800C9E14*/
 ModelInfo D_800C9E14 = {
-    0x463AB0,
+    (s32)models_7E9430_bin,
     NULL,
     0x448,
     0x448,
@@ -21245,11 +21246,11 @@ ModelInfo D_800C9E14 = {
     2,
 };
 
-/*800C9E44*/ static ModelInfoUnkStruct1 D_800C9E44 = {0x4643E8, NULL, 0, 0xA8};
+/*800C9E44*/ static ModelVertexInfo D_800C9E44 = {(s32)models_7E9920_bin+0x448, NULL, 0, 0xA8};
 
 /*800C9E50*/
 ModelInfo D_800C9E50 = {
-    0x463FA0,
+    (s32)models_7E9920_bin,
     NULL,
     0x448,
     0x448,
@@ -21270,11 +21271,11 @@ ModelInfo D_800C9E50 = {
     2,
 };
 
-/*800C9E80*/ static ModelInfoUnkStruct1 D_800C9E80 = {0x4654C0, NULL, 0, 0x198};
+/*800C9E80*/ static ModelVertexInfo D_800C9E80 = {(s32)models_7E9E10_bin+0x1030, NULL, 0, 0x198};
 
 /*800C9E8C*/
 ModelInfo D_800C9E8C = {
-    0x464490,
+    (s32)models_7E9E10_bin,
     NULL,
     0x1030,
     0x1030,
@@ -21295,11 +21296,11 @@ ModelInfo D_800C9E8C = {
     0x44,
 };
 
-/*800C9EBC*/ static ModelInfoUnkStruct1 D_800C9EBC = {0x465A70, NULL, 0, 0xAE};
+/*800C9EBC*/ static ModelVertexInfo D_800C9EBC = {(s32)models_7EAFE0_bin+0x410, NULL, 0, 0xAE};
 
 /*800C9EC8*/
 ModelInfo D_800C9EC8 = {
-    0x465660,
+    (s32)models_7EAFE0_bin,
     NULL,
     0x40E,
     0x40E,
@@ -21320,11 +21321,11 @@ ModelInfo D_800C9EC8 = {
     0x29,
 };
 
-/*800C9EF8*/ static ModelInfoUnkStruct1 D_800C9EF8 = {0x465FAC, NULL, 0, 0x24};
+/*800C9EF8*/ static ModelVertexInfo D_800C9EF8 = {(s32)models_7EB4A0_bin+0x48C, NULL, 0, 0x24};
 
 /*800C9F04*/
 ModelInfo D_800C9F04 = {
-    0x465B20,
+    (s32)models_7EB4A0_bin,
     NULL,
     0x48C,
     0x48C,
@@ -21345,11 +21346,11 @@ ModelInfo D_800C9F04 = {
     0xE6,
 };
 
-/*800C9F34*/ static ModelInfoUnkStruct1 D_800C9F34 = {0x46645C, NULL, 0, 0x24};
+/*800C9F34*/ static ModelVertexInfo D_800C9F34 = {(s32)models_7EB950_bin+0x48C, NULL, 0, 0x24};
 
 /*800C9F40*/
 ModelInfo D_800C9F40 = {
-    0x465FD0,
+    (s32)models_7EB950_bin,
     NULL,
     0x48C,
     0x48C,
@@ -21370,11 +21371,11 @@ ModelInfo D_800C9F40 = {
     0xE6,
 };
 
-/*800C9F70*/ static ModelInfoUnkStruct1 D_800C9F70 = {0x4676E4, NULL, 0, 0xCC};
+/*800C9F70*/ static ModelVertexInfo D_800C9F70 = {(s32)models_7EBE00_bin+0x1264, NULL, 0, 0xCC};
 
 /*800C9F7C*/
 ModelInfo D_800C9F7C = {
-    0x466480,
+    (s32)models_7EBE00_bin,
     NULL,
     0x1264,
     0x1264,
@@ -21395,11 +21396,11 @@ ModelInfo D_800C9F7C = {
     0xBB,
 };
 
-/*800C9FAC*/ static ModelInfoUnkStruct1 D_800C9FAC = {0x46CF0C, NULL, 0, 0x6D2};
+/*800C9FAC*/ static ModelVertexInfo D_800C9FAC = {(s32)models_7ED130_bin+0x575C, NULL, 0, 0x6D2};
 
 /*800C9FB8*/
 ModelInfo D_800C9FB8 = {
-    0x4677B0,
+    (s32)models_7ED130_bin,
     NULL,
     0x575A,
     0x575A,
@@ -21420,11 +21421,11 @@ ModelInfo D_800C9FB8 = {
     0x1B7,
 };
 
-/*800C9FE8*/ static ModelInfoUnkStruct1 D_800C9FE8 = {0x46DF08, NULL, 0, 0x60};
+/*800C9FE8*/ static ModelVertexInfo D_800C9FE8 = {(s32)models_7F2F60_bin+0x928, NULL, 0, 0x60};
 
 /*800C9FF4*/
 ModelInfo D_800C9FF4 = {
-    0x46D5E0,
+    (s32)models_7F2F60_bin,
     NULL,
     0x928,
     0x928,
@@ -21445,11 +21446,11 @@ ModelInfo D_800C9FF4 = {
     0x1E,
 };
 
-/*800CA024*/ static ModelInfoUnkStruct1 D_800CA024 = {0x8EAF40, NULL, 0, 0x18};
+/*800CA024*/ static ModelVertexInfo D_800CA024 = {(s32)models_C70060_bin+0x860, NULL, 0, 0x18};
 
 /*800CA030*/
 ModelInfo D_800CA030 = {
-    0x8EA6E0,
+    (s32)models_C70060_bin,
     NULL,
     0x860,
     0x860,
@@ -21470,11 +21471,11 @@ ModelInfo D_800CA030 = {
     0x11B,
 };
 
-/*800CA060*/ static ModelInfoUnkStruct1 D_800CA060 = {0x8EB7C0, NULL, 0, 0x18};
+/*800CA060*/ static ModelVertexInfo D_800CA060 = {(s32)models_C708E0_bin+0x860, NULL, 0, 0x18};
 
 /*800CA06C*/
 ModelInfo D_800CA06C = {
-    0x8EAF60,
+    (s32)models_C708E0_bin,
     NULL,
     0x860,
     0x860,
@@ -21495,11 +21496,11 @@ ModelInfo D_800CA06C = {
     0x11B,
 };
 
-/*800CA09C*/ static ModelInfoUnkStruct1 D_800CA09C = {0x8F0098, NULL, 0, 0xA8};
+/*800CA09C*/ static ModelVertexInfo D_800CA09C = {(s32)models_C755D0_bin+0x448, NULL, 0, 0xA8};
 
 /*800CA0A8*/
 ModelInfo D_800CA0A8 = {
-    0x8EFC50,
+    (s32)models_C755D0_bin,
     NULL,
     0x448,
     0x448,
@@ -21520,11 +21521,11 @@ ModelInfo D_800CA0A8 = {
     -1,
 };
 
-/*800CA0D8*/ static ModelInfoUnkStruct1 D_800CA0D8 = {0x8F059C, NULL, 0, 0xB4};
+/*800CA0D8*/ static ModelVertexInfo D_800CA0D8 = {(s32)models_C75AC0_bin+0x45C, NULL, 0, 0xB4};
 
 /*800CA0E4*/
 ModelInfo D_800CA0E4 = {
-    0x8F0140,
+    (s32)models_C75AC0_bin,
     NULL,
     0x45C,
     0x45C,
@@ -21545,11 +21546,11 @@ ModelInfo D_800CA0E4 = {
     0,
 };
 
-/*800CA114*/ static ModelInfoUnkStruct1 D_800CA114 = {0x8F18B4, NULL, 0, 0xCC};
+/*800CA114*/ static ModelVertexInfo D_800CA114 = {(s32)models_C75FD0_bin+0x1264, NULL, 0, 0xCC};
 
 /*800CA120*/
 ModelInfo D_800CA120 = {
-    0x8F0650,
+    (s32)models_C75FD0_bin,
     NULL,
     0x1264,
     0x1264,
@@ -21570,11 +21571,11 @@ ModelInfo D_800CA120 = {
     0xBB,
 };
 
-/*800CA150*/ static ModelInfoUnkStruct1 D_800CA150 = {0x4ADE6C, NULL, 0, 0x14A};
+/*800CA150*/ static ModelVertexInfo D_800CA150 = {(s32)models_8314C0_bin+0x232C, NULL, 0, 0x14A};
 
 /*800CA15C*/
 ModelInfo D_800CA15C = {
-    0x4ABB40,
+    (s32)models_8314C0_bin,
     NULL,
     0x232A,
     0x232A,
@@ -21595,11 +21596,11 @@ ModelInfo D_800CA15C = {
     0xDC,
 };
 
-/*800CA18C*/ static ModelInfoUnkStruct1 D_800CA18C = {0x4B099C, NULL, 0, 0x6BA};
+/*800CA18C*/ static ModelVertexInfo D_800CA18C = {(s32)models_833940_bin+0x29DC, NULL, 0, 0x6BA};
 
 /*800CA198*/
 ModelInfo D_800CA198 = {
-    0x4ADFC0,
+    (s32)models_833940_bin,
     NULL,
     0x29DA,
     0x29DA,
@@ -21620,11 +21621,11 @@ ModelInfo D_800CA198 = {
     0x45,
 };
 
-/*800CA1C8*/ static ModelInfoUnkStruct1 D_800CA1C8 = {0x4B3448, NULL, 0, 0x198};
+/*800CA1C8*/ static ModelVertexInfo D_800CA1C8 = {(s32)models_8369E0_bin+0x23E8, NULL, 0, 0x198};
 
 /*800CA1D4*/
 ModelInfo D_800CA1D4 = {
-    0x4B1060,
+    (s32)models_8369E0_bin,
     NULL,
     0x23E8,
     0x23E8,
@@ -21645,11 +21646,11 @@ ModelInfo D_800CA1D4 = {
     0xDC,
 };
 
-/*800CA204*/ static ModelInfoUnkStruct1 D_800CA204 = {0x4B5450, NULL, 0, 0x270};
+/*800CA204*/ static ModelVertexInfo D_800CA204 = {(s32)models_838F60_bin+0x1E70, NULL, 0, 0x270};
 
 /*800CA210*/
 ModelInfo D_800CA210 = {
-    0x4B35E0,
+    (s32)models_838F60_bin,
     NULL,
     0x1E70,
     0x1E70,
@@ -21670,11 +21671,11 @@ ModelInfo D_800CA210 = {
     0x2D,
 };
 
-/*800CA240*/ static ModelInfoUnkStruct1 D_800CA240 = {0x5022EC, NULL, 0, 0x54};
+/*800CA240*/ static ModelVertexInfo D_800CA240 = {(s32)models_887AA0_bin+0x1CC, NULL, 0, 0x54};
 
 /*800CA24C*/
 ModelInfo D_800CA24C = {
-    0x502120,
+    (s32)models_887AA0_bin,
     NULL,
     0x1CC,
     0x1CC,
@@ -21695,11 +21696,11 @@ ModelInfo D_800CA24C = {
     0xE,
 };
 
-/*800CA27C*/ static ModelInfoUnkStruct1 D_800CA27C = {0x5027A0, NULL, 0, 0x18};
+/*800CA27C*/ static ModelVertexInfo D_800CA27C = {(s32)models_887CC0_bin+0x460, NULL, 0, 0x18};
 
 /*800CA288*/
 ModelInfo D_800CA288 = {
-    0x502340,
+    (s32)models_887CC0_bin,
     NULL,
     0x460,
     0x460,
@@ -21720,11 +21721,11 @@ ModelInfo D_800CA288 = {
     1,
 };
 
-/*800CA2B8*/ static ModelInfoUnkStruct1 D_800CA2B8 = {0x502C44, NULL, 0, 0x24};
+/*800CA2B8*/ static ModelVertexInfo D_800CA2B8 = {(s32)models_888140_bin+0x484, NULL, 0, 0x24};
 
 /*800CA2C4*/
 ModelInfo D_800CA2C4 = {
-    0x5027C0,
+    (s32)models_888140_bin,
     NULL,
     0x484,
     0x484,
@@ -21745,11 +21746,11 @@ ModelInfo D_800CA2C4 = {
     1,
 };
 
-/*800CA2F4*/ static ModelInfoUnkStruct1 D_800CA2F4 = {0x5030F4, NULL, 0, 0x24};
+/*800CA2F4*/ static ModelVertexInfo D_800CA2F4 = {(s32)models_8885F0_bin+0x484, NULL, 0, 0x24};
 
 /*800CA300*/
 ModelInfo D_800CA300 = {
-    0x502C70,
+    (s32)models_8885F0_bin,
     NULL,
     0x484,
     0x484,
@@ -21770,11 +21771,11 @@ ModelInfo D_800CA300 = {
     2,
 };
 
-/*800CA330*/ static ModelInfoUnkStruct1 D_800CA330 = {0x5035A4, NULL, 0, 0x24};
+/*800CA330*/ static ModelVertexInfo D_800CA330 = {(s32)models_888AA0_bin+0x484, NULL, 0, 0x24};
 
 /*800CA33C*/
 ModelInfo D_800CA33C = {
-    0x503120,
+    (s32)models_888AA0_bin,
     NULL,
     0x484,
     0x484,
@@ -21795,11 +21796,11 @@ ModelInfo D_800CA33C = {
     2,
 };
 
-/*800CA36C*/ static ModelInfoUnkStruct1 D_800CA36C = {0x503A54, NULL, 0, 0x24};
+/*800CA36C*/ static ModelVertexInfo D_800CA36C = {(s32)models_888F50_bin+0x484, NULL, 0, 0x24};
 
 /*800CA378*/
 ModelInfo D_800CA378 = {
-    0x5035D0,
+    (s32)models_888F50_bin,
     NULL,
     0x484,
     0x484,
@@ -21820,11 +21821,11 @@ ModelInfo D_800CA378 = {
     2,
 };
 
-/*800CA3A8*/ static ModelInfoUnkStruct1 D_800CA3A8 = {0x503C98, NULL, 0, 0x78};
+/*800CA3A8*/ static ModelVertexInfo D_800CA3A8 = {(s32)models_889400_bin+0x218, NULL, 0, 0x78};
 
 /*800CA3B4*/
 ModelInfo D_800CA3B4 = {
-    0x503A80,
+    (s32)models_889400_bin,
     NULL,
     0x218,
     0x218,
@@ -21845,11 +21846,11 @@ ModelInfo D_800CA3B4 = {
     7,
 };
 
-/*800CA3E4*/ static ModelInfoUnkStruct1 D_800CA3E4 = {0x503F28, NULL, 0, 0x78};
+/*800CA3E4*/ static ModelVertexInfo D_800CA3E4 = {(s32)models_889690_bin+0x218, NULL, 0, 0x78};
 
 /*800CA3F0*/
 ModelInfo D_800CA3F0 = {
-    0x503D10,
+    (s32)models_889690_bin,
     NULL,
     0x218,
     0x218,
@@ -21870,11 +21871,11 @@ ModelInfo D_800CA3F0 = {
     9,
 };
 
-/*800CA420*/ static ModelInfoUnkStruct1 D_800CA420 = {0x505708, NULL, 0, 0x3A8};
+/*800CA420*/ static ModelVertexInfo D_800CA420 = {(s32)models_889920_bin+0x1768, NULL, 0, 0x3A8};
 
 /*800CA42C*/
 ModelInfo D_800CA42C = {
-    0x503FA0,
+    (s32)models_889920_bin,
     NULL,
     0x1768,
     0x1768,
@@ -21895,11 +21896,11 @@ ModelInfo D_800CA42C = {
     0x13,
 };
 
-/*800CA45C*/ static ModelInfoUnkStruct1 D_800CA45C = {0x505F10, NULL, 0, 0x18};
+/*800CA45C*/ static ModelVertexInfo D_800CA45C = {(s32)models_88B430_bin+0x460, NULL, 0, 0x18};
 
 /*800CA468*/
 ModelInfo D_800CA468 = {
-    0x505AB0,
+    (s32)models_88B430_bin,
     NULL,
     0x460,
     0x460,
@@ -21920,11 +21921,11 @@ ModelInfo D_800CA468 = {
     1,
 };
 
-/*800CA498*/ static ModelInfoUnkStruct1 D_800CA498 = {0x506390, NULL, 0, 0x18};
+/*800CA498*/ static ModelVertexInfo D_800CA498 = {(s32)models_88B8B0_bin+0x460, NULL, 0, 0x18};
 
 /*800CA4A4*/
 ModelInfo D_800CA4A4 = {
-    0x505F30,
+    (s32)models_88B8B0_bin,
     NULL,
     0x460,
     0x460,
@@ -21945,11 +21946,11 @@ ModelInfo D_800CA4A4 = {
     1,
 };
 
-/*800CA4D4*/ static ModelInfoUnkStruct1 D_800CA4D4 = {0x506834, NULL, 0, 0x24};
+/*800CA4D4*/ static ModelVertexInfo D_800CA4D4 = {(s32)models_88BD30_bin+0x484, NULL, 0, 0x24};
 
 /*800CA4E0*/
 ModelInfo D_800CA4E0 = {
-    0x5063B0,
+    (s32)models_88BD30_bin,
     NULL,
     0x484,
     0x484,
@@ -21970,11 +21971,11 @@ ModelInfo D_800CA4E0 = {
     3,
 };
 
-/*800CA510*/ static ModelInfoUnkStruct1 D_800CA510 = {0x506CE4, NULL, 0, 0x24};
+/*800CA510*/ static ModelVertexInfo D_800CA510 = {(s32)models_88C1E0_bin+0x484, NULL, 0, 0x24};
 
 /*800CA51C*/
 ModelInfo D_800CA51C = {
-    0x506860,
+    (s32)models_88C1E0_bin,
     NULL,
     0x484,
     0x484,
@@ -21995,11 +21996,11 @@ ModelInfo D_800CA51C = {
     5,
 };
 
-/*800CA54C*/ static ModelInfoUnkStruct1 D_800CA54C = {0x507194, NULL, 0, 0x24};
+/*800CA54C*/ static ModelVertexInfo D_800CA54C = {(s32)models_88C690_bin+0x484, NULL, 0, 0x24};
 
 /*800CA558*/
 ModelInfo D_800CA558 = {
-    0x506D10,
+    (s32)models_88C690_bin,
     NULL,
     0x484,
     0x484,
@@ -22020,11 +22021,11 @@ ModelInfo D_800CA558 = {
     4,
 };
 
-/*800CA588*/ static ModelInfoUnkStruct1 D_800CA588 = {0x507644, NULL, 0, 0x24};
+/*800CA588*/ static ModelVertexInfo D_800CA588 = {(s32)models_88CB40_bin+0x484, NULL, 0, 0x24};
 
 /*800CA594*/
 ModelInfo D_800CA594 = {
-    0x5071C0,
+    (s32)models_88CB40_bin,
     NULL,
     0x484,
     0x484,
@@ -22045,11 +22046,11 @@ ModelInfo D_800CA594 = {
     3,
 };
 
-/*800CA5C4*/ static ModelInfoUnkStruct1 D_800CA5C4 = {0x509204, NULL, 0, 0x21C};
+/*800CA5C4*/ static ModelVertexInfo D_800CA5C4 = {(s32)models_88CFF0_bin+0x1B94, NULL, 0, 0x21C};
 
 /*800CA5D0*/
 ModelInfo D_800CA5D0 = {
-    0x507670,
+    (s32)models_88CFF0_bin,
     NULL,
     0x1B94,
     0x1B94,
@@ -22070,11 +22071,11 @@ ModelInfo D_800CA5D0 = {
     0x16,
 };
 
-/*800CA600*/ static ModelInfoUnkStruct1 D_800CA600 = {0x50AA10, NULL, 0, 0x180};
+/*800CA600*/ static ModelVertexInfo D_800CA600 = {(s32)models_88EDA0_bin+0x15F0, NULL, 0, 0x180};
 
 /*800CA60C*/
 ModelInfo D_800CA60C = {
-    0x509420,
+    (s32)models_88EDA0_bin,
     NULL,
     0x15F0,
     0x15F0,
@@ -22095,11 +22096,11 @@ ModelInfo D_800CA60C = {
     4,
 };
 
-/*800CA63C*/ static ModelInfoUnkStruct1 D_800CA63C = {0x50B4F8, NULL, 0, 0xA8};
+/*800CA63C*/ static ModelVertexInfo D_800CA63C = {(s32)models_890510_bin+0x968, NULL, 0, 0xA8};
 
 /*800CA648*/
 ModelInfo D_800CA648 = {
-    0x50AB90,
+    (s32)models_890510_bin,
     NULL,
     0x968,
     0x968,
@@ -22120,11 +22121,11 @@ ModelInfo D_800CA648 = {
     1,
 };
 
-/*800CA678*/ static ModelInfoUnkStruct1 D_800CA678 = {0x50C0F0, NULL, 0, 0x78};
+/*800CA678*/ static ModelVertexInfo D_800CA678 = {(s32)models_890F20_bin+0xB50, NULL, 0, 0x78};
 
 /*800CA684*/
 ModelInfo D_800CA684 = {
-    0x50B5A0,
+    (s32)models_890F20_bin,
     NULL,
     0xB50,
     0xB50,
@@ -22145,11 +22146,11 @@ ModelInfo D_800CA684 = {
     0x22,
 };
 
-/*800CA6B4*/ static ModelInfoUnkStruct1 D_800CA6B4 = {0x50CC9C, NULL, 0, 0x6C};
+/*800CA6B4*/ static ModelVertexInfo D_800CA6B4 = {(s32)models_891AF0_bin+0xB2C, NULL, 0, 0x6C};
 
 /*800CA6C0*/
 ModelInfo D_800CA6C0 = {
-    0x50C170,
+    (s32)models_891AF0_bin,
     NULL,
     0xB2C,
     0xB2C,
@@ -22170,11 +22171,11 @@ ModelInfo D_800CA6C0 = {
     0xC,
 };
 
-/*800CA6F0*/ static ModelInfoUnkStruct1 D_800CA6F0 = {0x50D0A8, NULL, 0, 0xAE};
+/*800CA6F0*/ static ModelVertexInfo D_800CA6F0 = {(s32)models_892690_bin+0x398, NULL, 0, 0xAE};
 
 /*800CA6FC*/
 ModelInfo D_800CA6FC = {
-    0x50CD10,
+    (s32)models_892690_bin,
     NULL,
     0x396,
     0x396,
@@ -22195,11 +22196,11 @@ ModelInfo D_800CA6FC = {
     0x2F,
 };
 
-/*800CA72C*/ static ModelInfoUnkStruct1 D_800CA72C = {0x50D4F8, NULL, 0, 0xAE};
+/*800CA72C*/ static ModelVertexInfo D_800CA72C = {(s32)models_892AE0_bin+0x398, NULL, 0, 0xAE};
 
 /*800CA738*/
 ModelInfo D_800CA738 = {
-    0x50D160,
+    (s32)models_892AE0_bin,
     NULL,
     0x396,
     0x396,
@@ -22220,11 +22221,11 @@ ModelInfo D_800CA738 = {
     0x2F,
 };
 
-/*800CA768*/ static ModelInfoUnkStruct1 D_800CA768 = {0x50E0C8, NULL, 0, 0x60};
+/*800CA768*/ static ModelVertexInfo D_800CA768 = {(s32)models_892F30_bin+0xB18, NULL, 0, 0x60};
 
 /*800CA774*/
 ModelInfo D_800CA774 = {
-    0x50D5B0,
+    (s32)models_892F30_bin,
     NULL,
     0xB18,
     0xB18,
@@ -22245,11 +22246,11 @@ ModelInfo D_800CA774 = {
     0x11,
 };
 
-/*800CA7A4*/ static ModelInfoUnkStruct1 D_800CA7A4 = {0x50E2FC, NULL, 0, 0x54};
+/*800CA7A4*/ static ModelVertexInfo D_800CA7A4 = {(s32)models_893AB0_bin+0x1CC, NULL, 0, 0x54};
 
 /*800CA7B0*/
 ModelInfo D_800CA7B0 = {
-    0x50E130,
+    (s32)models_893AB0_bin,
     NULL,
     0x1CC,
     0x1CC,
@@ -22270,11 +22271,11 @@ ModelInfo D_800CA7B0 = {
     0x10,
 };
 
-/*800CA7E0*/ static ModelInfoUnkStruct1 D_800CA7E0 = {0x50E7B0, NULL, 0, 0x18};
+/*800CA7E0*/ static ModelVertexInfo D_800CA7E0 = {(s32)models_893CD0_bin+0x460, NULL, 0, 0x18};
 
 /*800CA7EC*/
 ModelInfo D_800CA7EC = {
-    0x50E350,
+    (s32)models_893CD0_bin,
     NULL,
     0x460,
     0x460,
@@ -22295,11 +22296,11 @@ ModelInfo D_800CA7EC = {
     2,
 };
 
-/*800CA81C*/ static ModelInfoUnkStruct1 D_800CA81C = {0x518C94, NULL, 0, 0x6B4};
+/*800CA81C*/ static ModelVertexInfo D_800CA81C = {(s32)models_899090_bin+0x5584, NULL, 0, 0x6B4};
 
 /*800CA828*/
 ModelInfo D_800CA828 = {
-    0x513710,
+    (s32)models_899090_bin,
     NULL,
     0x5584,
     0x5584,
@@ -22320,11 +22321,11 @@ ModelInfo D_800CA828 = {
     0x15B,
 };
 
-/*800CA858*/ static ModelInfoUnkStruct1 D_800CA858 = {0x51A95C, NULL, 0, 0x2AC};
+/*800CA858*/ static ModelVertexInfo D_800CA858 = {(s32)models_89ECD0_bin+0x160C, NULL, 0, 0x2AC};
 
 /*800CA864*/
 ModelInfo D_800CA864 = {
-    0x519350,
+    (s32)models_89ECD0_bin,
     NULL,
     0x160C,
     0x160C,
@@ -22345,11 +22346,11 @@ ModelInfo D_800CA864 = {
     0x3B,
 };
 
-/*800CA894*/ static ModelInfoUnkStruct1 D_800CA894 = {0x51E33C, NULL, 0, 0x26A};
+/*800CA894*/ static ModelVertexInfo D_800CA894 = {(s32)models_8A0590_bin+0x372C, NULL, 0, 0x26A};
 
 /*800CA8A0*/
 ModelInfo D_800CA8A0 = {
-    0x51AC10,
+    (s32)models_8A0590_bin,
     NULL,
     0x372A,
     0x372A,
@@ -22370,11 +22371,11 @@ ModelInfo D_800CA8A0 = {
     0x15B,
 };
 
-/*800CA8D0*/ static ModelInfoUnkStruct1 D_800CA8D0 = {0x51FBBC, NULL, 0, 0x2AC};
+/*800CA8D0*/ static ModelVertexInfo D_800CA8D0 = {(s32)models_8A3F30_bin+0x160C, NULL, 0, 0x2AC};
 
 /*800CA8DC*/
 ModelInfo D_800CA8DC = {
-    0x51E5B0,
+    (s32)models_8A3F30_bin,
     NULL,
     0x160C,
     0x160C,
@@ -22395,11 +22396,11 @@ ModelInfo D_800CA8DC = {
     0x3B,
 };
 
-/*800CA90C*/ static ModelInfoUnkStruct1 D_800CA90C = {0x520B74, NULL, 0, 0xE4};
+/*800CA90C*/ static ModelVertexInfo D_800CA90C = {(s32)models_8A57F0_bin+0xD04, NULL, 0, 0xE4};
 
 /*800CA918*/
 ModelInfo D_800CA918 = {
-    0x51FE70,
+    (s32)models_8A57F0_bin,
     NULL,
     0xD04,
     0xD04,
@@ -22420,11 +22421,11 @@ ModelInfo D_800CA918 = {
     -3,
 };
 
-/*800CA948*/ static ModelInfoUnkStruct1 D_800CA948 = {0x548688, NULL, 0, 0x30};
+/*800CA948*/ static ModelVertexInfo D_800CA948 = {(s32)models_8CD760_bin+0x8A8, NULL, 0, 0x30};
 
 /*800CA954*/
 ModelInfo D_800CA954 = {
-    0x547DE0,
+    (s32)models_8CD760_bin,
     NULL,
     0x8A8,
     0x8A8,
@@ -22445,11 +22446,11 @@ ModelInfo D_800CA954 = {
     0x10,
 };
 
-/*800CA984*/ static ModelInfoUnkStruct1 D_800CA984 = {0x548F58, NULL, 0, 0x30};
+/*800CA984*/ static ModelVertexInfo D_800CA984 = {(s32)models_8CE040_bin+0x898, NULL, 0, 0x30};
 
 /*800CA990*/
 ModelInfo D_800CA990 = {
-    0x5486C0,
+    (s32)models_8CE040_bin,
     NULL,
     0x898,
     0x898,
@@ -22470,11 +22471,11 @@ ModelInfo D_800CA990 = {
     0xB,
 };
 
-/*800CA9C0*/ static ModelInfoUnkStruct1 D_800CA9C0 = {0x549838, NULL, 0, 0x30};
+/*800CA9C0*/ static ModelVertexInfo D_800CA9C0 = {(s32)models_8CE910_bin+0x8A8, NULL, 0, 0x30};
 
 /*800CA9CC*/
 ModelInfo D_800CA9CC = {
-    0x548F90,
+    (s32)models_8CE910_bin,
     NULL,
     0x8A8,
     0x8A8,
@@ -22495,11 +22496,11 @@ ModelInfo D_800CA9CC = {
     0xF,
 };
 
-/*800CA9FC*/ static ModelInfoUnkStruct1 D_800CA9FC = {0x54A108, NULL, 0, 0x30};
+/*800CA9FC*/ static ModelVertexInfo D_800CA9FC = {(s32)models_8CF1F0_bin+0x898, NULL, 0, 0x30};
 
 /*800CAA08*/
 ModelInfo D_800CAA08 = {
-    0x549870,
+    (s32)models_8CF1F0_bin,
     NULL,
     0x898,
     0x898,
@@ -22520,11 +22521,11 @@ ModelInfo D_800CAA08 = {
     0xB,
 };
 
-/*800CAA38*/ static ModelInfoUnkStruct1 D_800CAA38 = {0x54B10C, NULL, 0, 0x15C};
+/*800CAA38*/ static ModelVertexInfo D_800CAA38 = {(s32)models_8CFAC0_bin+0xFCC, NULL, 0, 0x15C};
 
 /*800CAA44*/
 ModelInfo D_800CAA44 = {
-    0x54A140,
+    (s32)models_8CFAC0_bin,
     NULL,
     0xFCC,
     0xFCC,
@@ -22545,11 +22546,11 @@ ModelInfo D_800CAA44 = {
     0x46,
 };
 
-/*800CAA74*/ static ModelInfoUnkStruct1 D_800CAA74 = {0x54BA40, NULL, 0, 0x126};
+/*800CAA74*/ static ModelVertexInfo D_800CAA74 = {(s32)models_8D0BF0_bin+0x7D0, NULL, 0, 0x126};
 
 /*800CAA80*/
 ModelInfo D_800CAA80 = {
-    0x54B270,
+    (s32)models_8D0BF0_bin,
     NULL,
     0x7CE,
     0x7CE,
@@ -22570,11 +22571,11 @@ ModelInfo D_800CAA80 = {
     0x52,
 };
 
-/*800CAAB0*/ static ModelInfoUnkStruct1 D_800CAAB0 = {0x54E6F0, NULL, 0, 0x28E};
+/*800CAAB0*/ static ModelVertexInfo D_800CAAB0 = {(s32)models_8D14F0_bin+0x2B80, NULL, 0, 0x28E};
 
 /*800CAABC*/
 ModelInfo D_800CAABC = {
-    0x54BB70,
+    (s32)models_8D14F0_bin,
     NULL,
     0x2B7E,
     0x2B7E,
@@ -22595,11 +22596,11 @@ ModelInfo D_800CAABC = {
     0x38,
 };
 
-/*800CAAEC*/ static ModelInfoUnkStruct1 D_800CAAEC = {0x551524, NULL, 0, 0x2AC};
+/*800CAAEC*/ static ModelVertexInfo D_800CAAEC = {(s32)models_8D4300_bin+0x2BA4, NULL, 0, 0x2AC};
 
 /*800CAAF8*/
 ModelInfo D_800CAAF8 = {
-    0x54E980,
+    (s32)models_8D4300_bin,
     NULL,
     0x2BA4,
     0x2BA4,
@@ -22620,11 +22621,11 @@ ModelInfo D_800CAAF8 = {
     0x38,
 };
 
-/*800CAB28*/ static ModelInfoUnkStruct1 D_800CAB28 = {0x552BD0, NULL, 0, 0xA8};
+/*800CAB28*/ static ModelVertexInfo D_800CAB28 = {(s32)models_8D7150_bin+0x1400, NULL, 0, 0xA8};
 
 /*800CAB34*/
 ModelInfo D_800CAB34 = {
-    0x5517D0,
+    (s32)models_8D7150_bin,
     NULL,
     0x1400,
     0x1400,
@@ -22645,11 +22646,11 @@ ModelInfo D_800CAB34 = {
     0x2B,
 };
 
-/*800CAB64*/ static ModelInfoUnkStruct1 D_800CAB64 = {0x553160, NULL, 0, 0x48};
+/*800CAB64*/ static ModelVertexInfo D_800CAB64 = {(s32)models_8D8600_bin+0x4E0, NULL, 0, 0x48};
 
 /*800CAB70*/
 ModelInfo D_800CAB70 = {
-    0x552C80,
+    (s32)models_8D8600_bin,
     NULL,
     0x4E0,
     0x4E0,
@@ -22670,11 +22671,11 @@ ModelInfo D_800CAB70 = {
     0x24,
 };
 
-/*800CABA0*/ static ModelInfoUnkStruct1 D_800CABA0 = {0x553AE8, NULL, 0, 0x66};
+/*800CABA0*/ static ModelVertexInfo D_800CABA0 = {(s32)models_8D8B30_bin+0x938, NULL, 0, 0x66};
 
 /*800CABAC*/
 ModelInfo D_800CABAC = {
-    0x5531B0,
+    (s32)models_8D8B30_bin,
     NULL,
     0x936,
     0x936,
@@ -22695,11 +22696,11 @@ ModelInfo D_800CABAC = {
     0x20,
 };
 
-/*800CABDC*/ static ModelInfoUnkStruct1 D_800CABDC = {0x554030, NULL, 0, 0x48};
+/*800CABDC*/ static ModelVertexInfo D_800CABDC = {(s32)models_8D94D0_bin+0x4E0, NULL, 0, 0x48};
 
 /*800CABE8*/
 ModelInfo D_800CABE8 = {
-    0x553B50,
+    (s32)models_8D94D0_bin,
     NULL,
     0x4E0,
     0x4E0,
@@ -22720,11 +22721,11 @@ ModelInfo D_800CABE8 = {
     0x23,
 };
 
-/*800CAC18*/ static ModelInfoUnkStruct1 D_800CAC18 = {0x5549B8, NULL, 0, 0x66};
+/*800CAC18*/ static ModelVertexInfo D_800CAC18 = {(s32)models_8D9A00_bin+0x938, NULL, 0, 0x66};
 
 /*800CAC24*/
 ModelInfo D_800CAC24 = {
-    0x554080,
+    (s32)models_8D9A00_bin,
     NULL,
     0x936,
     0x936,
@@ -22745,11 +22746,11 @@ ModelInfo D_800CAC24 = {
     0x21,
 };
 
-/*800CAC54*/ static ModelInfoUnkStruct1 D_800CAC54 = {0x554F00, NULL, 0, 0x48};
+/*800CAC54*/ static ModelVertexInfo D_800CAC54 = {(s32)models_8DA3A0_bin+0x4E0, NULL, 0, 0x48};
 
 /*800CAC60*/
 ModelInfo D_800CAC60 = {
-    0x554A20,
+    (s32)models_8DA3A0_bin,
     NULL,
     0x4E0,
     0x4E0,
@@ -22770,11 +22771,11 @@ ModelInfo D_800CAC60 = {
     0x24,
 };
 
-/*800CAC90*/ static ModelInfoUnkStruct1 D_800CAC90 = {0x555888, NULL, 0, 0x66};
+/*800CAC90*/ static ModelVertexInfo D_800CAC90 = {(s32)models_8DA8D0_bin+0x938, NULL, 0, 0x66};
 
 /*800CAC9C*/
 ModelInfo D_800CAC9C = {
-    0x554F50,
+    (s32)models_8DA8D0_bin,
     NULL,
     0x936,
     0x936,
@@ -22795,11 +22796,11 @@ ModelInfo D_800CAC9C = {
     0x24,
 };
 
-/*800CACCC*/ static ModelInfoUnkStruct1 D_800CACCC = {0x555DD0, NULL, 0, 0x48};
+/*800CACCC*/ static ModelVertexInfo D_800CACCC = {(s32)models_8DB270_bin+0x4E0, NULL, 0, 0x48};
 
 /*800CACD8*/
 ModelInfo D_800CACD8 = {
-    0x5558F0,
+    (s32)models_8DB270_bin,
     NULL,
     0x4E0,
     0x4E0,
@@ -22820,11 +22821,11 @@ ModelInfo D_800CACD8 = {
     0x24,
 };
 
-/*800CAD08*/ static ModelInfoUnkStruct1 D_800CAD08 = {0x556758, NULL, 0, 0x66};
+/*800CAD08*/ static ModelVertexInfo D_800CAD08 = {(s32)models_8DB7A0_bin+0x938, NULL, 0, 0x66};
 
 /*800CAD14*/
 ModelInfo D_800CAD14 = {
-    0x555E20,
+    (s32)models_8DB7A0_bin,
     NULL,
     0x936,
     0x936,
@@ -22845,11 +22846,11 @@ ModelInfo D_800CAD14 = {
     0x20,
 };
 
-/*800CAD44*/ static ModelInfoUnkStruct1 D_800CAD44 = {0x556CA0, NULL, 0, 0x48};
+/*800CAD44*/ static ModelVertexInfo D_800CAD44 = {(s32)models_8DC140_bin+0x4E0, NULL, 0, 0x48};
 
 /*800CAD50*/
 ModelInfo D_800CAD50 = {
-    0x5567C0,
+    (s32)models_8DC140_bin,
     NULL,
     0x4E0,
     0x4E0,
@@ -22870,11 +22871,11 @@ ModelInfo D_800CAD50 = {
     0x23,
 };
 
-/*800CAD80*/ static ModelInfoUnkStruct1 D_800CAD80 = {0x557628, NULL, 0, 0x66};
+/*800CAD80*/ static ModelVertexInfo D_800CAD80 = {(s32)models_8DC670_bin+0x938, NULL, 0, 0x66};
 
 /*800CAD8C*/
 ModelInfo D_800CAD8C = {
-    0x556CF0,
+    (s32)models_8DC670_bin,
     NULL,
     0x936,
     0x936,
@@ -22895,11 +22896,11 @@ ModelInfo D_800CAD8C = {
     0x21,
 };
 
-/*800CADBC*/ static ModelInfoUnkStruct1 D_800CADBC = {0x557B70, NULL, 0, 0x48};
+/*800CADBC*/ static ModelVertexInfo D_800CADBC = {(s32)models_8DD010_bin+0x4E0, NULL, 0, 0x48};
 
 /*800CADC8*/
 ModelInfo D_800CADC8 = {
-    0x557690,
+    (s32)models_8DD010_bin,
     NULL,
     0x4E0,
     0x4E0,
@@ -22920,11 +22921,11 @@ ModelInfo D_800CADC8 = {
     0x25,
 };
 
-/*800CADF8*/ static ModelInfoUnkStruct1 D_800CADF8 = {0x5584F8, NULL, 0, 0x66};
+/*800CADF8*/ static ModelVertexInfo D_800CADF8 = {(s32)models_8DD540_bin+0x938, NULL, 0, 0x66};
 
 /*800CAE04*/
 ModelInfo D_800CAE04 = {
-    0x557BC0,
+    (s32)models_8DD540_bin,
     NULL,
     0x936,
     0x936,
@@ -22945,11 +22946,11 @@ ModelInfo D_800CAE04 = {
     0x24,
 };
 
-/*800CAE34*/ static ModelInfoUnkStruct1 D_800CAE34 = {0x5596E4, NULL, 0, 0x6C};
+/*800CAE34*/ static ModelVertexInfo D_800CAE34 = {(s32)models_8DDEE0_bin+0x1184, NULL, 0, 0x6C};
 
 /*800CAE40*/
 ModelInfo D_800CAE40 = {
-    0x558560,
+    (s32)models_8DDEE0_bin,
     NULL,
     0x1184,
     0x1184,
@@ -22970,11 +22971,11 @@ ModelInfo D_800CAE40 = {
     0x29,
 };
 
-/*800CAE70*/ static ModelInfoUnkStruct1 D_800CAE70 = {0x55A938, NULL, 0, 0xAE};
+/*800CAE70*/ static ModelVertexInfo D_800CAE70 = {(s32)models_8DF0D0_bin+0x11E8, NULL, 0, 0xAE};
 
 /*800CAE7C*/
 ModelInfo D_800CAE7C = {
-    0x559750,
+    (s32)models_8DF0D0_bin,
     NULL,
     0x11E6,
     0x11E6,
@@ -22995,11 +22996,11 @@ ModelInfo D_800CAE7C = {
     0x2B,
 };
 
-/*800CAEAC*/ static ModelInfoUnkStruct1 D_800CAEAC = {0x55B878, NULL, 0, 0xDE};
+/*800CAEAC*/ static ModelVertexInfo D_800CAEAC = {(s32)models_8E0370_bin+0xE88, NULL, 0, 0xDE};
 
 /*800CAEB8*/
 ModelInfo D_800CAEB8 = {
-    0x55A9F0,
+    (s32)models_8E0370_bin,
     NULL,
     0xE86,
     0xE86,
@@ -23020,11 +23021,11 @@ ModelInfo D_800CAEB8 = {
     0x2C,
 };
 
-/*800CAEE8*/ static ModelInfoUnkStruct1 D_800CAEE8 = {0x55CAE4, NULL, 0, 0x6C};
+/*800CAEE8*/ static ModelVertexInfo D_800CAEE8 = {(s32)models_8E12E0_bin+0x1184, NULL, 0, 0x6C};
 
 /*800CAEF4*/
 ModelInfo D_800CAEF4 = {
-    0x55B960,
+    (s32)models_8E12E0_bin,
     NULL,
     0x1184,
     0x1184,
@@ -23045,11 +23046,11 @@ ModelInfo D_800CAEF4 = {
     0x26,
 };
 
-/*800CAF24*/ static ModelInfoUnkStruct1 D_800CAF24 = {0x579558, NULL, 0, 0xD8};
+/*800CAF24*/ static ModelVertexInfo D_800CAF24 = {(s32)models_8FE290_bin+0xC48, NULL, 0, 0xD8};
 
 /*800CAF30*/
 ModelInfo D_800CAF30 = {
-    0x578910,
+    (s32)models_8FE290_bin,
     NULL,
     0xC48,
     0xC48,
@@ -23070,11 +23071,11 @@ ModelInfo D_800CAF30 = {
     0x2B,
 };
 
-/*800CAF60*/ static ModelInfoUnkStruct1 D_800CAF60 = {0x57A278, NULL, 0, 0xD8};
+/*800CAF60*/ static ModelVertexInfo D_800CAF60 = {(s32)models_8FEFB0_bin+0xC48, NULL, 0, 0xD8};
 
 /*800CAF6C*/
 ModelInfo D_800CAF6C = {
-    0x579630,
+    (s32)models_8FEFB0_bin,
     NULL,
     0xC48,
     0xC48,
@@ -23095,11 +23096,11 @@ ModelInfo D_800CAF6C = {
     0x2C,
 };
 
-/*800CAF9C*/ static ModelInfoUnkStruct1 D_800CAF9C = {0x57B6A4, NULL, 0, 0x144};
+/*800CAF9C*/ static ModelVertexInfo D_800CAF9C = {(s32)models_8FFCD0_bin+0x1354, NULL, 0, 0x144};
 
 /*800CAFA8*/
 ModelInfo D_800CAFA8 = {
-    0x57A350,
+    (s32)models_8FFCD0_bin,
     NULL,
     0x1354,
     0x1354,
@@ -23120,11 +23121,11 @@ ModelInfo D_800CAFA8 = {
     0x3C,
 };
 
-/*800CAFD8*/ static ModelInfoUnkStruct1 D_800CAFD8 = {0x57CB34, NULL, 0, 0x132};
+/*800CAFD8*/ static ModelVertexInfo D_800CAFD8 = {(s32)models_901170_bin+0x1344, NULL, 0, 0x132};
 
 /*800CAFE4*/
 ModelInfo D_800CAFE4 = {
-    0x57B7F0,
+    (s32)models_901170_bin,
     NULL,
     0x1342,
     0x1342,
@@ -23145,11 +23146,11 @@ ModelInfo D_800CAFE4 = {
     0x3C,
 };
 
-/*800CB014*/ static ModelInfoUnkStruct1 D_800CB014 = {0x57E194, NULL, 0, 0x162};
+/*800CB014*/ static ModelVertexInfo D_800CB014 = {(s32)models_9025F0_bin+0x1524, NULL, 0, 0x162};
 
 /*800CB020*/
 ModelInfo D_800CB020 = {
-    0x57CC70,
+    (s32)models_9025F0_bin,
     NULL,
     0x1522,
     0x1522,
@@ -23170,11 +23171,11 @@ ModelInfo D_800CB020 = {
     0x1A,
 };
 
-/*800CB050*/ static ModelInfoUnkStruct1 D_800CB050 = {0x57F824, NULL, 0, 0x162};
+/*800CB050*/ static ModelVertexInfo D_800CB050 = {(s32)models_903C80_bin+0x1524, NULL, 0, 0x162};
 
 /*800CB05C*/
 ModelInfo D_800CB05C = {
-    0x57E300,
+    (s32)models_903C80_bin,
     NULL,
     0x1522,
     0x1522,
@@ -23195,11 +23196,11 @@ ModelInfo D_800CB05C = {
     0x1A,
 };
 
-/*800CB08C*/ static ModelInfoUnkStruct1 D_800CB08C = {0x5812EC, NULL, 0, 0x12C};
+/*800CB08C*/ static ModelVertexInfo D_800CB08C = {(s32)models_905310_bin+0x195C, NULL, 0, 0x12C};
 
 /*800CB098*/
 ModelInfo D_800CB098 = {
-    0x57F990,
+    (s32)models_905310_bin,
     NULL,
     0x195C,
     0x195C,
@@ -23220,11 +23221,11 @@ ModelInfo D_800CB098 = {
     0x26,
 };
 
-/*800CB0C8*/ static ModelInfoUnkStruct1 D_800CB0C8 = {0x582D7C, NULL, 0, 0x12C};
+/*800CB0C8*/ static ModelVertexInfo D_800CB0C8 = {(s32)models_906DA0_bin+0x195C, NULL, 0, 0x12C};
 
 /*800CB0D4*/
 ModelInfo D_800CB0D4 = {
-    0x581420,
+    (s32)models_906DA0_bin,
     NULL,
     0x195C,
     0x195C,
@@ -23245,11 +23246,11 @@ ModelInfo D_800CB0D4 = {
     0x26,
 };
 
-/*800CB104*/ static ModelInfoUnkStruct1 D_800CB104 = {0x583E58, NULL, 0, 0x1CE};
+/*800CB104*/ static ModelVertexInfo D_800CB104 = {(s32)models_908830_bin+0xFA8, NULL, 0, 0x1CE};
 
 /*800CB110*/
 ModelInfo D_800CB110 = {
-    0x582EB0,
+    (s32)models_908830_bin,
     NULL,
     0xFA6,
     0xFA6,
@@ -23270,11 +23271,11 @@ ModelInfo D_800CB110 = {
     0x19,
 };
 
-/*800CB140*/ static ModelInfoUnkStruct1 D_800CB140 = {0x584FD8, NULL, 0, 0x1CE};
+/*800CB140*/ static ModelVertexInfo D_800CB140 = {(s32)models_9099B0_bin+0xFA8, NULL, 0, 0x1CE};
 
 /*800CB14C*/
 ModelInfo D_800CB14C = {
-    0x584030,
+    (s32)models_9099B0_bin,
     NULL,
     0xFA6,
     0xFA6,
@@ -23295,11 +23296,11 @@ ModelInfo D_800CB14C = {
     0x19,
 };
 
-/*800CB17C*/ static ModelInfoUnkStruct1 D_800CB17C = {0x586CA4, NULL, 0, 0x3B4};
+/*800CB17C*/ static ModelVertexInfo D_800CB17C = {(s32)models_90AB30_bin+0x1AF4, NULL, 0, 0x3B4};
 
 /*800CB188*/
 ModelInfo D_800CB188 = {
-    0x5851B0,
+    (s32)models_90AB30_bin,
     NULL,
     0x1AF4,
     0x1AF4,
@@ -23320,11 +23321,11 @@ ModelInfo D_800CB188 = {
     0x45,
 };
 
-/*800CB1B8*/ static ModelInfoUnkStruct1 D_800CB1B8 = {0x58832C, NULL, 0, 0x20A};
+/*800CB1B8*/ static ModelVertexInfo D_800CB1B8 = {(s32)models_90C9E0_bin+0x12CC, NULL, 0, 0x20A};
 
 /*800CB1C4*/
 ModelInfo D_800CB1C4 = {
-    0x587060,
+    (s32)models_90C9E0_bin,
     NULL,
     0x12CA,
     0x12CA,
@@ -23345,11 +23346,11 @@ ModelInfo D_800CB1C4 = {
     0x11,
 };
 
-/*800CB1F4*/ static ModelInfoUnkStruct1 D_800CB1F4 = {0x588C10, NULL, 0, 0xAE};
+/*800CB1F4*/ static ModelVertexInfo D_800CB1F4 = {(s32)models_90DEC0_bin+0x6D0, NULL, 0, 0xAE};
 
 /*800CB200*/
 ModelInfo D_800CB200 = {
-    0x588540,
+    (s32)models_90DEC0_bin,
     NULL,
     0x6CE,
     0x6CE,
@@ -23370,11 +23371,11 @@ ModelInfo D_800CB200 = {
     0x40,
 };
 
-/*800CB230*/ static ModelInfoUnkStruct1 D_800CB230 = {0x589390, NULL, 0, 0xAE};
+/*800CB230*/ static ModelVertexInfo D_800CB230 = {(s32)models_90E640_bin+0x6D0, NULL, 0, 0xAE};
 
 /*800CB23C*/
 ModelInfo D_800CB23C = {
-    0x588CC0,
+    (s32)models_90E640_bin,
     NULL,
     0x6CE,
     0x6CE,
@@ -23395,11 +23396,11 @@ ModelInfo D_800CB23C = {
     0x40,
 };
 
-/*800CB26C*/ static ModelInfoUnkStruct1 D_800CB26C = {0x58A14C, NULL, 0, 0x42};
+/*800CB26C*/ static ModelVertexInfo D_800CB26C = {(s32)models_90EDC0_bin+0xD0C, NULL, 0, 0x42};
 
 /*800CB278*/
 ModelInfo D_800CB278 = {
-    0x589440,
+    (s32)models_90EDC0_bin,
     NULL,
     0xD0A,
     0xD0A,
@@ -23420,11 +23421,11 @@ ModelInfo D_800CB278 = {
     0x3F,
 };
 
-/*800CB2A8*/ static ModelInfoUnkStruct1 D_800CB2A8 = {0x58A600, NULL, 0, 0x1E};
+/*800CB2A8*/ static ModelVertexInfo D_800CB2A8 = {(s32)models_90FB10_bin+0x470, NULL, 0, 0x1E};
 
 /*800CB2B4*/
 ModelInfo D_800CB2B4 = {
-    0x58A190,
+    (s32)models_90FB10_bin,
     NULL,
     0x46E,
     0x46E,
@@ -23445,11 +23446,11 @@ ModelInfo D_800CB2B4 = {
     0x42,
 };
 
-/*800CB2E4*/ static ModelInfoUnkStruct1 D_800CB2E4 = {0x58AAB8, NULL, 0, 0x30};
+/*800CB2E4*/ static ModelVertexInfo D_800CB2E4 = {(s32)models_90FFA0_bin+0x498, NULL, 0, 0x30};
 
 /*800CB2F0*/
 ModelInfo D_800CB2F0 = {
-    0x58A620,
+    (s32)models_90FFA0_bin,
     NULL,
     0x498,
     0x498,
@@ -23470,11 +23471,11 @@ ModelInfo D_800CB2F0 = {
     0x1B,
 };
 
-/*800CB320*/ static ModelInfoUnkStruct1 D_800CB320 = {0x58AFA0, NULL, 0, 0x36};
+/*800CB320*/ static ModelVertexInfo D_800CB320 = {(s32)models_910470_bin+0x4B0, NULL, 0, 0x36};
 
 /*800CB32C*/
 ModelInfo D_800CB32C = {
-    0x58AAF0,
+    (s32)models_910470_bin,
     NULL,
     0x4AE,
     0x4AE,
@@ -23495,11 +23496,11 @@ ModelInfo D_800CB32C = {
     0x26,
 };
 
-/*800CB35C*/ static ModelInfoUnkStruct1 D_800CB35C = {0x58B510, NULL, 0, 0x60};
+/*800CB35C*/ static ModelVertexInfo D_800CB35C = {(s32)models_910960_bin+0x530, NULL, 0, 0x60};
 
 /*800CB368*/
 ModelInfo D_800CB368 = {
-    0x58AFE0,
+    (s32)models_910960_bin,
     NULL,
     0x530,
     0x530,
@@ -23520,11 +23521,11 @@ ModelInfo D_800CB368 = {
     0x37,
 };
 
-/*800CB398*/ static ModelInfoUnkStruct1 D_800CB398 = {0x58BAA0, NULL, 0, 0x60};
+/*800CB398*/ static ModelVertexInfo D_800CB398 = {(s32)models_910EF0_bin+0x530, NULL, 0, 0x60};
 
 /*800CB3A4*/
 ModelInfo D_800CB3A4 = {
-    0x58B570,
+    (s32)models_910EF0_bin,
     NULL,
     0x530,
     0x530,
@@ -23545,11 +23546,11 @@ ModelInfo D_800CB3A4 = {
     0x37,
 };
 
-/*800CB3D4*/ static ModelInfoUnkStruct1 D_800CB3D4 = {0x58E6A0, NULL, 0, 0x2A6};
+/*800CB3D4*/ static ModelVertexInfo D_800CB3D4 = {(s32)models_911480_bin+0x2BA0, NULL, 0, 0x2A6};
 
 /*800CB3E0*/
 ModelInfo D_800CB3E0 = {
-    0x58BB00,
+    (s32)models_911480_bin,
     NULL,
     0x2B9E,
     0x2B9E,
@@ -23570,11 +23571,11 @@ ModelInfo D_800CB3E0 = {
     0x13C,
 };
 
-/*800CB410*/ static ModelInfoUnkStruct1 D_800CB410 = {0x58F1F0, NULL, 0, 0x30};
+/*800CB410*/ static ModelVertexInfo D_800CB410 = {(s32)models_9142D0_bin+0x8A0, NULL, 0, 0x30};
 
 /*800CB41C*/
 ModelInfo D_800CB41C = {
-    0x58E950,
+    (s32)models_9142D0_bin,
     NULL,
     0x8A0,
     0x8A0,
@@ -23595,11 +23596,11 @@ ModelInfo D_800CB41C = {
     0x95,
 };
 
-/*800CB44C*/ static ModelInfoUnkStruct1 D_800CB44C = {0x58FAC0, NULL, 0, 0x30};
+/*800CB44C*/ static ModelVertexInfo D_800CB44C = {(s32)models_914BA0_bin+0x8A0, NULL, 0, 0x30};
 
 /*800CB458*/
 ModelInfo D_800CB458 = {
-    0x58F220,
+    (s32)models_914BA0_bin,
     NULL,
     0x8A0,
     0x8A0,
@@ -23620,11 +23621,11 @@ ModelInfo D_800CB458 = {
     0x95,
 };
 
-/*800CB488*/ static ModelInfoUnkStruct1 D_800CB488 = {0x5903BC, NULL, 0, 0x3C};
+/*800CB488*/ static ModelVertexInfo D_800CB488 = {(s32)models_915470_bin+0x8CC, NULL, 0, 0x3C};
 
 /*800CB494*/
 ModelInfo D_800CB494 = {
-    0x58FAF0,
+    (s32)models_915470_bin,
     NULL,
     0x8CC,
     0x8CC,
@@ -23645,11 +23646,11 @@ ModelInfo D_800CB494 = {
     0x26,
 };
 
-/*800CB4C4*/ static ModelInfoUnkStruct1 D_800CB4C4 = {0x590CCC, NULL, 0, 0x3C};
+/*800CB4C4*/ static ModelVertexInfo D_800CB4C4 = {(s32)models_915D80_bin+0x8CC, NULL, 0, 0x3C};
 
 /*800CB4D0*/
 ModelInfo D_800CB4D0 = {
-    0x590400,
+    (s32)models_915D80_bin,
     NULL,
     0x8CC,
     0x8CC,
@@ -23670,11 +23671,11 @@ ModelInfo D_800CB4D0 = {
     0x26,
 };
 
-/*800CB500*/ static ModelInfoUnkStruct1 D_800CB500 = {0x592694, NULL, 0, 0x84};
+/*800CB500*/ static ModelVertexInfo D_800CB500 = {(s32)models_916690_bin+0x1984, NULL, 0, 0x84};
 
 /*800CB50C*/
 ModelInfo D_800CB50C = {
-    0x590D10,
+    (s32)models_916690_bin,
     NULL,
     0x1984,
     0x1984,
@@ -23695,11 +23696,11 @@ ModelInfo D_800CB50C = {
     0x126,
 };
 
-/*800CB53C*/ static ModelInfoUnkStruct1 D_800CB53C = {0x5940A4, NULL, 0, 0x84};
+/*800CB53C*/ static ModelVertexInfo D_800CB53C = {(s32)models_9180A0_bin+0x1984, NULL, 0, 0x84};
 
 /*800CB548*/
 ModelInfo D_800CB548 = {
-    0x592720,
+    (s32)models_9180A0_bin,
     NULL,
     0x1984,
     0x1984,
@@ -23720,11 +23721,11 @@ ModelInfo D_800CB548 = {
     0x126,
 };
 
-/*800CB578*/ static ModelInfoUnkStruct1 D_800CB578 = {0x5949FC, NULL, 0, 0x3C};
+/*800CB578*/ static ModelVertexInfo D_800CB578 = {(s32)models_919AB0_bin+0x8CC, NULL, 0, 0x3C};
 
 /*800CB584*/
 ModelInfo D_800CB584 = {
-    0x594130,
+    (s32)models_919AB0_bin,
     NULL,
     0x8CC,
     0x8CC,
@@ -23745,11 +23746,11 @@ ModelInfo D_800CB584 = {
     0x193,
 };
 
-/*800CB5B4*/ static ModelInfoUnkStruct1 D_800CB5B4 = {0x59530C, NULL, 0, 0x3C};
+/*800CB5B4*/ static ModelVertexInfo D_800CB5B4 = {(s32)models_91A3C0_bin+0x8CC, NULL, 0, 0x3C};
 
 /*800CB5C0*/
 ModelInfo D_800CB5C0 = {
-    0x594A40,
+    (s32)models_91A3C0_bin,
     NULL,
     0x8CC,
     0x8CC,
@@ -23770,11 +23771,11 @@ ModelInfo D_800CB5C0 = {
     0x193,
 };
 
-/*800CB5F0*/ static ModelInfoUnkStruct1 D_800CB5F0 = {0x5FFC3C, NULL, 0, 0x1F2};
+/*800CB5F0*/ static ModelVertexInfo D_800CB5F0 = {(s32)models_9836C0_bin+0x1EFC, NULL, 0, 0x1F2};
 
 /*800CB5FC*/
 ModelInfo D_800CB5FC = {
-    0x5FDD40,
+    (s32)models_9836C0_bin,
     NULL,
     0x1EFA,
     0x1EFA,
@@ -23795,11 +23796,11 @@ ModelInfo D_800CB5FC = {
     0x1E,
 };
 
-/*800CB62C*/ static ModelInfoUnkStruct1 D_800CB62C = {0x601008, NULL, 0, 0x90};
+/*800CB62C*/ static ModelVertexInfo D_800CB62C = {(s32)models_9857B0_bin+0x11D8, NULL, 0, 0x90};
 
 /*800CB638*/
 ModelInfo D_800CB638 = {
-    0x5FFE30,
+    (s32)models_9857B0_bin,
     NULL,
     0x11D8,
     0x11D8,
@@ -23820,11 +23821,11 @@ ModelInfo D_800CB638 = {
     4,
 };
 
-/*800CB668*/ static ModelInfoUnkStruct1 D_800CB668 = {0x60265C, NULL, 0, 0x174};
+/*800CB668*/ static ModelVertexInfo D_800CB668 = {(s32)models_986A20_bin+0x15BC, NULL, 0, 0x174};
 
 /*800CB674*/
 ModelInfo D_800CB674 = {
-    0x6010A0,
+    (s32)models_986A20_bin,
     NULL,
     0x15BC,
     0x15BC,
@@ -23845,11 +23846,11 @@ ModelInfo D_800CB674 = {
     0x37,
 };
 
-/*800CB6A4*/ static ModelInfoUnkStruct1 D_800CB6A4 = {0x602D08, NULL, 0, 0x66};
+/*800CB6A4*/ static ModelVertexInfo D_800CB6A4 = {(s32)models_988150_bin+0x538, NULL, 0, 0x66};
 
 /*800CB6B0*/
 ModelInfo D_800CB6B0 = {
-    0x6027D0,
+    (s32)models_988150_bin,
     NULL,
     0x536,
     0x536,
@@ -23870,11 +23871,11 @@ ModelInfo D_800CB6B0 = {
     5,
 };
 
-/*800CB6E0*/ static ModelInfoUnkStruct1 D_800CB6E0 = {0x60397C, NULL, 0, 0xCC};
+/*800CB6E0*/ static ModelVertexInfo D_800CB6E0 = {(s32)models_9886F0_bin+0xC0C, NULL, 0, 0xCC};
 
 /*800CB6EC*/
 ModelInfo D_800CB6EC = {
-    0x602D70,
+    (s32)models_9886F0_bin,
     NULL,
     0xC0C,
     0xC0C,
@@ -23895,11 +23896,11 @@ ModelInfo D_800CB6EC = {
     3,
 };
 
-/*800CB71C*/ static ModelInfoUnkStruct1 D_800CB71C = {0x6041C0, NULL, 0, 0x78};
+/*800CB71C*/ static ModelVertexInfo D_800CB71C = {(s32)models_9893D0_bin+0x770, NULL, 0, 0x78};
 
 /*800CB728*/
 ModelInfo D_800CB728 = {
-    0x603A50,
+    (s32)models_9893D0_bin,
     NULL,
     0x770,
     0x770,
@@ -23920,11 +23921,11 @@ ModelInfo D_800CB728 = {
     1,
 };
 
-/*800CB758*/ static ModelInfoUnkStruct1 D_800CB758 = {0x604E34, NULL, 0, 0xA2};
+/*800CB758*/ static ModelVertexInfo D_800CB758 = {(s32)models_989BC0_bin+0xBF4, NULL, 0, 0xA2};
 
 /*800CB764*/
 ModelInfo D_800CB764 = {
-    0x604240,
+    (s32)models_989BC0_bin,
     NULL,
     0xBF2,
     0xBF2,
@@ -23945,11 +23946,11 @@ ModelInfo D_800CB764 = {
     2,
 };
 
-/*800CB794*/ static ModelInfoUnkStruct1 D_800CB794 = {0x605400, NULL, 0, 0x60};
+/*800CB794*/ static ModelVertexInfo D_800CB794 = {(s32)models_98A860_bin+0x520, NULL, 0, 0x60};
 
 /*800CB7A0*/
 ModelInfo D_800CB7A0 = {
-    0x604EE0,
+    (s32)models_98A860_bin,
     NULL,
     0x520,
     0x520,
@@ -23970,11 +23971,11 @@ ModelInfo D_800CB7A0 = {
     8,
 };
 
-/*800CB7D0*/ static ModelInfoUnkStruct1 D_800CB7D0 = {0x605998, NULL, 0, 0x66};
+/*800CB7D0*/ static ModelVertexInfo D_800CB7D0 = {(s32)models_98ADE0_bin+0x538, NULL, 0, 0x66};
 
 /*800CB7DC*/
 ModelInfo D_800CB7DC = {
-    0x605460,
+    (s32)models_98ADE0_bin,
     NULL,
     0x536,
     0x536,
@@ -23995,11 +23996,11 @@ ModelInfo D_800CB7DC = {
     5,
 };
 
-/*800CB80C*/ static ModelInfoUnkStruct1 D_800CB80C = {0x60660C, NULL, 0, 0xCC};
+/*800CB80C*/ static ModelVertexInfo D_800CB80C = {(s32)models_98B380_bin+0xC0C, NULL, 0, 0xCC};
 
 /*800CB818*/
 ModelInfo D_800CB818 = {
-    0x605A00,
+    (s32)models_98B380_bin,
     NULL,
     0xC0C,
     0xC0C,
@@ -24020,11 +24021,11 @@ ModelInfo D_800CB818 = {
     3,
 };
 
-/*800CB848*/ static ModelInfoUnkStruct1 D_800CB848 = {0x606E50, NULL, 0, 0x78};
+/*800CB848*/ static ModelVertexInfo D_800CB848 = {(s32)models_98C060_bin+0x770, NULL, 0, 0x78};
 
 /*800CB854*/
 ModelInfo D_800CB854 = {
-    0x6066E0,
+    (s32)models_98C060_bin,
     NULL,
     0x770,
     0x770,
@@ -24045,11 +24046,11 @@ ModelInfo D_800CB854 = {
     1,
 };
 
-/*800CB884*/ static ModelInfoUnkStruct1 D_800CB884 = {0x607AC4, NULL, 0, 0xA2};
+/*800CB884*/ static ModelVertexInfo D_800CB884 = {(s32)models_98C850_bin+0xBF4, NULL, 0, 0xA2};
 
 /*800CB890*/
 ModelInfo D_800CB890 = {
-    0x606ED0,
+    (s32)models_98C850_bin,
     NULL,
     0xBF2,
     0xBF2,
@@ -24070,11 +24071,11 @@ ModelInfo D_800CB890 = {
     2,
 };
 
-/*800CB8C0*/ static ModelInfoUnkStruct1 D_800CB8C0 = {0x608090, NULL, 0, 0x60};
+/*800CB8C0*/ static ModelVertexInfo D_800CB8C0 = {(s32)models_98D4F0_bin+0x520, NULL, 0, 0x60};
 
 /*800CB8CC*/
 ModelInfo D_800CB8CC = {
-    0x607B70,
+    (s32)models_98D4F0_bin,
     NULL,
     0x520,
     0x520,
@@ -24095,11 +24096,11 @@ ModelInfo D_800CB8CC = {
     8,
 };
 
-/*800CB8FC*/ static ModelInfoUnkStruct1 D_800CB8FC = {0x615DF0, NULL, 0, 0x246};
+/*800CB8FC*/ static ModelVertexInfo D_800CB8FC = {(s32)models_999C30_bin+0x1B40, NULL, 0, 0x246};
 
 /*800CB908*/
 ModelInfo D_800CB908 = {
-    0x6142B0,
+    (s32)models_999C30_bin,
     NULL,
     0x1B3E,
     0x1B3E,
@@ -24120,11 +24121,11 @@ ModelInfo D_800CB908 = {
     0x17,
 };
 
-/*800CB938*/ static ModelInfoUnkStruct1 D_800CB938 = {0x6176FC, NULL, 0, 0xFC};
+/*800CB938*/ static ModelVertexInfo D_800CB938 = {(s32)models_99B9C0_bin+0x16BC, NULL, 0, 0xFC};
 
 /*800CB944*/
 ModelInfo D_800CB944 = {
-    0x616040,
+    (s32)models_99B9C0_bin,
     NULL,
     0x16BC,
     0x16BC,
@@ -24145,11 +24146,11 @@ ModelInfo D_800CB944 = {
     0x15,
 };
 
-/*800CB974*/ static ModelInfoUnkStruct1 D_800CB974 = {0x618AB8, NULL, 0, 0x108};
+/*800CB974*/ static ModelVertexInfo D_800CB974 = {(s32)models_99D180_bin+0x12B8, NULL, 0, 0x108};
 
 /*800CB980*/
 ModelInfo D_800CB980 = {
-    0x617800,
+    (s32)models_99D180_bin,
     NULL,
     0x12B8,
     0x12B8,
@@ -24170,11 +24171,11 @@ ModelInfo D_800CB980 = {
     0x45,
 };
 
-/*800CB9B0*/ static ModelInfoUnkStruct1 D_800CB9B0 = {0x618F40, NULL, 0, 0x7E};
+/*800CB9B0*/ static ModelVertexInfo D_800CB9B0 = {(s32)models_99E540_bin+0x380, NULL, 0, 0x7E};
 
 /*800CB9BC*/
 ModelInfo D_800CB9BC = {
-    0x618BC0,
+    (s32)models_99E540_bin,
     NULL,
     0x37E,
     0x37E,
@@ -24195,11 +24196,11 @@ ModelInfo D_800CB9BC = {
     7,
 };
 
-/*800CB9EC*/ static ModelInfoUnkStruct1 D_800CB9EC = {0x619880, NULL, 0, 0xAE};
+/*800CB9EC*/ static ModelVertexInfo D_800CB9EC = {(s32)models_99E940_bin+0x8C0, NULL, 0, 0xAE};
 
 /*800CB9F8*/
 ModelInfo D_800CB9F8 = {
-    0x618FC0,
+    (s32)models_99E940_bin,
     NULL,
     0x8BE,
     0x8BE,
@@ -24220,11 +24221,11 @@ ModelInfo D_800CB9F8 = {
     4,
 };
 
-/*800CBA28*/ static ModelInfoUnkStruct1 D_800CBA28 = {0x619DB0, NULL, 0, 0x4E};
+/*800CBA28*/ static ModelVertexInfo D_800CBA28 = {(s32)models_99F2B0_bin+0x480, NULL, 0, 0x4E};
 
 /*800CBA34*/
 ModelInfo D_800CBA34 = {
-    0x619930,
+    (s32)models_99F2B0_bin,
     NULL,
     0x47E,
     0x47E,
@@ -24245,11 +24246,11 @@ ModelInfo D_800CBA34 = {
     3,
 };
 
-/*800CBA64*/ static ModelInfoUnkStruct1 D_800CBA64 = {0x61AB78, NULL, 0, 0x13E};
+/*800CBA64*/ static ModelVertexInfo D_800CBA64 = {(s32)models_99F780_bin+0xD78, NULL, 0, 0x13E};
 
 /*800CBA70*/
 ModelInfo D_800CBA70 = {
-    0x619E00,
+    (s32)models_99F780_bin,
     NULL,
     0xD76,
     0xD76,
@@ -24270,11 +24271,11 @@ ModelInfo D_800CBA70 = {
     1,
 };
 
-/*800CBAA0*/ static ModelInfoUnkStruct1 D_800CBAA0 = {0x61B1E0, NULL, 0, 0x60};
+/*800CBAA0*/ static ModelVertexInfo D_800CBAA0 = {(s32)models_9A0640_bin+0x520, NULL, 0, 0x60};
 
 /*800CBAAC*/
 ModelInfo D_800CBAAC = {
-    0x61ACC0,
+    (s32)models_9A0640_bin,
     NULL,
     0x520,
     0x520,
@@ -24295,11 +24296,11 @@ ModelInfo D_800CBAAC = {
     0x10,
 };
 
-/*800CBADC*/ static ModelInfoUnkStruct1 D_800CBADC = {0x61B5C0, NULL, 0, 0x7E};
+/*800CBADC*/ static ModelVertexInfo D_800CBADC = {(s32)models_9A0BC0_bin+0x380, NULL, 0, 0x7E};
 
 /*800CBAE8*/
 ModelInfo D_800CBAE8 = {
-    0x61B240,
+    (s32)models_9A0BC0_bin,
     NULL,
     0x37E,
     0x37E,
@@ -24320,11 +24321,11 @@ ModelInfo D_800CBAE8 = {
     7,
 };
 
-/*800CBB18*/ static ModelInfoUnkStruct1 D_800CBB18 = {0x61BF00, NULL, 0, 0xAE};
+/*800CBB18*/ static ModelVertexInfo D_800CBB18 = {(s32)models_9A0FC0_bin+0x8C0, NULL, 0, 0xAE};
 
 /*800CBB24*/
 ModelInfo D_800CBB24 = {
-    0x61B640,
+    (s32)models_9A0FC0_bin,
     NULL,
     0x8BE,
     0x8BE,
@@ -24345,11 +24346,11 @@ ModelInfo D_800CBB24 = {
     4,
 };
 
-/*800CBB54*/ static ModelInfoUnkStruct1 D_800CBB54 = {0x61C430, NULL, 0, 0x4E};
+/*800CBB54*/ static ModelVertexInfo D_800CBB54 = {(s32)models_9A1930_bin+0x480, NULL, 0, 0x4E};
 
 /*800CBB60*/
 ModelInfo D_800CBB60 = {
-    0x61BFB0,
+    (s32)models_9A1930_bin,
     NULL,
     0x47E,
     0x47E,
@@ -24370,11 +24371,11 @@ ModelInfo D_800CBB60 = {
     3,
 };
 
-/*800CBB90*/ static ModelInfoUnkStruct1 D_800CBB90 = {0x61D210, NULL, 0, 0x150};
+/*800CBB90*/ static ModelVertexInfo D_800CBB90 = {(s32)models_9A1E00_bin+0xD90, NULL, 0, 0x150};
 
 /*800CBB9C*/
 ModelInfo D_800CBB9C = {
-    0x61C480,
+    (s32)models_9A1E00_bin,
     NULL,
     0xD90,
     0xD90,
@@ -24395,11 +24396,11 @@ ModelInfo D_800CBB9C = {
     1,
 };
 
-/*800CBBCC*/ static ModelInfoUnkStruct1 D_800CBBCC = {0x61D880, NULL, 0, 0x60};
+/*800CBBCC*/ static ModelVertexInfo D_800CBBCC = {(s32)models_9A2CE0_bin+0x520, NULL, 0, 0x60};
 
 /*800CBBD8*/
 ModelInfo D_800CBBD8 = {
-    0x61D360,
+    (s32)models_9A2CE0_bin,
     NULL,
     0x520,
     0x520,
@@ -24420,11 +24421,11 @@ ModelInfo D_800CBBD8 = {
     0x10,
 };
 
-/*800CBC08*/ static ModelInfoUnkStruct1 D_800CBC08 = {0x61F7DC, NULL, 0, 0x1F2};
+/*800CBC08*/ static ModelVertexInfo D_800CBC08 = {(s32)models_9A3260_bin+0x1EFC, NULL, 0, 0x1F2};
 
 /*800CBC14*/
 ModelInfo D_800CBC14 = {
-    0x61D8E0,
+    (s32)models_9A3260_bin,
     NULL,
     0x1EFA,
     0x1EFA,
@@ -24445,11 +24446,11 @@ ModelInfo D_800CBC14 = {
     0x1E,
 };
 
-/*800CBC44*/ static ModelInfoUnkStruct1 D_800CBC44 = {0x620BA8, NULL, 0, 0x90};
+/*800CBC44*/ static ModelVertexInfo D_800CBC44 = {(s32)models_9A5350_bin+0x11D8, NULL, 0, 0x90};
 
 /*800CBC50*/
 ModelInfo D_800CBC50 = {
-    0x61F9D0,
+    (s32)models_9A5350_bin,
     NULL,
     0x11D8,
     0x11D8,
@@ -24470,11 +24471,11 @@ ModelInfo D_800CBC50 = {
     4,
 };
 
-/*800CBC80*/ static ModelInfoUnkStruct1 D_800CBC80 = {0x6221FC, NULL, 0, 0x174};
+/*800CBC80*/ static ModelVertexInfo D_800CBC80 = {(s32)models_9A65C0_bin+0x15BC, NULL, 0, 0x174};
 
 /*800CBC8C*/
 ModelInfo D_800CBC8C = {
-    0x620C40,
+    (s32)models_9A65C0_bin,
     NULL,
     0x15BC,
     0x15BC,
@@ -24495,11 +24496,11 @@ ModelInfo D_800CBC8C = {
     0x37,
 };
 
-/*800CBCBC*/ static ModelInfoUnkStruct1 D_800CBCBC = {0x6228A8, NULL, 0, 0x66};
+/*800CBCBC*/ static ModelVertexInfo D_800CBCBC = {(s32)models_9A7CF0_bin+0x538, NULL, 0, 0x66};
 
 /*800CBCC8*/
 ModelInfo D_800CBCC8 = {
-    0x622370,
+    (s32)models_9A7CF0_bin,
     NULL,
     0x536,
     0x536,
@@ -24520,11 +24521,11 @@ ModelInfo D_800CBCC8 = {
     5,
 };
 
-/*800CBCF8*/ static ModelInfoUnkStruct1 D_800CBCF8 = {0x62351C, NULL, 0, 0xCC};
+/*800CBCF8*/ static ModelVertexInfo D_800CBCF8 = {(s32)models_9A8290_bin+0xC0C, NULL, 0, 0xCC};
 
 /*800CBD04*/
 ModelInfo D_800CBD04 = {
-    0x622910,
+    (s32)models_9A8290_bin,
     NULL,
     0xC0C,
     0xC0C,
@@ -24545,11 +24546,11 @@ ModelInfo D_800CBD04 = {
     3,
 };
 
-/*800CBD34*/ static ModelInfoUnkStruct1 D_800CBD34 = {0x623D60, NULL, 0, 0x78};
+/*800CBD34*/ static ModelVertexInfo D_800CBD34 = {(s32)models_9A8F70_bin+0x770, NULL, 0, 0x78};
 
 /*800CBD40*/
 ModelInfo D_800CBD40 = {
-    0x6235F0,
+    (s32)models_9A8F70_bin,
     NULL,
     0x770,
     0x770,
@@ -24570,11 +24571,11 @@ ModelInfo D_800CBD40 = {
     1,
 };
 
-/*800CBD70*/ static ModelInfoUnkStruct1 D_800CBD70 = {0x6245D4, NULL, 0, 0xA2};
+/*800CBD70*/ static ModelVertexInfo D_800CBD70 = {(s32)models_9A9760_bin+0x7F4, NULL, 0, 0xA2};
 
 /*800CBD7C*/
 ModelInfo D_800CBD7C = {
-    0x623DE0,
+    (s32)models_9A9760_bin,
     NULL,
     0x7F2,
     0x7F2,
@@ -24595,11 +24596,11 @@ ModelInfo D_800CBD7C = {
     2,
 };
 
-/*800CBDAC*/ static ModelInfoUnkStruct1 D_800CBDAC = {0x624BA0, NULL, 0, 0x60};
+/*800CBDAC*/ static ModelVertexInfo D_800CBDAC = {(s32)models_9AA000_bin+0x520, NULL, 0, 0x60};
 
 /*800CBDB8*/
 ModelInfo D_800CBDB8 = {
-    0x624680,
+    (s32)models_9AA000_bin,
     NULL,
     0x520,
     0x520,
@@ -24620,11 +24621,11 @@ ModelInfo D_800CBDB8 = {
     9,
 };
 
-/*800CBDE8*/ static ModelInfoUnkStruct1 D_800CBDE8 = {0x625138, NULL, 0, 0x66};
+/*800CBDE8*/ static ModelVertexInfo D_800CBDE8 = {(s32)models_9AA580_bin+0x538, NULL, 0, 0x66};
 
 /*800CBDF4*/
 ModelInfo D_800CBDF4 = {
-    0x624C00,
+    (s32)models_9AA580_bin,
     NULL,
     0x536,
     0x536,
@@ -24645,11 +24646,11 @@ ModelInfo D_800CBDF4 = {
     5,
 };
 
-/*800CBE24*/ static ModelInfoUnkStruct1 D_800CBE24 = {0x625DAC, NULL, 0, 0xCC};
+/*800CBE24*/ static ModelVertexInfo D_800CBE24 = {(s32)models_9AAB20_bin+0xC0C, NULL, 0, 0xCC};
 
 /*800CBE30*/
 ModelInfo D_800CBE30 = {
-    0x6251A0,
+    (s32)models_9AAB20_bin,
     NULL,
     0xC0C,
     0xC0C,
@@ -24670,11 +24671,11 @@ ModelInfo D_800CBE30 = {
     3,
 };
 
-/*800CBE60*/ static ModelInfoUnkStruct1 D_800CBE60 = {0x6265F0, NULL, 0, 0x78};
+/*800CBE60*/ static ModelVertexInfo D_800CBE60 = {(s32)models_9AB800_bin+0x770, NULL, 0, 0x78};
 
 /*800CBE6C*/
 ModelInfo D_800CBE6C = {
-    0x625E80,
+    (s32)models_9AB800_bin,
     NULL,
     0x770,
     0x770,
@@ -24695,11 +24696,11 @@ ModelInfo D_800CBE6C = {
     1,
 };
 
-/*800CBE9C*/ static ModelInfoUnkStruct1 D_800CBE9C = {0x626E64, NULL, 0, 0xA2};
+/*800CBE9C*/ static ModelVertexInfo D_800CBE9C = {(s32)models_9ABFF0_bin+0x7F4, NULL, 0, 0xA2};
 
 /*800CBEA8*/
 ModelInfo D_800CBEA8 = {
-    0x626670,
+    (s32)models_9ABFF0_bin,
     NULL,
     0x7F2,
     0x7F2,
@@ -24720,11 +24721,11 @@ ModelInfo D_800CBEA8 = {
     2,
 };
 
-/*800CBED8*/ static ModelInfoUnkStruct1 D_800CBED8 = {0x627430, NULL, 0, 0x60};
+/*800CBED8*/ static ModelVertexInfo D_800CBED8 = {(s32)models_9AC890_bin+0x520, NULL, 0, 0x60};
 
 /*800CBEE4*/
 ModelInfo D_800CBEE4 = {
-    0x626F10,
+    (s32)models_9AC890_bin,
     NULL,
     0x520,
     0x520,
@@ -24745,11 +24746,11 @@ ModelInfo D_800CBEE4 = {
     9,
 };
 
-/*800CBF14*/ static ModelInfoUnkStruct1 D_800CBF14 = {0x87D93C, NULL, 0, 0x17A};
+/*800CBF14*/ static ModelVertexInfo D_800CBF14 = {(s32)models_C014D0_bin+0x1DEC, NULL, 0, 0x17A};
 
 /*800CBF20*/
 ModelInfo D_800CBF20 = {
-    0x87BB50,
+    (s32)models_C014D0_bin,
     NULL,
     0x1DEA,
     0x1DEA,
@@ -24770,11 +24771,11 @@ ModelInfo D_800CBF20 = {
     0x2B,
 };
 
-/*800CBF50*/ static ModelInfoUnkStruct1 D_800CBF50 = {0x87EC98, NULL, 0, 0x90};
+/*800CBF50*/ static ModelVertexInfo D_800CBF50 = {(s32)models_C03440_bin+0x11D8, NULL, 0, 0x90};
 
 /*800CBF5C*/
 ModelInfo D_800CBF5C = {
-    0x87DAC0,
+    (s32)models_C03440_bin,
     NULL,
     0x11D8,
     0x11D8,
@@ -24795,11 +24796,11 @@ ModelInfo D_800CBF5C = {
     4,
 };
 
-/*800CBF8C*/ static ModelInfoUnkStruct1 D_800CBF8C = {0x880094, NULL, 0, 0x15C};
+/*800CBF8C*/ static ModelVertexInfo D_800CBF8C = {(s32)models_C046B0_bin+0x1364, NULL, 0, 0x15C};
 
 /*800CBF98*/
 ModelInfo D_800CBF98 = {
-    0x87ED30,
+    (s32)models_C046B0_bin,
     NULL,
     0x1364,
     0x1364,
@@ -24820,11 +24821,11 @@ ModelInfo D_800CBF98 = {
     0x37,
 };
 
-/*800CBFC8*/ static ModelInfoUnkStruct1 D_800CBFC8 = {0x880728, NULL, 0, 0x66};
+/*800CBFC8*/ static ModelVertexInfo D_800CBFC8 = {(s32)models_C05B70_bin+0x538, NULL, 0, 0x66};
 
 /*800CBFD4*/
 ModelInfo D_800CBFD4 = {
-    0x8801F0,
+    (s32)models_C05B70_bin,
     NULL,
     0x536,
     0x536,
@@ -24845,11 +24846,11 @@ ModelInfo D_800CBFD4 = {
     5,
 };
 
-/*800CC004*/ static ModelInfoUnkStruct1 D_800CC004 = {0x88139C, NULL, 0, 0xCC};
+/*800CC004*/ static ModelVertexInfo D_800CC004 = {(s32)models_C06110_bin+0xC0C, NULL, 0, 0xCC};
 
 /*800CC010*/
 ModelInfo D_800CC010 = {
-    0x880790,
+    (s32)models_C06110_bin,
     NULL,
     0xC0C,
     0xC0C,
@@ -24870,11 +24871,11 @@ ModelInfo D_800CC010 = {
     3,
 };
 
-/*800CC040*/ static ModelInfoUnkStruct1 D_800CC040 = {0x881BE0, NULL, 0, 0x78};
+/*800CC040*/ static ModelVertexInfo D_800CC040 = {(s32)models_C06DF0_bin+0x770, NULL, 0, 0x78};
 
 /*800CC04C*/
 ModelInfo D_800CC04C = {
-    0x881470,
+    (s32)models_C06DF0_bin,
     NULL,
     0x770,
     0x770,
@@ -24895,11 +24896,11 @@ ModelInfo D_800CC04C = {
     1,
 };
 
-/*800CC07C*/ static ModelInfoUnkStruct1 D_800CC07C = {0x882854, NULL, 0, 0xA2};
+/*800CC07C*/ static ModelVertexInfo D_800CC07C = {(s32)models_C075E0_bin+0xBF4, NULL, 0, 0xA2};
 
 /*800CC088*/
 ModelInfo D_800CC088 = {
-    0x881C60,
+    (s32)models_C075E0_bin,
     NULL,
     0xBF2,
     0xBF2,
@@ -24920,11 +24921,11 @@ ModelInfo D_800CC088 = {
     2,
 };
 
-/*800CC0B8*/ static ModelInfoUnkStruct1 D_800CC0B8 = {0x882E20, NULL, 0, 0x60};
+/*800CC0B8*/ static ModelVertexInfo D_800CC0B8 = {(s32)models_C08280_bin+0x520, NULL, 0, 0x60};
 
 /*800CC0C4*/
 ModelInfo D_800CC0C4 = {
-    0x882900,
+    (s32)models_C08280_bin,
     NULL,
     0x520,
     0x520,
@@ -24945,11 +24946,11 @@ ModelInfo D_800CC0C4 = {
     8,
 };
 
-/*800CC0F4*/ static ModelInfoUnkStruct1 D_800CC0F4 = {0x8833B8, NULL, 0, 0x66};
+/*800CC0F4*/ static ModelVertexInfo D_800CC0F4 = {(s32)models_C08800_bin+0x538, NULL, 0, 0x66};
 
 /*800CC100*/
 ModelInfo D_800CC100 = {
-    0x882E80,
+    (s32)models_C08800_bin,
     NULL,
     0x536,
     0x536,
@@ -24970,11 +24971,11 @@ ModelInfo D_800CC100 = {
     5,
 };
 
-/*800CC130*/ static ModelInfoUnkStruct1 D_800CC130 = {0x88402C, NULL, 0, 0xCC};
+/*800CC130*/ static ModelVertexInfo D_800CC130 = {(s32)models_C08DA0_bin+0xC0C, NULL, 0, 0xCC};
 
 /*800CC13C*/
 ModelInfo D_800CC13C = {
-    0x883420,
+    (s32)models_C08DA0_bin,
     NULL,
     0xC0C,
     0xC0C,
@@ -24995,11 +24996,11 @@ ModelInfo D_800CC13C = {
     3,
 };
 
-/*800CC16C*/ static ModelInfoUnkStruct1 D_800CC16C = {0x884870, NULL, 0, 0x78};
+/*800CC16C*/ static ModelVertexInfo D_800CC16C = {(s32)models_C09A80_bin+0x770, NULL, 0, 0x78};
 
 /*800CC178*/
 ModelInfo D_800CC178 = {
-    0x884100,
+    (s32)models_C09A80_bin,
     NULL,
     0x770,
     0x770,
@@ -25020,11 +25021,11 @@ ModelInfo D_800CC178 = {
     1,
 };
 
-/*800CC1A8*/ static ModelInfoUnkStruct1 D_800CC1A8 = {0x8854E4, NULL, 0, 0xA2};
+/*800CC1A8*/ static ModelVertexInfo D_800CC1A8 = {(s32)models_C0A270_bin+0xBF4, NULL, 0, 0xA2};
 
 /*800CC1B4*/
 ModelInfo D_800CC1B4 = {
-    0x8848F0,
+    (s32)models_C0A270_bin,
     NULL,
     0xBF2,
     0xBF2,
@@ -25045,11 +25046,11 @@ ModelInfo D_800CC1B4 = {
     2,
 };
 
-/*800CC1E4*/ static ModelInfoUnkStruct1 D_800CC1E4 = {0x885AB0, NULL, 0, 0x60};
+/*800CC1E4*/ static ModelVertexInfo D_800CC1E4 = {(s32)models_C0AF10_bin+0x520, NULL, 0, 0x60};
 
 /*800CC1F0*/
 ModelInfo D_800CC1F0 = {
-    0x885590,
+    (s32)models_C0AF10_bin,
     NULL,
     0x520,
     0x520,
@@ -25070,11 +25071,11 @@ ModelInfo D_800CC1F0 = {
     8,
 };
 
-/*800CC220*/ static ModelInfoUnkStruct1 D_800CC220 = {0x8CB4B4, NULL, 0, 0x3BA};
+/*800CC220*/ static ModelVertexInfo D_800CC220 = {(s32)models_C4E9B0_bin+0x2484, NULL, 0, 0x3BA};
 
 /*800CC22C*/
 ModelInfo D_800CC22C = {
-    0x8C9030,
+    (s32)models_C4E9B0_bin,
     NULL,
     0x2482,
     0x2482,
@@ -25095,11 +25096,11 @@ ModelInfo D_800CC22C = {
     0x19,
 };
 
-/*800CC25C*/ static ModelInfoUnkStruct1 D_800CC25C = {0x8CD438, NULL, 0, 0x16E};
+/*800CC25C*/ static ModelVertexInfo D_800CC25C = {(s32)models_C511F0_bin+0x1BC8, NULL, 0, 0x16E};
 
 /*800CC268*/
 ModelInfo D_800CC268 = {
-    0x8CB870,
+    (s32)models_C511F0_bin,
     NULL,
     0x1BC6,
     0x1BC6,
@@ -25120,11 +25121,11 @@ ModelInfo D_800CC268 = {
     2,
 };
 
-/*800CC298*/ static ModelInfoUnkStruct1 D_800CC298 = {0x8D0284, NULL, 0, 0x1EC};
+/*800CC298*/ static ModelVertexInfo D_800CC298 = {(s32)models_C52F30_bin+0x2CD4, NULL, 0, 0x1EC};
 
 /*800CC2A4*/
 ModelInfo D_800CC2A4 = {
-    0x8CD5B0,
+    (s32)models_C52F30_bin,
     NULL,
     0x2CD4,
     0x2CD4,
@@ -25145,11 +25146,11 @@ ModelInfo D_800CC2A4 = {
     0x38,
 };
 
-/*800CC2D4*/ static ModelInfoUnkStruct1 D_800CC2D4 = {0x8D0DA8, NULL, 0, 0x66};
+/*800CC2D4*/ static ModelVertexInfo D_800CC2D4 = {(s32)models_C55DF0_bin+0x938, NULL, 0, 0x66};
 
 /*800CC2E0*/
 ModelInfo D_800CC2E0 = {
-    0x8D0470,
+    (s32)models_C55DF0_bin,
     NULL,
     0x936,
     0x936,
@@ -25170,11 +25171,11 @@ ModelInfo D_800CC2E0 = {
     8,
 };
 
-/*800CC310*/ static ModelInfoUnkStruct1 D_800CC310 = {0x8D2098, NULL, 0, 0xF0};
+/*800CC310*/ static ModelVertexInfo D_800CC310 = {(s32)models_C56790_bin+0x1288, NULL, 0, 0xF0};
 
 /*800CC31C*/
 ModelInfo D_800CC31C = {
-    0x8D0E10,
+    (s32)models_C56790_bin,
     NULL,
     0x1288,
     0x1288,
@@ -25195,16 +25196,16 @@ ModelInfo D_800CC31C = {
     2,
 };
 
-/*800CC34C*/ static ModelInfoUnkStruct1 D_800CC34C = {0x8D22D8, NULL, 0, 0x78};
+/*800CC34C*/ static ModelVertexInfo D_800CC34C = {(s32)models_C57B10_bin+0x148, NULL, 0, 0x78};
 
 /*800CC358*/
 ModelInfo D_800CC358 = {
-    0x8D2190,
+    (s32)models_C57B10_bin,
     NULL,
     0x148,
     0x148,
-    0,
-    0,
+    0x0,
+    0x0,
     0xD0,
     0x78,
     { 0, 0, 0, 0 },
@@ -25220,11 +25221,11 @@ ModelInfo D_800CC358 = {
     0,
 };
 
-/*800CC388*/ static ModelInfoUnkStruct1 D_800CC388 = {0x8D4EC8, NULL, 0, 0x150};
+/*800CC388*/ static ModelVertexInfo D_800CC388 = {(s32)models_C57CD0_bin+0x2B78, NULL, 0, 0x150};
 
 /*800CC394*/
 ModelInfo D_800CC394 = {
-    0x8D2350,
+    (s32)models_C57CD0_bin,
     NULL,
     0x2B78,
     0x2B78,
@@ -25245,11 +25246,11 @@ ModelInfo D_800CC394 = {
     1,
 };
 
-/*800CC3C4*/ static ModelInfoUnkStruct1 D_800CC3C4 = {0x8D599C, NULL, 0, 0x9C};
+/*800CC3C4*/ static ModelVertexInfo D_800CC3C4 = {(s32)models_C5A9A0_bin+0x97C, NULL, 0, 0x9C};
 
 /*800CC3D0*/
 ModelInfo D_800CC3D0 = {
-    0x8D5020,
+    (s32)models_C5A9A0_bin,
     NULL,
     0x97C,
     0x97C,
@@ -25270,11 +25271,11 @@ ModelInfo D_800CC3D0 = {
     5,
 };
 
-/*800CC400*/ static ModelInfoUnkStruct1 D_800CC400 = {0x8D6378, NULL, 0, 0x66};
+/*800CC400*/ static ModelVertexInfo D_800CC400 = {(s32)models_C5B3C0_bin+0x938, NULL, 0, 0x66};
 
 /*800CC40C*/
 ModelInfo D_800CC40C = {
-    0x8D5A40,
+    (s32)models_C5B3C0_bin,
     NULL,
     0x936,
     0x936,
@@ -25295,11 +25296,11 @@ ModelInfo D_800CC40C = {
     8,
 };
 
-/*800CC43C*/ static ModelInfoUnkStruct1 D_800CC43C = {0x8D7668, NULL, 0, 0xF0};
+/*800CC43C*/ static ModelVertexInfo D_800CC43C = {(s32)models_C5BD60_bin+0x1288, NULL, 0, 0xF0};
 
 /*800CC448*/
 ModelInfo D_800CC448 = {
-    0x8D63E0,
+    (s32)models_C5BD60_bin,
     NULL,
     0x1288,
     0x1288,
@@ -25320,16 +25321,16 @@ ModelInfo D_800CC448 = {
     2,
 };
 
-/*800CC478*/ static ModelInfoUnkStruct1 D_800CC478 = {0x8D78A8, NULL, 0, 0x78};
+/*800CC478*/ static ModelVertexInfo D_800CC478 = {(s32)models_C5D0E0_bin+0x148, NULL, 0, 0x78};
 
 /*800CC484*/
 ModelInfo D_800CC484 = {
-    0x8D7760,
+    (s32)models_C5D0E0_bin,
     NULL,
     0x148,
     0x148,
-    0,
-    0,
+    0x0,
+    0x0,
     0xD0,
     0x78,
     { 0, 0, 0, 0 },
@@ -25345,11 +25346,11 @@ ModelInfo D_800CC484 = {
     0,
 };
 
-/*800CC4B4*/ static ModelInfoUnkStruct1 D_800CC4B4 = {0x8DA498, NULL, 0, 0x150};
+/*800CC4B4*/ static ModelVertexInfo D_800CC4B4 = {(s32)models_C5D2A0_bin+0x2B78, NULL, 0, 0x150};
 
 /*800CC4C0*/
 ModelInfo D_800CC4C0 = {
-    0x8D7920,
+    (s32)models_C5D2A0_bin,
     NULL,
     0x2B78,
     0x2B78,
@@ -25370,11 +25371,11 @@ ModelInfo D_800CC4C0 = {
     1,
 };
 
-/*800CC4F0*/ static ModelInfoUnkStruct1 D_800CC4F0 = {0x8DB894, NULL, 0, 0x102};
+/*800CC4F0*/ static ModelVertexInfo D_800CC4F0 = {(s32)models_C5FF70_bin+0x12A4, NULL, 0, 0x102};
 
 /*800CC4FC*/
 ModelInfo D_800CC4FC = {
-    0x8DA5F0,
+    (s32)models_C5FF70_bin,
     NULL,
     0x12A2,
     0x12A2,
@@ -25395,11 +25396,11 @@ ModelInfo D_800CC4FC = {
     5,
 };
 
-/*800CC52C*/ static ModelInfoUnkStruct1 D_800CC52C = {0x8F6CBC, NULL, 0, 0x20A};
+/*800CC52C*/ static ModelVertexInfo D_800CC52C = {(s32)models_C79CD0_bin+0x296C, NULL, 0, 0x20A};
 
 /*800CC538*/
 ModelInfo D_800CC538 = {
-    0x8F4350,
+    (s32)models_C79CD0_bin,
     NULL,
     0x296A,
     0x296A,
@@ -25420,11 +25421,11 @@ ModelInfo D_800CC538 = {
     0x1D,
 };
 
-/*800CC568*/ static ModelInfoUnkStruct1 D_800CC568 = {0x8F8A98, NULL, 0, 0x16E};
+/*800CC568*/ static ModelVertexInfo D_800CC568 = {(s32)models_C7C850_bin+0x1BC8, NULL, 0, 0x16E};
 
 /*800CC574*/
 ModelInfo D_800CC574 = {
-    0x8F6ED0,
+    (s32)models_C7C850_bin,
     NULL,
     0x1BC6,
     0x1BC6,
@@ -25445,11 +25446,11 @@ ModelInfo D_800CC574 = {
     2,
 };
 
-/*800CC5A4*/ static ModelInfoUnkStruct1 D_800CC5A4 = {0x8FB104, NULL, 0, 0x204};
+/*800CC5A4*/ static ModelVertexInfo D_800CC5A4 = {(s32)models_C7E590_bin+0x24F4, NULL, 0, 0x204};
 
 /*800CC5B0*/
 ModelInfo D_800CC5B0 = {
-    0x8F8C10,
+    (s32)models_C7E590_bin,
     NULL,
     0x24F4,
     0x24F4,
@@ -25470,11 +25471,11 @@ ModelInfo D_800CC5B0 = {
     0x38,
 };
 
-/*800CC5E0*/ static ModelInfoUnkStruct1 D_800CC5E0 = {0x8FBC48, NULL, 0, 0x66};
+/*800CC5E0*/ static ModelVertexInfo D_800CC5E0 = {(s32)models_C80C90_bin+0x938, NULL, 0, 0x66};
 
 /*800CC5EC*/
 ModelInfo D_800CC5EC = {
-    0x8FB310,
+    (s32)models_C80C90_bin,
     NULL,
     0x936,
     0x936,
@@ -25495,11 +25496,11 @@ ModelInfo D_800CC5EC = {
     8,
 };
 
-/*800CC61C*/ static ModelInfoUnkStruct1 D_800CC61C = {0x8FCF38, NULL, 0, 0xF0};
+/*800CC61C*/ static ModelVertexInfo D_800CC61C = {(s32)models_C81630_bin+0x1288, NULL, 0, 0xF0};
 
 /*800CC628*/
 ModelInfo D_800CC628 = {
-    0x8FBCB0,
+    (s32)models_C81630_bin,
     NULL,
     0x1288,
     0x1288,
@@ -25520,16 +25521,16 @@ ModelInfo D_800CC628 = {
     2,
 };
 
-/*800CC658*/ static ModelInfoUnkStruct1 D_800CC658 = {0x8FD178, NULL, 0, 0x78};
+/*800CC658*/ static ModelVertexInfo D_800CC658 = {(s32)models_C829B0_bin+0x148, NULL, 0, 0x78};
 
 /*800CC664*/
 ModelInfo D_800CC664 = {
-    0x8FD030,
+    (s32)models_C829B0_bin,
     NULL,
     0x148,
     0x148,
-    0,
-    0,
+    0x0,
+    0x0,
     0xD0,
     0x78,
     { 0, 0, 0, 0 },
@@ -25545,11 +25546,11 @@ ModelInfo D_800CC664 = {
     0,
 };
 
-/*800CC694*/ static ModelInfoUnkStruct1 D_800CC694 = {0x900058, NULL, 0, 0x198};
+/*800CC694*/ static ModelVertexInfo D_800CC694 = {(s32)models_C82B70_bin+0x2E68, NULL, 0, 0x198};
 
 /*800CC6A0*/
 ModelInfo D_800CC6A0 = {
-    0x8FD1F0,
+    (s32)models_C82B70_bin,
     NULL,
     0x2E68,
     0x2E68,
@@ -25570,11 +25571,11 @@ ModelInfo D_800CC6A0 = {
     1,
 };
 
-/*800CC6D0*/ static ModelInfoUnkStruct1 D_800CC6D0 = {0x900B6C, NULL, 0, 0x9C};
+/*800CC6D0*/ static ModelVertexInfo D_800CC6D0 = {(s32)models_C85B70_bin+0x97C, NULL, 0, 0x9C};
 
 /*800CC6DC*/
 ModelInfo D_800CC6DC = {
-    0x9001F0,
+    (s32)models_C85B70_bin,
     NULL,
     0x97C,
     0x97C,
@@ -25595,11 +25596,11 @@ ModelInfo D_800CC6DC = {
     5,
 };
 
-/*800CC70C*/ static ModelInfoUnkStruct1 D_800CC70C = {0x901548, NULL, 0, 0x66};
+/*800CC70C*/ static ModelVertexInfo D_800CC70C = {(s32)models_C86590_bin+0x938, NULL, 0, 0x66};
 
 /*800CC718*/
 ModelInfo D_800CC718 = {
-    0x900C10,
+    (s32)models_C86590_bin,
     NULL,
     0x936,
     0x936,
@@ -25620,11 +25621,11 @@ ModelInfo D_800CC718 = {
     8,
 };
 
-/*800CC748*/ static ModelInfoUnkStruct1 D_800CC748 = {0x902838, NULL, 0, 0xF0};
+/*800CC748*/ static ModelVertexInfo D_800CC748 = {(s32)models_C86F30_bin+0x1288, NULL, 0, 0xF0};
 
 /*800CC754*/
 ModelInfo D_800CC754 = {
-    0x9015B0,
+    (s32)models_C86F30_bin,
     NULL,
     0x1288,
     0x1288,
@@ -25645,16 +25646,16 @@ ModelInfo D_800CC754 = {
     2,
 };
 
-/*800CC784*/ static ModelInfoUnkStruct1 D_800CC784 = {0x902A78, NULL, 0, 0x78};
+/*800CC784*/ static ModelVertexInfo D_800CC784 = {(s32)models_C882B0_bin+0x148, NULL, 0, 0x78};
 
 /*800CC790*/
 ModelInfo D_800CC790 = {
-    0x902930,
+    (s32)models_C882B0_bin,
     NULL,
     0x148,
     0x148,
-    0,
-    0,
+    0x0,
+    0x0,
     0xD0,
     0x78,
     { 0, 0, 0, 0 },
@@ -25670,11 +25671,11 @@ ModelInfo D_800CC790 = {
     0,
 };
 
-/*800CC7C0*/ static ModelInfoUnkStruct1 D_800CC7C0 = {0x905668, NULL, 0, 0x150};
+/*800CC7C0*/ static ModelVertexInfo D_800CC7C0 = {(s32)models_C88470_bin+0x2B78, NULL, 0, 0x150};
 
 /*800CC7CC*/
 ModelInfo D_800CC7CC = {
-    0x902AF0,
+    (s32)models_C88470_bin,
     NULL,
     0x2B78,
     0x2B78,
@@ -25695,11 +25696,11 @@ ModelInfo D_800CC7CC = {
     1,
 };
 
-/*800CC7FC*/ static ModelInfoUnkStruct1 D_800CC7FC = {0x906A64, NULL, 0, 0x102};
+/*800CC7FC*/ static ModelVertexInfo D_800CC7FC = {(s32)models_C8B140_bin+0x12A4, NULL, 0, 0x102};
 
 /*800CC808*/
 ModelInfo D_800CC808 = {
-    0x9057C0,
+    (s32)models_C8B140_bin,
     NULL,
     0x12A2,
     0x12A2,
@@ -25720,11 +25721,11 @@ ModelInfo D_800CC808 = {
     5,
 };
 
-/*800CC838*/ static ModelInfoUnkStruct1 D_800CC838 = {0x913EB8, NULL, 0, 0x36};
+/*800CC838*/ static ModelVertexInfo D_800CC838 = {(s32)models_C98F80_bin+0x8B8, NULL, 0, 0x36};
 
 /*800CC844*/
 ModelInfo D_800CC844 = {
-    0x913600,
+    (s32)models_C98F80_bin,
     NULL,
     0x8B6,
     0x8B6,
@@ -25745,11 +25746,11 @@ ModelInfo D_800CC844 = {
     0xD,
 };
 
-/*800CC874*/ static ModelInfoUnkStruct1 D_800CC874 = {0x9147A8, NULL, 0, 0x36};
+/*800CC874*/ static ModelVertexInfo D_800CC874 = {(s32)models_C99870_bin+0x8B8, NULL, 0, 0x36};
 
 /*800CC880*/
 ModelInfo D_800CC880 = {
-    0x913EF0,
+    (s32)models_C99870_bin,
     NULL,
     0x8B6,
     0x8B6,
@@ -25770,11 +25771,11 @@ ModelInfo D_800CC880 = {
     9,
 };
 
-/*800CC8B0*/ static ModelInfoUnkStruct1 D_800CC8B0 = {0x915098, NULL, 0, 0x36};
+/*800CC8B0*/ static ModelVertexInfo D_800CC8B0 = {(s32)models_C9A160_bin+0x8B8, NULL, 0, 0x36};
 
 /*800CC8BC*/
 ModelInfo D_800CC8BC = {
-    0x9147E0,
+    (s32)models_C9A160_bin,
     NULL,
     0x8B6,
     0x8B6,
@@ -25795,11 +25796,11 @@ ModelInfo D_800CC8BC = {
     8,
 };
 
-/*800CC8EC*/ static ModelInfoUnkStruct1 D_800CC8EC = {0x915930, NULL, 0, 0x18};
+/*800CC8EC*/ static ModelVertexInfo D_800CC8EC = {(s32)models_C9AA50_bin+0x860, NULL, 0, 0x18};
 
 /*800CC8F8*/
 ModelInfo D_800CC8F8 = {
-    0x9150D0,
+    (s32)models_C9AA50_bin,
     NULL,
     0x860,
     0x860,
@@ -25820,11 +25821,11 @@ ModelInfo D_800CC8F8 = {
     3,
 };
 
-/*800CC928*/ static ModelInfoUnkStruct1 D_800CC928 = {0x916208, NULL, 0, 0x36};
+/*800CC928*/ static ModelVertexInfo D_800CC928 = {(s32)models_C9B2D0_bin+0x8B8, NULL, 0, 0x36};
 
 /*800CC934*/
 ModelInfo D_800CC934 = {
-    0x915950,
+    (s32)models_C9B2D0_bin,
     NULL,
     0x8B6,
     0x8B6,
@@ -25845,11 +25846,11 @@ ModelInfo D_800CC934 = {
     9,
 };
 
-/*800CC964*/ static ModelInfoUnkStruct1 D_800CC964 = {0x916AF8, NULL, 0, 0x36};
+/*800CC964*/ static ModelVertexInfo D_800CC964 = {(s32)models_C9BBC0_bin+0x8B8, NULL, 0, 0x36};
 
 /*800CC970*/
 ModelInfo D_800CC970 = {
-    0x916240,
+    (s32)models_C9BBC0_bin,
     NULL,
     0x8B6,
     0x8B6,
@@ -25870,11 +25871,11 @@ ModelInfo D_800CC970 = {
     8,
 };
 
-/*800CC9A0*/ static ModelInfoUnkStruct1 D_800CC9A0 = {0x921988, NULL, 0, 0xD50};
+/*800CC9A0*/ static ModelVertexInfo D_800CC9A0 = {(s32)models_C9C4B0_bin+0xAE58, NULL, 0, 0xD50};
 
 /*800CC9AC*/
 ModelInfo D_800CC9AC = {
-    0x916B30,
+    (s32)models_C9C4B0_bin,
     NULL,
     0xAE58,
     0xAE58,
@@ -25895,11 +25896,11 @@ ModelInfo D_800CC9AC = {
     0x6B3,
 };
 
-/*800CC9DC*/ static ModelInfoUnkStruct1 D_800CC9DC = {0x922F40, NULL, 0, 0x18};
+/*800CC9DC*/ static ModelVertexInfo D_800CC9DC = {(s32)models_CA8060_bin+0x860, NULL, 0, 0x18};
 
 /*800CC9E8*/
 ModelInfo D_800CC9E8 = {
-    0x9226E0,
+    (s32)models_CA8060_bin,
     NULL,
     0x860,
     0x860,
@@ -25920,11 +25921,11 @@ ModelInfo D_800CC9E8 = {
     6,
 };
 
-/*800CCA18*/ static ModelInfoUnkStruct1 D_800CCA18 = {0x923818, NULL, 0, 0x36};
+/*800CCA18*/ static ModelVertexInfo D_800CCA18 = {(s32)models_CA88E0_bin+0x8B8, NULL, 0, 0x36};
 
 /*800CCA24*/
 ModelInfo D_800CCA24 = {
-    0x922F60,
+    (s32)models_CA88E0_bin,
     NULL,
     0x8B6,
     0x8B6,
@@ -25945,11 +25946,11 @@ ModelInfo D_800CCA24 = {
     0x17,
 };
 
-/*800CCA54*/ static ModelInfoUnkStruct1 D_800CCA54 = {0x924108, NULL, 0, 0x36};
+/*800CCA54*/ static ModelVertexInfo D_800CCA54 = {(s32)models_CA91D0_bin+0x8B8, NULL, 0, 0x36};
 
 /*800CCA60*/
 ModelInfo D_800CCA60 = {
-    0x923850,
+    (s32)models_CA91D0_bin,
     NULL,
     0x8B6,
     0x8B6,
@@ -25970,11 +25971,11 @@ ModelInfo D_800CCA60 = {
     0xE,
 };
 
-/*800CCA90*/ static ModelInfoUnkStruct1 D_800CCA90 = {0x9249A0, NULL, 0, 0x18};
+/*800CCA90*/ static ModelVertexInfo D_800CCA90 = {(s32)models_CA9AC0_bin+0x860, NULL, 0, 0x18};
 
 /*800CCA9C*/
 ModelInfo D_800CCA9C = {
-    0x924140,
+    (s32)models_CA9AC0_bin,
     NULL,
     0x860,
     0x860,
@@ -25995,11 +25996,11 @@ ModelInfo D_800CCA9C = {
     5,
 };
 
-/*800CCACC*/ static ModelInfoUnkStruct1 D_800CCACC = {0x925278, NULL, 0, 0x36};
+/*800CCACC*/ static ModelVertexInfo D_800CCACC = {(s32)models_CAA340_bin+0x8B8, NULL, 0, 0x36};
 
 /*800CCAD8*/
 ModelInfo D_800CCAD8 = {
-    0x9249C0,
+    (s32)models_CAA340_bin,
     NULL,
     0x8B6,
     0x8B6,
@@ -26020,11 +26021,11 @@ ModelInfo D_800CCAD8 = {
     0x16,
 };
 
-/*800CCB08*/ static ModelInfoUnkStruct1 D_800CCB08 = {0x925B10, NULL, 0, 0x18};
+/*800CCB08*/ static ModelVertexInfo D_800CCB08 = {(s32)models_CAAC30_bin+0x860, NULL, 0, 0x18};
 
 /*800CCB14*/
 ModelInfo D_800CCB14 = {
-    0x9252B0,
+    (s32)models_CAAC30_bin,
     NULL,
     0x860,
     0x860,
@@ -26045,11 +26046,11 @@ ModelInfo D_800CCB14 = {
     2,
 };
 
-/*800CCB44*/ static ModelInfoUnkStruct1 D_800CCB44 = {0x2008A8, NULL, 0, 0x5D0};
+/*800CCB44*/ static ModelVertexInfo D_800CCB44 = {(s32)models_584390_bin+0x1E98, NULL, 0, 0x5D0};
 
 /*800CCB50*/
 ModelInfo D_800CCB50 = {
-    0x1FEA10,
+    (s32)models_584390_bin,
     NULL,
     0x1E98,
     0x1E98,
@@ -26070,11 +26071,11 @@ ModelInfo D_800CCB50 = {
     0x159,
 };
 
-/*800CCB80*/ static ModelInfoUnkStruct1 D_800CCB80 = {0x20A614, NULL, 0, 0x72C};
+/*800CCB80*/ static ModelVertexInfo D_800CCB80 = {(s32)models_586800_bin+0x9794, NULL, 0, 0x72C};
 
 /*800CCB8C*/
 ModelInfo D_800CCB8C = {
-    0x200E80,
+    (s32)models_586800_bin,
     NULL,
     0x9794,
     0x9794,
@@ -26095,11 +26096,11 @@ ModelInfo D_800CCB8C = {
     0x6DB,
 };
 
-/*800CCBBC*/ static ModelInfoUnkStruct1 D_800CCBBC = {0x21683C, NULL, 0, 0x6BA};
+/*800CCBBC*/ static ModelVertexInfo D_800CCBBC = {(s32)models_598C90_bin+0x352C, NULL, 0, 0x6BA};
 
 /*800CCBC8*/
 ModelInfo D_800CCBC8 = {
-    0x213310,
+    (s32)models_598C90_bin,
     NULL,
     0x352A,
     0x352A,
@@ -26120,11 +26121,11 @@ ModelInfo D_800CCBC8 = {
     0x70,
 };
 
-/*800CCBF8*/ static ModelInfoUnkStruct1 D_800CCBF8 = {0x218E00, NULL, 0, 0x40E};
+/*800CCBF8*/ static ModelVertexInfo D_800CCBF8 = {(s32)models_59C880_bin+0x1F00, NULL, 0, 0x40E};
 
 /*800CCC04*/
 ModelInfo D_800CCC04 = {
-    0x216F00,
+    (s32)models_59C880_bin,
     NULL,
     0x1EFE,
     0x1EFE,
@@ -26145,11 +26146,11 @@ ModelInfo D_800CCC04 = {
     0x3D,
 };
 
-/*800CCC34*/ static ModelInfoUnkStruct1 D_800CCC34 = {0x21D11C, NULL, 0, 0x4A4};
+/*800CCC34*/ static ModelVertexInfo D_800CCC34 = {(s32)models_59EB90_bin+0x3F0C, NULL, 0, 0x4A4};
 
 /*800CCC40*/
 ModelInfo D_800CCC40 = {
-    0x219210,
+    (s32)models_59EB90_bin,
     NULL,
     0x3F0C,
     0x3F0C,
@@ -26170,11 +26171,11 @@ ModelInfo D_800CCC40 = {
     0x4C,
 };
 
-/*800CCC70*/ static ModelInfoUnkStruct1 D_800CCC70 = {0x233FC4, NULL, 0, 0x804};
+/*800CCC70*/ static ModelVertexInfo D_800CCC70 = {(s32)models_5AA7E0_bin+0xF164, NULL, 0, 0x804};
 
 /*800CCC7C*/
 ModelInfo D_800CCC7C = {
-    0x224E60,
+    (s32)models_5AA7E0_bin,
     NULL,
     0xF164,
     0xF164,
@@ -26195,11 +26196,11 @@ ModelInfo D_800CCC7C = {
     0x229,
 };
 
-/*800CCCAC*/ static ModelInfoUnkStruct1 D_800CCCAC = {0x23CAF4, NULL, 0, 0x474};
+/*800CCCAC*/ static ModelVertexInfo D_800CCCAC = {(s32)models_5BA150_bin+0x8324, NULL, 0, 0x474};
 
 /*800CCCB8*/
 ModelInfo D_800CCCB8 = {
-    0x2347D0,
+    (s32)models_5BA150_bin,
     NULL,
     0x8324,
     0x8324,
@@ -26220,11 +26221,11 @@ ModelInfo D_800CCCB8 = {
     0x24D,
 };
 
-/*800CCCE8*/ static ModelInfoUnkStruct1 D_800CCCE8 = {0x243D24, NULL, 0, 0xD92};
+/*800CCCE8*/ static ModelVertexInfo D_800CCCE8 = {(s32)models_5C28F0_bin+0x6DB4, NULL, 0, 0xD92};
 
 /*800CCCF4*/
 ModelInfo D_800CCCF4 = {
-    0x23CF70,
+    (s32)models_5C28F0_bin,
     NULL,
     0x6DB2,
     0x6DB2,
@@ -26245,11 +26246,11 @@ ModelInfo D_800CCCF4 = {
     0xB9,
 };
 
-/*800CCD24*/ static ModelInfoUnkStruct1 D_800CCD24 = {0x244EC8, NULL, 0, 0xA8};
+/*800CCD24*/ static ModelVertexInfo D_800CCD24 = {(s32)models_5CA440_bin+0x408, NULL, 0, 0xA8};
 
 /*800CCD30*/
 ModelInfo D_800CCD30 = {
-    0x244AC0,
+    (s32)models_5CA440_bin,
     NULL,
     0x408,
     0x408,
@@ -26270,11 +26271,11 @@ ModelInfo D_800CCD30 = {
     0x1E,
 };
 
-/*800CCD60*/ static ModelInfoUnkStruct1 D_800CCD60 = {0x247CE4, NULL, 0, 0x3B4};
+/*800CCD60*/ static ModelVertexInfo D_800CCD60 = {(s32)models_5CA8F0_bin+0x2D74, NULL, 0, 0x3B4};
 
 /*800CCD6C*/
 ModelInfo D_800CCD6C = {
-    0x244F70,
+    (s32)models_5CA8F0_bin,
     NULL,
     0x2D74,
     0x2D74,
@@ -26295,11 +26296,11 @@ ModelInfo D_800CCD6C = {
     0x126,
 };
 
-/*800CCD9C*/ static ModelInfoUnkStruct1 D_800CCD9C = {0x2485B0, NULL, 0, 0x48};
+/*800CCD9C*/ static ModelVertexInfo D_800CCD9C = {(s32)models_5CDA20_bin+0x510, NULL, 0, 0x48};
 
 /*800CCDA8*/
 ModelInfo D_800CCDA8 = {
-    0x2480A0,
+    (s32)models_5CDA20_bin,
     NULL,
     0x510,
     0x510,
@@ -26320,11 +26321,11 @@ ModelInfo D_800CCDA8 = {
     0x5A,
 };
 
-/*800CCDD8*/ static ModelInfoUnkStruct1 D_800CCDD8 = {0x24CF20, NULL, 0, 0x5A6};
+/*800CCDD8*/ static ModelVertexInfo D_800CCDD8 = {(s32)models_5CDF80_bin+0x4920, NULL, 0, 0x5A6};
 
 /*800CCDE4*/
 ModelInfo D_800CCDE4 = {
-    0x248600,
+    (s32)models_5CDF80_bin,
     NULL,
     0x491E,
     0x491E,
@@ -26345,11 +26346,11 @@ ModelInfo D_800CCDE4 = {
     0x6D,
 };
 
-/*800CCE14*/ static ModelInfoUnkStruct1 D_800CCE14 = {0x24E6D8, NULL, 0, 0xAE};
+/*800CCE14*/ static ModelVertexInfo D_800CCE14 = {(s32)models_5D2E50_bin+0x1208, NULL, 0, 0xAE};
 
 /*800CCE20*/
 ModelInfo D_800CCE20 = {
-    0x24D4D0,
+    (s32)models_5D2E50_bin,
     NULL,
     0x1206,
     0x1206,
@@ -26370,11 +26371,11 @@ ModelInfo D_800CCE20 = {
     0x12B,
 };
 
-/*800CCE50*/ static ModelInfoUnkStruct1 D_800CCE50 = {0x24F904, NULL, 0, 0x6C};
+/*800CCE50*/ static ModelVertexInfo D_800CCE50 = {(s32)models_5D4110_bin+0x1174, NULL, 0, 0x6C};
 
 /*800CCE5C*/
 ModelInfo D_800CCE5C = {
-    0x24E790,
+    (s32)models_5D4110_bin,
     NULL,
     0x1174,
     0x1174,
@@ -26395,11 +26396,11 @@ ModelInfo D_800CCE5C = {
     0x12B,
 };
 
-/*800CCE8C*/ static ModelInfoUnkStruct1 D_800CCE8C = {0x251304, NULL, 0, 0x6C};
+/*800CCE8C*/ static ModelVertexInfo D_800CCE8C = {(s32)models_5D52F0_bin+0x1994, NULL, 0, 0x6C};
 
 /*800CCE98*/
 ModelInfo D_800CCE98 = {
-    0x24F970,
+    (s32)models_5D52F0_bin,
     NULL,
     0x1994,
     0x1994,
@@ -26420,11 +26421,11 @@ ModelInfo D_800CCE98 = {
     0x144,
 };
 
-/*800CCEC8*/ static ModelInfoUnkStruct1 D_800CCEC8 = {0x252D04, NULL, 0, 0x6C};
+/*800CCEC8*/ static ModelVertexInfo D_800CCEC8 = {(s32)models_5D6CF0_bin+0x1994, NULL, 0, 0x6C};
 
 /*800CCED4*/
 ModelInfo D_800CCED4 = {
-    0x251370,
+    (s32)models_5D6CF0_bin,
     NULL,
     0x1994,
     0x1994,
@@ -26445,11 +26446,11 @@ ModelInfo D_800CCED4 = {
     0x144,
 };
 
-/*800CCF04*/ static ModelInfoUnkStruct1 D_800CCF04 = {0x254910, NULL, 0, 0x186};
+/*800CCF04*/ static ModelVertexInfo D_800CCF04 = {(s32)models_5D86F0_bin+0x1BA0, NULL, 0, 0x186};
 
 /*800CCF10*/
 ModelInfo D_800CCF10 = {
-    0x252D70,
+    (s32)models_5D86F0_bin,
     NULL,
     0x1B9E,
     0x1B9E,
@@ -26470,11 +26471,11 @@ ModelInfo D_800CCF10 = {
     0x142,
 };
 
-/*800CCF40*/ static ModelInfoUnkStruct1 D_800CCF40 = {0x256434, NULL, 0, 0x6C};
+/*800CCF40*/ static ModelVertexInfo D_800CCF40 = {(s32)models_5DA420_bin+0x1994, NULL, 0, 0x6C};
 
 /*800CCF4C*/
 ModelInfo D_800CCF4C = {
-    0x254AA0,
+    (s32)models_5DA420_bin,
     NULL,
     0x1994,
     0x1994,
@@ -26495,11 +26496,11 @@ ModelInfo D_800CCF4C = {
     0x144,
 };
 
-/*800CCF7C*/ static ModelInfoUnkStruct1 D_800CCF7C = {0x257F6C, NULL, 0, 0x12C};
+/*800CCF7C*/ static ModelVertexInfo D_800CCF7C = {(s32)models_5DBE20_bin+0x1ACC, NULL, 0, 0x12C};
 
 /*800CCF88*/
 ModelInfo D_800CCF88 = {
-    0x2564A0,
+    (s32)models_5DBE20_bin,
     NULL,
     0x1ACC,
     0x1ACC,
@@ -26520,11 +26521,11 @@ ModelInfo D_800CCF88 = {
     0x13E,
 };
 
-/*800CCFB8*/ static ModelInfoUnkStruct1 D_800CCFB8 = {0x25D454, NULL, 0, 0x612};
+/*800CCFB8*/ static ModelVertexInfo D_800CCFB8 = {(s32)models_5DDA20_bin+0x53B4, NULL, 0, 0x612};
 
 /*800CCFC4*/
 ModelInfo D_800CCFC4 = {
-    0x2580A0,
+    (s32)models_5DDA20_bin,
     NULL,
     0x53B2,
     0x53B2,
@@ -26545,11 +26546,11 @@ ModelInfo D_800CCFC4 = {
     0xB1,
 };
 
-/*800CCFF4*/ static ModelInfoUnkStruct1 D_800CCFF4 = {0x25DF80, NULL, 0, 0x48};
+/*800CCFF4*/ static ModelVertexInfo D_800CCFF4 = {(s32)models_5E33F0_bin+0x510, NULL, 0, 0x48};
 
 /*800CD000*/
 ModelInfo D_800CD000 = {
-    0x25DA70,
+    (s32)models_5E33F0_bin,
     NULL,
     0x510,
     0x510,
@@ -26570,11 +26571,11 @@ ModelInfo D_800CD000 = {
     0x1F,
 };
 
-/*800CD030*/ static ModelInfoUnkStruct1 D_800CD030 = {0x25F5D0, NULL, 0, 0x1E0};
+/*800CD030*/ static ModelVertexInfo D_800CD030 = {(s32)models_5E3950_bin+0x1600, NULL, 0, 0x1E0};
 
 /*800CD03C*/
 ModelInfo D_800CD03C = {
-    0x25DFD0,
+    (s32)models_5E3950_bin,
     NULL,
     0x1600,
     0x1600,
@@ -26595,11 +26596,11 @@ ModelInfo D_800CD03C = {
     0x4B,
 };
 
-/*800CD06C*/ static ModelInfoUnkStruct1 D_800CD06C = {0x26157C, NULL, 0, 0x35A};
+/*800CD06C*/ static ModelVertexInfo D_800CD06C = {(s32)models_5E5130_bin+0x1DCC, NULL, 0, 0x35A};
 
 /*800CD078*/
 ModelInfo D_800CD078 = {
-    0x25F7B0,
+    (s32)models_5E5130_bin,
     NULL,
     0x1DCA,
     0x1DCA,
@@ -26620,11 +26621,11 @@ ModelInfo D_800CD078 = {
     0xAD,
 };
 
-/*800CD0A8*/ static ModelInfoUnkStruct1 D_800CD0A8 = {0x2634A0, NULL, 0, 0x10E};
+/*800CD0A8*/ static ModelVertexInfo D_800CD0A8 = {(s32)models_5E7260_bin+0x1BC0, NULL, 0, 0x10E};
 
 /*800CD0B4*/
 ModelInfo D_800CD0B4 = {
-    0x2618E0,
+    (s32)models_5E7260_bin,
     NULL,
     0x1BBE,
     0x1BBE,
@@ -26691,11 +26692,11 @@ ModelInfo D_800CD114 = {
     0,
 };
 
-/*800CD144*/ static ModelInfoUnkStruct1 D_800CD144 = {0x28AF7C, NULL, 0, 0x942};
+/*800CD144*/ static ModelVertexInfo D_800CD144 = {(s32)models_608440_bin+0x84BC, NULL, 0, 0x942};
 
 /*800CD150*/
 ModelInfo D_800CD150 = {
-    0x282AC0,
+    (s32)models_608440_bin,
     NULL,
     0x84BA,
     0x84BA,
@@ -26716,11 +26717,11 @@ ModelInfo D_800CD150 = {
     0xB3,
 };
 
-/*800CD180*/ static ModelInfoUnkStruct1 D_800CD180 = {0x28C174, NULL, 0, 0x42};
+/*800CD180*/ static ModelVertexInfo D_800CD180 = {(s32)models_611240_bin+0x8B4, NULL, 0, 0x42};
 
 /*800CD18C*/
 ModelInfo D_800CD18C = {
-    0x28B8C0,
+    (s32)models_611240_bin,
     NULL,
     0x8B2,
     0x8B2,
@@ -26741,11 +26742,11 @@ ModelInfo D_800CD18C = {
     0x1A,
 };
 
-/*800CD1BC*/ static ModelInfoUnkStruct1 D_800CD1BC = {0x28CA74, NULL, 0, 0x42};
+/*800CD1BC*/ static ModelVertexInfo D_800CD1BC = {(s32)models_611B40_bin+0x8B4, NULL, 0, 0x42};
 
 /*800CD1C8*/
 ModelInfo D_800CD1C8 = {
-    0x28C1C0,
+    (s32)models_611B40_bin,
     NULL,
     0x8B2,
     0x8B2,
@@ -26766,11 +26767,11 @@ ModelInfo D_800CD1C8 = {
     0x13,
 };
 
-/*800CD1F8*/ static ModelInfoUnkStruct1 D_800CD1F8 = {0x28D338, NULL, 0, 0x1E};
+/*800CD1F8*/ static ModelVertexInfo D_800CD1F8 = {(s32)models_612440_bin+0x878, NULL, 0, 0x1E};
 
 /*800CD204*/
 ModelInfo D_800CD204 = {
-    0x28CAC0,
+    (s32)models_612440_bin,
     NULL,
     0x876,
     0x876,
@@ -26791,11 +26792,11 @@ ModelInfo D_800CD204 = {
     9,
 };
 
-/*800CD234*/ static ModelInfoUnkStruct1 D_800CD234 = {0x28DBD8, NULL, 0, 0x1E};
+/*800CD234*/ static ModelVertexInfo D_800CD234 = {(s32)models_612CE0_bin+0x878, NULL, 0, 0x1E};
 
 /*800CD240*/
 ModelInfo D_800CD240 = {
-    0x28D360,
+    (s32)models_612CE0_bin,
     NULL,
     0x876,
     0x876,
@@ -26816,11 +26817,11 @@ ModelInfo D_800CD240 = {
     9,
 };
 
-/*800CD270*/ static ModelInfoUnkStruct1 D_800CD270 = {0x28E468, NULL, 0, 0x18};
+/*800CD270*/ static ModelVertexInfo D_800CD270 = {(s32)models_613580_bin+0x868, NULL, 0, 0x18};
 
 /*800CD27C*/
 ModelInfo D_800CD27C = {
-    0x28DC00,
+    (s32)models_613580_bin,
     NULL,
     0x868,
     0x868,
@@ -26841,11 +26842,11 @@ ModelInfo D_800CD27C = {
     9,
 };
 
-/*800CD2AC*/ static ModelInfoUnkStruct1 D_800CD2AC = {0x28ECE8, NULL, 0, 0x18};
+/*800CD2AC*/ static ModelVertexInfo D_800CD2AC = {(s32)models_613E00_bin+0x868, NULL, 0, 0x18};
 
 /*800CD2B8*/
 ModelInfo D_800CD2B8 = {
-    0x28E480,
+    (s32)models_613E00_bin,
     NULL,
     0x868,
     0x868,
@@ -26866,11 +26867,11 @@ ModelInfo D_800CD2B8 = {
     9,
 };
 
-/*800CD2E8*/ static ModelInfoUnkStruct1 D_800CD2E8 = {0x28F578, NULL, 0, 0x1E};
+/*800CD2E8*/ static ModelVertexInfo D_800CD2E8 = {(s32)models_614680_bin+0x878, NULL, 0, 0x1E};
 
 /*800CD2F4*/
 ModelInfo D_800CD2F4 = {
-    0x28ED00,
+    (s32)models_614680_bin,
     NULL,
     0x876,
     0x876,
@@ -26891,11 +26892,11 @@ ModelInfo D_800CD2F4 = {
     9,
 };
 
-/*800CD324*/ static ModelInfoUnkStruct1 D_800CD324 = {0x2910B4, NULL, 0, 0x41A};
+/*800CD324*/ static ModelVertexInfo D_800CD324 = {(s32)models_614F20_bin+0x1B14, NULL, 0, 0x41A};
 
 /*800CD330*/
 ModelInfo D_800CD330 = {
-    0x28F5A0,
+    (s32)models_614F20_bin,
     NULL,
     0x1B12,
     0x1B12,
@@ -26916,11 +26917,11 @@ ModelInfo D_800CD330 = {
     0xA3,
 };
 
-/*800CD360*/ static ModelInfoUnkStruct1 D_800CD360 = {0x2976A0, NULL, 0, 0xBEE};
+/*800CD360*/ static ModelVertexInfo D_800CD360 = {(s32)models_616E50_bin+0x61D0, NULL, 0, 0xBEE};
 
 /*800CD36C*/
 ModelInfo D_800CD36C = {
-    0x2914D0,
+    (s32)models_616E50_bin,
     NULL,
     0x61CE,
     0x61CE,
@@ -26941,11 +26942,11 @@ ModelInfo D_800CD36C = {
     0x17F,
 };
 
-/*800CD39C*/ static ModelInfoUnkStruct1 D_800CD39C = {0x2C885C, NULL, 0, 0x114};
+/*800CD39C*/ static ModelVertexInfo D_800CD39C = {(s32)models_64CE60_bin+0x137C, NULL, 0, 0x114};
 
 /*800CD3A8*/
 ModelInfo D_800CD3A8 = {
-    0x2C74E0,
+    (s32)models_64CE60_bin,
     NULL,
     0x137C,
     0x137C,
@@ -26966,11 +26967,11 @@ ModelInfo D_800CD3A8 = {
     0x1E,
 };
 
-/*800CD3D8*/ static ModelInfoUnkStruct1 D_800CD3D8 = {0x2CBB34, NULL, 0, 0x5AC};
+/*800CD3D8*/ static ModelVertexInfo D_800CD3D8 = {(s32)models_64E2F0_bin+0x31C4, NULL, 0, 0x5AC};
 
 /*800CD3E4*/
 ModelInfo D_800CD3E4 = {
-    0x2C8970,
+    (s32)models_64E2F0_bin,
     NULL,
     0x31C4,
     0x31C4,
@@ -26991,11 +26992,11 @@ ModelInfo D_800CD3E4 = {
     0x78,
 };
 
-/*800CD414*/ static ModelInfoUnkStruct1 D_800CD414 = {0x2D24A0, NULL, 0, 0x516};
+/*800CD414*/ static ModelVertexInfo D_800CD414 = {(s32)models_651A60_bin+0x63C0, NULL, 0, 0x516};
 
 /*800CD420*/
 ModelInfo D_800CD420 = {
-    0x2CC0E0,
+    (s32)models_651A60_bin,
     NULL,
     0x63BE,
     0x63BE,
@@ -27016,11 +27017,11 @@ ModelInfo D_800CD420 = {
     0x1AB,
 };
 
-/*800CD450*/ static ModelInfoUnkStruct1 D_800CD450 = {0x2D9DA0, NULL, 0, 0x91E};
+/*800CD450*/ static ModelVertexInfo D_800CD450 = {(s32)models_658340_bin+0x73E0, NULL, 0, 0x91E};
 
 /*800CD45C*/
 ModelInfo D_800CD45C = {
-    0x2D29C0,
+    (s32)models_658340_bin,
     NULL,
     0x73DE,
     0x73DE,
@@ -27041,11 +27042,11 @@ ModelInfo D_800CD45C = {
     0x238,
 };
 
-/*800CD48C*/ static ModelInfoUnkStruct1 D_800CD48C = {0x2DEA64, NULL, 0, 0x12C};
+/*800CD48C*/ static ModelVertexInfo D_800CD48C = {(s32)models_660040_bin+0x43A4, NULL, 0, 0x12C};
 
 /*800CD498*/
 ModelInfo D_800CD498 = {
-    0x2DA6C0,
+    (s32)models_660040_bin,
     NULL,
     0x43A4,
     0x43A4,
@@ -27066,11 +27067,11 @@ ModelInfo D_800CD498 = {
     0xFD,
 };
 
-/*800CD4C8*/ static ModelInfoUnkStruct1 D_800CD4C8 = {0x2DFDA0, NULL, 0, 0xC0};
+/*800CD4C8*/ static ModelVertexInfo D_800CD4C8 = {(s32)models_664510_bin+0x1210, NULL, 0, 0xC0};
 
 /*800CD4D4*/
 ModelInfo D_800CD4D4 = {
-    0x2DEB90,
+    (s32)models_664510_bin,
     NULL,
     0x1210,
     0x1210,
@@ -27091,11 +27092,11 @@ ModelInfo D_800CD4D4 = {
     0,
 };
 
-/*800CD504*/ static ModelInfoUnkStruct1 D_800CD504 = {0x2E12C8, NULL, 0, 0xDE};
+/*800CD504*/ static ModelVertexInfo D_800CD504 = {(s32)models_6657E0_bin+0x1468, NULL, 0, 0xDE};
 
 /*800CD510*/
 ModelInfo D_800CD510 = {
-    0x2DFE60,
+    (s32)models_6657E0_bin,
     NULL,
     0x1466,
     0x1466,
@@ -27116,11 +27117,11 @@ ModelInfo D_800CD510 = {
     0xD4,
 };
 
-/*800CD540*/ static ModelInfoUnkStruct1 D_800CD540 = {0x2E1FEC, NULL, 0, 0xEA};
+/*800CD540*/ static ModelVertexInfo D_800CD540 = {(s32)models_666D30_bin+0xC3C, NULL, 0, 0xEA};
 
 /*800CD54C*/
 ModelInfo D_800CD54C = {
-    0x2E13B0,
+    (s32)models_666D30_bin,
     NULL,
     0xC3A,
     0xC3A,
@@ -27141,11 +27142,11 @@ ModelInfo D_800CD54C = {
     0x54,
 };
 
-/*800CD57C*/ static ModelInfoUnkStruct1 D_800CD57C = {0x2E9738, NULL, 0, 0x540};
+/*800CD57C*/ static ModelVertexInfo D_800CD57C = {(s32)models_667A60_bin+0x7658, NULL, 0, 0x540};
 
 /*800CD588*/
 ModelInfo D_800CD588 = {
-    0x2E20E0,
+    (s32)models_667A60_bin,
     NULL,
     0x7658,
     0x7658,
@@ -27166,11 +27167,11 @@ ModelInfo D_800CD588 = {
     0xC2,
 };
 
-/*800CD5B8*/ static ModelInfoUnkStruct1 D_800CD5B8 = {0x2ECDBC, NULL, 0, 0x59A};
+/*800CD5B8*/ static ModelVertexInfo D_800CD5B8 = {(s32)models_66F600_bin+0x313C, NULL, 0, 0x59A};
 
 /*800CD5C4*/
 ModelInfo D_800CD5C4 = {
-    0x2E9C80,
+    (s32)models_66F600_bin,
     NULL,
     0x313A,
     0x313A,
@@ -27191,11 +27192,11 @@ ModelInfo D_800CD5C4 = {
     0x9B,
 };
 
-/*800CD5F4*/ static ModelInfoUnkStruct1 D_800CD5F4 = {0x2EED54, NULL, 0, 0x222};
+/*800CD5F4*/ static ModelVertexInfo D_800CD5F4 = {(s32)models_672CE0_bin+0x19F4, NULL, 0, 0x222};
 
 /*800CD600*/
 ModelInfo D_800CD600 = {
-    0x2ED360,
+    (s32)models_672CE0_bin,
     NULL,
     0x19F2,
     0x19F2,
@@ -27216,11 +27217,11 @@ ModelInfo D_800CD600 = {
     0x64,
 };
 
-/*800CD630*/ static ModelInfoUnkStruct1 D_800CD630 = {0x2F004C, NULL, 0, 0x3C};
+/*800CD630*/ static ModelVertexInfo D_800CD630 = {(s32)models_674900_bin+0x10CC, NULL, 0, 0x3C};
 
 /*800CD63C*/
 ModelInfo D_800CD63C = {
-    0x2EEF80,
+    (s32)models_674900_bin,
     NULL,
     0x10CC,
     0x10CC,
@@ -27241,11 +27242,11 @@ ModelInfo D_800CD63C = {
     0xB0,
 };
 
-/*800CD66C*/ static ModelInfoUnkStruct1 D_800CD66C = {0x2F059C, NULL, 0, 0x5A};
+/*800CD66C*/ static ModelVertexInfo D_800CD66C = {(s32)models_675A10_bin+0x50C, NULL, 0, 0x5A};
 
 /*800CD678*/
 ModelInfo D_800CD678 = {
-    0x2F0090,
+    (s32)models_675A10_bin,
     NULL,
     0x50A,
     0x50A,
@@ -27266,11 +27267,11 @@ ModelInfo D_800CD678 = {
     0xD,
 };
 
-/*800CD6A8*/ static ModelInfoUnkStruct1 D_800CD6A8 = {0x2F112C, NULL, 0, 0x72};
+/*800CD6A8*/ static ModelVertexInfo D_800CD6A8 = {(s32)models_675F80_bin+0xB2C, NULL, 0, 0x72};
 
 /*800CD6B4*/
 ModelInfo D_800CD6B4 = {
-    0x2F0600,
+    (s32)models_675F80_bin,
     NULL,
     0xB2A,
     0xB2A,
@@ -27291,11 +27292,11 @@ ModelInfo D_800CD6B4 = {
     0xFA,
 };
 
-/*800CD6E4*/ static ModelInfoUnkStruct1 D_800CD6E4 = {0x2F1A28, NULL, 0, 0xAE};
+/*800CD6E4*/ static ModelVertexInfo D_800CD6E4 = {(s32)models_676B20_bin+0x888, NULL, 0, 0xAE};
 
 /*800CD6F0*/
 ModelInfo D_800CD6F0 = {
-    0x2F11A0,
+    (s32)models_676B20_bin,
     NULL,
     0x886,
     0x886,
@@ -27316,11 +27317,11 @@ ModelInfo D_800CD6F0 = {
     0xD,
 };
 
-/*800CD720*/ static ModelInfoUnkStruct1 D_800CD720 = {0x2F5658, NULL, 0, 0x52E};
+/*800CD720*/ static ModelVertexInfo D_800CD720 = {(s32)models_677460_bin+0x3B78, NULL, 0, 0x52E};
 
 /*800CD72C*/
 ModelInfo D_800CD72C = {
-    0x2F1AE0,
+    (s32)models_677460_bin,
     NULL,
     0x3B76,
     0x3B76,
@@ -27341,11 +27342,11 @@ ModelInfo D_800CD72C = {
     0x12F,
 };
 
-/*800CD75C*/ static ModelInfoUnkStruct1 D_800CD75C = {0x2F8650, NULL, 0, 0x4B0};
+/*800CD75C*/ static ModelVertexInfo D_800CD75C = {(s32)models_67B510_bin+0x2AC0, NULL, 0, 0x4B0};
 
 /*800CD768*/
 ModelInfo D_800CD768 = {
-    0x2F5B90,
+    (s32)models_67B510_bin,
     NULL,
     0x2AC0,
     0x2AC0,
@@ -27366,11 +27367,11 @@ ModelInfo D_800CD768 = {
     0x124,
 };
 
-/*800CD798*/ static ModelInfoUnkStruct1 D_800CD798 = {0x2F92B4, NULL, 0, 0x15C};
+/*800CD798*/ static ModelVertexInfo D_800CD798 = {(s32)models_67E480_bin+0x7B4, NULL, 0, 0x15C};
 
 /*800CD7A4*/
 ModelInfo D_800CD7A4 = {
-    0x2F8B00,
+    (s32)models_67E480_bin,
     NULL,
     0x7B4,
     0x7B4,
@@ -27391,11 +27392,11 @@ ModelInfo D_800CD7A4 = {
     0x1A,
 };
 
-/*800CD7D4*/ static ModelInfoUnkStruct1 D_800CD7D4 = {0x2FA2BC, NULL, 0, 0x1D4};
+/*800CD7D4*/ static ModelVertexInfo D_800CD7D4 = {(s32)models_67ED90_bin+0xEAC, NULL, 0, 0x1D4};
 
 /*800CD7E0*/
 ModelInfo D_800CD7E0 = {
-    0x2F9410,
+    (s32)models_67ED90_bin,
     NULL,
     0xEAC,
     0xEAC,
@@ -27416,11 +27417,11 @@ ModelInfo D_800CD7E0 = {
     0x12,
 };
 
-/*800CD810*/ static ModelInfoUnkStruct1 D_800CD810 = {0x2FCACC, NULL, 0, 0x282};
+/*800CD810*/ static ModelVertexInfo D_800CD810 = {(s32)models_67FE10_bin+0x263C, NULL, 0, 0x282};
 
 /*800CD81C*/
 ModelInfo D_800CD81C = {
-    0x2FA490,
+    (s32)models_67FE10_bin,
     NULL,
     0x263A,
     0x263A,
@@ -27441,11 +27442,11 @@ ModelInfo D_800CD81C = {
     0x8C,
 };
 
-/*800CD84C*/ static ModelInfoUnkStruct1 D_800CD84C = {0x2FE2EC, NULL, 0, 0x1AA};
+/*800CD84C*/ static ModelVertexInfo D_800CD84C = {(s32)models_6826D0_bin+0x159C, NULL, 0, 0x1AA};
 
 /*800CD858*/
 ModelInfo D_800CD858 = {
-    0x2FCD50,
+    (s32)models_6826D0_bin,
     NULL,
     0x159A,
     0x159A,
@@ -27466,11 +27467,11 @@ ModelInfo D_800CD858 = {
     0xC5,
 };
 
-/*800CD888*/ static ModelInfoUnkStruct1 D_800CD888 = {0x3000F8, NULL, 0, 0x156};
+/*800CD888*/ static ModelVertexInfo D_800CD888 = {(s32)models_683E20_bin+0x1C58, NULL, 0, 0x156};
 
 /*800CD894*/
 ModelInfo D_800CD894 = {
-    0x2FE4A0,
+    (s32)models_683E20_bin,
     NULL,
     0x1C56,
     0x1C56,
@@ -27491,11 +27492,11 @@ ModelInfo D_800CD894 = {
     0x4D,
 };
 
-/*800CD8C4*/ static ModelInfoUnkStruct1 D_800CD8C4 = {0x300FA0, NULL, 0, 0x180};
+/*800CD8C4*/ static ModelVertexInfo D_800CD8C4 = {(s32)models_685BD0_bin+0xD50, NULL, 0, 0x180};
 
 /*800CD8D0*/
 ModelInfo D_800CD8D0 = {
-    0x300250,
+    (s32)models_685BD0_bin,
     NULL,
     0xD50,
     0xD50,
@@ -27516,11 +27517,11 @@ ModelInfo D_800CD8D0 = {
     0x4C,
 };
 
-/*800CD900*/ static ModelInfoUnkStruct1 D_800CD900 = {0x302DB8, NULL, 0, 0x3C0};
+/*800CD900*/ static ModelVertexInfo D_800CD900 = {(s32)models_686AA0_bin+0x1C98, NULL, 0, 0x3C0};
 
 /*800CD90C*/
 ModelInfo D_800CD90C = {
-    0x301120,
+    (s32)models_686AA0_bin,
     NULL,
     0x1C98,
     0x1C98,
@@ -27541,11 +27542,11 @@ ModelInfo D_800CD90C = {
     0x3E,
 };
 
-/*800CD93C*/ static ModelInfoUnkStruct1 D_800CD93C = {0x304B48, NULL, 0, 0x2D0};
+/*800CD93C*/ static ModelVertexInfo D_800CD93C = {(s32)models_688B00_bin+0x19C8, NULL, 0, 0x2D0};
 
 /*800CD948*/
 ModelInfo D_800CD948 = {
-    0x303180,
+    (s32)models_688B00_bin,
     NULL,
     0x19C8,
     0x19C8,
@@ -27566,11 +27567,11 @@ ModelInfo D_800CD948 = {
     0xB,
 };
 
-/*800CD978*/ static ModelInfoUnkStruct1 D_800CD978 = {0x308464, NULL, 0, 0x8C4};
+/*800CD978*/ static ModelVertexInfo D_800CD978 = {(s32)models_68A7A0_bin+0x3644, NULL, 0, 0x8C4};
 
 /*800CD984*/
 ModelInfo D_800CD984 = {
-    0x304E20,
+    (s32)models_68A7A0_bin,
     NULL,
     0x3644,
     0x3644,
@@ -27591,11 +27592,11 @@ ModelInfo D_800CD984 = {
     0x99,
 };
 
-/*800CD9B4*/ static ModelInfoUnkStruct1 D_800CD9B4 = {0x30A8E8, NULL, 0, 0x2BE};
+/*800CD9B4*/ static ModelVertexInfo D_800CD9B4 = {(s32)models_68E6B0_bin+0x1BB8, NULL, 0, 0x2BE};
 
 /*800CD9C0*/
 ModelInfo D_800CD9C0 = {
-    0x308D30,
+    (s32)models_68E6B0_bin,
     NULL,
     0x1BB6,
     0x1BB6,
@@ -27616,11 +27617,11 @@ ModelInfo D_800CD9C0 = {
     0x12E,
 };
 
-/*800CD9F0*/ static ModelInfoUnkStruct1 D_800CD9F0 = {0x30BA7C, NULL, 0, 0x29A};
+/*800CD9F0*/ static ModelVertexInfo D_800CD9F0 = {(s32)models_690530_bin+0xECC, NULL, 0, 0x29A};
 
 /*800CD9FC*/
 ModelInfo D_800CD9FC = {
-    0x30ABB0,
+    (s32)models_690530_bin,
     NULL,
     0xECA,
     0xECA,
@@ -27641,11 +27642,11 @@ ModelInfo D_800CD9FC = {
     0x97,
 };
 
-/*800CDA2C*/ static ModelInfoUnkStruct1 D_800CDA2C = {0x30D0C8, NULL, 0, 0x168};
+/*800CDA2C*/ static ModelVertexInfo D_800CDA2C = {(s32)models_6916A0_bin+0x13A8, NULL, 0, 0x168};
 
 /*800CDA38*/
 ModelInfo D_800CDA38 = {
-    0x30BD20,
+    (s32)models_6916A0_bin,
     NULL,
     0x13A8,
     0x13A8,
@@ -27666,11 +27667,11 @@ ModelInfo D_800CDA38 = {
     0x68,
 };
 
-/*800CDA68*/ static ModelInfoUnkStruct1 D_800CDA68 = {0x30F498, NULL, 0, 0x120};
+/*800CDA68*/ static ModelVertexInfo D_800CDA68 = {(s32)models_692BB0_bin+0x2268, NULL, 0, 0x120};
 
 /*800CDA74*/
 ModelInfo D_800CDA74 = {
-    0x30D230,
+    (s32)models_692BB0_bin,
     NULL,
     0x2268,
     0x2268,
@@ -27691,11 +27692,11 @@ ModelInfo D_800CDA74 = {
     0x38,
 };
 
-/*800CDAA4*/ static ModelInfoUnkStruct1 D_800CDAA4 = {0x314EC4, NULL, 0, 0x612};
+/*800CDAA4*/ static ModelVertexInfo D_800CDAA4 = {(s32)models_694F40_bin+0x5904, NULL, 0, 0x612};
 
 /*800CDAB0*/
 ModelInfo D_800CDAB0 = {
-    0x30F5C0,
+    (s32)models_694F40_bin,
     NULL,
     0x5902,
     0x5902,
@@ -27716,11 +27717,11 @@ ModelInfo D_800CDAB0 = {
     0xD8,
 };
 
-/*800CDAE0*/ static ModelInfoUnkStruct1 D_800CDAE0 = {0x316C08, NULL, 0, 0x1C8};
+/*800CDAE0*/ static ModelVertexInfo D_800CDAE0 = {(s32)models_69AE60_bin+0x1728, NULL, 0, 0x1C8};
 
 /*800CDAEC*/
 ModelInfo D_800CDAEC = {
-    0x3154E0,
+    (s32)models_69AE60_bin,
     NULL,
     0x1728,
     0x1728,
@@ -27741,11 +27742,11 @@ ModelInfo D_800CDAEC = {
     0x94,
 };
 
-/*800CDB1C*/ static ModelInfoUnkStruct1 D_800CDB1C = {0x33521C, NULL, 0, 0xB4};
+/*800CDB1C*/ static ModelVertexInfo D_800CDB1C = {(s32)models_6BA1B0_bin+0x9EC, NULL, 0, 0xB4};
 
 /*800CDB28*/
 ModelInfo D_800CDB28 = {
-    0x334830,
+    (s32)models_6BA1B0_bin,
     NULL,
     0x9EC,
     0x9EC,
@@ -27766,11 +27767,11 @@ ModelInfo D_800CDB28 = {
     0x19,
 };
 
-/*800CDB58*/ static ModelInfoUnkStruct1 D_800CDB58 = {0x3362A8, NULL, 0, 0x43E};
+/*800CDB58*/ static ModelVertexInfo D_800CDB58 = {(s32)models_6BAC50_bin+0xFD8, NULL, 0, 0x43E};
 
 /*800CDB64*/
 ModelInfo D_800CDB64 = {
-    0x3352D0,
+    (s32)models_6BAC50_bin,
     NULL,
     0xFD6,
     0xFD6,
@@ -27791,11 +27792,11 @@ ModelInfo D_800CDB64 = {
     8,
 };
 
-/*800CDB94*/ static ModelInfoUnkStruct1 D_800CDB94 = {0x3376C8, NULL, 0, 0x43E};
+/*800CDB94*/ static ModelVertexInfo D_800CDB94 = {(s32)models_6BC070_bin+0xFD8, NULL, 0, 0x43E};
 
 /*800CDBA0*/
 ModelInfo D_800CDBA0 = {
-    0x3366F0,
+    (s32)models_6BC070_bin,
     NULL,
     0xFD6,
     0xFD6,
@@ -27816,11 +27817,11 @@ ModelInfo D_800CDBA0 = {
     8,
 };
 
-/*800CDBD0*/ static ModelInfoUnkStruct1 D_800CDBD0 = {0x338934, NULL, 0, 0x2FA};
+/*800CDBD0*/ static ModelVertexInfo D_800CDBD0 = {(s32)models_6BD490_bin+0xE24, NULL, 0, 0x2FA};
 
 /*800CDBDC*/
 ModelInfo D_800CDBDC = {
-    0x337B10,
+    (s32)models_6BD490_bin,
     NULL,
     0xE22,
     0xE22,
@@ -27841,11 +27842,11 @@ ModelInfo D_800CDBDC = {
     8,
 };
 
-/*800CDC0C*/ static ModelInfoUnkStruct1 D_800CDC0C = {0x33AE84, NULL, 0, 0xE4};
+/*800CDC0C*/ static ModelVertexInfo D_800CDC0C = {(s32)models_6BE5B0_bin+0x2254, NULL, 0, 0xE4};
 
 /*800CDC18*/
 ModelInfo D_800CDC18 = {
-    0x338C30,
+    (s32)models_6BE5B0_bin,
     NULL,
     0x2254,
     0x2254,
@@ -27866,11 +27867,11 @@ ModelInfo D_800CDC18 = {
     0,
 };
 
-/*800CDC48*/ static ModelInfoUnkStruct1 D_800CDC48 = {0x33B7E8, NULL, 0, 0x1E};
+/*800CDC48*/ static ModelVertexInfo D_800CDC48 = {(s32)models_6C08F0_bin+0x878, NULL, 0, 0x1E};
 
 /*800CDC54*/
 ModelInfo D_800CDC54 = {
-    0x33AF70,
+    (s32)models_6C08F0_bin,
     NULL,
     0x876,
     0x876,
@@ -27891,11 +27892,11 @@ ModelInfo D_800CDC54 = {
     9,
 };
 
-/*800CDC84*/ static ModelInfoUnkStruct1 D_800CDC84 = {0x342194, NULL, 0, 0x3FC};
+/*800CDC84*/ static ModelVertexInfo D_800CDC84 = {(s32)models_6C1190_bin+0x6984, NULL, 0, 0x3FC};
 
 /*800CDC90*/
 ModelInfo D_800CDC90 = {
-    0x33B810,
+    (s32)models_6C1190_bin,
     NULL,
     0x6984,
     0x6984,
@@ -27916,11 +27917,11 @@ ModelInfo D_800CDC90 = {
     0x1A6,
 };
 
-/*800CDCC0*/ static ModelInfoUnkStruct1 D_800CDCC0 = {0x39C708, NULL, 0, 0x150};
+/*800CDCC0*/ static ModelVertexInfo D_800CDCC0 = {(s32)models_720920_bin+0x1768, NULL, 0, 0x150};
 
 /*800CDCCC*/
 ModelInfo D_800CDCCC = {
-    0x39AFA0,
+    (s32)models_720920_bin,
     NULL,
     0x1768,
     0x1768,
@@ -27941,11 +27942,11 @@ ModelInfo D_800CDCCC = {
     0xA,
 };
 
-/*800CDCFC*/ static ModelInfoUnkStruct1 D_800CDCFC = {0x39E920, NULL, 0, 0x6A8};
+/*800CDCFC*/ static ModelVertexInfo D_800CDCFC = {(s32)models_7221E0_bin+0x20C0, NULL, 0, 0x6A8};
 
 /*800CDD08*/
 ModelInfo D_800CDD08 = {
-    0x39C860,
+    (s32)models_7221E0_bin,
     NULL,
     0x20C0,
     0x20C0,
@@ -27966,11 +27967,11 @@ ModelInfo D_800CDD08 = {
     0x128,
 };
 
-/*800CDD38*/ static ModelInfoUnkStruct1 D_800CDD38 = {0x39FBF4, NULL, 0, 0xE4};
+/*800CDD38*/ static ModelVertexInfo D_800CDD38 = {(s32)models_724950_bin+0xC24, NULL, 0, 0xE4};
 
 /*800CDD44*/
 ModelInfo D_800CDD44 = {
-    0x39EFD0,
+    (s32)models_724950_bin,
     NULL,
     0xC24,
     0xC24,
@@ -27991,11 +27992,11 @@ ModelInfo D_800CDD44 = {
     0x15,
 };
 
-/*800CDD74*/ static ModelInfoUnkStruct1 D_800CDD74 = {0x3A2158, NULL, 0, 0x246};
+/*800CDD74*/ static ModelVertexInfo D_800CDD74 = {(s32)models_725660_bin+0x2478, NULL, 0, 0x246};
 
 /*800CDD80*/
 ModelInfo D_800CDD80 = {
-    0x39FCE0,
+    (s32)models_725660_bin,
     NULL,
     0x2476,
     0x2476,
@@ -28016,11 +28017,11 @@ ModelInfo D_800CDD80 = {
     0x67,
 };
 
-/*800CDDB0*/ static ModelInfoUnkStruct1 D_800CDDB0 = {0x3A3550, NULL, 0, 0x546};
+/*800CDDB0*/ static ModelVertexInfo D_800CDDB0 = {(s32)models_727D20_bin+0x11B0, NULL, 0, 0x546};
 
 /*800CDDBC*/
 ModelInfo D_800CDDBC = {
-    0x3A23A0,
+    (s32)models_727D20_bin,
     NULL,
     0x11AE,
     0x11AE,
@@ -28041,11 +28042,11 @@ ModelInfo D_800CDDBC = {
     0x39,
 };
 
-/*800CDDEC*/ static ModelInfoUnkStruct1 D_800CDDEC = {0x3A53A4, NULL, 0, 0x7EC};
+/*800CDDEC*/ static ModelVertexInfo D_800CDDEC = {(s32)models_729420_bin+0x1904, NULL, 0, 0x7EC};
 
 /*800CDDF8*/
 ModelInfo D_800CDDF8 = {
-    0x3A3AA0,
+    (s32)models_729420_bin,
     NULL,
     0x1904,
     0x1904,
@@ -28066,11 +28067,11 @@ ModelInfo D_800CDDF8 = {
     0x13B,
 };
 
-/*800CDE28*/ static ModelInfoUnkStruct1 D_800CDE28 = {0x3A6B54, NULL, 0, 0x3FC};
+/*800CDE28*/ static ModelVertexInfo D_800CDE28 = {(s32)models_72B510_bin+0xFC4, NULL, 0, 0x3FC};
 
 /*800CDE34*/
 ModelInfo D_800CDE34 = {
-    0x3A5B90,
+    (s32)models_72B510_bin,
     NULL,
     0xFC4,
     0xFC4,
@@ -28091,11 +28092,11 @@ ModelInfo D_800CDE34 = {
     0xEA,
 };
 
-/*800CDE64*/ static ModelInfoUnkStruct1 D_800CDE64 = {0x3A85FC, NULL, 0, 0x38A};
+/*800CDE64*/ static ModelVertexInfo D_800CDE64 = {(s32)models_72C8D0_bin+0x16AC, NULL, 0, 0x38A};
 
 /*800CDE70*/
 ModelInfo D_800CDE70 = {
-    0x3A6F50,
+    (s32)models_72C8D0_bin,
     NULL,
     0x16AA,
     0x16AA,
@@ -28116,11 +28117,11 @@ ModelInfo D_800CDE70 = {
     0x57,
 };
 
-/*800CDEA0*/ static ModelInfoUnkStruct1 D_800CDEA0 = {0x3AB3D8, NULL, 0, 0x546};
+/*800CDEA0*/ static ModelVertexInfo D_800CDEA0 = {(s32)models_72E310_bin+0x2A48, NULL, 0, 0x546};
 
 /*800CDEAC*/
 ModelInfo D_800CDEAC = {
-    0x3A8990,
+    (s32)models_72E310_bin,
     NULL,
     0x2A46,
     0x2A46,
@@ -28141,11 +28142,11 @@ ModelInfo D_800CDEAC = {
     0xBD,
 };
 
-/*800CDEDC*/ static ModelInfoUnkStruct1 D_800CDEDC = {0x3AC8BC, NULL, 0, 0x384};
+/*800CDEDC*/ static ModelVertexInfo D_800CDEDC = {(s32)models_7312A0_bin+0xF9C, NULL, 0, 0x384};
 
 /*800CDEE8*/
 ModelInfo D_800CDEE8 = {
-    0x3AB920,
+    (s32)models_7312A0_bin,
     NULL,
     0xF9C,
     0xF9C,
@@ -28166,11 +28167,11 @@ ModelInfo D_800CDEE8 = {
     0x8B,
 };
 
-/*800CDF18*/ static ModelInfoUnkStruct1 D_800CDF18 = {0x3ADBBC, NULL, 0, 0x324};
+/*800CDF18*/ static ModelVertexInfo D_800CDF18 = {(s32)models_7325C0_bin+0xF7C, NULL, 0, 0x324};
 
 /*800CDF24*/
 ModelInfo D_800CDF24 = {
-    0x3ACC40,
+    (s32)models_7325C0_bin,
     NULL,
     0xF7C,
     0xF7C,
@@ -28191,11 +28192,11 @@ ModelInfo D_800CDF24 = {
     0x98,
 };
 
-/*800CDF54*/ static ModelInfoUnkStruct1 D_800CDF54 = {0x3AF8A8, NULL, 0, 0x96};
+/*800CDF54*/ static ModelVertexInfo D_800CDF54 = {(s32)models_733860_bin+0x19C8, NULL, 0, 0x96};
 
 /*800CDF60*/
 ModelInfo D_800CDF60 = {
-    0x3ADEE0,
+    (s32)models_733860_bin,
     NULL,
     0x19C6,
     0x19C6,
@@ -28216,11 +28217,11 @@ ModelInfo D_800CDF60 = {
     0x77,
 };
 
-/*800CDF90*/ static ModelInfoUnkStruct1 D_800CDF90 = {0x3B26B4, NULL, 0, 0x462};
+/*800CDF90*/ static ModelVertexInfo D_800CDF90 = {(s32)models_7352C0_bin+0x2D74, NULL, 0, 0x462};
 
 /*800CDF9C*/
 ModelInfo D_800CDF9C = {
-    0x3AF940,
+    (s32)models_7352C0_bin,
     NULL,
     0x2D72,
     0x2D72,
@@ -28241,11 +28242,11 @@ ModelInfo D_800CDF9C = {
     0xDA,
 };
 
-/*800CDFCC*/ static ModelInfoUnkStruct1 D_800CDFCC = {0x3B82FC, NULL, 0, 0xAA4};
+/*800CDFCC*/ static ModelVertexInfo D_800CDFCC = {(s32)models_7384A0_bin+0x57DC, NULL, 0, 0xAA4};
 
 /*800CDFD8*/
 ModelInfo D_800CDFD8 = {
-    0x3B2B20,
+    (s32)models_7384A0_bin,
     NULL,
     0x57DC,
     0x57DC,
@@ -28266,11 +28267,11 @@ ModelInfo D_800CDFD8 = {
     0xEA,
 };
 
-/*800CE008*/ static ModelInfoUnkStruct1 D_800CE008 = {0x3BA304, NULL, 0, 0x384};
+/*800CE008*/ static ModelVertexInfo D_800CE008 = {(s32)models_73E720_bin+0x1564, NULL, 0, 0x384};
 
 /*800CE014*/
 ModelInfo D_800CE014 = {
-    0x3B8DA0,
+    (s32)models_73E720_bin,
     NULL,
     0x1564,
     0x1564,
@@ -28291,11 +28292,11 @@ ModelInfo D_800CE014 = {
     0x25,
 };
 
-/*800CE044*/ static ModelInfoUnkStruct1 D_800CE044 = {0x3BBE3C, NULL, 0, 0x354};
+/*800CE044*/ static ModelVertexInfo D_800CE044 = {(s32)models_740010_bin+0x17AC, NULL, 0, 0x354};
 
 /*800CE050*/
 ModelInfo D_800CE050 = {
-    0x3BA690,
+    (s32)models_740010_bin,
     NULL,
     0x17AC,
     0x17AC,
@@ -28316,11 +28317,11 @@ ModelInfo D_800CE050 = {
     0xA5,
 };
 
-/*800CE080*/ static ModelInfoUnkStruct1 D_800CE080 = {0x3BEAD0, NULL, 0, 0x486};
+/*800CE080*/ static ModelVertexInfo D_800CE080 = {(s32)models_741B10_bin+0x2940, NULL, 0, 0x486};
 
 /*800CE08C*/
 ModelInfo D_800CE08C = {
-    0x3BC190,
+    (s32)models_741B10_bin,
     NULL,
     0x293E,
     0x293E,
@@ -28341,11 +28342,11 @@ ModelInfo D_800CE08C = {
     0x88,
 };
 
-/*800CE0BC*/ static ModelInfoUnkStruct1 D_800CE0BC = {0x3C0894, NULL, 0, 0x4F2};
+/*800CE0BC*/ static ModelVertexInfo D_800CE0BC = {(s32)models_7448E0_bin+0x1934, NULL, 0, 0x4F2};
 
 /*800CE0C8*/
 ModelInfo D_800CE0C8 = {
-    0x3BEF60,
+    (s32)models_7448E0_bin,
     NULL,
     0x1932,
     0x1932,
@@ -28366,11 +28367,11 @@ ModelInfo D_800CE0C8 = {
     0x7F,
 };
 
-/*800CE0F8*/ static ModelInfoUnkStruct1 D_800CE0F8 = {0x3C1880, NULL, 0, 0x126};
+/*800CE0F8*/ static ModelVertexInfo D_800CE0F8 = {(s32)models_746710_bin+0xAF0, NULL, 0, 0x126};
 
 /*800CE104*/
 ModelInfo D_800CE104 = {
-    0x3C0D90,
+    (s32)models_746710_bin,
     NULL,
     0xAEE,
     0xAEE,
@@ -28391,11 +28392,11 @@ ModelInfo D_800CE104 = {
     0x8C,
 };
 
-/*800CE134*/ static ModelInfoUnkStruct1 D_800CE134 = {0x3C2370, NULL, 0, 0x96};
+/*800CE134*/ static ModelVertexInfo D_800CE134 = {(s32)models_747330_bin+0x9C0, NULL, 0, 0x96};
 
 /*800CE140*/
 ModelInfo D_800CE140 = {
-    0x3C19B0,
+    (s32)models_747330_bin,
     NULL,
     0x9BE,
     0x9BE,
@@ -28416,11 +28417,11 @@ ModelInfo D_800CE140 = {
     0xBB,
 };
 
-/*800CE170*/ static ModelInfoUnkStruct1 D_800CE170 = {0x3C3038, NULL, 0, 0x2E8};
+/*800CE170*/ static ModelVertexInfo D_800CE170 = {(s32)models_747D90_bin+0xC28, NULL, 0, 0x2E8};
 
 /*800CE17C*/
 ModelInfo D_800CE17C = {
-    0x3C2410,
+    (s32)models_747D90_bin,
     NULL,
     0xC28,
     0xC28,
@@ -28441,11 +28442,11 @@ ModelInfo D_800CE17C = {
     0xD,
 };
 
-/*800CE1AC*/ static ModelInfoUnkStruct1 D_800CE1AC = {0x3C3E98, NULL, 0, 0x180};
+/*800CE1AC*/ static ModelVertexInfo D_800CE1AC = {(s32)models_748CA0_bin+0xB78, NULL, 0, 0x180};
 
 /*800CE1B8*/
 ModelInfo D_800CE1B8 = {
-    0x3C3320,
+    (s32)models_748CA0_bin,
     NULL,
     0xB78,
     0xB78,
@@ -28466,11 +28467,11 @@ ModelInfo D_800CE1B8 = {
     0x15C,
 };
 
-/*800CE1E8*/ static ModelInfoUnkStruct1 D_800CE1E8 = {0x3C47DC, NULL, 0, 0x20A};
+/*800CE1E8*/ static ModelVertexInfo D_800CE1E8 = {(s32)models_7499A0_bin+0x7BC, NULL, 0, 0x20A};
 
 /*800CE1F4*/
 ModelInfo D_800CE1F4 = {
-    0x3C4020,
+    (s32)models_7499A0_bin,
     NULL,
     0x7BA,
     0x7BA,
@@ -28491,11 +28492,11 @@ ModelInfo D_800CE1F4 = {
     0x75,
 };
 
-/*800CE224*/ static ModelInfoUnkStruct1 D_800CE224 = {0x3C54A0, NULL, 0, 0x120};
+/*800CE224*/ static ModelVertexInfo D_800CE224 = {(s32)models_74A370_bin+0xAB0, NULL, 0, 0x120};
 
 /*800CE230*/
 ModelInfo D_800CE230 = {
-    0x3C49F0,
+    (s32)models_74A370_bin,
     NULL,
     0xAB0,
     0xAB0,
@@ -28516,11 +28517,11 @@ ModelInfo D_800CE230 = {
     0x12C,
 };
 
-/*800CE260*/ static ModelInfoUnkStruct1 D_800CE260 = {0x3C8230, NULL, 0, 0x3AE};
+/*800CE260*/ static ModelVertexInfo D_800CE260 = {(s32)models_74AF40_bin+0x2C70, NULL, 0, 0x3AE};
 
 /*800CE26C*/
 ModelInfo D_800CE26C = {
-    0x3C55C0,
+    (s32)models_74AF40_bin,
     NULL,
     0x2C6E,
     0x2C6E,
@@ -28541,11 +28542,11 @@ ModelInfo D_800CE26C = {
     0xF8,
 };
 
-/*800CE29C*/ static ModelInfoUnkStruct1 D_800CE29C = {0x3CAB7C, NULL, 0, 0x27C};
+/*800CE29C*/ static ModelVertexInfo D_800CE29C = {(s32)models_74DF60_bin+0x259C, NULL, 0, 0x27C};
 
 /*800CE2A8*/
 ModelInfo D_800CE2A8 = {
-    0x3C85E0,
+    (s32)models_74DF60_bin,
     NULL,
     0x259C,
     0x259C,
@@ -28566,11 +28567,11 @@ ModelInfo D_800CE2A8 = {
     0x94,
 };
 
-/*800CE2D8*/ static ModelInfoUnkStruct1 D_800CE2D8 = {0x3CBF38, NULL, 0, 0x150};
+/*800CE2D8*/ static ModelVertexInfo D_800CE2D8 = {(s32)models_750780_bin+0x1138, NULL, 0, 0x150};
 
 /*800CE2E4*/
 ModelInfo D_800CE2E4 = {
-    0x3CAE00,
+    (s32)models_750780_bin,
     NULL,
     0x1138,
     0x1138,
@@ -28591,11 +28592,11 @@ ModelInfo D_800CE2E4 = {
     0xAB,
 };
 
-/*800CE314*/ static ModelInfoUnkStruct1 D_800CE314 = {0x3CD928, NULL, 0, 0x13E};
+/*800CE314*/ static ModelVertexInfo D_800CE314 = {(s32)models_751A10_bin+0x1898, NULL, 0, 0x13E};
 
 /*800CE320*/
 ModelInfo D_800CE320 = {
-    0x3CC090,
+    (s32)models_751A10_bin,
     NULL,
     0x1896,
     0x1896,
@@ -28616,11 +28617,11 @@ ModelInfo D_800CE320 = {
     0x88,
 };
 
-/*800CE350*/ static ModelInfoUnkStruct1 D_800CE350 = {0x3CFAD8, NULL, 0, 0x426};
+/*800CE350*/ static ModelVertexInfo D_800CE350 = {(s32)models_7533F0_bin+0x2068, NULL, 0, 0x426};
 
 /*800CE35C*/
 ModelInfo D_800CE35C = {
-    0x3CDA70,
+    (s32)models_7533F0_bin,
     NULL,
     0x2066,
     0x2066,
@@ -28641,11 +28642,11 @@ ModelInfo D_800CE35C = {
     0x96,
 };
 
-/*800CE38C*/ static ModelInfoUnkStruct1 D_800CE38C = {0x3D1D5C, NULL, 0, 0x1DA};
+/*800CE38C*/ static ModelVertexInfo D_800CE38C = {(s32)models_755880_bin+0x1E5C, NULL, 0, 0x1DA};
 
 /*800CE398*/
 ModelInfo D_800CE398 = {
-    0x3CFF00,
+    (s32)models_755880_bin,
     NULL,
     0x1E5A,
     0x1E5A,
@@ -28666,11 +28667,11 @@ ModelInfo D_800CE398 = {
     0x98,
 };
 
-/*800CE3C8*/ static ModelInfoUnkStruct1 D_800CE3C8 = {0x3D58DC, NULL, 0, 0x38A};
+/*800CE3C8*/ static ModelVertexInfo D_800CE3C8 = {(s32)models_7578C0_bin+0x399C, NULL, 0, 0x38A};
 
 /*800CE3D4*/
 ModelInfo D_800CE3D4 = {
-    0x3D1F40,
+    (s32)models_7578C0_bin,
     NULL,
     0x399A,
     0x399A,
@@ -28691,11 +28692,11 @@ ModelInfo D_800CE3D4 = {
     0x9B,
 };
 
-/*800CE404*/ static ModelInfoUnkStruct1 D_800CE404 = {0x3D726C, NULL, 0, 0x30C};
+/*800CE404*/ static ModelVertexInfo D_800CE404 = {(s32)models_75B5F0_bin+0x15FC, NULL, 0, 0x30C};
 
 /*800CE410*/
 ModelInfo D_800CE410 = {
-    0x3D5C70,
+    (s32)models_75B5F0_bin,
     NULL,
     0x15FC,
     0x15FC,
@@ -28716,11 +28717,11 @@ ModelInfo D_800CE410 = {
     0x3C,
 };
 
-/*800CE440*/ static ModelInfoUnkStruct1 D_800CE440 = {0x3D80D0, NULL, 0, 0x168};
+/*800CE440*/ static ModelVertexInfo D_800CE440 = {(s32)models_75CF00_bin+0xB50, NULL, 0, 0x168};
 
 /*800CE44C*/
 ModelInfo D_800CE44C = {
-    0x3D7580,
+    (s32)models_75CF00_bin,
     NULL,
     0xB50,
     0xB50,
@@ -28741,11 +28742,11 @@ ModelInfo D_800CE44C = {
     0x6B,
 };
 
-/*800CE47C*/ static ModelInfoUnkStruct1 D_800CE47C = {0x3D9CB0, NULL, 0, 0xF6};
+/*800CE47C*/ static ModelVertexInfo D_800CE47C = {(s32)models_75DBC0_bin+0x1A70, NULL, 0, 0xF6};
 
 /*800CE488*/
 ModelInfo D_800CE488 = {
-    0x3D8240,
+    (s32)models_75DBC0_bin,
     NULL,
     0x1A6E,
     0x1A6E,
@@ -28766,11 +28767,11 @@ ModelInfo D_800CE488 = {
     0x7C,
 };
 
-/*800CE4B8*/ static ModelInfoUnkStruct1 D_800CE4B8 = {0x3DD534, NULL, 0, 0x384};
+/*800CE4B8*/ static ModelVertexInfo D_800CE4B8 = {(s32)models_75F730_bin+0x3784, NULL, 0, 0x384};
 
 /*800CE4C4*/
 ModelInfo D_800CE4C4 = {
-    0x3D9DB0,
+    (s32)models_75F730_bin,
     NULL,
     0x3784,
     0x3784,
@@ -28791,11 +28792,11 @@ ModelInfo D_800CE4C4 = {
     0x14A,
 };
 
-/*800CE4F4*/ static ModelInfoUnkStruct1 D_800CE4F4 = {0x3E1434, NULL, 0, 0x534};
+/*800CE4F4*/ static ModelVertexInfo D_800CE4F4 = {(s32)models_763240_bin+0x3B74, NULL, 0, 0x534};
 
 /*800CE500*/
 ModelInfo D_800CE500 = {
-    0x3DD8C0,
+    (s32)models_763240_bin,
     NULL,
     0x3B74,
     0x3B74,
@@ -28816,11 +28817,11 @@ ModelInfo D_800CE500 = {
     0x75,
 };
 
-/*800CE530*/ static ModelInfoUnkStruct1 D_800CE530 = {0x3E2908, NULL, 0, 0x198};
+/*800CE530*/ static ModelVertexInfo D_800CE530 = {(s32)models_7672F0_bin+0xF98, NULL, 0, 0x198};
 
 /*800CE53C*/
 ModelInfo D_800CE53C = {
-    0x3E1970,
+    (s32)models_7672F0_bin,
     NULL,
     0xF98,
     0xF98,
@@ -28841,11 +28842,11 @@ ModelInfo D_800CE53C = {
     0x24,
 };
 
-/*800CE56C*/ static ModelInfoUnkStruct1 D_800CE56C = {0x3E35CC, NULL, 0, 0x72};
+/*800CE56C*/ static ModelVertexInfo D_800CE56C = {(s32)models_768420_bin+0xB2C, NULL, 0, 0x72};
 
 /*800CE578*/
 ModelInfo D_800CE578 = {
-    0x3E2AA0,
+    (s32)models_768420_bin,
     NULL,
     0xB2A,
     0xB2A,
@@ -28866,11 +28867,11 @@ ModelInfo D_800CE578 = {
     0xFA,
 };
 
-/*800CE5A8*/ static ModelInfoUnkStruct1 D_800CE5A8 = {0x3E3C94, NULL, 0, 0xFC};
+/*800CE5A8*/ static ModelVertexInfo D_800CE5A8 = {(s32)models_768FC0_bin+0x654, NULL, 0, 0xFC};
 
 /*800CE5B4*/
 ModelInfo D_800CE5B4 = {
-    0x3E3640,
+    (s32)models_768FC0_bin,
     NULL,
     0x654,
     0x654,
@@ -28891,11 +28892,11 @@ ModelInfo D_800CE5B4 = {
     0x23,
 };
 
-/*800CE5E4*/ static ModelInfoUnkStruct1 D_800CE5E4 = {0x3E492C, NULL, 0, 0xA2};
+/*800CE5E4*/ static ModelVertexInfo D_800CE5E4 = {(s32)models_769710_bin+0xB9C, NULL, 0, 0xA2};
 
 /*800CE5F0*/
 ModelInfo D_800CE5F0 = {
-    0x3E3D90,
+    (s32)models_769710_bin,
     NULL,
     0xB9A,
     0xB9A,
@@ -28916,11 +28917,11 @@ ModelInfo D_800CE5F0 = {
     0x91,
 };
 
-/*800CE620*/ static ModelInfoUnkStruct1 D_800CE620 = {0x3E556C, NULL, 0, 0xA2};
+/*800CE620*/ static ModelVertexInfo D_800CE620 = {(s32)models_76A350_bin+0xB9C, NULL, 0, 0xA2};
 
 /*800CE62C*/
 ModelInfo D_800CE62C = {
-    0x3E49D0,
+    (s32)models_76A350_bin,
     NULL,
     0xB9A,
     0xB9A,
@@ -28941,11 +28942,11 @@ ModelInfo D_800CE62C = {
     0x91,
 };
 
-/*800CE65C*/ static ModelInfoUnkStruct1 D_800CE65C = {0x3E61E0, NULL, 0, 0xC0};
+/*800CE65C*/ static ModelVertexInfo D_800CE65C = {(s32)models_76AF90_bin+0xBD0, NULL, 0, 0xC0};
 
 /*800CE668*/
 ModelInfo D_800CE668 = {
-    0x3E5610,
+    (s32)models_76AF90_bin,
     NULL,
     0xBD0,
     0xBD0,
@@ -28966,11 +28967,11 @@ ModelInfo D_800CE668 = {
     0x91,
 };
 
-/*800CE698*/ static ModelInfoUnkStruct1 D_800CE698 = {0x3E7C44, NULL, 0, 0x492};
+/*800CE698*/ static ModelVertexInfo D_800CE698 = {(s32)models_76BC20_bin+0x19A4, NULL, 0, 0x492};
 
 /*800CE6A4*/
 ModelInfo D_800CE6A4 = {
-    0x3E62A0,
+    (s32)models_76BC20_bin,
     NULL,
     0x19A2,
     0x19A2,
@@ -28991,11 +28992,11 @@ ModelInfo D_800CE6A4 = {
     0x109,
 };
 
-/*800CE6D4*/ static ModelInfoUnkStruct1 D_800CE6D4 = {0x3ECE20, NULL, 0, 0x88E};
+/*800CE6D4*/ static ModelVertexInfo D_800CE6D4 = {(s32)models_76DA60_bin+0x4D40, NULL, 0, 0x88E};
 
 /*800CE6E0*/
 ModelInfo D_800CE6E0 = {
-    0x3E80E0,
+    (s32)models_76DA60_bin,
     NULL,
     0x4D3E,
     0x4D3E,
@@ -29016,11 +29017,11 @@ ModelInfo D_800CE6E0 = {
     0x176,
 };
 
-/*800CE710*/ static ModelInfoUnkStruct1 D_800CE710 = {0x3EFA68, NULL, 0, 0x8D0};
+/*800CE710*/ static ModelVertexInfo D_800CE710 = {(s32)models_773030_bin+0x23B8, NULL, 0, 0x8D0};
 
 /*800CE71C*/
 ModelInfo D_800CE71C = {
-    0x3ED6B0,
+    (s32)models_773030_bin,
     NULL,
     0x23B8,
     0x23B8,
@@ -29041,11 +29042,11 @@ ModelInfo D_800CE71C = {
     0x169,
 };
 
-/*800CE74C*/ static ModelInfoUnkStruct1 D_800CE74C = {0x3F1A7C, NULL, 0, 0x414};
+/*800CE74C*/ static ModelVertexInfo D_800CE74C = {(s32)models_775CC0_bin+0x173C, NULL, 0, 0x414};
 
 /*800CE758*/
 ModelInfo D_800CE758 = {
-    0x3F0340,
+    (s32)models_775CC0_bin,
     NULL,
     0x173C,
     0x173C,
@@ -29066,11 +29067,11 @@ ModelInfo D_800CE758 = {
     0xF8,
 };
 
-/*800CE788*/ static ModelInfoUnkStruct1 D_800CE788 = {0x3FEB2C, NULL, 0, 0xB4};
+/*800CE788*/ static ModelVertexInfo D_800CE788 = {(s32)models_784030_bin+0x47C, NULL, 0, 0xB4};
 
 /*800CE794*/
 ModelInfo D_800CE794 = {
-    0x3FE6B0,
+    (s32)models_784030_bin,
     NULL,
     0x47C,
     0x47C,
@@ -29091,11 +29092,11 @@ ModelInfo D_800CE794 = {
     0x19,
 };
 
-/*800CE7C4*/ static ModelInfoUnkStruct1 D_800CE7C4 = {0x3FEDA0, NULL, 0, 0x48};
+/*800CE7C4*/ static ModelVertexInfo D_800CE7C4 = {(s32)models_784560_bin+0x1C0, NULL, 0, 0x48};
 
 /*800CE7D0*/
 ModelInfo D_800CE7D0 = {
-    0x3FEBE0,
+    (s32)models_784560_bin,
     NULL,
     0x1C0,
     0x1C0,
@@ -29116,11 +29117,11 @@ ModelInfo D_800CE7D0 = {
     5,
 };
 
-/*800CE800*/ static ModelInfoUnkStruct1 D_800CE800 = {0x40166C, NULL, 0, 0x18C};
+/*800CE800*/ static ModelVertexInfo D_800CE800 = {(s32)models_784770_bin+0x287C, NULL, 0, 0x18C};
 
 /*800CE80C*/
 ModelInfo D_800CE80C = {
-    0x3FEDF0,
+    (s32)models_784770_bin,
     NULL,
     0x287C,
     0x287C,
@@ -29141,11 +29142,11 @@ ModelInfo D_800CE80C = {
     0x17,
 };
 
-/*800CE83C*/ static ModelInfoUnkStruct1 D_800CE83C = {0x40287C, NULL, 0, 0xD2};
+/*800CE83C*/ static ModelVertexInfo D_800CE83C = {(s32)models_787180_bin+0x107C, NULL, 0, 0xD2};
 
 /*800CE848*/
 ModelInfo D_800CE848 = {
-    0x401800,
+    (s32)models_787180_bin,
     NULL,
     0x107A,
     0x107A,
@@ -29166,11 +29167,11 @@ ModelInfo D_800CE848 = {
     0x16,
 };
 
-/*800CE878*/ static ModelInfoUnkStruct1 D_800CE878 = {0x403F10, NULL, 0, 0xD8};
+/*800CE878*/ static ModelVertexInfo D_800CE878 = {(s32)models_7882D0_bin+0x15C0, NULL, 0, 0xD8};
 
 /*800CE884*/
 ModelInfo D_800CE884 = {
-    0x402950,
+    (s32)models_7882D0_bin,
     NULL,
     0x15C0,
     0x15C0,
@@ -29191,11 +29192,11 @@ ModelInfo D_800CE884 = {
     0x10,
 };
 
-/*800CE8B4*/ static ModelInfoUnkStruct1 D_800CE8B4 = {0x404C70, NULL, 0, 0x96};
+/*800CE8B4*/ static ModelVertexInfo D_800CE8B4 = {(s32)models_789970_bin+0xC80, NULL, 0, 0x96};
 
 /*800CE8C0*/
 ModelInfo D_800CE8C0 = {
-    0x403FF0,
+    (s32)models_789970_bin,
     NULL,
     0xC7E,
     0xC7E,
@@ -29216,11 +29217,11 @@ ModelInfo D_800CE8C0 = {
     0xE,
 };
 
-/*800CE8F0*/ static ModelInfoUnkStruct1 D_800CE8F0 = {0x4060AC, NULL, 0, 0xA2};
+/*800CE8F0*/ static ModelVertexInfo D_800CE8F0 = {(s32)models_78A690_bin+0x139C, NULL, 0, 0xA2};
 
 /*800CE8FC*/
 ModelInfo D_800CE8FC = {
-    0x404D10,
+    (s32)models_78A690_bin,
     NULL,
     0x139A,
     0x139A,
@@ -29241,11 +29242,11 @@ ModelInfo D_800CE8FC = {
     0x17,
 };
 
-/*800CE92C*/ static ModelInfoUnkStruct1 D_800CE92C = {0x406FC8, NULL, 0, 0xA8};
+/*800CE92C*/ static ModelVertexInfo D_800CE92C = {(s32)models_78BAD0_bin+0xE78, NULL, 0, 0xA8};
 
 /*800CE938*/
 ModelInfo D_800CE938 = {
-    0x406150,
+    (s32)models_78BAD0_bin,
     NULL,
     0xE78,
     0xE78,
@@ -29266,11 +29267,11 @@ ModelInfo D_800CE938 = {
     0x2A,
 };
 
-/*800CE968*/ static ModelInfoUnkStruct1 D_800CE968 = {0x407200, NULL, 0, 0x30};
+/*800CE968*/ static ModelVertexInfo D_800CE968 = {(s32)models_78C9F0_bin+0x190, NULL, 0, 0x30};
 
 /*800CE974*/
 ModelInfo D_800CE974 = {
-    0x407070,
+    (s32)models_78C9F0_bin,
     NULL,
     0x190,
     0x190,
@@ -29291,11 +29292,11 @@ ModelInfo D_800CE974 = {
     7,
 };
 
-/*800CE9A4*/ static ModelInfoUnkStruct1 D_800CE9A4 = {0x409220, NULL, 0, 0x90};
+/*800CE9A4*/ static ModelVertexInfo D_800CE9A4 = {(s32)models_78CBB0_bin+0x1FF0, NULL, 0, 0x90};
 
 /*800CE9B0*/
 ModelInfo D_800CE9B0 = {
-    0x407230,
+    (s32)models_78CBB0_bin,
     NULL,
     0x1FF0,
     0x1FF0,
@@ -29316,11 +29317,11 @@ ModelInfo D_800CE9B0 = {
     5,
 };
 
-/*800CE9E0*/ static ModelInfoUnkStruct1 D_800CE9E0 = {0x40ACC8, NULL, 0, 0xA8};
+/*800CE9E0*/ static ModelVertexInfo D_800CE9E0 = {(s32)models_78EC30_bin+0x1A18, NULL, 0, 0xA8};
 
 /*800CE9EC*/
 ModelInfo D_800CE9EC = {
-    0x4092B0,
+    (s32)models_78EC30_bin,
     NULL,
     0x1A18,
     0x1A18,
@@ -29341,11 +29342,11 @@ ModelInfo D_800CE9EC = {
     5,
 };
 
-/*800CEA1C*/ static ModelInfoUnkStruct1 D_800CEA1C = {0x40BB18, NULL, 0, 0x7E};
+/*800CEA1C*/ static ModelVertexInfo D_800CEA1C = {(s32)models_7906F0_bin+0xDA8, NULL, 0, 0x7E};
 
 /*800CEA28*/
 ModelInfo D_800CEA28 = {
-    0x40AD70,
+    (s32)models_7906F0_bin,
     NULL,
     0xDA6,
     0xDA6,
@@ -29366,11 +29367,11 @@ ModelInfo D_800CEA28 = {
     0x10,
 };
 
-/*800CEA58*/ static ModelInfoUnkStruct1 D_800CEA58 = {0x40EC44, NULL, 0, 0x132};
+/*800CEA58*/ static ModelVertexInfo D_800CEA58 = {(s32)models_791520_bin+0x30A4, NULL, 0, 0x132};
 
 /*800CEA64*/
 ModelInfo D_800CEA64 = {
-    0x40BBA0,
+    (s32)models_791520_bin,
     NULL,
     0x30A2,
     0x30A2,
@@ -29391,11 +29392,11 @@ ModelInfo D_800CEA64 = {
     0x15,
 };
 
-/*800CEA94*/ static ModelInfoUnkStruct1 D_800CEA94 = {0x40FDA8, NULL, 0, 0xAE};
+/*800CEA94*/ static ModelVertexInfo D_800CEA94 = {(s32)models_794700_bin+0x1028, NULL, 0, 0xAE};
 
 /*800CEAA0*/
 ModelInfo D_800CEAA0 = {
-    0x40ED80,
+    (s32)models_794700_bin,
     NULL,
     0x1026,
     0x1026,
@@ -29416,11 +29417,11 @@ ModelInfo D_800CEAA0 = {
     0xF,
 };
 
-/*800CEAD0*/ static ModelInfoUnkStruct1 D_800CEAD0 = {0x410720, NULL, 0, 0x78};
+/*800CEAD0*/ static ModelVertexInfo D_800CEAD0 = {(s32)models_7957E0_bin+0x8C0, NULL, 0, 0x78};
 
 /*800CEADC*/
 ModelInfo D_800CEADC = {
-    0x40FE60,
+    (s32)models_7957E0_bin,
     NULL,
     0x8C0,
     0x8C0,
@@ -29441,11 +29442,11 @@ ModelInfo D_800CEADC = {
     0x13,
 };
 
-/*800CEB0C*/ static ModelInfoUnkStruct1 D_800CEB0C = {0x4113C8, NULL, 0, 0xF6};
+/*800CEB0C*/ static ModelVertexInfo D_800CEB0C = {(s32)models_796120_bin+0xC28, NULL, 0, 0xF6};
 
 /*800CEB18*/
 ModelInfo D_800CEB18 = {
-    0x4107A0,
+    (s32)models_796120_bin,
     NULL,
     0xC26,
     0xC26,
@@ -29466,11 +29467,11 @@ ModelInfo D_800CEB18 = {
     0x19,
 };
 
-/*800CEB48*/ static ModelInfoUnkStruct1 D_800CEB48 = {0x411620, NULL, 0, 0x18};
+/*800CEB48*/ static ModelVertexInfo D_800CEB48 = {(s32)models_796E40_bin+0x160, NULL, 0, 0x18};
 
 /*800CEB54*/
 ModelInfo D_800CEB54 = {
-    0x4114C0,
+    (s32)models_796E40_bin,
     NULL,
     0x160,
     0x160,
@@ -29491,11 +29492,11 @@ ModelInfo D_800CEB54 = {
     9,
 };
 
-/*800CEB84*/ static ModelInfoUnkStruct1 D_800CEB84 = {0x412E4C, NULL, 0, 0x14A};
+/*800CEB84*/ static ModelVertexInfo D_800CEB84 = {(s32)models_796FC0_bin+0x180C, NULL, 0, 0x14A};
 
 /*800CEB90*/
 ModelInfo D_800CEB90 = {
-    0x411640,
+    (s32)models_796FC0_bin,
     NULL,
     0x180A,
     0x180A,
@@ -29516,11 +29517,11 @@ ModelInfo D_800CEB90 = {
     0x14,
 };
 
-/*800CEBC0*/ static ModelInfoUnkStruct1 D_800CEBC0 = {0x3F2FF8, NULL, 0, 0x90};
+/*800CEBC0*/ static ModelVertexInfo D_800CEBC0 = {(s32)models_777810_bin+0x1168, NULL, 0, 0x90};
 
 /*800CEBCC*/
 ModelInfo D_800CEBCC = {
-    0x3F1E90,
+    (s32)models_777810_bin,
     NULL,
     0x1168,
     0x1168,
@@ -29541,11 +29542,11 @@ ModelInfo D_800CEBCC = {
     -0x29,
 };
 
-/*800CEBFC*/ static ModelInfoUnkStruct1 D_800CEBFC = {0x3F41F8, NULL, 0, 0x90};
+/*800CEBFC*/ static ModelVertexInfo D_800CEBFC = {(s32)models_778A10_bin+0x1168, NULL, 0, 0x90};
 
 /*800CEC08*/
 ModelInfo D_800CEC08 = {
-    0x3F3090,
+    (s32)models_778A10_bin,
     NULL,
     0x1168,
     0x1168,
@@ -29566,11 +29567,11 @@ ModelInfo D_800CEC08 = {
     -0x2A,
 };
 
-/*800CEC38*/ static ModelInfoUnkStruct1 D_800CEC38 = {0x3F53F8, NULL, 0, 0x90};
+/*800CEC38*/ static ModelVertexInfo D_800CEC38 = {(s32)models_779C10_bin+0x1168, NULL, 0, 0x90};
 
 /*800CEC44*/
 ModelInfo D_800CEC44 = {
-    0x3F4290,
+    (s32)models_779C10_bin,
     NULL,
     0x1168,
     0x1168,
@@ -29591,11 +29592,11 @@ ModelInfo D_800CEC44 = {
     -0x48,
 };
 
-/*800CEC74*/ static ModelInfoUnkStruct1 D_800CEC74 = {0x3F6758, NULL, 0, 0x150};
+/*800CEC74*/ static ModelVertexInfo D_800CEC74 = {(s32)models_77AE10_bin+0x12C8, NULL, 0, 0x150};
 
 /*800CEC80*/
 ModelInfo D_800CEC80 = {
-    0x3F5490,
+    (s32)models_77AE10_bin,
     NULL,
     0x12C8,
     0x12C8,
@@ -29616,11 +29617,11 @@ ModelInfo D_800CEC80 = {
     -0x45,
 };
 
-/*800CECB0*/ static ModelInfoUnkStruct1 D_800CECB0 = {0x3F7A18, NULL, 0, 0x90};
+/*800CECB0*/ static ModelVertexInfo D_800CECB0 = {(s32)models_77C230_bin+0x1168, NULL, 0, 0x90};
 
 /*800CECBC*/
 ModelInfo D_800CECBC = {
-    0x3F68B0,
+    (s32)models_77C230_bin,
     NULL,
     0x1168,
     0x1168,
@@ -29641,11 +29642,11 @@ ModelInfo D_800CECBC = {
     -0x49,
 };
 
-/*800CECEC*/ static ModelInfoUnkStruct1 D_800CECEC = {0x3F8C18, NULL, 0, 0x90};
+/*800CECEC*/ static ModelVertexInfo D_800CECEC = {(s32)models_77D430_bin+0x1168, NULL, 0, 0x90};
 
 /*800CECF8*/
 ModelInfo D_800CECF8 = {
-    0x3F7AB0,
+    (s32)models_77D430_bin,
     NULL,
     0x1168,
     0x1168,
@@ -29666,11 +29667,11 @@ ModelInfo D_800CECF8 = {
     -0x54,
 };
 
-/*800CED28*/ static ModelInfoUnkStruct1 D_800CED28 = {0x3F9E18, NULL, 0, 0x90};
+/*800CED28*/ static ModelVertexInfo D_800CED28 = {(s32)models_77E630_bin+0x1168, NULL, 0, 0x90};
 
 /*800CED34*/
 ModelInfo D_800CED34 = {
-    0x3F8CB0,
+    (s32)models_77E630_bin,
     NULL,
     0x1168,
     0x1168,
@@ -29691,11 +29692,11 @@ ModelInfo D_800CED34 = {
     -0x4F,
 };
 
-/*800CED64*/ static ModelInfoUnkStruct1 D_800CED64 = {0x3FB018, NULL, 0, 0x90};
+/*800CED64*/ static ModelVertexInfo D_800CED64 = {(s32)models_77F830_bin+0x1168, NULL, 0, 0x90};
 
 /*800CED70*/
 ModelInfo D_800CED70 = {
-    0x3F9EB0,
+    (s32)models_77F830_bin,
     NULL,
     0x1168,
     0x1168,
@@ -29716,11 +29717,11 @@ ModelInfo D_800CED70 = {
     -0x47,
 };
 
-/*800CEDA0*/ static ModelInfoUnkStruct1 D_800CEDA0 = {0x3FC218, NULL, 0, 0x90};
+/*800CEDA0*/ static ModelVertexInfo D_800CEDA0 = {(s32)models_780A30_bin+0x1168, NULL, 0, 0x90};
 
 /*800CEDAC*/
 ModelInfo D_800CEDAC = {
-    0x3FB0B0,
+    (s32)models_780A30_bin,
     NULL,
     0x1168,
     0x1168,
@@ -29741,11 +29742,11 @@ ModelInfo D_800CEDAC = {
     -0x3B,
 };
 
-/*800CEDDC*/ static ModelInfoUnkStruct1 D_800CEDDC = {0x3FD418, NULL, 0, 0x90};
+/*800CEDDC*/ static ModelVertexInfo D_800CEDDC = {(s32)models_781C30_bin+0x1168, NULL, 0, 0x90};
 
 /*800CEDE8*/
 ModelInfo D_800CEDE8 = {
-    0x3FC2B0,
+    (s32)models_781C30_bin,
     NULL,
     0x1168,
     0x1168,
@@ -29766,11 +29767,11 @@ ModelInfo D_800CEDE8 = {
     -0x60,
 };
 
-/*800CEE18*/ static ModelInfoUnkStruct1 D_800CEE18 = {0x3FE618, NULL, 0, 0x90};
+/*800CEE18*/ static ModelVertexInfo D_800CEE18 = {(s32)models_782E30_bin+0x1168, NULL, 0, 0x90};
 
 /*800CEE24*/
 ModelInfo D_800CEE24 = {
-    0x3FD4B0,
+    (s32)models_782E30_bin,
     NULL,
     0x1168,
     0x1168,
@@ -29791,11 +29792,11 @@ ModelInfo D_800CEE24 = {
     -0x4C,
 };
 
-/*800CEE54*/ static ModelInfoUnkStruct1 D_800CEE54 = {0x4158C8, NULL, 0, 0x2A6};
+/*800CEE54*/ static ModelVertexInfo D_800CEE54 = {(s32)models_798920_bin+0x2928, NULL, 0, 0x2A6};
 
 /*800CEE60*/
 ModelInfo D_800CEE60 = {
-    0x412FA0,
+    (s32)models_798920_bin,
     NULL,
     0x2926,
     0x2926,
@@ -29816,11 +29817,11 @@ ModelInfo D_800CEE60 = {
     0x195,
 };
 
-/*800CEE90*/ static ModelInfoUnkStruct1 D_800CEE90 = {0x418568, NULL, 0, 0x486};
+/*800CEE90*/ static ModelVertexInfo D_800CEE90 = {(s32)models_79B4F0_bin+0x29F8, NULL, 0, 0x486};
 
 /*800CEE9C*/
 ModelInfo D_800CEE9C = {
-    0x415B70,
+    (s32)models_79B4F0_bin,
     NULL,
     0x29F6,
     0x29F6,
@@ -29841,11 +29842,11 @@ ModelInfo D_800CEE9C = {
     0xF3,
 };
 
-/*800CEECC*/ static ModelInfoUnkStruct1 D_800CEECC = {0x41B8A0, NULL, 0, 0x300};
+/*800CEECC*/ static ModelVertexInfo D_800CEECC = {(s32)models_79E370_bin+0x2EB0, NULL, 0, 0x300};
 
 /*800CEED8*/
 ModelInfo D_800CEED8 = {
-    0x4189F0,
+    (s32)models_79E370_bin,
     NULL,
     0x2EB0,
     0x2EB0,
@@ -29866,11 +29867,11 @@ ModelInfo D_800CEED8 = {
     0xCA,
 };
 
-/*800CEF08*/ static ModelInfoUnkStruct1 D_800CEF08 = {0x41D458, NULL, 0, 0x558};
+/*800CEF08*/ static ModelVertexInfo D_800CEF08 = {(s32)models_7A1520_bin+0x18B8, NULL, 0, 0x558};
 
 /*800CEF14*/
 ModelInfo D_800CEF14 = {
-    0x41BBA0,
+    (s32)models_7A1520_bin,
     NULL,
     0x18B8,
     0x18B8,
@@ -29891,11 +29892,11 @@ ModelInfo D_800CEF14 = {
     0x83,
 };
 
-/*800CEF44*/ static ModelInfoUnkStruct1 D_800CEF44 = {0x426608, NULL, 0, 0xED6};
+/*800CEF44*/ static ModelVertexInfo D_800CEF44 = {(s32)models_7A7F30_bin+0x4058, NULL, 0, 0xED6};
 
 /*800CEF50*/
 ModelInfo D_800CEF50 = {
-    0x4225B0,
+    (s32)models_7A7F30_bin,
     NULL,
     0x4056,
     0x4056,
@@ -29916,11 +29917,11 @@ ModelInfo D_800CEF50 = {
     0x3555,
 };
 
-/*800CEF80*/ static ModelInfoUnkStruct1 D_800CEF80 = {0x428594, NULL, 0, 0x24C};
+/*800CEF80*/ static ModelVertexInfo D_800CEF80 = {(s32)models_7ACE60_bin+0x10B4, NULL, 0, 0x24C};
 
 /*800CEF8C*/
 ModelInfo D_800CEF8C = {
-    0x4274E0,
+    (s32)models_7ACE60_bin,
     NULL,
     0x10B4,
     0x10B4,
@@ -29941,11 +29942,11 @@ ModelInfo D_800CEF8C = {
     0xC2,
 };
 
-/*800CEFBC*/ static ModelInfoUnkStruct1 D_800CEFBC = {0x429148, NULL, 0, 0x90};
+/*800CEFBC*/ static ModelVertexInfo D_800CEFBC = {(s32)models_7AE160_bin+0x968, NULL, 0, 0x90};
 
 /*800CEFC8*/
 ModelInfo D_800CEFC8 = {
-    0x4287E0,
+    (s32)models_7AE160_bin,
     NULL,
     0x968,
     0x968,
@@ -29966,11 +29967,11 @@ ModelInfo D_800CEFC8 = {
     0xBF,
 };
 
-/*800CEFF8*/ static ModelInfoUnkStruct1 D_800CEFF8 = {0x42AB00, NULL, 0, 0x2D0};
+/*800CEFF8*/ static ModelVertexInfo D_800CEFF8 = {(s32)models_7AEB60_bin+0x1920, NULL, 0, 0x2D0};
 
 /*800CF004*/
 ModelInfo D_800CF004 = {
-    0x4291E0,
+    (s32)models_7AEB60_bin,
     NULL,
     0x1920,
     0x1920,
@@ -29991,11 +29992,11 @@ ModelInfo D_800CF004 = {
     0x8C,
 };
 
-/*800CF034*/ static ModelInfoUnkStruct1 D_800CF034 = {0x44F7F8, NULL, 0, 0x246};
+/*800CF034*/ static ModelVertexInfo D_800CF034 = {(s32)models_7D3360_bin+0x1E18, NULL, 0, 0x246};
 
 /*800CF040*/
 ModelInfo D_800CF040 = {
-    0x44D9E0,
+    (s32)models_7D3360_bin,
     NULL,
     0x1E16,
     0x1E16,
@@ -30016,11 +30017,11 @@ ModelInfo D_800CF040 = {
     0xCF,
 };
 
-/*800CF070*/ static ModelInfoUnkStruct1 D_800CF070 = {0x4502EC, NULL, 0, 0x3C};
+/*800CF070*/ static ModelVertexInfo D_800CF070 = {(s32)models_7D53C0_bin+0x8AC, NULL, 0, 0x3C};
 
 /*800CF07C*/
 ModelInfo D_800CF07C = {
-    0x44FA40,
+    (s32)models_7D53C0_bin,
     NULL,
     0x8AC,
     0x8AC,
@@ -30041,11 +30042,11 @@ ModelInfo D_800CF07C = {
     0xDF,
 };
 
-/*800CF0AC*/ static ModelInfoUnkStruct1 D_800CF0AC = {0x452F00, NULL, 0, 0x49E};
+/*800CF0AC*/ static ModelVertexInfo D_800CF0AC = {(s32)models_7D5CB0_bin+0x2BD0, NULL, 0, 0x49E};
 
 /*800CF0B8*/
 ModelInfo D_800CF0B8 = {
-    0x450330,
+    (s32)models_7D5CB0_bin,
     NULL,
     0x2BCE,
     0x2BCE,
@@ -30066,11 +30067,11 @@ ModelInfo D_800CF0B8 = {
     0xF8,
 };
 
-/*800CF0E8*/ static ModelInfoUnkStruct1 D_800CF0E8 = {0x454F24, NULL, 0, 0x594};
+/*800CF0E8*/ static ModelVertexInfo D_800CF0E8 = {(s32)models_7D8D20_bin+0x1B84, NULL, 0, 0x594};
 
 /*800CF0F4*/
 ModelInfo D_800CF0F4 = {
-    0x4533A0,
+    (s32)models_7D8D20_bin,
     NULL,
     0x1B84,
     0x1B84,
@@ -30091,11 +30092,11 @@ ModelInfo D_800CF0F4 = {
     0x11B,
 };
 
-/*800CF124*/ static ModelInfoUnkStruct1 D_800CF124 = {0x455DF8, NULL, 0, 0x90};
+/*800CF124*/ static ModelVertexInfo D_800CF124 = {(s32)models_7DAE40_bin+0x938, NULL, 0, 0x90};
 
 /*800CF130*/
 ModelInfo D_800CF130 = {
-    0x4554C0,
+    (s32)models_7DAE40_bin,
     NULL,
     0x938,
     0x938,
@@ -30116,11 +30117,11 @@ ModelInfo D_800CF130 = {
     0x193,
 };
 
-/*800CF160*/ static ModelInfoUnkStruct1 D_800CF160 = {0x484958, NULL, 0, 0xF0};
+/*800CF160*/ static ModelVertexInfo D_800CF160 = {(s32)models_8093E0_bin+0xEF8, NULL, 0, 0xF0};
 
 /*800CF16C*/
 ModelInfo D_800CF16C = {
-    0x483A60,
+    (s32)models_8093E0_bin,
     NULL,
     0xEF8,
     0xEF8,
@@ -30141,11 +30142,11 @@ ModelInfo D_800CF16C = {
     0x2F,
 };
 
-/*800CF19C*/ static ModelInfoUnkStruct1 D_800CF19C = {0x4866B4, NULL, 0, 0x102};
+/*800CF19C*/ static ModelVertexInfo D_800CF19C = {(s32)models_80A3D0_bin+0x1C64, NULL, 0, 0x102};
 
 /*800CF1A8*/
 ModelInfo D_800CF1A8 = {
-    0x484A50,
+    (s32)models_80A3D0_bin,
     NULL,
     0x1C62,
     0x1C62,
@@ -30166,11 +30167,11 @@ ModelInfo D_800CF1A8 = {
     0x11,
 };
 
-/*800CF1D8*/ static ModelInfoUnkStruct1 D_800CF1D8 = {0x488814, NULL, 0, 0x20A};
+/*800CF1D8*/ static ModelVertexInfo D_800CF1D8 = {(s32)models_80C140_bin+0x2054, NULL, 0, 0x20A};
 
 /*800CF1E4*/
 ModelInfo D_800CF1E4 = {
-    0x4867C0,
+    (s32)models_80C140_bin,
     NULL,
     0x2052,
     0x2052,
@@ -30191,11 +30192,11 @@ ModelInfo D_800CF1E4 = {
     0x2D,
 };
 
-/*800CF214*/ static ModelInfoUnkStruct1 D_800CF214 = {0x48A928, NULL, 0, 0xD8};
+/*800CF214*/ static ModelVertexInfo D_800CF214 = {(s32)models_80FED0_bin+0x3D8, NULL, 0, 0xD8};
 
 /*800CF220*/
 ModelInfo D_800CF220 = {
-    0x48A550,
+    (s32)models_80FED0_bin,
     NULL,
     0x3D8,
     0x3D8,
@@ -30216,11 +30217,11 @@ ModelInfo D_800CF220 = {
     9,
 };
 
-/*800CF250*/ static ModelInfoUnkStruct1 D_800CF250 = {0x48A3A4, NULL, 0, 0x1AA};
+/*800CF250*/ static ModelVertexInfo D_800CF250 = {(s32)models_80E3A0_bin+0x1984, NULL, 0, 0x1AA};
 
 /*800CF25C*/
 ModelInfo D_800CF25C = {
-    0x488A20,
+    (s32)models_80E3A0_bin,
     NULL,
     0x1982,
     0x1982,
@@ -30241,11 +30242,11 @@ ModelInfo D_800CF25C = {
     0x13,
 };
 
-/*800CF28C*/ static ModelInfoUnkStruct1 D_800CF28C = {0x495D54, NULL, 0, 0x36C};
+/*800CF28C*/ static ModelVertexInfo D_800CF28C = {(s32)models_819F20_bin+0x17B4, NULL, 0, 0x36C};
 
 /*800CF298*/
 ModelInfo D_800CF298 = {
-    0x4945A0,
+    (s32)models_819F20_bin,
     NULL,
     0x17B4,
     0x17B4,
@@ -30266,11 +30267,11 @@ ModelInfo D_800CF298 = {
     0xBD,
 };
 
-/*800CF2C8*/ static ModelInfoUnkStruct1 D_800CF2C8 = {0x498094, NULL, 0, 0x1AA};
+/*800CF2C8*/ static ModelVertexInfo D_800CF2C8 = {(s32)models_81BA40_bin+0x1FD4, NULL, 0, 0x1AA};
 
 /*800CF2D4*/
 ModelInfo D_800CF2D4 = {
-    0x4960C0,
+    (s32)models_81BA40_bin,
     NULL,
     0x1FD2,
     0x1FD2,
@@ -30291,11 +30292,11 @@ ModelInfo D_800CF2D4 = {
     0xD2,
 };
 
-/*800CF304*/ static ModelInfoUnkStruct1 D_800CF304 = {0x49A214, NULL, 0, 0x1AA};
+/*800CF304*/ static ModelVertexInfo D_800CF304 = {(s32)models_81DBC0_bin+0x1FD4, NULL, 0, 0x1AA};
 
 /*800CF310*/
 ModelInfo D_800CF310 = {
-    0x498240,
+    (s32)models_81DBC0_bin,
     NULL,
     0x1FD2,
     0x1FD2,
@@ -30316,11 +30317,11 @@ ModelInfo D_800CF310 = {
     0xD2,
 };
 
-/*800CF340*/ static ModelInfoUnkStruct1 D_800CF340 = {0x49C394, NULL, 0, 0x1AA};
+/*800CF340*/ static ModelVertexInfo D_800CF340 = {(s32)models_81FD40_bin+0x1FD4, NULL, 0, 0x1AA};
 
 /*800CF34C*/
 ModelInfo D_800CF34C = {
-    0x49A3C0,
+    (s32)models_81FD40_bin,
     NULL,
     0x1FD2,
     0x1FD2,
@@ -30341,11 +30342,11 @@ ModelInfo D_800CF34C = {
     0xD2,
 };
 
-/*800CF37C*/ static ModelInfoUnkStruct1 D_800CF37C = {0x49E514, NULL, 0, 0x1AA};
+/*800CF37C*/ static ModelVertexInfo D_800CF37C = {(s32)models_821EC0_bin+0x1FD4, NULL, 0, 0x1AA};
 
 /*800CF388*/
 ModelInfo D_800CF388 = {
-    0x49C540,
+    (s32)models_821EC0_bin,
     NULL,
     0x1FD2,
     0x1FD2,
@@ -30366,11 +30367,11 @@ ModelInfo D_800CF388 = {
     0xD2,
 };
 
-/*800CF3B8*/ static ModelInfoUnkStruct1 D_800CF3B8 = {0x4B6468, NULL, 0, 0x330};
+/*800CF3B8*/ static ModelVertexInfo D_800CF3B8 = {(s32)models_83B040_bin+0xDA8, NULL, 0, 0x330};
 
 /*800CF3C4*/
 ModelInfo D_800CF3C4 = {
-    0x4B56C0,
+    (s32)models_83B040_bin,
     NULL,
     0xDA8,
     0xDA8,
@@ -30391,11 +30392,11 @@ ModelInfo D_800CF3C4 = {
     0x44,
 };
 
-/*800CF3F4*/ static ModelInfoUnkStruct1 D_800CF3F4 = {0x4B6CD8, NULL, 0, 0x48};
+/*800CF3F4*/ static ModelVertexInfo D_800CF3F4 = {(s32)models_83C120_bin+0x538, NULL, 0, 0x48};
 
 /*800CF400*/
 ModelInfo D_800CF400 = {
-    0x4B67A0,
+    (s32)models_83C120_bin,
     NULL,
     0x538,
     0x538,
@@ -30416,11 +30417,11 @@ ModelInfo D_800CF400 = {
     0xA6,
 };
 
-/*800CF430*/ static ModelInfoUnkStruct1 D_800CF430 = {0x4B787C, NULL, 0, 0x42};
+/*800CF430*/ static ModelVertexInfo D_800CF430 = {(s32)models_83C6A0_bin+0xB5C, NULL, 0, 0x42};
 
 /*800CF43C*/
 ModelInfo D_800CF43C = {
-    0x4B6D20,
+    (s32)models_83C6A0_bin,
     NULL,
     0xB5A,
     0xB5A,
@@ -30441,11 +30442,11 @@ ModelInfo D_800CF43C = {
     0xA6,
 };
 
-/*800CF46C*/ static ModelInfoUnkStruct1 D_800CF46C = {0x4B7DF8, NULL, 0, 0x48};
+/*800CF46C*/ static ModelVertexInfo D_800CF46C = {(s32)models_83D240_bin+0x538, NULL, 0, 0x48};
 
 /*800CF478*/
 ModelInfo D_800CF478 = {
-    0x4B78C0,
+    (s32)models_83D240_bin,
     NULL,
     0x538,
     0x538,
@@ -30466,11 +30467,11 @@ ModelInfo D_800CF478 = {
     0xA6,
 };
 
-/*800CF4A8*/ static ModelInfoUnkStruct1 D_800CF4A8 = {0x4B89A0, NULL, 0, 0x48};
+/*800CF4A8*/ static ModelVertexInfo D_800CF4A8 = {(s32)models_83D7C0_bin+0xB60, NULL, 0, 0x48};
 
 /*800CF4B4*/
 ModelInfo D_800CF4B4 = {
-    0x4B7E40,
+    (s32)models_83D7C0_bin,
     NULL,
     0xB60,
     0xB60,
@@ -30491,11 +30492,11 @@ ModelInfo D_800CF4B4 = {
     0xA6,
 };
 
-/*800CF4E4*/ static ModelInfoUnkStruct1 D_800CF4E4 = {0x4AB8A4, NULL, 0, 0x29A};
+/*800CF4E4*/ static ModelVertexInfo D_800CF4E4 = {(s32)models_82EC70_bin+0x25B4, NULL, 0, 0x29A};
 
 /*800CF4F0*/
 ModelInfo D_800CF4F0 = {
-    0x4A92F0,
+    (s32)models_82EC70_bin,
     NULL,
     0x25B2,
     0x25B2,
@@ -30516,11 +30517,11 @@ ModelInfo D_800CF4F0 = {
     0x4B,
 };
 
-/*800CF520*/ static ModelInfoUnkStruct1 D_800CF520 = {0x4B98E8, NULL, 0, 0xF0};
+/*800CF520*/ static ModelVertexInfo D_800CF520 = {(s32)models_83E370_bin+0xEF8, NULL, 0, 0xF0};
 
 /*800CF52C*/
 ModelInfo D_800CF52C = {
-    0x4B89F0,
+    (s32)models_83E370_bin,
     NULL,
     0xEF8,
     0xEF8,
@@ -30541,11 +30542,11 @@ ModelInfo D_800CF52C = {
     0x2F,
 };
 
-/*800CF55C*/ static ModelInfoUnkStruct1 D_800CF55C = {0x4BD168, NULL, 0, 0xA86};
+/*800CF55C*/ static ModelVertexInfo D_800CF55C = {(s32)models_83F360_bin+0x3788, NULL, 0, 0xA86};
 
 /*800CF568*/
 ModelInfo D_800CF568 = {
-    0x4B99E0,
+    (s32)models_83F360_bin,
     NULL,
     0x3786,
     0x3786,
@@ -30566,11 +30567,11 @@ ModelInfo D_800CF568 = {
     0x12E,
 };
 
-/*800CF598*/ static ModelInfoUnkStruct1 D_800CF598 = {0x4BFEB0, NULL, 0, 0x76E};
+/*800CF598*/ static ModelVertexInfo D_800CF598 = {(s32)models_843570_bin+0x22C0, NULL, 0, 0x76E};
 
 /*800CF5A4*/
 ModelInfo D_800CF5A4 = {
-    0x4BDBF0,
+    (s32)models_843570_bin,
     NULL,
     0x22BE,
     0x22BE,
@@ -30591,11 +30592,11 @@ ModelInfo D_800CF5A4 = {
     0xE7,
 };
 
-/*800CF5D4*/ static ModelInfoUnkStruct1 D_800CF5D4 = {0x4C38A0, NULL, 0, 0x936};
+/*800CF5D4*/ static ModelVertexInfo D_800CF5D4 = {(s32)models_845FA0_bin+0x3280, NULL, 0, 0x936};
 
 /*800CF5E0*/
 ModelInfo D_800CF5E0 = {
-    0x4C0620,
+    (s32)models_845FA0_bin,
     NULL,
     0x327E,
     0x327E,
@@ -30616,11 +30617,11 @@ ModelInfo D_800CF5E0 = {
     0x161,
 };
 
-/*800CF610*/ static ModelInfoUnkStruct1 D_800CF610 = {0x4C7424, NULL, 0, 0x86A};
+/*800CF610*/ static ModelVertexInfo D_800CF610 = {(s32)models_849B60_bin+0x3244, NULL, 0, 0x86A};
 
 /*800CF61C*/
 ModelInfo D_800CF61C = {
-    0x4C41E0,
+    (s32)models_849B60_bin,
     NULL,
     0x3242,
     0x3242,
@@ -30641,11 +30642,11 @@ ModelInfo D_800CF61C = {
     0x124,
 };
 
-/*800CF64C*/ static ModelInfoUnkStruct1 D_800CF64C = {0x4CC41C, NULL, 0, 0x98A};
+/*800CF64C*/ static ModelVertexInfo D_800CF64C = {(s32)models_84D610_bin+0x478C, NULL, 0, 0x98A};
 
 /*800CF658*/
 ModelInfo D_800CF658 = {
-    0x4C7C90,
+    (s32)models_84D610_bin,
     NULL,
     0x478A,
     0x478A,
@@ -30666,11 +30667,11 @@ ModelInfo D_800CF658 = {
     0x128,
 };
 
-/*800CF688*/ static ModelInfoUnkStruct1 D_800CF688 = {0x4CF3C4, NULL, 0, 0x45C};
+/*800CF688*/ static ModelVertexInfo D_800CF688 = {(s32)models_852730_bin+0x2614, NULL, 0, 0x45C};
 
 /*800CF694*/
 ModelInfo D_800CF694 = {
-    0x4CCDB0,
+    (s32)models_852730_bin,
     NULL,
     0x2614,
     0x2614,
@@ -30691,11 +30692,11 @@ ModelInfo D_800CF694 = {
     0x2A,
 };
 
-/*800CF6C4*/ static ModelInfoUnkStruct1 D_800CF6C4 = {0x4D1B30, NULL, 0, 0x3F6};
+/*800CF6C4*/ static ModelVertexInfo D_800CF6C4 = {(s32)models_8551A0_bin+0x2310, NULL, 0, 0x3F6};
 
 /*800CF6D0*/
 ModelInfo D_800CF6D0 = {
-    0x4CF820,
+    (s32)models_8551A0_bin,
     NULL,
     0x230E,
     0x230E,
@@ -30716,11 +30717,11 @@ ModelInfo D_800CF6D0 = {
     0x2C,
 };
 
-/*800CF700*/ static ModelInfoUnkStruct1 D_800CF700 = {0x4D475C, NULL, 0, 0x444};
+/*800CF700*/ static ModelVertexInfo D_800CF700 = {(s32)models_8578B0_bin+0x282C, NULL, 0, 0x444};
 
 /*800CF70C*/
 ModelInfo D_800CF70C = {
-    0x4D1F30,
+    (s32)models_8578B0_bin,
     NULL,
     0x282C,
     0x282C,
@@ -30741,11 +30742,11 @@ ModelInfo D_800CF70C = {
     0x2C,
 };
 
-/*800CF73C*/ static ModelInfoUnkStruct1 D_800CF73C = {0x4D799C, NULL, 0, 0x47A};
+/*800CF73C*/ static ModelVertexInfo D_800CF73C = {(s32)models_85A520_bin+0x2DFC, NULL, 0, 0x47A};
 
 /*800CF748*/
 ModelInfo D_800CF748 = {
-    0x4D4BA0,
+    (s32)models_85A520_bin,
     NULL,
     0x2DFA,
     0x2DFA,
@@ -30766,11 +30767,11 @@ ModelInfo D_800CF748 = {
     0x82,
 };
 
-/*800CF778*/ static ModelInfoUnkStruct1 D_800CF778 = {0x4DA468, NULL, 0, 0x3C0};
+/*800CF778*/ static ModelVertexInfo D_800CF778 = {(s32)models_85D7A0_bin+0x2648, NULL, 0, 0x3C0};
 
 /*800CF784*/
 ModelInfo D_800CF784 = {
-    0x4D7E20,
+    (s32)models_85D7A0_bin,
     NULL,
     0x2648,
     0x2648,
@@ -30791,11 +30792,11 @@ ModelInfo D_800CF784 = {
     0x6B,
 };
 
-/*800CF7B4*/ static ModelInfoUnkStruct1 D_800CF7B4 = {0x4DD62C, NULL, 0, 0x47A};
+/*800CF7B4*/ static ModelVertexInfo D_800CF7B4 = {(s32)models_8601B0_bin+0x2DFC, NULL, 0, 0x47A};
 
 /*800CF7C0*/
 ModelInfo D_800CF7C0 = {
-    0x4DA830,
+    (s32)models_8601B0_bin,
     NULL,
     0x2DFA,
     0x2DFA,
@@ -30816,11 +30817,11 @@ ModelInfo D_800CF7C0 = {
     0x2C,
 };
 
-/*800CF7F0*/ static ModelInfoUnkStruct1 D_800CF7F0 = {0x4EAA70, NULL, 0, 0x510};
+/*800CF7F0*/ static ModelVertexInfo D_800CF7F0 = {(s32)models_86F2F0_bin+0x1100, NULL, 0, 0x510};
 
 /*800CF7FC*/
 ModelInfo D_800CF7FC = {
-    0x4E9970,
+    (s32)models_86F2F0_bin,
     NULL,
     0x1100,
     0x1100,
@@ -30841,11 +30842,11 @@ ModelInfo D_800CF7FC = {
     0x7B,
 };
 
-/*800CF82C*/ static ModelInfoUnkStruct1 D_800CF82C = {0x4EBE0C, NULL, 0, 0xFC};
+/*800CF82C*/ static ModelVertexInfo D_800CF82C = {(s32)models_870900_bin+0xE8C, NULL, 0, 0xFC};
 
 /*800CF838*/
 ModelInfo D_800CF838 = {
-    0x4EAF80,
+    (s32)models_870900_bin,
     NULL,
     0xE8C,
     0xE8C,
@@ -30866,11 +30867,11 @@ ModelInfo D_800CF838 = {
     0x1F2,
 };
 
-/*800CF868*/ static ModelInfoUnkStruct1 D_800CF868 = {0x4EFA6C, NULL, 0, 0xEA};
+/*800CF868*/ static ModelVertexInfo D_800CF868 = {(s32)models_871890_bin+0x3B5C, NULL, 0, 0xEA};
 
 /*800CF874*/
 ModelInfo D_800CF874 = {
-    0x4EBF10,
+    (s32)models_871890_bin,
     NULL,
     0x3B5A,
     0x3B5A,
@@ -30891,11 +30892,11 @@ ModelInfo D_800CF874 = {
     0xDB,
 };
 
-/*800CF8A4*/ static ModelInfoUnkStruct1 D_800CF8A4 = {0x4F47D4, NULL, 0, 0x12C};
+/*800CF8A4*/ static ModelVertexInfo D_800CF8A4 = {(s32)models_8754E0_bin+0x4C74, NULL, 0, 0x12C};
 
 /*800CF8B0*/
 ModelInfo D_800CF8B0 = {
-    0x4EFB60,
+    (s32)models_8754E0_bin,
     NULL,
     0x4C74,
     0x4C74,
@@ -30916,11 +30917,11 @@ ModelInfo D_800CF8B0 = {
     0xDD,
 };
 
-/*800CF8E0*/ static ModelInfoUnkStruct1 D_800CF8E0 = {0x4F56C8, NULL, 0, 0xA8};
+/*800CF8E0*/ static ModelVertexInfo D_800CF8E0 = {(s32)models_87A280_bin+0xDC8, NULL, 0, 0xA8};
 
 /*800CF8EC*/
 ModelInfo D_800CF8EC = {
-    0x4F4900,
+    (s32)models_87A280_bin,
     NULL,
     0xDC8,
     0xDC8,
@@ -30941,11 +30942,11 @@ ModelInfo D_800CF8EC = {
     0x98,
 };
 
-/*800CF91C*/ static ModelInfoUnkStruct1 D_800CF91C = {0x4F5FF8, NULL, 0, 0x30};
+/*800CF91C*/ static ModelVertexInfo D_800CF91C = {(s32)models_87B0F0_bin+0x888, NULL, 0, 0x30};
 
 /*800CF928*/
 ModelInfo D_800CF928 = {
-    0x4F5770,
+    (s32)models_87B0F0_bin,
     NULL,
     0x888,
     0x888,
@@ -30966,11 +30967,11 @@ ModelInfo D_800CF928 = {
     0xED,
 };
 
-/*800CF958*/ static ModelInfoUnkStruct1 D_800CF958 = {0x4F68B8, NULL, 0, 0x30};
+/*800CF958*/ static ModelVertexInfo D_800CF958 = {(s32)models_87B9B0_bin+0x888, NULL, 0, 0x30};
 
 /*800CF964*/
 ModelInfo D_800CF964 = {
-    0x4F6030,
+    (s32)models_87B9B0_bin,
     NULL,
     0x888,
     0x888,
@@ -30991,11 +30992,11 @@ ModelInfo D_800CF964 = {
     0xD0,
 };
 
-/*800CF994*/ static ModelInfoUnkStruct1 D_800CF994 = {0x4F76B8, NULL, 0, 0xA8};
+/*800CF994*/ static ModelVertexInfo D_800CF994 = {(s32)models_87C270_bin+0xDC8, NULL, 0, 0xA8};
 
 /*800CF9A0*/
 ModelInfo D_800CF9A0 = {
-    0x4F68F0,
+    (s32)models_87C270_bin,
     NULL,
     0xDC8,
     0xDC8,
@@ -31016,11 +31017,11 @@ ModelInfo D_800CF9A0 = {
     0x8C,
 };
 
-/*800CF9D0*/ static ModelInfoUnkStruct1 D_800CF9D0 = {0x4F8884, NULL, 0, 0x6C};
+/*800CF9D0*/ static ModelVertexInfo D_800CF9D0 = {(s32)models_87D0E0_bin+0x1124, NULL, 0, 0x6C};
 
 /*800CF9DC*/
 ModelInfo D_800CF9DC = {
-    0x4F7760,
+    (s32)models_87D0E0_bin,
     NULL,
     0x1124,
     0x1124,
@@ -31041,11 +31042,11 @@ ModelInfo D_800CF9DC = {
     0x131,
 };
 
-/*800CFA0C*/ static ModelInfoUnkStruct1 D_800CFA0C = {0x4F9A14, NULL, 0, 0x6C};
+/*800CFA0C*/ static ModelVertexInfo D_800CFA0C = {(s32)models_87E270_bin+0x1124, NULL, 0, 0x6C};
 
 /*800CFA18*/
 ModelInfo D_800CFA18 = {
-    0x4F88F0,
+    (s32)models_87E270_bin,
     NULL,
     0x1124,
     0x1124,
@@ -31066,11 +31067,11 @@ ModelInfo D_800CFA18 = {
     0x130,
 };
 
-/*800CFA48*/ static ModelInfoUnkStruct1 D_800CFA48 = {0x4FA094, NULL, 0, 0xEA};
+/*800CFA48*/ static ModelVertexInfo D_800CFA48 = {(s32)models_87F400_bin+0x614, NULL, 0, 0xEA};
 
 /*800CFA54*/
 ModelInfo D_800CFA54 = {
-    0x4F9A80,
+    (s32)models_87F400_bin,
     NULL,
     0x612,
     0x612,
@@ -31091,11 +31092,11 @@ ModelInfo D_800CFA54 = {
     0x150,
 };
 
-/*800CFA84*/ static ModelInfoUnkStruct1 D_800CFA84 = {0x4FBAE4, NULL, 0, 0x72};
+/*800CFA84*/ static ModelVertexInfo D_800CFA84 = {(s32)models_87FB00_bin+0x1964, NULL, 0, 0x72};
 
 /*800CFA90*/
 ModelInfo D_800CFA90 = {
-    0x4FA180,
+    (s32)models_87FB00_bin,
     NULL,
     0x1962,
     0x1962,
@@ -31116,11 +31117,11 @@ ModelInfo D_800CFA90 = {
     0xC8,
 };
 
-/*800CFAC0*/ static ModelInfoUnkStruct1 D_800CFAC0 = {0x4FDCEC, NULL, 0, 0x72};
+/*800CFAC0*/ static ModelVertexInfo D_800CFAC0 = {(s32)models_8814E0_bin+0x218C, NULL, 0, 0x72};
 
 /*800CFACC*/
 ModelInfo D_800CFACC = {
-    0x4FBB60,
+    (s32)models_8814E0_bin,
     NULL,
     0x218A,
     0x218A,
@@ -31141,11 +31142,11 @@ ModelInfo D_800CFACC = {
     0xC8,
 };
 
-/*800CFAFC*/ static ModelInfoUnkStruct1 D_800CFAFC = {0x4FF558, NULL, 0, 0x1C8};
+/*800CFAFC*/ static ModelVertexInfo D_800CFAFC = {(s32)models_8836E0_bin+0x17F8, NULL, 0, 0x1C8};
 
 /*800CFB08*/
 ModelInfo D_800CFB08 = {
-    0x4FDD60,
+    (s32)models_8836E0_bin,
     NULL,
     0x17F8,
     0x17F8,
@@ -31166,11 +31167,11 @@ ModelInfo D_800CFB08 = {
     0x151,
 };
 
-/*800CFB38*/ static ModelInfoUnkStruct1 D_800CFB38 = {0x501F74, NULL, 0, 0x1AA};
+/*800CFB38*/ static ModelVertexInfo D_800CFB38 = {(s32)models_8850A0_bin+0x2854, NULL, 0, 0x1AA};
 
 /*800CFB44*/
 ModelInfo D_800CFB44 = {
-    0x4FF720,
+    (s32)models_8850A0_bin,
     NULL,
     0x2852,
     0x2852,
@@ -31191,11 +31192,11 @@ ModelInfo D_800CFB44 = {
     0xC4,
 };
 
-/*800CFB74*/ static ModelInfoUnkStruct1 D_800CFB74 = {0x50F938, NULL, 0, 0x90};
+/*800CFB74*/ static ModelVertexInfo D_800CFB74 = {(s32)models_894150_bin+0x1168, NULL, 0, 0x90};
 
 /*800CFB80*/
 ModelInfo D_800CFB80 = {
-    0x50E7D0,
+    (s32)models_894150_bin,
     NULL,
     0x1168,
     0x1168,
@@ -31216,11 +31217,11 @@ ModelInfo D_800CFB80 = {
     -0x55,
 };
 
-/*800CFBB0*/ static ModelInfoUnkStruct1 D_800CFBB0 = {0x510308, NULL, 0, 0x90};
+/*800CFBB0*/ static ModelVertexInfo D_800CFBB0 = {(s32)models_895350_bin+0x938, NULL, 0, 0x90};
 
 /*800CFBBC*/
 ModelInfo D_800CFBBC = {
-    0x50F9D0,
+    (s32)models_895350_bin,
     NULL,
     0x938,
     0x938,
@@ -31241,11 +31242,11 @@ ModelInfo D_800CFBBC = {
     0x45,
 };
 
-/*800CFBEC*/ static ModelInfoUnkStruct1 D_800CFBEC = {0x510C80, NULL, 0, 0x60};
+/*800CFBEC*/ static ModelVertexInfo D_800CFBEC = {(s32)models_895D20_bin+0x8E0, NULL, 0, 0x60};
 
 /*800CFBF8*/
 ModelInfo D_800CFBF8 = {
-    0x5103A0,
+    (s32)models_895D20_bin,
     NULL,
     0x8E0,
     0x8E0,
@@ -31266,11 +31267,11 @@ ModelInfo D_800CFBF8 = {
     0xC,
 };
 
-/*800CFC28*/ static ModelInfoUnkStruct1 D_800CFC28 = {0x523B78, NULL, 0, 0x558};
+/*800CFC28*/ static ModelVertexInfo D_800CFC28 = {(s32)models_8A65E0_bin+0x2F18, NULL, 0, 0x558};
 
 /*800CFC34*/
 ModelInfo D_800CFC34 = {
-    0x520C60,
+    (s32)models_8A65E0_bin,
     NULL,
     0x2F18,
     0x2F18,
@@ -31291,11 +31292,11 @@ ModelInfo D_800CFC34 = {
     0x88,
 };
 
-/*800CFC64*/ static ModelInfoUnkStruct1 D_800CFC64 = {0x526354, NULL, 0, 0xE4};
+/*800CFC64*/ static ModelVertexInfo D_800CFC64 = {(s32)models_8A9A50_bin+0x2284, NULL, 0, 0xE4};
 
 /*800CFC70*/
 ModelInfo D_800CFC70 = {
-    0x5240D0,
+    (s32)models_8A9A50_bin,
     NULL,
     0x2284,
     0x2284,
@@ -31316,11 +31317,11 @@ ModelInfo D_800CFC70 = {
     0xB3,
 };
 
-/*800CFCA0*/ static ModelInfoUnkStruct1 D_800CFCA0 = {0x526CD4, NULL, 0, 0x192};
+/*800CFCA0*/ static ModelVertexInfo D_800CFCA0 = {(s32)models_8ABDC0_bin+0x894, NULL, 0, 0x192};
 
 /*800CFCAC*/
 ModelInfo D_800CFCAC = {
-    0x526440,
+    (s32)models_8ABDC0_bin,
     NULL,
     0x892,
     0x892,
@@ -31341,11 +31342,11 @@ ModelInfo D_800CFCAC = {
     0,
 };
 
-/*800CFCDC*/ static ModelInfoUnkStruct1 D_800CFCDC = {0x52A414, NULL, 0, 0x504};
+/*800CFCDC*/ static ModelVertexInfo D_800CFCDC = {(s32)models_8AC7F0_bin+0x35A4, NULL, 0, 0x504};
 
 /*800CFCE8*/
 ModelInfo D_800CFCE8 = {
-    0x526E70,
+    (s32)models_8AC7F0_bin,
     NULL,
     0x35A4,
     0x35A4,
@@ -31366,11 +31367,11 @@ ModelInfo D_800CFCE8 = {
     0xE9,
 };
 
-/*800CFD18*/ static ModelInfoUnkStruct1 D_800CFD18 = {0x52B5EC, NULL, 0, 0x2FA};
+/*800CFD18*/ static ModelVertexInfo D_800CFD18 = {(s32)models_8B02A0_bin+0xCCC, NULL, 0, 0x2FA};
 
 /*800CFD24*/
 ModelInfo D_800CFD24 = {
-    0x52A920,
+    (s32)models_8B02A0_bin,
     NULL,
     0xCCA,
     0xCCA,
@@ -31391,11 +31392,11 @@ ModelInfo D_800CFD24 = {
     0,
 };
 
-/*800CFD54*/ static ModelInfoUnkStruct1 D_800CFD54 = {0x52C590, NULL, 0, 0x348};
+/*800CFD54*/ static ModelVertexInfo D_800CFD54 = {(s32)models_8B1270_bin+0xCA0, NULL, 0, 0x348};
 
 /*800CFD60*/
 ModelInfo D_800CFD60 = {
-    0x52B8F0,
+    (s32)models_8B1270_bin,
     NULL,
     0xCA0,
     0xCA0,
@@ -31416,11 +31417,11 @@ ModelInfo D_800CFD60 = {
     0x39,
 };
 
-/*800CFD90*/ static ModelInfoUnkStruct1 D_800CFD90 = {0x52DB50, NULL, 0, 0x120};
+/*800CFD90*/ static ModelVertexInfo D_800CFD90 = {(s32)models_8B2260_bin+0x1270, NULL, 0, 0x120};
 
 /*800CFD9C*/
 ModelInfo D_800CFD9C = {
-    0x52C8E0,
+    (s32)models_8B2260_bin,
     NULL,
     0x1270,
     0x1270,
@@ -31441,11 +31442,11 @@ ModelInfo D_800CFD9C = {
     0x58,
 };
 
-/*800CFDCC*/ static ModelInfoUnkStruct1 D_800CFDCC = {0x5301D0, NULL, 0, 0x570};
+/*800CFDCC*/ static ModelVertexInfo D_800CFDCC = {(s32)models_8B35F0_bin+0x2560, NULL, 0, 0x570};
 
 /*800CFDD8*/
 ModelInfo D_800CFDD8 = {
-    0x52DC70,
+    (s32)models_8B35F0_bin,
     NULL,
     0x2560,
     0x2560,
@@ -31466,11 +31467,11 @@ ModelInfo D_800CFDD8 = {
     0xE6,
 };
 
-/*800CFE08*/ static ModelInfoUnkStruct1 D_800CFE08 = {0x532010, NULL, 0, 0x480};
+/*800CFE08*/ static ModelVertexInfo D_800CFE08 = {(s32)models_8B60C0_bin+0x18D0, NULL, 0, 0x480};
 
 /*800CFE14*/
 ModelInfo D_800CFE14 = {
-    0x530740,
+    (s32)models_8B60C0_bin,
     NULL,
     0x18D0,
     0x18D0,
@@ -31491,11 +31492,11 @@ ModelInfo D_800CFE14 = {
     0x61,
 };
 
-/*800CFE44*/ static ModelInfoUnkStruct1 D_800CFE44 = {0x5336F0, NULL, 0, 0x3C0};
+/*800CFE44*/ static ModelVertexInfo D_800CFE44 = {(s32)models_8B7E10_bin+0x1260, NULL, 0, 0x3C0};
 
 /*800CFE50*/
 ModelInfo D_800CFE50 = {
-    0x532490,
+    (s32)models_8B7E10_bin,
     NULL,
     0x1260,
     0x1260,
@@ -31516,11 +31517,11 @@ ModelInfo D_800CFE50 = {
     0,
 };
 
-/*800CFE80*/ static ModelInfoUnkStruct1 D_800CFE80 = {0x534258, NULL, 0, 0x22E};
+/*800CFE80*/ static ModelVertexInfo D_800CFE80 = {(s32)models_8B9430_bin+0x7A8, NULL, 0, 0x22E};
 
 /*800CFE8C*/
 ModelInfo D_800CFE8C = {
-    0x533AB0,
+    (s32)models_8B9430_bin,
     NULL,
     0x7A6,
     0x7A6,
@@ -31541,11 +31542,11 @@ ModelInfo D_800CFE8C = {
     0x64,
 };
 
-/*800CFEBC*/ static ModelInfoUnkStruct1 D_800CFEBC = {0x535FCC, NULL, 0, 0x414};
+/*800CFEBC*/ static ModelVertexInfo D_800CFEBC = {(s32)models_8B9E10_bin+0x1B3C, NULL, 0, 0x414};
 
 /*800CFEC8*/
 ModelInfo D_800CFEC8 = {
-    0x534490,
+    (s32)models_8B9E10_bin,
     NULL,
     0x1B3C,
     0x1B3C,
@@ -31566,11 +31567,11 @@ ModelInfo D_800CFEC8 = {
     0xF8,
 };
 
-/*800CFEF8*/ static ModelInfoUnkStruct1 D_800CFEF8 = {0x536F34, NULL, 0, 0x35A};
+/*800CFEF8*/ static ModelVertexInfo D_800CFEF8 = {(s32)models_8BBD60_bin+0xB54, NULL, 0, 0x35A};
 
 /*800CFF04*/
 ModelInfo D_800CFF04 = {
-    0x5363E0,
+    (s32)models_8BBD60_bin,
     NULL,
     0xB52,
     0xB52,
@@ -31591,11 +31592,11 @@ ModelInfo D_800CFF04 = {
     0x28,
 };
 
-/*800CFF34*/ static ModelInfoUnkStruct1 D_800CFF34 = {0x537DBC, NULL, 0, 0x282};
+/*800CFF34*/ static ModelVertexInfo D_800CFF34 = {(s32)models_8BCC10_bin+0xB2C, NULL, 0, 0x282};
 
 /*800CFF40*/
 ModelInfo D_800CFF40 = {
-    0x537290,
+    (s32)models_8BCC10_bin,
     NULL,
     0xB2A,
     0xB2A,
@@ -31616,11 +31617,11 @@ ModelInfo D_800CFF40 = {
     0x94,
 };
 
-/*800CFF70*/ static ModelInfoUnkStruct1 D_800CFF70 = {0x539494, NULL, 0, 0x23A};
+/*800CFF70*/ static ModelVertexInfo D_800CFF70 = {(s32)models_8BD9C0_bin+0x1454, NULL, 0, 0x23A};
 
 /*800CFF7C*/
 ModelInfo D_800CFF7C = {
-    0x538040,
+    (s32)models_8BD9C0_bin,
     NULL,
     0x1452,
     0x1452,
@@ -31641,11 +31642,11 @@ ModelInfo D_800CFF7C = {
     0xBC,
 };
 
-/*800CFFAC*/ static ModelInfoUnkStruct1 D_800CFFAC = {0x53AAFC, NULL, 0, 0x21C};
+/*800CFFAC*/ static ModelVertexInfo D_800CFFAC = {(s32)models_8BF050_bin+0x142C, NULL, 0, 0x21C};
 
 /*800CFFB8*/
 ModelInfo D_800CFFB8 = {
-    0x5396D0,
+    (s32)models_8BF050_bin,
     NULL,
     0x142C,
     0x142C,
@@ -31666,11 +31667,11 @@ ModelInfo D_800CFFB8 = {
     0xB8,
 };
 
-/*800CFFE8*/ static ModelInfoUnkStruct1 D_800CFFE8 = {0x53BF14, NULL, 0, 0xE4};
+/*800CFFE8*/ static ModelVertexInfo D_800CFFE8 = {(s32)models_8C06A0_bin+0x11F4, NULL, 0, 0xE4};
 
 /*800CFFF4*/
 ModelInfo D_800CFFF4 = {
-    0x53AD20,
+    (s32)models_8C06A0_bin,
     NULL,
     0x11F4,
     0x11F4,
@@ -31691,11 +31692,11 @@ ModelInfo D_800CFFF4 = {
     0xA6,
 };
 
-/*800D0024*/ static ModelInfoUnkStruct1 D_800D0024 = {0x53D434, NULL, 0, 0x222};
+/*800D0024*/ static ModelVertexInfo D_800D0024 = {(s32)models_8C1980_bin+0x1434, NULL, 0, 0x222};
 
 /*800D0030*/
 ModelInfo D_800D0030 = {
-    0x53C000,
+    (s32)models_8C1980_bin,
     NULL,
     0x1432,
     0x1432,
@@ -31716,11 +31717,11 @@ ModelInfo D_800D0030 = {
     0xB9,
 };
 
-/*800D0060*/ static ModelInfoUnkStruct1 D_800D0060 = {0x53E854, NULL, 0, 0xE4};
+/*800D0060*/ static ModelVertexInfo D_800D0060 = {(s32)models_8C2FE0_bin+0x11F4, NULL, 0, 0xE4};
 
 /*800D006C*/
 ModelInfo D_800D006C = {
-    0x53D660,
+    (s32)models_8C2FE0_bin,
     NULL,
     0x11F4,
     0x11F4,
@@ -31741,11 +31742,11 @@ ModelInfo D_800D006C = {
     0xBC,
 };
 
-/*800D009C*/ static ModelInfoUnkStruct1 D_800D009C = {0x54264C, NULL, 0, 0x384};
+/*800D009C*/ static ModelVertexInfo D_800D009C = {(s32)models_8C42C0_bin+0x3D0C, NULL, 0, 0x384};
 
 /*800D00A8*/
 ModelInfo D_800D00A8 = {
-    0x53E940,
+    (s32)models_8C42C0_bin,
     NULL,
     0x3D0C,
     0x3D0C,
@@ -31766,11 +31767,11 @@ ModelInfo D_800D00A8 = {
     0x66,
 };
 
-/*800D00D8*/ static ModelInfoUnkStruct1 D_800D00D8 = {0x547938, NULL, 0, 0x49E};
+/*800D00D8*/ static ModelVertexInfo D_800D00D8 = {(s32)models_8C8350_bin+0x4F68, NULL, 0, 0x49E};
 
 /*800D00E4*/
 ModelInfo D_800D00E4 = {
-    0x5429D0,
+    (s32)models_8C8350_bin,
     NULL,
     0x4F66,
     0x4F66,
@@ -31791,11 +31792,11 @@ ModelInfo D_800D00E4 = {
     0x10D,
 };
 
-/*800D0114*/ static ModelInfoUnkStruct1 D_800D0114 = {0x55E630, NULL, 0, 0x120};
+/*800D0114*/ static ModelVertexInfo D_800D0114 = {(s32)models_8E24D0_bin+0x1AE0, NULL, 0, 0x120};
 
 /*800D0120*/
 ModelInfo D_800D0120 = {
-    0x55CB50,
+    (s32)models_8E24D0_bin,
     NULL,
     0x1AE0,
     0x1AE0,
@@ -31816,11 +31817,11 @@ ModelInfo D_800D0120 = {
     0x12A,
 };
 
-/*800D0150*/ static ModelInfoUnkStruct1 D_800D0150 = {0x560CB0, NULL, 0, 0x7F8};
+/*800D0150*/ static ModelVertexInfo D_800D0150 = {(s32)models_8E40D0_bin+0x2560, NULL, 0, 0x7F8};
 
 /*800D015C*/
 ModelInfo D_800D015C = {
-    0x55E750,
+    (s32)models_8E40D0_bin,
     NULL,
     0x2560,
     0x2560,
@@ -31841,11 +31842,11 @@ ModelInfo D_800D015C = {
     0x183,
 };
 
-/*800D018C*/ static ModelInfoUnkStruct1 D_800D018C = {0x56A938, NULL, 0, 0x90};
+/*800D018C*/ static ModelVertexInfo D_800D018C = {(s32)models_8EF150_bin+0x1168, NULL, 0, 0x90};
 
 /*800D0198*/
 ModelInfo D_800D0198 = {
-    0x5697D0,
+    (s32)models_8EF150_bin,
     NULL,
     0x1168,
     0x1168,
@@ -31866,11 +31867,11 @@ ModelInfo D_800D0198 = {
     0x65,
 };
 
-/*800D01C8*/ static ModelInfoUnkStruct1 D_800D01C8 = {0x56B304, NULL, 0, 0x6C};
+/*800D01C8*/ static ModelVertexInfo D_800D01C8 = {(s32)models_8F0350_bin+0x934, NULL, 0, 0x6C};
 
 /*800D01D4*/
 ModelInfo D_800D01D4 = {
-    0x56A9D0,
+    (s32)models_8F0350_bin,
     NULL,
     0x934,
     0x934,
@@ -31891,11 +31892,11 @@ ModelInfo D_800D01D4 = {
     0x1E,
 };
 
-/*800D0204*/ static ModelInfoUnkStruct1 D_800D0204 = {0x56BCA4, NULL, 0, 0x6C};
+/*800D0204*/ static ModelVertexInfo D_800D0204 = {(s32)models_8F0CF0_bin+0x934, NULL, 0, 0x6C};
 
 /*800D0210*/
 ModelInfo D_800D0210 = {
-    0x56B370,
+    (s32)models_8F0CF0_bin,
     NULL,
     0x934,
     0x934,
@@ -31916,11 +31917,11 @@ ModelInfo D_800D0210 = {
     0x1E,
 };
 
-/*800D0240*/ static ModelInfoUnkStruct1 D_800D0240 = {0x56C550, NULL, 0, 0x78};
+/*800D0240*/ static ModelVertexInfo D_800D0240 = {(s32)models_8F1690_bin+0x840, NULL, 0, 0x78};
 
 /*800D024C*/
 ModelInfo D_800D024C = {
-    0x56BD10,
+    (s32)models_8F1690_bin,
     NULL,
     0x840,
     0x840,
@@ -31941,11 +31942,11 @@ ModelInfo D_800D024C = {
     0x1F,
 };
 
-/*800D027C*/ static ModelInfoUnkStruct1 D_800D027C = {0x56CF2C, NULL, 0, 0xFC};
+/*800D027C*/ static ModelVertexInfo D_800D027C = {(s32)models_8F1F50_bin+0x95C, NULL, 0, 0xFC};
 
 /*800D0288*/
 ModelInfo D_800D0288 = {
-    0x56C5D0,
+    (s32)models_8F1F50_bin,
     NULL,
     0x95C,
     0x95C,
@@ -31966,11 +31967,11 @@ ModelInfo D_800D0288 = {
     0x1F,
 };
 
-/*800D02B8*/ static ModelInfoUnkStruct1 D_800D02B8 = {0x56DFDC, NULL, 0, 0x162};
+/*800D02B8*/ static ModelVertexInfo D_800D02B8 = {(s32)models_8F29B0_bin+0xFAC, NULL, 0, 0x162};
 
 /*800D02C4*/
 ModelInfo D_800D02C4 = {
-    0x56D030,
+    (s32)models_8F29B0_bin,
     NULL,
     0xFAA,
     0xFAA,
@@ -31991,11 +31992,11 @@ ModelInfo D_800D02C4 = {
     0x1E,
 };
 
-/*800D02F4*/ static ModelInfoUnkStruct1 D_800D02F4 = {0x56EB38, NULL, 0, 0x48};
+/*800D02F4*/ static ModelVertexInfo D_800D02F4 = {(s32)models_8F3AC0_bin+0x9F8, NULL, 0, 0x48};
 
 /*800D0300*/
 ModelInfo D_800D0300 = {
-    0x56E140,
+    (s32)models_8F3AC0_bin,
     NULL,
     0x9F8,
     0x9F8,
@@ -32016,11 +32017,11 @@ ModelInfo D_800D0300 = {
     0x1E,
 };
 
-/*800D0330*/ static ModelInfoUnkStruct1 D_800D0330 = {0x56F42C, NULL, 0, 0x3C};
+/*800D0330*/ static ModelVertexInfo D_800D0330 = {(s32)models_8F4500_bin+0x8AC, NULL, 0, 0x3C};
 
 /*800D033C*/
 ModelInfo D_800D033C = {
-    0x56EB80,
+    (s32)models_8F4500_bin,
     NULL,
     0x8AC,
     0x8AC,
@@ -32041,11 +32042,11 @@ ModelInfo D_800D033C = {
     0x1D,
 };
 
-/*800D036C*/ static ModelInfoUnkStruct1 D_800D036C = {0x56FD1C, NULL, 0, 0x3C};
+/*800D036C*/ static ModelVertexInfo D_800D036C = {(s32)models_8F4DF0_bin+0x8AC, NULL, 0, 0x3C};
 
 /*800D0378*/
 ModelInfo D_800D0378 = {
-    0x56F470,
+    (s32)models_8F4DF0_bin,
     NULL,
     0x8AC,
     0x8AC,
@@ -32066,11 +32067,11 @@ ModelInfo D_800D0378 = {
     0x27,
 };
 
-/*800D03A8*/ static ModelInfoUnkStruct1 D_800D03A8 = {0x570B24, NULL, 0, 0xD2};
+/*800D03A8*/ static ModelVertexInfo D_800D03A8 = {(s32)models_8F56E0_bin+0xDC4, NULL, 0, 0xD2};
 
 /*800D03B4*/
 ModelInfo D_800D03B4 = {
-    0x56FD60,
+    (s32)models_8F56E0_bin,
     NULL,
     0xDC2,
     0xDC2,
@@ -32091,11 +32092,11 @@ ModelInfo D_800D03B4 = {
     0x1B,
 };
 
-/*800D03E4*/ static ModelInfoUnkStruct1 D_800D03E4 = {0x5713FC, NULL, 0, 0x84};
+/*800D03E4*/ static ModelVertexInfo D_800D03E4 = {(s32)models_8F6580_bin+0x7FC, NULL, 0, 0x84};
 
 /*800D03F0*/
 ModelInfo D_800D03F0 = {
-    0x570C00,
+    (s32)models_8F6580_bin,
     NULL,
     0x7FC,
     0x7FC,
@@ -32116,11 +32117,11 @@ ModelInfo D_800D03F0 = {
     0x1D,
 };
 
-/*800D0420*/ static ModelInfoUnkStruct1 D_800D0420 = {0x5721F8, NULL, 0, 0x7E};
+/*800D0420*/ static ModelVertexInfo D_800D0420 = {(s32)models_8F6E00_bin+0xD78, NULL, 0, 0x7E};
 
 /*800D042C*/
 ModelInfo D_800D042C = {
-    0x571480,
+    (s32)models_8F6E00_bin,
     NULL,
     0xD76,
     0xD76,
@@ -32141,11 +32142,11 @@ ModelInfo D_800D042C = {
     0x1E,
 };
 
-/*800D045C*/ static ModelInfoUnkStruct1 D_800D045C = {0x572710, NULL, 0, 0x30};
+/*800D045C*/ static ModelVertexInfo D_800D045C = {(s32)models_8F7C00_bin+0x490, NULL, 0, 0x30};
 
 /*800D0468*/
 ModelInfo D_800D0468 = {
-    0x572280,
+    (s32)models_8F7C00_bin,
     NULL,
     0x490,
     0x490,
@@ -32166,11 +32167,11 @@ ModelInfo D_800D0468 = {
     0x1C,
 };
 
-/*800D0498*/ static ModelInfoUnkStruct1 D_800D0498 = {0x5739B0, NULL, 0, 0x120};
+/*800D0498*/ static ModelVertexInfo D_800D0498 = {(s32)models_8F80C0_bin+0x1270, NULL, 0, 0x120};
 
 /*800D04A4*/
 ModelInfo D_800D04A4 = {
-    0x572740,
+    (s32)models_8F80C0_bin,
     NULL,
     0x1270,
     0x1270,
@@ -32191,11 +32192,11 @@ ModelInfo D_800D04A4 = {
     0x2E,
 };
 
-/*800D04D4*/ static ModelInfoUnkStruct1 D_800D04D4 = {0x574D40, NULL, 0, 0x120};
+/*800D04D4*/ static ModelVertexInfo D_800D04D4 = {(s32)models_8F9450_bin+0x1270, NULL, 0, 0x120};
 
 /*800D04E0*/
 ModelInfo D_800D04E0 = {
-    0x573AD0,
+    (s32)models_8F9450_bin,
     NULL,
     0x1270,
     0x1270,
@@ -32216,11 +32217,11 @@ ModelInfo D_800D04E0 = {
     0x87,
 };
 
-/*800D0510*/ static ModelInfoUnkStruct1 D_800D0510 = {0x5760D0, NULL, 0, 0x120};
+/*800D0510*/ static ModelVertexInfo D_800D0510 = {(s32)models_8FA7E0_bin+0x1270, NULL, 0, 0x120};
 
 /*800D051C*/
 ModelInfo D_800D051C = {
-    0x574E60,
+    (s32)models_8FA7E0_bin,
     NULL,
     0x1270,
     0x1270,
@@ -32241,11 +32242,11 @@ ModelInfo D_800D051C = {
     0x37,
 };
 
-/*800D054C*/ static ModelInfoUnkStruct1 D_800D054C = {0x577460, NULL, 0, 0x120};
+/*800D054C*/ static ModelVertexInfo D_800D054C = {(s32)models_8FBB70_bin+0x1270, NULL, 0, 0x120};
 
 /*800D0558*/
 ModelInfo D_800D0558 = {
-    0x5761F0,
+    (s32)models_8FBB70_bin,
     NULL,
     0x1270,
     0x1270,
@@ -32266,11 +32267,11 @@ ModelInfo D_800D0558 = {
     0x3E,
 };
 
-/*800D0588*/ static ModelInfoUnkStruct1 D_800D0588 = {0x5787F0, NULL, 0, 0x120};
+/*800D0588*/ static ModelVertexInfo D_800D0588 = {(s32)models_8FCF00_bin+0x1270, NULL, 0, 0x120};
 
 /*800D0594*/
 ModelInfo D_800D0594 = {
-    0x577580,
+    (s32)models_8FCF00_bin,
     NULL,
     0x1270,
     0x1270,
@@ -32291,11 +32292,11 @@ ModelInfo D_800D0594 = {
     0x32,
 };
 
-/*800D05C4*/ static ModelInfoUnkStruct1 D_800D05C4 = {0x597E4C, NULL, 0, 0x342};
+/*800D05C4*/ static ModelVertexInfo D_800D05C4 = {(s32)models_91ACD0_bin+0x2AFC, NULL, 0, 0x342};
 
 /*800D05D0*/
 ModelInfo D_800D05D0 = {
-    0x595350,
+    (s32)models_91ACD0_bin,
     NULL,
     0x2AFA,
     0x2AFA,
@@ -32316,11 +32317,11 @@ ModelInfo D_800D05D0 = {
     0x14,
 };
 
-/*800D0600*/ static ModelInfoUnkStruct1 D_800D0600 = {0x59A40C, NULL, 0, 0x29A};
+/*800D0600*/ static ModelVertexInfo D_800D0600 = {(s32)models_91DB10_bin+0x227C, NULL, 0, 0x29A};
 
 /*800D060C*/
 ModelInfo D_800D060C = {
-    0x598190,
+    (s32)models_91DB10_bin,
     NULL,
     0x227A,
     0x227A,
@@ -32341,11 +32342,11 @@ ModelInfo D_800D060C = {
     0x14,
 };
 
-/*800D063C*/ static ModelInfoUnkStruct1 D_800D063C = {0x59BD98, NULL, 0, 0x10E};
+/*800D063C*/ static ModelVertexInfo D_800D063C = {(s32)models_920030_bin+0x16E8, NULL, 0, 0x10E};
 
 /*800D0648*/
 ModelInfo D_800D0648 = {
-    0x59A6B0,
+    (s32)models_920030_bin,
     NULL,
     0x16E6,
     0x16E6,
@@ -32366,11 +32367,11 @@ ModelInfo D_800D0648 = {
     0x24,
 };
 
-/*800D0678*/ static ModelInfoUnkStruct1 D_800D0678 = {0x5A64A0, NULL, 0, 0x420};
+/*800D0678*/ static ModelVertexInfo D_800D0678 = {(s32)models_922F90_bin+0x8E90, NULL, 0, 0x420};
 
 /*800D0684*/
 ModelInfo D_800D0684 = {
-    0x59D610,
+    (s32)models_922F90_bin,
     NULL,
     0x8E90,
     0x8E90,
@@ -32391,11 +32392,11 @@ ModelInfo D_800D0684 = {
     0x191,
 };
 
-/*800D06B4*/ static ModelInfoUnkStruct1 D_800D06B4 = {0x5A7B30, NULL, 0, 0x120};
+/*800D06B4*/ static ModelVertexInfo D_800D06B4 = {(s32)models_92C240_bin+0x1270, NULL, 0, 0x120};
 
 /*800D06C0*/
 ModelInfo D_800D06C0 = {
-    0x5A68C0,
+    (s32)models_92C240_bin,
     NULL,
     0x1270,
     0x1270,
@@ -32416,11 +32417,11 @@ ModelInfo D_800D06C0 = {
     0x31,
 };
 
-/*800D06F0*/ static ModelInfoUnkStruct1 D_800D06F0 = {0x5A8DB8, NULL, 0, 0x90};
+/*800D06F0*/ static ModelVertexInfo D_800D06F0 = {(s32)models_92D5D0_bin+0x1168, NULL, 0, 0x90};
 
 /*800D06FC*/
 ModelInfo D_800D06FC = {
-    0x5A7C50,
+    (s32)models_92D5D0_bin,
     NULL,
     0x1168,
     0x1168,
@@ -32441,11 +32442,11 @@ ModelInfo D_800D06FC = {
     5,
 };
 
-/*800D072C*/ static ModelInfoUnkStruct1 D_800D072C = {0x5A9158, NULL, 0, 0x90};
+/*800D072C*/ static ModelVertexInfo D_800D072C = {(s32)models_92E7D0_bin+0x308, NULL, 0, 0x90};
 
 /*800D0738*/
 ModelInfo D_800D0738 = {
-    0x5A8E50,
+    (s32)models_92E7D0_bin,
     NULL,
     0x308,
     0x308,
@@ -32466,11 +32467,11 @@ ModelInfo D_800D0738 = {
     4,
 };
 
-/*800D0768*/ static ModelInfoUnkStruct1 D_800D0768 = {0x5A9EA4, NULL, 0, 0x23A};
+/*800D0768*/ static ModelVertexInfo D_800D0768 = {(s32)models_92EB70_bin+0xCB4, NULL, 0, 0x23A};
 
 /*800D0774*/
 ModelInfo D_800D0774 = {
-    0x5A91F0,
+    (s32)models_92EB70_bin,
     NULL,
     0xCB2,
     0xCB2,
@@ -32491,11 +32492,11 @@ ModelInfo D_800D0774 = {
     0x62,
 };
 
-/*800D07A4*/ static ModelInfoUnkStruct1 D_800D07A4 = {0x5ABCEC, NULL, 0, 0x504};
+/*800D07A4*/ static ModelVertexInfo D_800D07A4 = {(s32)models_92FA60_bin+0x1C0C, NULL, 0, 0x504};
 
 /*800D07B0*/
 ModelInfo D_800D07B0 = {
-    0x5AA0E0,
+    (s32)models_92FA60_bin,
     NULL,
     0x1C0C,
     0x1C0C,
@@ -32516,11 +32517,11 @@ ModelInfo D_800D07B0 = {
     0x111,
 };
 
-/*800D07E0*/ static ModelInfoUnkStruct1 D_800D07E0 = {0x5B2618, NULL, 0, 0x660};
+/*800D07E0*/ static ModelVertexInfo D_800D07E0 = {(s32)models_931B70_bin+0x6428, NULL, 0, 0x660};
 
 /*800D07EC*/
 ModelInfo D_800D07EC = {
-    0x5AC1F0,
+    (s32)models_931B70_bin,
     NULL,
     0x6428,
     0x6428,
@@ -32541,11 +32542,11 @@ ModelInfo D_800D07EC = {
     0x3FF,
 };
 
-/*800D081C*/ static ModelInfoUnkStruct1 D_800D081C = {0x5B818C, NULL, 0, 0x75C};
+/*800D081C*/ static ModelVertexInfo D_800D081C = {(s32)models_938600_bin+0x550C, NULL, 0, 0x75C};
 
 /*800D0828*/
 ModelInfo D_800D0828 = {
-    0x5B2C80,
+    (s32)models_938600_bin,
     NULL,
     0x550C,
     0x550C,
@@ -32566,11 +32567,11 @@ ModelInfo D_800D0828 = {
     0x289,
 };
 
-/*800D0858*/ static ModelInfoUnkStruct1 D_800D0858 = {0x5BA90C, NULL, 0, 0x444};
+/*800D0858*/ static ModelVertexInfo D_800D0858 = {(s32)models_93E270_bin+0x201C, NULL, 0, 0x444};
 
 /*800D0864*/
 ModelInfo D_800D0864 = {
-    0x5B88F0,
+    (s32)models_93E270_bin,
     NULL,
     0x201C,
     0x201C,
@@ -32591,11 +32592,11 @@ ModelInfo D_800D0864 = {
     0,
 };
 
-/*800D0894*/ static ModelInfoUnkStruct1 D_800D0894 = {0x5BCE88, NULL, 0, 0x13E};
+/*800D0894*/ static ModelVertexInfo D_800D0894 = {(s32)models_9406D0_bin+0x2138, NULL, 0, 0x13E};
 
 /*800D08A0*/
 ModelInfo D_800D08A0 = {
-    0x5BAD50,
+    (s32)models_9406D0_bin,
     NULL,
     0x2136,
     0x2136,
@@ -32616,11 +32617,11 @@ ModelInfo D_800D08A0 = {
     0,
 };
 
-/*800D08D0*/ static ModelInfoUnkStruct1 D_800D08D0 = {0x5BF108, NULL, 0, 0x13E};
+/*800D08D0*/ static ModelVertexInfo D_800D08D0 = {(s32)models_942950_bin+0x2138, NULL, 0, 0x13E};
 
 /*800D08DC*/
 ModelInfo D_800D08DC = {
-    0x5BCFD0,
+    (s32)models_942950_bin,
     NULL,
     0x2136,
     0x2136,
@@ -32641,11 +32642,11 @@ ModelInfo D_800D08DC = {
     0,
 };
 
-/*800D090C*/ static ModelInfoUnkStruct1 D_800D090C = {0x5C037C, NULL, 0, 0x6C};
+/*800D090C*/ static ModelVertexInfo D_800D090C = {(s32)models_944BD0_bin+0x112C, NULL, 0, 0x6C};
 
 /*800D0918*/
 ModelInfo D_800D0918 = {
-    0x5BF250,
+    (s32)models_944BD0_bin,
     NULL,
     0x112C,
     0x112C,
@@ -32666,11 +32667,11 @@ ModelInfo D_800D0918 = {
     0,
 };
 
-/*800D0948*/ static ModelInfoUnkStruct1 D_800D0948 = {0x5C2648, NULL, 0, 0x546};
+/*800D0948*/ static ModelVertexInfo D_800D0948 = {(s32)models_945D70_bin+0x2258, NULL, 0, 0x546};
 
 /*800D0954*/
 ModelInfo D_800D0954 = {
-    0x5C03F0,
+    (s32)models_945D70_bin,
     NULL,
     0x2256,
     0x2256,
@@ -32691,11 +32692,11 @@ ModelInfo D_800D0954 = {
     0x9DE,
 };
 
-/*800D0984*/ static ModelInfoUnkStruct1 D_800D0984 = {0x5C33D0, NULL, 0, 0x78};
+/*800D0984*/ static ModelVertexInfo D_800D0984 = {(s32)models_948510_bin+0x840, NULL, 0, 0x78};
 
 /*800D0990*/
 ModelInfo D_800D0990 = {
-    0x5C2B90,
+    (s32)models_948510_bin,
     NULL,
     0x840,
     0x840,
@@ -32716,11 +32717,11 @@ ModelInfo D_800D0990 = {
     0x1F,
 };
 
-/*800D09C0*/ static ModelInfoUnkStruct1 D_800D09C0 = {0x5C4328, NULL, 0, 0x168};
+/*800D09C0*/ static ModelVertexInfo D_800D09C0 = {(s32)models_948DD0_bin+0xED8, NULL, 0, 0x168};
 
 /*800D09CC*/
 ModelInfo D_800D09CC = {
-    0x5C3450,
+    (s32)models_948DD0_bin,
     NULL,
     0xED8,
     0xED8,
@@ -32741,11 +32742,11 @@ ModelInfo D_800D09CC = {
     0x1D,
 };
 
-/*800D09FC*/ static ModelInfoUnkStruct1 D_800D09FC = {0x5C5EB8, NULL, 0, 0x1CE};
+/*800D09FC*/ static ModelVertexInfo D_800D09FC = {(s32)models_949E10_bin+0x1A28, NULL, 0, 0x1CE};
 
 /*800D0A08*/
 ModelInfo D_800D0A08 = {
-    0x5C4490,
+    (s32)models_949E10_bin,
     NULL,
     0x1A26,
     0x1A26,
@@ -32766,11 +32767,11 @@ ModelInfo D_800D0A08 = {
     0x177,
 };
 
-/*800D0A38*/ static ModelInfoUnkStruct1 D_800D0A38 = {0x5C6968, NULL, 0, 0x90};
+/*800D0A38*/ static ModelVertexInfo D_800D0A38 = {(s32)models_94BA10_bin+0x8D8, NULL, 0, 0x90};
 
 /*800D0A44*/
 ModelInfo D_800D0A44 = {
-    0x5C6090,
+    (s32)models_94BA10_bin,
     NULL,
     0x8D8,
     0x8D8,
@@ -32791,11 +32792,11 @@ ModelInfo D_800D0A44 = {
     0x178,
 };
 
-/*800D0A74*/ static ModelInfoUnkStruct1 D_800D0A74 = {0x5C7B80, NULL, 0, 0x13E};
+/*800D0A74*/ static ModelVertexInfo D_800D0A74 = {(s32)models_94C380_bin+0x1180, NULL, 0, 0x13E};
 
 /*800D0A80*/
 ModelInfo D_800D0A80 = {
-    0x5C6A00,
+    (s32)models_94C380_bin,
     NULL,
     0x117E,
     0x117E,
@@ -32816,11 +32817,11 @@ ModelInfo D_800D0A80 = {
     0x177,
 };
 
-/*800D0AB0*/ static ModelInfoUnkStruct1 D_800D0AB0 = {0x5C96E8, NULL, 0, 0x1CE};
+/*800D0AB0*/ static ModelVertexInfo D_800D0AB0 = {(s32)models_94D640_bin+0x1A28, NULL, 0, 0x1CE};
 
 /*800D0ABC*/
 ModelInfo D_800D0ABC = {
-    0x5C7CC0,
+    (s32)models_94D640_bin,
     NULL,
     0x1A26,
     0x1A26,
@@ -32841,11 +32842,11 @@ ModelInfo D_800D0ABC = {
     0x71,
 };
 
-/*800D0AEC*/ static ModelInfoUnkStruct1 D_800D0AEC = {0x5CA198, NULL, 0, 0x90};
+/*800D0AEC*/ static ModelVertexInfo D_800D0AEC = {(s32)models_94F240_bin+0x8D8, NULL, 0, 0x90};
 
 /*800D0AF8*/
 ModelInfo D_800D0AF8 = {
-    0x5C98C0,
+    (s32)models_94F240_bin,
     NULL,
     0x8D8,
     0x8D8,
@@ -32866,11 +32867,11 @@ ModelInfo D_800D0AF8 = {
     0x85,
 };
 
-/*800D0B28*/ static ModelInfoUnkStruct1 D_800D0B28 = {0x5CB360, NULL, 0, 0x10E};
+/*800D0B28*/ static ModelVertexInfo D_800D0B28 = {(s32)models_94FBB0_bin+0x1130, NULL, 0, 0x10E};
 
 /*800D0B34*/
 ModelInfo D_800D0B34 = {
-    0x5CA230,
+    (s32)models_94FBB0_bin,
     NULL,
     0x112E,
     0x112E,
@@ -32891,11 +32892,11 @@ ModelInfo D_800D0B34 = {
     0x85,
 };
 
-/*800D0B64*/ static ModelInfoUnkStruct1 D_800D0B64 = {0x5CCE98, NULL, 0, 0x1CE};
+/*800D0B64*/ static ModelVertexInfo D_800D0B64 = {(s32)models_950DF0_bin+0x1A28, NULL, 0, 0x1CE};
 
 /*800D0B70*/
 ModelInfo D_800D0B70 = {
-    0x5CB470,
+    (s32)models_950DF0_bin,
     NULL,
     0x1A26,
     0x1A26,
@@ -32916,11 +32917,11 @@ ModelInfo D_800D0B70 = {
     0x186,
 };
 
-/*800D0BA0*/ static ModelInfoUnkStruct1 D_800D0BA0 = {0x5CD948, NULL, 0, 0x90};
+/*800D0BA0*/ static ModelVertexInfo D_800D0BA0 = {(s32)models_9529F0_bin+0x8D8, NULL, 0, 0x90};
 
 /*800D0BAC*/
 ModelInfo D_800D0BAC = {
-    0x5CD070,
+    (s32)models_9529F0_bin,
     NULL,
     0x8D8,
     0x8D8,
@@ -32941,11 +32942,11 @@ ModelInfo D_800D0BAC = {
     0x187,
 };
 
-/*800D0BDC*/ static ModelInfoUnkStruct1 D_800D0BDC = {0x5CEB10, NULL, 0, 0x10E};
+/*800D0BDC*/ static ModelVertexInfo D_800D0BDC = {(s32)models_953360_bin+0x1130, NULL, 0, 0x10E};
 
 /*800D0BE8*/
 ModelInfo D_800D0BE8 = {
-    0x5CD9E0,
+    (s32)models_953360_bin,
     NULL,
     0x112E,
     0x112E,
@@ -32966,11 +32967,11 @@ ModelInfo D_800D0BE8 = {
     0x186,
 };
 
-/*800D0C18*/ static ModelInfoUnkStruct1 D_800D0C18 = {0x5CFD64, NULL, 0, 0x312};
+/*800D0C18*/ static ModelVertexInfo D_800D0C18 = {(s32)models_9545A0_bin+0x1144, NULL, 0, 0x312};
 
 /*800D0C24*/
 ModelInfo D_800D0C24 = {
-    0x5CEC20,
+    (s32)models_9545A0_bin,
     NULL,
     0x1142,
     0x1142,
@@ -32991,11 +32992,11 @@ ModelInfo D_800D0C24 = {
     0xC8,
 };
 
-/*800D0C54*/ static ModelInfoUnkStruct1 D_800D0C54 = {0x5D825C, NULL, 0, 0x492};
+/*800D0C54*/ static ModelVertexInfo D_800D0C54 = {(s32)models_955A00_bin+0x81DC, NULL, 0, 0x492};
 
 /*800D0C60*/
 ModelInfo D_800D0C60 = {
-    0x5D0080,
+    (s32)models_955A00_bin,
     NULL,
     0x81DA,
     0x81DA,
@@ -33016,11 +33017,11 @@ ModelInfo D_800D0C60 = {
     0x15B,
 };
 
-/*800D0C90*/ static ModelInfoUnkStruct1 D_800D0C90 = {0x5DAC24, NULL, 0, 0x50A};
+/*800D0C90*/ static ModelVertexInfo D_800D0C90 = {(s32)models_95E070_bin+0x2534, NULL, 0, 0x50A};
 
 /*800D0C9C*/
 ModelInfo D_800D0C9C = {
-    0x5D86F0,
+    (s32)models_95E070_bin,
     NULL,
     0x2532,
     0x2532,
@@ -33041,11 +33042,11 @@ ModelInfo D_800D0C9C = {
     0x93,
 };
 
-/*800D0CCC*/ static ModelInfoUnkStruct1 D_800D0CCC = {0x5DE794, NULL, 0, 0x3E4};
+/*800D0CCC*/ static ModelVertexInfo D_800D0CCC = {(s32)models_960AB0_bin+0x3664, NULL, 0, 0x3E4};
 
 /*800D0CD8*/
 ModelInfo D_800D0CD8 = {
-    0x5DB130,
+    (s32)models_960AB0_bin,
     NULL,
     0x3664,
     0x3664,
@@ -33066,11 +33067,11 @@ ModelInfo D_800D0CD8 = {
     0x7D,
 };
 
-/*800D0D08*/ static ModelInfoUnkStruct1 D_800D0D08 = {0x5DF9BC, NULL, 0, 0xFC};
+/*800D0D08*/ static ModelVertexInfo D_800D0D08 = {(s32)models_964500_bin+0xE3C, NULL, 0, 0xFC};
 
 /*800D0D14*/
 ModelInfo D_800D0D14 = {
-    0x5DEB80,
+    (s32)models_964500_bin,
     NULL,
     0xE3C,
     0xE3C,
@@ -33091,11 +33092,11 @@ ModelInfo D_800D0D14 = {
     0xF,
 };
 
-/*800D0D44*/ static ModelInfoUnkStruct1 D_800D0D44 = {0x5E1114, NULL, 0, 0x24C};
+/*800D0D44*/ static ModelVertexInfo D_800D0D44 = {(s32)models_965440_bin+0x1654, NULL, 0, 0x24C};
 
 /*800D0D50*/
 ModelInfo D_800D0D50 = {
-    0x5DFAC0,
+    (s32)models_965440_bin,
     NULL,
     0x1654,
     0x1654,
@@ -33116,16 +33117,16 @@ ModelInfo D_800D0D50 = {
     0x26,
 };
 
-/*800D0D80*/ static ModelInfoUnkStruct1 D_800D0D80 = {0x5F09BC, NULL, 0, 0x3C};
+/*800D0D80*/ static ModelVertexInfo D_800D0D80 = {(s32)models_9762A0_bin+0x9C, NULL, 0, 0x3C};
 
 /*800D0D8C*/
 ModelInfo D_800D0D8C = {
-    0x5F0920,
+    (s32)models_9762A0_bin,
     NULL,
     0x9C,
     0x9C,
-    0,
-    0,
+    0x0,
+    0x0,
     0x60,
     0x3C,
     { 0, 0, 0, 0 },
@@ -33141,11 +33142,11 @@ ModelInfo D_800D0D8C = {
     0x10,
 };
 
-/*800D0DBC*/ static ModelInfoUnkStruct1 D_800D0DBC = {0x5F1180, NULL, 0, 0x90};
+/*800D0DBC*/ static ModelVertexInfo D_800D0DBC = {(s32)models_976380_bin+0x780, NULL, 0, 0x90};
 
 /*800D0DC8*/
 ModelInfo D_800D0DC8 = {
-    0x5F0A00,
+    (s32)models_976380_bin,
     NULL,
     0x780,
     0x780,
@@ -33166,11 +33167,11 @@ ModelInfo D_800D0DC8 = {
     0xA4,
 };
 
-/*800D0DF8*/ static ModelInfoUnkStruct1 D_800D0DF8 = {0x5F352C, NULL, 0, 0x132};
+/*800D0DF8*/ static ModelVertexInfo D_800D0DF8 = {(s32)models_976B90_bin+0x231C, NULL, 0, 0x132};
 
 /*800D0E04*/
 ModelInfo D_800D0E04 = {
-    0x5F1210,
+    (s32)models_976B90_bin,
     NULL,
     0x231A,
     0x231A,
@@ -33191,11 +33192,11 @@ ModelInfo D_800D0E04 = {
     0x164,
 };
 
-/*800D0E34*/ static ModelInfoUnkStruct1 D_800D0E34 = {0x5F4498, NULL, 0, 0x198};
+/*800D0E34*/ static ModelVertexInfo D_800D0E34 = {(s32)models_978FE0_bin+0xE38, NULL, 0, 0x198};
 
 /*800D0E40*/
 ModelInfo D_800D0E40 = {
-    0x5F3660,
+    (s32)models_978FE0_bin,
     NULL,
     0xE38,
     0xE38,
@@ -33216,11 +33217,11 @@ ModelInfo D_800D0E40 = {
     0x14B,
 };
 
-/*800D0E70*/ static ModelInfoUnkStruct1 D_800D0E70 = {0x5F50F8, NULL, 0, 0x90};
+/*800D0E70*/ static ModelVertexInfo D_800D0E70 = {(s32)models_979FB0_bin+0xAC8, NULL, 0, 0x90};
 
 /*800D0E7C*/
 ModelInfo D_800D0E7C = {
-    0x5F4630,
+    (s32)models_979FB0_bin,
     NULL,
     0xAC8,
     0xAC8,
@@ -33241,11 +33242,11 @@ ModelInfo D_800D0E7C = {
     0x2B,
 };
 
-/*800D0EAC*/ static ModelInfoUnkStruct1 D_800D0EAC = {0x5F65F0, NULL, 0, 0x408};
+/*800D0EAC*/ static ModelVertexInfo D_800D0EAC = {(s32)models_97AB10_bin+0x1460, NULL, 0, 0x408};
 
 /*800D0EB8*/
 ModelInfo D_800D0EB8 = {
-    0x5F5190,
+    (s32)models_97AB10_bin,
     NULL,
     0x1460,
     0x1460,
@@ -33266,11 +33267,11 @@ ModelInfo D_800D0EB8 = {
     0x15,
 };
 
-/*800D0EE8*/ static ModelInfoUnkStruct1 D_800D0EE8 = {0x5F7E58, NULL, 0, 0x408};
+/*800D0EE8*/ static ModelVertexInfo D_800D0EE8 = {(s32)models_97C380_bin+0x1458, NULL, 0, 0x408};
 
 /*800D0EF4*/
 ModelInfo D_800D0EF4 = {
-    0x5F6A00,
+    (s32)models_97C380_bin,
     NULL,
     0x1458,
     0x1458,
@@ -33291,11 +33292,11 @@ ModelInfo D_800D0EF4 = {
     0x48,
 };
 
-/*800D0F24*/ static ModelInfoUnkStruct1 D_800D0F24 = {0x5F8780, NULL, 0, 0x138};
+/*800D0F24*/ static ModelVertexInfo D_800D0F24 = {(s32)models_97DBE0_bin+0x520, NULL, 0, 0x138};
 
 /*800D0F30*/
 ModelInfo D_800D0F30 = {
-    0x5F8260,
+    (s32)models_97DBE0_bin,
     NULL,
     0x520,
     0x520,
@@ -33316,16 +33317,16 @@ ModelInfo D_800D0F30 = {
     0xA,
 };
 
-/*800D0F60*/ static ModelInfoUnkStruct1 D_800D0F60 = {0x5F89BC, NULL, 0, 0x54};
+/*800D0F60*/ static ModelVertexInfo D_800D0F60 = {(s32)models_97E240_bin+0xFC, NULL, 0, 0x54};
 
 /*800D0F6C*/
 ModelInfo D_800D0F6C = {
-    0x5F88C0,
+    (s32)models_97E240_bin,
     NULL,
     0xFC,
     0xFC,
-    0,
-    0,
+    0x0,
+    0x0,
     0xA8,
     0x54,
     { 0, 0, 0, 0 },
@@ -33341,11 +33342,11 @@ ModelInfo D_800D0F6C = {
     2,
 };
 
-/*800D0F9C*/ static ModelInfoUnkStruct1 D_800D0F9C = {0x5F9420, NULL, 0, 0xF6};
+/*800D0F9C*/ static ModelVertexInfo D_800D0F9C = {(s32)models_97E390_bin+0xA10, NULL, 0, 0xF6};
 
 /*800D0FA8*/
 ModelInfo D_800D0FA8 = {
-    0x5F8A10,
+    (s32)models_97E390_bin,
     NULL,
     0xA0E,
     0xA0E,
@@ -33366,11 +33367,11 @@ ModelInfo D_800D0FA8 = {
     0x29,
 };
 
-/*800D0FD8*/ static ModelInfoUnkStruct1 D_800D0FD8 = {0x5FC48C, NULL, 0, 0x6EA};
+/*800D0FD8*/ static ModelVertexInfo D_800D0FD8 = {(s32)models_97EEA0_bin+0x2F6C, NULL, 0, 0x6EA};
 
 /*800D0FE4*/
 ModelInfo D_800D0FE4 = {
-    0x5F9520,
+    (s32)models_97EEA0_bin,
     NULL,
     0x2F6A,
     0x2F6A,
@@ -33391,11 +33392,11 @@ ModelInfo D_800D0FE4 = {
     0x193,
 };
 
-/*800D1014*/ static ModelInfoUnkStruct1 D_800D1014 = {0x5FD428, NULL, 0, 0x30};
+/*800D1014*/ static ModelVertexInfo D_800D1014 = {(s32)models_982500_bin+0x8A8, NULL, 0, 0x30};
 
 /*800D1020*/
 ModelInfo D_800D1020 = {
-    0x5FCB80,
+    (s32)models_982500_bin,
     NULL,
     0x8A8,
     0x8A8,
@@ -33416,11 +33417,11 @@ ModelInfo D_800D1020 = {
     0xC7,
 };
 
-/*800D1050*/ static ModelInfoUnkStruct1 D_800D1050 = {0x5FDD08, NULL, 0, 0x30};
+/*800D1050*/ static ModelVertexInfo D_800D1050 = {(s32)models_982DE0_bin+0x8A8, NULL, 0, 0x30};
 
 /*800D105C*/
 ModelInfo D_800D105C = {
-    0x5FD460,
+    (s32)models_982DE0_bin,
     NULL,
     0x8A8,
     0x8A8,
@@ -33441,11 +33442,11 @@ ModelInfo D_800D105C = {
     0xC7,
 };
 
-/*800D108C*/ static ModelInfoUnkStruct1 D_800D108C = {0x60BD58, NULL, 0, 0x5B8};
+/*800D108C*/ static ModelVertexInfo D_800D108C = {(s32)models_98DA70_bin+0x3C68, NULL, 0, 0x5B8};
 
 /*800D1098*/
 ModelInfo D_800D1098 = {
-    0x6080F0,
+    (s32)models_98DA70_bin,
     NULL,
     0x3C68,
     0x3C68,
@@ -33466,11 +33467,11 @@ ModelInfo D_800D1098 = {
     0x9F5,
 };
 
-/*800D10C8*/ static ModelInfoUnkStruct1 D_800D10C8 = {0x60CB8C, NULL, 0, 0x24};
+/*800D10C8*/ static ModelVertexInfo D_800D10C8 = {(s32)models_991C90_bin+0x87C, NULL, 0, 0x24};
 
 /*800D10D4*/
 ModelInfo D_800D10D4 = {
-    0x60C310,
+    (s32)models_991C90_bin,
     NULL,
     0x87C,
     0x87C,
@@ -33491,11 +33492,11 @@ ModelInfo D_800D10D4 = {
     0x29,
 };
 
-/*800D1104*/ static ModelInfoUnkStruct1 D_800D1104 = {0x60E6A4, NULL, 0, 0x174};
+/*800D1104*/ static ModelVertexInfo D_800D1104 = {(s32)models_992530_bin+0x1AF4, NULL, 0, 0x174};
 
 /*800D1110*/
 ModelInfo D_800D1110 = {
-    0x60CBB0,
+    (s32)models_992530_bin,
     NULL,
     0x1AF4,
     0x1AF4,
@@ -33516,11 +33517,11 @@ ModelInfo D_800D1110 = {
     0x8F,
 };
 
-/*800D1140*/ static ModelInfoUnkStruct1 D_800D1140 = {0x60FBA4, NULL, 0, 0x84};
+/*800D1140*/ static ModelVertexInfo D_800D1140 = {(s32)models_9941A0_bin+0x1384, NULL, 0, 0x84};
 
 /*800D114C*/
 ModelInfo D_800D114C = {
-    0x60E820,
+    (s32)models_9941A0_bin,
     NULL,
     0x1384,
     0x1384,
@@ -33541,11 +33542,11 @@ ModelInfo D_800D114C = {
     0x7C,
 };
 
-/*800D117C*/ static ModelInfoUnkStruct1 D_800D117C = {0x6121B4, NULL, 0, 0x29A};
+/*800D117C*/ static ModelVertexInfo D_800D117C = {(s32)models_9955B0_bin+0x2584, NULL, 0, 0x29A};
 
 /*800D1188*/
 ModelInfo D_800D1188 = {
-    0x60FC30,
+    (s32)models_9955B0_bin,
     NULL,
     0x2582,
     0x2582,
@@ -33566,11 +33567,11 @@ ModelInfo D_800D1188 = {
     0xD4,
 };
 
-/*800D11B8*/ static ModelInfoUnkStruct1 D_800D11B8 = {0x6137D4, NULL, 0, 0x84};
+/*800D11B8*/ static ModelVertexInfo D_800D11B8 = {(s32)models_997DD0_bin+0x1384, NULL, 0, 0x84};
 
 /*800D11C4*/
 ModelInfo D_800D11C4 = {
-    0x612450,
+    (s32)models_997DD0_bin,
     NULL,
     0x1384,
     0x1384,
@@ -33591,11 +33592,11 @@ ModelInfo D_800D11C4 = {
     0x7C,
 };
 
-/*800D11F4*/ static ModelInfoUnkStruct1 D_800D11F4 = {0x6141F8, NULL, 0, 0xAE};
+/*800D11F4*/ static ModelVertexInfo D_800D11F4 = {(s32)models_9991E0_bin+0x998, NULL, 0, 0xAE};
 
 /*800D1200*/
 ModelInfo D_800D1200 = {
-    0x613860,
+    (s32)models_9991E0_bin,
     NULL,
     0x996,
     0x996,
@@ -33616,11 +33617,11 @@ ModelInfo D_800D1200 = {
     0x15E,
 };
 
-/*800D1230*/ static ModelInfoUnkStruct1 D_800D1230 = {0x627A8C, NULL, 0, 0x6C};
+/*800D1230*/ static ModelVertexInfo D_800D1230 = {(s32)models_9ACE10_bin+0x5FC, NULL, 0, 0x6C};
 
 /*800D123C*/
 ModelInfo D_800D123C = {
-    0x627490,
+    (s32)models_9ACE10_bin,
     NULL,
     0x5FC,
     0x5FC,
@@ -33641,11 +33642,11 @@ ModelInfo D_800D123C = {
     0x34,
 };
 
-/*800D126C*/ static ModelInfoUnkStruct1 D_800D126C = {0x62953C, NULL, 0, 0xE4};
+/*800D126C*/ static ModelVertexInfo D_800D126C = {(s32)models_9AD480_bin+0x1A3C, NULL, 0, 0xE4};
 
 /*800D1278*/
 ModelInfo D_800D1278 = {
-    0x627B00,
+    (s32)models_9AD480_bin,
     NULL,
     0x1A3C,
     0x1A3C,
@@ -33666,11 +33667,11 @@ ModelInfo D_800D1278 = {
     0x3B,
 };
 
-/*800D12A8*/ static ModelInfoUnkStruct1 D_800D12A8 = {0x629918, NULL, 0, 0x60};
+/*800D12A8*/ static ModelVertexInfo D_800D12A8 = {(s32)models_9AEFA0_bin+0x2F8, NULL, 0, 0x60};
 
 /*800D12B4*/
 ModelInfo D_800D12B4 = {
-    0x629620,
+    (s32)models_9AEFA0_bin,
     NULL,
     0x2F8,
     0x2F8,
@@ -33691,11 +33692,11 @@ ModelInfo D_800D12B4 = {
     0x6B,
 };
 
-/*800D12E4*/ static ModelInfoUnkStruct1 D_800D12E4 = {0x62A798, NULL, 0, 0xF0};
+/*800D12E4*/ static ModelVertexInfo D_800D12E4 = {(s32)models_9AF300_bin+0xE18, NULL, 0, 0xF0};
 
 /*800D12F0*/
 ModelInfo D_800D12F0 = {
-    0x629980,
+    (s32)models_9AF300_bin,
     NULL,
     0xE18,
     0xE18,
@@ -33716,11 +33717,11 @@ ModelInfo D_800D12F0 = {
     0x13,
 };
 
-/*800D1320*/ static ModelInfoUnkStruct1 D_800D1320 = {0x6347AC, NULL, 0, 0xFC};
+/*800D1320*/ static ModelVertexInfo D_800D1320 = {(s32)models_9B92F0_bin+0xE3C, NULL, 0, 0xFC};
 
 /*800D132C*/
 ModelInfo D_800D132C = {
-    0x633970,
+    (s32)models_9B92F0_bin,
     NULL,
     0xE3C,
     0xE3C,
@@ -33741,11 +33742,11 @@ ModelInfo D_800D132C = {
     -1,
 };
 
-/*800D135C*/ static ModelInfoUnkStruct1 D_800D135C = {0x6358A0, NULL, 0, 0x16E};
+/*800D135C*/ static ModelVertexInfo D_800D135C = {(s32)models_9BA230_bin+0xFF0, NULL, 0, 0x16E};
 
 /*800D1368*/
 ModelInfo D_800D1368 = {
-    0x6348B0,
+    (s32)models_9BA230_bin,
     NULL,
     0xFEE,
     0xFEE,
@@ -33766,11 +33767,11 @@ ModelInfo D_800D1368 = {
     -0x62,
 };
 
-/*800D1398*/ static ModelInfoUnkStruct1 D_800D1398 = {0x637BF8, NULL, 0, 0x810};
+/*800D1398*/ static ModelVertexInfo D_800D1398 = {(s32)models_9BB390_bin+0x21E8, NULL, 0, 0x810};
 
 /*800D13A4*/
 ModelInfo D_800D13A4 = {
-    0x635A10,
+    (s32)models_9BB390_bin,
     NULL,
     0x21E8,
     0x21E8,
@@ -33791,11 +33792,11 @@ ModelInfo D_800D13A4 = {
     0x12C,
 };
 
-/*800D13D4*/ static ModelInfoUnkStruct1 D_800D13D4 = {0x641DCC, NULL, 0, 0x7BC};
+/*800D13D4*/ static ModelVertexInfo D_800D13D4 = {(s32)models_9BDD90_bin+0x99BC, NULL, 0, 0x7BC};
 
 /*800D13E0*/
 ModelInfo D_800D13E0 = {
-    0x638410,
+    (s32)models_9BDD90_bin,
     NULL,
     0x99BC,
     0x99BC,
@@ -33816,11 +33817,11 @@ ModelInfo D_800D13E0 = {
     0x17B,
 };
 
-/*800D1410*/ static ModelInfoUnkStruct1 D_800D1410 = {0x643D00, NULL, 0, 0x180};
+/*800D1410*/ static ModelVertexInfo D_800D1410 = {(s32)models_9C7F10_bin+0x1770, NULL, 0, 0x180};
 
 /*800D141C*/
 ModelInfo D_800D141C = {
-    0x642590,
+    (s32)models_9C7F10_bin,
     NULL,
     0x1770,
     0x1770,
@@ -33841,11 +33842,11 @@ ModelInfo D_800D141C = {
     0x64,
 };
 
-/*800D144C*/ static ModelInfoUnkStruct1 D_800D144C = {0x64476C, NULL, 0, 0xEA};
+/*800D144C*/ static ModelVertexInfo D_800D144C = {(s32)models_9C9800_bin+0x8EC, NULL, 0, 0xEA};
 
 /*800D1458*/
 ModelInfo D_800D1458 = {
-    0x643E80,
+    (s32)models_9C9800_bin,
     NULL,
     0x8EA,
     0x8EA,
@@ -33866,11 +33867,11 @@ ModelInfo D_800D1458 = {
     0x41,
 };
 
-/*800D1488*/ static ModelInfoUnkStruct1 D_800D1488 = {0x647B84, NULL, 0, 0x444};
+/*800D1488*/ static ModelVertexInfo D_800D1488 = {(s32)models_9CA1E0_bin+0x3324, NULL, 0, 0x444};
 
 /*800D1494*/
 ModelInfo D_800D1494 = {
-    0x644860,
+    (s32)models_9CA1E0_bin,
     NULL,
     0x3324,
     0x3324,
@@ -33891,11 +33892,11 @@ ModelInfo D_800D1494 = {
     0xF8,
 };
 
-/*800D14C4*/ static ModelInfoUnkStruct1 D_800D14C4 = {0x649388, NULL, 0, 0x1B0};
+/*800D14C4*/ static ModelVertexInfo D_800D14C4 = {(s32)models_9CD950_bin+0x13B8, NULL, 0, 0x1B0};
 
 /*800D14D0*/
 ModelInfo D_800D14D0 = {
-    0x647FD0,
+    (s32)models_9CD950_bin,
     NULL,
     0x13B8,
     0x13B8,
@@ -33916,11 +33917,11 @@ ModelInfo D_800D14D0 = {
     0x1FE,
 };
 
-/*800D1500*/ static ModelInfoUnkStruct1 D_800D1500 = {0x64A1C0, NULL, 0, 0x228};
+/*800D1500*/ static ModelVertexInfo D_800D1500 = {(s32)models_9CEEC0_bin+0xC80, NULL, 0, 0x228};
 
 /*800D150C*/
 ModelInfo D_800D150C = {
-    0x649540,
+    (s32)models_9CEEC0_bin,
     NULL,
     0xC80,
     0xC80,
@@ -33941,11 +33942,11 @@ ModelInfo D_800D150C = {
     9,
 };
 
-/*800D153C*/ static ModelInfoUnkStruct1 D_800D153C = {0x64AEE0, NULL, 0, 0x168};
+/*800D153C*/ static ModelVertexInfo D_800D153C = {(s32)models_9CFD70_bin+0xAF0, NULL, 0, 0x168};
 
 /*800D1548*/
 ModelInfo D_800D1548 = {
-    0x64A3F0,
+    (s32)models_9CFD70_bin,
     NULL,
     0xAF0,
     0xAF0,
@@ -33966,11 +33967,11 @@ ModelInfo D_800D1548 = {
     9,
 };
 
-/*800D1578*/ static ModelInfoUnkStruct1 D_800D1578 = {0x64BCD0, NULL, 0, 0x228};
+/*800D1578*/ static ModelVertexInfo D_800D1578 = {(s32)models_9D09D0_bin+0xC80, NULL, 0, 0x228};
 
 /*800D1584*/
 ModelInfo D_800D1584 = {
-    0x64B050,
+    (s32)models_9D09D0_bin,
     NULL,
     0xC80,
     0xC80,
@@ -33991,11 +33992,11 @@ ModelInfo D_800D1584 = {
     0x1F2,
 };
 
-/*800D15B4*/ static ModelInfoUnkStruct1 D_800D15B4 = {0x64C9F0, NULL, 0, 0x168};
+/*800D15B4*/ static ModelVertexInfo D_800D15B4 = {(s32)models_9D1880_bin+0xAF0, NULL, 0, 0x168};
 
 /*800D15C0*/
 ModelInfo D_800D15C0 = {
-    0x64BF00,
+    (s32)models_9D1880_bin,
     NULL,
     0xAF0,
     0xAF0,
@@ -34016,11 +34017,11 @@ ModelInfo D_800D15C0 = {
     0x1F2,
 };
 
-/*800D15F0*/ static ModelInfoUnkStruct1 D_800D15F0 = {0x64D7E0, NULL, 0, 0x228};
+/*800D15F0*/ static ModelVertexInfo D_800D15F0 = {(s32)models_9D24E0_bin+0xC80, NULL, 0, 0x228};
 
 /*800D15FC*/
 ModelInfo D_800D15FC = {
-    0x64CB60,
+    (s32)models_9D24E0_bin,
     NULL,
     0xC80,
     0xC80,
@@ -34041,11 +34042,11 @@ ModelInfo D_800D15FC = {
     0x1F2,
 };
 
-/*800D162C*/ static ModelInfoUnkStruct1 D_800D162C = {0x64E4F8, NULL, 0, 0x168};
+/*800D162C*/ static ModelVertexInfo D_800D162C = {(s32)models_9D3390_bin+0xAE8, NULL, 0, 0x168};
 
 /*800D1638*/
 ModelInfo D_800D1638 = {
-    0x64DA10,
+    (s32)models_9D3390_bin,
     NULL,
     0xAE8,
     0xAE8,
@@ -34066,11 +34067,11 @@ ModelInfo D_800D1638 = {
     0x1F2,
 };
 
-/*800D1668*/ static ModelInfoUnkStruct1 D_800D1668 = {0x64F6BC, NULL, 0, 0x402};
+/*800D1668*/ static ModelVertexInfo D_800D1668 = {(s32)models_9D3FE0_bin+0x105C, NULL, 0, 0x402};
 
 /*800D1674*/
 ModelInfo D_800D1674 = {
-    0x64E660,
+    (s32)models_9D3FE0_bin,
     NULL,
     0x105A,
     0x105A,
@@ -34091,11 +34092,11 @@ ModelInfo D_800D1674 = {
     0x1F2,
 };
 
-/*800D16A4*/ static ModelInfoUnkStruct1 D_800D16A4 = {0x65083C, NULL, 0, 0x29A};
+/*800D16A4*/ static ModelVertexInfo D_800D16A4 = {(s32)models_9D5440_bin+0xD7C, NULL, 0, 0x29A};
 
 /*800D16B0*/
 ModelInfo D_800D16B0 = {
-    0x64FAC0,
+    (s32)models_9D5440_bin,
     NULL,
     0xD7A,
     0xD7A,
@@ -34116,11 +34117,11 @@ ModelInfo D_800D16B0 = {
     0x1F2,
 };
 
-/*800D16E0*/ static ModelInfoUnkStruct1 D_800D16E0 = {0x654768, NULL, 0, 0x408};
+/*800D16E0*/ static ModelVertexInfo D_800D16E0 = {(s32)models_9D6460_bin+0x3C88, NULL, 0, 0x408};
 
 /*800D16EC*/
 ModelInfo D_800D16EC = {
-    0x650AE0,
+    (s32)models_9D6460_bin,
     NULL,
     0x3C88,
     0x3C88,
@@ -34141,11 +34142,11 @@ ModelInfo D_800D16EC = {
     0xBF,
 };
 
-/*800D171C*/ static ModelInfoUnkStruct1 D_800D171C = {0x655894, NULL, 0, 0x2C4};
+/*800D171C*/ static ModelVertexInfo D_800D171C = {(s32)models_9DA4F0_bin+0xD24, NULL, 0, 0x2C4};
 
 /*800D1728*/
 ModelInfo D_800D1728 = {
-    0x654B70,
+    (s32)models_9DA4F0_bin,
     NULL,
     0xD24,
     0xD24,
@@ -34166,11 +34167,11 @@ ModelInfo D_800D1728 = {
     0xCF,
 };
 
-/*800D1758*/ static ModelInfoUnkStruct1 D_800D1758 = {0x656CCC, NULL, 0, 0x4EC};
+/*800D1758*/ static ModelVertexInfo D_800D1758 = {(s32)models_9DB4E0_bin+0x116C, NULL, 0, 0x4EC};
 
 /*800D1764*/
 ModelInfo D_800D1764 = {
-    0x655B60,
+    (s32)models_9DB4E0_bin,
     NULL,
     0x116C,
     0x116C,
@@ -34191,11 +34192,11 @@ ModelInfo D_800D1764 = {
     0x69,
 };
 
-/*800D1794*/ static ModelInfoUnkStruct1 D_800D1794 = {0x657EE4, NULL, 0, 0x2C4};
+/*800D1794*/ static ModelVertexInfo D_800D1794 = {(s32)models_9DCB40_bin+0xD24, NULL, 0, 0x2C4};
 
 /*800D17A0*/
 ModelInfo D_800D17A0 = {
-    0x6571C0,
+    (s32)models_9DCB40_bin,
     NULL,
     0xD24,
     0xD24,
@@ -34216,11 +34217,11 @@ ModelInfo D_800D17A0 = {
     0xCF,
 };
 
-/*800D17D0*/ static ModelInfoUnkStruct1 D_800D17D0 = {0x65BE38, NULL, 0, 0x408};
+/*800D17D0*/ static ModelVertexInfo D_800D17D0 = {(s32)models_9DDB30_bin+0x3C88, NULL, 0, 0x408};
 
 /*800D17DC*/
 ModelInfo D_800D17DC = {
-    0x6581B0,
+    (s32)models_9DDB30_bin,
     NULL,
     0x3C88,
     0x3C88,
@@ -34241,11 +34242,11 @@ ModelInfo D_800D17DC = {
     0xBF,
 };
 
-/*800D180C*/ static ModelInfoUnkStruct1 D_800D180C = {0x660884, NULL, 0, 0x48C};
+/*800D180C*/ static ModelVertexInfo D_800D180C = {(s32)models_9E1BC0_bin+0x4644, NULL, 0, 0x48C};
 
 /*800D1818*/
 ModelInfo D_800D1818 = {
-    0x65C240,
+    (s32)models_9E1BC0_bin,
     NULL,
     0x4644,
     0x4644,
@@ -34266,11 +34267,11 @@ ModelInfo D_800D1818 = {
     0xFE,
 };
 
-/*800D1848*/ static ModelInfoUnkStruct1 D_800D1848 = {0x665354, NULL, 0, 0x48C};
+/*800D1848*/ static ModelVertexInfo D_800D1848 = {(s32)models_9E6690_bin+0x4644, NULL, 0, 0x48C};
 
 /*800D1854*/
 ModelInfo D_800D1854 = {
-    0x660D10,
+    (s32)models_9E6690_bin,
     NULL,
     0x4644,
     0x4644,
@@ -34291,11 +34292,11 @@ ModelInfo D_800D1854 = {
     0xF8,
 };
 
-/*800D1884*/ static ModelInfoUnkStruct1 D_800D1884 = {0x666A30, NULL, 0, 0x108};
+/*800D1884*/ static ModelVertexInfo D_800D1884 = {(s32)models_9EB160_bin+0x1250, NULL, 0, 0x108};
 
 /*800D1890*/
 ModelInfo D_800D1890 = {
-    0x6657E0,
+    (s32)models_9EB160_bin,
     NULL,
     0x1250,
     0x1250,
@@ -34316,11 +34317,11 @@ ModelInfo D_800D1890 = {
     0x22,
 };
 
-/*800D18C0*/ static ModelInfoUnkStruct1 D_800D18C0 = {0x667668, NULL, 0, 0xF6};
+/*800D18C0*/ static ModelVertexInfo D_800D18C0 = {(s32)models_9EC4C0_bin+0xB28, NULL, 0, 0xF6};
 
 /*800D18CC*/
 ModelInfo D_800D18CC = {
-    0x666B40,
+    (s32)models_9EC4C0_bin,
     NULL,
     0xB26,
     0xB26,
@@ -34341,11 +34342,11 @@ ModelInfo D_800D18CC = {
     0x94,
 };
 
-/*800D18FC*/ static ModelInfoUnkStruct1 D_800D18FC = {0x668098, NULL, 0, 0x90};
+/*800D18FC*/ static ModelVertexInfo D_800D18FC = {(s32)models_9ED0E0_bin+0x938, NULL, 0, 0x90};
 
 /*800D1908*/
 ModelInfo D_800D1908 = {
-    0x667760,
+    (s32)models_9ED0E0_bin,
     NULL,
     0x938,
     0x938,
@@ -34366,11 +34367,11 @@ ModelInfo D_800D1908 = {
     0x14A,
 };
 
-/*800D1938*/ static ModelInfoUnkStruct1 D_800D1938 = {0x668D78, NULL, 0, 0x1E0};
+/*800D1938*/ static ModelVertexInfo D_800D1938 = {(s32)models_9EDAB0_bin+0xC48, NULL, 0, 0x1E0};
 
 /*800D1944*/
 ModelInfo D_800D1944 = {
-    0x668130,
+    (s32)models_9EDAB0_bin,
     NULL,
     0xC48,
     0xC48,
@@ -34391,11 +34392,11 @@ ModelInfo D_800D1944 = {
     0x14A,
 };
 
-/*800D1974*/ static ModelInfoUnkStruct1 D_800D1974 = {0x669FD8, NULL, 0, 0x3C0};
+/*800D1974*/ static ModelVertexInfo D_800D1974 = {(s32)models_9EE8E0_bin+0x1078, NULL, 0, 0x3C0};
 
 /*800D1980*/
 ModelInfo D_800D1980 = {
-    0x668F60,
+    (s32)models_9EE8E0_bin,
     NULL,
     0x1078,
     0x1078,
@@ -34416,11 +34417,11 @@ ModelInfo D_800D1980 = {
     0x14D,
 };
 
-/*800D19B0*/ static ModelInfoUnkStruct1 D_800D19B0 = {0x66B9D8, NULL, 0, 0x150};
+/*800D19B0*/ static ModelVertexInfo D_800D19B0 = {(s32)models_9EFD20_bin+0x1638, NULL, 0, 0x150};
 
 /*800D19BC*/
 ModelInfo D_800D19BC = {
-    0x66A3A0,
+    (s32)models_9EFD20_bin,
     NULL,
     0x1638,
     0x1638,
@@ -34441,11 +34442,11 @@ ModelInfo D_800D19BC = {
     0x49,
 };
 
-/*800D19EC*/ static ModelInfoUnkStruct1 D_800D19EC = {0x66EC44, NULL, 0, 0x432};
+/*800D19EC*/ static ModelVertexInfo D_800D19EC = {(s32)models_9F14B0_bin+0x3114, NULL, 0, 0x432};
 
 /*800D19F8*/
 ModelInfo D_800D19F8 = {
-    0x66BB30,
+    (s32)models_9F14B0_bin,
     NULL,
     0x3112,
     0x3112,
@@ -34466,11 +34467,11 @@ ModelInfo D_800D19F8 = {
     0xD7,
 };
 
-/*800D1A28*/ static ModelInfoUnkStruct1 D_800D1A28 = {0x672A74, NULL, 0, 0x48C};
+/*800D1A28*/ static ModelVertexInfo D_800D1A28 = {(s32)models_9F4A00_bin+0x39F4, NULL, 0, 0x48C};
 
 /*800D1A34*/
 ModelInfo D_800D1A34 = {
-    0x66F080,
+    (s32)models_9F4A00_bin,
     NULL,
     0x39F4,
     0x39F4,
@@ -34491,11 +34492,11 @@ ModelInfo D_800D1A34 = {
     0x1D8,
 };
 
-/*800D1A64*/ static ModelInfoUnkStruct1 D_800D1A64 = {0x6748A0, NULL, 0, 0x90};
+/*800D1A64*/ static ModelVertexInfo D_800D1A64 = {(s32)models_9F8880_bin+0x19A0, NULL, 0, 0x90};
 
 /*800D1A70*/
 ModelInfo D_800D1A70 = {
-    0x672F00,
+    (s32)models_9F8880_bin,
     NULL,
     0x19A0,
     0x19A0,
@@ -34516,11 +34517,11 @@ ModelInfo D_800D1A70 = {
     0xFB,
 };
 
-/*800D1AA0*/ static ModelInfoUnkStruct1 D_800D1AA0 = {0x677404, NULL, 0, 0x114};
+/*800D1AA0*/ static ModelVertexInfo D_800D1AA0 = {(s32)models_9FA2B0_bin+0x2AD4, NULL, 0, 0x114};
 
 /*800D1AAC*/
 ModelInfo D_800D1AAC = {
-    0x674930,
+    (s32)models_9FA2B0_bin,
     NULL,
     0x2AD4,
     0x2AD4,
@@ -34541,11 +34542,11 @@ ModelInfo D_800D1AAC = {
     0,
 };
 
-/*800D1ADC*/ static ModelInfoUnkStruct1 D_800D1ADC = {0x6791C4, NULL, 0, 0x1DA};
+/*800D1ADC*/ static ModelVertexInfo D_800D1ADC = {(s32)models_9FCEA0_bin+0x1CA4, NULL, 0, 0x1DA};
 
 /*800D1AE8*/
 ModelInfo D_800D1AE8 = {
-    0x677520,
+    (s32)models_9FCEA0_bin,
     NULL,
     0x1CA2,
     0x1CA2,
@@ -34566,11 +34567,11 @@ ModelInfo D_800D1AE8 = {
     0x39,
 };
 
-/*800D1B18*/ static ModelInfoUnkStruct1 D_800D1B18 = {0x67AD5C, NULL, 0, 0x312};
+/*800D1B18*/ static ModelVertexInfo D_800D1B18 = {(s32)models_9FED20_bin+0x19BC, NULL, 0, 0x312};
 
 /*800D1B24*/
 ModelInfo D_800D1B24 = {
-    0x6793A0,
+    (s32)models_9FED20_bin,
     NULL,
     0x19BA,
     0x19BA,
@@ -34591,11 +34592,11 @@ ModelInfo D_800D1B24 = {
     0x31,
 };
 
-/*800D1B54*/ static ModelInfoUnkStruct1 D_800D1B54 = {0x67C058, NULL, 0, 0x48};
+/*800D1B54*/ static ModelVertexInfo D_800D1B54 = {(s32)models_A009F0_bin+0xFE8, NULL, 0, 0x48};
 
 /*800D1B60*/
 ModelInfo D_800D1B60 = {
-    0x67B070,
+    (s32)models_A009F0_bin,
     NULL,
     0xFE8,
     0xFE8,
@@ -34616,11 +34617,11 @@ ModelInfo D_800D1B60 = {
     0x177,
 };
 
-/*800D1B90*/ static ModelInfoUnkStruct1 D_800D1B90 = {0x67D2B0, NULL, 0, 0x48};
+/*800D1B90*/ static ModelVertexInfo D_800D1B90 = {(s32)models_A01A20_bin+0x1210, NULL, 0, 0x48};
 
 /*800D1B9C*/
 ModelInfo D_800D1B9C = {
-    0x67C0A0,
+    (s32)models_A01A20_bin,
     NULL,
     0x1210,
     0x1210,
@@ -34641,11 +34642,11 @@ ModelInfo D_800D1B9C = {
     0xF,
 };
 
-/*800D1BCC*/ static ModelInfoUnkStruct1 D_800D1BCC = {0x67E870, NULL, 0, 0x78};
+/*800D1BCC*/ static ModelVertexInfo D_800D1BCC = {(s32)models_A02C80_bin+0x1570, NULL, 0, 0x78};
 
 /*800D1BD8*/
 ModelInfo D_800D1BD8 = {
-    0x67D300,
+    (s32)models_A02C80_bin,
     NULL,
     0x1570,
     0x1570,
@@ -34666,11 +34667,11 @@ ModelInfo D_800D1BD8 = {
     0x177,
 };
 
-/*800D1C08*/ static ModelInfoUnkStruct1 D_800D1C08 = {0x67FB00, NULL, 0, 0x48};
+/*800D1C08*/ static ModelVertexInfo D_800D1C08 = {(s32)models_A04270_bin+0x1210, NULL, 0, 0x48};
 
 /*800D1C14*/
 ModelInfo D_800D1C14 = {
-    0x67E8F0,
+    (s32)models_A04270_bin,
     NULL,
     0x1210,
     0x1210,
@@ -34691,11 +34692,11 @@ ModelInfo D_800D1C14 = {
     0x177,
 };
 
-/*800D1C44*/ static ModelInfoUnkStruct1 D_800D1C44 = {0x6810C0, NULL, 0, 0x78};
+/*800D1C44*/ static ModelVertexInfo D_800D1C44 = {(s32)models_A054D0_bin+0x1570, NULL, 0, 0x78};
 
 /*800D1C50*/
 ModelInfo D_800D1C50 = {
-    0x67FB50,
+    (s32)models_A054D0_bin,
     NULL,
     0x1570,
     0x1570,
@@ -34716,11 +34717,11 @@ ModelInfo D_800D1C50 = {
     0x177,
 };
 
-/*800D1C80*/ static ModelInfoUnkStruct1 D_800D1C80 = {0x681A18, NULL, 0, 0x90};
+/*800D1C80*/ static ModelVertexInfo D_800D1C80 = {(s32)models_A06AC0_bin+0x8D8, NULL, 0, 0x90};
 
 /*800D1C8C*/
 ModelInfo D_800D1C8C = {
-    0x681140,
+    (s32)models_A06AC0_bin,
     NULL,
     0x8D8,
     0x8D8,
@@ -34741,11 +34742,11 @@ ModelInfo D_800D1C8C = {
     0x178,
 };
 
-/*800D1CBC*/ static ModelInfoUnkStruct1 D_800D1CBC = {0x682338, NULL, 0, 0x30};
+/*800D1CBC*/ static ModelVertexInfo D_800D1CBC = {(s32)models_A07430_bin+0x888, NULL, 0, 0x30};
 
 /*800D1CC8*/
 ModelInfo D_800D1CC8 = {
-    0x681AB0,
+    (s32)models_A07430_bin,
     NULL,
     0x888,
     0x888,
@@ -34766,11 +34767,11 @@ ModelInfo D_800D1CC8 = {
     0x29,
 };
 
-/*800D1CF8*/ static ModelInfoUnkStruct1 D_800D1CF8 = {0x682BF8, NULL, 0, 0x30};
+/*800D1CF8*/ static ModelVertexInfo D_800D1CF8 = {(s32)models_A07CF0_bin+0x888, NULL, 0, 0x30};
 
 /*800D1D04*/
 ModelInfo D_800D1D04 = {
-    0x682370,
+    (s32)models_A07CF0_bin,
     NULL,
     0x888,
     0x888,
@@ -34791,11 +34792,11 @@ ModelInfo D_800D1D04 = {
     0x18,
 };
 
-/*800D1D34*/ static ModelInfoUnkStruct1 D_800D1D34 = {0x6834B8, NULL, 0, 0x30};
+/*800D1D34*/ static ModelVertexInfo D_800D1D34 = {(s32)models_A085B0_bin+0x888, NULL, 0, 0x30};
 
 /*800D1D40*/
 ModelInfo D_800D1D40 = {
-    0x682C30,
+    (s32)models_A085B0_bin,
     NULL,
     0x888,
     0x888,
@@ -34816,11 +34817,11 @@ ModelInfo D_800D1D40 = {
     0x33,
 };
 
-/*800D1D70*/ static ModelInfoUnkStruct1 D_800D1D70 = {0x683D78, NULL, 0, 0x30};
+/*800D1D70*/ static ModelVertexInfo D_800D1D70 = {(s32)models_A08E70_bin+0x888, NULL, 0, 0x30};
 
 /*800D1D7C*/
 ModelInfo D_800D1D7C = {
-    0x6834F0,
+    (s32)models_A08E70_bin,
     NULL,
     0x888,
     0x888,
@@ -34841,11 +34842,11 @@ ModelInfo D_800D1D7C = {
     0x33,
 };
 
-/*800D1DAC*/ static ModelInfoUnkStruct1 D_800D1DAC = {0x684638, NULL, 0, 0x30};
+/*800D1DAC*/ static ModelVertexInfo D_800D1DAC = {(s32)models_A09730_bin+0x888, NULL, 0, 0x30};
 
 /*800D1DB8*/
 ModelInfo D_800D1DB8 = {
-    0x683DB0,
+    (s32)models_A09730_bin,
     NULL,
     0x888,
     0x888,
@@ -34866,11 +34867,11 @@ ModelInfo D_800D1DB8 = {
     0x33,
 };
 
-/*800D1DE8*/ static ModelInfoUnkStruct1 D_800D1DE8 = {0x684EF8, NULL, 0, 0x30};
+/*800D1DE8*/ static ModelVertexInfo D_800D1DE8 = {(s32)models_A09FF0_bin+0x888, NULL, 0, 0x30};
 
 /*800D1DF4*/
 ModelInfo D_800D1DF4 = {
-    0x684670,
+    (s32)models_A09FF0_bin,
     NULL,
     0x888,
     0x888,
@@ -34891,11 +34892,11 @@ ModelInfo D_800D1DF4 = {
     0x33,
 };
 
-/*800D1E24*/ static ModelInfoUnkStruct1 D_800D1E24 = {0x6857B8, NULL, 0, 0x30};
+/*800D1E24*/ static ModelVertexInfo D_800D1E24 = {(s32)models_A0A8B0_bin+0x888, NULL, 0, 0x30};
 
 /*800D1E30*/
 ModelInfo D_800D1E30 = {
-    0x684F30,
+    (s32)models_A0A8B0_bin,
     NULL,
     0x888,
     0x888,
@@ -34916,11 +34917,11 @@ ModelInfo D_800D1E30 = {
     0x33,
 };
 
-/*800D1E60*/ static ModelInfoUnkStruct1 D_800D1E60 = {0x686078, NULL, 0, 0x30};
+/*800D1E60*/ static ModelVertexInfo D_800D1E60 = {(s32)models_A0B170_bin+0x888, NULL, 0, 0x30};
 
 /*800D1E6C*/
 ModelInfo D_800D1E6C = {
-    0x6857F0,
+    (s32)models_A0B170_bin,
     NULL,
     0x888,
     0x888,
@@ -34941,11 +34942,11 @@ ModelInfo D_800D1E6C = {
     0x33,
 };
 
-/*800D1E9C*/ static ModelInfoUnkStruct1 D_800D1E9C = {0x686938, NULL, 0, 0x30};
+/*800D1E9C*/ static ModelVertexInfo D_800D1E9C = {(s32)models_A0BA30_bin+0x888, NULL, 0, 0x30};
 
 /*800D1EA8*/
 ModelInfo D_800D1EA8 = {
-    0x6860B0,
+    (s32)models_A0BA30_bin,
     NULL,
     0x888,
     0x888,
@@ -34966,11 +34967,11 @@ ModelInfo D_800D1EA8 = {
     0x33,
 };
 
-/*800D1ED8*/ static ModelInfoUnkStruct1 D_800D1ED8 = {0x687DC0, NULL, 0, 0x408};
+/*800D1ED8*/ static ModelVertexInfo D_800D1ED8 = {(s32)models_A0C2F0_bin+0x1450, NULL, 0, 0x408};
 
 /*800D1EE4*/
 ModelInfo D_800D1EE4 = {
-    0x686970,
+    (s32)models_A0C2F0_bin,
     NULL,
     0x1450,
     0x1450,
@@ -34991,11 +34992,11 @@ ModelInfo D_800D1EE4 = {
     0x49,
 };
 
-/*800D1F14*/ static ModelInfoUnkStruct1 D_800D1F14 = {0x6895DC, NULL, 0, 0x1EC};
+/*800D1F14*/ static ModelVertexInfo D_800D1F14 = {(s32)models_A0DB50_bin+0x140C, NULL, 0, 0x1EC};
 
 /*800D1F20*/
 ModelInfo D_800D1F20 = {
-    0x6881D0,
+    (s32)models_A0DB50_bin,
     NULL,
     0x140C,
     0x140C,
@@ -35016,11 +35017,11 @@ ModelInfo D_800D1F20 = {
     0x18C,
 };
 
-/*800D1F50*/ static ModelInfoUnkStruct1 D_800D1F50 = {0x68A350, NULL, 0, 0x1B0};
+/*800D1F50*/ static ModelVertexInfo D_800D1F50 = {(s32)models_A0F150_bin+0xB80, NULL, 0, 0x1B0};
 
 /*800D1F5C*/
 ModelInfo D_800D1F5C = {
-    0x6897D0,
+    (s32)models_A0F150_bin,
     NULL,
     0xB80,
     0xB80,
@@ -35041,11 +35042,11 @@ ModelInfo D_800D1F5C = {
     0x232,
 };
 
-/*800D1F8C*/ static ModelInfoUnkStruct1 D_800D1F8C = {0x68B610, NULL, 0, 0x216};
+/*800D1F8C*/ static ModelVertexInfo D_800D1F8C = {(s32)models_A0FE80_bin+0x1110, NULL, 0, 0x216};
 
 /*800D1F98*/
 ModelInfo D_800D1F98 = {
-    0x68A500,
+    (s32)models_A0FE80_bin,
     NULL,
     0x110E,
     0x110E,
@@ -35066,11 +35067,11 @@ ModelInfo D_800D1F98 = {
     8,
 };
 
-/*800D1FC8*/ static ModelInfoUnkStruct1 D_800D1FC8 = {0x68C940, NULL, 0, 0x216};
+/*800D1FC8*/ static ModelVertexInfo D_800D1FC8 = {(s32)models_A111B0_bin+0x1110, NULL, 0, 0x216};
 
 /*800D1FD4*/
 ModelInfo D_800D1FD4 = {
-    0x68B830,
+    (s32)models_A111B0_bin,
     NULL,
     0x110E,
     0x110E,
@@ -35091,11 +35092,11 @@ ModelInfo D_800D1FD4 = {
     0,
 };
 
-/*800D2004*/ static ModelInfoUnkStruct1 D_800D2004 = {0x68DEB0, NULL, 0, 0x150};
+/*800D2004*/ static ModelVertexInfo D_800D2004 = {(s32)models_A124E0_bin+0x1350, NULL, 0, 0x150};
 
 /*800D2010*/
 ModelInfo D_800D2010 = {
-    0x68CB60,
+    (s32)models_A124E0_bin,
     NULL,
     0x1350,
     0x1350,
@@ -35116,11 +35117,11 @@ ModelInfo D_800D2010 = {
     0x32,
 };
 
-/*800D2040*/ static ModelInfoUnkStruct1 D_800D2040 = {0x68F350, NULL, 0, 0x150};
+/*800D2040*/ static ModelVertexInfo D_800D2040 = {(s32)models_A13980_bin+0x1350, NULL, 0, 0x150};
 
 /*800D204C*/
 ModelInfo D_800D204C = {
-    0x68E000,
+    (s32)models_A13980_bin,
     NULL,
     0x1350,
     0x1350,
@@ -35141,11 +35142,11 @@ ModelInfo D_800D204C = {
     0,
 };
 
-/*800D207C*/ static ModelInfoUnkStruct1 D_800D207C = {0x69928C, NULL, 0, 0x954};
+/*800D207C*/ static ModelVertexInfo D_800D207C = {(s32)models_A14E20_bin+0x9DEC, NULL, 0, 0x954};
 
 /*800D2088*/
 ModelInfo D_800D2088 = {
-    0x68F4A0,
+    (s32)models_A14E20_bin,
     NULL,
     0x9DEC,
     0x9DEC,
@@ -35166,11 +35167,11 @@ ModelInfo D_800D2088 = {
     0x13CF,
 };
 
-/*800D20B8*/ static ModelInfoUnkStruct1 D_800D20B8 = {0x69BFE8, NULL, 0, 0x7CE};
+/*800D20B8*/ static ModelVertexInfo D_800D20B8 = {(s32)models_A1F560_bin+0x2408, NULL, 0, 0x7CE};
 
 /*800D20C4*/
 ModelInfo D_800D20C4 = {
-    0x699BE0,
+    (s32)models_A1F560_bin,
     NULL,
     0x2406,
     0x2406,
@@ -35191,11 +35192,11 @@ ModelInfo D_800D20C4 = {
     0x1EF,
 };
 
-/*800D20F4*/ static ModelInfoUnkStruct1 D_800D20F4 = {0x69D650, NULL, 0, 0x240};
+/*800D20F4*/ static ModelVertexInfo D_800D20F4 = {(s32)models_A22140_bin+0xE90, NULL, 0, 0x240};
 
 /*800D2100*/
 ModelInfo D_800D2100 = {
-    0x69C7C0,
+    (s32)models_A22140_bin,
     NULL,
     0xE90,
     0xE90,
@@ -35216,11 +35217,11 @@ ModelInfo D_800D2100 = {
     0x266,
 };
 
-/*800D2130*/ static ModelInfoUnkStruct1 D_800D2130 = {0x69F674, NULL, 0, 0x1BC};
+/*800D2130*/ static ModelVertexInfo D_800D2130 = {(s32)models_A23210_bin+0x1DE4, NULL, 0, 0x1BC};
 
 /*800D213C*/
 ModelInfo D_800D213C = {
-    0x69D890,
+    (s32)models_A23210_bin,
     NULL,
     0x1DE4,
     0x1DE4,
@@ -35241,11 +35242,11 @@ ModelInfo D_800D213C = {
     0xC5,
 };
 
-/*800D216C*/ static ModelInfoUnkStruct1 D_800D216C = {0x6A1614, NULL, 0, 0x1BC};
+/*800D216C*/ static ModelVertexInfo D_800D216C = {(s32)models_A251B0_bin+0x1DE4, NULL, 0, 0x1BC};
 
 /*800D2178*/
 ModelInfo D_800D2178 = {
-    0x69F830,
+    (s32)models_A251B0_bin,
     NULL,
     0x1DE4,
     0x1DE4,
@@ -35266,11 +35267,11 @@ ModelInfo D_800D2178 = {
     0xC5,
 };
 
-/*800D21A8*/ static ModelInfoUnkStruct1 D_800D21A8 = {0x6A34BC, NULL, 0, 0x132};
+/*800D21A8*/ static ModelVertexInfo D_800D21A8 = {(s32)models_A27150_bin+0x1CEC, NULL, 0, 0x132};
 
 /*800D21B4*/
 ModelInfo D_800D21B4 = {
-    0x6A17D0,
+    (s32)models_A27150_bin,
     NULL,
     0x1CEA,
     0x1CEA,
@@ -35291,11 +35292,11 @@ ModelInfo D_800D21B4 = {
     0xCA,
 };
 
-/*800D21E4*/ static ModelInfoUnkStruct1 D_800D21E4 = {0x6A52F0, NULL, 0, 0x13E};
+/*800D21E4*/ static ModelVertexInfo D_800D21E4 = {(s32)models_A28F70_bin+0x1D00, NULL, 0, 0x13E};
 
 /*800D21F0*/
 ModelInfo D_800D21F0 = {
-    0x6A35F0,
+    (s32)models_A28F70_bin,
     NULL,
     0x1CFE,
     0x1CFE,
@@ -35316,11 +35317,11 @@ ModelInfo D_800D21F0 = {
     0xCC,
 };
 
-/*800D2220*/ static ModelInfoUnkStruct1 D_800D2220 = {0x6A716C, NULL, 0, 0x3BA};
+/*800D2220*/ static ModelVertexInfo D_800D2220 = {(s32)models_A2ADB0_bin+0x1D3C, NULL, 0, 0x3BA};
 
 /*800D222C*/
 ModelInfo D_800D222C = {
-    0x6A5430,
+    (s32)models_A2ADB0_bin,
     NULL,
     0x1D3A,
     0x1D3A,
@@ -35341,11 +35342,11 @@ ModelInfo D_800D222C = {
     0x3C,
 };
 
-/*800D225C*/ static ModelInfoUnkStruct1 D_800D225C = {0x6A99BC, NULL, 0, 0x354};
+/*800D225C*/ static ModelVertexInfo D_800D225C = {(s32)models_A2CEB0_bin+0x248C, NULL, 0, 0x354};
 
 /*800D2268*/
 ModelInfo D_800D2268 = {
-    0x6A7530,
+    (s32)models_A2CEB0_bin,
     NULL,
     0x248C,
     0x248C,
@@ -35366,11 +35367,11 @@ ModelInfo D_800D2268 = {
     0x98,
 };
 
-/*800D2298*/ static ModelInfoUnkStruct1 D_800D2298 = {0x6AB1F8, NULL, 0, 0x22E};
+/*800D2298*/ static ModelVertexInfo D_800D2298 = {(s32)models_A2F690_bin+0x14E8, NULL, 0, 0x22E};
 
 /*800D22A4*/
 ModelInfo D_800D22A4 = {
-    0x6A9D10,
+    (s32)models_A2F690_bin,
     NULL,
     0x14E6,
     0x14E6,
@@ -35391,11 +35392,11 @@ ModelInfo D_800D22A4 = {
     0xA2,
 };
 
-/*800D22D4*/ static ModelInfoUnkStruct1 D_800D22D4 = {0x6AE870, NULL, 0, 0x720};
+/*800D22D4*/ static ModelVertexInfo D_800D22D4 = {(s32)models_A30DB0_bin+0x3440, NULL, 0, 0x720};
 
 /*800D22E0*/
 ModelInfo D_800D22E0 = {
-    0x6AB430,
+    (s32)models_A30DB0_bin,
     NULL,
     0x3440,
     0x3440,
@@ -35416,11 +35417,11 @@ ModelInfo D_800D22E0 = {
     0x171,
 };
 
-/*800D2310*/ static ModelInfoUnkStruct1 D_800D2310 = {0x6B5F3C, NULL, 0, 0x5C4};
+/*800D2310*/ static ModelVertexInfo D_800D2310 = {(s32)models_A34910_bin+0x6FAC, NULL, 0, 0x5C4};
 
 /*800D231C*/
 ModelInfo D_800D231C = {
-    0x6AEF90,
+    (s32)models_A34910_bin,
     NULL,
     0x6FAC,
     0x6FAC,
@@ -35441,11 +35442,11 @@ ModelInfo D_800D231C = {
     0xED,
 };
 
-/*800D234C*/ static ModelInfoUnkStruct1 D_800D234C = {0x6B69C8, NULL, 0, 0x48};
+/*800D234C*/ static ModelVertexInfo D_800D234C = {(s32)models_A3BE80_bin+0x4C8, NULL, 0, 0x48};
 
 /*800D2358*/
 ModelInfo D_800D2358 = {
-    0x6B6500,
+    (s32)models_A3BE80_bin,
     NULL,
     0x4C8,
     0x4C8,
@@ -35466,11 +35467,11 @@ ModelInfo D_800D2358 = {
     0x4E,
 };
 
-/*800D2388*/ static ModelInfoUnkStruct1 D_800D2388 = {0x6B7A78, NULL, 0, 0x1E6};
+/*800D2388*/ static ModelVertexInfo D_800D2388 = {(s32)models_A3C390_bin+0x1068, NULL, 0, 0x1E6};
 
 /*800D2394*/
 ModelInfo D_800D2394 = {
-    0x6B6A10,
+    (s32)models_A3C390_bin,
     NULL,
     0x1066,
     0x1066,
@@ -35491,11 +35492,11 @@ ModelInfo D_800D2394 = {
     0xFE,
 };
 
-/*800D23C4*/ static ModelInfoUnkStruct1 D_800D23C4 = {0x6BA014, NULL, 0, 0x5FA};
+/*800D23C4*/ static ModelVertexInfo D_800D23C4 = {(s32)models_A3D5E0_bin+0x23B4, NULL, 0, 0x5FA};
 
 /*800D23D0*/
 ModelInfo D_800D23D0 = {
-    0x6B7C60,
+    (s32)models_A3D5E0_bin,
     NULL,
     0x23B2,
     0x23B2,
@@ -35516,11 +35517,11 @@ ModelInfo D_800D23D0 = {
     0x111,
 };
 
-/*800D2400*/ static ModelInfoUnkStruct1 D_800D2400 = {0x6C1790, NULL, 0, 0x5A6};
+/*800D2400*/ static ModelVertexInfo D_800D2400 = {(s32)models_A3FF90_bin+0x7180, NULL, 0, 0x5A6};
 
 /*800D240C*/
 ModelInfo D_800D240C = {
-    0x6BA610,
+    (s32)models_A3FF90_bin,
     NULL,
     0x717E,
     0x717E,
@@ -35541,11 +35542,11 @@ ModelInfo D_800D240C = {
     0xD9,
 };
 
-/*800D243C*/ static ModelInfoUnkStruct1 D_800D243C = {0x6C8EC0, NULL, 0, 0x5A6};
+/*800D243C*/ static ModelVertexInfo D_800D243C = {(s32)models_A476C0_bin+0x7180, NULL, 0, 0x5A6};
 
 /*800D2448*/
 ModelInfo D_800D2448 = {
-    0x6C1D40,
+    (s32)models_A476C0_bin,
     NULL,
     0x717E,
     0x717E,
@@ -35566,11 +35567,11 @@ ModelInfo D_800D2448 = {
     0x12E,
 };
 
-/*800D2478*/ static ModelInfoUnkStruct1 D_800D2478 = {0x6CFA10, NULL, 0, 0x588};
+/*800D2478*/ static ModelVertexInfo D_800D2478 = {(s32)models_A4EDF0_bin+0x65A0, NULL, 0, 0x588};
 
 /*800D2484*/
 ModelInfo D_800D2484 = {
-    0x6C9470,
+    (s32)models_A4EDF0_bin,
     NULL,
     0x65A0,
     0x65A0,
@@ -35591,11 +35592,11 @@ ModelInfo D_800D2484 = {
     0xDF,
 };
 
-/*800D24B4*/ static ModelInfoUnkStruct1 D_800D24B4 = {0x6D4B14, NULL, 0, 0x48C};
+/*800D24B4*/ static ModelVertexInfo D_800D24B4 = {(s32)models_A55920_bin+0x4B74, NULL, 0, 0x48C};
 
 /*800D24C0*/
 ModelInfo D_800D24C0 = {
-    0x6CFFA0,
+    (s32)models_A55920_bin,
     NULL,
     0x4B74,
     0x4B74,
@@ -35616,11 +35617,11 @@ ModelInfo D_800D24C0 = {
     0x157,
 };
 
-/*800D24F0*/ static ModelInfoUnkStruct1 D_800D24F0 = {0x6D9EA4, NULL, 0, 0x384};
+/*800D24F0*/ static ModelVertexInfo D_800D24F0 = {(s32)models_A5A920_bin+0x4F04, NULL, 0, 0x384};
 
 /*800D24FC*/
 ModelInfo D_800D24FC = {
-    0x6D4FA0,
+    (s32)models_A5A920_bin,
     NULL,
     0x4F04,
     0x4F04,
@@ -35641,11 +35642,11 @@ ModelInfo D_800D24FC = {
     0x12B,
 };
 
-/*800D252C*/ static ModelInfoUnkStruct1 D_800D252C = {0x6DC1D8, NULL, 0, 0x1FE};
+/*800D252C*/ static ModelVertexInfo D_800D252C = {(s32)models_A5FBB0_bin+0x1FA8, NULL, 0, 0x1FE};
 
 /*800D2538*/
 ModelInfo D_800D2538 = {
-    0x6DA230,
+    (s32)models_A5FBB0_bin,
     NULL,
     0x1FA6,
     0x1FA6,
@@ -35666,11 +35667,11 @@ ModelInfo D_800D2538 = {
     0x47,
 };
 
-/*800D2568*/ static ModelInfoUnkStruct1 D_800D2568 = {0x6DE504, NULL, 0, 0x30C};
+/*800D2568*/ static ModelVertexInfo D_800D2568 = {(s32)models_A61D60_bin+0x2124, NULL, 0, 0x30C};
 
 /*800D2574*/
 ModelInfo D_800D2574 = {
-    0x6DC3E0,
+    (s32)models_A61D60_bin,
     NULL,
     0x2124,
     0x2124,
@@ -35691,11 +35692,11 @@ ModelInfo D_800D2574 = {
     0x3B,
 };
 
-/*800D25A4*/ static ModelInfoUnkStruct1 D_800D25A4 = {0x6E36A0, NULL, 0, 0x2BE};
+/*800D25A4*/ static ModelVertexInfo D_800D25A4 = {(s32)models_A64190_bin+0x4E90, NULL, 0, 0x2BE};
 
 /*800D25B0*/
 ModelInfo D_800D25B0 = {
-    0x6DE810,
+    (s32)models_A64190_bin,
     NULL,
     0x4E8E,
     0x4E8E,
@@ -35716,11 +35717,11 @@ ModelInfo D_800D25B0 = {
     0x1CC,
 };
 
-/*800D25E0*/ static ModelInfoUnkStruct1 D_800D25E0 = {0x6E5CBC, NULL, 0, 0x17A};
+/*800D25E0*/ static ModelVertexInfo D_800D25E0 = {(s32)models_A692E0_bin+0x235C, NULL, 0, 0x17A};
 
 /*800D25EC*/
 ModelInfo D_800D25EC = {
-    0x6E3960,
+    (s32)models_A692E0_bin,
     NULL,
     0x235A,
     0x235A,
@@ -35741,11 +35742,11 @@ ModelInfo D_800D25EC = {
     0x50,
 };
 
-/*800D261C*/ static ModelInfoUnkStruct1 D_800D261C = {0x6E6FE4, NULL, 0, 0x51C};
+/*800D261C*/ static ModelVertexInfo D_800D261C = {(s32)models_A6B7C0_bin+0x11A4, NULL, 0, 0x51C};
 
 /*800D2628*/
 ModelInfo D_800D2628 = {
-    0x6E5E40,
+    (s32)models_A6B7C0_bin,
     NULL,
     0x11A4,
     0x11A4,
@@ -35766,11 +35767,11 @@ ModelInfo D_800D2628 = {
     0x122,
 };
 
-/*800D2658*/ static ModelInfoUnkStruct1 D_800D2658 = {0x6E8348, NULL, 0, 0xF0};
+/*800D2658*/ static ModelVertexInfo D_800D2658 = {(s32)models_A6CE80_bin+0xE48, NULL, 0, 0xF0};
 
 /*800D2664*/
 ModelInfo D_800D2664 = {
-    0x6E7500,
+    (s32)models_A6CE80_bin,
     NULL,
     0xE48,
     0xE48,
@@ -35791,11 +35792,11 @@ ModelInfo D_800D2664 = {
     0xC2,
 };
 
-/*800D2694*/ static ModelInfoUnkStruct1 D_800D2694 = {0x6E9C7C, NULL, 0, 0x192};
+/*800D2694*/ static ModelVertexInfo D_800D2694 = {(s32)models_A6DDC0_bin+0x183C, NULL, 0, 0x192};
 
 /*800D26A0*/
 ModelInfo D_800D26A0 = {
-    0x6E8440,
+    (s32)models_A6DDC0_bin,
     NULL,
     0x183A,
     0x183A,
@@ -35816,11 +35817,11 @@ ModelInfo D_800D26A0 = {
     0xD6,
 };
 
-/*800D26D0*/ static ModelInfoUnkStruct1 D_800D26D0 = {0x6EA1D8, NULL, 0, 0xC6};
+/*800D26D0*/ static ModelVertexInfo D_800D26D0 = {(s32)models_A6F790_bin+0x3C8, NULL, 0, 0xC6};
 
 /*800D26DC*/
 ModelInfo D_800D26DC = {
-    0x6E9E10,
+    (s32)models_A6F790_bin,
     NULL,
     0x3C6,
     0x3C6,
@@ -35841,11 +35842,11 @@ ModelInfo D_800D26DC = {
     0,
 };
 
-/*800D270C*/ static ModelInfoUnkStruct1 D_800D270C = {0x6EA79C, NULL, 0, 0x132};
+/*800D270C*/ static ModelVertexInfo D_800D270C = {(s32)models_A6FC20_bin+0x4FC, NULL, 0, 0x132};
 
 /*800D2718*/
 ModelInfo D_800D2718 = {
-    0x6EA2A0,
+    (s32)models_A6FC20_bin,
     NULL,
     0x4FA,
     0x4FA,
@@ -35866,11 +35867,11 @@ ModelInfo D_800D2718 = {
     -0x62,
 };
 
-/*800D2748*/ static ModelInfoUnkStruct1 D_800D2748 = {0x6EBD7C, NULL, 0, 0x2B2};
+/*800D2748*/ static ModelVertexInfo D_800D2748 = {(s32)models_A70250_bin+0x14AC, NULL, 0, 0x2B2};
 
 /*800D2754*/
 ModelInfo D_800D2754 = {
-    0x6EA8D0,
+    (s32)models_A70250_bin,
     NULL,
     0x14AA,
     0x14AA,
@@ -35891,11 +35892,11 @@ ModelInfo D_800D2754 = {
     0xBB,
 };
 
-/*800D2784*/ static ModelInfoUnkStruct1 D_800D2784 = {0x6EC8F8, NULL, 0, 0x4E};
+/*800D2784*/ static ModelVertexInfo D_800D2784 = {(s32)models_A719B0_bin+0x8C8, NULL, 0, 0x4E};
 
 /*800D2790*/
 ModelInfo D_800D2790 = {
-    0x6EC030,
+    (s32)models_A719B0_bin,
     NULL,
     0x8C6,
     0x8C6,
@@ -35916,11 +35917,11 @@ ModelInfo D_800D2790 = {
     -0xBE,
 };
 
-/*800D27C0*/ static ModelInfoUnkStruct1 D_800D27C0 = {0x6ED218, NULL, 0, 0x4E};
+/*800D27C0*/ static ModelVertexInfo D_800D27C0 = {(s32)models_A722D0_bin+0x8C8, NULL, 0, 0x4E};
 
 /*800D27CC*/
 ModelInfo D_800D27CC = {
-    0x6EC950,
+    (s32)models_A722D0_bin,
     NULL,
     0x8C6,
     0x8C6,
@@ -35941,11 +35942,11 @@ ModelInfo D_800D27CC = {
     -0xBE,
 };
 
-/*800D27FC*/ static ModelInfoUnkStruct1 D_800D27FC = {0x6EDB44, NULL, 0, 0x54};
+/*800D27FC*/ static ModelVertexInfo D_800D27FC = {(s32)models_A72BF0_bin+0x8D4, NULL, 0, 0x54};
 
 /*800D2808*/
 ModelInfo D_800D2808 = {
-    0x6ED270,
+    (s32)models_A72BF0_bin,
     NULL,
     0x8D4,
     0x8D4,
@@ -35966,11 +35967,11 @@ ModelInfo D_800D2808 = {
     -0xBE,
 };
 
-/*800D2838*/ static ModelInfoUnkStruct1 D_800D2838 = {0x6EE460, NULL, 0, 0x48};
+/*800D2838*/ static ModelVertexInfo D_800D2838 = {(s32)models_A73520_bin+0x8C0, NULL, 0, 0x48};
 
 /*800D2844*/
 ModelInfo D_800D2844 = {
-    0x6EDBA0,
+    (s32)models_A73520_bin,
     NULL,
     0x8C0,
     0x8C0,
@@ -35991,11 +35992,11 @@ ModelInfo D_800D2844 = {
     -0xBE,
 };
 
-/*800D2874*/ static ModelInfoUnkStruct1 D_800D2874 = {0x6EF900, NULL, 0, 0x408};
+/*800D2874*/ static ModelVertexInfo D_800D2874 = {(s32)models_A73E30_bin+0x1450, NULL, 0, 0x408};
 
 /*800D2880*/
 ModelInfo D_800D2880 = {
-    0x6EE4B0,
+    (s32)models_A73E30_bin,
     NULL,
     0x1450,
     0x1450,
@@ -36016,11 +36017,11 @@ ModelInfo D_800D2880 = {
     0x2F,
 };
 
-/*800D28B0*/ static ModelInfoUnkStruct1 D_800D28B0 = {0x6F12D0, NULL, 0, 0xD8};
+/*800D28B0*/ static ModelVertexInfo D_800D28B0 = {(s32)models_A75690_bin+0x15C0, NULL, 0, 0xD8};
 
 /*800D28BC*/
 ModelInfo D_800D28BC = {
-    0x6EFD10,
+    (s32)models_A75690_bin,
     NULL,
     0x15C0,
     0x15C0,
@@ -36041,11 +36042,11 @@ ModelInfo D_800D28BC = {
     0x10,
 };
 
-/*800D28EC*/ static ModelInfoUnkStruct1 D_800D28EC = {0x6F3260, NULL, 0, 0x2B8};
+/*800D28EC*/ static ModelVertexInfo D_800D28EC = {(s32)models_A76D30_bin+0x1EB0, NULL, 0, 0x2B8};
 
 /*800D28F8*/
 ModelInfo D_800D28F8 = {
-    0x6F13B0,
+    (s32)models_A76D30_bin,
     NULL,
     0x1EB0,
     0x1EB0,
@@ -36066,11 +36067,11 @@ ModelInfo D_800D28F8 = {
     0x3C,
 };
 
-/*800D2928*/ static ModelInfoUnkStruct1 D_800D2928 = {0x6F4EB0, NULL, 0, 0x258};
+/*800D2928*/ static ModelVertexInfo D_800D2928 = {(s32)models_A78EA0_bin+0x1990, NULL, 0, 0x258};
 
 /*800D2934*/
 ModelInfo D_800D2934 = {
-    0x6F3520,
+    (s32)models_A78EA0_bin,
     NULL,
     0x1990,
     0x1990,
@@ -36091,11 +36092,11 @@ ModelInfo D_800D2934 = {
     9,
 };
 
-/*800D2964*/ static ModelInfoUnkStruct1 D_800D2964 = {0x6F5CB8, NULL, 0, 0x1E0};
+/*800D2964*/ static ModelVertexInfo D_800D2964 = {(s32)models_A7AA90_bin+0xBA8, NULL, 0, 0x1E0};
 
 /*800D2970*/
 ModelInfo D_800D2970 = {
-    0x6F5110,
+    (s32)models_A7AA90_bin,
     NULL,
     0xBA8,
     0xBA8,
@@ -36116,11 +36117,11 @@ ModelInfo D_800D2970 = {
     0,
 };
 
-/*800D29A0*/ static ModelInfoUnkStruct1 D_800D29A0 = {0x6F6368, NULL, 0, 0x48};
+/*800D29A0*/ static ModelVertexInfo D_800D29A0 = {(s32)models_A7B820_bin+0x4C8, NULL, 0, 0x48};
 
 /*800D29AC*/
 ModelInfo D_800D29AC = {
-    0x6F5EA0,
+    (s32)models_A7B820_bin,
     NULL,
     0x4C8,
     0x4C8,
@@ -36141,11 +36142,11 @@ ModelInfo D_800D29AC = {
     0x4D,
 };
 
-/*800D29DC*/ static ModelInfoUnkStruct1 D_800D29DC = {0x6F97C8, NULL, 0, 0x198};
+/*800D29DC*/ static ModelVertexInfo D_800D29DC = {(s32)models_A7D130_bin+0x2018, NULL, 0, 0x198};
 
 /*800D29E8*/
 ModelInfo D_800D29E8 = {
-    0x6F77B0,
+    (s32)models_A7D130_bin,
     NULL,
     0x2018,
     0x2018,
@@ -36166,11 +36167,11 @@ ModelInfo D_800D29E8 = {
     0,
 };
 
-/*800D2A18*/ static ModelInfoUnkStruct1 D_800D2A18 = {0x6FB400, NULL, 0, 0x126};
+/*800D2A18*/ static ModelVertexInfo D_800D2A18 = {(s32)models_A7F2E0_bin+0x1AA0, NULL, 0, 0x126};
 
 /*800D2A24*/
 ModelInfo D_800D2A24 = {
-    0x6F9960,
+    (s32)models_A7F2E0_bin,
     NULL,
     0x1A9E,
     0x1A9E,
@@ -36191,11 +36192,11 @@ ModelInfo D_800D2A24 = {
     0x78,
 };
 
-/*800D2A54*/ static ModelInfoUnkStruct1 D_800D2A54 = {0x6FDDDC, NULL, 0, 0x35A};
+/*800D2A54*/ static ModelVertexInfo D_800D2A54 = {(s32)models_A80EB0_bin+0x28AC, NULL, 0, 0x35A};
 
 /*800D2A60*/
 ModelInfo D_800D2A60 = {
-    0x6FB530,
+    (s32)models_A80EB0_bin,
     NULL,
     0x28AA,
     0x28AA,
@@ -36216,11 +36217,11 @@ ModelInfo D_800D2A60 = {
     0,
 };
 
-/*800D2A90*/ static ModelInfoUnkStruct1 D_800D2A90 = {0x708388, NULL, 0, 0xAC8};
+/*800D2A90*/ static ModelVertexInfo D_800D2A90 = {(s32)models_A83AC0_bin+0xA248, NULL, 0, 0xAC8};
 
 /*800D2A9C*/
 ModelInfo D_800D2A9C = {
-    0x6FE140,
+    (s32)models_A83AC0_bin,
     NULL,
     0xA248,
     0xA248,
@@ -36241,11 +36242,11 @@ ModelInfo D_800D2A9C = {
     0x1A0,
 };
 
-/*800D2ACC*/ static ModelInfoUnkStruct1 D_800D2ACC = {0x70A2E8, NULL, 0, 0x8A0};
+/*800D2ACC*/ static ModelVertexInfo D_800D2ACC = {(s32)models_A8E7D0_bin+0x1498, NULL, 0, 0x8A0};
 
 /*800D2AD8*/
 ModelInfo D_800D2AD8 = {
-    0x708E50,
+    (s32)models_A8E7D0_bin,
     NULL,
     0x1498,
     0x1498,
@@ -36266,11 +36267,11 @@ ModelInfo D_800D2AD8 = {
     0,
 };
 
-/*800D2B08*/ static ModelInfoUnkStruct1 D_800D2B08 = {0x70BD14, NULL, 0, 0xA2};
+/*800D2B08*/ static ModelVertexInfo D_800D2B08 = {(s32)models_A90510_bin+0x1184, NULL, 0, 0xA2};
 
 /*800D2B14*/
 ModelInfo D_800D2B14 = {
-    0x70AB90,
+    (s32)models_A90510_bin,
     NULL,
     0x1182,
     0x1182,
@@ -36291,11 +36292,11 @@ ModelInfo D_800D2B14 = {
     0x26,
 };
 
-/*800D2B44*/ static ModelInfoUnkStruct1 D_800D2B44 = {0x70C028, NULL, 0, 0x18};
+/*800D2B44*/ static ModelVertexInfo D_800D2B44 = {(s32)models_A91740_bin+0x268, NULL, 0, 0x18};
 
 /*800D2B50*/
 ModelInfo D_800D2B50 = {
-    0x70BDC0,
+    (s32)models_A91740_bin,
     NULL,
     0x268,
     0x268,
@@ -36316,11 +36317,11 @@ ModelInfo D_800D2B50 = {
     0x31F,
 };
 
-/*800D2B80*/ static ModelInfoUnkStruct1 D_800D2B80 = {0x70C2A8, NULL, 0, 0x18};
+/*800D2B80*/ static ModelVertexInfo D_800D2B80 = {(s32)models_A919C0_bin+0x268, NULL, 0, 0x18};
 
 /*800D2B8C*/
 ModelInfo D_800D2B8C = {
-    0x70C040,
+    (s32)models_A919C0_bin,
     NULL,
     0x268,
     0x268,
@@ -36341,11 +36342,11 @@ ModelInfo D_800D2B8C = {
     0x31F,
 };
 
-/*800D2BBC*/ static ModelInfoUnkStruct1 D_800D2BBC = {0x70D288, NULL, 0, 0x43E};
+/*800D2BBC*/ static ModelVertexInfo D_800D2BBC = {(s32)models_A91C40_bin+0xFC8, NULL, 0, 0x43E};
 
 /*800D2BC8*/
 ModelInfo D_800D2BC8 = {
-    0x70C2C0,
+    (s32)models_A91C40_bin,
     NULL,
     0xFC6,
     0xFC6,
@@ -36366,11 +36367,11 @@ ModelInfo D_800D2BC8 = {
     0xAA,
 };
 
-/*800D2BF8*/ static ModelInfoUnkStruct1 D_800D2BF8 = {0x710348, NULL, 0, 0x1C8};
+/*800D2BF8*/ static ModelVertexInfo D_800D2BF8 = {(s32)models_A93050_bin+0x2C78, NULL, 0, 0x1C8};
 
 /*800D2C04*/
 ModelInfo D_800D2C04 = {
-    0x70D6D0,
+    (s32)models_A93050_bin,
     NULL,
     0x2C78,
     0x2C78,
@@ -36391,11 +36392,11 @@ ModelInfo D_800D2C04 = {
     0x95,
 };
 
-/*800D2C34*/ static ModelInfoUnkStruct1 D_800D2C34 = {0x71236C, NULL, 0, 0x2F4};
+/*800D2C34*/ static ModelVertexInfo D_800D2C34 = {(s32)models_A95E90_bin+0x1E5C, NULL, 0, 0x2F4};
 
 /*800D2C40*/
 ModelInfo D_800D2C40 = {
-    0x710510,
+    (s32)models_A95E90_bin,
     NULL,
     0x1E5C,
     0x1E5C,
@@ -36416,11 +36417,11 @@ ModelInfo D_800D2C40 = {
     0xFE,
 };
 
-/*800D2C70*/ static ModelInfoUnkStruct1 D_800D2C70 = {0x713A2C, NULL, 0, 0x192};
+/*800D2C70*/ static ModelVertexInfo D_800D2C70 = {(s32)models_A97FE0_bin+0x13CC, NULL, 0, 0x192};
 
 /*800D2C7C*/
 ModelInfo D_800D2C7C = {
-    0x712660,
+    (s32)models_A97FE0_bin,
     NULL,
     0x13CA,
     0x13CA,
@@ -36441,11 +36442,11 @@ ModelInfo D_800D2C7C = {
     0x80,
 };
 
-/*800D2CAC*/ static ModelInfoUnkStruct1 D_800D2CAC = {0x718CB0, NULL, 0, 0x648};
+/*800D2CAC*/ static ModelVertexInfo D_800D2CAC = {(s32)models_A99540_bin+0x50F0, NULL, 0, 0x648};
 
 /*800D2CB8*/
 ModelInfo D_800D2CB8 = {
-    0x713BC0,
+    (s32)models_A99540_bin,
     NULL,
     0x50F0,
     0x50F0,
@@ -36466,11 +36467,11 @@ ModelInfo D_800D2CB8 = {
     0x88,
 };
 
-/*800D2CE8*/ static ModelInfoUnkStruct1 D_800D2CE8 = {0x71DFA4, NULL, 0, 0x792};
+/*800D2CE8*/ static ModelVertexInfo D_800D2CE8 = {(s32)models_A9EC80_bin+0x4CA4, NULL, 0, 0x792};
 
 /*800D2CF4*/
 ModelInfo D_800D2CF4 = {
-    0x719300,
+    (s32)models_A9EC80_bin,
     NULL,
     0x4CA2,
     0x4CA2,
@@ -36491,11 +36492,11 @@ ModelInfo D_800D2CF4 = {
     0xB9,
 };
 
-/*800D2D24*/ static ModelInfoUnkStruct1 D_800D2D24 = {0x71F5C0, NULL, 0, 0x300};
+/*800D2D24*/ static ModelVertexInfo D_800D2D24 = {(s32)models_AA40C0_bin+0xE80, NULL, 0, 0x300};
 
 /*800D2D30*/
 ModelInfo D_800D2D30 = {
-    0x71E740,
+    (s32)models_AA40C0_bin,
     NULL,
     0xE80,
     0xE80,
@@ -36516,11 +36517,11 @@ ModelInfo D_800D2D30 = {
     0x74,
 };
 
-/*800D2D60*/ static ModelInfoUnkStruct1 D_800D2D60 = {0x725064, NULL, 0, 0x762};
+/*800D2D60*/ static ModelVertexInfo D_800D2D60 = {(s32)models_AA5240_bin+0x57A4, NULL, 0, 0x762};
 
 /*800D2D6C*/
 ModelInfo D_800D2D6C = {
-    0x71F8C0,
+    (s32)models_AA5240_bin,
     NULL,
     0x57A2,
     0x57A2,
@@ -36541,11 +36542,11 @@ ModelInfo D_800D2D6C = {
     0x130,
 };
 
-/*800D2D9C*/ static ModelInfoUnkStruct1 D_800D2D9C = {0x726A00, NULL, 0, 0xD8};
+/*800D2D9C*/ static ModelVertexInfo D_800D2D9C = {(s32)models_AAB150_bin+0x1230, NULL, 0, 0xD8};
 
 /*800D2DA8*/
 ModelInfo D_800D2DA8 = {
-    0x7257D0,
+    (s32)models_AAB150_bin,
     NULL,
     0x1230,
     0x1230,
@@ -36566,11 +36567,11 @@ ModelInfo D_800D2DA8 = {
     0x19,
 };
 
-/*800D2DD8*/ static ModelInfoUnkStruct1 D_800D2DD8 = {0x728544, NULL, 0, 0xFC};
+/*800D2DD8*/ static ModelVertexInfo D_800D2DD8 = {(s32)models_AAC460_bin+0x1A64, NULL, 0, 0xFC};
 
 /*800D2DE4*/
 ModelInfo D_800D2DE4 = {
-    0x726AE0,
+    (s32)models_AAC460_bin,
     NULL,
     0x1A64,
     0x1A64,
@@ -36591,11 +36592,11 @@ ModelInfo D_800D2DE4 = {
     0x8C,
 };
 
-/*800D2E14*/ static ModelInfoUnkStruct1 D_800D2E14 = {0x72A1BC, NULL, 0, 0x32A};
+/*800D2E14*/ static ModelVertexInfo D_800D2E14 = {(s32)models_AADFC0_bin+0x1B7C, NULL, 0, 0x32A};
 
 /*800D2E20*/
 ModelInfo D_800D2E20 = {
-    0x728640,
+    (s32)models_AADFC0_bin,
     NULL,
     0x1B7A,
     0x1B7A,
@@ -36616,11 +36617,11 @@ ModelInfo D_800D2E20 = {
     0xE4,
 };
 
-/*800D2E50*/ static ModelInfoUnkStruct1 D_800D2E50 = {0x72B0A8, NULL, 0, 0x4E0};
+/*800D2E50*/ static ModelVertexInfo D_800D2E50 = {(s32)models_AAFE70_bin+0xBB8, NULL, 0, 0x4E0};
 
 /*800D2E5C*/
 ModelInfo D_800D2E5C = {
-    0x72A4F0,
+    (s32)models_AAFE70_bin,
     NULL,
     0xBB8,
     0xBB8,
@@ -36641,11 +36642,11 @@ ModelInfo D_800D2E5C = {
     0,
 };
 
-/*800D2E8C*/ static ModelInfoUnkStruct1 D_800D2E8C = {0x72C9A8, NULL, 0, 0x8A0};
+/*800D2E8C*/ static ModelVertexInfo D_800D2E8C = {(s32)models_AB0F10_bin+0x1418, NULL, 0, 0x8A0};
 
 /*800D2E98*/
 ModelInfo D_800D2E98 = {
-    0x72B590,
+    (s32)models_AB0F10_bin,
     NULL,
     0x1418,
     0x1418,
@@ -36666,11 +36667,11 @@ ModelInfo D_800D2E98 = {
     0,
 };
 
-/*800D2EC8*/ static ModelInfoUnkStruct1 D_800D2EC8 = {0x72EE70, NULL, 0, 0xA68};
+/*800D2EC8*/ static ModelVertexInfo D_800D2EC8 = {(s32)models_AB2BD0_bin+0x1C20, NULL, 0, 0xA68};
 
 /*800D2ED4*/
 ModelInfo D_800D2ED4 = {
-    0x72D250,
+    (s32)models_AB2BD0_bin,
     NULL,
     0x1C20,
     0x1C20,
@@ -36691,11 +36692,11 @@ ModelInfo D_800D2ED4 = {
     0,
 };
 
-/*800D2F04*/ static ModelInfoUnkStruct1 D_800D2F04 = {0x7303D0, NULL, 0, 0x150};
+/*800D2F04*/ static ModelVertexInfo D_800D2F04 = {(s32)models_AB5260_bin+0xAF0, NULL, 0, 0x150};
 
 /*800D2F10*/
 ModelInfo D_800D2F10 = {
-    0x72F8E0,
+    (s32)models_AB5260_bin,
     NULL,
     0xAF0,
     0xAF0,
@@ -36716,11 +36717,11 @@ ModelInfo D_800D2F10 = {
     0x18,
 };
 
-/*800D2F40*/ static ModelInfoUnkStruct1 D_800D2F40 = {0x7314B8, NULL, 0, 0x198};
+/*800D2F40*/ static ModelVertexInfo D_800D2F40 = {(s32)models_AB5EA0_bin+0xF98, NULL, 0, 0x198};
 
 /*800D2F4C*/
 ModelInfo D_800D2F4C = {
-    0x730520,
+    (s32)models_AB5EA0_bin,
     NULL,
     0xF98,
     0xF98,
@@ -36741,11 +36742,11 @@ ModelInfo D_800D2F4C = {
     0x24,
 };
 
-/*800D2F7C*/ static ModelInfoUnkStruct1 D_800D2F7C = {0x7325E8, NULL, 0, 0x198};
+/*800D2F7C*/ static ModelVertexInfo D_800D2F7C = {(s32)models_AB6FD0_bin+0xF98, NULL, 0, 0x198};
 
 /*800D2F88*/
 ModelInfo D_800D2F88 = {
-    0x731650,
+    (s32)models_AB6FD0_bin,
     NULL,
     0xF98,
     0xF98,
@@ -36766,11 +36767,11 @@ ModelInfo D_800D2F88 = {
     0x24,
 };
 
-/*800D2FB8*/ static ModelInfoUnkStruct1 D_800D2FB8 = {0x735464, NULL, 0, 0x3A2};
+/*800D2FB8*/ static ModelVertexInfo D_800D2FB8 = {(s32)models_AB8100_bin+0x2CE4, NULL, 0, 0x3A2};
 
 /*800D2FC4*/
 ModelInfo D_800D2FC4 = {
-    0x732780,
+    (s32)models_AB8100_bin,
     NULL,
     0x2CE2,
     0x2CE2,
@@ -36791,11 +36792,11 @@ ModelInfo D_800D2FC4 = {
     0x53,
 };
 
-/*800D2FF4*/ static ModelInfoUnkStruct1 D_800D2FF4 = {0x73B0A4, NULL, 0, 0xA2C};
+/*800D2FF4*/ static ModelVertexInfo D_800D2FF4 = {(s32)models_ABB190_bin+0x5894, NULL, 0, 0xA2C};
 
 /*800D3000*/
 ModelInfo D_800D3000 = {
-    0x735810,
+    (s32)models_ABB190_bin,
     NULL,
     0x5894,
     0x5894,
@@ -36816,11 +36817,11 @@ ModelInfo D_800D3000 = {
     0x7C,
 };
 
-/*800D3030*/ static ModelInfoUnkStruct1 D_800D3030 = {0x741364, NULL, 0, 0xA2C};
+/*800D3030*/ static ModelVertexInfo D_800D3030 = {(s32)models_AC1450_bin+0x5894, NULL, 0, 0xA2C};
 
 /*800D303C*/
 ModelInfo D_800D303C = {
-    0x73BAD0,
+    (s32)models_AC1450_bin,
     NULL,
     0x5894,
     0x5894,
@@ -36841,11 +36842,11 @@ ModelInfo D_800D303C = {
     0x7C,
 };
 
-/*800D306C*/ static ModelInfoUnkStruct1 D_800D306C = {0x747AB8, NULL, 0, 0xA9E};
+/*800D306C*/ static ModelVertexInfo D_800D306C = {(s32)models_AC7710_bin+0x5D28, NULL, 0, 0xA9E};
 
 /*800D3078*/
 ModelInfo D_800D3078 = {
-    0x741D90,
+    (s32)models_AC7710_bin,
     NULL,
     0x5D26,
     0x5D26,
@@ -36866,11 +36867,11 @@ ModelInfo D_800D3078 = {
     0x7C,
 };
 
-/*800D30A8*/ static ModelInfoUnkStruct1 D_800D30A8 = {0x74E1F4, NULL, 0, 0xA2C};
+/*800D30A8*/ static ModelVertexInfo D_800D30A8 = {(s32)models_ACDEE0_bin+0x5C94, NULL, 0, 0xA2C};
 
 /*800D30B4*/
 ModelInfo D_800D30B4 = {
-    0x748560,
+    (s32)models_ACDEE0_bin,
     NULL,
     0x5C94,
     0x5C94,
@@ -36891,11 +36892,11 @@ ModelInfo D_800D30B4 = {
     0x7C,
 };
 
-/*800D30E4*/ static ModelInfoUnkStruct1 D_800D30E4 = {0x7548B4, NULL, 0, 0xA2C};
+/*800D30E4*/ static ModelVertexInfo D_800D30E4 = {(s32)models_AD45A0_bin+0x5C94, NULL, 0, 0xA2C};
 
 /*800D30F0*/
 ModelInfo D_800D30F0 = {
-    0x74EC20,
+    (s32)models_AD45A0_bin,
     NULL,
     0x5C94,
     0x5C94,
@@ -36916,11 +36917,11 @@ ModelInfo D_800D30F0 = {
     0x7B,
 };
 
-/*800D3120*/ static ModelInfoUnkStruct1 D_800D3120 = {0x757FDC, NULL, 0, 0x36C};
+/*800D3120*/ static ModelVertexInfo D_800D3120 = {(s32)models_ADAC60_bin+0x2CFC, NULL, 0, 0x36C};
 
 /*800D312C*/
 ModelInfo D_800D312C = {
-    0x7552E0,
+    (s32)models_ADAC60_bin,
     NULL,
     0x2CFC,
     0x2CFC,
@@ -36941,11 +36942,11 @@ ModelInfo D_800D312C = {
     0xBD,
 };
 
-/*800D315C*/ static ModelInfoUnkStruct1 D_800D315C = {0x758CC0, NULL, 0, 0xF0};
+/*800D315C*/ static ModelVertexInfo D_800D315C = {(s32)models_ADDCD0_bin+0x970, NULL, 0, 0xF0};
 
 /*800D3168*/
 ModelInfo D_800D3168 = {
-    0x758350,
+    (s32)models_ADDCD0_bin,
     NULL,
     0x970,
     0x970,
@@ -36966,11 +36967,11 @@ ModelInfo D_800D3168 = {
     0x63,
 };
 
-/*800D3198*/ static ModelInfoUnkStruct1 D_800D3198 = {0x759FA8, NULL, 0, 0xC0};
+/*800D3198*/ static ModelVertexInfo D_800D3198 = {(s32)models_ADE730_bin+0x11F8, NULL, 0, 0xC0};
 
 /*800D31A4*/
 ModelInfo D_800D31A4 = {
-    0x758DB0,
+    (s32)models_ADE730_bin,
     NULL,
     0x11F8,
     0x11F8,
@@ -36991,11 +36992,11 @@ ModelInfo D_800D31A4 = {
     0x63,
 };
 
-/*800D31D4*/ static ModelInfoUnkStruct1 D_800D31D4 = {0x75AD64, NULL, 0, 0x144};
+/*800D31D4*/ static ModelVertexInfo D_800D31D4 = {(s32)models_ADF9F0_bin+0xCF4, NULL, 0, 0x144};
 
 /*800D31E0*/
 ModelInfo D_800D31E0 = {
-    0x75A070,
+    (s32)models_ADF9F0_bin,
     NULL,
     0xCF4,
     0xCF4,
@@ -37016,11 +37017,11 @@ ModelInfo D_800D31E0 = {
     0xE9,
 };
 
-/*800D3210*/ static ModelInfoUnkStruct1 D_800D3210 = {0x75BCC8, NULL, 0, 0x1B6};
+/*800D3210*/ static ModelVertexInfo D_800D3210 = {(s32)models_AE0830_bin+0xE18, NULL, 0, 0x1B6};
 
 /*800D321C*/
 ModelInfo D_800D321C = {
-    0x75AEB0,
+    (s32)models_AE0830_bin,
     NULL,
     0xE16,
     0xE16,
@@ -37041,11 +37042,11 @@ ModelInfo D_800D321C = {
     0xA4,
 };
 
-/*800D324C*/ static ModelInfoUnkStruct1 D_800D324C = {0x786BE4, NULL, 0, 0x5A};
+/*800D324C*/ static ModelVertexInfo D_800D324C = {(s32)models_B0BC60_bin+0x904, NULL, 0, 0x5A};
 
 /*800D3258*/
 ModelInfo D_800D3258 = {
-    0x7862E0,
+    (s32)models_B0BC60_bin,
     NULL,
     0x902,
     0x902,
@@ -37066,11 +37067,11 @@ ModelInfo D_800D3258 = {
     0x138,
 };
 
-/*800D3288*/ static ModelInfoUnkStruct1 D_800D3288 = {0x78CF70, NULL, 0, 0x840};
+/*800D3288*/ static ModelVertexInfo D_800D3288 = {(s32)models_B0C5C0_bin+0x6330, NULL, 0, 0x840};
 
 /*800D3294*/
 ModelInfo D_800D3294 = {
-    0x786C40,
+    (s32)models_B0C5C0_bin,
     NULL,
     0x6330,
     0x6330,
@@ -37091,11 +37092,11 @@ ModelInfo D_800D3294 = {
     0x66,
 };
 
-/*800D32C4*/ static ModelInfoUnkStruct1 D_800D32C4 = {0x793024, NULL, 0, 0x72C};
+/*800D32C4*/ static ModelVertexInfo D_800D32C4 = {(s32)models_B13130_bin+0x5874, NULL, 0, 0x72C};
 
 /*800D32D0*/
 ModelInfo D_800D32D0 = {
-    0x78D7B0,
+    (s32)models_B13130_bin,
     NULL,
     0x5874,
     0x5874,
@@ -37116,11 +37117,11 @@ ModelInfo D_800D32D0 = {
     0x66,
 };
 
-/*800D3300*/ static ModelInfoUnkStruct1 D_800D3300 = {0x79A6D0, NULL, 0, 0x9DE};
+/*800D3300*/ static ModelVertexInfo D_800D3300 = {(s32)models_B190D0_bin+0x6F80, NULL, 0, 0x9DE};
 
 /*800D330C*/
 ModelInfo D_800D330C = {
-    0x793750,
+    (s32)models_B190D0_bin,
     NULL,
     0x6F7E,
     0x6F7E,
@@ -37141,11 +37142,11 @@ ModelInfo D_800D330C = {
     0x10D,
 };
 
-/*800D333C*/ static ModelInfoUnkStruct1 D_800D333C = {0x7A13E0, NULL, 0, 0x840};
+/*800D333C*/ static ModelVertexInfo D_800D333C = {(s32)models_B20A30_bin+0x6330, NULL, 0, 0x840};
 
 /*800D3348*/
 ModelInfo D_800D3348 = {
-    0x79B0B0,
+    (s32)models_B20A30_bin,
     NULL,
     0x6330,
     0x6330,
@@ -37166,11 +37167,11 @@ ModelInfo D_800D3348 = {
     0x66,
 };
 
-/*800D3378*/ static ModelInfoUnkStruct1 D_800D3378 = {0x7A7E2C, NULL, 0, 0x7DA};
+/*800D3378*/ static ModelVertexInfo D_800D3378 = {(s32)models_B275A0_bin+0x620C, NULL, 0, 0x7DA};
 
 /*800D3384*/
 ModelInfo D_800D3384 = {
-    0x7A1C20,
+    (s32)models_B275A0_bin,
     NULL,
     0x620A,
     0x620A,
@@ -37191,11 +37192,11 @@ ModelInfo D_800D3384 = {
     0x66,
 };
 
-/*800D33B4*/ static ModelInfoUnkStruct1 D_800D33B4 = {0x7AFCBC, NULL, 0, 0x9B4};
+/*800D33B4*/ static ModelVertexInfo D_800D33B4 = {(s32)models_B2DF90_bin+0x76AC, NULL, 0, 0x9B4};
 
 /*800D33C0*/
 ModelInfo D_800D33C0 = {
-    0x7A8610,
+    (s32)models_B2DF90_bin,
     NULL,
     0x76AC,
     0x76AC,
@@ -37216,11 +37217,11 @@ ModelInfo D_800D33C0 = {
     0x10D,
 };
 
-/*800D33F0*/ static ModelInfoUnkStruct1 D_800D33F0 = {0x7B69A0, NULL, 0, 0x840};
+/*800D33F0*/ static ModelVertexInfo D_800D33F0 = {(s32)models_B35FF0_bin+0x6330, NULL, 0, 0x840};
 
 /*800D33FC*/
 ModelInfo D_800D33FC = {
-    0x7B0670,
+    (s32)models_B35FF0_bin,
     NULL,
     0x6330,
     0x6330,
@@ -37241,11 +37242,11 @@ ModelInfo D_800D33FC = {
     0x66,
 };
 
-/*800D342C*/ static ModelInfoUnkStruct1 D_800D342C = {0x7BD3EC, NULL, 0, 0x7DA};
+/*800D342C*/ static ModelVertexInfo D_800D342C = {(s32)models_B3CB60_bin+0x620C, NULL, 0, 0x7DA};
 
 /*800D3438*/
 ModelInfo D_800D3438 = {
-    0x7B71E0,
+    (s32)models_B3CB60_bin,
     NULL,
     0x620A,
     0x620A,
@@ -37266,11 +37267,11 @@ ModelInfo D_800D3438 = {
     0x66,
 };
 
-/*800D3468*/ static ModelInfoUnkStruct1 D_800D3468 = {0x7C527C, NULL, 0, 0x9B4};
+/*800D3468*/ static ModelVertexInfo D_800D3468 = {(s32)models_B43550_bin+0x76AC, NULL, 0, 0x9B4};
 
 /*800D3474*/
 ModelInfo D_800D3474 = {
-    0x7BDBD0,
+    (s32)models_B43550_bin,
     NULL,
     0x76AC,
     0x76AC,
@@ -37291,11 +37292,11 @@ ModelInfo D_800D3474 = {
     0x10D,
 };
 
-/*800D34A4*/ static ModelInfoUnkStruct1 D_800D34A4 = {0x7CB11C, NULL, 0, 0xA32};
+/*800D34A4*/ static ModelVertexInfo D_800D34A4 = {(s32)models_B4B5B0_bin+0x54EC, NULL, 0, 0xA32};
 
 /*800D34B0*/
 ModelInfo D_800D34B0 = {
-    0x7C5C30,
+    (s32)models_B4B5B0_bin,
     NULL,
     0x54EA,
     0x54EA,
@@ -37316,11 +37317,11 @@ ModelInfo D_800D34B0 = {
     0x138,
 };
 
-/*800D34E0*/ static ModelInfoUnkStruct1 D_800D34E0 = {0x7D0B4C, NULL, 0, 0xA02};
+/*800D34E0*/ static ModelVertexInfo D_800D34E0 = {(s32)models_B514D0_bin+0x4FFC, NULL, 0, 0xA02};
 
 /*800D34EC*/
 ModelInfo D_800D34EC = {
-    0x7CBB50,
+    (s32)models_B514D0_bin,
     NULL,
     0x4FFA,
     0x4FFA,
@@ -37341,11 +37342,11 @@ ModelInfo D_800D34EC = {
     0x138,
 };
 
-/*800D351C*/ static ModelInfoUnkStruct1 D_800D351C = {0x7D65C0, NULL, 0, 0xA56};
+/*800D351C*/ static ModelVertexInfo D_800D351C = {(s32)models_B56ED0_bin+0x5070, NULL, 0, 0xA56};
 
 /*800D3528*/
 ModelInfo D_800D3528 = {
-    0x7D1550,
+    (s32)models_B56ED0_bin,
     NULL,
     0x506E,
     0x506E,
@@ -37366,11 +37367,11 @@ ModelInfo D_800D3528 = {
     0x138,
 };
 
-/*800D3558*/ static ModelInfoUnkStruct1 D_800D3558 = {0x7DC4DC, NULL, 0, 0xA74};
+/*800D3558*/ static ModelVertexInfo D_800D3558 = {(s32)models_B5C9A0_bin+0x54BC, NULL, 0, 0xA74};
 
 /*800D3564*/
 ModelInfo D_800D3564 = {
-    0x7D7020,
+    (s32)models_B5C9A0_bin,
     NULL,
     0x54BC,
     0x54BC,
@@ -37391,11 +37392,11 @@ ModelInfo D_800D3564 = {
     0x138,
 };
 
-/*800D3594*/ static ModelInfoUnkStruct1 D_800D3594 = {0x7E2040, NULL, 0, 0xA38};
+/*800D3594*/ static ModelVertexInfo D_800D3594 = {(s32)models_B628D0_bin+0x50F0, NULL, 0, 0xA38};
 
 /*800D35A0*/
 ModelInfo D_800D35A0 = {
-    0x7DCF50,
+    (s32)models_B628D0_bin,
     NULL,
     0x50F0,
     0x50F0,
@@ -37416,11 +37417,11 @@ ModelInfo D_800D35A0 = {
     0x138,
 };
 
-/*800D35D0*/ static ModelInfoUnkStruct1 D_800D35D0 = {0x7E3D7C, NULL, 0, 0x132};
+/*800D35D0*/ static ModelVertexInfo D_800D35D0 = {(s32)models_B68400_bin+0x12FC, NULL, 0, 0x132};
 
 /*800D35DC*/
 ModelInfo D_800D35DC = {
-    0x7E2A80,
+    (s32)models_B68400_bin,
     NULL,
     0x12FA,
     0x12FA,
@@ -37441,11 +37442,11 @@ ModelInfo D_800D35DC = {
     0xD5,
 };
 
-/*800D360C*/ static ModelInfoUnkStruct1 D_800D360C = {0x7E9A60, NULL, 0, 0x840};
+/*800D360C*/ static ModelVertexInfo D_800D360C = {(s32)models_B69830_bin+0x5BB0, NULL, 0, 0x840};
 
 /*800D3618*/
 ModelInfo D_800D3618 = {
-    0x7E3EB0,
+    (s32)models_B69830_bin,
     NULL,
     0x5BB0,
     0x5BB0,
@@ -37466,11 +37467,11 @@ ModelInfo D_800D3618 = {
     0x66,
 };
 
-/*800D3648*/ static ModelInfoUnkStruct1 D_800D3648 = {0x7F05D0, NULL, 0, 0x840};
+/*800D3648*/ static ModelVertexInfo D_800D3648 = {(s32)models_B6FC20_bin+0x6330, NULL, 0, 0x840};
 
 /*800D3654*/
 ModelInfo D_800D3654 = {
-    0x7EA2A0,
+    (s32)models_B6FC20_bin,
     NULL,
     0x6330,
     0x6330,
@@ -37491,11 +37492,11 @@ ModelInfo D_800D3654 = {
     0x66,
 };
 
-/*800D3684*/ static ModelInfoUnkStruct1 D_800D3684 = {0x7F7D90, NULL, 0, 0x9DE};
+/*800D3684*/ static ModelVertexInfo D_800D3684 = {(s32)models_B76790_bin+0x6F80, NULL, 0, 0x9DE};
 
 /*800D3690*/
 ModelInfo D_800D3690 = {
-    0x7F0E10,
+    (s32)models_B76790_bin,
     NULL,
     0x6F7E,
     0x6F7E,
@@ -37516,11 +37517,11 @@ ModelInfo D_800D3690 = {
     0x10D,
 };
 
-/*800D36C0*/ static ModelInfoUnkStruct1 D_800D36C0 = {0x7F89D0, NULL, 0, 0x18};
+/*800D36C0*/ static ModelVertexInfo D_800D36C0 = {(s32)models_B7E0F0_bin+0x260, NULL, 0, 0x18};
 
 /*800D36CC*/
 ModelInfo D_800D36CC = {
-    0x7F8770,
+    (s32)models_B7E0F0_bin,
     NULL,
     0x260,
     0x260,
@@ -37541,11 +37542,11 @@ ModelInfo D_800D36CC = {
     0xB8,
 };
 
-/*800D36FC*/ static ModelInfoUnkStruct1 D_800D36FC = {0x7FA478, NULL, 0, 0x10E};
+/*800D36FC*/ static ModelVertexInfo D_800D36FC = {(s32)models_B7E370_bin+0x1A88, NULL, 0, 0x10E};
 
 /*800D3708*/
 ModelInfo D_800D3708 = {
-    0x7F89F0,
+    (s32)models_B7E370_bin,
     NULL,
     0x1A86,
     0x1A86,
@@ -37566,11 +37567,11 @@ ModelInfo D_800D3708 = {
     0x31,
 };
 
-/*800D3738*/ static ModelInfoUnkStruct1 D_800D3738 = {0x7FC624, NULL, 0, 0x402};
+/*800D3738*/ static ModelVertexInfo D_800D3738 = {(s32)models_B7FF10_bin+0x2094, NULL, 0, 0x402};
 
 /*800D3744*/
 ModelInfo D_800D3744 = {
-    0x7FA590,
+    (s32)models_B7FF10_bin,
     NULL,
     0x2092,
     0x2092,
@@ -37591,11 +37592,11 @@ ModelInfo D_800D3744 = {
     0x82,
 };
 
-/*800D3774*/ static ModelInfoUnkStruct1 D_800D3774 = {0x7FDCA4, NULL, 0, 0xE4};
+/*800D3774*/ static ModelVertexInfo D_800D3774 = {(s32)models_B823B0_bin+0x1274, NULL, 0, 0xE4};
 
 /*800D3780*/
 ModelInfo D_800D3780 = {
-    0x7FCA30,
+    (s32)models_B823B0_bin,
     NULL,
     0x1274,
     0x1274,
@@ -37616,11 +37617,11 @@ ModelInfo D_800D3780 = {
     0xDD,
 };
 
-/*800D37B0*/ static ModelInfoUnkStruct1 D_800D37B0 = {0x7FEE80, NULL, 0, 0x13E};
+/*800D37B0*/ static ModelVertexInfo D_800D37B0 = {(s32)models_B83710_bin+0x10F0, NULL, 0, 0x13E};
 
 /*800D37BC*/
 ModelInfo D_800D37BC = {
-    0x7FDD90,
+    (s32)models_B83710_bin,
     NULL,
     0x10EE,
     0x10EE,
@@ -37641,11 +37642,11 @@ ModelInfo D_800D37BC = {
     0x28,
 };
 
-/*800D37EC*/ static ModelInfoUnkStruct1 D_800D37EC = {0x8001A4, NULL, 0, 0x2DC};
+/*800D37EC*/ static ModelVertexInfo D_800D37EC = {(s32)models_B84940_bin+0x11E4, NULL, 0, 0x2DC};
 
 /*800D37F8*/
 ModelInfo D_800D37F8 = {
-    0x7FEFC0,
+    (s32)models_B84940_bin,
     NULL,
     0x11E4,
     0x11E4,
@@ -37666,11 +37667,11 @@ ModelInfo D_800D37F8 = {
     0x5D,
 };
 
-/*800D3828*/ static ModelInfoUnkStruct1 D_800D3828 = {0x800F70, NULL, 0, 0x4E};
+/*800D3828*/ static ModelVertexInfo D_800D3828 = {(s32)models_B85E00_bin+0xAF0, NULL, 0, 0x4E};
 
 /*800D3834*/
 ModelInfo D_800D3834 = {
-    0x800480,
+    (s32)models_B85E00_bin,
     NULL,
     0xAEE,
     0xAEE,
@@ -37691,11 +37692,11 @@ ModelInfo D_800D3834 = {
     0x16,
 };
 
-/*800D3864*/ static ModelInfoUnkStruct1 D_800D3864 = {0x801F2C, NULL, 0, 0x21C};
+/*800D3864*/ static ModelVertexInfo D_800D3864 = {(s32)models_B86940_bin+0xF6C, NULL, 0, 0x21C};
 
 /*800D3870*/
 ModelInfo D_800D3870 = {
-    0x800FC0,
+    (s32)models_B86940_bin,
     NULL,
     0xF6C,
     0xF6C,
@@ -37716,11 +37717,11 @@ ModelInfo D_800D3870 = {
     0x72,
 };
 
-/*800D38A0*/ static ModelInfoUnkStruct1 D_800D38A0 = {0x8031CC, NULL, 0, 0x2B2};
+/*800D38A0*/ static ModelVertexInfo D_800D38A0 = {(s32)models_B87AD0_bin+0x107C, NULL, 0, 0x2B2};
 
 /*800D38AC*/
 ModelInfo D_800D38AC = {
-    0x802150,
+    (s32)models_B87AD0_bin,
     NULL,
     0x107A,
     0x107A,
@@ -37741,11 +37742,11 @@ ModelInfo D_800D38AC = {
     0x3C,
 };
 
-/*800D38DC*/ static ModelInfoUnkStruct1 D_800D38DC = {0x8042E0, NULL, 0, 0x180};
+/*800D38DC*/ static ModelVertexInfo D_800D38DC = {(s32)models_B88E00_bin+0xE60, NULL, 0, 0x180};
 
 /*800D38E8*/
 ModelInfo D_800D38E8 = {
-    0x803480,
+    (s32)models_B88E00_bin,
     NULL,
     0xE60,
     0xE60,
@@ -37766,11 +37767,11 @@ ModelInfo D_800D38E8 = {
     0x9E,
 };
 
-/*800D3918*/ static ModelInfoUnkStruct1 D_800D3918 = {0x805A64, NULL, 0, 0x14A};
+/*800D3918*/ static ModelVertexInfo D_800D3918 = {(s32)models_B89DE0_bin+0x1604, NULL, 0, 0x14A};
 
 /*800D3924*/
 ModelInfo D_800D3924 = {
-    0x804460,
+    (s32)models_B89DE0_bin,
     NULL,
     0x1602,
     0x1602,
@@ -37791,11 +37792,11 @@ ModelInfo D_800D3924 = {
     0x11,
 };
 
-/*800D3954*/ static ModelInfoUnkStruct1 D_800D3954 = {0x8071CC, NULL, 0, 0x15C};
+/*800D3954*/ static ModelVertexInfo D_800D3954 = {(s32)models_B8B530_bin+0x161C, NULL, 0, 0x15C};
 
 /*800D3960*/
 ModelInfo D_800D3960 = {
-    0x805BB0,
+    (s32)models_B8B530_bin,
     NULL,
     0x161C,
     0x161C,
@@ -37816,11 +37817,11 @@ ModelInfo D_800D3960 = {
     0x14,
 };
 
-/*800D3990*/ static ModelInfoUnkStruct1 D_800D3990 = {0x809C70, NULL, 0, 0x2D0};
+/*800D3990*/ static ModelVertexInfo D_800D3990 = {(s32)models_B8CCB0_bin+0x2940, NULL, 0, 0x2D0};
 
 /*800D399C*/
 ModelInfo D_800D399C = {
-    0x807330,
+    (s32)models_B8CCB0_bin,
     NULL,
     0x2940,
     0x2940,
@@ -37841,11 +37842,11 @@ ModelInfo D_800D399C = {
     0x77,
 };
 
-/*800D39CC*/ static ModelInfoUnkStruct1 D_800D39CC = {0x80BFE4, NULL, 0, 0x282};
+/*800D39CC*/ static ModelVertexInfo D_800D39CC = {(s32)models_B8F8C0_bin+0x20A4, NULL, 0, 0x282};
 
 /*800D39D8*/
 ModelInfo D_800D39D8 = {
-    0x809F40,
+    (s32)models_B8F8C0_bin,
     NULL,
     0x20A2,
     0x20A2,
@@ -37866,11 +37867,11 @@ ModelInfo D_800D39D8 = {
     0x21,
 };
 
-/*800D3A08*/ static ModelInfoUnkStruct1 D_800D3A08 = {0x80CD04, NULL, 0, 0xD2};
+/*800D3A08*/ static ModelVertexInfo D_800D3A08 = {(s32)models_B91BF0_bin+0xA94, NULL, 0, 0xD2};
 
 /*800D3A14*/
 ModelInfo D_800D3A14 = {
-    0x80C270,
+    (s32)models_B91BF0_bin,
     NULL,
     0xA92,
     0xA92,
@@ -37891,11 +37892,11 @@ ModelInfo D_800D3A14 = {
     0x3E,
 };
 
-/*800D3A44*/ static ModelInfoUnkStruct1 D_800D3A44 = {0x80E228, NULL, 0, 0xDE};
+/*800D3A44*/ static ModelVertexInfo D_800D3A44 = {(s32)models_B92760_bin+0x1448, NULL, 0, 0xDE};
 
 /*800D3A50*/
 ModelInfo D_800D3A50 = {
-    0x80CDE0,
+    (s32)models_B92760_bin,
     NULL,
     0x1446,
     0x1446,
@@ -37916,11 +37917,11 @@ ModelInfo D_800D3A50 = {
     0x4D,
 };
 
-/*800D3A80*/ static ModelInfoUnkStruct1 D_800D3A80 = {0x80FC34, NULL, 0, 0x282};
+/*800D3A80*/ static ModelVertexInfo D_800D3A80 = {(s32)models_B93C90_bin+0x1924, NULL, 0, 0x282};
 
 /*800D3A8C*/
 ModelInfo D_800D3A8C = {
-    0x80E310,
+    (s32)models_B93C90_bin,
     NULL,
     0x1922,
     0x1922,
@@ -37941,11 +37942,11 @@ ModelInfo D_800D3A8C = {
     0xA5,
 };
 
-/*800D3ABC*/ static ModelInfoUnkStruct1 D_800D3ABC = {0x811118, NULL, 0, 0x150};
+/*800D3ABC*/ static ModelVertexInfo D_800D3ABC = {(s32)models_B95840_bin+0x1258, NULL, 0, 0x150};
 
 /*800D3AC8*/
 ModelInfo D_800D3AC8 = {
-    0x80FEC0,
+    (s32)models_B95840_bin,
     NULL,
     0x1258,
     0x1258,
@@ -37966,11 +37967,11 @@ ModelInfo D_800D3AC8 = {
     0xA1,
 };
 
-/*800D3AF8*/ static ModelInfoUnkStruct1 D_800D3AF8 = {0x812BF0, NULL, 0, 0x4F8};
+/*800D3AF8*/ static ModelVertexInfo D_800D3AF8 = {(s32)models_B96BF0_bin+0x1980, NULL, 0, 0x4F8};
 
 /*800D3B04*/
 ModelInfo D_800D3B04 = {
-    0x811270,
+    (s32)models_B96BF0_bin,
     NULL,
     0x1980,
     0x1980,
@@ -37991,11 +37992,11 @@ ModelInfo D_800D3B04 = {
     0x55,
 };
 
-/*800D3B34*/ static ModelInfoUnkStruct1 D_800D3B34 = {0x813CD0, NULL, 0, 0x4B0};
+/*800D3B34*/ static ModelVertexInfo D_800D3B34 = {(s32)models_B98A70_bin+0xBE0, NULL, 0, 0x4B0};
 
 /*800D3B40*/
 ModelInfo D_800D3B40 = {
-    0x8130F0,
+    (s32)models_B98A70_bin,
     NULL,
     0xBE0,
     0xBE0,
@@ -38016,11 +38017,11 @@ ModelInfo D_800D3B40 = {
     0,
 };
 
-/*800D3B70*/ static ModelInfoUnkStruct1 D_800D3B70 = {0x8164B0, NULL, 0, 0x1020};
+/*800D3B70*/ static ModelVertexInfo D_800D3B70 = {(s32)models_B99B00_bin+0x2330, NULL, 0, 0x1020};
 
 /*800D3B7C*/
 ModelInfo D_800D3B7C = {
-    0x814180,
+    (s32)models_B99B00_bin,
     NULL,
     0x2330,
     0x2330,
@@ -38041,11 +38042,11 @@ ModelInfo D_800D3B7C = {
     0,
 };
 
-/*800D3BAC*/ static ModelInfoUnkStruct1 D_800D3BAC = {0x817E08, NULL, 0, 0x90};
+/*800D3BAC*/ static ModelVertexInfo D_800D3BAC = {(s32)models_B9CE50_bin+0x938, NULL, 0, 0x90};
 
 /*800D3BB8*/
 ModelInfo D_800D3BB8 = {
-    0x8174D0,
+    (s32)models_B9CE50_bin,
     NULL,
     0x938,
     0x938,
@@ -38066,11 +38067,11 @@ ModelInfo D_800D3BB8 = {
     -0x32,
 };
 
-/*800D3BE8*/ static ModelInfoUnkStruct1 D_800D3BE8 = {0x818190, NULL, 0, 0x48};
+/*800D3BE8*/ static ModelVertexInfo D_800D3BE8 = {(s32)models_B9D820_bin+0x2F0, NULL, 0, 0x48};
 
 /*800D3BF4*/
 ModelInfo D_800D3BF4 = {
-    0x817EA0,
+    (s32)models_B9D820_bin,
     NULL,
     0x2F0,
     0x2F0,
@@ -38091,11 +38092,11 @@ ModelInfo D_800D3BF4 = {
     0x13,
 };
 
-/*800D3C24*/ static ModelInfoUnkStruct1 D_800D3C24 = {0x818488, NULL, 0, 0x30};
+/*800D3C24*/ static ModelVertexInfo D_800D3C24 = {(s32)models_B9DB60_bin+0x2A8, NULL, 0, 0x30};
 
 /*800D3C30*/
 ModelInfo D_800D3C30 = {
-    0x8181E0,
+    (s32)models_B9DB60_bin,
     NULL,
     0x2A8,
     0x2A8,
@@ -38116,11 +38117,11 @@ ModelInfo D_800D3C30 = {
     6,
 };
 
-/*800D3C60*/ static ModelInfoUnkStruct1 D_800D3C60 = {0x8187B0, NULL, 0, 0x48};
+/*800D3C60*/ static ModelVertexInfo D_800D3C60 = {(s32)models_B9DE40_bin+0x2F0, NULL, 0, 0x48};
 
 /*800D3C6C*/
 ModelInfo D_800D3C6C = {
-    0x8184C0,
+    (s32)models_B9DE40_bin,
     NULL,
     0x2F0,
     0x2F0,
@@ -38141,11 +38142,11 @@ ModelInfo D_800D3C6C = {
     0xF,
 };
 
-/*800D3C9C*/ static ModelInfoUnkStruct1 D_800D3C9C = {0x818AA8, NULL, 0, 0x30};
+/*800D3C9C*/ static ModelVertexInfo D_800D3C9C = {(s32)models_B9E180_bin+0x2A8, NULL, 0, 0x30};
 
 /*800D3CA8*/
 ModelInfo D_800D3CA8 = {
-    0x818800,
+    (s32)models_B9E180_bin,
     NULL,
     0x2A8,
     0x2A8,
@@ -38166,11 +38167,11 @@ ModelInfo D_800D3CA8 = {
     0x15,
 };
 
-/*800D3CD8*/ static ModelInfoUnkStruct1 D_800D3CD8 = {0x819BAC, NULL, 0, 0x114};
+/*800D3CD8*/ static ModelVertexInfo D_800D3CD8 = {(s32)models_B9E460_bin+0x10CC, NULL, 0, 0x114};
 
 /*800D3CE4*/
 ModelInfo D_800D3CE4 = {
-    0x818AE0,
+    (s32)models_B9E460_bin,
     NULL,
     0x10CC,
     0x10CC,
@@ -38191,11 +38192,11 @@ ModelInfo D_800D3CE4 = {
     0,
 };
 
-/*800D3D14*/ static ModelInfoUnkStruct1 D_800D3D14 = {0x81B578, NULL, 0, 0x4E0};
+/*800D3D14*/ static ModelVertexInfo D_800D3D14 = {(s32)models_B9F640_bin+0x18B8, NULL, 0, 0x4E0};
 
 /*800D3D20*/
 ModelInfo D_800D3D20 = {
-    0x819CC0,
+    (s32)models_B9F640_bin,
     NULL,
     0x18B8,
     0x18B8,
@@ -38216,11 +38217,11 @@ ModelInfo D_800D3D20 = {
     0xA9,
 };
 
-/*800D3D50*/ static ModelInfoUnkStruct1 D_800D3D50 = {0x81E48C, NULL, 0, 0xBA};
+/*800D3D50*/ static ModelVertexInfo D_800D3D50 = {(s32)models_BA13E0_bin+0x2A2C, NULL, 0, 0xBA};
 
 /*800D3D5C*/
 ModelInfo D_800D3D5C = {
-    0x81BA60,
+    (s32)models_BA13E0_bin,
     NULL,
     0x2A2A,
     0x2A2A,
@@ -38241,11 +38242,11 @@ ModelInfo D_800D3D5C = {
     0x84,
 };
 
-/*800D3D8C*/ static ModelInfoUnkStruct1 D_800D3D8C = {0x820F7C, NULL, 0, 0xBA};
+/*800D3D8C*/ static ModelVertexInfo D_800D3D8C = {(s32)models_BA3ED0_bin+0x2A2C, NULL, 0, 0xBA};
 
 /*800D3D98*/
 ModelInfo D_800D3D98 = {
-    0x81E550,
+    (s32)models_BA3ED0_bin,
     NULL,
     0x2A2A,
     0x2A2A,
@@ -38266,11 +38267,11 @@ ModelInfo D_800D3D98 = {
     0x84,
 };
 
-/*800D3DC8*/ static ModelInfoUnkStruct1 D_800D3DC8 = {0x823A6C, NULL, 0, 0xBA};
+/*800D3DC8*/ static ModelVertexInfo D_800D3DC8 = {(s32)models_BA69C0_bin+0x2A2C, NULL, 0, 0xBA};
 
 /*800D3DD4*/
 ModelInfo D_800D3DD4 = {
-    0x821040,
+    (s32)models_BA69C0_bin,
     NULL,
     0x2A2A,
     0x2A2A,
@@ -38291,11 +38292,11 @@ ModelInfo D_800D3DD4 = {
     0x84,
 };
 
-/*800D3E04*/ static ModelInfoUnkStruct1 D_800D3E04 = {0x82655C, NULL, 0, 0xBA};
+/*800D3E04*/ static ModelVertexInfo D_800D3E04 = {(s32)models_BA94B0_bin+0x2A2C, NULL, 0, 0xBA};
 
 /*800D3E10*/
 ModelInfo D_800D3E10 = {
-    0x823B30,
+    (s32)models_BA94B0_bin,
     NULL,
     0x2A2A,
     0x2A2A,
@@ -38316,11 +38317,11 @@ ModelInfo D_800D3E10 = {
     0x84,
 };
 
-/*800D3E40*/ static ModelInfoUnkStruct1 D_800D3E40 = {0x829690, NULL, 0, 0x1B0};
+/*800D3E40*/ static ModelVertexInfo D_800D3E40 = {(s32)models_BABFA0_bin+0x3070, NULL, 0, 0x1B0};
 
 /*800D3E4C*/
 ModelInfo D_800D3E4C = {
-    0x826620,
+    (s32)models_BABFA0_bin,
     NULL,
     0x3070,
     0x3070,
@@ -38341,11 +38342,11 @@ ModelInfo D_800D3E4C = {
     0x6E,
 };
 
-/*800D3E7C*/ static ModelInfoUnkStruct1 D_800D3E7C = {0x82C8B0, NULL, 0, 0x1B0};
+/*800D3E7C*/ static ModelVertexInfo D_800D3E7C = {(s32)models_BAF1C0_bin+0x3070, NULL, 0, 0x1B0};
 
 /*800D3E88*/
 ModelInfo D_800D3E88 = {
-    0x829840,
+    (s32)models_BAF1C0_bin,
     NULL,
     0x3070,
     0x3070,
@@ -38366,11 +38367,11 @@ ModelInfo D_800D3E88 = {
     0x6E,
 };
 
-/*800D3EB8*/ static ModelInfoUnkStruct1 D_800D3EB8 = {0x82FAD0, NULL, 0, 0x1B0};
+/*800D3EB8*/ static ModelVertexInfo D_800D3EB8 = {(s32)models_BB23E0_bin+0x3070, NULL, 0, 0x1B0};
 
 /*800D3EC4*/
 ModelInfo D_800D3EC4 = {
-    0x82CA60,
+    (s32)models_BB23E0_bin,
     NULL,
     0x3070,
     0x3070,
@@ -38391,11 +38392,11 @@ ModelInfo D_800D3EC4 = {
     0x6E,
 };
 
-/*800D3EF4*/ static ModelInfoUnkStruct1 D_800D3EF4 = {0x832CF0, NULL, 0, 0x1B0};
+/*800D3EF4*/ static ModelVertexInfo D_800D3EF4 = {(s32)models_BB5600_bin+0x3070, NULL, 0, 0x1B0};
 
 /*800D3F00*/
 ModelInfo D_800D3F00 = {
-    0x82FC80,
+    (s32)models_BB5600_bin,
     NULL,
     0x3070,
     0x3070,
@@ -38416,11 +38417,11 @@ ModelInfo D_800D3F00 = {
     0x6E,
 };
 
-/*800D3F30*/ static ModelInfoUnkStruct1 D_800D3F30 = {0x835BD0, NULL, 0, 0x270};
+/*800D3F30*/ static ModelVertexInfo D_800D3F30 = {(s32)models_BB8820_bin+0x2D30, NULL, 0, 0x270};
 
 /*800D3F3C*/
 ModelInfo D_800D3F3C = {
-    0x832EA0,
+    (s32)models_BB8820_bin,
     NULL,
     0x2D30,
     0x2D30,
@@ -38441,11 +38442,11 @@ ModelInfo D_800D3F3C = {
     0x114,
 };
 
-/*800D3F6C*/ static ModelInfoUnkStruct1 D_800D3F6C = {0x838B70, NULL, 0, 0x270};
+/*800D3F6C*/ static ModelVertexInfo D_800D3F6C = {(s32)models_BBB7C0_bin+0x2D30, NULL, 0, 0x270};
 
 /*800D3F78*/
 ModelInfo D_800D3F78 = {
-    0x835E40,
+    (s32)models_BBB7C0_bin,
     NULL,
     0x2D30,
     0x2D30,
@@ -38466,11 +38467,11 @@ ModelInfo D_800D3F78 = {
     0x114,
 };
 
-/*800D3FA8*/ static ModelInfoUnkStruct1 D_800D3FA8 = {0x83BB10, NULL, 0, 0x270};
+/*800D3FA8*/ static ModelVertexInfo D_800D3FA8 = {(s32)models_BBE760_bin+0x2D30, NULL, 0, 0x270};
 
 /*800D3FB4*/
 ModelInfo D_800D3FB4 = {
-    0x838DE0,
+    (s32)models_BBE760_bin,
     NULL,
     0x2D30,
     0x2D30,
@@ -38491,11 +38492,11 @@ ModelInfo D_800D3FB4 = {
     0x114,
 };
 
-/*800D3FE4*/ static ModelInfoUnkStruct1 D_800D3FE4 = {0x83EAB0, NULL, 0, 0x270};
+/*800D3FE4*/ static ModelVertexInfo D_800D3FE4 = {(s32)models_BC1700_bin+0x2D30, NULL, 0, 0x270};
 
 /*800D3FF0*/
 ModelInfo D_800D3FF0 = {
-    0x83BD80,
+    (s32)models_BC1700_bin,
     NULL,
     0x2D30,
     0x2D30,
@@ -38516,11 +38517,11 @@ ModelInfo D_800D3FF0 = {
     0x114,
 };
 
-/*800D4020*/ static ModelInfoUnkStruct1 D_800D4020 = {0x841A50, NULL, 0, 0x270};
+/*800D4020*/ static ModelVertexInfo D_800D4020 = {(s32)models_BC46A0_bin+0x2D30, NULL, 0, 0x270};
 
 /*800D402C*/
 ModelInfo D_800D402C = {
-    0x83ED20,
+    (s32)models_BC46A0_bin,
     NULL,
     0x2D30,
     0x2D30,
@@ -38541,11 +38542,11 @@ ModelInfo D_800D402C = {
     0x114,
 };
 
-/*800D405C*/ static ModelInfoUnkStruct1 D_800D405C = {0x8449F0, NULL, 0, 0x270};
+/*800D405C*/ static ModelVertexInfo D_800D405C = {(s32)models_BC7640_bin+0x2D30, NULL, 0, 0x270};
 
 /*800D4068*/
 ModelInfo D_800D4068 = {
-    0x841CC0,
+    (s32)models_BC7640_bin,
     NULL,
     0x2D30,
     0x2D30,
@@ -38566,11 +38567,11 @@ ModelInfo D_800D4068 = {
     0x114,
 };
 
-/*800D4098*/ static ModelInfoUnkStruct1 D_800D4098 = {0x847990, NULL, 0, 0x270};
+/*800D4098*/ static ModelVertexInfo D_800D4098 = {(s32)models_BCA5E0_bin+0x2D30, NULL, 0, 0x270};
 
 /*800D40A4*/
 ModelInfo D_800D40A4 = {
-    0x844C60,
+    (s32)models_BCA5E0_bin,
     NULL,
     0x2D30,
     0x2D30,
@@ -38591,11 +38592,11 @@ ModelInfo D_800D40A4 = {
     0x114,
 };
 
-/*800D40D4*/ static ModelInfoUnkStruct1 D_800D40D4 = {0x84A930, NULL, 0, 0x270};
+/*800D40D4*/ static ModelVertexInfo D_800D40D4 = {(s32)models_BCD580_bin+0x2D30, NULL, 0, 0x270};
 
 /*800D40E0*/
 ModelInfo D_800D40E0 = {
-    0x847C00,
+    (s32)models_BCD580_bin,
     NULL,
     0x2D30,
     0x2D30,
@@ -38616,11 +38617,11 @@ ModelInfo D_800D40E0 = {
     0x114,
 };
 
-/*800D4110*/ static ModelInfoUnkStruct1 D_800D4110 = {0x84D8D0, NULL, 0, 0x270};
+/*800D4110*/ static ModelVertexInfo D_800D4110 = {(s32)models_BD0520_bin+0x2D30, NULL, 0, 0x270};
 
 /*800D411C*/
 ModelInfo D_800D411C = {
-    0x84ABA0,
+    (s32)models_BD0520_bin,
     NULL,
     0x2D30,
     0x2D30,
@@ -38641,11 +38642,11 @@ ModelInfo D_800D411C = {
     0x114,
 };
 
-/*800D414C*/ static ModelInfoUnkStruct1 D_800D414C = {0x850870, NULL, 0, 0x270};
+/*800D414C*/ static ModelVertexInfo D_800D414C = {(s32)models_BD34C0_bin+0x2D30, NULL, 0, 0x270};
 
 /*800D4158*/
 ModelInfo D_800D4158 = {
-    0x84DB40,
+    (s32)models_BD34C0_bin,
     NULL,
     0x2D30,
     0x2D30,
@@ -38666,11 +38667,11 @@ ModelInfo D_800D4158 = {
     0x114,
 };
 
-/*800D4188*/ static ModelInfoUnkStruct1 D_800D4188 = {0x853810, NULL, 0, 0x270};
+/*800D4188*/ static ModelVertexInfo D_800D4188 = {(s32)models_BD6460_bin+0x2D30, NULL, 0, 0x270};
 
 /*800D4194*/
 ModelInfo D_800D4194 = {
-    0x850AE0,
+    (s32)models_BD6460_bin,
     NULL,
     0x2D30,
     0x2D30,
@@ -38691,11 +38692,11 @@ ModelInfo D_800D4194 = {
     0x114,
 };
 
-/*800D41C4*/ static ModelInfoUnkStruct1 D_800D41C4 = {0x8567B0, NULL, 0, 0x270};
+/*800D41C4*/ static ModelVertexInfo D_800D41C4 = {(s32)models_BD9400_bin+0x2D30, NULL, 0, 0x270};
 
 /*800D41D0*/
 ModelInfo D_800D41D0 = {
-    0x853A80,
+    (s32)models_BD9400_bin,
     NULL,
     0x2D30,
     0x2D30,
@@ -38716,11 +38717,11 @@ ModelInfo D_800D41D0 = {
     0x114,
 };
 
-/*800D4200*/ static ModelInfoUnkStruct1 D_800D4200 = {0x859750, NULL, 0, 0x270};
+/*800D4200*/ static ModelVertexInfo D_800D4200 = {(s32)models_BDC3A0_bin+0x2D30, NULL, 0, 0x270};
 
 /*800D420C*/
 ModelInfo D_800D420C = {
-    0x856A20,
+    (s32)models_BDC3A0_bin,
     NULL,
     0x2D30,
     0x2D30,
@@ -38741,11 +38742,11 @@ ModelInfo D_800D420C = {
     0x114,
 };
 
-/*800D423C*/ static ModelInfoUnkStruct1 D_800D423C = {0x85C6F0, NULL, 0, 0x270};
+/*800D423C*/ static ModelVertexInfo D_800D423C = {(s32)models_BDF340_bin+0x2D30, NULL, 0, 0x270};
 
 /*800D4248*/
 ModelInfo D_800D4248 = {
-    0x8599C0,
+    (s32)models_BDF340_bin,
     NULL,
     0x2D30,
     0x2D30,
@@ -38766,11 +38767,11 @@ ModelInfo D_800D4248 = {
     0x114,
 };
 
-/*800D4278*/ static ModelInfoUnkStruct1 D_800D4278 = {0x85F438, NULL, 0, 0x10E};
+/*800D4278*/ static ModelVertexInfo D_800D4278 = {(s32)models_BE22E0_bin+0x2AD8, NULL, 0, 0x10E};
 
 /*800D4284*/
 ModelInfo D_800D4284 = {
-    0x85C960,
+    (s32)models_BE22E0_bin,
     NULL,
     0x2AD6,
     0x2AD6,
@@ -38791,16 +38792,16 @@ ModelInfo D_800D4284 = {
     0x1E,
 };
 
-/*800D42B4*/ static ModelInfoUnkStruct1 D_800D42B4 = {0x85F5D0, NULL, 0, 0x36};
+/*800D42B4*/ static ModelVertexInfo D_800D42B4 = {(s32)models_BE4ED0_bin+0x80, NULL, 0, 0x36};
 
 /*800D42C0*/
 ModelInfo D_800D42C0 = {
-    0x85F550,
+    (s32)models_BE4ED0_bin,
     NULL,
     0x7E,
     0x7E,
-    0,
-    0,
+    0x0,
+    0x0,
     0x48,
     0x36,
     { 0, 0, 0, 0 },
@@ -38816,11 +38817,11 @@ ModelInfo D_800D42C0 = {
     0x19,
 };
 
-/*800D42F0*/ static ModelInfoUnkStruct1 D_800D42F0 = {0x88AF50, NULL, 0, 0x468};
+/*800D42F0*/ static ModelVertexInfo D_800D42F0 = {(s32)models_C0B490_bin+0x5440, NULL, 0, 0x468};
 
 /*800D42FC*/
 ModelInfo D_800D42FC = {
-    0x885B10,
+    (s32)models_C0B490_bin,
     NULL,
     0x5440,
     0x5440,
@@ -38841,11 +38842,11 @@ ModelInfo D_800D42FC = {
     0x12B,
 };
 
-/*800D432C*/ static ModelInfoUnkStruct1 D_800D432C = {0x88CAF8, NULL, 0, 0x3C0};
+/*800D432C*/ static ModelVertexInfo D_800D432C = {(s32)models_C10D40_bin+0x1738, NULL, 0, 0x3C0};
 
 /*800D4338*/
 ModelInfo D_800D4338 = {
-    0x88B3C0,
+    (s32)models_C10D40_bin,
     NULL,
     0x1738,
     0x1738,
@@ -38866,11 +38867,11 @@ ModelInfo D_800D4338 = {
     0xB3,
 };
 
-/*800D4368*/ static ModelInfoUnkStruct1 D_800D4368 = {0x88D794, NULL, 0, 0xD2};
+/*800D4368*/ static ModelVertexInfo D_800D4368 = {(s32)models_C12840_bin+0x8D4, NULL, 0, 0xD2};
 
 /*800D4374*/
 ModelInfo D_800D4374 = {
-    0x88CEC0,
+    (s32)models_C12840_bin,
     NULL,
     0x8D2,
     0x8D2,
@@ -38891,11 +38892,11 @@ ModelInfo D_800D4374 = {
     0x258,
 };
 
-/*800D43A4*/ static ModelInfoUnkStruct1 D_800D43A4 = {0x892FD4, NULL, 0, 0x852};
+/*800D43A4*/ static ModelVertexInfo D_800D43A4 = {(s32)models_C131F0_bin+0x5764, NULL, 0, 0x852};
 
 /*800D43B0*/
 ModelInfo D_800D43B0 = {
-    0x88D870,
+    (s32)models_C131F0_bin,
     NULL,
     0x5762,
     0x5762,
@@ -38916,11 +38917,11 @@ ModelInfo D_800D43B0 = {
     0,
 };
 
-/*800D43E0*/ static ModelInfoUnkStruct1 D_800D43E0 = {0x894D74, NULL, 0, 0x21C};
+/*800D43E0*/ static ModelVertexInfo D_800D43E0 = {(s32)models_C191B0_bin+0x1544, NULL, 0, 0x21C};
 
 /*800D43EC*/
 ModelInfo D_800D43EC = {
-    0x893830,
+    (s32)models_C191B0_bin,
     NULL,
     0x1544,
     0x1544,
@@ -38941,11 +38942,11 @@ ModelInfo D_800D43EC = {
     0x44,
 };
 
-/*800D441C*/ static ModelInfoUnkStruct1 D_800D441C = {0x896344, NULL, 0, 0x192};
+/*800D441C*/ static ModelVertexInfo D_800D441C = {(s32)models_C1A910_bin+0x13B4, NULL, 0, 0x192};
 
 /*800D4428*/
 ModelInfo D_800D4428 = {
-    0x894F90,
+    (s32)models_C1A910_bin,
     NULL,
     0x13B2,
     0x13B2,
@@ -38966,11 +38967,11 @@ ModelInfo D_800D4428 = {
     0x4E,
 };
 
-/*800D4458*/ static ModelInfoUnkStruct1 D_800D4458 = {0x89B0F4, NULL, 0, 0x594};
+/*800D4458*/ static ModelVertexInfo D_800D4458 = {(s32)models_C1BE60_bin+0x4C14, NULL, 0, 0x594};
 
 /*800D4464*/
 ModelInfo D_800D4464 = {
-    0x8964E0,
+    (s32)models_C1BE60_bin,
     NULL,
     0x4C14,
     0x4C14,
@@ -38991,11 +38992,11 @@ ModelInfo D_800D4464 = {
     -2,
 };
 
-/*800D4494*/ static ModelInfoUnkStruct1 D_800D4494 = {0x89C554, NULL, 0, 0x282};
+/*800D4494*/ static ModelVertexInfo D_800D4494 = {(s32)models_C21010_bin+0xEC4, NULL, 0, 0x282};
 
 /*800D44A0*/
 ModelInfo D_800D44A0 = {
-    0x89B690,
+    (s32)models_C21010_bin,
     NULL,
     0xEC2,
     0xEC2,
@@ -39016,11 +39017,11 @@ ModelInfo D_800D44A0 = {
     0x178,
 };
 
-/*800D44D0*/ static ModelInfoUnkStruct1 D_800D44D0 = {0x89F760, NULL, 0, 0x37E};
+/*800D44D0*/ static ModelVertexInfo D_800D44D0 = {(s32)models_C22160_bin+0x2F80, NULL, 0, 0x37E};
 
 /*800D44DC*/
 ModelInfo D_800D44DC = {
-    0x89C7E0,
+    (s32)models_C22160_bin,
     NULL,
     0x2F7E,
     0x2F7E,
@@ -39041,11 +39042,11 @@ ModelInfo D_800D44DC = {
     0x619,
 };
 
-/*800D450C*/ static ModelInfoUnkStruct1 D_800D450C = {0x8A03E8, NULL, 0, 0x60};
+/*800D450C*/ static ModelVertexInfo D_800D450C = {(s32)models_C25460_bin+0x908, NULL, 0, 0x60};
 
 /*800D4518*/
 ModelInfo D_800D4518 = {
-    0x89FAE0,
+    (s32)models_C25460_bin,
     NULL,
     0x908,
     0x908,
@@ -39066,11 +39067,11 @@ ModelInfo D_800D4518 = {
     0x40,
 };
 
-/*800D4548*/ static ModelInfoUnkStruct1 D_800D4548 = {0x8A4200, NULL, 0, 0x378};
+/*800D4548*/ static ModelVertexInfo D_800D4548 = {(s32)models_C25DD0_bin+0x3DB0, NULL, 0, 0x378};
 
 /*800D4554*/
 ModelInfo D_800D4554 = {
-    0x8A0450,
+    (s32)models_C25DD0_bin,
     NULL,
     0x3DB0,
     0x3DB0,
@@ -39091,11 +39092,11 @@ ModelInfo D_800D4554 = {
     0x1DD,
 };
 
-/*800D4584*/ static ModelInfoUnkStruct1 D_800D4584 = {0x8A8330, NULL, 0, 0x378};
+/*800D4584*/ static ModelVertexInfo D_800D4584 = {(s32)models_C29F00_bin+0x3DB0, NULL, 0, 0x378};
 
 /*800D4590*/
 ModelInfo D_800D4590 = {
-    0x8A4580,
+    (s32)models_C29F00_bin,
     NULL,
     0x3DB0,
     0x3DB0,
@@ -39116,11 +39117,11 @@ ModelInfo D_800D4590 = {
     0x1DD,
 };
 
-/*800D45C0*/ static ModelInfoUnkStruct1 D_800D45C0 = {0x8AC460, NULL, 0, 0x378};
+/*800D45C0*/ static ModelVertexInfo D_800D45C0 = {(s32)models_C2E030_bin+0x3DB0, NULL, 0, 0x378};
 
 /*800D45CC*/
 ModelInfo D_800D45CC = {
-    0x8A86B0,
+    (s32)models_C2E030_bin,
     NULL,
     0x3DB0,
     0x3DB0,
@@ -39141,11 +39142,11 @@ ModelInfo D_800D45CC = {
     0x1DD,
 };
 
-/*800D45FC*/ static ModelInfoUnkStruct1 D_800D45FC = {0x8B0590, NULL, 0, 0x378};
+/*800D45FC*/ static ModelVertexInfo D_800D45FC = {(s32)models_C32160_bin+0x3DB0, NULL, 0, 0x378};
 
 /*800D4608*/
 ModelInfo D_800D4608 = {
-    0x8AC7E0,
+    (s32)models_C32160_bin,
     NULL,
     0x3DB0,
     0x3DB0,
@@ -39166,11 +39167,11 @@ ModelInfo D_800D4608 = {
     0x1DD,
 };
 
-/*800D4638*/ static ModelInfoUnkStruct1 D_800D4638 = {0x8B46C0, NULL, 0, 0x378};
+/*800D4638*/ static ModelVertexInfo D_800D4638 = {(s32)models_C36290_bin+0x3DB0, NULL, 0, 0x378};
 
 /*800D4644*/
 ModelInfo D_800D4644 = {
-    0x8B0910,
+    (s32)models_C36290_bin,
     NULL,
     0x3DB0,
     0x3DB0,
@@ -39191,11 +39192,11 @@ ModelInfo D_800D4644 = {
     0x1DD,
 };
 
-/*800D4674*/ static ModelInfoUnkStruct1 D_800D4674 = {0x8B87F0, NULL, 0, 0x378};
+/*800D4674*/ static ModelVertexInfo D_800D4674 = {(s32)models_C3A3C0_bin+0x3DB0, NULL, 0, 0x378};
 
 /*800D4680*/
 ModelInfo D_800D4680 = {
-    0x8B4A40,
+    (s32)models_C3A3C0_bin,
     NULL,
     0x3DB0,
     0x3DB0,
@@ -39216,11 +39217,11 @@ ModelInfo D_800D4680 = {
     0x1DD,
 };
 
-/*800D46B0*/ static ModelInfoUnkStruct1 D_800D46B0 = {0x8BC920, NULL, 0, 0x378};
+/*800D46B0*/ static ModelVertexInfo D_800D46B0 = {(s32)models_C3E4F0_bin+0x3DB0, NULL, 0, 0x378};
 
 /*800D46BC*/
 ModelInfo D_800D46BC = {
-    0x8B8B70,
+    (s32)models_C3E4F0_bin,
     NULL,
     0x3DB0,
     0x3DB0,
@@ -39241,11 +39242,11 @@ ModelInfo D_800D46BC = {
     0x1DD,
 };
 
-/*800D46EC*/ static ModelInfoUnkStruct1 D_800D46EC = {0x8C0A50, NULL, 0, 0x378};
+/*800D46EC*/ static ModelVertexInfo D_800D46EC = {(s32)models_C42620_bin+0x3DB0, NULL, 0, 0x378};
 
 /*800D46F8*/
 ModelInfo D_800D46F8 = {
-    0x8BCCA0,
+    (s32)models_C42620_bin,
     NULL,
     0x3DB0,
     0x3DB0,
@@ -39266,11 +39267,11 @@ ModelInfo D_800D46F8 = {
     0x1DD,
 };
 
-/*800D4728*/ static ModelInfoUnkStruct1 D_800D4728 = {0x8C4B80, NULL, 0, 0x378};
+/*800D4728*/ static ModelVertexInfo D_800D4728 = {(s32)models_C46750_bin+0x3DB0, NULL, 0, 0x378};
 
 /*800D4734*/
 ModelInfo D_800D4734 = {
-    0x8C0DD0,
+    (s32)models_C46750_bin,
     NULL,
     0x3DB0,
     0x3DB0,
@@ -39291,11 +39292,11 @@ ModelInfo D_800D4734 = {
     0x1DD,
 };
 
-/*800D4764*/ static ModelInfoUnkStruct1 D_800D4764 = {0x8C8CB0, NULL, 0, 0x378};
+/*800D4764*/ static ModelVertexInfo D_800D4764 = {(s32)models_C4A880_bin+0x3DB0, NULL, 0, 0x378};
 
 /*800D4770*/
 ModelInfo D_800D4770 = {
-    0x8C4F00,
+    (s32)models_C4A880_bin,
     NULL,
     0x3DB0,
     0x3DB0,
@@ -39316,11 +39317,11 @@ ModelInfo D_800D4770 = {
     0x1DD,
 };
 
-/*800D47A0*/ static ModelInfoUnkStruct1 D_800D47A0 = {0x8DD540, NULL, 0, 0x1B0};
+/*800D47A0*/ static ModelVertexInfo D_800D47A0 = {(s32)models_C61320_bin+0x1BA0, NULL, 0, 0x1B0};
 
 /*800D47AC*/
 ModelInfo D_800D47AC = {
-    0x8DB9A0,
+    (s32)models_C61320_bin,
     NULL,
     0x1BA0,
     0x1BA0,
@@ -39341,11 +39342,11 @@ ModelInfo D_800D47AC = {
     0x30,
 };
 
-/*800D47DC*/ static ModelInfoUnkStruct1 D_800D47DC = {0x8DE7BC, NULL, 0, 0x3C};
+/*800D47DC*/ static ModelVertexInfo D_800D47DC = {(s32)models_C63070_bin+0x10CC, NULL, 0, 0x3C};
 
 /*800D47E8*/
 ModelInfo D_800D47E8 = {
-    0x8DD6F0,
+    (s32)models_C63070_bin,
     NULL,
     0x10CC,
     0x10CC,
@@ -39366,11 +39367,11 @@ ModelInfo D_800D47E8 = {
     0x22,
 };
 
-/*800D4818*/ static ModelInfoUnkStruct1 D_800D4818 = {0x8DF8CC, NULL, 0, 0x3C};
+/*800D4818*/ static ModelVertexInfo D_800D4818 = {(s32)models_C64180_bin+0x10CC, NULL, 0, 0x3C};
 
 /*800D4824*/
 ModelInfo D_800D4824 = {
-    0x8DE800,
+    (s32)models_C64180_bin,
     NULL,
     0x10CC,
     0x10CC,
@@ -39391,11 +39392,11 @@ ModelInfo D_800D4824 = {
     0x22,
 };
 
-/*800D4854*/ static ModelInfoUnkStruct1 D_800D4854 = {0x8E09C8, NULL, 0, 0x30};
+/*800D4854*/ static ModelVertexInfo D_800D4854 = {(s32)models_C65290_bin+0x10B8, NULL, 0, 0x30};
 
 /*800D4860*/
 ModelInfo D_800D4860 = {
-    0x8DF910,
+    (s32)models_C65290_bin,
     NULL,
     0x10B8,
     0x10B8,
@@ -39416,11 +39417,11 @@ ModelInfo D_800D4860 = {
     0x22,
 };
 
-/*800D4890*/ static ModelInfoUnkStruct1 D_800D4890 = {0x8E1ACC, NULL, 0, 0x3C};
+/*800D4890*/ static ModelVertexInfo D_800D4890 = {(s32)models_C66380_bin+0x10CC, NULL, 0, 0x3C};
 
 /*800D489C*/
 ModelInfo D_800D489C = {
-    0x8E0A00,
+    (s32)models_C66380_bin,
     NULL,
     0x10CC,
     0x10CC,
@@ -39441,11 +39442,11 @@ ModelInfo D_800D489C = {
     0x22,
 };
 
-/*800D48CC*/ static ModelInfoUnkStruct1 D_800D48CC = {0x8E2D58, NULL, 0, 0x2EE};
+/*800D48CC*/ static ModelVertexInfo D_800D48CC = {(s32)models_C67490_bin+0x1248, NULL, 0, 0x2EE};
 
 /*800D48D8*/
 ModelInfo D_800D48D8 = {
-    0x8E1B10,
+    (s32)models_C67490_bin,
     NULL,
     0x1246,
     0x1246,
@@ -39466,11 +39467,11 @@ ModelInfo D_800D48D8 = {
     0x83,
 };
 
-/*800D4908*/ static ModelInfoUnkStruct1 D_800D4908 = {0x8E38B8, NULL, 0, 0x18};
+/*800D4908*/ static ModelVertexInfo D_800D4908 = {(s32)models_C689D0_bin+0x868, NULL, 0, 0x18};
 
 /*800D4914*/
 ModelInfo D_800D4914 = {
-    0x8E3050,
+    (s32)models_C689D0_bin,
     NULL,
     0x868,
     0x868,
@@ -39491,11 +39492,11 @@ ModelInfo D_800D4914 = {
     0x69,
 };
 
-/*800D4944*/ static ModelInfoUnkStruct1 D_800D4944 = {0x8E7C40, NULL, 0, 0x408};
+/*800D4944*/ static ModelVertexInfo D_800D4944 = {(s32)models_C69250_bin+0x4370, NULL, 0, 0x408};
 
 /*800D4950*/
 ModelInfo D_800D4950 = {
-    0x8E38D0,
+    (s32)models_C69250_bin,
     NULL,
     0x4370,
     0x4370,
@@ -39516,11 +39517,11 @@ ModelInfo D_800D4950 = {
     0x22,
 };
 
-/*800D4980*/ static ModelInfoUnkStruct1 D_800D4980 = {0x8E8C34, NULL, 0, 0x252};
+/*800D4980*/ static ModelVertexInfo D_800D4980 = {(s32)models_C6D9D0_bin+0xBE4, NULL, 0, 0x252};
 
 /*800D498C*/
 ModelInfo D_800D498C = {
-    0x8E8050,
+    (s32)models_C6D9D0_bin,
     NULL,
     0xBE2,
     0xBE2,
@@ -39541,11 +39542,11 @@ ModelInfo D_800D498C = {
     0x103,
 };
 
-/*800D49BC*/ static ModelInfoUnkStruct1 D_800D49BC = {0x8EA598, NULL, 0, 0x13E};
+/*800D49BC*/ static ModelVertexInfo D_800D49BC = {(s32)models_C6E810_bin+0x1708, NULL, 0, 0x13E};
 
 /*800D49C8*/
 ModelInfo D_800D49C8 = {
-    0x8E8E90,
+    (s32)models_C6E810_bin,
     NULL,
     0x1706,
     0x1706,
@@ -39566,11 +39567,11 @@ ModelInfo D_800D49C8 = {
     5,
 };
 
-/*800D49F8*/ static ModelInfoUnkStruct1 D_800D49F8 = {0x8EDB5C, NULL, 0, 0x17A};
+/*800D49F8*/ static ModelVertexInfo D_800D49F8 = {(s32)models_C71160_bin+0x237C, NULL, 0, 0x17A};
 
 /*800D4A04*/
 ModelInfo D_800D4A04 = {
-    0x8EB7E0,
+    (s32)models_C71160_bin,
     NULL,
     0x237A,
     0x237A,
@@ -39591,11 +39592,11 @@ ModelInfo D_800D4A04 = {
     0x162,
 };
 
-/*800D4A34*/ static ModelInfoUnkStruct1 D_800D4A34 = {0x8EE62C, NULL, 0, 0x9C};
+/*800D4A34*/ static ModelVertexInfo D_800D4A34 = {(s32)models_C73660_bin+0x94C, NULL, 0, 0x9C};
 
 /*800D4A40*/
 ModelInfo D_800D4A40 = {
-    0x8EDCE0,
+    (s32)models_C73660_bin,
     NULL,
     0x94C,
     0x94C,
@@ -39616,11 +39617,11 @@ ModelInfo D_800D4A40 = {
     0,
 };
 
-/*800D4A70*/ static ModelInfoUnkStruct1 D_800D4A70 = {0x8EF9DC, NULL, 0, 0x26A};
+/*800D4A70*/ static ModelVertexInfo D_800D4A70 = {(s32)models_C74050_bin+0x130C, NULL, 0, 0x26A};
 
 /*800D4A7C*/
 ModelInfo D_800D4A7C = {
-    0x8EE6D0,
+    (s32)models_C74050_bin,
     NULL,
     0x130A,
     0x130A,
@@ -39641,11 +39642,11 @@ ModelInfo D_800D4A7C = {
     0xB0,
 };
 
-/*800D4AAC*/ static ModelInfoUnkStruct1 D_800D4AAC = {0x8F2AA4, NULL, 0, 0x15C};
+/*800D4AAC*/ static ModelVertexInfo D_800D4AAC = {(s32)models_C77300_bin+0x1124, NULL, 0, 0x15C};
 
 /*800D4AB8*/
 ModelInfo D_800D4AB8 = {
-    0x8F1980,
+    (s32)models_C77300_bin,
     NULL,
     0x1124,
     0x1124,
@@ -39666,11 +39667,11 @@ ModelInfo D_800D4AB8 = {
     0xB0,
 };
 
-/*800D4AE8*/ static ModelInfoUnkStruct1 D_800D4AE8 = {0x8F419C, NULL, 0, 0x1AA};
+/*800D4AE8*/ static ModelVertexInfo D_800D4AE8 = {(s32)models_C78580_bin+0x159C, NULL, 0, 0x1AA};
 
 /*800D4AF4*/
 ModelInfo D_800D4AF4 = {
-    0x8F2C00,
+    (s32)models_C78580_bin,
     NULL,
     0x159A,
     0x159A,
@@ -39691,11 +39692,11 @@ ModelInfo D_800D4AF4 = {
     0xC5,
 };
 
-/*800D4B24*/ static ModelInfoUnkStruct1 D_800D4B24 = {0x9078E4, NULL, 0, 0x1A4};
+/*800D4B24*/ static ModelVertexInfo D_800D4B24 = {(s32)models_C8C4F0_bin+0xD74, NULL, 0, 0x1A4};
 
 /*800D4B30*/
 ModelInfo D_800D4B30 = {
-    0x906B70,
+    (s32)models_C8C4F0_bin,
     NULL,
     0xD74,
     0xD74,
@@ -39716,11 +39717,11 @@ ModelInfo D_800D4B30 = {
     0xCB,
 };
 
-/*800D4B60*/ static ModelInfoUnkStruct1 D_800D4B60 = {0x909478, NULL, 0, 0xC6};
+/*800D4B60*/ static ModelVertexInfo D_800D4B60 = {(s32)models_C8D410_bin+0x19E8, NULL, 0, 0xC6};
 
 /*800D4B6C*/
 ModelInfo D_800D4B6C = {
-    0x907A90,
+    (s32)models_C8D410_bin,
     NULL,
     0x19E6,
     0x19E6,
@@ -39741,11 +39742,11 @@ ModelInfo D_800D4B6C = {
     -1,
 };
 
-/*800D4B9C*/ static ModelInfoUnkStruct1 D_800D4B9C = {0x90B59C, NULL, 0, 0x8AC};
+/*800D4B9C*/ static ModelVertexInfo D_800D4B9C = {(s32)models_C8EEC0_bin+0x205C, NULL, 0, 0x8AC};
 
 /*800D4BA8*/
 ModelInfo D_800D4BA8 = {
-    0x909540,
+    (s32)models_C8EEC0_bin,
     NULL,
     0x205C,
     0x205C,
@@ -39766,11 +39767,11 @@ ModelInfo D_800D4BA8 = {
     0xD5,
 };
 
-/*800D4BD8*/ static ModelInfoUnkStruct1 D_800D4BD8 = {0x911C74, NULL, 0, 0x62A};
+/*800D4BD8*/ static ModelVertexInfo D_800D4BD8 = {(s32)models_C917D0_bin+0x5E24, NULL, 0, 0x62A};
 
 /*800D4BE4*/
 ModelInfo D_800D4BE4 = {
-    0x90BE50,
+    (s32)models_C917D0_bin,
     NULL,
     0x5E22,
     0x5E22,
@@ -39791,11 +39792,11 @@ ModelInfo D_800D4BE4 = {
     0x179,
 };
 
-/*800D4C14*/ static ModelInfoUnkStruct1 D_800D4C14 = {0x913454, NULL, 0, 0x1A4};
+/*800D4C14*/ static ModelVertexInfo D_800D4C14 = {(s32)models_C97C20_bin+0x11B4, NULL, 0, 0x1A4};
 
 /*800D4C20*/
 ModelInfo D_800D4C20 = {
-    0x9122A0,
+    (s32)models_C97C20_bin,
     NULL,
     0x11B4,
     0x11B4,
@@ -39816,11 +39817,11 @@ ModelInfo D_800D4C20 = {
     0x65,
 };
 
-/*800D4C50*/ static ModelInfoUnkStruct1 D_800D4C50 = {0x926634, NULL, 0, 0x102};
+/*800D4C50*/ static ModelVertexInfo D_800D4C50 = {(s32)models_CAB4B0_bin+0xB04, NULL, 0, 0x102};
 
 /*800D4C5C*/
 ModelInfo D_800D4C5C = {
-    0x925B30,
+    (s32)models_CAB4B0_bin,
     NULL,
     0xB02,
     0xB02,
@@ -39841,11 +39842,11 @@ ModelInfo D_800D4C5C = {
     0x1B,
 };
 
-/*800D4C8C*/ static ModelInfoUnkStruct1 D_800D4C8C = {0x9276B4, NULL, 0, 0x1AA};
+/*800D4C8C*/ static ModelVertexInfo D_800D4C8C = {(s32)models_CAC0C0_bin+0xF74, NULL, 0, 0x1AA};
 
 /*800D4C98*/
 ModelInfo D_800D4C98 = {
-    0x926740,
+    (s32)models_CAC0C0_bin,
     NULL,
     0xF72,
     0xF72,
@@ -39866,11 +39867,11 @@ ModelInfo D_800D4C98 = {
     0x92,
 };
 
-/*800D4CC8*/ static ModelInfoUnkStruct1 D_800D4CC8 = {0x929D58, NULL, 0, 0x468};
+/*800D4CC8*/ static ModelVertexInfo D_800D4CC8 = {(s32)models_CAD1E0_bin+0x24F8, NULL, 0, 0x468};
 
 /*800D4CD4*/
 ModelInfo D_800D4CD4 = {
-    0x927860,
+    (s32)models_CAD1E0_bin,
     NULL,
     0x24F8,
     0x24F8,
@@ -39891,11 +39892,11 @@ ModelInfo D_800D4CD4 = {
     0x1F6,
 };
 
-/*800D4D04*/ static ModelInfoUnkStruct1 D_800D4D04 = {0x92AAA0, NULL, 0, 0x60};
+/*800D4D04*/ static ModelVertexInfo D_800D4D04 = {(s32)models_CAFB40_bin+0x8E0, NULL, 0, 0x60};
 
 /*800D4D10*/
 ModelInfo D_800D4D10 = {
-    0x92A1C0,
+    (s32)models_CAFB40_bin,
     NULL,
     0x8E0,
     0x8E0,
@@ -39916,11 +39917,11 @@ ModelInfo D_800D4D10 = {
     0x145,
 };
 
-/*800D4D40*/ static ModelInfoUnkStruct1 D_800D4D40 = {0x92B3D4, NULL, 0, 0x54};
+/*800D4D40*/ static ModelVertexInfo D_800D4D40 = {(s32)models_CB0480_bin+0x8D4, NULL, 0, 0x54};
 
 /*800D4D4C*/
 ModelInfo D_800D4D4C = {
-    0x92AB00,
+    (s32)models_CB0480_bin,
     NULL,
     0x8D4,
     0x8D4,
@@ -39941,11 +39942,11 @@ ModelInfo D_800D4D4C = {
     0x145,
 };
 
-/*800D4D7C*/ static ModelInfoUnkStruct1 D_800D4D7C = {0x92BD04, NULL, 0, 0x54};
+/*800D4D7C*/ static ModelVertexInfo D_800D4D7C = {(s32)models_CB0DB0_bin+0x8D4, NULL, 0, 0x54};
 
 /*800D4D88*/
 ModelInfo D_800D4D88 = {
-    0x92B430,
+    (s32)models_CB0DB0_bin,
     NULL,
     0x8D4,
     0x8D4,
@@ -39966,11 +39967,11 @@ ModelInfo D_800D4D88 = {
     0x145,
 };
 
-/*800D4DB8*/ static ModelInfoUnkStruct1 D_800D4DB8 = {0x92C634, NULL, 0, 0x54};
+/*800D4DB8*/ static ModelVertexInfo D_800D4DB8 = {(s32)models_CB16E0_bin+0x8D4, NULL, 0, 0x54};
 
 /*800D4DC4*/
 ModelInfo D_800D4DC4 = {
-    0x92BD60,
+    (s32)models_CB16E0_bin,
     NULL,
     0x8D4,
     0x8D4,
@@ -39991,11 +39992,11 @@ ModelInfo D_800D4DC4 = {
     0x145,
 };
 
-/*800D4DF4*/ static ModelInfoUnkStruct1 D_800D4DF4 = {0x92D228, NULL, 0, 0x1E0};
+/*800D4DF4*/ static ModelVertexInfo D_800D4DF4 = {(s32)models_CB2010_bin+0xB98, NULL, 0, 0x1E0};
 
 /*800D4E00*/
 ModelInfo D_800D4E00 = {
-    0x92C690,
+    (s32)models_CB2010_bin,
     NULL,
     0xB98,
     0xB98,
@@ -40016,11 +40017,11 @@ ModelInfo D_800D4E00 = {
     0x2EC,
 };
 
-/*800D4E30*/ static ModelInfoUnkStruct1 D_800D4E30 = {0x92F7DC, NULL, 0, 0x132};
+/*800D4E30*/ static ModelVertexInfo D_800D4E30 = {(s32)models_CB2D90_bin+0x23CC, NULL, 0, 0x132};
 
 /*800D4E3C*/
 ModelInfo D_800D4E3C = {
-    0x92D410,
+    (s32)models_CB2D90_bin,
     NULL,
     0x23CA,
     0x23CA,
@@ -40041,11 +40042,11 @@ ModelInfo D_800D4E3C = {
     0xBC,
 };
 
-/*800D4E6C*/ static ModelInfoUnkStruct1 D_800D4E6C = {0x930304, NULL, 0, 0xE4};
+/*800D4E6C*/ static ModelVertexInfo D_800D4E6C = {(s32)models_CB5290_bin+0x9F4, NULL, 0, 0xE4};
 
 /*800D4E78*/
 ModelInfo D_800D4E78 = {
-    0x92F910,
+    (s32)models_CB5290_bin,
     NULL,
     0x9F4,
     0x9F4,
@@ -40066,11 +40067,11 @@ ModelInfo D_800D4E78 = {
     0x4B7,
 };
 
-/*800D4EA8*/ static ModelInfoUnkStruct1 D_800D4EA8 = {0x933E74, NULL, 0, 0x86A};
+/*800D4EA8*/ static ModelVertexInfo D_800D4EA8 = {(s32)models_CB5D70_bin+0x3A84, NULL, 0, 0x86A};
 
 /*800D4EB4*/
 ModelInfo D_800D4EB4 = {
-    0x9303F0,
+    (s32)models_CB5D70_bin,
     NULL,
     0x3A82,
     0x3A82,
@@ -40091,11 +40092,11 @@ ModelInfo D_800D4EB4 = {
     0xA4,
 };
 
-/*800D4EE4*/ static ModelInfoUnkStruct1 D_800D4EE4 = {0x935948, NULL, 0, 0x28E};
+/*800D4EE4*/ static ModelVertexInfo D_800D4EE4 = {(s32)models_CBA060_bin+0x1268, NULL, 0, 0x28E};
 
 /*800D4EF0*/
 ModelInfo D_800D4EF0 = {
-    0x9346E0,
+    (s32)models_CBA060_bin,
     NULL,
     0x1266,
     0x1266,
@@ -40116,11 +40117,11 @@ ModelInfo D_800D4EF0 = {
     0x98,
 };
 
-/*800D4F20*/ static ModelInfoUnkStruct1 D_800D4F20 = {0x936A50, NULL, 0, 0x1B0};
+/*800D4F20*/ static ModelVertexInfo D_800D4F20 = {(s32)models_CBB560_bin+0xE70, NULL, 0, 0x1B0};
 
 /*800D4F2C*/
 ModelInfo D_800D4F2C = {
-    0x935BE0,
+    (s32)models_CBB560_bin,
     NULL,
     0xE70,
     0xE70,
@@ -40141,11 +40142,11 @@ ModelInfo D_800D4F2C = {
     0,
 };
 
-/*800D4F5C*/ static ModelInfoUnkStruct1 D_800D4F5C = {0x937A70, NULL, 0, 0x1B0};
+/*800D4F5C*/ static ModelVertexInfo D_800D4F5C = {(s32)models_CBC580_bin+0xE70, NULL, 0, 0x1B0};
 
 /*800D4F68*/
 ModelInfo D_800D4F68 = {
-    0x936C00,
+    (s32)models_CBC580_bin,
     NULL,
     0xE70,
     0xE70,
@@ -40166,11 +40167,11 @@ ModelInfo D_800D4F68 = {
     0,
 };
 
-/*800D4F98*/ static ModelInfoUnkStruct1 D_800D4F98 = {0x939D78, NULL, 0, 0x46E};
+/*800D4F98*/ static ModelVertexInfo D_800D4F98 = {(s32)models_CBD5A0_bin+0x2158, NULL, 0, 0x46E};
 
 /*800D4FA4*/
 ModelInfo D_800D4FA4 = {
-    0x937C20,
+    (s32)models_CBD5A0_bin,
     NULL,
     0x2156,
     0x2156,
@@ -40191,11 +40192,11 @@ ModelInfo D_800D4FA4 = {
     0x1CD,
 };
 
-/*800D4FD4*/ static ModelInfoUnkStruct1 D_800D4FD4 = {0x93A4E0, NULL, 0, 0x48};
+/*800D4FD4*/ static ModelVertexInfo D_800D4FD4 = {(s32)models_CBFB70_bin+0x2F0, NULL, 0, 0x48};
 
 /*800D4FE0*/
 ModelInfo D_800D4FE0 = {
-    0x93A1F0,
+    (s32)models_CBFB70_bin,
     NULL,
     0x2F0,
     0x2F0,
@@ -40216,11 +40217,11 @@ ModelInfo D_800D4FE0 = {
     0xF,
 };
 
-/*800D5010*/ static ModelInfoUnkStruct1 D_800D5010 = {0x93A7D8, NULL, 0, 0x30};
+/*800D5010*/ static ModelVertexInfo D_800D5010 = {(s32)models_CBFEB0_bin+0x2A8, NULL, 0, 0x30};
 
 /*800D501C*/
 ModelInfo D_800D501C = {
-    0x93A530,
+    (s32)models_CBFEB0_bin,
     NULL,
     0x2A8,
     0x2A8,
@@ -40241,11 +40242,11 @@ ModelInfo D_800D501C = {
     0x15,
 };
 
-/*800D504C*/ static ModelInfoUnkStruct1 D_800D504C = {0x93AAB8, NULL, 0, 0x30};
+/*800D504C*/ static ModelVertexInfo D_800D504C = {(s32)models_CC0190_bin+0x2A8, NULL, 0, 0x30};
 
 /*800D5058*/
 ModelInfo D_800D5058 = {
-    0x93A810,
+    (s32)models_CC0190_bin,
     NULL,
     0x2A8,
     0x2A8,
@@ -40266,11 +40267,11 @@ ModelInfo D_800D5058 = {
     6,
 };
 
-/*800D5088*/ static ModelInfoUnkStruct1 D_800D5088 = {0x93B910, NULL, 0, 0x1E6};
+/*800D5088*/ static ModelVertexInfo D_800D5088 = {(s32)models_CC0470_bin+0xE20, NULL, 0, 0x1E6};
 
 /*800D5094*/
 ModelInfo D_800D5094 = {
-    0x93AAF0,
+    (s32)models_CC0470_bin,
     NULL,
     0xE1E,
     0xE1E,
@@ -40291,11 +40292,11 @@ ModelInfo D_800D5094 = {
     0x60,
 };
 
-/*800D50C4*/ static ModelInfoUnkStruct1 D_800D50C4 = {0x93EE7C, NULL, 0, 0xB9A};
+/*800D50C4*/ static ModelVertexInfo D_800D50C4 = {(s32)models_CC1480_bin+0x337C, NULL, 0, 0xB9A};
 
 /*800D50D0*/
 ModelInfo D_800D50D0 = {
-    0x93BB00,
+    (s32)models_CC1480_bin,
     NULL,
     0x337A,
     0x337A,
@@ -40316,11 +40317,11 @@ ModelInfo D_800D50D0 = {
     0x25,
 };
 
-/*800D5100*/ static ModelInfoUnkStruct1 D_800D5100 = {0x93FD2C, NULL, 0, 0x72};
+/*800D5100*/ static ModelVertexInfo D_800D5100 = {(s32)models_CC53A0_bin+0x30C, NULL, 0, 0x72};
 
 /*800D510C*/
 ModelInfo D_800D510C = {
-    0x93FA20,
+    (s32)models_CC53A0_bin,
     NULL,
     0x30A,
     0x30A,
@@ -40341,11 +40342,11 @@ ModelInfo D_800D510C = {
     0x2C,
 };
 
-/*800D513C*/ static ModelInfoUnkStruct1 D_800D513C = {0x940190, NULL, 0, 0xF0};
+/*800D513C*/ static ModelVertexInfo D_800D513C = {(s32)models_CC5720_bin+0x3F0, NULL, 0, 0xF0};
 
 /*800D5148*/
 ModelInfo D_800D5148 = {
-    0x93FDA0,
+    (s32)models_CC5720_bin,
     NULL,
     0x3F0,
     0x3F0,
@@ -40366,11 +40367,11 @@ ModelInfo D_800D5148 = {
     0x50,
 };
 
-/*800D5178*/ static ModelInfoUnkStruct1 D_800D5178 = {0x9412A8, NULL, 0, 0x2D0};
+/*800D5178*/ static ModelVertexInfo D_800D5178 = {(s32)models_CC5C00_bin+0x1028, NULL, 0, 0x2D0};
 
 /*800D5184*/
 ModelInfo D_800D5184 = {
-    0x940280,
+    (s32)models_CC5C00_bin,
     NULL,
     0x1028,
     0x1028,
@@ -40391,11 +40392,11 @@ ModelInfo D_800D5184 = {
     0x764,
 };
 
-/*800D51B4*/ static ModelInfoUnkStruct1 D_800D51B4 = {0x9421D8, NULL, 0, 0x228};
+/*800D51B4*/ static ModelVertexInfo D_800D51B4 = {(s32)models_CC6F00_bin+0xC58, NULL, 0, 0x228};
 
 /*800D51C0*/
 ModelInfo D_800D51C0 = {
-    0x941580,
+    (s32)models_CC6F00_bin,
     NULL,
     0xC58,
     0xC58,
@@ -40416,11 +40417,11 @@ ModelInfo D_800D51C0 = {
     0x216,
 };
 
-/*800D51F0*/ static ModelInfoUnkStruct1 D_800D51F0 = {0x942F54, NULL, 0, 0x1A4};
+/*800D51F0*/ static ModelVertexInfo D_800D51F0 = {(s32)models_CC7D80_bin+0xB54, NULL, 0, 0x1A4};
 
 /*800D51FC*/
 ModelInfo D_800D51FC = {
-    0x942400,
+    (s32)models_CC7D80_bin,
     NULL,
     0xB54,
     0xB54,
@@ -40441,11 +40442,11 @@ ModelInfo D_800D51FC = {
     0x413,
 };
 
-/*800D522C*/ static ModelInfoUnkStruct1 D_800D522C = {0x94416C, NULL, 0, 0x20A};
+/*800D522C*/ static ModelVertexInfo D_800D522C = {(s32)models_CC8A80_bin+0x106C, NULL, 0, 0x20A};
 
 /*800D5238*/
 ModelInfo D_800D5238 = {
-    0x943100,
+    (s32)models_CC8A80_bin,
     NULL,
     0x106A,
     0x106A,
@@ -40466,11 +40467,11 @@ ModelInfo D_800D5238 = {
     0x6F,
 };
 
-/*800D5268*/ static ModelInfoUnkStruct1 D_800D5268 = {0x947E9C, NULL, 0, 0x29A};
+/*800D5268*/ static ModelVertexInfo D_800D5268 = {(s32)models_CC9D00_bin+0x3B1C, NULL, 0, 0x29A};
 
 /*800D5274*/
 ModelInfo D_800D5274 = {
-    0x944380,
+    (s32)models_CC9D00_bin,
     NULL,
     0x3B1A,
     0x3B1A,
@@ -40491,11 +40492,11 @@ ModelInfo D_800D5274 = {
     0x5A,
 };
 
-/*800D52A4*/ static ModelInfoUnkStruct1 D_800D52A4 = {0x9524E8, NULL, 0, 0x486};
+/*800D52A4*/ static ModelVertexInfo D_800D52A4 = {(s32)models_CCDAC0_bin+0xA3A8, NULL, 0, 0x486};
 
 /*800D52B0*/
 ModelInfo D_800D52B0 = {
-    0x948140,
+    (s32)models_CCDAC0_bin,
     NULL,
     0xA3A6,
     0xA3A6,

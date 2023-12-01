@@ -8,6 +8,7 @@
 #include "ultra64.h"
 #include "macros.h"
 #include "include_asm.h"
+#include "libc/assert.h"
 
 typedef u32 uintptr_t;
 typedef s32 intptr_t;
@@ -28,6 +29,7 @@ typedef s32 intptr_t;
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
+#include <assert.h>
 #include "ultra64.h"
 #include "macros.h"
 

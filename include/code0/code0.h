@@ -254,9 +254,9 @@ typedef struct
 
 typedef struct
 {
-    /*0x00*/ s16 unk0; /*x*/
-    /*0x02*/ s16 unk2; /*y*/
-    /*0x04*/ s16 unk4; /*z*/
+    /*0x00*/ s16 x;
+    /*0x02*/ s16 y;
+    /*0x04*/ s16 z;
 } code0UnkStruct18;
 
 typedef struct
@@ -412,7 +412,7 @@ typedef struct
 /*800FE400*/ _extern s32 D_800FE400;
 /*800FE410*/ _extern s32 D_800FE410;
 /*800FE416*/ _extern s16 gMapNum;
-/*800FE944*/ _extern u8 *gpModelTile;
+/*800FE944*/ _extern u8 *gpModelTexture;
 /*800FE950*/ _extern VertexC D_800FE950[12] ALIGNED(8);
 /*800FE9C8*/ _extern s32 D_800FE9C8[2]; /*CLOUDS SP*/
 /*800FE9D0*/ _extern s8 D_800FE9D0; /*playernum2*/
@@ -487,7 +487,7 @@ typedef struct
 /*80138688*/ _extern OSTime D_80138688;
 /*80138690*/ _extern s32 D_80138690;
 /*8013869C*/ _extern s16 gSkyBottomB;
-/*80138714*/ _extern ModelTileInfo *gpModelTileInfo;
+/*80138714*/ _extern ModelTextureInfo *gpModelTextureInfo;
 /*8013871C*/ _extern s32 D_8013871C;
 /*80138778*/ _extern u8 *D_80138778; /*palette*/
 /*80138780*/ _extern s16 D_80138780;

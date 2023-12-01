@@ -15,11 +15,6 @@
 #include "code1/EB300.h"
 #include "code1/code1.h"
 
-typedef struct {
-    Color unk0;
-    Color unk1;
-} _FDE0UnkStruct1;
-
 /*.data*/
 /*800BD760*/
 static Lights2 _light2 = {
@@ -46,7 +41,7 @@ static Lights2 _light2 = {
 
 /*.text*/
 static f32 func_80011410(ModelInfo *model);
-static void func_800117A4(u8 *, code0UnkStruct18 *, _FDE0UnkStruct1 *);
+static void func_800117A4(u8 *cmd, code0UnkStruct18 *vtx, ModelLight *light);
 static void func_800124EC(s16);
 static void func_80012630(void);
 
@@ -650,25 +645,25 @@ static s32 func_800115E0(ModelInfo *model)
 /*80011700*/
 void func_80011700(ModelInfo *model)
 {
-    u8 *ramaddr1;
-    code0UnkStruct18 *ramaddr2;
-    _FDE0UnkStruct1 *ramaddr3;
-    ModelInfoUnkStruct1 *ptr;
+    u8 *cmd;
+    code0UnkStruct18 *vtx;
+    ModelLight *light;
+    ModelVertexInfo *vertex_info;
 
     loadModel(model);
-    ramaddr1 = model->ramaddr + model->unkE;
-    ptr = model->unk18;
-    ramaddr2 = (code0UnkStruct18 *)ptr->ramaddr;
-    ramaddr3 = (_FDE0UnkStruct1 *)(model->ramaddr + model->unk10);
-    gpModelTile = model->ramaddr;
-    gpModelTileInfo = (ModelTileInfo *)(model->ramaddr + model->tileinfo);
+    cmd = model->ramaddr + model->cmd_off;
+    vertex_info = model->vertex_info;
+    vtx = (code0UnkStruct18 *)vertex_info->ramaddr;
+    light = (ModelLight *)(model->ramaddr + model->lights_off);
+    gpModelTexture = model->ramaddr;
+    gpModelTextureInfo = (ModelTextureInfo *)(model->ramaddr + model->texture_info_off);
 
     if ((D_800BD788 == 0) || (func_800115E0(model) != 0))
-        func_800117A4(ramaddr1, ramaddr2, ramaddr3);
+        func_800117A4(cmd, vtx, light);
 }
 
 /*800117A4*/
-static void func_800117A4(u8 *arg0, code0UnkStruct18 *arg1, _FDE0UnkStruct1 *arg2)
+static void func_800117A4(u8 *cmd, code0UnkStruct18 *vtx, ModelLight *light)
 {
     s16 pixel;
     s16 cond;
@@ -681,12 +676,12 @@ static void func_800117A4(u8 *arg0, code0UnkStruct18 *arg1, _FDE0UnkStruct1 *arg
     cond = 0;
     while (1)
     {
-        m = *arg0++;
+        m = *cmd++;
         switch (m)
         {
         case 13:
-            l = *arg0++;
-            u = *arg0++;
+            l = *cmd++;
+            u = *cmd++;
             pixel = (l << 8) | u;
             if (D_801A2688 == 0)
             {
@@ -713,59 +708,59 @@ static void func_800117A4(u8 *arg0, code0UnkStruct18 *arg1, _FDE0UnkStruct1 *arg
             }
             break;
         case 0:
-            n = *arg0++;
-            o = *arg0++;
+            n = *cmd++;
+            o = *cmd++;
 
             gSPVertex(gpDisplayList++, D_80199114, o, n);
             D_80199114 = &D_80199114[o];
 
             for (i = 0; i < o; i++)
             {
-                t = *arg0++;
-                tc0_ = *arg0++;
-                tc1_ = *arg0++;
-                gpVertexN64->v.ob[0] = arg1[t].unk0;
-                gpVertexN64->v.ob[1] = arg1[t].unk2;
-                gpVertexN64->v.ob[2] = arg1[t].unk4;
-                gpVertexN64->v.tc[0] = tc0_ << 6;
-                gpVertexN64->v.tc[1] = tc1_ << 6;
-                gpVertexN64->v.cn[0] = arg2[t].unk0.r;
-                gpVertexN64->v.cn[1] = arg2[t].unk0.g;
-                gpVertexN64->v.cn[2] = arg2[t].unk0.b;
+                t = *cmd++;
+                tc0_ = *cmd++;
+                tc1_ = *cmd++;
+                gpVertexN64->n.ob[0] = vtx[t].x;
+                gpVertexN64->n.ob[1] = vtx[t].y;
+                gpVertexN64->n.ob[2] = vtx[t].z;
+                gpVertexN64->n.tc[0] = tc0_ << 6;
+                gpVertexN64->n.tc[1] = tc1_ << 6;
+                gpVertexN64->n.n[0] = light[t].n[0];
+                gpVertexN64->n.n[1] = light[t].n[1];
+                gpVertexN64->n.n[2] = light[t].n[2];
                 gpVertexN64++;
             }
             break;
         case 1:
-            n = *arg0++;
-            o = *arg0++;
+            n = *cmd++;
+            o = *cmd++;
 
             gSPVertex(gpDisplayList++, D_80199114, o, n);
             D_80199114 = &D_80199114[o];
 
             for (i = 0; i < o; i++)
             {
-                t = *arg0++;
-                p = *arg0++;
+                t = *cmd++;
+                p = *cmd++;
                 s = (t << 8) | p;
-                tc0 = *arg0++;
-                tc1 = *arg0++;
-                gpVertexN64->v.ob[0] = arg1[s].unk0;
-                gpVertexN64->v.ob[1] = arg1[s].unk2;
-                gpVertexN64->v.ob[2] = arg1[s].unk4;
-                gpVertexN64->v.tc[0] = tc0 << 6;
-                gpVertexN64->v.tc[1] = tc1 << 6;
-                gpVertexN64->v.cn[0] = arg2[s].unk0.r;
-                gpVertexN64->v.cn[1] = arg2[s].unk0.g;
-                gpVertexN64->v.cn[2] = arg2[s].unk0.b;
+                tc0 = *cmd++;
+                tc1 = *cmd++;
+                gpVertexN64->n.ob[0] = vtx[s].x;
+                gpVertexN64->n.ob[1] = vtx[s].y;
+                gpVertexN64->n.ob[2] = vtx[s].z;
+                gpVertexN64->n.tc[0] = tc0 << 6;
+                gpVertexN64->n.tc[1] = tc1 << 6;
+                gpVertexN64->n.n[0] = light[s].n[0];
+                gpVertexN64->n.n[1] = light[s].n[1];
+                gpVertexN64->n.n[2] = light[s].n[2];
                 gpVertexN64++;
             }
             break;
         case 2:
         case 3:
-            func_800163F0(*arg0++);
+            func_800163F0(*cmd++);
             break;
         case 4:
-            func_8001660C(*arg0++);
+            func_8001660C(*cmd++);
             if (cond != 1)
             {
                 if (D_8019956C == 1)
@@ -790,7 +785,7 @@ static void func_800117A4(u8 *arg0, code0UnkStruct18 *arg1, _FDE0UnkStruct1 *arg
             }
             break;
         case 5:
-            func_8001660C(*arg0++);
+            func_8001660C(*cmd++);
             if (cond != 1)
             {
                 if (D_8019956C == 1)
@@ -811,9 +806,9 @@ static void func_800117A4(u8 *arg0, code0UnkStruct18 *arg1, _FDE0UnkStruct1 *arg
             }
             break;
         case 6:
-            j = *arg0++;
-            k = *arg0++;
-            l = *arg0++;
+            j = *cmd++;
+            k = *cmd++;
+            l = *cmd++;
             gSP1Triangle(gpDisplayList++, j, k, l, j);
             break;
         case 7:
