@@ -69,7 +69,7 @@ s32 func_80058B3C(s32 x1, s32 y1, s32 z1, s32 sectnum, s32 x2, s32 y2, s32 z2, s
 void func_80058E44(s32 spritenum); /*TODO: arg1?*/
 
 extern s32 D_800DEE80; /*spritenum?*/
-extern s32 D_800DEE84;
+extern s32 gDisableAI;
 extern s32 D_800DEE88;
 extern s32 D_800DEE8C;
 extern s32 D_800DEE98;

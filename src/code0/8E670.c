@@ -11,65 +11,71 @@
 #include "code1/code1.h"
 #include "static/mapinfo.h"
 
+#define MAP_CHEAT_AWARD_NONE 0
+#define MAP_CHEAT_AWARD_ON_ALL_ENEMIES (1<<10)
+#define MAP_CHEAT_AWARD_ON_ALL_SECRETS (1<<11)
+#define MAP_CHEAT_AWARD_ON_ALL_BABES (1<<12)
+#define MAP_CHEAT_AWARD_WEAPON (1<<13)
+
 /*.data*/
 /*800E16A0*/ u8 D_800E16A0[MAXPLAYERS] = {0};
 
 /*800E16A4*/
 static s16 D_800E16A4[12] = {-1, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
 
-/*800E16BC*/ s32 D_800E16BC = 0;
-/*800E16C0*/ s32 D_800E16C0 = 15;
+/*800E16BC*/ s32 gUnlockedCheat = 0;
+/*800E16C0*/ s32 gUnlockedSkin = SKIN_DUKENUKEM|SKIN_APOCALYPSEDUKE|SKIN_COWBOYDUKE|SKIN_VICTORIANDUKE;
 
 /*800E16C4*/
-static s32 D_800E16C4[MAP_THE_END] = {
-    0x04040000,
-    0x00080000,
-    0x00100000,
-    0x08000000,
-    0x00200000,
-    0x00000040,
-    0x00010000,
-    0x00800000,
-    0x00002000,
-    0x10000000,
-    0x00000400,
-    0x00400000,
-    0x0000C000,
-    0x00000800,
-    0x01000000,
-    0x02000000,
-    0x00000100,
-    0x00000010,
-    0x00000200,
-    0x00000080,
-    0x00000020,
-    0xFFFFFFFF,
+static s32 _mapSkinAward[MAP_THE_END] = {
+    /*MEAN_STREETS*/ SKIN_PIGCOP|SKIN_ENFORCER,
+    /*LIBERTY_OR_DEATH*/ SKIN_RIOTPIG,
+    /*NUCLEAR_WINTER*/ SKIN_ROADHOG,
+    /*WETWORLD*/ SKIN_ENFORCERCAPTAIN,
+    /*FALLOUT*/ SKIN_WARPIG,
+    /*UNDER_SIEGE*/ SKIN_DOGTAGDUKE,
+    /*BOSS_HOG*/ SKIN_SURVIVOR,
+    /*DRY_TOWN*/ SKIN_SAVAGEGRUNT,
+    /*JAIL_BREAK*/ SKIN_MARSHALL,
+    /*UP_SHIP_CREEK*/ SKIN_BATTLEENFORCER,
+    /*FORT_ROSWELL*/ SKIN_CUSTER,
+    /*PROBING_THE_DEPTHS*/ SKIN_COWBOYGRUNT,
+    /*CYBORG_SCORPION*/ SKIN_SHERIFF|SKIN_SQUAW,
+    /*THE_WHITECHAPEL_KILLINGS*/ SKIN_RIPPER,
+    /*DAWN_OF_THE_DUKE*/ SKIN_SOLDIERGRUNT,
+    /*HYDROGEN_BOMB*/ SKIN_CAPITALISTPIG,
+    /*THE_RACK*/ SKIN_MARINE,
+    /*GOING_DOWN_THE_RACK*/ SKIN_POSHDUKE,
+    /*BRAINSTORM*/ SKIN_SERGEANT,
+    /*THE_BROTHERS_NUKEM*/ SKIN_EVILDUKE,
+    /*ALIEN_MOTHER*/ SKIN_BATTLEDRESSDUKE,
+    /*ZERO_HOUR*/ SKIN_ALL,
 };
 
 /*800E171C*/
-static u16 D_800E171C[MAP_THE_END] = {
-    0,
-    4097,
-    1028,
-    2050,
-    4101,
-    2051,
-    0,
-    4104,
-    9217,
-    10245,
-    12294,
-    10244,
-    0,
-    9223,
-    10240,
-    9225,
-    10248,
-    12290,
-    0,
-    9219,
-    12298,
-    0,
+static u16 _mapCheatAward[MAP_THE_END] = {
+    /*MEAN_STREETS*/ MAP_CHEAT_AWARD_NONE,
+    /*LIBERTY_OR_DEATH*/ MAP_CHEAT_AWARD_ON_ALL_BABES|CHEAT_BIG_HEAD_MODE,
+    /*NUCLEAR_WINTER*/ MAP_CHEAT_AWARD_ON_ALL_ENEMIES|CHEAT_BIG_GUN,
+    /*WETWORLD*/ MAP_CHEAT_AWARD_ON_ALL_SECRETS|CHEAT_FLAT_SHADING,
+    /*FALLOUT*/ MAP_CHEAT_AWARD_ON_ALL_BABES|CHEAT_ICE_SKINS,
+    /*UNDER_SIEGE*/ MAP_CHEAT_AWARD_ON_ALL_SECRETS|CHEAT_WEATHER,
+    /*BOSS_HOG*/ MAP_CHEAT_AWARD_NONE,
+    /*DRY_TOWN*/ MAP_CHEAT_AWARD_ON_ALL_BABES|CHEAT_FAST_ZOMBIES,
+    /*JAIL_BREAK*/ MAP_CHEAT_AWARD_ON_ALL_ENEMIES|MAP_CHEAT_AWARD_WEAPON|CHEAT_WEAPON_BLASTER,
+    /*UP_SHIP_CREEK*/ MAP_CHEAT_AWARD_ON_ALL_SECRETS|MAP_CHEAT_AWARD_WEAPON|CHEAT_WEAPON_CLAW12,
+    /*FORT_ROSWELL*/ MAP_CHEAT_AWARD_ON_ALL_BABES|MAP_CHEAT_AWARD_WEAPON|CHEAT_WEAPON_3030,
+    /*PROBING_THE_DEPTHS*/ MAP_CHEAT_AWARD_ON_ALL_SECRETS|MAP_CHEAT_AWARD_WEAPON|CHEAT_WEAPON_REVOLVER,
+    /*CYBORG_SCORPION*/ MAP_CHEAT_AWARD_NONE,
+    /*THE_WHITECHAPEL_KILLINGS*/ MAP_CHEAT_AWARD_ON_ALL_ENEMIES|MAP_CHEAT_AWARD_WEAPON|CHEAT_WEAPON_SAWEDOFF,
+    /*DAWN_OF_THE_DUKE*/ MAP_CHEAT_AWARD_ON_ALL_SECRETS|MAP_CHEAT_AWARD_WEAPON|CHEAT_WEAPON_SMG,
+    /*HYDROGEN_BOMB*/ MAP_CHEAT_AWARD_ON_ALL_ENEMIES|MAP_CHEAT_AWARD_WEAPON|CHEAT_WEAPON_GATTLINGGUN,
+    /*THE_RACK*/ MAP_CHEAT_AWARD_ON_ALL_SECRETS|MAP_CHEAT_AWARD_WEAPON|CHEAT_WEAPON_VOLTCANNON,
+    /*GOING_DOWN_THE_RACK*/ MAP_CHEAT_AWARD_ON_ALL_BABES|MAP_CHEAT_AWARD_WEAPON|CHEAT_WEAPON_SNIPER,
+    /*BRAINSTORM*/ MAP_CHEAT_AWARD_NONE,
+    /*THE_BROTHERS_NUKEM*/ MAP_CHEAT_AWARD_ON_ALL_ENEMIES|MAP_CHEAT_AWARD_WEAPON|CHEAT_WEAPON_FREEZER,
+    /*ALIEN_MOTHER*/ MAP_CHEAT_AWARD_ON_ALL_BABES|MAP_CHEAT_AWARD_WEAPON|CHEAT_WEAPON_GAMMACANNON,
+    /*ZERO_HOUR*/ MAP_CHEAT_AWARD_NONE,
 };
 
 /*800E1748*/ s32 D_800E1748 = -1;
@@ -80,50 +86,50 @@ static u16 D_800E171C[MAP_THE_END] = {
 /*.text*/
 
 /*8008DA70*/
-u8 func_8008DA70(s16 mapnum)
+bool awardMapCheat(s16 mapnum)
 {
-    u8 ret;
+    bool ret;
 
-    ret = 0;
+    ret = FALSE;
     if (mapnum >= MAP_THE_END)
-        return 0;
+        return FALSE;
 
-    D_800E16C0 |= D_800E16C4[mapnum];
+    gUnlockedSkin |= _mapSkinAward[mapnum];
     if (gConfig.difficulty == 0)
-        return 0;
+        return FALSE;
 
-    if (D_800E171C[mapnum] != 0)
+    if (_mapCheatAward[mapnum] != MAP_CHEAT_AWARD_NONE)
     {
-        if (D_800E171C[mapnum] & 0x400)
+        if (_mapCheatAward[mapnum] & MAP_CHEAT_AWARD_ON_ALL_ENEMIES)
         {
             if (D_801A1958.enemies_killed >= D_801A1958.enemies_total)
-                ret = 1;
+                ret = TRUE;
         }
-        if (D_800E171C[mapnum] & 0x800)
+        if (_mapCheatAward[mapnum] & MAP_CHEAT_AWARD_ON_ALL_SECRETS)
         {
             if (D_801A1958.secrets_found >= D_801A1958.secrets_total)
-                ret = 1;
+                ret = TRUE;
         }
-        if (D_800E171C[mapnum] & 0x1000)
+        if (_mapCheatAward[mapnum] & MAP_CHEAT_AWARD_ON_ALL_BABES)
         {
             if (D_801A1958.babes_saved >= D_801A1958.babes_total)
-                ret = 1;
+                ret = TRUE;
         }
-        if (ret != 0)
+        if (ret)
         {
             gConfig.unk50 = 1;
-            if (D_800E171C[mapnum] & 0x2000)
-                D_801CE470 |= (1 << D_800E171C[mapnum]);
+            if (_mapCheatAward[mapnum] & MAP_CHEAT_AWARD_WEAPON)
+                gUnlockedCheatWeapons |= (1 << _mapCheatAward[mapnum]);
             else
-                D_800E16BC |= (1 << D_800E171C[mapnum]);
+                gUnlockedCheat |= (1 << _mapCheatAward[mapnum]);
         }
     }
 
     if (mapnum == MAP_ZERO_HOUR)
     {
         gConfig.unk50 = 1;
-        D_800E16BC |= 0x41;
-        ret = 1;
+        gUnlockedCheat |= ((1<<CHEAT_ACTION_NUKEM)|(1<<CHEAT_FIRST_PERSON));
+        ret = TRUE;
     }
     return ret;
 }
@@ -142,7 +148,7 @@ void func_8008DC24(void)
     }
 
     for (i = 0; i < D_8012C470; i++)
-        gPlayer[i].unk60 = 0;
+        gPlayer[i].third_person = FALSE;
 
     Bmemset(D_800FF4F0, 0, sizeof(D_800FF4F0));
     D_80119A64 = 0;

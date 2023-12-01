@@ -31,7 +31,7 @@ typedef s32(*_41940UnkFuncPointer2)(s32 spritenum);
 typedef struct
 {
     /*0x00*/ s16 unk0;  /*spritenum?*/
-    /*0x02*/ s16 unk2;  /*pad?*/
+    /*0x02*/ s16 unk2;
     /*0x04*/ s32 unk4;  /*x?*/
     /*0x08*/ s32 unk8;  /*y?*/
     /*0x0C*/ s32 unkC;  /*z?*/
@@ -115,7 +115,7 @@ static s32 func_80043F3C(s32 spritenum);
 
 /*.data*/
 /*800DEE80*/ s32 D_800DEE80 = 0;
-/*800DEE84*/ s32 D_800DEE84 = 0;
+/*800DEE84*/ s32 gDisableAI = FALSE;
 /*800DEE88*/ s32 D_800DEE88 = 0;
 /*800DEE8C*/ s32 D_800DEE8C = 0;
 static s32 _unused1[2] = {0};
@@ -408,7 +408,7 @@ static void func_80040EF0(s32 spritenum, s16 playernum, s32 arg2)
     ModelInfo *ptr;
     s32 i, j;
 
-    if (D_800DEE84 == 0)
+    if (gDisableAI == FALSE)
     {
         D_80137DE0 = &D_8019B940[D_80106D50[spritenum]];
         D_80137DE0->unk9B++;
@@ -1281,7 +1281,7 @@ static s32 func_80042C98(s32 spritenum)
     i = ptr->unk28;
     spr = &gpSprite[spritenum];
 
-    if ((ptr->unk0 & 0x1800)&&(hitsprite == i))
+    if ((ptr->unk0 & 0x1800) && (hitsprite == i))
     {
         D_80137DE0->unk38 = gpSprite[i].x;
         D_80137DE0->unk3C = gpSprite[i].y;
@@ -1581,16 +1581,16 @@ static s32 func_80043938(s32 spritenum)
 /*800439D0*/
 static s32 func_800439D0(s32 spritenum)
 {
-    s32 i, j, result;
+    s32 i, j, chapter;
 
     i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
+    chapter = getVar(spritenum, *gpInst++);
     j = *gpInst++;
 
     if (i < 0)
         j += 2;
 
-    if (D_801CA14C[gMapNum].unk0 != result)
+    if (gMapChapter[gMapNum].chapter != chapter)
         gpInst = &gpInst[j];
 
     return 0;
@@ -2244,7 +2244,7 @@ static s32 func_8004587C(s32 spritenum)
     if (handle)
     {
         MusHandleStop(handle, 0);
-        D_80137DE0->unk6C = NULL;
+        D_80137DE0->unk6C = 0;
     }
     return 0;
 }
@@ -2293,7 +2293,7 @@ static s32 func_80045A48(s32 spritenum)
     if (handle)
     {
         MusHandleStop(handle, 0);
-        D_80137DE0->unk70 = NULL;
+        D_80137DE0->unk70 = 0;
     }
     return 0;
 }
@@ -3755,7 +3755,7 @@ s32 func_800494DC(s32 spritenum1, s32 arg1, s32 spritenum2, s32 arg3)
     if (gpSprite[gpSprite[spritenum2].hitag].statnum == 10)
     {
         cond2 = 1;
-        if (D_801CDBC4 != 0)
+        if (gCheatActionNukemConfig != CONFIG_OFF)
             arg1 = 5000;
     }
     else
@@ -4719,7 +4719,6 @@ static s32 func_8004BE20(s32 spritenum)
 static s32 func_8004BE48(s32 spritenum)
 {
     _41940UnkFuncPointer1 func;
-    s32 i;
 
     gpInst++;
     func = (_41940UnkFuncPointer1)*gpInst++;
@@ -6828,7 +6827,7 @@ s32 func_80051508(s32 ang1, s32 ang2, s32 arg2)
 void func_80051568(void)
 {
     s32 i;
-    s16 unused;
+    s16 unused = 0;
 
     for (i = 0; i < MAXSPRITES; i++)
     {
@@ -7063,7 +7062,7 @@ static void func_800519AC(void)
         {
             k = 600;
             func_800515A0(gpSprite[gPlayer[j].unk4A].sectnum);
-            if (gPlayer[j].unk60 != 0)
+            if (gPlayer[j].third_person)
                 k = 400;
 
             i = gHeadSpriteStat[150];
@@ -7133,7 +7132,7 @@ static void func_800519AC(void)
                     {
                         audio_800077F4(696, i);
                         ceilz = gpSprite[i].unk25;
-                        if (ceilz < 17)
+                        if (ceilz < MAXKEYS)
                         {
                             char buffer[32];
                             sprintf(buffer, "KEY WITH NO NAME");
@@ -7143,7 +7142,7 @@ static void func_800519AC(void)
                                     sprintf(buffer, gpKeyStrInfo[gMapNum][ceilz-1]);
                             }
                             func_800A419C(j, buffer);
-                            gPlayer[j].unk88[ceilz] = 1;
+                            gPlayer[j].keys[ceilz] = 1;
                             func_80051808(i);
                         }
                         deleteSprite(i);
@@ -9081,7 +9080,7 @@ void func_80055EC0(s32 spritenum, s32 arg1)
         {
             if ((i != 1) || (D_80118248->picnum != CYBORGENFORCER))
             {
-                if ((i == 2) && (D_801CA14C[gMapNum].unk0 == 3))
+                if ((i == 2) && (gMapChapter[gMapNum].chapter == VICTORIAN))
                     func_8008E3E0(gpSprite[spritenum].x, gpSprite[spritenum].y,
                                   gpSprite[spritenum].z, gpSprite[spritenum].sectnum, 0x38, 0);
 
@@ -9226,7 +9225,7 @@ void func_80056600(s32 spritenum)
                     gpSprite[spritenum_].picnum = 1797;
             }
 
-            if (((i == 2) || (i == 3)) && (D_801CA14C[gMapNum].unk0 == 2))
+            if (((i == 2) || (i == 3)) && (gMapChapter[gMapNum].chapter == WESTERN))
                 gpSprite[spritenum_].picnum = 1852;
 
             if (i == 4)
@@ -9857,7 +9856,7 @@ static s32 func_80058468(s32 spritenum)
 /*80058538*/
 static s32 func_80058538(SpriteType *spr, s32 arg1)
 {
-    s32 i, j, d1, d2, nexti;
+    s32 i, d1, d2;
 
     i = gHeadSpriteStat[4];
     d1 = 0x200000;

@@ -21,10 +21,10 @@
 #include "static/mapinfo.h"
 
 typedef struct {
-    /*0x00*/ ProcPointer unk0;
-    /*0x04*/ u8 unk4;
-    /*0x06*/ u16 unk6[11];
-} _EB300UnkStruct2;
+    /*0x00*/ ProcPointer func;
+    /*0x04*/ u8 button_count;
+    /*0x06*/ u16 button_list[11];
+} CheatCode;
 
 /*.data*/
 /*801CA140*/ static s32 D_801CA140 = 2048;
@@ -32,87 +32,87 @@ typedef struct {
 /*801CA148*/ static char D_801CA148 = ' ';
 
 /*801CA14C*/
-_EB300UnkStruct1 D_801CA14C[MAP_NUM+1] = {
+MapChapter gMapChapter[MAP_NUM+1] = {
 #if VERSION_US
-    { 1, 0, "MEAN STREETS" },
-    { 1, 0, "LIBERTY OR DEATH" },
-    { 1, 0, "NUCLEAR WINTER" },
-    { 1, 0, "WETWORLD" },
-    { 1, 0, "FALLOUT" },
-    { 1, 0, "UNDER SIEGE" },
-    { 1, 0, "BOSS HOG" },
-    { 2, 0, "DRY TOWN" },
-    { 2, 0, "JAIL BREAK" },
-    { 2, 0, "UP SHIP CREEK" },
-    { 2, 0, "FORT ROSWELL" },
-    { 2, 0, "PROBING THE DEPTHS" },
-    { 2, 0, "CYBORG SCORPION" },
-    { 3, 0, "THE WHITECHAPEL KILLINGS" },
-    { 3, 0, "DAWN OF THE DUKE" },
-    { 3, 0, "HYDROGEN BOMB" },
-    { 3, 0, "THE RACK" },
-    { 3, 0, "GOING DOWN" },
-    { 3, 0, "BRAINSTORM" },
-    { 4, 0, "THE BROTHERS NUKEM" },
-    { 4, 0, "ALIEN MOTHER..." },
-    { 4, 0, "ZERO HOUR" },
-    { 9, 0, "THE END" },
-    { 10, 0, "BASE" },
-    { 5, 0, "COOL AS ICE" },
-    { 5, 0, "MIND FUNK" },
-    { 5, 0, "CHIMERA" },
-    { 5, 0, "SLIDERS" },
-    { 5, 0, "ATOMIC" },
-    { 5, 0, "HIGH NOON" },
-    { 5, 0, "ROCKY KNOLL" },
-    { 5, 0, "CASHING IN" },
-    { 5, 0, "HIVE 8" },
-    { 5, 0, "CASTLEMANIA" },
-    { 5, 0, "TOXIC SHOCK" },
-    { 5, 0, "FOGGING HELL" },
-    { 5, 0, "CATACOMBS" },
-    { 5, 0, "INFERNO" },
-    { 99, 0, "COOL AS ICE" },
+    { PRESENT_DAY, "MEAN STREETS" },
+    { PRESENT_DAY, "LIBERTY OR DEATH" },
+    { PRESENT_DAY, "NUCLEAR WINTER" },
+    { PRESENT_DAY, "WETWORLD" },
+    { PRESENT_DAY, "FALLOUT" },
+    { PRESENT_DAY, "UNDER SIEGE" },
+    { PRESENT_DAY, "BOSS HOG" },
+    { WESTERN, "DRY TOWN" },
+    { WESTERN, "JAIL BREAK" },
+    { WESTERN, "UP SHIP CREEK" },
+    { WESTERN, "FORT ROSWELL" },
+    { WESTERN, "PROBING THE DEPTHS" },
+    { WESTERN, "CYBORG SCORPION" },
+    { VICTORIAN, "THE WHITECHAPEL KILLINGS" },
+    { VICTORIAN, "DAWN OF THE DUKE" },
+    { VICTORIAN, "HYDROGEN BOMB" },
+    { VICTORIAN, "THE RACK" },
+    { VICTORIAN, "GOING DOWN" },
+    { VICTORIAN, "BRAINSTORM" },
+    { FINAL, "THE BROTHERS NUKEM" },
+    { FINAL, "ALIEN MOTHER..." },
+    { FINAL, "ZERO HOUR" },
+    { 9, "THE END" },
+    { TRAINING, "BASE" },
+    { DUKEMATCH, "COOL AS ICE" },
+    { DUKEMATCH, "MIND FUNK" },
+    { DUKEMATCH, "CHIMERA" },
+    { DUKEMATCH, "SLIDERS" },
+    { DUKEMATCH, "ATOMIC" },
+    { DUKEMATCH, "HIGH NOON" },
+    { DUKEMATCH, "ROCKY KNOLL" },
+    { DUKEMATCH, "CASHING IN" },
+    { DUKEMATCH, "HIVE 8" },
+    { DUKEMATCH, "CASTLEMANIA" },
+    { DUKEMATCH, "TOXIC SHOCK" },
+    { DUKEMATCH, "FOGGING HELL" },
+    { DUKEMATCH, "CATACOMBS" },
+    { DUKEMATCH, "INFERNO" },
+    { 99, "COOL AS ICE" },
 #elif VERSION_FR
-    { 1, 0, "LE BAS-FONDS" },
-    { 1, 0, "LA LIBERTE OU LA MORT" },
-    { 1, 0, "HIVER NUCLEAIRE" },
-    { 1, 0, "HISTOIRE D'EAU" },
-    { 1, 0, "RETOMBEES" },
-    { 1, 0, "ETAT DE SIEGE" },
-    { 1, 0, "LE SEIGNEUR DES PORCOFLICS" },
-    { 2, 0, "VILLE FANTOME" },
-    { 2, 0, "LA GRANDE EVASION" },
-    { 2, 0, "LA CRIQUE AMONT" },
-    { 2, 0, "FORT ROSWELL" },
-    { 2, 0, "AU FOND DE LA MINE" },
-    { 2, 0, "CYBER SCORPION" },
-    { 3, 0, "MASSACRES A WHITECHAPEL" },
-    { 3, 0, "L'AUBE DE DUKE" },
-    { 3, 0, "LA BOMBE A HYDROGENE" },
-    { 3, 0, "SUPPLICES ET DELICES" },
-    { 3, 0, "UNE AVENTURE TITANESQUE" },
-    { 3, 0, "DR BRAIN" },
-    { 4, 0, "LES FRERES NUKEM" },
-    { 4, 0, "LA SOURCE DU MAL" },
-    { 4, 0, "AU-DELA DU TEMPS" },
-    { 9, 0, "THE END" },
-    { 10, 0, "BASE" },
-    { 5, 0, "FROID COMME LA GLACE" },
-    { 5, 0, "FUNKY" },
-    { 5, 0, "CHIMERES" },
-    { 5, 0, "PORTES COULISSANTES" },
-    { 5, 0, "ATOMIQUE" },
-    { 5, 0, "LE TRAIN SIFFLERA 4 FOIS" },
-    { 5, 0, "LE MONTICULE ROCHEUX" },
-    { 5, 0, "PAIEMENT CASH" },
-    { 5, 0, "RUCHE 8" },
-    { 5, 0, "CASTEL MANIA" },
-    { 5, 0, "DECHARGE TOXIQUE" },
-    { 5, 0, "LES BROUILLARDS DE L'ENFER" },
-    { 5, 0, "CATACOMBES" },
-    { 5, 0, "INFERNO" },
-    { 99, 0, "COOL AS ICE" },
+    { PRESENT_DAY, "LE BAS-FONDS" },
+    { PRESENT_DAY, "LA LIBERTE OU LA MORT" },
+    { PRESENT_DAY, "HIVER NUCLEAIRE" },
+    { PRESENT_DAY, "HISTOIRE D'EAU" },
+    { PRESENT_DAY, "RETOMBEES" },
+    { PRESENT_DAY, "ETAT DE SIEGE" },
+    { PRESENT_DAY, "LE SEIGNEUR DES PORCOFLICS" },
+    { WESTERN, "VILLE FANTOME" },
+    { WESTERN, "LA GRANDE EVASION" },
+    { WESTERN, "LA CRIQUE AMONT" },
+    { WESTERN, "FORT ROSWELL" },
+    { WESTERN, "AU FOND DE LA MINE" },
+    { WESTERN, "CYBER SCORPION" },
+    { VICTORIAN, "MASSACRES A WHITECHAPEL" },
+    { VICTORIAN, "L'AUBE DE DUKE" },
+    { VICTORIAN, "LA BOMBE A HYDROGENE" },
+    { VICTORIAN, "SUPPLICES ET DELICES" },
+    { VICTORIAN, "UNE AVENTURE TITANESQUE" },
+    { VICTORIAN, "DR BRAIN" },
+    { FINAL, "LES FRERES NUKEM" },
+    { FINAL, "LA SOURCE DU MAL" },
+    { FINAL, "AU-DELA DU TEMPS" },
+    { 9, "THE END" },
+    { TRAINING, "BASE" },
+    { DUKEMATCH, "FROID COMME LA GLACE" },
+    { DUKEMATCH, "FUNKY" },
+    { DUKEMATCH, "CHIMERES" },
+    { DUKEMATCH, "PORTES COULISSANTES" },
+    { DUKEMATCH, "ATOMIQUE" },
+    { DUKEMATCH, "LE TRAIN SIFFLERA 4 FOIS" },
+    { DUKEMATCH, "LE MONTICULE ROCHEUX" },
+    { DUKEMATCH, "PAIEMENT CASH" },
+    { DUKEMATCH, "RUCHE 8" },
+    { DUKEMATCH, "CASTEL MANIA" },
+    { DUKEMATCH, "DECHARGE TOXIQUE" },
+    { DUKEMATCH, "LES BROUILLARDS DE L'ENFER" },
+    { DUKEMATCH, "CATACOMBES" },
+    { DUKEMATCH, "INFERNO" },
+    { 99, "COOL AS ICE" },
 #endif
 };
 
@@ -184,8 +184,8 @@ static Lights1 D_801CA3B8 = {
 /*801CDB0C*/ u16 D_801CDB0C;
 /*801CDB20*/ s32 D_801CDB20;
 /*801CDB28*/ u8 D_801CDB28[28] ALIGNED(8);
-/*801CDB50*/ _EB300UnkStruct1 *D_801CDB50;
-/*801CDB54*/ s32 D_801CDB54;
+/*801CDB50*/ MapChapter *gpDukematchMapChapter;
+/*801CDB54*/ s32 gCheatAwarded;
 #ifdef AVOID_UB
 char D_801CDB58[6][16] ALIGNED(8); /*Fix out of bound access in func_801C764C*/
 #else
@@ -1070,6 +1070,8 @@ static void func_801C30EC(void)
 #ifdef TARGET_N64
     prev = D_800FE9E0;
     while (prev == D_800FE9E0);
+#else
+    (void)prev;
 #endif
 
     cache1d_8002AAEC();
@@ -1595,30 +1597,30 @@ static code1UnkStruct5 D_801CB0CC[4] = {
 /*801CB14C*/
 static code1UnkStruct5 D_801CB14C[12] = {
 #if VERSION_US
-    { 0, -16, 2, 0, "SMG", NULL, NULL, &D_801CA7A8, &D_801CC924 },
-    { 0, -16, 2, 0, "BLASTER", NULL, NULL, &D_801CA7A8, &D_801CDB48 },
-    { 0, -16, 2, 0, "SNIPER", NULL, NULL, &D_801CA7A8, &D_801CE4EC },
-    { 0, -16, 2, 0, "FREEZER", NULL, NULL, &D_801CA7A8, &D_801CF634 },
-    { 0, -16, 2, 0, "REVOLVER", NULL, NULL, &D_801CA7A8, &D_801CE478 },
-    { 0, -16, 2, 0, "CLAW-12", NULL, NULL, &D_801CA7A8, &D_801CDA80 },
-    { 0, -16, 2, 0, ".30-30", NULL, NULL, &D_801CA7A8, &D_801CC8B8 },
-    { 0, -16, 2, 0, "SAWED OFF", NULL, NULL, &D_801CA7A8, &D_801CDB14 },
-    { 0, -16, 2, 0, "VOLT CANNON", NULL, NULL, &D_801CA7A8, &D_801CDB16 },
-    { 0, -16, 2, 0, "GATTLING GUN", NULL, NULL, &D_801CA7A8, &D_801CD984 },
-    { 0, -16, 2, 0, "GAMMA CANNON", NULL, NULL, &D_801CA7A8, &D_801CE480 },
+    { 0, -16, 2, 0, "SMG", NULL, NULL, &D_801CA7A8, &gCheatWeaponSmgConfig },
+    { 0, -16, 2, 0, "BLASTER", NULL, NULL, &D_801CA7A8, &gCheatWeaponBlasterConfig },
+    { 0, -16, 2, 0, "SNIPER", NULL, NULL, &D_801CA7A8, &gCheatWeaponSniperConfig },
+    { 0, -16, 2, 0, "FREEZER", NULL, NULL, &D_801CA7A8, &gCheatWeaponFreezerConfig },
+    { 0, -16, 2, 0, "REVOLVER", NULL, NULL, &D_801CA7A8, &gCheatWeaponRevolverConfig },
+    { 0, -16, 2, 0, "CLAW-12", NULL, NULL, &D_801CA7A8, &gCheatWeaponClaw12Config },
+    { 0, -16, 2, 0, ".30-30", NULL, NULL, &D_801CA7A8, &gCheatWeapon3030Config },
+    { 0, -16, 2, 0, "SAWED OFF", NULL, NULL, &D_801CA7A8, &gCheatWeaponSawedOffConfig },
+    { 0, -16, 2, 0, "VOLT CANNON", NULL, NULL, &D_801CA7A8, &gCheatWeaponVoltCannonConfig },
+    { 0, -16, 2, 0, "GATTLING GUN", NULL, NULL, &D_801CA7A8, &gCheatWeaponGattlingGunConfig },
+    { 0, -16, 2, 0, "GAMMA CANNON", NULL, NULL, &D_801CA7A8, &gCheatWeaponGammaCannonConfig },
     { 1, -1, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
 #elif VERSION_FR
-    { 0, -55, 2, 0, "SMG", NULL, NULL, &_ouiNon, &D_801CC924 },
-    { 0, -55, 2, 0, "BLASTER", NULL, NULL, &_ouiNon, &D_801CDB48 },
-    { 0, -55, 2, 0, "SNIPER", NULL, NULL, &_ouiNon, &D_801CE4EC },
-    { 0, -55, 2, 0, "FIGEUR", NULL, NULL, &_ouiNon, &D_801CF634 },
-    { 0, -55, 2, 0, "REVOLVER", NULL, NULL, &_ouiNon, &D_801CE478 },
-    { 0, -55, 2, 0, "SERRE-12", NULL, NULL, &_ouiNon, &D_801CDA80 },
-    { 0, -55, 2, 0, ".30-30", NULL, NULL, &_ouiNon, &D_801CC8B8 },
-    { 0, -55, 2, 0, "SCIE", NULL, NULL, &_ouiNon, &D_801CDB14 },
-    { 0, -55, 2, 0, "CANON ELEC", NULL, NULL, &_ouiNon, &D_801CDB16 },
-    { 0, -55, 2, 0, "MITR. GATLING", NULL, NULL, &_ouiNon, &D_801CD984 },
-    { 0, -55, 2, 0, "CANON PLASMA", NULL, NULL, &_ouiNon, &D_801CE480 },
+    { 0, -55, 2, 0, "SMG", NULL, NULL, &_ouiNon, &gCheatWeaponSmgConfig },
+    { 0, -55, 2, 0, "BLASTER", NULL, NULL, &_ouiNon, &gCheatWeaponBlasterConfig },
+    { 0, -55, 2, 0, "SNIPER", NULL, NULL, &_ouiNon, &gCheatWeaponSniperConfig },
+    { 0, -55, 2, 0, "FIGEUR", NULL, NULL, &_ouiNon, &gCheatWeaponFreezerConfig },
+    { 0, -55, 2, 0, "REVOLVER", NULL, NULL, &_ouiNon, &gCheatWeaponRevolverConfig },
+    { 0, -55, 2, 0, "SERRE-12", NULL, NULL, &_ouiNon, &gCheatWeaponClaw12Config },
+    { 0, -55, 2, 0, ".30-30", NULL, NULL, &_ouiNon, &gCheatWeapon3030Config },
+    { 0, -55, 2, 0, "SCIE", NULL, NULL, &_ouiNon, &gCheatWeaponSawedOffConfig },
+    { 0, -55, 2, 0, "CANON ELEC", NULL, NULL, &_ouiNon, &gCheatWeaponVoltCannonConfig },
+    { 0, -55, 2, 0, "MITR. GATLING", NULL, NULL, &_ouiNon, &gCheatWeaponGattlingGunConfig },
+    { 0, -55, 2, 0, "CANON PLASMA", NULL, NULL, &_ouiNon, &gCheatWeaponGammaCannonConfig },
     { 1, -1, 0, 0, "QUITTER", menuExit, NULL, NULL, NULL },
 #endif
 };
@@ -1628,14 +1630,14 @@ static code1UnkStruct5 D_801CB14C[12] = {
 /*801CB2AC*/
 static code1UnkStruct5 D_801CB2AC[4] = {
 #if VERSION_US
-    { 0, -16, 2, 0, "FIRST PERSON", NULL, NULL, &D_801CA7A8, &D_801CDBC6 },
-    { 0, -16, 2, 0, "ACTION NUKEM", NULL, NULL, &D_801CA7A8, &D_801CDBC4 },
-    { 0, -16, 2, 0, "SELECT SKIN", NULL, NULL, &D_801CA7A8, &D_801CC8CC },
+    { 0, -16, 2, 0, "FIRST PERSON", NULL, NULL, &D_801CA7A8, &gCheatFirstPersonConfig },
+    { 0, -16, 2, 0, "ACTION NUKEM", NULL, NULL, &D_801CA7A8, &gCheatActionNukemConfig },
+    { 0, -16, 2, 0, "SELECT SKIN", NULL, NULL, &D_801CA7A8, &gCheatSelectSkinConfig },
     { 1, -1, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
 #elif VERSION_FR
-    { 0, -55, 2, 0, "1RE PERSONNE", NULL, NULL, &D_801CA7A8, &D_801CDBC6 },
-    { 0, -55, 2, 0, "NUKEM ACTIF", NULL, NULL, &D_801CA7A8, &D_801CDBC4 },
-    { 0, -55, 2, 0, "SELECTION", NULL, NULL, &D_801CA7A8, &D_801CC8CC },
+    { 0, -55, 2, 0, "1RE PERSONNE", NULL, NULL, &D_801CA7A8, &gCheatFirstPersonConfig },
+    { 0, -55, 2, 0, "NUKEM ACTIF", NULL, NULL, &D_801CA7A8, &gCheatActionNukemConfig },
+    { 0, -55, 2, 0, "SELECTION", NULL, NULL, &D_801CA7A8, &gCheatSelectSkinConfig },
     { 1, -1, 0, 0, "QUITTER", menuExit, NULL, NULL, NULL },
 #endif
 };
@@ -1645,20 +1647,20 @@ static code1UnkStruct5 D_801CB2AC[4] = {
 /*801CB32C*/
 static code1UnkStruct5 D_801CB32C[7] = {
 #if VERSION_US
-    { 0, -16, 2, 0, "BIG HEAD MODE", NULL, NULL, &D_801CA7A8, &D_801CC926 },
-    { 0, -16, 2, 0, "FLAT SHADING", NULL, NULL, &D_801CA7A8, &D_801CDBCC },
-    { 0, -16, 2, 0, "WEATHER", NULL, NULL, &D_801CA7A8, &D_801CC7F4 },
-    { 0, -16, 2, 0, "BIG GUN", NULL, NULL, &D_801CA7A8, &D_801CC8C8 },
-    { 0, -16, 2, 0, "ICE SKINS", NULL, NULL, &D_801CA7A8, &D_801CC8A8 },
-    { 0, -16, 2, 0, "FAST ZOMBIES", NULL, NULL, &D_801CA7A8, &D_801CE48C },
+    { 0, -16, 2, 0, "BIG HEAD MODE", NULL, NULL, &D_801CA7A8, &gCheatBigHeadModeConfig },
+    { 0, -16, 2, 0, "FLAT SHADING", NULL, NULL, &D_801CA7A8, &gCheatFlatShadingConfig },
+    { 0, -16, 2, 0, "WEATHER", NULL, NULL, &D_801CA7A8, &gCheatWeatherConfig },
+    { 0, -16, 2, 0, "BIG GUN", NULL, NULL, &D_801CA7A8, &gCheatBigGunConfig },
+    { 0, -16, 2, 0, "ICE SKINS", NULL, NULL, &D_801CA7A8, &gCheatIceSkinConfig },
+    { 0, -16, 2, 0, "FAST ZOMBIES", NULL, NULL, &D_801CA7A8, &gCheatFastZombiesConfig },
     { 1, -1, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
 #elif VERSION_FR
-    { 0, -55, 2, 0, "MODE GROSSE TETE", NULL, NULL, &D_801CA7A8, &D_801CC926 },
-    { 0, -55, 2, 0, "OMBRAGE MAT", NULL, NULL, &D_801CA7A8, &D_801CDBCC },
-    { 0, -55, 2, 0, "METEO", NULL, NULL, &D_801CA7A8, &D_801CC7F4 },
-    { 0, -55, 2, 0, "GROS CANON", NULL, NULL, &D_801CA7A8, &D_801CC8C8 },
-    { 0, -55, 2, 0, "PEAUX DE GLACE", NULL, NULL, &D_801CA7A8, &D_801CC8A8 },
-    { 0, -55, 2, 0, "ZOMBIES RAPIDES", NULL, NULL, &D_801CA7A8, &D_801CE48C },
+    { 0, -55, 2, 0, "MODE GROSSE TETE", NULL, NULL, &D_801CA7A8, &gCheatBigHeadModeConfig },
+    { 0, -55, 2, 0, "OMBRAGE MAT", NULL, NULL, &D_801CA7A8, &gCheatFlatShadingConfig },
+    { 0, -55, 2, 0, "METEO", NULL, NULL, &D_801CA7A8, &gCheatWeatherConfig },
+    { 0, -55, 2, 0, "GROS CANON", NULL, NULL, &D_801CA7A8, &gCheatBigGunConfig },
+    { 0, -55, 2, 0, "PEAUX DE GLACE", NULL, NULL, &D_801CA7A8, &gCheatIceSkinConfig },
+    { 0, -55, 2, 0, "ZOMBIES RAPIDES", NULL, NULL, &D_801CA7A8, &gCheatFastZombiesConfig },
     { 1, -1, 0, 0, "QUITTER", menuExit, NULL, NULL, NULL },
 #endif
 };
@@ -1921,11 +1923,11 @@ static void func_801C37B8(void)
     gLoadMapNum = 0;
     Amemset(&D_801CE5F0, 0, sizeof(D_801CE5F0));
 
-    for (i = 0; D_801CA14C[gLoadMapNum].unk0 != 10; i++)
+    for (i = 0; gMapChapter[gLoadMapNum].chapter != TRAINING; i++)
         gLoadMapNum++;
 
     gTimeMachinePart = 0;
-    D_8010554C = D_801CC8CC;
+    D_8010554C = gCheatSelectSkinConfig;
 }
 
 /*801C3874*/
@@ -1987,7 +1989,7 @@ static void func_801C39C4(void)
     if (D_800FE3FC == 0)
     {
         gLoadMapNum = func_801C53E8(gMapNum);
-        if (D_801CA14C[gLoadMapNum].unk0 == 99)
+        if (gMapChapter[gLoadMapNum].chapter == 99)
             gLoadMapNum = 0;
     }
     D_801CC88C = 1;
@@ -2021,7 +2023,7 @@ static void func_801C3AD8(void)
     s32 i;
 
     D_801CE5D8 = 0x25252525;
-    D_800DF98C = 1;
+    gNotPlayback = TRUE;
     D_800BD3E8 = 1;
     D_801CC8C4 = 0;
     func_801C0EDC(0xD000);
@@ -2044,7 +2046,7 @@ static void func_801C3AD8(void)
     func_801C1158(0, 0, 0, 0xFF);
     D_801CC88C = -1;
 
-    if ((D_800E16BC != 0) || (D_801CE470 != 0))
+    if ((gUnlockedCheat != 0) || (gUnlockedCheatWeapons != 0))
         gConfig.unk50 = 1;
 
     if (gConfig.unk50 == 0)
@@ -2497,26 +2499,26 @@ void func_801C4B34(void)
 /*801C4E90*/
 static void func_801C4E90(void)
 {
-    D_801CDBC6 = 0;
-    D_801CDBC4 = 0;
-    D_801CC8CC = 0;
-    D_801CC926 = 0;
-    D_801CDBCC = 0;
-    D_801CC7F4 = 0;
-    D_801CC8C8 = 0;
-    D_801CC8A8 = 0;
-    D_801CE48C = 0;
-    D_801CC924 = 0;
-    D_801CDB48 = 0;
-    D_801CE4EC = 0;
-    D_801CF634 = 0;
-    D_801CE478 = 0;
-    D_801CDA80 = 0;
-    D_801CC8B8 = 0;
-    D_801CDB14 = 0;
-    D_801CDB16 = 0;
-    D_801CD984 = 0;
-    D_801CE480 = 0;
+    gCheatFirstPersonConfig = CONFIG_OFF;
+    gCheatActionNukemConfig = CONFIG_OFF;
+    gCheatSelectSkinConfig = CONFIG_OFF;
+    gCheatBigHeadModeConfig = CONFIG_OFF;
+    gCheatFlatShadingConfig = CONFIG_OFF;
+    gCheatWeatherConfig = CONFIG_OFF;
+    gCheatBigGunConfig = CONFIG_OFF;
+    gCheatIceSkinConfig = CONFIG_OFF;
+    gCheatFastZombiesConfig = CONFIG_OFF;
+    gCheatWeaponSmgConfig = CONFIG_OFF;
+    gCheatWeaponBlasterConfig = CONFIG_OFF;
+    gCheatWeaponSniperConfig = CONFIG_OFF;
+    gCheatWeaponFreezerConfig = CONFIG_OFF;
+    gCheatWeaponRevolverConfig = CONFIG_OFF;
+    gCheatWeaponClaw12Config = CONFIG_OFF;
+    gCheatWeapon3030Config = CONFIG_OFF;
+    gCheatWeaponSawedOffConfig = CONFIG_OFF;
+    gCheatWeaponVoltCannonConfig = CONFIG_OFF;
+    gCheatWeaponGattlingGunConfig = CONFIG_OFF;
+    gCheatWeaponGammaCannonConfig = CONFIG_OFF;
 }
 
 /*801C4F38*/
@@ -2552,8 +2554,8 @@ void configInitialize(void)
     D_801A1994 = 0;
     D_80199524 = 0;
     D_800FE3FC = 0;
-    D_801CE470 = 0;
-    D_800E16BC = 0;
+    gUnlockedCheatWeapons = 0;
+    gUnlockedCheat = 0;
     func_801C4E90();
     sprintf(D_801CDBB0, "ZERO HOUR");
 }
@@ -2597,7 +2599,7 @@ static void func_801C509C(void)
         return;
     }
 
-    D_801CDB54 = func_8008DA70(gMapNum);
+    gCheatAwarded = awardMapCheat(gMapNum);
     allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT*2, DISPLAY_LIST_SIZE*2, 0);
     D_800BD3E8 = 1;
     func_801C10C8();
@@ -2607,7 +2609,7 @@ static void func_801C509C(void)
     edl_80081688(&D_801CDBC8, 23);
     edl_80081688(&D_801CDA98, 22);
     func_8007FD8C(&D_800DFB08[0], 11);
-    func_8007FD8C(&D_800E0454[0], D_801CB948[D_801CA14C[gMapNum].unk0]);
+    func_8007FD8C(&D_800E0454[0], D_801CB948[gMapChapter[gMapNum].chapter]);
     func_8007FD8C(&D_800DFA90[0], 2);
     D_800E0F58 = 0;
 
@@ -2619,7 +2621,7 @@ static void func_801C509C(void)
     main_80000610();
     D_801CDB04 = 0;
 
-    if (D_801CA14C[gLoadMapNum].unk0 == 10)
+    if (gMapChapter[gLoadMapNum].chapter == TRAINING)
     {
         gLoadMapNum = 0;
         main_80000624(func_801C9B08);
@@ -2669,7 +2671,7 @@ void func_801C542C(void)
         func_801C1114();
         func_801C1158(0, 0, 0, 0xFF);
         D_801CC88C = -1;
-        D_801CF6E0[0] = func_800802C0(D_801CA14C[gMapNum].mapname, gScreenWidth / 2, -12, 180, 1);
+        D_801CF6E0[0] = func_800802C0(gMapChapter[gMapNum].mapname, gScreenWidth / 2, -12, 180, 1);
         func_801C14C4(D_801CF6E0[0], 32, 0xFF, 32);
 #if VERSION_US
         D_801CF6E0[1] = func_800802C0("TIME TAKEN:", 0, 65, 200, 0);
@@ -2710,7 +2712,7 @@ void func_801C542C(void)
         D_801CA144 = 0.0f;
         D_801CE59C = 0;
 
-        if (D_801CDB54 != 0)
+        if (gCheatAwarded)
         {
 #if VERSION_US
             D_801CF6E0[6] = func_8007FE2C("CHEAT AWARDED", gScreenWidth/2, 128, 200, 1, 0);
@@ -2765,12 +2767,12 @@ void func_801C542C(void)
                         ptr = &D_801CE5F0.unk4[gMapNum];
                         ptr->unk182 = D_801A1958.unk10;
                         ptr->unk172 = D_801A1958.unkC;
-                        ptr->unk178 = D_801A1958.babes_saved;
-                        ptr->unk180 = D_801A1958.secrets_found;
-                        ptr->unk176 = D_801A1958.enemies_killed;
-                        ptr->unk164 = D_801A1958.enemies_total;
-                        ptr->unk166 = D_801A1958.babes_total;
-                        ptr->unk168 = D_801A1958.secrets_total;
+                        ptr->babes_saved = D_801A1958.babes_saved;
+                        ptr->secrets_found = D_801A1958.secrets_found;
+                        ptr->enemies_killed = D_801A1958.enemies_killed;
+                        ptr->enemies_total = D_801A1958.enemies_total;
+                        ptr->babes_total = D_801A1958.babes_total;
+                        ptr->secrets_total = D_801A1958.secrets_total;
                         func_801C948C();
                         D_801CDB04 = 2;
                     }
@@ -2797,7 +2799,7 @@ void func_801C542C(void)
                 if (D_801CA144 < 0.0f)
                     D_801CA144 = 0.0f;
             }
-            if (D_801CDB54 != 0)
+            if (gCheatAwarded)
             {
                 if ((D_801CC910 & 0xF) < 7)
                     D_801CF6E0[6]->unkC &= ~1;
@@ -2866,7 +2868,7 @@ static void func_801C5C68(void)
     edl_80081688(&D_801CDBC8, 23);
     edl_80081688(&D_801CDA98, 22);
     func_8007FD8C(&D_800DFB08[0], 11);
-    func_8007FD8C(&D_800E0454[0], D_801CB948[D_801CA14C[gMapNum].unk0]);
+    func_8007FD8C(&D_800E0454[0], D_801CB948[gMapChapter[gMapNum].chapter]);
     D_800E0F58 = 0;
 
     for (i = 0; i < ARRAY_COUNT(D_01022510); i++)
@@ -2877,14 +2879,14 @@ static void func_801C5C68(void)
     D_801CDA20 = func_8007FC08(&D_800E0454[0], NULL, 0, 0, 500);
     func_801C1158(0, 0, 0, 0xFF);
     D_801CC88C = -1;
-    D_801CF6E0[0] = func_800802C0(D_801CA14C[gMapNum].mapname, gScreenWidth / 2, 24, 200, 1);
+    D_801CF6E0[0] = func_800802C0(gMapChapter[gMapNum].mapname, gScreenWidth / 2, 24, 200, 1);
     func_801C14C4(D_801CF6E0[0], 32, 0xFF, 32);
 #if VERSION_US
     D_801CF6E0[1] = func_800802C0("PRESS START TO ENTER", gScreenWidth/2, 186, 200, 1);
 #elif VERSION_FR
     D_801CF6E0[1] = func_800802C0("APPUYEZ SUR START POUR", gScreenWidth/2, 186, 200, 1);
 #endif
-    D_801CF6E0[2] = func_800802C0(D_801CA14C[gMapNum + 1].mapname, gScreenWidth / 2, 208, 200, 1);
+    D_801CF6E0[2] = func_800802C0(gMapChapter[gMapNum + 1].mapname, gScreenWidth / 2, 208, 200, 1);
 
     if (D_801CDC64.unk2 == 5)
     {
@@ -3005,9 +3007,9 @@ void func_801C63CC(void)
             func_801C0EDC(0x1000);
             playSfx(747);
             gLoadMapNum++;
-            if (D_801CA14C[gLoadMapNum].unk0 == 99)
+            if (gMapChapter[gLoadMapNum].chapter == 99)
             {
-                for (gLoadMapNum = 0; D_801CA14C[gLoadMapNum].unk0 != 5; gLoadMapNum++)
+                for (gLoadMapNum = 0; gMapChapter[gLoadMapNum].chapter != DUKEMATCH; gLoadMapNum++)
                     ;
             }
             D_801CDA8C = 0;
@@ -3266,201 +3268,201 @@ void func_801C66D8(void)
 }
 
 /*801C6CA4*/
-static void func_801C6CA4(void)
+static void unlockSkinEnforcers(void)
 {
-    D_800E16C0 |= 0x1C000000;
+    gUnlockedSkin |= SKIN_ENFORCER|SKIN_ENFORCERCAPTAIN|SKIN_BATTLEENFORCER;
 }
 
 /*801C6CC4*/
-static void func_801C6CC4(void)
+static void unlockSkinPigs(void)
 {
-    D_800E16C0 |= 0x03FC0000;
+    gUnlockedSkin |= SKIN_PIGCOP|SKIN_RIOTPIG|SKIN_ROADHOG|SKIN_WARPIG|SKIN_COWBOYGRUNT|SKIN_SAVAGEGRUNT|SKIN_SOLDIERGRUNT|SKIN_CAPITALISTPIG;
 }
 
 /*801C6CE4*/
-static void func_801C6CE4(void)
+static void unlockSkinDukes(void)
 {
-    D_800E16C0 |= 0x70;
+    gUnlockedSkin |= SKIN_POSHDUKE|SKIN_BATTLEDRESSDUKE|SKIN_DOGTAGDUKE;
 }
 
 /*801C6D00*/
-static void func_801C6D00(void)
+static void unlockSkinWomen(void)
 {
-    D_800E16C0 |= 0x3E000;
+    gUnlockedSkin |= SKIN_MARSHALL|SKIN_SHERIFF|SKIN_SQUAW|SKIN_SURVIVOR|SKIN_KIMBERLYSTROKES;
 }
 
 /*801C6D24*/
-static void func_801C6D24(void)
+static void unlockSkinBrothersNukem(void)
 {
-    D_800E16C0 |= 0x1C80;
+    gUnlockedSkin |= SKIN_EVILDUKE|SKIN_CUSTER|SKIN_RIPPER|SKIN_XTERMINATOR;
 }
 
 /*801C6D40*/
-static void func_801C6D40(void)
+static void unlockSkinSoldiers(void)
 {
-    D_800E16C0 |= 0x300;
+    gUnlockedSkin |= SKIN_MARINE|SKIN_SERGEANT;
 }
 
 /*801C6D5C*/
-static void func_801C6D5C(void)
+static void unlockCheatFirstPerson(void)
 {
-    D_801CDBC6 = 1;
-    D_800E16BC |= 1;
+    gCheatFirstPersonConfig = CONFIG_ON;
+    gUnlockedCheat |= (1<<CHEAT_FIRST_PERSON);
 }
 
 /*801C6D84*/
-static void func_801C6D84(void)
+static void unlockCheatBigHeadMode(void)
 {
-    D_801CC926 = 1;
-    D_800E16BC |= 2;
+    gCheatBigHeadModeConfig = CONFIG_ON;
+    gUnlockedCheat |= (1<<CHEAT_BIG_HEAD_MODE);
 }
 
 /*801C6DAC*/
-static void func_801C6DAC(void)
+static void unlockCheatFlatShading(void)
 {
-    D_801CDBCC = 1;
-    D_800E16BC |= 4;
+    gCheatFlatShadingConfig = CONFIG_ON;
+    gUnlockedCheat |= (1<<CHEAT_FLAT_SHADING);
 }
 
 /*801C6DD4*/
-static void func_801C6DD4(void)
+static void unlockCheatWeather(void)
 {
-    D_801CC7F4 = 1;
-    D_800E16BC |= 8;
+    gCheatWeatherConfig = CONFIG_ON;
+    gUnlockedCheat |= (1<<CHEAT_WEATHER);
 }
 
 /*801C6DFC*/
-static void func_801C6DFC(void)
+static void unlockCheatBigGun(void)
 {
-    D_801CC8C8 = 1;
-    D_800E16BC |= 0x10;
+    gCheatBigGunConfig = CONFIG_ON;
+    gUnlockedCheat |= (1<<CHEAT_BIG_GUN);
 }
 
 /*801C6E24*/
-static void func_801C6E24(void)
+static void unlockCheatIceSkin(void)
 {
-    D_801CC8A8 = 1;
-    D_800E16BC |= 0x20;
+    gCheatIceSkinConfig = CONFIG_ON;
+    gUnlockedCheat |= (1<<CHEAT_ICE_SKINS);
 }
 
 /*801C6E4C*/
-static void func_801C6E4C(void)
+static void unlockCheatActionNukem(void)
 {
-    D_801CDBC4 = 1;
-    D_800E16BC |= 0x40;
+    gCheatActionNukemConfig = CONFIG_ON;
+    gUnlockedCheat |= (1<<CHEAT_ACTION_NUKEM);
 }
 
 /*801C6E74*/
-static void func_801C6E74(void)
+static void unlockCheatSelectSkin(void)
 {
-    D_801CC8CC = 1;
-    D_800E16BC |= 0x80;
+    gCheatSelectSkinConfig = CONFIG_ON;
+    gUnlockedCheat |= (1<<CHEAT_SELECT_SKIN);
 }
 
 /*801C6E9C*/
-static void func_801C6E9C(void)
+static void unlockCheatFastZombies(void)
 {
-    D_801CE48C = 1;
-    D_800E16BC |= 0x100;
+    gCheatFastZombiesConfig = CONFIG_ON;
+    gUnlockedCheat |= (1<<CHEAT_FAST_ZOMBIES);
 }
 
 /*801C6EC4*/
-static void func_801C6EC4(void)
+static void unlockCheatWeaponSmg(void)
 {
-    D_801CC924 = 1;
-    D_801CE470 |= 1;
+    gCheatWeaponSmgConfig = CONFIG_ON;
+    gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_SMG);
 }
 
 /*801C6EEC*/
-static void func_801C6EEC(void)
+static void unlockCheatWeaponBlaster(void)
 {
-    D_801CDB48 = 1;
-    D_801CE470 |= 2;
+    gCheatWeaponBlasterConfig = CONFIG_ON;
+    gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_BLASTER);
 }
 
 /*801C6F14*/
-static void func_801C6F14(void)
+static void unlockCheatWeaponSniper(void)
 {
-    D_801CE4EC = 1;
-    D_801CE470 |= 4;
+    gCheatWeaponSniperConfig = CONFIG_ON;
+    gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_SNIPER);
 }
 
 /*801C6F3C*/
-static void func_801C6F3C(void)
+static void unlockCheatWeaponFreezer(void)
 {
-    D_801CF634 = 1;
-    D_801CE470 |= 8;
+    gCheatWeaponFreezerConfig = CONFIG_ON;
+    gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_FREEZER);
 }
 
 /*801C6F64*/
-static void func_801C6F64(void)
+static void unlockCheatWeaponRevolver(void)
 {
-    D_801CE478 = 1;
-    D_801CE470 |= 0x10;
+    gCheatWeaponRevolverConfig = CONFIG_ON;
+    gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_REVOLVER);
 }
 
 /*801C6F8C*/
-static void func_801C6F8C(void)
+static void unlockCheatWeaponClaw12(void)
 {
-    D_801CDA80 = 1;
-    D_801CE470 |= 0x20;
+    gCheatWeaponClaw12Config = CONFIG_ON;
+    gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_CLAW12);
 }
 
 /*801C6FB4*/
-static void func_801C6FB4(void)
+static void unlockCheatWeapon3030(void)
 {
-    D_801CC8B8 = 1;
-    D_801CE470 |= 0x40;
+    gCheatWeapon3030Config = CONFIG_ON;
+    gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_3030);
 }
 
 /*801C6FDC*/
-static void func_801C6FDC(void)
+static void unlockCheatWeaponSawedOff(void)
 {
-    D_801CDB14 = 1;
-    D_801CE470 |= 0x80;
+    gCheatWeaponSawedOffConfig = CONFIG_ON;
+    gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_SAWEDOFF);
 }
 
 /*801C7004*/
-static void func_801C7004(void)
+static void unlockCheatWeaponVoltCannon(void)
 {
-    D_801CDB16 = 1;
-    D_801CE470 |= 0x100;
+    gCheatWeaponVoltCannonConfig = CONFIG_ON;
+    gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_VOLTCANNON);
 }
 
 /*801C702C*/
-static void func_801C702C(void)
+static void unlockCheatWeaponGattlingGun(void)
 {
-    D_801CD984 = 1;
-    D_801CE470 |= 0x200;
+    gCheatWeaponGattlingGunConfig = CONFIG_ON;
+    gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_GATTLINGGUN);
 }
 
 /*801C7054*/
-static void func_801C7054(void)
+static void unlockCheatWeaponGammaCannon(void)
 {
-    D_801CE480 = 1;
-    D_801CE470 |= 0x400;
+    gCheatWeaponGammaCannonConfig = CONFIG_ON;
+    gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_GAMMACANNON);
 }
 
 /*801C707C*/
-static void func_801C707C(void)
+static void unlockCheatWeaponAll(void)
 {
-    func_801C6EC4();
-    func_801C6EEC();
-    func_801C6F14();
-    func_801C6F3C();
-    func_801C6F64();
-    func_801C6F8C();
-    func_801C6FB4();
-    func_801C6FDC();
-    func_801C7004();
-    func_801C702C();
-    func_801C7054();
+    unlockCheatWeaponSmg();
+    unlockCheatWeaponBlaster();
+    unlockCheatWeaponSniper();
+    unlockCheatWeaponFreezer();
+    unlockCheatWeaponRevolver();
+    unlockCheatWeaponClaw12();
+    unlockCheatWeapon3030();
+    unlockCheatWeaponSawedOff();
+    unlockCheatWeaponVoltCannon();
+    unlockCheatWeaponGattlingGun();
+    unlockCheatWeaponGammaCannon();
 }
 
 /*801C70EC*/
-static void func_801C70EC(void)
+static void toggleDebugMenu(void)
 {
-    D_800DF990 = D_800DF990 == 0;
+    gDebugMenu = !gDebugMenu;
 }
 
 /*801C7108*/
@@ -3474,45 +3476,46 @@ static void func_801C7108(void)
         D_801CB2AC[j].unk4 = 2;
     for (k = 0; k < ARRAY_COUNT(D_801CB14C)-1; k++)
         D_801CB14C[k].unk4 = 2;
-    if (D_800E16BC & 2)
+
+    if (gUnlockedCheat & (1<<CHEAT_BIG_HEAD_MODE))
         D_801CB32C[0].unk4 = 0;
-    if (D_800E16BC & 4)
+    if (gUnlockedCheat & (1<<CHEAT_FLAT_SHADING))
         D_801CB32C[1].unk4 = 0;
-    if (D_800E16BC & 8)
+    if (gUnlockedCheat & (1<<CHEAT_WEATHER))
         D_801CB32C[2].unk4 = 0;
-    if (D_800E16BC & 0x10)
+    if (gUnlockedCheat & (1<<CHEAT_BIG_GUN))
         D_801CB32C[3].unk4 = 0;
-    if (D_800E16BC & 0x20)
+    if (gUnlockedCheat & (1<<CHEAT_ICE_SKINS))
         D_801CB32C[4].unk4 = 0;
-    if (D_800E16BC & 0x100)
+    if (gUnlockedCheat & (1<<CHEAT_FAST_ZOMBIES))
         D_801CB32C[5].unk4 = 0;
-    if (D_800E16BC & 1)
+    if (gUnlockedCheat & (1<<CHEAT_FIRST_PERSON))
         D_801CB2AC[0].unk4 = 0;
-    if (D_800E16BC & 0x40)
+    if (gUnlockedCheat & (1<<CHEAT_ACTION_NUKEM))
         D_801CB2AC[1].unk4 = 0;
-    if (D_800E16BC & 0x80)
+    if (gUnlockedCheat & (1<<CHEAT_SELECT_SKIN))
         D_801CB2AC[2].unk4 = 0;
-    if (D_801CE470 & 1)
+    if (gUnlockedCheatWeapons & (1<<CHEAT_WEAPON_SMG))
         D_801CB14C[0].unk4 = 0;
-    if (D_801CE470 & 2)
+    if (gUnlockedCheatWeapons & (1<<CHEAT_WEAPON_BLASTER))
         D_801CB14C[1].unk4 = 0;
-    if (D_801CE470 & 4)
+    if (gUnlockedCheatWeapons & (1<<CHEAT_WEAPON_SNIPER))
         D_801CB14C[2].unk4 = 0;
-    if (D_801CE470 & 8)
+    if (gUnlockedCheatWeapons & (1<<CHEAT_WEAPON_FREEZER))
         D_801CB14C[3].unk4 = 0;
-    if (D_801CE470 & 0x10)
+    if (gUnlockedCheatWeapons & (1<<CHEAT_WEAPON_REVOLVER))
         D_801CB14C[4].unk4 = 0;
-    if (D_801CE470 & 0x20)
+    if (gUnlockedCheatWeapons & (1<<CHEAT_WEAPON_CLAW12))
         D_801CB14C[5].unk4 = 0;
-    if (D_801CE470 & 0x40)
+    if (gUnlockedCheatWeapons & (1<<CHEAT_WEAPON_3030))
         D_801CB14C[6].unk4 = 0;
-    if (D_801CE470 & 0x80)
+    if (gUnlockedCheatWeapons & (1<<CHEAT_WEAPON_SAWEDOFF))
         D_801CB14C[7].unk4 = 0;
-    if (D_801CE470 & 0x100)
+    if (gUnlockedCheatWeapons & (1<<CHEAT_WEAPON_VOLTCANNON))
         D_801CB14C[8].unk4 = 0;
-    if (D_801CE470 & 0x200)
+    if (gUnlockedCheatWeapons & (1<<CHEAT_WEAPON_GATTLINGGUN))
         D_801CB14C[9].unk4 = 0;
-    if (D_801CE470 & 0x400)
+    if (gUnlockedCheatWeapons & (1<<CHEAT_WEAPON_GAMMACANNON))
         D_801CB14C[10].unk4 = 0;
 }
 
@@ -3528,41 +3531,41 @@ static void func_801C73A0(void)
 }
 
 /*801CB998*/
-static _EB300UnkStruct2 D_801CB998[28] = {
-    { func_801C6CA4, 7, { 32768, 32, 16, 512, 16384, 1024, 2048, 0, 0, 0, 0 } },
-    { func_801C6CC4, 5, { 16384, 32768, 32768, 16, 32, 0, 0, 0, 0, 0, 0 } },
-    { func_801C6CE4, 7, { 32, 32, 2048, 1024, 16, 16384, 32768, 0, 0, 0, 0 } },
-    { func_801C6D00, 6, { 16384, 16384, 16384, 16, 512, 32768, 0, 0, 0, 0, 0 } },
-    { func_801C6D24, 6, { 256, 16384, 512, 32, 32768, 8192, 0, 0, 0, 0, 0 } },
-    { func_801C6D40, 6, { 2048, 1024, 16384, 32768, 32768, 512, 0, 0, 0, 0, 0 } },
-    { func_801C6D5C, 10, { 1024, 2048, 32, 16384, 8192, 512, 8, 1, 2, 8192, 0 } },
-    { func_801C6D84, 8, { 16384, 2048, 1024, 1024, 32768, 8192, 32768, 256, 0, 0, 0 } },
-    { func_801C6DAC, 7, { 1024, 2048, 512, 512, 32768, 256, 1024, 0, 0, 0, 0 } },
-    { func_801C6DD4, 7, { 8192, 32768, 32, 16384, 1024, 2048, 16, 0, 0, 0, 0 } },
-    { func_801C6DFC, 7, { 8, 2, 8192, 16384, 32, 8192, 32768, 0, 0, 0, 0 } },
-    { func_801C6E24, 7, { 16384, 8192, 2048, 32, 32768, 1, 32768, 0, 0, 0, 0 } },
-    { func_801C6E4C, 7, { 1024, 1024, 32768, 8192, 8192, 512, 32768, 0, 0, 0, 0 } },
-    { func_801C6E74, 8, { 2, 16, 512, 2048, 1024, 16384, 32768, 8192, 0, 0, 0 } },
-    { func_801C6E9C, 7, { 32768, 32768, 8192, 32768, 16, 4, 16384, 0, 0, 0, 0 } },
-    { func_801C6EC4, 6, { 32, 16384, 16384, 16, 8192, 32768, 0, 0, 0, 0, 0 } },
-    { func_801C6EEC, 6, { 16384, 512, 32768, 16, 16, 16384, 0, 0, 0, 0, 0 } },
-    { func_801C6F14, 6, { 512, 256, 2048, 16384, 1024, 32768, 0, 0, 0, 0, 0 } },
-    { func_801C6F3C, 6, { 1024, 2048, 32768, 32, 16, 8192, 0, 0, 0, 0, 0 } },
-    { func_801C6F64, 6, { 256, 32768, 16, 8192, 16384, 32768, 0, 0, 0, 0, 0 } },
-    { func_801C6F8C, 6, { 16384, 8192, 8192, 32768, 8192, 32, 0, 0, 0, 0, 0 } },
-    { func_801C6FB4, 6, { 8, 4, 2, 1, 32, 16, 0, 0, 0, 0, 0 } },
-    { func_801C6FDC, 6, { 16384, 32768, 4, 8192, 32, 2, 0, 0, 0, 0, 0 } },
-    { func_801C7004, 6, { 32, 8192, 8192, 32768, 8192, 16, 0, 0, 0, 0, 0 } },
-    { func_801C702C, 6, { 1, 16, 256, 8192, 16384, 32768, 0, 0, 0, 0, 0 } },
-    { func_801C7054, 6, { 8, 1024, 32768, 32768, 2, 16, 0, 0, 0, 0, 0 } },
-    { func_801C707C, 10, { 1024, 32768, 2048, 32, 8192, 16, 8, 4, 16384, 2, 0 } },
-    { func_801C70EC, 10, { 8, 2048, 2, 256, 4, 1024, 1, 16, 32768, 16384, 0 } },
+static CheatCode gCheatCode[28] = {
+    { unlockSkinEnforcers, 7, { A_BUTTON, L_TRIG, R_TRIG, L_JPAD, B_BUTTON, D_JPAD, U_JPAD, 0, 0, 0, 0 } },
+    { unlockSkinPigs, 5, { B_BUTTON, A_BUTTON, A_BUTTON, R_TRIG, L_TRIG, 0, 0, 0, 0, 0, 0 } },
+    { unlockSkinDukes, 7, { L_TRIG, L_TRIG, U_JPAD, D_JPAD, R_TRIG, B_BUTTON, A_BUTTON, 0, 0, 0, 0 } },
+    { unlockSkinWomen, 6, { B_BUTTON, B_BUTTON, B_BUTTON, R_TRIG, L_JPAD, A_BUTTON, 0, 0, 0, 0, 0 } },
+    { unlockSkinBrothersNukem, 6, { R_JPAD, B_BUTTON, L_JPAD, L_TRIG, A_BUTTON, Z_TRIG, 0, 0, 0, 0, 0 } },
+    { unlockSkinSoldiers, 6, { U_JPAD, D_JPAD, B_BUTTON, A_BUTTON, A_BUTTON, L_JPAD, 0, 0, 0, 0, 0 } },
+    { unlockCheatFirstPerson, 10, { D_JPAD, U_JPAD, L_TRIG, B_BUTTON, Z_TRIG, L_JPAD, U_CBUTTONS, R_CBUTTONS, L_CBUTTONS, Z_TRIG, 0 } },
+    { unlockCheatBigHeadMode, 8, { B_BUTTON, U_JPAD, D_JPAD, D_JPAD, A_BUTTON, Z_TRIG, A_BUTTON, R_JPAD, 0, 0, 0 } },
+    { unlockCheatFlatShading, 7, { D_JPAD, U_JPAD, L_JPAD, L_JPAD, A_BUTTON, R_JPAD, D_JPAD, 0, 0, 0, 0 } },
+    { unlockCheatWeather, 7, { Z_TRIG, A_BUTTON, L_TRIG, B_BUTTON, D_JPAD, U_JPAD, R_TRIG, 0, 0, 0, 0 } },
+    { unlockCheatBigGun, 7, { U_CBUTTONS, L_CBUTTONS, Z_TRIG, B_BUTTON, L_TRIG, Z_TRIG, A_BUTTON, 0, 0, 0, 0 } },
+    { unlockCheatIceSkin, 7, { B_BUTTON, Z_TRIG, U_JPAD, L_TRIG, A_BUTTON, R_CBUTTONS, A_BUTTON, 0, 0, 0, 0 } },
+    { unlockCheatActionNukem, 7, { D_JPAD, D_JPAD, A_BUTTON, Z_TRIG, Z_TRIG, L_JPAD, A_BUTTON, 0, 0, 0, 0 } },
+    { unlockCheatSelectSkin, 8, { L_CBUTTONS, R_TRIG, L_JPAD, U_JPAD, D_JPAD, B_BUTTON, A_BUTTON, Z_TRIG, 0, 0, 0 } },
+    { unlockCheatFastZombies, 7, { A_BUTTON, A_BUTTON, Z_TRIG, A_BUTTON, R_TRIG, D_CBUTTONS, B_BUTTON, 0, 0, 0, 0 } },
+    { unlockCheatWeaponSmg, 6, { L_TRIG, B_BUTTON, B_BUTTON, R_TRIG, Z_TRIG, A_BUTTON, 0, 0, 0, 0, 0 } },
+    { unlockCheatWeaponBlaster, 6, { B_BUTTON, L_JPAD, A_BUTTON, R_TRIG, R_TRIG, B_BUTTON, 0, 0, 0, 0, 0 } },
+    { unlockCheatWeaponSniper, 6, { L_JPAD, R_JPAD, U_JPAD, B_BUTTON, D_JPAD, A_BUTTON, 0, 0, 0, 0, 0 } },
+    { unlockCheatWeaponFreezer, 6, { D_JPAD, U_JPAD, A_BUTTON, L_TRIG, R_TRIG, Z_TRIG, 0, 0, 0, 0, 0 } },
+    { unlockCheatWeaponRevolver, 6, { R_JPAD, A_BUTTON, R_TRIG, Z_TRIG, B_BUTTON, A_BUTTON, 0, 0, 0, 0, 0 } },
+    { unlockCheatWeaponClaw12, 6, { B_BUTTON, Z_TRIG, Z_TRIG, A_BUTTON, Z_TRIG, L_TRIG, 0, 0, 0, 0, 0 } },
+    { unlockCheatWeapon3030, 6, { U_CBUTTONS, D_CBUTTONS, L_CBUTTONS, R_CBUTTONS, L_TRIG, R_TRIG, 0, 0, 0, 0, 0 } },
+    { unlockCheatWeaponSawedOff, 6, { B_BUTTON, A_BUTTON, D_CBUTTONS, Z_TRIG, L_TRIG, L_CBUTTONS, 0, 0, 0, 0, 0 } },
+    { unlockCheatWeaponVoltCannon, 6, { L_TRIG, Z_TRIG, Z_TRIG, A_BUTTON, Z_TRIG, R_TRIG, 0, 0, 0, 0, 0 } },
+    { unlockCheatWeaponGattlingGun, 6, { R_CBUTTONS, R_TRIG, R_JPAD, Z_TRIG, B_BUTTON, A_BUTTON, 0, 0, 0, 0, 0 } },
+    { unlockCheatWeaponGammaCannon, 6, { U_CBUTTONS, D_JPAD, A_BUTTON, A_BUTTON, L_CBUTTONS, R_TRIG, 0, 0, 0, 0, 0 } },
+    { unlockCheatWeaponAll, 10, { D_JPAD, A_BUTTON, U_JPAD, L_TRIG, Z_TRIG, R_TRIG, U_CBUTTONS, D_CBUTTONS, B_BUTTON, L_CBUTTONS, 0 } },
+    { toggleDebugMenu, 10, { U_CBUTTONS, U_JPAD, L_CBUTTONS, R_JPAD, D_CBUTTONS, D_JPAD, R_CBUTTONS, R_TRIG, A_BUTTON, B_BUTTON, 0 } },
 };
 
 /*801C73CC*/
 static void func_801C73CC(void)
 {
-    _EB300UnkStruct2 *ptr;
+    CheatCode *cheat;
     s32 i;
 
     for (i = 0; i < 16; i++)
@@ -3588,17 +3591,17 @@ static void func_801C73CC(void)
 
     if (D_801CC8BC != 0)
     {
-        ptr = D_801CB998;
-        for (i = 0; i < ARRAY_COUNT(D_801CDB28); i++, ptr++)
+        cheat = gCheatCode;
+        for (i = 0; i < ARRAY_COUNT(D_801CDB28); i++, cheat++)
         {
-            if (D_801CC8BC == ptr->unk6[D_801CDB28[i]])
+            if (D_801CC8BC == cheat->button_list[D_801CDB28[i]])
             {
                 D_801CDB28[i]++;
-                if ((D_801CDB28[i]) == ptr->unk4)
+                if ((D_801CDB28[i]) == cheat->button_count)
                 {
                     playSfx(46);
                     gConfig.unk50 = 1;
-                    ptr->unk0();
+                    cheat->func();
                     func_801C73A0();
                 }
             }
@@ -3629,7 +3632,7 @@ static void func_801C7574(void)
 /*801C764C*/
 void func_801C764C(void)
 {
-    code1UnkStruct2 *temp_s3;
+    code1UnkStruct2 *ptr;
     s32 i, j, k, l;
 
     l = D_801CE5F0.unkFD5;
@@ -3722,7 +3725,7 @@ void func_801C764C(void)
 
         D_801CDB20 = 0;
         D_801CA3D4 = gScreenHeight/2 + 100;
-        D_801CC8B0 = func_8007FE2C(D_801CA14C[D_801CE5DC].mapname, gScreenWidth / 2, D_801CA3D4, 64, 1, 0);
+        D_801CC8B0 = func_8007FE2C(gMapChapter[D_801CE5DC].mapname, gScreenWidth / 2, D_801CA3D4, 64, 1, 0);
         D_801CA3D4 += 12;
 #if VERSION_US
         D_801CF6E0[1] = func_8007FE2C("TIME TAKEN:", 48, D_801CA3D4 + 12, 64, 0, 0);
@@ -3740,18 +3743,18 @@ void func_801C764C(void)
         D_801CF6E0[5] = func_8007FE2C("TOTAL:", 48, D_801CA3D4 + 72, 64, 0, 0);
 #endif
 
-        temp_s3 = &D_801CE5F0.unk4[D_801CE5DC];
+        ptr = &D_801CE5F0.unk4[D_801CE5DC];
 
-        sprintf(D_801CDB58[0], "%d : %02d", (temp_s3->unk172 / 1800U),
-                (temp_s3->unk172 / 30U) - ((temp_s3->unk172 / 1800U) * 60));
+        sprintf(D_801CDB58[0], "%d : %02d", (ptr->unk172 / 1800U),
+                (ptr->unk172 / 30U) - ((ptr->unk172 / 1800U) * 60));
         D_801CDBD0[0] = func_8007FE2C(D_801CDB58[0], gScreenWidth - 48, D_801CA3D4 + 12, 64, 2, 0);
-        sprintf(D_801CDB58[1], "%d / %d", temp_s3->unk176, temp_s3->unk164);
+        sprintf(D_801CDB58[1], "%d / %d", ptr->enemies_killed, ptr->enemies_total);
         D_801CDBD0[1] = func_8007FE2C(D_801CDB58[1], gScreenWidth - 48, D_801CA3D4 + 24, 64, 2, 0);
-        sprintf(D_801CDB58[2], "%d / %d", temp_s3->unk178, temp_s3->unk166);
+        sprintf(D_801CDB58[2], "%d / %d", ptr->babes_saved, ptr->babes_total);
         D_801CDBD0[2] = func_8007FE2C(D_801CDB58[2], gScreenWidth - 48, D_801CA3D4 + 36, 64, 2, 0);
-        sprintf(D_801CDB58[3], "%d / %d", temp_s3->unk180, temp_s3->unk168);
+        sprintf(D_801CDB58[3], "%d / %d", ptr->secrets_found, ptr->secrets_total);
         D_801CDBD0[3] = func_8007FE2C(D_801CDB58[3], gScreenWidth - 48, D_801CA3D4 + 48, 64, 2, 0);
-        sprintf(D_801CDB58[4], "%d%%", temp_s3->unk182);
+        sprintf(D_801CDB58[4], "%d%%", ptr->unk182);
         D_801CDBD0[4] = func_8007FE2C(D_801CDB58[4], gScreenWidth - 48, D_801CA3D4 + 72, 64, 2, 0);
 
         if ((D_801CE5DC == MAP_WETWORLD) || (D_801CE5DC == MAP_BOSS_HOG) ||
@@ -3763,7 +3766,7 @@ void func_801C764C(void)
             sprintf(D_801CDB58[5], "AUCUN");
 #endif
         }
-        else if (D_801CE5F0.unkFE4 & (1 << D_801CE5DC))
+        else if (D_801CE5F0.time_machine_part & (1 << D_801CE5DC))
             sprintf(D_801CDB58[5], "1 / 1");
         else
             sprintf(D_801CDB58[5], "0 / 1");
@@ -3815,14 +3818,14 @@ void func_801C764C(void)
                 D_801CDA28[i]->unk10 = 110;
 
             D_801CDA28[D_801CE5DC]->unk10 = 0xFF;
-            D_801CC8B0->unk70 = D_801CA14C[D_801CE5DC].mapname;
-            temp_s3 = &D_801CE5F0.unk4[D_801CE5DC];
-            sprintf(D_801CDB58[0], "%d : %02d", (temp_s3->unk172 / 1800U),
-                                                (temp_s3->unk172 / 30U) - ((temp_s3->unk172 / 1800U) * 60));
-            sprintf(D_801CDB58[1], "%d / %d", temp_s3->unk176, temp_s3->unk164);
-            sprintf(D_801CDB58[2], "%d / %d", temp_s3->unk178, temp_s3->unk166);
-            sprintf(D_801CDB58[3], "%d / %d", temp_s3->unk180, temp_s3->unk168);
-            sprintf(D_801CDB58[4], "%d%%", temp_s3->unk182);
+            D_801CC8B0->unk70 = gMapChapter[D_801CE5DC].mapname;
+            ptr = &D_801CE5F0.unk4[D_801CE5DC];
+            sprintf(D_801CDB58[0], "%d : %02d", (ptr->unk172 / 1800U),
+                                                (ptr->unk172 / 30U) - ((ptr->unk172 / 1800U) * 60));
+            sprintf(D_801CDB58[1], "%d / %d", ptr->enemies_killed, ptr->enemies_total);
+            sprintf(D_801CDB58[2], "%d / %d", ptr->babes_saved, ptr->babes_total);
+            sprintf(D_801CDB58[3], "%d / %d", ptr->secrets_found, ptr->secrets_total);
+            sprintf(D_801CDB58[4], "%d%%", ptr->unk182);
 
             if (D_801CE5DC == D_801CE5F0.unkFD5)
             {
@@ -3850,7 +3853,7 @@ void func_801C764C(void)
 #endif
                     D_801CDBD0[5]->unkC |= 0x04000000;
                 }
-                else if (D_801CE5F0.unkFE4 & (1 << D_801CE5DC))
+                else if (D_801CE5F0.time_machine_part & (1 << D_801CE5DC))
                 {
                     sprintf(D_801CDB58[5], "1 / 1");
                     D_801CDBD0[5]->unkC &= ~0x04000000;
@@ -3942,9 +3945,9 @@ static void func_801C8650(void)
     func_801C10C8();
     D_800BD3E8 = 1;
 
-    for (i = 0; D_801CA14C[i].unk0 != 5; i++);
+    for (i = 0; gMapChapter[i].chapter != DUKEMATCH; i++);
 
-    D_801CDB50 = &D_801CA14C[i];
+    gpDukematchMapChapter = &gMapChapter[i];
     func_8007F050();
     setCameraPosition(0.0f, 0.0f, -90.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     func_8007FD8C(&D_800E064C[0], 15);
@@ -3981,7 +3984,7 @@ static void func_801C8650(void)
     D_801CE5DC = MAP_MEAN_STREETS;
     D_801CDA88 = 0;
     D_801CDB20 = 0;
-    D_801CC8B0 = func_8007FE2C(D_801CDB50->mapname, gScreenWidth / 2, (gScreenHeight / 2) + 100, 64, 1, 0);
+    D_801CC8B0 = func_8007FE2C(gpDukematchMapChapter->mapname, gScreenWidth / 2, (gScreenHeight / 2) + 100, 64, 1, 0);
     D_8010554C = 1;
 }
 
@@ -4017,7 +4020,7 @@ void func_801C899C(void)
 
         D_801CDA28[D_801CE5DC]->unk10 = 0xFF;
         D_801CDB20 = 0;
-        D_801CC8B0->unk70 = D_801CDB50[D_801CE5DC].mapname;
+        D_801CC8B0->unk70 = gpDukematchMapChapter[D_801CE5DC].mapname;
     }
 
     if (D_801CDB20 == 0)
@@ -4045,7 +4048,7 @@ void func_801C899C(void)
     {
         func_801C0EDC(0x8000);
         playSfx(747);
-        for (gLoadMapNum = 0; D_801CA14C[gLoadMapNum].unk0 != 5; gLoadMapNum++);
+        for (gLoadMapNum = 0; gMapChapter[gLoadMapNum].chapter != DUKEMATCH; gLoadMapNum++);
         gLoadMapNum += D_801CE5DC;
         if (gConfig.rumblepak == 0)
         {
@@ -4064,6 +4067,8 @@ void func_801C899C(void)
 #ifdef TARGET_N64
         prev = D_800FE9E0;
         while (prev == D_800FE9E0);
+#else
+        (void)prev;
 #endif
 
         func_8007F050();
@@ -4224,12 +4229,12 @@ static void func_801C90E4(void)
     {
         ptr2->unk182 = D_801A1958.unk10;
         ptr2->unk172 = D_801A1958.unkC;
-        ptr2->unk178 = D_801A1958.babes_saved;
-        ptr2->unk180 = D_801A1958.secrets_found;
-        ptr2->unk176 = D_801A1958.enemies_killed;
-        ptr2->unk164 = D_801A1958.enemies_total;
-        ptr2->unk166 = D_801A1958.babes_total;
-        ptr2->unk168 = D_801A1958.secrets_total;
+        ptr2->babes_saved = D_801A1958.babes_saved;
+        ptr2->secrets_found = D_801A1958.secrets_found;
+        ptr2->enemies_killed = D_801A1958.enemies_killed;
+        ptr2->enemies_total = D_801A1958.enemies_total;
+        ptr2->babes_total = D_801A1958.babes_total;
+        ptr2->secrets_total = D_801A1958.secrets_total;
         ptr2->unk0 = gPlayer[0].unk46;
         ptr2->unk2 = gPlayer[0].unk70;
 
@@ -4244,10 +4249,10 @@ static void func_801C90E4(void)
             ptr2->unk148[i] = D_8010A940[0].unkA[i];
     }
 
-    ptr->unkFD8 = D_800E16C0;
-    ptr->unkFDC = D_800E16BC;
-    ptr->unkFE0 = D_801CE470;
-    ptr->unkFE4 = gTimeMachinePart;
+    ptr->unlocked_skin = gUnlockedSkin;
+    ptr->unlocked_cheat = gUnlockedCheat;
+    ptr->unlocked_cheat_weapons = gUnlockedCheatWeapons;
+    ptr->time_machine_part = gTimeMachinePart;
 }
 
 /*801C936C*/
@@ -4312,10 +4317,10 @@ static void func_801C959C(void)
     *ptr = *ptr2;
 
     setVolume((gConfig.musicvol * 100) / 7, (gConfig.mastervol * 100) / 7);
-    D_800E16C0 |= ptr->unkFD8;
-    D_800E16BC |= ptr->unkFDC;
-    D_801CE470 |= ptr->unkFE0;
-    gTimeMachinePart = ptr->unkFE4;
+    gUnlockedSkin |= ptr->unlocked_skin;
+    gUnlockedCheat |= ptr->unlocked_cheat;
+    gUnlockedCheatWeapons |= ptr->unlocked_cheat_weapons;
+    gTimeMachinePart = ptr->time_machine_part;
 }
 
 /*801C97A8*/
@@ -4449,7 +4454,7 @@ void func_801C9B48(void)
     gRandomSeed = 0;
     D_801CBD18++;
     gLoadMapNum = *D_801CDC68++;
-    D_800DF98C = 0;
+    gNotPlayback = FALSE;
 }
 
 /*801C9C18*/
@@ -4579,7 +4584,7 @@ void func_801C9F74(void)
 {
     s32 cond;
 
-    if ((D_801CDC70 + 2040) < D_801CDC68)
+    if ((&D_801CDC70[sizeof(D_801CDC70)-8]) < D_801CDC68)
     {
         main_80003940();
         return;

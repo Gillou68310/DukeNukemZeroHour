@@ -4,7 +4,7 @@
 /*.text*/
 
 /*800161F0*/
-void func_800161F0(ModelInfo *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6)
+static void func_800161F0(ModelInfo *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6)
 {
     arg0->unk24 = arg1;
     arg0->unk26 = arg2;

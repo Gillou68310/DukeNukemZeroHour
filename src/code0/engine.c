@@ -166,7 +166,7 @@ s32 getAngle(s32 xvect, s32 yvect)
 /*8002BBE0*/
 s32 setSprite(s16 spritenum, s32 newx, s32 newy, s32 newz)
 {
-    s16 bad, j, tempsectnum;
+    s16 tempsectnum;
 
     gpSprite[spritenum].x = newx;
     gpSprite[spritenum].y = newy;
@@ -532,7 +532,7 @@ s32 hitScan(s32 xs, s32 ys, s32 zs, s16 sectnum, s32 vx, s32 vy, s32 vz,
     SectorType *sec;
     WallType *wal, *wal2;
     SpriteType *spr;
-    s32 z, zz, x1, y1, z1, x2, y2, z2, x3, y3, x4, y4, intx, inty, intz;
+    s32 z, zz, x1, y1, z1, x2, y2, x3, y3, x4, y4, intx, inty, intz;
     s32 topt, topu, bot, dist, offx, offy, cstat;
     s32 i, j, k, l, tilenum, xoff, yoff, dax, day, daz, daz2;
     s32 ang, cosang, sinang, xspan, yspan, xrepeat, yrepeat;
@@ -1315,7 +1315,7 @@ s32 clipMove(s32 *x, s32 *y, s32 *z, s16 *sectnum, s32 xvect,
     ModelInfo *ptr;
     WallType *wal, *wal2;
     SpriteType *spr;
-    SectorType *sec, *sec2;
+    SectorType *sec;
     s32 i, j, templong1, templong2;
     s32 oxvect, oyvect, goalx, goaly, intx, inty, lx, ly, retval;
     s32 k, l, clipsectcnt, startwall, endwall, cstat, dasect;
@@ -1767,7 +1767,7 @@ static void keepAway(s32 *x, s32 *y, s32 w)
 /*80032538*/
 static s32 rayTrace(s32 x3, s32 y3, s32 *x4, s32 *y4)
 {
-    s32 x1, y1, x2, y2, t, bot, topu, nintx, ninty, cnt, z, hitwall;
+    s32 x1, y1, x2, y2, bot, topu, nintx, ninty, cnt, z, hitwall;
     s32 x21, y21, x43, y43;
 
     hitwall = -1;
@@ -1805,8 +1805,7 @@ s32 pushMove(s32 *x, s32 *y, s32 *z, s16 *sectnum,
              s32 walldist, s32 ceildist, s32 flordist, u32 cliptype)
 {
     SectorType *sec, *sec2;
-    WallType *wal, *wal2;
-    SpriteType *spr;
+    WallType *wal;
     s32 i, j, k, t, dx, dy, dax, day, daz, daz2, bad, dir;
     s32 dasprclipmask, dawalclipmask;
     s16 startwall, endwall, clipsectcnt;
@@ -2001,7 +2000,7 @@ static u8 engine_80032F38(s32 x, s32 y, s32 z, s16 sectnum)
 void updateSectorZ(s32 x, s32 y, s32 z, s16 *sectnum)
 {
     WallType *wal;
-    s32 i, j, cz, fz;
+    s32 i, j;
 
     if (engine_80032F38(x, y, z, *sectnum) == 1)
         return;

@@ -17,7 +17,7 @@ u8 *loadTile(u16 tilenum);
 /*.text*/
 
 /*800163F0*/
-void func_800163F0(u8 arg0)
+void loadModelTexturePalette(u8 arg0)
 {
     u16 i;
     u16 *pal;
@@ -50,11 +50,10 @@ void func_800163F0(u8 arg0)
 }
 
 /*8001660C*/
-void func_8001660C(u8 arg0)
+void loadModelTexture(u8 arg0)
 {
     intptr_t pTile;
     s16 dimx, dimy;
-    s32 dimx2, dimy2;
     s32 masks, maskt;
     s32 tilenum;
 

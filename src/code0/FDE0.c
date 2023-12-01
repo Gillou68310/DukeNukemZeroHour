@@ -1,5 +1,5 @@
-#include "common.h"
 #include "math.h"
+#include "common.h"
 #include "code0/main.h"
 #include "code0/pragmas.h"
 #include "code0/FDE0.h"
@@ -42,7 +42,7 @@ static Lights2 _light2 = {
 
 /*.text*/
 static f32 func_80011410(ModelInfo *model);
-static void func_800117A4(u8 *cmd, code0UnkStruct18 *vtx, ModelLight *light);
+static void executeModelDisplayCmd(u8 *cmd, code0UnkStruct18 *vtx, ModelLight *light);
 static void func_800124EC(s16);
 static void func_80012630(void);
 
@@ -71,7 +71,7 @@ void func_8000F1E0(void)
 }
 
 /*8000F3C4*/
-void func_8000F3C4(s16 r1, s16 g1, s16 b1, s16 r2, s16 g2, s16 b2)
+void setLight1Ligth2Color(s16 r1, s16 g1, s16 b1, s16 r2, s16 g2, s16 b2)
 {
     gSPLightColor(gpDisplayList++, LIGHT_1, ((r1<<24)+(g1<<16)+(b1<<8)));
     gSPLightColor(gpDisplayList++, LIGHT_2, ((r2<<24)+(g2<<16)+(b2<<8)));
@@ -178,7 +178,7 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
             if (D_80106D50[spritenum] != -1)
                 j = D_8019B940[D_80106D50[spritenum]].unk0 & 0x40;
 
-            if (D_801CC8A8 != 0)
+            if (gCheatIceSkinConfig != CONFIG_OFF)
                 j = 1;
 
             if (j != 0)
@@ -499,11 +499,11 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
             model = gModelList[gpSprite[spritenum].picnum-MODELLIST];
             if (model != NULL)
             {
-                func_80011700(model);
+                drawModel(model);
                 if ((gpSprite[spritenum].picnum == SENTRYDRONE) && (D_80119A38 != 0) && (D_8010A9AC == 0))
                 {
                     func_800124EC(D_800D6964[D_8019B940[D_80106D50[spritenum]].unk99]);
-                    func_80011700(&D_800D06C0);
+                    drawModel(&D_800D06C0);
                     func_80012630();
                 }
             }
@@ -522,7 +522,7 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
 }
 
 /*80011148*/
-static f32 func_80011148(Vec4f vec1, Vec4f vec2)
+static f32 dotProduct(Vec4f vec1, Vec4f vec2)
 {
     return (vec1[0] * vec2[0]) + (vec1[1] * vec2[1]) + (vec1[2] * vec2[2]) + vec1[3];
 }
@@ -637,14 +637,14 @@ static s32 func_800115E0(ModelInfo *model)
 
     for (i = 0, ptr = D_80197DF0; i < 4; i++, ptr++)
     {
-        if (func_80011148(*ptr, vec) < -f)
+        if (dotProduct(*ptr, vec) < -f)
             return 0;
     }
     return 1;
 }
 
 /*80011700*/
-void func_80011700(ModelInfo *model)
+void drawModel(ModelInfo *model)
 {
     u8 *cmd;
     code0UnkStruct18 *vtx;
@@ -660,11 +660,11 @@ void func_80011700(ModelInfo *model)
     gpModelTextureInfo = (ModelTextureInfo *)(model->ramaddr + model->texture_info_off);
 
     if ((D_800BD788 == 0) || (func_800115E0(model) != 0))
-        func_800117A4(cmd, vtx, light);
+        executeModelDisplayCmd(cmd, vtx, light);
 }
 
 /*800117A4*/
-static void func_800117A4(u8 *cmd, code0UnkStruct18 *vtx, ModelLight *light)
+static void executeModelDisplayCmd(u8 *cmd, code0UnkStruct18 *vtx, ModelLight *light)
 {
     s16 pixel;
     s16 cond;
@@ -712,8 +712,8 @@ static void func_800117A4(u8 *cmd, code0UnkStruct18 *vtx, ModelLight *light)
             n = *cmd++;
             o = *cmd++;
 
-            gSPVertex(gpDisplayList++, D_80199114, o, n);
-            D_80199114 = &D_80199114[o];
+            gSPVertex(gpDisplayList++, gpVertexList, o, n);
+            gpVertexList = &gpVertexList[o];
 
             for (i = 0; i < o; i++)
             {
@@ -735,8 +735,8 @@ static void func_800117A4(u8 *cmd, code0UnkStruct18 *vtx, ModelLight *light)
             n = *cmd++;
             o = *cmd++;
 
-            gSPVertex(gpDisplayList++, D_80199114, o, n);
-            D_80199114 = &D_80199114[o];
+            gSPVertex(gpDisplayList++, gpVertexList, o, n);
+            gpVertexList = &gpVertexList[o];
 
             for (i = 0; i < o; i++)
             {
@@ -758,10 +758,10 @@ static void func_800117A4(u8 *cmd, code0UnkStruct18 *vtx, ModelLight *light)
             break;
         case 2:
         case 3:
-            func_800163F0(*cmd++);
+            loadModelTexturePalette(*cmd++);
             break;
         case 4:
-            func_8001660C(*cmd++);
+            loadModelTexture(*cmd++);
             if (cond != 1)
             {
                 if (D_8019956C == 1)
@@ -786,7 +786,7 @@ static void func_800117A4(u8 *cmd, code0UnkStruct18 *vtx, ModelLight *light)
             }
             break;
         case 5:
-            func_8001660C(*cmd++);
+            loadModelTexture(*cmd++);
             if (cond != 1)
             {
                 if (D_8019956C == 1)
@@ -841,14 +841,14 @@ void func_80011DA8(void)
         }
     }
 
-    if (gPlayer[D_801B0820].unk60 != 0)
+    if (gPlayer[D_801B0820].third_person)
     {
         if (gPlayer[D_801B0820].unk52 == -1)
             func_800A3688();
     }
 
     if ((gPlayer[D_801B0820].unk52 != -1) ||
-        ((gPlayer[D_801B0820].unk60 != 0) && (gPlayer[D_801B0820].unk6A >= 0xFF)))
+        (gPlayer[D_801B0820].third_person && (gPlayer[D_801B0820].unk6A >= 0xFF)))
     {
         func_8000F1E0();
         D_8013B2D0[gPlayer[D_801B0820].unk4A].unk6 = 0;
@@ -884,7 +884,7 @@ void func_80012174(void)
 /*80012318*/
 void func_80012318(void)
 {
-    if (gPlayer[D_801B0820].unk60 && gPlayer[D_801B0820].unk6A < 255 && gPlayer[D_801B0820].unk52 < 0)
+    if ((gPlayer[D_801B0820].third_person) && (gPlayer[D_801B0820].unk6A < 255) && (gPlayer[D_801B0820].unk52 < 0))
     {
         func_8000F1E0();
         D_8013B2D0[gPlayer[D_801B0820].unk4A].unk6 = 255 - gPlayer[D_801B0820].unk6A;
@@ -1136,7 +1136,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
             fz -= arg0->unk8[arg0->unk8[arg1].unk18].unk4 * 50.0f;
         }
         cond = 0;
-        if (D_801CC926 != 0)
+        if (gCheatBigHeadModeConfig != CONFIG_OFF)
         {
             if ((arg0->unk0 == 0) && (arg1 == 9))
                 cond = 1;
@@ -1144,7 +1144,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
                 cond = 1;
         }
 
-        if (D_801CC8C8 != 0)
+        if (gCheatBigGunConfig != CONFIG_OFF)
         {
             if (arg0->unk0 == 0)
             {
@@ -1188,20 +1188,21 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
                         case 8:
                             if (D_8019B940[m].unk7E > 0)
                             {
-                                switch (D_801CA14C[gMapNum].unk0)
+                                /*BulletproofBustModel*/
+                                switch (gMapChapter[gMapNum].chapter)
                                 {
                                 default:
                                     model1 = &D_800C1E4C;
                                     break;
-                                case 2:
+                                case WESTERN:
                                     model1 = &D_800C1F3C;
                                     break;
-                                case 3:
+                                case VICTORIAN:
                                     model1 = &D_800C1EC4;
                                     break;
                                 }
                             }
-                            if (((D_801CA14C[gMapNum].unk0 < 2) || (D_801CA14C[gMapNum].unk0 >= 4)) &&
+                            if (((gMapChapter[gMapNum].chapter < WESTERN) || (gMapChapter[gMapNum].chapter >= FINAL)) &&
                                 (D_8010A940[playernum].unk2[1] != 0))
                             {
                                 model2 = &D_800D1458;
@@ -1214,7 +1215,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
                             if (D_8010A940[playernum].unk2[6] != 0)
                                 model1 = &D_800D060C;
 
-                            if ((D_801CA14C[gMapNum].unk0 >= 2) && (D_801CA14C[gMapNum].unk0 < 4))
+                            if ((gMapChapter[gMapNum].chapter >= WESTERN) && (gMapChapter[gMapNum].chapter < FINAL))
                             {
                                 if (D_8010A940[playernum].unk2[1] != 0)
                                     model1 = &D_800D0648;
@@ -1223,14 +1224,14 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
                         case 10:
                             if (D_8019B940[m].unk7E > 0)
                             {
-                                if ((D_801CA14C[gMapNum].unk0 < 2) || (D_801CA14C[gMapNum].unk0 >= 4))
+                                if ((gMapChapter[gMapNum].chapter < WESTERN) || (gMapChapter[gMapNum].chapter >= FINAL))
                                     model1 = &D_800C439C;
                             }
                             break;
                         case 13:
                             if (D_8019B940[m].unk7E > 0)
                             {
-                                if ((D_801CA14C[gMapNum].unk0 < 2) || (D_801CA14C[gMapNum].unk0 >= 4))
+                                if ((gMapChapter[gMapNum].chapter < WESTERN) || (gMapChapter[gMapNum].chapter >= FINAL))
                                     model1 = &D_800C43D8;
                             }
                             break;
@@ -1252,9 +1253,9 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
                             break;
                         }
                     }
-                    func_80011700(model1);
+                    drawModel(model1);
                     if (model2 != NULL)
-                        func_80011700(model2);
+                        drawModel(model2);
                 }
                 else
                 {
@@ -1275,7 +1276,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
                             break;
                         }
                     }
-                    func_80011700(model2);
+                    drawModel(model2);
                 }
             }
         }
@@ -1301,9 +1302,9 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
                 if ((arg1 == 12) && (cond2))
                 {
                     if (l == 10)
-                        func_80011700(D_800D6784[l+1]);
+                        drawModel(D_800D6784[l+1]);
                     else
-                        func_80011700(D_800D6784[l]);
+                        drawModel(D_800D6784[l]);
 
                     if (D_80119A38 != 0)
                     {
@@ -1312,7 +1313,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
                             if (D_800D689C[l] != NULL)
                             {
                                 func_800124EC(D_800D6964[l]);
-                                func_80011700(D_800D689C[l]);
+                                drawModel(D_800D689C[l]);
                                 func_80012630();
                             }
                         }
@@ -1320,13 +1321,13 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
                 }
                 if (arg1 == 15)
                 {
-                    func_80011700(D_800D6784[l]);
+                    drawModel(D_800D6784[l]);
                     if ((D_80119A38 != 0) && (D_8010A9AC == 0))
                     {
                         if (D_800D689C[l] != NULL)
                         {
                             func_800124EC(D_800D6964[l]);
-                            func_80011700(D_800D689C[l]);
+                            drawModel(D_800D689C[l]);
                             func_80012630();
                         }
                     }
@@ -1343,13 +1344,13 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
                 switch (gpSprite[D_801AE8F4].picnum)
                 {
                 case CERBERUSTURRETS:
-                    func_80011700(&D_800CFD9C);
+                    drawModel(&D_800CFD9C);
                     break;
                 case GORGONTURRETS:
-                    func_80011700(&D_800D0198);
+                    drawModel(&D_800D0198);
                     break;
                 default:
-                    func_80011700(&D_800D06FC);
+                    drawModel(&D_800D06FC);
                     break;
                 }
                 func_80012630();
@@ -1367,13 +1368,13 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
             switch (func_801C0FDC(-1) % n)
             {
             case 0:
-                func_80011700(&D_800D051C);
+                drawModel(&D_800D051C);
                 break;
             case 1:
-                func_80011700(&D_800D0558);
+                drawModel(&D_800D0558);
                 break;
             case 2:
-                func_80011700(&D_800D0594);
+                drawModel(&D_800D0594);
                 break;
             }
             func_80012630();
@@ -1385,7 +1386,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
             if ((D_80119A38 != 0) && (D_8010A9AC == 0))
             {
                 func_800124EC(D_800D6964[unk99]);
-                func_80011700(&D_800D04E0);
+                drawModel(&D_800D04E0);
                 func_80012630();
             }
         }
@@ -1395,7 +1396,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
             if ((D_80119A38 != 0) && (D_8010A9AC == 0))
             {
                 func_800124EC(D_800D6964[unk99]);
-                func_80011700(&D_800D04A4);
+                drawModel(&D_800D04A4);
                 func_80012630();
             }
         }
@@ -1781,7 +1782,7 @@ static void func_80015458(_FDE0UnkStruct2 *arg0, s16 arg1)
 
     s32 unk54;
 
-    s16 i, j, k, l;
+    s16 i, j, k;
 
     ptr = &D_80197E40[D_80106D50[D_801AE8F4]];
 

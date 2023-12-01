@@ -1,4 +1,5 @@
 #include "common.h"
+#include "code0/code0.h"
 #include "static/strinfo.h"
 
 #if VERSION_FR
@@ -137,7 +138,7 @@ char *gWeaponStrInfo[125] = {
 s16 gWeaponStrInfoCount = ARRAY_COUNT(gWeaponStrInfo);
 
 /*01021758*/
-static char *_keyStrTable1[KEY_STRINFO_NUM] = {
+static char *_keyStrTable1[MAXKEYS-1] = {
     "CARTE A CODE TRANSTEK",
     "",
     "",
@@ -157,7 +158,7 @@ static char *_keyStrTable1[KEY_STRINFO_NUM] = {
 };
 
 /*01021798*/
-static char *_keyStrTable2[KEY_STRINFO_NUM] = {
+static char *_keyStrTable2[MAXKEYS-1] = {
     "CLE DE COMMANDE",
     "PASSE ASCENSEUR DE SERVICE",
     "CLE DE LA STATION DE POMPAGE",
@@ -177,7 +178,7 @@ static char *_keyStrTable2[KEY_STRINFO_NUM] = {
 };
 
 /*010217D8*/
-static char *_keyStrTable3[KEY_STRINFO_NUM] = {
+static char *_keyStrTable3[MAXKEYS-1] = {
     "BATTERIE ALPHA",
     "BATTERIE BETA",
     "BATTERIE DELTA",
@@ -197,7 +198,7 @@ static char *_keyStrTable3[KEY_STRINFO_NUM] = {
 };
 
 /*01021818*/
-static char *_keyStrTable4[KEY_STRINFO_NUM] = {
+static char *_keyStrTable4[MAXKEYS-1] = {
     "",
     "",
     "",
@@ -217,7 +218,7 @@ static char *_keyStrTable4[KEY_STRINFO_NUM] = {
 };
 
 /*01021858*/
-static char *_keyStrTable5[KEY_STRINFO_NUM] = {
+static char *_keyStrTable5[MAXKEYS-1] = {
     "LABORATORY KEY",
     "CLE DE L'ARMURERIE",
     "",
@@ -237,7 +238,7 @@ static char *_keyStrTable5[KEY_STRINFO_NUM] = {
 };
 
 /*01021898*/
-static char *_keyStrTable6[KEY_STRINFO_NUM] = {
+static char *_keyStrTable6[MAXKEYS-1] = {
     "",
     "",
     "",
@@ -257,7 +258,7 @@ static char *_keyStrTable6[KEY_STRINFO_NUM] = {
 };
 
 /*010218D8*/
-static char *_keyStrTable7[KEY_STRINFO_NUM] = {
+static char *_keyStrTable7[MAXKEYS-1] = {
     "CLE DE LA TOUR DE GARDE",
     "",
     "",
@@ -277,7 +278,7 @@ static char *_keyStrTable7[KEY_STRINFO_NUM] = {
 };
 
 /*01021918*/
-static char *_keyStrTable8[KEY_STRINFO_NUM] = {
+static char *_keyStrTable8[MAXKEYS-1] = {
     "CLE DE L'HOTEL",
     "CLE DU SALOON",
     "PLANS EXTRATERRESTRES",
@@ -297,7 +298,7 @@ static char *_keyStrTable8[KEY_STRINFO_NUM] = {
 };
 
 /*01021958*/
-static char *_keyStrTable9[KEY_STRINFO_NUM] = {
+static char *_keyStrTable9[MAXKEYS-1] = {
     "",
     "CLE DU BLOC EST",
     "CLE DU BLOC NORD",
@@ -317,7 +318,7 @@ static char *_keyStrTable9[KEY_STRINFO_NUM] = {
 };
 
 /*01021998*/
-static char *_keyStrTable10[KEY_STRINFO_NUM] = {
+static char *_keyStrTable10[MAXKEYS-1] = {
     "PASSE DE SECURITE NIVEAU 1",
     "PASSE DE SECURITE NIVEAU 2",
     "CLE DES COULISSES",
@@ -337,7 +338,7 @@ static char *_keyStrTable10[KEY_STRINFO_NUM] = {
 };
 
 /*010219D8*/
-static char *_keyStrTable11[KEY_STRINFO_NUM] = {
+static char *_keyStrTable11[MAXKEYS-1] = {
     "CLE DE LA TOUR DE GARDE",
     "CLE DE LA CASERNE",
     "",
@@ -357,7 +358,7 @@ static char *_keyStrTable11[KEY_STRINFO_NUM] = {
 };
 
 /*01021A18*/
-static char *_keyStrTable12[KEY_STRINFO_NUM] = {
+static char *_keyStrTable12[MAXKEYS-1] = {
     "",
     "",
     "",
@@ -377,7 +378,7 @@ static char *_keyStrTable12[KEY_STRINFO_NUM] = {
 };
 
 /*01021A58*/
-static char *_keyStrTable13[KEY_STRINFO_NUM] = {
+static char *_keyStrTable13[MAXKEYS-1] = {
     "",
     "",
     "",
@@ -397,7 +398,7 @@ static char *_keyStrTable13[KEY_STRINFO_NUM] = {
 };
 
 /*01021A98*/
-static char *_keyStrTable14[KEY_STRINFO_NUM] = {
+static char *_keyStrTable14[MAXKEYS-1] = {
     "",
     "",
     "",
@@ -417,7 +418,7 @@ static char *_keyStrTable14[KEY_STRINFO_NUM] = {
 };
 
 /*01021AD8*/
-static char *_keyStrTable15[KEY_STRINFO_NUM] = {
+static char *_keyStrTable15[MAXKEYS-1] = {
     "CLE DE LA CRYPTE",
     "",
     "",
@@ -437,7 +438,7 @@ static char *_keyStrTable15[KEY_STRINFO_NUM] = {
 };
 
 /*01021B18*/
-static char *_keyStrTable16[KEY_STRINFO_NUM] = {
+static char *_keyStrTable16[MAXKEYS-1] = {
     "PASSE-PARTOUT",
     "",
     "",
@@ -457,7 +458,7 @@ static char *_keyStrTable16[KEY_STRINFO_NUM] = {
 };
 
 /*01021B58*/
-static char *_keyStrTable17[KEY_STRINFO_NUM] = {
+static char *_keyStrTable17[MAXKEYS-1] = {
     "CLE DU PONT 3EME CLASSE",
     "",
     "",
@@ -477,7 +478,7 @@ static char *_keyStrTable17[KEY_STRINFO_NUM] = {
 };
 
 /*01021B98*/
-static char *_keyStrTable18[KEY_STRINFO_NUM] = {
+static char *_keyStrTable18[MAXKEYS-1] = {
     "CLE DE LA COUR",
     "CLE DU GRAND HALL",
     "PIERRE DE CATAPULTE",
@@ -497,7 +498,7 @@ static char *_keyStrTable18[KEY_STRINFO_NUM] = {
 };
 
 /*01021BD8*/
-static char *_keyStrTable19[KEY_STRINFO_NUM] = {
+static char *_keyStrTable19[MAXKEYS-1] = {
     "",
     "",
     "",
@@ -517,7 +518,7 @@ static char *_keyStrTable19[KEY_STRINFO_NUM] = {
 };
 
 /*01021C18*/
-static char *_keyStrTable20[KEY_STRINFO_NUM] = {
+static char *_keyStrTable20[MAXKEYS-1] = {
     "",
     "",
     "",
@@ -537,7 +538,7 @@ static char *_keyStrTable20[KEY_STRINFO_NUM] = {
 };
 
 /*01021C58*/
-static char *_keyStrTable21[KEY_STRINFO_NUM] = {
+static char *_keyStrTable21[MAXKEYS-1] = {
     "",
     "",
     "",
@@ -557,7 +558,7 @@ static char *_keyStrTable21[KEY_STRINFO_NUM] = {
 };
 
 /*01021C98*/
-static char *_keyStrTable22[KEY_STRINFO_NUM] = {
+static char *_keyStrTable22[MAXKEYS-1] = {
     "",
     "",
     "",
@@ -577,7 +578,7 @@ static char *_keyStrTable22[KEY_STRINFO_NUM] = {
 };
 
 /*01021CD8*/
-static char *_keyStrTable23[KEY_STRINFO_NUM] = {
+static char *_keyStrTable23[MAXKEYS-1] = {
     "TETE D'EXECUTEUR CYBORG",
     "BIO-EMETTEUR",
     "TETE D'EXECUTEUR CYBORG",
@@ -597,7 +598,7 @@ static char *_keyStrTable23[KEY_STRINFO_NUM] = {
 };
 
 /*01021D18*/
-static char *_keyStrTable24[KEY_STRINFO_NUM] = {
+static char *_keyStrTable24[MAXKEYS-1] = {
     "",
     "",
     "",

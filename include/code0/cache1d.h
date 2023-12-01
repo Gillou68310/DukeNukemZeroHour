@@ -9,7 +9,7 @@ void cache1d_8002AAC0(void);
 void ageCache(void);
 void alloCache(void *newhandle, u32 newbytes, u8 *newlockptr);
 void cache1d_8002AAEC(void);
-s32 cache1d_8002AD44(void);
+s32 getRemainingCacheSize(void);
 
 extern s32 gCacheNum;
 extern u8 gCacheLock[2];

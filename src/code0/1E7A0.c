@@ -215,10 +215,10 @@ void func_8001DE9C(void)
                     g = (((g * 4) * D_801A1980) / (SCREEN_HEIGHT/2.f)) + f11;
                     h = (((h * 4) * D_801A1980) / (SCREEN_HEIGHT/2.f)) + f11;
 
-                    if (D_80197DD4 == 0)
+                    if (gVertexNumber == 0)
                     {
-                        D_80197DD4 = 32;
-                        D_801A2620 = 0;
+                        gVertexNumber = 32;
+                        gVertexBufferIndex = 0;
 
                         gSPVertex(gpDisplayList++, gpVertexN64, 32, 0);
 
@@ -239,11 +239,11 @@ void func_8001DE9C(void)
 
                     gDPSetEnvColor(gpDisplayList++, D_800DCA20[ptr->unk1F], 0, 0, 0);
 
-                    gSP2Triangles(gpDisplayList++, D_801A2620, D_801A2620+1, D_801A2620+2, D_801A2620,
-                                                   D_801A2620, D_801A2620+2, D_801A2620+3, D_801A2620);
+                    gSP2Triangles(gpDisplayList++, gVertexBufferIndex, gVertexBufferIndex+1, gVertexBufferIndex+2, gVertexBufferIndex,
+                                                   gVertexBufferIndex, gVertexBufferIndex+2, gVertexBufferIndex+3, gVertexBufferIndex);
 
-                    D_801A2620 += 4;
-                    D_80197DD4 -= 4;
+                    gVertexBufferIndex += 4;
+                    gVertexNumber -= 4;
                     x = ptr->unk4 / 2;
                     y = ptr->unk8 / 2;
                     z = ptr->unkC / 32;

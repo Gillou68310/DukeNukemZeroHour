@@ -453,18 +453,18 @@ void func_8002433C(s16 spritenum, s32 arg1)
         }
 
 
-        if (D_80197DD4 == 0)
+        if (gVertexNumber == 0)
         {
-            D_80197DD4 = 0x20;
-            D_801A2620 = 0;
+            gVertexNumber = 0x20;
+            gVertexBufferIndex = 0;
             gSPVertex(gpDisplayList++, gpVertexN64, 32, 0);
         }
 
-        gSP2Triangles(gpDisplayList++, D_801A2620, D_801A2620+1, D_801A2620+2, D_801A2620,
-                                       D_801A2620, D_801A2620+2, D_801A2620+3, D_801A2620);
+        gSP2Triangles(gpDisplayList++, gVertexBufferIndex, gVertexBufferIndex+1, gVertexBufferIndex+2, gVertexBufferIndex,
+                                       gVertexBufferIndex, gVertexBufferIndex+2, gVertexBufferIndex+3, gVertexBufferIndex);
 
-        D_801A2620 += 4;
-        D_80197DD4 -= 4;
+        gVertexBufferIndex += 4;
+        gVertexNumber -= 4;
 
         gpVertexN64->v.ob[0] = x1;
         gpVertexN64->v.ob[1] = y1;
@@ -752,17 +752,17 @@ void func_80025C3C(s16 spritenum, s32 arg1)
                 a = b;
             }
 
-            if (D_80197DD4 == 0)
+            if (gVertexNumber == 0)
             {
-                D_80197DD4 = 0x20;
-                D_801A2620 = 0;
+                gVertexNumber = 0x20;
+                gVertexBufferIndex = 0;
                 gSPVertex(gpDisplayList++, gpVertexN64, 32, 0);
             }
-            gSP2Triangles(gpDisplayList++, D_801A2620, D_801A2620+1, D_801A2620+2, D_801A2620,
-                                           D_801A2620, D_801A2620+2, D_801A2620+3, D_801A2620);
+            gSP2Triangles(gpDisplayList++, gVertexBufferIndex, gVertexBufferIndex+1, gVertexBufferIndex+2, gVertexBufferIndex,
+                                           gVertexBufferIndex, gVertexBufferIndex+2, gVertexBufferIndex+3, gVertexBufferIndex);
 
-            D_801A2620 += 4;
-            D_80197DD4 -= 4;
+            gVertexBufferIndex += 4;
+            gVertexNumber -= 4;
 
             gpVertexN64->v.ob[0] = x1;
             gpVertexN64->v.ob[1] = y1;
@@ -914,18 +914,18 @@ static void func_800273EC(s16 spritenum, s32 arg1)
         f11 = (D_8010A9A8->z >> 5);
     }
 
-    if (D_80197DD4 == 0)
+    if (gVertexNumber == 0)
     {
-        D_80197DD4 = 32;
-        D_801A2620 = 0;
+        gVertexNumber = 32;
+        gVertexBufferIndex = 0;
         gSPVertex(gpDisplayList++, gpVertexN64, 32, 0);
     }
 
-    gSP2Triangles(gpDisplayList++, D_801A2620, D_801A2620+1, D_801A2620+2, D_801A2620,
-                                   D_801A2620, D_801A2620+2, D_801A2620+3, D_801A2620);
+    gSP2Triangles(gpDisplayList++, gVertexBufferIndex, gVertexBufferIndex+1, gVertexBufferIndex+2, gVertexBufferIndex,
+                                   gVertexBufferIndex, gVertexBufferIndex+2, gVertexBufferIndex+3, gVertexBufferIndex);
 
-    D_801A2620 += 4;
-    D_80197DD4 -= 4;
+    gVertexBufferIndex += 4;
+    gVertexNumber -= 4;
 
     gpVertexN64->v.ob[0] = f3;
     gpVertexN64->v.ob[1] = f4;
@@ -1288,10 +1288,10 @@ static void func_8002935C(s16 spritenum)
             g = (((g * 4) * D_801A1980) / (SCREEN_HEIGHT/2.f)) + f11;
             h = (((h * 4) * D_801A1980) / (SCREEN_HEIGHT/2.f)) + f11;
 
-            if (D_80197DD4 == 0)
+            if (gVertexNumber == 0)
             {
-                D_80197DD4 = 32;
-                D_801A2620 = 0;
+                gVertexNumber = 32;
+                gVertexBufferIndex = 0;
 
                 gSPVertex(gpDisplayList++, gpVertexN64, 32, 0);
                 gSPModifyVertex(gpDisplayList++, 0, G_MWO_POINT_XYSCREEN, ((a << 16) + e));
@@ -1300,11 +1300,11 @@ static void func_8002935C(s16 spritenum)
                 gSPModifyVertex(gpDisplayList++, 3, G_MWO_POINT_XYSCREEN, ((d << 16) + h));
             }
 
-            gSP2Triangles(gpDisplayList++, D_801A2620, D_801A2620+1, D_801A2620+2, D_801A2620,
-                                           D_801A2620, D_801A2620+2, D_801A2620+3, D_801A2620);
+            gSP2Triangles(gpDisplayList++, gVertexBufferIndex, gVertexBufferIndex+1, gVertexBufferIndex+2, gVertexBufferIndex,
+                                           gVertexBufferIndex, gVertexBufferIndex+2, gVertexBufferIndex+3, gVertexBufferIndex);
 
-            D_801A2620 = D_801A2620 + 4;
-            D_80197DD4 = D_80197DD4 - 4;
+            gVertexBufferIndex += 4;
+            gVertexNumber -= 4;
             x = D_8010A9A8->x / 2;
             y = D_8010A9A8->y / 2;
             z = D_8010A9A8->z / 32;

@@ -1197,7 +1197,7 @@ void func_80017268(s16 spritenum)
                 {
                     ptr6 = ptr7 = ptr->unk8;
                 }
-                else if ((gPlayer[i].unk59 == 0) && (gPlayer[i].unk14 > 0xA00))
+                else if ((gPlayer[i].unk59 == 0) && (gPlayer[i].zvect > 0xA00))
                 {
                     ptr7 = &D_800D860C;
                     ptr6 = &D_800D860C;
@@ -1211,8 +1211,8 @@ void func_80017268(s16 spritenum)
 
                         if ((D_8012C470 == 1))
                         {
-                            gPlayer[i].unk10 = 0;
-                            gPlayer[i].unkC = 0;
+                            gPlayer[i].yvect = 0;
+                            gPlayer[i].xvect = 0;
                         }
                     }
                 }
@@ -1365,8 +1365,8 @@ void func_80017268(s16 spritenum)
                     func_80017180(ptr, &D_800D857C, 10);
                     if (D_8012C470 == 1)
                     {
-                        gPlayer[i].unk10 = 0;
-                        gPlayer[i].unkC = 0;
+                        gPlayer[i].yvect = 0;
+                        gPlayer[i].xvect = 0;
                     }
                 }
                 else
@@ -1382,8 +1382,8 @@ void func_80017268(s16 spritenum)
                     func_80017180(ptr, &D_800D857C, 10);
                     if (D_8012C470 == 1)
                     {
-                        gPlayer[i].unk10 = 0;
-                        gPlayer[i].unkC = 0;
+                        gPlayer[i].yvect = 0;
+                        gPlayer[i].xvect = 0;
                     }
                 }
                 else if ((cond2 != 0) && (ptr->unk8 == &D_800D857C))

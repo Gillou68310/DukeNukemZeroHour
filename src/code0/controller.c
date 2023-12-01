@@ -469,7 +469,7 @@ static void func_80087EF4(char *arg0, u8 *arg1, u8 arg2)
 
     if (*arg1 >= ARRAY_COUNT(D_800E0F60)-1)
     {
-        sprintf(arg0, "%s", D_800E163C, &arg0[arg2]);
+        sprintf(arg0, "%s", D_800E163C);
         return;
     }
 

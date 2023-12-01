@@ -206,7 +206,7 @@ static s16 func_8009FEB0(s16 x, s16 y, char *arg2, s16 arg3)
             j--;
         }
         buffer[i] = '\0';
-        displayMessage2(x, y, buffer);
+        drawString2(x, y, buffer);
         y += 10;
     }
     return y;
@@ -229,18 +229,18 @@ static void func_800A0014(void)
         cond = 0;
         func_80029238(200, 200, 200, 0x80, 0x80, 0x80, D_80106D40);
 #if VERSION_US
-        displayMessage2(x, y, "KEYS");
+        drawString2(x, y, "KEYS");
 #elif VERSION_FR
-        displayMessage2(x, y, "TOUCHES");
+        drawString2(x, y, "TOUCHES");
 #endif
         y += 10;
         func_80029238(0, 200, 200, 0, 0x80, 0x80, D_80106D40);
 
-        for (i = 1; i < ARRAY_COUNT(gPlayer[0].unk88); i++)
+        for (i = 1; i < ARRAY_COUNT(gPlayer[0].keys); i++)
         {
-            if (gPlayer[0].unk88[i] != 0)
+            if (gPlayer[0].keys[i] != 0)
             {
-                displayMessage2(x, y, gpKeyStrInfo[gMapNum][i-1]);
+                drawString2(x, y, gpKeyStrInfo[gMapNum][i-1]);
                 y += 10;
                 cond = 1;
             }
@@ -248,18 +248,18 @@ static void func_800A0014(void)
         if (!cond)
         {
 #if VERSION_US
-            displayMessage2(x, y, "NONE");
+            drawString2(x, y, "NONE");
 #elif VERSION_FR
-            displayMessage2(x, y, "AUCUN");
+            drawString2(x, y, "AUCUN");
 #endif
             y += 10;
         }
         func_80029238(200, 200, 200, 0x80, 0x80, 0x80, D_80106D40);
         y += 10;
 #if VERSION_US
-        displayMessage2(x, y, "TIME MACHINE PARTS");
+        drawString2(x, y, "TIME MACHINE PARTS");
 #elif VERSION_FR
-        displayMessage2(x, y, "MACHINE REMONT. TPS");
+        drawString2(x, y, "MACHINE REMONT. TPS");
 #endif
         y += 10;
         func_80029238(0, 200, 200, 0, 0x80, 0x80, D_80106D40);
@@ -268,25 +268,25 @@ static void func_800A0014(void)
             (gMapNum == MAP_CYBORG_SCORPION) || (gMapNum >= MAP_THE_RACK))
         {
 #if VERSION_US
-            displayMessage2(x, y, "NONE DETECTED");
+            drawString2(x, y, "NONE DETECTED");
 #elif VERSION_FR
-            displayMessage2(x, y, "RIEN DECELE");
+            drawString2(x, y, "RIEN DECELE");
 #endif
         }
         else if (gTimeMachinePart & (1 << gMapNum))
         {
 #if VERSION_US
-            displayMessage2(x, y, "PART COLLECTED");
+            drawString2(x, y, "PART COLLECTED");
 #elif VERSION_FR
-            displayMessage2(x, y, "PIECE PRISE");
+            drawString2(x, y, "PIECE PRISE");
 #endif
         }
         else
         {
 #if VERSION_US
-            displayMessage2(x, y, "PART NOT FOUND");
+            drawString2(x, y, "PART NOT FOUND");
 #elif VERSION_FR
-            displayMessage2(x, y, "PIECE NON TROUVEE");
+            drawString2(x, y, "PIECE NON TROUVEE");
 #endif
         }
     }
@@ -294,9 +294,9 @@ static void func_800A0014(void)
     {
         func_80029238(200, 200, 200, 0x80, 0x80, 0x80, D_80106D40);
 #if VERSION_US
-        displayMessage2(x, y, "PRIMARY GOAL");
+        drawString2(x, y, "PRIMARY GOAL");
 #elif VERSION_FR
-        displayMessage2(x, y, "MISSION PRINCIPALE");
+        drawString2(x, y, "MISSION PRINCIPALE");
 #endif
         y += 10;
         func_80029238(0, 200, 200, 0, 0x80, 0x80, D_80106D40);
@@ -307,9 +307,9 @@ static void func_800A0014(void)
             y += 10;
             func_80029238(200, 200, 200, 0x80, 0x80, 0x80, D_80106D40);
 #if VERSION_US
-            displayMessage2(x, y, "CURRENT OBJECTIVES");
+            drawString2(x, y, "CURRENT OBJECTIVES");
 #elif VERSION_FR
-            displayMessage2(x, y, "OBJECTIFS EN COURS");
+            drawString2(x, y, "OBJECTIFS EN COURS");
 #endif
             y += 10;
             func_80029238(0, 200, 200, 0, 0x80, 0x80, D_80106D40);
@@ -335,7 +335,7 @@ static void func_800A0014(void)
 #elif VERSION_FR
     sprintf(sp20, "MACHINE REMONT. TPS %d:%d", k, 13);
 #endif
-    displayMessage2((D_80119A94 + 80), (D_80199944 + 135), sp20);
+    drawString2((D_80119A94 + 80), (D_80199944 + 135), sp20);
 #if VERSION_US
     sprintf(sp20, "SECRETS %d:%d   BABES %d:%d", D_801A1958.secrets_found,
             D_801A1958.secrets_total, D_801A1958.babes_saved, D_801A1958.babes_total);
@@ -343,7 +343,7 @@ static void func_800A0014(void)
     sprintf(sp20, "SECRETS %d:%d   GONZ. %d:%d", D_801A1958.secrets_found,
             D_801A1958.secrets_total, D_801A1958.babes_saved, D_801A1958.babes_total);
 #endif
-    displayMessage2((D_80119A94 + 80), (D_80199944 + 145), sp20);
+    drawString2((D_80119A94 + 80), (D_80199944 + 145), sp20);
     gDPSetTextureLUT(gpDisplayList++, G_TT_RGBA16);
     gDPSetCombineMode(gpDisplayList++, G_CC_DECALRGBA, G_CC_PASS2);
     func_8001D238(D_80119A94 + 210, D_80199944 + 145, 3997);
@@ -416,7 +416,7 @@ static void func_800A0698(void)
 }
 
 /*800A0BD4*/
-static void func_800A0BD4(s16 x, s16 y, char *arg2)
+static void drawMapStrInfo(s16 x, s16 y, char *arg2)
 {
     char buffer[32];
     s16 i, j;
@@ -431,7 +431,7 @@ static void func_800A0BD4(s16 x, s16 y, char *arg2)
         else
         {
             buffer[j] = '\0';
-            displayMessage1(x, y, buffer);
+            drawString(x, y, buffer);
             j = 0;
             y += 12;
         }
@@ -439,7 +439,7 @@ static void func_800A0BD4(s16 x, s16 y, char *arg2)
     if (j > 0)
     {
         buffer[j] = '\0';
-        displayMessage1(x, y, buffer);
+        drawString(x, y, buffer);
     }
 }
 
@@ -467,8 +467,8 @@ void func_800A0E74(void)
 
     D_80138678 = -1;
     D_801B0804 = 0;
-    if ((gMapNum < MAP_COUNT) && *gpMapStrInfo[gMapNum] != NULL)
-        D_8016A140 = strlen(gpMapStrInfo[gMapNum]) + 142;
+    if ((gMapNum < MAP_COUNT) && (gpMapStrInfo[gMapNum][0] != '\0'))
+        D_8016A140 = (s16)strlen(gpMapStrInfo[gMapNum]) + 142;
     else
         D_8016A140 = -1;
 
@@ -487,7 +487,7 @@ void func_800A0E74(void)
 }
 
 /*800A0F84*/
-void func_800A0F84(void)
+void drawHud(void)
 {
     char sp20[32];
     s32 xl1, yl1, xh1, yh1, xl2, yl2, xh2, yh2, xl3, yl3, xh3, yh3;
@@ -510,7 +510,7 @@ void func_800A0F84(void)
             a = D_8016A140 * 8;
 
         func_80029238(0x20, 0xFF, 0x20, 0x20, 0xFF, 0x20, a);
-        func_800A0BD4(25, 140, gpMapStrInfo[gMapNum]);
+        drawMapStrInfo(25, 140, gpMapStrInfo[gMapNum]);
     }
 
     if (gMapNum == MAP_BASE)
@@ -526,23 +526,23 @@ void func_800A0F84(void)
                 func_800A34CC(50, 60, 6070, 8);
                 func_800A34CC(270, 60, 6070, 12);
 #if VERSION_US
-                displayMessage2(90, 150, "TEMPORAL LINK ESTABLISHED");
-                displayMessage2(90, 160, "TRANSMISSION SOURCE:");
-                displayMessage2(90, 170, "LONDON, ENGLAND 1888 AD");
+                drawString2(90, 150, "TEMPORAL LINK ESTABLISHED");
+                drawString2(90, 160, "TRANSMISSION SOURCE:");
+                drawString2(90, 170, "LONDON, ENGLAND 1888 AD");
 #elif VERSION_FR
-                displayMessage2(90, 150, "LIEN TEMPOREL ESTABLI");
-                displayMessage2(90, 160, "SOURCE DE TRANSMISSION");
-                displayMessage2(90, 170, "LONDRES, ANGLETERRE 1888");
+                drawString2(90, 150, "LIEN TEMPOREL ESTABLI");
+                drawString2(90, 160, "SOURCE DE TRANSMISSION");
+                drawString2(90, 170, "LONDRES, ANGLETERRE 1888");
 #endif
-                ptr2 = ((D_8012FD88 >> 1)) + (s32 *)func_800A0F84; /*TODO: Funky way of getting random values?*/
+                ptr2 = ((D_8012FD88 >> 1)) + (s32 *)drawHud; /*TODO: Funky way of getting random values?*/
                 sprintf(sp20, "%08X", *ptr2++);
-                displayMessage2(240, 30, sp20);
+                drawString2(240, 30, sp20);
                 sprintf(sp20, "%08X", *ptr2++);
-                displayMessage2(240, 40, sp20);
+                drawString2(240, 40, sp20);
                 sprintf(sp20, "%08X", *ptr2++);
-                displayMessage2(240, 50, sp20);
+                drawString2(240, 50, sp20);
                 sprintf(sp20, "%08X", *ptr2);
-                displayMessage2(240, 60, sp20);
+                drawString2(240, 60, sp20);
                 func_8001D238(20, 130, 3964);
                 func_800A0D08(((D_8012FD88 * 4) % 240), 0x10);
                 func_800A0D08((((D_8012FD88 * 4) + 120) % 240), 0x10);
@@ -592,7 +592,7 @@ void func_800A0F84(void)
         return;
     }
 
-    if (D_800DF98C != 0)
+    if (gNotPlayback)
     {
         if (D_801AD470 == 4)
         {
@@ -623,27 +623,27 @@ void func_800A0F84(void)
             func_80029130(D_8012DF04[D_801B0820].r, D_8012DF04[D_801B0820].g, D_8012DF04[D_801B0820].b, 0, 0, 0);
 
             if (D_80106D30[D_801B0820] == 1)
-                displayMessage1(-1, 200, D_8012F6E4[gPlayer[D_801B0820].unk4C].actor);
+                drawString(-1, 200, D_8012F6E4[gPlayer[D_801B0820].unk4C].actor);
             else if (D_800E16A0[D_801B0820] != 0)
             {
 #if VERSION_US
-                displayMessage1(-1, 200, "RED TEAM");
+                drawString(-1, 200, "RED TEAM");
 #elif VERSION_FR
-                displayMessage1(-1, 200, "EQUIPE ROUGE");
+                drawString(-1, 200, "EQUIPE ROUGE");
 #endif
             }
             else
             {
 #if VERSION_US
-                displayMessage1(-1, 200, "BLUE TEAM");
+                drawString(-1, 200, "BLUE TEAM");
 #elif VERSION_FR
-                displayMessage1(-1, 200, "EQUIPE BLEUE");
+                drawString(-1, 200, "EQUIPE BLEUE");
 #endif
             }
             return;
         }
 
-        if ((gPlayer[D_801B0820].unk60 == 0) || (gPlayer[D_801B0820].unk52 >= 0))
+        if ((!gPlayer[D_801B0820].third_person) || (gPlayer[D_801B0820].unk52 >= 0))
             func_800A3688();
 
         if (gPlayer[D_801B0820].unk52 >= 0 && gPlayer[D_801B0820].unk52 < 0x800)
@@ -683,9 +683,9 @@ void func_800A0F84(void)
             sprintf(sp20, "%d", k);
 
             if (D_8012C470 == 1)
-                displayNumbers((o + D_80119A94), (D_80199944 + 200), sp20);
+                drawNumberString((o + D_80119A94), (D_80199944 + 200), sp20);
             else
-                displayMessage1((o + D_80119A94), (D_80199944 + 200), sp20);
+                drawString((o + D_80119A94), (D_80199944 + 200), sp20);
 
             func_80029130(0xFF, 0xFF, 0, 0, 0, 0);
             c = D_8010A940[D_801B0820].unk0;
@@ -697,9 +697,9 @@ void func_800A0F84(void)
                     sprintf(sp20, "%d", p);
 
                     if (D_8012C470 == 1)
-                        displayNumbers((D_80119A94 + 30), (D_80199944 + 60), sp20);
+                        drawNumberString((D_80119A94 + 30), (D_80199944 + 60), sp20);
                     else
-                        displayMessage1((D_80119A94 + 30), (D_80199944 + 60), sp20);
+                        drawString((D_80119A94 + 30), (D_80199944 + 60), sp20);
                 }
             }
 
@@ -745,9 +745,9 @@ void func_800A0F84(void)
 
                 sprintf(sp20, "%3d", p);
                 if (D_8012C470 == 1)
-                    displayNumbers((k + D_80119A94), (D_80199944 + 60), sp20);
+                    drawNumberString((k + D_80119A94), (D_80199944 + 60), sp20);
                 else
-                    displayMessage1((k + D_80119A94), (D_80199944 + 60), sp20);
+                    drawString((k + D_80119A94), (D_80199944 + 60), sp20);
 
                 if (n > 0)
                 {
@@ -759,9 +759,9 @@ void func_800A0F84(void)
                     b = (D_8012C470 >= 2) ? 43 : 35;
 
                     if (D_8012C470 == 1)
-                        displayNumbers((D_80119A94 + (k - b)), (D_80199944 + 60), sp20);
+                        drawNumberString((D_80119A94 + (k - b)), (D_80199944 + 60), sp20);
                     else
-                        displayMessage1((D_80119A94 + (k - b)), (D_80199944 + 60), sp20);
+                        drawString((D_80119A94 + (k - b)), (D_80199944 + 60), sp20);
                 }
             }
 
@@ -786,7 +786,7 @@ void func_800A0F84(void)
                 sprintf(sp20, "%02d:%02d", ((s16)((a - D_801A1958.unkC) / 30U) / 60),
                                            ((s16)((a - D_801A1958.unkC) / 30U) % 60));
                 func_80029130(0xFF, 0, 0, 0, 0, 0);
-                displayNumbers(-1, 30, sp20);
+                drawNumberString(-1, 30, sp20);
             }
 
             if ((gMapNum == MAP_BASE) && (D_80138678 != -1))
@@ -805,12 +805,12 @@ void func_800A0F84(void)
 
                 sprintf(sp20, "%02d:%02d", (s16)c/60, (s16)c%60);
                 func_80029130(0, 0xFF, 0xFF, 0, 0, 0);
-                displayNumbers(-1, 30, sp20);
+                drawNumberString(-1, 30, sp20);
                 if ((s32)D_800E1930 != -1)
                 {
                     sprintf(sp20, "%02d:%02d", (s16)D_800E1930/60, (s16)D_800E1930%60);
                     func_80029130(0, 0xFF, 0x80, 0, 0, 0);
-                    displayNumbers(-1, 45, sp20);
+                    drawNumberString(-1, 45, sp20);
                 }
             }
 
@@ -837,7 +837,7 @@ void func_800A0F84(void)
                 sprintf(sp20, "%02d:%02d", (s16)(a / 30U) / 60,
                                            (s16)(a / 30U) % 60);
                 func_80029130(0xFF, 0, 0, 0, 0, 0);
-                displayNumbers(-1, 30, sp20);
+                drawNumberString(-1, 30, sp20);
             }
 
             if (D_8012FD70[D_801B0820] != 0)
@@ -951,7 +951,7 @@ void func_800A0F84(void)
 
                 sprintf(sp20, "%3d", l);
                 func_80029130(D_8012DF04[D_801B0820].r, D_8012DF04[D_801B0820].g, D_8012DF04[D_801B0820].b, 0, 0, 0);
-                displayMessage1(254, 200, sp20);
+                drawString(254, 200, sp20);
 
                 if (gConfig.multiplayer.radar != CONFIG_OFF)
                 {
@@ -999,7 +999,7 @@ void func_800A0F84(void)
                 temp = *ptr;
                 gpDisplayList++;
                 D_801A6D80++;
-                func_80011700(temp);
+                drawModel(temp);
             }
 
             if (D_8010A940[D_801B0820].unk0 != -1)
@@ -1023,7 +1023,7 @@ void func_800A0F84(void)
                 {
                     gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_TEX_EDGE2);
 
-                    func_80011700(&D_800D42C0);
+                    drawModel(&D_800D42C0);
                     if ((D_8010A940[D_801B0820].unkA[7] == 0x6000) && (gMapNum < MAP_COUNT))
                     {
                         func_800A0014();
@@ -1035,18 +1035,18 @@ void func_800A0F84(void)
                     }
                 }
 
-                switch (D_801CA14C[gMapNum].unk0)
+                switch (gMapChapter[gMapNum].chapter)
                 {
                 default:
-                    func_80011700(D_800D69C8[k]);
+                    drawModel(D_800D69C8[k]);
                     break;
 
-                case 2:
-                    func_80011700(D_800D6A08[k]);
+                case WESTERN:
+                    drawModel(D_800D6A08[k]);
                     break;
 
-                case 3:
-                    func_80011700(D_800D69E8[k]);
+                case VICTORIAN:
+                    drawModel(D_800D69E8[k]);
                     break;
 
                 }
@@ -1092,13 +1092,13 @@ void func_800A3688(void)
 
     code0UnkStruct3 *ptr;
     f32 fx, fy, fz;
-    f32 f1, f2, f3, f4, f5, f6, f7;
+    f32 f1, f2, f5, f6, f7;
     s32 x, y, z;
 
     s16 i, j, k, l;
     u16 cstat;
 
-    if ((gPlayer[D_801B0820].unk45 == 0) && (D_800DF98C != 0))
+    if ((gPlayer[D_801B0820].unk45 == 0) && gNotPlayback)
     {
         ptr = &D_8019B940[D_80106D50[gPlayer[D_801B0820].unk4A]];
         l = D_800E1934[ptr->unk99];
@@ -1143,26 +1143,26 @@ void func_800A3688(void)
         }
         else if ((l != -1) || (gPlayer[D_801B0820].unk6C != 0))
         {
-            if (gPlayer[D_801B0820].unk60 == 0)
+            if (!gPlayer[D_801B0820].third_person)
             {
                 if (gPlayer[D_801B0820].unk6C != 0)
                 {
                     func_80028F04(0, 0, 0, 0, 0xFF, 0);
                     func_800A34CC((SCREEN_WIDTH/2), (SCREEN_HEIGHT/2), 5868, 0);
                     func_80029130(0, 0xFF, 0, 0, 0, 0);
-                    displayMessage1(190, 160, "X");
+                    drawString(190, 160, "X");
                     sprintf(buffer, "%d", gPlayer[D_801B0820].unk6E / 256);
-                    displayNumbers(200, 160, buffer);
+                    drawNumberString(200, 160, buffer);
                     if (D_8012C470 == 1)
                     {
                         sprintf(buffer, "%03d", (s16)((gPlayer[D_801B0820].unk38 & 0x7FF) * (45.0/256)));
-                        displayMessage2(0x98, 0xAA, buffer);
+                        drawString2(0x98, 0xAA, buffer);
                         k = ((gPlayer[D_801B0820].unk3E & 0x7FF) * (45.0/256));
                         if (k > 180)
                             k = k - 360;
 
                         sprintf(buffer, "%d", klabs(k));
-                        displayMessage2(220, 107, buffer);
+                        drawString2(220, 107, buffer);
                     }
                 }
                 else
@@ -1292,9 +1292,9 @@ static void func_800A42A4(s16 playernum)
                     a = CLAMP_MAX((D_80138858[i] * 8), 0xFF);
                     func_80029238(D_8012DF04[playernum].r, D_8012DF04[playernum].g, D_8012DF04[playernum].b, 0, 0, 0, a);
 #if VERSION_US
-                    displayMessage1(-1, (72 - (i * 12)), D_8012FCB0[i]);
+                    drawString(-1, (72 - (i * 12)), D_8012FCB0[i]);
 #elif VERSION_FR
-                    displayMessage1(-1, (84 - (i * 12)), D_8012FCB0[i]);
+                    drawString(-1, (84 - (i * 12)), D_8012FCB0[i]);
 #endif
                 }
             }
@@ -1307,9 +1307,9 @@ static void func_800A42A4(s16 playernum)
             a = CLAMP_MAX((D_80138858[playernum] * 8), 0xFF);
             func_80029238(D_8012DF04[playernum].r, D_8012DF04[playernum].g, D_8012DF04[playernum].b, 0, 0, 0, a);
 #if VERSION_US
-            displayMessage1(-1, 78, D_8012FCB0[playernum]);
+            drawString(-1, 78, D_8012FCB0[playernum]);
 #elif VERSION_FR
-            displayMessage1(-1, 90, D_8012FCB0[playernum]);
+            drawString(-1, 90, D_8012FCB0[playernum]);
 #endif
         }
     }

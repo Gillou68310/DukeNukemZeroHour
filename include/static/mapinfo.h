@@ -46,25 +46,37 @@
 
 typedef struct
 {
-    u8 *rom_start;
-    u8 *rom_end;
-    s32 sector_offset;
-    s32 wall_offset;
-    s32 sprite_offset;
-    s32 sectors;
-    s32 sprites;
-    s32 walls;
-    s32 xpos;
-    s32 ypos;
-    s32 zpos;
-    s32 unk2C;
-    f32 unk30;
-    f32 unk34;
-    f32 unk38;
-    f32 unk3C;
-    f32 unk40;
-    f32 unk44;
+    /*0x00*/ u8 *rom_start;
+    /*0x04*/ u8 *rom_end;
+    /*0x08*/ s32 sector_offset;
+    /*0x0C*/ s32 wall_offset;
+    /*0x10*/ s32 sprite_offset;
+    /*0x14*/ s32 sectors;
+    /*0x18*/ s32 sprites;
+    /*0x1C*/ s32 walls;
+    /*0x20*/ s32 xpos;
+    /*0x24*/ s32 ypos;
+    /*0x28*/ s32 zpos;
+    /*0x2C*/ s32 unk2C;
+    /*0x30*/ f32 skytop_r;
+    /*0x34*/ f32 skytop_g;
+    /*0x38*/ f32 skytop_b;
+    /*0x3C*/ f32 skybottom_r;
+    /*0x40*/ f32 skybottom_g;
+    /*0x44*/ f32 skybottom_b;
 } MapInfo;
+
+#define PRESENT_DAY 1
+#define WESTERN 2
+#define VICTORIAN 3
+#define FINAL 4
+#define DUKEMATCH 5
+#define TRAINING 10
+
+typedef struct {
+    /*0x00*/ u16 chapter;
+    /*0x04*/ char *mapname;
+} MapChapter;
 
 extern MapInfo gMapInfo[MAP_NUM];
 

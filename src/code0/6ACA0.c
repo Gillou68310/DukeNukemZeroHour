@@ -133,7 +133,7 @@ void func_8006A0A0(s16 spritenum)
         spr2 = &gpSprite[neartagsprite];
         if (spr2->statnum == 108)
         {
-            if ((playernum == -1) || (gPlayer[playernum].unk88[spr2->unk25]))
+            if ((playernum == -1) || (gPlayer[playernum].keys[spr2->unk25]))
             {
                 switch (spr2->unk18)
                 {
@@ -222,7 +222,7 @@ void func_8006A0A0(s16 spritenum)
                 if (gPlayer[playernum].unk5A == 0)
                 {
                     gPlayer[playernum].unk5A = 1;
-                    gPlayer[playernum].unk60 = 0;
+                    gPlayer[playernum].third_person = FALSE;
                     gPlayer[playernum].unk64 = 0;
                 }
             }
@@ -259,7 +259,7 @@ void func_8006A0A0(s16 spritenum)
 
             if ((spr2->picnum == 2484) && (spr2->statnum == 0))
             {
-                if ((gPlayer[playernum].unk88[1] != 0) && (gPlayer[playernum].unk88[2] != 0) && (gPlayer[playernum].unk88[3] != 0))
+                if ((gPlayer[playernum].keys[1] != 0) && (gPlayer[playernum].keys[2] != 0) && (gPlayer[playernum].keys[3] != 0))
                 {
                     changeSpriteStat(neartagsprite, 120);
                     func_8006B590(spr2->hitag);
@@ -270,7 +270,7 @@ void func_8006A0A0(s16 spritenum)
             {
                 if ((gPlayer[playernum].unk58 == 0) && (gPlayer[playernum].unk5A == 0) && (gPlayer[playernum].unk59 != 0) && (gPlayer[playernum].unk86 == 0))
                 {
-                    gPlayer[playernum].unk60 = 0;
+                    gPlayer[playernum].third_person = FALSE;
                     gPlayer[playernum].unk64 = 0;
                     gPlayer[playernum].unk86 = 90;
                     audio_80008574(playernum, ((krand() % 3) + 667) & 0xFFFF);
@@ -653,7 +653,6 @@ static void func_8006B278(s16 spritenum)
 static void func_8006B384(s32 spritenum)
 {
     s32 i, x, y;
-    s32 ret;
     u16 num;
 
     num = gpSprite[spritenum].picnum - 1293;
@@ -1258,7 +1257,7 @@ void func_8006CB38(s16 sectnum)
             break;
 
         case 110:
-            gpSprite[i].unk24 = gpSprite[i].unk24 == 0;
+            gpSprite[i].unk24 = !gpSprite[i].unk24;
             break;
 
         case 111:

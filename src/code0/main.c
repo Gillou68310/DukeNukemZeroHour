@@ -377,7 +377,7 @@ static void idleLoop(void *arg)
 /*80000A6C*/
 void readRom(u8 *segStart, u8 *romStart, s32 size)
 {
-    return dmaRomToRam(romStart, segStart, size);
+    dmaRomToRam(romStart, segStart, size);
 }
 
 /*80000A94*/
@@ -1049,7 +1049,7 @@ static void mainLoop(void *arg)
         addr_[i] += offset_;
         *(intptr_t *)&msg_[i].addr += offset_;
 
-        for (j = 0; j < KEY_STRINFO_NUM; j++)
+        for (j = 0; j < MAXKEYS-1; j++)
         {
             intptr_t *addr = (intptr_t *)addr_[i];
             addr[j] += offset_;

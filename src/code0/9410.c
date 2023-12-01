@@ -45,7 +45,7 @@ typedef struct {
 /*80105708*/ u8 *gpMapBuffer;
 /*80106D38*/ u32 gVertexN64Size;
 /*80107910*/ s16 gTilemap[MAXTILES] ALIGNED(16);
-/*80117D48*/ OSTime D_80117D48; /*TODO: Probably a struct*/
+/*80117D48*/ OSTime D_80117D48;
 /*80117D50*/ OSTime D_80117D50;
 /*80117D58*/ OSTime D_80117D58;
 /*80117D60*/ OSTime D_80117D60;
@@ -102,7 +102,7 @@ static s32 _unused3 = 0;
 
 /*.text*/
 static void initTiles(void);
-static u8 func_800099D0(void);
+static u8 isDisplayListFull(void);
 static void floorVtxToN64(s32 sectnum);
 static void floorVtxToN64Z(s32 sectnum, s32 z);
 static void ceilingVtxToN64(s32 sectnum);
@@ -292,12 +292,12 @@ void func_80008E3C(void)
 
         func_80029130(255, 128, 0, 0, 0, 0);
         if ((D_8012C470 == 3) && (D_800DCBD5 == 0))
-            displayNumbers(207, 164, buffer);
+            drawNumberString(207, 164, buffer);
         else
-            displayMessage1(-1, 112, buffer);
+            drawString(-1, 112, buffer);
     }
 
-    if (!func_800099D0() && (D_800DF98C != 0))
+    if (!isDisplayListFull() && gNotPlayback)
     {
         func_8000A070();
         debugMenu();
@@ -320,7 +320,7 @@ void func_80008E3C(void)
 }
 
 /*8000921C*/
-s32 func_8000921C(void)
+s32 getDisplayListVertexUsagePercentage(void)
 {
     s32 dlist;
     s32 vertex;
@@ -366,7 +366,6 @@ static void func_80009314(u8 playernum)
         fog->scale[0].fr = fog->scale[1].fr = 1000;
         fog->unk1E = 0;
     }
-
     else if (fog->unk20 != 0)
     {
         fog->unk1E = 0;
@@ -377,7 +376,8 @@ static void func_80009314(u8 playernum)
         fog->scale[0].nr = fog->scale[1].nr = fog->scale[2].nr;
         fog->scale[0].fr = fog->scale[1].fr = fog->scale[2].fr;
     }
-    if ((gPlayer[playernum].unk55 == 0) && (D_801CC7F4 == 0))
+
+    if ((gPlayer[playernum].unk55 == 0) && (gCheatWeatherConfig == CONFIG_OFF))
     {
         i = gHeadSpriteSect[gPlayer[playernum].unk32];
         while (i != -1)
@@ -447,7 +447,7 @@ static s32 getDisplayListRemainingSize(void)
 }
 
 /*800099D0*/
-static u8 func_800099D0(void)
+static u8 isDisplayListFull(void)
 {
     s32 size;
 
@@ -471,10 +471,10 @@ static void func_80009A14(u8 playernum)
     D_80117E38 = osGetTime();
     gDPPipeSync(gpDisplayList++);
     gSPDisplayList(gpDisplayList++, D_01001900);
-    func_8001BB1C();
+    drawSky();
     func_8000C76C();
     gSPDisplayList(gpDisplayList++, D_01001900);
-    func_8001BCDC();
+    drawClouds();
     grTranslate(&gpDynamic->mtx6, 0.0f, 0.0f, 0.0f);
     grScale(&gpDynamic->mtx8, 0.5f, 0.5f, 0.5f);
     gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx6), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
@@ -497,7 +497,7 @@ static void func_80009A14(u8 playernum)
     drawFloorCeiling();
     D_80117E50 = osGetTime();
 
-    if (func_800099D0())
+    if (isDisplayListFull())
         return;
 
     func_8000C76C();
@@ -506,7 +506,7 @@ static void func_80009A14(u8 playernum)
 
     func_80023A10();
     func_8000A184();
-    if (func_800099D0())
+    if (isDisplayListFull())
         return;
 
     func_8000C76C();
@@ -516,30 +516,30 @@ static void func_80009A14(u8 playernum)
 
     gSPTexture(gpDisplayList++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON);
 
-    if (func_800099D0())
+    if (isDisplayListFull())
         return;
 
     func_8000C76C();
     func_8000A634();
 
-    if (func_800099D0())
+    if (isDisplayListFull())
         return;
 
     func_8000C76C();
     func_8000C8EC();
 
-    if (func_800099D0())
+    if (isDisplayListFull())
         return;
 
     func_8007BE80();
     func_80086A24();
 
-    if (func_800099D0())
+    if (isDisplayListFull())
         return;
 
     func_8001DE9C();
 
-    if (func_800099D0())
+    if (isDisplayListFull())
         return;
 
     func_8001EB2C();
@@ -551,7 +551,7 @@ static void func_80009A14(u8 playernum)
     if (gMapNum == MAP_NUCLEAR_WINTER)
         func_80094F7C();
 
-    if (func_800099D0())
+    if (isDisplayListFull())
         return;
 
     func_8000C76C();
@@ -559,12 +559,12 @@ static void func_80009A14(u8 playernum)
 
     gSPTexture(gpDisplayList++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON);
 
-    if (func_800099D0())
+    if (isDisplayListFull())
         return;
 
     func_80012318();
 
-    if (func_800099D0())
+    if (isDisplayListFull())
         return;
 
 
@@ -594,10 +594,10 @@ static void func_80009A14(u8 playernum)
 
     func_8000EBF0(playernum, cond);
 
-    if (func_800099D0())
+    if (isDisplayListFull())
         return;
 
-    func_800A0F84();
+    drawHud();
     D_8016A158 = getDisplayListRemainingSize();
 }
 
@@ -621,6 +621,7 @@ static void func_8000A174(s32 arg0, s32 arg1)
     u8 pad[20];
     (void)arg0;
     (void)arg1;
+    (void)pad;
 }
 
 /*8000A184*/
@@ -770,7 +771,7 @@ static void func_8000A634(void)
                 }
                 func_8000C76C();
                 func_8000DBDC(gpWall[wallnum].unk21, gpWall[wallnum].unk1C);
-                func_8000F3C4(0, 0, 0, D_8016A148, D_800FE410, D_80138680);
+                setLight1Ligth2Color(0, 0, 0, D_8016A148, D_800FE410, D_80138680);
             }
             else if (D_800BD74B == 1)
             {
@@ -820,10 +821,10 @@ static void func_8000A938(u16 wallnum)
                                            0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
     }
 
-    if (D_80197DD4 == 0)
+    if (gVertexNumber == 0)
     {
-        D_80197DD4 = 32;
-        D_801A2620 = 0;
+        gVertexNumber = 32;
+        gVertexBufferIndex = 0;
         gSPVertex(gpDisplayList++, gpVertexN64, 32, 0);
     }
     func_800226C0(wallnum);
@@ -839,12 +840,12 @@ static void func_8000A938(u16 wallnum)
 
 
     D_801AC9EC++;
-    gSP2Triangles(gpDisplayList++, D_801A2620, D_801A2620+1, D_801A2620+2, D_801A2620,
-                                   D_801A2620, D_801A2620+2, D_801A2620+3, D_801A2620);
+    gSP2Triangles(gpDisplayList++, gVertexBufferIndex, gVertexBufferIndex+1, gVertexBufferIndex+2, gVertexBufferIndex,
+                                   gVertexBufferIndex, gVertexBufferIndex+2, gVertexBufferIndex+3, gVertexBufferIndex);
 
     D_8012DEFC = -1;
-    D_801A2620 += 4;
-    D_80197DD4 -= 4;
+    gVertexBufferIndex += 4;
+    gVertexNumber -= 4;
 };
 
 /*8000AEE0*/
@@ -969,16 +970,16 @@ void func_8000B570(s16 arg0)
 
     for (i = arg0; i > 0; i--)
     {
-        if (D_80197DD4 == 0)
+        if (gVertexNumber == 0)
         {
-            gSPVertex(gpDisplayList++, D_80199114, 30, 0);
-            D_80197DD4 = 30;
-            D_801A2620 = 0;
+            gSPVertex(gpDisplayList++, gpVertexList, 30, 0);
+            gVertexNumber = 30;
+            gVertexBufferIndex = 0;
         }
-        gSP1Triangle(gpDisplayList++, D_801A2620, D_801A2620+1, D_801A2620+2, D_801A2620);
-        D_801A2620 = D_801A2620 + 3;
-        D_80197DD4 = D_80197DD4 - 3;
-        D_80199114 += 3;
+        gSP1Triangle(gpDisplayList++, gVertexBufferIndex, gVertexBufferIndex+1, gVertexBufferIndex+2, gVertexBufferIndex);
+        gVertexBufferIndex += 3;
+        gVertexNumber -= 3;
+        gpVertexList += 3;
     }
 }
 
@@ -989,18 +990,18 @@ void func_8000B6A8(s16 arg0)
 
     for (i = arg0; i > 0; i--)
     {
-        if (D_80197DD4 == 0)
+        if (gVertexNumber == 0)
         {
-            gSPVertex(gpDisplayList++, D_80199114, 32, 0);
-            D_80197DD4 = 32;
-            D_801A2620 = 0;
+            gSPVertex(gpDisplayList++, gpVertexList, 32, 0);
+            gVertexNumber = 32;
+            gVertexBufferIndex = 0;
         }
-        gSP2Triangles(gpDisplayList++, D_801A2620, D_801A2620+1, D_801A2620+2, D_801A2620,
-                                       D_801A2620, D_801A2620+2, D_801A2620+3, D_801A2620);
+        gSP2Triangles(gpDisplayList++, gVertexBufferIndex, gVertexBufferIndex+1, gVertexBufferIndex+2, gVertexBufferIndex,
+                                       gVertexBufferIndex, gVertexBufferIndex+2, gVertexBufferIndex+3, gVertexBufferIndex);
 
-        D_801A2620 += 4;
-        D_80197DD4 -= 4;
-        D_80199114 += 4;
+        gVertexBufferIndex += 4;
+        gVertexNumber -= 4;
+        gpVertexList += 4;
     }
 }
 
@@ -1011,18 +1012,18 @@ void func_8000B830(s16 arg0)
 
     for (i = arg0; i > 0; i--)
     {
-        if (D_80197DD4 == 0)
+        if (gVertexNumber == 0)
         {
-            gSPVertex(gpDisplayList++, D_80199114, 32, 0);
-            D_80197DD4 = 32;
-            D_801A2620 = 0;
+            gSPVertex(gpDisplayList++, gpVertexList, 32, 0);
+            gVertexNumber = 32;
+            gVertexBufferIndex = 0;
         }
-        gSP2Triangles(gpDisplayList++, D_801A2620, D_801A2620+1, D_801A2620+2, D_801A2620,
-                                       D_801A2620+1, D_801A2620+2, D_801A2620+3, D_801A2620);
+        gSP2Triangles(gpDisplayList++, gVertexBufferIndex, gVertexBufferIndex+1, gVertexBufferIndex+2, gVertexBufferIndex,
+                                       gVertexBufferIndex+1, gVertexBufferIndex+2, gVertexBufferIndex+3, gVertexBufferIndex);
 
-        D_801A2620 += 4;
-        D_80197DD4 -= 4;
-        D_80199114 += 4;
+        gVertexBufferIndex += 4;
+        gVertexNumber -= 4;
+        gpVertexList += 4;
     }
 }
 
@@ -1031,7 +1032,7 @@ static void func_8000B9C0(s16 tileid)
 {
     s16 tileid_;
 
-    if (D_801CDBCC != 0)
+    if (gCheatFlatShadingConfig != CONFIG_OFF)
         tileid = 5948;
 
     tileid_ = tileid;
@@ -1105,10 +1106,10 @@ void func_8000C3E4(s16 tilenum)
 void func_8000C76C(void)
 {
     D_801AC9EC = 0;
-    D_80197DD4 = 0;
+    gVertexNumber = 0;
     D_80199946 = 0;
-    D_801A2620 = 0;
-    D_80199114 = gpVertexN64;
+    gVertexBufferIndex = 0;
+    gpVertexList = gpVertexN64;
 }
 
 /*8000C7A4*/
@@ -1559,12 +1560,14 @@ static void func_8000E024(s32 arg0, s32 arg1)
 static void func_8000E02C(s32 arg0, s32 arg1)
 {
     u8 pad[10];
+    (void)pad;
 }
 
 /*8000E03C*/
 static void func_8000E03C(s32 arg0, s32 arg1)
 {
     u8 pad[10];
+    (void)pad;
 }
 
 /*8000E04C*/

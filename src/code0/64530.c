@@ -75,7 +75,7 @@ static void func_80063A40(s16 playernum, s16 spritenum)
             ((getFlorzOfSlope(sectnum2,
                 gPlayer[playernum].xpos,
                 gPlayer[playernum].ypos) - gPlayer[playernum].unk40) + 0x2600)) &&
-            (gPlayer[playernum].unk14 > 256))
+            (gPlayer[playernum].zvect > 256))
         {
             gPlayer[playernum].xpos += (gpSprite[j].x - gpSprite[spritenum].x);
             gPlayer[playernum].ypos += (gpSprite[j].y - gpSprite[spritenum].y);
@@ -89,7 +89,7 @@ static void func_80063A40(s16 playernum, s16 spritenum)
                                                       gPlayer[playernum].xpos,
                                                       gPlayer[playernum].ypos) + 1025;
 
-            gPlayer[playernum].unk14 = gPlayer[playernum].unk14 + 512;
+            gPlayer[playernum].zvect += 512;
         }
     }
     else if (unk18 == 2)
@@ -110,7 +110,7 @@ static void func_80063A40(s16 playernum, s16 spritenum)
                                                       gPlayer[playernum].xpos,
                                                       gPlayer[playernum].ypos) - 4864;
 
-            gPlayer[playernum].unk14 = 0;
+            gPlayer[playernum].zvect = 0;
             gPlayer[playernum].unk44 = 1;
         }
     }
@@ -169,7 +169,7 @@ static void func_80063A40(s16 playernum, s16 spritenum)
                                                   gPlayer[playernum].xpos,
                                                   gPlayer[playernum].ypos) - gPlayer[playernum].unk40;
 
-        gPlayer[playernum].unkC = gPlayer[playernum].unk10 = gPlayer[playernum].unk14 = 0;
+        gPlayer[playernum].xvect = gPlayer[playernum].yvect = gPlayer[playernum].zvect = 0;
         gPlayer[playernum].unk32 = sectnum1;
         updateSector(gPlayer[playernum].xpos, gPlayer[playernum].ypos, &gPlayer[playernum].unk32);
         func_8008E3E0(gpSprite[j].x, gpSprite[j].y, gpSprite[j].z, gpSprite[j].sectnum, 43, 0);
@@ -429,8 +429,8 @@ void func_80064E78(void)
             deleteSprite(i);
             i = nexti;
         }
-        D_8012FC48[0].unk18 = -1;
-        D_8012FC48[1].unk18 = -1;
+        gCloud[0].picnum = -1;
+        gCloud[1].picnum = -1;
         gSkyTopR = 30;
         gSkyTopG = 30;
         gSkyTopB = 90;
@@ -1573,16 +1573,16 @@ void func_80064E78(void)
 
                             if (cond3 != 0)
                             {
-                                s32 a, b, c;
-                                a = spr->unk24 * gpSinTable[(spr->ang + 0x200) & 0x7FF];
-                                b = spr->unk24 * gpSinTable[spr->ang & 0x7FF];
+                                s32 xvect, yvect, flordist;
+                                xvect = spr->unk24 * gpSinTable[(spr->ang + 0x200) & 0x7FF];
+                                yvect = spr->unk24 * gpSinTable[spr->ang & 0x7FF];
 
-                                c = CLAMP_MIN((gPlayer[k].unk40 - 0x1200), 0x400);
+                                flordist = CLAMP_MIN((gPlayer[k].unk40 - 0x1200), 0x400);
                                 clipMove(&gPlayer[k].xpos,
                                         &gPlayer[k].ypos,
                                         &gPlayer[k].zpos,
                                         &gPlayer[k].unk32,
-                                        a, b, 164, 0x400, c, 0x10001);
+                                        xvect, yvect, 164, 0x400, flordist, 0x10001);
                             }
                         }
                     }
@@ -1860,7 +1860,7 @@ void func_80069160(void)
             case 3:
                 for (j = 0; j < D_8012C470; j++)
                 {
-                    if ((gPlayer[j].unk32 == spr->sectnum) && (gPlayer[j].unk88[spr->ang]))
+                    if ((gPlayer[j].unk32 == spr->sectnum) && (gPlayer[j].keys[spr->ang]))
                     {
                         cond = 1;
                         break;

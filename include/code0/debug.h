@@ -6,7 +6,7 @@
 void debugMenu(void);
 
 extern s16 gLoadMapNum;
-extern u8 D_800DF98C;
-extern u8 D_800DF990;
+extern u8 gNotPlayback;
+extern u8 gDebugMenu;
 
 #endif

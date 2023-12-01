@@ -303,8 +303,7 @@ void func_800965F8(s32 spritenum)
     code0UnkStruct3 *ptr;
     code0UnkStruct5 *ptr2;
 
-    s32 i, j, k, l, m, n;
-    s32 temp_v0_13;
+    s32 i, j, k, l, m, n, o;
     s32 ang, ang2;
     s32 xpos, ypos;
     s32 z;
@@ -1771,14 +1770,14 @@ void func_800965F8(s32 spritenum)
                 func_80047820(spritenum, (i + 0x4000) & 0xFFFF, 1000);
 
             func_8009635C(spritenum, 9500, 900);
-            temp_v0_13 = func_800962D0(spr, 360);
-            k = temp_v0_13 - 8000;
+            o = func_800962D0(spr, 360);
+            k = o - 8000;
             if (spr->z >= k)
             {
                 spr->z = k;
                 spr->unk1A = 0;
             }
-            else if ((temp_v0_13 - spr->z) <= 49999)
+            else if ((o - spr->z) <= 49999)
             {
                 if (k != spr->z)
                     spr->unk1A += 400;
@@ -2133,11 +2132,11 @@ void func_8009A9F0(s32 spritenum)
         y = gPlayer[0].ypos;
         if (D_8019910C != 0)
         {
-            x += gPlayer[0].unkC >> 8;
-            y += gPlayer[0].unk10 >> 8;
+            x += gPlayer[0].xvect >> 8;
+            y += gPlayer[0].yvect >> 8;
         }
 
-        if ((gPlayer[0].unkC == 0) && (gPlayer[0].unk10 == 0))
+        if ((gPlayer[0].xvect == 0) && (gPlayer[0].yvect == 0))
             D_8019910C = 0;
         else
         {

@@ -5,12 +5,6 @@
 #include "static/mapinfo.h"
 #include "code1/code1.h"
 
-typedef struct {
-    /*0x00*/ u16 unk0;
-    /*0x02*/ u16 unk2;
-    /*0x04*/ char *mapname;
-} _EB300UnkStruct1;
-
 s32 func_801C0FDC(s16);
 f32 func_801C1024(f32);
 f32 tanf(f32 angle);
@@ -48,7 +42,7 @@ extern f32 D_801CA144;
 extern code1UnkStruct6 D_801CB6E0;
 extern code1UnkStruct6 D_801CB870;
 extern code1UnkStruct6 D_801CB8F0;
-extern _EB300UnkStruct1 D_801CA14C[MAP_NUM+1];
+extern MapChapter gMapChapter[MAP_NUM+1];
 extern code1UnkStruct5 D_801CB538[9];
 
 #endif

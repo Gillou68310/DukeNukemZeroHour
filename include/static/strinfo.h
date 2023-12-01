@@ -4,8 +4,6 @@
 #include "common.h"
 #include "static/mapinfo.h"
 
-#define KEY_STRINFO_NUM 16
-
 typedef struct
 {
     s16 count;

@@ -887,7 +887,7 @@ static void func_8005FEE0(s16 spritenum)
         if ((spr->picnum >= 1897) && (spr->picnum < 1903))
             spr->unk22 = 100;
 
-        if (D_801CA14C[gMapNum].unk0 == 5)
+        if (gMapChapter[gMapNum].chapter == DUKEMATCH)
         {
             switch (spr->picnum)
             {
@@ -1060,6 +1060,7 @@ void func_80062300(void)
     s32 i, j, k, l;
     u8 pad[2]; /*FAKE*/
 
+    (void)pad;
     func_8004F31C();
     func_80016F30();
     D_800F9CC0 = 0;
@@ -1292,21 +1293,21 @@ void func_80062950(s16 playernum, u8 arg1)
     }
     else
     {
-        switch (D_801CA14C[gMapNum].unk0)
+        switch (gMapChapter[gMapNum].chapter)
         {
         default:
         case 0:
-        case 1:
-        case 4:
+        case PRESENT_DAY:
+        case FINAL:
             if (gMapNum >= MAP_NUCLEAR_WINTER && gMapNum < MAP_DRY_TOWN)
                 gpSprite[spritenum].picnum = APOCALYPSEDUKE;
             else
                 gpSprite[spritenum].picnum = DUKENUKEM;
             break;
-        case 2:
+        case WESTERN:
             gpSprite[spritenum].picnum = COWBOYDUKE;
             break;
-        case 3:
+        case VICTORIAN:
             gpSprite[spritenum].picnum = VICTORIANDUKE;
             break;
         }
@@ -1350,7 +1351,7 @@ void func_80062950(s16 playernum, u8 arg1)
         func_8006D0E4(playernum);
 
         D_8011A680[playernum][0][0] |= 1;
-        if (D_801CA14C[gMapNum].unk0 == 2)
+        if (gMapChapter[gMapNum].chapter == WESTERN)
         {
             if (gMapNum == MAP_JAIL_BREAK)
                 gPlayer[playernum].unk70 = 0;
@@ -1415,15 +1416,15 @@ void func_80062950(s16 playernum, u8 arg1)
     gpSprite[spritenum].unk25 = 7;
     D_8013B2D0[spritenum].unk6 = 0;
 
-    if ((D_8012C470 >= 2) || (D_801CDBC6 != 0))
+    if ((D_8012C470 >= 2) || (gCheatFirstPersonConfig != CONFIG_OFF))
     {
         gPlayer[playernum].unk61 = 0;
-        gPlayer[playernum].unk60 = 0;
+        gPlayer[playernum].third_person = FALSE;
     }
     else
     {
         gPlayer[playernum].unk61 = 1;
-        gPlayer[playernum].unk60 = 1;
+        gPlayer[playernum].third_person = TRUE;
     }
 
     gPlayer[playernum].unk44 = 0;
@@ -1442,11 +1443,11 @@ void func_80062950(s16 playernum, u8 arg1)
     gPlayer[playernum].unk84 = 0;
     gPlayer[playernum].unk86 = 0;
     gPlayer[playernum].unk5A = 0;
-    gPlayer[playernum].unk88[0] = 1;
+    gPlayer[playernum].keys[0] = 1;
     gPlayer[playernum].unk57 = gPlayer[playernum].unk54;
 
-    for (i = 1; i < ARRAY_COUNT(gPlayer[playernum].unk88); i++)
-        gPlayer[playernum].unk88[i] = 0;
+    for (i = 1; i < ARRAY_COUNT(gPlayer[playernum].keys); i++)
+        gPlayer[playernum].keys[i] = 0;
 
     gPlayer[playernum].unk52 = -1;
     gPlayer[playernum].unk6E = 0x100;
@@ -1454,14 +1455,14 @@ void func_80062950(s16 playernum, u8 arg1)
     gPlayer[playernum].unk6C = 0;
     gPlayer[playernum].unk3C = 0;
     gPlayer[playernum].unk3E = 0;
-    gPlayer[playernum].unkC = 0;
-    gPlayer[playernum].unk10 = 0;
-    gPlayer[playernum].unk14 = 0;
+    gPlayer[playernum].xvect = 0;
+    gPlayer[playernum].yvect = 0;
+    gPlayer[playernum].zvect = 0;
     D_800DEF1C = -1;
     func_8000EB90(playernum & 0xFF, 0, 0, 0, 0);
     D_80106D30[playernum] = 0;
 
-    if ((D_8012C470 >= 2) || (D_801CC8CC != 0))
+    if ((D_8012C470 >= 2) || (gCheatSelectSkinConfig != CONFIG_OFF))
     {
         if (arg1 != 0)
         {
@@ -1483,7 +1484,7 @@ void func_80062950(s16 playernum, u8 arg1)
     gPlayer[playernum].unk4E = 0;
     gPlayer[playernum].unk68 = gPlayer[playernum].unk32;
     gPlayer[playernum].unk64 = 1524.0f;
-    Bmemset(&D_801A2790[playernum], 0, 40);
+    Bmemset(&D_801A2790[playernum], 0, sizeof(code0UnkStruct17));
     D_801A2790[playernum].unk16 = gPlayer[playernum].unk38;
     D_801A2790[playernum].unk24 = 1524;
     D_801B0820 = playernum;

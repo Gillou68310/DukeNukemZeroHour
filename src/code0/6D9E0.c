@@ -949,7 +949,7 @@ label1:
 
             if (j >= 0)
             {
-                if (gPlayer[j].unk60 != 0)
+                if (gPlayer[j].third_person)
                 {
                     spr->xrepeat = 0x24;
                     spr->yrepeat = 0x24;
@@ -2715,7 +2715,7 @@ static void func_80074C70(s32 spritenum)
     SpriteType *spr;
     s16 ang, num2;
     s32 ang2, num, i, point2;
-    s16 cstat, cstat2;
+    s16 cstat;
 
     spr = &gpSprite[spritenum];
     i = spr->unk22 & 0x7F;
@@ -4319,7 +4319,7 @@ static void func_80078F84(s32 spritenum)
 {
     s32 ceilz, ceilhit, florz, florhit;
     SpriteType *spr;
-    s32 num, ang, ang2;
+    s32 num, ang;
     u16 cstat;
     s32 temp;
 

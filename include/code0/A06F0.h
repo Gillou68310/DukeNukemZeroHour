@@ -5,7 +5,7 @@
 
 void func_8009FAF0(void);
 void func_800A0E74(void);
-void func_800A0F84(void);
+void drawHud(void);
 void func_800A3688(void);
 void func_800A419C(s16 playernum, char *);
 void func_800A4478(void);

@@ -254,8 +254,8 @@ void func_80094A60(void)
             gpVertexN64->v.tc[1] = 0;
             gpVertexN64++;
 
-            gSPVertex(gpDisplayList++, D_80199114, 3, 0);
-            D_80199114 += 3;
+            gSPVertex(gpDisplayList++, gpVertexList, 3, 0);
+            gpVertexList += 3;
             gSP1Triangle(gpDisplayList++, 0, 1, 2, 0);
         }
     }
@@ -375,8 +375,8 @@ void func_80094F7C(void)
             gpVertexN64->v.tc[1] = 0;
             gpVertexN64++;
 
-            gSPVertex(gpDisplayList++, D_80199114, 3, 0);
-            D_80199114 += 3;
+            gSPVertex(gpDisplayList++, gpVertexList, 3, 0);
+            gpVertexList += 3;
             gSP1Triangle(gpDisplayList++, 0, 1, 2, 0);
         }
     }
@@ -435,7 +435,7 @@ void func_8009542C(void)
     char **ptr;
     u8 unk2;
 
-    if ((D_801CA14C[gMapNum].unk0 == 2) || (D_801CA14C[gMapNum].unk0 == 3))
+    if ((gMapChapter[gMapNum].chapter == WESTERN) || (gMapChapter[gMapNum].chapter == VICTORIAN))
         ptr = D_800E17A0;
     else
         ptr = D_800E1780;
@@ -563,7 +563,7 @@ void func_8009584C(s16 playernum)
     ptr1 = &D_8010A940[playernum];
     ptr2 = &D_8019B940[D_80106D50[gPlayer[playernum].unk4A]];
 
-    if ((D_801CA14C[gMapNum].unk0 == 2) || (D_801CA14C[gMapNum].unk0 == 3))
+    if ((gMapChapter[gMapNum].chapter == WESTERN) || (gMapChapter[gMapNum].chapter == VICTORIAN))
         ptr = D_800E17A0;
 
     unk0 = ptr1->unk0 - 2;

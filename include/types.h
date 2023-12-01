@@ -3,6 +3,9 @@
 
 #include "common.h"
 
+#ifndef bool
+typedef u8 bool;
+#endif 
 typedef f32 Matrix4f[4][4];
 typedef f32 Vec4f[4];
 typedef u8 Addr[];

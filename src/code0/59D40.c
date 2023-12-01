@@ -588,7 +588,7 @@ void func_8005A8A8(s32 spritenum, s32 arg1)
 /*8005A9EC*/
 void func_8005A9EC(s32 spritenum, s32 arg1)
 {
-    if (D_801CA14C[gMapNum].unk0 == 2)
+    if (gMapChapter[gMapNum].chapter == WESTERN)
         D_80137DE0->unk99 = 29;
     else
         D_80137DE0->unk99 = 33;
@@ -1037,7 +1037,7 @@ void func_8005BB88(s32 spritenum, s32 arg1)
 /*8005BD28*/
 void func_8005BD28(s32 spritenum, s32 arg1)
 {
-    s32 x1, x2, y1, y2, z, z1, z2;
+    s32 z2;
     f32 f1, f2, f3;
 
     if ((D_80137DE0->unk0 & 0x1800) && (D_80137DE0->unk28 != -1))
@@ -1047,7 +1047,7 @@ void func_8005BD28(s32 spritenum, s32 arg1)
     }
     else
     {
-        if ((D_801CA14C[gMapNum].unk0 == 2) && (D_80137DE0->unk4 & 0x20))
+        if ((gMapChapter[gMapNum].chapter == WESTERN) && (D_80137DE0->unk4 & 0x20))
         {
             z2 = (gpSprite[spritenum].z - 0x4600);
             f1 = (gPlayer[0].zpos - z2) / 16;
@@ -1370,7 +1370,7 @@ void func_8005CAB4(s32 spritenum, s32 arg1)
 /*8005CAE0*/
 void func_8005CAE0(s32 spritenum, s32 arg1)
 {
-    s32 i, nexti;
+    s32 i;
     s32 x, y;
 
     i = gHeadSpriteStat[24];
@@ -2336,10 +2336,9 @@ void func_8005F38C(s32 spritenum, s32 arg1)
 void func_8005F560(s32 spritenum, s32 arg1)
 {
     s16 sectnum;
-    s32 temp_s0;
     s32 x, y, z;
     s32 ang;
-    s32 a, b, c, d;
+    s32 a, b, c, d, e;
 
     updateSector(0x70FE, 0xA102, &sectnum);
     if (D_8012FD88 & 1)
@@ -2347,12 +2346,12 @@ void func_8005F560(s32 spritenum, s32 arg1)
         z = -0x18DB0;
         y = 0xA102;
         ang = krand() & 0x3FF;
-        temp_s0 = (krand() & 0x3FF) + 0x3E8;
-        temp_s0 = temp_s0 + (krand() & 0x7FF);
+        e = (krand() & 0x3FF) + 1000;
+        e = e + (krand() & 0x7FF);
         a = ang + 512;
         x = gpSinTable[a]; /*FAKEMATCH*/
-        x = temp_s0 * gpSinTable[a];
-        c = (temp_s0 * gpSinTable[ang]) >> 14;
+        x = e * gpSinTable[a];
+        c = (e * gpSinTable[ang]) >> 14;
         x = x >> 14;
         b = krand() & 0x7FFF;
         y += c;
@@ -2377,7 +2376,7 @@ void func_8005F6A8(s32 spritenum, s32 arg1)
 /*8005F6DC*/
 void func_8005F6DC(s32 spritenum, s32 arg1)
 {
-    if (D_801CE48C != 0)
+    if (gCheatFastZombiesConfig != CONFIG_OFF)
         setVar(spritenum, arg1, getVar(spritenum, arg1) * 4);
 }
 
@@ -2487,7 +2486,7 @@ void func_8005FA88(s32 spritenum, s32 arg1)
 
     audio_800077F4(696, gPlayer[0].unk4A);
     func_800A419C(0, *gpKeyStrInfo[gMapNum]);
-    gPlayer[0].unk88[1] = 1;
+    gPlayer[0].keys[1] = 1;
 
     i = gHeadSpriteSect[gPlayer[0].unk32];
     while (i >= 0)
@@ -2554,6 +2553,6 @@ void func_8005FD4C(s32 spritenum, s32 arg1)
 /*8005FD60*/
 void func_8005FD60(s32 spritenum, s32 arg1)
 {
-    if (D_801CA14C[gMapNum].unk0 == 1 && D_80118248->picnum != ZOMBIE2)
+    if (gMapChapter[gMapNum].chapter == PRESENT_DAY && D_80118248->picnum != ZOMBIE2)
         audio_80007A44(752, spritenum, 16000);
 }

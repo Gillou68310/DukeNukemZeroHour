@@ -150,57 +150,57 @@ void func_80079830(void)
     for (D_801B0820 = 0; D_801B0820 < D_8012C470; D_801B0820++)
     {
         func_80079F60(D_801B0820);
-        if (D_801CC924 != 0)
+        if (gCheatWeaponSmgConfig != CONFIG_OFF)
         {
             D_8011A680[D_801B0820][6][1] = 500;
             D_8011A680[D_801B0820][6][0] |= 1;
         }
-        if (D_801CDB48 != 0)
+        if (gCheatWeaponBlasterConfig != CONFIG_OFF)
         {
             D_8011A680[D_801B0820][2][1] = 280;
             D_8011A680[D_801B0820][2][0] |= 1;
         }
-        if (D_801CE4EC != 0)
+        if (gCheatWeaponSniperConfig != CONFIG_OFF)
         {
             D_8011A680[D_801B0820][23][1] = 30;
             D_8011A680[D_801B0820][23][0] |= 1;
         }
-        if (D_801CF634 != 0)
+        if (gCheatWeaponFreezerConfig != CONFIG_OFF)
         {
             D_8011A680[D_801B0820][15][1] = 600;
             D_8011A680[D_801B0820][15][0] |= 1;
         }
-        if (D_801CE478 != 0)
+        if (gCheatWeaponRevolverConfig != CONFIG_OFF)
         {
             D_8011A680[D_801B0820][3][1] = 96;
             D_8011A680[D_801B0820][3][0] |= 1;
         }
-        if (D_801CDA80 != 0)
+        if (gCheatWeaponClaw12Config != CONFIG_OFF)
         {
             D_8011A680[D_801B0820][4][1] = 96;
             D_8011A680[D_801B0820][4][0] |= 1;
         }
-        if (D_801CC8B8 != 0)
+        if (gCheatWeapon3030Config != CONFIG_OFF)
         {
             D_8011A680[D_801B0820][7][1] = 100;
             D_8011A680[D_801B0820][7][0] |= 1;
         }
-        if (D_801CDB14 != 0)
+        if (gCheatWeaponSawedOffConfig != CONFIG_OFF)
         {
             D_8011A680[D_801B0820][5][1] = 60;
             D_8011A680[D_801B0820][5][0] |= 1;
         }
-        if (D_801CDB16 != 0)
+        if (gCheatWeaponVoltCannonConfig != CONFIG_OFF)
         {
             D_8011A680[D_801B0820][20][1] = 2400;
             D_8011A680[D_801B0820][20][0] |= 1;
         }
-        if (D_801CD984 != 0)
+        if (gCheatWeaponGattlingGunConfig != CONFIG_OFF)
         {
             D_8011A680[D_801B0820][16][1] = 500;
             D_8011A680[D_801B0820][16][0] |= 1;
         }
-        if (D_801CE480 != 0)
+        if (gCheatWeaponGammaCannonConfig != CONFIG_OFF)
         {
             D_8011A680[D_801B0820][17][1] = 750;
             D_8011A680[D_801B0820][17][0] |= 1;
@@ -326,6 +326,7 @@ static void func_80079F60(s32 playernum)
     s16 n;
     u8 pad[16]; /*FAKEMATCH*/
 
+    (void)pad;
     temp2 = gPlayer[playernum].unk4A;
     D_800FE9D8[playernum] = 0;
     D_80197DEC = &D_8019B940[D_80106D50[gPlayer[playernum].unk4A]];

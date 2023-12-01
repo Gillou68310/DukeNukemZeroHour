@@ -7,6 +7,8 @@
 #include "code0/data/modelinfo.h"
 #include "code0/data/D8D20.h"
 
+#define MAXKEYS 17
+
 #if VERSION_US
 #define D_8012FCB0_SIZE 48
 #elif VERSION_FR
@@ -37,9 +39,9 @@ typedef struct
     /*0x00*/ s32 xpos;
     /*0x04*/ s32 ypos;
     /*0x08*/ s32 zpos;
-    /*0x0C*/ s32 unkC; /*XV*/
-    /*0x10*/ s32 unk10; /*YV*/
-    /*0x14*/ s32 unk14; /*ZV*/
+    /*0x0C*/ s32 xvect;
+    /*0x10*/ s32 yvect;
+    /*0x14*/ s32 zvect;
     /*0x18*/ s32 unk18;
     /*0x1C*/ s32 unk1C;
     /*0x20*/ s32 unk20;
@@ -73,7 +75,7 @@ typedef struct
     /*0x5B*/ u8 unk5B;
     /*0x5C*/ u8 unk5C;
     /*0x5E*/ s16 unk5E;
-    /*0x60*/ u8 unk60;
+    /*0x60*/ bool third_person;
     /*0x61*/ u8 unk61;
     /*0x64*/ f32 unk64;
     /*0x68*/ s16 unk68;
@@ -90,7 +92,7 @@ typedef struct
     /*0x82*/ s16 unk82;
     /*0x84*/ s16 unk84;
     /*0x86*/ s16 unk86;
-    /*0x88*/ u8 unk88[17]; /*KEY_STRINFO_NUM+1*/
+    /*0x88*/ u8 keys[MAXKEYS];
     /*0x99*/ u8 pad[2];
 } Player;
 
@@ -221,10 +223,10 @@ typedef struct
     /*0x0C*/ s32 unkC;
     /*0x10*/ s32 unk10;
     /*0x14*/ s32 unk14;
-    /*0x18*/ s16 unk18; /*tileid*/
-    /*0x1C*/ s32 unk1C; /*CLOUDS HT*/
+    /*0x18*/ s16 picnum;
+    /*0x1C*/ s32 height;
     /*0x20*/ Color fog;
-} code0unkStruct12;
+} Cloud;
 
 typedef struct
 {
@@ -420,7 +422,7 @@ typedef struct
 /*800FE416*/ _extern s16 gMapNum;
 /*800FE944*/ _extern u8 *gpModelTexture;
 /*800FE950*/ _extern VertexC D_800FE950[12] ALIGNED(8);
-/*800FE9C8*/ _extern s32 D_800FE9C8[2]; /*CLOUDS SP*/
+/*800FE9C8*/ _extern s32 gCloudSpeed[2];
 /*800FE9D0*/ _extern s8 D_800FE9D0; /*playernum2*/
 /*800FE9D8*/ _extern u8 D_800FE9D8[8];
 /*800FE9E0*/ _extern _volatile s64 D_800FE9E0;
@@ -478,7 +480,7 @@ typedef struct
 /*8012F908*/ _extern s32 D_8012F908;
 /*8012F914*/ _extern s16 D_8012F914[MAXPLAYERS];
 /*8012FC40*/ _extern u8 D_8012FC40;
-/*8012FC48*/ _extern code0unkStruct12 D_8012FC48[2] ALIGNED(8);
+/*8012FC48*/ _extern Cloud gCloud[2] ALIGNED(8);
 /*8012FC90*/ _extern s32 D_8012FC90;
 /*8012FCA0*/ _extern s16 D_8012FCA0[MAXPLAYERS];
 /*8012FCB0*/ _extern char D_8012FCB0[MAXPLAYERS][D_8012FCB0_SIZE] ALIGNED(8);
@@ -523,11 +525,11 @@ typedef struct
 /*8016D174*/ _extern u8 D_8016D174[MAXPLAYERS];
 /*8016D180*/ _extern u16 D_8016D180;
 /*80197DCC*/ _extern s16 gSkyTopB;
-/*80197DD4*/ _extern s16 D_80197DD4;
+/*80197DD4*/ _extern s16 gVertexNumber;
 /*80197DE8*/ _extern s16 *D_80197DE8;
 /*80197E40*/ _extern code0unkStruct8 D_80197E40[150] ALIGNED(16);
 /*80199110*/ _extern f32 D_80199110;
-/*80199114*/ _extern Vtx *D_80199114;
+/*80199114*/ _extern Vtx *gpVertexList;
 /*80199524*/ _extern s32 D_80199524;
 /*80199528*/ _extern s32 D_80199528;
 /*80199558*/ _extern s32 D_80199558;
@@ -548,7 +550,7 @@ typedef struct
 /*801A19EC*/ _extern u8 D_801A19EC;
 /*801A19F0*/ _extern musHandle D_801A19F0;
 /*801A19F4*/ _extern s32 D_801A19F4;
-/*801A2620*/ _extern s16 D_801A2620;
+/*801A2620*/ _extern s16 gVertexBufferIndex;
 /*801A2628*/ _extern s16 D_801A2628; /*playernum?*/
 /*801A2684*/ _extern f32 D_801A2684;
 /*801A2688*/ _extern s8 D_801A2688;
@@ -574,7 +576,7 @@ typedef struct
 /*801AE538*/ _extern code0UnkStruct13 D_801AE538[32] ALIGNED(8);
 /*801AE8F0*/ _extern s16 *D_801AE8F0;
 /*801AE8F4*/ _extern u16 D_801AE8F4;
-/*801AE904*/ _extern s32 D_801AE904[2]; /*CLOUDS AN*/
+/*801AE904*/ _extern s32 gCloudAng[2];
 /*801AE910*/ _extern s32 D_801AE910;
 /*801AE914*/ _extern s32 D_801AE914;
 /*801AE918*/ _extern s32 D_801AE918;

@@ -7,7 +7,7 @@
 
 void loadMap(s32 mapnum);
 void func_80008E3C(void);
-s32 func_8000921C(void);
+s32 getDisplayListVertexUsagePercentage(void);
 void func_8000A070(void);
 void func_8000B570(s16);
 void func_8000B6A8(s16);

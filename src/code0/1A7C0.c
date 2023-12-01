@@ -46,14 +46,14 @@ static u8 D_800DCA04[9][3] = {
 
 /*.text*/
 static void func_8001A8EC(s16, s16, s32 tileid, s16, u8);
-static void func_8001BFB0(code0unkStruct12 *);
+static void func_8001BFB0(Cloud *);
 static void func_8001C490(s16);
 
 /*80019BC0*/
 void func_80019BC0(void)
 {
     s16 i;
-    code0unkStruct12 *ptr;
+    Cloud *cloud;
     s16 nexti;
 
     i = gHeadSpriteStat[104];
@@ -61,18 +61,18 @@ void func_80019BC0(void)
     D_801AE91C = -1;
     D_801AE90C = 0;
     D_8012FC40 = 1;
-    gSkyTopR = gpMapInfo[gMapNum].unk30;
-    gSkyBottomR = gpMapInfo[gMapNum].unk3C;
-    gSkyTopG = gpMapInfo[gMapNum].unk34;
-    gSkyBottomG = gpMapInfo[gMapNum].unk40;
-    gSkyTopB = gpMapInfo[gMapNum].unk38;
-    gSkyBottomB = gpMapInfo[gMapNum].unk44;
-    D_8012FC48[0].unk10 = 0x400;
-    D_8012FC48[0].unk14 = 0x800;
-    D_8012FC48[1].unk10 = 0x400;
-    D_8012FC48[1].unk14 = 0x800;
-    D_8012FC48[0].unk18 = -1;
-    D_8012FC48[1].unk18 = -1;
+    gSkyTopR = gpMapInfo[gMapNum].skytop_r;
+    gSkyBottomR = gpMapInfo[gMapNum].skybottom_r;
+    gSkyTopG = gpMapInfo[gMapNum].skytop_g;
+    gSkyBottomG = gpMapInfo[gMapNum].skybottom_g;
+    gSkyTopB = gpMapInfo[gMapNum].skytop_b;
+    gSkyBottomB = gpMapInfo[gMapNum].skybottom_b;
+    gCloud[0].unk10 = 0x400;
+    gCloud[0].unk14 = 0x800;
+    gCloud[1].unk10 = 0x400;
+    gCloud[1].unk14 = 0x800;
+    gCloud[0].picnum = -1;
+    gCloud[1].picnum = -1;
 
     while (i >= 0)
     {
@@ -91,35 +91,35 @@ void func_80019BC0(void)
             break;
         case 20:
             if (gpSprite[i].cstat & 8)
-                ptr = &D_8012FC48[1];
+                cloud = &gCloud[1];
             else
-                ptr = &D_8012FC48[0];
+                cloud = &gCloud[0];
 
-            ptr->fog.r = gpSprite[i].unk18;
-            ptr->fog.g = gpSprite[i].unk1A;
-            ptr->fog.b = gpSprite[i].unk1C;
+            cloud->fog.r = gpSprite[i].unk18;
+            cloud->fog.g = gpSprite[i].unk1A;
+            cloud->fog.b = gpSprite[i].unk1C;
             break;
         case 21:
             if (gpSprite[i].cstat & 8)
             {
-                D_801AE904[1] = gpSprite[i].ang;
-                D_800FE9C8[1] = gpSprite[i].unk18;
-                ptr = &D_8012FC48[1];
+                gCloudAng[1] = gpSprite[i].ang;
+                gCloudSpeed[1] = gpSprite[i].unk18;
+                cloud = &gCloud[1];
             }
             else
             {
-                D_801AE904[0] = gpSprite[i].ang;
-                D_800FE9C8[0] = gpSprite[i].unk18;
-                ptr = &D_8012FC48[0];
+                gCloudAng[0] = gpSprite[i].ang;
+                gCloudSpeed[0] = gpSprite[i].unk18;
+                cloud = &gCloud[0];
             }
 
-            ptr->unk18 = gpSprite[i].lotag;
-            ptr->unk8 = ((-cosf((gpSprite[i].ang * (PI/1024))) * gpSprite[i].unk18) / 50.0f);
-            ptr->unkC = ((-sinf((gpSprite[i].ang * (PI/1024))) * gpSprite[i].unk18) / 50.0f);
-            ptr->unk1C = gpSprite[i].hitag * 10;
+            cloud->picnum = gpSprite[i].lotag;
+            cloud->unk8 = ((-cosf((gpSprite[i].ang * (PI/1024))) * gpSprite[i].unk18) / 50.0f);
+            cloud->unkC = ((-sinf((gpSprite[i].ang * (PI/1024))) * gpSprite[i].unk18) / 50.0f);
+            cloud->height = gpSprite[i].hitag * 10;
 
             if (gpSprite[i].unk25 == 0)
-                ptr->unk1C = -ptr->unk1C;
+                cloud->height = -cloud->height;
             break;
         case 24:
             D_8012EB44 = gpSprite[i].lotag;
@@ -145,7 +145,6 @@ void func_8001A1A4(void)
     s16 hitwall;
     s16 hitsprite;
     s32 hitx, hity, hitz;
-    AlphaPalette *pal;
     f32 fx, fy, fz;
     f32 f1, f2, f3, f4, f5, f6;
     s16 i, spritenum;
@@ -160,7 +159,7 @@ void func_8001A1A4(void)
 
         cstat = gpSprite[gPlayer[D_801B0820].unk4A].cstat;
 
-        if ((gPlayer[D_801B0820].unk6A < 0xFF) || ((gPlayer[D_801B0820].unk60 == 0)))
+        if ((gPlayer[D_801B0820].unk6A < 0xFF) || (!gPlayer[D_801B0820].third_person))
             gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & 0xFEFE;
 
         for (i = 0; i < D_80105720; i++)
@@ -269,7 +268,7 @@ static void func_8001AAEC(void)
     {
         cstat = gpSprite[gPlayer[D_801B0820].unk4A].cstat;
 
-        if ((gPlayer[D_801B0820].unk6A < 255) || (gPlayer[D_801B0820].unk60 == 0))
+        if ((gPlayer[D_801B0820].unk6A < 255) || (!gPlayer[D_801B0820].third_person))
             gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & 0xFEFE;
 
         hitScan(D_801A6D84,
@@ -550,7 +549,7 @@ static void func_8001B740(void)
 }
 
 /*8001BB1C*/
-void func_8001BB1C(void)
+void drawSky(void)
 {
     if (D_8012FC40 == 0)
     {
@@ -580,23 +579,22 @@ static u8 func_8001BC74(s16 arg0, s16 arg1)
 }
 
 /*8001BCDC*/
-void func_8001BCDC(void)
+void drawClouds(void)
 {
     Mtx mtx1;
     Mtx mtx2;
 
     if ((D_8012C470 < 2) && (D_8012FC40 == 0)
-        && ((D_8012FC48[0].unk18 != -1) || (D_8012FC48[1].unk18 != D_8012FC48[0].unk18) || (D_8012EB44 != D_8012FC48[1].unk18)))
+        && ((gCloud[0].picnum != -1) || (gCloud[1].picnum != gCloud[0].picnum) || (D_8012EB44 != gCloud[1].picnum)))
     {
-
-        D_8012FC48[0].unk0 += D_8012FC48[0].unk8;
-        D_8012FC48[0].unk0 &= 0x7FF;
-        D_8012FC48[0].unk4 += D_8012FC48[0].unkC;
-        D_8012FC48[0].unk4 &= 0x7FF;
-        D_8012FC48[1].unk0 += D_8012FC48[1].unk8;
-        D_8012FC48[1].unk0 &= 0x7FF;
-        D_8012FC48[1].unk4 += D_8012FC48[1].unkC;
-        D_8012FC48[1].unk4 &= 0x7FF;
+        gCloud[0].unk0 += gCloud[0].unk8;
+        gCloud[0].unk0 &= 0x7FF;
+        gCloud[0].unk4 += gCloud[0].unkC;
+        gCloud[0].unk4 &= 0x7FF;
+        gCloud[1].unk0 += gCloud[1].unk8;
+        gCloud[1].unk0 &= 0x7FF;
+        gCloud[1].unk4 += gCloud[1].unkC;
+        gCloud[1].unk4 &= 0x7FF;
 
         grScale(&mtx2, 8.0f, 8.0f, 0.5f);
         grTranslate(&mtx1, (D_801A6D84 / 4.0), (D_800FE3F0 / 4.0), (D_80199640 / 64.0));
@@ -610,30 +608,30 @@ void func_8001BCDC(void)
         gDPSetCombineMode(gpDisplayList++, G_CC_MODULATEIA, G_CC_MODULATEIA2);
         gSPClearGeometryMode(gpDisplayList++, G_CULL_BOTH | G_FOG);
 
-        func_8001BFB0(&D_8012FC48[0]);
-        func_8001BFB0(&D_8012FC48[1]);
+        func_8001BFB0(&gCloud[0]);
+        func_8001BFB0(&gCloud[1]);
         func_8001C490(D_8012EB44);
     }
 }
 
 /*8001BFB0*/
-static void func_8001BFB0(code0unkStruct12 *arg0)
+static void func_8001BFB0(Cloud *cloud)
 {
     f32 x1, x2, x3, x4;
     s32 tc1, tc2, tc3, tc4;
     u8 alpha;
     s16 i, j;
 
-    if (arg0->unk18 != -1)
+    if (cloud->picnum != -1)
     {
         func_8000C76C();
-        func_8000BDB0(arg0->unk18);
-        gDPSetFogColor(gpDisplayList++, arg0->fog.r, arg0->fog.g, arg0->fog.b, 0xFF);
+        func_8000BDB0(cloud->picnum);
+        gDPSetFogColor(gpDisplayList++, cloud->fog.r, cloud->fog.g, cloud->fog.b, 0xFF);
 
         for (i = 0; i < 4; i++)
         {
-            tc1 = (i * arg0->unk10) + arg0->unk0;
-            tc2 = tc1 + arg0->unk10;
+            tc1 = (i * cloud->unk10) + cloud->unk0;
+            tc2 = tc1 + cloud->unk10;
             tc1 &= 0x7FFF;
             tc2 &= 0x7FFF;
             x1 = (i - 2) << 10;
@@ -642,56 +640,56 @@ static void func_8001BFB0(code0unkStruct12 *arg0)
             for (j = 0; j < 4; j++)
             {
                 x3 = j; /*FAKEMATCH*/
-                tc3 = (j * arg0->unk14) + arg0->unk4;
-                tc4 = tc3 + arg0->unk14;
+                tc3 = (j * cloud->unk14) + cloud->unk4;
+                tc4 = tc3 + cloud->unk14;
                 x3 = ((j - 2) << 10);
                 x4 = x3 + 1024.0f;
 
                 alpha = func_8001BC74(i, j);
                 gpVertexN64->v.ob[0] = x1;
                 gpVertexN64->v.ob[1] = x3;
-                gpVertexN64->v.ob[2] = ((arg0->unk1C / 32.0) * alpha) / 256.0;
+                gpVertexN64->v.ob[2] = ((cloud->height / 32.0) * alpha) / 256.0;
                 gpVertexN64->v.tc[0] = tc1;
                 gpVertexN64->v.tc[1] = tc3 & 0x7FFF;
-                gpVertexN64->v.cn[0] = arg0->fog.r;
-                gpVertexN64->v.cn[1] = arg0->fog.g;
-                gpVertexN64->v.cn[2] = arg0->fog.b;
+                gpVertexN64->v.cn[0] = cloud->fog.r;
+                gpVertexN64->v.cn[1] = cloud->fog.g;
+                gpVertexN64->v.cn[2] = cloud->fog.b;
                 gpVertexN64->v.cn[3] = alpha;
                 gpVertexN64++;
 
                 alpha = func_8001BC74(i+1, j);
                 gpVertexN64->v.ob[0] = x2;
                 gpVertexN64->v.ob[1] = x3;
-                gpVertexN64->v.ob[2] = ((arg0->unk1C / 32.0) * alpha) / 256.0;
+                gpVertexN64->v.ob[2] = ((cloud->height / 32.0) * alpha) / 256.0;
                 gpVertexN64->v.tc[0] = tc2;
                 gpVertexN64->v.tc[1] = tc3 & 0x7FFF;
-                gpVertexN64->v.cn[0] = arg0->fog.r;
-                gpVertexN64->v.cn[1] = arg0->fog.g;
-                gpVertexN64->v.cn[2] = arg0->fog.b;
+                gpVertexN64->v.cn[0] = cloud->fog.r;
+                gpVertexN64->v.cn[1] = cloud->fog.g;
+                gpVertexN64->v.cn[2] = cloud->fog.b;
                 gpVertexN64->v.cn[3] = alpha;
                 gpVertexN64++;
 
                 alpha = func_8001BC74(i+1, j+1);
                 gpVertexN64->v.ob[0] = x2;
                 gpVertexN64->v.ob[1] = x4;
-                gpVertexN64->v.ob[2] = ((arg0->unk1C / 32.0) * alpha) / 256.0;
+                gpVertexN64->v.ob[2] = ((cloud->height / 32.0) * alpha) / 256.0;
                 gpVertexN64->v.tc[0] = tc2;
                 gpVertexN64->v.tc[1] = tc4 & 0x7FFF;
-                gpVertexN64->v.cn[0] = arg0->fog.r;
-                gpVertexN64->v.cn[1] = arg0->fog.g;
-                gpVertexN64->v.cn[2] = arg0->fog.b;
+                gpVertexN64->v.cn[0] = cloud->fog.r;
+                gpVertexN64->v.cn[1] = cloud->fog.g;
+                gpVertexN64->v.cn[2] = cloud->fog.b;
                 gpVertexN64->v.cn[3] = alpha;
                 gpVertexN64++;
 
                 alpha = func_8001BC74(i, j+1);
                 gpVertexN64->v.ob[0] = x1;
                 gpVertexN64->v.ob[1] = x4;
-                gpVertexN64->v.ob[2] = ((arg0->unk1C / 32.0) * alpha) / 256.0;
+                gpVertexN64->v.ob[2] = ((cloud->height / 32.0) * alpha) / 256.0;
                 gpVertexN64->v.tc[0] = tc1;
                 gpVertexN64->v.tc[1] = tc4 & 0x7FFF;
-                gpVertexN64->v.cn[0] = arg0->fog.r;
-                gpVertexN64->v.cn[1] = arg0->fog.g;
-                gpVertexN64->v.cn[2] = arg0->fog.b;
+                gpVertexN64->v.cn[0] = cloud->fog.r;
+                gpVertexN64->v.cn[1] = cloud->fog.g;
+                gpVertexN64->v.cn[2] = cloud->fog.b;
                 gpVertexN64->v.cn[3] = alpha;
                 gpVertexN64++;
                 func_8000B6A8(1);
@@ -778,7 +776,7 @@ static void func_8001C490(s16 tileid)
 }
 
 /*8001C8A0*/
-void displayDebug(s16 x, s16 y, char *string)
+void drawDebugString(s16 x, s16 y, char *string)
 {
     s32 x_, y_;
     s16 i;
@@ -810,7 +808,7 @@ void displayDebug(s16 x, s16 y, char *string)
 }
 
 /*8001C9E4*/
-void displayNumbers(s16 x, s16 y, char *string)
+void drawNumberString(s16 x, s16 y, char *string)
 {
     f32 f1, f2;
     s32 x_, y_;
@@ -855,9 +853,9 @@ void displayNumbers(s16 x, s16 y, char *string)
 }
 
 /*8001CBAC*/
-void displayMessage1(s16 x, s16 y, char *string)
+void drawString(s16 x, s16 y, char *string)
 {
-    f32 f1, f2;
+    f32 f1;
     s32 x_, y_;
     s16 tileid;
     char *ptr;
@@ -1023,9 +1021,9 @@ void displayMessage1(s16 x, s16 y, char *string)
 }
 
 /*8001CEA4*/
-void displayMessage2(s16 x, s16 y, char *string)
+void drawString2(s16 x, s16 y, char *string)
 {
-    f32 f1, f2;
+    f32 f1;
     s32 x_, y_;
     s16 tileid;
     char *ptr;
@@ -1173,7 +1171,7 @@ void func_8001D238(s32 x, s32 y, u16 tileid)
 {
     u8 *pTile;
     f32 f1, f2, f3, f4;
-    s32 xl, yl, xh, yh;
+    s32 xl, yl, xh;
     s32 dsdx, dtdy;
     s32 width, height;
     s32 i, j, k, l, m, n, o;

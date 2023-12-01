@@ -16,6 +16,7 @@
 #define MUSIC_BOSS 9
 #define MUSIC_PRESENT_DAY_BOSS_HOG 10
 #define MUSIC_TRAINING_BASE 11
+#define MUSIC_COUNT 12
 
 #define MUSIC_AMBIENT1 0
 #define MUSIC_AMBIENT2 1
@@ -26,6 +27,7 @@
 #define MUSIC_AMBIENT7 6
 #define MUSIC_AMBIENT8 7
 #define MUSIC_AMBIENT9 8
+#define AMBIENT_COUNT 9
 
 void dmaRomToRam(u8 *rom, u8 *ram, s32 size);
 void initAudio(void);

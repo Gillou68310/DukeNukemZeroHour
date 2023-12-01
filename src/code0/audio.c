@@ -8,8 +8,6 @@
 #include "code1/code1.h"
 
 #define DMA_LEN 16384
-#define MUSIC_COUNT 12
-#define AMBIENT_COUNT 9
 #define SFX_BANK_SIZE 54152
 #define SFX_PBANK_SIZE 167600
 #define AUDIO_HEAP_SIZE 163840
@@ -1129,12 +1127,12 @@ musHandle audio_80008604(void)
 {
     u16 sfxnum;
 
-    switch (D_801CA14C[gMapNum].unk0)
+    switch (gMapChapter[gMapNum].chapter)
     {
-    case 2:
+    case WESTERN:
         sfxnum = D_800BD65C[func_801C0FDC(7)];
         break;
-    case 3:
+    case VICTORIAN:
         sfxnum = D_800BD64C[func_801C0FDC(7)];
         break;
     default:
