@@ -20,14 +20,6 @@ typedef struct
     s32 result;
 } EDLInfo;
 
-typedef struct
-{
-    u8 *romstart;
-    u8 *romend;
-    u8 **handle;
-    s32 *offset;
-} edlUnkStruct1;
-
 /*data*/
 
 /*800E0B40*/
@@ -72,7 +64,7 @@ static s32 D_800E0C18[64] = {
 };
 
 /*800E0D18*/
-static edlUnkStruct1 D_800E0D18[32] = {
+edlUnkStruct1 D_800E0D18[32] = {
     { files_1009A60_ROM_START, files_1009A60_ROM_END, NULL, NULL },
     { files_10271A0_ROM_START, files_10271A0_ROM_END, NULL, NULL },
     { files_1041D90_ROM_START, files_1041D90_ROM_END, NULL, NULL },

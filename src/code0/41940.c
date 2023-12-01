@@ -23,56 +23,6 @@
 #include "code1/EB300.h"
 #include "static/105F50.h"
 
-DECL_STATIC_SEG_SYM(D_0100F1E0);
-DECL_STATIC_SEG_SYM(D_01012FCC);
-DECL_STATIC_SEG_SYM(D_01013404);
-DECL_STATIC_SEG_SYM(D_01013B0C);
-DECL_STATIC_SEG_SYM(D_01013E74);
-DECL_STATIC_SEG_SYM(D_01014468);
-DECL_STATIC_SEG_SYM(D_010151EC);
-DECL_STATIC_SEG_SYM(D_01017850);
-DECL_STATIC_SEG_SYM(D_01017854);
-DECL_STATIC_SEG_SYM(D_01017AFC);
-DECL_STATIC_SEG_SYM(D_010189A4);
-DECL_STATIC_SEG_SYM(D_010198B4);
-DECL_STATIC_SEG_SYM(D_0101999C);
-DECL_STATIC_SEG_SYM(D_0101A220);
-DECL_STATIC_SEG_SYM(D_0101A624);
-DECL_STATIC_SEG_SYM(D_0101A9A0);
-DECL_STATIC_SEG_SYM(D_0101AA1C);
-DECL_STATIC_SEG_SYM(D_0101ACAC);
-DECL_STATIC_SEG_SYM(D_0101B9C8);
-DECL_STATIC_SEG_SYM(D_0101BC88);
-DECL_STATIC_SEG_SYM(D_0101C310);
-DECL_STATIC_SEG_SYM(D_0101C458);
-DECL_STATIC_SEG_SYM(D_0101C8A0);
-DECL_STATIC_SEG_SYM(D_0101CF20);
-DECL_STATIC_SEG_SYM(D_0101D440);
-DECL_STATIC_SEG_SYM(D_0101D470);
-DECL_STATIC_SEG_SYM(D_0101DFC4);
-DECL_STATIC_SEG_SYM(D_0101E524);
-DECL_STATIC_SEG_SYM(D_0101E560);
-DECL_STATIC_SEG_SYM(D_0101E594);
-DECL_STATIC_SEG_SYM(D_0101E5C8);
-DECL_STATIC_SEG_SYM(D_0101EB64);
-DECL_STATIC_SEG_SYM(D_0101F1B4);
-DECL_STATIC_SEG_SYM(D_0101F4B4);
-DECL_STATIC_SEG_SYM(D_0101F5E8);
-DECL_STATIC_SEG_SYM(D_0101F780);
-DECL_STATIC_SEG_SYM(D_0101F8F8);
-DECL_STATIC_SEG_SYM(D_0101FB20);
-DECL_STATIC_SEG_SYM(D_0101FF1C);
-DECL_STATIC_SEG_SYM(D_010200C8);
-DECL_STATIC_SEG_SYM(D_010201B8);
-DECL_STATIC_SEG_SYM(D_01020284);
-DECL_STATIC_SEG_SYM(D_0102037C);
-DECL_STATIC_SEG_SYM(D_0102040C);
-DECL_STATIC_SEG_SYM(D_01020DDC);
-DECL_STATIC_SEG_SYM(D_01020EDC);
-DECL_STATIC_SEG_SYM(D_01020F10);
-DECL_STATIC_SEG_SYM(D_01021228);
-DECL_STATIC_SEG_SYM(D_01021464);
-
 typedef void (*_41940UnkFuncPointer1)(s32 spritenum, s32 arg1);
 typedef s32(*_41940UnkFuncPointer2)(s32 spritenum);
 
@@ -514,7 +464,7 @@ static void func_80040EF0(s32 spritenum, s16 playernum, s32 arg2)
                 {
                     D_80138794 = D_80137DE0->unkC;
                     D_80137DE0->unkC = gpInst;
-                    D_800DF08C = (u8 *)((intptr_t)gpInst - (intptr_t)GET_STATIC_SEG_SYM(D_0100F1E0));
+                    D_800DF08C = (u8 *)((intptr_t)gpInst - (intptr_t)D_0100F1E0_STATIC);
                 }
                 else
                     return;
@@ -2390,7 +2340,7 @@ static s32 func_80045C44(s32 spritenum)
     intptr_t *ptr;
 
     gpInst++;
-    ptr = (intptr_t *)GET_STATIC_SEG_SYM(D_0100F1E0);
+    ptr = D_0100F1E0_STATIC;
     ptr = &ptr[getVar(spritenum, *gpInst++)];
     D_80137DE0->unk10 = ptr;
     return 0;
@@ -2402,7 +2352,7 @@ static s32 func_80045CB8(s32 spritenum)
     intptr_t *ptr;
 
     gpInst++;
-    ptr = (intptr_t *)GET_STATIC_SEG_SYM(D_0100F1E0);
+    ptr = D_0100F1E0_STATIC;
     ptr = &ptr[getVar(spritenum, *gpInst++)];
     D_80137DE0->unk20 = ptr;
     D_80137DE0->unk2A = 0;
@@ -2416,7 +2366,7 @@ static s32 func_80045D34(s32 spritenum)
     intptr_t *ptr;
 
     gpInst++;
-    ptr = (intptr_t *)GET_STATIC_SEG_SYM(D_0100F1E0);
+    ptr = D_0100F1E0_STATIC;
     ptr = &ptr[getVar(spritenum, *gpInst++)];
     D_80137DE0->unk14 = ptr;
     return 0;
@@ -2429,7 +2379,7 @@ static s32 func_80045DA8(s32 spritenum)
     SpriteType *spr;
 
     gpInst++;
-    ptr = (intptr_t *)GET_STATIC_SEG_SYM(D_0100F1E0);
+    ptr = D_0100F1E0_STATIC;
     spr = &gpSprite[spritenum];
     ptr = &ptr[getVar(spritenum, *gpInst++)];
     *(intptr_t *)&spr->hitag = (intptr_t)ptr; /*TODO: addr or integer?*/
@@ -3630,7 +3580,7 @@ label2:
                     else
                     {
                         D_80106D50[spritenum2] = func_8004BE90();
-                        D_8019B940[D_80106D50[spritenum2]].unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101A9A0);
+                        D_8019B940[D_80106D50[spritenum2]].unkC = D_0101A9A0_STATIC;
                         D_8019B940[D_80106D50[spritenum2]].unk30 = 0;
                         D_8019B940[D_80106D50[spritenum2]].unk80 = 0;
                     }
@@ -8031,7 +7981,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         if (((spr->unk25 & 0x7F) >= 4) && ((spr->unk25 & 0x7F) < 8))
         {
             func_80055DDC(spritenum_);
-            ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101F780);
+            ptr->unkC = D_0101F780_STATIC;
             ptr->unk0 |= 0x100000;
         }
         else
@@ -8045,7 +7995,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = -1;
         ptr->unk8 = -1;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_010201B8);
+        ptr->unkC = D_010201B8_STATIC;
         func_80055DDC(spritenum_);
         break;
 
@@ -8056,7 +8006,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = -1;
         ptr->unk8 = -1;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_01020F10);
+        ptr->unkC = D_01020F10_STATIC;
         func_80055DDC(spritenum_);
         break;
 
@@ -8069,7 +8019,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             ptr = func_80053900(spritenum_);
             ptr->unk84 = -1;
             ptr->unk8 = -1;
-            ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_01021464);
+            ptr->unkC = D_01021464_STATIC;
             func_80055DDC(spritenum_);
         }
         break;
@@ -8081,7 +8031,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = -1;
         ptr->unk8 = -1;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_01021228);
+        ptr->unkC = D_01021228_STATIC;
         func_80055DDC(spritenum_);
         break;
 
@@ -8093,7 +8043,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr->unk84 = -1;
         ptr->unk8 = -1;
         ptr->unkC = NULL;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101FB20);
+        ptr->unkC = D_0101FB20_STATIC;
         ptr->unk48 = spr->unk24;
         if (spr->unk25 == 0)
         {
@@ -8131,7 +8081,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         spr->yrepeat = 0x40;
         ptr = func_80053900(spritenum_);
         spr->cstat |= 0x1101;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_01014468);
+        ptr->unkC = D_01014468_STATIC;
         ptr->unk84 = 12;
         ptr->unk8 = 50;
 
@@ -8179,7 +8129,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         spr->xrepeat = 0x40;
         ptr = func_80053900(spritenum_);
         spr->cstat |= 0x1000;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101AA1C);
+        ptr->unkC = D_0101AA1C_STATIC;
         ptr->unk84 = -1;
         func_80055DDC(spritenum_);
         break;
@@ -8190,7 +8140,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         {
             ptr = func_80053900(spritenum_);
             spr->cstat |= 0x1000;
-            ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101C310);
+            ptr->unkC = D_0101C310_STATIC;
             ptr->unk84 = -1;
             ptr->unk8 = -1;
             changeSpriteStat(spritenum_, 1);
@@ -8203,7 +8153,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         {
             ptr = func_80053900(spritenum_);
             spr->cstat |= 0x1000;
-            ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101C458);
+            ptr->unkC = D_0101C458_STATIC;
             ptr->unk84 = -1;
             ptr->unk8 = -1;
             func_80055DDC(spritenum_);
@@ -8214,7 +8164,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         spr->xrepeat = 0x40;
         ptr = func_80053900(spritenum_);
         spr->cstat |= 0x1101;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_01013B0C);
+        ptr->unkC = D_01013B0C_STATIC;
         ptr->unk84 = 13;
         ptr->unk8 = 50;
         func_80055DDC(spritenum_);
@@ -8227,7 +8177,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         spr->xrepeat = 0x40;
         ptr = func_80053900(spritenum_);
         spr->cstat |= 0x1101;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_01013E74);
+        ptr->unkC = D_01013E74_STATIC;
         ptr->unk84 = 14;
         ptr->unk8 = 50;
         func_80055DDC(spritenum_);
@@ -8241,7 +8191,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 11;
         ptr->unk8 = 10;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101A220);
+        ptr->unkC = D_0101A220_STATIC;
         spr->cstat = 0x1101;
         func_80055DDC(spritenum_);
 
@@ -8255,7 +8205,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 18;
         ptr->unk8 = 350;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_010198B4);
+        ptr->unkC = D_010198B4_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8268,7 +8218,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 16;
         ptr->unk8 = 12;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101A624);
+        ptr->unkC = D_0101A624_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8283,7 +8233,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             ptr = func_80053900(spritenum_);
             ptr->unk84 = -1;
             ptr->unk8 = -1;
-            ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101F5E8);
+            ptr->unkC = D_0101F5E8_STATIC;
             func_80055DDC(spritenum_);
         }
         break;
@@ -8294,7 +8244,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 30;
         ptr->unk8 = 600;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101C8A0);
+        ptr->unkC = D_0101C8A0_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8307,7 +8257,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 30;
         ptr->unk8 = 600;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101CF20);
+        ptr->unkC = D_0101CF20_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8321,7 +8271,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = -1;
         ptr->unk8 = -1;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101F4B4);
+        ptr->unkC = D_0101F4B4_STATIC;
         func_80055DDC(spritenum_);
         break;
 
@@ -8333,7 +8283,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             ptr = func_80053900(spritenum_);
             ptr->unk84 = -1;
             ptr->unk8 = -1;
-            ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101FF1C);
+            ptr->unkC = D_0101FF1C_STATIC;
             func_80055DDC(spritenum_);
         }
         break;
@@ -8344,7 +8294,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = -1;
         ptr->unk8 = -1;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_01020DDC);
+        ptr->unkC = D_01020DDC_STATIC;
         func_80055DDC(spritenum_);
         break;
 
@@ -8354,7 +8304,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = -1;
         ptr->unk8 = -1;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_01020EDC);
+        ptr->unkC = D_01020EDC_STATIC;
         func_80055DDC(spritenum_);
         break;
 
@@ -8366,7 +8316,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             ptr = func_80053900(spritenum_);
             ptr->unk84 = -1;
             ptr->unk8 = -1;
-            ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_010200C8);
+            ptr->unkC = D_010200C8_STATIC;
             func_80055DDC(spritenum_);
         }
         break;
@@ -8379,7 +8329,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             ptr = func_80053900(spritenum_);
             ptr->unk84 = -1;
             ptr->unk8 = -1;
-            ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0102037C);
+            ptr->unkC = D_0102037C_STATIC;
             func_80055DDC(spritenum_);
         }
         else
@@ -8402,12 +8352,12 @@ void func_800539A8(s32 arg0, s32 spritenum)
         if (spr->picnum == 1299)
         {
             ptr->unk84 = 19;
-            ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_01017854);
+            ptr->unkC = D_01017854_STATIC;
         }
         if (spr->picnum == 1300)
         {
             ptr->unk84 = 20;
-            ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_01017850);
+            ptr->unkC = D_01017850_STATIC;
         }
         ptr->unk8 = 20;
         func_80055DDC(spritenum_);
@@ -8422,7 +8372,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 4;
         ptr->unk8 = 100;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0100F1E0);
+        ptr->unkC = D_0100F1E0_STATIC;
         if (spr->unk25 == 1)
             ptr->unk0 |= 0x800;
 
@@ -8440,7 +8390,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr->unk84 = 24;
         ptr->unk8 = 100;
         ptr->unk7E = 100;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_010151EC);
+        ptr->unkC = D_010151EC_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8454,7 +8404,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr->unk84 = 23;
         ptr->unk8 = 100;
         ptr->unk7E = 100;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_010151EC);
+        ptr->unkC = D_010151EC_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8468,7 +8418,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr->unk84 = 25;
         ptr->unk8 = 100;
         ptr->unk7E = 50;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_010151EC);
+        ptr->unkC = D_010151EC_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8482,7 +8432,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr->unk84 = 28;
         ptr->unk8 = 100;
         ptr->unk7E = 100;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_010151EC);
+        ptr->unkC = D_010151EC_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8496,7 +8446,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr->unk84 = 26;
         ptr->unk8 = 100;
         ptr->unk7E = 100;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_010151EC);
+        ptr->unkC = D_010151EC_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8510,7 +8460,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr->unk84 = 27;
         ptr->unk8 = 100;
         ptr->unk7E = 100;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_010151EC);
+        ptr->unkC = D_010151EC_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8524,7 +8474,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr->unk84 = 7;
         ptr->unk8 = 100;
         ptr->unk7E = 25;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_010151EC);
+        ptr->unkC = D_010151EC_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8538,7 +8488,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr->unk84 = 6;
         ptr->unk8 = 100;
         ptr->unk7E = 5;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_010151EC);
+        ptr->unkC = D_010151EC_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8553,7 +8503,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 38;
         ptr->unk8 = 400;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101EB64);
+        ptr->unkC = D_0101EB64_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8568,7 +8518,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 39;
         ptr->unk8 = 400;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101EB64);
+        ptr->unkC = D_0101EB64_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8588,7 +8538,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 40;
         ptr->unk8 = 600;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101EB64);
+        ptr->unkC = D_0101EB64_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8603,7 +8553,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 41;
         ptr->unk8 = 600;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101EB64);
+        ptr->unkC = D_0101EB64_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8618,7 +8568,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 42;
         ptr->unk8 = 600;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101EB64);
+        ptr->unkC = D_0101EB64_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8633,7 +8583,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 43;
         ptr->unk8 = 1000;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101EB64);
+        ptr->unkC = D_0101EB64_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8646,7 +8596,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 36;
         ptr->unk8 = 500;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101DFC4);
+        ptr->unkC = D_0101DFC4_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8659,7 +8609,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 37;
         ptr->unk8 = 750;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101E5C8);
+        ptr->unkC = D_0101E5C8_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8672,7 +8622,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 2;
         ptr->unk8 = 30;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0100F1E0);
+        ptr->unkC = D_0100F1E0_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8685,7 +8635,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 3;
         ptr->unk8 = 50;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0100F1E0);
+        ptr->unkC = D_0100F1E0_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8698,7 +8648,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 4;
         ptr->unk8 = 100;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0100F1E0);
+        ptr->unkC = D_0100F1E0_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8712,7 +8662,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr->unk84 = 5;
         ptr->unk8 = 400;
         ptr->unk7E = 50;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0102040C);
+        ptr->unkC = D_0102040C_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8723,7 +8673,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         spr->xrepeat = 0x40;
         ptr = func_80053900(spritenum_);
         ptr->unk84 = -1;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101E560);
+        ptr->unkC = D_0101E560_STATIC;
         func_80055DDC(spritenum_);
         spr->cstat &= 0x7FFF;
         break;
@@ -8732,7 +8682,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         spr->xrepeat = 0x40;
         ptr = func_80053900(spritenum_);
         ptr->unk84 = -1;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101E594);
+        ptr->unkC = D_0101E594_STATIC;
         func_80055DDC(spritenum_);
         spr->cstat &= 0x7FFF;
         break;
@@ -8743,7 +8693,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
         ptr->unk84 = -1;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101BC88);
+        ptr->unkC = D_0101BC88_STATIC;
         func_80055DDC(spritenum_);
         break;
 
@@ -8754,7 +8704,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
         ptr->unk84 = -1;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101B9C8);
+        ptr->unkC = D_0101B9C8_STATIC;
         func_80055DDC(spritenum_);
         break;
 
@@ -8777,7 +8727,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         }
         ptr->unk84 = 9;
         ptr->unk8 = 80;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_01017AFC);
+        ptr->unkC = D_01017AFC_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8789,7 +8739,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 8;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_010189A4);
+        ptr->unkC = D_010189A4_STATIC;
         if (spr->unk25 == 6)
             ptr->unk8 = 750;
         else
@@ -8837,7 +8787,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         else
         {
             ptr->unk84 = 22;
-            ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101999C);
+            ptr->unkC = D_0101999C_STATIC;
             func_80055DDC(spritenum_);
             if (spr->unk25 == 2)
                 changeSpriteStat(spritenum_, 1);
@@ -8851,7 +8801,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 10;
         ptr->unk8 = 400;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_01012FCC);
+        ptr->unkC = D_01012FCC_STATIC;
         func_80055DDC(spritenum_);
         spr->unk2A = 0;
 
@@ -8865,7 +8815,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         changeSpriteStat(spritenum_, 1);
         ptr->unk84 = -1;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101D440);
+        ptr->unkC = D_0101D440_STATIC;
         spr->unk2A = 0;
         break;
 
@@ -8875,7 +8825,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 10;
         ptr->unk8 = 400;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_01013404);
+        ptr->unkC = D_01013404_STATIC;
         func_80055DDC(spritenum_);
         spr->unk2A = 0;
 
@@ -8890,7 +8840,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
         ptr->unk84 = -1;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101D470);
+        ptr->unkC = D_0101D470_STATIC;
         func_80055DDC(spritenum_);
         if (spr->unk25 == 0)
             D_801A1958.babes_total++;
@@ -8901,7 +8851,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         spr->cstat = 0x8000;
         ptr = func_80053900(spritenum_);
         ptr->unk84 = -1;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101E524);
+        ptr->unkC = D_0101E524_STATIC;
         func_80055DDC(spritenum_);
         break;
 
@@ -8911,7 +8861,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 0;
         ptr->unk8 = 400;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101ACAC);
+        ptr->unkC = D_0101ACAC_STATIC;
         func_80055DDC(spritenum_);
 
         if (!(gpSprite[spritenum_].cstat & 8) && (gpSprite[spritenum_].statnum != 22))
@@ -8926,7 +8876,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             ptr = func_80053900(spritenum_);
             ptr->unk84 = -1;
             ptr->unk8 = -1;
-            ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101F8F8);
+            ptr->unkC = D_0101F8F8_STATIC;
             func_80055DDC(spritenum_);
         }
         break;
@@ -8958,7 +8908,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         {
             ptr->unk8 = 0;
             ptr->unk84 = -1;
-            ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_01020284);
+            ptr->unkC = D_01020284_STATIC;
             changeSpriteStat(spritenum_, 1);
         }
         else
@@ -9029,7 +8979,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         spr->picnum = 46;
         ptr = func_80053900(spritenum_);
         ptr->unk84 = -1;
-        ptr->unkC = (intptr_t *)GET_STATIC_SEG_SYM(D_0101F1B4);
+        ptr->unkC = D_0101F1B4_STATIC;
         ptr->unk0 |= 0x240000;
         func_80055DDC(spritenum_);
         break;

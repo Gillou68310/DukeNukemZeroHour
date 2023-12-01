@@ -1,4 +1,5 @@
 #include "common.h"
+#include "ld_symbols.h"
 #include "code0/main.h"
 #include "code0/cache1d.h"
 #include "code0/audio.h"
@@ -11,8 +12,6 @@
 #include "code0/8EFE0.h"
 #include "code0/code0.h"
 #include "code1/EB300.h"
-
-extern u8 files_blks_ROM_START[];
 
 /*.text*/
 
@@ -42,7 +41,7 @@ void func_80016F7C(_D8D20UnkStruct2 *arg0)
         D_80169520 = 200;
         size = arg0->unk10;
         alloCache(&D_80138854, size, &D_80169520);
-        romaddr = files_blks_ROM_START;
+        romaddr = blks_ROM_START;
         romaddr += arg0->fileoff;
         readRom(D_80138854, romaddr, (size + 1) & ~1);
 
