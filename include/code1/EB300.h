@@ -50,5 +50,6 @@ extern code1UnkStruct6 D_801CB870;
 extern code1UnkStruct6 D_801CB8F0;
 extern _EB300UnkStruct1 D_801CA14C[MAP_NUM+1];
 extern code1UnkStruct5 D_801CB538[9];
+extern u8 *D_801CBCE8[12];
 
 #endif

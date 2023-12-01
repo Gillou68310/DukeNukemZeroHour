@@ -31,7 +31,7 @@ typedef s32(*_41940UnkFuncPointer2)(s32 spritenum);
 typedef struct
 {
     /*0x00*/ s16 unk0;  /*spritenum?*/
-    /*0x02*/ s16 unk2;  /*pad?*/
+    /*0x02*/ s16 unk2;
     /*0x04*/ s32 unk4;  /*x?*/
     /*0x08*/ s32 unk8;  /*y?*/
     /*0x0C*/ s32 unkC;  /*z?*/
@@ -1281,7 +1281,7 @@ static s32 func_80042C98(s32 spritenum)
     i = ptr->unk28;
     spr = &gpSprite[spritenum];
 
-    if ((ptr->unk0 & 0x1800)&&(hitsprite == i))
+    if ((ptr->unk0 & 0x1800) && (hitsprite == i))
     {
         D_80137DE0->unk38 = gpSprite[i].x;
         D_80137DE0->unk3C = gpSprite[i].y;
@@ -2244,7 +2244,7 @@ static s32 func_8004587C(s32 spritenum)
     if (handle)
     {
         MusHandleStop(handle, 0);
-        D_80137DE0->unk6C = NULL;
+        D_80137DE0->unk6C = 0;
     }
     return 0;
 }
@@ -2293,7 +2293,7 @@ static s32 func_80045A48(s32 spritenum)
     if (handle)
     {
         MusHandleStop(handle, 0);
-        D_80137DE0->unk70 = NULL;
+        D_80137DE0->unk70 = 0;
     }
     return 0;
 }
@@ -4719,7 +4719,6 @@ static s32 func_8004BE20(s32 spritenum)
 static s32 func_8004BE48(s32 spritenum)
 {
     _41940UnkFuncPointer1 func;
-    s32 i;
 
     gpInst++;
     func = (_41940UnkFuncPointer1)*gpInst++;
@@ -6828,7 +6827,7 @@ s32 func_80051508(s32 ang1, s32 ang2, s32 arg2)
 void func_80051568(void)
 {
     s32 i;
-    s16 unused;
+    s16 unused = 0;
 
     for (i = 0; i < MAXSPRITES; i++)
     {
@@ -9857,7 +9856,7 @@ static s32 func_80058468(s32 spritenum)
 /*80058538*/
 static s32 func_80058538(SpriteType *spr, s32 arg1)
 {
-    s32 i, j, d1, d2, nexti;
+    s32 i, d1, d2;
 
     i = gHeadSpriteStat[4];
     d1 = 0x200000;

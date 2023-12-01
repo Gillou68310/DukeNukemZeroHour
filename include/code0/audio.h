@@ -16,6 +16,7 @@
 #define MUSIC_BOSS 9
 #define MUSIC_PRESENT_DAY_BOSS_HOG 10
 #define MUSIC_TRAINING_BASE 11
+#define MUSIC_COUNT 12
 
 #define MUSIC_AMBIENT1 0
 #define MUSIC_AMBIENT2 1
@@ -26,6 +27,22 @@
 #define MUSIC_AMBIENT7 6
 #define MUSIC_AMBIENT8 7
 #define MUSIC_AMBIENT9 8
+#define AMBIENT_COUNT 9
+
+typedef struct
+{
+    u8 *wbank_start;
+    u8 *pbank_start;
+    u8 *pbank_end;
+    u8 *music_start;
+    u8 *music_end;
+} MusicInfo;
+
+typedef struct
+{
+    MusicInfo music[MUSIC_COUNT];
+    MusicInfo ambient[AMBIENT_COUNT];
+} Music;
 
 void dmaRomToRam(u8 *rom, u8 *ram, s32 size);
 void initAudio(void);
@@ -54,5 +71,6 @@ extern s16 gMusicNum;
 extern s32 gMasterVolume;
 extern s32 gMusicVolume;
 extern s16 D_800BD61A;
+extern Music gMusic;
 
 #endif

@@ -59,7 +59,7 @@ void initCache(u8 *dacachestart, s32 dacachesize)
 /*8002A3A0*/
 static s8 _alloCache(u8 **newhandle, u32 newbytes, u8 *newlockptr)
 {
-    s32 i, j, z, zz, bestz, daval, bestval, besto, o1, o2, sucklen, suckz;
+    s32 i, z, zz, bestz, daval, bestval, besto, o1, o2, sucklen, suckz;
 
     newbytes = ((newbytes+15)&0xfffffff0);
 
@@ -102,7 +102,7 @@ static s8 _alloCache(u8 **newhandle, u32 newbytes, u8 *newlockptr)
         return 0; //reportAndExit("CACHE SPACE ALL LOCKED UP!");
 
     //Suck things out
-    for (sucklen = -newbytes, suckz = bestz; sucklen<0; sucklen += gCache[suckz++].leng)
+    for (sucklen = -(s32)newbytes, suckz = bestz; sucklen<0; sucklen += gCache[suckz++].leng)
         if (*gCache[suckz].lock) *gCache[suckz].hand = NULL;
 
     //Remove all blocks except 1

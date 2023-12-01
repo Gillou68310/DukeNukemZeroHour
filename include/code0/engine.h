@@ -38,8 +38,7 @@ typedef struct
     /*0x12*/ s16 ceilingheinum;
     /*0x14*/ s16 floorpicnum;
     /*0x16*/ s16 floorheinum;
-
-    /*0x16*/ s16 unk18;
+    /*0x18*/ s16 unk18;
     /*0x1A*/ s16 unk1A;
     /*0x1C*/ s16 unk1C;
     /*0x1E*/ u16 floorvtxptr;
@@ -151,7 +150,7 @@ typedef struct
 
     /*0x16*/ s16 unk16; /*spritenum? / playernum?*/
     /*0x18*/ s16 unk18;
-    /*0x18*/ s16 unk1A;
+    /*0x1A*/ s16 unk1A;
     /*0x1C*/ s16 unk1C;
     /*0x1E*/ s16 lotag;
     /*0x20*/ s16 hitag;

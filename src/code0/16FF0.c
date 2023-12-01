@@ -54,7 +54,6 @@ void func_8001660C(u8 arg0)
 {
     intptr_t pTile;
     s16 dimx, dimy;
-    s32 dimx2, dimy2;
     s32 masks, maskt;
     s32 tilenum;
 
@@ -168,6 +167,7 @@ void loadModel(ModelInfo *model)
     {
         size = (model->unk8 + 1) & ~1;
         alloCache(&model->ramaddr, (((size + model->vertex_size) + 1) & ~1), (u8 *)&model->lock);
+        assert(model->vertex_info != NULL);
         model->vertex_info->ramaddr = &model->ramaddr[size];
 
         size = model->unkA;

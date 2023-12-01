@@ -6,7 +6,7 @@
 typedef struct
 {
     /*0x00*/ s16 dimx;
-    /*0x00*/ s16 dimy;
+    /*0x02*/ s16 dimy;
     /*0x04*/ s32 offset;
 } ModelTextureInfo;
 

@@ -145,7 +145,6 @@ void func_8001A1A4(void)
     s16 hitwall;
     s16 hitsprite;
     s32 hitx, hity, hitz;
-    AlphaPalette *pal;
     f32 fx, fy, fz;
     f32 f1, f2, f3, f4, f5, f6;
     s16 i, spritenum;
@@ -857,7 +856,7 @@ void displayNumbers(s16 x, s16 y, char *string)
 /*8001CBAC*/
 void displayMessage1(s16 x, s16 y, char *string)
 {
-    f32 f1, f2;
+    f32 f1;
     s32 x_, y_;
     s16 tileid;
     char *ptr;
@@ -1025,7 +1024,7 @@ void displayMessage1(s16 x, s16 y, char *string)
 /*8001CEA4*/
 void displayMessage2(s16 x, s16 y, char *string)
 {
-    f32 f1, f2;
+    f32 f1;
     s32 x_, y_;
     s16 tileid;
     char *ptr;
@@ -1173,7 +1172,7 @@ void func_8001D238(s32 x, s32 y, u16 tileid)
 {
     u8 *pTile;
     f32 f1, f2, f3, f4;
-    s32 xl, yl, xh, yh;
+    s32 xl, yl, xh;
     s32 dsdx, dtdy;
     s32 width, height;
     s32 i, j, k, l, m, n, o;

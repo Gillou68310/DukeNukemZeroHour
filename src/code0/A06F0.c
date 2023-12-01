@@ -467,8 +467,8 @@ void func_800A0E74(void)
 
     D_80138678 = -1;
     D_801B0804 = 0;
-    if ((gMapNum < MAP_COUNT) && *gpMapStrInfo[gMapNum] != NULL)
-        D_8016A140 = strlen(gpMapStrInfo[gMapNum]) + 142;
+    if ((gMapNum < MAP_COUNT) && (gpMapStrInfo[gMapNum][0] != '\0'))
+        D_8016A140 = (s16)strlen(gpMapStrInfo[gMapNum]) + 142;
     else
         D_8016A140 = -1;
 
@@ -1092,7 +1092,7 @@ void func_800A3688(void)
 
     code0UnkStruct3 *ptr;
     f32 fx, fy, fz;
-    f32 f1, f2, f3, f4, f5, f6, f7;
+    f32 f1, f2, f5, f6, f7;
     s32 x, y, z;
 
     s16 i, j, k, l;
