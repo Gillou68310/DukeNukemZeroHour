@@ -5,9 +5,6 @@
 #include "code0/code0.h"
 #include "code1/code1.h"
 
-/*TODO: from libkmc*/
-s32 strcmp(const char *, const char *);
-
 #define CONTROLLER_EEPROM_LONG_READ 1
 #define CONTROLLER_EEPROM_LONG_WRITE 2
 #define CONTROLLER_PFS_NUM_FILES 3

@@ -639,6 +639,9 @@ static s32 isEDL(u8 *src)
 {
     EDLInfo info;
 
+#if defined(NON_MATCHING) || defined(MODERN)
+    info.sys_endian = SYS_ENDIAN;
+#endif
     info.src = src;
     info.dst = 0;
     parseEDLheader(&info);
@@ -653,7 +656,13 @@ static void _decompressEDL(u8 **handle, u8 *src, u8 *dst)
     s32 dsize;
 
     info.src = src;
+#if defined(NON_MATCHING) || defined(MODERN)
+    info.sys_endian = SYS_ENDIAN;
+    parseEDLheader(&info);
+    dsize = info.dsize;
+#else
     dsize = *(s32 *)(&info.src[8]);
+#endif
 
     if (dst != NULL)
         *handle = dst;

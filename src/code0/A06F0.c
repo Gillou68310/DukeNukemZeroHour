@@ -26,9 +26,6 @@
 #include "code1/EB300.h"
 #include "static/mapinfo.h"
 
-/*TODO: from libkmc*/
-char *strcpy(char *, const char *);
-
 /*.data*/
 /*800E18D0*/
 static Lights2 D_800E18D0 = {

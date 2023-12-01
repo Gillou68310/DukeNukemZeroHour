@@ -94,7 +94,7 @@ ENDLINE := \n'
 OPTFLAGS       := -O2 -g2
 ASFLAGS        := -G0 -mips3 -I include
 CFLAGS         := -G0 -mips3 -mgp32 -mfp32 -funsigned-char #-save-temps #-Wa,--vr4300mul-off
-CPPFLAGS       := -I include -I $(LIBULTRA_DIR)/include/2.0I -I $(LIBMUS_DIR)/include -I $(LIBKMC_DIR)/include -D_LANGUAGE_C -DF3DEX_GBI_2 -D_MIPS_SZLONG=32 -D_FINALROM -DTARGET_N64
+CPPFLAGS       := -I include -I $(LIBULTRA_DIR)/include/2.0I -D_LANGUAGE_C -DF3DEX_GBI_2 -D_MIPS_SZLONG=32 -D_FINALROM -DTARGET_N64
 LDFLAGS        := -T undefined_syms.txt -T undefined_funcs.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(LD_MAP) --no-check-sections
 CHECK_WARNINGS := -Wall -Wextra -Wno-missing-braces -Wno-format-security -Wno-unused-parameter -Wno-unused-variable -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -Wno-unused-function
 CFLAGS_CHECK   := -m32 -fsyntax-only -funsigned-char -nostdinc -fno-builtin -std=gnu90
@@ -125,17 +125,18 @@ CFLAGS += $(CFLAGS_MODERN) $(CHECK_WARNINGS)
 CC := $(CROSS)gcc
 endif
 
+$(BUILD_DIR)/src/%.o: CPPFLAGS += -I $(LIBKMC_DIR)/include -I $(LIBMUS_DIR)/include
+
 $(BUILD_DIR)/$(LIBULTRA_DIR)/src/%.o: OPTFLAGS := -O3 -g0
-$(BUILD_DIR)/$(LIBULTRA_DIR)/src/%.o: CPPFLAGS += -I $(LIBULTRA_DIR)/src -I $(LIBULTRA_DIR)/include/2.0I/PR
+$(BUILD_DIR)/$(LIBULTRA_DIR)/src/%.o: CPPFLAGS += -I $(LIBULTRA_DIR)/src -I $(LIBULTRA_DIR)/include/2.0I/PR -I $(LIBULTRA_DIR)/include/2.0I/libc
 
 $(BUILD_DIR)/$(LIBKMC_DIR)/src/%.o: OPTFLAGS := -O1 -g1
 $(BUILD_DIR)/$(LIBKMC_DIR)/src/%.o: CFLAGS := $(filter-out -funsigned-char,$(CFLAGS))
-$(BUILD_DIR)/$(LIBKMC_DIR)/src/%.o: CPPFLAGS += -I $(LIBKMC_DIR)/src
+$(BUILD_DIR)/$(LIBKMC_DIR)/src/%.o: CPPFLAGS += -I $(LIBKMC_DIR)/src -I $(LIBKMC_DIR)/include
 $(BUILD_DIR)/$(LIBKMC_DIR)/src/%.o: ASFLAGS += -I $(LIBKMC_DIR)/src
 
 $(BUILD_DIR)/$(LIBMUS_DIR)/src/%.o: OPTFLAGS := -O3 -g0
-$(BUILD_DIR)/$(LIBMUS_DIR)/src/%.o: CFLAGS += -D_OLD_AUDIO_LIBRARY
-$(BUILD_DIR)/$(LIBMUS_DIR)/src/%.o: CPPFLAGS += -I $(LIBULTRA_DIR)/include/2.0I/PR
+$(BUILD_DIR)/$(LIBMUS_DIR)/src/%.o: CPPFLAGS += -I $(LIBULTRA_DIR)/include/2.0I/PR -I $(LIBMUS_DIR)/include -D_OLD_AUDIO_LIBRARY
 
 all: $(ROM)
 

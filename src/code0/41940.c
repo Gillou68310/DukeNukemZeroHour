@@ -514,7 +514,7 @@ static void func_80040EF0(s32 spritenum, s16 playernum, s32 arg2)
                 {
                     D_80138794 = D_80137DE0->unkC;
                     D_80137DE0->unkC = gpInst;
-                    D_800DF08C = (u8 *)((intptr_t)gpInst - GET_STATIC_SEG_SYM(D_0100F1E0));
+                    D_800DF08C = (u8 *)((intptr_t)gpInst - (intptr_t)GET_STATIC_SEG_SYM(D_0100F1E0));
                 }
                 else
                     return;
@@ -895,8 +895,10 @@ static s32 func_80041D10(s32 spritenum)
 /*8004201C*/
 static s32 func_8004201C(s32 spritenum)
 {
+    s32 i;
     gpInst++;
-    gpInst = &gpInst[*gpInst++];
+    i = *gpInst++;
+    gpInst = &gpInst[i];
     return 0;
 }
 
