@@ -2,7 +2,9 @@
 TARGET       := libEDL.so
 VERBOSE      ?= 0
 BUILD_DIR    ?= build
-SRCDIR       = ../..
+ROOTDIR      := ../..
+SRCDIR       := $(ROOTDIR)
+LIBULTRADIR  := $(ROOTDIR)/libs/libultra
 
 ifeq ($(VERBOSE),0)
 V := @
@@ -43,8 +45,8 @@ ENDLINE := \n'
 
 ### Compiler Options ###
 OPTFLAGS       := -O2
-CFLAGS         := -fPIC -DLIBEDL
-CPPFLAGS       := -I$(SRCDIR)/include
+CFLAGS         := -fPIC
+CPPFLAGS       := -I$(SRCDIR)/include -I $(LIBULTRADIR)/include/2.0I -D_LANGUAGE_C -DLIBEDL
 LDFLAGS        := -shared
 CHECK_WARNINGS := -Wall -Wextra
 
