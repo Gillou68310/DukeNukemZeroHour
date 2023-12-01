@@ -664,7 +664,11 @@ void func_801C1950(void)
                 }
                 else if (D_801CF630 == 254)
                 {
+#ifdef TARGET_N64
                     func_8007FE04(D_800DFA40, 1, D_801CDA94);
+#else
+                    func_8007FD8C(&D_800DFA40[0], 1);
+#endif
                     D_801CF630--;
                 }
                 else
@@ -4424,7 +4428,7 @@ void func_801C9B28(void)
 }
 
 /*801CBCE8*/
-static u8 *D_801CBCE8[12] = {
+u8 *D_801CBCE8[12] = {
     files_1003A60_ROM_START,
     files_1004260_ROM_START,
     files_1004A60_ROM_START,
