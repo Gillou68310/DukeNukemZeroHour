@@ -1180,7 +1180,7 @@ static void mainLoop(void *arg)
     initAudio();
     configInitialize();
     controller_8008AD94();
-    controller_8008A3EC("DUKE ZERO HOUR.A", &D_801CC930, sizeof(D_801CC930));
+    controller_8008A3EC("DUKE ZERO HOUR.A", &D_801CC930.unk0, sizeof(code1UnkStruct3));
     switch (osTvType)
     {
     case 0:

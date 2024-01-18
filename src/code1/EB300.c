@@ -3853,7 +3853,7 @@ static void func_801C948C(void)
     ptr = &D_801CE5F0;
     ptr->unk2 = 31;
     ptr->unkFE8 = gConfig;
-    D_801CC930 = *ptr;
+    D_801CC930.unk0 = *ptr;
 }
 
 /*801C959C*/
@@ -3862,7 +3862,7 @@ static void func_801C959C(void)
     code1UnkStruct3 *ptr;
     code1UnkStruct3 *ptr2;
 
-    ptr2 = &D_801CC930;
+    ptr2 = &D_801CC930.unk0;
     ptr = &D_801CE5F0;
 
     if (ptr2->unk2 == 31)

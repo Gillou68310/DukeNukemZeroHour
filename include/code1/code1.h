@@ -122,6 +122,14 @@ typedef struct
 
 typedef struct
 {
+    code1UnkStruct3 unk0;
+#ifdef AVOID_UB
+    ALIGNED(256) u8 pad;
+#endif
+} code1UnkStruct7;
+
+typedef struct
+{
     /*0x00*/ u8 unk0;
     /*0x01*/ u8 unk1;
     /*0x02*/ u8 unk2;
@@ -167,7 +175,7 @@ typedef struct _code1UnkStruct6
 /*801CC920*/ _extern u8 *D_801CC920; /*edlHandle*/
 /*801CC924*/ _extern u16 D_801CC924;
 /*801CC926*/ _extern u16 D_801CC926;
-/*801CC930*/ _extern code1UnkStruct3 D_801CC930 ALIGNED(16);
+/*801CC930*/ _extern code1UnkStruct7 D_801CC930 ALIGNED(16);
 /*801CD96C*/ _extern u8 *D_801CD96C;
 /*801CD980*/ _extern s32 D_801CD980;
 /*801CD984*/ _extern u16 D_801CD984;
