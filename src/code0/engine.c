@@ -1014,7 +1014,12 @@ s32 hitScan(s32 xs, s32 ys, s32 zs, s16 sectnum, s32 vx, s32 vy, s32 vz,
 /*8002F1B4*/
 s32 nearTag(s32 xs, s32 ys, s32 zs, s16 sectnum, s16 ange, s16 *neartagsector, s16 *neartagwall, s16 *neartagsprite, s32 *neartaghitdist, s32 neartagrange, u8 tagsearch)
 {
+#ifdef AVOID_UB
+    ModelInfo *model = NULL;
+#else
     ModelInfo *model;
+#endif
+
     WallType *wal2;
     WallType *wall;
     SpriteType *spr;
