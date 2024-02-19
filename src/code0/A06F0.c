@@ -346,6 +346,9 @@ static void func_800A0014(void)
     displayMessage2((D_80119A94 + 80), (D_80199944 + 145), sp20);
     gDPSetTextureLUT(gpDisplayList++, G_TT_RGBA16);
     gDPSetCombineMode(gpDisplayList++, G_CC_DECALRGBA, G_CC_PASS2);
+#ifdef AVOID_UB
+    D_801A2688 = 0;
+#endif
     func_8001D238(D_80119A94 + 210, D_80199944 + 145, 3997);
     func_8001D238(D_80119A94 + 230, D_80199944 + 145, 3998);
 }
@@ -661,6 +664,9 @@ void func_800A0F84(void)
 
             if (D_8012C470 == 1)
             {
+#ifdef AVOID_UB
+                D_801A2688 = 0;
+#endif
                 func_8001D238(D_80119A94 + 20, D_80199944 + 200, 5692);
                 o = 36;
             }

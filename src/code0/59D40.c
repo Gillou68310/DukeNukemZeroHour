@@ -2336,10 +2336,9 @@ void func_8005F38C(s32 spritenum, s32 arg1)
 void func_8005F560(s32 spritenum, s32 arg1)
 {
     s16 sectnum;
-    s32 temp_s0;
     s32 x, y, z;
     s32 ang;
-    s32 a, b, c, d;
+    s32 a, b, c, d, e;
 
     updateSector(0x70FE, 0xA102, &sectnum);
     if (D_8012FD88 & 1)
@@ -2347,12 +2346,12 @@ void func_8005F560(s32 spritenum, s32 arg1)
         z = -0x18DB0;
         y = 0xA102;
         ang = krand() & 0x3FF;
-        temp_s0 = (krand() & 0x3FF) + 0x3E8;
-        temp_s0 = temp_s0 + (krand() & 0x7FF);
+        e = (krand() & 0x3FF) + 1000;
+        e = e + (krand() & 0x7FF);
         a = ang + 512;
         x = gpSinTable[a]; /*FAKEMATCH*/
-        x = temp_s0 * gpSinTable[a];
-        c = (temp_s0 * gpSinTable[ang]) >> 14;
+        x = e * gpSinTable[a];
+        c = (e * gpSinTable[ang]) >> 14;
         x = x >> 14;
         b = krand() & 0x7FFF;
         y += c;

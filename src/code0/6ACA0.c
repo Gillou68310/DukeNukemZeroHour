@@ -653,7 +653,6 @@ static void func_8006B278(s16 spritenum)
 static void func_8006B384(s32 spritenum)
 {
     s32 i, x, y;
-    s32 ret;
     u16 num;
 
     num = gpSprite[spritenum].picnum - 1293;

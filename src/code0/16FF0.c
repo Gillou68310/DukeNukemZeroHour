@@ -33,8 +33,11 @@ void func_800163F0(u8 arg0)
 
             for (i = 0; i < 16; i++)
             {
-                if (pal[i] == 0xF83F)
-                    pal[i] = 0x8420;
+#if SYS_ENDIAN == SYS_BIG_ENDIAN
+                if (pal[i] == 0xF83F) pal[i] = 0x8420;
+#else
+                if (pal[i] == 0x3FF8) pal[i] = 0x2084;
+#endif
             }
             gDPLoadTLUT_pal16(gpDisplayList++, 0, ptr);
         }

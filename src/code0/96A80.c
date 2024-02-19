@@ -303,8 +303,7 @@ void func_800965F8(s32 spritenum)
     code0UnkStruct3 *ptr;
     code0UnkStruct5 *ptr2;
 
-    s32 i, j, k, l, m, n;
-    s32 temp_v0_13;
+    s32 i, j, k, l, m, n, o;
     s32 ang, ang2;
     s32 xpos, ypos;
     s32 z;
@@ -317,7 +316,18 @@ void func_800965F8(s32 spritenum)
     xpos = gPlayer[0].xpos;
     ypos = gPlayer[0].ypos;
     z = gpSprite[gPlayer[0].unk4A].z;
-    ptr = &D_8019B940[D_80106D50[spritenum]];
+
+#ifdef AVOID_UB
+    if (D_80106D50[spritenum] < 0)
+    {
+        ptr = NULL;
+    }
+    else
+#endif
+    {
+        ptr = &D_8019B940[D_80106D50[spritenum]];
+    }
+
     ptr2 = &D_8013B2D0[spritenum];
 
     if (i == 302)
@@ -1771,14 +1781,14 @@ void func_800965F8(s32 spritenum)
                 func_80047820(spritenum, (i + 0x4000) & 0xFFFF, 1000);
 
             func_8009635C(spritenum, 9500, 900);
-            temp_v0_13 = func_800962D0(spr, 360);
-            k = temp_v0_13 - 8000;
+            o = func_800962D0(spr, 360);
+            k = o - 8000;
             if (spr->z >= k)
             {
                 spr->z = k;
                 spr->unk1A = 0;
             }
-            else if ((temp_v0_13 - spr->z) <= 49999)
+            else if ((o - spr->z) <= 49999)
             {
                 if (k != spr->z)
                     spr->unk1A += 400;

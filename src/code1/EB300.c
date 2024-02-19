@@ -664,7 +664,11 @@ void func_801C1950(void)
                 }
                 else if (D_801CF630 == 254)
                 {
+#ifdef TARGET_N64
                     func_8007FE04(D_800DFA40, 1, D_801CDA94);
+#else
+                    func_8007FD8C(&D_800DFA40[0], 1);
+#endif
                     D_801CF630--;
                 }
                 else
@@ -3631,7 +3635,7 @@ static void func_801C7574(void)
 /*801C764C*/
 void func_801C764C(void)
 {
-    code1UnkStruct2 *temp_s3;
+    code1UnkStruct2 *ptr;
     s32 i, j, k, l;
 
     l = D_801CE5F0.unkFD5;
@@ -3742,18 +3746,18 @@ void func_801C764C(void)
         D_801CF6E0[5] = func_8007FE2C("TOTAL:", 48, D_801CA3D4 + 72, 64, 0, 0);
 #endif
 
-        temp_s3 = &D_801CE5F0.unk4[D_801CE5DC];
+        ptr = &D_801CE5F0.unk4[D_801CE5DC];
 
-        sprintf(D_801CDB58[0], "%d : %02d", (temp_s3->unk172 / 1800U),
-                (temp_s3->unk172 / 30U) - ((temp_s3->unk172 / 1800U) * 60));
+        sprintf(D_801CDB58[0], "%d : %02d", (ptr->unk172 / 1800U),
+                (ptr->unk172 / 30U) - ((ptr->unk172 / 1800U) * 60));
         D_801CDBD0[0] = func_8007FE2C(D_801CDB58[0], gScreenWidth - 48, D_801CA3D4 + 12, 64, 2, 0);
-        sprintf(D_801CDB58[1], "%d / %d", temp_s3->unk176, temp_s3->unk164);
+        sprintf(D_801CDB58[1], "%d / %d", ptr->unk176, ptr->unk164);
         D_801CDBD0[1] = func_8007FE2C(D_801CDB58[1], gScreenWidth - 48, D_801CA3D4 + 24, 64, 2, 0);
-        sprintf(D_801CDB58[2], "%d / %d", temp_s3->unk178, temp_s3->unk166);
+        sprintf(D_801CDB58[2], "%d / %d", ptr->unk178, ptr->unk166);
         D_801CDBD0[2] = func_8007FE2C(D_801CDB58[2], gScreenWidth - 48, D_801CA3D4 + 36, 64, 2, 0);
-        sprintf(D_801CDB58[3], "%d / %d", temp_s3->unk180, temp_s3->unk168);
+        sprintf(D_801CDB58[3], "%d / %d", ptr->unk180, ptr->unk168);
         D_801CDBD0[3] = func_8007FE2C(D_801CDB58[3], gScreenWidth - 48, D_801CA3D4 + 48, 64, 2, 0);
-        sprintf(D_801CDB58[4], "%d%%", temp_s3->unk182);
+        sprintf(D_801CDB58[4], "%d%%", ptr->unk182);
         D_801CDBD0[4] = func_8007FE2C(D_801CDB58[4], gScreenWidth - 48, D_801CA3D4 + 72, 64, 2, 0);
 
         if ((D_801CE5DC == MAP_WETWORLD) || (D_801CE5DC == MAP_BOSS_HOG) ||
@@ -3818,13 +3822,13 @@ void func_801C764C(void)
 
             D_801CDA28[D_801CE5DC]->unk10 = 0xFF;
             D_801CC8B0->unk70 = D_801CA14C[D_801CE5DC].mapname;
-            temp_s3 = &D_801CE5F0.unk4[D_801CE5DC];
-            sprintf(D_801CDB58[0], "%d : %02d", (temp_s3->unk172 / 1800U),
-                                                (temp_s3->unk172 / 30U) - ((temp_s3->unk172 / 1800U) * 60));
-            sprintf(D_801CDB58[1], "%d / %d", temp_s3->unk176, temp_s3->unk164);
-            sprintf(D_801CDB58[2], "%d / %d", temp_s3->unk178, temp_s3->unk166);
-            sprintf(D_801CDB58[3], "%d / %d", temp_s3->unk180, temp_s3->unk168);
-            sprintf(D_801CDB58[4], "%d%%", temp_s3->unk182);
+            ptr = &D_801CE5F0.unk4[D_801CE5DC];
+            sprintf(D_801CDB58[0], "%d : %02d", (ptr->unk172 / 1800U),
+                                                (ptr->unk172 / 30U) - ((ptr->unk172 / 1800U) * 60));
+            sprintf(D_801CDB58[1], "%d / %d", ptr->unk176, ptr->unk164);
+            sprintf(D_801CDB58[2], "%d / %d", ptr->unk178, ptr->unk166);
+            sprintf(D_801CDB58[3], "%d / %d", ptr->unk180, ptr->unk168);
+            sprintf(D_801CDB58[4], "%d%%", ptr->unk182);
 
             if (D_801CE5DC == D_801CE5F0.unkFD5)
             {

@@ -7,6 +7,15 @@
 #include "code1/EB300.h"
 #include "code1/code1.h"
 
+#ifdef AVOID_UB
+#define DMA_LEN 16384
+#define SFX_BANK_SIZE 131072
+#define SFX_PBANK_SIZE 262144
+#define AUDIO_HEAP_SIZE 163840
+#define MUSIC_PBANK_SIZE 32768
+#define MUSIC_BUFFER_SIZE 16384
+#define AMBIENT_PBANK_SIZE 16384
+#else
 #define DMA_LEN 16384
 #define SFX_BANK_SIZE 54152
 #define SFX_PBANK_SIZE 167600
@@ -14,6 +23,8 @@
 #define MUSIC_PBANK_SIZE 16400
 #define MUSIC_BUFFER_SIZE 8496
 #define AMBIENT_PBANK_SIZE 3836
+#endif
+
 #define AMBIENT_BUFFER_SIZE 10000
 
 typedef struct {
@@ -391,7 +402,9 @@ void playMusic(s32 musicnum)
     if (gMusicVolume != 0)
     {
         MusHandleStop(gMusicHandle, 0);
+#ifdef TARGET_N64
         while (MusHandleAsk(gMusicHandle));
+#endif
 
         if (musicnum < 0)
             gMusicHandle = 0;
@@ -430,7 +443,9 @@ void playMusic(s32 musicnum)
 void playAmbient(s32 ambientnum)
 {
     MusHandleStop(gAmbientHandle, 0);
+#ifdef TARGET_N64
     while (MusHandleAsk(gAmbientHandle));
+#endif
 
     if (ambientnum < 0)
         gAmbientHandle = 0;
