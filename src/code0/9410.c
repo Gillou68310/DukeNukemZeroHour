@@ -1608,6 +1608,7 @@ static void initTileMap(void)
 /*8000E160*/
 static void initTiles(void)
 {
+#ifdef TARGET_N64
     s32 i;
 
     initTileMap();
@@ -1616,6 +1617,9 @@ static void initTiles(void)
         gpTileInfo[i].ramaddr = NULL;
         D_80169580[i] = 0;
     }
+#else
+    initTileMap();
+#endif
 }
 
 /*8000E1B4*/

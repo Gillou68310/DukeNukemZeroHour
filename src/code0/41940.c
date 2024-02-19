@@ -1262,7 +1262,14 @@ static s32 func_80042C18(s32 spritenum)
 static s32 func_80042C98(s32 spritenum)
 {
     u16 cstat2;
-    s16 hitsect, hitwall, hitsprite;
+    s16 hitsect, hitwall;
+
+#ifdef AVOID_UB
+    s16 hitsprite = 0;
+#else
+    s16 hitsprite;
+#endif
+
     s32 hitx, hity, hitz;
     s32 vx, vy, vz;
 
@@ -3105,7 +3112,12 @@ s32 func_80047820(s32 spritenum1, s32 spritenum2, s32 arg2)
     s32 lotag;
     u8 cond;
     s32 nexti;
-    s32 i, j, k, l, m, n;
+    s32 j, k, l, m, n;
+#ifdef AVOID_UB
+    s32 i = 0;
+#else
+    s32 i;
+#endif
 
     ret = 0;
     spr = &gpSprite[spritenum1];
@@ -3194,7 +3206,10 @@ s32 func_80047820(s32 spritenum1, s32 spritenum2, s32 arg2)
         goto label1;
     }
 label2:
-    D_8019B940[D_80106D50[spritenum2]].unk98 = 0xFF;
+#ifdef AVOID_UB
+    if (D_80106D50[spritenum2] >= 0)
+#endif
+        D_8019B940[D_80106D50[spritenum2]].unk98 = 0xFF;
     lotag = gpSprite[spritenum1].lotag;
     cond2 = 0;
     cond2 = ((lotag == 3) || (lotag == 4) || (lotag == 16) || (lotag == 5) ||
@@ -3817,6 +3832,10 @@ s32 func_800494DC(s32 spritenum1, s32 arg1, s32 spritenum2, s32 arg3)
 
             if (!cond2)
             {
+#ifdef AVOID_UB
+                if (gpSprite[spritenum2].hitag < MAXSPRITES)
+#endif
+                {
                 if (gpSprite[spritenum2].hitag >= 0)
                 {
                     m = D_80106D50[gpSprite[spritenum2].hitag];
@@ -3825,6 +3844,7 @@ s32 func_800494DC(s32 spritenum1, s32 arg1, s32 spritenum2, s32 arg3)
                         k = D_80105550[D_8019B940[m].unk84];
                         arg1 = (arg1 * k) / 100;
                     }
+                }
                 }
             }
 
@@ -4951,9 +4971,14 @@ void func_8004BFDC(s32 spritenum, s32 arg1, s32 z, s32 arg3)
     else
         func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 39, 0);
 
-    j = (u16)D_8019B940[D_80106D50[spritenum]].unk2E;
-    if ((j & 0xC000) && ((j - 0xC000) <= 0))
-        func_8004CB3C(j);
+#ifdef AVOID_UB
+    if (D_80106D50[spritenum] >= 0)
+#endif
+    {
+        j = (u16)D_8019B940[D_80106D50[spritenum]].unk2E;
+        if ((j & 0xC000) && ((j - 0xC000) <= 0))
+            func_8004CB3C(j);
+    }
 
     cond = 0;
     if (sp2C == 0)
@@ -5950,7 +5975,13 @@ void func_8004F044(void)
 {
     s32 sp10;
     SpriteType *spr;
-    s16 i, j, nexti, temp;
+    s16 i, j, nexti;
+
+#ifdef AVOID_UB
+    s16 temp = 0;
+#else
+    s16 temp;
+#endif
 
     D_801C0D68 = 0;
     D_8012FD88++;

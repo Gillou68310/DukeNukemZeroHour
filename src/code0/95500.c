@@ -881,7 +881,14 @@ void func_800965F8(s32 spritenum)
     xpos = gPlayer[0].xpos;
     ypos = gPlayer[0].ypos;
     z = gpSprite[gPlayer[0].unk4A].z;
-    ptr = &D_8019B940[D_80106D50[spritenum]];
+
+#ifdef AVOID_UB
+    if (D_80106D50[spritenum] < 0)
+        ptr = NULL;
+    else
+#endif
+        ptr = &D_8019B940[D_80106D50[spritenum]];
+
     ptr2 = &D_8013B2D0[spritenum];
 
     if (i == 302)
