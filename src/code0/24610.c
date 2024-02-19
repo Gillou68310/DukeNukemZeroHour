@@ -252,9 +252,11 @@ static void func_8002433C(s16 spritenum, s32 distance)
     {
         gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(_spriteTileId));
 
+#ifndef AVOID_UB
         /*Dead code*/
         if (D_801A689C+temp)
             z3++;
+#endif
 
         pTile = loadTile(_spriteTileId) + 0x20;
     }
@@ -262,9 +264,11 @@ static void func_8002433C(s16 spritenum, s32 distance)
     {
         gDPLoadTLUT_pal256(gpDisplayList++, D_01000008);
 
+#ifndef AVOID_UB
         /*Dead code*/
         if (D_801A689C+temp)
             z3++;
+#endif
 
         pTile = loadTile(_spriteTileId);
     }
@@ -520,9 +524,11 @@ static void func_80025C3C(s16 spritenum, s32 distance)
     {
         gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(_spriteTileId));
 
+#ifndef AVOID_UB
         /*Dead code*/
         if (D_801A6D80+temp)
             z3++;
+#endif
 
         pTile = loadTile(_spriteTileId) + 0x20;
     }
@@ -530,9 +536,11 @@ static void func_80025C3C(s16 spritenum, s32 distance)
     {
         gDPLoadTLUT_pal256(gpDisplayList++, D_01000008);
 
+#ifndef AVOID_UB
         /*Dead code*/
         if (D_801A6D80+temp)
             z3++;
+#endif
 
         pTile = loadTile(_spriteTileId);
     }
@@ -960,9 +968,11 @@ void func_80027C18(f32 x1, f32 y1, f32 x2, f32 y2, u16 tilenum, u32 arg5)
     if (cond)
         fdtdy = -fdtdy;
 
+#ifndef AVOID_UB
     /*Dead code*/
     if (&gpTileInfo[tilenum])
         f7++;
+#endif
 
     pTile = loadTile(tilenum) + 0x20;
     f3 = (gpTileInfo[tilenum].sizey * y2) / 3.0f;
