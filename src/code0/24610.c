@@ -1,8 +1,10 @@
 #include "common.h"
 #include "code0/main.h"
 #include "code0/9410.h"
+#include "code0/graphics.h"
 #include "code0/pragmas.h"
 #include "code0/code0.h"
+#include "static/F6D70.h"
 
 /*.bss*/
 /*800F7040*/ static s32 D_800F7040;
@@ -20,8 +22,8 @@
 /*801A689C*/ u8 D_801A689C;
 
 /*.text*/
-STATIC void func_8002433C(s16 spritenum, s32);
-STATIC void func_80025C3C(s16 spritenum, s32);
+static void func_8002433C(s16 spritenum, s32);
+static void func_80025C3C(s16 spritenum, s32);
 static void func_800273EC(s16 spritenum, s32);
 static void func_8002935C(s16 spritenum);
 
@@ -210,11 +212,610 @@ void func_80023C04(s32 spritenum, u16 arg1, s32 arg2)
     }
 }
 
+#ifdef NON_MATCHING
+/*8002433C*/
+void func_8002433C(s16 spritenum, s32 arg1)
+{
+    s32 sp1C;
+    s32 sp24;
+    s16 x2;
+    s16 x3;
+    s16 x4;
+    s16 y1;
+    s16 y2;
+    s16 y3;
+    s16 y4;
+    u16 dimx;
+
+    f32 temp_f20_5;
+    f32 temp_f26;
+
+    s32 temp_f2_5;
+    s32 temp_s0_2;
+    s32 temp_s1;
+    s32 temp_s2;
+
+    s32 var_s0;
+    s32 var_s1;
+    s32 var_s4;
+    s32 var_v1_4;
+
+    u8 *var_s3;
+    s32 height;
+    s16 x1;
+    u16 dimx1;
+    u16 x;
+    u16 y;
+    u16 dimy1;
+    u16 z2;
+    u16 z1;
+    u16 dimy;
+    u16 a, b;
+
+    if (D_801A689C != 0)
+    {
+        func_8000C76C();
+        D_801A689C = 0;
+    }
+
+    D_8012DEFC = 0xFFFF;
+    x = (gpTileInfo[D_800F7054].sizex * D_8010A9A8->xrepeat) / 16;
+    y = (gpTileInfo[D_800F7054].sizey * D_8010A9A8->yrepeat) / 8;
+    temp_s2 = (s32)((((gpTileInfo[D_800F7054].picanm>>8)&255)));
+    temp_s2 *= D_8010A9A8->xrepeat;
+    temp_s2 /= 8;
+
+    var_s1 = D_8010A9A8->z;
+
+    if (D_8010A9A8->cstat & 0x80)
+        var_s1 += (y >> 1) << 5;
+
+    var_s4 = D_800F7044;
+    temp_s1 = var_s1 - ((s32)(((s8)((gpTileInfo[D_800F7054].picanm>>16)&255))<<2)*D_8010A9A8->yrepeat);
+
+    if (!(gpTileInfo[D_800F7054].flags & 0x80))
+    {
+        gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(D_800F7054));
+        do
+        {
+            var_s3 = loadTile(D_800F7054) + 0x20;
+        } while (0);
+    }
+    else
+    {
+        gDPLoadTLUT_pal256(gpDisplayList++, D_01000008);
+        do
+        {
+            var_s3 = loadTile(D_800F7054);
+        } while (0);
+    }
+
+    z2 = (temp_s1 >> 5) - y;
+    sp24 = y;
+
+    dimy = 0;
+    if (D_8010A9A8->cstat & 4)
+    {
+        dimx1 = 0;
+        dimx = gpTileInfo[D_800F7054].dimx;
+    }
+    else
+    {
+        dimx = 0;
+        dimx1 = gpTileInfo[D_800F7054].dimx;
+    }
+
+    if (D_8010A9A8->cstat & 0x2000)
+    {
+        if (dimx == 0)
+            dimx1 = (x >> 2);
+        else
+            dimx = (x >> 2);
+    }
+
+    x1 = x2 = x3 = x4 = (D_8010A9A8->x / 2.0);
+    y1 = y2 = y3 = y4 = (D_8010A9A8->y / 2.0);
+
+    if ((D_8010A9A8->cstat & 0x30) == 0)
+    {
+        x1 = (x4 - (D_800F704C * x));
+        x2 = (x4 + (D_800F704C * x));
+        y2 = (y4 - (D_800F7050 * x));
+        y1 = (y4 + (D_800F7050 * x));
+        x3 = x2;
+        x4 = x1;
+        y4 = y1;
+        y3 = y2;
+    }
+
+    if ((D_8010A9A8->cstat & 0x30) == 0x10)
+    {
+        temp_f26 = (D_8010A9A8->ang * (PI/1024));
+
+        if (D_8010A9A8->cstat & 0x4000)
+        {
+            var_s0 = MAX(((arg1 << 8) / ((gPlayer[D_801B0820].unk6E) * 0x78)), 4);
+            x1 += (sinf((temp_f26 + (PI/2))) * var_s0);
+            y1 -= (cosf((temp_f26 + (PI/2))) * var_s0);
+        }
+
+        temp_s0_2 = (x1 - (sinf((temp_f26 - PI)) * x));
+        x2 = (x1 + (sinf((temp_f26 - PI)) * x));
+        x1 = temp_s0_2;
+        y2 = (y1 - (cosf((temp_f26 - PI)) * x));
+        y1 = (y1 + (cosf((temp_f26 - PI)) * x));
+
+        if (temp_s2 != 0)
+        {
+            x1 += (sinf((temp_f26 - PI)) * temp_s2);
+            x2 += (sinf((temp_f26 - PI)) * temp_s2);
+        }
+
+        x3 = x2;
+        x4 = x1;
+        y4 = y1;
+        y3 = y2;
+    }
+
+    if (!(gpTileInfo[D_800F7054].flags & 0x80))
+        sp1C = 0x1000 / D_800F7040;
+    else
+        sp1C = 0x800 / D_800F7040;
+
+    temp_f20_5 = (f32)sp24 / (f32)D_800F7044;
+    if (D_8010A9A8->cstat & 8)
+        z2 += sp24;
+
+    do
+    {
+        height = sp1C;
+        if (var_s4 < height)
+            height = var_s4;
+
+        if (D_801A2688 != 0)
+        {
+            if (D_8010A9A8->cstat & 0x2000)
+            {
+                gDPLoadTextureBlock_4b(gpDisplayList++, var_s3, G_IM_FMT_I,
+                                        D_800F7040, height, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
+                                        tileMasks(D_800F7054), tileMaskt(D_800F7054), G_TX_NOLOD, G_TX_NOLOD);
+            }
+            else
+            {
+                gDPLoadTextureBlock_4b(gpDisplayList++, var_s3, G_IM_FMT_I,
+                                       D_800F7040, height, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP,
+                                       G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+            }
+
+            var_v1_4 = var_s4+1;
+            var_s4 = var_v1_4 - height;
+            var_s3 += ((D_800F7040 * (height - 1)) / 8) * 4;
+        }
+        else if (!(gpTileInfo[D_800F7054].flags & 0x80))
+        {
+            if ((D_8010A9A8->cstat & 0x2000))
+            {
+                gDPLoadTextureBlock_4b(gpDisplayList++, var_s3, G_IM_FMT_CI,
+                                       D_800F7040, height, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
+                                       tileMasks(D_800F7054), tileMaskt(D_800F7054), G_TX_NOLOD, G_TX_NOLOD);
+            }
+            else
+            {
+                gDPLoadTextureBlock_4b(gpDisplayList++, var_s3, G_IM_FMT_CI,
+                                       D_800F7040, height, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP,
+                                       G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+
+            }
+
+            var_v1_4 = var_s4+1;
+            var_s4 = var_v1_4 - height;
+            var_s3 += ((D_800F7040 * (height - 1)) / 8) * 4;
+        }
+        else
+        {
+            if ((D_8010A9A8->cstat & 0x2000))
+            {
+                gDPLoadTextureBlock(gpDisplayList++, var_s3, G_IM_FMT_CI, G_IM_SIZ_8b, D_800F7040,
+                                    height, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
+                                    tileMasks(D_800F7054), tileMaskt(D_800F7054), G_TX_NOLOD, G_TX_NOLOD);
+            }
+            else
+            {
+                gDPLoadTextureBlock(gpDisplayList++, var_s3, G_IM_FMT_CI, G_IM_SIZ_8b, D_800F7040,
+                                    height, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP,
+                                    G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+
+            }
+
+            var_v1_4 = var_s4+1;
+            var_s4 = var_v1_4 - height;
+            var_s3 += ((D_800F7040 * (height - 1)) / 4) * 4;
+        }
+
+        temp_f2_5 = (height * temp_f20_5);
+        dimy1 = (height - 1);
+
+        if (D_8010A9A8->cstat & 8)
+        {
+            z1 = z2;
+            b = z2 - temp_f2_5;
+            z2 = b;
+            do {} while (0); /*FAKE*/
+            a = b;
+        }
+        else
+        {
+            z1 = z2;
+            b = z2 + temp_f2_5;
+            z2 = b;
+            do {} while (0); /*FAKE*/
+            a = b;
+        }
+
+
+        if (D_80197DD4 == 0)
+        {
+            D_80197DD4 = 0x20;
+            D_801A2620 = 0;
+            gSPVertex(gpDisplayList++, gpVertexN64, 32, 0);
+        }
+
+        gSP2Triangles(gpDisplayList++, D_801A2620, D_801A2620+1, D_801A2620+2, D_801A2620,
+                                       D_801A2620, D_801A2620+2, D_801A2620+3, D_801A2620);
+
+        D_801A2620 += 4;
+        D_80197DD4 -= 4;
+
+        gpVertexN64->v.ob[0] = x1;
+        gpVertexN64->v.ob[1] = y1;
+        gpVertexN64->v.ob[2] = z1;
+        gpVertexN64->v.tc[0] = dimx1 << 5;
+        gpVertexN64->v.tc[1] = dimy << 5;
+        gpVertexN64->v.cn[0] = D_8016A148;
+        gpVertexN64->v.cn[1] = D_800FE410;
+        gpVertexN64->v.cn[2] = D_80138680;
+        gpVertexN64->v.cn[3] = 0xFF;
+        gpVertexN64++;
+
+        gpVertexN64->v.ob[0] = x2;
+        gpVertexN64->v.ob[1] = y2;
+        gpVertexN64->v.ob[2] = z1;
+        gpVertexN64->v.tc[0] = dimx << 5;
+        gpVertexN64->v.tc[1] = dimy << 5;
+        gpVertexN64->v.cn[0] = D_8016A148;
+        gpVertexN64->v.cn[1] = D_800FE410;
+        gpVertexN64->v.cn[2] = D_80138680;
+        gpVertexN64->v.cn[3] = 0xFF;
+        gpVertexN64++;
+
+        gpVertexN64->v.ob[0] = x3;
+        gpVertexN64->v.ob[1] = y3;
+        gpVertexN64->v.ob[2] = a;
+        gpVertexN64->v.tc[0] = dimx << 5;
+        gpVertexN64->v.tc[1] = dimy1 << 5;
+        gpVertexN64->v.cn[0] = D_8016A148;
+        gpVertexN64->v.cn[1] = D_800FE410;
+        gpVertexN64->v.cn[2] = D_80138680;
+        gpVertexN64->v.cn[3] = 0xFF;
+        gpVertexN64++;
+
+        gpVertexN64->v.ob[0] = x4;
+        gpVertexN64->v.ob[1] = y4;
+        gpVertexN64->v.ob[2] = a;
+        gpVertexN64->v.tc[0] = dimx1 << 5;
+        gpVertexN64->v.tc[1] = dimy1 << 5;
+        gpVertexN64->v.cn[0] = D_8016A148;
+        gpVertexN64->v.cn[1] = D_800FE410;
+        gpVertexN64->v.cn[2] = D_80138680;
+        gpVertexN64->v.cn[3] = 0xFF;
+        gpVertexN64++;
+    } while (var_s4 >= 2);
+}
+#else
 /*8002433C*/
 INCLUDE_ASM("src/code0/24610", func_8002433C);
+#endif
 
+#ifdef NON_MATCHING
+/*80025C3C*/
+void func_80025C3C(s16 spritenum, s32 arg1)
+{
+    s32 a; //t1
+    s32 b; //v0
+    s32 sp24;
+    u16 x1; //sp2E
+    u16 x2; //sp36
+    u16 x3; //sp3E
+    u16 x4; //sp46
+    u16 y3; //sp4E
+    u16 y4; //sp56
+    u16 dimx; //sp5E
+    u16 dimy; //sp6C
+
+    f32 temp_f20;
+    f32 var_f20;
+    f32 var_f22;
+    f32 var_f24;
+
+    u16 dimy1; //t2
+    s32 z2; //s6
+    s16 z1; //t0
+
+    u16 y1;
+    u16 y2;
+
+    s32 var_s1;
+    s32 var_s4;
+
+    s32 height; //s2
+
+    s32 var_a0;
+    s32 var_v0;
+
+    u16 dimx1; //s0
+    u16 x; //s2
+    u16 y; //s5
+
+    u8 *var_s3;
+    s32 new_var;
+
+    dimy = 0; /*FAKE?*/
+    if (D_801A6D80 < 0x100)
+    {
+        do
+        {
+            D_8012DEFC = 0xFFFF;
+            x = (gpTileInfo[D_800F7054].sizex * D_8010A9A8->xrepeat) / 16;
+            y = (gpTileInfo[D_800F7054].sizey * D_8010A9A8->yrepeat) / 8;
+            //xoff = (s32)((s8)((gpTileInfo[D_800F7054].picanm>>8)&255));
+        } while (0); /*FAKE*/
+
+        var_s1 = 0;
+        if ((D_8010A9A8->cstat & 0x80) || ((D_8010A9A8->cstat & 0x30) == 0x20))
+            var_s1 = (y >> 1) << 5;
+
+        var_s4 = D_800F7044;
+        var_s1 -= ((s32)(((s8)((gpTileInfo[D_800F7054].picanm>>16)&255))<<2)*D_8010A9A8->yrepeat);
+        if (!(gpTileInfo[D_800F7054].flags & 0x80))
+        {
+            gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(D_800F7054));
+            do
+            {
+                var_s3 = loadTile(D_800F7054) + 0x20;
+            } while (0); /*FAKE*/
+        }
+        else
+        {
+            gDPLoadTLUT_pal256(gpDisplayList++, D_01000008);
+            //do {
+            var_s3 = loadTile(D_800F7054);
+            //}while(0);
+        }
+
+        z2 = (var_s1 >> 5) - y;
+        var_s1 = y;
+        new_var = 1; /*FAKE*/
+
+        if (D_8010A9A8->cstat & 4)
+        {
+            dimx1 = 0;
+            dimx = gpTileInfo[D_800F7054].dimx;
+        }
+        else
+        {
+            dimx = 0;
+            dimx1 = gpTileInfo[D_800F7054].dimx;
+        }
+        if (D_8010A9A8->cstat & 0x2000)
+        {
+            if (dimx == 0)
+                dimx1 = (x >> 2);
+            else
+                dimx = (x >> 2);
+        }
+
+        x2 = 0;
+        y1 = 0;
+        y2 = 0;
+        x1 = 0;
+        var_f24 = 0.0f;
+        var_f20 = (D_8010A9A8->z / 64.0);
+        if (D_8010A9A8->cstat & 0x400)
+        {
+            var_f22 = (D_8013B2D0[spritenum].unk2 * 0.17578125);
+            var_f24 = (D_8013B2D0[spritenum].unk0 * 0.17578125);
+        }
+        else
+        {
+            var_f22 = 90.0f;
+            if (D_8010A9A8->cstat & 0x4000)
+            {
+                s32 c;
+                c = klabs((D_80199640 - D_8010A9A8->z));
+
+                if (D_8010A9A8->z == gpSector[D_8010A9A8->sectnum].ceilingz)
+                    var_f20 += ((c + 0x10) / 1024);
+
+                if (D_8010A9A8->z == gpSector[D_8010A9A8->sectnum].floorz)
+                    var_f20 -= ((c + 0x10) / 1024);
+            }
+        }
+        D_801A689C = 1;
+        func_8000C76C();
+        x1 = x1 - x;
+        x2 = x2 + x;
+
+        grPosition(&gpDynamic->mtx3[D_801A6D80],
+                   var_f22,
+                   var_f24,
+                   ((D_8010A9A8->ang - 0x200) * 0.17578125),
+                   0.5f,
+                   (D_8010A9A8->x / 4.0),
+                   (D_8010A9A8->y / 4.0),
+                   var_f20);
+
+        gSPMatrix(gpDisplayList++, &gpDynamic->mtx3[D_801A6D80], G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+        D_801A6D80++;
+
+        x4 = x1;
+        x3 = x2;
+        y4 = y1;
+        y3 = y2;
+
+        if (!(gpTileInfo[D_800F7054].flags & 0x80))
+            sp24 = 0x1000 / D_800F7040;
+        else
+            sp24 = 0x800 / D_800F7040;
+
+        temp_f20 = (f32)var_s1 / (f32)D_800F7044;
+        if (D_8010A9A8->cstat & 8)
+            z2 += var_s1;
+
+        do
+        {
+            height = sp24;
+            if (var_s4 < height)
+                height = var_s4;
+
+            if (D_801A2688 != 0)
+            {
+                if (D_8010A9A8->cstat & 0x2000)
+                {
+                    gDPLoadTextureBlock_4b(gpDisplayList++, var_s3, G_IM_FMT_I,
+                                            D_800F7040, height, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
+                                            tileMasks(D_800F7054), tileMaskt(D_800F7054), G_TX_NOLOD, G_TX_NOLOD);
+                }
+                else
+                {
+                    gDPLoadTextureBlock_4b(gpDisplayList++, var_s3, G_IM_FMT_I,
+                                           D_800F7040, height, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP,
+                                           G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+                }
+                var_v0 = var_s4+new_var;
+                var_s4 = var_v0 - height;
+                var_s3 += ((D_800F7040 * (height - 1)) / 8) * 4;
+            }
+            else if (!(gpTileInfo[D_800F7054].flags & 0x80))
+            {
+                if ((D_8010A9A8->cstat & 0x2000))
+                {
+                    gDPLoadTextureBlock_4b(gpDisplayList++, var_s3, G_IM_FMT_CI,
+                                           D_800F7040, height, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
+                                           tileMasks(D_800F7054), tileMaskt(D_800F7054), G_TX_NOLOD, G_TX_NOLOD);
+                }
+                else
+                {
+                    gDPLoadTextureBlock_4b(gpDisplayList++, var_s3, G_IM_FMT_CI,
+                                           D_800F7040, height, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP,
+                                           G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+                }
+                var_v0 = var_s4+new_var;
+                var_s4 = var_v0 - height;
+                var_s3 += ((D_800F7040 * (height - 1)) / 8) * 4;
+            }
+            else
+            {
+                if ((D_8010A9A8->cstat & 0x2000))
+                {
+                    gDPLoadTextureBlock(gpDisplayList++, var_s3, G_IM_FMT_CI, G_IM_SIZ_8b, D_800F7040,
+                                        height, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
+                                        tileMasks(D_800F7054), tileMaskt(D_800F7054), G_TX_NOLOD, G_TX_NOLOD);
+                }
+                else
+                {
+                    gDPLoadTextureBlock(gpDisplayList++, var_s3, G_IM_FMT_CI, G_IM_SIZ_8b, D_800F7040,
+                                        height, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP,
+                                        G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+                }
+                var_v0 = var_s4+new_var;
+                var_s4 = var_v0 - height;
+                var_s3 += ((D_800F7040 * (height - 1)) / 4) * 4;
+            }
+
+            var_a0 = (height * temp_f20);
+
+            dimy1 = (height - 1);
+            if (D_8010A9A8->cstat & 8)
+            {
+                z1 = z2;
+                b = z2 - var_a0;
+                z2 = b;
+                do {} while (0); /*FAKE*/
+                a = b;
+            }
+            else
+            {
+                z1 = z2;
+                b = z2 + var_a0;
+                z2 = b;
+                do {} while (0); /*FAKE*/
+                a = b;
+            }
+
+            if (D_80197DD4 == 0)
+            {
+                D_80197DD4 = 0x20;
+                D_801A2620 = 0;
+                gSPVertex(gpDisplayList++, gpVertexN64, 32, 0);
+            }
+            gSP2Triangles(gpDisplayList++, D_801A2620, D_801A2620+1, D_801A2620+2, D_801A2620,
+                                           D_801A2620, D_801A2620+2, D_801A2620+3, D_801A2620);
+
+            D_801A2620 += 4;
+            D_80197DD4 -= 4;
+
+            gpVertexN64->v.ob[0] = x1;
+            gpVertexN64->v.ob[1] = y1;
+            gpVertexN64->v.ob[2] = z1;
+            gpVertexN64->v.tc[0] = dimx1 << 5;
+            gpVertexN64->v.tc[1] = dimy << 5;
+            gpVertexN64->v.cn[0] = D_8016A148;
+            gpVertexN64->v.cn[1] = D_800FE410;
+            gpVertexN64->v.cn[2] = D_80138680;
+            gpVertexN64->v.cn[3] = 0xFF;
+            gpVertexN64++;
+
+            gpVertexN64->v.ob[0] = x2;
+            gpVertexN64->v.ob[1] = y2;
+            gpVertexN64->v.ob[2] = z1;
+            gpVertexN64->v.tc[0] = dimx << 5;
+            gpVertexN64->v.tc[1] = dimy << 5;
+            gpVertexN64->v.cn[0] = D_8016A148;
+            gpVertexN64->v.cn[1] = D_800FE410;
+            gpVertexN64->v.cn[2] = D_80138680;
+            gpVertexN64->v.cn[3] = 0xFF;
+            gpVertexN64++;
+
+            gpVertexN64->v.ob[0] = x3;
+            gpVertexN64->v.ob[1] = y3;
+            gpVertexN64->v.ob[2] = a;
+            gpVertexN64->v.tc[0] = dimx << 5;
+            gpVertexN64->v.tc[1] = dimy1 << 5;
+            gpVertexN64->v.cn[0] = D_8016A148;
+            gpVertexN64->v.cn[1] = D_800FE410;
+            gpVertexN64->v.cn[2] = D_80138680;
+            gpVertexN64->v.cn[3] = 0xFF;
+            gpVertexN64++;
+
+            gpVertexN64->v.ob[0] = x4;
+            gpVertexN64->v.ob[1] = y4;
+            gpVertexN64->v.ob[2] = a;
+            gpVertexN64->v.tc[0] = dimx1 << 5;
+            gpVertexN64->v.tc[1] = dimy1 << 5;
+            gpVertexN64->v.cn[0] = D_8016A148;
+            gpVertexN64->v.cn[1] = D_800FE410;
+            gpVertexN64->v.cn[2] = D_80138680;
+            gpVertexN64->v.cn[3] = 0xFF;
+            gpVertexN64++;
+        } while (var_s4 >= 2);
+
+        gSPPopMatrix(gpDisplayList++, G_MTX_MODELVIEW);
+    }
+}
+#else
 /*80025C3C*/
 INCLUDE_ASM("src/code0/24610", func_80025C3C);
+#endif
 
 /*800273EC*/
 static void func_800273EC(s16 spritenum, s32 arg1)
@@ -371,8 +972,186 @@ static void func_800273EC(s16 spritenum, s32 arg1)
     gpVertexN64++;
 }
 
+#ifdef NON_MATCHING
+void func_80027C18(f32 x1, f32 y1, f32 x2, f32 y2, u16 tilenum, s32 arg5)
+{
+    f32 fdtdy;
+    f32 fdsdx;
+
+    TileInfo *temp_a0;
+    TileInfo *temp_a0_2;
+    f32 fyl;
+    f32 temp_f12;
+    f32 fxh;
+    f32 temp_f12_3;
+    f32 temp_f14;
+
+    f32 temp_f14_3;
+    f32 temp_f20;
+    f32 fwidth;
+    f32 temp_f22;
+    f32 temp_f24;
+    f32 temp_f24_2;
+    f32 temp_f24_3;
+
+    f32 fxl;
+    f32 t;
+    f32 temp_f6;
+    f32 temp_s5;
+    f32 var_f14;
+    f32 s;
+    f32 fyl_;
+    f32 fyh;
+    f32 var_f26;
+    f32 var_f2;
+
+    f32 height;
+    s32 temp_a1;
+    s32 temp_a2;
+
+    f32 fyh_;
+
+    s32 var_v0;
+    s32 var_v1;
+
+    u8 *var_s2;
+    f32 temp;
+
+    temp_f6 = x2 * 4.0f;
+    temp_f22 = y2 * 4.0f;
+    temp_a0 = &gpTileInfo[tilenum];
+    temp_f14 = y1 * 4.0f;
+    temp_a2 = (arg5 >> 3) & 1;
+    temp_a1 = (arg5 & 4) != 0;
+    var_f2 = ((s32)((((temp_a0->picanm>>8)&255))) * temp_f6) / 6.0f;
+
+    if (temp_a1 != 0)
+        var_f2 = -var_f2;
+
+    temp_f20 = (temp_a0->sizex * temp_f6) / 6.0f;
+    temp_f12 = (x1 * 4.0f) - (2.0f * var_f2);
+    temp_f24 = (temp_a0->sizey * temp_f22) / 6.0f;
+    var_v0 = 1;
+
+    if (!(temp_f20 < 4.0f))
+        var_v0 = 0;
+
+    var_v1 = 1;
+    if (!(temp_f24 < 4.0f))
+        var_v1 = 0;
+
+    if (!(var_v0 & var_v1))
+    {
+        fxl = temp_f12 - temp_f20;
+        fxh = temp_f12 + temp_f20;
+        fyl_ = temp_f14 - temp_f24;
+        fyh = temp_f14 + temp_f24;
+        fdsdx = (temp_a0->dimx << 0xC) / (fxh - fxl);
+
+        fwidth = temp_a0->dimx;
+        fdtdy = (temp_a0->dimy << 0xC) / (fyh - fyl_);
+        if (temp_a1 != 0)
+        {
+            fdsdx = -fdsdx;
+            s = (fwidth - 1.0f) * 32.0f;
+        }
+        else
+            s = 0.0f;
+
+        if (temp_a2 != 0)
+            fdtdy = -fdtdy;
+
+        temp_a0_2 = &gpTileInfo[tilenum];
+        var_s2 = loadTile(tilenum) + 0x20;
+        temp_f24_2 = temp_a0->dimy;
+        var_f26 = temp_a0_2->dimy;
+        temp_s5 = (temp_a0_2->sizey * temp_f22) / 3.0f;
+
+        gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(tilenum));
+
+        var_f14 = (f32)(s32)(4096.0f / fwidth);
+        if (!((s32)var_f14 & 1))
+            var_f14 -= 1.0f;
+
+        temp_f12_3 = temp_s5 / temp_f24_2;
+        temp_f14_3 = var_f14 * 4.0f;
+        var_f26 = var_f26 * 4.0f;
+        temp_f24_3 = (temp_f24_2 * 4.0f) / temp_s5;
+
+        if (temp_a2 != 0)
+        {
+            do
+            {
+                height = MIN(var_f26, temp_f14_3);
+
+                var_f26 -= height - 4.0f;
+                if (D_801A2688 != 0)
+                {
+                    gDPLoadTextureBlock_4b(gpDisplayList++, var_s2, G_IM_FMT_I, (s32)fwidth, (s32)(height/4.0f), 0,
+                                           G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP,
+                                           G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+                }
+                else
+                {
+                    gDPLoadTextureBlock_4b(gpDisplayList++, var_s2, G_IM_FMT_CI, (s32)fwidth, (s32)(height/4.0f), 0,
+                                           G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP,
+                                           G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+                }
+
+                temp = ((height - 8.0f) * 8.0f);
+                fyl = fyh - (((height * temp_f12_3) / 4.0f) - temp_f12_3);
+                t = temp - ((f32)((s32)(f32)((s32)(fyl * 8.0f) & 0x1F) ^ 0x1F) * temp_f24_3);
+
+                gSPScisTextureRectangle(gpDisplayList++, fxl, fyl, fxh, fyh, 0, s, t, (s32)fdsdx, (s32)fdtdy);
+
+                if (!(var_f26 <= 4.0f))
+                {
+                    fyh -= ((height * temp_f12_3) / 4.0f) - temp_f12_3;
+                    var_s2 += ((gpTileInfo[tilenum].dimx * (s32)((height / 4.0f) - 1.0f)) /8) * 4;
+                }
+                else
+                    break;
+            } while (1);
+        }
+        else
+        {
+            do
+            {
+                height = MIN(var_f26, temp_f14_3);
+                var_f26 -= height - 4.0f;
+                if (D_801A2688 != 0)
+                {
+                    gDPLoadTextureBlock_4b(gpDisplayList++, var_s2, G_IM_FMT_I, (s32)fwidth, (s32)(height/4.0f), 0,
+                                           G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP,
+                                           G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+                }
+                else
+                {
+                    gDPLoadTextureBlock_4b(gpDisplayList++, var_s2, G_IM_FMT_CI, (s32)fwidth, (s32)(height/4.0f), 0,
+                                           G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP,
+                                           G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+                }
+
+                fyh_ = (fyl_ + (((height * temp_f12_3) / 4.0f) - temp_f12_3));
+                t = (f32)((s32)(f32)((s32)(fyl_ * 8.0f) & 0x1F) ^ 0x1F) * temp_f24_3;
+
+                gSPScisTextureRectangle(gpDisplayList++, fxl, fyl_, fxh, fyh_, 0, s, t, (s32)fdsdx, (s32)fdtdy);
+
+                if (!(var_f26 <= 4.0f))
+                {
+                    fyl_ += ((height * temp_f12_3) / 4.0f) - temp_f12_3;
+                    var_s2 += ((gpTileInfo[tilenum].dimx * (s32)((height / 4.0f) - 1.0f)) /8) * 4;
+                }
+                else
+                    break;
+            } while (1);
+        }
+    }
+}
+#else
 /*80027C18*/
 INCLUDE_ASM("src/code0/24610", func_80027C18);
+#endif
 
 /*80028F04*/
 void func_80028F04(u8 r1, u8 g1, u8 b1, u8 r2, u8 g2, u8 b2)
