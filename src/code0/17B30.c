@@ -142,12 +142,22 @@ void func_80017268(s16 spritenum)
     _D8D20UnkStruct2 *ptr4;
     _D8D20UnkStruct2 *ptr7;
     _D8D20UnkStruct2 *ptr5;
+
+#ifdef AVOID_UB
+    _D8D20UnkStruct2 *ptr6 = NULL;
+#else
     _D8D20UnkStruct2 *ptr6;
+#endif
 
     s32 r;
     s16 i, j, k;
     u8 cond1, cond2, cond3, cond4;
     u8 m;
+
+#ifdef AVOID_UB
+    if (gActorSpriteMap[spritenum] < 0)
+        return;
+#endif
 
     m = 0;
     ptr = &D_80197E40[gActorSpriteMap[spritenum]];
