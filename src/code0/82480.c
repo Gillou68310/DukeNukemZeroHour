@@ -617,9 +617,16 @@ static void func_80083430(s32 arg0, _119280UnkStruct1 *arg1, s32 arg2, s32 arg3,
     code0UnkStruct20 sp30;
     code0UnkStruct16 sp48;
     s32 i;
+
+#ifdef AVOID_UB
+    u8 *ptr1 = NULL;
+    u8 *ptr2 = NULL;
+    u8 *ptr3 = NULL;
+#else
     u8 *ptr1;
     u8 *ptr2;
     u8 *ptr3;
+#endif
 
     D_801AE52C = arg6;
     switch (arg0)

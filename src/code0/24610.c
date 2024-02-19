@@ -126,15 +126,25 @@ void drawSprite(s32 spritenum, u16 sectnum, s32 distance)
                 }
             }
 
-            gDPSetPrimColor(gpDisplayList++, 0, 0, gpAlphaPalette[D_80168810].primary.r,
-                                                   gpAlphaPalette[D_80168810].primary.g,
-                                                   gpAlphaPalette[D_80168810].primary.b,
-                                                   alpha);
+#ifdef AVOID_UB
+            if (D_80168810 == -1)
+            {
+                gDPSetPrimColor(gpDisplayList++, 0, 0, 0, 0, 0, alpha);
+                gDPSetEnvColor(gpDisplayList++, 0, 0, 0, alpha);
+            }
+            else
+#endif
+            {
+                gDPSetPrimColor(gpDisplayList++, 0, 0, gpAlphaPalette[D_80168810].primary.r,
+                                                       gpAlphaPalette[D_80168810].primary.g,
+                                                       gpAlphaPalette[D_80168810].primary.b,
+                                                       alpha);
 
-            gDPSetEnvColor(gpDisplayList++, gpAlphaPalette[D_80168810].env.r,
-                                            gpAlphaPalette[D_80168810].env.g,
-                                            gpAlphaPalette[D_80168810].env.b,
-                                            alpha);
+                gDPSetEnvColor(gpDisplayList++, gpAlphaPalette[D_80168810].env.r,
+                                                gpAlphaPalette[D_80168810].env.g,
+                                                gpAlphaPalette[D_80168810].env.b,
+                                                alpha);
+            }
 
             if (_pSprite->cstat & 0x800)
             {
@@ -252,9 +262,11 @@ static void func_8002433C(s16 spritenum, s32 distance)
     {
         gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(_spriteTileId));
 
+#ifndef AVOID_UB
         /*Dead code*/
         if (D_801A689C+temp)
             z3++;
+#endif
 
         pTile = loadTile(_spriteTileId) + 0x20;
     }
@@ -262,9 +274,11 @@ static void func_8002433C(s16 spritenum, s32 distance)
     {
         gDPLoadTLUT_pal256(gpDisplayList++, D_01000008);
 
+#ifndef AVOID_UB
         /*Dead code*/
         if (D_801A689C+temp)
             z3++;
+#endif
 
         pTile = loadTile(_spriteTileId);
     }
@@ -520,9 +534,11 @@ static void func_80025C3C(s16 spritenum, s32 distance)
     {
         gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(_spriteTileId));
 
+#ifndef AVOID_UB
         /*Dead code*/
         if (D_801A6D80+temp)
             z3++;
+#endif
 
         pTile = loadTile(_spriteTileId) + 0x20;
     }
@@ -530,9 +546,11 @@ static void func_80025C3C(s16 spritenum, s32 distance)
     {
         gDPLoadTLUT_pal256(gpDisplayList++, D_01000008);
 
+#ifndef AVOID_UB
         /*Dead code*/
         if (D_801A6D80+temp)
             z3++;
+#endif
 
         pTile = loadTile(_spriteTileId);
     }
@@ -960,9 +978,11 @@ void drawTileScaled(f32 x, f32 y, f32 scalex, f32 scaley, u16 tilenum, u32 arg5)
     if (cond)
         fdtdy = -fdtdy;
 
+#ifndef AVOID_UB
     /*Dead code*/
     if (&gpTileInfo[tilenum])
         f7++;
+#endif
 
     pTile = loadTile(tilenum) + 0x20;
     f3 = (gpTileInfo[tilenum].sizey * scaley) / 3.0f;

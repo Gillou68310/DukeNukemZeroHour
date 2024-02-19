@@ -347,6 +347,9 @@ static void func_800A0014(void)
     drawString2((D_80119A94 + 80), (D_80199944 + 145), sp20);
     gDPSetTextureLUT(gpDisplayList++, G_TT_RGBA16);
     gDPSetCombineMode(gpDisplayList++, G_CC_DECALRGBA, G_CC_PASS2);
+#ifdef AVOID_UB
+    D_801A2688 = 0;
+#endif
     func_8001D238(D_80119A94 + 210, D_80199944 + 145, 3997);
     func_8001D238(D_80119A94 + 230, D_80199944 + 145, 3998);
 }
@@ -419,7 +422,11 @@ static void func_800A0698(void)
 /*800A0BD4*/
 static void _drawMapStrInfo(s16 x, s16 y, char *arg2)
 {
+#ifdef AVOID_UB
+    char buffer[64];
+#else
     char buffer[32];
+#endif
     s16 i, j;
 
     j = 0;
@@ -662,6 +669,9 @@ void drawHud(void)
 
             if (gPlayerCount == 1)
             {
+#ifdef AVOID_UB
+                D_801A2688 = 0;
+#endif
                 func_8001D238(D_80119A94 + 20, D_80199944 + 200, 5692);
                 o = 36;
             }

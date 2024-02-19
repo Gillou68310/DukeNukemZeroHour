@@ -332,7 +332,11 @@ code0UnkStruct16 *func_8007FE2C(char *arg0, s32 arg1, s32 arg2, s32 arg3, s32 ar
 /*8007FEDC*/
 void func_8007FEDC(char *src, u8 arg1)
 {
+#ifdef AVOID_UB
+    Bmemcpy((D_800E0990 * 50) + D_80118260, src, strlen(src)+1);
+#else
     Bmemcpy((D_800E0990 * 50) + D_80118260, src, 50);
+#endif
     func_8007FE2C((D_800E0990 * 50) + D_80118260, 24, (D_800E0990 * 17) + 48, 64, 0, 0)->unk11 = arg1;
     D_800E0990++;
 }
@@ -340,7 +344,11 @@ void func_8007FEDC(char *src, u8 arg1)
 /*8007FF94*/
 void func_8007FF94(char *src, u8 arg1)
 {
+#ifdef AVOID_UB
+    Bmemcpy((D_800E0990 * 50) + D_80118260, src, strlen(src)+1);
+#else
     Bmemcpy((D_800E0990 * 50) + D_80118260, src, 50);
+#endif
     func_8007FE2C((D_800E0990 * 50) + D_80118260, gScreenWidth / 2, (D_800E0990 * 17) + 48, 64, 1, 0)->unk11 = arg1;
     D_800E0990++;
 }
