@@ -874,14 +874,23 @@ void drawString(s16 x, s16 y, char *string)
     {
         for (ptr = string, x = 0; *ptr != 0; ptr++)
         {
+#ifdef AVOID_UB
+            char c = toupper(*ptr);
+            if (c == ' ')
+#else
             *ptr = toupper(*ptr);
             if (*ptr == ' ')
+#endif
             {
                 i = 7;
             }
             else
             {
+#ifdef AVOID_UB
+                switch (c)
+#else
                 switch (*ptr)
+#endif
                 {
                 case 'M':
                 case 'W':
