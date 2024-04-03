@@ -1498,7 +1498,7 @@ void func_80017268(s16 spritenum)
 }
 #else
 /*80017268*/
-INCLUDE_ASM("nonmatchings/src/code0/17B30", func_80017268);
+INCLUDE_ASM("src/code0/17B30", func_80017268);
 #endif
 
 /*800195DC*/

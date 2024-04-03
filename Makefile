@@ -1,12 +1,13 @@
 ### Build Options ###
 
-BASEROM      := baserom.us.z64
+VERSION      ?= us
+BASEROM      := baserom.$(VERSION).z64
 TARGET       := dukenukemzerohour
 COMPARE      ?= 1
 NON_MATCHING ?= 0
 CHECK        ?= 1
 VERBOSE      ?= 0
-BUILD_DIR    ?= build
+BUILD_DIR    ?= build/$(VERSION)
 EXTERN       ?= 1
 MODERN       ?= 0
 AVOID_UB     ?= 0
@@ -63,8 +64,8 @@ LD_MAP       := $(BUILD_DIR)/$(TARGET).map
 
 PYTHON     := python3
 N64CKSUM   := $(PYTHON) tools/scripts/n64cksum.py
-SPLAT_YAML := dukenukemzerohour.yaml
-SPLAT      := $(PYTHON) tools/splat/split.py $(SPLAT_YAML)
+SPLAT_YAML := versions/$(VERSION)/$(TARGET).yaml
+SPLAT      := splat split $(SPLAT_YAML)
 DIFF       := diff
 EXTRACT	   := $(PYTHON) tools/scripts/extract_assets.py
 
@@ -97,8 +98,8 @@ ENDLINE := \n'
 OPTFLAGS       := -O2 -g2
 ASFLAGS        := -G0 -mips3 -I include
 CFLAGS         := -G0 -mips3 -mgp32 -mfp32 -funsigned-char #-save-temps #-Wa,--vr4300mul-off
-CPPFLAGS       := -I include -I gen -I $(LIBULTRA_DIR)/include/2.0I -D_LANGUAGE_C -DF3DEX_GBI_2 -D_MIPS_SZLONG=32 -D_FINALROM -DTARGET_N64
-LDFLAGS        := -T undefined_syms.txt -T undefined_funcs.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(LD_MAP) --no-check-sections
+CPPFLAGS       := -I include -I gen/$(VERSION) -I $(LIBULTRA_DIR)/include/2.0I -D_LANGUAGE_C -DF3DEX_GBI_2 -D_MIPS_SZLONG=32 -D_FINALROM -DTARGET_N64
+LDFLAGS        := -T versions/$(VERSION)/undefined_syms.txt -T versions/$(VERSION)/undefined_funcs.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(LD_MAP) --no-check-sections
 CHECK_WARNINGS := -Wall -Wextra -Wno-missing-braces -Wno-format-security -Wno-unused-parameter -Wno-unused-variable -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -Wno-unused-function
 CFLAGS_CHECK   := -m32 -fsyntax-only -funsigned-char -nostdinc -fno-builtin -std=gnu90
 CFLAGS_MODERN  := -mabi=32 -march=vr4300 -mfix4300 -mno-abicalls -fno-pic -fno-exceptions -fno-stack-protector -fno-zero-initialized-in-bss -fno-builtin -mno-gpopt -fno-toplevel-reorder -DMODERN
@@ -117,10 +118,18 @@ ifeq ($(AVOID_UB),1)
 CPPFLAGS += -DAVOID_UB
 endif
 
+ifeq ($(VERSION),us)
+    CPPFLAGS += -DVERSION_US=1
+else ifeq ($(VERSION),fr)
+    CPPFLAGS += -DVERSION_FR=1
+else
+$(error Invalid VERSION variable detected. Please use either 'us' or 'fr')
+endif
+
 ### Sources ###
 
 # Object files
-OBJECTS := $(shell grep -E 'BUILD_PATH.+\.o' dukenukemzerohour.ld -o)
+OBJECTS := $(shell grep -E 'BUILD_PATH.+\.o' linker_scripts/$(VERSION)/$(LD_SCRIPT) -o)
 OBJECTS := $(OBJECTS:BUILD_PATH/%=$(BUILD_DIR)/%)
 DEPENDS := $(OBJECTS:=.d)
 
@@ -161,13 +170,10 @@ clean:
 	$(V)rm -rf $(BUILD_DIR)
 
 distclean: clean
-	$(V)rm -rf assets/
-	$(V)rm -f *auto.txt
-	$(V)rm -f dukenukemzerohour.ld
-	$(V)rm -f include/ld_addrs.h
-	$(V)rm -rf nonmatchings/
-	$(V)rm -rf gen/
-	$(V)rm -rf data/
+	$(V)rm -rf assets/$(VERSION)
+	$(V)rm -rf linker_scripts/$(VERSION)
+	$(V)rm -rf gen/$(VERSION)
+	$(V)rm -rf asm/$(VERSION)
 	$(V)rm -rf tmp/
 	$(V)rm -f *ctx.c
 	$(V)rm -f data.c*
@@ -208,7 +214,7 @@ $(BUILD_DIR)/%.bin.o: %.bin
 	@mkdir -p $(shell dirname $@)
 	$(V)$(LD) -r -b binary -o $@ $<
 
-$(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
+$(BUILD_DIR)/$(LD_SCRIPT): linker_scripts/$(VERSION)/$(LD_SCRIPT)
 	@$(PRINT)$(GREEN)Preprocessing linker script: $(ENDGREEN)$(BLUE)$<$(ENDBLUE)$(ENDLINE)
 	$(V)$(CPP) -P -DBUILD_PATH=$(BUILD_DIR) $< -o $@
 

@@ -2316,7 +2316,7 @@ void func_80093BB0(u16 wallnum)
 }
 #else
 /*80093BB0*/
-INCLUDE_ASM("nonmatchings/src/code0/8EFE0", func_80093BB0);
+INCLUDE_ASM("src/code0/8EFE0", func_80093BB0);
 #endif
 
 /*80094278*/

@@ -5,7 +5,7 @@
             "name": "dukenukemzerohour",
             "includePath": [
                 "${workspaceFolder}/include",
-                "${workspaceFolder}/gen",
+                "${workspaceFolder}/gen/us",
                 "${workspaceFolder}/src",
                 "${workspaceFolder}/libs",
                 "${workspaceFolder}/libs/libultra/src",
@@ -27,7 +27,8 @@
                 "STATIC=",
                 "NON_MATCHING",
                 "__CTX__",
-		"AVOID_UB"
+		"AVOID_UB",
+		"VERSION_US=1"
             ],
             "cStandard": "c89",
             "cppStandard": "c++17",

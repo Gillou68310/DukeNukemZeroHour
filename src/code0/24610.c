@@ -211,10 +211,10 @@ void func_80023C04(s32 spritenum, u16 arg1, s32 arg2)
 }
 
 /*8002433C*/
-INCLUDE_ASM("nonmatchings/src/code0/24610", func_8002433C);
+INCLUDE_ASM("src/code0/24610", func_8002433C);
 
 /*80025C3C*/
-INCLUDE_ASM("nonmatchings/src/code0/24610", func_80025C3C);
+INCLUDE_ASM("src/code0/24610", func_80025C3C);
 
 /*800273EC*/
 static void func_800273EC(s16 spritenum, s32 arg1)
@@ -372,7 +372,7 @@ static void func_800273EC(s16 spritenum, s32 arg1)
 }
 
 /*80027C18*/
-INCLUDE_ASM("nonmatchings/src/code0/24610", func_80027C18);
+INCLUDE_ASM("src/code0/24610", func_80027C18);
 
 /*80028F04*/
 void func_80028F04(u8 r1, u8 g1, u8 b1, u8 r2, u8 g2, u8 b2)

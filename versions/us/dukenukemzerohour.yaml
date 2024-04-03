@@ -2,22 +2,30 @@ name: Duke Nukem Zero Hour (North America)
 sha1: de4db292cc6cf5dd1dd1d3c9700cf8e5c3078410
 options:
   basename: dukenukemzerohour
+  base_path: ../..
   target_path: baserom.us.z64
-  base_path: .
   compiler: GCC
-  find_file_boundaries: True
+  find_file_boundaries: False
   header_encoding: ASCII
   platform: n64
   create_undefined_funcs_auto: False
   create_undefined_syms_auto: False
-  symbol_addrs_path: ["symbol_addrs.txt", "rom_addrs.txt", "static_offsets.txt"]
-  reloc_addrs_path: reloc_addrs.txt
-  # undefined_syms_path: undefined_syms.txt
-  asm_path: .
+  symbol_addrs_path: 
+    - "versions/us/symbol_addrs.txt"
+    - "versions/us/rom_addrs.txt"
+    - "versions/us/static_offsets.txt"
+  undefined_funcs_auto_path: linker_scripts/us/undefined_funcs_auto.txt
+  undefined_syms_auto_path: linker_scripts/us/undefined_syms_auto.txt
+  reloc_addrs_path: versions/us/reloc_addrs.txt
+  hasm_in_src_path: True
+  asm_path: asm/us
   src_path: .
+  data_path: data
   nonmatchings_path : nonmatchings
+  asset_path: assets/us
+  ld_script_path: linker_scripts/us/dukenukemzerohour.ld
   build_path: BUILD_PATH
-  ld_symbol_header_path: gen/ld_symbols.h
+  ld_symbol_header_path: gen/us/ld_symbols.h
   # extensions_path: tools/splat_ext
   # mips_abi_float_regs: o32
   # section_order: [".text", ".data", ".rodata", ".bss"]
@@ -43,7 +51,7 @@ options:
     - .debug
 
 segments:
-  - name: gen/header
+  - name: header
     type: header
     start: 0x0
 
@@ -645,7 +653,7 @@ segments:
       - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libkmc/src/_matherr}
       - {start: 0xEB300, type: .bss, vram: 0x800FCB90, name: libs/libkmc/src/matherr}
       - {start: 0xEB300, type: .bss, vram: 0x800FCBA0, name: src/code0/code0}
-      - {start: 0xEB300, type:  bss, vram: 0x800FCBA0, name: code0/common}
+      - {start: 0xEB300, type:  bss, vram: 0x800FCBA0, name: src/code0/common}
 
   - name: code1
     type: code
@@ -665,7 +673,7 @@ segments:
     #.bss section
       - {start: 0xF6D70, type:  .bss, vram: 0x801CC7F0, name: src/code1/EB300}
       - {start: 0xF6D70, type:  .bss, vram: 0x801CC7F0, name: src/code1/code1}
-      - {start: 0xF6D70, type:   bss, vram: 0x801CC7F0, name: code1/common}
+      - {start: 0xF6D70, type:   bss, vram: 0x801CC7F0, name: src/code1/common}
 
   - name: static
     type: code

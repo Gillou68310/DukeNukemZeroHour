@@ -1149,7 +1149,7 @@ void func_80062300(void)
 }
 #else
 /*80062300*/
-INCLUDE_ASM("nonmatchings/src/code0/609D0", func_80062300);
+INCLUDE_ASM("src/code0/609D0", func_80062300);
 #endif
 
 /*80062688*/

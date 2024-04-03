@@ -1,13 +1,12 @@
-baserom.us.z64
-nonmatchings/
+baserom.*.z64
+asm/
 build/
 assets/
 extracted/
 gen/
-data/
 tmp/
 docs/
-dukenukemzerohour.ld
+linker_scripts/
 *ctx.c
 .vscode/
 __pycache__/

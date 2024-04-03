@@ -4098,7 +4098,7 @@ void func_801C9D68(void)
 }
 #else
 /*801C9D68*/
-INCLUDE_ASM("nonmatchings/src/code1/EB300", func_801C9D68);
+INCLUDE_ASM("src/code1/EB300", func_801C9D68);
 #endif
 
 /*801C9E7C*/

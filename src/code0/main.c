@@ -1181,18 +1181,33 @@ static void mainLoop(void *arg)
     configInitialize();
     controller_8008AD94();
     controller_8008A3EC("DUKE ZERO HOUR.A", &D_801CC930.unk0, sizeof(code1UnkStruct3));
+#if VERSION_US
     switch (osTvType)
     {
-    case 0:
+    case OS_TV_PAL:
         D_801B0815 = 0;
         break;
-    case 1:
+    case OS_TV_NTSC:
         D_801B0815 = 1;
         break;
-    case 2:
+    case OS_TV_MPAL:
         D_801B0815 = 1;
         break;
     }
+#elif VERSION_FR
+    switch (osTvType)
+    {
+    case OS_TV_PAL:
+        D_801B0815 = 1;
+        break;
+    case OS_TV_NTSC:
+        D_801B0815 = 0;
+        break;
+    case OS_TV_MPAL:
+        D_801B0815 = 0;
+        break;
+    }
+#endif
     osCreateMesgQueue(&D_8010A920, &D_801C0D64, 1);
     osCreateMesgQueue(&gRetraceMsgQ, gRetraceMessages, NUM_DMA_MSGS);
     osScAddClient(&gScheduler, &_retraceClient, &gRetraceMsgQ);

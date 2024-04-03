@@ -1,5 +1,4 @@
 n64img==0.3.0
--r tools/splat/requirements.txt
 pycparser
 pynacl
 toml

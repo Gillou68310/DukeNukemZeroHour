@@ -211,7 +211,7 @@ void func_8003F340(void)
 }
 #else
 /*8003F340*/
-INCLUDE_ASM("nonmatchings/src/code0/3FAD0", func_8003F340);
+INCLUDE_ASM("src/code0/3FAD0", func_8003F340);
 #endif
 
 /*8003FD5C*/

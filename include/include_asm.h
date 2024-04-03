@@ -3,7 +3,7 @@
 
 #if !defined(SPLAT) && !defined(__CTX__) && !defined(PERMUTER)
 #ifndef INCLUDE_ASM
-#define INCLUDE_ASM(FOLDER, NAME) \
+#define __INCLUDE_ASM__(FOLDER, NAME) \
    __asm__( \
         ".section .text\n" \
         "\t.set noat\n" \
@@ -21,13 +21,23 @@
         "\t.size\t"#NAME",.end"#NAME"-"#NAME \
     )
 #endif
+#if VERSION_US
+#define INCLUDE_ASM(FOLDER, NAME) __INCLUDE_ASM__("asm/us/nonmatchings/"FOLDER, NAME)
+#elif VERSION_FR
+#define INCLUDE_ASM(FOLDER, NAME) __INCLUDE_ASM__("asm/fr/nonmatchings/"FOLDER, NAME)
+#endif
 #ifndef INCLUDE_RODATA
-#define INCLUDE_RODATA(FOLDER, NAME) \
+#define __INCLUDE_RODATA__(FOLDER, NAME) \
    __asm__( \
         ".section .rodata\n" \
         "\t.include \""FOLDER"/"#NAME".s\"\n" \
         ".section .text" \
     )
+#if VERSION_US
+#define INCLUDE_RODATA(FOLDER, NAME) __INCLUDE_RODATA__("asm/us/nonmatchings/"FOLDER, NAME)
+#elif VERSION_FR
+#define INCLUDE_RODATA(FOLDER, NAME) __INCLUDE_RODATA__("asm/fr/nonmatchings/"FOLDER, NAME)
+#endif
 #endif
 __asm__(".include \"include/macro.inc\"\n");
 #else

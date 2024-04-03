@@ -1,0 +1,114 @@
+name: Duke Nukem Zero Hour (France)
+sha1: e69a4dda8cca88d4c149f2b00640da0ff04fa9c8
+options:
+  basename: dukenukemzerohour
+  base_path: ../..
+  target_path: baserom.fr.z64
+  compiler: GCC
+  find_file_boundaries: False
+  header_encoding: ASCII
+  platform: n64
+  create_undefined_funcs_auto: True
+  create_undefined_syms_auto: True
+  symbol_addrs_path: "versions/fr/symbol_addrs.txt"
+  undefined_funcs_auto_path: linker_scripts/fr/undefined_funcs_auto.txt
+  undefined_syms_auto_path: linker_scripts/fr/undefined_syms_auto.txt
+  reloc_addrs_path: versions/fr/reloc_addrs.txt
+  hasm_in_src_path: True
+  asm_path: asm/fr
+  src_path: .
+  data_path: data
+  nonmatchings_path : nonmatchings
+  asset_path: assets/fr
+  ld_script_path: linker_scripts/fr/dukenukemzerohour.ld
+  build_path: BUILD_PATH
+  ld_symbol_header_path: gen/fr/ld_symbols.h
+  # extensions_path: tools/splat_ext
+  # mips_abi_float_regs: o32
+  # section_order: [".text", ".data", ".rodata", ".bss"]
+  # auto_all_sections: [".data", ".rodata", ".bss"]
+  asm_inc_header: ""
+  migrate_rodata_to_functions: False
+  add_set_gp_64: False
+  generated_c_preamble: "#include \"common.h\"\n\n/*.text*/"
+  use_legacy_include_asm: False
+  include_macro_inc: False
+  ld_wildcard_sections: True
+  asm_emit_size_directive: False
+  ld_discard_section: False
+  ld_sections_denylist:
+    - .text
+    - .rodata
+    - .bss
+    - .COMMON
+    - .data
+    - .MIPS.abiflags
+    - .reginfo
+    - .rel.dyn
+    - .debug
+
+segments:
+  - name: header
+    type: header
+    start: 0x0
+
+  - name: boot
+    type: bin
+    start: 0x40
+
+  - name: code0
+    type: code
+    start: 0x1000
+    vram: 0x80000400
+    subalign: null
+    bss_size: 0xE21C0
+    bss_contains_common: True
+    subsegments:
+    #.text section
+      - [0x1000,  hasm,     src/code0/entrypoint]
+      - [0x1050,  asm,      src/code0/main]
+      - [0x4590,  asm,      src/code0/code0]
+      - [0xBC0B0, bin,      ucode/rspboot.text]
+      - [0xBC180, bin,      ucode/gspF3DEX2.NoN.fifo.text]
+      - [0xBD510, bin,      ucode/aspMain.text]
+    #.data section
+      - [0xBE330, data,     src/code0/main]
+      - [0xBE390, data,     src/code0/code0]
+      - [0xE4DC0, bin,      ucode/gspF3DEX2.NoN.fifo.data]
+      - [0xE51E0, bin,      ucode/aspMain.data]
+    #.rodata section
+      - [0xE54A0, rodata,   src/code0/main]
+      - [0xE5500, rodata,   src/code0/code0]
+    #.bss section
+      - {start: 0xEB820, type: bss, vram: 0x800EAC20, name: src/code0/code0}
+
+  - name: code1
+    type: code
+    start: 0xEB820
+    follows_vram: code0
+    vram: 0x801CCDE0
+    bss_size: 0x2F30
+    bss_contains_common: True
+    subalign: null
+    subsegments:
+    #.text section
+      - [0xEB820,  asm,     src/code1/EB300]
+    #.data section
+      - [0xF4BE0,  data,    src/code1/code1]
+    #.rodata section
+      - [0xF6810,  rodata,  src/code1/code1]
+    #.bss section
+      - {start: 0xF7490, type: bss, vram: 0x801D8A50, name: src/code1/code1}
+
+  - name: static
+    type: code
+    start: 0xF7490
+    vram: 0x01000000
+    subalign: 4 #Is it?
+    subsegments:
+    - {start: 0xF7490,  type:  data,   vram: 0x01000000, name: src/static/static}
+    - {start: 0x11DEA0, type:  rodata, vram: 0x01026A10, name: src/static/static}
+
+  - [0x120920, bin, assets]
+
+  - [0x1FCBF10]

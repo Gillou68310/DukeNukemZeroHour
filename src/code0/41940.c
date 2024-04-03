@@ -5070,7 +5070,7 @@ void func_8004BFDC(s32 spritenum, s32 arg1, s32 z, s32 arg3)
 }
 #else
 /*8004BFDC*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_8004BFDC);
+INCLUDE_ASM("src/code0/41940", func_8004BFDC);
 #endif
 
 /*8004CB3C*/
@@ -7304,7 +7304,7 @@ static u8 func_8005259C(s16 playernum, s16 arg1, u32 arg2, s16 spritenum) /*Pick
 #else
 /*8005259C*/
 STATIC u8 func_8005259C(s16 playernum, s16 arg1, u32 arg2, s16 spritenum);
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_8005259C);
+INCLUDE_ASM("src/code0/41940", func_8005259C);
 #endif
 
 /*80052AB0*/
@@ -9133,7 +9133,7 @@ void func_80055EC0(s32 spritenum, s32 arg1)
 }
 #else
 /*80055EC0*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_80055EC0);
+INCLUDE_ASM("src/code0/41940", func_80055EC0);
 #endif
 
 /*800563D4*/
@@ -10109,5 +10109,5 @@ void func_80058E44(s32 spritenum)
 }
 #else
 /*80058E44*/
-INCLUDE_ASM("nonmatchings/src/code0/41940", func_80058E44);
+INCLUDE_ASM("src/code0/41940", func_80058E44);
 #endif
