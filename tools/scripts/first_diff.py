@@ -27,18 +27,25 @@ parser.add_argument(
 parser.add_argument(
     "-m", "--make", help="run make before finding difference(s)", action="store_true"
 )
+parser.add_argument(
+    "-v",
+    "--version",
+    type=str,
+    default='us',
+    help="game version",
+)
 args = parser.parse_args()
 
 diff_count = args.count
 
 if args.make:
-    check_call(["make", "build/dukenukemzerohour.z64"])
+    check_call(["make", "build/"+args.version+"/dukenukemzerohour.z64"])
 
-baseimg = f"baserom.us.z64"
-basemap = f"expected/build/dukenukemzerohour.map"
+baseimg = f"baserom."+args.version+".z64"
+basemap = f"expected/build/"+args.version+"/dukenukemzerohour.map"
 
-myimg = f"build/dukenukemzerohour.z64"
-mymap = f"build/dukenukemzerohour.map"
+myimg = f"build/"+args.version+"/dukenukemzerohour.z64"
+mymap = f"build/"+args.version+"/dukenukemzerohour.map"
 
 if not os.path.isfile(baseimg):
     print(f"{baseimg} must exist.")

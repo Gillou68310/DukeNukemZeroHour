@@ -54,6 +54,8 @@ endif
 LIBULTRA_DIR := libs/libultra
 LIBKMC_DIR   := libs/libkmc
 LIBMUS_DIR   := libs/libmus
+VERSION_DIR  := versions/$(VERSION)
+LINKER_DIR   := linker_scripts/$(VERSION)
 ROM          := $(BUILD_DIR)/$(TARGET).z64
 ELF          := $(BUILD_DIR)/$(TARGET).elf
 LD_SCRIPT    := $(TARGET).ld
@@ -64,7 +66,7 @@ LD_MAP       := $(BUILD_DIR)/$(TARGET).map
 
 PYTHON     := python3
 N64CKSUM   := $(PYTHON) tools/scripts/n64cksum.py
-SPLAT_YAML := versions/$(VERSION)/$(TARGET).yaml
+SPLAT_YAML := $(VERSION_DIR)/$(TARGET).yaml
 SPLAT      := splat split $(SPLAT_YAML)
 DIFF       := diff
 EXTRACT	   := $(PYTHON) tools/scripts/extract_assets.py
@@ -99,7 +101,7 @@ OPTFLAGS       := -O2 -g2
 ASFLAGS        := -G0 -mips3 -I include
 CFLAGS         := -G0 -mips3 -mgp32 -mfp32 -funsigned-char #-save-temps #-Wa,--vr4300mul-off
 CPPFLAGS       := -I include -I gen/$(VERSION) -I $(LIBULTRA_DIR)/include/2.0I -D_LANGUAGE_C -DF3DEX_GBI_2 -D_MIPS_SZLONG=32 -D_FINALROM -DTARGET_N64
-LDFLAGS        := -T versions/$(VERSION)/undefined_syms.txt -T versions/$(VERSION)/undefined_funcs.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(LD_MAP) --no-check-sections
+LDFLAGS        := -T $(VERSION_DIR)/undefined_syms.txt -T $(VERSION_DIR)/undefined_funcs.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(LD_MAP) --no-check-sections
 CHECK_WARNINGS := -Wall -Wextra -Wno-missing-braces -Wno-format-security -Wno-unused-parameter -Wno-unused-variable -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -Wno-unused-function
 CFLAGS_CHECK   := -m32 -fsyntax-only -funsigned-char -nostdinc -fno-builtin -std=gnu90
 CFLAGS_MODERN  := -mabi=32 -march=vr4300 -mfix4300 -mno-abicalls -fno-pic -fno-exceptions -fno-stack-protector -fno-zero-initialized-in-bss -fno-builtin -mno-gpopt -fno-toplevel-reorder -DMODERN
@@ -122,6 +124,7 @@ ifeq ($(VERSION),us)
     CPPFLAGS += -DVERSION_US=1
 else ifeq ($(VERSION),fr)
     CPPFLAGS += -DVERSION_FR=1
+    LDFLAGS += -T $(LINKER_DIR)/undefined_syms_auto.txt #TODO: remove
 else
 $(error Invalid VERSION variable detected. Please use either 'us' or 'fr')
 endif
@@ -129,7 +132,7 @@ endif
 ### Sources ###
 
 # Object files
-OBJECTS := $(shell grep -E 'BUILD_PATH.+\.o' linker_scripts/$(VERSION)/$(LD_SCRIPT) -o)
+OBJECTS := $(shell grep -E 'BUILD_PATH.+\.o' $(LINKER_DIR)/$(LD_SCRIPT) -o)
 OBJECTS := $(OBJECTS:BUILD_PATH/%=$(BUILD_DIR)/%)
 DEPENDS := $(OBJECTS:=.d)
 
@@ -171,7 +174,7 @@ clean:
 
 distclean: clean
 	$(V)rm -rf assets/$(VERSION)
-	$(V)rm -rf linker_scripts/$(VERSION)
+	$(V)rm -rf $(LINKER_DIR)
 	$(V)rm -rf gen/$(VERSION)
 	$(V)rm -rf asm/$(VERSION)
 	$(V)rm -rf tmp/
@@ -189,7 +192,7 @@ extract:
 	$(V)$(EXTRACT)
 	
 compare:
-	$(V)$(PYTHON) tools/scripts/first_diff.py
+	$(V)$(PYTHON) tools/scripts/first_diff.py -v $(VERSION)
 
 # Compile .c files with kmc gcc but preprocessed by modern gnu cpp
 $(BUILD_DIR)/%.c.o: %.c
@@ -214,7 +217,7 @@ $(BUILD_DIR)/%.bin.o: %.bin
 	@mkdir -p $(shell dirname $@)
 	$(V)$(LD) -r -b binary -o $@ $<
 
-$(BUILD_DIR)/$(LD_SCRIPT): linker_scripts/$(VERSION)/$(LD_SCRIPT)
+$(BUILD_DIR)/$(LD_SCRIPT): $(LINKER_DIR)/$(LD_SCRIPT)
 	@$(PRINT)$(GREEN)Preprocessing linker script: $(ENDGREEN)$(BLUE)$<$(ENDBLUE)$(ENDLINE)
 	$(V)$(CPP) -P -DBUILD_PATH=$(BUILD_DIR) $< -o $@
 
