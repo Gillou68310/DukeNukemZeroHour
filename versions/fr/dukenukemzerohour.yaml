@@ -71,18 +71,25 @@ segments:
     #.text section
       - [0x1000,  hasm,     src/code0/entrypoint]
       - [0x1050,  c,        src/code0/main]
-      - [0x4590,  asm,      src/code0/code0]
+      - [0x4590,  c,        src/code0/4590]
+      - [0x4600,  c,        src/code0/4600]
+      - [0x5D50,  c,        src/code0/graphics]
+      - [0x71F0,  asm,      src/code0/code0]
       - [0xBC0B0, bin,      ucode/rspboot.text]
       - [0xBC180, bin,      ucode/gspF3DEX2.NoN.fifo.text]
       - [0xBD510, bin,      ucode/aspMain.text]
     #.data section
       - [0xBE330, .data,    src/code0/main]
-      - [0xBE390, data,     src/code0/code0]
+      - [0xBE390, .data,    src/code0/4600]
+      - [0xBE3B0, .data,    src/code0/graphics]
+      - [0xBE3C0, data,     src/code0/code0]
       - [0xE4DC0, bin,      ucode/gspF3DEX2.NoN.fifo.data]
       - [0xE51E0, bin,      ucode/aspMain.data]
     #.rodata section
       - [0xE54A0, .rodata,  src/code0/main]
-      - [0xE5520, rodata,   src/code0/code0]
+      - [0xE5520, .rodata,  src/code0/4600]
+      - [0xE5570, .rodata,  src/code0/graphics]
+      - [0xE55B0, rodata,   src/code0/code0]
     #.bss section
       - {start: 0xEB820, type: .bss, vram: 0x800EAC20, name: src/code0/main}
       - {start: 0xEB820, type:  bss, vram: 0x800F7560, name: src/code0/code0}
