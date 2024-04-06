@@ -12,9 +12,7 @@ options:
   create_undefined_syms_auto: True
   undefined_funcs_auto_path: linker_scripts/fr/undefined_funcs_auto.txt
   undefined_syms_auto_path: linker_scripts/fr/undefined_syms_auto.txt
-  symbol_addrs_path:
-    - "versions/fr/symbol_addrs.txt"
-    - "versions/fr/static_offsets.txt"
+  symbol_addrs_path: "versions/fr/symbol_addrs.txt"
   reloc_addrs_path: versions/fr/reloc_addrs.txt
   hasm_in_src_path: True
   asm_path: asm/fr
@@ -74,7 +72,8 @@ segments:
       - [0x4590,  c,        src/code0/4590]
       - [0x4600,  c,        src/code0/4600]
       - [0x5D50,  c,        src/code0/graphics]
-      - [0x71F0,  asm,      src/code0/code0]
+      - [0x71F0,  c,        src/code0/audio]
+      - [0x93D0,  asm,      src/code0/code0]
       - [0xBC0B0, bin,      ucode/rspboot.text]
       - [0xBC180, bin,      ucode/gspF3DEX2.NoN.fifo.text]
       - [0xBD510, bin,      ucode/aspMain.text]
@@ -82,14 +81,16 @@ segments:
       - [0xBE330, .data,    src/code0/main]
       - [0xBE390, .data,    src/code0/4600]
       - [0xBE3B0, .data,    src/code0/graphics]
-      - [0xBE3C0, data,     src/code0/code0]
+      - [0xBE3C0, .data,    src/code0/audio]
+      - [0xBE670, data,     src/code0/code0]
       - [0xE4DC0, bin,      ucode/gspF3DEX2.NoN.fifo.data]
       - [0xE51E0, bin,      ucode/aspMain.data]
     #.rodata section
       - [0xE54A0, .rodata,  src/code0/main]
       - [0xE5520, .rodata,  src/code0/4600]
       - [0xE5570, .rodata,  src/code0/graphics]
-      - [0xE55B0, rodata,   src/code0/code0]
+      - [0xE55B0, .rodata,  src/code0/audio]
+      - [0xE55F0, rodata,   src/code0/code0]
     #.bss section
       - {start: 0xEB820, type: .bss, vram: 0x800EAC20, name: src/code0/main}
       - {start: 0xEB820, type:  bss, vram: 0x800F7560, name: src/code0/code0}
@@ -104,12 +105,13 @@ segments:
     subalign: null
     subsegments:
     #.text section
-      - [0xEB820,  asm,     src/code1/EB300]
+      - [0xEB820,  asm,    src/code1/EB300]
     #.data section
-      - [0xF4BE0,  data,    src/code1/code1]
+      - [0xF4BE0,  data,   src/code1/EB300]
     #.rodata section
-      - [0xF6810,  rodata,  src/code1/code1]
+      - [0xF6810,  rodata, src/code1/EB300]
     #.bss section
+#      - {start: 0xF7490, type: .bss, vram: 0x801D8A50, name: src/code1/EB300}
       - {start: 0xF7490, type: bss, vram: 0x801D8A50, name: src/code1/code1}
 
   - name: static
@@ -121,6 +123,94 @@ segments:
     - {start: 0xF7490,  type:  data,   vram: 0x01000000, name: src/static/static}
     - {start: 0x11DEA0, type:  rodata, vram: 0x01026A10, name: src/static/static}
 
-  - [0x120920, bin, assets]
+  - [0x0120920, bin]
+
+  #unknown files
+  - [0x1004760, bin, files/1003A60]
+  - [0x1004F60, bin, files/1004260]
+  - [0x1005760, bin, files/1004A60]
+  - [0x1005F60, bin, files/1005260]
+  - [0x1006760, bin, files/1005A60]
+  - [0x1006F60, bin, files/1006260]
+  - [0x1007760, bin, files/1006A60]
+  - [0x1007F60, bin, files/1007260]
+  - [0x1008760, bin, files/1007A60]
+  - [0x1008F60, bin, files/1008260]
+  - [0x1009760, bin, files/1008A60]
+  - [0x1009F60, bin, files/1009260]
+
+  #Art
+  - [0x100A760, bin]
+
+  - [0x11926F0, bin, sounds/bank0.ptr]
+  - [0x11BB540, bin, sounds/bank0.wbk]
+  - [0x1A7EF60, bin, sounds/sfx.bfx]
+
+  - [0x1A8C2C0, bin, sounds/training_base]
+
+  - [0x1A8CBE0, bin, sounds/bank1.ptr]
+  - [0x1A8E950, bin, sounds/bank1.wbk]
+  - [0x1B073C0, bin, sounds/western1]
+  - [0x1B08E70, bin, sounds/western2]
+
+  - [0x1B09520, bin, sounds/bank2.ptr]
+  - [0x1B09FD0, bin, sounds/bank2.wbk]
+  - [0x1B491B0, bin, sounds/western_mine_cart]
+
+  - [0x1B499C0, bin, sounds/bank3.ptr]
+  - [0x1B4D820, bin, sounds/bank3.wbk]
+  - [0x1D2B0F0, bin, sounds/present_day2]
+  - [0x1D2CFC0, bin, sounds/present_day1]
+  - [0x1D2E920, bin, sounds/title_screen]
+  - [0x1D30810, bin, sounds/present_day_boss_hog]
+
+  - [0x1D31B50, bin, sounds/bank4.ptr]
+  - [0x1D32C30, bin, sounds/bank4.wbk]
+  - [0x1DAAE70, bin, sounds/victorian1]
+  - [0x1DAB4E0, bin, sounds/victorian2]
+
+  - [0x1DAC140, bin, sounds/bank5.ptr]
+  - [0x1DAC4C0, bin, sounds/bank5.wbk]
+  - [0x1E72650, bin, sounds/boss]
+
+  - [0x1E72720, bin, sounds/bank6.ptr]
+  - [0x1E72CA0, bin, sounds/bank6.wbk]
+  - [0x1F061F0, bin, sounds/final_alien_mother]
+
+  - [0x1F06320, bin, sounds/bank7.ptr]
+  - [0x1F07270, bin, sounds/bank7.wbk]
+  - [0x1F3C080, bin, sounds/ambient1]
+
+  - [0x1F3CA80, bin, sounds/bank8.ptr]
+  - [0x1F3D1E0, bin, sounds/bank8.wbk]
+  - [0x1F5B960, bin, sounds/ambient2]
+
+  - [0x1F5C000, bin, sounds/bank9.ptr]
+  - [0x1F5C840, bin, sounds/bank9.wbk]
+  - [0x1F7A6A0, bin, sounds/ambient3]
+
+  - [0x1F7BC50, bin, sounds/bank10.ptr]
+  - [0x1F7C2D0, bin, sounds/bank10.wbk]
+  - [0x1F8D200, bin, sounds/ambient4]
+
+  - [0x1F8DA10, bin, sounds/bank11.ptr]
+  - [0x1F8DC40, bin, sounds/bank11.wbk]
+  - [0x1F91CD0, bin, sounds/ambient5]
+
+  - [0x1F91EB0, bin, sounds/bank12.ptr]
+  - [0x1F92530, bin, sounds/bank12.wbk]
+  - [0x1FAB150, bin, sounds/ambient6]  #waterworld
+
+  - [0x1FABA30, bin, sounds/bank13.ptr]
+  - [0x1FABC10, bin, sounds/bank13.wbk]
+  - [0x1FB5FE0, bin, sounds/ambient7]
+
+  - [0x1FB6590, bin, sounds/bank14.ptr]
+  - [0x1FB6770, bin, sounds/bank14.wbk]
+  - [0x1FC5680, bin, sounds/ambient8]
+
+  - [0x1FC63A0, bin, sounds/bank15.ptr]
+  - [0x1FC64B0, bin, sounds/bank15.wbk]
+  - [0x1FCBEA0, bin, sounds/ambient9]
 
   - [0x1FCBF10]

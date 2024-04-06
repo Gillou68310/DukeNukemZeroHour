@@ -10,6 +10,7 @@ if __name__ == "__main__":
         print('bindiff.py START END')
         sys.exit(1)
     
+    VERSION = 'fr'
     start = int(sys.argv[1], 16)
     end = int(sys.argv[2], 16)
     len = end - start
@@ -17,8 +18,8 @@ if __name__ == "__main__":
     fd1, path1 = tempfile.mkstemp()
     fd2, path2 = tempfile.mkstemp()
     
-    target = subprocess.run(('hexdump', '-C', '-v', '-s', str(start), '-n', str(len), 'baserom.us.z64'), capture_output=True)
-    current = subprocess.run(('hexdump', '-C', '-v', '-s', str(start), '-n', str(len), 'build/dukenukemzerohour.z64'), capture_output=True)
+    target = subprocess.run(('hexdump', '-C', '-v', '-s', str(start), '-n', str(len), 'baserom.'+VERSION+'.z64'), capture_output=True)
+    current = subprocess.run(('hexdump', '-C', '-v', '-s', str(start), '-n', str(len), 'build/'+VERSION+'/dukenukemzerohour.z64'), capture_output=True)
     
     f1 = open(path1, 'wb')
     f2 = open(path2, 'wb')

@@ -12,9 +12,7 @@ options:
   create_undefined_syms_auto: False
   undefined_funcs_auto_path: linker_scripts/us/undefined_funcs_auto.txt
   undefined_syms_auto_path: linker_scripts/us/undefined_syms_auto.txt
-  symbol_addrs_path:
-    - "versions/us/symbol_addrs.txt"
-    - "versions/us/static_offsets.txt"
+  symbol_addrs_path: "versions/us/symbol_addrs.txt"
   reloc_addrs_path: versions/us/reloc_addrs.txt
   hasm_in_src_path: True
   asm_path: asm/us

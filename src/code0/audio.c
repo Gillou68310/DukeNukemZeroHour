@@ -506,6 +506,7 @@ void audio_80006CC0(void)
         }
     }
 
+#if VERSION_US
     if (gMapNum == MAP_PROBING_THE_DEPTHS)
     {
         if (gPlayer[0].unk50 != -1)
@@ -520,6 +521,7 @@ void audio_80006CC0(void)
         }
     }
     else
+#endif
     {
         if (gMusicVolume == 0)
         {
