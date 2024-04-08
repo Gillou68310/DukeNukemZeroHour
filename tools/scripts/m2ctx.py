@@ -21,7 +21,6 @@ CFLAGS = [
 CPP_FLAGS = [
     "-Iinclude",
     "-Igen/us",
-    "-Igen/fr",
     "-Ilibs/libultra/include/2.0I",
     "-Ilibs/libmus/include",
     "-Ilibs/libkmc/include",
@@ -36,6 +35,7 @@ CPP_FLAGS = [
     "-D__attribute__(A)=",
     "-U__mips",
     "-D__CTX__",
+    "-DVERSION_US=1",
 ]
 
 def import_c_file(in_file, macro, linemarker) -> str:

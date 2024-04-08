@@ -7,8 +7,7 @@ import os
 import m2ctx
 import sys
 import tqdm
-sys.path.insert(1, 'tools/splat')
-import split
+from splat.scripts import split
 from multiprocessing import Pool
 
 class SYMBOL:
@@ -251,15 +250,19 @@ if __name__ == '__main__':
     BUILD_DIR = 'tmp'
 
     # Initialize splat symbols
-    with open('dukenukemzerohour.yaml') as f:
+    VERSION='us'
+    yaml = 'versions/'+VERSION+'/dukenukemzerohour.yaml'
+    symbol_addrs = 'versions/'+VERSION+'/symbol_addrs.txt'
+    with open(yaml) as f:
         config = split.yaml.load(f.read(), Loader=split.yaml.SafeLoader)
-    split.options.initialize(config, 'dukenukemzerohour.yaml', None, None)
+    config['options']['base_path'] = '.'
+    split.options.initialize(config, yaml, None, None)
     all_segments = split.initialize_segments(config["segments"])
-    split.disassembler_instance.create_disassembler_instance("n64")
+    split.disassembler_instance.create_disassembler_instance(skip_version_check=True, splat_version='')
     split.symbols.initialize(all_segments)
 
     # Parse symbols from config file
-    parse_symbols_from_config('symbol_addrs.txt', symbols)
+    parse_symbols_from_config(symbol_addrs, symbols)
 
     # Parse symbols from source files
     h_files = [y for x in os.walk('include') for y in glob.glob(os.path.join(x[0], '*.h'))]
@@ -306,7 +309,7 @@ if __name__ == '__main__':
                     symbols.rename(symbol.splat.name, (prefix + symbol.splat.name))
 
     # Write symbols to files
-    f = open('symbol_addrs.txt.new', 'w')
+    f = open(symbol_addrs+'.new', 'w')
     try:
         for i in range(0, len(symbols.symbols)):
             line = ''
@@ -360,8 +363,8 @@ if __name__ == '__main__':
             f.write(line.strip())
             f.write('\n')
         f.close()
-        os.remove('symbol_addrs.txt')
-        os.rename('symbol_addrs.txt.new', 'symbol_addrs.txt')
+        os.remove(symbol_addrs)
+        os.rename(symbol_addrs+'.new', symbol_addrs)
     except:
         f.close()
-        os.remove('symbol_addrs.txt.new')
+        os.remove(symbol_addrs+'.new')

@@ -67,6 +67,7 @@ def generate_context(file: str, prune: False) -> None:
     return macro + c_generator.CGenerator().visit(ast)
 
 if __name__ == "__main__":
+    VERSION='us'
     parser = argparse.ArgumentParser()
     parser.add_argument("c_file")
     parser.add_argument('-p', '--prune', action='store_true', help='Prune context')
@@ -75,7 +76,7 @@ if __name__ == "__main__":
 
     api_base = os.environ.get("DECOMPME_API_BASE", "https://decomp.me")
 
-    path = list(Path('nonmatchings/').rglob(args.c_file + '*'))
+    path = list(Path('asm/'+VERSION+'/nonmatchings/').rglob(args.c_file + '*'))
     
     if len(path) == 0:
         print('Cannot find function ' + args.c_file)

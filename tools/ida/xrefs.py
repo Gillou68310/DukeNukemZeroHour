@@ -1,9 +1,7 @@
 import ida_segment
 import ida_name
 import idautils
-import sys
-sys.path.append("./tools/splat")
-from split import *
+from splat.scripts import split
 
 def xrefs(segment, section):
     name = '.' + segment.name + '.' + section
@@ -38,10 +36,14 @@ def xrefs(segment, section):
     f.close()
 
 # Load config
-with open('dukenukemzerohour.yaml') as f:
-    config = yaml.load(f.read(), Loader=yaml.SafeLoader)
-options.initialize(config, 'dukenukemzerohour.yaml', None, None)
-all_segments = initialize_segments(config["segments"])
+VERSION = 'us'
+yaml = 'versions/'+VERSION+'/dukenukemzerohour.yaml'
+with open(yaml) as f:
+    config = split.yaml.load(f.read(), Loader=split.yaml.SafeLoader)
+config['options']['base_path'] = '.'
+split.options.initialize(config, yaml, None, None)
+split.disassembler_instance.create_disassembler_instance(skip_version_check=True, splat_version='')
+all_segments = split.initialize_segments(config["segments"])
 for segment in all_segments:
     if segment.name == 'code0' or segment.name == 'code1':
         xrefs(segment, 'text')

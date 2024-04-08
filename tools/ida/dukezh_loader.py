@@ -14,8 +14,10 @@ def accept_file(fd, fname):
     if type(fname) == str:
         fd.seek(0x20)
         name = fd.read(20)
+        fd.seek(0x3B)
+        id = fd.read(4)
 
-        if name == b'DUKE NUKEM ZERO HOUR':
+        if name == b'DUKE NUKEM ZERO HOUR' and id == b'NDZE':
             ret = {"format" : "DUKE NUKEM ZERO HOUR", "processor" : "mipsr"}
 
     return ret

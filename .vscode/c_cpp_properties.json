@@ -27,8 +27,8 @@
                 "STATIC=",
                 "NON_MATCHING",
                 "__CTX__",
-		"AVOID_UB",
-		"VERSION_US=1"
+                "AVOID_UB",
+                "VERSION_US=1"
             ],
             "cStandard": "c89",
             "cppStandard": "c++17",

@@ -6,10 +6,7 @@ import struct
 import tqdm
 import edl
 import os
-
-import sys
-sys.path.insert(1, 'tools/splat')
-import split
+from splat.scripts import split
 
 def get_segment(segname, segments):
     for segment in segments:
@@ -66,7 +63,7 @@ def extract_models(rom):
                                     symbol.vram_start))
     
     # Get models data
-    model_segment = get_segment('files/models', all_segments)
+    model_segment = get_segment('models', all_segments)
     models_data = rom[model_segment.rom_start:model_segment.rom_end]
 
     # Create models folder
@@ -130,7 +127,7 @@ def extract_tiles(rom):
         j += 1
 
     # Get tiles data
-    tile_segment = get_segment('files/tiles', all_segments)
+    tile_segment = get_segment('tiles', all_segments)
     tiles_data = rom[tile_segment.rom_start:tile_segment.rom_end]
 
     # Create tiles folder
@@ -198,10 +195,14 @@ def extract_tiles(rom):
             assert(0)
 
 if __name__ == '__main__':
-    with open('dukenukemzerohour.yaml') as f:
+    VERSION = 'us'
+    yaml = 'versions/'+VERSION+'/dukenukemzerohour.yaml'
+    with open(yaml) as f:
         config = split.yaml.load(f.read(), Loader=split.yaml.SafeLoader)
-    split.options.initialize(config, 'dukenukemzerohour.yaml', None, None)
+    config['options']['base_path'] = '.'
+    split.options.initialize(config, yaml, None, None)
     all_segments = split.initialize_segments(config["segments"])
+    split.disassembler_instance.create_disassembler_instance(skip_version_check=True, splat_version='')
     split.symbols.initialize(all_segments)
 
     f = open('baserom.us.z64', 'rb')

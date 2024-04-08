@@ -63,7 +63,8 @@ def parse_source_file(file: str) -> None:
 
 if __name__ == '__main__':
     #TODO: check arg
-    c_file = sys.argv[1].replace('data/', 'src/', 1).replace('.data.s', '.c')
+    VERSION = 'us'
+    c_file = sys.argv[1].replace('asm/'+VERSION+'/data/', '', 1).replace('.data.s', '.c')
 
     symbols = {}
     includes = []
@@ -94,7 +95,6 @@ if __name__ == '__main__':
         else:
             f.write(line+'\n')
     f.close()
-
 
     # Parse decompiled data
     v, ctx = parse_source_file('data.c')

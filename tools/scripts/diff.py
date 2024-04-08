@@ -127,8 +127,8 @@ def parse_symbols_from_config(file: str) -> None:
     return symbols
 
 if __name__ == "__main__":
-    name_max_size = 0
     VERSION = 'fr'
+    name_max_size = 0
     source_file=sys.argv[1]
 
     # Get list of symbols from config file
@@ -139,6 +139,7 @@ if __name__ == "__main__":
     config['options']['base_path'] = '.'
     split.options.initialize(config, yaml, None, None)
     all_segments = split.initialize_segments(config["segments"])
+    split.disassembler_instance.create_disassembler_instance(skip_version_check=True, splat_version='')
     split.symbols.initialize(all_segments)
 
     symbols = parse_symbols_from_config(symbol_addrs)

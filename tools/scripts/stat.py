@@ -84,18 +84,18 @@ def write_output_file(path, funcs, scratches):
     f.close()
 
 if __name__ == "__main__":
-
+    VERSION='us'
     api_base = os.environ.get("DECOMPME_API_BASE", "https://decomp.me")
 
-    dirs = glob.glob("nonmatchings/src/code0/*")
-    dirs += glob.glob("nonmatchings/src/code1/*")
+    dirs = glob.glob('asm/'+VERSION+'/nonmatchings/src/code0/*')
+    dirs += glob.glob('asm/'+VERSION+'/nonmatchings/src/code1/*')
 
     shutil.rmtree('stats', ignore_errors=True)
     os.mkdir('stats')
     os.mkdir('stats/code0')
     os.mkdir('stats/code1')
 
-    symbols = parse_symbol_addrs('symbol_addrs.txt')
+    symbols = parse_symbol_addrs('versions/'+VERSION+'/symbol_addrs.txt')
 
     #Get NON_MATCHING funcs
     c_files = [y for x in os.walk('src') for y in glob.glob(os.path.join(x[0], '*.c'))]

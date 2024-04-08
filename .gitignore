@@ -3,9 +3,10 @@ asm/
 build/
 assets/
 extracted/
+nonmatchings/
 gen/
 tmp/
-docs/
+stats/
 linker_scripts/
 *ctx.c
 .vscode/

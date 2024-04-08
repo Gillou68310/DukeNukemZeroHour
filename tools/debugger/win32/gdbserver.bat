@@ -10,4 +10,4 @@ tools\debugger\win32\mupen64plus\mupen64plus-ui-console.exe ^
 --emumode 0 ^
 --windowed ^
 --gdbstub 4600 ^
-build\dukenukemzerohour.z64
+build\us\dukenukemzerohour.z64

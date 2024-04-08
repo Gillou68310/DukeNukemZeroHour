@@ -58,8 +58,10 @@ def parse_symbol_addrs(file):
 #Wait for auto-analysis to finish before running script
 ida_auto.auto_wait()
 
+VERSION = 'us'
+
 # Add symbols
-symbols = parse_symbol_addrs('symbol_addrs.txt')
+symbols = parse_symbol_addrs('versions/'+VERSION+'/symbol_addrs.txt')
 for symbol in symbols:
     if symbol.ignore:
         continue
