@@ -7,10 +7,11 @@ import subprocess
 import sys
 from colour import Color
 
+VERSION='us'
 script_dir = os.path.dirname(os.path.realpath(__file__))
 root_dir = os.path.join(script_dir, "../..")
-asm_dir = os.path.join(root_dir, "nonmatchings")
-build_dir = os.path.join(root_dir, "build")
+asm_dir = os.path.join(root_dir, "asm/"+VERSION+"/nonmatchings")
+build_dir = os.path.join(root_dir, "build/"+VERSION)
 elf_path = os.path.join(build_dir, "dukenukemzerohour.elf")
 
 def parse_source_file(file, addrs):

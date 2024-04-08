@@ -5,13 +5,13 @@ on: [push, pull_request_target]
 
 jobs:
   build_repo:
-    name: Build repo
+    name: Build repo (${{ matrix.version }})
     runs-on: ubuntu-20.04
 
     strategy:
       fail-fast: false
       matrix:
-        version: [us]
+        version: [us, fr]
 
     steps:
     - name: Checkout repository
@@ -26,6 +26,9 @@ jobs:
     - name: Upgrade pip
       run: pip3 install --upgrade pip
       
+    - name: Install Splat
+      run: pip3 install -U splat64[mips]
+
     - name: Install Python Dependencies
       run: pip3 install -r requirements.txt
 
@@ -40,16 +43,16 @@ jobs:
       run: cp deps_repo/dukezh/* .
 
     - name: Setup
-      run: make setup -j $(nproc)
+      run: make setup -j $(nproc) VERSION=${{ matrix.version }}
 
     - name: Build Duke Nukem Zero Hour (MATCHING)
-      run: make -j $(nproc)
+      run: make -j $(nproc) VERSION=${{ matrix.version }}
       
     - name: Build Duke Nukem Zero Hour (NON_MATCHING)
-      run: make -j $(nproc) NON_MATCHING=1 BUILD_DIR=build_non_matching
+      run: make -j $(nproc) VERSION=${{ matrix.version }} NON_MATCHING=1 BUILD_DIR=build_non_matching/${{ matrix.version }}
       
     - name: Build Duke Nukem Zero Hour (MODERN GCC)
-      run: make -j $(nproc) MODERN=1 BUILD_DIR=build_modern
+      run: make -j $(nproc) VERSION=${{ matrix.version }} MODERN=1 BUILD_DIR=build_modern/${{ matrix.version }}
 
     - name: Upload frogress
       if: github.ref == 'refs/heads/master'
