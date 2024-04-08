@@ -2,7 +2,6 @@ D_01000000                         = 0x01000000; // ignore:true
 D_01000004                         = 0x01000004; // ignore:true
 D_01000008                         = 0x01000008; //               size:0x200                             (global, .data,   src/static/F6D70.c)
 D_01000180                         = 0x01000180; // ignore:true
-D_01000208                         = 0x01000208;
 D_010002BC                         = 0x010002BC; // ignore:true
 D_01000400                         = 0x01000400; // ignore:true
 D_01000800                         = 0x01000800; // ignore:true

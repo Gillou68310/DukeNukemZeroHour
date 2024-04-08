@@ -4,6 +4,7 @@ from dataclasses import dataclass
 import subprocess
 import m2ctx
 import sys
+import os
 
 @dataclass
 class SYMBOLS():
@@ -63,8 +64,22 @@ def parse_source_file(file: str) -> None:
 
 if __name__ == '__main__':
     #TODO: check arg
-    VERSION = 'us'
-    c_file = sys.argv[1].replace('asm/'+VERSION+'/data/', '', 1).replace('.data.s', '.c')
+    VERSION = 'fr'
+    asm = sys.argv[1]
+    c_file = asm.replace('asm/'+VERSION+'/data/', '', 1).replace('.data.s', '.c')
+    rodata = asm.replace('.data.s', '.rodata.s')
+
+    if os.path.isfile(rodata):
+        # Merge data + rodata
+        filenames = [rodata, asm]
+        f = open('data.s', 'w')
+        for fname in filenames:
+            with open(fname) as infile:
+                for line in infile:
+                    f.write(line)
+            f.write('\n\n')
+        f.close()
+        asm = 'data.s'
 
     symbols = {}
     includes = []
@@ -79,7 +94,7 @@ if __name__ == '__main__':
     f.close()
 
     # Decompile data
-    decomp = subprocess.check_output(['tools/m2c/m2c.py', '--globals', 'all', '--context', 'data.c', sys.argv[1]], encoding="utf-8")
+    decomp = subprocess.check_output(['tools/m2c/m2c.py', '--globals', 'all', '--context', 'data.c', asm], encoding="utf-8")
 
     #TODO: check for 'unable to generate initializer'?
 
@@ -114,7 +129,7 @@ if __name__ == '__main__':
                     lines[line-1] = 'static ' + lines[line-1]
                 insert[line-1] = '/*' + f'{sym.addr:08X}' + '*/'
         else:
-            print('Error: ' + name + 'not declared')
+            print('Error: ' + name + ' not declared')
 
     # Write decompiled data with additional infos
     f = open('data.c', 'w')

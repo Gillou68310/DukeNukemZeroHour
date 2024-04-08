@@ -259,13 +259,13 @@ if __name__ == "__main__":
                 assert(l1[i].inst == 'addiu' or '(' in l1[i].regs[1])
 
                 if l1[i].rlabel == '.text' or l1[i].rlabel == '.data' or l1[i].rlabel == '.rodata' or l1[i].rlabel == '.bss':
-                    assert(int(l2[hi].regs[1], 16) == 0)
+                    addr = addr+(int(l2[hi].regs[1], 16) << 16)
                     offset = (int(l1[hi].regs[1], 16) << 16)
                     if l1[i].inst == 'addiu':
-                        assert(int(l2[i].regs[2]) == 0)
+                        addr = addr+int(l2[i].regs[2])
                         offset = offset+int(l1[i].regs[2])
                     else:
-                        assert(int(l2[i].regs[1].split('(')[0]) == 0)
+                        addr = addr+int(l2[i].regs[1].split('(')[0])
                         offset = offset+int(l1[i].regs[1].split('(')[0])
 
                     d = symtab1[l1[i].rlabel].get(offset)

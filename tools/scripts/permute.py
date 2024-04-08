@@ -54,7 +54,7 @@ if __name__ == "__main__":
     
     # Merge context + code
     filenames = [os.path.join(tempdir.name, 'ctx.c'), os.path.join(tempdir.name, 'code.c')]
-    f =  open(os.path.join(tempdir.name, 'func.c'), 'w')
+    f = open(os.path.join(tempdir.name, 'func.c'), 'w')
     for fname in filenames:
         with open(fname) as infile:
             for line in infile:

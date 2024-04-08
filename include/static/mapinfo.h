@@ -6,7 +6,7 @@
 #define MAP_MEAN_STREETS 0
 #define MAP_LIBERTY_OR_DEATH 1
 #define MAP_NUCLEAR_WINTER 2
-#define MAP_WETWORLD 3  
+#define MAP_WETWORLD 3
 #define MAP_FALLOUT 4
 #define MAP_UNDER_SIEGE 5
 #define MAP_BOSS_HOG 6
