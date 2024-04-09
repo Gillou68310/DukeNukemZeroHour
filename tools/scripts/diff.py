@@ -9,7 +9,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Instruction():
-    opcode: int
+    data: int
     inst: str
     regs: list
     desc: str
@@ -27,66 +27,120 @@ class Symbol():
 
 def parse_objdump_output(text):
     lines = text.splitlines()
+    sections = ['.text', '.data', '.rodata', '.bss']
+    
     inst = []
+    relocs = {}
     symtab = {}
-    symtab['.text'] = {}
-    symtab['.data'] = {}
-    symtab['.rodata'] = {}
-    symtab['.bss'] = {}
-    for i in range(0,65536):
-        inst.append(Instruction(opcode=None, inst=None, regs=None, desc=None, rlabel=None, rtype=None, label=None))
+    for section in sections:
+        symtab[section] = {}
+
+    assert(lines[-1] != '')
+    l = lines[-1].split()
+    if len(l) >= 5:
+        max = int(l[0].split()[0], 16) + 16
+    else: 
+        max = int((int(l[0].split(':')[0], 16)+4) / 4)
+
+    for i in range(0, max):
+        inst.append(Instruction(data=None, inst=None, regs=None, desc=None, rlabel=None, rtype=None, label=None))
+
     sym = False
     disas = False
-    max = 0
+    content = False
+    reloc = False
+    section = None
+
     for line in lines:
         if 'SYMBOL TABLE:' in line:
             sym = True
             disas = False
+            content = False
+            reloc = False
             continue
-        if 'Disassembly of section .text:' in line:
+        if 'RELOCATION RECORDS' in line:
+            sym = False
+            disas = False
+            content = False
+            reloc = True
+            continue
+        if 'Disassembly of section .text' in line:
             disas = True
             sym = False
+            content = False
+            reloc = False
+            section = '.text'
             continue
-        
-        #TODO stop if other sections after
+        if 'Contents of section' in line:
+            disas = False
+            sym = False
+            content = True
+            reloc = False
+            section = line.split()[-1].split(':')[0]
+            continue
+        if line.startswith('OFFSET'):
+            continue
 
+        # Symbol table
         if line != '' and sym:
-            # Symbol table
             l = line.split()
-            assert(len(l) >= 4)
-            if l[3] == '.text' or l[3] == '.data' or l[3] == '.rodata' or l[3] == '.bss':
-                assert(len(l) == 6)
-                size = int(l[4], 16)
+            if l[-3] in sections:
+                size = int(l[-2], 16)
                 if size == 0: continue
                 offset = int(l[0], 16)
-                assert(symtab[l[3]].get(offset) == None)
-                symtab[l[3]][offset] = (l[5], size)
+                assert(symtab[l[-3]].get(offset) == None)
+                symtab[l[-3]][offset] = (l[-1], size)
 
+        # Relocations
+        if line != '' and reloc:
+            l = line.split()
+            assert(int(l[0], 16) % 4 == 0)
+            relocs[int(l[0], 16)] = l[1],l[2]
+
+        # Section content
+        elif line != '' and content:
+            l = line.split()
+            assert(len(l) >= 5)
+            i = int(l[0], 16)
+            for j in range(1, 5):
+                val = int(l[j], 16)
+                for k in range(0,4):
+                    off = (k^3)*8
+                    inst[i+k].data = (val >> off) & 0xFF
+                    s = symtab[section].get(i+k)
+                    if s:
+                        inst[i+k].label = s[0]
+                    r = relocs.get(i)
+                    if r:
+                        inst[i+k].rtype = r[0]
+                        inst[i+k].rlabel = r[1]
+                i=i+4
+
+        # Disassembly
         elif line != '' and disas:
-            # Disassembly of text section
             if '>:' in line:
                 l = line.split()
                 i = int(int(l[0], 16) / 4)
                 assert(i < 65536)
-                if i > max: max = i
                 label = l[1].split('<')[1].split('>')[0]
                 inst[i].label = label
+                assert(label not in sections)
             else:
                 l = line.split()
                 i = int(int(l[0].split(':')[0], 16) / 4)
                 assert(i < 65536)
-                if i > max: max = i
                 if l[1].startswith('R_MIPS'):
                     assert(len(l) == 3)
                     inst[i].rtype = l[1]
                     inst[i].rlabel = l[2]
                 else:
-                    inst[i].opcode = int(l[1], 16)
+                    inst[i].data = int(l[1], 16)
                     inst[i].inst = l[2]
                     inst[i].desc = ' '.join(l[2:])
                     if len(l) >= 4:
                         inst[i].regs = l[3].split(',')
-    return inst[0:max+1], symtab
+
+    return inst, symtab
 
 def parse_symbols_from_config(file: str) -> None:
     global name_max_size
@@ -126,6 +180,26 @@ def parse_symbols_from_config(file: str) -> None:
     
     return symbols
 
+def objdump(file, section):
+    file = 'build/'+VERSION+'/'+file+'.o'
+    try:
+        os.remove(file)
+    except OSError:
+        pass
+    if section == '.text':
+        cmd = ['mips-linux-gnu-objdump', '-m', 'mips:4300', '-drzt']
+    else:
+        cmd = ['mips-linux-gnu-objdump', '-m', 'mips:4300', '-srzt', '--section='+section]
+    subprocess.run(['make', 'VERBOSE=1', 'VERSION='+VERSION, 'AS=mips-linux-gnu-as', file])
+    o1 = subprocess.check_output(cmd+[src], encoding="utf-8")
+    o2 = subprocess.check_output(cmd+[file], encoding="utf-8")
+    with open('objdump/1/'+section+'.txt', 'w') as f:
+        f.write(o1)
+    with open('objdump/2/'+section+'.txt', 'w') as f:
+        f.write(o2)
+    
+    return o1,o2
+
 if __name__ == "__main__":
     VERSION = 'fr'
     name_max_size = 0
@@ -144,163 +218,175 @@ if __name__ == "__main__":
 
     symbols = parse_symbols_from_config(symbol_addrs)
 
-    # Build and disassemble source file
-    name1 = 'build/'+VERSION+'/'+source_file+'.o'
-    name2 = 'build/'+VERSION+'/asm/'+VERSION+'/'+source_file.replace('.c','.s')+'.o'
+    asm = 'asm/'+VERSION+'/'+source_file.replace('.c','.s')
+    data = 'asm/'+VERSION+'/data/'+source_file.replace('.c','.data.s')
+    rodata = 'asm/'+VERSION+'/data/'+source_file.replace('.c','.rodata.s')
 
+    # Build and disassemble source file
+    src = 'build/'+VERSION+'/'+source_file+'.o'
     try:
-        os.remove(name1)
-        os.remove(name2)
+        os.remove(src)
     except OSError:
         pass
 
-    subprocess.run(['make', 'VERBOSE=1', 'VERSION='+VERSION, name1])
-    subprocess.run(['make', 'VERBOSE=1', 'VERSION='+VERSION, 'AS=mips-linux-gnu-as', name2])
+    os.makedirs('objdump/1/', exist_ok=True)
+    os.makedirs('objdump/2/', exist_ok=True)
 
-    #TODO: dump .data/.rodata/.bss sections, diff them?
-    o1 = subprocess.check_output(['mips-linux-gnu-objdump', '-m', 'mips:4300' ,'-drzt', name1], encoding="utf-8")
-    o2 = subprocess.check_output(['mips-linux-gnu-objdump', '-m', 'mips:4300' ,'-drzt', name2], encoding="utf-8")
+    subprocess.run(['make', 'VERBOSE=1', 'VERSION='+VERSION, src])
 
-    with open('a.txt', 'w') as f:
-        f.write(o1)
-
-    with open('b.txt', 'w') as f:
-        f.write(o2)
-
-    l1, symtab1 = parse_objdump_output(o1)
-    l2, symtab2 = parse_objdump_output(o2)
-    assert(len(l1) == len(l2))
+    sections = []
+    if os.path.exists(asm):
+        sections.append((asm,'.text'))
+    if os.path.exists(data):
+        sections.append((data,'.data'))
+    if os.path.exists(rodata):
+        sections.append((rodata,'.rodata'))
 
     hi = -1
-    for i in range(0, len(l1)):
-        assert(l1[i].inst == l2[i].inst)
+    for section in sections:
+        file, sec = section
+        o1,o2 = objdump(file, sec)
+        l1, symtab1 = parse_objdump_output(o1)
+        l2, symtab2 = parse_objdump_output(o2)
+        assert(len(l1) == len(l2))
 
-        # Functions
-        if l1[i].label != None:
-            assert(l2[i].label)
-            assert(l1[i].label[0] != '.')
-            if l1[i].label != l2[i].label:
-                assert(l2[i].label.startswith('func_'))
-                addr = int(l2[i].label.split('_')[1], 16)
-                d = symbols.get(l1[i].label)
-                if d != None:
-                    assert(d.splat.vram_start == addr)
+        for i in range(0, len(l1)):
+            if sec == '.text':
+                assert(l1[i].inst == l2[i].inst)
+
+            # Labels
+            if l1[i].label != None and l1[i].label not in sections and l2[i].label != None:
+                assert(l1[i].label[0] != '.')
+                if l1[i].label != l2[i].label:
+                    assert(l2[i].label.startswith('func_') or l2[i].label.startswith('D_'))
+                    if len(l2[i].label.split('_')) != 3:
+                        print('Label mismatch ' + l1[i].label + ' <-> ' + l2[i].label + ' at ' + hex(i*4) + ' ' + sec)
+                        continue
+                    addr = int(l2[i].label.split('_')[1], 16)
+                    d = symbols.get(l1[i].label)
+                    if d != None:
+                        assert(d.splat.vram_start == addr)
+                    else:
+                        if len(l1[i].label) > name_max_size: name_max_size = len(l1[i].label)
+                        t=None
+                        if l2[i].label.startswith('func_'): t='func'
+                        splat = split.symbols.Symbol(given_name=l1[i].label, given_size=0, vram_start=addr, type=t)
+                        symbols[l1[i].label] = Symbol(splat=splat, visibility=None, section=None, source=None, ignore=False)
                 else:
-                    if len(l1[i].label) > name_max_size: name_max_size = len(l1[i].label)
-                    splat = split.symbols.Symbol(given_name=l1[i].label, given_size=0, vram_start=addr, type='func')
-                    symbols[l1[i].label] = Symbol(splat=splat, visibility=None, section=None, source=None, ignore=False)
-            else:
-                assert(symbols.get(l1[i].label))
-        
-        if l2[i].label and l2[i].label[0] != '.': assert(l1[i].label)
+                    assert(symbols.get(l1[i].label))
 
-        # Relocations
-        if l1[i].rtype != None:
-            # Missing reloc in asm
-            if(l1[i].rtype != l2[i].rtype):
-                assert(l2[i].rtype == None)
-                #TODO
-                continue
-
-            if l1[i].rtype == 'R_MIPS_26' and l1[i].inst != 'jal':
-                continue
-
-            # Already defined
-            if l1[i].rlabel == l2[i].rlabel:
-                assert(symbols.get(l1[i].rlabel))
-                continue
-
-            # mips-as should not emit those
-            assert(l2[i].rlabel != '.text' and l2[i].rlabel != '.data' and l2[i].rlabel != '.rodata' and l2[i].rlabel != '.bss')
-            
-            d = symbols.get(l2[i].rlabel)
-            if d:
-                addr = d.splat.vram_start
-            elif (l2[i].rlabel.startswith('func_') or l2[i].rlabel.startswith('D_')) and len(l2[i].rlabel.split('_')) == 3:
-                # Format $VRAM_$ROM
-                addr = int(l2[i].rlabel.split('_')[1], 16)
-            elif l2[i].rlabel.startswith('jtbl_'):
-                continue
-            else:
-                print('Label mismatch ' + l1[i].rlabel + ' <-> ' + l2[i].rlabel + ' at ' + hex(i*4))
-                continue
-
-            if l1[i].rtype == 'R_MIPS_26':
-                assert(l1[i].inst == 'jal')
-                assert(l1[i].rlabel != '.data' and l1[i].rlabel != '.rodata' and l1[i].rlabel != '.bss')
-                if l1[i].rlabel == '.text':
-                    # Get symbol name from symtab
-                    assert(int(l2[i].desc.split()[1],16) == 0)
-                    l = l1[i].desc.split()
-                    name1 = l[2].split('<')[1].split('>')[0]
-                    d = symtab1['.text'].get(int(l[1],16))
-                    assert(d)
-                    name2, size = d
-                    assert(name1 == name2)
-                    l1[i].rlabel = name2
-                    
-                d = symbols.get(l1[i].rlabel)
-                if d != None:
-                    assert(d.splat.vram_start == addr)
-                else:
-                    if len(l1[i].rlabel) > name_max_size: name_max_size = len(l1[i].rlabel)
-                    splat = split.symbols.Symbol(given_name=l1[i].rlabel, given_size=0, vram_start=addr, type='func')
-                    symbols[l1[i].rlabel] = Symbol(splat=splat, visibility=None, section=None, source=None, ignore=False)
-            elif l1[i].rtype == 'R_MIPS_HI16':
-                hi = i
-            elif l1[i].rtype == 'R_MIPS_LO16':
-                if(hi < 0):
-                    print('multiple R_MIPS_LO16 for the same R_MIPS_HI16 at ' + hex(i*4) + '?')
+            # Relocations
+            if l1[i].rtype != None:
+                # Missing reloc in asm
+                if(l1[i].rtype != l2[i].rtype):
+                    assert(l2[i].rtype == None)
+                    #TODO
                     continue
 
-                assert(l1[hi].inst == 'lui')
-                assert(l1[hi].rtype == 'R_MIPS_HI16')
-                assert(l2[hi].rlabel == l2[i].rlabel)
-                assert(l1[i].inst == 'addiu' or '(' in l1[i].regs[1])
+                if l1[i].rtype == 'R_MIPS_26' and l1[i].inst != 'jal':
+                    continue
 
-                if l1[i].rlabel == '.text' or l1[i].rlabel == '.data' or l1[i].rlabel == '.rodata' or l1[i].rlabel == '.bss':
-                    addr = addr+(int(l2[hi].regs[1], 16) << 16)
-                    offset = (int(l1[hi].regs[1], 16) << 16)
-                    if l1[i].inst == 'addiu':
-                        addr = addr+int(l2[i].regs[2])
-                        offset = offset+int(l1[i].regs[2])
-                    else:
-                        addr = addr+int(l2[i].regs[1].split('(')[0])
-                        offset = offset+int(l1[i].regs[1].split('(')[0])
+                # Already defined
+                if l1[i].rlabel == l2[i].rlabel:
+                    assert(symbols.get(l1[i].rlabel))
+                    continue
 
-                    d = symtab1[l1[i].rlabel].get(offset)
-                    if d == None:
-                        hi = -1
-                        continue
-                    name, size = d
-                    l1[i].rlabel = name
+                # mips-as should not emit those
+                assert(l2[i].rlabel != '.text' and l2[i].rlabel != '.data' and l2[i].rlabel != '.rodata' and l2[i].rlabel != '.bss')
+                
+                d = symbols.get(l2[i].rlabel)
+                if d:
+                    addr = d.splat.vram_start
+                elif (l2[i].rlabel.startswith('func_') or l2[i].rlabel.startswith('D_')) and len(l2[i].rlabel.split('_')) == 3:
+                    # Format $VRAM_$ROM
+                    addr = int(l2[i].rlabel.split('_')[1], 16)
+                elif l2[i].rlabel.startswith('jtbl_') or l2[i].rlabel.startswith('.'):
+                    continue
                 else:
-                    if(l1[hi].opcode != l2[hi].opcode):
-                        addr = addr-(int(l1[hi].regs[1], 16) << 16)
-                        addr = addr+(int(l2[hi].regs[1], 16) << 16)
+                    print('Label mismatch ' + l1[i].rlabel + ' <-> ' + l2[i].rlabel + ' at ' + hex(i*4) + ' ' + sec)
+                    continue
 
-                    if (l1[i].opcode != l2[i].opcode):
-                        if l1[i].inst == 'addiu':
-                            addr = addr+int(l2[i].regs[2])
-                            addr = addr-int(l1[i].regs[2])
-                        else:
-                            addr = addr+int(l2[i].regs[1].split('(')[0])
-                            addr = addr-int(l1[i].regs[1].split('(')[0])
-
-                if '.' in l1[i].rlabel:
-                    print('Skipping name' + name + ' at ' + hex(i*4))
-                else:
+                if l1[i].rtype == 'R_MIPS_26':
+                    assert(l1[i].inst == 'jal')
+                    assert(l1[i].rlabel != '.data' and l1[i].rlabel != '.rodata' and l1[i].rlabel != '.bss')
+                    if l1[i].rlabel == '.text':
+                        # Get symbol name from symtab
+                        assert(int(l2[i].desc.split()[1],16) == 0)
+                        l = l1[i].desc.split()
+                        name1 = l[2].split('<')[1].split('>')[0]
+                        d = symtab1['.text'].get(int(l[1],16))
+                        assert(d)
+                        name2, size = d
+                        assert(name1 == name2)
+                        l1[i].rlabel = name2
+                        
                     d = symbols.get(l1[i].rlabel)
                     if d != None:
                         assert(d.splat.vram_start == addr)
                     else:
                         if len(l1[i].rlabel) > name_max_size: name_max_size = len(l1[i].rlabel)
-                        splat = split.symbols.Symbol(given_name=l1[i].rlabel, given_size=0, vram_start=addr)
+                        splat = split.symbols.Symbol(given_name=l1[i].rlabel, given_size=0, vram_start=addr, type='func')
                         symbols[l1[i].rlabel] = Symbol(splat=splat, visibility=None, section=None, source=None, ignore=False)
-                hi = -1
-        else:
-            assert(l1[i].rlabel == None)
+                elif l1[i].rtype == 'R_MIPS_HI16':
+                    hi = i
+                elif l1[i].rtype == 'R_MIPS_LO16':
+                    if(hi < 0):
+                        print('multiple R_MIPS_LO16 for the same R_MIPS_HI16 at ' + hex(i*4) + '?')
+                        continue
 
+                    assert(l1[hi].inst == 'lui')
+                    assert(l1[hi].rtype == 'R_MIPS_HI16')
+                    assert(l2[hi].rlabel == l2[i].rlabel)
+                    assert(l1[i].inst == 'addiu' or '(' in l1[i].regs[1])
+
+                    if l1[i].rlabel == '.text' or l1[i].rlabel == '.data' or l1[i].rlabel == '.rodata' or l1[i].rlabel == '.bss':
+                        addr = addr+(int(l2[hi].regs[1], 16) << 16)
+                        offset = (int(l1[hi].regs[1], 16) << 16)
+                        if l1[i].inst == 'addiu':
+                            addr = addr+int(l2[i].regs[2])
+                            offset = offset+int(l1[i].regs[2])
+                        else:
+                            addr = addr+int(l2[i].regs[1].split('(')[0])
+                            offset = offset+int(l1[i].regs[1].split('(')[0])
+
+                        d = symtab1[l1[i].rlabel].get(offset)
+                        if d == None:
+                            hi = -1
+                            continue
+                        name, size = d
+                        l1[i].rlabel = name
+                    else:
+                        if(l1[hi].data != l2[hi].data):
+                            addr = addr-(int(l1[hi].regs[1], 16) << 16)
+                            addr = addr+(int(l2[hi].regs[1], 16) << 16)
+
+                        if (l1[i].data != l2[i].data):
+                            if l1[i].inst == 'addiu':
+                                addr = addr+int(l2[i].regs[2])
+                                addr = addr-int(l1[i].regs[2])
+                            else:
+                                addr = addr+int(l2[i].regs[1].split('(')[0])
+                                addr = addr-int(l1[i].regs[1].split('(')[0])
+
+                    if '.' in l1[i].rlabel:
+                        print('Skipping name' + name + ' at ' + hex(i*4) + ' ' + sec)
+                    else:
+                        d = symbols.get(l1[i].rlabel)
+                        if d != None:
+                            assert(d.splat.vram_start == addr)
+                        else:
+                            if len(l1[i].rlabel) > name_max_size: name_max_size = len(l1[i].rlabel)
+                            splat = split.symbols.Symbol(given_name=l1[i].rlabel, given_size=0, vram_start=addr)
+                            symbols[l1[i].rlabel] = Symbol(splat=splat, visibility=None, section=None, source=None, ignore=False)
+                    hi = -1
+                elif l1[i].rtype == 'R_MIPS_32':
+                    pass
+            else:
+                # If no reloc, make sure data matches
+                if l2[i].rtype == None:
+                    assert(l1[i].data == l2[i].data)
+                assert(l1[i].rlabel == None)
+        
     sorted_symbols = sorted(symbols.values(), key=operator.attrgetter('splat.vram_start'))
 
     # Write symbols to files

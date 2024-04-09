@@ -74,7 +74,8 @@ segments:
       - [0x5D50,  c,        src/code0/graphics]
       - [0x71F0,  c,        src/code0/audio]
       - [0x93D0,  c,        src/code0/9410]
-      - [0xFDA0,  asm,      src/code0/code0]
+      - [0xFDA0,  c,        src/code0/FDE0]
+      - [0x16DB0, asm,      src/code0/code0]
       - [0xBC0B0, bin,      ucode/rspboot.text]
       - [0xBC180, bin,      ucode/gspF3DEX2.NoN.fifo.text]
       - [0xBD510, bin,      ucode/aspMain.text]
@@ -84,7 +85,8 @@ segments:
       - [0xBE3B0, .data,    src/code0/graphics]
       - [0xBE3C0, .data,    src/code0/audio]
       - [0xBE670, .data,    src/code0/9410]
-      - [0xBE6C0, data,     src/code0/code0]
+      - [0xBE6C0, .data,    src/code0/FDE0]
+      - [0xBE6F0, data,     src/code0/code0]
       - [0xE4DC0, bin,      ucode/gspF3DEX2.NoN.fifo.data]
       - [0xE51E0, bin,      ucode/aspMain.data]
     #.rodata section
@@ -93,7 +95,8 @@ segments:
       - [0xE5570, .rodata,  src/code0/graphics]
       - [0xE55B0, .rodata,  src/code0/audio]
       - [0xE55F0, .rodata,  src/code0/9410]
-      - [0xE5670, rodata,   src/code0/code0]
+      - [0xE5670, .rodata,  src/code0/FDE0]
+      - [0xE57B0, rodata,   src/code0/code0]
     #.bss section
       - {start: 0xEB820, type: .bss, vram: 0x800EAC20, name: src/code0/main}
       - {start: 0xEB820, type:  bss, vram: 0x800F7560, name: src/code0/code0}
