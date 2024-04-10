@@ -87,7 +87,7 @@ def parse_objdump_output(text):
             l = line.split()
             if l[-3] in sections:
                 size = int(l[-2], 16)
-                if l[-1] in sections: continue
+                if '.' in l[-1]: continue
                 offset = int(l[0], 16)
                 assert(symtab[l[-3]].get(offset) == None)
                 symtab[l[-3]][offset] = (l[-1], size)
@@ -260,6 +260,8 @@ if __name__ == "__main__":
             if l1[i].label != None and l1[i].label not in sections and l2[i].label != None:
                 assert(l1[i].label[0] != '.')
                 if l1[i].label != l2[i].label:
+                    if l2[i].label.startswith('jtbl_'):
+                        continue
                     assert(l2[i].label.startswith('func_') or l2[i].label.startswith('D_'))
                     if len(l2[i].label.split('_')) != 3:
                         print('Label mismatch ' + l1[i].label + ' <-> ' + l2[i].label + ' at ' + hex(i*4) + ' ' + sec)

@@ -28,7 +28,7 @@ options:
   # section_order: [".text", ".data", ".rodata", ".bss"]
   # auto_all_sections: [".data", ".rodata", ".bss"]
   asm_inc_header: ""
-  migrate_rodata_to_functions: False
+  migrate_rodata_to_functions: True
   add_set_gp_64: False
   generated_c_preamble: "#include \"common.h\"\n\n/*.text*/"
   use_legacy_include_asm: False
@@ -77,7 +77,8 @@ segments:
       - [0xFDA0,  c,        src/code0/FDE0]
       - [0x16DB0, c,        src/code0/16DF0]
       - [0x16FB0, c,        src/code0/16FF0]
-      - [0x17AF0, asm,      src/code0/code0]
+      - [0x17AF0, c,        src/code0/17B30]
+      - [0x1A780, asm,      src/code0/code0]
       - [0xBC0B0, bin,      ucode/rspboot.text]
       - [0xBC180, bin,      ucode/gspF3DEX2.NoN.fifo.text]
       - [0xBD510, bin,      ucode/aspMain.text]
@@ -116,7 +117,8 @@ segments:
       - [0xE55B0, .rodata,  src/code0/audio]
       - [0xE55F0, .rodata,  src/code0/9410]
       - [0xE5670, .rodata,  src/code0/FDE0]
-      - [0xE57B0, rodata,   src/code0/code0]
+      - [0xE57B0, .rodata,  src/code0/17B30]
+      - [0xE5A70, rodata,   src/code0/code0]
     #.bss section
       - {start: 0xEB820, type: .bss, vram: 0x800EAC20, name: src/code0/main}
       - {start: 0xEB820, type:  bss, vram: 0x800F7560, name: src/code0/code0}
