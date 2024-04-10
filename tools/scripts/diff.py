@@ -16,6 +16,7 @@ class Instruction():
     rlabel: str
     rtype: str
     label: str
+    size: int
 
 @dataclass
 class Symbol():
@@ -43,7 +44,7 @@ def parse_objdump_output(text):
         max = int((int(l[0].split(':')[0], 16)+4) / 4)
 
     for i in range(0, max):
-        inst.append(Instruction(data=None, inst=None, regs=None, desc=None, rlabel=None, rtype=None, label=None))
+        inst.append(Instruction(data=None, inst=None, regs=None, desc=None, rlabel=None, rtype=None, label=None, size=0))
 
     sym = False
     disas = False
@@ -86,7 +87,7 @@ def parse_objdump_output(text):
             l = line.split()
             if l[-3] in sections:
                 size = int(l[-2], 16)
-                if size == 0: continue
+                if l[-1] in sections: continue
                 offset = int(l[0], 16)
                 assert(symtab[l[-3]].get(offset) == None)
                 symtab[l[-3]][offset] = (l[-1], size)
@@ -110,6 +111,7 @@ def parse_objdump_output(text):
                     s = symtab[section].get(i+k)
                     if s:
                         inst[i+k].label = s[0]
+                        inst[i+k].size = s[1]
                     r = relocs.get(i)
                     if r:
                         inst[i+k].rtype = r[0]
@@ -270,10 +272,13 @@ if __name__ == "__main__":
                         if len(l1[i].label) > name_max_size: name_max_size = len(l1[i].label)
                         t=None
                         if l2[i].label.startswith('func_'): t='func'
-                        splat = split.symbols.Symbol(given_name=l1[i].label, given_size=0, vram_start=addr, type=t)
+                        splat = split.symbols.Symbol(given_name=l1[i].label, given_size=l1[i].size, vram_start=addr, type=t)
                         symbols[l1[i].label] = Symbol(splat=splat, visibility=None, section=None, source=None, ignore=False)
                 else:
-                    assert(symbols.get(l1[i].label))
+                    # Update size
+                    s = symbols.get(l1[i].label)
+                    assert(s)
+                    s.splat.given_size = l1[i].size
 
             # Relocations
             if l1[i].rtype != None:
