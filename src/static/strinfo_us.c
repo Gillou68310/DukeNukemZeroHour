@@ -1,6 +1,7 @@
 #include "common.h"
 #include "static/strinfo.h"
 
+#if VERSION_US
 /*.data*/
 
 /*01021560*/
@@ -1213,3 +1214,4 @@ char *gCreditStrInfo[248] = {
 s16 gCreditStrInfoCount = ARRAY_COUNT(gCreditStrInfo) - 1;
 
 /*.text*/
+#endif
