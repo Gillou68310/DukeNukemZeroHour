@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import re
 import sys
 import shutil
 import operator
@@ -39,10 +40,11 @@ def parse_objdump_output(text):
 
     assert(lines[-1] != '')
     l = lines[-1].split()
-    if len(l) >= 5:
-        max = int(l[0].split()[0], 16) + 16
-    else: 
+    if ':' in l[0]:
         max = int((int(l[0].split(':')[0], 16)+4) / 4)
+    else:
+        m = re.findall('[0-9A-Fa-f]{8}', lines[-1])
+        max = int(l[0], 16) + 4*len(m)
 
     for i in range(0, max):
         inst.append(Instruction(data=None, inst=None, regs=None, desc=None, rlabel=None, rtype=None, label=None, size=0))
@@ -101,10 +103,10 @@ def parse_objdump_output(text):
 
         # Section content
         elif line != '' and content:
-            l = line.split()
-            assert(len(l) >= 5)
-            i = int(l[0], 16)
-            for j in range(1, 5):
+            l = re.findall('[0-9A-Fa-f]{8}', line)
+            i = int(line.split()[0], 16)
+            for j in range(0, len(l)):
+                assert(len(l[j]) == 8)
                 val = int(l[j], 16)
                 for k in range(0,4):
                     off = (k^3)*8
@@ -248,18 +250,28 @@ if __name__ == "__main__":
         sections.append((rodata,'.rodata'))
 
     hi = -1
+    match = True
     for section in sections:
         file, sec = section
         o1,o2 = objdump(file, sec)
         l1, symtab1 = parse_objdump_output(o1)
         l2, symtab2 = parse_objdump_output(o2)
-        assert(len(l1) == len(l2))
+
+        if(len(l1) != len(l2)):
+            print('Section size mismatch ' + sec)
+            match = False
+            break
 
         for i in range(0, len(l1)):
+            if i >= len(l2):
+                break
+
             if l1[i].label == 'gcc2_compiled.':
                 continue
-            if sec == '.text':
-                assert(l1[i].inst == l2[i].inst)
+
+            if sec == '.text' and l1[i].inst != l2[i].inst:
+                print('Diff at ' + hex(i*4) + ' in .text ' + l1[i].desc + ' vs ' + l2[i].desc)
+                match = False
 
             # Labels
             if l1[i].label != None and l1[i].label not in sections and l2[i].label != None:
@@ -395,9 +407,16 @@ if __name__ == "__main__":
             else:
                 # If no reloc, make sure data matches
                 if l2[i].rtype == None:
-                    assert(l1[i].data == l2[i].data)
+                    if(l1[i].data != l2[i].data):
+                        if sec == 'text':
+                            print('Diff at ' + hex(i*4) + ' in .text ' + l1[i].desc + ' vs ' + l2[i].desc)
+                        else:
+                            print('Diff at ' + hex(i) + ' in ' + sec + ' ' + hex(l1[i].data) + ' vs ' + hex(l2[i].data))
+                        match  = False
+                        break
                 assert(l1[i].rlabel == None)
-        
+
+    if not match: sys.exit()
     sorted_symbols = sorted(symbols.values(), key=operator.attrgetter('splat.vram_start'))
 
     # Write symbols to files

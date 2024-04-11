@@ -6868,6 +6868,7 @@ static u8 func_80051684(s16 sectnum)
     return 0;
 }
 
+#if VERSION_US
 /*800DF1C0*/
 static char *D_800DF1C0[4] = {
     "TNT BARREL",
@@ -6875,6 +6876,14 @@ static char *D_800DF1C0[4] = {
     "PLUNGER BOX",
     "TIME MACHINE PART"
 };
+#elif VERSION_FR
+static char *D_800DF1C0[4] = {
+    "BARIL DE DYNAMITE",
+    "MECHE",
+    "DETONATEUR A MANETTE",
+    "MACHINE REMONT. TPS"
+};
+#endif
 
 /*800516EC*/
 static u8 func_800516EC(s16 spritenum)
@@ -10110,4 +10119,9 @@ void func_80058E44(s32 spritenum)
 #else
 /*80058E44*/
 INCLUDE_ASM("src/code0/41940", func_80058E44);
+#endif
+
+#if VERSION_FR
+/*hack for wrong rodata aligment*/
+static const f64 _force_rodata_alignment = 0;
 #endif

@@ -2520,7 +2520,11 @@ void func_8005FC20(s32 spritenum, s32 arg1)
 /*8005FC34*/
 void func_8005FC34(s32 spritenum, s32 arg1)
 {
+#if VERSION_US
     func_800A419C(0, "BABE SAVED!");
+#elif VERSION_FR
+    func_800A419C(0, "GONZESSE SAUVEE!");
+#endif
     D_801A1958.babes_saved++;
     audio_800077F4(704, spritenum);
     func_8008E3E0(gpSprite[spritenum].x, gpSprite[spritenum].y, gpSprite[spritenum].z, gpSprite[spritenum].sectnum, 43, 0);
