@@ -292,10 +292,17 @@ void func_8003671C(s16 playernum, u16 arg1, s16 arg2, s16 arg3)
                                     }
                                 }
 
+#if VERSION_US
                                 sprintf(buf, "KILLED PLAYER %d\n", playernum + 1);
                                 func_800A419C(playernum2, buf);
                                 sprintf(buf, "KILLED BY PLAYER %d", playernum2 + 1);
                                 func_800A419C(playernum, buf);
+#elif VERSION_FR
+                                sprintf(buf, "JOUEUR %d TUE\n", playernum + 1);
+                                func_800A419C(playernum2, buf);
+                                sprintf(buf, "TUE PAR JOUEUR %d", playernum2 + 1);
+                                func_800A419C(playernum, buf);
+#endif                        
                                 return;
                             }
                         }
@@ -2312,7 +2319,11 @@ static void func_8003E8D0(void)
 
         if (gpSector[j].floorstat & 0x100)
         {
+#if VERSION_US
             func_800A419C(D_801B0820, "SECRET AREA");
+#elif VERSION_FR
+            func_800A419C(D_801B0820, "ZONE SECRETE");
+#endif
             gpSector[j].floorstat &= 0xFEFF;
             D_801A1958.secrets_found++;
             playSfx(1595);

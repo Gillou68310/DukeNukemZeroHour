@@ -2,6 +2,7 @@
 
 import os
 import sys
+import shutil
 import operator
 import subprocess
 from splat.scripts import split
@@ -195,9 +196,9 @@ def objdump(file, section):
     subprocess.run(['make', 'VERBOSE=1', 'VERSION='+VERSION, 'AS=mips-linux-gnu-as', file])
     o1 = subprocess.check_output(cmd+[src], encoding="utf-8")
     o2 = subprocess.check_output(cmd+[file], encoding="utf-8")
-    with open('objdump/1/'+section+'.txt', 'w') as f:
+    with open('objdump/c/'+section+'.txt', 'w') as f:
         f.write(o1)
-    with open('objdump/2/'+section+'.txt', 'w') as f:
+    with open('objdump/s/'+section+'.txt', 'w') as f:
         f.write(o2)
     
     return o1,o2
@@ -231,8 +232,10 @@ if __name__ == "__main__":
     except OSError:
         pass
 
-    os.makedirs('objdump/1/', exist_ok=True)
-    os.makedirs('objdump/2/', exist_ok=True)
+    if os.path.exists('objdump'):
+        shutil.rmtree('objdump')
+    os.makedirs('objdump/c/', exist_ok=True)
+    os.makedirs('objdump/s/', exist_ok=True)
 
     subprocess.run(['make', 'VERBOSE=1', 'VERSION='+VERSION, src])
 
@@ -253,6 +256,8 @@ if __name__ == "__main__":
         assert(len(l1) == len(l2))
 
         for i in range(0, len(l1)):
+            if l1[i].label == 'gcc2_compiled.':
+                continue
             if sec == '.text':
                 assert(l1[i].inst == l2[i].inst)
 
@@ -360,8 +365,7 @@ if __name__ == "__main__":
                         if d == None:
                             hi = -1
                             continue
-                        name, size = d
-                        l1[i].rlabel = name
+                        l1[i].rlabel, l1[i].size = d
                     else:
                         if(l1[hi].data != l2[hi].data):
                             addr = addr-(int(l1[hi].regs[1], 16) << 16)
@@ -376,14 +380,14 @@ if __name__ == "__main__":
                                 addr = addr-int(l1[i].regs[1].split('(')[0])
 
                     if '.' in l1[i].rlabel:
-                        print('Skipping name' + name + ' at ' + hex(i*4) + ' ' + sec)
+                        print('Skipping name' + l1[i].rlabel + ' at ' + hex(i*4) + ' ' + sec)
                     else:
                         d = symbols.get(l1[i].rlabel)
                         if d != None:
                             assert(d.splat.vram_start == addr)
                         else:
                             if len(l1[i].rlabel) > name_max_size: name_max_size = len(l1[i].rlabel)
-                            splat = split.symbols.Symbol(given_name=l1[i].rlabel, given_size=0, vram_start=addr)
+                            splat = split.symbols.Symbol(given_name=l1[i].rlabel, given_size=l1[i].size, vram_start=addr)
                             symbols[l1[i].rlabel] = Symbol(splat=splat, visibility=None, section=None, source=None, ignore=False)
                     hi = -1
                 elif l1[i].rtype == 'R_MIPS_32':
