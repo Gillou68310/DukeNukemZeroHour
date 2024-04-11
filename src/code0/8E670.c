@@ -4,6 +4,7 @@
 #include "code0/20490.h"
 #include "code0/41940.h"
 #include "code0/6ACA0.h"
+#include "code0/6D9E0.h"
 #include "code0/8E670.h"
 #include "code0/95500.h"
 #include "code0/code0.h"

@@ -13,6 +13,7 @@
 #include "code0/609D0.h"
 #include "code0/64530.h"
 #include "code0/6ACA0.h"
+#include "code0/6D9E0.h"
 #include "code0/7BA50.h"
 #include "code0/8E670.h"
 #include "code0/8EFE0.h"

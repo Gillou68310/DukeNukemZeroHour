@@ -8,6 +8,7 @@
 #include "code0/41940.h"
 #include "code0/59D40.h"
 #include "code0/6ACA0.h"
+#include "code0/6D9E0.h"
 #include "code0/87010.h"
 #include "code0/8E670.h"
 #include "code0/8EFE0.h"

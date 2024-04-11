@@ -260,7 +260,6 @@ if __name__ == "__main__":
         if(len(l1) != len(l2)):
             print('Section size mismatch ' + sec)
             match = False
-            break
 
         for i in range(0, len(l1)):
             if i >= len(l2):
@@ -272,6 +271,7 @@ if __name__ == "__main__":
             if sec == '.text' and l1[i].inst != l2[i].inst:
                 print('Diff at ' + hex(i*4) + ' in .text ' + l1[i].desc + ' vs ' + l2[i].desc)
                 match = False
+                break
 
             # Labels
             if l1[i].label != None and l1[i].label not in sections and l2[i].label != None:
@@ -408,7 +408,7 @@ if __name__ == "__main__":
                 # If no reloc, make sure data matches
                 if l2[i].rtype == None:
                     if(l1[i].data != l2[i].data):
-                        if sec == 'text':
+                        if sec == '.text':
                             print('Diff at ' + hex(i*4) + ' in .text ' + l1[i].desc + ' vs ' + l2[i].desc)
                         else:
                             print('Diff at ' + hex(i) + ' in ' + sec + ' ' + hex(l1[i].data) + ' vs ' + hex(l2[i].data))

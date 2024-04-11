@@ -2153,7 +2153,11 @@ void func_80069E50(void)
             }
 
             changeSpriteStat(i, 0);
+#if VERSION_US
             func_800A419C(0, "BABE SAVED!");
+#elif VERSION_FR
+            func_800A419C(0, "GONZESSE SAUVEE!");
+#endif
             func_800533C4(gpSprite[i].picnum, i);
             D_801A1958.babes_saved++;
             audio_800077F4(704, i);

@@ -16,6 +16,7 @@
 #include "code0/41940.h"
 #include "code0/64530.h"
 #include "code0/6ACA0.h"
+#include "code0/6D9E0.h"
 #include "code0/7A430.h"
 #include "code0/7BA50.h"
 #include "code0/debug.h"
@@ -1206,7 +1207,7 @@ static void mainLoop(void *arg)
     case OS_TV_MPAL:
         D_801B0815 = 0;
         break;
-    }
+}
 #endif
     osCreateMesgQueue(&D_8010A920, &D_801C0D64, 1);
     osCreateMesgQueue(&gRetraceMsgQ, gRetraceMessages, NUM_DMA_MSGS);

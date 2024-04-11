@@ -97,6 +97,7 @@ segments:
       - [0x609D0, c,        src/code0/609D0]
       - [0x64530, c,        src/code0/64530]
       - [0x6ACA0, c,        src/code0/6ACA0]
+      - [0x6D9E0, c,        src/code0/6D9E0]
       - [0x7A430, c,        src/code0/7A430]
       - [0x7BA50, c,        src/code0/7BA50]
       - [0x7CBC0, c,        src/code0/debug]
@@ -327,7 +328,7 @@ segments:
       - [0xDFA80, .data,    src/code0/41940]
       - [0xDFEE0, .data,    src/code0/59D40]
       - [0xDFEF0, .data,    src/code0/64530]
-      - [0xE01A0, .data,    src/code0/6ACA0]
+      - [0xE01A0, .data,    src/code0/6D9E0]
       - [0xE0280, .data,    src/code0/7A430]
       - [0xE0540, .data,    src/code0/7BA50]
       - [0xE0550, .data,    src/code0/debug]
@@ -414,6 +415,7 @@ segments:
       - [0xE92F0, .rodata,  src/code0/609D0]
       - [0xE9460, .rodata,  src/code0/64530]
       - [0xE9590, .rodata,  src/code0/6ACA0]
+      - [0xE97B0, .rodata,  src/code0/6D9E0]
       - [0xE9990, .rodata,  src/code0/7A430]
       - [0xE99D0, .rodata,  src/code0/debug]
       - [0xE9D10, .rodata,  src/code0/7FCE0]
@@ -450,7 +452,7 @@ segments:
       - {start: 0xEB300, type: .bss, vram: 0x800F7040, name: src/code0/24610}
       - {start: 0xEB300, type: .bss, vram: 0x800F7060, name: src/code0/engine}
       - {start: 0xEB300, type: .bss, vram: 0x800F9CC0, name: src/code0/609D0}
-      - {start: 0xEB300, type: .bss, vram: 0x800F9CD0, name: src/code0/6ACA0}
+      - {start: 0xEB300, type: .bss, vram: 0x800F9CD0, name: src/code0/6D9E0}
       - {start: 0xEB300, type: .bss, vram: 0x800F9CE0, name: src/code0/controller}
       - {start: 0xEB300, type: .bss, vram: 0x800FA3B0, name: libs/libmus/src/player}
       - {start: 0xEB300, type: .bss, vram: 0x800FA420, name: libs/libmus/src/aud_dma}

@@ -2,6 +2,7 @@
 #include "code0/audio.h"
 #include "code0/41940.h"
 #include "code0/6ACA0.h"
+#include "code0/6D9E0.h"
 #include "code0/code0.h"
 #include "code1/code1.h"
 
