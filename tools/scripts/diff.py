@@ -17,8 +17,9 @@ class Instruction():
     desc: str
     rlabel: str
     rtype: str
+    rsize: int
     label: str
-    size: int
+    lsize: int
 
 @dataclass
 class Symbol():
@@ -30,11 +31,12 @@ class Symbol():
 
 def parse_objdump_output(text):
     lines = text.splitlines()
-    sections = ['.text', '.data', '.rodata', '.bss']
+    sections = ['.text', '.data', '.rodata', '.bss', '*COM*']
     
     inst = []
     relocs = {}
     symtab = {}
+    symsize = {}
     for section in sections:
         symtab[section] = {}
 
@@ -47,7 +49,7 @@ def parse_objdump_output(text):
         max = int(l[0], 16) + 4*len(m)
 
     for i in range(0, max):
-        inst.append(Instruction(data=None, inst=None, regs=None, desc=None, rlabel=None, rtype=None, label=None, size=0))
+        inst.append(Instruction(data=None, inst=None, regs=None, desc=None, rlabel=None, rtype=None, rsize=0, label=None, lsize=0))
 
     sym = False
     disas = False
@@ -89,11 +91,16 @@ def parse_objdump_output(text):
         if line != '' and sym:
             l = line.split()
             if l[-3] in sections:
-                size = int(l[-2], 16)
-                if '.' in l[-1]: continue
-                offset = int(l[0], 16)
-                assert(symtab[l[-3]].get(offset) == None)
-                symtab[l[-3]][offset] = (l[-1], size)
+                if l[-3] == '*COM*':
+                    size = int(l[0], 16)
+                else:
+                    size = int(l[-2], 16)
+                    if '.' in l[-1]: continue
+                    offset = int(l[0], 16)
+                    assert(symtab[l[-3]].get(offset) == None)
+                    symtab[l[-3]][offset] = (l[-1], size)
+                    
+                symsize[l[-1]] = size
 
         # Relocations
         if line != '' and reloc:
@@ -114,7 +121,7 @@ def parse_objdump_output(text):
                     s = symtab[section].get(i+k)
                     if s:
                         inst[i+k].label = s[0]
-                        inst[i+k].size = s[1]
+                        inst[i+k].lsize = s[1]
                     r = relocs.get(i)
                     if r:
                         inst[i+k].rtype = r[0]
@@ -129,6 +136,9 @@ def parse_objdump_output(text):
                 assert(i < 65536)
                 label = l[1].split('<')[1].split('>')[0]
                 inst[i].label = label
+                s = symsize.get(label)
+                if s:
+                    inst[i].lsize = s
                 assert(label not in sections)
             else:
                 l = line.split()
@@ -138,6 +148,9 @@ def parse_objdump_output(text):
                     assert(len(l) == 3)
                     inst[i].rtype = l[1]
                     inst[i].rlabel = l[2]
+                    s = symsize.get(l[2])
+                    if s:
+                        inst[i].rsize = s
                 else:
                     inst[i].data = int(l[1], 16)
                     inst[i].inst = l[2]
@@ -258,7 +271,7 @@ if __name__ == "__main__":
         l2, symtab2 = parse_objdump_output(o2)
 
         if(len(l1) != len(l2)):
-            print('Section size mismatch ' + sec)
+            print('\033[91m'+'Section size mismatch ' + sec + '\033[0m')
             match = False
 
         for i in range(0, len(l1)):
@@ -269,7 +282,7 @@ if __name__ == "__main__":
                 continue
 
             if sec == '.text' and l1[i].inst != l2[i].inst:
-                print('Diff at ' + hex(i*4) + ' in .text ' + l1[i].desc + ' vs ' + l2[i].desc)
+                print('\033[91m'+'Diff at ' + hex(i*4) + ' in .text ' + l1[i].desc + ' vs ' + l2[i].desc + '\033[0m')
                 match = False
                 break
 
@@ -289,22 +302,23 @@ if __name__ == "__main__":
                         assert(d.splat.vram_start == addr)
                     else:
                         if len(l1[i].label) > name_max_size: name_max_size = len(l1[i].label)
-                        t=None
-                        if l2[i].label.startswith('func_'): t='func'
-                        splat = split.symbols.Symbol(given_name=l1[i].label, given_size=l1[i].size, vram_start=addr, type=t)
+                        if l2[i].label.startswith('func_'):
+                            splat = split.symbols.Symbol(given_name=l1[i].label, given_size=l1[i].lsize, vram_start=addr, type='func')
+                        else:
+                            splat = split.symbols.Symbol(given_name=l1[i].label, given_size=l1[i].lsize, vram_start=addr)
                         symbols[l1[i].label] = Symbol(splat=splat, visibility=None, section=None, source=None, ignore=False)
                 else:
                     # Update size
                     s = symbols.get(l1[i].label)
                     assert(s)
-                    s.splat.given_size = l1[i].size
+                    if s.splat.given_size == 0:
+                        s.splat.given_size = l1[i].lsize
 
             # Relocations
             if l1[i].rtype != None:
                 # Missing reloc in asm
                 if(l1[i].rtype != l2[i].rtype):
                     assert(l2[i].rtype == None)
-                    #TODO
                     continue
 
                 if l1[i].rtype == 'R_MIPS_26' and l1[i].inst != 'jal':
@@ -312,7 +326,10 @@ if __name__ == "__main__":
 
                 # Already defined
                 if l1[i].rlabel == l2[i].rlabel:
-                    assert(symbols.get(l1[i].rlabel))
+                    s = symbols.get(l1[i].rlabel)
+                    assert(s)
+                    if s.splat.given_size == 0:
+                        s.splat.given_size = l1[i].rsize
                     continue
 
                 # mips-as should not emit those
@@ -340,16 +357,15 @@ if __name__ == "__main__":
                         name1 = l[2].split('<')[1].split('>')[0]
                         d = symtab1['.text'].get(int(l[1],16))
                         assert(d)
-                        name2, size = d
-                        assert(name1 == name2)
-                        l1[i].rlabel = name2
+                        l1[i].rlabel, l1[i].rsize = d
+                        assert(name1 == l1[i].rlabel)
                         
                     d = symbols.get(l1[i].rlabel)
                     if d != None:
                         assert(d.splat.vram_start == addr)
                     else:
                         if len(l1[i].rlabel) > name_max_size: name_max_size = len(l1[i].rlabel)
-                        splat = split.symbols.Symbol(given_name=l1[i].rlabel, given_size=0, vram_start=addr, type='func')
+                        splat = split.symbols.Symbol(given_name=l1[i].rlabel, given_size=l1[i].rsize, vram_start=addr, type='func')
                         symbols[l1[i].rlabel] = Symbol(splat=splat, visibility=None, section=None, source=None, ignore=False)
                 elif l1[i].rtype == 'R_MIPS_HI16':
                     hi = i
@@ -377,7 +393,7 @@ if __name__ == "__main__":
                         if d == None:
                             hi = -1
                             continue
-                        l1[i].rlabel, l1[i].size = d
+                        l1[i].rlabel, l1[i].rsize = d
                     else:
                         if(l1[hi].data != l2[hi].data):
                             addr = addr-(int(l1[hi].regs[1], 16) << 16)
@@ -399,19 +415,34 @@ if __name__ == "__main__":
                             assert(d.splat.vram_start == addr)
                         else:
                             if len(l1[i].rlabel) > name_max_size: name_max_size = len(l1[i].rlabel)
-                            splat = split.symbols.Symbol(given_name=l1[i].rlabel, given_size=l1[i].size, vram_start=addr)
+                            splat = split.symbols.Symbol(given_name=l1[i].rlabel, given_size=l1[i].rsize, vram_start=addr)
                             symbols[l1[i].rlabel] = Symbol(splat=splat, visibility=None, section=None, source=None, ignore=False)
                     hi = -1
                 elif l1[i].rtype == 'R_MIPS_32':
-                    pass
+                    if l1[i].rlabel == '.text' or l1[i].rlabel == '.data' or l1[i].rlabel == '.rodata' or l1[i].rlabel == '.bss':
+                        i += 4
+                        #TODO get offset from 32bits data
+                        continue
+                    
+                    d = symbols.get(l1[i].rlabel)
+                    if d != None:
+                        assert(d.splat.vram_start == addr)
+                    else:
+                        if len(l1[i].rlabel) > name_max_size: name_max_size = len(l1[i].rlabel)
+                        if l2[i].rlabel.startswith('func_'):
+                            splat = split.symbols.Symbol(given_name=l1[i].rlabel, given_size=l1[i].rsize, vram_start=addr, type='func')
+                        else:
+                            splat = split.symbols.Symbol(given_name=l1[i].rlabel, given_size=l1[i].rsize, vram_start=addr)
+                        symbols[l1[i].rlabel] = Symbol(splat=splat, visibility=None, section=None, source=None, ignore=False)
+                    i += 4
             else:
                 # If no reloc, make sure data matches
                 if l2[i].rtype == None:
                     if(l1[i].data != l2[i].data):
                         if sec == '.text':
-                            print('Diff at ' + hex(i*4) + ' in .text ' + l1[i].desc + ' vs ' + l2[i].desc)
+                            print('\033[91m''Diff at ' + hex(i*4) + ' in .text ' + l1[i].desc + ' vs ' + l2[i].desc + '\033[0m')
                         else:
-                            print('Diff at ' + hex(i) + ' in ' + sec + ' ' + hex(l1[i].data) + ' vs ' + hex(l2[i].data))
+                            print('\033[91m''Diff at ' + hex(i) + ' in ' + sec + ' ' + hex(l1[i].data) + ' vs ' + hex(l2[i].data) + '\033[0m')
                         match  = False
                         break
                 assert(l1[i].rlabel == None)

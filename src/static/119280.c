@@ -107,9 +107,9 @@ u8 D_01022790[512] = {
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
 };
 
+/*01022990*/
+ControlMapping gControlPreset[8] = {
 #if VERSION_US
-/*01022990*/
-ControlMapping gControlPreset[8] = {
     {
         {
             "CONTROL STICK LEFT",
@@ -270,10 +270,7 @@ ControlMapping gControlPreset[8] = {
             "R BUTTON",
         },
     },
-};
 #elif VERSION_FR
-/*01022990*/
-ControlMapping gControlPreset[8] = {
     {
         {
             "LEVIER CTRL GAUCHE",
@@ -434,5 +431,5 @@ ControlMapping gControlPreset[8] = {
             "BOUTON R",
         },
     },
-};
 #endif
+};

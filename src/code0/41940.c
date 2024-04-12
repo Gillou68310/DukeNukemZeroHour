@@ -6869,22 +6869,20 @@ static u8 func_80051684(s16 sectnum)
     return 0;
 }
 
-#if VERSION_US
 /*800DF1C0*/
 static char *D_800DF1C0[4] = {
+#if VERSION_US
     "TNT BARREL",
     "FUSE WIRE",
     "PLUNGER BOX",
     "TIME MACHINE PART"
-};
 #elif VERSION_FR
-static char *D_800DF1C0[4] = {
     "BARIL DE DYNAMITE",
     "MECHE",
     "DETONATEUR A MANETTE",
     "MACHINE REMONT. TPS"
-};
 #endif
+};
 
 /*800516EC*/
 static u8 func_800516EC(s16 spritenum)

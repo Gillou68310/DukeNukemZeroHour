@@ -7,6 +7,12 @@
 #include "code0/data/modelinfo.h"
 #include "code0/data/D8D20.h"
 
+#if VERSION_US
+#define D_8012FCB0_SIZE 48
+#elif VERSION_FR
+#define D_8012FCB0_SIZE 64
+#endif
+
 typedef struct
 {
     /*0x0000*/ Mtx mtx1[MAXPLAYERS];
@@ -475,11 +481,7 @@ typedef struct
 /*8012FC48*/ _extern code0unkStruct12 D_8012FC48[2] ALIGNED(8);
 /*8012FC90*/ _extern s32 D_8012FC90;
 /*8012FCA0*/ _extern s16 D_8012FCA0[MAXPLAYERS];
-#if VERSION_US
-/*8012FCB0*/ _extern char D_8012FCB0[MAXPLAYERS][48] ALIGNED(8);
-#elif VERSION_FR
-_extern char D_8012FCB0[MAXPLAYERS][64] ALIGNED(8);
-#endif
+/*8012FCB0*/ _extern char D_8012FCB0[MAXPLAYERS][D_8012FCB0_SIZE] ALIGNED(8);
 /*8012FD80*/ _extern s32 gAlertAliens;
 /*8012FD88*/ _extern s32 D_8012FD88;
 /*8012FD8C*/ _extern code0UnkStruct16 *D_8012FD8C;

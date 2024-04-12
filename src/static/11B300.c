@@ -558,9 +558,9 @@ AlphaPalette gAlphaPalette[0x28] = {
 
 static s32 _unused = 0;
 
-#if VERSION_US
 /*01025BA0*/
 _11B300UnkStruct1 D_01025BA0[0x1D] = {
+#if VERSION_US
     { 0x5FF, 0x3B7, "DUKE NUKEM", 2, 0x64, 0x50, 0 },
     { 0x5FE, 0x3A5, "APOCALYPSE DUKE", 2, 0x64, 0x50, 0 },
     { 0x5FD, 0x4B2, "COWBOY DUKE", 2, 0x64, 0x50, 0 },
@@ -590,10 +590,7 @@ _11B300UnkStruct1 D_01025BA0[0x1D] = {
     { 0x502, 0x560, "ENFORCER", 2, 0x4B, 0x58, 3 },
     { 0x503, 0x2AE, "ENFORCER CAPTAIN", 2, 0x4B, 0x58, 3 },
     { 0x504, 0x55F, "BATTLE ENFORCER", 2, 0x4B, 0x58, 3 },
-};
 #elif VERSION_FR
-/*01025BA0*/
-_11B300UnkStruct1 D_01025BA0[0x1D] = {
     { 0x5FF, 0x3B7, "DUKE NUKEM", 2, 0x64, 0x50, 0 },
     { 0x5FE, 0x3A5, "DUKE POST-APOC", 2, 0x64, 0x50, 0 },
     { 0x5FD, 0x4B2, "DUKE LE COWBOY", 2, 0x64, 0x50, 0 },
@@ -623,7 +620,7 @@ _11B300UnkStruct1 D_01025BA0[0x1D] = {
     { 0x502, 0x560, "SOLDAT D'ASSAUT", 2, 0x4B, 0x58, 3 },
     { 0x503, 0x2AE, "CAPITAINE D'ASSAUT", 2, 0x4B, 0x58, 3 },
     { 0x504, 0x55F, "COMMANDANT D'ASSAUT", 2, 0x4B, 0x58, 3 },
-};
 #endif
+};
 
 /*01025CFC*/ s16 D_01025CFC = ARRAY_COUNT(D_01025BA0);
