@@ -19,6 +19,7 @@
 #include "code0/A06F0.h"
 #include "code0/8EFE0.h"
 #include "code0/95500.h"
+#include "code0/96A80.h"
 #include "code0/code0.h"
 #include "code1/code1.h"
 #include "code1/EB300.h"

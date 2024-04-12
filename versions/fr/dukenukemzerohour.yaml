@@ -105,8 +105,16 @@ segments:
       - [0x7F680, c,        src/code0/7F6A0]
       - [0x7FCC0, c,        src/code0/7FCE0]
       - [0x814B0, c,        src/code0/edl]
+      - [0x82460, c,        src/code0/82480]
+      - [0x84470, c,        src/code0/84490]
+      - [0x86FF0, c,        src/code0/87010]
+      - [0x88670, asm,      src/code0/controller] #TODO
+      - [0x8E9D0, c,        src/code0/8E670]
+      - [0x8F340, c,        src/code0/8EFE0]
+      - [0x95860, c,        src/code0/95500]
+      - [0x96A80, c,        src/code0/96A80]
 
-      - [0x82460, asm,      src/code0/code0]
+      - [0xA0A50, asm,      src/code0/code0]
       - [0xBC0B0, bin,      ucode/rspboot.text]
       - [0xBC180, bin,      ucode/gspF3DEX2.NoN.fifo.text]
       - [0xBD510, bin,      ucode/aspMain.text]
@@ -155,8 +163,13 @@ segments:
       - [0xE09A0, .data,    src/code0/data/E0640]
       - [0xE1810, .data,    src/code0/7FCE0]
       - [0xE1AA0, .data,    src/code0/edl]
+      - [0xE1E80, .data,    src/code0/84490]
+      - [0xE1EC0,  data,    src/code0/controller] #TODO
+      - [0xE2740, .data,    src/code0/8E670]
+      - [0xE27F0, .data,    src/code0/8EFE0]
+      - [0xE2810, .data,    src/code0/95500]
 
-      - [0xE1E80, data,     src/code0/code0]
+      - [0xE2970, data,     src/code0/code0]
       - [0xE4DC0, bin,      ucode/gspF3DEX2.NoN.fifo.data]
       - [0xE51E0, bin,      ucode/aspMain.data]
     #.rodata section
@@ -185,15 +198,22 @@ segments:
       - [0xE9E60, .rodata,  src/code0/7A430]
       - [0xE9EA0, .rodata,  src/code0/debug]
       - [0xEA1E0, .rodata,  src/code0/7FCE0]
+      - [0xEA1F0, .rodata,  src/code0/82480]
+      - [0xEA230, .rodata,  src/code0/87010]
+      - [0xEA240,  rodata,  src/code0/controller] #TODO
+      - [0xEA820, .rodata,  src/code0/8EFE0]
+      - [0xEAC50, .rodata,  src/code0/95500]
+      - [0xEAD60, .rodata,  src/code0/96A80]
 
-      - [0xEA1F0, rodata,   src/code0/code0]
+      - [0xEAED0, rodata,   src/code0/code0]
     #.bss section
       - {start: 0xEB820, type: .bss, vram: 0x800EAC20, name: src/code0/main}
       - {start: 0xEB820, type: .bss, vram: 0x800F7560, name: src/code0/24610}
       - {start: 0xEB820, type: .bss, vram: 0x800F7580, name: src/code0/engine}
       - {start: 0xEB820, type: .bss, vram: 0x800FA1E0, name: src/code0/609D0}
       - {start: 0xEB820, type: .bss, vram: 0x800FA1F0, name: src/code0/6D9E0}
-      - {start: 0xEB820, type:  bss, vram: 0x800FA200, name: src/code0/code0}
+      - {start: 0xEB820, type:  bss, vram: 0x800FA200, name: src/code0/controller} #TODO
+      - {start: 0xEB820, type:  bss, vram: 0x800FA8D0, name: src/code0/code0}
 
   - name: code1
     type: code
