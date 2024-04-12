@@ -228,7 +228,11 @@ static void func_800A0014(void)
     {
         cond = 0;
         func_80029238(200, 200, 200, 0x80, 0x80, 0x80, D_80106D40);
+#if VERSION_US
         displayMessage2(x, y, "KEYS");
+#elif VERSION_FR
+        displayMessage2(x, y, "TOUCHES");
+#endif
         y += 10;
         func_80029238(0, 200, 200, 0, 0x80, 0x80, D_80106D40);
 
@@ -243,27 +247,57 @@ static void func_800A0014(void)
         }
         if (!cond)
         {
+#if VERSION_US
             displayMessage2(x, y, "NONE");
+#elif VERSION_FR
+            displayMessage2(x, y, "AUCUN");
+#endif
             y += 10;
         }
         func_80029238(200, 200, 200, 0x80, 0x80, 0x80, D_80106D40);
         y += 10;
+#if VERSION_US
         displayMessage2(x, y, "TIME MACHINE PARTS");
+#elif VERSION_FR
+        displayMessage2(x, y, "MACHINE REMONT\x2e TPS");
+#endif
         y += 10;
         func_80029238(0, 200, 200, 0, 0x80, 0x80, D_80106D40);
 
         if ((gMapNum == MAP_WETWORLD) || (gMapNum == MAP_BOSS_HOG) ||
             (gMapNum == MAP_CYBORG_SCORPION) || (gMapNum >= MAP_THE_RACK))
+        {
+#if VERSION_US
             displayMessage2(x, y, "NONE DETECTED");
+#elif VERSION_FR
+            displayMessage2(x, y, "RIEN DECELE");
+#endif
+        }
         else if (gTimeMachinePart & (1 << gMapNum))
+        {
+#if VERSION_US
             displayMessage2(x, y, "PART COLLECTED");
+#elif VERSION_FR
+            displayMessage2(x, y, "PIECE PRISE");
+#endif
+        }
         else
+        {
+#if VERSION_US
             displayMessage2(x, y, "PART NOT FOUND");
+#elif VERSION_FR
+            displayMessage2(x, y, "PIECE NON TROUVEE");
+#endif
+        }
     }
     else
     {
         func_80029238(200, 200, 200, 0x80, 0x80, 0x80, D_80106D40);
+#if VERSION_US
         displayMessage2(x, y, "PRIMARY GOAL");
+#elif VERSION_FR
+        displayMessage2(x, y, "MISSION PRINCIPALE");
+#endif
         y += 10;
         func_80029238(0, 200, 200, 0, 0x80, 0x80, D_80106D40);
         y = func_8009FEB0(x, y, gpObjectiveStrInfo[gMapNum].addr[0], 29);
@@ -272,7 +306,11 @@ static void func_800A0014(void)
         {
             y += 10;
             func_80029238(200, 200, 200, 0x80, 0x80, 0x80, D_80106D40);
+#if VERSION_US
             displayMessage2(x, y, "CURRENT OBJECTIVES");
+#elif VERSION_FR
+            displayMessage2(x, y, "OBJECTIFS EN COURS");
+#endif
             y += 10;
             func_80029238(0, 200, 200, 0, 0x80, 0x80, D_80106D40);
 
@@ -292,10 +330,19 @@ static void func_800A0014(void)
             k++;
     }
 
+#if VERSION_US
     sprintf(sp20, "TIME MACHINE PARTS %d:%d", k, 13);
+#elif VERSION_FR
+    sprintf(sp20, "MACHINE REMONT\x2e TPS %d:%d", k, 13);
+#endif
     displayMessage2((D_80119A94 + 80), (D_80199944 + 135), sp20);
+#if VERSION_US
     sprintf(sp20, "SECRETS %d:%d   BABES %d:%d", D_801A1958.secrets_found,
             D_801A1958.secrets_total, D_801A1958.babes_saved, D_801A1958.babes_total);
+#elif VERSION_FR
+    sprintf(sp20, "SECRETS %d:%d   GONZ\x2e %d:%d", D_801A1958.secrets_found,
+            D_801A1958.secrets_total, D_801A1958.babes_saved, D_801A1958.babes_total);
+#endif
     displayMessage2((D_80119A94 + 80), (D_80199944 + 145), sp20);
     gDPSetTextureLUT(gpDisplayList++, G_TT_RGBA16);
     gDPSetCombineMode(gpDisplayList++, G_CC_DECALRGBA, G_CC_PASS2);
@@ -478,9 +525,15 @@ void func_800A0F84(void)
                 func_800A34CC(270, 160, 6070, 4);
                 func_800A34CC(50, 60, 6070, 8);
                 func_800A34CC(270, 60, 6070, 12);
+#if VERSION_US
                 displayMessage2(90, 150, "TEMPORAL LINK ESTABLISHED");
                 displayMessage2(90, 160, "TRANSMISSION SOURCE:");
                 displayMessage2(90, 170, "LONDON, ENGLAND 1888 AD");
+#elif VERSION_FR
+                displayMessage2(90, 150, "LIEN TEMPOREL ESTABLI");
+                displayMessage2(90, 160, "SOURCE DE TRANSMISSION");
+                displayMessage2(90, 170, "LONDRES, ANGLETERRE 1888");
+#endif
                 ptr2 = ((D_8012FD88 >> 1)) + (s32 *)func_800A0F84; /*TODO: Funky way of getting random values?*/
                 sprintf(sp20, "%08X", *ptr2++);
                 displayMessage2(240, 30, sp20);
@@ -572,9 +625,21 @@ void func_800A0F84(void)
             if (D_80106D30[D_801B0820] == 1)
                 displayMessage1(-1, 200, D_8012F6E4[gPlayer[D_801B0820].unk4C].actor);
             else if (D_800E16A0[D_801B0820] != 0)
+            {
+#if VERSION_US
                 displayMessage1(-1, 200, "RED TEAM");
+#elif VERSION_FR
+                displayMessage1(-1, 200, "EQUIPE ROUGE");
+#endif
+            }
             else
+            {
+#if VERSION_US
                 displayMessage1(-1, 200, "BLUE TEAM");
+#elif VERSION_FR
+                displayMessage1(-1, 200, "EQUIPE BLEUE");
+#endif
+            }
             return;
         }
 
@@ -1226,7 +1291,11 @@ static void func_800A42A4(s16 playernum)
                 {
                     a = CLAMP_MAX((D_80138858[i] * 8), 0xFF);
                     func_80029238(D_8012DF04[playernum].r, D_8012DF04[playernum].g, D_8012DF04[playernum].b, 0, 0, 0, a);
+#if VERSION_US
                     displayMessage1(-1, (72 - (i * 12)), D_8012FCB0[i]);
+#elif VERSION_FR
+                    displayMessage1(-1, (84 - (i * 12)), D_8012FCB0[i]);
+#endif
                 }
             }
         }
@@ -1237,7 +1306,11 @@ static void func_800A42A4(s16 playernum)
         {
             a = CLAMP_MAX((D_80138858[playernum] * 8), 0xFF);
             func_80029238(D_8012DF04[playernum].r, D_8012DF04[playernum].g, D_8012DF04[playernum].b, 0, 0, 0, a);
+#if VERSION_US
             displayMessage1(-1, 78, D_8012FCB0[playernum]);
+#elif VERSION_FR
+            displayMessage1(-1, 90, D_8012FCB0[playernum]);
+#endif
         }
     }
 }
@@ -1269,7 +1342,13 @@ void func_800A4478(void)
                 if (gPlayer[i].unk45 != 0)
                 {
                     if (gPlayer[i].unk4E > 90)
+                    {
+#if VERSION_US
                         func_800A419C(i, "PRESS START");
+#elif VERSION_FR
+                        func_800A419C(i, "APPUYER SUR START");
+#endif
+                    }
                 }
             }
         }
