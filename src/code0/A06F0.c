@@ -259,7 +259,7 @@ static void func_800A0014(void)
 #if VERSION_US
         displayMessage2(x, y, "TIME MACHINE PARTS");
 #elif VERSION_FR
-        displayMessage2(x, y, "MACHINE REMONT\x2e TPS");
+        displayMessage2(x, y, "MACHINE REMONT. TPS");
 #endif
         y += 10;
         func_80029238(0, 200, 200, 0, 0x80, 0x80, D_80106D40);
@@ -333,14 +333,14 @@ static void func_800A0014(void)
 #if VERSION_US
     sprintf(sp20, "TIME MACHINE PARTS %d:%d", k, 13);
 #elif VERSION_FR
-    sprintf(sp20, "MACHINE REMONT\x2e TPS %d:%d", k, 13);
+    sprintf(sp20, "MACHINE REMONT. TPS %d:%d", k, 13);
 #endif
     displayMessage2((D_80119A94 + 80), (D_80199944 + 135), sp20);
 #if VERSION_US
     sprintf(sp20, "SECRETS %d:%d   BABES %d:%d", D_801A1958.secrets_found,
             D_801A1958.secrets_total, D_801A1958.babes_saved, D_801A1958.babes_total);
 #elif VERSION_FR
-    sprintf(sp20, "SECRETS %d:%d   GONZ\x2e %d:%d", D_801A1958.secrets_found,
+    sprintf(sp20, "SECRETS %d:%d   GONZ. %d:%d", D_801A1958.secrets_found,
             D_801A1958.secrets_total, D_801A1958.babes_saved, D_801A1958.babes_total);
 #endif
     displayMessage2((D_80119A94 + 80), (D_80199944 + 145), sp20);

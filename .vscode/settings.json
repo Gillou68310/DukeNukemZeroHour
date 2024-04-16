@@ -22,5 +22,6 @@
             ]
         }
     },
-    "terminal.integrated.tabs.enableAnimation": false
+    "terminal.integrated.tabs.enableAnimation": false,
+    "files.autoGuessEncoding": true
 }
