@@ -236,9 +236,9 @@ if __name__ == "__main__":
 
     symbols = parse_symbols_from_config(symbol_addrs)
 
-    asm = 'asm/'+VERSION+'/'+source_file.replace('.c','.s')
-    data = 'asm/'+VERSION+'/data/'+source_file.replace('.c','.data.s')
-    rodata = 'asm/'+VERSION+'/data/'+source_file.replace('.c','.rodata.s')
+    asm = 'asm/'+VERSION+'/'+source_file.split('.')[0] + '.s'
+    data = 'asm/'+VERSION+'/data/'+source_file.split('.')[0] + '.data.s'
+    rodata = 'asm/'+VERSION+'/data/'+source_file.split('.')[0] + '.rodata.s'
 
     # Build and disassemble source file
     src = 'build/'+VERSION+'/'+source_file+'.o'
@@ -252,7 +252,7 @@ if __name__ == "__main__":
     os.makedirs('objdump/c/', exist_ok=True)
     os.makedirs('objdump/s/', exist_ok=True)
 
-    subprocess.run(['make', 'VERBOSE=1', 'VERSION='+VERSION, src])
+    subprocess.run(['make', 'VERBOSE=1', 'VERSION='+VERSION, 'AS=mips-linux-gnu-as', src])
 
     sections = []
     if os.path.exists(asm):
