@@ -5,7 +5,7 @@
 [Code Progress]: https://img.shields.io/endpoint?label=Code%20US&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fdukezh%2Fus%2Fdefault%2F%3Fmode%3Dshield%26measure%3Dfuncs
 [Bytes Progress]: https://img.shields.io/endpoint?label=Bytes%20US&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Fdukezh%2Fus%2Fdefault%2F%3Fmode%3Dshield%26measure%3Dbytes
 
-A WIP decompilation of Duke Nukem Zero Hour (US) for N64.
+A decompilation of Duke Nukem Zero Hour for N64.
 
 Note: To use this repository, you must already own a copy of the game.
 
@@ -24,6 +24,7 @@ Tools requires Python 3.8+. Package requirements can be installed via:
 
 ```sh
 pip3 install --upgrade pip
+pip3 install -U splat64[mips]
 pip3 install -r requirements.txt
 ```
 
@@ -56,9 +57,15 @@ make --jobs
 If you did everything correctly, you'll be greeted with the following:
 
 ```sh
-Creating z64: build/dukenukemzerohour.z64
+Creating z64: build/us/dukenukemzerohour.z64
 OK
 ```
+
+### Other versions
+
+This repository has support for the French versions of the game too.
+
+To build this version, place your ROM in the root of the repo and rename it to baserom.fr.z64. Pass VERSION=fr to the above make commands.
 
 ### Building NON_MATCHING Version
 

@@ -280,8 +280,16 @@ segments:
       - [0xBA740, c,        libs/libultra/src/libc/xlitob]
       - [0xBA990, c,        libs/libultra/src/libc/xldtob]
       - [0xBB410, c,        libs/libultra/src/libc/ldiv]
-
-      - [0xBB5D0, asm,      src/code0/code0]
+      - [0xBB5D0, c,        libs/libkmc/src/errno]
+      - [0xBB5D0, c,        libs/libkmc/src/sqrt]
+      - [0xBB7F0, c,        libs/libkmc/src/strcmp]
+      - [0xBB900, c,        libs/libkmc/src/strcpy]
+      - [0xBB9D0, c,        libs/libkmc/src/toupper]
+      - [0xBBA00, c,        libs/libkmc/src/_matherr]
+      - [0xBBA70, hasm,     libs/libkmc/src/mcmpl]
+      - [0xBBAE0, hasm,     libs/libkmc/src/mmuldi3]
+      - [0xBBEB0, hasm,     libs/libkmc/src/mcvtls]
+      - [0xBC0A0, c,        libs/libkmc/src/matherr]
       - [0xBC0B0, bin,      ucode/rspboot.text]
       - [0xBC180, bin,      ucode/gspF3DEX2.NoN.fifo.text]
       - [0xBD510, bin,      ucode/aspMain.text]
@@ -384,8 +392,7 @@ segments:
       - [0xE4C70, .data,    libs/libultra/src/io/contpfs]
       - [0xE4C80, .data,    libs/libultra/src/io/contramread]
       - [0xE4C90, .data,    libs/libultra/src/libc/xlitob]
-
-      - [0xE4CC0, data,     src/code0/code0]
+      - [0xE4CC0, .data,    libs/libkmc/src/toupper]
       - [0xE4DC0, bin,      ucode/gspF3DEX2.NoN.fifo.data]
       - [0xE51E0, bin,      ucode/aspMain.data]
     #.rodata section
@@ -442,8 +449,7 @@ segments:
       - [0xEB5F0, .rodata,  libs/libultra/src/libc/xprintf]
       - [0xEB768, .rodata,  libs/libultra/src/io/devmgr]
       - [0xEB790, .rodata,  libs/libultra/src/libc/xldtob]
-
-      - [0xEB800, rodata,   src/code0/code0]
+      - [0xEB800, .rodata,  libs/libkmc/src/sqrt]
     #.bss section
       - {start: 0xEB820, type: .bss, vram: 0x800EAC20, name: src/code0/main}
       - {start: 0xEB820, type: .bss, vram: 0x800F7560, name: src/code0/24610}
@@ -463,7 +469,8 @@ segments:
       - {start: 0xEB820, type: .bss, vram: 0x800FD060, name: libs/libultra/src/io/sptask}
       - {start: 0xEB820, type: .bss, vram: 0x800FD0A0, name: libs/libultra/src/io/siacs}
       - {start: 0xEB820, type: .bss, vram: 0x800FD0B0, name: libs/libultra/src/io/piacs}
-      - {start: 0xEB820, type:  bss, vram: 0x800FD0C0, name: src/code0/code0}
+#      - {start: 0xEB820, type: .bss, vram: 0x800FD0C0, name: src/code0/code0}
+      - {start: 0xEB820, type:  bss, vram: 0x800FD0C0, name: src/code0/common}
 
   - name: code1
     type: code
