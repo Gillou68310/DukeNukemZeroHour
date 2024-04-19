@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from pycparser import c_parser, c_ast
+from functools import partial
 import subprocess
 import argparse
 import glob
@@ -122,7 +123,7 @@ def parse_symbols_from_config(file: str, symbols: SYMBOLS) -> None:
             symbols.add(sym, False)
 
 def parse_addrs_from_source(file: str, coord: dict, symbols: SYMBOLS, forced: list) -> None:
-    f = open(file, 'r')
+    f = open(file, 'r', encoding="ISO-8859-1")
     lines = f.readlines()
     f.close() 
 
@@ -226,8 +227,8 @@ class Visitor(c_ast.NodeVisitor):
         if node.coord != None and self.file == node.coord.file:
             self.coord[node.coord.line] = node.declname
 
-def parse_source_file(file: str) -> None:            
-    out_text = m2ctx.import_c_file(file, False, True)
+def parse_source_file(file: str, version: str) -> None:            
+    out_text = m2ctx.import_c_file(file, False, True, version)
     parser = c_parser.CParser()
     try:
         ast = parser.parse(out_text, filename='<stdin>')
@@ -243,16 +244,16 @@ def parse_source_file(file: str) -> None:
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', '--prefix_static', action='store_true', help='Prefix static variables')
+    parser.add_argument('-v', '--version', type=str, default='us', help='game version')
     args = parser.parse_args()
 
     symbols = SYMBOLS()
     forced = []
-    BUILD_DIR = 'tmp'
+    BUILD_DIR = os.path.join('tmp', args.version)
 
     # Initialize splat symbols
-    VERSION='us'
-    yaml = 'versions/'+VERSION+'/dukenukemzerohour.yaml'
-    symbol_addrs = 'versions/'+VERSION+'/symbol_addrs.txt'
+    yaml = 'versions/'+args.version+'/dukenukemzerohour.yaml'
+    symbol_addrs = 'versions/'+args.version+'/symbol_addrs.txt'
     with open(yaml) as f:
         config = split.yaml.load(f.read(), Loader=split.yaml.SafeLoader)
     config['options']['base_path'] = '.'
@@ -264,23 +265,24 @@ if __name__ == '__main__':
     # Parse symbols from config file
     parse_symbols_from_config(symbol_addrs, symbols)
 
-    # Parse symbols from source files
-    h_files = [y for x in os.walk('include') for y in glob.glob(os.path.join(x[0], '*.h'))]
-    c_files = [y for x in os.walk('src') for y in glob.glob(os.path.join(x[0], '*.c'))]
+    if args.version == 'us':
+        # Parse symbols from source files
+        h_files = [y for x in os.walk('include') for y in glob.glob(os.path.join(x[0], '*.h'))]
+        c_files = [y for x in os.walk('src') for y in glob.glob(os.path.join(x[0], '*.c'))]
 
-    files = c_files + h_files
+        files = c_files + h_files
 
-    print('Parsing source files pass 1...')
-    with Pool() as pool:
-        results = list(tqdm.tqdm(pool.imap(parse_source_file, files), total=len(files)))
+        print('Parsing source files pass 1...')
+        with Pool() as pool:
+            results = list(tqdm.tqdm(pool.imap(partial(parse_source_file, version=args.version), files), total=len(files)))
 
-    print('Parsing source files pass 2...')
-    bar = tqdm.tqdm(results, total=len(results))
-    for file, v in bar:
-        parse_addrs_from_source(file, v.coord, symbols, forced)
+        print('Parsing source files pass 2...')
+        bar = tqdm.tqdm(results, total=len(results))
+        for file, v in bar:
+            parse_addrs_from_source(file, v.coord, symbols, forced)
 
     # Build source files
-    subprocess.run(['make', 'objects', '-j12', ('BUILD_DIR=' + BUILD_DIR), 'EXTERN=0'])
+    subprocess.run(['make', 'objects', '-j12', ('BUILD_DIR=' + BUILD_DIR), 'EXTERN=0', ('VERSION=' + args.version)])
     o_files = [y for x in os.walk((BUILD_DIR + '/src')) for y in glob.glob(os.path.join(x[0], '*.o'))]
     o_files += [y for x in os.walk((BUILD_DIR + '/libs')) for y in glob.glob(os.path.join(x[0], '*.o'))]
 
@@ -291,7 +293,7 @@ if __name__ == '__main__':
     for sym in forced:
         symbols.update(sym)
 
-    #subprocess.run(['make', 'clean', ('BUILD_DIR=' + BUILD_DIR), 'EXTERN=0'])
+    #subprocess.run(['make', 'clean', ('BUILD_DIR=' + BUILD_DIR), 'EXTERN=0', ('VERSION=' + args.version)])
 
     # Sort symbols
     symbols.symbols.sort()

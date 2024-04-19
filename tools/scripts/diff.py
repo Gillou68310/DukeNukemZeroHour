@@ -314,9 +314,9 @@ if __name__ == "__main__":
                 else:
                     # Update size
                     s = symbols.get(l1[i].label)
-                    assert(s)
-                    if s.splat.given_size == 0:
-                        s.splat.given_size = l1[i].lsize
+                    if(s):
+                        if s.splat.given_size == 0:
+                            s.splat.given_size = l1[i].lsize
 
             # Relocations
             if l1[i].rtype != None:
@@ -333,9 +333,9 @@ if __name__ == "__main__":
                 # Already defined
                 if l1[i].rlabel == l2[i].rlabel:
                     s = symbols.get(l1[i].rlabel)
-                    assert(s)
-                    if s.splat.given_size == 0:
-                        s.splat.given_size = l1[i].rsize
+                    if(s):
+                        if s.splat.given_size == 0:
+                            s.splat.given_size = l1[i].rsize
                     i += 1
                     continue
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from functools import partial
 import argparse
 import glob
 import tqdm
@@ -9,8 +10,8 @@ import m2ctx
 from pycparser import c_parser, c_ast, c_generator
 from multiprocessing import Pool
 
-def parse_source_file(file: str) -> None:            
-    source = m2ctx.import_c_file(file, macro=False, linemarker=False)
+def parse_source_file(file: str, version: str) -> None:            
+    source = m2ctx.import_c_file(file, macro=False, linemarker=False, version=version)
     parser = c_parser.CParser()
     try:
         ast = parser.parse(source, filename='<stdin>')
@@ -31,6 +32,7 @@ def parse_source_file(file: str) -> None:
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('Path', nargs='*', default=[], help='source files')
+    parser.add_argument('-v', '--version', type=str, default='us', help='game version')
     args = parser.parse_args()
 
     h_files = [y for x in os.walk('include') for y in glob.glob(os.path.join(x[0], '*.h'))]
@@ -44,7 +46,7 @@ if __name__ == '__main__':
     f = open('ida_ctx.c', 'w')
 
     with Pool() as pool:
-        sources = list(tqdm.tqdm(pool.imap(parse_source_file, files), total=len(files)))
+        sources = list(tqdm.tqdm(pool.imap(partial(parse_source_file, version=args.version), files), total=len(files)))
 
     for src, file in sources:
         #prefix unused variables to avoid multiple definitions

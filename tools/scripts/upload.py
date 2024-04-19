@@ -35,8 +35,8 @@ def get_scratches_decompme(api_base, sessionid):
         dico[s['name']] = s
     return dico
 
-def generate_context(file: str, prune: False) -> None:            
-    source = m2ctx.import_c_file(file, macro=True, linemarker=False)
+def generate_context(file: str, prune: False, version: str) -> None:
+    source = m2ctx.import_c_file(file, macro=True, linemarker=False, version=version)
     if not prune:
         return source
     
@@ -67,16 +67,16 @@ def generate_context(file: str, prune: False) -> None:
     return macro + c_generator.CGenerator().visit(ast)
 
 if __name__ == "__main__":
-    VERSION='us'
     parser = argparse.ArgumentParser()
     parser.add_argument("c_file")
     parser.add_argument('-p', '--prune', action='store_true', help='Prune context')
     parser.add_argument('-d', '--dump', action='store_true', help='Dump context')
+    parser.add_argument('-v', '--version', type=str, default='us', help='game version')
     args = parser.parse_args()
 
     api_base = os.environ.get("DECOMPME_API_BASE", "https://decomp.me")
 
-    path = list(Path('asm/'+VERSION+'/nonmatchings/').rglob(args.c_file + '*'))
+    path = list(Path('asm/'+args.version+'/nonmatchings/').rglob(args.c_file + '*'))
     
     if len(path) == 0:
         print('Cannot find function ' + args.c_file)
@@ -86,7 +86,7 @@ if __name__ == "__main__":
     path = path[0]
     print('Found function at ' + str(path))
     
-    src_file = Path(*path.parts[1:-1])
+    src_file = Path(*path.parts[3:-1])
     src_file = src_file.with_suffix('.c')
     h_files = [y for x in os.walk('include') for y in glob.glob(os.path.join(x[0], '*.h'))]
     
@@ -107,7 +107,7 @@ if __name__ == "__main__":
     f.close()
     
     print("Generating context...")
-    context = generate_context(temp, args.prune)
+    context = generate_context(temp, args.prune, args.version)
     os.remove(temp)
 
     if args.dump:

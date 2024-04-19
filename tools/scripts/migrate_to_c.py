@@ -2,6 +2,7 @@
 from pycparser import c_parser, c_ast
 from dataclasses import dataclass
 import subprocess
+import argparse
 import m2ctx
 import sys
 import os
@@ -48,8 +49,8 @@ class Visitor(c_ast.NodeVisitor):
         if node.coord != None and self.file == node.coord.file:
             self.coord[node.coord.line] = node.declname
 
-def parse_source_file(file: str) -> None:            
-    out_text = m2ctx.import_c_file(file, False, True)
+def parse_source_file(file: str, version: str) -> None:            
+    out_text = m2ctx.import_c_file(file, False, True, version)
     parser = c_parser.CParser()
     try:
         ast = parser.parse(out_text, filename='<stdin>')
@@ -63,10 +64,12 @@ def parse_source_file(file: str) -> None:
     return (v, out_text)
 
 if __name__ == '__main__':
-    #TODO: check arg
-    VERSION = 'fr'
-    asm = sys.argv[1]
-    c_file = asm.replace('asm/'+VERSION+'/data/', '', 1).replace('.data.s', '.c')
+    parser = argparse.ArgumentParser()
+    parser.add_argument("c_file")
+    parser.add_argument('-v', '--version', type=str, default='us', help='game version')
+    args = parser.parse_args()
+    asm = args.c_file
+    c_file = asm.replace('asm/'+args.version+'/data/', '', 1).replace('.data.s', '.c')
     rodata = asm.replace('.data.s', '.rodata.s')
 
     if os.path.isfile(rodata):
@@ -85,7 +88,7 @@ if __name__ == '__main__':
     includes = []
 
     # Parse C file
-    v, ctx = parse_source_file(c_file)
+    v, ctx = parse_source_file(c_file, args.version)
     parse_addrs_from_source(c_file, v.coord, symbols, includes)
 
     # Write m2c context
@@ -112,7 +115,7 @@ if __name__ == '__main__':
     f.close()
 
     # Parse decompiled data
-    v, ctx = parse_source_file('data.c')
+    v, ctx = parse_source_file('data.c', args.version)
 
     # Add infos from C file to decompiled data
     insert = {}

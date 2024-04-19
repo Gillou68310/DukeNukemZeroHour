@@ -4,6 +4,7 @@ build/
 assets/
 extracted/
 nonmatchings/
+objdump/
 gen/
 tmp/
 stats/

@@ -20,7 +20,6 @@ CFLAGS = [
 
 CPP_FLAGS = [
     "-Iinclude",
-    "-Igen/us",
     "-Ilibs/libultra/include/2.0I",
     "-Ilibs/libmus/include",
     "-Ilibs/libkmc/include",
@@ -35,11 +34,12 @@ CPP_FLAGS = [
     "-D__attribute__(A)=",
     "-U__mips",
     "-D__CTX__",
-    "-DVERSION_US=1",
 ]
 
-def import_c_file(in_file, macro, linemarker) -> str:
-    
+def import_c_file(in_file, macro, linemarker, version) -> str:
+    CPP_FLAGS.append("-Igen/"+version)
+    CPP_FLAGS.append("-DVERSION_" + version.upper() + "=1")
+
     cpp_command = ["mips-linux-gnu-cpp", "-P", "-dM", *CFLAGS, *CPP_FLAGS, in_file]
 
     if linemarker:
@@ -97,8 +97,15 @@ def main():
         "c_file",
         help="""File from which to create context""",
     )
+    parser.add_argument(
+        "-v",
+        "--version",
+        type=str,
+        default='us',
+        help="game version",
+    )
     args = parser.parse_args()
-    output = import_c_file(os.path.relpath(args.c_file, root_dir), True, False)
+    output = import_c_file(os.path.relpath(args.c_file, root_dir), True, False, args.version)
 
     with open(os.path.join(root_dir, "ctx.c"), "w", encoding="UTF-8") as f:
         f.write(output)
