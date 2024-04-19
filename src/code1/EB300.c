@@ -33,6 +33,7 @@ typedef struct {
 
 /*801CA14C*/
 _EB300UnkStruct1 D_801CA14C[MAP_NUM+1] = {
+#if VERSION_US
     { 1, 0, "MEAN STREETS" },
     { 1, 0, "LIBERTY OR DEATH" },
     { 1, 0, "NUCLEAR WINTER" },
@@ -72,6 +73,47 @@ _EB300UnkStruct1 D_801CA14C[MAP_NUM+1] = {
     { 5, 0, "CATACOMBS" },
     { 5, 0, "INFERNO" },
     { 99, 0, "COOL AS ICE" },
+#elif VERSION_FR
+    { 1, 0, "LE BAS-FONDS" },
+    { 1, 0, "LA LIBERTE OU LA MORT" },
+    { 1, 0, "HIVER NUCLEAIRE" },
+    { 1, 0, "HISTOIRE D'EAU" },
+    { 1, 0, "RETOMBEES" },
+    { 1, 0, "ETAT DE SIEGE" },
+    { 1, 0, "LE SEIGNEUR DES PORCOFLICS" },
+    { 2, 0, "VILLE FANTOME" },
+    { 2, 0, "LA GRANDE EVASION" },
+    { 2, 0, "LA CRIQUE AMONT" },
+    { 2, 0, "FORT ROSWELL" },
+    { 2, 0, "AU FOND DE LA MINE" },
+    { 2, 0, "CYBER SCORPION" },
+    { 3, 0, "MASSACRES A WHITECHAPEL" },
+    { 3, 0, "L'AUBE DE DUKE" },
+    { 3, 0, "LA BOMBE A HYDROGENE" },
+    { 3, 0, "SUPPLICES ET DELICES" },
+    { 3, 0, "UNE AVENTURE TITANESQUE" },
+    { 3, 0, "DR BRAIN" },
+    { 4, 0, "LES FRERES NUKEM" },
+    { 4, 0, "LA SOURCE DU MAL" },
+    { 4, 0, "AU-DELA DU TEMPS" },
+    { 9, 0, "THE END" },
+    { 10, 0, "BASE" },
+    { 5, 0, "FROID COMME LA GLACE" },
+    { 5, 0, "FUNKY" },
+    { 5, 0, "CHIMERES" },
+    { 5, 0, "PORTES COULISSANTES" },
+    { 5, 0, "ATOMIQUE" },
+    { 5, 0, "LE TRAIN SIFFLERA 4 FOIS" },
+    { 5, 0, "LE MONTICULE ROCHEUX" },
+    { 5, 0, "PAIEMENT CASH" },
+    { 5, 0, "RUCHE 8" },
+    { 5, 0, "CASTEL MANIA" },
+    { 5, 0, "DECHARGE TOXIQUE" },
+    { 5, 0, "LES BROUILLARDS DE L'ENFER" },
+    { 5, 0, "CATACOMBES" },
+    { 5, 0, "INFERNO" },
+    { 99, 0, "COOL AS ICE" },
+#endif
 };
 
 static s16 _unused1[24] = {0, 8, 4, 1, 7, 3, 2, 6, 5, 4, 5, 1, 3, 5, 7, 4, 4, 2, 5, 3, 4, 6, 0, 3};
@@ -836,7 +878,11 @@ void func_801C1950(void)
                 D_801CC914->unk34 = D_801CC928;
                 D_801CE5E4->unk38 = D_801CE5A4;
                 D_801CC914->unk38 = D_801CC7F8;
+#if VERSION_US
                 D_801CE5E0 = func_8007FE2C("PRESS START", gScreenWidth / 2, gScreenHeight - 48, 64, 1, 0);
+#elif VERSION_FR
+                D_801CE5E0 = func_8007FE2C("APPUYER SUR START", gScreenWidth / 2, gScreenHeight - 48, 64, 1, 0);
+#endif
                 D_801CDB04++;
             }
             else
@@ -998,11 +1044,19 @@ static void menuExit(void)
 
 /*801CA3D8*/
 static code1UnkStruct5 D_801CA3D8[5] = {
-    { 1, 65535, 1, 0, "IF RUMBLE PAKS ARE", NULL, NULL, NULL, NULL },
-    { 1, 65535, 1, 0, "TO BE USED, PLEASE", NULL, NULL, NULL, NULL },
-    { 1, 65535, 1, 0, "INSERT THEM INTO", NULL, NULL, NULL, NULL },
-    { 1, 65535, 1, 0, "THE CONTROLLERS", NULL, NULL, NULL, NULL },
-    { 1, 65535, 1, 0, "AND PRESS START", NULL, NULL, NULL, NULL },
+#if VERSION_US
+    { 1, -1, 1, 0, "IF RUMBLE PAKS ARE", NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, "TO BE USED, PLEASE", NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, "INSERT THEM INTO", NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, "THE CONTROLLERS", NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, "AND PRESS START", NULL, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, -1, 1, 0, "SI VOUS UTILISEZ", NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, "DES RUMBLE PAKS", NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, "VEUILLEZ LES", NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, "INSERER DANS LES", NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, "MANETTES", NULL, NULL, NULL, NULL },
+#endif
 };
 
 /*801CA464*/ static code1UnkStruct6 D_801CA464 = {ARRAY_COUNT(D_801CA3D8), D_801CA3D8, 68, 24, NULL};
@@ -1139,15 +1193,22 @@ void func_801C3524(void)
 
 /*801CA474*/
 static code1UnkStruct5 D_801CA474[3] = {
+#if VERSION_US
     { 1, 280, 0, 0, "2", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "3", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "4", NULL, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, 284, 0, 0, "2", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "3", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "4", NULL, NULL, NULL, NULL },
+#endif
 };
 
 /*801CA4C8*/ static code1UnkStruct6 D_801CA4C8 = {ARRAY_COUNT(D_801CA474), D_801CA474, 0, 0, NULL};
 
 /*801CA4D8*/
 static code1UnkStruct5 D_801CA4D8[11] = {
+#if VERSION_US
     { 1, 280, 0, 0, "DEFAULT", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "a", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "b", NULL, NULL, NULL, NULL },
@@ -1159,21 +1220,41 @@ static code1UnkStruct5 D_801CA4D8[11] = {
     { 1, 280, 0, 0, "h", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "i", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "NONE", NULL, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, 284, 0, 0, "PAR DEFAUT", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "a", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "b", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "c", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "d", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "e", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "f", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "g", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "h", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "i", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "AUCUN", NULL, NULL, NULL, NULL },
+#endif
 };
 
 /*801CA60C*/ static code1UnkStruct6 D_801CA60C = {ARRAY_COUNT(D_801CA4D8), D_801CA4D8, 0, 0, NULL};
 
 /*801CA61C*/
 static code1UnkStruct5 D_801CA61C[3] = {
+#if VERSION_US
     { 1, 280, 0, 0, "LOW", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "MEDIUM", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "HIGH", NULL, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, 284, 0, 0, "FAIBLE", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "MOYEN", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "ELEVE", NULL, NULL, NULL, NULL },
+#endif
 };
 
 /*801CA670*/ static code1UnkStruct6 D_801CA670 = {ARRAY_COUNT(D_801CA61C), D_801CA61C, 0, 0, NULL};
 
 /*801CA680*/
 static code1UnkStruct5 D_801CA680[8] = {
+#if VERSION_US
     { 1, 280, 0, 0, "DUKE", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "ATOMIC", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "SHAKEN", NULL, NULL, NULL, NULL },
@@ -1182,44 +1263,84 @@ static code1UnkStruct5 D_801CA680[8] = {
     { 1, 280, 0, 0, "NITRO", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "GOLDEN", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "DIAMOND", NULL, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, 284, 0, 0, "DUKE", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "ATOMIC", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "SECOUSSE", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "FRISSON", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "NUCLEAIRE", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "NITRO", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "OR", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "DIAMANT", NULL, NULL, NULL, NULL },
+#endif
 };
 
 /*801CA760*/ static code1UnkStruct6 D_801CA760 = {ARRAY_COUNT(D_801CA680), D_801CA680, 0, 0, NULL};
 
 /*801CA770*/
 static code1UnkStruct5 D_801CA770[2] = {
+#if VERSION_US
     { 1, 280, 0, 0, "OFF", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "ON", NULL, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, 284, 0, 0, "DESACT.", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "ACTIVE", NULL, NULL, NULL, NULL },
+#endif
 };
 
 /*801CA7A8*/ static code1UnkStruct6 D_801CA7A8 = {ARRAY_COUNT(D_801CA770), D_801CA770, 0, 0, NULL};
 
+#if VERSION_FR
+static code1UnkStruct5 _ouiNonElmt[2] = {
+    { 1, 284, 0, 0, "NON", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "OUI", NULL, NULL, NULL, NULL },
+};
+
+static code1UnkStruct6 _ouiNon = {ARRAY_COUNT(_ouiNonElmt), _ouiNonElmt, 0, 0, NULL};
+#endif
+
 /*801CA7B8*/
 static code1UnkStruct5 D_801CA7B8[2] = {
+#if VERSION_US
     { 1, 280, 0, 0, "HORZ", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "VERT", NULL, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, 284, 0, 0, "HORIZ.", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "VERT.", NULL, NULL, NULL, NULL },
+#endif
 };
 
 /*801CA7F0*/ static code1UnkStruct6 D_801CA7F0 = {ARRAY_COUNT(D_801CA7B8), D_801CA7B8, 0, 0, NULL};
 
 /*801CA800*/
 static code1UnkStruct5 D_801CA800[2] = {
+#if VERSION_US
     { 1, 280, 0, 0, "EQUAL", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "FULL", NULL, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, 284, 0, 0, "EGAL", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "PLEIN ECRAN", NULL, NULL, NULL, NULL },
+#endif
 };
 
 /*801CA838*/ static code1UnkStruct6 D_801CA838 = {ARRAY_COUNT(D_801CA800), D_801CA800, 0, 0, NULL};
 
 /*801CA848*/
 static code1UnkStruct5 D_801CA848[2] = {
+#if VERSION_US
     { 1, 280, 0, 0, "MONO", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "STEREO", NULL, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, 284, 0, 0, "MONO", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "STEREO", NULL, NULL, NULL, NULL },
+#endif
 };
 
 /*801CA880*/ static code1UnkStruct6 D_801CA880 = {ARRAY_COUNT(D_801CA848), D_801CA848, 0, 0, NULL};
 
 /*801CA890*/
 static code1UnkStruct5 D_801CA890[8] = {
+#if VERSION_US
     { 0, 332, 0, 0, "^OFF", NULL, NULL, NULL, NULL },
     { 0, 332, 0, 0, "~}|", NULL, NULL, NULL, NULL },
     { 0, 332, 0, 0, "~}}|", NULL, NULL, NULL, NULL },
@@ -1228,64 +1349,112 @@ static code1UnkStruct5 D_801CA890[8] = {
     { 0, 332, 0, 0, "~}}}}}|", NULL, NULL, NULL, NULL },
     { 0, 332, 0, 0, "~}}}}}}|", NULL, NULL, NULL, NULL },
     { 0, 332, 0, 0, "~}}}}}}}|", NULL, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 0, 336, 0, 0, "^DESACT.", NULL, NULL, NULL, NULL },
+    { 0, 336, 0, 0, "~}|", NULL, NULL, NULL, NULL },
+    { 0, 336, 0, 0, "~}}|", NULL, NULL, NULL, NULL },
+    { 0, 336, 0, 0, "~}}}|", NULL, NULL, NULL, NULL },
+    { 0, 336, 0, 0, "~}}}}|", NULL, NULL, NULL, NULL },
+    { 0, 336, 0, 0, "~}}}}}|", NULL, NULL, NULL, NULL },
+    { 0, 336, 0, 0, "~}}}}}}|", NULL, NULL, NULL, NULL },
+    { 0, 336, 0, 0, "~}}}}}}}|", NULL, NULL, NULL, NULL },
+#endif
 };
 
 /*801CA970*/ code1UnkStruct6 D_801CA970 = {ARRAY_COUNT(D_801CA890), D_801CA890, 0, 0, NULL};
 
 /*801CA980*/
 static code1UnkStruct5 D_801CA980[3] = {
+#if VERSION_US
     { 1, 280, 0, 0, "NORMAL", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "MEDIUM", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "HIGHRES", NULL, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, 284, 0, 0, "NORMAL", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "MOYEN", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "HAUTE RES", NULL, NULL, NULL, NULL },
+#endif
 };
 
 /*801CA9D4*/ static code1UnkStruct6 D_801CA9D4 = {ARRAY_COUNT(D_801CA980), D_801CA980, 0, 0, NULL};
 
 /*801CA9E4*/
 static code1UnkStruct5 D_801CA9E4[2] = {
-    { 1, 65535, 1, 0, "CONFIGURATION", NULL, NULL, NULL, NULL },
+#if VERSION_US
+    { 1, -1, 1, 0, "CONFIGURATION", NULL, NULL, NULL, NULL },
     { 0, 16, 0, 0, "PRESET", NULL, NULL, &D_801CA760, gConfig.controller_preset },
+#elif VERSION_FR
+    { 1, -1, 1, 0, "CONFIGURATION", NULL, NULL, NULL, NULL },
+    { 0, -55, 0, 0, "PRESELECTION", NULL, NULL, &D_801CA760, gConfig.controller_preset },
+#endif
 };
 
 /*801CAA1C*/ static code1UnkStruct6 D_801CAA1C = {ARRAY_COUNT(D_801CA9E4), D_801CA9E4, 0, 230, &gConfig.menuIndex.controller_config};
 
 /*801CAA2C*/
 static code1UnkStruct5 D_801CAA2C[5] = {
-    { 1, 65535, 1, 0, "PLAYER SETUP", NULL, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "CONTROL CONFIGURATION", menuControllerConfig, &D_801CAA1C, NULL, NULL, },
+#if VERSION_US
+    { 1, -1, 1, 0, "PLAYER SETUP", NULL, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "CONTROL CONFIGURATION", menuControllerConfig, &D_801CAA1C, NULL, NULL, },
     { 0, 0, 0, 0, "CROSSHAIR", NULL, NULL, &D_801CA60C, gConfig.crosshair },
     { 0, 0, 0, 0, "AUTOAIM", NULL, NULL, &D_801CA670, gConfig.autoaim },
     { 0, 0, 0, 0, "AUTO CENTER", NULL, NULL, &D_801CA7A8, gConfig.autocenter },
+#elif VERSION_FR
+    { 1, -1, 1, 0, "CONFIG. JOUEURS", NULL, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "CONFIG. COMMANDES", menuControllerConfig, &D_801CAA1C, NULL, NULL, },
+    { 0, -55, 0, 0, "MIRE", NULL, NULL, &D_801CA60C, gConfig.crosshair },
+    { 0, -55, 0, 0, "VISEE AUTO", NULL, NULL, &D_801CA670, gConfig.autoaim },
+    { 0, -55, 0, 0, "AUTO CENTER", NULL, NULL, &D_801CA7A8, gConfig.autocenter },
+#endif
 };
 
 /*801CAAB8*/ static code1UnkStruct6 D_801CAAB8 = {ARRAY_COUNT(D_801CAA2C), D_801CAA2C, 56, 24, &gConfig.menuIndex.player_setup};
 
 /*801CAAC8*/
 static code1UnkStruct5 D_801CAAC8[4] = {
-    { 1, 65535, 0, 0, "PLAYER ONE", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
-    { 1, 65535, 0, 0, "PLAYER TWO", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
-    { 1, 65535, 0, 0, "PLAYER THREE", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
-    { 1, 65535, 0, 0, "PLAYER FOUR", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+#if VERSION_US
+    { 1, -1, 0, 0, "PLAYER ONE", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+    { 1, -1, 0, 0, "PLAYER TWO", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+    { 1, -1, 0, 0, "PLAYER THREE", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+    { 1, -1, 0, 0, "PLAYER FOUR", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+#elif VERSION_FR
+    { 1, -1, 0, 0, "JOUEUR UN", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+    { 1, -1, 0, 0, "JOUEUR DEUX", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+    { 1, -1, 0, 0, "JOUEUR TROIS", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+    { 1, -1, 0, 0, "JOUEUR QUATRE", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+#endif
 };
 
 /*801CAB38*/ static code1UnkStruct6 D_801CAB38 = {ARRAY_COUNT(D_801CAAC8), D_801CAAC8, 84, 24, &gConfig.menuIndex.select_player};
 
 /*801CAB48*/
 static code1UnkStruct5 D_801CAB48[8] = {
-    { 1, 65535, 1, 0, "OPTIONS", NULL, NULL, NULL, NULL },
+#if VERSION_US
+    { 1, -1, 1, 0, "OPTIONS", NULL, NULL, NULL, NULL },
     { 0, 0, 0, 0, "SFX VOLUME", NULL, NULL, &D_801CA970, &gConfig.mastervol },
     { 0, 0, 0, 0, "MUSIC VOLUME", NULL, NULL, &D_801CA970, &gConfig.musicvol },
     { 0, 0, 0, 0, "SOUND", NULL, NULL, &D_801CA880, &gConfig.sound },
     { 0, 0, 0, 0, "RUMBLE PAK", NULL, NULL, &D_801CA970, &gConfig.rumblepak },
     { 0, 0, 0, 0, "GRAPHICS", NULL, NULL, &D_801CA9D4, &gGraphicsOption },
-    { 1, 65535, 0, 0, "PLAYER SETUP", menuEnter, &D_801CAB38, NULL, NULL },
-    { 1, 65535, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "PLAYER SETUP", menuEnter, &D_801CAB38, NULL, NULL },
+    { 1, -1, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, -1, 1, 0, "OPTIONS", NULL, NULL, NULL, NULL },
+    { 0, -55, 0, 0, "VOLUME FX", NULL, NULL, &D_801CA970, &gConfig.mastervol },
+    { 0, -55, 0, 0, "VOLUME MUSIQUE", NULL, NULL, &D_801CA970, &gConfig.musicvol },
+    { 0, -55, 0, 0, "SON", NULL, NULL, &D_801CA880, &gConfig.sound },
+    { 0, -55, 0, 0, "RUMBLE PAK", NULL, NULL, &D_801CA970, &gConfig.rumblepak },
+    { 0, -55, 0, 0, "GRAPHISMES", NULL, NULL, &D_801CA9D4, &gGraphicsOption },
+    { 1, -1, 0, 0, "CONFIGURATION JOUEURS", menuEnter, &D_801CAB38, NULL, NULL },
+    { 1, -1, 0, 0, "QUITTER", menuExit, NULL, NULL, NULL },
+#endif
 };
 
 /*801CAC28*/ static code1UnkStruct6 D_801CAC28 = {ARRAY_COUNT(D_801CAB48), D_801CAB48, 12, 32, &gConfig.menuIndex.options_2P};
 
 /*801CAC38*/
 static code1UnkStruct5 D_801CAC38[12] = {
+#if VERSION_US
     { 1, 280, 0, 0, "OFF", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "5", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "10", NULL, NULL, NULL, NULL },
@@ -1298,12 +1467,27 @@ static code1UnkStruct5 D_801CAC38[12] = {
     { 1, 280, 0, 0, "80", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "90", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "100", NULL, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, 284, 0, 0, "DESACT.", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "5", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "10", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "20", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "30", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "40", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "50", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "60", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "70", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "80", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "90", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "100", NULL, NULL, NULL, NULL },
+#endif
 };
 
 /*801CAD88*/ static code1UnkStruct6 D_801CAD88 = {ARRAY_COUNT(D_801CAC38), D_801CAC38, 0, 0, NULL};
 
 /*801CAD98*/
 static code1UnkStruct5 D_801CAD98[8] = {
+#if VERSION_US
     { 1, 280, 0, 0, "OFF", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "5", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "10", NULL, NULL, NULL, NULL },
@@ -1312,25 +1496,45 @@ static code1UnkStruct5 D_801CAD98[8] = {
     { 1, 280, 0, 0, "40", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "50", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "60", NULL, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, 284, 0, 0, "DESACT.", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "5", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "10", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "20", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "30", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "40", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "50", NULL, NULL, NULL, NULL },
+    { 1, 284, 0, 0, "60", NULL, NULL, NULL, NULL },
+#endif
 };
 
 /*801CAE78*/ static code1UnkStruct6 D_801CAE78 = {ARRAY_COUNT(D_801CAD98), D_801CAD98, 0, 0, NULL};
 
 /*801CAE88*/
 static code1UnkStruct5 D_801CAE88[6] = {
-    { 1, 65535, 1, 0, "SELECT GAME TYPE", NULL, NULL, NULL, NULL },
-    { 1, 65535, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "DUKEMATCH", menuMultiplayerSelectLevel, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "LAST MAN STANDING", menuMultiplayerSelectLevel, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "KING OF THE HILL", menuMultiplayerSelectLevel, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "TEAM DUKEMATCH", menuMultiplayerSelectLevel, NULL, NULL, NULL },
+#if VERSION_US
+    { 1, -1, 1, 0, "SELECT GAME TYPE", NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "DUKEMATCH", menuMultiplayerSelectLevel, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "LAST MAN STANDING", menuMultiplayerSelectLevel, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "KING OF THE HILL", menuMultiplayerSelectLevel, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "TEAM DUKEMATCH", menuMultiplayerSelectLevel, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, -1, 1, 0, "CHOISIR TYPE DE PARTIE", NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "DUKEMATCH", menuMultiplayerSelectLevel, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "LE SURVIVANT", menuMultiplayerSelectLevel, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "LE ROI DE LA MONTAGNE", menuMultiplayerSelectLevel, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "DUKEMATCH PAR EQUIPE", menuMultiplayerSelectLevel, NULL, NULL, NULL },
+#endif
 };
 
 /*801CAF30*/ static code1UnkStruct6 D_801CAF30 = {ARRAY_COUNT(D_801CAE88), D_801CAE88, 34, 24, &gConfig.menuIndex.select_multiplayer_gametype};
 
 /*801CAF40*/
 static code1UnkStruct5 D_801CAF40[9] = {
-    { 1, 65535, 1, 0, "MULTIPLAYER OPTIONS", NULL, NULL, NULL, NULL },
+#if VERSION_US
+    { 1, -1, 1, 0, "MULTIPLAYER OPTIONS", NULL, NULL, NULL, NULL },
     { 0, 0, 0, 0, "PLAYERS", NULL, NULL, &D_801CA4C8, &gConfig.multiplayer.players },
     { 0, 0, 0, 0, "TIME LIMIT", NULL, NULL, &D_801CAE78, &gConfig.multiplayer.time_limit },
     { 0, 0, 0, 0, "FRAG COUNT", NULL, NULL, &D_801CAD88, &gConfig.multiplayer.frag_count },
@@ -1338,176 +1542,308 @@ static code1UnkStruct5 D_801CAF40[9] = {
     { 0, 0, 0, 0, "2P SPLIT", NULL, NULL, &D_801CA7F0, &gConfig.multiplayer.split_2P },
     { 0, 0, 0, 0, "3P SPLIT", NULL, NULL, &D_801CA838, &gConfig.multiplayer.split_3P },
     { 0, 0, 0, 0, "FRIENDLY FIRE", NULL, NULL, &D_801CA7A8, &gConfig.multiplayer.friendly_fire },
-    { 1, 65535, 0, 0, "PLAY", menuMultiplayerSelectGameType, &D_801CAF30, NULL, NULL },
+    { 1, -1, 0, 0, "PLAY", menuMultiplayerSelectGameType, &D_801CAF30, NULL, NULL },
+#elif VERSION_FR
+    { 1, -1, 1, 0, "OPTIONS MODE MULTIJ.", NULL, NULL, NULL, NULL },
+    { 0, -55, 0, 0, "JOUEURS", NULL, NULL, &D_801CA4C8, &gConfig.multiplayer.players },
+    { 0, -55, 0, 0, "CONTRE LA MONTRE", NULL, NULL, &D_801CAE78, &gConfig.multiplayer.time_limit },
+    { 0, -55, 0, 0, "PALMARED", NULL, NULL, &D_801CAD88, &gConfig.multiplayer.frag_count },
+    { 0, -55, 0, 0, "RADAR", NULL, NULL, &D_801CA7A8, &gConfig.multiplayer.radar },
+    { 0, -55, 0, 0, "SPLIT 2", NULL, NULL, &D_801CA7F0, &gConfig.multiplayer.split_2P },
+    { 0, -55, 0, 0, "SPLIT 3", NULL, NULL, &D_801CA838, &gConfig.multiplayer.split_3P },
+    { 0, -55, 0, 0, "TIR AMI", NULL, NULL, &D_801CA7A8, &gConfig.multiplayer.friendly_fire },
+    { 1, -1, 0, 0, "JOUER", menuMultiplayerSelectGameType, &D_801CAF30, NULL, NULL },
+#endif
 };
 
 /*801CB03C*/ static code1UnkStruct6 D_801CB03C = {ARRAY_COUNT(D_801CAF40), D_801CAF40, 30, 24, &gConfig.menuIndex.multiplayer_options};
 
 /*801CB04C*/
 static code1UnkStruct5 D_801CB04C[4] = {
-    { 1, 65535, 1, 0, "SELECT DIFFICULTY", NULL, NULL, NULL, NULL },
-    { 1, 65535, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "NORMAL", menuSelectDifficulty, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "HARD", menuSelectDifficulty, NULL, NULL, NULL },
+#if VERSION_US
+    { 1, -1, 1, 0, "SELECT DIFFICULTY", NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "NORMAL", menuSelectDifficulty, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "HARD", menuSelectDifficulty, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, -1, 1, 0, "CHOISIR NIVEAU DIFFIC.", NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "NORMAL", menuSelectDifficulty, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "DIFFICILE", menuSelectDifficulty, NULL, NULL, NULL },
+#endif
 };
 
 /*801CB0BC*/ static code1UnkStruct6 D_801CB0BC = {ARRAY_COUNT(D_801CB04C), D_801CB04C, 60, 24, &gConfig.menuIndex.select_difficulty};
 
 /*801CB0CC*/
 static code1UnkStruct5 D_801CB0CC[4] = {
-    { 1, 65535, 1, 0, "SELECT", NULL, NULL, NULL, NULL },
-    { 1, 65535, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "SINGLE PLAYER", menuEnter, &D_801CB0BC, NULL, NULL },
-    { 1, 65535, 0, 0, "MULTI-PLAYER", menuEnter, &D_801CB03C, NULL, NULL },
+#if VERSION_US
+    { 1, -1, 1, 0, "SELECT", NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "SINGLE PLAYER", menuEnter, &D_801CB0BC, NULL, NULL },
+    { 1, -1, 0, 0, "MULTI-PLAYER", menuEnter, &D_801CB03C, NULL, NULL },
+#elif VERSION_FR
+    { 1, -1, 1, 0, "SELECT", NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "UN SEUL JOUEUR", menuEnter, &D_801CB0BC, NULL, NULL },
+    { 1, -1, 0, 0, "MULTIJOUEUR", menuEnter, &D_801CB03C, NULL, NULL },
+#endif
 };
 
 /*801CB13C*/ static code1UnkStruct6 D_801CB13C = {ARRAY_COUNT(D_801CB0CC), D_801CB0CC, 60, 24, &gConfig.menuIndex.select_single_multi_player};
 
 /*801CB14C*/
 static code1UnkStruct5 D_801CB14C[12] = {
-    { 0, 65520, 2, 0, "SMG", NULL, NULL, &D_801CA7A8, &D_801CC924 },
-    { 0, 65520, 2, 0, "BLASTER", NULL, NULL, &D_801CA7A8, &D_801CDB48 },
-    { 0, 65520, 2, 0, "SNIPER", NULL, NULL, &D_801CA7A8, &D_801CE4EC },
-    { 0, 65520, 2, 0, "FREEZER", NULL, NULL, &D_801CA7A8, &D_801CF634 },
-    { 0, 65520, 2, 0, "REVOLVER", NULL, NULL, &D_801CA7A8, &D_801CE478 },
-    { 0, 65520, 2, 0, "CLAW-12", NULL, NULL, &D_801CA7A8, &D_801CDA80 },
-    { 0, 65520, 2, 0, ".30-30", NULL, NULL, &D_801CA7A8, &D_801CC8B8 },
-    { 0, 65520, 2, 0, "SAWED OFF", NULL, NULL, &D_801CA7A8, &D_801CDB14 },
-    { 0, 65520, 2, 0, "VOLT CANNON", NULL, NULL, &D_801CA7A8, &D_801CDB16 },
-    { 0, 65520, 2, 0, "GATTLING GUN", NULL, NULL, &D_801CA7A8, &D_801CD984 },
-    { 0, 65520, 2, 0, "GAMMA CANNON", NULL, NULL, &D_801CA7A8, &D_801CE480 },
-    { 1, 65535, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+#if VERSION_US
+    { 0, -16, 2, 0, "SMG", NULL, NULL, &D_801CA7A8, &D_801CC924 },
+    { 0, -16, 2, 0, "BLASTER", NULL, NULL, &D_801CA7A8, &D_801CDB48 },
+    { 0, -16, 2, 0, "SNIPER", NULL, NULL, &D_801CA7A8, &D_801CE4EC },
+    { 0, -16, 2, 0, "FREEZER", NULL, NULL, &D_801CA7A8, &D_801CF634 },
+    { 0, -16, 2, 0, "REVOLVER", NULL, NULL, &D_801CA7A8, &D_801CE478 },
+    { 0, -16, 2, 0, "CLAW-12", NULL, NULL, &D_801CA7A8, &D_801CDA80 },
+    { 0, -16, 2, 0, ".30-30", NULL, NULL, &D_801CA7A8, &D_801CC8B8 },
+    { 0, -16, 2, 0, "SAWED OFF", NULL, NULL, &D_801CA7A8, &D_801CDB14 },
+    { 0, -16, 2, 0, "VOLT CANNON", NULL, NULL, &D_801CA7A8, &D_801CDB16 },
+    { 0, -16, 2, 0, "GATTLING GUN", NULL, NULL, &D_801CA7A8, &D_801CD984 },
+    { 0, -16, 2, 0, "GAMMA CANNON", NULL, NULL, &D_801CA7A8, &D_801CE480 },
+    { 1, -1, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 0, -55, 2, 0, "SMG", NULL, NULL, &_ouiNon, &D_801CC924 },
+    { 0, -55, 2, 0, "BLASTER", NULL, NULL, &_ouiNon, &D_801CDB48 },
+    { 0, -55, 2, 0, "SNIPER", NULL, NULL, &_ouiNon, &D_801CE4EC },
+    { 0, -55, 2, 0, "FIGEUR", NULL, NULL, &_ouiNon, &D_801CF634 },
+    { 0, -55, 2, 0, "REVOLVER", NULL, NULL, &_ouiNon, &D_801CE478 },
+    { 0, -55, 2, 0, "SERRE-12", NULL, NULL, &_ouiNon, &D_801CDA80 },
+    { 0, -55, 2, 0, ".30-30", NULL, NULL, &_ouiNon, &D_801CC8B8 },
+    { 0, -55, 2, 0, "SCIE", NULL, NULL, &_ouiNon, &D_801CDB14 },
+    { 0, -55, 2, 0, "CANON ELEC", NULL, NULL, &_ouiNon, &D_801CDB16 },
+    { 0, -55, 2, 0, "MITR. GATLING", NULL, NULL, &_ouiNon, &D_801CD984 },
+    { 0, -55, 2, 0, "CANON PLASMA", NULL, NULL, &_ouiNon, &D_801CE480 },
+    { 1, -1, 0, 0, "QUITTER", menuExit, NULL, NULL, NULL },
+#endif
 };
 
 /*801CB29C*/ static code1UnkStruct6 D_801CB29C = {ARRAY_COUNT(D_801CB14C), D_801CB14C, -20, 24, &gConfig.menuIndex.cheats_weapons};
 
 /*801CB2AC*/
 static code1UnkStruct5 D_801CB2AC[4] = {
-    { 0, 65520, 2, 0, "FIRST PERSON", NULL, NULL, &D_801CA7A8, &D_801CDBC6 },
-    { 0, 65520, 2, 0, "ACTION NUKEM", NULL, NULL, &D_801CA7A8, &D_801CDBC4 },
-    { 0, 65520, 2, 0, "SELECT SKIN", NULL, NULL, &D_801CA7A8, &D_801CC8CC },
-    { 1, 65535, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+#if VERSION_US
+    { 0, -16, 2, 0, "FIRST PERSON", NULL, NULL, &D_801CA7A8, &D_801CDBC6 },
+    { 0, -16, 2, 0, "ACTION NUKEM", NULL, NULL, &D_801CA7A8, &D_801CDBC4 },
+    { 0, -16, 2, 0, "SELECT SKIN", NULL, NULL, &D_801CA7A8, &D_801CC8CC },
+    { 1, -1, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 0, -55, 2, 0, "1RE PERSONNE", NULL, NULL, &D_801CA7A8, &D_801CDBC6 },
+    { 0, -55, 2, 0, "NUKEM ACTIF", NULL, NULL, &D_801CA7A8, &D_801CDBC4 },
+    { 0, -55, 2, 0, "SELECTION", NULL, NULL, &D_801CA7A8, &D_801CC8CC },
+    { 1, -1, 0, 0, "QUITTER", menuExit, NULL, NULL, NULL },
+#endif
 };
 
 /*801CB31C*/ static code1UnkStruct6 D_801CB31C = {ARRAY_COUNT(D_801CB2AC), D_801CB2AC, 76, 24, &gConfig.menuIndex.cheats_game_type};
 
 /*801CB32C*/
 static code1UnkStruct5 D_801CB32C[7] = {
-    { 0, 65520, 2, 0, "BIG HEAD MODE", NULL, NULL, &D_801CA7A8, &D_801CC926 },
-    { 0, 65520, 2, 0, "FLAT SHADING", NULL, NULL, &D_801CA7A8, &D_801CDBCC },
-    { 0, 65520, 2, 0, "WEATHER", NULL, NULL, &D_801CA7A8, &D_801CC7F4 },
-    { 0, 65520, 2, 0, "BIG GUN", NULL, NULL, &D_801CA7A8, &D_801CC8C8 },
-    { 0, 65520, 2, 0, "ICE SKINS", NULL, NULL, &D_801CA7A8, &D_801CC8A8 },
-    { 0, 65520, 2, 0, "FAST ZOMBIES", NULL, NULL, &D_801CA7A8, &D_801CE48C },
-    { 1, 65535, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+#if VERSION_US
+    { 0, -16, 2, 0, "BIG HEAD MODE", NULL, NULL, &D_801CA7A8, &D_801CC926 },
+    { 0, -16, 2, 0, "FLAT SHADING", NULL, NULL, &D_801CA7A8, &D_801CDBCC },
+    { 0, -16, 2, 0, "WEATHER", NULL, NULL, &D_801CA7A8, &D_801CC7F4 },
+    { 0, -16, 2, 0, "BIG GUN", NULL, NULL, &D_801CA7A8, &D_801CC8C8 },
+    { 0, -16, 2, 0, "ICE SKINS", NULL, NULL, &D_801CA7A8, &D_801CC8A8 },
+    { 0, -16, 2, 0, "FAST ZOMBIES", NULL, NULL, &D_801CA7A8, &D_801CE48C },
+    { 1, -1, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 0, -55, 2, 0, "MODE GROSSE TETE", NULL, NULL, &D_801CA7A8, &D_801CC926 },
+    { 0, -55, 2, 0, "OMBRAGE MAT", NULL, NULL, &D_801CA7A8, &D_801CDBCC },
+    { 0, -55, 2, 0, "METEO", NULL, NULL, &D_801CA7A8, &D_801CC7F4 },
+    { 0, -55, 2, 0, "GROS CANON", NULL, NULL, &D_801CA7A8, &D_801CC8C8 },
+    { 0, -55, 2, 0, "PEAUX DE GLACE", NULL, NULL, &D_801CA7A8, &D_801CC8A8 },
+    { 0, -55, 2, 0, "ZOMBIES RAPIDES", NULL, NULL, &D_801CA7A8, &D_801CE48C },
+    { 1, -1, 0, 0, "QUITTER", menuExit, NULL, NULL, NULL },
+#endif
 };
 
 /*801CB3F0*/ static code1UnkStruct6 D_801CB3F0 = {ARRAY_COUNT(D_801CB32C), D_801CB32C, 24, 32, &gConfig.menuIndex.cheats_others};
 
 /*801CB400*/
 static code1UnkStruct5 D_801CB400[5] = {
-    { 1, 65535, 1, 0, "CHEATS", NULL, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "WEAPONS", menuEnter, &D_801CB29C, NULL, NULL },
-    { 1, 65535, 0, 0, "GAME TYPE", menuEnter, &D_801CB31C, NULL, NULL },
-    { 1, 65535, 0, 0, "OTHERS", menuEnter, &D_801CB3F0, NULL, NULL },
-    { 1, 65535, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+#if VERSION_US
+    { 1, -1, 1, 0, "CHEATS", NULL, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "WEAPONS", menuEnter, &D_801CB29C, NULL, NULL },
+    { 1, -1, 0, 0, "GAME TYPE", menuEnter, &D_801CB31C, NULL, NULL },
+    { 1, -1, 0, 0, "OTHERS", menuEnter, &D_801CB3F0, NULL, NULL },
+    { 1, -1, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, -1, 1, 0, "TRICHES", NULL, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "ARMES", menuEnter, &D_801CB29C, NULL, NULL },
+    { 1, -1, 0, 0, "TYPE DE PARTIE", menuEnter, &D_801CB31C, NULL, NULL },
+    { 1, -1, 0, 0, "AUTRES", menuEnter, &D_801CB3F0, NULL, NULL },
+    { 1, -1, 0, 0, "QUITTER", menuExit, NULL, NULL, NULL },
+#endif
 };
 
 /*801CB48C*/ static code1UnkStruct6 D_801CB48C = {ARRAY_COUNT(D_801CB400), D_801CB400, 68, 24, &gConfig.menuIndex.cheats};
 
 /*801CB49C*/
 static code1UnkStruct5 D_801CB49C[5] = {
-    { 1, 65535, 1, 0, D_801CDBB0, NULL, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "START GAME", menuEnter, &D_801CB13C, NULL, NULL },
-    { 1, 65535, 0, 0, "LOAD GAME", menuLoadGame, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "OPTIONS", menuEnter, &D_801CAC28, NULL, NULL },
-    { 1, 65535, 0, 0, "CHEATS", menuEnter, &D_801CB48C, NULL, NULL },
+#if VERSION_US
+    { 1, -1, 1, 0, D_801CDBB0, NULL, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "START GAME", menuEnter, &D_801CB13C, NULL, NULL },
+    { 1, -1, 0, 0, "LOAD GAME", menuLoadGame, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "OPTIONS", menuEnter, &D_801CAC28, NULL, NULL },
+    { 1, -1, 0, 0, "CHEATS", menuEnter, &D_801CB48C, NULL, NULL },
+#elif VERSION_FR
+    { 1, -1, 1, 0, D_801CDBB0, NULL, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "COMMENCER LA PARTIE", menuEnter, &D_801CB13C, NULL, NULL },
+    { 1, -1, 0, 0, "CHARGER LA PARTIE", menuLoadGame, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "OPTIONS", menuEnter, &D_801CAC28, NULL, NULL },
+    { 1, -1, 0, 0, "TRICHES", menuEnter, &D_801CB48C, NULL, NULL },
+#endif
 };
 
 /*801CB528*/ static code1UnkStruct6 D_801CB528 = {ARRAY_COUNT(D_801CB49C)-1, D_801CB49C, 64, 24, &gConfig.menuIndex.main};
 
 /*801CB538*/
 code1UnkStruct5 D_801CB538[9] = {
-    { 0, 65520, 0, 0, "SFX VOLUME", NULL, NULL, &D_801CA970, &gConfig.mastervol },
-    { 0, 65520, 0, 0, "MUSIC VOLUME", NULL, NULL, &D_801CA970, &gConfig.musicvol },
-    { 0, 65520, 0, 0, "SOUND", NULL, NULL, &D_801CA880, &gConfig.sound },
-    { 0, 65520, 0, 0, "RUMBLE PAK", NULL, NULL, &D_801CA970, &gConfig.rumblepak },
-    { 0, 65520, 0, 0, "CONTROLLER", NULL, NULL, &D_801CA760, gConfig.controller_preset },
-    { 0, 65520, 0, 0, "CROSSHAIR", NULL, NULL, &D_801CA60C, gConfig.crosshair },
-    { 0, 65520, 0, 0, "AUTOAIM", NULL, NULL, &D_801CA670, gConfig.autoaim },
-    { 0, 65520, 0, 0, "AUTO CENTER", NULL, NULL, &D_801CA7A8, gConfig.autocenter },
-    { 1, 65535, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+#if VERSION_US
+    { 0, -16, 0, 0, "SFX VOLUME", NULL, NULL, &D_801CA970, &gConfig.mastervol },
+    { 0, -16, 0, 0, "MUSIC VOLUME", NULL, NULL, &D_801CA970, &gConfig.musicvol },
+    { 0, -16, 0, 0, "SOUND", NULL, NULL, &D_801CA880, &gConfig.sound },
+    { 0, -16, 0, 0, "RUMBLE PAK", NULL, NULL, &D_801CA970, &gConfig.rumblepak },
+    { 0, -16, 0, 0, "CONTROLLER", NULL, NULL, &D_801CA760, gConfig.controller_preset },
+    { 0, -16, 0, 0, "CROSSHAIR", NULL, NULL, &D_801CA60C, gConfig.crosshair },
+    { 0, -16, 0, 0, "AUTOAIM", NULL, NULL, &D_801CA670, gConfig.autoaim },
+    { 0, -16, 0, 0, "AUTO CENTER", NULL, NULL, &D_801CA7A8, gConfig.autocenter },
+    { 1, -1, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 0, -55, 0, 0, "VOLUME FX", NULL, NULL, &D_801CA970, &gConfig.mastervol },
+    { 0, -55, 0, 0, "VOLUME MUSIQUE", NULL, NULL, &D_801CA970, &gConfig.musicvol },
+    { 0, -55, 0, 0, "SON", NULL, NULL, &D_801CA880, &gConfig.sound },
+    { 0, -55, 0, 0, "RUMBLE PAK", NULL, NULL, &D_801CA970, &gConfig.rumblepak },
+    { 0, -55, 0, 0, "MANETTE", NULL, NULL, &D_801CA760, gConfig.controller_preset },
+    { 0, -55, 0, 0, "MIRE", NULL, NULL, &D_801CA60C, gConfig.crosshair },
+    { 0, -55, 0, 0, "VISEE AUTO", NULL, NULL, &D_801CA670, gConfig.autoaim },
+    { 0, -55, 0, 0, "AUTO CENTER", NULL, NULL, &D_801CA7A8, gConfig.autocenter },
+    { 1, -1, 0, 0, "QUITTER", menuExit, NULL, NULL, NULL },
+#endif
 };
 
 /*801CB634*/ static code1UnkStruct6 D_801CB634 = {ARRAY_COUNT(D_801CB538), D_801CB538, 16, 25, &gConfig.menuIndex.options_1P};
 
 /*801CB644*/
 static code1UnkStruct5 D_801CB644[3] = {
-    { 1, 65535, 1, 0, "QUIT GAME?", NULL, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "NO", menuBack, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "YES", func_801C3874, NULL, NULL, NULL },
+#if VERSION_US
+    { 1, -1, 1, 0, "QUIT GAME?", NULL, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "NO", menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "YES", func_801C3874, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, -1, 1, 0, "QUITTER LA PARTIE ?", NULL, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "NON", menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "OUI", func_801C3874, NULL, NULL, NULL },
+#endif
 };
 
 /*801CB698*/ static code1UnkStruct6 D_801CB698 = {ARRAY_COUNT(D_801CB644), D_801CB644, 94, 24, &gConfig.menuIndex.unkB};
 
 /*801CB6A8*/
 static code1UnkStruct5 D_801CB6A8[2] = {
-    { 1, 65535, 0, 0, "CONTINUE GAME", func_801C392C, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "RESTART LEVEL", func_801C38DC, NULL, NULL, NULL },
+#if VERSION_US
+    { 1, -1, 0, 0, "CONTINUE GAME", func_801C392C, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "RESTART LEVEL", func_801C38DC, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, -1, 0, 0, "CHARGER PARTIE ENREGIS.", func_801C392C, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "RECOMMENCER NIVEAU", func_801C38DC, NULL, NULL, NULL },
+#endif
 };
 
 /*801CB6E0*/ code1UnkStruct6 D_801CB6E0 = {ARRAY_COUNT(D_801CB6A8), D_801CB6A8, 102, 24, &gConfig.menuIndex.unkF};
 
 /*801CB6F0*/
 static code1UnkStruct5 D_801CB6F0[2] = {
-    { 1, 65535, 0, 0, "REPLAY SAVED GAME", func_801C399C, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "RESTART LEVEL", func_801C3974, NULL, NULL, NULL },
+#if VERSION_US
+    { 1, -1, 0, 0, "REPLAY SAVED GAME", func_801C399C, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "RESTART LEVEL", func_801C3974, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, -1, 0, 0, "CHARGER PARTIE ENREGIS.", func_801C399C, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "RECOMMENCER NIVEAU", func_801C3974, NULL, NULL, NULL },
+#endif
 };
 
 /*801CB728*/ static code1UnkStruct6 D_801CB728 = {ARRAY_COUNT(D_801CB6F0), D_801CB6F0, 100, 24, &gConfig.menuIndex.unkD};
 
 /*801CB738*/
 static code1UnkStruct5 D_801CB738[3] = {
-    { 1, 65535, 1, 0, "RESTART LEVEL?", NULL, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "NO", menuBack, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "YES", menuEnter, &D_801CB728, NULL, NULL },
+#if VERSION_US
+    { 1, -1, 1, 0, "RESTART LEVEL?", NULL, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "NO", menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "YES", menuEnter, &D_801CB728, NULL, NULL },
+#elif VERSION_FR
+    { 1, -1, 1, 0, "RECOMMENCER NIVEAU ?", NULL, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "NON", menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "OUI", menuEnter, &D_801CB728, NULL, NULL },
+#endif
 };
 
 /*801CB78C*/ static code1UnkStruct6 D_801CB78C = {ARRAY_COUNT(D_801CB738), D_801CB738, 94, 24, &gConfig.menuIndex.unkC};
 
 /*801CB79C*/
 static code1UnkStruct5 D_801CB79C[3] = {
-    { 1, 65535, 1, 0, "RESTART LEVEL?", NULL, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "NO", menuBack, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "YES", func_801C38DC, NULL, NULL, NULL },
+#if VERSION_US
+    { 1, -1, 1, 0, "RESTART LEVEL?", NULL, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "NO", menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "YES", func_801C38DC, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, -1, 1, 0, "RECOMMENCER NIVEAU ?", NULL, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "NON", menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "OUI", func_801C38DC, NULL, NULL, NULL },
+#endif
 };
 
 /*801CB7F0*/ static code1UnkStruct6 D_801CB7F0 = {ARRAY_COUNT(D_801CB79C), D_801CB79C, 94, 24, &gConfig.menuIndex.unkC};
 
 /*801CB800*/
 static code1UnkStruct5 D_801CB800[4] = {
-    { 1, 65535, 0, 0, "CONTINUE", menuBack, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "OPTIONS", menuEnter, &D_801CB634, NULL, NULL },
-    { 1, 65535, 0, 0, "RESTART", menuEnter, &D_801CB78C, NULL, NULL },
-    { 1, 65535, 0, 0, "QUIT GAME", menuEnter, &D_801CB698, NULL, NULL },
+#if VERSION_US
+    { 1, -1, 0, 0, "CONTINUE", menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "OPTIONS", menuEnter, &D_801CB634, NULL, NULL },
+    { 1, -1, 0, 0, "RESTART", menuEnter, &D_801CB78C, NULL, NULL },
+    { 1, -1, 0, 0, "QUIT GAME", menuEnter, &D_801CB698, NULL, NULL },
+#elif VERSION_FR
+    { 1, -1, 0, 0, "CONTINUER", menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "OPTIONS", menuEnter, &D_801CB634, NULL, NULL },
+    { 1, -1, 0, 0, "RECOMMENCER", menuEnter, &D_801CB78C, NULL, NULL },
+    { 1, -1, 0, 0, "QUITTER LA PARTIE", menuEnter, &D_801CB698, NULL, NULL },
+#endif
 };
 
 /*801CB870*/ code1UnkStruct6 D_801CB870 = {ARRAY_COUNT(D_801CB800), D_801CB800, 76, 24, &gConfig.menuIndex.unkA};
 
 /*801CB880*/
 static code1UnkStruct5 D_801CB880[4] = {
-    { 1, 65535, 0, 0, "CONTINUE", menuBack, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "OPTIONS", menuEnter, &D_801CB634, NULL, NULL },
-    { 1, 65535, 0, 0, "RESTART", menuEnter, &D_801CB7F0, NULL, NULL },
-    { 1, 65535, 0, 0, "QUIT GAME", menuEnter, &D_801CB698, NULL, NULL },
+#if VERSION_US
+    { 1, -1, 0, 0, "CONTINUE", menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "OPTIONS", menuEnter, &D_801CB634, NULL, NULL },
+    { 1, -1, 0, 0, "RESTART", menuEnter, &D_801CB7F0, NULL, NULL },
+    { 1, -1, 0, 0, "QUIT GAME", menuEnter, &D_801CB698, NULL, NULL },
+#elif VERSION_FR
+    { 1, -1, 0, 0, "CONTINUER", menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "OPTIONS", menuEnter, &D_801CB634, NULL, NULL },
+    { 1, -1, 0, 0, "RECOMMENCER", menuEnter, &D_801CB7F0, NULL, NULL },
+    { 1, -1, 0, 0, "QUITTER LA PARTIE", menuEnter, &D_801CB698, NULL, NULL },
+#endif
 };
 
 /*801CB8F0*/ code1UnkStruct6 D_801CB8F0 = {ARRAY_COUNT(D_801CB880), D_801CB880, 76, 24, &gConfig.menuIndex.unkA};
 
 /*801CB900*/
 static code1UnkStruct5 D_801CB900[2] = {
-    { 1, 65535, 0, 0, "SAVE", menuSaveGame, NULL, NULL, NULL },
-    { 1, 65535, 0, 0, "CONTINUE WITHOUT SAVING", func_801C39C4, NULL, NULL, NULL },
+#if VERSION_US
+    { 1, -1, 0, 0, "SAVE", menuSaveGame, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "CONTINUE WITHOUT SAVING", func_801C39C4, NULL, NULL, NULL },
+#elif VERSION_FR
+    { 1, -1, 0, 0, "ENREGISTRER", menuSaveGame, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "CONTINUER SANS ENREGIS.", func_801C39C4, NULL, NULL, NULL },
+#endif
 };
 
 /*801CB938*/ static code1UnkStruct6 D_801CB938 = {ARRAY_COUNT(D_801CB900), D_801CB900, 224, 24, &gConfig.menuIndex.unk11};
@@ -2335,11 +2671,19 @@ void func_801C542C(void)
         D_801CC88C = -1;
         D_801CF6E0[0] = func_800802C0(D_801CA14C[gMapNum].mapname, gScreenWidth / 2, -12, 180, 1);
         func_801C14C4(D_801CF6E0[0], 32, 0xFF, 32);
+#if VERSION_US
         D_801CF6E0[1] = func_800802C0("TIME TAKEN:", 0, 65, 200, 0);
         D_801CF6E0[2] = func_800802C0("KILLS:", 0, 87, 200, 0);
         D_801CF6E0[3] = func_800802C0("BABES:", 0, 109, 200, 0);
         D_801CF6E0[4] = func_800802C0("SECRETS:", 0, 131, 200, 0);
         D_801CF6E0[5] = func_800802C0("OVERALL RATING:", 0, 153, 200, 0);
+#elif VERSION_FR
+        D_801CF6E0[1] = func_800802C0("TEMPS ECOULE:", 0, 65, 200, 0);
+        D_801CF6E0[2] = func_800802C0("TUES:", 0, 87, 200, 0);
+        D_801CF6E0[3] = func_800802C0("LES GONZESSES:", 0, 109, 200, 0);
+        D_801CF6E0[4] = func_800802C0("SECRETS:", 0, 131, 200, 0);
+        D_801CF6E0[5] = func_800802C0("TOTAL:", 0, 153, 200, 0);
+#endif
         D_801CD980 = 0;
         func_801C2BE8(&D_801CB938);
 
@@ -2367,7 +2711,13 @@ void func_801C542C(void)
         D_801CE59C = 0;
 
         if (D_801CDB54 != 0)
+        {
+#if VERSION_US
             D_801CF6E0[6] = func_8007FE2C("CHEAT AWARDED", gScreenWidth/2, 128, 200, 1, 0);
+#elif VERSION_FR
+            D_801CF6E0[6] = func_8007FE2C("TRUC OFFERT", gScreenWidth/2, 128, 200, 1, 0);
+#endif
+        }
 
         if ((((gMapNum == MAP_WETWORLD) || (gMapNum == MAP_BOSS_HOG)) == 0) &&
             (((gMapNum == MAP_CYBORG_SCORPION) || ((gMapNum >= MAP_THE_RACK))) == 0))
@@ -2375,13 +2725,23 @@ void func_801C542C(void)
             if (gTimeMachinePart & (1 << gMapNum))
             {
                 D_801CE59C = 1;
+#if VERSION_US
                 D_801CF6E0[7] = func_8007FE2C("TIME MACHINE PART FOUND",
                                               gScreenWidth / 2, (gScreenHeight / 2) + 96, 200, 1, 0);
+#elif VERSION_FR
+                D_801CF6E0[7] = func_8007FE2C("MACHINE REMONT. TPS PRISE",
+                                              gScreenWidth / 2, (gScreenHeight / 2) + 96, 200, 1, 0);
+#endif
             }
             else
             {
+#if VERSION_US
                 D_801CF6E0[7] = func_8007FE2C("TIME MACHINE PART NOT FOUND",
                                               gScreenWidth / 2, (gScreenHeight / 2) + 96, 200, 1, 0);
+#elif VERSION_FR
+                D_801CF6E0[7] = func_8007FE2C("MACHINE REMONT. TPS NON TROUVEE",
+                                              gScreenWidth / 2, (gScreenHeight / 2) + 96, 200, 1, 0);
+#endif
                 D_801CF6E0[7]->unkC |= 0x04000000;
             }
         }
@@ -2460,14 +2820,35 @@ void func_801C542C(void)
     }
 }
 
-/*801CB960*/ static char *D_801CB960[4] = {"PLAYER 1 WINS", "PLAYER 2 WINS", "PLAYER 3 WINS", "PLAYER 4 WINS"};
+/*801CB960*/ static char *D_801CB960[4] = {
+#if VERSION_US
+    "PLAYER 1 WINS",
+    "PLAYER 2 WINS",
+    "PLAYER 3 WINS",
+    "PLAYER 4 WINS",
+#elif VERSION_FR
+    "VAINQUEUR : JOUEUR 1",
+    "VAINQUEUR : JOUEUR 2",
+    "VAINQUEUR : JOUEUR 3",
+    "VAINQUEUR : JOUEUR 4",
+#endif
+};
 
 typedef struct {
     /*0x00*/ char *unk0[4];
     /*0x10*/ char *unk10[2];
 } _EB300UnkStruct3;
 
-/*801CB970*/ static _EB300UnkStruct3 D_801CB970 = {{"PLAYER 1", "PLAYER 2", "PLAYER 3", "PLAYER 4"},{"BLUE", "RED"}};
+/*801CB970*/ static _EB300UnkStruct3 D_801CB970 = {
+#if VERSION_US
+    {"PLAYER 1", "PLAYER 2", "PLAYER 3", "PLAYER 4"},
+    {"BLUE", "RED"},
+#elif VERSION_FR
+    {"JOUEUR 1", "JOUEUR 2", "JOUEUR 3", "JOUEUR 4"},
+    {"BLEUE", "ROUGE"},
+#endif
+};
+
 /*801CB988*/ static char *D_801CB988[4] = {"P1", "P2", "P3", "P4"};
 
 /*801C5C68*/
@@ -2498,7 +2879,11 @@ static void func_801C5C68(void)
     D_801CC88C = -1;
     D_801CF6E0[0] = func_800802C0(D_801CA14C[gMapNum].mapname, gScreenWidth / 2, 24, 200, 1);
     func_801C14C4(D_801CF6E0[0], 32, 0xFF, 32);
+#if VERSION_US
     D_801CF6E0[1] = func_800802C0("PRESS START TO ENTER", gScreenWidth/2, 186, 200, 1);
+#elif VERSION_FR
+    D_801CF6E0[1] = func_800802C0("APPUYEZ SUR START POUR", gScreenWidth/2, 186, 200, 1);
+#endif
     D_801CF6E0[2] = func_800802C0(D_801CA14C[gMapNum + 1].mapname, gScreenWidth / 2, 208, 200, 1);
 
     if (D_801CDC64.unk2 == 5)
@@ -2545,7 +2930,13 @@ static void func_801C5C68(void)
         if (n != -1)
             D_801CF6E0[3] = func_800802C0(D_801CB960[n], gScreenWidth/2, 102, 200, 1);
         else
+        {
+#if VERSION_US
             D_801CF6E0[3] = func_800802C0("DRAW", gScreenWidth/2, 102, 200, 1);
+#elif VERSION_FR
+            D_801CF6E0[3] = func_800802C0("MATCH NUL", gScreenWidth/2, 102, 200, 1);
+#endif
+        }
     }
     else
     {
@@ -2681,7 +3072,11 @@ void func_801C66D8(void)
                         func_801C1114();
                         func_801C1158(0, 0, 0, 0xFF);
                         D_801CC88C = -1;
+#if VERSION_US
                         func_8007FE2C("EXPANSION PAK FOUND", gScreenWidth / 2, (gScreenHeight / 2) + 150, 0, i, 0);
+#elif VERSION_FR
+                        func_8007FE2C("PACK D'EXTENSION DETECTE", gScreenWidth / 2, (gScreenHeight / 2) + 150, 0, i, 0);
+#endif
                     }
                     else
                     {
@@ -3300,7 +3695,11 @@ void func_801C764C(void)
         D_800E0F58 = 1;
         func_8007FD8C(&D_800DFB08[0], 11);
         func_8007FD8C(&D_800E047C[0], 14);
+#if VERSION_US
         func_800802C0("SELECT LEVEL", gScreenWidth/2, 24, 64, 1);
+#elif VERSION_FR
+        func_800802C0("CHOISIR NIVEAU", gScreenWidth/2, 24, 64, 1);
+#endif
         D_801CA144 = 0.0f;
 
         if (D_800FE3FC == 0)
@@ -3325,12 +3724,21 @@ void func_801C764C(void)
         D_801CA3D4 = gScreenHeight/2 + 100;
         D_801CC8B0 = func_8007FE2C(D_801CA14C[D_801CE5DC].mapname, gScreenWidth / 2, D_801CA3D4, 64, 1, 0);
         D_801CA3D4 += 12;
+#if VERSION_US
         D_801CF6E0[1] = func_8007FE2C("TIME TAKEN:", 48, D_801CA3D4 + 12, 64, 0, 0);
         D_801CF6E0[2] = func_8007FE2C("KILLS:", 48, D_801CA3D4 + 24, 64, 0, 0);
         D_801CF6E0[3] = func_8007FE2C("BABES:", 48, D_801CA3D4 + 36, 64, 0, 0);
         D_801CF6E0[4] = func_8007FE2C("SECRETS:", 48, D_801CA3D4 + 48, 64, 0, 0);
         D_801CF6E0[6] = func_8007FE2C("TIME MACHINE PARTS:", 48, D_801CA3D4 + 60, 64, 0, 0);
         D_801CF6E0[5] = func_8007FE2C("OVERALL RATING:", 48, D_801CA3D4 + 72, 64, 0, 0);
+#elif VERSION_FR
+        D_801CF6E0[1] = func_8007FE2C("TEMPS ECOULE:", 48, D_801CA3D4 + 12, 64, 0, 0);
+        D_801CF6E0[2] = func_8007FE2C("TUES:", 48, D_801CA3D4 + 24, 64, 0, 0);
+        D_801CF6E0[3] = func_8007FE2C("LES GONZESSES:", 48, D_801CA3D4 + 36, 64, 0, 0);
+        D_801CF6E0[4] = func_8007FE2C("SECRETS:", 48, D_801CA3D4 + 48, 64, 0, 0);
+        D_801CF6E0[6] = func_8007FE2C("MACHINE REMONT. TPS:", 48, D_801CA3D4 + 60, 64, 0, 0);
+        D_801CF6E0[5] = func_8007FE2C("TOTAL:", 48, D_801CA3D4 + 72, 64, 0, 0);
+#endif
 
         temp_s3 = &D_801CE5F0.unk4[D_801CE5DC];
 
@@ -3348,7 +3756,13 @@ void func_801C764C(void)
 
         if ((D_801CE5DC == MAP_WETWORLD) || (D_801CE5DC == MAP_BOSS_HOG) ||
             (D_801CE5DC == MAP_CYBORG_SCORPION) || (D_801CE5DC >= MAP_THE_RACK))
+        {
+#if VERSION_US
             sprintf(D_801CDB58[5], "NONE");
+#elif VERSION_FR
+            sprintf(D_801CDB58[5], "AUCUN");
+#endif
+        }
         else if (D_801CE5F0.unkFE4 & (1 << D_801CE5DC))
             sprintf(D_801CDB58[5], "1 / 1");
         else
@@ -3429,7 +3843,11 @@ void func_801C764C(void)
                 if ((D_801CE5DC == MAP_WETWORLD) || (D_801CE5DC == MAP_BOSS_HOG) ||
                     (D_801CE5DC == MAP_CYBORG_SCORPION) || (D_801CE5DC >= MAP_THE_RACK))
                 {
+#if VERSION_US
                     sprintf(D_801CDB58[5], "NONE");
+#elif VERSION_FR
+                    sprintf(D_801CDB58[5], "AUCUN");
+#endif
                     D_801CDBD0[5]->unkC |= 0x04000000;
                 }
                 else if (D_801CE5F0.unkFE4 & (1 << D_801CE5DC))
@@ -3544,7 +3962,11 @@ static void func_801C8650(void)
         func_80083700(1, &D_801CE5E8[i], 0, 0);
 
     D_800E0F58 = 1;
+#if VERSION_US
     func_800802C0("SELECT LEVEL", (gScreenWidth / 2), 24, 64, 1);
+#elif VERSION_FR
+    func_800802C0("CHOISIR NIVEAU", (gScreenWidth / 2), 24, 64, 1);
+#endif
     D_801CA144 = 0.0f;
 
     for (i = 0; i < ARRAY_COUNT(D_800E064C)-1; i++)
@@ -3658,6 +4080,7 @@ void func_801C899C(void)
 
 /*801CBCA8*/
 static char *D_801CBCA8[16] = {
+#if VERSION_US
     "TURN LEFT",
     "TURN RIGHT",
     "MOVE FORWARD",
@@ -3674,6 +4097,24 @@ static char *D_801CBCA8[16] = {
     "NEXT ITEM",
     "PREVIOUS ITEM",
     "ACTIVATE ITEM",
+#elif VERSION_FR
+    "TOURNER A GAUCHE",
+    "TOURNER A DROITE",
+    "AVANCER",
+    "RECULER",
+    "DEPLACEMENT A GAUCHE",
+    "DEPLACEMENT A DROITE",
+    "REGARDER EN HAUT",
+    "REGARDER EN BAS",
+    "SAUTER",
+    "TIRER",
+    "OUVRIR",
+    "ARME SUIVANTE",
+    "DERNIERE ARME",
+    "PROCAIN OBJET",
+    "ARTICLE PRECENDENT",
+    "UTILISER UN ARTICLE",
+#endif
 };
 
 /*801C8DE0*/

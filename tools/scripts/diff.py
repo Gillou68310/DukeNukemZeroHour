@@ -274,11 +274,13 @@ if __name__ == "__main__":
             print('\033[91m'+'Section size mismatch ' + sec + '\033[0m')
             match = False
 
-        for i in range(0, len(l1)):
+        i = 0
+        for ll in l1:
             if i >= len(l2):
                 break
 
             if l1[i].label == 'gcc2_compiled.':
+                i += 1
                 continue
 
             if sec == '.text' and l1[i].inst != l2[i].inst:
@@ -291,10 +293,12 @@ if __name__ == "__main__":
                 assert(l1[i].label[0] != '.')
                 if l1[i].label != l2[i].label:
                     if l2[i].label.startswith('jtbl_'):
+                        i += 1
                         continue
                     assert(l2[i].label.startswith('func_') or l2[i].label.startswith('D_'))
                     if len(l2[i].label.split('_')) != 3:
                         print('Label mismatch ' + l1[i].label + ' <-> ' + l2[i].label + ' at ' + hex(i*4) + ' ' + sec)
+                        i += 1
                         continue
                     addr = int(l2[i].label.split('_')[1], 16)
                     d = symbols.get(l1[i].label)
@@ -319,9 +323,11 @@ if __name__ == "__main__":
                 # Missing reloc in asm
                 if(l1[i].rtype != l2[i].rtype):
                     assert(l2[i].rtype == None)
+                    i += 1
                     continue
 
                 if l1[i].rtype == 'R_MIPS_26' and l1[i].inst != 'jal':
+                    i += 1
                     continue
 
                 # Already defined
@@ -330,6 +336,7 @@ if __name__ == "__main__":
                     assert(s)
                     if s.splat.given_size == 0:
                         s.splat.given_size = l1[i].rsize
+                    i += 1
                     continue
 
                 # mips-as should not emit those
@@ -342,9 +349,11 @@ if __name__ == "__main__":
                     # Format $VRAM_$ROM
                     addr = int(l2[i].rlabel.split('_')[1], 16)
                 elif l2[i].rlabel.startswith('jtbl_') or l2[i].rlabel.startswith('.'):
+                    i += 1
                     continue
                 else:
                     print('Label mismatch ' + l1[i].rlabel + ' <-> ' + l2[i].rlabel + ' at ' + hex(i*4) + ' ' + sec)
+                    i += 1
                     continue
 
                 if l1[i].rtype == 'R_MIPS_26':
@@ -372,6 +381,7 @@ if __name__ == "__main__":
                 elif l1[i].rtype == 'R_MIPS_LO16':
                     if(hi < 0):
                         print('multiple R_MIPS_LO16 for the same R_MIPS_HI16 at ' + hex(i*4) + '?')
+                        i += 1
                         continue
 
                     assert(l1[hi].inst == 'lui')
@@ -392,6 +402,7 @@ if __name__ == "__main__":
                         d = symtab1[l1[i].rlabel].get(offset)
                         if d == None:
                             hi = -1
+                            i += 1
                             continue
                         l1[i].rlabel, l1[i].rsize = d
                     else:
@@ -419,11 +430,20 @@ if __name__ == "__main__":
                             symbols[l1[i].rlabel] = Symbol(splat=splat, visibility=None, section=None, source=None, ignore=False)
                     hi = -1
                 elif l1[i].rtype == 'R_MIPS_32':
+                    value1 = l1[i].data << 24 | l1[i+1].data << 16 | l1[i+2].data << 8 | l1[i+3].data
+                    value2 = l2[i].data << 24 | l2[i+1].data << 16 | l2[i+2].data << 8 | l2[i+3].data
+
+                    if(value2 != 0):
+                        #TODO?
+                        i += 4
+                        continue
+
                     if l1[i].rlabel == '.text' or l1[i].rlabel == '.data' or l1[i].rlabel == '.rodata' or l1[i].rlabel == '.bss':
                         i += 4
                         #TODO get offset from 32bits data
                         continue
                     
+                    addr = addr - value1
                     d = symbols.get(l1[i].rlabel)
                     if d != None:
                         assert(d.splat.vram_start == addr)
@@ -435,6 +455,7 @@ if __name__ == "__main__":
                             splat = split.symbols.Symbol(given_name=l1[i].rlabel, given_size=l1[i].rsize, vram_start=addr)
                         symbols[l1[i].rlabel] = Symbol(splat=splat, visibility=None, section=None, source=None, ignore=False)
                     i += 4
+                    continue
             else:
                 # If no reloc, make sure data matches
                 if l2[i].rtype == None:
@@ -446,6 +467,7 @@ if __name__ == "__main__":
                         match  = False
                         break
                 assert(l1[i].rlabel == None)
+            i += 1
 
     if not match: sys.exit()
     sorted_symbols = sorted(symbols.values(), key=operator.attrgetter('splat.vram_start'))

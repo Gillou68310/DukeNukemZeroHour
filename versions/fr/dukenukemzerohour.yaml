@@ -482,11 +482,11 @@ segments:
     subalign: null
     subsegments:
     #.text section
-      - [0xEB820,  asm,    src/code1/EB300]
+      - [0xEB820,  c,    src/code1/EB300]
     #.data section
-      - [0xF4BE0,  data,   src/code1/EB300]
+      - [0xF4BE0,  .data,   src/code1/EB300]
     #.rodata section
-      - [0xF6810,  rodata, src/code1/EB300]
+      - [0xF6810,  .rodata, src/code1/EB300]
     #.bss section
 #      - {start: 0xF7490, type: .bss, vram: 0x801D8A50, name: src/code1/EB300}
       - {start: 0xF7490, type: bss, vram: 0x801D8A50, name: src/code1/code1}
