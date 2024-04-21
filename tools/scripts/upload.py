@@ -152,7 +152,11 @@ if __name__ == "__main__":
             json_data: Dict[str, str] = json.loads(resp)
             if "slug" in json_data:
                 slug = json_data["slug"]
-                print(f"{api_base}/scratch/{slug}")
+                token = json_data.get("claim_token")
+                if token:
+                    print(f"{api_base}/scratch/{slug}/claim?token={token}")
+                else:
+                    print(f"{api_base}/scratch/{slug}")
             else:
                 error = json_data.get("error", resp)
                 print(f"Server error: {error}")

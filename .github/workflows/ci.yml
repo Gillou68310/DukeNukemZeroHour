@@ -55,5 +55,5 @@ jobs:
       run: make -j $(nproc) VERSION=${{ matrix.version }} MODERN=1 BUILD_DIR=build_modern/${{ matrix.version }}
 
     - name: Upload frogress
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/master' && matrix.version == 'us'
       run: python3 tools/scripts/frogress.py ${{ matrix.version }} --api_key ${{ secrets.PROGRESS_API_KEY }}
