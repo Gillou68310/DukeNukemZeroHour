@@ -3346,7 +3346,13 @@ static void func_8007675C(s32 spritenum)
     u16 cstat;
 
     spr = &gpSprite[spritenum];
-    if ((spr->unk16 >= 0) || (spr->unk16 = func_8004D304(spr, 512, 19), unk1C = 0, (spr->unk16 >= 0)))
+    if (spr->unk16 < 0)
+    {
+        spr->unk16 = func_8004D304(spr, 512, 19);
+        unk1C = 0;
+    }
+
+    if (spr->unk16 >= 0)
     {
         unk16 = spr->unk16;
         i = func_80058600(spr->unk16);
