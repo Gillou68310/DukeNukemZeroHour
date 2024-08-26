@@ -239,26 +239,26 @@ static _41940UnkFuncPointer2 D_800DEF3C[84] = {
 
 /*800DF090*/
 static s16 D_800DF090[32] = {
-    -1, -1, 1801, 1814, 1795, -1, 1824, 1828, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, 1875, 1853, 1861, 1867, 1845, 1838, -1, -1, 0,
+    -1, -1, ENFORCER2, ENFORCERCAPTAIN2, BATTLEENFORCER2, -1, PIGCOP2, RIOTPIG2, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, CAPITALISTPIG2, COWBOYGRUNT2, SAVAGEGRUNT2, SOLDIERGRUNT2, WARPIG2, ROADHOG2, -1, -1, 0,
 };
 
 /*800DF0D0*/
 static s16 D_800DF0D0[32] = {
-    -1, -1, 1806, 1815, 1796, -1, 1825, 1830, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, 1877, 1855, 1862, 1880, 1847, 1840, -1, -1, 0,
+    -1, -1, ENFORCER3, ENFORCERCAPTAIN3, BATTLEENFORCER3, -1, PIGCOP3, RIOTPIG3, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, CAPITALISTPIG3, COWBOYGRUNT3, SAVAGEGRUNT3, SOLDIERGRUNT3, WARPIG3, ROADHOG3, -1, -1, 0,
 };
 
 /*800DF110*/
 static s16 D_800DF110[32] = {
-    -1, -1, 1800, 1812, 1793, -1, 1821, 1827, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, 1882, 1851, 1859, 1866, 1843, 1835, -1, -1, 0,
+    -1, -1, ENFORCER1, ENFORCERCAPTAIN1, BATTLEENFORCER1, -1, PIGCOP1, RIOTPIG1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, CAPITALISTPIG1, COWBOYGRUNT1, SAVAGEGRUNT1, SOLDIERGRUNT1, WARPIG1, ROADHOG1, -1, -1, 0,
 };
 
 /*800DF150*/
 static s16 D_800DF150[32] = {
-    -1, -1, 1807, 1819, 1798, -1, 1826, 1833, -1, -1, -1, -1, -1, -1, -1, -1,
-    -1, -1, -1, -1, -1, -1, -1, 1878, 1856, 1864, 1871, 1850, 1842, -1, -1, 0,
+    -1, -1, ENFORCER4, ENFORCERCAPTAIN4, BATTLEENFORCER4, -1, PIGCOP4, RIOTPIG4, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, CAPITALISTPIG4, COWBOYGRUNT4, SAVAGEGRUNT4, SOLDIERGRUNT4, WARPIG4, ROADHOG4, -1, -1, 0,
 };
 
 /*800DF190*/ static s16 D_800DF190[8] = {47, 54, 43, 54, 6, 7, 8, 0};
@@ -309,7 +309,7 @@ static void func_80051088(s32 spritenum);
 static void func_80051330(s32 spritenum);
 static void func_800519AC(void);
 static s32 func_80052AB0(s16, s16, s32);
-static void func_80053650(s32, s32 spritenum);
+static void func_80053650(s32 picnum, s32 spritenum);
 static void func_80055DDC(s32 spritenum);
 static void func_80056C00(s32);
 static void func_80057E7C(void);
@@ -433,7 +433,7 @@ static void func_80040EF0(s32 spritenum, s16 playernum, s32 arg2)
 
         if (D_80118248->cstat & 0x1000)
         {
-            ptr = D_800D52E0[D_80118248->picnum - 1280];
+            ptr = gModelList[D_80118248->picnum-MODELLIST];
             D_801B0D30 = (ptr->unk2E - ptr->unk28) << 6;
             if (ptr->unk28 < 0)
                 D_80197E30 = 1;
@@ -2802,9 +2802,9 @@ static void func_80046540(void)
         D_80118248 = &gpSprite[i];
         D_8012F6E8 = func_8005A240(i);
         D_80137DE0 = &D_8019B940[D_80106D50[i]];
-        z = (D_800D52E0[gpSprite[i].picnum-1280]->unk2E - D_800D52E0[gpSprite[i].picnum-1280]->unk28) << 6;
+        z = (gModelList[gpSprite[i].picnum-MODELLIST]->unk2E - gModelList[gpSprite[i].picnum-MODELLIST]->unk28) << 6;
 
-        if ((D_8012F6E8 == 1) && (D_80118248->picnum == 1285))
+        if ((D_8012F6E8 == 1) && (D_80118248->picnum == CYBORGENFORCER))
         {
             func_8004A590(i);
             return;
@@ -2857,13 +2857,13 @@ static void func_80046540(void)
                     if ((krand() & 7) >= 4)
                         j = 101;
                 }
-                else if ((D_80137DE0->unk4 & 0x20) && (D_80118248->picnum == 1280))
+                else if ((D_80137DE0->unk4 & 0x20) && (D_80118248->picnum == CHIMERA))
                 {
                     j = 97;
                     gpSprite[i].unk18 = 2;
                     goto label1;
                 }
-                else if (D_80118248->picnum == 1280)
+                else if (D_80118248->picnum == CHIMERA)
                 {
                     j = 96;
                 }
@@ -3001,7 +3001,7 @@ static void func_80046540(void)
 
         if (gpSprite[i].unk18 == 2)
         {
-            if ((D_80137DE0->unk4 & 0x20) && ((D_8012F6E8 == 1) || (D_80118248->picnum == 1280)))
+            if ((D_80137DE0->unk4 & 0x20) && ((D_8012F6E8 == 1) || (D_80118248->picnum == CHIMERA)))
             {
                 if (func_8004EFB4(i) != 0)
                 {
@@ -3182,8 +3182,8 @@ s32 func_80047820(s32 spritenum1, s32 spritenum2, s32 arg2)
             if (gpSprite[spritenum2].unk2B == 0)
                 gpSprite[spritenum2].unk2B = 1;
             break;
-        case 2002:
-        case 2005:
+        case MARINE:
+        case SERGEANT:
         case 2341:
         case 2597:
         label1:
@@ -3206,8 +3206,8 @@ label2:
     if ((D_80106D50[spritenum2] != -1) && (gpSprite[spritenum2].cstat & 0x1000))
     {
         s32 a, b;
-        b = (D_800D52E0[gpSprite[spritenum2].picnum-1280]->unk2E -
-             D_800D52E0[gpSprite[spritenum2].picnum-1280]->unk28) << 6;
+        b = (gModelList[gpSprite[spritenum2].picnum-MODELLIST]->unk2E -
+             gModelList[gpSprite[spritenum2].picnum-MODELLIST]->unk28) << 6;
         a = klabs((gpSprite[spritenum1].z - gpSprite[spritenum2].z));
         a *= 100;
         if (b != 0)
@@ -3769,7 +3769,7 @@ s32 func_800494DC(s32 spritenum1, s32 arg1, s32 spritenum2, s32 arg3)
         D_8012C798 = spr->y;
         D_801AC590 = spr->z;
 
-        if (gpSprite[spritenum1].picnum == 1306)
+        if (gpSprite[spritenum1].picnum == BOSSGIANTHOG)
         {
             ang = getAngleDelta(getAngle(D_801A19F4 - gpSprite[spritenum1].x, D_8012C798 - gpSprite[spritenum1].y),
                                 gpSprite[spritenum1].ang);
@@ -3905,7 +3905,7 @@ s32 func_800494DC(s32 spritenum1, s32 arg1, s32 spritenum2, s32 arg3)
     if (arg1 >= 2)
         arg1 = (arg1 * D_800DEF14) / 100;
 
-    if ((gpSprite[spritenum1].picnum == 1306))
+    if ((gpSprite[spritenum1].picnum == BOSSGIANTHOG))
     {
         if (cond != 0)
             arg1 *= 2;
@@ -3953,20 +3953,20 @@ s32 func_800494DC(s32 spritenum1, s32 arg1, s32 spritenum2, s32 arg3)
         {
             switch (gpSprite[spritenum1].picnum)
             {
-            case 1307:
+            case BOSSCYBORGSCORPION:
                 func_8009A43C(spritenum1);
                 break;
-            case 1309:
+            case BOSSZERO:
                 func_8009B8A4(spritenum1);
                 break;
-            case 1306:
+            case BOSSGIANTHOG:
                 func_8009E638(spritenum1);
                 break;
             }
         }
         else
         {
-            if ((gpSprite[spritenum1].picnum == 2002) || (gpSprite[spritenum1].picnum == 2005))
+            if ((gpSprite[spritenum1].picnum == MARINE) || (gpSprite[spritenum1].picnum == SERGEANT))
             {
                 if (cond2)
                     audio_80008574(0, 1670);
@@ -3997,7 +3997,7 @@ s32 func_800494DC(s32 spritenum1, s32 arg1, s32 spritenum2, s32 arg3)
                             audio_800080E0(0, 6);
                         break;
                     default:
-                        if (gpSprite[spritenum1].picnum == 1292)
+                        if (gpSprite[spritenum1].picnum == PARAPSYCHE)
                         {
                             if (func_801C0FDC(100) < 15)
                                 audio_800080E0(0, 15);
@@ -4266,7 +4266,7 @@ void func_8004AB6C(s32 spritenum, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 ar
                         n = arg2 + (krand() % (arg3 - arg2));
                     }
 
-                    if ((gpSprite[i].picnum == 1293) || (gpSprite[i].picnum == 1300))
+                    if ((gpSprite[i].picnum == SHIP1) || (gpSprite[i].picnum == SENTRYGUNS2))
                     {
                         if (hitag != i)
                             func_80047820(spritenum_, i, n);
@@ -4280,7 +4280,7 @@ void func_8004AB6C(s32 spritenum, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 ar
                             else
                                 goto block_29;
                         }
-                        else if ((gpSprite[i].picnum == 2002) || (gpSprite[i].picnum == 2005))
+                        else if ((gpSprite[i].picnum == MARINE) || (gpSprite[i].picnum == SERGEANT))
                         {
                             if (arg1 == 0x800)
                                 gpSprite[i].unk2B = 1;
@@ -4648,7 +4648,7 @@ static s32 func_8004BC24(s32 arg0, s32 arg1)
 }
 
 /*8004BC64*/
-s32 func_8004BC64(s32 x, s32 y, s32 z, s32 sectnum, s32 arg4, s32 arg5, s32 arg6)
+s32 func_8004BC64(s32 x, s32 y, s32 z, s32 sectnum, s32 picnum, s32 arg5, s32 arg6)
 {
     SpriteType *spr;
     s32 spritenum;
@@ -4661,14 +4661,14 @@ s32 func_8004BC64(s32 x, s32 y, s32 z, s32 sectnum, s32 arg4, s32 arg5, s32 arg6
         spr->yrepeat = 64;
         spr->cstat = 0;
         spr->unk16 = arg6;
-        spr->picnum = arg4;
+        spr->picnum = picnum;
         spr->unk25 = 0;
 
-        if (arg4 == 2487)
+        if (picnum == 2487)
             spr->unk25 = arg5;
 
         spr->ang = 0;
-        func_800539A8(arg4, spritenum);
+        func_800539A8(picnum, spritenum);
         return spritenum;
     }
     /*TODO: return?*/
@@ -5431,16 +5431,16 @@ void func_8004D884(void)
             D_80118248->z = (D_801B0D30 + z1) - 0xF00;
     }
 
-    if ((D_8012F6E8 != 2 && D_80118248->picnum == 1285) || (D_8012F6E8 == 2 && D_80137DE0->unk48 == 0))
+    if ((D_8012F6E8 != 2 && D_80118248->picnum == CYBORGENFORCER) || (D_8012F6E8 == 2 && D_80137DE0->unk48 == 0))
     {
-        if (D_80118248->picnum == 1285)
+        if (D_80118248->picnum == CYBORGENFORCER)
             i = 0x700;
         else
             i = 0x800;
 
-        if (D_80118248->picnum != 1727)
+        if (D_80118248->picnum != ZOMBIE6)
         {
-            if (D_80118248->picnum == 1304)
+            if (D_80118248->picnum == ZOMBIE2)
                 i = 0x500;
 
             if (D_80138860 == D_80129804)
@@ -5554,7 +5554,7 @@ static s32 func_8004DE60(s32 spritenum, s32 arg1)
 
     if (gpSprite[spritenum].cstat & 0x1000)
     {
-        i = D_800D52E0[gpSprite[spritenum].picnum-1280]->unk2E << 6;
+        i = gModelList[gpSprite[spritenum].picnum-MODELLIST]->unk2E << 6;
         i = i - (i >> 2);
     }
     else
@@ -5565,7 +5565,7 @@ static s32 func_8004DE60(s32 spritenum, s32 arg1)
     z -= i;
     if (gpSprite[spritenum].cstat & 0x1000)
     {
-        ptr = D_800D52E0[gpSprite[spritenum].picnum-1280];
+        ptr = gModelList[gpSprite[spritenum].picnum-MODELLIST];
         walldist = ((ptr->unk2A - ptr->unk24) * gpSprite[spritenum].xrepeat / 64);
         walldist *= 2;
     }
@@ -5679,7 +5679,7 @@ static s32 func_8004DE60(s32 spritenum, s32 arg1)
             if (spritenum_ > 0)
             {
                 if (gpSprite[spritenum_].cstat & 0x1000)
-                    j = D_800D52E0[gpSprite[spritenum_].picnum-1280]->unk2E << 6;
+                    j = gModelList[gpSprite[spritenum_].picnum-MODELLIST]->unk2E << 6;
                 else
                     j = getTileSizeY(gpSprite[spritenum_].picnum) * gpSprite[spritenum_].yrepeat * 4;
 
@@ -5719,23 +5719,23 @@ s32 func_8004E5F8(s16 spritenum, s32 xvect, s32 yvect, s32 zvect)
     if ((gpSprite[spritenum].cstat & 0x1000))
     {
         picnum = gpSprite[spritenum].picnum;
-        walldist = (D_800D52E0[picnum-1280]->unk2A
-                  - D_800D52E0[picnum-1280]->unk24)
+        walldist = (gModelList[picnum-MODELLIST]->unk2A
+                  - gModelList[picnum-MODELLIST]->unk24)
             * gpSprite[spritenum].xrepeat
             / 64;
 
         switch (gpSprite[spritenum].statnum)
         {
         case 302:
-            if (picnum == 1426)
+            if (picnum == TANK)
                 walldist = 1500;
             break;
 
         case 305:
             walldist = 600;
-            if (picnum == 1309)
+            if (picnum == BOSSZERO)
                 walldist = 2500;
-            if (picnum == 1306)
+            if (picnum == BOSSGIANTHOG)
                 walldist = 2600;
             break;
         }
@@ -6742,7 +6742,7 @@ static void func_80051088(s32 spritenum)
             while (i >= 0)
             {
                 nexti = gNextSpriteStat[i];
-                if ((gpSprite[i].picnum == 1442) && (gpSprite[i].unk25 == 4))
+                if ((gpSprite[i].picnum == HELICOPTER) && (gpSprite[i].unk25 == 4))
                 {
                     D_80137DE0->unk28 = j;
                     break;
@@ -7619,7 +7619,7 @@ typedef struct
 static const _41940UnkStruct2 D_800E5CDC = {15, 45, 67};
 
 /*800533C4*/
-void func_800533C4(s32 arg0, s32 spritenum)
+void func_800533C4(s32 picnum, s32 spritenum)
 {
     _41940UnkStruct2 sp10;
     SpriteType *spr;
@@ -7638,7 +7638,7 @@ void func_800533C4(s32 arg0, s32 spritenum)
 
     if (spr->unk25 == 0)
     {
-        switch (arg0)
+        switch (picnum)
         {
         case 1767: case 1768: case 2182: case 2183: case 2228: case 2229:
         case 2230: case 2238: case 2239: case 2240: case 2241: case 2407:
@@ -7839,11 +7839,11 @@ void func_800533C4(s32 arg0, s32 spritenum)
         if (i == 2)
             spr->unk18 = sp10.unk0[2];
     }
-    func_80053650(arg0, spritenum);
+    func_80053650(picnum, spritenum);
 }
 
 /*80053650*/
-static void func_80053650(s32 arg0, s32 spritenum)
+static void func_80053650(s32 picnum, s32 spritenum)
 {
     SpriteType *spr;
 
@@ -7853,7 +7853,7 @@ static void func_80053650(s32 arg0, s32 spritenum)
 
     if (spr->unk25 == 0)
     {
-        switch (arg0)
+        switch (picnum)
         {
         case 1430:
         case 1432:
@@ -7944,7 +7944,7 @@ static code0UnkStruct3 *func_80053900(s32 spritenum)
 }
 
 /*800539A8*/
-void func_800539A8(s32 arg0, s32 spritenum)
+void func_800539A8(s32 picnum, s32 spritenum)
 {
     SpriteType *spr;
     code0UnkStruct3 *ptr;
@@ -7955,7 +7955,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
     spr = &gpSprite[spritenum];
     spritenum_ = spritenum;
 
-    switch (arg0)
+    switch (picnum)
     {
     case 2559:
     case 2562:
@@ -7982,8 +7982,8 @@ void func_800539A8(s32 arg0, s32 spritenum)
         changeSpriteStat(spritenum_, 302);
         break;
 
-    case 2002:
-    case 2005:
+    case MARINE:
+    case SERGEANT:
         spr->xrepeat = 0x40;
         spr->yrepeat = 0x40;
         spr->cstat |= 0x1101;
@@ -8061,25 +8061,25 @@ void func_800539A8(s32 arg0, s32 spritenum)
         ptr->unk48 = spr->unk24;
         if (spr->unk25 == 0)
         {
-            spr->picnum = 1535;
+            spr->picnum = DUKENUKEM;
             ptr->unk99 = 2;
         }
         else if (spr->unk25 == 1)
-            spr->picnum = 1532;
+            spr->picnum = VICTORIANDUKE;
         else if (spr->unk25 == 2)
-            spr->picnum = 1533;
+            spr->picnum = COWBOYDUKE;
         else if (spr->unk25 == 3)
-            spr->picnum = 1534;
+            spr->picnum = APOCALYPSEDUKE;
         else if (spr->unk25 == 4)
-            spr->picnum = 2000;
+            spr->picnum = BATTLEDRESSDUKE;
         else if (spr->unk25 == 5)
-            spr->picnum = 2001;
+            spr->picnum = DOGTAGDUKE;
         else if (spr->unk25 == 6)
-            spr->picnum = 2003;
+            spr->picnum = POSHDUKE;
         else if (spr->unk25 == 7)
-            spr->picnum = 2382;
+            spr->picnum = XTERMINATOR;
         else if (spr->unk25 == 8)
-            spr->picnum = 1535;
+            spr->picnum = DUKENUKEM;
         func_80055DDC(spritenum_);
         break;
 
@@ -8090,7 +8090,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         gpSprite[spritenum_].unk16 = 8;
         break;
 
-    case 1296:
+    case SENTRYDRONE:
         spr->xrepeat = 0x40;
         spr->yrepeat = 0x40;
         ptr = func_80053900(spritenum_);
@@ -8174,7 +8174,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         }
         break;
 
-    case 1297:
+    case EXTERMINATIONDRONE:
         spr->xrepeat = 0x40;
         ptr = func_80053900(spritenum_);
         spr->cstat |= 0x1101;
@@ -8187,7 +8187,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1298:
+    case AQUADRONE:
         spr->xrepeat = 0x40;
         ptr = func_80053900(spritenum_);
         spr->cstat |= 0x1101;
@@ -8200,7 +8200,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1295:
+    case BROODLING:
         spr->xrepeat = 0x40;
         ptr = func_80053900(spritenum_);
         ptr->unk84 = 11;
@@ -8213,7 +8213,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1531:
+    case BROODMOTHER:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8226,7 +8226,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1302:
+    case SPOREEGGS:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8252,7 +8252,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         }
         break;
 
-    case 2219:
+    case CERBERUSTURRETS:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8265,7 +8265,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 2220:
+    case GORGONTURRETS:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8278,8 +8278,8 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 0x7D6:
-    case 2574:
+    case SURVIVOR:
+    case KIMBERLYSTROKES:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8358,17 +8358,17 @@ void func_800539A8(s32 arg0, s32 spritenum)
         }
         break;
 
-    case 1299:
-    case 1300:
+    case SENTRYGUNS1:
+    case SENTRYGUNS2:
         spr->xrepeat = 0x80;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
-        if (spr->picnum == 1299)
+        if (spr->picnum == SENTRYGUNS1)
         {
             ptr->unk84 = 19;
             ptr->unkC = D_01017854_STATIC;
         }
-        if (spr->picnum == 1300)
+        if (spr->picnum == SENTRYGUNS2)
         {
             ptr->unk84 = 20;
             ptr->unkC = D_01017850_STATIC;
@@ -8397,7 +8397,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1287:
+    case COWBOYGRUNT:
         spr->xrepeat = 0x48;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8411,7 +8411,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1288:
+    case CAPITALISTPIG:
         spr->xrepeat = 0x48;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8425,7 +8425,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1290:
+    case SAVAGEGRUNT:
         spr->xrepeat = 0x48;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8439,7 +8439,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1998:
+    case ROADHOG:
         spr->xrepeat = 0x48;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8453,7 +8453,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1291:
+    case SOLDIERGRUNT:
         spr->xrepeat = 0x48;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8467,7 +8467,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1999:
+    case WARPIG:
         spr->xrepeat = 0x48;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8481,7 +8481,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1289:
+    case RIOTPIG:
         spr->xrepeat = 0x48;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8495,7 +8495,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1286:
+    case PIGCOP:
         spr->xrepeat = 0x48;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8511,7 +8511,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
 
     case 2566:
         spr->xrepeat = 0x40;
-        spr->picnum = 1533;
+        spr->picnum = COWBOYDUKE;
         D_800DEF10 = 1;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8526,7 +8526,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
 
     case 2567:
         spr->xrepeat = 0x40;
-        spr->picnum = 1534;
+        spr->picnum = APOCALYPSEDUKE;
         D_800DEF10 = 1;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8546,7 +8546,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
 
     case 2568:
         spr->xrepeat = 0x40;
-        spr->picnum = 2003;
+        spr->picnum = POSHDUKE;
         D_800DEF10 = 1;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8561,7 +8561,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
 
     case 2569:
         spr->xrepeat = 0x40;
-        spr->picnum = 2000;
+        spr->picnum = BATTLEDRESSDUKE;
         D_800DEF10 = 1;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8576,7 +8576,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
 
     case 2570:
         spr->xrepeat = 0x40;
-        spr->picnum = 2366;
+        spr->picnum = EVILDUKE;
         D_800DEF10 = 1;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8591,7 +8591,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
 
     case 2571:
         spr->xrepeat = 0x40;
-        spr->picnum = 2382;
+        spr->picnum = XTERMINATOR;
         D_800DEF10 = 1;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8604,7 +8604,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 2309:
+    case CUSTER:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8617,7 +8617,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 2004:
+    case RIPPER:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8630,7 +8630,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1282:
+    case ENFORCER:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8643,7 +8643,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1283:
+    case ENFORCERCAPTAIN:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8656,7 +8656,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1284:
+    case BATTLEENFORCER:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8669,7 +8669,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1285:
+    case CYBORGENFORCER:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8722,13 +8722,13 @@ void func_800539A8(s32 arg0, s32 spritenum)
         func_80055DDC(spritenum_);
         break;
 
-    case 1303:
-    case 1304:
-    case 1724:
-    case 1725:
-    case 1726:
-    case 1727:
-    case 1728:
+    case ZOMBIE1:
+    case ZOMBIE2:
+    case ZOMBIE3:
+    case ZOMBIE4:
+    case ZOMBIE5:
+    case ZOMBIE6:
+    case ZOMBIE7:
         spr->xrepeat = 0x40;
         spr->yrepeat = 0x40;
         spr->cstat |= 0x1101;
@@ -8748,7 +8748,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1292:
+    case PARAPSYCHE:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8764,7 +8764,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1426:
+    case TANK:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
         if ((spr->statnum == 301) || (spr->statnum == 302))
@@ -8792,7 +8792,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         spr->unk2B = 0;
         break;
 
-    case 1442:
+    case HELICOPTER:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8809,7 +8809,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         spr->cstat &= 0x7FFF;
         break;
 
-    case 1294:
+    case SHIP2:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8833,7 +8833,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         spr->unk2A = 0;
         break;
 
-    case 1293:
+    case SHIP1:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8847,9 +8847,9 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 2301:
-    case 2302:
-    case 2303:
+    case MARSHALL:
+    case SHERIFF:
+    case SQUAW:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8869,7 +8869,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         func_80055DDC(spritenum_);
         break;
 
-    case 1280:
+    case CHIMERA:
         spr->xrepeat = 0x40;
         spr->cstat |= 0x1101;
         ptr = func_80053900(spritenum_);
@@ -8882,7 +8882,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1532:
+    case VICTORIANDUKE:
         if (spr->unk25 == 50)
         {
             spr->xrepeat = 0x40;
@@ -8895,7 +8895,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         }
         break;
 
-    case 1306:
+    case BOSSGIANTHOG:
         spr->unk2B = 0;
         spr->unk22 = 0;
         spr->cstat |= 0x1101;
@@ -8910,7 +8910,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
             D_801A1958.enemies_total++;
         break;
 
-    case 1309:
+    case BOSSZERO:
         spr->unk2B = 0;
         spr->unk22 = 0;
         spr->cstat |= 0x1101;
@@ -8936,7 +8936,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         }
         break;
 
-    case 1308:
+    case BOSSBRAINSTORM:
         spr->cstat |= 0x1101;
         changeSpriteStat(spritenum_, 302);
         func_80053900(spritenum_);
@@ -8972,7 +8972,7 @@ void func_800539A8(s32 arg0, s32 spritenum)
         spr->unk22 = 0;
         break;
 
-    case 1307:
+    case BOSSCYBORGSCORPION:
         spr->lotag = 140;
         spr->cstat |= 0x1101;
         func_8009A9B8(spritenum_);
@@ -9079,7 +9079,7 @@ void func_80055EC0(s32 spritenum, s32 arg1)
             (unk9E == 12) || (unk9E == 14) ||
             (unk9E == 37) || (D_80137DE0->unk9F >> 7) || (i == 2))
         {
-            if ((i != 1) || (D_80118248->picnum != 1285))
+            if ((i != 1) || (D_80118248->picnum != CYBORGENFORCER))
             {
                 if ((i == 2) && (D_801CA14C[gMapNum].unk0 == 3))
                     func_8008E3E0(gpSprite[spritenum].x, gpSprite[spritenum].y,
@@ -9103,7 +9103,7 @@ void func_80055EC0(s32 spritenum, s32 arg1)
                 changeSpriteStat(spritenum, 53);
                 gpSprite[spritenum].unk18 = 0;
                 gpSprite[spritenum].unk1A = 0;
-                if ((unk9E == 21) && (gpSprite[spritenum].picnum != 1285))
+                if ((unk9E == 21) && (gpSprite[spritenum].picnum != CYBORGENFORCER))
                 {
                     gpSprite[spritenum].cstat |= 0x800;
                     gpSprite[spritenum].unk25 = 31;
@@ -9497,7 +9497,7 @@ s32 func_80057540(SpriteType *spr, s16 picnum, s16 arg2, s32 arg3)
     sizey = 0;
     if (spr->cstat & 0x1000)
     {
-        model = D_800D52E0[spr->picnum-1280];
+        model = gModelList[spr->picnum-MODELLIST];
         if (model != NULL)
             sizey = (model->unk2E - model->unk28) << 6;
     }
@@ -9888,7 +9888,7 @@ s32 func_80058600(s32 spritenum)
     ret = 0x3900;
     if (gpSprite[spritenum].cstat & 0x1000)
     {
-        model = D_800D52E0[gpSprite[spritenum].picnum-1280];
+        model = gModelList[gpSprite[spritenum].picnum-MODELLIST];
         if (model != NULL)
         {
             ret = (model->unk2E - model->unk28) * 32;

@@ -1,10 +1,9 @@
 #include "common.h"
-#include "code0/data/DA790.h"
-
+#include "code0/FDE0.h"
 /*.data*/
 
 /*800DBC80*/
-static _DA790UnkStruct1 D_800DBC80[0x11] = {
+static _FDE0UnkStruct1 D_800DBC80[0x11] = {
     { 0.0f, 0.0f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -1 },
     { 3.72529e-9f, 3.525f, 0.175f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0 },
     { 1.275f, 5.05f, 0.275f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 },
@@ -24,4 +23,4 @@ static _DA790UnkStruct1 D_800DBC80[0x11] = {
     { -0.625f, 0.6f, 0.3f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0xF },
 };
 
-/*800DBE5C*/ _DA790UnkStruct2 D_800DBE5C = {0xF, ARRAY_COUNT(D_800D70E8), D_800D70E8, D_800DBC80};
+/*800DBE5C*/ _FDE0UnkStruct2 gCyborgEnforcerActor = {0xF, ARRAY_COUNT(gCyborgEnforcerModelList), gCyborgEnforcerModelList, D_800DBC80};

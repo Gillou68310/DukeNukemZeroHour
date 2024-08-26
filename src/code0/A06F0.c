@@ -173,13 +173,13 @@ void func_8009FAF0(void)
     {
         switch (gpSprite[k].picnum)
         {
-        case 1307:
+        case BOSSCYBORGSCORPION:
             func_8009A9F0(k);
             return;
-        case 1309:
+        case BOSSZERO:
             func_8009C248(k);
             return;
-        case 1306:
+        case BOSSGIANTHOG:
             func_8009E8C8(k);
             break;
         }
@@ -861,7 +861,7 @@ void func_800A0F84(void)
                 i = gHeadSpriteStat[302];
                 while (i>=0)
                 {
-                    if (gpSprite[i].picnum == 1308)
+                    if (gpSprite[i].picnum == BOSSBRAINSTORM)
                         n = i;
 
                     i = gNextSpriteStat[i];
@@ -869,7 +869,7 @@ void func_800A0F84(void)
             }
             if (n >= 0)
             {
-                if (gpSprite[n].picnum == 1308)
+                if (gpSprite[n].picnum == BOSSBRAINSTORM)
                 {
                     k = 0;
                     j = gHeadSpriteStat[302];
@@ -887,19 +887,19 @@ void func_800A0F84(void)
                 k = CLAMP_MIN(k, 0);
                 switch (gpSprite[n].picnum)
                 {
-                case 1306:
+                case BOSSGIANTHOG:
                     p = 5000;
                     m = 5;
                     break;
-                case 1307:
+                case BOSSCYBORGSCORPION:
                     p = 5000;
                     m = 6;
                     break;
-                case 1308:
+                case BOSSBRAINSTORM:
                     p = 100;
                     m = 7;
                     break;
-                case 1309:
+                case BOSSZERO:
                     p = 10000;
                     m = 8;
                     break;

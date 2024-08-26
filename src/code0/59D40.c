@@ -1886,7 +1886,7 @@ void func_8005E29C(s32 spritenum, s32 arg1)
 /*8005E2B0*/
 void func_8005E2B0(s32 spritenum)
 {
-    s32 i, j, d1, d2, nexti, picnum, spritenum_, x, y, z, sectnum, val;
+    s32 i, j, d1, d2, nexti, picnum, spritenum_, x, y, z, sectnum, picnum2;
 
     i = gHeadSpriteStat[80];
     j = -1;
@@ -1909,24 +1909,24 @@ void func_8005E2B0(s32 spritenum)
     z = gpSprite[j].z;
     sectnum = gpSprite[j].sectnum;
 
-    val = 2566;
-    if (picnum == 1533)
-        val = 2567;
-    if (picnum == 1534)
+    picnum2 = 2566;
+    if (picnum == COWBOYDUKE)
+        picnum2 = 2567;
+    if (picnum == APOCALYPSEDUKE)
         func_8006B590(200);
-    else if (picnum != 2003)
+    else if (picnum != POSHDUKE)
     {
-        if (picnum == 2000)
+        if (picnum == BATTLEDRESSDUKE)
             func_8006B590(201);
         else
         {
-            if (picnum == 2366)
-                val = 2571;
-            if (picnum == 2382)
+            if (picnum == EVILDUKE)
+                picnum2 = 2571;
+            if (picnum == XTERMINATOR)
                 func_8006B590(202);
             else
             {
-                spritenum_ = func_8004BC64(x, y, z, sectnum, val, 0, 0);
+                spritenum_ = func_8004BC64(x, y, z, sectnum, picnum2, 0, 0);
                 if (spritenum_ >= 0)
                 {
                     changeSpriteStat(spritenum_, 0);
@@ -1983,7 +1983,7 @@ void func_8005E604(s32 spritenum, s32 arg1)
     i = gHeadSpriteStat[1];
     while (i >= 0)
     {
-        if (gpSprite[i].unk25 == 3 && gpSprite[i].picnum == 1442)
+        if (gpSprite[i].unk25 == 3 && gpSprite[i].picnum == HELICOPTER)
         {
             gpSprite[i].unk22 = 123;
             gpSprite[spritenum].unk16 = i;
@@ -2000,7 +2000,7 @@ void func_8005E694(s32 spritenum, s32 arg1)
     i = gHeadSpriteStat[1];
     while (i >= 0)
     {
-        if (gpSprite[i].unk25 == 3 && gpSprite[i].picnum == 1442)
+        if (gpSprite[i].unk25 == 3 && gpSprite[i].picnum == HELICOPTER)
         {
             gpSprite[i].unk22 = 123;
             D_800DEF1C = i;
@@ -2154,7 +2154,7 @@ void func_8005EC88(s32 spritenum, s32 arg1)
     i = gHeadSpriteStat[1];
     while (i >= 0)
     {
-        if (gpSprite[i].picnum == 1727 && gpSprite[i].unk25 == 20)
+        if (gpSprite[i].picnum == ZOMBIE6 && gpSprite[i].unk25 == 20)
             D_8019B940[D_80106D50[i]].unk44 = 1;
 
         i = gNextSpriteStat[i];
@@ -2492,7 +2492,7 @@ void func_8005FA88(s32 spritenum, s32 arg1)
     i = gHeadSpriteSect[gPlayer[0].unk32];
     while (i >= 0)
     {
-        if (gpSprite[i].picnum == 2002 || gpSprite[i].picnum == 2005)
+        if (gpSprite[i].picnum == MARINE || gpSprite[i].picnum == SERGEANT)
         {
             gpSprite[i].unk2B = 0;
             gpSprite[i].unk22 = 0;
@@ -2554,6 +2554,6 @@ void func_8005FD4C(s32 spritenum, s32 arg1)
 /*8005FD60*/
 void func_8005FD60(s32 spritenum, s32 arg1)
 {
-    if (D_801CA14C[gMapNum].unk0 == 1 && D_80118248->picnum != 1304)
+    if (D_801CA14C[gMapNum].unk0 == 1 && D_80118248->picnum != ZOMBIE2)
         audio_80007A44(752, spritenum, 16000);
 }

@@ -248,22 +248,22 @@ void func_8008E04C(s16 playernum)
     D_8011A680[playernum][ptr->unk99][0] |= 1;
     D_8011A680[playernum][ptr->unk99][1] = D_800DF1D0[ptr->unk99][1] * 2;
 
-    switch (D_8012F6E4[gPlayer[playernum].unk4C].unk0)
+    switch (D_8012F6E4[gPlayer[playernum].unk4C].picnum)
     {
-    case 1282:
-    case 1283:
-    case 1284:
-    case 2309:
+    case ENFORCER:
+    case ENFORCERCAPTAIN:
+    case BATTLEENFORCER:
+    case CUSTER:
         D_8011A680[playernum][ptr->unk99][0] |= 2;
         break;
 
-    case 2002:
-    case 2005:
+    case MARINE:
+    case SERGEANT:
         D_8010A940[playernum].unkA[0] = D_800E17E0[0];
         D_8010A940[playernum].unk0 = 0;
         break;
 
-    case 1289:
+    case RIOTPIG:
         D_8010A940[playernum].unkA[6] = D_800E17E0[6];
         D_8010A940[playernum].unk0 = 6;
         break;

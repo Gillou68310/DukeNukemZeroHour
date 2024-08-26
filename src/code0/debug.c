@@ -259,7 +259,7 @@ void debugMenu(void)
                 if (gPlayer[0].unk4C < 0)
                     gPlayer[0].unk4C = D_80138780 - 1;
                 D_800DF98A = 1;
-                gpSprite[gPlayer[0].unk4A].picnum = D_8012F6E4[gPlayer[0].unk4C].unk0;
+                gpSprite[gPlayer[0].unk4A].picnum = D_8012F6E4[gPlayer[0].unk4C].picnum;
             }
             if (gButton[D_801B0814] & R_TRIG)
             {
@@ -267,7 +267,7 @@ void debugMenu(void)
                 if (gPlayer[0].unk4C >= D_80138780)
                     gPlayer[0].unk4C = 0;
                 D_800DF98A = 1;
-                gpSprite[gPlayer[0].unk4A].picnum = D_8012F6E4[gPlayer[0].unk4C].unk0;
+                gpSprite[gPlayer[0].unk4A].picnum = D_8012F6E4[gPlayer[0].unk4C].picnum;
             }
         }
         else if ((gButton[D_801B0814] & (L_TRIG|R_TRIG)) == 0)

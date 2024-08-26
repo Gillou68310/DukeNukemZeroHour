@@ -588,7 +588,7 @@ static void func_80037B84(void)
                 D_80199520[D_801B0820] = 0;
 
             D_80199520[D_801B0820] = CLAMP_MIN((D_80199520[D_801B0820]-1), 0);
-            gpSprite[gPlayer[D_801B0820].unk4A].picnum = D_8012F6E4[gPlayer[D_801B0820].unk4C].unk0;
+            gpSprite[gPlayer[D_801B0820].unk4A].picnum = D_8012F6E4[gPlayer[D_801B0820].unk4C].picnum;
             func_8008E04C(D_801B0820);
         }
 
@@ -1148,7 +1148,7 @@ void func_80039774(void)
             if (gPlayer[D_801B0820].unk5E >= 0x1000)
             {
                 k = gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].z -
-                    (D_800D52E0[gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].picnum-1280]->unk28 *
+                    (gModelList[gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].picnum-MODELLIST]->unk28 *
                      (gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].yrepeat << 6) / 64) -
                     gPlayer[D_801B0820].unk40;
             }
@@ -1179,7 +1179,7 @@ void func_80039774(void)
             else
             {
                 l = gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].z -
-                    ((D_800D52E0[gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].picnum-1280]->unk2E *
+                    ((gModelList[gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].picnum-MODELLIST]->unk2E *
                         (gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].yrepeat << 6)) / 64);
             }
 
@@ -1235,7 +1235,7 @@ static void func_8003A910(void)
 
     if (gpSprite[gPlayer[D_801B0820].unk4A].cstat & 0x1000)
     {
-        model = D_800D52E0[gpSprite[gPlayer[D_801B0820].unk4A].picnum - 1280];
+        model = gModelList[gpSprite[gPlayer[D_801B0820].unk4A].picnum-MODELLIST];
         walldist = ((model->unk2A - model->unk24) *
                     gpSprite[gPlayer[D_801B0820].unk4A].xrepeat / 64);
         walldist *= 2;
@@ -1274,7 +1274,7 @@ static void func_8003A910(void)
                 }
                 if (gpSprite[spritenum].statnum == 305)
                 {
-                    if (gpSprite[spritenum].picnum == 1306)
+                    if (gpSprite[spritenum].picnum == BOSSGIANTHOG)
                         func_800365C0(0);
                 }
 
@@ -2291,7 +2291,7 @@ static void func_8003DDB8(void)
 
                         if (((gPlayer[D_801B0820].unk59 != 0) || (gPlayer[D_801B0820].unk58 != 0)) && (cond1 || cond2))
                         {
-                            if (gpSprite[spritenum].picnum == 1533)
+                            if (gpSprite[spritenum].picnum == COWBOYDUKE)
                                 audio_800077F4(D_800DEE14[cond].unk4 + krand() % D_800DEE14[cond].unk0, spritenum);
                             else
                                 audio_800077F4(D_800DEE14[cond].unk2 + krand() % D_800DEE14[cond].unk0, spritenum);

@@ -40518,7 +40518,7 @@ ModelInfo D_800D52B0 = {
 };
 
 /*800D52E0*/
-ModelInfo *D_800D52E0[0x528] = {
+ModelInfo *gModelList[0x528] = {
     &D_800BE42C,
     NULL,
     &D_800BE42C,
@@ -41841,7 +41841,7 @@ ModelInfo *D_800D52E0[0x528] = {
     &D_800D52B0,
 };
 
-/*800D6780*/ s16 D_800D6780 = 0x528;
+/*800D6780*/ s16 gModelListCount = ARRAY_COUNT(gModelList);
 
 /*800D6784*/
 ModelInfo *D_800D6784[0x2E] = {
@@ -42066,7 +42066,7 @@ ModelInfo *D_800D6A08[8] = {
 };
 
 /*800D6A28*/
-ModelInfo *D_800D6A28[0x10] = {
+ModelInfo *gDukeNukemModelList[0x10] = {
     NULL,
     &D_800C2B00,
     &D_800C2C68,
@@ -42086,7 +42086,7 @@ ModelInfo *D_800D6A28[0x10] = {
 };
 
 /*800D6A68*/
-ModelInfo *D_800D6A68[0x10] = {
+ModelInfo *gCowboyDukeModelList[0x10] = {
     NULL,
     &D_800C2E0C,
     &D_800C2F74,
@@ -42106,7 +42106,7 @@ ModelInfo *D_800D6A68[0x10] = {
 };
 
 /*800D6AA8*/
-ModelInfo *D_800D6AA8[0x10] = {
+ModelInfo *gVictorianDukeModelList[0x10] = {
     NULL,
     &D_800C3118,
     &D_800C3280,
@@ -42126,7 +42126,7 @@ ModelInfo *D_800D6AA8[0x10] = {
 };
 
 /*800D6AE8*/
-ModelInfo *D_800D6AE8[0x10] = {
+ModelInfo *gPoshDukeModelList[0x10] = {
     NULL,
     &D_800C3424,
     &D_800C358C,
@@ -42146,7 +42146,7 @@ ModelInfo *D_800D6AE8[0x10] = {
 };
 
 /*800D6B28*/
-ModelInfo *D_800D6B28[0x10] = {
+ModelInfo *gApocalypseDukeModelList[0x10] = {
     NULL,
     &D_800C376C,
     &D_800C38D4,
@@ -42166,7 +42166,7 @@ ModelInfo *D_800D6B28[0x10] = {
 };
 
 /*800D6B68*/
-ModelInfo *D_800D6B68[0x10] = {
+ModelInfo *gBattleDressDukeModelList[0x10] = {
     NULL,
     &D_800C3A78,
     &D_800C3BE0,
@@ -42186,7 +42186,7 @@ ModelInfo *D_800D6B68[0x10] = {
 };
 
 /*800D6BA8*/
-ModelInfo *D_800D6BA8[0x10] = {
+ModelInfo *gDogTagDukeModelList[0x10] = {
     NULL,
     &D_800C3D84,
     &D_800C3EEC,
@@ -42206,7 +42206,7 @@ ModelInfo *D_800D6BA8[0x10] = {
 };
 
 /*800D6BE8*/
-ModelInfo *D_800D6BE8[0x10] = {
+ModelInfo *gEvilDukeModelList[0x10] = {
     NULL,
     &D_800C2B00,
     &D_800C2C68,
@@ -42226,7 +42226,7 @@ ModelInfo *D_800D6BE8[0x10] = {
 };
 
 /*800D6C28*/
-ModelInfo *D_800D6C28[0x10] = {
+ModelInfo *gXterminatorModelList[0x10] = {
     NULL,
     &D_800C4090,
     &D_800C41F8,
@@ -42246,7 +42246,7 @@ ModelInfo *D_800D6C28[0x10] = {
 };
 
 /*800D6C68*/
-ModelInfo *D_800D6C68[0x10] = {
+ModelInfo *gMarineModelList[0x10] = {
     NULL,
     &D_800C4450,
     &D_800C45B8,
@@ -42266,7 +42266,7 @@ ModelInfo *D_800D6C68[0x10] = {
 };
 
 /*800D6CA8*/
-ModelInfo *D_800D6CA8[0x10] = {
+ModelInfo *gSergeantModelList[0x10] = {
     NULL,
     &D_800C3A78,
     &D_800C3BE0,
@@ -42286,7 +42286,7 @@ ModelInfo *D_800D6CA8[0x10] = {
 };
 
 /*800D6CE8*/
-ModelInfo *D_800D6CE8[0x10] = {
+ModelInfo *gRipperModelList[0x10] = {
     NULL,
     &D_800C3424,
     &D_800C358C,
@@ -42306,7 +42306,7 @@ ModelInfo *D_800D6CE8[0x10] = {
 };
 
 /*800D6D28*/
-ModelInfo *D_800D6D28[0x10] = {
+ModelInfo *gEnforcerModelList[0x10] = {
     NULL,
     &D_800C4978,
     &D_800C49B4,
@@ -42326,7 +42326,7 @@ ModelInfo *D_800D6D28[0x10] = {
 };
 
 /*800D6D68*/
-ModelInfo *D_800D6D68[0x10] = {
+ModelInfo *gEnforcer1ModelList[0x10] = {
     NULL,
     &D_800C4978,
     &D_800C49B4,
@@ -42346,7 +42346,7 @@ ModelInfo *D_800D6D68[0x10] = {
 };
 
 /*800D6DA8*/
-ModelInfo *D_800D6DA8[0x10] = {
+ModelInfo *gEnforcer2ModelList[0x10] = {
     NULL,
     &D_800C4978,
     &D_800C49B4,
@@ -42366,7 +42366,7 @@ ModelInfo *D_800D6DA8[0x10] = {
 };
 
 /*800D6DE8*/
-ModelInfo *D_800D6DE8[0x10] = {
+ModelInfo *gEnforcer3ModelList[0x10] = {
     NULL,
     &D_800C4978,
     &D_800C49B4,
@@ -42386,7 +42386,7 @@ ModelInfo *D_800D6DE8[0x10] = {
 };
 
 /*800D6E28*/
-ModelInfo *D_800D6E28[0x10] = {
+ModelInfo *gEnforcer4ModelList[0x10] = {
     NULL,
     &D_800C4978,
     &D_800C49B4,
@@ -42406,7 +42406,7 @@ ModelInfo *D_800D6E28[0x10] = {
 };
 
 /*800D6E68*/
-ModelInfo *D_800D6E68[0x10] = {
+ModelInfo *gEnforcerCaptainModelList[0x10] = {
     NULL,
     &D_800C4C84,
     &D_800C4CC0,
@@ -42426,7 +42426,7 @@ ModelInfo *D_800D6E68[0x10] = {
 };
 
 /*800D6EA8*/
-ModelInfo *D_800D6EA8[0x10] = {
+ModelInfo *gEnforcerCaptain1ModelList[0x10] = {
     NULL,
     &D_800C4C84,
     &D_800C4CC0,
@@ -42446,7 +42446,7 @@ ModelInfo *D_800D6EA8[0x10] = {
 };
 
 /*800D6EE8*/
-ModelInfo *D_800D6EE8[0x10] = {
+ModelInfo *gEnforcerCaptain2ModelList[0x10] = {
     NULL,
     &D_800C4C84,
     &D_800C4CC0,
@@ -42466,7 +42466,7 @@ ModelInfo *D_800D6EE8[0x10] = {
 };
 
 /*800D6F28*/
-ModelInfo *D_800D6F28[0x10] = {
+ModelInfo *gEnforcerCaptain3ModelList[0x10] = {
     NULL,
     &D_800C4C84,
     &D_800C4CC0,
@@ -42486,7 +42486,7 @@ ModelInfo *D_800D6F28[0x10] = {
 };
 
 /*800D6F68*/
-ModelInfo *D_800D6F68[0x10] = {
+ModelInfo *gEnforcerCaptain4ModelList[0x10] = {
     NULL,
     &D_800C4C84,
     &D_800C4CC0,
@@ -42506,7 +42506,7 @@ ModelInfo *D_800D6F68[0x10] = {
 };
 
 /*800D6FA8*/
-ModelInfo *D_800D6FA8[0x10] = {
+ModelInfo *gBattleEnforcerModelList[0x10] = {
     NULL,
     &D_800C4F90,
     &D_800C4FCC,
@@ -42526,7 +42526,7 @@ ModelInfo *D_800D6FA8[0x10] = {
 };
 
 /*800D6FE8*/
-ModelInfo *D_800D6FE8[0x10] = {
+ModelInfo *gBattleEnforcer1ModelList[0x10] = {
     NULL,
     &D_800C4F90,
     &D_800C4FCC,
@@ -42546,7 +42546,7 @@ ModelInfo *D_800D6FE8[0x10] = {
 };
 
 /*800D7028*/
-ModelInfo *D_800D7028[0x10] = {
+ModelInfo *gBattleEnforcer2ModelList[0x10] = {
     NULL,
     &D_800C4F90,
     &D_800C4FCC,
@@ -42566,7 +42566,7 @@ ModelInfo *D_800D7028[0x10] = {
 };
 
 /*800D7068*/
-ModelInfo *D_800D7068[0x10] = {
+ModelInfo *gBattleEnforcer3ModelList[0x10] = {
     NULL,
     &D_800C4F90,
     &D_800C4FCC,
@@ -42586,7 +42586,7 @@ ModelInfo *D_800D7068[0x10] = {
 };
 
 /*800D70A8*/
-ModelInfo *D_800D70A8[0x10] = {
+ModelInfo *gBattleEnforcer4ModelList[0x10] = {
     NULL,
     &D_800C4F90,
     &D_800C4FCC,
@@ -42606,7 +42606,7 @@ ModelInfo *D_800D70A8[0x10] = {
 };
 
 /*800D70E8*/
-ModelInfo *D_800D70E8[0x11] = {
+ModelInfo *gCyborgEnforcerModelList[0x11] = {
     NULL,
     &D_800C55A8,
     &D_800C5530,
@@ -42627,7 +42627,7 @@ ModelInfo *D_800D70E8[0x11] = {
 };
 
 /*800D712C*/
-ModelInfo *D_800D712C[0x10] = {
+ModelInfo *gPigCopModelList[0x10] = {
     NULL,
     &D_800C5DDC,
     &D_800C5E18,
@@ -42647,7 +42647,7 @@ ModelInfo *D_800D712C[0x10] = {
 };
 
 /*800D716C*/
-ModelInfo *D_800D716C[0x10] = {
+ModelInfo *gPigCop1ModelList[0x10] = {
     NULL,
     &D_800C5DDC,
     &D_800C5E18,
@@ -42667,7 +42667,7 @@ ModelInfo *D_800D716C[0x10] = {
 };
 
 /*800D71AC*/
-ModelInfo *D_800D71AC[0x10] = {
+ModelInfo *gPigCop2ModelList[0x10] = {
     NULL,
     &D_800C5DDC,
     &D_800C5E18,
@@ -42687,7 +42687,7 @@ ModelInfo *D_800D71AC[0x10] = {
 };
 
 /*800D71EC*/
-ModelInfo *D_800D71EC[0x10] = {
+ModelInfo *gPigCop3ModelList[0x10] = {
     NULL,
     &D_800C5DDC,
     &D_800C5E18,
@@ -42707,7 +42707,7 @@ ModelInfo *D_800D71EC[0x10] = {
 };
 
 /*800D722C*/
-ModelInfo *D_800D722C[0x10] = {
+ModelInfo *gPigCop4ModelList[0x10] = {
     NULL,
     &D_800C6034,
     &D_800C5E18,
@@ -42727,7 +42727,7 @@ ModelInfo *D_800D722C[0x10] = {
 };
 
 /*800D726C*/
-ModelInfo *D_800D726C[0x10] = {
+ModelInfo *gCowboyGruntModelList[0x10] = {
     NULL,
     &D_800C6A84,
     &D_800C6AC0,
@@ -42747,7 +42747,7 @@ ModelInfo *D_800D726C[0x10] = {
 };
 
 /*800D72AC*/
-ModelInfo *D_800D72AC[0x10] = {
+ModelInfo *gCowboyGrunt1ModelList[0x10] = {
     NULL,
     &D_800C6A84,
     &D_800C6AC0,
@@ -42767,7 +42767,7 @@ ModelInfo *D_800D72AC[0x10] = {
 };
 
 /*800D72EC*/
-ModelInfo *D_800D72EC[0x10] = {
+ModelInfo *gCowboyGrunt2ModelList[0x10] = {
     NULL,
     &D_800C6A84,
     &D_800C6AC0,
@@ -42787,7 +42787,7 @@ ModelInfo *D_800D72EC[0x10] = {
 };
 
 /*800D732C*/
-ModelInfo *D_800D732C[0x10] = {
+ModelInfo *gCowboyGrunt3ModelList[0x10] = {
     NULL,
     &D_800C6A84,
     &D_800C6AC0,
@@ -42807,7 +42807,7 @@ ModelInfo *D_800D732C[0x10] = {
 };
 
 /*800D736C*/
-ModelInfo *D_800D736C[0x10] = {
+ModelInfo *gCowboyGrunt4ModelList[0x10] = {
     NULL,
     &D_800C6340,
     &D_800C6AC0,
@@ -42827,7 +42827,7 @@ ModelInfo *D_800D736C[0x10] = {
 };
 
 /*800D73AC*/
-ModelInfo *D_800D73AC[0x10] = {
+ModelInfo *gSavageGruntModelList[0x10] = {
     NULL,
     &D_800C6D90,
     &D_800C6DCC,
@@ -42847,7 +42847,7 @@ ModelInfo *D_800D73AC[0x10] = {
 };
 
 /*800D73EC*/
-ModelInfo *D_800D73EC[0x10] = {
+ModelInfo *gSavageGrunt1ModelList[0x10] = {
     NULL,
     &D_800C6D90,
     &D_800C6DCC,
@@ -42867,7 +42867,7 @@ ModelInfo *D_800D73EC[0x10] = {
 };
 
 /*800D742C*/
-ModelInfo *D_800D742C[0x10] = {
+ModelInfo *gSavageGrunt2ModelList[0x10] = {
     NULL,
     &D_800C6D90,
     &D_800C6DCC,
@@ -42887,7 +42887,7 @@ ModelInfo *D_800D742C[0x10] = {
 };
 
 /*800D746C*/
-ModelInfo *D_800D746C[0x10] = {
+ModelInfo *gSavageGrunt3ModelList[0x10] = {
     NULL,
     &D_800C6D90,
     &D_800C6DCC,
@@ -42907,7 +42907,7 @@ ModelInfo *D_800D746C[0x10] = {
 };
 
 /*800D74AC*/
-ModelInfo *D_800D74AC[0x10] = {
+ModelInfo *gSavageGrunt4ModelList[0x10] = {
     NULL,
     &D_800C64E4,
     &D_800C6DCC,
@@ -42927,7 +42927,7 @@ ModelInfo *D_800D74AC[0x10] = {
 };
 
 /*800D74EC*/
-ModelInfo *D_800D74EC[0x10] = {
+ModelInfo *gCapitalistPigModelList[0x10] = {
     NULL,
     &D_800C709C,
     &D_800C70D8,
@@ -42947,7 +42947,7 @@ ModelInfo *D_800D74EC[0x10] = {
 };
 
 /*800D752C*/
-ModelInfo *D_800D752C[0x10] = {
+ModelInfo *gCapitalistPig1ModelList[0x10] = {
     NULL,
     &D_800C709C,
     &D_800C70D8,
@@ -42967,7 +42967,7 @@ ModelInfo *D_800D752C[0x10] = {
 };
 
 /*800D756C*/
-ModelInfo *D_800D756C[0x10] = {
+ModelInfo *gCapitalistPig2ModelList[0x10] = {
     NULL,
     &D_800C709C,
     &D_800C70D8,
@@ -42987,7 +42987,7 @@ ModelInfo *D_800D756C[0x10] = {
 };
 
 /*800D75AC*/
-ModelInfo *D_800D75AC[0x10] = {
+ModelInfo *gCapitalistPig3ModelList[0x10] = {
     NULL,
     &D_800C709C,
     &D_800C70D8,
@@ -43007,7 +43007,7 @@ ModelInfo *D_800D75AC[0x10] = {
 };
 
 /*800D75EC*/
-ModelInfo *D_800D75EC[0x10] = {
+ModelInfo *gCapitalistPig4ModelList[0x10] = {
     NULL,
     &D_800C682C,
     &D_800C70D8,
@@ -43027,7 +43027,7 @@ ModelInfo *D_800D75EC[0x10] = {
 };
 
 /*800D762C*/
-ModelInfo *D_800D762C[0x10] = {
+ModelInfo *gSoldierGruntModelList[0x10] = {
     NULL,
     &D_800C73A8,
     &D_800C73E4,
@@ -43047,7 +43047,7 @@ ModelInfo *D_800D762C[0x10] = {
 };
 
 /*800D766C*/
-ModelInfo *D_800D766C[0x10] = {
+ModelInfo *gSoldierGrunt1ModelList[0x10] = {
     NULL,
     &D_800C73A8,
     &D_800C73E4,
@@ -43067,7 +43067,7 @@ ModelInfo *D_800D766C[0x10] = {
 };
 
 /*800D76AC*/
-ModelInfo *D_800D76AC[0x10] = {
+ModelInfo *gSoldierGrunt2ModelList[0x10] = {
     NULL,
     &D_800C73A8,
     &D_800C73E4,
@@ -43087,7 +43087,7 @@ ModelInfo *D_800D76AC[0x10] = {
 };
 
 /*800D76EC*/
-ModelInfo *D_800D76EC[0x10] = {
+ModelInfo *gSoldierGrunt3ModelList[0x10] = {
     NULL,
     &D_800C73A8,
     &D_800C73E4,
@@ -43107,7 +43107,7 @@ ModelInfo *D_800D76EC[0x10] = {
 };
 
 /*800D772C*/
-ModelInfo *D_800D772C[0x10] = {
+ModelInfo *gSoldierGrunt4ModelList[0x10] = {
     NULL,
     &D_800C6688,
     &D_800C73E4,
@@ -43127,7 +43127,7 @@ ModelInfo *D_800D772C[0x10] = {
 };
 
 /*800D776C*/
-ModelInfo *D_800D776C[0x10] = {
+ModelInfo *gRoadHogModelList[0x10] = {
     NULL,
     &D_800C76B4,
     &D_800C76F0,
@@ -43147,7 +43147,7 @@ ModelInfo *D_800D776C[0x10] = {
 };
 
 /*800D77AC*/
-ModelInfo *D_800D77AC[0x10] = {
+ModelInfo *gRoadHog1ModelList[0x10] = {
     NULL,
     &D_800C76B4,
     &D_800C76F0,
@@ -43167,7 +43167,7 @@ ModelInfo *D_800D77AC[0x10] = {
 };
 
 /*800D77EC*/
-ModelInfo *D_800D77EC[0x10] = {
+ModelInfo *gRoadHog2ModelList[0x10] = {
     NULL,
     &D_800C76B4,
     &D_800C76F0,
@@ -43187,7 +43187,7 @@ ModelInfo *D_800D77EC[0x10] = {
 };
 
 /*800D782C*/
-ModelInfo *D_800D782C[0x10] = {
+ModelInfo *gRoadHog3ModelList[0x10] = {
     NULL,
     &D_800C76B4,
     &D_800C76F0,
@@ -43207,7 +43207,7 @@ ModelInfo *D_800D782C[0x10] = {
 };
 
 /*800D786C*/
-ModelInfo *D_800D786C[0x10] = {
+ModelInfo *gRoadHog4ModelList[0x10] = {
     NULL,
     &D_800C61D8,
     &D_800C76F0,
@@ -43227,7 +43227,7 @@ ModelInfo *D_800D786C[0x10] = {
 };
 
 /*800D78AC*/
-ModelInfo *D_800D78AC[0x10] = {
+ModelInfo *gRiotPigModelList[0x10] = {
     NULL,
     &D_800C79C0,
     &D_800C79FC,
@@ -43247,7 +43247,7 @@ ModelInfo *D_800D78AC[0x10] = {
 };
 
 /*800D78EC*/
-ModelInfo *D_800D78EC[0x10] = {
+ModelInfo *gRiotPig1ModelList[0x10] = {
     NULL,
     &D_800C79C0,
     &D_800C79FC,
@@ -43267,7 +43267,7 @@ ModelInfo *D_800D78EC[0x10] = {
 };
 
 /*800D792C*/
-ModelInfo *D_800D792C[0x10] = {
+ModelInfo *gRiotPig2ModelList[0x10] = {
     NULL,
     &D_800C79C0,
     &D_800C79FC,
@@ -43287,7 +43287,7 @@ ModelInfo *D_800D792C[0x10] = {
 };
 
 /*800D796C*/
-ModelInfo *D_800D796C[0x10] = {
+ModelInfo *gRiotPig3ModelList[0x10] = {
     NULL,
     &D_800C79C0,
     &D_800C79FC,
@@ -43307,7 +43307,7 @@ ModelInfo *D_800D796C[0x10] = {
 };
 
 /*800D79AC*/
-ModelInfo *D_800D79AC[0x10] = {
+ModelInfo *gRiotPig4ModelList[0x10] = {
     NULL,
     &D_800C6034,
     &D_800C79FC,
@@ -43327,7 +43327,7 @@ ModelInfo *D_800D79AC[0x10] = {
 };
 
 /*800D79EC*/
-ModelInfo *D_800D79EC[0x10] = {
+ModelInfo *gWarPigModelList[0x10] = {
     NULL,
     &D_800C7CCC,
     &D_800C7D08,
@@ -43347,7 +43347,7 @@ ModelInfo *D_800D79EC[0x10] = {
 };
 
 /*800D7A2C*/
-ModelInfo *D_800D7A2C[0x10] = {
+ModelInfo *gWarPig1ModelList[0x10] = {
     NULL,
     &D_800C7CCC,
     &D_800C7D08,
@@ -43367,7 +43367,7 @@ ModelInfo *D_800D7A2C[0x10] = {
 };
 
 /*800D7A6C*/
-ModelInfo *D_800D7A6C[0x10] = {
+ModelInfo *gWarPig2ModelList[0x10] = {
     NULL,
     &D_800C7CCC,
     &D_800C7D08,
@@ -43387,7 +43387,7 @@ ModelInfo *D_800D7A6C[0x10] = {
 };
 
 /*800D7AAC*/
-ModelInfo *D_800D7AAC[0x10] = {
+ModelInfo *gWarPig3ModelList[0x10] = {
     NULL,
     &D_800C7CCC,
     &D_800C7D08,
@@ -43407,7 +43407,7 @@ ModelInfo *D_800D7AAC[0x10] = {
 };
 
 /*800D7AEC*/
-ModelInfo *D_800D7AEC[0x10] = {
+ModelInfo *gWarPig4ModelList[0x10] = {
     NULL,
     &D_800C61D8,
     &D_800C7D08,
@@ -43427,7 +43427,7 @@ ModelInfo *D_800D7AEC[0x10] = {
 };
 
 /*800D7B2C*/
-ModelInfo *D_800D7B2C[0xF] = {
+ModelInfo *gParapsycheModelList[0xF] = {
     NULL,
     &D_800C5A1C,
     &D_800C5B84,
@@ -43446,7 +43446,7 @@ ModelInfo *D_800D7B2C[0xF] = {
 };
 
 /*800D7B68*/
-ModelInfo *D_800D7B68[8] = {
+ModelInfo *gBroodlingModelList[8] = {
     NULL,
     &D_800C7DBC,
     &D_800C7DF8,
@@ -43458,7 +43458,7 @@ ModelInfo *D_800D7B68[8] = {
 };
 
 /*800D7B88*/
-ModelInfo *D_800D7B88[0x10] = {
+ModelInfo *gZombie1ModelList[0x10] = {
     NULL,
     &D_800C81F4,
     &D_800C8230,
@@ -43478,7 +43478,7 @@ ModelInfo *D_800D7B88[0x10] = {
 };
 
 /*800D7BC8*/
-ModelInfo *D_800D7BC8[0x10] = {
+ModelInfo *gZombie2ModelList[0x10] = {
     NULL,
     &D_800C853C,
     &D_800C8578,
@@ -43498,7 +43498,7 @@ ModelInfo *D_800D7BC8[0x10] = {
 };
 
 /*800D7C08*/
-ModelInfo *D_800D7C08[0x10] = {
+ModelInfo *gZombie3ModelList[0x10] = {
     NULL,
     &D_800C880C,
     &D_800C8848,
@@ -43518,7 +43518,7 @@ ModelInfo *D_800D7C08[0x10] = {
 };
 
 /*800D7C48*/
-ModelInfo *D_800D7C48[0x10] = {
+ModelInfo *gZombie4ModelList[0x10] = {
     NULL,
     &D_800C8B90,
     &D_800C8BCC,
@@ -43538,7 +43538,7 @@ ModelInfo *D_800D7C48[0x10] = {
 };
 
 /*800D7C88*/
-ModelInfo *D_800D7C88[0x10] = {
+ModelInfo *gZombie5ModelList[0x10] = {
     NULL,
     &D_800C8E9C,
     &D_800C8ED8,
@@ -43558,7 +43558,7 @@ ModelInfo *D_800D7C88[0x10] = {
 };
 
 /*800D7CC8*/
-ModelInfo *D_800D7CC8[0x10] = {
+ModelInfo *gZombie6ModelList[0x10] = {
     NULL,
     &D_800C9220,
     &D_800C925C,
@@ -43578,7 +43578,7 @@ ModelInfo *D_800D7CC8[0x10] = {
 };
 
 /*800D7D08*/
-ModelInfo *D_800D7D08[0x10] = {
+ModelInfo *gZombie7ModelList[0x10] = {
     NULL,
     &D_800C95A4,
     &D_800C95E0,
@@ -43597,13 +43597,13 @@ ModelInfo *D_800D7D08[0x10] = {
     &D_800C9568,
 };
 
-/*800D7D48*/ ModelInfo *D_800D7D48[2] = {&D_800C9694, &D_800C96D0};
-/*800D7D50*/ ModelInfo *D_800D7D50[2] = {&D_800C970C, &D_800C9748};
-/*800D7D58*/ ModelInfo *D_800D7D58[2] = {&D_800C9784, &D_800C97C0};
-/*800D7D60*/ ModelInfo *D_800D7D60[2] = {&D_800C97FC, &D_800C9838};
+/*800D7D48*/ ModelInfo *gSentryGuns1ModelList[2] = {&D_800C9694, &D_800C96D0};
+/*800D7D50*/ ModelInfo *gSentryGuns2ModelList[2] = {&D_800C970C, &D_800C9748};
+/*800D7D58*/ ModelInfo *gHelicopterModelList[2] = {&D_800C9784, &D_800C97C0};
+/*800D7D60*/ ModelInfo *gTankModelList[2] = {&D_800C97FC, &D_800C9838};
 
 /*800D7D68*/
-ModelInfo *D_800D7D68[0x15] = {
+ModelInfo *gChimeraModelList[0x15] = {
     NULL,
     &D_800C9CE8,
     &D_800C99A0,
@@ -43628,7 +43628,7 @@ ModelInfo *D_800D7D68[0x15] = {
 };
 
 /*800D7DBC*/
-ModelInfo *D_800D7DBC[0xE] = {
+ModelInfo *gBossGiantHogModelList[0xE] = {
     NULL,
     &D_800C9FB8,
     &D_800C9F04,
@@ -43645,11 +43645,11 @@ ModelInfo *D_800D7DBC[0xE] = {
     &D_800C9E50,
 };
 
-/*800D7DF4*/ ModelInfo *D_800D7DF4[2] = {&D_800CA15C, &D_800CA198};
-/*800D7DFC*/ ModelInfo *D_800D7DFC[2] = {&D_800CA1D4, &D_800CA210};
+/*800D7DF4*/ ModelInfo *gCerberusTurretsModelList[2] = {&D_800CA15C, &D_800CA198};
+/*800D7DFC*/ ModelInfo *gGorgonTurretsModelList[2] = {&D_800CA1D4, &D_800CA210};
 
 /*800D7E04*/
-ModelInfo *D_800D7E04[0x1A] = {
+ModelInfo *gBroodMotherModelList[0x1A] = {
     NULL,
     &D_800CA648,
     &D_800CA42C,
@@ -43678,11 +43678,11 @@ ModelInfo *D_800D7E04[0x1A] = {
     &D_800CA60C,
 };
 
-/*800D7E6C*/ ModelInfo *D_800D7E6C[2] = {&D_800CA828, &D_800CA864};
-/*800D7E74*/ ModelInfo *D_800D7E74[3] = {&D_800CA8A0, &D_800CA8DC, &D_800CA918};
+/*800D7E6C*/ ModelInfo *gShip1ModelList[2] = {&D_800CA828, &D_800CA864};
+/*800D7E74*/ ModelInfo *gShip2ModelList[3] = {&D_800CA8A0, &D_800CA8DC, &D_800CA918};
 
 /*800D7E80*/
-ModelInfo *D_800D7E80[0x1A] = {
+ModelInfo *gBossCyborgScorpionModelList[0x1A] = {
     NULL,
     &D_800CAA44,
     &D_800CAB70,
@@ -43712,7 +43712,7 @@ ModelInfo *D_800D7E80[0x1A] = {
 };
 
 /*800D7EE8*/
-ModelInfo *D_800D7EE8[0x1E] = {
+ModelInfo *gBossZeroModelList[0x1E] = {
     NULL,
     &D_800CB278,
     &D_800CB32C,
@@ -43746,7 +43746,7 @@ ModelInfo *D_800D7EE8[0x1E] = {
 };
 
 /*800D7F60*/
-ModelInfo *D_800D7F60[0x10] = {
+ModelInfo *gSheriffModelList[0x10] = {
     NULL,
     &D_800CB638,
     &D_800CB7A0,
@@ -43766,7 +43766,7 @@ ModelInfo *D_800D7F60[0x10] = {
 };
 
 /*800D7FA0*/
-ModelInfo *D_800D7FA0[0x10] = {
+ModelInfo *gCusterModelList[0x10] = {
     NULL,
     &D_800CB944,
     &D_800CBAAC,
@@ -43786,7 +43786,7 @@ ModelInfo *D_800D7FA0[0x10] = {
 };
 
 /*800D7FE0*/
-ModelInfo *D_800D7FE0[0x10] = {
+ModelInfo *gMarshallModelList[0x10] = {
     NULL,
     &D_800CBC50,
     &D_800CBDB8,
@@ -43806,7 +43806,7 @@ ModelInfo *D_800D7FE0[0x10] = {
 };
 
 /*800D8020*/
-ModelInfo *D_800D8020[0x10] = {
+ModelInfo *gSquawModelList[0x10] = {
     NULL,
     &D_800CBF5C,
     &D_800CC0C4,
@@ -43826,7 +43826,7 @@ ModelInfo *D_800D8020[0x10] = {
 };
 
 /*800D8060*/
-ModelInfo *D_800D8060[0x10] = {
+ModelInfo *gSurvivorModelList[0x10] = {
     NULL,
     &D_800CC268,
     &D_800CC3D0,
@@ -43846,7 +43846,7 @@ ModelInfo *D_800D8060[0x10] = {
 };
 
 /*800D80A0*/
-ModelInfo *D_800D80A0[0x10] = {
+ModelInfo *gKimberlyStrokesModelList[0x10] = {
     NULL,
     &D_800CC574,
     &D_800CC6DC,
@@ -43866,7 +43866,7 @@ ModelInfo *D_800D80A0[0x10] = {
 };
 
 /*800D80E0*/
-ModelInfo *D_800D80E0[0xE] = {
+ModelInfo *gBrainstormModelList[0xE] = {
     NULL,
     &D_800CC9AC,
     &D_800CC8BC,

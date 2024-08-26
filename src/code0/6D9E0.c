@@ -561,7 +561,7 @@ label1:
                                 gpSprite[spritenum1].lotag = arg1;
                                 gpSprite[spritenum1].hitag = spritenum;
                                 gpSprite[spritenum1].unk2A = j;
-                                if ((j >= 0) && (spr->picnum == 2004))
+                                if ((j >= 0) && (spr->picnum == RIPPER))
                                     a = 75;
                                 else
                                     a = 15;
@@ -836,7 +836,7 @@ label1:
                 }
                 D_8013B2D0[ret].unk0 = krand() & 0x7FF;
 
-                if (gpSprite[spritenum].picnum == 2219)
+                if (gpSprite[spritenum].picnum == CERBERUSTURRETS)
                     spr->unk2A = 0;
             }
             else

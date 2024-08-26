@@ -175,7 +175,7 @@ static s32 func_8009614C(s32 spritenum)
     i = gHeadSpriteStat[1];
     while (i >= 0)
     {
-        if (gpSprite[i].picnum != 1442 && gpSprite[i].picnum >= 49)
+        if (gpSprite[i].picnum != HELICOPTER && gpSprite[i].picnum >= 49)
         {
             if (canSee(gpSprite[i].x,
                 gpSprite[i].y,
@@ -363,7 +363,7 @@ void func_800965F8(s32 spritenum)
             }
         }
         break;
-    case 1308:
+    case BOSSBRAINSTORM:
         if (spr->unk2B == 0)
         {
             func_80017268(spritenum);
@@ -1119,7 +1119,7 @@ void func_800965F8(s32 spritenum)
 
                 j = (gpSinTable[(spr->ang + 0x200) & 0x7FF] * 75) >> 12;
                 i = (gpSinTable[spr->ang & 0x7FF] * 75) >> 12;
-                n = func_8004BC64(spr->x + j, spr->y + i, spr->z - 500, spr->sectnum, 1727, 0, 0);
+                n = func_8004BC64(spr->x + j, spr->y + i, spr->z - 500, spr->sectnum, ZOMBIE6, 0, 0);
                 if (n >= 0)
                 {
                     gpSprite[n].unk22 = 1;
@@ -1151,7 +1151,7 @@ void func_800965F8(s32 spritenum)
             case 2:
                 j = (gpSinTable[(spr->ang + 0x200) & 0x7FF] * 75) >> 12;
                 i = (gpSinTable[spr->ang & 0x7FF] * 75) >> 12;
-                n = func_8004BC64(spr->x + j, spr->y + i, spr->z - 500, spr->sectnum, 1727, 0, 0);
+                n = func_8004BC64(spr->x + j, spr->y + i, spr->z - 500, spr->sectnum, ZOMBIE6, 0, 0);
                 if (n >= 0)
                 {
                     gpSprite[n].unk22 = 1;
@@ -1229,8 +1229,8 @@ void func_800965F8(s32 spritenum)
             break;
         }
         break;
-    case 2002:
-    case 2005:
+    case MARINE:
+    case SERGEANT:
         if (spr->unk2B != 0)
         {
             func_80017268(spritenum);
@@ -1413,7 +1413,7 @@ void func_800965F8(s32 spritenum)
         spr->ang = (spr->ang + 1) & 0x7FF;
         if (spr->unk2B == 1)
         {
-            func_8004BC64(spr->x, spr->y, spr->z, spr->sectnum, 1295, 0, 0);
+            func_8004BC64(spr->x, spr->y, spr->z, spr->sectnum, BROODLING, 0, 0);
             func_800574A4(spritenum);
         }
         break;
@@ -1480,7 +1480,7 @@ void func_800965F8(s32 spritenum)
             spr->unk2B = 0;
         }
         break;
-    case 1426:
+    case TANK:
         if (spr->unk2B != 0)
             func_8009F71C(spritenum);
         break;

@@ -1,10 +1,10 @@
 #include "common.h"
-#include "code0/data/DA790.h"
+#include "code0/FDE0.h"
 
 /*.data*/
 
 /*800DAA70*/
-static _DA790UnkStruct1 D_800DAA70[0x10] = {
+static _FDE0UnkStruct1 D_800DAA70[0x10] = {
     { 0.0f, 0.0f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -1 },
     { 0.0f, 2.4375f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0 },
     { 0.16875f, 2.45625f, -0.0375f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 },
@@ -24,7 +24,7 @@ static _DA790UnkStruct1 D_800DAA70[0x10] = {
 };
 
 /*800DAC30*/
-static _DA790UnkStruct1 D_800DAC30[0x10] = {
+static _FDE0UnkStruct1 D_800DAC30[0x10] = {
     { 0.0f, 0.0f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -1 },
     { 0.0f, 2.41875f, -0.01875f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0 },
     { 0.2625f, 2.3625f, -0.0375f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 },
@@ -44,7 +44,7 @@ static _DA790UnkStruct1 D_800DAC30[0x10] = {
 };
 
 /*800DADF0*/
-static _DA790UnkStruct1 D_800DADF0[0x10] = {
+static _FDE0UnkStruct1 D_800DADF0[0x10] = {
     { 0.0f, 0.0f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -1 },
     { 0.0f, 2.475f, -0.075f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0 },
     { 0.20625f, 2.3625f, -0.05625f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 },
@@ -64,7 +64,7 @@ static _DA790UnkStruct1 D_800DADF0[0x10] = {
 };
 
 /*800DAFB0*/
-static _DA790UnkStruct1 D_800DAFB0[0x10] = {
+static _FDE0UnkStruct1 D_800DAFB0[0x10] = {
     { 0.0f, 0.0f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -1 },
     { 0.0f, 2.7f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0 },
     { 0.28125f, 2.11875f, -0.01875f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 },
@@ -84,7 +84,7 @@ static _DA790UnkStruct1 D_800DAFB0[0x10] = {
 };
 
 /*800DB170*/
-static _DA790UnkStruct1 D_800DB170[0x10] = {
+static _FDE0UnkStruct1 D_800DB170[0x10] = {
     { 0.0f, 0.0f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -1 },
     { 0.0f, 2.4375f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0 },
     { 0.20625f, 2.4f, -0.08125f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 },
@@ -104,7 +104,7 @@ static _DA790UnkStruct1 D_800DB170[0x10] = {
 };
 
 /*800DB330*/
-static _DA790UnkStruct1 D_800DB330[0x10] = {
+static _FDE0UnkStruct1 D_800DB330[0x10] = {
     { 0.0f, 0.0f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -1 },
     { 0.0f, 3.175f, 0.1f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0 },
     { 0.3f, 3.125f, 0.15f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 },
@@ -124,7 +124,7 @@ static _DA790UnkStruct1 D_800DB330[0x10] = {
 };
 
 /*800DB4F0*/
-static _DA790UnkStruct1 D_800DB4F0[0x10] = {
+static _FDE0UnkStruct1 D_800DB4F0[0x10] = {
     { -9.15431f, 0.0f, 4.49082f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -1 },
     { 0.0f, 2.67675f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0 },
     { 0.22825f, 2.34475f, 0.02075f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 },
@@ -143,10 +143,10 @@ static _DA790UnkStruct1 D_800DB4F0[0x10] = {
     { 0.0f, 4.08775f, 0.22825f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 8 },
 };
 
-/*800DB6B0*/ _DA790UnkStruct2 D_800DB6B0 = {9, ARRAY_COUNT(D_800D7B88), D_800D7B88, D_800DAA70};
-/*800DB6BC*/ _DA790UnkStruct2 D_800DB6BC = {9, ARRAY_COUNT(D_800D7BC8), D_800D7BC8, D_800DAC30};
-/*800DB6C8*/ _DA790UnkStruct2 D_800DB6C8 = {9, ARRAY_COUNT(D_800D7C08), D_800D7C08, D_800DADF0};
-/*800DB6D4*/ _DA790UnkStruct2 D_800DB6D4 = {9, ARRAY_COUNT(D_800D7C48), D_800D7C48, D_800DAFB0};
-/*800DB6E0*/ _DA790UnkStruct2 D_800DB6E0 = {9, ARRAY_COUNT(D_800D7C88), D_800D7C88, D_800DB170};
-/*800DB6EC*/ _DA790UnkStruct2 D_800DB6EC = {9, ARRAY_COUNT(D_800D7CC8), D_800D7CC8, D_800DB330};
-/*800DB6F8*/ _DA790UnkStruct2 D_800DB6F8 = {9, ARRAY_COUNT(D_800D7D08), D_800D7D08, D_800DB4F0};
+/*800DB6B0*/ _FDE0UnkStruct2 gZombie1Actor = {9, ARRAY_COUNT(gZombie1ModelList), gZombie1ModelList, D_800DAA70};
+/*800DB6BC*/ _FDE0UnkStruct2 gZombie3Actor = {9, ARRAY_COUNT(gZombie2ModelList), gZombie2ModelList, D_800DAC30};
+/*800DB6C8*/ _FDE0UnkStruct2 gZombie4Actor = {9, ARRAY_COUNT(gZombie3ModelList), gZombie3ModelList, D_800DADF0};
+/*800DB6D4*/ _FDE0UnkStruct2 gZombie2Actor = {9, ARRAY_COUNT(gZombie4ModelList), gZombie4ModelList, D_800DAFB0};
+/*800DB6E0*/ _FDE0UnkStruct2 gZombie5Actor = {9, ARRAY_COUNT(gZombie5ModelList), gZombie5ModelList, D_800DB170};
+/*800DB6EC*/ _FDE0UnkStruct2 gZombie6Actor = {9, ARRAY_COUNT(gZombie6ModelList), gZombie6ModelList, D_800DB330};
+/*800DB6F8*/ _FDE0UnkStruct2 gZombie7Actor = {9, ARRAY_COUNT(gZombie7ModelList), gZombie7ModelList, D_800DB4F0};

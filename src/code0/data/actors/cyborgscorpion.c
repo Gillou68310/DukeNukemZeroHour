@@ -1,10 +1,10 @@
 #include "common.h"
-#include "code0/data/DA790.h"
+#include "code0/FDE0.h"
 
 /*.data*/
 
 /*800DC210*/
-static _DA790UnkStruct1 D_800DC210[0x1A] = {
+static _FDE0UnkStruct1 D_800DC210[0x1A] = {
     { 0.0f, 0.0f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -1 },
     { 0.0f, 2.04f, 0.395f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0 },
     { 0.745f, 2.06f, 1.685f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 },
@@ -33,4 +33,4 @@ static _DA790UnkStruct1 D_800DC210[0x1A] = {
     { 0.0f, 3.72f, 13.825f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0x18 },
 };
 
-/*800DC4E8*/ _DA790UnkStruct2 D_800DC4E8 = {0xC, ARRAY_COUNT(D_800D7E80), D_800D7E80, D_800DC210};
+/*800DC4E8*/ _FDE0UnkStruct2 gBossCyborgScorpionActor = {0xC, ARRAY_COUNT(gBossCyborgScorpionModelList), gBossCyborgScorpionModelList, D_800DC210};

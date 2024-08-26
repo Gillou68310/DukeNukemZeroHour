@@ -362,8 +362,8 @@ void func_8006A0A0(s16 spritenum)
                 if ((spr2->hitag != 0) && (spr2->unk2B == 0) && (spr1->statnum != 10))
                     spr2->unk2B = 1;
                 break;
-            case 2002:
-            case 2005:
+            case MARINE:
+            case SERGEANT:
                 switch (spr2->unk2B)
                 {
                 case 10:
@@ -730,8 +730,8 @@ void func_8006B590(s16 arg0)
                 D_8019B940[D_80106D50[i]].unk0 |= 0x400000;
 
             if ((gpSprite[i].lotag == arg0) &&
-                ((gpSprite[i].picnum == 2219) || (gpSprite[i].picnum == 2220) ||
-                    (gpSprite[i].picnum == 1299) || (gpSprite[i].picnum == 1300)))
+                ((gpSprite[i].picnum == CERBERUSTURRETS) || (gpSprite[i].picnum == GORGONTURRETS) ||
+                    (gpSprite[i].picnum == SENTRYGUNS1) || (gpSprite[i].picnum == SENTRYGUNS2)))
             {
                 if (gpSprite[i].unk25 == 1)
                 {
@@ -746,8 +746,8 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if (((gpSprite[i].picnum == 2219) || (gpSprite[i].picnum == 2220) ||
-                (gpSprite[i].picnum == 1299) || (gpSprite[i].picnum == 1300)) &&
+            if (((gpSprite[i].picnum == CERBERUSTURRETS) || (gpSprite[i].picnum == GORGONTURRETS) ||
+                (gpSprite[i].picnum == SENTRYGUNS1) || (gpSprite[i].picnum == SENTRYGUNS2)) &&
                  (gpSprite[i].lotag == arg0))
             {
                 if (gpSprite[i].unk25 == 1)
@@ -777,8 +777,8 @@ void func_8006B590(s16 arg0)
             while (i >= 0)
             {
                 nexti = gNextSpriteStat[i];
-                if ((gpSprite[i].picnum == 2219) || (gpSprite[i].picnum == 2220) ||
-                     (gpSprite[i].picnum == 1299) || (gpSprite[i].picnum == 1300))
+                if ((gpSprite[i].picnum == CERBERUSTURRETS) || (gpSprite[i].picnum == GORGONTURRETS) ||
+                     (gpSprite[i].picnum == SENTRYGUNS1) || (gpSprite[i].picnum == SENTRYGUNS2))
                 {
                     if ((gpSprite[i].lotag == arg0) && (gpSprite[i].unk25 == 1))
                     {
@@ -900,8 +900,8 @@ void func_8006B590(s16 arg0)
                     gpSprite[i].unk2B++;
                     break;
 
-                case 2002:
-                case 2005:
+                case MARINE:
+                case SERGEANT:
                     if ((gpSprite[i].unk25 & 0x7F) == 3)
                         gpSprite[i].unk2B = 10;
                     break;
@@ -929,7 +929,7 @@ void func_8006B590(s16 arg0)
         while (i >= 0)
         {
             nexti = gNextSpriteStat[i];
-            if ((gpSprite[i].hitag == arg0) && (gpSprite[i].picnum == 1307) && (gpSprite[i].unk2B == 0))
+            if ((gpSprite[i].hitag == arg0) && (gpSprite[i].picnum == BOSSCYBORGSCORPION) && (gpSprite[i].unk2B == 0))
                 gpSprite[i].unk2B = 1;
 
             i = nexti;

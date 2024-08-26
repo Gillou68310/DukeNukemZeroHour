@@ -173,17 +173,17 @@ static void func_8005FEE0(s16 spritenum)
         case 1405:
             j = func_8004BC64(spr->x + (-(gpSinTable[(spr->ang + 0x100) & 0x7FF] * 700) >> 14),
                                       spr->y + (-(gpSinTable[(spr->ang - 0x100) & 0x7FF] * 700) >> 14),
-                                      spr->z, spr->sectnum, 1282, 0, 0);
+                                      spr->z, spr->sectnum, ENFORCER, 0, 0);
             gpSprite[j].unk25 = 7;
             gpSprite[j].hitag = spr->hitag;
             break;
-        case 1426:
+        case TANK:
         case 1672:
             spr->unk22 = 0;
             spr->unk18 = 0;
             break;
-        case 2002:
-        case 2005:
+        case MARINE:
+        case SERGEANT:
             spr->unk22 = 0;
             if ((spr->unk25 & 0x7F) == 2)
                 spr->unk2B = 10;
@@ -404,7 +404,7 @@ static void func_8005FEE0(s16 spritenum)
             {
                 if (gpSprite[i].picnum > 48)
                 {
-                    if ((gpSprite[i].lotag == 44) && ((spr->picnum < 0x500) || ((D_800D6780 + 0x500) < spr->picnum)))
+                    if ((gpSprite[i].lotag == 44) && ((spr->picnum < 0x500) || ((gModelListCount + 0x500) < spr->picnum)))
                         spr->unk16 = i;
                 }
                 i = gNextSpriteSect[i];
@@ -940,7 +940,7 @@ static void func_8005FEE0(s16 spritenum)
     if (spr->statnum == 119)
         spr->lotag = 1;
 
-    if ((spr->picnum >= 1280) && ((D_800D6780 + 1280) >= spr->picnum))
+    if ((spr->picnum >= MODELLIST) && ((gModelListCount + MODELLIST) >= spr->picnum))
     {
         if (spr->statnum != 4)
         {
@@ -972,11 +972,11 @@ static void func_8005FEE0(s16 spritenum)
 
             switch (spr->picnum)
             {
-            case 2005:
-            case 1426:
-            case 1309:
+            case SERGEANT:
+            case TANK:
+            case BOSSZERO:
             case 1527:
-            case 2002:
+            case MARINE:
             case 2254:
             case 2432:
             case 2310:
@@ -1288,7 +1288,7 @@ void func_80062950(s16 playernum, u8 arg1)
     if (D_8012C470 >= 2)
     {
         if (arg1)
-            gpSprite[spritenum].picnum = playernum + 1532;
+            gpSprite[spritenum].picnum = playernum + VICTORIANDUKE;
     }
     else
     {
@@ -1299,15 +1299,15 @@ void func_80062950(s16 playernum, u8 arg1)
         case 1:
         case 4:
             if (gMapNum >= MAP_NUCLEAR_WINTER && gMapNum < MAP_DRY_TOWN)
-                gpSprite[spritenum].picnum = 1534;
+                gpSprite[spritenum].picnum = APOCALYPSEDUKE;
             else
-                gpSprite[spritenum].picnum = 1535;
+                gpSprite[spritenum].picnum = DUKENUKEM;
             break;
         case 2:
-            gpSprite[spritenum].picnum = 1533;
+            gpSprite[spritenum].picnum = COWBOYDUKE;
             break;
         case 3:
-            gpSprite[spritenum].picnum = 1532;
+            gpSprite[spritenum].picnum = VICTORIANDUKE;
             break;
         }
     }
@@ -1474,7 +1474,7 @@ void func_80062950(s16 playernum, u8 arg1)
             }
         }
 
-        gpSprite[gPlayer[playernum].unk4A].picnum = D_8012F6E4[gPlayer[playernum].unk4C].unk0;
+        gpSprite[gPlayer[playernum].unk4A].picnum = D_8012F6E4[gPlayer[playernum].unk4C].picnum;
         D_80138858[playernum] = 0;
     }
     else

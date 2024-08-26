@@ -1,10 +1,10 @@
 #include "common.h"
-#include "code0/data/DA790.h"
+#include "code0/FDE0.h"
 
 /*.data*/
 
 /*800DA430*/
-static _DA790UnkStruct1 D_800DA430[0xF] = {
+static _FDE0UnkStruct1 D_800DA430[0xF] = {
     { 0.0f, 0.0f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -1 },
     { 0.0f, 4.45f, 0.125f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0 },
     { 0.0f, 3.75f, -0.075f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 },
@@ -22,4 +22,4 @@ static _DA790UnkStruct1 D_800DA430[0xF] = {
     { -0.75f, 0.975f, 0.275f, { 0x40, 0xAD, 0xB2, 0x18, 0xC0, 2, 0xFE, 0xEF, 0xC1, 0xA5, 0x93, 0x75 }, 0xD, },
 };
 
-/*800DA5D4*/ _DA790UnkStruct2 D_800DA5D4 = {1, ARRAY_COUNT(D_800D7B2C), D_800D7B2C, D_800DA430};
+/*800DA5D4*/ _FDE0UnkStruct2 gParapsycheActor = {1, ARRAY_COUNT(gParapsycheModelList), gParapsycheModelList, D_800DA430};

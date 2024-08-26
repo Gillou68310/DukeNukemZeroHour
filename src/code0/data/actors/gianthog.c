@@ -1,10 +1,10 @@
 #include "common.h"
-#include "code0/data/DA790.h"
+#include "code0/FDE0.h"
 
 /*.data*/
 
 /*800DBAE0*/
-static _DA790UnkStruct1 D_800DBAE0[0xE] = {
+static _FDE0UnkStruct1 D_800DBAE0[0xE] = {
     { 0.0f, 0.0f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -1 },
     { 0.0f, 0.0f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0 },
     { 2.175f, 4.375f, -2.625f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 },
@@ -21,4 +21,4 @@ static _DA790UnkStruct1 D_800DBAE0[0xE] = {
     { -5.325f, 3.475f, 0.95f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 },
 };
 
-/*800DBC68*/ _DA790UnkStruct2 D_800DBC68 = {0xB, ARRAY_COUNT(D_800D7DBC), D_800D7DBC, D_800DBAE0};
+/*800DBC68*/ _FDE0UnkStruct2 gBossGiantHogActor = {0xB, ARRAY_COUNT(gBossGiantHogModelList), gBossGiantHogModelList, D_800DBAE0};

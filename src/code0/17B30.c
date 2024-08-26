@@ -175,46 +175,46 @@ void func_80017268(s16 spritenum)
         ptr->unk2 = 0;
         ptr->unk0 = 0;
 
-        if ((gpSprite[spritenum].picnum == 2219) || (gpSprite[spritenum].picnum == 2220) ||
-            (gpSprite[spritenum].picnum == 1293) || (gpSprite[spritenum].picnum == 1294))
+        if ((gpSprite[spritenum].picnum == CERBERUSTURRETS) || (gpSprite[spritenum].picnum == GORGONTURRETS) ||
+            (gpSprite[spritenum].picnum == SHIP1) || (gpSprite[spritenum].picnum == SHIP2))
             return;
 
         func_800171D0(ptr, &D_800D81D4, 0);
-        if (gpSprite[spritenum].picnum == 1292)
+        if (gpSprite[spritenum].picnum == PARAPSYCHE)
             func_800171D0(ptr, &D_800D8120, 0);
 
-        if (gpSprite[spritenum].picnum == 1295)
+        if (gpSprite[spritenum].picnum == BROODLING)
             func_800171D0(ptr, &D_800D8480, 0);
 
-        if ((gpSprite[spritenum].picnum >= 1303 && gpSprite[spritenum].picnum < 1306) ||
-            (gpSprite[spritenum].picnum >= 1724 && gpSprite[spritenum].picnum < 1729))
+        if ((gpSprite[spritenum].picnum >= ZOMBIE1 && gpSprite[spritenum].picnum <= 1305) ||
+            (gpSprite[spritenum].picnum >= ZOMBIE3 && gpSprite[spritenum].picnum <= ZOMBIE7))
             func_800171D0(ptr, &D_800D84EC, 0);
 
-        if (gpSprite[spritenum].picnum == 1280)
+        if (gpSprite[spritenum].picnum == CHIMERA)
             func_800171D0(ptr, &D_800D8654, 0);
 
-        if (gpSprite[spritenum].picnum == 1285)
+        if (gpSprite[spritenum].picnum == CYBORGENFORCER)
             func_800171D0(ptr, &D_800D884C, 0);
 
-        if (gpSprite[spritenum].picnum == 1307)
+        if (gpSprite[spritenum].picnum == BOSSCYBORGSCORPION)
             func_800171D0(ptr, &D_800D8F54, 0);
 
-        if (gpSprite[spritenum].picnum == 2002)
+        if (gpSprite[spritenum].picnum == MARINE)
             func_800171D0(ptr, &D_800D96C8, 0);
 
         if (gpSprite[spritenum].picnum == 2356)
             func_800171D0(ptr, &D_800D8BF4, 0);
 
-        if (gpSprite[spritenum].picnum == 1309)
+        if (gpSprite[spritenum].picnum == BOSSZERO)
             func_800171D0(ptr, &D_800D8CF0, 0);
 
-        if (gpSprite[spritenum].picnum == 1306)
+        if (gpSprite[spritenum].picnum == BOSSGIANTHOG)
             func_800171D0(ptr, &D_800D8DEC, 0);
 
-        if (gpSprite[spritenum].picnum == 1531)
+        if (gpSprite[spritenum].picnum == BROODMOTHER)
             func_800171D0(ptr, &D_800D97A0, 0);
 
-        if (gpSprite[spritenum].picnum == 1308)
+        if (gpSprite[spritenum].picnum == BOSSBRAINSTORM)
             func_800171D0(ptr, &D_800D9A94, 0);
 
         ptr->unk14 = -1;

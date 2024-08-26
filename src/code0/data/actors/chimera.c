@@ -1,10 +1,10 @@
 #include "common.h"
-#include "code0/data/DA790.h"
+#include "code0/FDE0.h"
 
 /*.data*/
 
 /*800DB880*/
-static _DA790UnkStruct1 D_800DB880[0x15] = {
+static _FDE0UnkStruct1 D_800DB880[0x15] = {
     { 0.0f, 0.0f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -1 },
     { 0.0f, 3.05f, 0.02f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0 },
     { 0.0f, 3.94f, -0.87f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 },
@@ -28,4 +28,4 @@ static _DA790UnkStruct1 D_800DB880[0x15] = {
     { -1.1f, 0.37f, 0.33f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0x13 },
 };
 
-/*800DBACC*/ _DA790UnkStruct2 D_800DBACC = {0xA, ARRAY_COUNT(D_800D7D68), D_800D7D68, D_800DB880};
+/*800DBACC*/ _FDE0UnkStruct2 gChimeraActor = {0xA, ARRAY_COUNT(gChimeraModelList), gChimeraModelList, D_800DB880};

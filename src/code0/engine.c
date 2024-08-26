@@ -720,7 +720,7 @@ s32 hitScan(s32 xs, s32 ys, s32 zs, s16 sectnum, s32 vx, s32 vy, s32 vz,
 
             if (cstat & 0x1000)
             {
-                ptr = D_800D52E0[spr->picnum-1280];
+                ptr = gModelList[spr->picnum-MODELLIST];
                 if (ptr != NULL)
                 {
                     s32 intx2, inty2, intz2;
@@ -1140,7 +1140,7 @@ s32 nearTag(s32 xs, s32 ys, s32 zs, s16 sectnum, s16 ange, s16 *neartagsector, s
                 neartagrange2 = func_80040D40(spr->x, spr->y, xs, ys);
                 if (spr->cstat & 0x1000)
                 {
-                    ptr = D_800D52E0[spr->picnum-1280];
+                    ptr = gModelList[spr->picnum-MODELLIST];
                     if (ptr == NULL)
                         continue;
 
@@ -1466,7 +1466,7 @@ s32 clipMove(s32 *x, s32 *y, s32 *z, s16 *sectnum, s32 xvect,
             y1 = spr->y;
             if (cstat & 0x1000)
             {
-                ptr = D_800D52E0[spr->picnum-1280];
+                ptr = gModelList[spr->picnum-MODELLIST];
                 if (ptr != NULL)
                 {
                     a = (ptr->unk28 * (spr->yrepeat << 6)) / 64;
@@ -2199,7 +2199,7 @@ void getzRange(s32 x, s32 y, s32 z, s16 sectnum, s32 *ceilz, s32 *ceilhit, s32 *
             if ((D_800DD448 != 0) && (spr->statnum == 52)) continue;
             if ((D_800DD448 != 0) && (spr->statnum == 305)) continue;
 
-            if (spr->picnum == 1295) continue;
+            if (spr->picnum == BROODLING) continue;
             if (spr->picnum == 1688) continue;
 
             cstat = spr->cstat;
@@ -2210,7 +2210,7 @@ void getzRange(s32 x, s32 y, s32 z, s16 sectnum, s32 *ceilz, s32 *ceilhit, s32 *
                 clipyou = 0;
                 if (cstat & 0x1000)
                 {
-                    ptr = D_800D52E0[spr->picnum-1280];
+                    ptr = gModelList[spr->picnum-MODELLIST];
                     if (ptr != NULL)
                     {
                         s32 x_[4];

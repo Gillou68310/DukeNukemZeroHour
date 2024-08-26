@@ -1,10 +1,10 @@
 #include "common.h"
-#include "code0/data/DA790.h"
+#include "code0/FDE0.h"
 
 /*.data*/
 
 /*800DBE70*/
-static _DA790UnkStruct1 D_800DBE70[0x1A] = {
+static _FDE0UnkStruct1 D_800DBE70[0x1A] = {
     { 0.0f, 0.0f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -1 },
     { 0.0f, 8.9f, 0.95f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0 },
     { -0.025f, 6.225f, 1.2f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 },
@@ -33,4 +33,4 @@ static _DA790UnkStruct1 D_800DBE70[0x1A] = {
     { 0.0f, 6.38391f, 0.463788f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 8 },
 };
 
-/*800DC148*/ _DA790UnkStruct2 D_800DC148 = {5, ARRAY_COUNT(D_800D7E04), D_800D7E04, D_800DBE70};
+/*800DC148*/ _FDE0UnkStruct2 gBroodMotherActor = {5, ARRAY_COUNT(gBroodMotherModelList), gBroodMotherModelList, D_800DBE70};

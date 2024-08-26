@@ -14,6 +14,7 @@
 #include "code0/code0.h"
 #include "code1/EB300.h"
 #include "code1/code1.h"
+#include "code0/data/DA790.h"
 
 /*.data*/
 /*800BD760*/
@@ -82,7 +83,7 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
     Mtx mtx2, mtx1, mtx3, mtx4, mtx5;
     Gfx *dlist;
     ModelInfo *model;
-    _DA790UnkStruct2 *ptr;
+    _FDE0UnkStruct2 *ptr;
     f32 f1;
     s32 x, y, z;
     s32 m, n, o, p;
@@ -495,11 +496,11 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
         ptr = func_80014040(gpSprite[spritenum].picnum);
         if (ptr == NULL)
         {
-            model = D_800D52E0[gpSprite[spritenum].picnum-1280];
+            model = gModelList[gpSprite[spritenum].picnum-MODELLIST];
             if (model != NULL)
             {
                 func_80011700(model);
-                if ((gpSprite[spritenum].picnum == 1296) && (D_80119A38 != 0) && (D_8010A9AC == 0))
+                if ((gpSprite[spritenum].picnum == SENTRYDRONE) && (D_80119A38 != 0) && (D_8010A9AC == 0))
                 {
                     func_800124EC(D_800D6964[D_8019B940[D_80106D50[spritenum]].unk99]);
                     func_80011700(&D_800D06C0);
@@ -943,7 +944,7 @@ static void func_80012630(void)
 }
 
 /*8001270C*/
-static void func_8001270C(_DA790UnkStruct2 *arg0, s16 arg1)
+static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
 {
     Mtx mtx1;
     Mtx mtx2;
@@ -1170,7 +1171,7 @@ static void func_8001270C(_DA790UnkStruct2 *arg0, s16 arg1)
         D_800BD788 = 0;
         D_801A6D80++;
 
-        if (arg0->unk4[arg1] != NULL)
+        if (arg0->model_list[arg1] != NULL)
         {
             m = D_80106D50[D_801AE8F4];
             if (!(D_8019B940[m].unk68 & (1 << arg1)))
@@ -1178,7 +1179,7 @@ static void func_8001270C(_DA790UnkStruct2 *arg0, s16 arg1)
                 if ((gpSprite[D_801AE8F4].statnum == 10) && (D_8012C470 == 1))
                 {
                     playernum = gpSprite[D_801AE8F4].unk16;
-                    model1 = arg0->unk4[arg1];
+                    model1 = arg0->model_list[arg1];
                     model2 = NULL;
                     if (D_8012F6E4[gPlayer[playernum].unk4C].unkB == 0)
                     {
@@ -1240,13 +1241,13 @@ static void func_8001270C(_DA790UnkStruct2 *arg0, s16 arg1)
                     {
                         switch (gpSprite[D_801AE8F4].picnum)
                         {
-                        case 1282:
+                        case ENFORCER:
                             model1 = &D_800C5080;
                             break;
-                        case 1283:
+                        case ENFORCERCAPTAIN:
                             model1 = &D_800C50BC;
                             break;
-                        case 1284:
+                        case BATTLEENFORCER:
                             model1 = &D_800C50F8;
                             break;
                         }
@@ -1257,19 +1258,19 @@ static void func_8001270C(_DA790UnkStruct2 *arg0, s16 arg1)
                 }
                 else
                 {
-                    model2 = arg0->unk4[arg1];
-                    if ((arg1 == 1) && (gpSprite[D_801AE8F4].picnum >= 1282) &&
-                        (gpSprite[D_801AE8F4].picnum < 1285) && (func_8004EFB4(D_801AE8F4) != 0))
+                    model2 = arg0->model_list[arg1];
+                    if ((arg1 == 1) && (gpSprite[D_801AE8F4].picnum >= ENFORCER) &&
+                        (gpSprite[D_801AE8F4].picnum <= BATTLEENFORCER) && (func_8004EFB4(D_801AE8F4) != 0))
                     {
                         switch (gpSprite[D_801AE8F4].picnum)
                         {
-                        case 1282:
+                        case ENFORCER:
                             model2 = &D_800C5080;
                             break;
-                        case 1283:
+                        case ENFORCERCAPTAIN:
                             model2 = &D_800C50BC;
                             break;
-                        case 1284:
+                        case BATTLEENFORCER:
                             model2 = &D_800C50F8;
                             break;
                         }
@@ -1341,10 +1342,10 @@ static void func_8001270C(_DA790UnkStruct2 *arg0, s16 arg1)
                 func_800124EC(D_800D6964[unk99]);
                 switch (gpSprite[D_801AE8F4].picnum)
                 {
-                case 2219:
+                case CERBERUSTURRETS:
                     func_80011700(&D_800CFD9C);
                     break;
-                case 2220:
+                case GORGONTURRETS:
                     func_80011700(&D_800D0198);
                     break;
                 default:
@@ -1411,215 +1412,215 @@ static void func_8001270C(_DA790UnkStruct2 *arg0, s16 arg1)
 }
 
 /*80013FFC*/
-void func_80013FFC(_DA790UnkStruct2 *arg0)
+void func_80013FFC(_FDE0UnkStruct2 *arg0)
 {
     if (D_80106D50[D_801AE8F4] != -1)
         func_8001270C(arg0, 0);
 }
 
 /*80014040*/
-_DA790UnkStruct2 *func_80014040(s16 arg0)
+_FDE0UnkStruct2 *func_80014040(s16 picnum)
 {
-    switch (arg0)
+    switch (picnum)
     {
-    case 1535:
-        return &D_800DA0D0;
-    case 1533:
-        return &D_800DA0DC;
-    case 1532:
-        return &D_800DA0E8;
-    case 2003:
-        return &D_800DA0F4;
-    case 1534:
-        return &D_800DA100;
-    case 2000:
-        return &D_800DA10C;
-    case 2001:
-        return &D_800DA118;
-    case 2366:
-        return &D_800DA124;
-    case 2382:
-        return &D_800DA130;
-    case 2002:
-        return &D_800DA13C;
-    case 2005:
-        return &D_800DA148;
-    case 2301:
-        return &D_800DA178;
-    case 2302:
-        return &D_800DA160;
-    case 2303:
-        return &D_800DA184;
-    case 2006:
-        return &D_800DA190;
-    case 2574:
-        return &D_800DA19C;
-    case 2309:
-        return &D_800DA16C;
-    case 2004:
-        return &D_800DA154;
-    case 1286:
-        return &D_800DA7A0;
-    case 1821:
-        return &D_800DA7AC;
-    case 1824:
-        return &D_800DA7B8;
-    case 1825:
-        return &D_800DA7C4;
-    case 1826:
-        return &D_800DA7D0;
-    case 1287:
-        return &D_800DA890;
-    case 1851:
-        return &D_800DA89C;
-    case 1853:
-        return &D_800DA8A8;
-    case 1855:
-        return &D_800DA8B4;
-    case 1856:
-        return &D_800DA8C0;
-    case 1290:
-        return &D_800DA8CC;
-    case 1859:
-        return &D_800DA8D8;
-    case 1861:
-        return &D_800DA8E4;
-    case 1862:
-        return &D_800DA8F0;
-    case 1864:
-        return &D_800DA8FC;
-    case 1288:
-        return &D_800DA908;
-    case 1882:
-        return &D_800DA914;
-    case 1875:
-        return &D_800DA920;
-    case 1877:
-        return &D_800DA92C;
-    case 1878:
-        return &D_800DA938;
-    case 1291:
-        return &D_800DA944;
-    case 1866:
-        return &D_800DA950;
-    case 1867:
-        return &D_800DA95C;
-    case 1880:
-        return &D_800DA968;
-    case 1871:
-        return &D_800DA974;
-    case 1998:
-        return &D_800DA818;
-    case 1835:
-        return &D_800DA824;
-    case 1838:
-        return &D_800DA830;
-    case 1840:
-        return &D_800DA83C;
-    case 1842:
-        return &D_800DA848;
-    case 1289:
-        return &D_800DA7DC;
-    case 1827:
-        return &D_800DA7E8;
-    case 1828:
-        return &D_800DA7F4;
-    case 1830:
-        return &D_800DA800;
-    case 1833:
-        return &D_800DA80C;
-    case 1999:
-        return &D_800DA854;
-    case 1843:
-        return &D_800DA860;
-    case 1845:
-        return &D_800DA86C;
-    case 1847:
-        return &D_800DA878;
-    case 1850:
-        return &D_800DA884;
-    case 1282:
-        return &D_800DA370;
-    case 1800:
-        return &D_800DA394;
-    case 1801:
-        return &D_800DA3A0;
-    case 1806:
-        return &D_800DA3AC;
-    case 1807:
-        return &D_800DA3B8;
-    case 1283:
-        return &D_800DA37C;
-    case 1812:
-        return &D_800DA3C4;
-    case 1814:
-        return &D_800DA3D0;
-    case 1815:
-        return &D_800DA3DC;
-    case 1819:
-        return &D_800DA3E8;
+    case DUKENUKEM:
+        return &gDukeNukemActor;
+    case COWBOYDUKE:
+        return &gCowboyDukeActor;
+    case VICTORIANDUKE:
+        return &gVictorianDukeActor;
+    case POSHDUKE:
+        return &gPoshDukeActor;
+    case APOCALYPSEDUKE:
+        return &gApocalypseDukeActor;
+    case BATTLEDRESSDUKE:
+        return &gBattleDressDukeActor;
+    case DOGTAGDUKE:
+        return &gDogTagDukeActor;
+    case EVILDUKE:
+        return &gEvilDukeActor;
+    case XTERMINATOR:
+        return &gXterminatorActor;
+    case MARINE:
+        return &gMarineActor;
+    case SERGEANT:
+        return &gSergeantActor;
+    case MARSHALL:
+        return &gMarshallActor;
+    case SHERIFF:
+        return &gSheriffActor;
+    case SQUAW:
+        return &gSquawActor;
+    case SURVIVOR:
+        return &gSurvivorActor;
+    case KIMBERLYSTROKES:
+        return &gKimberlyStrokesActor;
+    case CUSTER:
+        return &gCusterActor;
+    case RIPPER:
+        return &gRipperActor;
+    case PIGCOP:
+        return &gPigCopActor;
+    case PIGCOP1:
+        return &gPigCop1Actor;
+    case PIGCOP2:
+        return &gPigCop2Actor;
+    case PIGCOP3:
+        return &gPigCop3Actor;
+    case PIGCOP4:
+        return &gPigCop4Actor;
+    case COWBOYGRUNT:
+        return &gCowboyGruntActor;
+    case COWBOYGRUNT1:
+        return &gCowboyGrunt1Actor;
+    case COWBOYGRUNT2:
+        return &gCowboyGrunt2Actor;
+    case COWBOYGRUNT3:
+        return &gCowboyGrunt3Actor;
+    case COWBOYGRUNT4:
+        return &gCowboyGrunt4Actor;
+    case SAVAGEGRUNT:
+        return &gSavageGruntActor;
+    case SAVAGEGRUNT1:
+        return &gSavageGrunt1Actor;
+    case SAVAGEGRUNT2:
+        return &gSavageGrunt2Actor;
+    case SAVAGEGRUNT3:
+        return &gSavageGrunt3Actor;
+    case SAVAGEGRUNT4:
+        return &gSavageGrunt4Actor;
+    case CAPITALISTPIG:
+        return &gCapitalistPigActor;
+    case CAPITALISTPIG1:
+        return &gCapitalistPig1Actor;
+    case CAPITALISTPIG2:
+        return &gCapitalistPig2Actor;
+    case CAPITALISTPIG3:
+        return &gCapitalistPig3Actor;
+    case CAPITALISTPIG4:
+        return &gCapitalistPig4Actor;
+    case SOLDIERGRUNT:
+        return &gSoldierGruntActor;
+    case SOLDIERGRUNT1:
+        return &gSoldierGrunt1Actor;
+    case SOLDIERGRUNT2:
+        return &gSoldierGrunt2Actor;
+    case SOLDIERGRUNT3:
+        return &gSoldierGrunt3Actor;
+    case SOLDIERGRUNT4:
+        return &gSoldierGrunt4Actor;
+    case ROADHOG:
+        return &gRoadHogActor;
+    case ROADHOG1:
+        return &gRoadHog1Actor;
+    case ROADHOG2:
+        return &gRoadHog2Actor;
+    case ROADHOG3:
+        return &gRoadHog3Actor;
+    case ROADHOG4:
+        return &gRoadHog4Actor;
+    case RIOTPIG:
+        return &gRiotPigActor;
+    case RIOTPIG1:
+        return &gRiotPig1Actor;
+    case RIOTPIG2:
+        return &gRiotPig2Actor;
+    case RIOTPIG3:
+        return &gRiotPig3Actor;
+    case RIOTPIG4:
+        return &gRiotPig4Actor;
+    case WARPIG:
+        return &gWarPigActor;
+    case WARPIG1:
+        return &gWarPig1Actor;
+    case WARPIG2:
+        return &gWarPig2Actor;
+    case WARPIG3:
+        return &gWarPig3Actor;
+    case WARPIG4:
+        return &gWarPig4Actor;
+    case ENFORCER:
+        return &gEnforcerActor;
+    case ENFORCER1:
+        return &gEnforcer1Actor;
+    case ENFORCER2:
+        return &gEnforcer2Actor;
+    case ENFORCER3:
+        return &gEnforcer3Actor;
+    case ENFORCER4:
+        return &gEnforcer4Actor;
+    case ENFORCERCAPTAIN:
+        return &gEnforcerCaptainActor;
+    case ENFORCERCAPTAIN1:
+        return &gEnforcerCaptain1Actor;
+    case ENFORCERCAPTAIN2:
+        return &gEnforcerCaptain2Actor;
+    case ENFORCERCAPTAIN3:
+        return &gEnforcerCaptain3Actor;
+    case ENFORCERCAPTAIN4:
+        return &gEnforcerCaptain4Actor;
     case 2468:
-    case 1284:
-        return &D_800DA388;
-    case 1793:
-        return &D_800DA3F4;
-    case 1795:
-        return &D_800DA400;
-    case 1796:
-        return &D_800DA40C;
-    case 1798:
-        return &D_800DA418;
-    case 1285:
-        return &D_800DBE5C;
-    case 1292:
-        return &D_800DA5D4;
-    case 1295:
-        return &D_800DAA60;
-    case 1299:
-        return &D_800DB7B8;
-    case 1300:
-        return &D_800DB7C4;
-    case 1426:
-        return &D_800DB86C;
-    case 1442:
-        return &D_800DB860;
-    case 1303:
+    case BATTLEENFORCER:
+        return &gBattleEnforcerActor;
+    case BATTLEENFORCER1:
+        return &gBattleEnforcer1Actor;
+    case BATTLEENFORCER2:
+        return &gBattleEnforcer2Actor;
+    case BATTLEENFORCER3:
+        return &gBattleEnforcer3Actor;
+    case BATTLEENFORCER4:
+        return &gBattleEnforcer4Actor;
+    case CYBORGENFORCER:
+        return &gCyborgEnforcerActor;
+    case PARAPSYCHE:
+        return &gParapsycheActor;
+    case BROODLING:
+        return &gBroodlingActor;
+    case SENTRYGUNS1:
+        return &gSentryGuns1Actor;
+    case SENTRYGUNS2:
+        return &gSentryGuns2Actor;
+    case TANK:
+        return &gTankActor;
+    case HELICOPTER:
+        return &gHelicopterActor;
+    case ZOMBIE1:
     case 1305:
-        return &D_800DB6B0;
-    case 1304:
-        return &D_800DB6D4;
-    case 1724:
-        return &D_800DB6BC;
-    case 1725:
-        return &D_800DB6C8;
-    case 1726:
-        return &D_800DB6E0;
-    case 1727:
-        return &D_800DB6EC;
-    case 1728:
-        return &D_800DB6F8;
-    case 1280:
-        return &D_800DBACC;
-    case 1306:
-        return &D_800DBC68;
-    case 2219:
-        return &D_800DB7D0;
-    case 2220:
-        return &D_800DB7DC;
-    case 1531:
-        return &D_800DC148;
-    case 1293:
-        return &D_800DC1EC;
-    case 1294:
-        return &D_800DC1F8;
-    case 1307:
-        return &D_800DC4E8;
-    case 1309:
-        return &D_800DC848;
-    case 1308:
-        return &D_800DC9E8;
+        return &gZombie1Actor;
+    case ZOMBIE2:
+        return &gZombie2Actor;
+    case ZOMBIE3:
+        return &gZombie3Actor;
+    case ZOMBIE4:
+        return &gZombie4Actor;
+    case ZOMBIE5:
+        return &gZombie5Actor;
+    case ZOMBIE6:
+        return &gZombie6Actor;
+    case ZOMBIE7:
+        return &gZombie7Actor;
+    case CHIMERA:
+        return &gChimeraActor;
+    case BOSSGIANTHOG:
+        return &gBossGiantHogActor;
+    case CERBERUSTURRETS:
+        return &gCerberusTurretsActor;
+    case GORGONTURRETS:
+        return &gGorgonTurretsActor;
+    case BROODMOTHER:
+        return &gBroodMotherActor;
+    case SHIP1:
+        return &gShip1Actor;
+    case SHIP2:
+        return &gShip2Actor;
+    case BOSSCYBORGSCORPION:
+        return &gBossCyborgScorpionActor;
+    case BOSSZERO:
+        return &gBossZeroActor;
+    case BOSSBRAINSTORM:
+        return &gBossBrainstormActor;
     }
-    return 0;
+    return NULL;
 }
 
 /*80014C24*/
@@ -1662,7 +1663,7 @@ static void func_80014D4C(void)
 }
 
 /*80014D6C*/
-static void func_80014D6C(_DA790UnkStruct2 *arg0, s16 arg1)
+static void func_80014D6C(_FDE0UnkStruct2 *arg0, s16 arg1)
 {
     Matrix4f mf1, mf2, mf3, mf4, mf5;
     code0unkStruct8 *ptr;
@@ -1769,7 +1770,7 @@ static void func_800152AC(s32 spritenum1, s32 spritenum2, Matrix4f mf, s32 x, s3
 }
 
 /*80015458*/
-static void func_80015458(_DA790UnkStruct2 *arg0, s16 arg1)
+static void func_80015458(_FDE0UnkStruct2 *arg0, s16 arg1)
 {
     Matrix4f mf2, mf1, mf3, mf4, mf5;
     code0unkStruct8 *ptr;
@@ -1941,10 +1942,10 @@ void func_80015DE0(s32 spritenum)
         f1 = (ptr->unk2 * 180) / 1024.0;
         f2 = (ptr->unk0 * 180) / 1024.0;
         f3 = (((spr->ang + ptr->unk4) * 180) / 1024.0) + 90.0;
-        if (spr->picnum == 1306)
+        if (spr->picnum == BOSSGIANTHOG)
         {
             func_80014C7C(-f1, -f2, f3, ((f32)spr->xrepeat / 64.0));
-            func_80014D6C(&D_800DBC68, 0);
+            func_80014D6C(&gBossGiantHogActor, 0);
 
             i = gHeadSpriteStat[302];
             while (i >= 0)

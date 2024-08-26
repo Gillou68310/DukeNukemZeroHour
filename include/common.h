@@ -46,6 +46,7 @@ typedef s32 intptr_t;
 #endif
 
 #include "types.h"
+#include "names.h"
 
 #define CLAMP_MAX(A, B) \
     (((A) > B) ? B : A)

@@ -1,10 +1,10 @@
 #include "common.h"
-#include "code0/data/DA790.h"
+#include "code0/FDE0.h"
 
 /*.data*/
 
 /*800DC500*/
-static _DA790UnkStruct1 D_800DC500[0x1E] = {
+static _FDE0UnkStruct1 D_800DC500[0x1E] = {
     { 0.0f, 0.0f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -1 },
     { 0.0f, 10.2f, 0.7f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0 },
     { 0.0f, 9.3f, 1.5f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 },
@@ -37,4 +37,4 @@ static _DA790UnkStruct1 D_800DC500[0x1E] = {
     { -6.6f, 18.0f, 6.4f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0x1B },
 };
 
-/*800DC848*/ _DA790UnkStruct2 D_800DC848 = {0xE, ARRAY_COUNT(D_800D7EE8), D_800D7EE8, D_800DC500};
+/*800DC848*/ _FDE0UnkStruct2 gBossZeroActor = {0xE, ARRAY_COUNT(gBossZeroModelList), gBossZeroModelList, D_800DC500};

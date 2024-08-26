@@ -6,7 +6,7 @@
 
 typedef struct
 {
-    /*0x00*/ s16 unk0;
+    /*0x00*/ s16 picnum;
     /*0x02*/ s16 unk2;
     /*0x04*/ char *actor;
     /*0x08*/ u8 unk8;

@@ -1067,7 +1067,7 @@ void audio_800080E0(s16 playernum, u16 arg1)
                 }
             }
 
-            if (D_8012F6E4[gPlayer[playernum].unk4C].unk0 == 2366)
+            if (D_8012F6E4[gPlayer[playernum].unk4C].picnum == EVILDUKE)
             {
                 if (arg1 == 3)
                     arg1 = 30;

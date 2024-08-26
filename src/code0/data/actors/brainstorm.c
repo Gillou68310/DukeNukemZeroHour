@@ -1,10 +1,10 @@
 #include "common.h"
-#include "code0/data/DA790.h"
+#include "code0/FDE0.h"
 
 /*.data*/
 
 /*800DC860*/
-static _DA790UnkStruct1 D_800DC860[0xE] = {
+static _FDE0UnkStruct1 D_800DC860[0xE] = {
     { 0.0f, 0.0f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -1 },
     { 0.0f, 0.0f, 0.0f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0 },
     { 3.0f, 15.0f, -7.6f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 1 },
@@ -21,4 +21,4 @@ static _DA790UnkStruct1 D_800DC860[0xE] = {
     { -8.5f, 4.8f, -2.9f, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 0xC },
 };
 
-/*800DC9E8*/ _DA790UnkStruct2 D_800DC9E8 = {0xD, ARRAY_COUNT(D_800D80E0), D_800D80E0, D_800DC860};
+/*800DC9E8*/ _FDE0UnkStruct2 gBossBrainstormActor = {0xD, ARRAY_COUNT(gBrainstormModelList), gBrainstormModelList, D_800DC860};
