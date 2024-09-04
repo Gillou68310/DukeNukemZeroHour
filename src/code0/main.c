@@ -33,6 +33,7 @@
 #include "code0/data/E0640.h"
 #include "code1/code1.h"
 #include "code1/EB300.h"
+#include "code1/playback.h"
 #include "static/spinit.h"
 #include "static/sintable.h"
 #include "static/radarang.h"
@@ -635,14 +636,14 @@ static void main_800017AC(void)
 
     controller_8008A724();
     if (D_8012FC90 != 0)
-        func_801C9D68();
+        playback_801C9D68();
     else
     {
         for (i = 0; i < MAXPLAYERS; i++)
             func_80003990(i);
 
         if ((D_800BD3F9 == 3) && (D_801CDB4C != 0))
-            func_801C9F74();
+            playback_801C9F74();
         func_801C146C();
     }
 
@@ -1207,7 +1208,7 @@ static void mainLoop(void *arg)
     case OS_TV_MPAL:
         D_801B0815 = 0;
         break;
-}
+    }
 #endif
     osCreateMesgQueue(&D_8010A920, &D_801C0D64, 1);
     osCreateMesgQueue(&gRetraceMsgQ, gRetraceMessages, NUM_DMA_MSGS);
@@ -1227,15 +1228,15 @@ static void mainLoop(void *arg)
         if (D_800DEDE0)
         {
             if (D_800DEDE0 == 2)
-                func_801C9B48();
+                playback_801C9B48();
             if (D_800DEDE0 == 3)
-                func_801C9E7C();
+                playback_801C9E7C();
             if (D_800DEDE0 == 4)
             {
                 D_800BD3E8 = 0;
                 main_80000610();
                 D_800BD3F0 = 0;
-                func_801C9B48();
+                playback_801C9B48();
             }
             loadMap(gLoadMapNum);
             D_800DEDE0 = 0;
@@ -1422,7 +1423,7 @@ static void main_800036DC(void)
 /*80003940*/
 void main_80003940(void)
 {
-    *(D_801CDC68++) = 0;
+    *(gpPlaybackBuffer++) = 0;
     D_801CDB4C = 0;
-    func_80000000(D_801CDC70, 2048);
+    func_80000000(gPlaybackBuffer, sizeof(gPlaybackBuffer));
 }

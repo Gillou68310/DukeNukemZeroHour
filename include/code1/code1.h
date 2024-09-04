@@ -199,8 +199,6 @@ typedef struct _code1UnkStruct6
 /*801CDBC8*/ _extern u8 *D_801CDBC8; /*edlHandle*/
 /*801CDBCC*/ _extern u16 gCheatFlatShadingConfig;
 /*801CDC64*/ _extern code1UnkStruct4 D_801CDC64;
-/*801CDC68*/ _extern s8 *D_801CDC68;
-/*801CDC70*/ _extern s8 D_801CDC70[0x800] ALIGNED(16);
 /*801CE470*/ _extern u16 gUnlockedCheatWeapons;
 /*801CE478*/ _extern u16 gCheatWeaponRevolverConfig;
 /*801CE480*/ _extern u16 gCheatWeaponGammaCannonConfig;

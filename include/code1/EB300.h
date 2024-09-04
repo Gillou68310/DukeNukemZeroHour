@@ -33,10 +33,6 @@ void func_801C97F0(void);
 void func_801C97F8(void);
 void func_801C9924(void);
 void func_801C9B28(void);
-void func_801C9B48(void);
-void func_801C9D68(void);
-void func_801C9E7C(void);
-void func_801C9F74(void);
 
 extern f32 D_801CA144;
 extern code1UnkStruct6 D_801CB6E0;

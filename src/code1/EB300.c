@@ -1,5 +1,4 @@
 #include "common.h"
-#include "ld_symbols.h"
 #include "code0/main.h"
 #include "code0/cache1d.h"
 #include "code0/audio.h"
@@ -168,7 +167,6 @@ static Lights1 D_801CA3B8 = {
 /*801CD970*/ s32 D_801CD970;
 /*801CD974*/ s32 D_801CD974;
 /*801CD978*/ code0UnkStruct16 *D_801CD978;
-/*801CD97C*/ s16 D_801CD97C;
 /*801CD990*/ code0UnkStruct16 *D_801CD990[36] ALIGNED(8);
 /*801CDA20*/ code0UnkStruct16 *D_801CDA20;
 /*801CDA28*/ code0UnkStruct16 *D_801CDA28[MAP_THE_END] ALIGNED(8);
@@ -181,7 +179,6 @@ static Lights1 D_801CA3B8 = {
 /*801CDAC8*/ s32 D_801CDAC8;
 /*801CDAD4*/ u16 D_801CDAD4[22] ALIGNED(8);
 /*801CDB04*/ s32 D_801CDB04;
-/*801CDB0C*/ u16 D_801CDB0C;
 /*801CDB20*/ s32 D_801CDB20;
 /*801CDB28*/ u8 D_801CDB28[28] ALIGNED(8);
 /*801CDB50*/ MapChapter *gpDukematchMapChapter;
@@ -217,9 +214,7 @@ char D_801CDB58[6][16] ALIGNED(8); /*Fix out of bound access in func_801C764C*/
 /*801CF640*/ s16 D_801CF640;
 /*801CF648*/ char D_801CF648[30][5] ALIGNED(8);
 /*801CF6E0*/ code0UnkStruct16 *D_801CF6E0[8] ALIGNED(8);
-/*801CF708*/ u16 D_801CF708;
 /*801CF70C*/ code0UnkStruct16 *D_801CF70C;
-/*801CF710*/ s16 D_801CF710;
 
 /*.text*/
 static void func_801C3608(void);
@@ -4421,197 +4416,4 @@ static void func_801C9B08(void)
 void func_801C9B28(void)
 {
     func_801C509C();
-}
-
-/*801CBCE8*/
-static u8 *D_801CBCE8[12] = {
-    files_1003A60_ROM_START,
-    files_1004260_ROM_START,
-    files_1004A60_ROM_START,
-    files_1005260_ROM_START,
-    files_1005A60_ROM_START,
-    files_1006260_ROM_START,
-    files_1006A60_ROM_START,
-    files_1007260_ROM_START,
-    files_1007A60_ROM_START,
-    files_1008260_ROM_START,
-    files_1008A60_ROM_START,
-    files_1009260_ROM_START,
-};
-
-/*801CBD18*/ static u32 D_801CBD18 = 0;
-
-/*801C9B48*/
-void func_801C9B48(void)
-{
-    s32 i;
-
-    D_801CDC68 = D_801CDC70;
-    i = D_801CBD18 % 5;
-    readRom((u8 *)D_801CDC70, D_801CBCE8[i], 2048);
-    D_801CDB0C = 0;
-    D_8012FC90 = 1;
-    gRandomSeed = 0;
-    D_801CBD18++;
-    gLoadMapNum = *D_801CDC68++;
-    gNotPlayback = FALSE;
-}
-
-/*801C9C18*/
-static void func_801C9C18(void)
-{
-    u8 i;
-
-    i = *D_801CDC68;
-    if ((i == 0) || (gPlayer[0].unk45 != 0))
-    {
-        func_8008E01C(30, 5);
-        D_8012FC90 = 0;
-        return;
-    }
-
-    switch (i & 3)
-    {
-    case 2:
-        D_801CDC68++;
-        gStickX[0] = *D_801CDC68++;
-        gStickY[0] = *D_801CDC68++;
-        break;
-    case 3:
-        D_801CDC68++;
-        gButton[0] = *D_801CDC68++ << 8;
-        gButton[0] += *D_801CDC68++;
-        gButton[0] &= ~START_BUTTON;
-        i = *D_801CDC68;
-        if ((i & 3) == 2)
-        {
-            D_801CDC68++;
-            gStickX[0] = *D_801CDC68++;
-            gStickY[0] = *D_801CDC68++;
-        }
-        break;
-    }
-}
-
-#ifdef NON_MATCHING
-/*801C9D68*/
-void func_801C9D68(void)
-{
-    s32 i, j;
-    u8 k, l, m;
-    s8 **ptr;
-
-    for (i = 0; i < D_801CC8CA; i++)
-    {
-        if (gController[i].button & START_BUTTON)
-        {
-            func_8008E01C(30, 0);
-            D_8012FC90 = 0;
-            return;
-        }
-    }
-
-    l = *D_801CDC68;
-    if ((l == 0) || (gPlayer[0].unk45 != 0))
-    {
-        func_8008E01C(30, 5);
-        D_8012FC90 = 0;
-    }
-    else
-    {
-        k = *D_801CDC68;
-        m = D_801CDC68[1];
-        if ((k&3) < 2)
-        {
-            do { j = k >> 2; } while (0); /*FAKE*/
-
-            if ((k&3) != 0)
-                j += (m << 6);
-
-            if (D_801CDB0C < j)
-            {
-                D_801CDB0C++;
-                return;
-            }
-
-            D_801CDB0C = 0;
-            k = (k&3) + 1;
-            ptr = &D_801CDC68;
-            D_801CDC68 = &(*ptr)[k];
-        }
-        func_801C9C18();
-    }
-}
-#else
-/*801C9D68*/
-INCLUDE_ASM("src/code1/EB300", func_801C9D68);
-#endif
-
-/*801C9E7C*/
-void func_801C9E7C(void)
-{
-    D_801CDB4C = 1;
-    D_801CDC68 = D_801CDC70;
-    D_801CF708 = 0;
-    D_801CF710 = 0;
-    D_801CD97C = 0;
-    D_801CDB0C = 0;
-    gRandomSeed = 0;
-    D_801CDC68 = &D_801CDC70[1];
-    D_801CDC70[0] = gLoadMapNum;
-}
-
-/*801C9EDC*/
-static void func_801C9EDC(void)
-{
-    if (D_801CDB0C != 0)
-    {
-        if (D_801CDB0C < 64)
-        {
-            *D_801CDC68++ = (D_801CDB0C & 0x3F) * 4;
-        }
-        else
-        {
-            *D_801CDC68++ = ((D_801CDB0C & 0x3F) * 4) + 1;
-            *D_801CDC68++ = D_801CDB0C >> 6;
-        }
-        D_801CDB0C = 0;
-    }
-}
-
-/*801C9F74*/
-void func_801C9F74(void)
-{
-    s32 cond;
-
-    if ((&D_801CDC70[sizeof(D_801CDC70)-8]) < D_801CDC68)
-    {
-        main_80003940();
-        return;
-    }
-    cond = 0;
-
-    if (D_801CF708 != gButton[0])
-    {
-        D_801CF708 = gButton[0];
-        func_801C9EDC();
-        *D_801CDC68++ = 3;
-        *D_801CDC68++ = gButton[0] >> 8;
-        *D_801CDC68++ = gButton[0];
-        cond = 1;
-    }
-
-    if ((D_801CF710 != gStickX[0]) || (D_801CD97C != gStickY[0]))
-    {
-        D_801CF710 = gStickX[0];
-        D_801CD97C = gStickY[0];
-        func_801C9EDC();
-        *D_801CDC68++ = 2;
-        *D_801CDC68++ = gStickX[0];
-        *D_801CDC68++ = gStickY[0];
-        cond = 1;
-    }
-
-    if (cond == 0)
-        D_801CDB0C++;
 }
