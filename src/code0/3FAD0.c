@@ -281,7 +281,7 @@ void func_8003FD5C(void)
             ang = (D_8013B2D0[spritenum].unk4 + getAngle(x, y)) & 0x7FF;
             D_801A2790[D_801B0820].unk16 = (ang + 512) & 0x7FF;
             z = (gpSprite[D_800DEF1C].z - gpSprite[spritenum].z) / 16;
-            ang = (func_80029FE0(z, findDistance2D(x, y)) * 325.9493234521802);
+            ang = (getAngleF(z, findDistance2D(x, y)) * 325.9493234521802);
             D_801A2790[D_801B0820].unk18 = (ang + D_8013B2D0[spritenum].unk2) & 0x7FF;
             D_801A2790[D_801B0820].unk1A = 0;
         }

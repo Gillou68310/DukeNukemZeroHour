@@ -2101,13 +2101,13 @@ void func_8003DACC(void)
     if (i > 0x400)
         i -= 0x800;
 
-    D_801A6D84 = D_801A2790[D_801B0820].unk0;
-    D_800FE3F0 = D_801A2790[D_801B0820].unk4;
+    gGlobalPosX = D_801A2790[D_801B0820].unk0;
+    gGlobalPosY = D_801A2790[D_801B0820].unk4;
     D_80199640 = D_801A2790[D_801B0820].unk8;
     D_8012F6F4 = gPlayer[D_801B0820].unk68;
     D_8016A15C = i * (PI/1024);
-    gMapXpos = (D_801A6D84 / 2);
-    gMapYpos = ((D_800FE3F0 /2));
+    gMapXpos = (gGlobalPosX / 2);
+    gMapYpos = ((gGlobalPosY /2));
     gMapZpos = D_80199640 / 32;
 }
 

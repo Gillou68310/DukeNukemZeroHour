@@ -434,8 +434,8 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
 
             if ((gpSprite[spritenum].cstat & 0x30) == 0x10)
             {
-                o = (func_80040D40(D_801A6D84,
-                    D_800FE3F0,
+                o = (func_80040D40(gGlobalPosX,
+                    gGlobalPosY,
                     gpSprite[spritenum].x,
                     gpSprite[spritenum].y) << 8) / (gPlayer[D_801B0820].unk6E * 60);
 

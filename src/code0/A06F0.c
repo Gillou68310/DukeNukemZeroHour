@@ -5,6 +5,7 @@
 #include "code0/graphics.h"
 #include "code0/pragmas.h"
 #include "code0/debug.h"
+#include "code0/4600.h"
 #include "code0/9410.h"
 #include "code0/FDE0.h"
 #include "code0/17B30.h"
@@ -91,11 +92,11 @@ void func_8009FAF0(void)
     s16 temp;
     s32 i, j, k, nextj, nextk;
 
-    for (i = 0; i < D_80138790; i++)
+    for (i = 0; i < gVisibleSectorCnt; i++)
     {
         if (D_800DEE98 == 2)
         {
-            sectnum = D_800FF3E8[i];
+            sectnum = gVisibleSectors[i];
             temp = sectnum; /*FAKEMATCH?*/
             if (gpSector[sectnum].unk18 == 0)
             {
@@ -115,7 +116,7 @@ void func_8009FAF0(void)
                 }
             }
         }
-        j = gHeadSpriteSect[D_800FF3E8[i]];
+        j = gHeadSpriteSect[gVisibleSectors[i]];
         while (j >= 0)
         {
 

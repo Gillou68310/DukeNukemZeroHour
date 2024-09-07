@@ -3,7 +3,9 @@
 
 #include "common.h"
 
-u8 func_800213B8(s32 sectnum, s32 wallnum);
-s32 func_800226C0(u16 wallnum);
+u8 wallCalc(s32 sectnum, s32 wallnum);
+s32 drawMaskWall(u16 wallnum);
+
+VertexC gWallVertex[12];
 
 #endif

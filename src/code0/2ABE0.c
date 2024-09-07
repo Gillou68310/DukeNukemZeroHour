@@ -2,7 +2,7 @@
 
 /*.data*/
 /*800DCBE0*/
-static f32 D_800DCBE0[516] = {
+static f32 _gaTable[516] = {
     0.0f, 0.001953f, 0.003906f, 0.005859f, 0.007812f, 0.009765f, 0.011718f, 0.013671f, 0.015624f, 0.017576f, 0.019529f, 0.021481f,
     0.023433f, 0.025385f, 0.027337f, 0.029288f, 0.03124f, 0.033191f, 0.035142f, 0.037092f, 0.039043f, 0.040993f, 0.042942f, 0.044892f,
     0.046841f, 0.048789f, 0.050738f, 0.052686f, 0.054633f, 0.05658f, 0.058527f, 0.060473f, 0.062419f, 0.064364f, 0.066309f, 0.068253f,
@@ -51,43 +51,43 @@ static f32 D_800DCBE0[516] = {
 /*.text*/
 
 /*80029FE0*/
-f32 func_80029FE0(f32 arg0, f32 arg1)
+f32 getAngleF(f32 dy, f32 dx)
 {
-    if (((arg1 == 0.0f) && (arg0 == 0.0f)))
+    if (((dx == 0.0f) && (dy == 0.0f)))
         return 0.0f;
 
-    if (arg0 >= 0.0f)
+    if (dy >= 0.0f)
     {
-        if ((arg1 >= 0.0f))
+        if ((dx >= 0.0f))
         {
-            if ((arg0 <= arg1))
-                return D_800DCBE0[(s32)((arg0 / arg1) * 512.0f)];
+            if ((dy <= dx))
+                return _gaTable[(s32)((dy / dx) * 512.0f)];
             else
-                return (PI / 2.0) - D_800DCBE0[(s32)((arg1 / arg0) * 512.0f)];
+                return (PI / 2.0) - _gaTable[(s32)((dx / dy) * 512.0f)];
         }
         else
         {
-            if ((-arg1 <= arg0))
-                return (PI / 2.0) + D_800DCBE0[(s32)((-arg1 / arg0) * 512.0f)];
+            if ((-dx <= dy))
+                return (PI / 2.0) + _gaTable[(s32)((-dx / dy) * 512.0f)];
             else
-                return PI - D_800DCBE0[(s32)((-arg0 / arg1) * 512.0f)];
+                return PI - _gaTable[(s32)((-dy / dx) * 512.0f)];
         }
     }
     else
     {
-        if (arg1 < 0.0f)
+        if (dx < 0.0f)
         {
-            if ((-arg1 >= -arg0))
-                return -PI + D_800DCBE0[(s32)((-arg0 / -arg1) * 512.0f)];
+            if ((-dx >= -dy))
+                return -PI + _gaTable[(s32)((-dy / -dx) * 512.0f)];
             else
-                return -(PI / 2.0) - D_800DCBE0[(s32)((-arg1 / -arg0) * 512.0f)];
+                return -(PI / 2.0) - _gaTable[(s32)((-dx / -dy) * 512.0f)];
         }
         else
         {
-            if (arg1 < -arg0)
-                return -(PI / 2.0) + D_800DCBE0[(s32)((arg1 / -arg0) * 512.0f)];
+            if (dx < -dy)
+                return -(PI / 2.0) + _gaTable[(s32)((dx / -dy) * 512.0f)];
             else
-                return -D_800DCBE0[(s32)((arg0 / -arg1) * 512.0f)];
+                return -_gaTable[(s32)((dy / -dx) * 512.0f)];
         }
     }
 

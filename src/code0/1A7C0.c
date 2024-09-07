@@ -166,14 +166,14 @@ void func_8001A1A4(void)
         {
 
             spritenum = D_800FCBA0[i];
-            vx = gpSprite[spritenum].x - D_801A6D84;
-            vy = gpSprite[spritenum].y - D_800FE3F0;
+            vx = gpSprite[spritenum].x - gGlobalPosX;
+            vy = gpSprite[spritenum].y - gGlobalPosY;
             vz = gpSprite[spritenum].z - D_80199640;
 
-            hitScan(D_801A6D84, D_800FE3F0, D_80199640, D_8012F6F4, vx, vy, vz,
+            hitScan(gGlobalPosX, gGlobalPosY, D_80199640, D_8012F6F4, vx, vy, vz,
                     &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x10001);
 
-            if ((klabs((hitx - D_801A6D84)) + klabs((hity - D_800FE3F0))) < (klabs(vx) + klabs(vy)) &&
+            if ((klabs((hitx - gGlobalPosX)) + klabs((hity - gGlobalPosY))) < (klabs(vx) + klabs(vy)) &&
                 (hitsprite != gpSprite[spritenum].unk16))
             {
                 gpSprite[spritenum].unk22 = CLAMP_MIN((gpSprite[spritenum].unk22 - 0x40), 0);
@@ -271,8 +271,8 @@ static void func_8001AAEC(void)
         if ((gPlayer[D_801B0820].unk6A < 255) || (!gPlayer[D_801B0820].third_person))
             gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & 0xFEFE;
 
-        hitScan(D_801A6D84,
-                D_800FE3F0,
+        hitScan(gGlobalPosX,
+                gGlobalPosY,
                 D_80199640,
                 D_8012F6F4,
                 D_8012F910,
@@ -306,8 +306,8 @@ static void func_8001AAEC(void)
         else
             D_800DCA00 = CLAMP_MIN(D_800DCA00-32, 0);
     }
-    else if (canSee(D_801A6D84,
-        D_800FE3F0,
+    else if (canSee(gGlobalPosX,
+        gGlobalPosY,
         D_80199640,
         D_8012F6F4,
         D_8012F910,
@@ -494,8 +494,8 @@ static void func_8001B740(void)
 
     if ((D_801AE91C != -1) && (D_8012C470 < 2) && (D_8012FC40 == 0))
     {
-        fx = D_801A6D84 + D_80105714;
-        fy = D_800FE3F0 + D_8010570C;
+        fx = gGlobalPosX + D_80105714;
+        fy = gGlobalPosY + D_8010570C;
         fz = D_80199640 + D_8013860C;
         fx = fx / 4.0;
         fy = fy / 4.0;
@@ -597,7 +597,7 @@ void drawClouds(void)
         gCloud[1].unk4 &= 0x7FF;
 
         grScale(&mtx2, 8.0f, 8.0f, 0.5f);
-        grTranslate(&mtx1, (D_801A6D84 / 4.0), (D_800FE3F0 / 4.0), (D_80199640 / 64.0));
+        grTranslate(&mtx1, (gGlobalPosX / 4.0), (gGlobalPosY / 4.0), (D_80199640 / 64.0));
         grMtxCatL(&mtx2, &mtx1, &gpDynamic->mtx4);
         gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx4), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
         gDPSetAlphaCompare(gpDisplayList++, G_AC_NONE);

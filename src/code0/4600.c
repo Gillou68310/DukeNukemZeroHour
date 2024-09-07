@@ -5,104 +5,116 @@
 #include "code0/code0.h"
 
 /*.text*/
-static void func_80003B4C(f32, f32, s32 sectnum);
+static void scanSector(f32 lx, f32 rx, s32 sectnum);
 static void func_80004CFC(u16 sectnum);
 static void func_80004F14(u16 sectnum);
-static s8 func_800042D8(s32, f32, f32);
+static s8 visWallCheck(s32 w, f32 f1, f32 f2);
 
 /*.data*/
-/*800BD430*/ static u16 D_800BD430[9] = {0x1, 0x2, 0x4, 0x8, 0x10, 0x20, 0x40, 0x80, 0x100};
+/*800BD430*/ static u16 _pow2char[9] = {0x1, 0x2, 0x4, 0x8, 0x10, 0x20, 0x40, 0x80, 0x100};
 /*800BD442*/ static u16 D_800BD442 = 0;
 /*800BD444*/ static u16 D_800BD444 = 0;
 
 /*.comm*/
-/*800FEBA0*/ f32 D_800FEBA0[512] ALIGNED(16);
 /*800FF52C*/ s32 D_800FF52C;
-/*8012BBD0*/ u8 D_8012BBD0[83] ALIGNED(8);
-/*8012C7A0*/ u8 D_8012C7A0[489] ALIGNED(8);
-/*8012D210*/ s32 D_8012D210;
 /*8012DEF8*/ s16 D_8012DEF8;
 /*8012E160*/ s16 D_8012E160[1266] ALIGNED(16);
 /*80138628*/ u16 D_80138628[40] ALIGNED(8);
 /*80138720*/ u16 D_80138720[40] ALIGNED(8);
-/*80168D20*/ f32 D_80168D20[512] ALIGNED(16);
-/*80169D40*/ u16 D_80169D40[512] ALIGNED(16);
 /*8016A160*/ s32 D_8016A160;
-/*80197D78*/ u8 D_80197D78[83] ALIGNED(8);
-/*80199758*/ u8 D_80199758[489] ALIGNED(8);
 /*80199958*/ s32 D_80199958;
-/*801A1988*/ s32 D_801A1988;
-/*801A2630*/ u8 D_801A2630[83] ALIGNED(8);
-/*801AE9C8*/ s32 D_801AE9C8;
 /*801AFE20*/ s16 D_801AFE20[1266] ALIGNED(16);
-/*801C0D58*/ s32 D_801C0D58;
+
+/*801AE9C8*/ s32 _globalPosX;
+/*8012D210*/ s32 _globalPosY;
+/*801A1988*/ s32 _visWallCnt;
+/*801C0D58*/ s32 _viewAngle;
+
+/*80169D40*/ u16 _visWall[512] ALIGNED(16);
+/*800FEBA0*/ f32 _visWallR1[512] ALIGNED(16);
+/*80168D20*/ f32 _visWallR2[512] ALIGNED(16);
+
+/*80199758*/ u8 _wallBitCheck[(MAXWALLS+7)>>3] ALIGNED(8);
+/*80197D78*/ u8 _visSectBit1[((MAXSECTORS+7)>>3)] ALIGNED(8);
+/*801A2630*/ u8 _ceilingBitCheck[((MAXSECTORS+7)>>3)] ALIGNED(8);
+/*8012BBD0*/ u8 _floorBitCheck[((MAXSECTORS+7)>>3)] ALIGNED(8);
+/*8012C7A0*/ u8 _visWalltBit[((MAXWALLS+7)>>3)] ALIGNED(8);
+
+/*800FF3E8*/ u16 gVisibleSectors[128] ALIGNED(8);
+/*80138790*/ s32 gVisibleSectorCnt;
+/*80199650*/ u16 gDrawCeilingList[128] ALIGNED(8);
+/*80168D10*/ s32 gDrawCeilCnt;
+/*801A2690*/ u16 gDrawFloorList[128] ALIGNED(8);
+/*80199528*/ s32 gDrawFloorCnt;
+/*8013A448*/ u16 gDrawWallList[256] ALIGNED(8);
+/*80199750*/ s32 gDrawWallCnt;
 
 /*80003A00*/
-static f32 func_80003A00(f32 arg0)
+static f32 angleModF(f32 a)
 {
-    while (arg0 < 0.0f) arg0 += 2*PI;
-    while (arg0 >= 2*PI) arg0 -= 2*PI;
-    return arg0;
+    while (a < 0.0f) a += 2*PI;
+    while (a >= 2*PI) a -= 2*PI;
+    return a;
 }
 
 /*80003A74*/
-static f32 func_80003A74(f32 arg0, f32 arg1)
+static f32 getAngleDeltaF(f32 a1, f32 a2)
 {
-    if (arg0 <= arg1)
+    if (a1 <= a2)
     {
-        arg1 -= arg0;
-        if (arg1 <= PI)
-            return arg1;
+        a2 -= a1;
+        if (a2 <= PI)
+            return a2;
         else
-            return arg1 - 2*PI;
+            return a2 - 2*PI;
     }
     else
     {
-        arg0 -= arg1;
-        if (arg0 <= PI)
-            return -arg0;
+        a1 -= a2;
+        if (a1 <= PI)
+            return -a1;
         else
-            return -(arg0 - 2*PI);
+            return -(a1 - 2*PI);
     }
 }
 
 /*80003B00*/
-static f32 func_80003B00(f32 arg0, f32 arg1, f32 arg2, f32 arg3)
+static f32 _getAngleF(f32 x1, f32 y1, f32 x2, f32 y2)
 {
-    return -func_80029FE0(arg3 - arg1, arg2 - arg0) + 4.712388980385/*(PI*1.5)*/;
+    return -getAngleF(y2 - y1, x2 - x1) + 4.712388980385/*(PI*1.5)*/;
 }
 
 /*80003B4C*/
-static void func_80003B4C(f32 arg0, f32 arg1, s32 sectnum)
+static void scanSector(f32 lx, f32 rx, s32 sectnum)
 {
-    s32 sp14;
+    s32 oviswalcnt;
     f32 f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12;
     s32 i, j, k;
     s16 cond;
 
-    sp14 = k = D_801A1988;
+    oviswalcnt = k = _visWallCnt;
     if ((gpSector[sectnum].floorheinum != 0) || (gpSector[sectnum].floorz > D_80199640))
-        D_8012BBD0[sectnum >> 3] |= D_800BD430[sectnum & 7];
+        _floorBitCheck[sectnum >> 3] |= _pow2char[sectnum & 7];
 
     if ((gpSector[sectnum].ceilingheinum != 0) || ((gpSector[sectnum].ceilingz < D_80199640)))
-        D_801A2630[sectnum >> 3] |= D_800BD430[sectnum & 7];
+        _ceilingBitCheck[sectnum >> 3] |= _pow2char[sectnum & 7];
 
-    D_80197D78[sectnum >> 3] |= D_800BD430[sectnum & 7];
+    _visSectBit1[sectnum >> 3] |= _pow2char[sectnum & 7];
 
-    f1 = D_801AE9C8 + (sinf(arg0) * 5000.0f);
-    f2 = D_801AE9C8 + (sinf(arg1) * 5000.0f);
-    f3 = D_8012D210 + (cosf(arg0) * 5000.0f);
-    f4 = D_8012D210 + (cosf(arg1) * 5000.0f);
+    f1 = _globalPosX + (sinf(lx) * 5000.0f);
+    f2 = _globalPosX + (sinf(rx) * 5000.0f);
+    f3 = _globalPosY + (cosf(lx) * 5000.0f);
+    f4 = _globalPosY + (cosf(rx) * 5000.0f);
 
     j = gpSector[sectnum].wallptr + gpSector[sectnum].wallnum;
     for (i = gpSector[sectnum].wallptr; i < j; i++)
     {
-        if (!(D_80199758[i >> 3] & D_800BD430[i & 7]))
+        if (!(_wallBitCheck[i >> 3] & _pow2char[i & 7]))
         {
             f32 ft1, ft2, ft3, ft4;
-            f5 = D_801AE9C8;
+            f5 = _globalPosX;
             f6 = gpWall[i].x;
-            f7 = D_8012D210;
+            f7 = _globalPosY;
             f8 = gpWall[i].y;
             f9 = gpWall[gpWall[i].point2].x;
             f10 = gpWall[gpWall[i].point2].y;
@@ -111,12 +123,15 @@ static void func_80003B4C(f32 arg0, f32 arg1, s32 sectnum)
             ft2 = f10 - f7;
             ft3 = f9 - f5;
             ft4 = f8 - f7;
+
+            /*Side check*/
             if (((ft1) * (ft2)) < ((ft3) * (ft4)))
             {
-                D_80199758[i >> 3] |= D_800BD430[i & 7];
+                _wallBitCheck[i >> 3] |= _pow2char[i & 7];
                 continue;
             }
 
+            /*Visibility check*/
             if (((((f5 - f6) * (f4 - f8)) < ((f2 - f6) * (f7 - f8))) || (!(((f5 - f6) * (f3 - f8)) < ((f1 - f6) * (f7 - f8)))))  &&
                 ((((f5 - f9) * (f4 - f10)) < ((f2 - f9) * (f7 - f10))) || (!(((f5 - f9) * (f3 - f10)) < ((f1 - f9) * (f7 - f10))))) &&
                 (!(((f5 - f6) * (f4 - f8)) < ((f2 - f6) * (f7 - f8))) || !(((f5 - f6) * (f3 - f8)) < ((f1 - f6) * (f7 - f8))) ||
@@ -125,59 +140,60 @@ static void func_80003B4C(f32 arg0, f32 arg1, s32 sectnum)
                 continue;
             }
 
-            D_8012C7A0[i >> 3] |= D_800BD430[i & 7];
+            _visWalltBit[i >> 3] |= _pow2char[i & 7];
             if ((gpWall[i].nextsector == -1) ||
                 ((gpSector[gpWall[i].nextsector].ceilingz == gpSector[gpWall[i].nextsector].floorz) &&
                     (gpSector[gpWall[i].nextsector].ceilingheinum == gpSector[gpWall[i].nextsector].floorheinum)))
             {
-                D_80199758[i >> 3] |= D_800BD430[i & 7];
+                _wallBitCheck[i >> 3] |= _pow2char[i & 7];
                 continue;
             }
+
             cond = 1;
-            f12 = func_80003B00(f9, f10, D_801AE9C8, D_8012D210);
-            f11 = func_80003B00(f6, f8, D_801AE9C8, D_8012D210);
-            if (func_80003A74(arg0, f12) < 0.0f)
+            f12 = _getAngleF(f9, f10, _globalPosX, _globalPosY);
+            f11 = _getAngleF(f6, f8, _globalPosX, _globalPosY);
+            if (getAngleDeltaF(lx, f12) < 0.0f)
             {
-                f12 = arg0;
+                f12 = lx;
                 cond = 0;
             }
-            if (func_80003A74(arg1, f11) > 0.0f)
+            if (getAngleDeltaF(rx, f11) > 0.0f)
             {
-                f11 = arg1;
+                f11 = rx;
                 cond = 0;
             }
 
             if (cond != 0)
-                D_80199758[i >> 3] |= D_800BD430[(i & 7)];
+                _wallBitCheck[i >> 3] |= _pow2char[(i & 7)];
 
-            if (func_800042D8(i, f12, f11) == 0)
+            if (visWallCheck(i, f12, f11) == 0)
                 continue;
 
-            D_80169D40[D_801A1988] = i;
-            D_800FEBA0[D_801A1988] = f12;
-            D_80168D20[D_801A1988] = f11;
-            D_801A1988++;
+            _visWall[_visWallCnt] = i;
+            _visWallR1[_visWallCnt] = f12;
+            _visWallR2[_visWallCnt] = f11;
+            _visWallCnt++;
             k += 1;
 
-            if (D_801A1988 >= 0x200)
+            if (_visWallCnt >= 0x200)
                 return;
         }
     }
 
-    for (i = sp14; i < k; i++)
-        func_80003B4C(D_800FEBA0[i], D_80168D20[i], gpWall[D_80169D40[i]].nextsector);
+    for (i = oviswalcnt; i < k; i++)
+        scanSector(_visWallR1[i], _visWallR2[i], gpWall[_visWall[i]].nextsector);
 }
 
 /*800042D8*/
-static s8 func_800042D8(s32 arg0, f32 arg1, f32 arg2)
+static s8 visWallCheck(s32 w, f32 f1, f32 f2)
 {
     s32 i;
 
-    for (i = 0; i < D_801A1988; i++)
+    for (i = 0; i < _visWallCnt; i++)
     {
-        if ((D_80169D40[i] == arg0) && (func_80003A74(arg1, D_800FEBA0[i]) <= 0.0f))
+        if ((_visWall[i] == w) && (getAngleDeltaF(f1, _visWallR1[i]) <= 0.0f))
         {
-            if (func_80003A74(arg2, D_80168D20[i]) >= 0.0f)
+            if (getAngleDeltaF(f2, _visWallR2[i]) >= 0.0f)
                 return 0;
         }
     }
@@ -185,14 +201,14 @@ static s8 func_800042D8(s32 arg0, f32 arg1, f32 arg2)
 }
 
 /*800043F4*/
-void func_800043F4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s16 arg4)
+void scanSectors(s32 posx, s32 posy, s32 arg2, f32 arg3, s16 arg4)
 {
-    f32 f1, f2, f3, f4, f5;
+    f32 viewrange, f2, viewangle, viewangler2, viewangler1;
     s16 sectnum;
     s32 i, j;
 
     D_8012FC40 = 1;
-    f1 = (klabs(D_8016A15C) * 0.7999999999999999)/*(1/1.25)*/ + 0.6283185307179999/*(PI/5)*/;
+    viewrange = (klabs(D_8016A15C) * 0.7999999999999999)/*(1/1.25)*/ + 0.6283185307179999/*(PI/5)*/;
 
     if (sinf(D_801AC8E0) > 0.0f)
         f2 = sinf(D_801AC8E0);
@@ -200,99 +216,99 @@ void func_800043F4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, s16 arg4)
         f2 = -sinf(D_801AC8E0);
 
     if (cosf(D_801AC8E0) > 0.0f)
-        f1 *= (f2 + cosf(D_801AC8E0));
+        viewrange *= (f2 + cosf(D_801AC8E0));
     else
-        f1 *= (f2 - cosf(D_801AC8E0));
+        viewrange *= (f2 - cosf(D_801AC8E0));
 
-    f3 = func_80003A00((PI - arg3));
-    D_801C0D58 = f3;
-    D_801AE9C8 = arg0;
-    D_8012D210 = arg1;
+    viewangle = angleModF((PI - arg3));
+    _viewAngle = viewangle;
+    _globalPosX = posx;
+    _globalPosY = posy;
     D_80199958 = arg2;
-    D_80199750 = 0;
-    D_80168D10 = 0;
-    D_80199528 = 0;
-    D_801A1988 = 0;
-    D_80138790 = 0;
-    f4 = f3 - f1;
-    Bmemset(D_8012C7A0, 0, sizeof(D_8012C7A0));
-    Bmemset(D_80199758, 0, sizeof(D_80199758));
-    Bmemset(D_8012BBD0, 0, sizeof(D_8012BBD0));
-    Bmemset(D_801A2630, 0, sizeof(D_801A2630));
-    Bmemset(D_80197D78, 0, sizeof(D_80197D78));
-    f5 = f3 + f1;
+    gDrawWallCnt = 0;
+    gDrawCeilCnt = 0;
+    gDrawFloorCnt = 0;
+    _visWallCnt = 0;
+    gVisibleSectorCnt = 0;
+    viewangler2 = viewangle - viewrange;
+    Bmemset(_visWalltBit, 0, sizeof(_visWalltBit));
+    Bmemset(_wallBitCheck, 0, sizeof(_wallBitCheck));
+    Bmemset(_floorBitCheck, 0, sizeof(_floorBitCheck));
+    Bmemset(_ceilingBitCheck, 0, sizeof(_ceilingBitCheck));
+    Bmemset(_visSectBit1, 0, sizeof(_visSectBit1));
+    viewangler1 = viewangle + viewrange;
 
-    func_80003B4C(f4, f5, arg4);
+    scanSector(viewangler2, viewangler1, arg4);
 
-    for (i = 0; i < ARRAY_COUNT(D_8012C7A0); i++)
+    for (i = 0; i < ((MAXWALLS+7)>>3); i++)
     {
-        if (D_8012C7A0[i] != 0)
+        if (_visWalltBit[i] != 0)
         {
-            for (j = 0; j < ARRAY_COUNT(D_800BD430)-1; j++)
+            for (j = 0; j < ARRAY_COUNT(_pow2char)-1; j++)
             {
-                if (D_8012C7A0[i] & D_800BD430[j])
+                if (_visWalltBit[i] & _pow2char[j])
                 {
-                    D_8013A448[D_80199750] = (i * 8) + j;
-                    D_80199750++;
+                    gDrawWallList[gDrawWallCnt] = (i * 8) + j;
+                    gDrawWallCnt++;
                 }
             }
         }
     }
 
-    for (i = 0; i < (ARRAY_COUNT(D_8012BBD0)-1); i++)
+    for (i = 0; i < (((MAXSECTORS+7)>>3)-1); i++)
     {
-        if (D_8012BBD0[i] != 0)
+        if (_floorBitCheck[i] != 0)
         {
-            for (j = 0; j < ARRAY_COUNT(D_800BD430)-1; j++)
+            for (j = 0; j < ARRAY_COUNT(_pow2char)-1; j++)
             {
-                if (D_8012BBD0[i] & D_800BD430[j])
+                if (_floorBitCheck[i] & _pow2char[j])
                 {
-                    D_801A2690[D_80199528] = (i * 8) + j;
-                    D_80199528++;
+                    gDrawFloorList[gDrawFloorCnt] = (i * 8) + j;
+                    gDrawFloorCnt++;
                 }
             }
         }
     }
 
-    for (i = 0; i < (ARRAY_COUNT(D_801A2630)-1); i++)
+    for (i = 0; i < (((MAXSECTORS+7)>>3)-1); i++)
     {
-        if (D_801A2630[i] != 0)
+        if (_ceilingBitCheck[i] != 0)
         {
-            for (j = 0; j < ARRAY_COUNT(D_800BD430)-1; j++)
+            for (j = 0; j < ARRAY_COUNT(_pow2char)-1; j++)
             {
-                if (D_801A2630[i] & D_800BD430[j])
+                if (_ceilingBitCheck[i] & _pow2char[j])
                 {
-                    D_80199650[D_80168D10] = (i * 8) + j;
-                    D_80168D10++;
+                    gDrawCeilingList[gDrawCeilCnt] = (i * 8) + j;
+                    gDrawCeilCnt++;
                 }
             }
         }
     }
 
-    for (i = 0; i < (ARRAY_COUNT(D_80197D78)-1); i++)
+    for (i = 0; i < (((MAXSECTORS+7)>>3)-1); i++)
     {
-        if (D_80197D78[i] != 0)
+        if (_visSectBit1[i] != 0)
         {
-            for (j = 0; j < ARRAY_COUNT(D_800BD430)-1; j++)
+            for (j = 0; j < ARRAY_COUNT(_pow2char)-1; j++)
             {
-                if (D_80197D78[i] & D_800BD430[j])
+                if (_visSectBit1[i] & _pow2char[j])
                 {
                     sectnum = (i * 8) + j;
-                    D_800FF3E8[D_80138790] = sectnum;
+                    gVisibleSectors[gVisibleSectorCnt] = sectnum;
 
                     if ((gpSector[sectnum].ceilingstat & 1) || (gpSector[sectnum].floorstat & 1))
                         D_8012FC40 = 0;
 
-                    D_80138790++;
+                    gVisibleSectorCnt++;
                 }
             }
         }
     }
 
-    D_800FF3E8[D_80138790] = 0xFFFF;
-    D_80199650[D_80168D10] = 0xFFFF;
-    D_801A2690[D_80199528] = 0xFFFF;
-    D_8013A448[D_80199750] = 0xFFFF;
+    gVisibleSectors[gVisibleSectorCnt] = -1;
+    gDrawCeilingList[gDrawCeilCnt] = -1;
+    gDrawFloorList[gDrawFloorCnt] = -1;
+    gDrawWallList[gDrawWallCnt] = -1;
 }
 
 /*8000491C*/

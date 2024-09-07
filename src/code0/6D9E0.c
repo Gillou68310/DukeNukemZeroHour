@@ -365,7 +365,7 @@ label1:
         {
             f32 a;
             a = (gPlayer[0].zpos + 0x4000 - gpSprite[spritenum].z) / 16;
-            f1 = func_80029FE0(a, func_80040D40(gPlayer[0].xpos, gPlayer[0].ypos, gpSprite[spritenum].x, gpSprite[spritenum].y));
+            f1 = getAngleF(a, func_80040D40(gPlayer[0].xpos, gPlayer[0].ypos, gpSprite[spritenum].x, gpSprite[spritenum].y));
 
             if (f1 >= 1.4726215563703124)
                 f1 = 1.4726216f;

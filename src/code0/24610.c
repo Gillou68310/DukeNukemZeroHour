@@ -163,7 +163,7 @@ void func_80023C04(s32 spritenum, u16 arg1, s32 arg2)
             {
                 if (cstat & 0x40)
                 {
-                    ang = getAngle(D_8010A9A8->x - D_801A6D84, D_8010A9A8->y - D_800FE3F0) - D_8010A9A8->ang;
+                    ang = getAngle(D_8010A9A8->x - gGlobalPosX, D_8010A9A8->y - gGlobalPosY) - D_8010A9A8->ang;
 
                     if (ang > 0x400)
                         ang -= 0x800;

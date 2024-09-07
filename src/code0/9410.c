@@ -65,7 +65,7 @@ typedef struct {
 /*80199118*/ s16 D_80199118;
 /*80199554*/ s32 D_80199554;
 /*80199946*/ s16 D_80199946;
-/*80199954*/ u8 D_80199954;
+/*80199954*/ u8 _wallCalcRes;
 /*8019996C*/ s32 D_8019996C;
 /*801A19A0*/ s16 D_801A19A0[32] ALIGNED(8);
 /*801AC9EC*/ s32 D_801AC9EC;
@@ -109,7 +109,7 @@ static void ceilingVtxToN64(s32 sectnum);
 static void decompressMap(void);
 static void func_80009A14(u8 playernum);
 static void func_8000A938(u16 wallnum);
-static void func_8000AEE0(u16 wallnum);
+static void drawWall(u16 wallnum);
 static void func_8000B9C0(s16 tileid);
 static s32 func_8000CC54(s32 wallnum);
 static void func_8000E56C(void);
@@ -467,7 +467,7 @@ static void func_80009A14(u8 playernum)
     func_8000E56C();
     func_80011180();
     D_80117D48 = osGetTime();
-    func_800043F4(D_801A6D84, D_800FE3F0, D_80199640, D_801AEA10, D_8012F6F4);
+    scanSectors(gGlobalPosX, gGlobalPosY, D_80199640, D_801AEA10, D_8012F6F4);
     D_80117E38 = osGetTime();
     gDPPipeSync(gpDisplayList++);
     gSPDisplayList(gpDisplayList++, D_01001900);
@@ -482,7 +482,7 @@ static void func_80009A14(u8 playernum)
     gSPDisplayList(gpDisplayList++, D_01001900);
 
     func_80009314(playernum);
-    D_80138830 = 0;
+    gSortSpritesCnt = 0;
     D_8012DEFC = 0xFFFF;
     D_80117D50 = osGetTime();
     func_8000E04C();
@@ -652,8 +652,8 @@ static void func_8000A184(void)
             }
             else
             {
-                m = klabs((D_801A6D84 - gpSprite[j].x));
-                l = klabs((D_800FE3F0 - gpSprite[j].y));
+                m = klabs((gGlobalPosX - gpSprite[j].x));
+                l = klabs((gGlobalPosY - gpSprite[j].y));
                 m = MAX(m, l) + (MIN(m, l) >> 2) + (MIN(m, l) >> 3);
                 func_80023C04(j, gpSprite[j].sectnum, m);
             }
@@ -661,9 +661,9 @@ static void func_8000A184(void)
         }
     }
 
-    for (k = 0; k < D_80138790; k++)
+    for (k = 0; k < gVisibleSectorCnt; k++)
     {
-        j = gHeadSpriteSect[D_800FF3E8[k]];
+        j = gHeadSpriteSect[gVisibleSectors[k]];
         while (j >= 0)
         {
             if (gpSprite[j].statnum != 55)
@@ -707,10 +707,10 @@ static void func_8000A184(void)
                                     }
                                     else if (!(gpSprite[j].cstat & 0xA02))
                                     {
-                                        m = klabs((D_801A6D84 - gpSprite[j].x));
-                                        l = klabs((D_800FE3F0 - gpSprite[j].y));
+                                        m = klabs((gGlobalPosX - gpSprite[j].x));
+                                        l = klabs((gGlobalPosY - gpSprite[j].y));
                                         m = MAX(m, l) + (MIN(m, l) >> 2) + (MIN(m, l) >> 3);
-                                        func_80023C04(j, D_800FF3E8[k], m);
+                                        func_80023C04(j, gVisibleSectors[k], m);
 
                                     }
                                     else if (gpSprite[j].statnum == 109)
@@ -723,14 +723,14 @@ static void func_8000A184(void)
                                     }
                                     else
                                     {
-                                        if (D_80138830 != 0x100)
+                                        if (gSortSpritesCnt != 0x100)
                                         {
-                                            m = klabs((D_801A6D84 - gpSprite[j].x));
-                                            l = klabs((D_800FE3F0 - gpSprite[j].y));
-                                            D_8012BC70[D_80138830].unk4 = MAX(m, l) + (MIN(m, l) >> 2) + (MIN(m, l) >> 3);
-                                            D_8012BC70[D_80138830].unk0 = j;
-                                            D_8012BC70[D_80138830].unk2 = D_800FF3E8[k];
-                                            D_80138830++;
+                                            m = klabs((gGlobalPosX - gpSprite[j].x));
+                                            l = klabs((gGlobalPosY - gpSprite[j].y));
+                                            gMaskDrawList[gSortSpritesCnt].dist = MAX(m, l) + (MIN(m, l) >> 2) + (MIN(m, l) >> 3);
+                                            gMaskDrawList[gSortSpritesCnt].index = j;
+                                            gMaskDrawList[gSortSpritesCnt].sectnum = gVisibleSectors[k];
+                                            gSortSpritesCnt++;
                                         }
                                     }
                                 }
@@ -752,14 +752,14 @@ static void func_8000A634(void)
     s16 tileid;
 
     func_80023A10();
-    func_8000A174(0, D_80138830 - 1);
+    func_8000A174(0, gSortSpritesCnt - 1);
     D_800BD74B = 0;
 
-    for (i = 0; i < D_80138830; i++)
+    for (i = 0; i < gSortSpritesCnt; i++)
     {
-        if (D_8012BC70[i].unk0 & 0x8000)
+        if (gMaskDrawList[i].index & 0x8000)
         {
-            wallnum = D_8012BC70[i].unk0 & 0x7FFF;
+            wallnum = gMaskDrawList[i].index & 0x7FFF;
             tileid = gpWall[wallnum].overpicnum;
             if ((tileid == 5300) || (tileid == 6080))
             {
@@ -791,7 +791,7 @@ static void func_8000A634(void)
                 gSPClearGeometryMode(gpDisplayList++, G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR);
                 gSPTexture(gpDisplayList++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON);
             }
-            func_80023C04(D_8012BC70[i].unk0, D_8012BC70[i].unk2, D_8012BC70[i].unk4);
+            func_80023C04(gMaskDrawList[i].index, gMaskDrawList[i].sectnum, gMaskDrawList[i].dist);
         }
     }
     if (D_800BD74B == 1)
@@ -827,7 +827,7 @@ static void func_8000A938(u16 wallnum)
         gVertexBufferIndex = 0;
         gSPVertex(gpDisplayList++, gpVertexN64, 32, 0);
     }
-    func_800226C0(wallnum);
+    drawMaskWall(wallnum);
     func_8000CC54(wallnum);
 
     if (gpTileInfo[tilenum].picanm&192)
@@ -849,41 +849,41 @@ static void func_8000A938(u16 wallnum)
 };
 
 /*8000AEE0*/
-static void func_8000AEE0(u16 wallnum)
+static void drawWall(u16 wallnum)
 {
-    VertexC *ptr;
-    s16 v, w;
+    VertexC *wall;
+    s16 sectnum, w;
     s16 a, b, c, d, e, f;
     s16 i, j, k;
     s16 point2;
 
-    ptr = D_800FE950;
+    wall = gWallVertex;
     point2 = gpWall[wallnum].point2;
-    D_80199954 = func_800213B8(gpWall[wallnum].unk1A, wallnum);
+    _wallCalcRes = wallCalc(gpWall[wallnum].sectnum, wallnum);
 
-    if (D_80199954 & 8)
+    if (_wallCalcRes & 8)
         D_80138694 = 1;
     else
         D_80138694 = 0;
 
-    if (D_80199954 & 1)
+    if (_wallCalcRes & 1)
         D_800FE404 = 1;
     else
         D_800FE404 = 0;
 
-    if (D_80199954 & 2)
+    if (_wallCalcRes & 2)
         D_801C0D6C = 1;
     else
         D_801C0D6C = 0;
 
     if (gpWall[wallnum].unk14 == 4)
     {
-        v = gpWall[wallnum].unk1A;
-        func_8000DBDC(gpSector[v].unk27, gpSector[v].unk26);
+        sectnum = gpWall[wallnum].sectnum;
+        func_8000DBDC(gpSector[sectnum].unk27, gpSector[sectnum].unk26);
         d = D_8016A148;
         e = D_800FE410;
         f = D_80138680;
-        func_8000DBDC(gpSector[v].unk23, gpSector[v].unk22);
+        func_8000DBDC(gpSector[sectnum].unk23, gpSector[sectnum].unk22);
         a = D_8016A148;
         b = D_800FE410;
         c = D_80138680;
@@ -918,11 +918,11 @@ static void func_8000AEE0(u16 wallnum)
         {
             for (k = 0; k < 2; k++)
             {
-                gpVertexN64->v.ob[0] = ptr->ob[0];
-                gpVertexN64->v.ob[1] = ptr->ob[1];
-                gpVertexN64->v.ob[2] = ptr->ob[2];
-                gpVertexN64->v.tc[0] = ptr->tc[0];
-                gpVertexN64->v.tc[1] = ptr->tc[1];
+                gpVertexN64->v.ob[0] = wall->ob[0];
+                gpVertexN64->v.ob[1] = wall->ob[1];
+                gpVertexN64->v.ob[2] = wall->ob[2];
+                gpVertexN64->v.tc[0] = wall->tc[0];
+                gpVertexN64->v.tc[1] = wall->tc[1];
 
                 if (j == 0)
                 {
@@ -957,7 +957,7 @@ static void func_8000AEE0(u16 wallnum)
 
                 gpVertexN64->v.cn[3] = 0xFF;
                 gpVertexN64++;
-                ptr++;
+                wall++;
             }
         }
     }
@@ -1119,10 +1119,10 @@ static void drawWalls(void)
     u16 wallnum;
 
     func_8000C76C();
-    for (i = 0; i < D_80199750; i++)
+    for (i = 0; i < gDrawWallCnt; i++)
     {
-        wallnum = D_8013A448[i];
-        func_8000AEE0(wallnum);
+        wallnum = gDrawWallList[i];
+        drawWall(wallnum);
         if ((D_80138694 + D_800FE404 + D_801C0D6C) != 0)
         {
             D_8019996C++;
@@ -1171,9 +1171,9 @@ static void drawFloorCeiling(void)
     s32 i;
     u16 sectnum;
 
-    for (i = 0; i < D_80199528; i++)
+    for (i = 0; i < gDrawFloorCnt; i++)
     {
-        sectnum = D_801A2690[i];
+        sectnum = gDrawFloorList[i];
         if (gpSector[sectnum].floorvtxnum != 0)
         {
             if (D_800DF2F4[sectnum] & 1)
@@ -1187,9 +1187,9 @@ static void drawFloorCeiling(void)
         }
     }
 
-    for (i = 0; i < D_80168D10; i++)
+    for (i = 0; i < gDrawCeilCnt; i++)
     {
-        sectnum = D_80199650[i];
+        sectnum = gDrawCeilingList[i];
         if (gpSector[sectnum].ceilingvtxnum != 0)
         {
             if (D_800DF2F4[sectnum] & 2)
@@ -1207,7 +1207,7 @@ static void drawFloorCeiling(void)
 /*8000CC54*/
 static s32 func_8000CC54(s32 wallnum)
 {
-    VertexC *ptr;
+    VertexC *wall;
     f32 f1, f2, f3, f4;
     s32 wallnum_;
     s32 ang2;
@@ -1218,7 +1218,7 @@ static s32 func_8000CC54(s32 wallnum)
     s32 x1, y1, x2, y2;
 
     alpha = 0xFF;
-    ptr = D_800FE950;
+    wall = gWallVertex;
     cstat = gpWall[wallnum].cstat;
     wallnum_ = gpWall[wallnum].point2;
     ang = 0;
@@ -1268,11 +1268,11 @@ static s32 func_8000CC54(s32 wallnum)
         {
             if (D_800BD74B == 0)
             {
-                gpVertexN64->v.ob[0] = ptr->ob[0];
-                gpVertexN64->v.ob[1] = ptr->ob[1];
-                gpVertexN64->v.ob[2] = ptr->ob[2];
-                gpVertexN64->v.tc[0] = ptr->tc[0];
-                gpVertexN64->v.tc[1] = ptr->tc[1];
+                gpVertexN64->v.ob[0] = wall->ob[0];
+                gpVertexN64->v.ob[1] = wall->ob[1];
+                gpVertexN64->v.ob[2] = wall->ob[2];
+                gpVertexN64->v.tc[0] = wall->tc[0];
+                gpVertexN64->v.tc[1] = wall->tc[1];
 
                 if (i == 0)
                 {
@@ -1290,11 +1290,11 @@ static s32 func_8000CC54(s32 wallnum)
             }
             else
             {
-                gpVertexN64->v.ob[0] = ptr->ob[0];
-                gpVertexN64->v.ob[1] = ptr->ob[1];
-                gpVertexN64->v.ob[2] = ptr->ob[2];
-                gpVertexN64->v.tc[0] = ptr->tc[0];
-                gpVertexN64->v.tc[1] = ptr->tc[1];
+                gpVertexN64->v.ob[0] = wall->ob[0];
+                gpVertexN64->v.ob[1] = wall->ob[1];
+                gpVertexN64->v.ob[2] = wall->ob[2];
+                gpVertexN64->v.tc[0] = wall->tc[0];
+                gpVertexN64->v.tc[1] = wall->tc[1];
                 if (i == 0)
                 {
                     ang2 = ang - 45;
@@ -1317,7 +1317,7 @@ static s32 func_8000CC54(s32 wallnum)
                 gpVertexN64->v.cn[3] = alpha;
             }
             gpVertexN64++;
-            ptr++;
+            wall++;
         }
     }
     return 1;
@@ -1573,9 +1573,9 @@ static void func_8000E03C(s32 arg0, s32 arg1)
 /*8000E04C*/
 void func_8000E04C(void)
 {
-    func_8000E024(0, D_80199750 - 1);
-    func_8000E02C(0, D_80199528 - 1);
-    func_8000E03C(0, D_80168D10 - 1);
+    func_8000E024(0, gDrawWallCnt - 1);
+    func_8000E02C(0, gDrawFloorCnt - 1);
+    func_8000E03C(0, gDrawCeilCnt - 1);
 }
 
 /*8000E0A0*/

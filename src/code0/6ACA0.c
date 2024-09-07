@@ -398,7 +398,7 @@ void func_8006A0A0(s16 spritenum)
                 if (gpWall[neartagwall].nextsector != -1)
                     func_8006CB38(gpWall[neartagwall].nextsector);
                 else
-                    func_8006CB38(gpWall[neartagwall].unk1A);
+                    func_8006CB38(gpWall[neartagwall].sectnum);
             }
         }
 

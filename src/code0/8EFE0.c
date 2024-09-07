@@ -2211,16 +2211,16 @@ void func_80093BB0(u16 wallnum)
     y1 = gpWall[wallnum].y;
     x2 = gpWall[gpWall[wallnum].point2].x;
     y2 = gpWall[gpWall[wallnum].point2].y;
-    ceilz = getCeilzOfSlope(gpWall[wallnum].unk1A, x1, y1) >> 4;
-    getCeilzOfSlope(gpWall[wallnum].unk1A, x2, y2);
+    ceilz = getCeilzOfSlope(gpWall[wallnum].sectnum, x1, y1) >> 4;
+    getCeilzOfSlope(gpWall[wallnum].sectnum, x2, y2);
     z1 = getCeilzOfSlope(gpWall[wallnum].nextsector, x1, y1) >> 4;
     getCeilzOfSlope(gpWall[wallnum].nextsector, x2, y2);
 
     if (ceilz < z1)
         ceilz = z1;
 
-    floorz1 = getFlorzOfSlope(gpWall[wallnum].unk1A, x1, y1) >> 4;
-    floorz2 = getFlorzOfSlope(gpWall[wallnum].unk1A, x2, y2) >> 4;
+    floorz1 = getFlorzOfSlope(gpWall[wallnum].sectnum, x1, y1) >> 4;
+    floorz2 = getFlorzOfSlope(gpWall[wallnum].sectnum, x2, y2) >> 4;
     z1 = getFlorzOfSlope(gpWall[wallnum].nextsector, x1, y1) >> 4;
     z2 = getFlorzOfSlope(gpWall[wallnum].nextsector, x2, y2) >> 4;
 
@@ -2256,7 +2256,7 @@ void func_80093BB0(u16 wallnum)
     func_80093670((x1 + x2 + x3) / 3,
                   (y1 + y2 + y3) / 3,
                   ((ceilz * 2) + z3) / 3,
-                  gpWall[wallnum].unk1A);
+                  gpWall[wallnum].sectnum);
 
     D_80197D20.x[0] = x2;
     D_80197D20.y[0] = y2;
@@ -2271,7 +2271,7 @@ void func_80093BB0(u16 wallnum)
     func_80093670(((x2 * 2) + x3) / 3,
                   ((y2 * 2) + y3) / 3,
                   (ceilz + floorz1 + z3) / 3,
-                  gpWall[wallnum].unk1A);
+                  gpWall[wallnum].sectnum);
 
     D_80197D20.x[0] = x2;
     D_80197D20.y[0] = y2;
@@ -2286,7 +2286,7 @@ void func_80093BB0(u16 wallnum)
     func_80093670((x1 + x2 + x3) / 3,
                   (y1 + y2 + y3) / 3,
                   ((floorz1 * 2) + z3) / 3,
-                  gpWall[wallnum].unk1A);
+                  gpWall[wallnum].sectnum);
 
     D_80197D20.x[0] = x1;
     D_80197D20.y[0] = y1;
@@ -2301,7 +2301,7 @@ void func_80093BB0(u16 wallnum)
     i = func_80093670(((x1 * 2) + x3) / 3,
                       ((y1 * 2) + y3) / 3,
                       (ceilz + floorz1 + z3) / 3,
-                      gpWall[wallnum].unk1A);
+                      gpWall[wallnum].sectnum);
 
     j = func_80040D94(x1, y1, ceilz, x2, y2, floorz2);
 

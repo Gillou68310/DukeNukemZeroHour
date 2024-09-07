@@ -92,31 +92,24 @@ typedef struct
     /*0x0E*/ s16 cstat;
     /*0x10*/ s16 picnum;
     /*0x12*/ s16 overpicnum;
-
     /*0x14*/ s16 unk14;
     /*0x16*/ s16 unk16;
     /*0x18*/ s16 unk18;
-    /*0x1A*/ u16 unk1A;
+    /*0x1A*/ u16 sectnum;
     /*0x1C*/ u8 unk1C;
     /*0x1D*/ u8 unk1D;
     /*0x1E*/ u8 unk1E;
     /*0x1F*/ u8 unk1F;
     /*0x20*/ u8 unk20;
     /*0x21*/ u8 unk21;
-    /*0x22*/ u8 unk22;
-    /*0x23*/ u8 unk23;
-    /*0x24*/ u8 unk24;
-    /*0x25*/ u8 unk25;
+    /*0x22*/ u8 xrepeat;
+    /*0x23*/ u8 yrepeat;
+    /*0x24*/ u8 xpanning;
+    /*0x25*/ u8 ypanning;
     /*0x26*/ u8 pad3[2];
 
-    //s16 picnum;
-    //s16 overpicnum;
     //s8 shade;
     //char pal;
-    //char xrepeat;
-    //char yrepeat;
-    //char xpanning;
-    //char ypanning;
     //s16 lotag;
     //s16 hitag;
     //s16 extra;

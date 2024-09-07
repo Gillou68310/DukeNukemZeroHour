@@ -2798,7 +2798,7 @@ void func_8009C248(s32 spritenum)
                         f1 = func_80040D40(spr->x, spr->y, xpos, ypos);
                         z2 = (z1 + 20000);
                         z2 -= spr->z;
-                        f5 = (func_80029FE0((z2 / 16), f1) * 325.9493234521802);
+                        f5 = (getAngleF((z2 / 16), f1) * 325.9493234521802);
 
                         if (klabs(f5) < 256.0f)
                         {
@@ -2877,7 +2877,7 @@ void func_8009C248(s32 spritenum)
                 f2 = func_80040D40(spr->x, spr->y, xpos, ypos);
                 z3 = (z1 + 20000);
                 z3 -= spr->z;
-                f5 = (func_80029FE0((z3 / 16), f2) * 325.9493234521802);
+                f5 = (getAngleF((z3 / 16), f2) * 325.9493234521802);
 
                 if (klabs(f5) < 256.0f)
                 {
@@ -3028,7 +3028,7 @@ void func_8009C248(s32 spritenum)
             f3 = func_80040D40(spr->x, spr->y, xpos, ypos);
             z5 = (z1 + 20000);
             z5 -= spr->z;
-            f5 = (func_80029FE0((z5 /16), f3) * 325.9493234521802);
+            f5 = (getAngleF((z5 /16), f3) * 325.9493234521802);
             ptr2->unk2 = f5;
             delta = getAngleDelta(spr->ang, getAngle(xpos - spr->x, ypos - spr->y));
             spr->ang = GET_ANGLE(spr->ang, delta, 13);
@@ -3413,7 +3413,7 @@ void func_8009C248(s32 spritenum)
             f4 = func_80040D40(spr->x, spr->y, xpos, ypos);
             z6 = (z1 + 20000);
             z6 -= spr->z;
-            f5 = (func_80029FE0((z6 / 16), f4) * 325.9493234521802);
+            f5 = (getAngleF((z6 / 16), f4) * 325.9493234521802);
             ptr2->unk2 = f5;
             delta = getAngleDelta(spr->ang, getAngle(xpos - spr->x, ypos - spr->y));
             spr->ang = GET_ANGLE(spr->ang, delta, 13);

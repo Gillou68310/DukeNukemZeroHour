@@ -3,6 +3,6 @@
 
 #include "common.h"
 
-f32 func_80029FE0(f32, f32);
+f32 getAngleF(f32 dy, f32 dx);
 
 #endif
