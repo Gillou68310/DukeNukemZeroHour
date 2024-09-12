@@ -53,7 +53,6 @@ extern ObjectiveStrInfo *gpObjectiveStrInfo;
 extern char **gpMapStrInfo;
 extern OSSched gScheduler;
 extern TileInfo *gpTileInfo;
-extern OSScTask gGfxTask[GFX_TASKS];
 extern MapInfo *gpMapInfo;
 extern Gfx *gpDisplayList;
 extern Dynamic *gpDynamic;

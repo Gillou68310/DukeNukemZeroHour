@@ -43,8 +43,8 @@ typedef struct
     u16 unk0;
     u16 id;
     u16 offset;
-    u16 unk6;
-    u16 unk8;
+    u16 vtx_count;
+    u16 dlist_count;
 } _119280UnkStruct1;
 
 extern _119280UnkStruct1 D_01022510[64];

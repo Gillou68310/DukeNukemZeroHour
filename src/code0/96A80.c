@@ -793,7 +793,7 @@ void func_800965F8(s32 spritenum)
                 spr->unk2B = 4;
 
             if (spr->unk25 & 8)
-                spr->unk25 &= 0xF7;
+                spr->unk25 &= ~8;
             else if (spr->unk25 & 4)
                 spr->unk25 |= 8;
 
@@ -811,7 +811,7 @@ void func_800965F8(s32 spritenum)
                 spr->unk2B = 4;
 
             if (spr->unk25 & 8)
-                spr->unk25 &= 0xF7;
+                spr->unk25 &= ~8;
             else if (spr->unk25 & 4)
                 spr->unk25 |= 8;
         }
@@ -1033,8 +1033,8 @@ void func_800965F8(s32 spritenum)
                         rotatePoint(spr2->x, spr2->y, gPlayer[0].xpos, gPlayer[0].ypos, (ang >> 4), &x2, &y2);
                         gPlayer[0].xpos = x2;
                         gPlayer[0].ypos = y2;
-                        gPlayer[0].unk38 = GET_ANGLE(gPlayer[0].unk38, ang, 12);
-                        updateSector(x2, y2, &gPlayer[0].unk32);
+                        gPlayer[0].ang = GET_ANGLE(gPlayer[0].ang, ang, 12);
+                        updateSector(x2, y2, &gPlayer[0].cursectnum);
                     }
                 }
             }
@@ -1236,7 +1236,7 @@ void func_800965F8(s32 spritenum)
             switch (spr->unk2B)
             {
             case 1:
-                spr->cstat &= 0xFEFE;
+                spr->cstat &= ~0x101;
                 audio_800077F4((krand() & 1) + 1249, spritenum);
                 func_80056600(spritenum);
                 ptr->unk99 = 0;
@@ -2285,7 +2285,7 @@ void func_8009A9F0(s32 spritenum)
                 d2 = getAngleDelta(spr->ang, ang);
                 spr->ang = (((spr->ang << 8) + (d2 * 16)) >> 8) & 0x7FF;
                 j = 0;
-                if (spr->sectnum != gPlayer[0].unk32)
+                if (spr->sectnum != gPlayer[0].cursectnum)
                 {
                     if ((i > 3000) && (i < 5000))
                         j = 50;
@@ -2656,7 +2656,7 @@ void func_8009C248(s32 spritenum)
     spritenum1 = -1;
 
     if (sectnum > 0x1000)
-        sectnum = gPlayer[0].unk32;
+        sectnum = gPlayer[0].cursectnum;
 
     z = gPlayer[0].zpos - 0x3900;
     if (sectnum != -1)

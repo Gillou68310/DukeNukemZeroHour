@@ -64,7 +64,7 @@ static void func_80063A40(s16 playernum, s16 spritenum)
     s16 sectnum1, sectnum2;
     u8 cond;
 
-    sectnum2 = gPlayer[playernum].unk32;
+    sectnum2 = gPlayer[playernum].cursectnum;
     j = gpSprite[spritenum].unk16;
     sectnum1 = gpSprite[j].sectnum;
     unk18 = gpSector[sectnum2].unk18;
@@ -81,11 +81,11 @@ static void func_80063A40(s16 playernum, s16 spritenum)
             gPlayer[playernum].ypos += (gpSprite[j].y - gpSprite[spritenum].y);
             D_80138610[playernum] += gpSprite[j].x - gpSprite[spritenum].x;
             D_801AE480[playernum] += gpSprite[j].y - gpSprite[spritenum].y;
-            gPlayer[playernum].unk32 = sectnum1;
+            gPlayer[playernum].cursectnum = sectnum1;
             D_801A19EC = gpSprite[j].unk25;
-            updateSector(gPlayer[playernum].xpos, gPlayer[playernum].ypos, &gPlayer[playernum].unk32);
+            updateSector(gPlayer[playernum].xpos, gPlayer[playernum].ypos, &gPlayer[playernum].cursectnum);
 
-            gPlayer[playernum].zpos = getCeilzOfSlope(gPlayer[playernum].unk32,
+            gPlayer[playernum].zpos = getCeilzOfSlope(gPlayer[playernum].cursectnum,
                                                       gPlayer[playernum].xpos,
                                                       gPlayer[playernum].ypos) + 1025;
 
@@ -103,10 +103,10 @@ static void func_80063A40(s16 playernum, s16 spritenum)
             gPlayer[playernum].ypos += (gpSprite[j].y - gpSprite[spritenum].y);
             D_80138610[playernum] += gpSprite[j].x - gpSprite[spritenum].x;
             D_801AE480[playernum] += gpSprite[j].y - gpSprite[spritenum].y;
-            gPlayer[playernum].unk32 = sectnum1;
-            updateSector(gPlayer[playernum].xpos, gPlayer[playernum].ypos, &gPlayer[playernum].unk32);
+            gPlayer[playernum].cursectnum = sectnum1;
+            updateSector(gPlayer[playernum].xpos, gPlayer[playernum].ypos, &gPlayer[playernum].cursectnum);
 
-            gPlayer[playernum].zpos = getFlorzOfSlope(gPlayer[playernum].unk32,
+            gPlayer[playernum].zpos = getFlorzOfSlope(gPlayer[playernum].cursectnum,
                                                       gPlayer[playernum].xpos,
                                                       gPlayer[playernum].ypos) - 4864;
 
@@ -154,24 +154,24 @@ static void func_80063A40(s16 playernum, s16 spritenum)
                 gPlayer[playernum].unk58 = 0;
             }
         label1:
-            gPlayer[playernum].unk32 = sectnum1;
+            gPlayer[playernum].cursectnum = sectnum1;
             gPlayer[playernum].unk68 = sectnum1;
-            updateSector(gPlayer[playernum].xpos, gPlayer[playernum].ypos, &gPlayer[playernum].unk32);
+            updateSector(gPlayer[playernum].xpos, gPlayer[playernum].ypos, &gPlayer[playernum].cursectnum);
         }
     }
     else
     {
         gPlayer[playernum].xpos = gpSprite[j].x;
         gPlayer[playernum].ypos = gpSprite[j].y;
-        gPlayer[playernum].unk38 = gpSprite[j].ang;
+        gPlayer[playernum].ang = gpSprite[j].ang;
 
         gPlayer[playernum].zpos = getFlorzOfSlope(sectnum1,
                                                   gPlayer[playernum].xpos,
                                                   gPlayer[playernum].ypos) - gPlayer[playernum].unk40;
 
         gPlayer[playernum].xvect = gPlayer[playernum].yvect = gPlayer[playernum].zvect = 0;
-        gPlayer[playernum].unk32 = sectnum1;
-        updateSector(gPlayer[playernum].xpos, gPlayer[playernum].ypos, &gPlayer[playernum].unk32);
+        gPlayer[playernum].cursectnum = sectnum1;
+        updateSector(gPlayer[playernum].xpos, gPlayer[playernum].ypos, &gPlayer[playernum].cursectnum);
         func_8008E3E0(gpSprite[j].x, gpSprite[j].y, gpSprite[j].z, gpSprite[j].sectnum, 43, 0);
         audio_800077F4(704, j);
         D_800DEEE4[playernum] = 1;
@@ -398,7 +398,7 @@ void func_80064DE0(SectorType *sec, s16 x, s16 y)
 }
 
 /*80064E78*/
-void func_80064E78(void)
+void moveEffectors(void)
 {
     s32 x2, y2;
     WallType *wall;
@@ -487,12 +487,12 @@ void func_80064E78(void)
             func_80064D30(&m, &n, spr->sectnum);
             m = (spr->unk18 * m) / 128;
             spr->ang = (spr->ang + m) & 0x7FF;
-            func_80005118(spr->sectnum, spr->ang, spr->x, spr->y);
+            moveSectUpdate(spr->sectnum, spr->ang, spr->x, spr->y);
 
             k = spr->unk16;
             for (l = sec->wallptr; l < (sec->wallptr + sec->wallnum); l++)
             {
-                rotatePoint(0, 0, D_801AD480[k], D_80105730[k], spr->ang, &x2, &y2);
+                rotatePoint(0, 0, gOriginsX[k], gOriginsY[k], spr->ang, &x2, &y2);
                 dragPoint(l, spr->x + x2, spr->y + y2);
                 k++;
             }
@@ -501,9 +501,9 @@ void func_80064E78(void)
             {
                 if (gPlayer[k].unk59 != 0)
                 {
-                    if (gPlayer[k].unk32 == spr->sectnum)
+                    if (gPlayer[k].cursectnum == spr->sectnum)
                     {
-                        gPlayer[k].unk38 = (gPlayer[k].unk38 + m) & 0x7FF;
+                        gPlayer[k].ang = (gPlayer[k].ang + m) & 0x7FF;
                         rotatePoint(spr->x, spr->y, gPlayer[k].xpos, gPlayer[k].ypos, m, &x2, &y2);
                         gPlayer[k].xpos = x2;
                         gPlayer[k].ypos = y2;
@@ -771,7 +771,7 @@ void func_80064E78(void)
 
                 for (k = 0; k < D_8012C470; k++)
                 {
-                    if (gPlayer[k].unk32 == spr->sectnum)
+                    if (gPlayer[k].cursectnum == spr->sectnum)
                         gPlayer[k].zpos += spr->unk1C;
                 }
 
@@ -829,7 +829,7 @@ void func_80064E78(void)
 
                 for (k = 0; k < D_8012C470; k++)
                 {
-                    if (gPlayer[k].unk32 == spr->sectnum)
+                    if (gPlayer[k].cursectnum == spr->sectnum)
                         gPlayer[k].zpos += spr->unk1C;
                 }
 
@@ -894,7 +894,7 @@ void func_80064E78(void)
 
                 for (k = 0; k < D_8012C470; k++)
                 {
-                    if (gPlayer[k].unk32 == spr->sectnum)
+                    if (gPlayer[k].cursectnum == spr->sectnum)
                         gPlayer[k].zpos += spr->unk1C;
                 }
 
@@ -987,7 +987,7 @@ void func_80064E78(void)
 
                 for (k = 0; k < D_8012C470; k++)
                 {
-                    if (gPlayer[k].unk32 == spr->sectnum)
+                    if (gPlayer[k].cursectnum == spr->sectnum)
                     {
                         gPlayer[k].zpos += spr->unk1C;
                         if (cond2)
@@ -996,8 +996,8 @@ void func_80064E78(void)
                             gPlayer[k].ypos += (gpSprite[spr->unk16].y - spr->y);
                             D_80138610[k] += gpSprite[spr->unk16].x - spr->x;
                             D_801AE480[k] += gpSprite[spr->unk16].y - spr->y;
-                            gPlayer[k].unk32 = i;
-                            updateSector(gPlayer[k].xpos, gPlayer[k].ypos, &gPlayer[k].unk32);
+                            gPlayer[k].cursectnum = i;
+                            updateSector(gPlayer[k].xpos, gPlayer[k].ypos, &gPlayer[k].cursectnum);
                             gPlayer[k].unk68 = i;
                         }
                     }
@@ -1096,7 +1096,7 @@ void func_80064E78(void)
                     {
                         if (gPlayer[k].unk59 != 0)
                         {
-                            if (gPlayer[k].unk32 == spr->sectnum)
+                            if (gPlayer[k].cursectnum == spr->sectnum)
                                 gPlayer[k].zpos += spr->unk1C;
                         }
                     }
@@ -1181,15 +1181,15 @@ void func_80064E78(void)
                         {
                             for (k = 0; k < D_8012C470; k++)
                             {
-                                if (gPlayer[k].unk32 == spr->sectnum)
+                                if (gPlayer[k].cursectnum == spr->sectnum)
                                 {
                                     gPlayer[k].xpos = gPlayer[k].xpos + (gpSprite[spr->unk16].x - spr->x);
                                     gPlayer[k].ypos = gPlayer[k].ypos + (gpSprite[spr->unk16].y - spr->y);
                                     gPlayer[k].zpos = gPlayer[k].zpos + (gpSprite[spr->unk16].z - spr->z);
                                     D_80138610[k] += gpSprite[spr->unk16].x - spr->x;
                                     D_801AE480[k] += gpSprite[spr->unk16].y - spr->y;
-                                    gPlayer[k].unk32 = gpSprite[spr->unk16].sectnum;
-                                    updateSector(gPlayer[k].xpos, gPlayer[k].ypos, &gPlayer[k].unk32);
+                                    gPlayer[k].cursectnum = gpSprite[spr->unk16].sectnum;
+                                    updateSector(gPlayer[k].xpos, gPlayer[k].ypos, &gPlayer[k].cursectnum);
                                     o = gHeadSpriteSect[spr->sectnum];
                                     while (o >= 0)
                                     {
@@ -1206,15 +1206,15 @@ void func_80064E78(void)
                                 }
                                 else
                                 {
-                                    if (gPlayer[k].unk32 == gpSprite[spr->unk16].sectnum)
+                                    if (gPlayer[k].cursectnum == gpSprite[spr->unk16].sectnum)
                                     {
                                         gPlayer[k].xpos = gPlayer[k].xpos + (spr->x - gpSprite[spr->unk16].x);
                                         gPlayer[k].ypos = gPlayer[k].ypos + (spr->y - gpSprite[spr->unk16].y);
                                         gPlayer[k].zpos = gPlayer[k].zpos + (spr->z - gpSprite[spr->unk16].z);
                                         D_80138610[k] += spr->x - gpSprite[spr->unk16].x;
                                         D_801AE480[k] += spr->y - gpSprite[spr->unk16].y;
-                                        gPlayer[k].unk32 = spr->sectnum;
-                                        updateSector(gPlayer[k].xpos, gPlayer[k].ypos, &gPlayer[k].unk32);
+                                        gPlayer[k].cursectnum = spr->sectnum;
+                                        updateSector(gPlayer[k].xpos, gPlayer[k].ypos, &gPlayer[k].cursectnum);
                                         o = gHeadSpriteSect[gpSprite[spr->unk16].sectnum];
                                         while (o >= 0)
                                         {
@@ -1381,12 +1381,12 @@ void func_80064E78(void)
                 }
 
                 spr->ang &= 0x7FF;
-                func_80005118(spr->sectnum, spr->ang, spr->x, spr->y);
+                moveSectUpdate(spr->sectnum, spr->ang, spr->x, spr->y);
 
                 k = spr->unk16;
                 for (l = sec->wallptr; l < (sec->wallptr + sec->wallnum); l++)
                 {
-                    rotatePoint(0, 0, D_801AD480[k], D_80105730[k], spr->ang, &x2, &y2);
+                    rotatePoint(0, 0, gOriginsX[k], gOriginsY[k], spr->ang, &x2, &y2);
                     dragPoint(l, spr->x + x2, spr->y + y2);
                     k++;
                 }
@@ -1406,9 +1406,9 @@ void func_80064E78(void)
 
                 for (k = 0; k < D_8012C470; k++)
                 {
-                    if ((gPlayer[k].unk59 != 0) && (gPlayer[k].unk32 == spr->sectnum))
+                    if ((gPlayer[k].unk59 != 0) && (gPlayer[k].cursectnum == spr->sectnum))
                     {
-                        gPlayer[k].unk38 = (gPlayer[k].unk38 + spr->unk18) & 0x7FF;
+                        gPlayer[k].ang = (gPlayer[k].ang + spr->unk18) & 0x7FF;
                         rotatePoint(spr->x, spr->y, gPlayer[k].xpos, gPlayer[k].ypos, spr->unk18, &x2, &y2);
                         gPlayer[k].xpos = x2;
                         gPlayer[k].ypos = y2;
@@ -1462,18 +1462,18 @@ void func_80064E78(void)
                 y2 = (spr->unk18 * gpSinTable[spr->ang]) / 16384;
                 spr->x += x2;
                 spr->y += y2;
-                func_80005118(spr->sectnum, 0, spr->x, spr->y);
+                moveSectUpdate(spr->sectnum, 0, spr->x, spr->y);
 
                 k = spr->unk16;
                 for (l = sec->wallptr; l < (sec->wallptr + sec->wallnum); l++)
                 {
-                    dragPoint(l, spr->x + D_801AD480[k], spr->y + D_80105730[k]);
+                    dragPoint(l, spr->x + gOriginsX[k], spr->y + gOriginsY[k]);
                     k++;
                 }
 
                 for (k = 0; k < D_8012C470; k++)
                 {
-                    if ((gPlayer[k].unk59 != 0) && (gPlayer[k].unk32 == spr->sectnum))
+                    if ((gPlayer[k].unk59 != 0) && (gPlayer[k].cursectnum == spr->sectnum))
                     {
                         gPlayer[k].xpos += x2;
                         gPlayer[k].ypos += y2;
@@ -1551,7 +1551,7 @@ void func_80064E78(void)
             {
                 for (k = 0; k < D_8012C470; k++)
                 {
-                    if (gPlayer[k].unk32 == spr->sectnum)
+                    if (gPlayer[k].cursectnum == spr->sectnum)
                     {
                         if (gPlayer[k].unk45 == 0)
                         {
@@ -1566,7 +1566,7 @@ void func_80064E78(void)
                                     cond3 = 1;
                                 break;
                             case 2:
-                                if (gpSprite[gPlayer[k].unk4A].z > func_80036490(gPlayer[k].unk32))
+                                if (gpSprite[gPlayer[k].unk4A].z > func_80036490(gPlayer[k].cursectnum))
                                     cond3 = 1;
                                 break;
                             }
@@ -1581,7 +1581,7 @@ void func_80064E78(void)
                                 clipMove(&gPlayer[k].xpos,
                                         &gPlayer[k].ypos,
                                         &gPlayer[k].zpos,
-                                        &gPlayer[k].unk32,
+                                        &gPlayer[k].cursectnum,
                                         xvect, yvect, 164, 0x400, flordist, 0x10001);
                             }
                         }
@@ -1596,8 +1596,8 @@ void func_80064E78(void)
 
     for (k = 0; k < D_8012C470; k++)
     {
-        sec = &gpSector[gPlayer[k].unk32];
-        i = gHeadSpriteSect[gPlayer[k].unk32];
+        sec = &gpSector[gPlayer[k].cursectnum];
+        i = gHeadSpriteSect[gPlayer[k].cursectnum];
         while (i>= 0)
         {
             spr = &gpSprite[i];
@@ -1668,7 +1668,7 @@ void func_80064E78(void)
             a = pushMove(&gPlayer[k].xpos,
                                   &gPlayer[k].ypos,
                                   &gPlayer[k].zpos,
-                                  &gPlayer[k].unk32,
+                                  &gPlayer[k].cursectnum,
                                   0xA4, 0x400, x2, 0x10001);
             gpSprite[gPlayer[k].unk4A].cstat = cstat;
             if (a == -1)
@@ -1822,7 +1822,7 @@ void func_80069160(void)
             case 0:
                 for (j = 0; j < D_8012C470; j++)
                 {
-                    if (gPlayer[j].unk32 == spr->sectnum)
+                    if (gPlayer[j].cursectnum == spr->sectnum)
                     {
                         cond = 1;
                         break;
@@ -1860,7 +1860,7 @@ void func_80069160(void)
             case 3:
                 for (j = 0; j < D_8012C470; j++)
                 {
-                    if ((gPlayer[j].unk32 == spr->sectnum) && (gPlayer[j].keys[spr->ang]))
+                    if ((gPlayer[j].cursectnum == spr->sectnum) && (gPlayer[j].keys[spr->ang]))
                     {
                         cond = 1;
                         break;
@@ -1884,7 +1884,7 @@ void func_80069160(void)
                 {
                     for (j = 0; j < D_8012C470; j++)
                     {
-                        if (gPlayer[j].unk32 == spr->sectnum)
+                        if (gPlayer[j].cursectnum == spr->sectnum)
                         {
                             cond = 1;
                             break;
@@ -1926,7 +1926,7 @@ void func_80069160(void)
             cond = 0;
             for (j = 0; j < D_8012C470; j++)
             {
-                if (gPlayer[j].unk32 == gpSprite[i].sectnum)
+                if (gPlayer[j].cursectnum == gpSprite[i].sectnum)
                     cond = 1;
             }
 
@@ -1943,7 +1943,7 @@ void func_80069160(void)
     while (i >= 0)
     {
         nexti = gNextSpriteStat[i];
-        if (gPlayer[0].unk32 == gpSprite[i].sectnum)
+        if (gPlayer[0].cursectnum == gpSprite[i].sectnum)
         {
             if (gpSprite[i].unk24 == 0)
                 func_800A419C(0, gpActionStrInfo[gpSprite[i].unk25]);
@@ -2024,20 +2024,20 @@ void func_800698E8(void)
                 {
                     for (j = 0; j < D_8012C470; j++)
                     {
-                        if (gPlayer[j].unk32 == spr->sectnum)
+                        if (gPlayer[j].cursectnum == spr->sectnum)
                         {
                             switch (spr->unk22)
                             {
                             case 0:
                                 if (gPlayer[j].unk59 != 0)
                                 {
-                                    if (gPlayer[j].unk36 == gPlayer[j].unk32)
+                                    if (gPlayer[j].unk36 == gPlayer[j].cursectnum)
                                         func_800697D8(j, spr->unk18, spr->unk2A);
                                 }
                                 break;
 
                             case 1:
-                                k = klabs(((gpSector[gPlayer[j].unk32].floorz - gpSprite[gPlayer[j].unk4A].z)));
+                                k = klabs(((gpSector[gPlayer[j].cursectnum].floorz - gpSprite[gPlayer[j].unk4A].z)));
                                 k = 0x4000 - k;
                                 if (k > 0)
                                     func_800697D8(j, (k * spr->unk18) / 0x4000, spr->unk2A);
@@ -2048,7 +2048,7 @@ void func_800698E8(void)
                                 break;
 
                             case 3:
-                                if (gpSprite[gPlayer[j].unk4A].z > func_80036490(gPlayer[j].unk32))
+                                if (gpSprite[gPlayer[j].unk4A].z > func_80036490(gPlayer[j].cursectnum))
                                     func_800697D8(j, spr->unk18, spr->unk2A);
                                 break;
                             }

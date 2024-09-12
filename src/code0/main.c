@@ -124,16 +124,16 @@ DECL_STATIC_SEG_SYM(D_01026910);
 
 /*.comm*/
 /*800FE948*/ char ***gpKeyStrInfo;
-/*800FF530*/ u8 *gFramebuffer[3];
+/*800FF530*/ u8 *_framebuffer[3];
 /*800FF53C*/ ProcPointer D_800FF53C;
 /*8010571C*/ u8 *D_8010571C;
 /*8010A920*/ OSMesgQueue D_8010A920 ALIGNED(8);
-/*80118160*/ s32 gGfxDebugTime;
+/*80118160*/ s32 _gfxDebugTime;
 /*80119A5C*/ s32 D_80119A5C;
-/*80119A78*/ OSMesgQueue gRetraceMsgQ ALIGNED(8);
+/*80119A78*/ OSMesgQueue _retraceMsgQ ALIGNED(8);
 /*8011A668*/ u8 *gCacheMemEnd;
-/*8011BC60*/ Dynamic gDynamic[GFX_TASKS] ALIGNED(16);
-/*8012C990*/ OSMesg gGfxMessages[NUM_DMA_MSGS] ALIGNED(16);
+/*8011BC60*/ Dynamic _dynamic[GFX_TASKS] ALIGNED(16);
+/*8012C990*/ OSMesg _gfxMessages[NUM_DMA_MSGS] ALIGNED(16);
 /*8012E158*/ OSViMode *D_8012E158;
 /*8012EED0*/ GlobalPalette *gpGlobalPalette;
 /*8012F6E4*/ _11B300UnkStruct1 *D_8012F6E4;
@@ -151,24 +151,24 @@ DECL_STATIC_SEG_SYM(D_01026910);
 /*80197D4C*/ u8 *D_80197D4C;
 /*80197D50*/ char **gpActionStrInfo;
 /*80197D58*/ OSMesgQueue gDmaMessageQ ALIGNED(8);
-/*80199120*/ OSMesg gRetraceMessages[NUM_DMA_MSGS] ALIGNED(16);
+/*80199120*/ OSMesg _retraceMessages[NUM_DMA_MSGS] ALIGNED(16);
 /*801A196C*/ ObjectiveStrInfo *gpObjectiveStrInfo;
-/*801A1A20*/ u64 gfxYieldBuf[OS_YIELD_DATA_SIZE / sizeof(u64)] ALIGNED(16);
+/*801A1A20*/ u64 _gfxYieldBuf[OS_YIELD_DATA_SIZE / sizeof(u64)] ALIGNED(16);
 /*801A68CC*/ char **gpMapStrInfo;
 /*801A6AF8*/ OSSched gScheduler;
-/*801AC8B8*/ OSMesgQueue gGfxFrameMsgQ ALIGNED(8);
+/*801AC8B8*/ OSMesgQueue _gfxFrameMsgQ ALIGNED(8);
 /*801AC9F0*/ TileInfo *gpTileInfo;
-/*801ACB00*/ OSScTask gGfxTask[GFX_TASKS];
+/*801ACB00*/ OSScTask _gfxTask[GFX_TASKS];
 /*801ACBD8*/ _11D520UnkStruct1 *D_801ACBD8;
-/*801AD070*/ OSMesg gDmaMessages[NUM_DMA_MSGS] ALIGNED(16);
+/*801AD070*/ OSMesg _dmaMessages[NUM_DMA_MSGS] ALIGNED(16);
 /*801AE498*/ s64 D_801AE498;
 /*801AE8B8*/ s32 gDisplayListMaxSize;
 /*801AEA14*/ MapInfo *gpMapInfo;
 /*801AE8FC*/ s32 gVertexN64MaxSize;
-/*801AEA40*/ u64 gDramStack[SP_DRAM_STACK_SIZE64] ALIGNED(16);
+/*801AEA40*/ u64 _dramStack[SP_DRAM_STACK_SIZE64] ALIGNED(16);
 /*801B0808*/ Gfx *gpDisplayList;
 /*801B0818*/ s32 D_801B0818;
-/*801B0D40*/ u64 gOutputBuffer[OUTPUT_BUFFER_SIZE / sizeof(u64)] ALIGNED(16);
+/*801B0D40*/ u64 _outputBuffer[OUTPUT_BUFFER_SIZE / sizeof(u64)] ALIGNED(16);
 /*801C0D60*/ Dynamic *gpDynamic;
 /*801C0D64*/ OSMesg D_801C0D64;
 /*801C0D70*/ _11B300UnkStruct2 *D_801C0D70;
@@ -176,10 +176,10 @@ DECL_STATIC_SEG_SYM(D_01026910);
 /*.text*/
 s32 osAfterPreNMI(void);
 void func_80000000(s8 *, s32);
-static void idleLoop(void *);
+static void _idleLoop(void *);
 static void mainLoop(void *);
-static void viLoop(void *);
-static void main_800036DC(void);
+static void _viLoop(void *);
+static void func_800036DC(void);
 
 /*80000450*/
 void main_80000450(void)
@@ -203,7 +203,7 @@ void main_80000450(void)
 }
 
 /*80000508*/
-static void main_80000508(void)
+static void func_80000508(void)
 {
     D_8012E158 = &osViModeTable[OS_VI_PAL_LAF1];
     osViModeTable[OS_VI_PAL_LAF1].fldRegs[0].vStart = 0x2D0237;
@@ -226,7 +226,7 @@ static void main_80000508(void)
 }
 
 /*800005D8*/
-static void main_800005D8(void)
+static void func_800005D8(void)
 {
     D_8012E158 = &osViModeTable[OS_VI_PAL_LAF1];
     osViModeTable[OS_VI_PAL_LAF1].fldRegs[0].vStart = 0x4B0237;
@@ -251,7 +251,7 @@ void main_80000624(ProcPointer proc)
 }
 
 /*80000678*/
-static void main_80000678(void)
+static void func_80000678(void)
 {
     if (D_80119A5C == 0)
     {
@@ -261,7 +261,7 @@ static void main_80000678(void)
 }
 
 /*800006B4*/
-static void main_800006B4(void)
+static void func_800006B4(void)
 {
     s32 i;
     if (controller_8008AEF0())
@@ -278,7 +278,7 @@ static void main_800006B4(void)
 }
 
 /*8000071C*/
-static void main_8000071C(void)
+static void func_8000071C(void)
 {
     D_8012E158 = &osViModeTable[OS_VI_PAL_LAF1];
     osViModeTable[OS_VI_PAL_LAF1].comRegs.vSync = 0x270;
@@ -360,12 +360,12 @@ void boot(void)
         break;
     }
 
-    osCreateThread(&_idleLoopThread, 1, idleLoop, NULL, &_idleLoopThreadStack[IDLELOOP_STACKSIZE / sizeof(u64)], 10);
+    osCreateThread(&_idleLoopThread, 1, _idleLoop, NULL, &_idleLoopThreadStack[IDLELOOP_STACKSIZE / sizeof(u64)], 10);
     osStartThread(&_idleLoopThread);
 }
 
 /*800009D0*/
-static void idleLoop(void *arg)
+static void _idleLoop(void *arg)
 {
     osCreatePiManager(OS_PRIORITY_PIMGR, &_piMessageQ, _piMessages, NUM_DMA_MSGS);
     osCreateThread(&_mainLoopThread, 3, mainLoop, arg, &_mainLoopThreadStack[MAINLOOP_STACKSIZE / sizeof(u64)], 10);
@@ -386,19 +386,19 @@ void main_80000A94(void)
     OSTime start;
     OSTime end;
 
-    while (gRetraceMsgQ.validCount >= gRetraceMsgQ.msgCount)
-        osRecvMesg(&gRetraceMsgQ, NULL, OS_MESG_BLOCK);
+    while (_retraceMsgQ.validCount >= _retraceMsgQ.msgCount)
+        osRecvMesg(&_retraceMsgQ, NULL, OS_MESG_BLOCK);
 
-    osRecvMesg(&gRetraceMsgQ, NULL, OS_MESG_BLOCK);
+    osRecvMesg(&_retraceMsgQ, NULL, OS_MESG_BLOCK);
     start = osGetTime();
-    osRecvMesg(&gRetraceMsgQ, NULL, OS_MESG_BLOCK);
+    osRecvMesg(&_retraceMsgQ, NULL, OS_MESG_BLOCK);
     end = osGetTime();
 
     D_80138688 = end - start;
 }
 
 /*0x80000B68*/
-static void clearDepthBuffer(void)
+static void _clearDepthBuffer(void)
 {
     gDPSetDepthImage(gpDisplayList++, OS_K0_TO_PHYSICAL(gDepthBuffer));
     gDPSetCycleType(gpDisplayList++, G_CYC_FILL);
@@ -419,14 +419,14 @@ void main_80000C74(void)
     gDPSetFillColor(gpDisplayList++, GPACK_ZDZ(G_MAXFBZ, 0) << 16 | GPACK_ZDZ(G_MAXFBZ, 0));
     gDPFillRectangle(gpDisplayList++, 12, 12, gScreenWidth - 12, gScreenHeight - 12);
     gDPPipeSync(gpDisplayList++);
-    gDPSetColorImage(gpDisplayList++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gScreenWidth, OS_K0_TO_PHYSICAL(gFramebuffer[_framebufferIndex]));
+    gDPSetColorImage(gpDisplayList++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gScreenWidth, OS_K0_TO_PHYSICAL(_framebuffer[_framebufferIndex]));
     gDPSetCycleType(gpDisplayList++, G_CYC_2CYCLE);
 }
 
 /*80000DDC*/
-static void main_80000DDC(void)
+static void func_80000DDC(void)
 {
-    gDPSetColorImage(gpDisplayList++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gScreenWidth, OS_K0_TO_PHYSICAL(gFramebuffer[_framebufferIndex]));
+    gDPSetColorImage(gpDisplayList++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gScreenWidth, OS_K0_TO_PHYSICAL(_framebuffer[_framebufferIndex]));
     if (D_800BD3E8 != 0)
     {
         gDPSetCycleType(gpDisplayList++, G_CYC_FILL);
@@ -436,23 +436,23 @@ static void main_80000DDC(void)
 }
 
 /*80000F00*/
-static void main_80000F00(void)
+static void func_80000F00(void)
 {
     if (D_800BD3F9 != 3)
     {
-        main_800036DC();
+        func_800036DC();
     }
     else if (D_800BD3F0 == 0)
     {
         if (D_801A1970 != 0)
             func_80008E3C();
         if (D_801AE914 != 0)
-            main_800036DC();
+            func_800036DC();
     }
 }
 
 /*80000F68*/
-static void main_80000F68(s16 playernum)
+static void func_80000F68(s16 playernum)
 {
     gPlayer[playernum].unk80 = 0;
 
@@ -469,7 +469,7 @@ static void main_80000F68(s16 playernum)
 }
 
 /*80001038*/
-static void main_80001038(void)
+static void func_80001038(void)
 {
     s16 playernum;
     s16 unk4E;
@@ -494,7 +494,7 @@ static void main_80001038(void)
         func_801C4B34();
 
         for (playernum = 0; playernum < D_8012C470; playernum++)
-            main_80000F68(playernum);
+            func_80000F68(playernum);
     }
     else
     {
@@ -516,7 +516,7 @@ static void main_80001038(void)
             func_8004EA40(0);
 
         func_80064AA0();
-        func_80064E78();
+        moveEffectors();
         func_80069160();
         func_80068E9C();
         func_8004FC4C();
@@ -629,7 +629,7 @@ static void main_80001038(void)
 }
 
 /*800017AC*/
-static void main_800017AC(void)
+static void func_800017AC(void)
 {
     s32 i;
 
@@ -649,7 +649,7 @@ static void main_800017AC(void)
     switch (D_800BD3F9)
     {
     case 0:
-        main_800006B4();
+        func_800006B4();
         break;
     case 9:
         func_801C97F0();
@@ -679,10 +679,10 @@ static void main_800017AC(void)
         func_801C66D8();
         break;
     case 6:
-        main_80000678();
+        func_80000678();
         break;
     case 3:
-        main_80001038();
+        func_80001038();
         break;
     case 13:
         func_801C3370();
@@ -697,34 +697,34 @@ static void main_800017AC(void)
     if (D_800BD42D != 0)
     {
         D_800BD42D = 0;
-        main_800017AC();
+        func_800017AC();
     }
 }
 
 /*80001968*/
-static void setupSegments(void)
+static void _setupSegments(void)
 {
     gpDisplayList = gDisplayList[gGfxTaskIndex];
     gpVertexN64 = gVertexN64[gGfxTaskIndex];
-    gpDynamic = &gDynamic[gGfxTaskIndex];
+    gpDynamic = &_dynamic[gGfxTaskIndex];
     gSPSegment(gpDisplayList++, PHYSICAL_SEGMENT, 0);
     gSPSegment(gpDisplayList++, STATIC_SEGMENT, OS_K0_TO_PHYSICAL(gStaticSegment));
-    gSPSegment(gpDisplayList++, FRAMEBUFFER_SEGMENT, OS_K0_TO_PHYSICAL(gFramebuffer[_framebufferIndex]));
+    gSPSegment(gpDisplayList++, FRAMEBUFFER_SEGMENT, OS_K0_TO_PHYSICAL(_framebuffer[_framebufferIndex]));
     gSPDisplayList(gpDisplayList++, gRdpInitDl);
     gSPDisplayList(gpDisplayList++, gRspInitDl);
     gDPSetScissor(gpDisplayList++, G_SC_NON_INTERLACE, 0, 0, gScreenWidth, gScreenHeight);
 }
 
 /*80001AF8*/
-static void main_80001AF8(void)
+static void func_80001AF8(void)
 {
-    setupSegments();
-    clearDepthBuffer();
-    main_80000DDC();
+    _setupSegments();
+    _clearDepthBuffer();
+    func_80000DDC();
 }
 
 /*80001B28*/
-static void createGfxTask(void)
+static void _createGfxTask(void)
 {
     OSScTask *t;
     char *ucode_boot_end;
@@ -736,7 +736,7 @@ static void createGfxTask(void)
 
     gDPFullSync(gpDisplayList++);
     gSPEndDisplayList(gpDisplayList++);
-    t = &gGfxTask[gGfxTaskIndex];
+    t = &_gfxTask[gGfxTaskIndex];
     t->list.t.data_ptr = (u64 *)gDisplayList[gGfxTaskIndex];
     t->list.t.data_size = (s32)(gpDisplayList - gDisplayList[gGfxTaskIndex]) * sizeof(Gfx);
     t->list.t.type = M_GFXTASK;
@@ -746,20 +746,20 @@ static void createGfxTask(void)
     t->list.t.ucode = (u64 *)gspF3DLX2_NoN_fifoTextStart;
     t->list.t.ucode_data = (u64 *)gspF3DEX2_NoN_fifoDataStart;
     t->list.t.ucode_data_size = SP_UCODE_DATA_SIZE;
-    t->list.t.dram_stack = (u64 *)gDramStack;
+    t->list.t.dram_stack = (u64 *)_dramStack;
     t->list.t.dram_stack_size = SP_DRAM_STACK_SIZE8;
-    t->list.t.output_buff = (u64 *)gOutputBuffer;
-    t->list.t.output_buff_size = (u64 *)&gOutputBuffer[OUTPUT_BUFFER_SIZE / sizeof(u64)];
-    t->list.t.yield_data_ptr = (u64 *)gfxYieldBuf;
+    t->list.t.output_buff = (u64 *)_outputBuffer;
+    t->list.t.output_buff_size = (u64 *)&_outputBuffer[OUTPUT_BUFFER_SIZE / sizeof(u64)];
+    t->list.t.yield_data_ptr = (u64 *)_gfxYieldBuf;
     t->list.t.yield_data_size = OS_YIELD_DATA_SIZE;
     t->next = NULL;
     t->flags = OS_SC_NEEDS_RDP | OS_SC_NEEDS_RSP | OS_SC_LAST_TASK | OS_SC_SWAPBUFFER;
-    t->msgQ = &gGfxFrameMsgQ;
+    t->msgQ = &_gfxFrameMsgQ;
     t->msg = &_replyMsg;
-    t->framebuffer = gFramebuffer[_framebufferIndex];
+    t->framebuffer = _framebuffer[_framebufferIndex];
     osWritebackDCacheAll();
     osSendMesg(osScGetCmdQ(&gScheduler), t, OS_MESG_NOBLOCK);
-    gGfxDebugTime = gGfxTask[gGfxTaskIndex].totalTime;
+    _gfxDebugTime = _gfxTask[gGfxTaskIndex].totalTime;
 }
 
 /*80001CFC*/
@@ -772,7 +772,7 @@ void main_80001CFC(void)
 }
 
 /*80001D44*/
-static void main_80001D44(void)
+static void func_80001D44(void)
 {
     s16 i;
     s16 width;
@@ -802,7 +802,7 @@ static void main_80001D44(void)
     }
     for (i = 0; i < D_8012C470; i++)
     {
-        main_80000F68(i);
+        func_80000F68(i);
         func_80095390(i);
     }
     D_800DEEA0 = 0;
@@ -829,15 +829,15 @@ static void main_80001D44(void)
     _blue = 0;
     D_800BD3E8 = 1;
     D_801A1970 = 1;
-    main_80000DDC();
-    clearDepthBuffer();
+    func_80000DDC();
+    _clearDepthBuffer();
     D_800DF585 = 0;
 }
 
 /*80001F40*/
 void main_80001F40(void)
 {
-    main_80001D44();
+    func_80001D44();
     func_80050408();
     loadMap(gLoadMapNum);
     D_800BD3F9 = 3;
@@ -851,7 +851,7 @@ void main_80001F40(void)
 void main_80001FAC(void)
 {
     D_801CDC64.unk1 = 1;
-    main_80001D44();
+    func_80001D44();
     D_800BD3F9 = 3;
     D_800BD42D = 0;
     D_801CA144 = 0.0f;
@@ -888,13 +888,13 @@ void allocMemory(s32 width, s32 height, s32 dlist_size, s32 vertex_size)
     initCache(gCacheMemStart, (gCacheMemEnd - gCacheMemStart));
 
     fb_size = width * height * 2;
-    alloCache(&gFramebuffer[0], ((fb_size + FRAMEBUFFER_ALIGN) * _framebufferCount), &gCacheLock[0]);
-    fb_addr = (u8 *)(((intptr_t)gFramebuffer[0] + (FRAMEBUFFER_ALIGN-1)) & ~(FRAMEBUFFER_ALIGN-1));
-    gFramebuffer[0] = fb_addr;
-    gFramebuffer[1] = fb_addr + fb_size;
+    alloCache(&_framebuffer[0], ((fb_size + FRAMEBUFFER_ALIGN) * _framebufferCount), &gCacheLock[0]);
+    fb_addr = (u8 *)(((intptr_t)_framebuffer[0] + (FRAMEBUFFER_ALIGN-1)) & ~(FRAMEBUFFER_ALIGN-1));
+    _framebuffer[0] = fb_addr;
+    _framebuffer[1] = fb_addr + fb_size;
 
     if (_framebufferCount == 3)
-        gFramebuffer[2] = fb_addr + fb_size + fb_size;
+        _framebuffer[2] = fb_addr + fb_size + fb_size;
 
     alloCache(&gDisplayList[0], (dlist_size * sizeof(Gfx) * GFX_TASKS), &gCacheLock[0]);
     gDisplayList[1] = &gDisplayList[0][dlist_size];
@@ -924,7 +924,7 @@ void allocMemory(s32 width, s32 height, s32 dlist_size, s32 vertex_size)
     alloCache(&gDepthBuffer, (fb_size + DEPTHBUFFER_ALIGN), &gCacheLock[0]);
     gDepthBuffer = (u8 *)(((intptr_t)gDepthBuffer + (DEPTHBUFFER_ALIGN-1)) & ~(DEPTHBUFFER_ALIGN-1));
     suckCache(&handler);
-    Bmemset(gFramebuffer[0], 0, ((fb_size + FRAMEBUFFER_ALIGN) * _framebufferCount));
+    Bmemset(_framebuffer[0], 0, ((fb_size + FRAMEBUFFER_ALIGN) * _framebufferCount));
     _framebufferIndex = 0;
     gScreenWidth = width;
     gScreenHeight = height;
@@ -974,7 +974,7 @@ void main_80002390(void)
 }
 
 /*80002494*/
-static void main_80002494(void)
+static void func_80002494(void)
 {
     allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT*2, DISPLAY_LIST_SIZE*2, 0);
     func_801C10C8();
@@ -999,7 +999,7 @@ static void mainLoop(void *arg)
     intptr_t offset_;
     u8 *temp;
 
-    osCreateMesgQueue(&gDmaMessageQ, gDmaMessages, NUM_DMA_MSGS);
+    osCreateMesgQueue(&gDmaMessageQ, _dmaMessages, NUM_DMA_MSGS);
 
     D_80197D4C = code1_VRAM;
     D_8010571C = (u8 *)main_80000450;
@@ -1177,7 +1177,7 @@ static void mainLoop(void *arg)
     allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT, DISPLAY_LIST_SIZE*2, 0);
     osCreateScheduler(&gScheduler, &_schedulerStack[SCHEDULER_STACKSIZE / sizeof(u64)], 40, _viMode, (u8)1);
     osViBlack(1U);
-    osCreateThread(&_viLoopThread, 7, viLoop, arg, &_viLoopThreadStack[VILOOP_STACKSIZE / sizeof(u64)], 20);
+    osCreateThread(&_viLoopThread, 7, _viLoop, arg, &_viLoopThreadStack[VILOOP_STACKSIZE / sizeof(u64)], 20);
     initAudio();
     configInitialize();
     controller_8008AD94();
@@ -1210,16 +1210,16 @@ static void mainLoop(void *arg)
 }
 #endif
     osCreateMesgQueue(&D_8010A920, &D_801C0D64, 1);
-    osCreateMesgQueue(&gRetraceMsgQ, gRetraceMessages, NUM_DMA_MSGS);
-    osScAddClient(&gScheduler, &_retraceClient, &gRetraceMsgQ);
+    osCreateMesgQueue(&_retraceMsgQ, _retraceMessages, NUM_DMA_MSGS);
+    osScAddClient(&gScheduler, &_retraceClient, &_retraceMsgQ);
     osStartThread(&_viLoopThread);
     main_80000A94();
     func_800356EC();
     engine_8002B680();
     main_80001CFC();
     main_80000450();
-    main_8000071C();
-    main_80002494();
+    func_8000071C();
+    func_80002494();
     gLoadMapNum = 0;
 
     do
@@ -1252,13 +1252,13 @@ static void mainLoop(void *arg)
         D_801AE498 = D_80138788;
 
         for (; D_800BD3E0 > 2; D_800BD3E0 -= 2)
-            main_800017AC();
+            func_800017AC();
 
         if (D_800BD3E0 >= 0)
         {
-            main_800017AC();
-            main_80001AF8();
-            main_80000F00();
+            func_800017AC();
+            func_80001AF8();
+            func_80000F00();
 
             D_800BD3E0 -= 2;
 
@@ -1272,13 +1272,13 @@ static void mainLoop(void *arg)
 
                 if (_framebufferCount < 3)
                 {
-                    if (gRetraceMsgQ.validCount >= gRetraceMsgQ.msgCount)
-                        osRecvMesg(&gRetraceMsgQ, NULL, OS_MESG_BLOCK);
+                    if (_retraceMsgQ.validCount >= _retraceMsgQ.msgCount)
+                        osRecvMesg(&_retraceMsgQ, NULL, OS_MESG_BLOCK);
 
-                    osRecvMesg(&gRetraceMsgQ, NULL, OS_MESG_BLOCK);
+                    osRecvMesg(&_retraceMsgQ, NULL, OS_MESG_BLOCK);
                 }
             }
-            createGfxTask();
+            _createGfxTask();
             D_800BD3FC = 1;
             D_800BD428 = gGfxTaskIndex;
             gGfxTaskIndex ^= 1;
@@ -1290,15 +1290,15 @@ static void mainLoop(void *arg)
 }
 
 /*800031F8*/
-static void viLoop(void *arg)
+static void _viLoop(void *arg)
 {
     OSScMsg *message;
 
-    osCreateMesgQueue(&gGfxFrameMsgQ, gGfxMessages, NUM_DMA_MSGS);
-    osScAddClient(&gScheduler, &_gfxClient, &gGfxFrameMsgQ);
+    osCreateMesgQueue(&_gfxFrameMsgQ, _gfxMessages, NUM_DMA_MSGS);
+    osScAddClient(&gScheduler, &_gfxClient, &_gfxFrameMsgQ);
     while (1)
     {
-        osRecvMesg(&gGfxFrameMsgQ, (OSMesg *)&message, OS_MESG_BLOCK);
+        osRecvMesg(&_gfxFrameMsgQ, (OSMesg *)&message, OS_MESG_BLOCK);
         switch (message->type)
         {
         case OS_SC_RETRACE_MSG:
@@ -1317,8 +1317,8 @@ static void viLoop(void *arg)
             }
             break;
         case OS_SC_DONE_MSG:
-            D_801B0818 = gGfxTask[D_800BD428].totalTime;
-            gGfxTime = D_801B0818 - gGfxDebugTime;
+            D_801B0818 = _gfxTask[D_800BD428].totalTime;
+            gGfxTime = D_801B0818 - _gfxDebugTime;
             osSendMesg(&D_8010A920, NULL, OS_MESG_NOBLOCK);
             gGfxTime *= gScreenHeight;
             gGfxTime /= D_80138688;
@@ -1328,9 +1328,9 @@ static void viLoop(void *arg)
                 if (D_800BD3F4 == 0)
                 {
                     if (D_800BD3F8 != 0)
-                        main_80000508();
+                        func_80000508();
                     else
-                        main_800005D8();
+                        func_800005D8();
                     osViSetMode(&osViModeTable[_viMode]);
                     osViSetSpecialFeatures(OS_VI_GAMMA_OFF | OS_VI_DITHER_FILTER_ON);
                 }
@@ -1351,7 +1351,7 @@ static void viLoop(void *arg)
 }
 
 /*800034F4*/
-static void main_800034F4(void)
+static void func_800034F4(void)
 {
     guPerspective(
         &gpDynamic->projection,
@@ -1396,7 +1396,7 @@ static void main_800034F4(void)
 }
 
 /*800036DC*/
-static void main_800036DC(void)
+static void func_800036DC(void)
 {
     gSPViewport(gpDisplayList++, &D_800DCB10[0]);
     guMtxIdent(&gpDynamic->identity);
@@ -1414,7 +1414,7 @@ static void main_800036DC(void)
     gSPClearGeometryMode(gpDisplayList++, G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
     gSPSetGeometryMode(gpDisplayList++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
     gDPSetTexturePersp(gpDisplayList++, G_TP_PERSP);
-    main_800034F4();
+    func_800034F4();
     gSPTexture(gpDisplayList++, 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON);
     func_8007EF70();
 }

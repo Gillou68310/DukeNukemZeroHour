@@ -1209,7 +1209,7 @@ s32 func_8008FE88(s32 spritenum)
                 if (gPlayer[b].unk52 == -1)
                 {
                     if (canSee(spr1->x, spr1->y, spr1->z, spr1->sectnum,
-                        gPlayer[b].xpos, gPlayer[b].ypos, gPlayer[b].zpos, gPlayer[b].unk32) != 0)
+                        gPlayer[b].xpos, gPlayer[b].ypos, gPlayer[b].zpos, gPlayer[b].cursectnum) != 0)
                     {
                         D_800DEEE4[b] = 1;
                     }
@@ -1240,7 +1240,7 @@ s32 func_8008FE88(s32 spritenum)
                 if (gPlayer[b].unk52 == -1)
                 {
                     if (canSee(spr1->x, spr1->y, spr1->z, spr1->sectnum,
-                        gPlayer[b].xpos, gPlayer[b].ypos, gPlayer[b].zpos, gPlayer[b].unk32) != 0)
+                        gPlayer[b].xpos, gPlayer[b].ypos, gPlayer[b].zpos, gPlayer[b].cursectnum) != 0)
                     {
                         D_800DEEE4[b] = 1;
                     }
@@ -1364,7 +1364,7 @@ s32 func_8008FE88(s32 spritenum)
         }
         if (spr1->unk18 <= 0)
         {
-            gpSector[spr1->sectnum].floorstat &= 0xDFFF;
+            gpSector[spr1->sectnum].floorstat &= ~0x2000;
             deleteSprite(spritenum);
         }
         break;
@@ -1390,7 +1390,7 @@ s32 func_8008FE88(s32 spritenum)
                 if (gPlayer[b].unk52 == -1)
                 {
                     if (canSee(spr1->x, spr1->y, spr1->z - 0x400, spr1->sectnum,
-                        gPlayer[b].xpos, gPlayer[b].ypos, gPlayer[b].zpos, gPlayer[b].unk32) != 0)
+                        gPlayer[b].xpos, gPlayer[b].ypos, gPlayer[b].zpos, gPlayer[b].cursectnum) != 0)
                     {
                         D_800DEEE4[b] = 1;
                     }
@@ -2334,7 +2334,7 @@ void func_80094278(void)
     i = gHeadSpriteStat[300];
     while (i >= 0)
     {
-        func_8000C76C();
+        initVertexList();
         if (D_801A6D80 < ARRAY_COUNT(gpDynamic->mtx3))
         {
             grPosition(&gpDynamic->mtx3[D_801A6D80],
@@ -2382,7 +2382,7 @@ void func_80094278(void)
             gpVertexN64->v.cn[2] = 0xFF;
             gpVertexN64->v.cn[3] = 0xFF;
             gpVertexN64++;
-            func_8000B570(1);
+            drawTriangles(1);
 
             gSPPopMatrix(gpDisplayList++, G_MTX_MODELVIEW);
             i = gNextSpriteStat[i];

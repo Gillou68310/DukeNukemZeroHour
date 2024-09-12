@@ -12,7 +12,7 @@ void drawDebugString(s16 x, s16 y, char *string);
 void drawNumberString(s16 x, s16 y, char *string);
 void drawString(s16 x, s16 y, char *string);
 void drawString2(s16 x, s16 y, char *string);
-void func_8001D238(s32 x, s32 y, u16 tileid);
+void func_8001D238(s32 x, s32 y, u16 tilenum);
 void func_8001D128(s32 *x, s32 *y);
 
 #endif

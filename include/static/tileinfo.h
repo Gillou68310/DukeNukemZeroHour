@@ -16,7 +16,7 @@ typedef struct
     /*0x12*/ u16 dimx;
     /*0x14*/ u16 dimy;
     /*0x16*/ u8 flags;
-    /*0x18*/ u16 tileid;
+    /*0x18*/ u16 tile;
 } TileInfo;
 
 extern TileInfo gTileInfo[TILENUM];

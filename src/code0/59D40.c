@@ -452,7 +452,7 @@ void func_8005A2C8(s32 spritenum, s32 arg1)
         ang = getAngle((gpWall[gpWall[wallnum].point2].x - gpWall[wallnum].x),
                        (gpWall[gpWall[wallnum].point2].y - gpWall[wallnum].y));
 
-        if ((getAngleDelta(gPlayer[0].unk38, ang)) > 0)
+        if ((getAngleDelta(gPlayer[0].ang, ang)) > 0)
             setVar(spritenum, arg1, (ang - 1024) & 0x7FF);
         else
             setVar(spritenum, arg1, ang & 0x7FF);
@@ -937,13 +937,13 @@ void func_8005B8A8(s32 spritenum, s32 arg1)
 /*8005B8F8*/
 void func_8005B8F8(s32 spritenum, s32 arg1)
 {
-    s32 result;
+    s32 ang;
 
     if (gPlayer[0].unk50 == spritenum)
     {
-        result = getVar(gPlayer[0].unk50, arg1);
-        result = getAngleDelta(D_80118248->ang, result) >> 3;
-        gPlayer[0].unk38 += result;
+        ang = getVar(gPlayer[0].unk50, arg1);
+        ang = getAngleDelta(D_80118248->ang, ang) >> 3;
+        gPlayer[0].ang += ang;
     }
 }
 
@@ -1930,7 +1930,7 @@ void func_8005E2B0(s32 spritenum)
                 if (spritenum_ >= 0)
                 {
                     changeSpriteStat(spritenum_, 0);
-                    gpSprite[spritenum_].cstat &= 0xFEFE;
+                    gpSprite[spritenum_].cstat &= ~0x101;
                     gpSprite[spritenum_].cstat |= 0x8000;
                     func_8004EA40(spritenum_);
                 }
@@ -2244,7 +2244,7 @@ void func_8005F050(s32 spritenum, s32 arg1)
 /*8005F0F0*/
 void func_8005F0F0(s32 spritenum, s32 arg1)
 {
-    s32 unk38, unk3E;
+    s32 ang, unk3E;
     s32 i;
     f32 f1, f2, f3;
 
@@ -2258,12 +2258,12 @@ void func_8005F0F0(s32 spritenum, s32 arg1)
                        D_80118248->y);
     f3 = getAngleF(f1, f2) * 325.9493234521802;
 
-    unk38 = gPlayer[0].unk38;
-    gPlayer[0].unk38 = i;
+    ang = gPlayer[0].ang;
+    gPlayer[0].ang = i;
     unk3E = gPlayer[0].unk3E;
     gPlayer[0].unk3E = f3;
     i = func_8006D3B8(gPlayer[0].unk4A, 19, 0, 0, 0);
-    gPlayer[0].unk38 = unk38;
+    gPlayer[0].ang = ang;
     gPlayer[0].unk3E = unk3E;
 
     if (i > 0)
@@ -2488,7 +2488,7 @@ void func_8005FA88(s32 spritenum, s32 arg1)
     func_800A419C(0, *gpKeyStrInfo[gMapNum]);
     gPlayer[0].keys[1] = 1;
 
-    i = gHeadSpriteSect[gPlayer[0].unk32];
+    i = gHeadSpriteSect[gPlayer[0].cursectnum];
     while (i >= 0)
     {
         if (gpSprite[i].picnum == MARINE || gpSprite[i].picnum == SERGEANT)

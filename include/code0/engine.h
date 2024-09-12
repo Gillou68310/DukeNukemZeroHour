@@ -378,7 +378,7 @@ void updateSectorZ(s32 x, s32 y, s32 z, s16 *sectnum);
 
          Input:   1. Pivot point     (xpivot,ypivot)
                      2. Original point  (x,y)
-                     3. Angle to rotate (0 = nothing, 512 = 90� CW, etc.)
+                     3. Angle to rotate (0 = nothing, 512 = 90° CW, etc.)
          Output:  4. Rotated point   (*x2,*y2)*/
 void rotatePoint(s32 xpivot, s32 ypivot, s32 x, s32 y, s16 daang, s32 *x2, s32 *y2);
 
@@ -428,7 +428,7 @@ void alignCeilSlope(s16 dasect, s32 x, s32 y, s32 z);
 
 s32 findDistance2D(s32 dx, s32 dy);
 s32 findDistance3D(s32 dx, s32 dy, s32 dz);
-s32 animateOffs(s16 tileid, s16 fakevar);
+s32 animateOffs(s16 tilenum, s16 fakevar);
 void initSpriteLists(void);
 void engine_8002B680(void);
 

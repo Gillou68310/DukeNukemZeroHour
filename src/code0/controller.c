@@ -329,7 +329,7 @@ static void func_80087B9C(u8 contnum)
         for (i = 0; i < 3; i++)
             __osMotorAccess(&_contPfs[contnum], 0);
 
-        D_8019956D[contnum] &= 0xFC;
+        D_8019956D[contnum] &= ~3;
     }
     else
         D_80197D44[contnum] = 0;

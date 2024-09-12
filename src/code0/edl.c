@@ -106,11 +106,11 @@ edlUnkStruct1 D_800E0D18[32] = {
 /*801978A0*/ u32 _when[288] ALIGNED(16);
 
 /*.text*/
-static void parseEDLheader(EDLInfo *info);
-static s32 swap(EDLInfo *info, u32 value);
+static void _parseEDLheader(EDLInfo *info);
+static s32 _swap(EDLInfo *info, u32 value);
 
 /*800808D0*/
-static void decodeEDL0(EDLInfo *info)
+static void _decodeEDL0(EDLInfo *info)
 {
     u8 *src;
     u8 *dst;
@@ -139,7 +139,7 @@ static void decodeEDL0(EDLInfo *info)
 #if SYS_ENDIAN == SYS_BIG_ENDIAN
 #define SWAP32(A) A
 #else
-#define SWAP32(A) swap(info, A)
+#define SWAP32(A) _swap(info, A)
 #endif
 
 #define GET_BITS_(OUTVAR,BITCOUNT,M) \
@@ -166,7 +166,7 @@ static void decodeEDL0(EDLInfo *info)
 #define GET_BITS2(OUTVAR,BITCOUNT) GET_BITS_(OUTVAR,BITCOUNT,one)
 
 /*80080968*/
-static void decodeEDL1(EDLInfo *info)
+static void _decodeEDL1(EDLInfo *info)
 {
     u32 number[0x21];
     u8 sp88[0x400];
@@ -489,25 +489,25 @@ static void decodeEDL1(EDLInfo *info)
 }
 
 /*800813F8*/
-static void decodeEDL(EDLInfo *info)
+static void _decodeEDL(EDLInfo *info)
 {
-    parseEDLheader(info);
+    _parseEDLheader(info);
     if (info->result == 0)
     {
         switch (info->type)
         {
         case 0:
-            decodeEDL0(info);
+            _decodeEDL0(info);
             break;
         case 1:
-            decodeEDL1(info);
+            _decodeEDL1(info);
             break;
         }
     }
 }
 
 /*80081460*/
-static void parseEDLheader(EDLInfo *info)
+static void _parseEDLheader(EDLInfo *info)
 {
     if ((info->src[0] == 'E') && (info->src[1] == 'D') && (info->src[2] == 'L'))
     {
@@ -518,8 +518,8 @@ static void parseEDLheader(EDLInfo *info)
             if (info->type >= 0)
             {
                 info->result = 0;
-                info->csize = swap(info, *(u32 *)&info->src[4]);
-                info->dsize = swap(info, *(u32 *)&info->src[8]);
+                info->csize = _swap(info, *(u32 *)&info->src[4]);
+                info->dsize = _swap(info, *(u32 *)&info->src[8]);
             }
             else
                 info->result = -4;
@@ -532,7 +532,7 @@ static void parseEDLheader(EDLInfo *info)
 }
 
 /*8008151C*/
-static s32 swap(EDLInfo *info, u32 value)
+static s32 _swap(EDLInfo *info, u32 value)
 {
     if (info->file_endian == info->sys_endian)
         return value;
@@ -541,13 +541,13 @@ static s32 swap(EDLInfo *info, u32 value)
 }
 
 /*8008155C*/
-static s32 getEDLDecompressedSize(u8 *src)
+static s32 _getEDLDecompressedSize(u8 *src)
 {
     EDLInfo info;
 
     info.src = src;
     info.sys_endian = SYS_ENDIAN;
-    parseEDLheader(&info);
+    _parseEDLheader(&info);
     if (info.result == 0)
         return info.dsize;
     else
@@ -562,12 +562,12 @@ s32 decompressEDL(void *src, void *dst)
     info.src = src;
     info.sys_endian = SYS_ENDIAN;
     info.dst = dst;
-    decodeEDL(&info);
+    _decodeEDL(&info);
     return info.result;
 }
 
 /*800815CC*/
-static s32 isEDL(u8 *src)
+static s32 _isEDL(u8 *src)
 {
     EDLInfo info;
 
@@ -576,7 +576,7 @@ static s32 isEDL(u8 *src)
 #endif
     info.src = src;
     info.dst = 0;
-    parseEDLheader(&info);
+    _parseEDLheader(&info);
     return info.result != -3;
 }
 
@@ -590,7 +590,7 @@ static void _decompressEDL(u8 **handle, u8 *src, u8 *dst)
     info.src = src;
 #ifdef AVOID_UB
     info.sys_endian = SYS_ENDIAN;
-    parseEDLheader(&info);
+    _parseEDLheader(&info);
     dsize = info.dsize;
 #else
     dsize = *(s32 *)(&info.src[8]);
@@ -603,7 +603,7 @@ static void _decompressEDL(u8 **handle, u8 *src, u8 *dst)
 
     info.dst = *handle;
     info.sys_endian = SYS_ENDIAN;
-    decodeEDL(&info);
+    _decodeEDL(&info);
 }
 
 /*80081660*/
@@ -625,7 +625,7 @@ void edl_80081688(void *handle, s32 id)
         while (1);
     }
     readRom(D_801CD96C, info->romstart, size);
-    if (isEDL(D_801CD96C) != 0)
+    if (_isEDL(D_801CD96C) != 0)
     {
         _decompressEDL(handle, D_801CD96C, NULL);
         info->handle = handle;
@@ -651,7 +651,7 @@ void edl_80081760(void *handle, s32 id, void *dst)
         while (1);
     }
     readRom(D_801CD96C, info->romstart, size);
-    if (isEDL(D_801CD96C) != 0)
+    if (_isEDL(D_801CD96C) != 0)
     {
         _decompressEDL(handle, D_801CD96C, dst);
         info->handle = handle;

@@ -264,26 +264,26 @@ void debugMenu(void)
         drawDebugString(25, 70, buffer);
         sprintf(buffer, "JF %d", gPlayer[0].unk44);
         drawDebugString(25, 80, buffer);
-        sprintf(buffer, "DN %d", gPlayer[0].unk4C);
+        sprintf(buffer, "DN %d", gPlayer[0].skin);
         drawDebugString(25, 90, buffer);
 
         if (!_cmdButtonPressed)
         {
             if (gButton[_debugPlayerNum] & L_TRIG)
             {
-                gPlayer[0].unk4C--;
-                if (gPlayer[0].unk4C < 0)
-                    gPlayer[0].unk4C = D_80138780 - 1;
+                gPlayer[0].skin--;
+                if (gPlayer[0].skin < 0)
+                    gPlayer[0].skin = D_80138780 - 1;
                 _cmdButtonPressed = TRUE;
-                gpSprite[gPlayer[0].unk4A].picnum = D_8012F6E4[gPlayer[0].unk4C].picnum;
+                gpSprite[gPlayer[0].unk4A].picnum = D_8012F6E4[gPlayer[0].skin].picnum;
             }
             if (gButton[_debugPlayerNum] & R_TRIG)
             {
-                gPlayer[0].unk4C++;
-                if (gPlayer[0].unk4C >= D_80138780)
-                    gPlayer[0].unk4C = 0;
+                gPlayer[0].skin++;
+                if (gPlayer[0].skin >= D_80138780)
+                    gPlayer[0].skin = 0;
                 _cmdButtonPressed = TRUE;
-                gpSprite[gPlayer[0].unk4A].picnum = D_8012F6E4[gPlayer[0].unk4C].picnum;
+                gpSprite[gPlayer[0].unk4A].picnum = D_8012F6E4[gPlayer[0].skin].picnum;
             }
         }
         else if ((gButton[_debugPlayerNum] & (L_TRIG|R_TRIG)) == 0)

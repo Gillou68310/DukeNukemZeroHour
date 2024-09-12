@@ -49,9 +49,9 @@ typedef struct
     /*0x28*/ s32 unk28;
     /*0x2C*/ s32 unk2C;
     /*0x30*/ s32 unk30;
-    /*0x32*/ s16 unk32; /*sectnum?*/
+    /*0x32*/ s16 cursectnum;
     /*0x36*/ s16 unk36; /*sectnum?*/
-    /*0x38*/ s16 unk38; /*MapInfo->unk2C*/
+    /*0x38*/ s16 ang;
     /*0x3A*/ s16 unk3A;
     /*0x3C*/ s16 unk3C;
     /*0x3E*/ s16 unk3E;
@@ -61,7 +61,7 @@ typedef struct
     /*0x46*/ s16 unk46;
     /*0x48*/ s16 unk48;
     /*0x4A*/ s16 unk4A; /*spritenum?*/
-    /*0x4C*/ s16 unk4C; /*DN*/
+    /*0x4C*/ s16 skin;
     /*0x4E*/ s16 unk4E;
     /*0x50*/ s16 unk50; /*spritenum?*/  /*Inside mine cart?*/
     /*0x52*/ s16 unk52;
@@ -78,7 +78,7 @@ typedef struct
     /*0x60*/ bool third_person;
     /*0x61*/ u8 unk61;
     /*0x64*/ f32 unk64;
-    /*0x68*/ s16 unk68;
+    /*0x68*/ s16 unk68; /*sectnum*/
     /*0x6A*/ s16 unk6A;
     /*0x6C*/ u8 unk6C;
     /*0x6E*/ s16 unk6E;
@@ -235,7 +235,7 @@ typedef struct
     /*0x02*/ s16 unk2; /*x?*/
     /*0x04*/ s16 unk4; /*y?*/
     /*0x06*/ s16 unk6; /*z?*/
-    /*0x08*/ s16 unk8;
+    /*0x08*/ s16 unk8; /*tilenum*/
     /*0x0A*/ s16 unkA;
     /*0x0C*/ u8 pad[4];
     /*0x10*/ f32 unk10;
@@ -253,7 +253,7 @@ typedef struct
     /*0x10*/ s32 unk10;
     /*0x14*/ s32 unk14;
     /*0x18*/ s32 unk18;
-    /*0x1C*/ s16 unk1C;
+    /*0x1C*/ s16 unk1C; /*tilenum*/
     /*0x1E*/ u8 unk1E;
     /*0x1F*/ u8 unk1F;
     /*0x20*/ s16 unk20;
@@ -315,11 +315,11 @@ typedef struct
 
 typedef struct
 {
-    /*0x00*/ s32 unk0; /*x*/
-    /*0x04*/ s32 unk4; /*y*/
-    /*0x08*/ s32 unk8; /*z*/
-    /*0x0C*/ s32 unkC; /*sectnum*/
-    /*0x10*/ s16 unk10;
+    /*0x00*/ s32 x;
+    /*0x04*/ s32 y;
+    /*0x08*/ s32 z;
+    /*0x0C*/ s32 unkC;
+    /*0x10*/ s16 cursectnum;
     /*0x12*/ s16 unk12;
     /*0x14*/ s16 unk14;
     /*0x16*/ s16 unk16;
@@ -432,10 +432,10 @@ typedef struct
 /*80105550*/ _extern s16 *D_80105550;
 /*80105718*/ _extern u8 D_80105718;
 /*80105720*/ _extern s16 D_80105720;
-/*80105730*/ _extern s32 D_80105730[1024] ALIGNED(16);
+/*80105730*/ _extern s32 gOriginsY[1024] ALIGNED(16);
 /*80106D30*/ _extern u8 D_80106D30[MAXPLAYERS];
 /*80106D50*/ _extern s16 D_80106D50[MAXSPRITES] ALIGNED(16);
-/*8010A914*/ _extern Vertex *gpVertex;
+/*8010A914*/ _extern Vertex *gpSectorVertex;
 /*8010A918*/ _extern s32 D_8010A918;
 /*8010A938*/ _extern u8 *D_8010A938; /*edlHandle*/
 /*8010A940*/ _extern code0UnkStruct2 D_8010A940[MAXPLAYERS] ALIGNED(8);
@@ -466,7 +466,7 @@ typedef struct
 /*8012D218*/ _extern u32 D_8012D218[MAXPLAYERS][18] ALIGNED(8);
 /*8012D338*/ _extern s8 D_8012D338; /*angle*/
 /*8012DEFA*/ _extern u16 D_8012DEFA;
-/*8012DEFC*/ _extern u16 D_8012DEFC;
+/*8012DEFC*/ _extern u16 gLastPicnum;
 /*8012DF00*/ _extern s16 *D_8012DF00;
 /*8012DF04*/ _extern Color D_8012DF04[MAXPLAYERS];
 /*8012DF10*/ _extern code0UnkStruct14 D_8012DF10[16] ALIGNED(8);
@@ -529,7 +529,7 @@ typedef struct
 /*80199558*/ _extern s32 D_80199558;
 /*8019956C*/ _extern u8 D_8019956C;
 /*80199638*/ _extern s32 D_80199638;
-/*80199640*/ _extern s32 D_80199640; /*zs*/
+/*80199640*/ _extern s32 gGlobalPosZ;
 /*80199942*/ _extern s16 D_80199942;
 /*80199970*/ _extern s32 D_80199970[MAXPLAYERS] ALIGNED(8);
 /*8019B940*/ _extern code0UnkStruct3 D_8019B940[150] ALIGNED(16);
@@ -550,7 +550,7 @@ typedef struct
 /*801A68D0*/ _extern u16 D_801A68D0[256] ALIGNED(8);
 /*801A6AD4*/ _extern u8 D_801A6AD4[MAXPLAYERS];
 /*801A6D80*/ _extern u16 D_801A6D80;
-/*801A6D84*/ _extern s32 gGlobalPosX; /*xs*/
+/*801A6D84*/ _extern s32 gGlobalPosX;
 /*801AC8E0*/ _extern f32 D_801AC8E0;
 /*801AC8E8*/ _extern s16 D_801AC8E8[128] ALIGNED(8);
 /*801AC9E8*/ _extern s32 D_801AC9E8;
@@ -559,7 +559,7 @@ typedef struct
 /*801ACC60*/ _extern s32 D_801ACC60;
 /*801AD470*/ _extern u8 D_801AD470;
 /*801AD474*/ _extern s16 *D_801AD474;
-/*801AD480*/ _extern s32 D_801AD480[1024] ALIGNED(16);
+/*801AD480*/ _extern s32 gOriginsX[1024] ALIGNED(16);
 /*801AE480*/ _extern s32 D_801AE480[MAXPLAYERS] ALIGNED(8);
 /*801AE490*/ _extern s32 gSnoozingAliens;
 /*801AE4A0*/ _extern Fog gFog[MAXPLAYERS] ALIGNED(8);
@@ -573,7 +573,7 @@ typedef struct
 /*801AE918*/ _extern s32 D_801AE918;
 /*801AE91E*/ _extern u8 D_801AE91E[8];
 /*801AE9C0*/ _extern s32 D_801AE9C0; /*ceilhit*/
-/*801AEA10*/ _extern f32 D_801AEA10;
+/*801AEA10*/ _extern f32 gGlobalAng;
 /*801AEA30*/ _extern s16 gSkyBottomR;
 /*801B080C*/ _extern s32 D_801B080C; /*lightx*/
 /*801B0815*/ _extern u8 D_801B0815;

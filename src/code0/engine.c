@@ -52,17 +52,17 @@ static s32 _unused3[3];
 /*801AC9F4*/ s32 D_801AC9F4;
 
 /*.text*/
-static s16 insertSpriteStat(s16 statnum);
-static s16 insertSpriteSect(s16 sectnum);
-static s32 deleteSpriteStat(s16 deleteme);
-static s32 deleteSpriteSect(s16 deleteme);
-static s16 lastWall(s16 point);
+static s16 _insertSpriteStat(s16 statnum);
+static s16 _insertSpriteSect(s16 sectnum);
+static s32 _deleteSpriteStat(s16 deleteme);
+static s32 _deleteSpriteSect(s16 deleteme);
+static s16 _lastWall(s16 point);
 static s32 rIntersect(s32 x1, s32 y1, s32 z1, s32 vx, s32 vy, s32 vz, s32 x3,
                       s32 y3, s32 x4, s32 y4, s32 *intx, s32 *inty, s32 *intz);
-static s32 lIntersect(s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2, s32 x3,
+static s32 _lIntersect(s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2, s32 x3,
                       s32 y3, s32 x4, s32 y4, s32 *intx, s32 *inty, s32 *intz);
-static s32 rayTrace(s32 x3, s32 y3, s32 *x4, s32 *y4);
-static void keepAway(s32 *x, s32 *y, s32 w);
+static s32 _rayTrace(s32 x3, s32 y3, s32 *x4, s32 *y4);
+static void _keepAway(s32 *x, s32 *y, s32 w);
 
 /*8002B680*/
 void engine_8002B680(void)
@@ -99,7 +99,7 @@ s32 clipInsideBox(s32 x, s32 y, s16 wallnum, s32 walldist)
 }
 
 /*8002B83C*/
-static s32 clipInsideBoxLine(s32 x, s32 y, s32 x1, s32 y1, s32 x2, s32 y2, s32 walldist)
+static s32 _clipInsideBoxLine(s32 x, s32 y, s32 x1, s32 y1, s32 x2, s32 y2, s32 walldist)
 {
     s32 r;
 
@@ -126,7 +126,7 @@ static s32 clipInsideBoxLine(s32 x, s32 y, s32 x1, s32 y1, s32 x2, s32 y2, s32 w
 }
 
 /*8002B99C*/
-static s32 inside(s32 x, s32 y, s16 sectnum)
+static s32 _inside(s32 x, s32 y, s16 sectnum)
 {
     WallType *wal;
     s32 i, x1, y1, x2, y2;
@@ -188,28 +188,28 @@ s32 setSprite(s16 spritenum, s32 newx, s32 newy, s32 newz)
 }
 
 /*8002BCE0*/
-s32 animateOffs(s16 tileid, s16 fakevar)
+s32 animateOffs(s16 tilenum, s16 fakevar)
 {
     s32 i, k, offs;
 
     offs = 0;
-    i = (gTotalClockLock>>((getTilePicanm(tileid)>>24)&15));
-    if ((getTilePicanm(tileid)&63) > 0)
+    i = (gTotalClockLock>>((getTilePicanm(tilenum)>>24)&15));
+    if ((getTilePicanm(tilenum)&63) > 0)
     {
-        switch (getTilePicanm(tileid)&192)
+        switch (getTilePicanm(tilenum)&192)
         {
         case 64:
-            k = (i%((getTilePicanm(tileid)&63)<<1));
-            if (k < (getTilePicanm(tileid)&63))
+            k = (i%((getTilePicanm(tilenum)&63)<<1));
+            if (k < (getTilePicanm(tilenum)&63))
                 offs = k;
             else
-                offs = (((getTilePicanm(tileid)&63)<<1)-k);
+                offs = (((getTilePicanm(tilenum)&63)<<1)-k);
             break;
         case 128:
-            offs = (i%((getTilePicanm(tileid)&63)+1));
+            offs = (i%((getTilePicanm(tilenum)&63)+1));
             break;
         case 192:
-            offs = -(i%((getTilePicanm(tileid)&63)+1));
+            offs = -(i%((getTilePicanm(tilenum)&63)+1));
         }
     }
     return(offs);
@@ -256,8 +256,8 @@ s16 insertSprite(s16 sectnum, s16 statnum)
     s16 stat;
     s16 sect;
 
-    stat = insertSpriteStat(statnum);
-    sect = insertSpriteSect(sectnum);
+    stat = _insertSpriteStat(statnum);
+    sect = _insertSpriteSect(sectnum);
 
     if (((stat == -1) || (sect == -1)) == 0)
     {
@@ -271,7 +271,7 @@ s16 insertSprite(s16 sectnum, s16 statnum)
 }
 
 /*8002C0A8*/
-static s16 insertSpriteSect(s16 sectnum)
+static s16 _insertSpriteSect(s16 sectnum)
 {
     s16 blanktouse;
 
@@ -296,7 +296,7 @@ static s16 insertSpriteSect(s16 sectnum)
 }
 
 /*8002C18C*/
-static s16 insertSpriteStat(s16 statnum)
+static s16 _insertSpriteStat(s16 statnum)
 {
     s16 blanktouse;
 
@@ -331,8 +331,8 @@ s32 deleteSprite(s16 spritenum)
     D_8013B2D0[spritenum].handle = 0;
     statnum = gpSprite[spritenum].statnum;
 
-    stat = deleteSpriteStat(spritenum);
-    sect = deleteSpriteSect(spritenum);
+    stat = _deleteSpriteStat(spritenum);
+    sect = _deleteSpriteSect(spritenum);
 
     if (((stat == -1) || (sect == -1)) == 0)
     {
@@ -347,7 +347,7 @@ s32 deleteSprite(s16 spritenum)
 }
 
 /*8002C35C*/
-static s32 deleteSpriteSect(s16 deleteme)
+static s32 _deleteSpriteSect(s16 deleteme)
 {
     if (gpSprite[deleteme].sectnum == MAXSECTORS)
         return(-1);
@@ -368,7 +368,7 @@ static s32 deleteSpriteSect(s16 deleteme)
 }
 
 /*8002C474*/
-static s32 deleteSpriteStat(s16 deleteme)
+static s32 _deleteSpriteStat(s16 deleteme)
 {
     if (gpSprite[deleteme].statnum == MAXSTATUS)
         return(-1);
@@ -394,8 +394,8 @@ s32 changeSpriteSect(s16 spritenum, s16 newsectnum)
     if ((newsectnum < 0) || (newsectnum > MAXSECTORS)) return(-1);
     if (gpSprite[spritenum].sectnum == newsectnum) return(0);
     if (gpSprite[spritenum].sectnum == MAXSECTORS) return(-1);
-    if (deleteSpriteSect(spritenum) < 0) return(-1);
-    insertSpriteSect(newsectnum);
+    if (_deleteSpriteSect(spritenum) < 0) return(-1);
+    _insertSpriteSect(newsectnum);
     return(0);
 }
 
@@ -405,8 +405,8 @@ s32 changeSpriteStat(s16 spritenum, s16 newstatnum)
     if ((newstatnum < 0) || (newstatnum > MAXSTATUS)) return(-1);
     if (gpSprite[spritenum].statnum == newstatnum) return(0);
     if (gpSprite[spritenum].statnum == MAXSTATUS) return(-1);
-    if (deleteSpriteStat(spritenum) < 0) return(-1);
-    insertSpriteStat(newstatnum);
+    if (_deleteSpriteStat(spritenum) < 0) return(-1);
+    _insertSpriteStat(newstatnum);
     return(0);
 }
 
@@ -627,7 +627,7 @@ s32 hitScan(s32 xs, s32 ys, s32 zs, s16 sectnum, s32 vx, s32 vy, s32 vz,
 
         if ((x1 != 0x7fffffff) && (klabs(x1-xs)+klabs(y1-ys) < klabs((*hitx)-xs)+klabs((*hity)-ys)))
         {
-            if (inside(x1, y1, dasector) != 0)
+            if (_inside(x1, y1, dasector) != 0)
             {
                 *hitsect = dasector; *hitwall = -1; *hitsprite = -1;
                 *hitx = x1; *hity = y1; *hitz = z1;
@@ -669,7 +669,7 @@ s32 hitScan(s32 xs, s32 ys, s32 zs, s16 sectnum, s32 vx, s32 vy, s32 vz,
 
         if ((x1 != 0x7fffffff) && (klabs(x1-xs)+klabs(y1-ys) < klabs((*hitx)-xs)+klabs((*hity)-ys)))
         {
-            if (inside(x1, y1, dasector) != 0)
+            if (_inside(x1, y1, dasector) != 0)
             {
                 *hitsect = dasector; *hitwall = -1; *hitsprite = -1;
                 *hitx = x1; *hity = y1; *hitz = z1;
@@ -1082,7 +1082,7 @@ s32 nearTag(s32 xs, s32 ys, s32 zs, s16 sectnum, s16 ange, s16 *neartagsector, s
             if ((x1-xs)*(y2-ys) < (x2-xs)*(y1-ys))
                 continue;
 
-            if (lIntersect(xs, ys, zs, xe, ye, ze, x1, y1, x2, y2, &intx, &inty, &intz) == 1)
+            if (_lIntersect(xs, ys, zs, xe, ye, ze, x1, y1, x2, y2, &intx, &inty, &intz) == 1)
             {
                 if (good != 0)
                 {
@@ -1185,7 +1185,7 @@ s32 nearTag(s32 xs, s32 ys, s32 zs, s16 sectnum, s16 ange, s16 *neartagsector, s
 }
 
 /*8002F994*/
-static s32 lIntersect(s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2, s32 x3,
+static s32 _lIntersect(s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2, s32 x3,
                       s32 y3, s32 x4, s32 y4, s32 *intx, s32 *inty, s32 *intz)
 {     //p1 to p2 is a line segment
     s32 x21, y21, x34, y34, x31, y31, bot, topt, topu, t;
@@ -1264,9 +1264,9 @@ void dragPoint(s16 pointhighlight, s32 dax, s32 day)
             tempshort = pointhighlight;    //search points CW if not searched all the way around
             do
             {
-                if (gpWall[lastWall(tempshort)].nextwall >= 0)
+                if (gpWall[_lastWall(tempshort)].nextwall >= 0)
                 {
-                    tempshort = gpWall[lastWall(tempshort)].nextwall;
+                    tempshort = gpWall[_lastWall(tempshort)].nextwall;
                     gpWall[tempshort].x = dax;
                     gpWall[tempshort].y = day;
                 }
@@ -1283,7 +1283,7 @@ void dragPoint(s16 pointhighlight, s32 dax, s32 day)
 }
 
 /*8002FFDC*/
-static s16 lastWall(s16 point)
+static s16 _lastWall(s16 point)
 {
     s32 i, j, cnt;
 
@@ -1560,7 +1560,7 @@ s32 clipMove(s32 *x, s32 *y, s32 *z, s16 *sectnum, s32 xvect,
                         l = getTileSizeX(tilenum); k = (l>>1)+xoff;
                         x1 -= mulscale16(dax, k); x2 = x1+mulscale16(dax, l);
                         y1 -= mulscale16(day, k); y2 = y1+mulscale16(day, l);
-                        if (clipInsideBoxLine(cx, cy, x1, y1, x2, y2, rad) != 0)
+                        if (_clipInsideBoxLine(cx, cy, x1, y1, x2, y2, rad) != 0)
                         {
                             dax = mulscale14(gpSinTable[(spr->ang+256+512)&2047], walldist);
                             day = mulscale14(gpSinTable[(spr->ang+256)&2047], walldist);
@@ -1624,23 +1624,23 @@ s32 clipMove(s32 *x, s32 *y, s32 *z, s16 *sectnum, s32 xvect,
 
                         if ((_rxi[0]-(*x))*(_ryi[1]-(*y)) < (_rxi[1]-(*x))*(_ryi[0]-(*y)))
                         {
-                            if (clipInsideBoxLine(cx, cy, _rxi[1], _ryi[1], _rxi[0], _ryi[0], rad) != 0)
+                            if (_clipInsideBoxLine(cx, cy, _rxi[1], _ryi[1], _rxi[0], _ryi[0], rad) != 0)
                                 addclipline(_rxi[1]-day, _ryi[1]+dax, _rxi[0]+dax, _ryi[0]+day, (s16)j+49152);
                         }
                         else if ((_rxi[2]-(*x))*(_ryi[3]-(*y)) < (_rxi[3]-(*x))*(_ryi[2]-(*y)))
                         {
-                            if (clipInsideBoxLine(cx, cy, _rxi[3], _ryi[3], _rxi[2], _ryi[2], rad) != 0)
+                            if (_clipInsideBoxLine(cx, cy, _rxi[3], _ryi[3], _rxi[2], _ryi[2], rad) != 0)
                                 addclipline(_rxi[3]+day, _ryi[3]-dax, _rxi[2]-dax, _ryi[2]-day, (s16)j+49152);
                         }
 
                         if ((_rxi[1]-(*x))*(_ryi[2]-(*y)) < (_rxi[2]-(*x))*(_ryi[1]-(*y)))
                         {
-                            if (clipInsideBoxLine(cx, cy, _rxi[2], _ryi[2], _rxi[1], _ryi[1], rad) != 0)
+                            if (_clipInsideBoxLine(cx, cy, _rxi[2], _ryi[2], _rxi[1], _ryi[1], rad) != 0)
                                 addclipline(_rxi[2]-dax, _ryi[2]-day, _rxi[1]-day, _ryi[1]+dax, (s16)j+49152);
                         }
                         else if ((_rxi[3]-(*x))*(_ryi[0]-(*y)) < (_rxi[0]-(*x))*(_ryi[3]-(*y)))
                         {
-                            if (clipInsideBoxLine(cx, cy, _rxi[0], _ryi[0], _rxi[3], _ryi[3], rad) != 0)
+                            if (_clipInsideBoxLine(cx, cy, _rxi[0], _ryi[0], _rxi[3], _ryi[3], rad) != 0)
                                 addclipline(_rxi[0]+dax, _ryi[0]+day, _rxi[3]+day, _ryi[3]-dax, (s16)j+49152);
                         }
                     }
@@ -1655,7 +1655,7 @@ s32 clipMove(s32 *x, s32 *y, s32 *z, s16 *sectnum, s32 xvect,
     do
     {
         intx = goalx; inty = goaly;
-        if ((hitwall = rayTrace(*x, *y, &intx, &inty)) >= 0)
+        if ((hitwall = _rayTrace(*x, *y, &intx, &inty)) >= 0)
         {
             lx = _clipIt[hitwall].x2-_clipIt[hitwall].x1;
             ly = _clipIt[hitwall].y2-_clipIt[hitwall].y1;
@@ -1684,7 +1684,7 @@ s32 clipMove(s32 *x, s32 *y, s32 *z, s16 *sectnum, s32 xvect,
                 }
             }
 
-            keepAway(&goalx, &goaly, hitwall);
+            _keepAway(&goalx, &goaly, hitwall);
             xvect = ((goalx-intx)<<14);
             yvect = ((goaly-inty)<<14);
 
@@ -1699,7 +1699,7 @@ s32 clipMove(s32 *x, s32 *y, s32 *z, s16 *sectnum, s32 xvect,
 
     for (j = 0; j < _clipSectNum; j++)
     {
-        if (inside(*x, *y, _clipSectorList[j]) == 1)
+        if (_inside(*x, *y, _clipSectorList[j]) == 1)
         {
             *sectnum = _clipSectorList[j];
             return retval;
@@ -1709,7 +1709,7 @@ s32 clipMove(s32 *x, s32 *y, s32 *z, s16 *sectnum, s32 xvect,
     *sectnum = -1; templong1 = 0x7fffffff;
     for (j = gNumSectors-1; j >= 0; j--)
     {
-        if (inside(*x, *y, j) == 1)
+        if (_inside(*x, *y, j) == 1)
         {
             if (gpSector[j].ceilingstat&2)
                 templong2 = (getCeilzOfSlope((s16)j, *x, *y)-(*z));
@@ -1747,7 +1747,7 @@ s32 clipMove(s32 *x, s32 *y, s32 *z, s16 *sectnum, s32 xvect,
 }
 
 /*80032410*/
-static void keepAway(s32 *x, s32 *y, s32 w)
+static void _keepAway(s32 *x, s32 *y, s32 w)
 {
     s32 dx, dy, ox, oy, x1, y1;
     u8 first;
@@ -1765,7 +1765,7 @@ static void keepAway(s32 *x, s32 *y, s32 w)
 }
 
 /*80032538*/
-static s32 rayTrace(s32 x3, s32 y3, s32 *x4, s32 *y4)
+static s32 _rayTrace(s32 x3, s32 y3, s32 *x4, s32 *y4)
 {
     s32 x1, y1, x2, y2, bot, topu, nintx, ninty, cnt, z, hitwall;
     s32 x21, y21, x43, y43;
@@ -1939,7 +1939,7 @@ void updateSector(s32 x, s32 y, s16 *sectnum)
     WallType *wal;
     s32 i, j;
 
-    if (inside(x, y, *sectnum) == 1) return;
+    if (_inside(x, y, *sectnum) == 1) return;
 
     if ((*sectnum >= 0) && (*sectnum < gNumSectors))
     {
@@ -1949,7 +1949,7 @@ void updateSector(s32 x, s32 y, s16 *sectnum)
         {
             i = wal->nextsector;
             if (i >= 0)
-                if (inside(x, y, (s16)i) == 1)
+                if (_inside(x, y, (s16)i) == 1)
                 {
                     *sectnum = i;
                     return;
@@ -1960,7 +1960,7 @@ void updateSector(s32 x, s32 y, s16 *sectnum)
     }
 
     for (i = gNumSectors-1; i>=0; i--)
-        if (inside(x, y, (s16)i) == 1)
+        if (_inside(x, y, (s16)i) == 1)
         {
             *sectnum = i;
             return;
@@ -1970,7 +1970,7 @@ void updateSector(s32 x, s32 y, s16 *sectnum)
 }
 
 /*80032F38*/
-static u8 engine_80032F38(s32 x, s32 y, s32 z, s16 sectnum)
+static u8 func_80032F38(s32 x, s32 y, s32 z, s16 sectnum)
 {
     s32 ceilz;
     s32 florz;
@@ -1993,7 +1993,7 @@ static u8 engine_80032F38(s32 x, s32 y, s32 z, s16 sectnum)
     if ((z > (florz + fz)) || (z < (ceilz - 8)))
         return 0;
     else
-        return inside(x, y, sectnum);
+        return _inside(x, y, sectnum);
 }
 
 /*80033044*/
@@ -2002,7 +2002,7 @@ void updateSectorZ(s32 x, s32 y, s32 z, s16 *sectnum)
     WallType *wal;
     s32 i, j;
 
-    if (engine_80032F38(x, y, z, *sectnum) == 1)
+    if (func_80032F38(x, y, z, *sectnum) == 1)
         return;
 
     if ((*sectnum >= 0) && (*sectnum < gNumSectors))
@@ -2014,7 +2014,7 @@ void updateSectorZ(s32 x, s32 y, s32 z, s16 *sectnum)
             i = wal->nextsector;
             if (i >= 0)
             {
-                if (engine_80032F38(x, y, z, i) == 1)
+                if (func_80032F38(x, y, z, i) == 1)
                 {
                     *sectnum = i;
                     return;
@@ -2026,7 +2026,7 @@ void updateSectorZ(s32 x, s32 y, s32 z, s16 *sectnum)
 
     for (i = gNumSectors-1; i>=0; i--)
     {
-        if (engine_80032F38(x, y, z, i) == 1)
+        if (func_80032F38(x, y, z, i) == 1)
         {
             *sectnum = i;
             return;
@@ -2306,7 +2306,7 @@ void getzRange(s32 x, s32 y, s32 z, s16 sectnum, s32 *ceilz, s32 *ceilhit, s32 *
                         x2 = x1 + mulscale16(dax, l);
                         y1 -= mulscale16(day, k);
                         y2 = y1 + mulscale16(day, l);
-                        if (clipInsideBoxLine(x, y, x1, y1, x2, y2, walldist + 1) != 0)
+                        if (_clipInsideBoxLine(x, y, x1, y1, x2, y2, walldist + 1) != 0)
                         {
                             daz = spr->z;
                             k = (getTileSizeY(spr->picnum) * spr->yrepeat) << 1;

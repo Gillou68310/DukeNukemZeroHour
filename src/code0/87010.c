@@ -183,7 +183,7 @@ void func_80086A24(void)
 
     gDPSetRenderMode(gpDisplayList++, G_RM_AA_ZB_XLU_SURF, G_RM_AA_ZB_XLU_SURF2);
     gDPSetTextureLUT(gpDisplayList++, G_TT_NONE);
-    func_8000C76C();
+    initVertexList();
     func_8000BDB0(5668);
 
     for (i = 0; i < ARRAY_COUNT(D_8011AE00); i++)
@@ -368,7 +368,7 @@ static void func_8008736C(void)
 
     gDPSetRenderMode(gpDisplayList++, G_RM_AA_ZB_XLU_SURF, G_RM_AA_ZB_XLU_SURF2);
     gDPSetTextureLUT(gpDisplayList++, G_TT_NONE);
-    func_8000C76C();
+    initVertexList();
     func_8000BDB0(5668);
 
     for (i = 0; i < ARRAY_COUNT(D_8012B988); i++)

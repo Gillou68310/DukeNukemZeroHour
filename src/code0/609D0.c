@@ -32,7 +32,7 @@ typedef struct {
 } _609D0UnkStruct1;
 
 /*.bss*/
-/*800F9CC0*/ static s16 D_800F9CC0;
+/*800F9CC0*/ static s16 _tempWallPtr;
 
 /*.comm*/
 /*80107908*/ s16 D_80107908;
@@ -64,7 +64,7 @@ static void func_8005FE84(s16 wallnum)
 }
 
 /*8005FEE0*/
-static void func_8005FEE0(s16 spritenum)
+static void _spawn(s16 spritenum)
 {
     s16 hitsprite;
     s32 hitx, hity;
@@ -229,9 +229,9 @@ static void func_8005FEE0(s16 spritenum)
                     }
                 }
             }
-            func_80004ECC(spr->sectnum, spr->x, spr->y);
+            moveSectAdd(spr->sectnum, spr->x, spr->y);
             spr->unk18 = 1;
-            spr->unk16 = D_800F9CC0;
+            spr->unk16 = _tempWallPtr;
 
             if (spr->ang > 0x400)
                 spr->unk18 = -1;
@@ -240,9 +240,9 @@ static void func_8005FEE0(s16 spritenum)
             for (i = sec->wallptr; i < (sec->wallptr + sec->wallnum); i++)
             {
                 func_8005FE84(i);
-                D_801AD480[D_800F9CC0] = gpWall[i].x - spr->x;
-                D_80105730[D_800F9CC0] = gpWall[i].y - spr->y;
-                D_800F9CC0++;
+                gOriginsX[_tempWallPtr] = gpWall[i].x - spr->x;
+                gOriginsY[_tempWallPtr] = gpWall[i].y - spr->y;
+                _tempWallPtr++;
             }
             break;
         case 4:
@@ -437,7 +437,7 @@ static void func_8005FEE0(s16 spritenum)
                 deleteSprite(spritenum);
 
             break;
-        case 0x2D:
+        case 45:
             for (i = 0; i < gNumSprites; i++)
             {
                 if ((i != spritenum) && (gpSprite[i].picnum == 1) && (gpSprite[i].lotag == 45))
@@ -490,9 +490,9 @@ static void func_8005FEE0(s16 spritenum)
                     }
                 }
             }
-            func_80004ECC(spr->sectnum, spr->x, spr->y);
+            moveSectAdd(spr->sectnum, spr->x, spr->y);
             spr->unk18 = 0;
-            spr->unk16 = D_800F9CC0;
+            spr->unk16 = _tempWallPtr;
             spr->clipdist = 0;
 
             if (spr->ang > 0x400)
@@ -510,9 +510,9 @@ static void func_8005FEE0(s16 spritenum)
             for (i = sec->wallptr; i < (sec->wallptr + sec->wallnum); i++)
             {
                 func_8005FE84(i);
-                D_801AD480[D_800F9CC0] = gpWall[i].x - spr->x;
-                D_80105730[D_800F9CC0] = gpWall[i].y - spr->y;
-                D_800F9CC0++;
+                gOriginsX[_tempWallPtr] = gpWall[i].x - spr->x;
+                gOriginsY[_tempWallPtr] = gpWall[i].y - spr->y;
+                _tempWallPtr++;
             }
             if (spr->unk25 == 0)
                 func_8005FDD0(sec, spr->hitag);
@@ -520,11 +520,11 @@ static void func_8005FEE0(s16 spritenum)
             spr->unk25 = 0;
             break;
         case 54:
-            func_80004ECC(spr->sectnum, spr->x, spr->y);
+            moveSectAdd(spr->sectnum, spr->x, spr->y);
             spr->unk18 = 0;
             spr->unk1A = 0;
             spr->unk1C = 0;
-            spr->unk16 = D_800F9CC0;
+            spr->unk16 = _tempWallPtr;
             spr->clipdist = 0;
             for (i = sec->wallptr; i < (sec->wallptr + sec->wallnum); i++)
             {
@@ -532,9 +532,9 @@ static void func_8005FEE0(s16 spritenum)
                 z = findDistance2D(gpWall[i].x - gpWall[gpWall[i].point2].x,
                                    gpWall[i].y - gpWall[gpWall[i].point2].y);
                 spr->unk1C = MAX(spr->unk1C, z);
-                D_801AD480[D_800F9CC0] = gpWall[i].x - spr->x;
-                D_80105730[D_800F9CC0] = gpWall[i].y - spr->y;
-                D_800F9CC0++;
+                gOriginsX[_tempWallPtr] = gpWall[i].x - spr->x;
+                gOriginsY[_tempWallPtr] = gpWall[i].y - spr->y;
+                _tempWallPtr++;
             }
 
             for (i = 0; i < gNumSprites; i++)
@@ -882,7 +882,7 @@ static void func_8005FEE0(s16 spritenum)
         else
             spr->cstat |= 0x8000;
 
-        spr->cstat &= 0xFEFE;
+        spr->cstat &= ~0x101;
 
         if ((spr->picnum >= 1897) && (spr->picnum < 1903))
             spr->unk22 = 100;
@@ -925,7 +925,7 @@ static void func_8005FEE0(s16 spritenum)
     {
         changeSpriteStat(spritenum, 150);
         spr->unk18 = -1;
-        spr->cstat &= 0xFEFE;
+        spr->cstat &= ~0x101;
     }
 
     if (spr->statnum == 114)
@@ -948,13 +948,13 @@ static void func_8005FEE0(s16 spritenum)
             spr->cstat |= 0x1101;
 
             if ((spr->statnum == 150) || ((spr->statnum >= 20) && (spr->statnum < 23)))
-                spr->cstat &= 0xFEFE;
+                spr->cstat &= ~0x101;
 
             if ((spr->picnum == 2200) || (spr->picnum == 2253) ||
                 (spr->picnum == 2231) || (spr->picnum == 2487) ||
                 (spr->picnum == 2488) || (spr->picnum == 2262) || (spr->picnum == 2263))
             {
-                spr->cstat &= 0xFEFE;
+                spr->cstat &= ~0x101;
             }
 
             switch (spr->statnum)
@@ -1020,7 +1020,7 @@ static void func_8005FEE0(s16 spritenum)
         spr->unk1A = 0;
 
     if (spr->statnum == 0xA0)
-        spr->cstat &= 0xFEFE;
+        spr->cstat &= ~0x101;
 
     if (spr->picnum == 2484)
     {
@@ -1063,13 +1063,13 @@ void func_80062300(void)
     (void)pad;
     func_8004F31C();
     func_80016F30();
-    D_800F9CC0 = 0;
+    _tempWallPtr = 0;
     D_80107908 = 0;
     D_800DEE98 = 0;
     D_800DEE80 = -1;
 
     for (i = 0; i < gNumSprites; i++)
-        func_8005FEE0(i);
+        _spawn(i);
 
     i = gHeadSpriteStat[3];
     while (i >= 0)
@@ -1263,8 +1263,8 @@ void func_80062950(s16 playernum, u8 arg1)
         gPlayer[playernum].xpos = D_8012F708[i].unk0;
         gPlayer[playernum].ypos = D_8012F708[i].unk4;
         gPlayer[playernum].zpos = D_8012F708[i].unk8 - gPlayer[playernum].unk40;
-        gPlayer[playernum].unk38 = D_8012F708[i].unkC;
-        gPlayer[playernum].unk32 = D_8012F708[i].unkE;
+        gPlayer[playernum].ang = D_8012F708[i].unkC;
+        gPlayer[playernum].cursectnum = D_8012F708[i].unkE;
     }
 
     D_80138610[playernum] = 0;
@@ -1275,7 +1275,7 @@ void func_80062950(s16 playernum, u8 arg1)
 
     if (arg1)
     {
-        spritenum = insertSprite(gPlayer[playernum].unk32, 10);
+        spritenum = insertSprite(gPlayer[playernum].cursectnum, 10);
         gPlayer[playernum].unk4A = spritenum;
         gpSprite[spritenum].unk16 = playernum;
         D_80106D50[spritenum] = func_8004BE90();
@@ -1283,7 +1283,7 @@ void func_80062950(s16 playernum, u8 arg1)
     else
     {
         spritenum = gPlayer[playernum].unk4A;
-        changeSpriteSect(gPlayer[playernum].unk4A, gPlayer[playernum].unk32);
+        changeSpriteSect(gPlayer[playernum].unk4A, gPlayer[playernum].cursectnum);
     }
 
     if (D_8012C470 >= 2)
@@ -1316,9 +1316,9 @@ void func_80062950(s16 playernum, u8 arg1)
     gpSprite[spritenum].cstat = 0x1101;
     gpSprite[spritenum].xrepeat = 64;
     gpSprite[spritenum].yrepeat = 64;
-    gpSprite[spritenum].unk24 = gpSector[gPlayer[playernum].unk32].unk26;
+    gpSprite[spritenum].unk24 = gpSector[gPlayer[playernum].cursectnum].unk26;
     setSprite(spritenum, gPlayer[playernum].xpos, gPlayer[playernum].ypos, gPlayer[playernum].zpos + gPlayer[playernum].unk40);
-    gpSprite[spritenum].ang = gPlayer[playernum].unk38;
+    gpSprite[spritenum].ang = gPlayer[playernum].ang;
     gpSprite[spritenum].unk25 = 0;
 
     if ((!(D_8012C470 < 2)) && !(arg1))
@@ -1326,7 +1326,7 @@ void func_80062950(s16 playernum, u8 arg1)
         func_8008E3E0(gPlayer[playernum].xpos,
                       gPlayer[playernum].ypos,
                       gPlayer[playernum].zpos + gPlayer[playernum].unk40,
-                      gPlayer[playernum].unk32, 43, 0);
+                      gPlayer[playernum].cursectnum, 43, 0);
 
         audio_800077F4(704, spritenum);
         D_800DEEE4[playernum] = 1;
@@ -1397,7 +1397,7 @@ void func_80062950(s16 playernum, u8 arg1)
 
     if (arg1)
     {
-        spritenum = insertSprite(gPlayer[playernum].unk32, 0);
+        spritenum = insertSprite(gPlayer[playernum].cursectnum, 0);
         D_8012FCA0[playernum] = spritenum;
     }
     else
@@ -1406,7 +1406,7 @@ void func_80062950(s16 playernum, u8 arg1)
     setSprite(spritenum,
               gPlayer[playernum].xpos,
               gPlayer[playernum].ypos,
-              getFlorzOfSlope(gPlayer[playernum].unk32, gPlayer[playernum].xpos, gPlayer[playernum].ypos));
+              getFlorzOfSlope(gPlayer[playernum].cursectnum, gPlayer[playernum].xpos, gPlayer[playernum].ypos));
 
     gpSprite[spritenum].picnum = 5615;
     gpSprite[spritenum].unk16 = playernum;
@@ -1469,23 +1469,23 @@ void func_80062950(s16 playernum, u8 arg1)
             if (D_8010554C != 0)
             {
                 gpSprite[gPlayer[playernum].unk4A].cstat |= 0x8000;
-                gpSprite[gPlayer[playernum].unk4A].cstat &= 0xFEFE;
+                gpSprite[gPlayer[playernum].unk4A].cstat &= ~0x101;
                 D_80106D30[playernum] = 1;
-                gPlayer[playernum].unk4C = playernum;
+                gPlayer[playernum].skin = playernum;
             }
         }
 
-        gpSprite[gPlayer[playernum].unk4A].picnum = D_8012F6E4[gPlayer[playernum].unk4C].picnum;
+        gpSprite[gPlayer[playernum].unk4A].picnum = D_8012F6E4[gPlayer[playernum].skin].picnum;
         D_80138858[playernum] = 0;
     }
     else
-        gPlayer[playernum].unk4C = 0;
+        gPlayer[playernum].skin = 0;
 
     gPlayer[playernum].unk4E = 0;
-    gPlayer[playernum].unk68 = gPlayer[playernum].unk32;
+    gPlayer[playernum].unk68 = gPlayer[playernum].cursectnum;
     gPlayer[playernum].unk64 = 1524.0f;
     Bmemset(&D_801A2790[playernum], 0, sizeof(code0UnkStruct17));
-    D_801A2790[playernum].unk16 = gPlayer[playernum].unk38;
+    D_801A2790[playernum].unk16 = gPlayer[playernum].ang;
     D_801A2790[playernum].unk24 = 1524;
     D_801B0820 = playernum;
     func_8003F340();

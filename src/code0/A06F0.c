@@ -80,7 +80,7 @@ static s16 D_800E1964[14] = {
 /*801B0804*/ u8 D_801B0804;
 
 /*.text*/
-static void func_800A34CC(s32 x, s32 y, u16 tileid, s16);
+static void func_800A34CC(s32 x, s32 y, u16 tilenum, s16);
 static void func_800A42A4(s16 playernum);
 
 /*8009FAF0*/
@@ -366,7 +366,7 @@ static void func_800A0698(void)
     D_801AE8F4 = gPlayer[D_801B0820].unk4A;
     main_80000C74();
     func_8000F1E0();
-    func_8000C76C();
+    initVertexList();
 
     gSPSetLights2(gpDisplayList++, D_800E18F8);
     c = 0xFF;
@@ -417,7 +417,7 @@ static void func_800A0698(void)
 }
 
 /*800A0BD4*/
-static void drawMapStrInfo(s16 x, s16 y, char *arg2)
+static void _drawMapStrInfo(s16 x, s16 y, char *arg2)
 {
     char buffer[32];
     s16 i, j;
@@ -511,7 +511,7 @@ void drawHud(void)
             a = D_8016A140 * 8;
 
         func_80029238(0x20, 0xFF, 0x20, 0x20, 0xFF, 0x20, a);
-        drawMapStrInfo(25, 140, gpMapStrInfo[gMapNum]);
+        _drawMapStrInfo(25, 140, gpMapStrInfo[gMapNum]);
     }
 
     if (gMapNum == MAP_BASE)
@@ -624,7 +624,7 @@ void drawHud(void)
             func_80029130(D_8012DF04[D_801B0820].r, D_8012DF04[D_801B0820].g, D_8012DF04[D_801B0820].b, 0, 0, 0);
 
             if (D_80106D30[D_801B0820] == 1)
-                drawString(-1, 200, D_8012F6E4[gPlayer[D_801B0820].unk4C].actor);
+                drawString(-1, 200, D_8012F6E4[gPlayer[D_801B0820].skin].actor);
             else if (D_800E16A0[D_801B0820] != 0)
             {
 #if VERSION_US
@@ -969,7 +969,7 @@ void drawHud(void)
                                     temp2 = (gPlayer[D_801B0820].ypos - D_801AE480[D_801B0820]);
                                     temp = getAngle((gPlayer[p].xpos - D_80138610[p]) - (temp),
                                                     (gPlayer[p].ypos - D_801AE480[p]) - temp2);
-                                    f4 = ((((temp - (u16)gPlayer[D_801B0820].unk38) - 0x200) & 0x7FF) * (PI/1024));
+                                    f4 = ((((temp - (u16)gPlayer[D_801B0820].ang) - 0x200) & 0x7FF) * (PI/1024));
                                     k = (cosf(f4) * 100.0f);
                                     n = (sinf(f4) * 100.0f);
                                     func_80029130(D_8012DF04[p].r, D_8012DF04[p].g, D_8012DF04[p].b, 0, 0, 0);
@@ -984,7 +984,7 @@ void drawHud(void)
 
             gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&D_8012BC28), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
             func_8000F1E0();
-            func_8000C76C();
+            initVertexList();
 
             gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_TEX_EDGE2);
 
@@ -1029,7 +1029,7 @@ void drawHud(void)
                     {
                         func_800A0014();
                         func_8000F1E0();
-                        func_8000C76C();
+                        initVertexList();
 
                         gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_TEX_EDGE2);
                         gSPSetLights2(gpDisplayList++, D_800E18D0);
@@ -1057,19 +1057,19 @@ void drawHud(void)
 }
 
 /*800A34CC*/
-static void func_800A34CC(s32 x, s32 y, u16 tileid, s16 arg3)
+static void func_800A34CC(s32 x, s32 y, u16 tilenum, s16 arg3)
 {
     func_8001D128(&x, &y);
     func_80027C18(x,
                   y,
                   (D_80199110 * 3.0f) / (SCREEN_WIDTH / 2.0),
                   (D_801A1980 * 3.0f) / (SCREEN_HEIGHT / 2.0),
-                  getTileNum(tileid),
+                  getTileId(tilenum),
                   arg3);
 }
 
 /*800A359C*/
-static void func_800A359C(s32 x, s32 y, s16 tileid, s16 arg3)
+static void func_800A359C(s32 x, s32 y, s16 tilenum, s16 arg3)
 {
     f32 f1, f2;
 
@@ -1080,7 +1080,7 @@ static void func_800A359C(s32 x, s32 y, s16 tileid, s16 arg3)
                   y,
                   f1,
                   f2,
-                  getTileNum(tileid),
+                  getTileId(tilenum),
                   arg3);
 }
 
@@ -1156,7 +1156,7 @@ void func_800A3688(void)
                     drawNumberString(200, 160, buffer);
                     if (D_8012C470 == 1)
                     {
-                        sprintf(buffer, "%03d", (s16)((gPlayer[D_801B0820].unk38 & 0x7FF) * (45.0/256)));
+                        sprintf(buffer, "%03d", (s16)((gPlayer[D_801B0820].ang & 0x7FF) * (45.0/256)));
                         drawString2(0x98, 0xAA, buffer);
                         k = ((gPlayer[D_801B0820].unk3E & 0x7FF) * (45.0/256));
                         if (k > 180)
@@ -1178,7 +1178,7 @@ void func_800A3688(void)
                                           D_8013F920[ptr->unk99], ptr->unk99);
                 if (hitsprite < 0)
                 {
-                    f1 = (gPlayer[D_801B0820].unk38 * (PI/1024));
+                    f1 = (gPlayer[D_801B0820].ang * (PI/1024));
                     f2 = (gPlayer[D_801B0820].unk3E * (PI/1024));
                     fx = cosf(f1);
                     fy = sinf(f1);
@@ -1207,7 +1207,7 @@ void func_800A3688(void)
                 hitScan(gPlayer[D_801B0820].xpos,
                         gPlayer[D_801B0820].ypos,
                         gPlayer[D_801B0820].zpos + 0x300,
-                        gPlayer[D_801B0820].unk32,
+                        gPlayer[D_801B0820].cursectnum,
                         x,
                         y,
                         z, &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x01000040);
@@ -1246,7 +1246,7 @@ void func_800A3688(void)
                                       (-f7 * D_801A1980) + D_801A2684,
                                       ((D_80199110 * 3.0f) / (SCREEN_WIDTH/2.0)),
                                       ((D_801A1980 * 3.0f) / (SCREEN_HEIGHT/2.0)),
-                                      getTileNum(l), 0);
+                                      getTileId(l), 0);
                     }
                 }
             }

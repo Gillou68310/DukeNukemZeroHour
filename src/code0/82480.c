@@ -559,7 +559,7 @@ static void func_80082BA0(void)
 }
 
 /*800831D8*/
-void func_800831D8(void *arg0, s32 arg1)
+static void _alloCache2(void *arg0, s32 arg1)
 {
     alloCache(arg0, arg1 + 16, &gCacheLock[1]);
 }
@@ -578,16 +578,16 @@ void func_80083200(_119280UnkStruct1 *arg0, s32 arg1)
     ptr2 = D_801CC888;
     ptr3 = D_801CDA98;
     D_801AE52C = 0;
-    func_800831D8(&D_801AC598[arg0->unk0], arg0->unk6 * sizeof(Vtx));
-    func_800831D8(&D_8012C478[arg0->unk0], arg0->unk8 * sizeof(Gfx));
+    _alloCache2(&D_801AC598[arg0->unk0], arg0->vtx_count * sizeof(Vtx));
+    _alloCache2(&D_8012C478[arg0->unk0], arg0->dlist_count * sizeof(Gfx));
     i = arg1 & 0x1000;
     if (i != 0)
     {
         D_80168D18 = 0;
         D_800FE3F4 = 0;
         D_8012FC9C = (code0UnkStruct21 *)D_801CD96C;
-        D_800FF3E0 = &D_8012FC9C[arg0->unk6];
-        func_80085EBC(D_801AC598[arg0->unk0], arg0->unk6, &D_8012C478[arg0->unk0], arg0->unk8, arg1);
+        D_800FF3E0 = &D_8012FC9C[arg0->vtx_count];
+        func_80085EBC(D_801AC598[arg0->unk0], arg0->vtx_count, &D_8012C478[arg0->unk0], arg0->dlist_count, arg1);
         D_8012FD8C = &sp48;
         func_8007EC7C(&sp48);
         D_8012FD8C->unk34 = 0.0f;
@@ -608,7 +608,7 @@ void func_80083200(_119280UnkStruct1 *arg0, s32 arg1)
         arg1 |= 0x2000;
 
     func_800861F4(&sp30, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, arg1 | 0x20,
-                  D_801AC598[arg0->unk0], arg0->unk6, D_8012C478[arg0->unk0], arg0->unk8);
+                  D_801AC598[arg0->unk0], arg0->vtx_count, D_8012C478[arg0->unk0], arg0->dlist_count);
 }
 
 /*80083430*/
@@ -640,16 +640,16 @@ static void func_80083430(s32 arg0, _119280UnkStruct1 *arg1, s32 arg2, s32 arg3,
         ptr1 = D_801CDB18;
         break;
     }
-    allocacheEDL(&D_801AC598[arg1->unk0], arg1->unk6 * sizeof(Vtx));
-    allocacheEDL(&D_8012C478[arg1->unk0], arg1->unk8 * sizeof(Gfx));
+    allocacheEDL(&D_801AC598[arg1->unk0], arg1->vtx_count * sizeof(Vtx));
+    allocacheEDL(&D_8012C478[arg1->unk0], arg1->dlist_count * sizeof(Gfx));
     i = arg2 & 0x1000;
     if (i != 0)
     {
         D_80168D18 = 0;
         D_800FE3F4 = 0;
         D_8012FC9C = (code0UnkStruct21 *)D_801CD96C;
-        D_800FF3E0 = &D_8012FC9C[arg1->unk6];
-        func_80085EBC(D_801AC598[arg1->unk0], arg1->unk6, &D_8012C478[arg1->unk0], arg1->unk8, arg2);
+        D_800FF3E0 = &D_8012FC9C[arg1->vtx_count];
+        func_80085EBC(D_801AC598[arg1->unk0], arg1->vtx_count, &D_8012C478[arg1->unk0], arg1->dlist_count, arg2);
         D_8012FD8C = &sp48;
         func_8007EC7C(&sp48);
         D_8012FD8C->unk34 = 0.0f;
@@ -670,7 +670,7 @@ static void func_80083430(s32 arg0, _119280UnkStruct1 *arg1, s32 arg2, s32 arg3,
         arg2 |= 0x2000;
 
     func_800861F4(&sp30, arg3, arg4, arg5, 0.0f, 1.0f, arg2 | 0x20,
-                  D_801AC598[arg1->unk0], arg1->unk6, D_8012C478[arg1->unk0], arg1->unk8);
+                  D_801AC598[arg1->unk0], arg1->vtx_count, D_8012C478[arg1->unk0], arg1->dlist_count);
 }
 
 /*80083700*/

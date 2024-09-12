@@ -45,9 +45,9 @@ static u8 D_800DCA04[9][3] = {
 /*801B0D34*/ s16 D_801B0D34;
 
 /*.text*/
-static void func_8001A8EC(s16, s16, s32 tileid, s16, u8);
+static void func_8001A8EC(s16, s16, s32 tilenum, s16, u8);
 static void func_8001BFB0(Cloud *);
-static void func_8001C490(s16);
+static void func_8001C490(s16 tilenum);
 
 /*80019BC0*/
 void func_80019BC0(void)
@@ -168,9 +168,9 @@ void func_8001A1A4(void)
             spritenum = D_800FCBA0[i];
             vx = gpSprite[spritenum].x - gGlobalPosX;
             vy = gpSprite[spritenum].y - gGlobalPosY;
-            vz = gpSprite[spritenum].z - D_80199640;
+            vz = gpSprite[spritenum].z - gGlobalPosZ;
 
-            hitScan(gGlobalPosX, gGlobalPosY, D_80199640, D_8012F6F4, vx, vy, vz,
+            hitScan(gGlobalPosX, gGlobalPosY, gGlobalPosZ, D_8012F6F4, vx, vy, vz,
                     &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x10001);
 
             if ((klabs((hitx - gGlobalPosX)) + klabs((hity - gGlobalPosY))) < (klabs(vx) + klabs(vy)) &&
@@ -222,7 +222,7 @@ void func_8001A1A4(void)
                                       fy + D_801A2684,
                                       f6,
                                       f5,
-                                      getTileNum(gpSprite[spritenum].picnum),
+                                      getTileId(gpSprite[spritenum].picnum),
                                       0);
                     }
                 }
@@ -233,7 +233,7 @@ void func_8001A1A4(void)
 }
 
 /*8001A8EC*/
-static void func_8001A8EC(s16 arg0, s16 arg1, s32 tileid, s16 arg3, u8 arg4)
+static void func_8001A8EC(s16 arg0, s16 arg1, s32 tilenum, s16 arg3, u8 arg4)
 {
     f32 f1, f2;
     s32 alpha;
@@ -252,7 +252,7 @@ static void func_8001A8EC(s16 arg0, s16 arg1, s32 tileid, s16 arg3, u8 arg4)
                   f2 + D_801A2684,
                   (arg1 * (D_80199110 / (SCREEN_WIDTH / 2.0))),
                   (arg1 * (D_801A1980 / (SCREEN_HEIGHT / 2.0))),
-                  getTileNum(tileid), 0);
+                  getTileId(tilenum), 0);
 }
 
 /*8001AAEC*/
@@ -273,7 +273,7 @@ static void func_8001AAEC(void)
 
         hitScan(gGlobalPosX,
                 gGlobalPosY,
-                D_80199640,
+                gGlobalPosZ,
                 D_8012F6F4,
                 D_8012F910,
                 D_80197DD8,
@@ -308,7 +308,7 @@ static void func_8001AAEC(void)
     }
     else if (canSee(gGlobalPosX,
         gGlobalPosY,
-        D_80199640,
+        gGlobalPosZ,
         D_8012F6F4,
         D_8012F910,
         D_80197DD8,
@@ -496,7 +496,7 @@ static void func_8001B740(void)
     {
         fx = gGlobalPosX + D_80105714;
         fy = gGlobalPosY + D_8010570C;
-        fz = D_80199640 + D_8013860C;
+        fz = gGlobalPosZ + D_8013860C;
         fx = fx / 4.0;
         fy = fy / 4.0;
         fz = fz / 64.0;
@@ -543,7 +543,7 @@ static void func_8001B740(void)
                 fy *= 2.0f;
                 fx *= 2.0f;
             }
-            func_80027C18(D_8013F954 + D_80168C9C, D_801ACBDC + D_801A2684, fy, fx, getTileNum(D_801AE91C), 0);
+            func_80027C18(D_8013F954 + D_80168C9C, D_801ACBDC + D_801A2684, fy, fx, getTileId(D_801AE91C), 0);
         }
     }
 }
@@ -597,7 +597,7 @@ void drawClouds(void)
         gCloud[1].unk4 &= 0x7FF;
 
         grScale(&mtx2, 8.0f, 8.0f, 0.5f);
-        grTranslate(&mtx1, (gGlobalPosX / 4.0), (gGlobalPosY / 4.0), (D_80199640 / 64.0));
+        grTranslate(&mtx1, (gGlobalPosX / 4.0), (gGlobalPosY / 4.0), (gGlobalPosZ / 64.0));
         grMtxCatL(&mtx2, &mtx1, &gpDynamic->mtx4);
         gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx4), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
         gDPSetAlphaCompare(gpDisplayList++, G_AC_NONE);
@@ -624,7 +624,7 @@ static void func_8001BFB0(Cloud *cloud)
 
     if (cloud->picnum != -1)
     {
-        func_8000C76C();
+        initVertexList();
         func_8000BDB0(cloud->picnum);
         gDPSetFogColor(gpDisplayList++, cloud->fog.r, cloud->fog.g, cloud->fog.b, 0xFF);
 
@@ -699,7 +699,7 @@ static void func_8001BFB0(Cloud *cloud)
 }
 
 /*8001C490*/
-static void func_8001C490(s16 tileid)
+static void func_8001C490(s16 tilenum)
 {
     FogColor *color;
     f32 f1, f2, x1, x2, y1, y2;
@@ -707,18 +707,18 @@ static void func_8001C490(s16 tileid)
 
     color = &gFog[D_801B0820].color[0];
 
-    if ((tileid != -1) && (D_8012C470 < 2) && (D_8012FC40 == 0))
+    if ((tilenum != -1) && (D_8012C470 < 2) && (D_8012FC40 == 0))
     {
         gDPSetRenderMode(gpDisplayList++, G_RM_FOG_PRIM_A, G_RM_AA_XLU_SURF2);
         gDPSetFogColor(gpDisplayList++, color->r, color->g, color->b, D_80199942);
         gDPSetCombineMode(gpDisplayList++, G_CC_MODULATEIDECALA, G_CC_PASS2);
         gDPSetTextureLUT(gpDisplayList++, G_TT_RGBA16);
-        func_8000C76C();
-        D_8012DEFC = 0xFFFF;
+        initVertexList();
+        gLastPicnum = -1;
 
         for (i = 0; i < 16; i++)
         {
-            func_8000C0D0(getTileNum(tileid+i));
+            func_8000C0D0(getTileId(tilenum+i));
             f1 = (360 * i / 16) * (PI / 180);
             f2 = (360 * (i+1) / 16) * (PI / 180);
             x1 = cosf(f1) * 1024.0f;
@@ -812,7 +812,7 @@ void drawNumberString(s16 x, s16 y, char *string)
 {
     f32 f1, f2;
     s32 x_, y_;
-    s16 tileid;
+    s16 tilenum;
     char *ptr;
 
     x_ = x;
@@ -837,14 +837,14 @@ void drawNumberString(s16 x, s16 y, char *string)
         f2 = 11.0f;
         if (*string != ' ')
         {
-            tileid = *string;
-            if (tileid == ':')
-                tileid = 6134;
-            else if (tileid == '-')
-                tileid = 3951;
+            tilenum = *string;
+            if (tilenum == ':')
+                tilenum = 6134;
+            else if (tilenum == '-')
+                tilenum = 3951;
             else
-                tileid += (5682 - '0');
-            func_8001D238(x_, y_, tileid);
+                tilenum += (5682 - '0');
+            func_8001D238(x_, y_, tilenum);
             x_ += f1 * f2;
         }
         else
@@ -857,7 +857,7 @@ void drawString(s16 x, s16 y, char *string)
 {
     f32 f1;
     s32 x_, y_;
-    s16 tileid;
+    s16 tilenum;
     char *ptr;
     s16 i;
 
@@ -916,8 +916,8 @@ void drawString(s16 x, s16 y, char *string)
         }
         else
         {
-            tileid = toupper(*string);
-            switch (tileid)
+            tilenum = toupper(*string);
+            switch (tilenum)
             {
             case '0':
             case '1':
@@ -929,7 +929,7 @@ void drawString(s16 x, s16 y, char *string)
             case '7':
             case '8':
             case '9':
-                tileid += 6117 - '0';
+                tilenum += 6117 - '0';
                 break;
             case 'A':
             case 'B':
@@ -957,42 +957,42 @@ void drawString(s16 x, s16 y, char *string)
             case 'X':
             case 'Y':
             case 'Z':
-                tileid += 6087 - 'A';
+                tilenum += 6087 - 'A';
                 break;
             case '.':
-                tileid = 6127;
+                tilenum = 6127;
                 break;
             case ':':
-                tileid = 6128;
+                tilenum = 6128;
                 break;
             case '\'':
-                tileid = 6129;
+                tilenum = 6129;
                 break;
             case '!':
-                tileid = 6130;
+                tilenum = 6130;
                 break;
             case '?':
-                tileid = 6131;
+                tilenum = 6131;
                 break;
             case ',':
-                tileid = 6132;
+                tilenum = 6132;
                 break;
             case '"':
-                tileid = 6133;
+                tilenum = 6133;
                 break;
             case '-':
-                tileid = 6135;
+                tilenum = 6135;
                 break;
             case '+':
-                tileid = 6136;
+                tilenum = 6136;
                 break;
             default:
-                tileid = -1;
+                tilenum = -1;
                 break;
             }
 
-            if (tileid != -1)
-                func_8001D238(x_, y_, tileid);
+            if (tilenum != -1)
+                func_8001D238(x_, y_, tilenum);
 
             switch (*string)
             {
@@ -1025,7 +1025,7 @@ void drawString2(s16 x, s16 y, char *string)
 {
     f32 f1;
     s32 x_, y_;
-    s16 tileid;
+    s16 tilenum;
     char *ptr;
     s16 i;
 
@@ -1056,8 +1056,8 @@ void drawString2(s16 x, s16 y, char *string)
         }
         else
         {
-            tileid = toupper(*string);
-            switch (tileid)
+            tilenum = toupper(*string);
+            switch (tilenum)
             {
             case '0':
             case '1':
@@ -1069,7 +1069,7 @@ void drawString2(s16 x, s16 y, char *string)
             case '7':
             case '8':
             case '9':
-                tileid += 3856 - '0';
+                tilenum += 3856 - '0';
                 break;
             case 'A':
             case 'B':
@@ -1097,33 +1097,33 @@ void drawString2(s16 x, s16 y, char *string)
             case 'X':
             case 'Y':
             case 'Z':
-                tileid += 3866 - 'A';
+                tilenum += 3866 - 'A';
                 break;
             case '.':
-                tileid = 3896;
+                tilenum = 3896;
                 break;
             case ':':
-                tileid = 3895;
+                tilenum = 3895;
                 break;
             case ',':
-                tileid = 3894;
+                tilenum = 3894;
                 break;
             case ')':
-                tileid = 3893;
+                tilenum = 3893;
                 break;
             case '(':
-                tileid = 3892;
+                tilenum = 3892;
                 break;
             case '\'':
-                tileid = 3982;
+                tilenum = 3982;
                 break;
             default:
-                tileid = -1;
+                tilenum = -1;
                 break;
             }
 
-            if (tileid != -1)
-                func_8001D238(x_, y_, tileid);
+            if (tilenum != -1)
+                func_8001D238(x_, y_, tilenum);
 
             switch (*string)
             {
@@ -1167,7 +1167,7 @@ void func_8001D128(s32 *x, s32 *y)
 }
 
 /*8001D238*/
-void func_8001D238(s32 x, s32 y, u16 tileid)
+void func_8001D238(s32 x, s32 y, u16 tilenum)
 {
     u8 *pTile;
     f32 f1, f2, f3, f4;
@@ -1175,15 +1175,15 @@ void func_8001D238(s32 x, s32 y, u16 tileid)
     s32 dsdx, dtdy;
     s32 width, height;
     s32 i, j, k, l, m, n, o;
-    u16 tilenum;
+    u16 tileid;
 
-    tilenum = getTileNum(tileid);
-    if (gpTileInfo[tilenum].picanm & 0xC0)
-        tilenum += animateOffs(tileid, 0);
+    tileid = getTileId(tilenum);
+    if (gpTileInfo[tileid].picanm & 0xC0)
+        tileid += animateOffs(tilenum, 0);
 
-    if (tilenum != 1)
+    if (tileid != 1)
     {
-        width = gpTileInfo[tilenum].dimx;
+        width = gpTileInfo[tileid].dimx;
         if ((D_8012C470 == 1) || (D_801B0820 == D_8012C470))
             f1 = 1.0f;
         else
@@ -1191,27 +1191,27 @@ void func_8001D238(s32 x, s32 y, u16 tileid)
 
         func_8001D128(&x, &y);
         f2 = SCREEN_HEIGHT/2.0f;
-        f3 = gpTileInfo[tilenum].sizex * f1 * D_80199110;
-        f4 = (gpTileInfo[tilenum].sizey * f1 * D_801A1980);
+        f3 = gpTileInfo[tileid].sizex * f1 * D_80199110;
+        f4 = (gpTileInfo[tileid].sizey * f1 * D_801A1980);
 
         xl = x;
         xh = (xl + (f3 / 160.0f));
         yl = y;
 
-        dsdx = (((gpTileInfo[tilenum].dimx << 10) * (SCREEN_WIDTH/2.0)) / f3);
-        dtdy = (((gpTileInfo[tilenum].dimy << 10) * (SCREEN_HEIGHT/2.0)) / f4);
-        j = ((gpTileInfo[tilenum].dimx * gpTileInfo[tilenum].dimy) + 0xFFF) / 4096;
+        dsdx = (((gpTileInfo[tileid].dimx << 10) * (SCREEN_WIDTH/2.0)) / f3);
+        dtdy = (((gpTileInfo[tileid].dimy << 10) * (SCREEN_HEIGHT/2.0)) / f4);
+        j = ((gpTileInfo[tileid].dimx * gpTileInfo[tileid].dimy) + 0xFFF) / 4096;
 
-        pTile = loadTile(tilenum) + 0x20;
-        k = gpTileInfo[tilenum].dimy / j;
-        l = gpTileInfo[tilenum].dimy;
+        pTile = loadTile(tileid) + 0x20;
+        k = gpTileInfo[tileid].dimy / j;
+        l = gpTileInfo[tileid].dimy;
 
-        m = (((gpTileInfo[tilenum].sizey * 4) * f1) * D_801A1980) / f2;
+        m = (((gpTileInfo[tileid].sizey * 4) * f1) * D_801A1980) / f2;
         n = m / j;
         o = m;
 
         yl = yl * 4;
-        gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(tilenum));
+        gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(tileid));
 
         for (i = 0; i < j; i++)
         {
@@ -1234,7 +1234,7 @@ void func_8001D238(s32 x, s32 y, u16 tileid)
                                                         G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
             }
 
-            pTile += (gpTileInfo[tilenum].dimx * height / 8) * 4;
+            pTile += (gpTileInfo[tileid].dimx * height / 8) * 4;
             height = MIN(o, n);
             o -= height;
 

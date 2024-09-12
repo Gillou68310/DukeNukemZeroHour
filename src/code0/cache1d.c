@@ -26,7 +26,7 @@ typedef struct
 
 /*.comm*/
 /*800FF540*/ cactype gCache[MAXCACHEOBJECTS] ALIGNED(16);
-/*8012F920*/ s32 gLockRecip[200] ALIGNED(8);
+/*8012F920*/ s32 _lockRecip[200] ALIGNED(8);
 
 /*.text*/
 static void reportAndExit(char *errormessage);
@@ -45,8 +45,8 @@ void initCache(u8 *dacachestart, s32 dacachesize)
         gCache[i].leng = 0;
     }
 
-    for (i = 1; i < ARRAY_COUNT(gLockRecip); i++)
-        gLockRecip[i] = (1 << 28) / (ARRAY_COUNT(gLockRecip) - i);
+    for (i = 1; i < ARRAY_COUNT(_lockRecip); i++)
+        _lockRecip[i] = (1 << 28) / (ARRAY_COUNT(_lockRecip) - i);
 
     _cachestart = dacachestart;
     _cachesize = dacachesize;
@@ -88,7 +88,7 @@ static s8 _alloCache(u8 **newhandle, u32 newbytes, u8 *newlockptr)
         {
             if (*gCache[zz].lock == 0) continue;
             if (*gCache[zz].lock >= 100) { daval = 0x7fffffff; break; }
-            daval += mulscale32((s64)(gCache[zz].leng+65536), (s64)(gLockRecip[*gCache[zz].lock]));
+            daval += mulscale32((s64)(gCache[zz].leng+65536), (s64)(_lockRecip[*gCache[zz].lock]));
             if (daval >= bestval) break;
         }
         if (daval < bestval)

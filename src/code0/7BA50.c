@@ -123,7 +123,7 @@ void func_8007B4CC(void)
     for (i = 0; i < ARRAY_COUNT(D_800FCBF0); i++)
     {
         unk0 = D_800FCBF0[i].unk0;
-        D_800FCBF0[i].unk0 &= 0xFD;
+        D_800FCBF0[i].unk0 &= ~2;
         if (unk0 & 1)
         {
             D_800FCBF0[i].unk28--;
@@ -167,7 +167,7 @@ static void func_8007B64C(s32 arg0)
 
     k = 0;
     gDPSetCombineMode(gpDisplayList++, G_CC_SHADE, G_CC_PASS2);
-    func_8000C76C();
+    initVertexList();
     temp = arg0; /*FAKEMATCH?*/
     for (i = 127; i >= 0; i--)
     {
@@ -217,7 +217,7 @@ static void func_8007B930(s32 arg0)
     s32 temp;
 
     gDPSetTextureLUT(gpDisplayList++, G_TT_NONE);
-    func_8000C76C();
+    initVertexList();
     func_8000BDB0((animateOffs(5907, 0) + 5907));
 
     gDPSetCombineLERP(gpDisplayList++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0,
@@ -321,6 +321,6 @@ void func_8007BE80(void)
     }
     for (i = 0; i < ARRAY_COUNT(D_800FCBF0); i++)
     {
-        D_800FCBF0[i].unk0 &= 0xFD;
+        D_800FCBF0[i].unk0 &= ~2;
     }
 }

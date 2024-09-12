@@ -41,8 +41,8 @@ typedef struct {
 
 /*.comm*/
 /*800FE404*/ s16 D_800FE404;
-/*80105544*/ u32 gDisplayListRemainingSize;
-/*80105708*/ u8 *gpMapBuffer;
+/*80105544*/ u32 _displayListRemainingSize;
+/*80105708*/ u8 *_pMapBuffer;
 /*80106D38*/ u32 gVertexN64Size;
 /*80107910*/ s16 gTilemap[MAXTILES] ALIGNED(16);
 /*80117D48*/ OSTime D_80117D48;
@@ -54,16 +54,16 @@ typedef struct {
 /*80117E48*/ OSTime D_80117E48;
 /*80117E50*/ OSTime D_80117E50;
 /*80119A58*/ u32 gDisplayListSize;
-/*8012FDA0*/ u8 gTileBuffer[MAXTILESIZE] ALIGNED(16);
+/*8012FDA0*/ u8 _tileBuffer[MAXTILESIZE] ALIGNED(16);
 /*801385F2*/ u16 D_801385F2; /*perspNorm*/
-/*801385F4*/ s16 D_801385F4;
+/*801385F4*/ s16 _floorCeilingVertexCounter;
 /*80138694*/ s16 D_80138694;
 /*80138798*/ Color16 D_80138798[5] ALIGNED(8); /*MAXPLAYERS?*/
 /*8013F930*/ Color16 D_8013F930[MAXPLAYERS] ALIGNED(8);
 /*80169580*/ u8 D_80169580[TILENUM] ALIGNED(16);
 /*8016A158*/ s32 D_8016A158;
 /*80199118*/ s16 D_80199118;
-/*80199554*/ s32 D_80199554;
+/*80199554*/ s32 _floorCeilingVertexCount;
 /*80199946*/ s16 D_80199946;
 /*80199954*/ u8 _wallCalcRes;
 /*8019996C*/ s32 D_8019996C;
@@ -97,25 +97,25 @@ static s32 _unused3 = 0;
 /*800BD748*/ s16 D_800BD748 = 0;
 /*800BD74A*/ u8 D_800BD74A = 0;
 /*800BD74B*/ static u8 D_800BD74B = 0;
-/*800BD74C*/ static u8 *_tilemap = gTileBuffer;
+/*800BD74C*/ static u8 *_tilemap = _tileBuffer;
 /*800BD750*/ static u32 D_800BD750 = 0;
 
 /*.text*/
-static void initTiles(void);
-static u8 isDisplayListFull(void);
-static void floorVtxToN64(s32 sectnum);
-static void floorVtxToN64Z(s32 sectnum, s32 z);
-static void ceilingVtxToN64(s32 sectnum);
-static void decompressMap(void);
-static void func_80009A14(u8 playernum);
+static void _initTiles(void);
+static u8 _isDisplayListFull(void);
+static void _floorVtxToN64(s32 sectnum);
+static void _floorVtxToN64Z(s32 sectnum, s32 z);
+static void _ceilingVtxToN64(s32 sectnum);
+static void _decompressMap(void);
+static void func_80009A14(u8 playernum); /*drawRoom?*/
 static void func_8000A938(u16 wallnum);
-static void drawWall(u16 wallnum);
-static void func_8000B9C0(s16 tileid);
+static void _drawWall(u16 wallnum);
+static void func_8000B9C0(s16 tilenum);
 static s32 func_8000CC54(s32 wallnum);
-static void func_8000E56C(void);
+static void _setupMatrix(void);
 static void func_8000EBF0(u8 playernum, u8);
-static void drawWalls(void);
-static void drawFloorCeiling(void);
+static void _drawWalls(void);
+static void _drawFloorCeiling(void);
 static void func_8000A184(void);
 static void func_8000A634(void);
 static void func_8000C8EC(void);
@@ -136,13 +136,13 @@ void loadMap(s32 mapnum)
     alloCache(&gpWall, gNumWalls * sizeof(WallType), &_wallsLock);
     alloCache(&gpSprite, MAXSPRITES * sizeof(SpriteType), &_spritesLock);
     Bmemset(gpSprite, 0, MAXSPRITES * sizeof(SpriteType));
-    func_80004C84();
+    moveSectReset();
     gMapNum = mapnum;
     Bmemset(&D_801A1958, 0, sizeof(D_801A1958));
-    alloCache(&gpMapBuffer, gpMapInfo[mapnum].rom_end - gpMapInfo[mapnum].rom_start, &_mapLock);
-    readRom(gpMapBuffer, gpMapInfo[mapnum].rom_start, gpMapInfo[mapnum].rom_end - gpMapInfo[mapnum].rom_start);
+    alloCache(&_pMapBuffer, gpMapInfo[mapnum].rom_end - gpMapInfo[mapnum].rom_start, &_mapLock);
+    readRom(_pMapBuffer, gpMapInfo[mapnum].rom_start, gpMapInfo[mapnum].rom_end - gpMapInfo[mapnum].rom_start);
     initSpriteLists();
-    decompressMap();
+    _decompressMap();
     ptr = D_8013B2D0;
     for (i = 0; i < gNumSprites; i++)
     {
@@ -187,7 +187,7 @@ void loadMap(s32 mapnum)
 }
 
 /*80008B88*/
-static void decompressMap(void)
+static void _decompressMap(void)
 {
     s32 i;
     s32 count;
@@ -198,7 +198,7 @@ static void decompressMap(void)
     gMapYpos = gpMapInfo[gMapNum].ypos;
     gMapZpos = gpMapInfo[gMapNum].zpos;
 
-    addr = (u8 *)(gpMapInfo[gMapNum].sector_offset + (intptr_t)gpMapBuffer);
+    addr = (u8 *)(gpMapInfo[gMapNum].sector_offset + (intptr_t)_pMapBuffer);
 
 #ifdef NON_MATCHING
     if (decompressEDL(addr, gpSector) != 0)
@@ -207,7 +207,7 @@ static void decompressMap(void)
     decompressEDL(addr, gpSector);
 #endif
 
-    addr = (u8 *)(gpMapInfo[gMapNum].wall_offset + (intptr_t)gpMapBuffer);
+    addr = (u8 *)(gpMapInfo[gMapNum].wall_offset + (intptr_t)_pMapBuffer);
 #ifdef NON_MATCHING
     if (decompressEDL(addr, gpWall) != 0)
         Bmemcpy(gpWall, addr, gNumWalls * sizeof(WallType));
@@ -215,7 +215,7 @@ static void decompressMap(void)
     decompressEDL(addr, gpWall);
 #endif
 
-    addr = (u8 *)(gpMapInfo[gMapNum].sprite_offset + (intptr_t)gpMapBuffer);
+    addr = (u8 *)(gpMapInfo[gMapNum].sprite_offset + (intptr_t)_pMapBuffer);
 #ifdef NON_MATCHING
     if (decompressEDL(addr, gpSprite) != 0)
         Bmemcpy(gpSprite, addr, gNumSprites * sizeof(SpriteType));
@@ -231,26 +231,26 @@ static void decompressMap(void)
     }
 
     count *= 3;
-    alloCache(&gpVertex, (count * sizeof(Vertex)), &_vertexLock);
+    alloCache(&gpSectorVertex, (count * sizeof(Vertex)), &_vertexLock);
 #ifdef NON_MATCHING
-    if (decompressEDL(&gpMapBuffer[0], gpVertex) != 0)
-        Bmemcpy(gpVertex, &gpMapBuffer[0], count * sizeof(Vertex));
+    if (decompressEDL(&_pMapBuffer[0], gpSectorVertex) != 0)
+        Bmemcpy(gpSectorVertex, &_pMapBuffer[0], count * sizeof(Vertex));
 #else
-    decompressEDL(&gpMapBuffer[0], gpVertex);
+    decompressEDL(&_pMapBuffer[0], gpSectorVertex);
 #endif
 
-    suckCache(&gpMapBuffer);
-    initTiles();
+    suckCache(&_pMapBuffer);
+    _initTiles();
 
     for (i = 0; i < MAXPLAYERS; i++)
     {
         gPlayer[i].xpos = (2.0f * gMapXpos);
         gPlayer[i].ypos = (2.0f * gMapYpos);
         gPlayer[i].zpos = (32.0f * gMapZpos);
-        updateSector(gPlayer[i].xpos, gPlayer[i].ypos, &gPlayer[i].unk32);
-        floorz = getFlorzOfSlope(gPlayer[i].unk32, gPlayer[i].xpos, gPlayer[i].ypos);
+        updateSector(gPlayer[i].xpos, gPlayer[i].ypos, &gPlayer[i].cursectnum);
+        floorz = getFlorzOfSlope(gPlayer[i].cursectnum, gPlayer[i].xpos, gPlayer[i].ypos);
         gPlayer[i].zpos = floorz - 0x3900;
-        gPlayer[i].unk38 = gpMapInfo[gMapNum].unk2C;
+        gPlayer[i].ang = gpMapInfo[gMapNum].ang;
     }
 }
 
@@ -297,7 +297,7 @@ void func_80008E3C(void)
             drawString(-1, 112, buffer);
     }
 
-    if (!isDisplayListFull() && gNotPlayback)
+    if (!_isDisplayListFull() && gNotPlayback)
     {
         func_8000A070();
         debugMenu();
@@ -341,7 +341,7 @@ s32 getDisplayListVertexUsagePercentage(void)
 }
 
 /*80009314*/
-static void func_80009314(u8 playernum)
+static void _setFog(u8 playernum)
 {
     Fog *fog;
     s16 i;
@@ -379,7 +379,7 @@ static void func_80009314(u8 playernum)
 
     if ((gPlayer[playernum].unk55 == 0) && (gCheatWeatherConfig == CONFIG_OFF))
     {
-        i = gHeadSpriteSect[gPlayer[playernum].unk32];
+        i = gHeadSpriteSect[gPlayer[playernum].cursectnum];
         while (i != -1)
         {
             if (gpSprite[i].picnum == 14)
@@ -441,20 +441,20 @@ static void func_80009314(u8 playernum)
 }
 
 /*80009998*/
-static s32 getDisplayListRemainingSize(void)
+static s32 _getDisplayListRemainingSize(void)
 {
     return gDisplayListMaxSize - ((uintptr_t)gpDisplayList - (uintptr_t)gDisplayList[gGfxTaskIndex]) / sizeof(Gfx);
 }
 
 /*800099D0*/
-static u8 isDisplayListFull(void)
+static u8 _isDisplayListFull(void)
 {
     s32 size;
 
     size = ((uintptr_t)gpDisplayList - (uintptr_t)gDisplayList[gGfxTaskIndex]) / sizeof(Gfx);
     size = gDisplayListMaxSize - size;
-    gDisplayListRemainingSize = size;
-    return gDisplayListRemainingSize < 2048;
+    _displayListRemainingSize = size;
+    return _displayListRemainingSize < 2048;
 }
 
 /*80009A14*/
@@ -462,17 +462,17 @@ static void func_80009A14(u8 playernum)
 {
     u8 cond;
 
-    updateSector(gPlayer[playernum].xpos, gPlayer[playernum].ypos, &gPlayer[playernum].unk32);
+    updateSector(gPlayer[playernum].xpos, gPlayer[playernum].ypos, &gPlayer[playernum].cursectnum);
     func_8003DACC();
-    func_8000E56C();
+    _setupMatrix();
     func_80011180();
     D_80117D48 = osGetTime();
-    scanSectors(gGlobalPosX, gGlobalPosY, D_80199640, D_801AEA10, D_8012F6F4);
+    scanSectors(gGlobalPosX, gGlobalPosY, gGlobalPosZ, gGlobalAng, D_8012F6F4);
     D_80117E38 = osGetTime();
     gDPPipeSync(gpDisplayList++);
     gSPDisplayList(gpDisplayList++, D_01001900);
     drawSky();
-    func_8000C76C();
+    initVertexList();
     gSPDisplayList(gpDisplayList++, D_01001900);
     drawClouds();
     grTranslate(&gpDynamic->mtx6, 0.0f, 0.0f, 0.0f);
@@ -481,65 +481,65 @@ static void func_80009A14(u8 playernum)
     gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx8), G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
     gSPDisplayList(gpDisplayList++, D_01001900);
 
-    func_80009314(playernum);
+    _setFog(playernum);
     gSortSpritesCnt = 0;
-    D_8012DEFC = 0xFFFF;
+    gLastPicnum = -1;
     D_80117D50 = osGetTime();
     func_8000E04C();
     D_80117E40 = osGetTime();
-    func_8000C76C();
+    initVertexList();
     D_80117D58 = osGetTime();
     D_8019996C = 0;
-    drawWalls();
+    _drawWalls();
     D_80117E48 = osGetTime();
-    func_8000C76C();
+    initVertexList();
     D_80117D60 = osGetTime();
-    drawFloorCeiling();
+    _drawFloorCeiling();
     D_80117E50 = osGetTime();
 
-    if (isDisplayListFull())
+    if (_isDisplayListFull())
         return;
 
-    func_8000C76C();
+    initVertexList();
 
     gSPClearGeometryMode(gpDisplayList++, G_CULL_BACK);
 
-    func_80023A10();
+    setupDrawMask();
     func_8000A184();
-    if (isDisplayListFull())
+    if (_isDisplayListFull())
         return;
 
-    func_8000C76C();
+    initVertexList();
     D_800BD788 = 1;
     func_80011DA8();
     D_800BD788 = 0;
 
     gSPTexture(gpDisplayList++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON);
 
-    if (isDisplayListFull())
+    if (_isDisplayListFull())
         return;
 
-    func_8000C76C();
+    initVertexList();
     func_8000A634();
 
-    if (isDisplayListFull())
+    if (_isDisplayListFull())
         return;
 
-    func_8000C76C();
+    initVertexList();
     func_8000C8EC();
 
-    if (isDisplayListFull())
+    if (_isDisplayListFull())
         return;
 
     func_8007BE80();
     func_80086A24();
 
-    if (isDisplayListFull())
+    if (_isDisplayListFull())
         return;
 
     func_8001DE9C();
 
-    if (isDisplayListFull())
+    if (_isDisplayListFull())
         return;
 
     func_8001EB2C();
@@ -551,20 +551,20 @@ static void func_80009A14(u8 playernum)
     if (gMapNum == MAP_NUCLEAR_WINTER)
         func_80094F7C();
 
-    if (isDisplayListFull())
+    if (_isDisplayListFull())
         return;
 
-    func_8000C76C();
+    initVertexList();
     func_80012174();
 
     gSPTexture(gpDisplayList++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON);
 
-    if (isDisplayListFull())
+    if (_isDisplayListFull())
         return;
 
     func_80012318();
 
-    if (isDisplayListFull())
+    if (_isDisplayListFull())
         return;
 
 
@@ -594,11 +594,11 @@ static void func_80009A14(u8 playernum)
 
     func_8000EBF0(playernum, cond);
 
-    if (isDisplayListFull())
+    if (_isDisplayListFull())
         return;
 
     drawHud();
-    D_8016A158 = getDisplayListRemainingSize();
+    D_8016A158 = _getDisplayListRemainingSize();
 }
 
 /*8000A070*/
@@ -655,7 +655,7 @@ static void func_8000A184(void)
                 m = klabs((gGlobalPosX - gpSprite[j].x));
                 l = klabs((gGlobalPosY - gpSprite[j].y));
                 m = MAX(m, l) + (MIN(m, l) >> 2) + (MIN(m, l) >> 3);
-                func_80023C04(j, gpSprite[j].sectnum, m);
+                drawSprite(j, gpSprite[j].sectnum, m);
             }
             j = gNextSpriteStat[j];
         }
@@ -710,7 +710,7 @@ static void func_8000A184(void)
                                         m = klabs((gGlobalPosX - gpSprite[j].x));
                                         l = klabs((gGlobalPosY - gpSprite[j].y));
                                         m = MAX(m, l) + (MIN(m, l) >> 2) + (MIN(m, l) >> 3);
-                                        func_80023C04(j, gVisibleSectors[k], m);
+                                        drawSprite(j, gVisibleSectors[k], m);
 
                                     }
                                     else if (gpSprite[j].statnum == 109)
@@ -749,9 +749,9 @@ static void func_8000A634(void)
 {
     s32 i;
     s16 wallnum;
-    s16 tileid;
+    s16 tilenum;
 
-    func_80023A10();
+    setupDrawMask();
     func_8000A174(0, gSortSpritesCnt - 1);
     D_800BD74B = 0;
 
@@ -760,8 +760,8 @@ static void func_8000A634(void)
         if (gMaskDrawList[i].index & 0x8000)
         {
             wallnum = gMaskDrawList[i].index & 0x7FFF;
-            tileid = gpWall[wallnum].overpicnum;
-            if ((tileid == 5300) || (tileid == 6080))
+            tilenum = gpWall[wallnum].overpicnum;
+            if ((tilenum == 5300) || (tilenum == 6080))
             {
                 if (D_800BD74B == 0)
                 {
@@ -769,13 +769,13 @@ static void func_8000A634(void)
                     gSPSetGeometryMode(gpDisplayList++, G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR);
                     gSPTexture(gpDisplayList++, 0x7FC0, 0x7FC0, 0, G_TX_RENDERTILE, G_ON);
                 }
-                func_8000C76C();
+                initVertexList();
                 func_8000DBDC(gpWall[wallnum].unk21, gpWall[wallnum].unk1C);
                 setLight1Ligth2Color(0, 0, 0, D_8016A148, D_800FE410, D_80138680);
             }
             else if (D_800BD74B == 1)
             {
-                func_8000C76C();
+                initVertexList();
                 D_800BD74B = 0;
                 gSPClearGeometryMode(gpDisplayList++, G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR);
                 gSPTexture(gpDisplayList++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON);
@@ -786,17 +786,17 @@ static void func_8000A634(void)
         {
             if (D_800BD74B == 1)
             {
-                func_8000C76C();
+                initVertexList();
                 D_800BD74B = 0;
                 gSPClearGeometryMode(gpDisplayList++, G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR);
                 gSPTexture(gpDisplayList++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON);
             }
-            func_80023C04(gMaskDrawList[i].index, gMaskDrawList[i].sectnum, gMaskDrawList[i].dist);
+            drawSprite(gMaskDrawList[i].index, gMaskDrawList[i].sectnum, gMaskDrawList[i].dist);
         }
     }
     if (D_800BD74B == 1)
     {
-        func_8000C76C();
+        initVertexList();
         D_800BD74B = 0;
         gSPClearGeometryMode(gpDisplayList++, G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR);
         gSPTexture(gpDisplayList++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON);
@@ -806,10 +806,10 @@ static void func_8000A634(void)
 /*8000A938*/
 static void func_8000A938(u16 wallnum)
 {
-    u16 tilenum;
+    u16 tileid;
 
-    tilenum = getTileNum(gpWall[wallnum].overpicnum);
-    if (tilenum == 1)
+    tileid = getTileId(gpWall[wallnum].overpicnum);
+    if (tileid == 1)
         return;
 
     if (D_801A2688 != 0)
@@ -830,26 +830,26 @@ static void func_8000A938(u16 wallnum)
     drawMaskWall(wallnum);
     func_8000CC54(wallnum);
 
-    if (gpTileInfo[tilenum].picanm&192)
-        tilenum += animateOffs(gpWall[wallnum].overpicnum, 0);
+    if (gpTileInfo[tileid].picanm&192)
+        tileid += animateOffs(gpWall[wallnum].overpicnum, 0);
 
-    gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(tilenum));
-    gDPLoadTextureBlock_4b(gpDisplayList++, loadTile(tilenum)+32, G_IM_FMT_CI,
-                           gpTileInfo[tilenum].dimx, gpTileInfo[tilenum].dimy, 0, 0, 0,
-                           tileMasks(tilenum), tileMaskt(tilenum), 0, 0);
+    gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(tileid));
+    gDPLoadTextureBlock_4b(gpDisplayList++, loadTile(tileid)+32, G_IM_FMT_CI,
+                           gpTileInfo[tileid].dimx, gpTileInfo[tileid].dimy, 0, 0, 0,
+                           tileMasks(tileid), tileMaskt(tileid), 0, 0);
 
 
     D_801AC9EC++;
     gSP2Triangles(gpDisplayList++, gVertexBufferIndex, gVertexBufferIndex+1, gVertexBufferIndex+2, gVertexBufferIndex,
                                    gVertexBufferIndex, gVertexBufferIndex+2, gVertexBufferIndex+3, gVertexBufferIndex);
 
-    D_8012DEFC = -1;
+    gLastPicnum = -1;
     gVertexBufferIndex += 4;
     gVertexNumber -= 4;
 };
 
 /*8000AEE0*/
-static void drawWall(u16 wallnum)
+static void _drawWall(u16 wallnum)
 {
     VertexC *wall;
     s16 sectnum, w;
@@ -964,7 +964,7 @@ static void drawWall(u16 wallnum)
 }
 
 /*8000B570*/
-void func_8000B570(s16 arg0)
+void drawTriangles(s16 arg0)
 {
     s16 i;
 
@@ -1028,82 +1028,82 @@ void func_8000B830(s16 arg0)
 }
 
 /*8000B9C0*/
-static void func_8000B9C0(s16 tileid)
+static void func_8000B9C0(s16 tilenum)
 {
-    s16 tileid_;
+    s16 tilenum_;
 
     if (gCheatFlatShadingConfig != CONFIG_OFF)
-        tileid = 5948;
+        tilenum = 5948;
 
-    tileid_ = tileid;
-    if (D_8012DEFC == tileid)
+    tilenum_ = tilenum;
+    if (gLastPicnum == tilenum)
         return;
 
-    tileid = getTileNum(tileid);
-    if (gpTileInfo[tileid].picanm & 0xC0)
-        tileid += animateOffs(tileid_, 0);
+    tilenum = getTileId(tilenum);
+    if (gpTileInfo[tilenum].picanm&192)
+        tilenum += animateOffs(tilenum_, 0);
 
-    gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(tileid));
-    gDPLoadTextureBlock_4b(gpDisplayList++, loadTile(tileid)+32, G_IM_FMT_CI,
-                           gpTileInfo[tileid].dimx, gpTileInfo[tileid].dimy, 0, 0, 0,
-                           tileMasks(tileid), tileMaskt(tileid), 0, 0);
+    gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(tilenum));
+    gDPLoadTextureBlock_4b(gpDisplayList++, loadTile(tilenum)+32, G_IM_FMT_CI,
+                           gpTileInfo[tilenum].dimx, gpTileInfo[tilenum].dimy, 0, 0, 0,
+                           tileMasks(tilenum), tileMaskt(tilenum), 0, 0);
 
-    D_8012DEFC = tileid_;
+    gLastPicnum = tilenum_;
     D_801AC9EC++;
 }
 
 
 /*8000BDB0*/
-void func_8000BDB0(s16 tileid)
+void func_8000BDB0(s16 tilenum)
 {
-    s16 tilenum;
+    s16 tileid;
 
-    if (D_8012DEFC == tileid)
+    if (gLastPicnum == tilenum)
         return;
 
-    tilenum = getTileNum(tileid);
-    if (gpTileInfo[tilenum].picanm&192)
-        tilenum += animateOffs(tileid, 0);
+    tileid = getTileId(tilenum);
+    if (gpTileInfo[tileid].picanm&192)
+        tileid += animateOffs(tilenum, 0);
 
-    gDPLoadTextureBlock_4b(gpDisplayList++, loadTile(tilenum)+32, G_IM_FMT_I,
-                           gpTileInfo[tilenum].dimx, gpTileInfo[tilenum].dimy, 0, 0, 0,
-                           tileMasks(tilenum), tileMaskt(tilenum), 0, 0);
+    gDPLoadTextureBlock_4b(gpDisplayList++, loadTile(tileid)+32, G_IM_FMT_I,
+                           gpTileInfo[tileid].dimx, gpTileInfo[tileid].dimy, 0, 0, 0,
+                           tileMasks(tileid), tileMaskt(tileid), 0, 0);
 
-    D_8012DEFC = tileid;
+    gLastPicnum = tilenum;
     D_801AC9EC++;
 }
 
 /*8000C0D0*/
-void func_8000C0D0(s16 tilenum)
+void func_8000C0D0(s16 tileid)
 {
-    if (tilenum != D_8012DEFC)
+    if (tileid != gLastPicnum)
     {
-        gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(tilenum));
-        gDPLoadTextureBlock_4b(gpDisplayList++, loadTile(tilenum)+32, G_IM_FMT_CI,
-                               gpTileInfo[tilenum].dimx, gpTileInfo[tilenum].dimy, 0,
+        gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(tileid));
+        gDPLoadTextureBlock_4b(gpDisplayList++, loadTile(tileid)+32, G_IM_FMT_CI,
+                               gpTileInfo[tileid].dimx, gpTileInfo[tileid].dimy, 0,
                                G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP,
                                0, 0, 0, 0);
-        D_8012DEFC = tilenum;
+        gLastPicnum = tileid;
         D_801AC9EC++;
     }
 }
 
 /*8000C3E4*/
-void func_8000C3E4(s16 tilenum)
+void func_8000C3E4(s16 tileid)
 {
-    if (tilenum != D_8012DEFC)
+    if (tileid != gLastPicnum)
     {
-        gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(tilenum));
-        gDPLoadTextureBlock_4b(gpDisplayList++, loadTile(tilenum)+32, G_IM_FMT_CI,
-                               gpTileInfo[tilenum].dimx, gpTileInfo[tilenum].dimy, 0, 0, 0,
-                               tileMasks(tilenum), tileMaskt(tilenum), 0, 0);
-        D_8012DEFC = tilenum;
+        gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(tileid));
+        gDPLoadTextureBlock_4b(gpDisplayList++, loadTile(tileid)+32, G_IM_FMT_CI,
+                               gpTileInfo[tileid].dimx, gpTileInfo[tileid].dimy, 0, 0, 0,
+                               tileMasks(tileid), tileMaskt(tileid), 0, 0);
+        gLastPicnum = tileid;
         D_801AC9EC++;
     }
 }
 
 /*8000C76C*/
-void func_8000C76C(void)
+void initVertexList(void)
 {
     D_801AC9EC = 0;
     gVertexNumber = 0;
@@ -1113,16 +1113,16 @@ void func_8000C76C(void)
 }
 
 /*8000C7A4*/
-static void drawWalls(void)
+static void _drawWalls(void)
 {
     s32 i;
     u16 wallnum;
 
-    func_8000C76C();
+    initVertexList();
     for (i = 0; i < gDrawWallCnt; i++)
     {
         wallnum = gDrawWallList[i];
-        drawWall(wallnum);
+        _drawWall(wallnum);
         if ((D_80138694 + D_800FE404 + D_801C0D6C) != 0)
         {
             D_8019996C++;
@@ -1145,7 +1145,7 @@ static void func_8000C8EC(void)
     s32 i;
     s32 spriteIndex;
 
-    D_8012DEFC = -1;
+    gLastPicnum = -1;
     gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_XLU_SURF2);
     gDPSetCombineLERP(gpDisplayList++, TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT,
                                        0, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
@@ -1157,16 +1157,16 @@ static void func_8000C8EC(void)
         spriteIndex = D_801A19A0[i];
         if (gpSector[gpSprite[spriteIndex].sectnum].floorvtxnum != 0)
         {
-            floorVtxToN64Z(gpSprite[spriteIndex].sectnum, gpSprite[spriteIndex].z / 32);
+            _floorVtxToN64Z(gpSprite[spriteIndex].sectnum, gpSprite[spriteIndex].z / 32);
             gDPSetEnvColor(gpDisplayList++, 0xFF, 0xFF, 0xFF, gpSprite[spriteIndex].unk25);
             func_8000B9C0(gpSprite[spriteIndex].lotag);
-            func_8000B570(D_80199554);
+            drawTriangles(_floorCeilingVertexCount);
         }
     }
 }
 
 /*8000CA94*/
-static void drawFloorCeiling(void)
+static void _drawFloorCeiling(void)
 {
     s32 i;
     u16 sectnum;
@@ -1181,9 +1181,9 @@ static void drawFloorCeiling(void)
                 func_80004A3C(sectnum);
                 D_800DF2F4[sectnum]--;
             }
-            floorVtxToN64(sectnum);
+            _floorVtxToN64(sectnum);
             func_8000B9C0(gpSector[sectnum].floorpicnum);
-            func_8000B570(D_80199554);
+            drawTriangles(_floorCeilingVertexCount);
         }
     }
 
@@ -1197,9 +1197,9 @@ static void drawFloorCeiling(void)
                 func_80004B60(sectnum);
                 D_800DF2F4[sectnum] -= 2;
             }
-            ceilingVtxToN64(sectnum);
+            _ceilingVtxToN64(sectnum);
             func_8000B9C0(gpSector[sectnum].ceilingpicnum);
-            func_8000B570(D_80199554);
+            drawTriangles(_floorCeilingVertexCount);
         }
     }
 }
@@ -1324,14 +1324,14 @@ static s32 func_8000CC54(s32 wallnum)
 }
 
 /*8000D22C*/
-static void floorVtxToN64(s32 sectnum)
+static void _floorVtxToN64(s32 sectnum)
 {
     s32 i;
     Vertex *vtx;
 
-    D_80199554 = 0;
-    D_801385F4 = 0;
-    vtx = &gpVertex[gpSector[sectnum].floorvtxptr];
+    _floorCeilingVertexCount = 0;
+    _floorCeilingVertexCounter = 0;
+    vtx = &gpSectorVertex[gpSector[sectnum].floorvtxptr];
     func_8000DBDC(gpSector[sectnum].unk27, gpSector[sectnum].unk26);
 
     for (i = 0; i < gpSector[sectnum].floorvtxnum; i++)
@@ -1370,20 +1370,20 @@ static void floorVtxToN64(s32 sectnum)
         vtx++;
         gpVertexN64++;
 
-        D_801385F4++;
+        _floorCeilingVertexCounter++;
     }
-    D_80199554 = D_801385F4;
+    _floorCeilingVertexCount = _floorCeilingVertexCounter;
 }
 
 /*8000D574*/
-static void floorVtxToN64Z(s32 sectnum, s32 z)
+static void _floorVtxToN64Z(s32 sectnum, s32 z)
 {
     s32 i;
     Vertex *vtx;
 
-    D_80199554 = 0;
-    D_801385F4 = 0;
-    vtx = &gpVertex[gpSector[sectnum].floorvtxptr];
+    _floorCeilingVertexCount = 0;
+    _floorCeilingVertexCounter = 0;
+    vtx = &gpSectorVertex[gpSector[sectnum].floorvtxptr];
     func_8000DBDC(gpSector[sectnum].unk27, gpSector[sectnum].unk26);
 
     for (i = 0; i < gpSector[sectnum].floorvtxnum; i++)
@@ -1419,20 +1419,20 @@ static void floorVtxToN64Z(s32 sectnum, s32 z)
         vtx++;
         gpVertexN64++;
 
-        D_801385F4++;
+        _floorCeilingVertexCounter++;
     }
-    D_80199554 = D_801385F4;
+    _floorCeilingVertexCount = _floorCeilingVertexCounter;
 }
 
 /*8000D894*/
-static void ceilingVtxToN64(s32 sectnum)
+static void _ceilingVtxToN64(s32 sectnum)
 {
     s32 i;
     Vertex *vtx;
 
-    D_80199554 = 0;
-    D_801385F4 = 0;
-    vtx = &gpVertex[gpSector[sectnum].ceilingvtxptr];
+    _floorCeilingVertexCount = 0;
+    _floorCeilingVertexCounter = 0;
+    vtx = &gpSectorVertex[gpSector[sectnum].ceilingvtxptr];
     func_8000DBDC(gpSector[sectnum].unk23, gpSector[sectnum].unk22);
 
     for (i = 0; i < gpSector[sectnum].ceilingvtxnum; i++)
@@ -1471,9 +1471,9 @@ static void ceilingVtxToN64(s32 sectnum)
         vtx++;
         gpVertexN64++;
 
-        D_801385F4++;
+        _floorCeilingVertexCounter++;
     }
-    D_80199554 = D_801385F4;
+    _floorCeilingVertexCount = _floorCeilingVertexCounter;
 }
 
 /*8000DBDC*/
@@ -1579,22 +1579,22 @@ void func_8000E04C(void)
 }
 
 /*8000E0A0*/
-u16 getTileNum(u16 tileid)
+u16 getTileId(u16 tilenum)
 {
-    u16 tilenum;
+    u16 tileid;
 
-    if (tileid == 0)
+    if (tilenum == 0)
         return 0;
-    tilenum = gTilemap[tileid];
+    tileid = gTilemap[tilenum];
 
-    if (tilenum == MAXTILES)
+    if (tileid == MAXTILES)
         return 1;
     else
-        return tilenum;
+        return tileid;
 }
 
 /*8000E0D8*/
-static void initTileMap(void)
+static void _initTileMap(void)
 {
     u16 i;
 
@@ -1602,15 +1602,15 @@ static void initTileMap(void)
         gTilemap[i] = MAXTILES;
 
     for (i = 0; i < TILENUM; i++)
-        gTilemap[gpTileInfo[i].tileid] = i;
+        gTilemap[gpTileInfo[i].tile] = i;
 }
 
 /*8000E160*/
-static void initTiles(void)
+static void _initTiles(void)
 {
     s32 i;
 
-    initTileMap();
+    _initTileMap();
     for (i = 0; i < TILENUM; i++)
     {
         gpTileInfo[i].ramaddr = NULL;
@@ -1619,7 +1619,7 @@ static void initTiles(void)
 }
 
 /*8000E1B4*/
-u8 *loadTile(u16 tilenum)
+u8 *loadTile(u16 tileid)
 {
     u8 i;
     u8 *ptr;
@@ -1627,31 +1627,31 @@ u8 *loadTile(u16 tilenum)
     u16 size;
     u8 val;
 
-    if (gpTileInfo[tilenum].ramaddr != NULL)
+    if (gpTileInfo[tileid].ramaddr != NULL)
     {
-        D_80169580[tilenum] = 0x82;
-        return gpTileInfo[tilenum].ramaddr;
+        D_80169580[tileid] = 0x82;
+        return gpTileInfo[tileid].ramaddr;
     }
 
-    if (gpTileInfo[tilenum].flags & 0x80)
-        size = (gpTileInfo[tilenum].dimx * gpTileInfo[tilenum].dimy);
+    if (gpTileInfo[tileid].flags & 0x80)
+        size = (gpTileInfo[tileid].dimx * gpTileInfo[tileid].dimy);
     else
-        size = (((gpTileInfo[tilenum].dimx * gpTileInfo[tilenum].dimy) / 2) + 32);
+        size = (((gpTileInfo[tileid].dimx * gpTileInfo[tileid].dimy) / 2) + 32);
 
     if (size <= MAXTILESIZE)
     {
-        D_80169580[tilenum] = 0x82;
-        alloCache(&gpTileInfo[tilenum].ramaddr, size, &D_80169580[tilenum]);
+        D_80169580[tileid] = 0x82;
+        alloCache(&gpTileInfo[tileid].ramaddr, size, &D_80169580[tileid]);
         romAddr = _tileROMAddr;
-        romAddr = romAddr + gpTileInfo[tilenum].fileoff;
-        readRom(gTileBuffer, romAddr, (gpTileInfo[tilenum].filesize + 1) & ~1);
+        romAddr = romAddr + gpTileInfo[tileid].fileoff;
+        readRom(_tileBuffer, romAddr, (gpTileInfo[tileid].filesize + 1) & ~1);
 
-        if ((s16)(decompressEDL(gTileBuffer, gpTileInfo[tilenum].ramaddr)) != 0)
-            Bmemcpy(gpTileInfo[tilenum].ramaddr, gTileBuffer, size);
+        if ((s16)(decompressEDL(_tileBuffer, gpTileInfo[tileid].ramaddr)) != 0)
+            Bmemcpy(gpTileInfo[tileid].ramaddr, _tileBuffer, size);
 
-        if (!(gpTileInfo[tilenum].flags & 0x80))
+        if (!(gpTileInfo[tileid].flags & 0x80))
         {
-            ptr = gpTileInfo[tilenum].ramaddr;
+            ptr = gpTileInfo[tileid].ramaddr;
             for (i = 0; i < 16; i++)
             {
                 val = *ptr;
@@ -1660,15 +1660,15 @@ u8 *loadTile(u16 tilenum)
                 ptr += 2;
             }
         }
-        return gpTileInfo[tilenum].ramaddr;
+        return gpTileInfo[tileid].ramaddr;
     }
     return NULL;
 }
 
 /*8000E3D4*/
-s32 tileMasks(u16 arg0)
+s32 tileMasks(u16 tileid)
 {
-    switch (gpTileInfo[arg0].dimx)
+    switch (gpTileInfo[tileid].dimx)
     {
     case 0:
         return 0;
@@ -1693,9 +1693,9 @@ s32 tileMasks(u16 arg0)
 }
 
 /*8000E4A0*/
-s32 tileMaskt(u16 arg0)
+s32 tileMaskt(u16 tileid)
 {
-    switch (gpTileInfo[arg0].dimy)
+    switch (gpTileInfo[tileid].dimy)
     {
     case 0:
         return 0;
@@ -1720,7 +1720,7 @@ s32 tileMaskt(u16 arg0)
 }
 
 /*8000E56C*/
-static void func_8000E56C(void)
+static void _setupMatrix(void)
 {
     f32 xUp, yUp, zUp, xAt, yAt, zAt;
 
@@ -1728,8 +1728,8 @@ static void func_8000E56C(void)
     Matrix4f projection;
     Matrix4f viewing;
 
-    xAt = sinf(D_801AEA10) * 512.0;
-    yAt = cosf(D_801AEA10) * -512.0;
+    xAt = sinf(gGlobalAng) * 512.0;
+    yAt = cosf(gGlobalAng) * -512.0;
     zAt = (sinf(D_8016A15C) * 512.0) / cosf(D_8016A15C);
 
     grPerspectiveF(projection,
@@ -1750,8 +1750,8 @@ static void func_8000E56C(void)
 
     D_801385F2 = perspNorm;
 
-    xUp = sinf(D_801AC8E0) * cosf(D_801AEA10);
-    yUp = sinf(D_801AC8E0) * sinf(D_801AEA10);
+    xUp = sinf(D_801AC8E0) * cosf(gGlobalAng);
+    yUp = sinf(D_801AC8E0) * sinf(gGlobalAng);
     zUp = -cosf(D_801AC8E0);
 
     grLookAtF(viewing,
@@ -1910,10 +1910,10 @@ static void func_8000EBF0(u8 playernum, u8 arg1)
         f2 = (D_801A1980 / (SCREEN_HEIGHT/2.0) * 46.875);
         if (playernum >= 4)
         {
-            func_80027C18((gScreenWidth/2), (gScreenHeight / 2), f1, f2, getTileNum(5948), 0);
+            func_80027C18((gScreenWidth/2), (gScreenHeight / 2), f1, f2, getTileId(5948), 0);
             return;
         }
-        func_80027C18(D_80168C9C, D_801A2684, f1, f2, getTileNum(5948), 0);
+        func_80027C18(D_80168C9C, D_801A2684, f1, f2, getTileId(5948), 0);
     }
 
     if (playernum < 4)
@@ -1928,7 +1928,7 @@ static void func_8000EBF0(u8 playernum, u8 arg1)
             func_8002900C(D_8013F930[playernum].r, D_8013F930[playernum].g, D_8013F930[playernum].b,
                           D_8013F930[playernum].r, D_8013F930[playernum].g, D_8013F930[playernum].b, alpha);
 
-            func_80027C18(D_80168C9C, D_801A2684, f1, f2, getTileNum(5983), 0);
+            func_80027C18(D_80168C9C, D_801A2684, f1, f2, getTileId(5983), 0);
             D_8013F930[playernum].a = CLAMP_MIN((D_8013F930[playernum].a - 8), 0);
         }
     }

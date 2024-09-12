@@ -4,29 +4,32 @@
 #include "code0/pragmas.h"
 #include "code0/code0.h"
 
+#define MOVESECTNUM 40
+#define MOVESECTVTXNUM 1266
+
 /*.text*/
 static void scanSector(f32 lx, f32 rx, s32 sectnum);
-static void func_80004CFC(u16 sectnum);
-static void func_80004F14(u16 sectnum);
+static void _moveSectAdd(u16 sectnum);
+static void _moveSectUpdate(u16 sectnum);
 static s8 visWallCheck(s32 w, f32 f1, f32 f2);
 
 /*.data*/
 /*800BD430*/ static u16 _pow2char[9] = {0x1, 0x2, 0x4, 0x8, 0x10, 0x20, 0x40, 0x80, 0x100};
-/*800BD442*/ static u16 D_800BD442 = 0;
-/*800BD444*/ static u16 D_800BD444 = 0;
+/*800BD442*/ static u16 _moveSectListCnt = 0;
+/*800BD444*/ static u16 _moveSectVtxCnt = 0;
 
 /*.comm*/
-/*800FF52C*/ s32 D_800FF52C;
-/*8012DEF8*/ s16 D_8012DEF8;
-/*8012E160*/ s16 D_8012E160[1266] ALIGNED(16);
-/*80138628*/ u16 D_80138628[40] ALIGNED(8);
-/*80138720*/ u16 D_80138720[40] ALIGNED(8);
-/*8016A160*/ s32 D_8016A160;
-/*80199958*/ s32 D_80199958;
-/*801AFE20*/ s16 D_801AFE20[1266] ALIGNED(16);
+/*800FF52C*/ s32 _moveSectX;
+/*8016A160*/ s32 _moveSectY;
+/*8012DEF8*/ s16 _moveSectAngle;
+/*801AFE20*/ s16 _moveSectDX[MOVESECTVTXNUM] ALIGNED(16);
+/*8012E160*/ s16 _moveSectDY[MOVESECTVTXNUM] ALIGNED(16);
+/*80138628*/ u16 _moveSectList[MOVESECTNUM] ALIGNED(8);
+/*80138720*/ u16 _moveSectListVtxPtr[MOVESECTNUM] ALIGNED(8);
 
 /*801AE9C8*/ s32 _globalPosX;
 /*8012D210*/ s32 _globalPosY;
+/*80199958*/ s32 _globalPosZ;
 /*801A1988*/ s32 _visWallCnt;
 /*801C0D58*/ s32 _viewAngle;
 
@@ -93,10 +96,10 @@ static void scanSector(f32 lx, f32 rx, s32 sectnum)
     s16 cond;
 
     oviswalcnt = k = _visWallCnt;
-    if ((gpSector[sectnum].floorheinum != 0) || (gpSector[sectnum].floorz > D_80199640))
+    if ((gpSector[sectnum].floorheinum != 0) || (gpSector[sectnum].floorz > gGlobalPosZ))
         _floorBitCheck[sectnum >> 3] |= _pow2char[sectnum & 7];
 
-    if ((gpSector[sectnum].ceilingheinum != 0) || ((gpSector[sectnum].ceilingz < D_80199640)))
+    if ((gpSector[sectnum].ceilingheinum != 0) || ((gpSector[sectnum].ceilingz < gGlobalPosZ)))
         _ceilingBitCheck[sectnum >> 3] |= _pow2char[sectnum & 7];
 
     _visSectBit1[sectnum >> 3] |= _pow2char[sectnum & 7];
@@ -201,10 +204,10 @@ static s8 visWallCheck(s32 w, f32 f1, f32 f2)
 }
 
 /*800043F4*/
-void scanSectors(s32 posx, s32 posy, s32 arg2, f32 arg3, s16 arg4)
+void scanSectors(s32 posx, s32 posy, s32 posz, f32 arg3, s16 sectnum)
 {
     f32 viewrange, f2, viewangle, viewangler2, viewangler1;
-    s16 sectnum;
+    s16 sectnum_;
     s32 i, j;
 
     D_8012FC40 = 1;
@@ -224,7 +227,7 @@ void scanSectors(s32 posx, s32 posy, s32 arg2, f32 arg3, s16 arg4)
     _viewAngle = viewangle;
     _globalPosX = posx;
     _globalPosY = posy;
-    D_80199958 = arg2;
+    _globalPosZ = posz;
     gDrawWallCnt = 0;
     gDrawCeilCnt = 0;
     gDrawFloorCnt = 0;
@@ -238,7 +241,7 @@ void scanSectors(s32 posx, s32 posy, s32 arg2, f32 arg3, s16 arg4)
     Bmemset(_visSectBit1, 0, sizeof(_visSectBit1));
     viewangler1 = viewangle + viewrange;
 
-    scanSector(viewangler2, viewangler1, arg4);
+    scanSector(viewangler2, viewangler1, sectnum);
 
     for (i = 0; i < ((MAXWALLS+7)>>3); i++)
     {
@@ -293,10 +296,10 @@ void scanSectors(s32 posx, s32 posy, s32 arg2, f32 arg3, s16 arg4)
             {
                 if (_visSectBit1[i] & _pow2char[j])
                 {
-                    sectnum = (i * 8) + j;
-                    gVisibleSectors[gVisibleSectorCnt] = sectnum;
+                    sectnum_ = (i * 8) + j;
+                    gVisibleSectors[gVisibleSectorCnt] = sectnum_;
 
-                    if ((gpSector[sectnum].ceilingstat & 1) || (gpSector[sectnum].floorstat & 1))
+                    if ((gpSector[sectnum_].ceilingstat & 1) || (gpSector[sectnum_].floorstat & 1))
                         D_8012FC40 = 0;
 
                     gVisibleSectorCnt++;
@@ -378,7 +381,7 @@ void func_80004A3C(u16 sectnum)
     u16 floorvtxnum;
     u16 i;
 
-    vtx = &gpVertex[gpSector[sectnum].floorvtxptr];
+    vtx = &gpSectorVertex[gpSector[sectnum].floorvtxptr];
     floorvtxnum = gpSector[sectnum].floorvtxnum * 3;
 
     if (gpSector[sectnum].floorstat & 2)
@@ -411,7 +414,7 @@ void func_80004B60(u16 sectnum)
     u16 ceilingvtxnum;
     u16 i;
 
-    vtx = &gpVertex[gpSector[sectnum].ceilingvtxptr];
+    vtx = &gpSectorVertex[gpSector[sectnum].ceilingvtxptr];
     ceilingvtxnum = gpSector[sectnum].ceilingvtxnum * 3;
 
     if (gpSector[sectnum].ceilingstat & 2)
@@ -437,18 +440,18 @@ void func_80004B60(u16 sectnum)
 }
 
 /*80004C84*/
-void func_80004C84(void)
+void moveSectReset(void)
 {
-    D_800BD442 = 0;
-    D_800BD444 = 0;
-    Bmemset(&D_80138628, 0xFF, sizeof(D_80138628));
-    Bmemset(&D_80138720, 0xFF, sizeof(D_80138720));
-    Bmemset(&D_801AFE20, 0xFF, sizeof(D_801AFE20));
-    Bmemset(&D_8012E160, 0xFF, sizeof(D_8012E160));
+    _moveSectListCnt = 0;
+    _moveSectVtxCnt = 0;
+    Bmemset(_moveSectList, -1, sizeof(_moveSectList));
+    Bmemset(_moveSectListVtxPtr, -1, sizeof(_moveSectListVtxPtr));
+    Bmemset(_moveSectDX, -1, sizeof(_moveSectDX));
+    Bmemset(_moveSectDY, -1, sizeof(_moveSectDY));
 }
 
 /*80004CFC*/
-static void func_80004CFC(u16 sectnum)
+static void _moveSectAdd(u16 sectnum)
 {
     Vertex *vtx;
     u16 vtxnum;
@@ -457,9 +460,9 @@ static void func_80004CFC(u16 sectnum)
     vtxnum = 0;
     vtx = NULL;
 
-    for (i = 0; i < ARRAY_COUNT(D_80138628); i++)
+    for (i = 0; i < MOVESECTNUM; i++)
     {
-        if (D_80138628[i] == sectnum)
+        if (_moveSectList[i] == sectnum)
             return;
     }
 
@@ -470,45 +473,45 @@ static void func_80004CFC(u16 sectnum)
         vtxnum += gpSector[sectnum].floorvtxnum * 3;
 
     if (gpSector[sectnum].ceilingstat & 0x40)
-        vtx = &gpVertex[gpSector[sectnum].ceilingvtxptr];
+        vtx = &gpSectorVertex[gpSector[sectnum].ceilingvtxptr];
 
     if (gpSector[sectnum].floorstat & 0x40)
-        vtx = &gpVertex[gpSector[sectnum].floorvtxptr];
+        vtx = &gpSectorVertex[gpSector[sectnum].floorvtxptr];
 
-    D_80138628[D_800BD442] = sectnum;
-    D_80138720[D_800BD442] = D_800BD444;
-    D_800BD442++;
+    _moveSectList[_moveSectListCnt] = sectnum;
+    _moveSectListVtxPtr[_moveSectListCnt] = _moveSectVtxCnt;
+    _moveSectListCnt++;
 
-    if (D_800BD442 > ARRAY_COUNT(D_80138628))
+    if (_moveSectListCnt > MOVESECTNUM)
     {
-        printf("D_800BD442: %d\n", D_800BD442);
+        printf("_moveSectListCnt: %d\n", _moveSectListCnt);
         exit(0);
     }
 
     for (j = 0; j < vtxnum; j++)
     {
-        D_801AFE20[D_800BD444] = vtx->v.ob[0] - D_800FF52C;
-        D_8012E160[D_800BD444] = vtx->v.ob[1] - D_8016A160;
+        _moveSectDX[_moveSectVtxCnt] = vtx->v.ob[0] - _moveSectX;
+        _moveSectDY[_moveSectVtxCnt] = vtx->v.ob[1] - _moveSectY;
         vtx++;
-        D_800BD444++;
-        if (D_800BD444 > ARRAY_COUNT(D_801AFE20))
+        _moveSectVtxCnt++;
+        if (_moveSectVtxCnt > MOVESECTVTXNUM)
         {
-            printf("D_800BD444: %d\n", D_800BD444);
+            printf("_moveSectVtxCnt: %d\n", _moveSectVtxCnt);
             exit(0);
         }
     }
 }
 
 /*80004ECC*/
-void func_80004ECC(u16 sectnum, s32 arg1, s32 arg2)
+void moveSectAdd(u16 sectnum, s32 x, s32 y)
 {
-    D_800FF52C = arg1 / 2;
-    D_8016A160 = arg2 / 2;
-    func_80004CFC(sectnum);
+    _moveSectX = x / 2;
+    _moveSectY = y / 2;
+    _moveSectAdd(sectnum);
 }
 
 /*80004F14*/
-static void func_80004F14(u16 sectnum)
+static void _moveSectUpdate(u16 sectnum)
 {
     s32 x2;
     s32 y2;
@@ -526,36 +529,36 @@ static void func_80004F14(u16 sectnum)
         vtxnum += gpSector[sectnum].floorvtxnum * 3;
 
     if (gpSector[sectnum].ceilingstat & 0x40)
-        vtx = &gpVertex[gpSector[sectnum].ceilingvtxptr];
+        vtx = &gpSectorVertex[gpSector[sectnum].ceilingvtxptr];
 
     if (gpSector[sectnum].floorstat & 0x40)
-        vtx = &gpVertex[gpSector[sectnum].floorvtxptr];
+        vtx = &gpSectorVertex[gpSector[sectnum].floorvtxptr];
 
 
-    for (j = 0; j < ARRAY_COUNT(D_80138628); j++)
+    for (j = 0; j < MOVESECTNUM; j++)
     {
-        if (D_80138628[j] == sectnum)
+        if (_moveSectList[j] == sectnum)
             goto rotate;
     }
     return;
 
 rotate:
-    k = D_80138720[j];
+    k = _moveSectListVtxPtr[j];
     for (i = 0; i < vtxnum; i++)
     {
-        rotatePoint(0, 0, (2 * D_801AFE20[k]), (2 * D_8012E160[k]), D_8012DEF8 & 0x7FF, &x2, &y2);
+        rotatePoint(0, 0, (2 * _moveSectDX[k]), (2 * _moveSectDY[k]), _moveSectAngle & 0x7FF, &x2, &y2);
         k++;
-        vtx->v.ob[0] = (D_800FF52C + x2) / 2;
-        vtx->v.ob[1] = (D_8016A160 + y2) / 2;
+        vtx->v.ob[0] = (_moveSectX + x2) / 2;
+        vtx->v.ob[1] = (_moveSectY + y2) / 2;
         vtx++;
     }
 }
 
 /*80005118*/
-void func_80005118(u16 sectnum, s16 arg1, s32 arg2, s32 arg3)
+void moveSectUpdate(u16 sectnum, s16 ang, s32 x, s32 y)
 {
-    D_8012DEF8 = arg1;
-    D_800FF52C = arg2;
-    D_8016A160 = arg3;
-    func_80004F14(sectnum);
+    _moveSectAngle = ang;
+    _moveSectX = x;
+    _moveSectY = y;
+    _moveSectUpdate(sectnum);
 }

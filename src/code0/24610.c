@@ -12,30 +12,30 @@
 /*800F7048*/ static s32 D_800F7048;
 /*800F704C*/ static f32 D_800F704C;
 /*800F7050*/ static f32 D_800F7050;
-/*800F7054*/ static s32 D_800F7054;
+/*800F7054*/ static s32 _spriteTileId;
 
 /*.comm*/
-/*8010A9A8*/ SpriteType *D_8010A9A8;
+/*8010A9A8*/ SpriteType *_pSprite;
 /*80119A9C*/ s16 D_80119A9C;
 /*801385F0*/ s8 D_801385F0;
 /*80168810*/ s16 D_80168810;
 /*801A689C*/ u8 D_801A689C;
 
 /*.text*/
-static void func_8002433C(s16 spritenum, s32);
-static void func_80025C3C(s16 spritenum, s32);
-static void func_800273EC(s16 spritenum, s32);
+static void func_8002433C(s16 spritenum, s32 distance); /*_drawSpriteFlat?*/
+static void func_80025C3C(s16 spritenum, s32 distance); /*_drawSpriteFloor?*/
+static void func_800273EC(s16 spritenum, s32 distance);
 static void func_8002935C(s16 spritenum);
 
 /*80023A10*/
-void func_80023A10(void)
+void setupDrawMask(void)
 {
-    D_8012DEFC = 0xFFFF;
+    gLastPicnum = -1;
     D_801A2688 = 0;
     D_80119A9C = 0xFF;
     D_801A689C = 0;
-    D_800F704C = sinf(D_801AEA10 - (PI/2.0));
-    D_800F7050 = cosf(D_801AEA10 - (PI/2.0));
+    D_800F704C = sinf(gGlobalAng - (PI/2.0));
+    D_800F7050 = cosf(gGlobalAng - (PI/2.0));
     D_801385F0 = 1;
 
     gDPSetTextureFilter(gpDisplayList++, G_TF_BILERP);
@@ -53,7 +53,7 @@ void func_80023A10(void)
 }
 
 /*80023C04*/
-void func_80023C04(s32 spritenum, u16 arg1, s32 arg2)
+void drawSprite(s32 spritenum, u16 sectnum, s32 distance)
 {
     s16 alpha;
     s16 i, j, k;
@@ -61,14 +61,14 @@ void func_80023C04(s32 spritenum, u16 arg1, s32 arg2)
     u16 cstat;
     u16 cstat2;
 
-    D_8010A9A8 = &gpSprite[spritenum];
-    if (!(D_8010A9A8->cstat & 0x8000) && (D_8010A9A8->xrepeat != 0))
+    _pSprite = &gpSprite[spritenum];
+    if (!(_pSprite->cstat & 0x8000) && (_pSprite->xrepeat != 0))
     {
-        D_800F7054 = getTileNum(D_8010A9A8->picnum);
-        if (D_800F7054 != 1)
+        _spriteTileId = getTileId(_pSprite->picnum);
+        if (_spriteTileId != 1)
         {
-            if (gpTileInfo[D_800F7054].picanm & 0xC0)
-                D_800F7054 += animateOffs(D_8010A9A8->picnum, 0);
+            if (gpTileInfo[_spriteTileId].picanm & 0xC0)
+                _spriteTileId += animateOffs(_pSprite->picnum, 0);
 
             D_80168810 = -1;
 
@@ -136,7 +136,7 @@ void func_80023C04(s32 spritenum, u16 arg1, s32 arg2)
                                             gpAlphaPalette[D_80168810].env.b,
                                             alpha);
 
-            if (D_8010A9A8->cstat & 0x800)
+            if (_pSprite->cstat & 0x800)
             {
                 D_80138680 = 0xFF;
                 D_800FE410 = 0xFF;
@@ -144,26 +144,26 @@ void func_80023C04(s32 spritenum, u16 arg1, s32 arg2)
             }
             else
             {
-                func_8000DBDC(gpSector[D_8010A9A8->sectnum].unk27, gpSector[D_8010A9A8->sectnum].unk26);
+                func_8000DBDC(gpSector[_pSprite->sectnum].unk27, gpSector[_pSprite->sectnum].unk26);
                 i = D_8016A148;
                 j = D_800FE410;
                 k = D_80138680;
-                func_8000DCF0(D_8010A9A8->x, D_8010A9A8->y, D_8010A9A8->z, D_8010A9A8->sectnum);
+                func_8000DCF0(_pSprite->x, _pSprite->y, _pSprite->z, _pSprite->sectnum);
                 D_8016A148 = CLAMP_MAX((i + D_8016A148), 0xFF);
                 D_800FE410 = CLAMP_MAX((j + D_800FE410), 0xFF);
                 D_80138680 = CLAMP_MAX((k + D_80138680), 0xFF);
             }
 
-            cstat = D_8010A9A8->cstat;
-            D_800F7040 = gpTileInfo[D_800F7054].dimx;
-            D_800F7044 = gpTileInfo[D_800F7054].dimy;
+            cstat = _pSprite->cstat;
+            D_800F7040 = gpTileInfo[_spriteTileId].dimx;
+            D_800F7044 = gpTileInfo[_spriteTileId].dimy;
             D_800F7048 = D_800F7040 * D_800F7044;
 
             if ((cstat & 0x30) == 0x10)
             {
                 if (cstat & 0x40)
                 {
-                    ang = getAngle(D_8010A9A8->x - gGlobalPosX, D_8010A9A8->y - gGlobalPosY) - D_8010A9A8->ang;
+                    ang = getAngle(_pSprite->x - gGlobalPosX, _pSprite->y - gGlobalPosY) - _pSprite->ang;
 
                     if (ang > 0x400)
                         ang -= 0x800;
@@ -176,10 +176,10 @@ void func_80023C04(s32 spritenum, u16 arg1, s32 arg2)
                 }
             }
 
-            cstat2 = D_8010A9A8->cstat;
+            cstat2 = _pSprite->cstat;
 
             if (cstat2 & 0x400)
-                func_80025C3C(spritenum, arg2);
+                func_80025C3C(spritenum, distance);
             else
             {
                 if ((cstat2 & 0x30) == 0x20)
@@ -188,25 +188,25 @@ void func_80023C04(s32 spritenum, u16 arg1, s32 arg2)
                     {
                         if (cstat2 & 8)
                         {
-                            if (D_80199640 < D_8010A9A8->z)
+                            if (gGlobalPosZ < _pSprite->z)
                                 return;
                         }
                         else
                         {
-                            if (D_80199640 > D_8010A9A8->z)
+                            if (gGlobalPosZ > _pSprite->z)
                                 return;
                         }
                     }
 
                     if (D_800F7048 <= 0x1000)
-                        func_800273EC(spritenum, arg2);
+                        func_800273EC(spritenum, distance);
                     else
-                        func_80025C3C(spritenum, arg2);
+                        func_80025C3C(spritenum, distance);
                 }
                 else if ((cstat2 & 0x30) == 0x30)
                     func_8002935C(spritenum);
                 else
-                    func_8002433C(spritenum, arg2);
+                    func_8002433C(spritenum, distance);
             }
         }
     }
@@ -214,7 +214,7 @@ void func_80023C04(s32 spritenum, u16 arg1, s32 arg2)
 
 #ifdef NON_MATCHING
 /*8002433C*/
-void func_8002433C(s16 spritenum, s32 arg1)
+void func_8002433C(s16 spritenum, s32 distance)
 {
     s32 sp1C;
     s32 sp24;
@@ -227,15 +227,15 @@ void func_8002433C(s16 spritenum, s32 arg1)
     s16 y4;
     u16 dimx;
 
-    f32 temp_f20_5;
-    f32 temp_f26;
+    f32 f1;
+    f32 ang;
 
     s32 temp_f2_5;
     s32 temp_s0_2;
     s32 temp_s1;
     s32 temp_s2;
 
-    s32 var_s0;
+    s32 zoff;
     s32 var_s1;
     s32 var_s4;
     s32 var_v1_4;
@@ -254,31 +254,31 @@ void func_8002433C(s16 spritenum, s32 arg1)
 
     if (D_801A689C != 0)
     {
-        func_8000C76C();
+        initVertexList();
         D_801A689C = 0;
     }
 
-    D_8012DEFC = 0xFFFF;
-    x = (gpTileInfo[D_800F7054].sizex * D_8010A9A8->xrepeat) / 16;
-    y = (gpTileInfo[D_800F7054].sizey * D_8010A9A8->yrepeat) / 8;
-    temp_s2 = (s32)((((gpTileInfo[D_800F7054].picanm>>8)&255)));
-    temp_s2 *= D_8010A9A8->xrepeat;
+    gLastPicnum = -1;
+    x = (gpTileInfo[_spriteTileId].sizex * _pSprite->xrepeat) / 16;
+    y = (gpTileInfo[_spriteTileId].sizey * _pSprite->yrepeat) / 8;
+    temp_s2 = (s32)((((gpTileInfo[_spriteTileId].picanm>>8)&255)));
+    temp_s2 *= _pSprite->xrepeat;
     temp_s2 /= 8;
 
-    var_s1 = D_8010A9A8->z;
+    var_s1 = _pSprite->z;
 
-    if (D_8010A9A8->cstat & 0x80)
+    if (_pSprite->cstat & 0x80)
         var_s1 += (y >> 1) << 5;
 
     var_s4 = D_800F7044;
-    temp_s1 = var_s1 - ((s32)(((s8)((gpTileInfo[D_800F7054].picanm>>16)&255))<<2)*D_8010A9A8->yrepeat);
+    temp_s1 = var_s1 - ((s32)(((s8)((gpTileInfo[_spriteTileId].picanm>>16)&255))<<2)*_pSprite->yrepeat);
 
-    if (!(gpTileInfo[D_800F7054].flags & 0x80))
+    if (!(gpTileInfo[_spriteTileId].flags & 0x80))
     {
-        gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(D_800F7054));
+        gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(_spriteTileId));
         do
         {
-            var_s3 = loadTile(D_800F7054) + 0x20;
+            var_s3 = loadTile(_spriteTileId) + 0x20;
         } while (0);
     }
     else
@@ -286,7 +286,7 @@ void func_8002433C(s16 spritenum, s32 arg1)
         gDPLoadTLUT_pal256(gpDisplayList++, D_01000008);
         do
         {
-            var_s3 = loadTile(D_800F7054);
+            var_s3 = loadTile(_spriteTileId);
         } while (0);
     }
 
@@ -294,18 +294,18 @@ void func_8002433C(s16 spritenum, s32 arg1)
     sp24 = y;
 
     dimy = 0;
-    if (D_8010A9A8->cstat & 4)
+    if (_pSprite->cstat & 4)
     {
         dimx1 = 0;
-        dimx = gpTileInfo[D_800F7054].dimx;
+        dimx = gpTileInfo[_spriteTileId].dimx;
     }
     else
     {
         dimx = 0;
-        dimx1 = gpTileInfo[D_800F7054].dimx;
+        dimx1 = gpTileInfo[_spriteTileId].dimx;
     }
 
-    if (D_8010A9A8->cstat & 0x2000)
+    if (_pSprite->cstat & 0x2000)
     {
         if (dimx == 0)
             dimx1 = (x >> 2);
@@ -313,10 +313,10 @@ void func_8002433C(s16 spritenum, s32 arg1)
             dimx = (x >> 2);
     }
 
-    x1 = x2 = x3 = x4 = (D_8010A9A8->x / 2.0);
-    y1 = y2 = y3 = y4 = (D_8010A9A8->y / 2.0);
+    x1 = x2 = x3 = x4 = (_pSprite->x / 2.0);
+    y1 = y2 = y3 = y4 = (_pSprite->y / 2.0);
 
-    if ((D_8010A9A8->cstat & 0x30) == 0)
+    if ((_pSprite->cstat & 0x30) == 0)
     {
         x1 = (x4 - (D_800F704C * x));
         x2 = (x4 + (D_800F704C * x));
@@ -328,27 +328,27 @@ void func_8002433C(s16 spritenum, s32 arg1)
         y3 = y2;
     }
 
-    if ((D_8010A9A8->cstat & 0x30) == 0x10)
+    if ((_pSprite->cstat & 0x30) == 0x10)
     {
-        temp_f26 = (D_8010A9A8->ang * (PI/1024));
+        ang = (_pSprite->ang * (PI/1024));
 
-        if (D_8010A9A8->cstat & 0x4000)
+        if (_pSprite->cstat & 0x4000)
         {
-            var_s0 = MAX(((arg1 << 8) / ((gPlayer[D_801B0820].unk6E) * 0x78)), 4);
-            x1 += (sinf((temp_f26 + (PI/2))) * var_s0);
-            y1 -= (cosf((temp_f26 + (PI/2))) * var_s0);
+            zoff = MAX(((distance << 8) / ((gPlayer[D_801B0820].unk6E) * 120)), 4);
+            x1 += (sinf((ang + (PI/2))) * zoff);
+            y1 -= (cosf((ang + (PI/2))) * zoff);
         }
 
-        temp_s0_2 = (x1 - (sinf((temp_f26 - PI)) * x));
-        x2 = (x1 + (sinf((temp_f26 - PI)) * x));
+        temp_s0_2 = (x1 - (sinf((ang - PI)) * x));
+        x2 = (x1 + (sinf((ang - PI)) * x));
         x1 = temp_s0_2;
-        y2 = (y1 - (cosf((temp_f26 - PI)) * x));
-        y1 = (y1 + (cosf((temp_f26 - PI)) * x));
+        y2 = (y1 - (cosf((ang - PI)) * x));
+        y1 = (y1 + (cosf((ang - PI)) * x));
 
         if (temp_s2 != 0)
         {
-            x1 += (sinf((temp_f26 - PI)) * temp_s2);
-            x2 += (sinf((temp_f26 - PI)) * temp_s2);
+            x1 += (sinf((ang - PI)) * temp_s2);
+            x2 += (sinf((ang - PI)) * temp_s2);
         }
 
         x3 = x2;
@@ -357,13 +357,13 @@ void func_8002433C(s16 spritenum, s32 arg1)
         y3 = y2;
     }
 
-    if (!(gpTileInfo[D_800F7054].flags & 0x80))
+    if (!(gpTileInfo[_spriteTileId].flags & 0x80))
         sp1C = 0x1000 / D_800F7040;
     else
         sp1C = 0x800 / D_800F7040;
 
-    temp_f20_5 = (f32)sp24 / (f32)D_800F7044;
-    if (D_8010A9A8->cstat & 8)
+    f1 = (f32)sp24 / (f32)D_800F7044;
+    if (_pSprite->cstat & 8)
         z2 += sp24;
 
     do
@@ -374,11 +374,11 @@ void func_8002433C(s16 spritenum, s32 arg1)
 
         if (D_801A2688 != 0)
         {
-            if (D_8010A9A8->cstat & 0x2000)
+            if (_pSprite->cstat & 0x2000)
             {
                 gDPLoadTextureBlock_4b(gpDisplayList++, var_s3, G_IM_FMT_I,
                                         D_800F7040, height, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
-                                        tileMasks(D_800F7054), tileMaskt(D_800F7054), G_TX_NOLOD, G_TX_NOLOD);
+                                        tileMasks(_spriteTileId), tileMaskt(_spriteTileId), G_TX_NOLOD, G_TX_NOLOD);
             }
             else
             {
@@ -391,13 +391,13 @@ void func_8002433C(s16 spritenum, s32 arg1)
             var_s4 = var_v1_4 - height;
             var_s3 += ((D_800F7040 * (height - 1)) / 8) * 4;
         }
-        else if (!(gpTileInfo[D_800F7054].flags & 0x80))
+        else if (!(gpTileInfo[_spriteTileId].flags & 0x80))
         {
-            if ((D_8010A9A8->cstat & 0x2000))
+            if ((_pSprite->cstat & 0x2000))
             {
                 gDPLoadTextureBlock_4b(gpDisplayList++, var_s3, G_IM_FMT_CI,
                                        D_800F7040, height, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
-                                       tileMasks(D_800F7054), tileMaskt(D_800F7054), G_TX_NOLOD, G_TX_NOLOD);
+                                       tileMasks(_spriteTileId), tileMaskt(_spriteTileId), G_TX_NOLOD, G_TX_NOLOD);
             }
             else
             {
@@ -413,11 +413,11 @@ void func_8002433C(s16 spritenum, s32 arg1)
         }
         else
         {
-            if ((D_8010A9A8->cstat & 0x2000))
+            if ((_pSprite->cstat & 0x2000))
             {
                 gDPLoadTextureBlock(gpDisplayList++, var_s3, G_IM_FMT_CI, G_IM_SIZ_8b, D_800F7040,
                                     height, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
-                                    tileMasks(D_800F7054), tileMaskt(D_800F7054), G_TX_NOLOD, G_TX_NOLOD);
+                                    tileMasks(_spriteTileId), tileMaskt(_spriteTileId), G_TX_NOLOD, G_TX_NOLOD);
             }
             else
             {
@@ -432,10 +432,10 @@ void func_8002433C(s16 spritenum, s32 arg1)
             var_s3 += ((D_800F7040 * (height - 1)) / 4) * 4;
         }
 
-        temp_f2_5 = (height * temp_f20_5);
+        temp_f2_5 = (height * f1);
         dimy1 = (height - 1);
 
-        if (D_8010A9A8->cstat & 8)
+        if (_pSprite->cstat & 8)
         {
             z1 = z2;
             b = z2 - temp_f2_5;
@@ -518,7 +518,7 @@ INCLUDE_ASM("src/code0/24610", func_8002433C);
 
 #ifdef NON_MATCHING
 /*80025C3C*/
-void func_80025C3C(s16 spritenum, s32 arg1)
+void func_80025C3C(s16 spritenum, s32 distance)
 {
     s32 a; //t1
     s32 b; //v0
@@ -564,31 +564,31 @@ void func_80025C3C(s16 spritenum, s32 arg1)
     {
         do
         {
-            D_8012DEFC = 0xFFFF;
-            x = (gpTileInfo[D_800F7054].sizex * D_8010A9A8->xrepeat) / 16;
-            y = (gpTileInfo[D_800F7054].sizey * D_8010A9A8->yrepeat) / 8;
-            //xoff = (s32)((s8)((gpTileInfo[D_800F7054].picanm>>8)&255));
+            gLastPicnum = -1;
+            x = (gpTileInfo[_spriteTileId].sizex * _pSprite->xrepeat) / 16;
+            y = (gpTileInfo[_spriteTileId].sizey * _pSprite->yrepeat) / 8;
+            //xoff = (s32)((s8)((gpTileInfo[_spriteTileId].picanm>>8)&255));
         } while (0); /*FAKE*/
 
         var_s1 = 0;
-        if ((D_8010A9A8->cstat & 0x80) || ((D_8010A9A8->cstat & 0x30) == 0x20))
+        if ((_pSprite->cstat & 0x80) || ((_pSprite->cstat & 0x30) == 0x20))
             var_s1 = (y >> 1) << 5;
 
         var_s4 = D_800F7044;
-        var_s1 -= ((s32)(((s8)((gpTileInfo[D_800F7054].picanm>>16)&255))<<2)*D_8010A9A8->yrepeat);
-        if (!(gpTileInfo[D_800F7054].flags & 0x80))
+        var_s1 -= ((s32)(((s8)((gpTileInfo[_spriteTileId].picanm>>16)&255))<<2)*_pSprite->yrepeat);
+        if (!(gpTileInfo[_spriteTileId].flags & 0x80))
         {
-            gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(D_800F7054));
+            gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(_spriteTileId));
             do
             {
-                var_s3 = loadTile(D_800F7054) + 0x20;
+                var_s3 = loadTile(_spriteTileId) + 0x20;
             } while (0); /*FAKE*/
         }
         else
         {
             gDPLoadTLUT_pal256(gpDisplayList++, D_01000008);
             //do {
-            var_s3 = loadTile(D_800F7054);
+            var_s3 = loadTile(_spriteTileId);
             //}while(0);
         }
 
@@ -596,17 +596,17 @@ void func_80025C3C(s16 spritenum, s32 arg1)
         var_s1 = y;
         new_var = 1; /*FAKE*/
 
-        if (D_8010A9A8->cstat & 4)
+        if (_pSprite->cstat & 4)
         {
             dimx1 = 0;
-            dimx = gpTileInfo[D_800F7054].dimx;
+            dimx = gpTileInfo[_spriteTileId].dimx;
         }
         else
         {
             dimx = 0;
-            dimx1 = gpTileInfo[D_800F7054].dimx;
+            dimx1 = gpTileInfo[_spriteTileId].dimx;
         }
-        if (D_8010A9A8->cstat & 0x2000)
+        if (_pSprite->cstat & 0x2000)
         {
             if (dimx == 0)
                 dimx1 = (x >> 2);
@@ -619,8 +619,8 @@ void func_80025C3C(s16 spritenum, s32 arg1)
         y2 = 0;
         x1 = 0;
         var_f24 = 0.0f;
-        var_f20 = (D_8010A9A8->z / 64.0);
-        if (D_8010A9A8->cstat & 0x400)
+        var_f20 = (_pSprite->z / 64.0);
+        if (_pSprite->cstat & 0x400)
         {
             var_f22 = (D_8013B2D0[spritenum].unk2 * 0.17578125);
             var_f24 = (D_8013B2D0[spritenum].unk0 * 0.17578125);
@@ -628,30 +628,30 @@ void func_80025C3C(s16 spritenum, s32 arg1)
         else
         {
             var_f22 = 90.0f;
-            if (D_8010A9A8->cstat & 0x4000)
+            if (_pSprite->cstat & 0x4000)
             {
                 s32 c;
-                c = klabs((D_80199640 - D_8010A9A8->z));
+                c = klabs((gGlobalPosZ - _pSprite->z));
 
-                if (D_8010A9A8->z == gpSector[D_8010A9A8->sectnum].ceilingz)
+                if (_pSprite->z == gpSector[_pSprite->sectnum].ceilingz)
                     var_f20 += ((c + 0x10) / 1024);
 
-                if (D_8010A9A8->z == gpSector[D_8010A9A8->sectnum].floorz)
+                if (_pSprite->z == gpSector[_pSprite->sectnum].floorz)
                     var_f20 -= ((c + 0x10) / 1024);
             }
         }
         D_801A689C = 1;
-        func_8000C76C();
+        initVertexList();
         x1 = x1 - x;
         x2 = x2 + x;
 
         grPosition(&gpDynamic->mtx3[D_801A6D80],
                    var_f22,
                    var_f24,
-                   ((D_8010A9A8->ang - 0x200) * 0.17578125),
+                   ((_pSprite->ang - 0x200) * 0.17578125),
                    0.5f,
-                   (D_8010A9A8->x / 4.0),
-                   (D_8010A9A8->y / 4.0),
+                   (_pSprite->x / 4.0),
+                   (_pSprite->y / 4.0),
                    var_f20);
 
         gSPMatrix(gpDisplayList++, &gpDynamic->mtx3[D_801A6D80], G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
@@ -662,13 +662,13 @@ void func_80025C3C(s16 spritenum, s32 arg1)
         y4 = y1;
         y3 = y2;
 
-        if (!(gpTileInfo[D_800F7054].flags & 0x80))
+        if (!(gpTileInfo[_spriteTileId].flags & 0x80))
             sp24 = 0x1000 / D_800F7040;
         else
             sp24 = 0x800 / D_800F7040;
 
         temp_f20 = (f32)var_s1 / (f32)D_800F7044;
-        if (D_8010A9A8->cstat & 8)
+        if (_pSprite->cstat & 8)
             z2 += var_s1;
 
         do
@@ -679,11 +679,11 @@ void func_80025C3C(s16 spritenum, s32 arg1)
 
             if (D_801A2688 != 0)
             {
-                if (D_8010A9A8->cstat & 0x2000)
+                if (_pSprite->cstat & 0x2000)
                 {
                     gDPLoadTextureBlock_4b(gpDisplayList++, var_s3, G_IM_FMT_I,
                                             D_800F7040, height, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
-                                            tileMasks(D_800F7054), tileMaskt(D_800F7054), G_TX_NOLOD, G_TX_NOLOD);
+                                            tileMasks(_spriteTileId), tileMaskt(_spriteTileId), G_TX_NOLOD, G_TX_NOLOD);
                 }
                 else
                 {
@@ -695,13 +695,13 @@ void func_80025C3C(s16 spritenum, s32 arg1)
                 var_s4 = var_v0 - height;
                 var_s3 += ((D_800F7040 * (height - 1)) / 8) * 4;
             }
-            else if (!(gpTileInfo[D_800F7054].flags & 0x80))
+            else if (!(gpTileInfo[_spriteTileId].flags & 0x80))
             {
-                if ((D_8010A9A8->cstat & 0x2000))
+                if ((_pSprite->cstat & 0x2000))
                 {
                     gDPLoadTextureBlock_4b(gpDisplayList++, var_s3, G_IM_FMT_CI,
                                            D_800F7040, height, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
-                                           tileMasks(D_800F7054), tileMaskt(D_800F7054), G_TX_NOLOD, G_TX_NOLOD);
+                                           tileMasks(_spriteTileId), tileMaskt(_spriteTileId), G_TX_NOLOD, G_TX_NOLOD);
                 }
                 else
                 {
@@ -715,11 +715,11 @@ void func_80025C3C(s16 spritenum, s32 arg1)
             }
             else
             {
-                if ((D_8010A9A8->cstat & 0x2000))
+                if ((_pSprite->cstat & 0x2000))
                 {
                     gDPLoadTextureBlock(gpDisplayList++, var_s3, G_IM_FMT_CI, G_IM_SIZ_8b, D_800F7040,
                                         height, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
-                                        tileMasks(D_800F7054), tileMaskt(D_800F7054), G_TX_NOLOD, G_TX_NOLOD);
+                                        tileMasks(_spriteTileId), tileMaskt(_spriteTileId), G_TX_NOLOD, G_TX_NOLOD);
                 }
                 else
                 {
@@ -735,7 +735,7 @@ void func_80025C3C(s16 spritenum, s32 arg1)
             var_a0 = (height * temp_f20);
 
             dimy1 = (height - 1);
-            if (D_8010A9A8->cstat & 8)
+            if (_pSprite->cstat & 8)
             {
                 z1 = z2;
                 b = z2 - var_a0;
@@ -818,7 +818,7 @@ INCLUDE_ASM("src/code0/24610", func_80025C3C);
 #endif
 
 /*800273EC*/
-static void func_800273EC(s16 spritenum, s32 arg1)
+static void func_800273EC(s16 spritenum, s32 distance)
 {
     f32 f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11;
     s32 i, j;
@@ -826,39 +826,39 @@ static void func_800273EC(s16 spritenum, s32 arg1)
 
     if (D_801A689C != 0)
     {
-        func_8000C76C();
+        initVertexList();
         D_801A689C = 0;
     }
 
     if (D_801A2688 != 0)
-        func_8000BDB0(D_8010A9A8->picnum);
-    else if (D_8010A9A8->cstat & 0x2000)
-        func_8000C3E4(D_800F7054);
+        func_8000BDB0(_pSprite->picnum);
+    else if (_pSprite->cstat & 0x2000)
+        func_8000C3E4(_spriteTileId);
     else
-        func_8000C0D0(D_800F7054);
+        func_8000C0D0(_spriteTileId);
 
     dimy1 = 0;
-    if (D_8010A9A8->cstat & 8)
-        dimy = gpTileInfo[D_800F7054].dimy;
+    if (_pSprite->cstat & 8)
+        dimy = gpTileInfo[_spriteTileId].dimy;
     else
     {
         dimy = 0;
-        dimy1 = gpTileInfo[D_800F7054].dimy;
+        dimy1 = gpTileInfo[_spriteTileId].dimy;
     }
 
     dimx1 = 0;
-    if (D_8010A9A8->cstat & 4)
-        dimx = gpTileInfo[D_800F7054].dimx;
+    if (_pSprite->cstat & 4)
+        dimx = gpTileInfo[_spriteTileId].dimx;
     else
     {
         dimx = 0;
-        dimx1 = gpTileInfo[D_800F7054].dimx;
+        dimx1 = gpTileInfo[_spriteTileId].dimx;
     }
 
-    x = (gpTileInfo[D_800F7054].sizex * D_8010A9A8->xrepeat) / 16;
-    y = (gpTileInfo[D_800F7054].sizey * D_8010A9A8->yrepeat) / 16;
+    x = (gpTileInfo[_spriteTileId].sizex * _pSprite->xrepeat) / 16;
+    y = (gpTileInfo[_spriteTileId].sizey * _pSprite->yrepeat) / 16;
 
-    if (D_8010A9A8->cstat & 0x2000)
+    if (_pSprite->cstat & 0x2000)
     {
         if (dimx == 0)
             dimx1 = (x >> 2);
@@ -871,28 +871,28 @@ static void func_800273EC(s16 spritenum, s32 arg1)
             dimy = (y >> 2);
     }
 
-    i = ((D_8010A9A8->ang + 0x200) << 5) & 0xFFE0;
+    i = ((_pSprite->ang + 0x200) << 5) & 0xFFE0;
     f1 = (sins(i) / 32768.0);
-    i = ((D_8010A9A8->ang + 0x200) << 5) & 0xFFE0;
+    i = ((_pSprite->ang + 0x200) << 5) & 0xFFE0;
     f2 = coss(i) / 32768.0;
 
-    f3 = (x * f2) + (y * f1) + (D_8010A9A8->x / 2);
-    f4 = (-y * f2) + (x * f1) + (D_8010A9A8->y / 2);
+    f3 = (x * f2) + (y * f1) + (_pSprite->x / 2);
+    f4 = (-y * f2) + (x * f1) + (_pSprite->y / 2);
 
-    f5 = (-x * f2) + (y * f1) + (D_8010A9A8->x / 2);
-    f6 = (-y * f2) + (-x * f1) + (D_8010A9A8->y / 2);
+    f5 = (-x * f2) + (y * f1) + (_pSprite->x / 2);
+    f6 = (-y * f2) + (-x * f1) + (_pSprite->y / 2);
 
-    f7 = (-x * f2) + (-y * f1) + (D_8010A9A8->x / 2);
-    f8 = (y * f2) + (-x * f1) + (D_8010A9A8->y / 2);
+    f7 = (-x * f2) + (-y * f1) + (_pSprite->x / 2);
+    f8 = (y * f2) + (-x * f1) + (_pSprite->y / 2);
 
-    f9 = (x * f2) + (-y * f1) + (D_8010A9A8->x / 2);
-    f10 = (y * f2) + (x * f1) + (D_8010A9A8->y / 2);
+    f9 = (x * f2) + (-y * f1) + (_pSprite->x / 2);
+    f10 = (y * f2) + (x * f1) + (_pSprite->y / 2);
 
-    if (D_8010A9A8->cstat & 0x4000)
+    if (_pSprite->cstat & 0x4000)
     {
-        i = klabs(D_80199640 - D_8010A9A8->z);
-        f11 = (D_8010A9A8->z >> 5);
-        if (D_8010A9A8->z == gpSector[D_8010A9A8->sectnum].ceilingz)
+        i = klabs(gGlobalPosZ - _pSprite->z);
+        f11 = (_pSprite->z >> 5);
+        if (_pSprite->z == gpSector[_pSprite->sectnum].ceilingz)
         {
             j = i + 16;
             if (j < 0)
@@ -900,7 +900,7 @@ static void func_800273EC(s16 spritenum, s32 arg1)
 
             f11 += (j >> 10);
         }
-        if (D_8010A9A8->z == gpSector[D_8010A9A8->sectnum].floorz)
+        if (_pSprite->z == gpSector[_pSprite->sectnum].floorz)
         {
             j = i + 16;
             if (j < 0)
@@ -911,7 +911,7 @@ static void func_800273EC(s16 spritenum, s32 arg1)
     }
     else
     {
-        f11 = (D_8010A9A8->z >> 5);
+        f11 = (_pSprite->z >> 5);
     }
 
     if (gVertexNumber == 0)
@@ -973,7 +973,7 @@ static void func_800273EC(s16 spritenum, s32 arg1)
 }
 
 #ifdef NON_MATCHING
-void func_80027C18(f32 x1, f32 y1, f32 x2, f32 y2, u16 tilenum, s32 arg5)
+void func_80027C18(f32 x1, f32 y1, f32 x2, f32 y2, u16 tileid, s32 arg5)
 {
     f32 fdtdy;
     f32 fdsdx;
@@ -1019,7 +1019,7 @@ void func_80027C18(f32 x1, f32 y1, f32 x2, f32 y2, u16 tilenum, s32 arg5)
 
     temp_f6 = x2 * 4.0f;
     temp_f22 = y2 * 4.0f;
-    temp_a0 = &gpTileInfo[tilenum];
+    temp_a0 = &gpTileInfo[tileid];
     temp_f14 = y1 * 4.0f;
     temp_a2 = (arg5 >> 3) & 1;
     temp_a1 = (arg5 & 4) != 0;
@@ -1061,13 +1061,13 @@ void func_80027C18(f32 x1, f32 y1, f32 x2, f32 y2, u16 tilenum, s32 arg5)
         if (temp_a2 != 0)
             fdtdy = -fdtdy;
 
-        temp_a0_2 = &gpTileInfo[tilenum];
-        var_s2 = loadTile(tilenum) + 0x20;
+        temp_a0_2 = &gpTileInfo[tileid];
+        var_s2 = loadTile(tileid) + 0x20;
         temp_f24_2 = temp_a0->dimy;
         var_f26 = temp_a0_2->dimy;
         temp_s5 = (temp_a0_2->sizey * temp_f22) / 3.0f;
 
-        gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(tilenum));
+        gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(tileid));
 
         var_f14 = (f32)(s32)(4096.0f / fwidth);
         if (!((s32)var_f14 & 1))
@@ -1107,7 +1107,7 @@ void func_80027C18(f32 x1, f32 y1, f32 x2, f32 y2, u16 tilenum, s32 arg5)
                 if (!(var_f26 <= 4.0f))
                 {
                     fyh -= ((height * temp_f12_3) / 4.0f) - temp_f12_3;
-                    var_s2 += ((gpTileInfo[tilenum].dimx * (s32)((height / 4.0f) - 1.0f)) /8) * 4;
+                    var_s2 += ((gpTileInfo[tileid].dimx * (s32)((height / 4.0f) - 1.0f)) /8) * 4;
                 }
                 else
                     break;
@@ -1140,7 +1140,7 @@ void func_80027C18(f32 x1, f32 y1, f32 x2, f32 y2, u16 tilenum, s32 arg5)
                 if (!(var_f26 <= 4.0f))
                 {
                     fyl_ += ((height * temp_f12_3) / 4.0f) - temp_f12_3;
-                    var_s2 += ((gpTileInfo[tilenum].dimx * (s32)((height / 4.0f) - 1.0f)) /8) * 4;
+                    var_s2 += ((gpTileInfo[tileid].dimx * (s32)((height / 4.0f) - 1.0f)) /8) * 4;
                 }
                 else
                     break;
@@ -1214,9 +1214,9 @@ static void func_8002935C(s16 spritenum)
     s32 a, b, c, d, e, f, g, h, i, j;
     u16 dimx, dimx1, dimy, dimy1, sizex, sizey;
 
-    fx = (D_8010A9A8->x / 4.0);
-    fy = (D_8010A9A8->y / 4.0);
-    fz = (D_8010A9A8->z / 64.0);
+    fx = (_pSprite->x / 4.0);
+    fy = (_pSprite->y / 4.0);
+    fz = (_pSprite->z / 64.0);
 
     f1 = (D_8012B948[0][0] * fx) + (D_8012B948[1][0] * fy) + (D_8012B948[2][0] * fz) + D_8012B948[3][0];
     f2 = (D_8012B948[0][1] * fx) + (D_8012B948[1][1] * fy) + (D_8012B948[2][1] * fz) + D_8012B948[3][1];
@@ -1232,37 +1232,37 @@ static void func_8002935C(s16 spritenum)
         if (!(f5 < -2.0f) && !(f6 < -2.0f) && !(f5 > 2.0f) && !(f6 > 2.0f) && !(f7 < 0.0f) && !(f7 > 1.0f))
         {
             f7 = (-f7 + 1.0f);
-            func_8000C76C();
+            initVertexList();
             D_801A689C = 0;
 
             if (D_801A2688 != 0)
-                func_8000BDB0(D_8010A9A8->picnum);
-            else if (D_8010A9A8->cstat & 0x2000)
-                func_8000C3E4(D_800F7054);
+                func_8000BDB0(_pSprite->picnum);
+            else if (_pSprite->cstat & 0x2000)
+                func_8000C3E4(_spriteTileId);
             else
-                func_8000C0D0(D_800F7054);
+                func_8000C0D0(_spriteTileId);
 
             dimy1 = 0;
-            if (D_8010A9A8->cstat & 8)
-                dimy = gpTileInfo[D_800F7054].dimy;
+            if (_pSprite->cstat & 8)
+                dimy = gpTileInfo[_spriteTileId].dimy;
             else
             {
                 dimy = 0;
-                dimy1 = gpTileInfo[D_800F7054].dimy;
+                dimy1 = gpTileInfo[_spriteTileId].dimy;
             }
 
             dimx1 = 0;
-            if (D_8010A9A8->cstat & 4)
-                dimx = gpTileInfo[D_800F7054].dimx;
+            if (_pSprite->cstat & 4)
+                dimx = gpTileInfo[_spriteTileId].dimx;
             else
             {
                 dimx = 0;
-                dimx1 = gpTileInfo[D_800F7054].dimx;
+                dimx1 = gpTileInfo[_spriteTileId].dimx;
             }
 
             f7 = f7 * 16.0f;
-            sizex = (f7 * (gpTileInfo[D_800F7054].sizex * D_8010A9A8->xrepeat)) / 16.0f;
-            sizey = (f7 * (gpTileInfo[D_800F7054].sizey * D_8010A9A8->yrepeat)) / 16.0f;
+            sizex = (f7 * (gpTileInfo[_spriteTileId].sizex * _pSprite->xrepeat)) / 16.0f;
+            sizey = (f7 * (gpTileInfo[_spriteTileId].sizey * _pSprite->yrepeat)) / 16.0f;
 
             i = (D_8013B2D0[spritenum].unk0 << 5) & 0xFFE0;
             f8 = sins(i) / 32768.0;
@@ -1305,9 +1305,9 @@ static void func_8002935C(s16 spritenum)
 
             gVertexBufferIndex += 4;
             gVertexNumber -= 4;
-            x = D_8010A9A8->x / 2;
-            y = D_8010A9A8->y / 2;
-            z = D_8010A9A8->z / 32;
+            x = _pSprite->x / 2;
+            y = _pSprite->y / 2;
+            z = _pSprite->z / 32;
 
             gpVertexN64->v.ob[0] = x;
             gpVertexN64->v.ob[1] = y;

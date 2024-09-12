@@ -184,8 +184,8 @@ static Lights1 D_801CA3B8 = {
 /*801CDB0C*/ u16 D_801CDB0C;
 /*801CDB20*/ s32 D_801CDB20;
 /*801CDB28*/ u8 D_801CDB28[28] ALIGNED(8);
-/*801CDB50*/ MapChapter *gpDukematchMapChapter;
-/*801CDB54*/ s32 gCheatAwarded;
+/*801CDB50*/ MapChapter *_pDukematchMapChapter;
+/*801CDB54*/ s32 _cheatAwarded;
 #ifdef AVOID_UB
 char D_801CDB58[6][16] ALIGNED(8); /*Fix out of bound access in func_801C764C*/
 #else
@@ -238,17 +238,17 @@ static void func_801C90E4(void);
 static void func_801C948C(void);
 static void func_801C959C(void);
 static void func_801C9B08(void);
-static void menuControllerConfig(void);
-static void menuSelectPlayer(void);
-static void menuMultiplayerSelectGameType(void);
-static void menuSelectDifficulty(void);
-static void menuLoadGame(void);
-static void menuBack(void);
+static void _menuControllerConfig(void);
+static void _menuSelectPlayer(void);
+static void _menuMultiplayerSelectGameType(void);
+static void _menuSelectDifficulty(void);
+static void _menuLoadGame(void);
+static void _menuBack(void);
 static void func_801C3874(void);
 static void func_801C392C(void);
 static void func_801C399C(void);
 static void func_801C3974(void);
-static void menuSaveGame(void);
+static void _menuSaveGame(void);
 static void func_801C39C4(void);
 
 /*801C0D80*/
@@ -1009,7 +1009,7 @@ static void func_801C2F1C(void)
 }
 
 /*801C2F98*/
-static void menuEnter(void)
+static void _menuEnter(void)
 {
     code1UnkStruct6 *ptr;
 
@@ -1026,7 +1026,7 @@ static void menuEnter(void)
 }
 
 /*801C305C*/
-static void menuExit(void)
+static void _menuExit(void)
 {
     code1UnkStruct6 *ptr;
 
@@ -1098,7 +1098,7 @@ static void func_801C30EC(void)
 }
 
 /*801C328C*/
-static void menuMultiplayerSelectLevel(void)
+static void _menuMultiplayerSelectLevel(void)
 {
     D_801CDC64.unk2 = D_801CE5A0;
     main_80000624(func_801C8650);
@@ -1397,13 +1397,13 @@ static code1UnkStruct5 D_801CA9E4[2] = {
 static code1UnkStruct5 D_801CAA2C[5] = {
 #if VERSION_US
     { 1, -1, 1, 0, "PLAYER SETUP", NULL, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "CONTROL CONFIGURATION", menuControllerConfig, &D_801CAA1C, NULL, NULL, },
+    { 1, -1, 0, 0, "CONTROL CONFIGURATION", _menuControllerConfig, &D_801CAA1C, NULL, NULL, },
     { 0, 0, 0, 0, "CROSSHAIR", NULL, NULL, &D_801CA60C, gConfig.crosshair },
     { 0, 0, 0, 0, "AUTOAIM", NULL, NULL, &D_801CA670, gConfig.autoaim },
     { 0, 0, 0, 0, "AUTO CENTER", NULL, NULL, &D_801CA7A8, gConfig.autocenter },
 #elif VERSION_FR
     { 1, -1, 1, 0, "CONFIG. JOUEURS", NULL, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "CONFIG. COMMANDES", menuControllerConfig, &D_801CAA1C, NULL, NULL, },
+    { 1, -1, 0, 0, "CONFIG. COMMANDES", _menuControllerConfig, &D_801CAA1C, NULL, NULL, },
     { 0, -55, 0, 0, "MIRE", NULL, NULL, &D_801CA60C, gConfig.crosshair },
     { 0, -55, 0, 0, "VISEE AUTO", NULL, NULL, &D_801CA670, gConfig.autoaim },
     { 0, -55, 0, 0, "AUTO CENTER", NULL, NULL, &D_801CA7A8, gConfig.autocenter },
@@ -1415,15 +1415,15 @@ static code1UnkStruct5 D_801CAA2C[5] = {
 /*801CAAC8*/
 static code1UnkStruct5 D_801CAAC8[4] = {
 #if VERSION_US
-    { 1, -1, 0, 0, "PLAYER ONE", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
-    { 1, -1, 0, 0, "PLAYER TWO", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
-    { 1, -1, 0, 0, "PLAYER THREE", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
-    { 1, -1, 0, 0, "PLAYER FOUR", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+    { 1, -1, 0, 0, "PLAYER ONE", _menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+    { 1, -1, 0, 0, "PLAYER TWO", _menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+    { 1, -1, 0, 0, "PLAYER THREE", _menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+    { 1, -1, 0, 0, "PLAYER FOUR", _menuSelectPlayer, &D_801CAAB8, NULL, NULL },
 #elif VERSION_FR
-    { 1, -1, 0, 0, "JOUEUR UN", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
-    { 1, -1, 0, 0, "JOUEUR DEUX", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
-    { 1, -1, 0, 0, "JOUEUR TROIS", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
-    { 1, -1, 0, 0, "JOUEUR QUATRE", menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+    { 1, -1, 0, 0, "JOUEUR UN", _menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+    { 1, -1, 0, 0, "JOUEUR DEUX", _menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+    { 1, -1, 0, 0, "JOUEUR TROIS", _menuSelectPlayer, &D_801CAAB8, NULL, NULL },
+    { 1, -1, 0, 0, "JOUEUR QUATRE", _menuSelectPlayer, &D_801CAAB8, NULL, NULL },
 #endif
 };
 
@@ -1438,8 +1438,8 @@ static code1UnkStruct5 D_801CAB48[8] = {
     { 0, 0, 0, 0, "SOUND", NULL, NULL, &D_801CA880, &gConfig.sound },
     { 0, 0, 0, 0, "RUMBLE PAK", NULL, NULL, &D_801CA970, &gConfig.rumblepak },
     { 0, 0, 0, 0, "GRAPHICS", NULL, NULL, &D_801CA9D4, &gGraphicsOption },
-    { 1, -1, 0, 0, "PLAYER SETUP", menuEnter, &D_801CAB38, NULL, NULL },
-    { 1, -1, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "PLAYER SETUP", _menuEnter, &D_801CAB38, NULL, NULL },
+    { 1, -1, 0, 0, "EXIT", _menuExit, NULL, NULL, NULL },
 #elif VERSION_FR
     { 1, -1, 1, 0, "OPTIONS", NULL, NULL, NULL, NULL },
     { 0, -55, 0, 0, "VOLUME FX", NULL, NULL, &D_801CA970, &gConfig.mastervol },
@@ -1447,8 +1447,8 @@ static code1UnkStruct5 D_801CAB48[8] = {
     { 0, -55, 0, 0, "SON", NULL, NULL, &D_801CA880, &gConfig.sound },
     { 0, -55, 0, 0, "RUMBLE PAK", NULL, NULL, &D_801CA970, &gConfig.rumblepak },
     { 0, -55, 0, 0, "GRAPHISMES", NULL, NULL, &D_801CA9D4, &gGraphicsOption },
-    { 1, -1, 0, 0, "CONFIGURATION JOUEURS", menuEnter, &D_801CAB38, NULL, NULL },
-    { 1, -1, 0, 0, "QUITTER", menuExit, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "CONFIGURATION JOUEURS", _menuEnter, &D_801CAB38, NULL, NULL },
+    { 1, -1, 0, 0, "QUITTER", _menuExit, NULL, NULL, NULL },
 #endif
 };
 
@@ -1517,17 +1517,17 @@ static code1UnkStruct5 D_801CAE88[6] = {
 #if VERSION_US
     { 1, -1, 1, 0, "SELECT GAME TYPE", NULL, NULL, NULL, NULL },
     { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "DUKEMATCH", menuMultiplayerSelectLevel, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "LAST MAN STANDING", menuMultiplayerSelectLevel, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "KING OF THE HILL", menuMultiplayerSelectLevel, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "TEAM DUKEMATCH", menuMultiplayerSelectLevel, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "DUKEMATCH", _menuMultiplayerSelectLevel, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "LAST MAN STANDING", _menuMultiplayerSelectLevel, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "KING OF THE HILL", _menuMultiplayerSelectLevel, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "TEAM DUKEMATCH", _menuMultiplayerSelectLevel, NULL, NULL, NULL },
 #elif VERSION_FR
     { 1, -1, 1, 0, "CHOISIR TYPE DE PARTIE", NULL, NULL, NULL, NULL },
     { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "DUKEMATCH", menuMultiplayerSelectLevel, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "LE SURVIVANT", menuMultiplayerSelectLevel, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "LE ROI DE LA MONTAGNE", menuMultiplayerSelectLevel, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "DUKEMATCH PAR EQUIPE", menuMultiplayerSelectLevel, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "DUKEMATCH", _menuMultiplayerSelectLevel, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "LE SURVIVANT", _menuMultiplayerSelectLevel, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "LE ROI DE LA MONTAGNE", _menuMultiplayerSelectLevel, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "DUKEMATCH PAR EQUIPE", _menuMultiplayerSelectLevel, NULL, NULL, NULL },
 #endif
 };
 
@@ -1544,7 +1544,7 @@ static code1UnkStruct5 D_801CAF40[9] = {
     { 0, 0, 0, 0, "2P SPLIT", NULL, NULL, &D_801CA7F0, &gConfig.multiplayer.split_2P },
     { 0, 0, 0, 0, "3P SPLIT", NULL, NULL, &D_801CA838, &gConfig.multiplayer.split_3P },
     { 0, 0, 0, 0, "FRIENDLY FIRE", NULL, NULL, &D_801CA7A8, &gConfig.multiplayer.friendly_fire },
-    { 1, -1, 0, 0, "PLAY", menuMultiplayerSelectGameType, &D_801CAF30, NULL, NULL },
+    { 1, -1, 0, 0, "PLAY", _menuMultiplayerSelectGameType, &D_801CAF30, NULL, NULL },
 #elif VERSION_FR
     { 1, -1, 1, 0, "OPTIONS MODE MULTIJ.", NULL, NULL, NULL, NULL },
     { 0, -55, 0, 0, "JOUEURS", NULL, NULL, &D_801CA4C8, &gConfig.multiplayer.players },
@@ -1554,7 +1554,7 @@ static code1UnkStruct5 D_801CAF40[9] = {
     { 0, -55, 0, 0, "SPLIT 2", NULL, NULL, &D_801CA7F0, &gConfig.multiplayer.split_2P },
     { 0, -55, 0, 0, "SPLIT 3", NULL, NULL, &D_801CA838, &gConfig.multiplayer.split_3P },
     { 0, -55, 0, 0, "TIR AMI", NULL, NULL, &D_801CA7A8, &gConfig.multiplayer.friendly_fire },
-    { 1, -1, 0, 0, "JOUER", menuMultiplayerSelectGameType, &D_801CAF30, NULL, NULL },
+    { 1, -1, 0, 0, "JOUER", _menuMultiplayerSelectGameType, &D_801CAF30, NULL, NULL },
 #endif
 };
 
@@ -1565,13 +1565,13 @@ static code1UnkStruct5 D_801CB04C[4] = {
 #if VERSION_US
     { 1, -1, 1, 0, "SELECT DIFFICULTY", NULL, NULL, NULL, NULL },
     { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "NORMAL", menuSelectDifficulty, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "HARD", menuSelectDifficulty, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "NORMAL", _menuSelectDifficulty, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "HARD", _menuSelectDifficulty, NULL, NULL, NULL },
 #elif VERSION_FR
     { 1, -1, 1, 0, "CHOISIR NIVEAU DIFFIC.", NULL, NULL, NULL, NULL },
     { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "NORMAL", menuSelectDifficulty, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "DIFFICILE", menuSelectDifficulty, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "NORMAL", _menuSelectDifficulty, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "DIFFICILE", _menuSelectDifficulty, NULL, NULL, NULL },
 #endif
 };
 
@@ -1582,13 +1582,13 @@ static code1UnkStruct5 D_801CB0CC[4] = {
 #if VERSION_US
     { 1, -1, 1, 0, "SELECT", NULL, NULL, NULL, NULL },
     { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "SINGLE PLAYER", menuEnter, &D_801CB0BC, NULL, NULL },
-    { 1, -1, 0, 0, "MULTI-PLAYER", menuEnter, &D_801CB03C, NULL, NULL },
+    { 1, -1, 0, 0, "SINGLE PLAYER", _menuEnter, &D_801CB0BC, NULL, NULL },
+    { 1, -1, 0, 0, "MULTI-PLAYER", _menuEnter, &D_801CB03C, NULL, NULL },
 #elif VERSION_FR
     { 1, -1, 1, 0, "SELECT", NULL, NULL, NULL, NULL },
     { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "UN SEUL JOUEUR", menuEnter, &D_801CB0BC, NULL, NULL },
-    { 1, -1, 0, 0, "MULTIJOUEUR", menuEnter, &D_801CB03C, NULL, NULL },
+    { 1, -1, 0, 0, "UN SEUL JOUEUR", _menuEnter, &D_801CB0BC, NULL, NULL },
+    { 1, -1, 0, 0, "MULTIJOUEUR", _menuEnter, &D_801CB03C, NULL, NULL },
 #endif
 };
 
@@ -1608,7 +1608,7 @@ static code1UnkStruct5 D_801CB14C[12] = {
     { 0, -16, 2, 0, "VOLT CANNON", NULL, NULL, &D_801CA7A8, &gCheatWeaponVoltCannonConfig },
     { 0, -16, 2, 0, "GATTLING GUN", NULL, NULL, &D_801CA7A8, &gCheatWeaponGattlingGunConfig },
     { 0, -16, 2, 0, "GAMMA CANNON", NULL, NULL, &D_801CA7A8, &gCheatWeaponGammaCannonConfig },
-    { 1, -1, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "EXIT", _menuExit, NULL, NULL, NULL },
 #elif VERSION_FR
     { 0, -55, 2, 0, "SMG", NULL, NULL, &_ouiNon, &gCheatWeaponSmgConfig },
     { 0, -55, 2, 0, "BLASTER", NULL, NULL, &_ouiNon, &gCheatWeaponBlasterConfig },
@@ -1621,7 +1621,7 @@ static code1UnkStruct5 D_801CB14C[12] = {
     { 0, -55, 2, 0, "CANON ELEC", NULL, NULL, &_ouiNon, &gCheatWeaponVoltCannonConfig },
     { 0, -55, 2, 0, "MITR. GATLING", NULL, NULL, &_ouiNon, &gCheatWeaponGattlingGunConfig },
     { 0, -55, 2, 0, "CANON PLASMA", NULL, NULL, &_ouiNon, &gCheatWeaponGammaCannonConfig },
-    { 1, -1, 0, 0, "QUITTER", menuExit, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "QUITTER", _menuExit, NULL, NULL, NULL },
 #endif
 };
 
@@ -1633,12 +1633,12 @@ static code1UnkStruct5 D_801CB2AC[4] = {
     { 0, -16, 2, 0, "FIRST PERSON", NULL, NULL, &D_801CA7A8, &gCheatFirstPersonConfig },
     { 0, -16, 2, 0, "ACTION NUKEM", NULL, NULL, &D_801CA7A8, &gCheatActionNukemConfig },
     { 0, -16, 2, 0, "SELECT SKIN", NULL, NULL, &D_801CA7A8, &gCheatSelectSkinConfig },
-    { 1, -1, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "EXIT", _menuExit, NULL, NULL, NULL },
 #elif VERSION_FR
     { 0, -55, 2, 0, "1RE PERSONNE", NULL, NULL, &D_801CA7A8, &gCheatFirstPersonConfig },
     { 0, -55, 2, 0, "NUKEM ACTIF", NULL, NULL, &D_801CA7A8, &gCheatActionNukemConfig },
     { 0, -55, 2, 0, "SELECTION", NULL, NULL, &D_801CA7A8, &gCheatSelectSkinConfig },
-    { 1, -1, 0, 0, "QUITTER", menuExit, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "QUITTER", _menuExit, NULL, NULL, NULL },
 #endif
 };
 
@@ -1653,7 +1653,7 @@ static code1UnkStruct5 D_801CB32C[7] = {
     { 0, -16, 2, 0, "BIG GUN", NULL, NULL, &D_801CA7A8, &gCheatBigGunConfig },
     { 0, -16, 2, 0, "ICE SKINS", NULL, NULL, &D_801CA7A8, &gCheatIceSkinConfig },
     { 0, -16, 2, 0, "FAST ZOMBIES", NULL, NULL, &D_801CA7A8, &gCheatFastZombiesConfig },
-    { 1, -1, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "EXIT", _menuExit, NULL, NULL, NULL },
 #elif VERSION_FR
     { 0, -55, 2, 0, "MODE GROSSE TETE", NULL, NULL, &D_801CA7A8, &gCheatBigHeadModeConfig },
     { 0, -55, 2, 0, "OMBRAGE MAT", NULL, NULL, &D_801CA7A8, &gCheatFlatShadingConfig },
@@ -1661,7 +1661,7 @@ static code1UnkStruct5 D_801CB32C[7] = {
     { 0, -55, 2, 0, "GROS CANON", NULL, NULL, &D_801CA7A8, &gCheatBigGunConfig },
     { 0, -55, 2, 0, "PEAUX DE GLACE", NULL, NULL, &D_801CA7A8, &gCheatIceSkinConfig },
     { 0, -55, 2, 0, "ZOMBIES RAPIDES", NULL, NULL, &D_801CA7A8, &gCheatFastZombiesConfig },
-    { 1, -1, 0, 0, "QUITTER", menuExit, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "QUITTER", _menuExit, NULL, NULL, NULL },
 #endif
 };
 
@@ -1671,16 +1671,16 @@ static code1UnkStruct5 D_801CB32C[7] = {
 static code1UnkStruct5 D_801CB400[5] = {
 #if VERSION_US
     { 1, -1, 1, 0, "CHEATS", NULL, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "WEAPONS", menuEnter, &D_801CB29C, NULL, NULL },
-    { 1, -1, 0, 0, "GAME TYPE", menuEnter, &D_801CB31C, NULL, NULL },
-    { 1, -1, 0, 0, "OTHERS", menuEnter, &D_801CB3F0, NULL, NULL },
-    { 1, -1, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "WEAPONS", _menuEnter, &D_801CB29C, NULL, NULL },
+    { 1, -1, 0, 0, "GAME TYPE", _menuEnter, &D_801CB31C, NULL, NULL },
+    { 1, -1, 0, 0, "OTHERS", _menuEnter, &D_801CB3F0, NULL, NULL },
+    { 1, -1, 0, 0, "EXIT", _menuExit, NULL, NULL, NULL },
 #elif VERSION_FR
     { 1, -1, 1, 0, "TRICHES", NULL, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "ARMES", menuEnter, &D_801CB29C, NULL, NULL },
-    { 1, -1, 0, 0, "TYPE DE PARTIE", menuEnter, &D_801CB31C, NULL, NULL },
-    { 1, -1, 0, 0, "AUTRES", menuEnter, &D_801CB3F0, NULL, NULL },
-    { 1, -1, 0, 0, "QUITTER", menuExit, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "ARMES", _menuEnter, &D_801CB29C, NULL, NULL },
+    { 1, -1, 0, 0, "TYPE DE PARTIE", _menuEnter, &D_801CB31C, NULL, NULL },
+    { 1, -1, 0, 0, "AUTRES", _menuEnter, &D_801CB3F0, NULL, NULL },
+    { 1, -1, 0, 0, "QUITTER", _menuExit, NULL, NULL, NULL },
 #endif
 };
 
@@ -1690,16 +1690,16 @@ static code1UnkStruct5 D_801CB400[5] = {
 static code1UnkStruct5 D_801CB49C[5] = {
 #if VERSION_US
     { 1, -1, 1, 0, D_801CDBB0, NULL, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "START GAME", menuEnter, &D_801CB13C, NULL, NULL },
-    { 1, -1, 0, 0, "LOAD GAME", menuLoadGame, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "OPTIONS", menuEnter, &D_801CAC28, NULL, NULL },
-    { 1, -1, 0, 0, "CHEATS", menuEnter, &D_801CB48C, NULL, NULL },
+    { 1, -1, 0, 0, "START GAME", _menuEnter, &D_801CB13C, NULL, NULL },
+    { 1, -1, 0, 0, "LOAD GAME", _menuLoadGame, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "OPTIONS", _menuEnter, &D_801CAC28, NULL, NULL },
+    { 1, -1, 0, 0, "CHEATS", _menuEnter, &D_801CB48C, NULL, NULL },
 #elif VERSION_FR
     { 1, -1, 1, 0, D_801CDBB0, NULL, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "COMMENCER LA PARTIE", menuEnter, &D_801CB13C, NULL, NULL },
-    { 1, -1, 0, 0, "CHARGER LA PARTIE", menuLoadGame, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "OPTIONS", menuEnter, &D_801CAC28, NULL, NULL },
-    { 1, -1, 0, 0, "TRICHES", menuEnter, &D_801CB48C, NULL, NULL },
+    { 1, -1, 0, 0, "COMMENCER LA PARTIE", _menuEnter, &D_801CB13C, NULL, NULL },
+    { 1, -1, 0, 0, "CHARGER LA PARTIE", _menuLoadGame, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "OPTIONS", _menuEnter, &D_801CAC28, NULL, NULL },
+    { 1, -1, 0, 0, "TRICHES", _menuEnter, &D_801CB48C, NULL, NULL },
 #endif
 };
 
@@ -1716,7 +1716,7 @@ code1UnkStruct5 D_801CB538[9] = {
     { 0, -16, 0, 0, "CROSSHAIR", NULL, NULL, &D_801CA60C, gConfig.crosshair },
     { 0, -16, 0, 0, "AUTOAIM", NULL, NULL, &D_801CA670, gConfig.autoaim },
     { 0, -16, 0, 0, "AUTO CENTER", NULL, NULL, &D_801CA7A8, gConfig.autocenter },
-    { 1, -1, 0, 0, "EXIT", menuExit, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "EXIT", _menuExit, NULL, NULL, NULL },
 #elif VERSION_FR
     { 0, -55, 0, 0, "VOLUME FX", NULL, NULL, &D_801CA970, &gConfig.mastervol },
     { 0, -55, 0, 0, "VOLUME MUSIQUE", NULL, NULL, &D_801CA970, &gConfig.musicvol },
@@ -1726,7 +1726,7 @@ code1UnkStruct5 D_801CB538[9] = {
     { 0, -55, 0, 0, "MIRE", NULL, NULL, &D_801CA60C, gConfig.crosshair },
     { 0, -55, 0, 0, "VISEE AUTO", NULL, NULL, &D_801CA670, gConfig.autoaim },
     { 0, -55, 0, 0, "AUTO CENTER", NULL, NULL, &D_801CA7A8, gConfig.autocenter },
-    { 1, -1, 0, 0, "QUITTER", menuExit, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "QUITTER", _menuExit, NULL, NULL, NULL },
 #endif
 };
 
@@ -1736,11 +1736,11 @@ code1UnkStruct5 D_801CB538[9] = {
 static code1UnkStruct5 D_801CB644[3] = {
 #if VERSION_US
     { 1, -1, 1, 0, "QUIT GAME?", NULL, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "NO", menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "NO", _menuBack, NULL, NULL, NULL },
     { 1, -1, 0, 0, "YES", func_801C3874, NULL, NULL, NULL },
 #elif VERSION_FR
     { 1, -1, 1, 0, "QUITTER LA PARTIE ?", NULL, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "NON", menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "NON", _menuBack, NULL, NULL, NULL },
     { 1, -1, 0, 0, "OUI", func_801C3874, NULL, NULL, NULL },
 #endif
 };
@@ -1777,12 +1777,12 @@ static code1UnkStruct5 D_801CB6F0[2] = {
 static code1UnkStruct5 D_801CB738[3] = {
 #if VERSION_US
     { 1, -1, 1, 0, "RESTART LEVEL?", NULL, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "NO", menuBack, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "YES", menuEnter, &D_801CB728, NULL, NULL },
+    { 1, -1, 0, 0, "NO", _menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "YES", _menuEnter, &D_801CB728, NULL, NULL },
 #elif VERSION_FR
     { 1, -1, 1, 0, "RECOMMENCER NIVEAU ?", NULL, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "NON", menuBack, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "OUI", menuEnter, &D_801CB728, NULL, NULL },
+    { 1, -1, 0, 0, "NON", _menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "OUI", _menuEnter, &D_801CB728, NULL, NULL },
 #endif
 };
 
@@ -1792,11 +1792,11 @@ static code1UnkStruct5 D_801CB738[3] = {
 static code1UnkStruct5 D_801CB79C[3] = {
 #if VERSION_US
     { 1, -1, 1, 0, "RESTART LEVEL?", NULL, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "NO", menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "NO", _menuBack, NULL, NULL, NULL },
     { 1, -1, 0, 0, "YES", func_801C38DC, NULL, NULL, NULL },
 #elif VERSION_FR
     { 1, -1, 1, 0, "RECOMMENCER NIVEAU ?", NULL, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "NON", menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "NON", _menuBack, NULL, NULL, NULL },
     { 1, -1, 0, 0, "OUI", func_801C38DC, NULL, NULL, NULL },
 #endif
 };
@@ -1806,15 +1806,15 @@ static code1UnkStruct5 D_801CB79C[3] = {
 /*801CB800*/
 static code1UnkStruct5 D_801CB800[4] = {
 #if VERSION_US
-    { 1, -1, 0, 0, "CONTINUE", menuBack, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "OPTIONS", menuEnter, &D_801CB634, NULL, NULL },
-    { 1, -1, 0, 0, "RESTART", menuEnter, &D_801CB78C, NULL, NULL },
-    { 1, -1, 0, 0, "QUIT GAME", menuEnter, &D_801CB698, NULL, NULL },
+    { 1, -1, 0, 0, "CONTINUE", _menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "OPTIONS", _menuEnter, &D_801CB634, NULL, NULL },
+    { 1, -1, 0, 0, "RESTART", _menuEnter, &D_801CB78C, NULL, NULL },
+    { 1, -1, 0, 0, "QUIT GAME", _menuEnter, &D_801CB698, NULL, NULL },
 #elif VERSION_FR
-    { 1, -1, 0, 0, "CONTINUER", menuBack, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "OPTIONS", menuEnter, &D_801CB634, NULL, NULL },
-    { 1, -1, 0, 0, "RECOMMENCER", menuEnter, &D_801CB78C, NULL, NULL },
-    { 1, -1, 0, 0, "QUITTER LA PARTIE", menuEnter, &D_801CB698, NULL, NULL },
+    { 1, -1, 0, 0, "CONTINUER", _menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "OPTIONS", _menuEnter, &D_801CB634, NULL, NULL },
+    { 1, -1, 0, 0, "RECOMMENCER", _menuEnter, &D_801CB78C, NULL, NULL },
+    { 1, -1, 0, 0, "QUITTER LA PARTIE", _menuEnter, &D_801CB698, NULL, NULL },
 #endif
 };
 
@@ -1823,15 +1823,15 @@ static code1UnkStruct5 D_801CB800[4] = {
 /*801CB880*/
 static code1UnkStruct5 D_801CB880[4] = {
 #if VERSION_US
-    { 1, -1, 0, 0, "CONTINUE", menuBack, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "OPTIONS", menuEnter, &D_801CB634, NULL, NULL },
-    { 1, -1, 0, 0, "RESTART", menuEnter, &D_801CB7F0, NULL, NULL },
-    { 1, -1, 0, 0, "QUIT GAME", menuEnter, &D_801CB698, NULL, NULL },
+    { 1, -1, 0, 0, "CONTINUE", _menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "OPTIONS", _menuEnter, &D_801CB634, NULL, NULL },
+    { 1, -1, 0, 0, "RESTART", _menuEnter, &D_801CB7F0, NULL, NULL },
+    { 1, -1, 0, 0, "QUIT GAME", _menuEnter, &D_801CB698, NULL, NULL },
 #elif VERSION_FR
-    { 1, -1, 0, 0, "CONTINUER", menuBack, NULL, NULL, NULL },
-    { 1, -1, 0, 0, "OPTIONS", menuEnter, &D_801CB634, NULL, NULL },
-    { 1, -1, 0, 0, "RECOMMENCER", menuEnter, &D_801CB7F0, NULL, NULL },
-    { 1, -1, 0, 0, "QUITTER LA PARTIE", menuEnter, &D_801CB698, NULL, NULL },
+    { 1, -1, 0, 0, "CONTINUER", _menuBack, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "OPTIONS", _menuEnter, &D_801CB634, NULL, NULL },
+    { 1, -1, 0, 0, "RECOMMENCER", _menuEnter, &D_801CB7F0, NULL, NULL },
+    { 1, -1, 0, 0, "QUITTER LA PARTIE", _menuEnter, &D_801CB698, NULL, NULL },
 #endif
 };
 
@@ -1840,10 +1840,10 @@ static code1UnkStruct5 D_801CB880[4] = {
 /*801CB900*/
 static code1UnkStruct5 D_801CB900[2] = {
 #if VERSION_US
-    { 1, -1, 0, 0, "SAVE", menuSaveGame, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "SAVE", _menuSaveGame, NULL, NULL, NULL },
     { 1, -1, 0, 0, "CONTINUE WITHOUT SAVING", func_801C39C4, NULL, NULL, NULL },
 #elif VERSION_FR
-    { 1, -1, 0, 0, "ENREGISTRER", menuSaveGame, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "ENREGISTRER", _menuSaveGame, NULL, NULL, NULL },
     { 1, -1, 0, 0, "CONTINUER SANS ENREGIS.", func_801C39C4, NULL, NULL, NULL },
 #endif
 };
@@ -1851,7 +1851,7 @@ static code1UnkStruct5 D_801CB900[2] = {
 /*801CB938*/ static code1UnkStruct6 D_801CB938 = {ARRAY_COUNT(D_801CB900), D_801CB900, 224, 24, &gConfig.menuIndex.unk11};
 
 /*801C3580*/
-static void menuMultiplayerSelectGameType(void)
+static void _menuMultiplayerSelectGameType(void)
 {
     D_801CDC64.unk1 = gConfig.multiplayer.players + 2;
 
@@ -1860,11 +1860,11 @@ static void menuMultiplayerSelectGameType(void)
     else
         D_801CAE88[5].unk4 = 0;
 
-    menuEnter();
+    _menuEnter();
 }
 
 /*801C35DC*/
-static void menuSelectDifficulty(void)
+static void _menuSelectDifficulty(void)
 {
     func_8007F07C();
     D_800BD3F9 = 17;
@@ -1891,14 +1891,14 @@ void func_801C363C(u8 playernum, u16 arg1, u8 arg2)
 }
 
 /*801C36E4*/
-static void menuSelectPlayer(void)
+static void _menuSelectPlayer(void)
 {
     D_801CDACC = D_801CE5A0;
     D_801CA9E4[1].unk18 = &gConfig.controller_preset[D_801CE5A0];
     D_801CAA2C[2].unk18 = &gConfig.crosshair[D_801CE5A0];
     D_801CAA2C[3].unk18 = &gConfig.autoaim[D_801CE5A0];
     D_801CAA2C[4].unk18 = &gConfig.autocenter[D_801CE5A0];
-    menuEnter();
+    _menuEnter();
 }
 
 /*801C375C*/
@@ -1909,7 +1909,7 @@ static void func_801C375C(void)
     D_801CDACC = 0;
     D_801CAA2C[3].unk18 = gConfig.autoaim;
     D_801CAA2C[4].unk18 = gConfig.autocenter;
-    menuEnter();
+    _menuEnter();
 }
 
 /*801C37B8*/
@@ -1939,7 +1939,7 @@ static void func_801C3874(void)
 }
 
 /*801C38A8*/
-static void menuBack(void)
+static void _menuBack(void)
 {
     D_801AE914 = 0;
     func_8007F050();
@@ -1996,7 +1996,7 @@ static void func_801C39C4(void)
 }
 
 /*801C3A4C*/
-static void menuSaveGame(void)
+static void _menuSaveGame(void)
 {
     func_8007F07C();
     D_801CDBA8 = 1;
@@ -2304,7 +2304,7 @@ static void func_801C45C0(void)
     ptr = &D_801CE5A8->unk4[D_801CE5A0];
     if (D_801CD986[D_801CDACC] & 0x800)
     {
-        D_801CD986[D_801CDACC] &= 0xF7FF;
+        D_801CD986[D_801CDACC] &= ~0x800;
         playSfx(746);
         func_801C14C4(D_801CD990[D_801CE5A0], 140, 140, 165);
         do
@@ -2318,7 +2318,7 @@ static void func_801C45C0(void)
     }
     else if (D_801CD986[D_801CDACC] & 0x400)
     {
-        D_801CD986[D_801CDACC] &= 0xFBFF;
+        D_801CD986[D_801CDACC] &= ~0x400;
         playSfx(746);
         func_801C14C4(D_801CD990[D_801CE5A0], 140, 140, 165);
         do
@@ -2334,7 +2334,7 @@ static void func_801C45C0(void)
     {
         if ((D_801CD986[D_801CDACC] & 0x1000) || (D_801CD986[D_801CDACC] & 0x8000))
         {
-            D_801CD986[D_801CDACC] &= 0xEFFF;
+            D_801CD986[D_801CDACC] &= ~0x1000;
             if (ptr->unkC != NULL)
             {
                 playSfx(747);
@@ -2343,7 +2343,7 @@ static void func_801C45C0(void)
         }
         else if (D_801CD986[D_801CDACC] & 0x4000)
         {
-            D_801CD986[D_801CDACC] &= 0xBFFF;
+            D_801CD986[D_801CDACC] &= ~0x4000;
             if (D_801CD980 != 0)
             {
                 playSfx(748);
@@ -2362,7 +2362,7 @@ static void func_801C45C0(void)
         {
             if (D_801CD986[D_801CDACC] & 0x200)
             {
-                D_801CD986[D_801CDACC] &= 0xFDFF;
+                D_801CD986[D_801CDACC] &= ~0x200;
                 playSfx(746);
                 if (ptr->unk18[0] == 0)
                     ptr->unk18[0] = ptr->unk14->unk0 - 1;
@@ -2385,7 +2385,7 @@ static void func_801C45C0(void)
 
             if (D_801CD986[D_801CDACC] & 0x100)
             {
-                D_801CD986[D_801CDACC] &= 0xFEFF;
+                D_801CD986[D_801CDACC] &= ~0x100;
                 playSfx(746);
                 if (ptr->unk18[0] != (ptr->unk14->unk0 - 1))
                     ptr->unk18[0]++;
@@ -2474,7 +2474,7 @@ void func_801C4B34(void)
             {
                 D_801CC8C0 = 0;
                 D_801CA144 = 1.8f;
-                menuExit();
+                _menuExit();
             }
         }
     }
@@ -2599,7 +2599,7 @@ static void func_801C509C(void)
         return;
     }
 
-    gCheatAwarded = awardMapCheat(gMapNum);
+    _cheatAwarded = awardMapCheat(gMapNum);
     allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT*2, DISPLAY_LIST_SIZE*2, 0);
     D_800BD3E8 = 1;
     func_801C10C8();
@@ -2712,7 +2712,7 @@ void func_801C542C(void)
         D_801CA144 = 0.0f;
         D_801CE59C = 0;
 
-        if (gCheatAwarded)
+        if (_cheatAwarded)
         {
 #if VERSION_US
             D_801CF6E0[6] = func_8007FE2C("CHEAT AWARDED", gScreenWidth/2, 128, 200, 1, 0);
@@ -2799,7 +2799,7 @@ void func_801C542C(void)
                 if (D_801CA144 < 0.0f)
                     D_801CA144 = 0.0f;
             }
-            if (gCheatAwarded)
+            if (_cheatAwarded)
             {
                 if ((D_801CC910 & 0xF) < 7)
                     D_801CF6E0[6]->unkC &= ~1;
@@ -3254,7 +3254,7 @@ void func_801C66D8(void)
     block_39:
         if (*D_801CD986 & 0x1000)
         {
-            *D_801CD986 &= 0xEFFF;
+            *D_801CD986 &= ~0x1000;
             if (D_801CE494 > 0)
                 D_801CDB04 = 1;
         }
@@ -3268,199 +3268,199 @@ void func_801C66D8(void)
 }
 
 /*801C6CA4*/
-static void unlockSkinEnforcers(void)
+static void _unlockSkinEnforcers(void)
 {
     gUnlockedSkin |= SKIN_ENFORCER|SKIN_ENFORCERCAPTAIN|SKIN_BATTLEENFORCER;
 }
 
 /*801C6CC4*/
-static void unlockSkinPigs(void)
+static void _unlockSkinPigs(void)
 {
     gUnlockedSkin |= SKIN_PIGCOP|SKIN_RIOTPIG|SKIN_ROADHOG|SKIN_WARPIG|SKIN_COWBOYGRUNT|SKIN_SAVAGEGRUNT|SKIN_SOLDIERGRUNT|SKIN_CAPITALISTPIG;
 }
 
 /*801C6CE4*/
-static void unlockSkinDukes(void)
+static void _unlockSkinDukes(void)
 {
     gUnlockedSkin |= SKIN_POSHDUKE|SKIN_BATTLEDRESSDUKE|SKIN_DOGTAGDUKE;
 }
 
 /*801C6D00*/
-static void unlockSkinWomen(void)
+static void _unlockSkinWomen(void)
 {
     gUnlockedSkin |= SKIN_MARSHALL|SKIN_SHERIFF|SKIN_SQUAW|SKIN_SURVIVOR|SKIN_KIMBERLYSTROKES;
 }
 
 /*801C6D24*/
-static void unlockSkinBrothersNukem(void)
+static void _unlockSkinBrothersNukem(void)
 {
     gUnlockedSkin |= SKIN_EVILDUKE|SKIN_CUSTER|SKIN_RIPPER|SKIN_XTERMINATOR;
 }
 
 /*801C6D40*/
-static void unlockSkinSoldiers(void)
+static void _unlockSkinSoldiers(void)
 {
     gUnlockedSkin |= SKIN_MARINE|SKIN_SERGEANT;
 }
 
 /*801C6D5C*/
-static void unlockCheatFirstPerson(void)
+static void _unlockCheatFirstPerson(void)
 {
     gCheatFirstPersonConfig = CONFIG_ON;
     gUnlockedCheat |= (1<<CHEAT_FIRST_PERSON);
 }
 
 /*801C6D84*/
-static void unlockCheatBigHeadMode(void)
+static void _unlockCheatBigHeadMode(void)
 {
     gCheatBigHeadModeConfig = CONFIG_ON;
     gUnlockedCheat |= (1<<CHEAT_BIG_HEAD_MODE);
 }
 
 /*801C6DAC*/
-static void unlockCheatFlatShading(void)
+static void _unlockCheatFlatShading(void)
 {
     gCheatFlatShadingConfig = CONFIG_ON;
     gUnlockedCheat |= (1<<CHEAT_FLAT_SHADING);
 }
 
 /*801C6DD4*/
-static void unlockCheatWeather(void)
+static void _unlockCheatWeather(void)
 {
     gCheatWeatherConfig = CONFIG_ON;
     gUnlockedCheat |= (1<<CHEAT_WEATHER);
 }
 
 /*801C6DFC*/
-static void unlockCheatBigGun(void)
+static void _unlockCheatBigGun(void)
 {
     gCheatBigGunConfig = CONFIG_ON;
     gUnlockedCheat |= (1<<CHEAT_BIG_GUN);
 }
 
 /*801C6E24*/
-static void unlockCheatIceSkin(void)
+static void _unlockCheatIceSkin(void)
 {
     gCheatIceSkinConfig = CONFIG_ON;
     gUnlockedCheat |= (1<<CHEAT_ICE_SKINS);
 }
 
 /*801C6E4C*/
-static void unlockCheatActionNukem(void)
+static void _unlockCheatActionNukem(void)
 {
     gCheatActionNukemConfig = CONFIG_ON;
     gUnlockedCheat |= (1<<CHEAT_ACTION_NUKEM);
 }
 
 /*801C6E74*/
-static void unlockCheatSelectSkin(void)
+static void _unlockCheatSelectSkin(void)
 {
     gCheatSelectSkinConfig = CONFIG_ON;
     gUnlockedCheat |= (1<<CHEAT_SELECT_SKIN);
 }
 
 /*801C6E9C*/
-static void unlockCheatFastZombies(void)
+static void _unlockCheatFastZombies(void)
 {
     gCheatFastZombiesConfig = CONFIG_ON;
     gUnlockedCheat |= (1<<CHEAT_FAST_ZOMBIES);
 }
 
 /*801C6EC4*/
-static void unlockCheatWeaponSmg(void)
+static void _unlockCheatWeaponSmg(void)
 {
     gCheatWeaponSmgConfig = CONFIG_ON;
     gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_SMG);
 }
 
 /*801C6EEC*/
-static void unlockCheatWeaponBlaster(void)
+static void _unlockCheatWeaponBlaster(void)
 {
     gCheatWeaponBlasterConfig = CONFIG_ON;
     gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_BLASTER);
 }
 
 /*801C6F14*/
-static void unlockCheatWeaponSniper(void)
+static void _unlockCheatWeaponSniper(void)
 {
     gCheatWeaponSniperConfig = CONFIG_ON;
     gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_SNIPER);
 }
 
 /*801C6F3C*/
-static void unlockCheatWeaponFreezer(void)
+static void _unlockCheatWeaponFreezer(void)
 {
     gCheatWeaponFreezerConfig = CONFIG_ON;
     gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_FREEZER);
 }
 
 /*801C6F64*/
-static void unlockCheatWeaponRevolver(void)
+static void _unlockCheatWeaponRevolver(void)
 {
     gCheatWeaponRevolverConfig = CONFIG_ON;
     gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_REVOLVER);
 }
 
 /*801C6F8C*/
-static void unlockCheatWeaponClaw12(void)
+static void _unlockCheatWeaponClaw12(void)
 {
     gCheatWeaponClaw12Config = CONFIG_ON;
     gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_CLAW12);
 }
 
 /*801C6FB4*/
-static void unlockCheatWeapon3030(void)
+static void _unlockCheatWeapon3030(void)
 {
     gCheatWeapon3030Config = CONFIG_ON;
     gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_3030);
 }
 
 /*801C6FDC*/
-static void unlockCheatWeaponSawedOff(void)
+static void _unlockCheatWeaponSawedOff(void)
 {
     gCheatWeaponSawedOffConfig = CONFIG_ON;
     gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_SAWEDOFF);
 }
 
 /*801C7004*/
-static void unlockCheatWeaponVoltCannon(void)
+static void _unlockCheatWeaponVoltCannon(void)
 {
     gCheatWeaponVoltCannonConfig = CONFIG_ON;
     gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_VOLTCANNON);
 }
 
 /*801C702C*/
-static void unlockCheatWeaponGattlingGun(void)
+static void _unlockCheatWeaponGattlingGun(void)
 {
     gCheatWeaponGattlingGunConfig = CONFIG_ON;
     gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_GATTLINGGUN);
 }
 
 /*801C7054*/
-static void unlockCheatWeaponGammaCannon(void)
+static void _unlockCheatWeaponGammaCannon(void)
 {
     gCheatWeaponGammaCannonConfig = CONFIG_ON;
     gUnlockedCheatWeapons |= (1<<CHEAT_WEAPON_GAMMACANNON);
 }
 
 /*801C707C*/
-static void unlockCheatWeaponAll(void)
+static void _unlockCheatWeaponAll(void)
 {
-    unlockCheatWeaponSmg();
-    unlockCheatWeaponBlaster();
-    unlockCheatWeaponSniper();
-    unlockCheatWeaponFreezer();
-    unlockCheatWeaponRevolver();
-    unlockCheatWeaponClaw12();
-    unlockCheatWeapon3030();
-    unlockCheatWeaponSawedOff();
-    unlockCheatWeaponVoltCannon();
-    unlockCheatWeaponGattlingGun();
-    unlockCheatWeaponGammaCannon();
+    _unlockCheatWeaponSmg();
+    _unlockCheatWeaponBlaster();
+    _unlockCheatWeaponSniper();
+    _unlockCheatWeaponFreezer();
+    _unlockCheatWeaponRevolver();
+    _unlockCheatWeaponClaw12();
+    _unlockCheatWeapon3030();
+    _unlockCheatWeaponSawedOff();
+    _unlockCheatWeaponVoltCannon();
+    _unlockCheatWeaponGattlingGun();
+    _unlockCheatWeaponGammaCannon();
 }
 
 /*801C70EC*/
-static void toggleDebugMenu(void)
+static void _toggleDebugMenu(void)
 {
     gDebugMenu = !gDebugMenu;
 }
@@ -3532,34 +3532,34 @@ static void func_801C73A0(void)
 
 /*801CB998*/
 static CheatCode gCheatCode[28] = {
-    { unlockSkinEnforcers, 7, { A_BUTTON, L_TRIG, R_TRIG, L_JPAD, B_BUTTON, D_JPAD, U_JPAD, 0, 0, 0, 0 } },
-    { unlockSkinPigs, 5, { B_BUTTON, A_BUTTON, A_BUTTON, R_TRIG, L_TRIG, 0, 0, 0, 0, 0, 0 } },
-    { unlockSkinDukes, 7, { L_TRIG, L_TRIG, U_JPAD, D_JPAD, R_TRIG, B_BUTTON, A_BUTTON, 0, 0, 0, 0 } },
-    { unlockSkinWomen, 6, { B_BUTTON, B_BUTTON, B_BUTTON, R_TRIG, L_JPAD, A_BUTTON, 0, 0, 0, 0, 0 } },
-    { unlockSkinBrothersNukem, 6, { R_JPAD, B_BUTTON, L_JPAD, L_TRIG, A_BUTTON, Z_TRIG, 0, 0, 0, 0, 0 } },
-    { unlockSkinSoldiers, 6, { U_JPAD, D_JPAD, B_BUTTON, A_BUTTON, A_BUTTON, L_JPAD, 0, 0, 0, 0, 0 } },
-    { unlockCheatFirstPerson, 10, { D_JPAD, U_JPAD, L_TRIG, B_BUTTON, Z_TRIG, L_JPAD, U_CBUTTONS, R_CBUTTONS, L_CBUTTONS, Z_TRIG, 0 } },
-    { unlockCheatBigHeadMode, 8, { B_BUTTON, U_JPAD, D_JPAD, D_JPAD, A_BUTTON, Z_TRIG, A_BUTTON, R_JPAD, 0, 0, 0 } },
-    { unlockCheatFlatShading, 7, { D_JPAD, U_JPAD, L_JPAD, L_JPAD, A_BUTTON, R_JPAD, D_JPAD, 0, 0, 0, 0 } },
-    { unlockCheatWeather, 7, { Z_TRIG, A_BUTTON, L_TRIG, B_BUTTON, D_JPAD, U_JPAD, R_TRIG, 0, 0, 0, 0 } },
-    { unlockCheatBigGun, 7, { U_CBUTTONS, L_CBUTTONS, Z_TRIG, B_BUTTON, L_TRIG, Z_TRIG, A_BUTTON, 0, 0, 0, 0 } },
-    { unlockCheatIceSkin, 7, { B_BUTTON, Z_TRIG, U_JPAD, L_TRIG, A_BUTTON, R_CBUTTONS, A_BUTTON, 0, 0, 0, 0 } },
-    { unlockCheatActionNukem, 7, { D_JPAD, D_JPAD, A_BUTTON, Z_TRIG, Z_TRIG, L_JPAD, A_BUTTON, 0, 0, 0, 0 } },
-    { unlockCheatSelectSkin, 8, { L_CBUTTONS, R_TRIG, L_JPAD, U_JPAD, D_JPAD, B_BUTTON, A_BUTTON, Z_TRIG, 0, 0, 0 } },
-    { unlockCheatFastZombies, 7, { A_BUTTON, A_BUTTON, Z_TRIG, A_BUTTON, R_TRIG, D_CBUTTONS, B_BUTTON, 0, 0, 0, 0 } },
-    { unlockCheatWeaponSmg, 6, { L_TRIG, B_BUTTON, B_BUTTON, R_TRIG, Z_TRIG, A_BUTTON, 0, 0, 0, 0, 0 } },
-    { unlockCheatWeaponBlaster, 6, { B_BUTTON, L_JPAD, A_BUTTON, R_TRIG, R_TRIG, B_BUTTON, 0, 0, 0, 0, 0 } },
-    { unlockCheatWeaponSniper, 6, { L_JPAD, R_JPAD, U_JPAD, B_BUTTON, D_JPAD, A_BUTTON, 0, 0, 0, 0, 0 } },
-    { unlockCheatWeaponFreezer, 6, { D_JPAD, U_JPAD, A_BUTTON, L_TRIG, R_TRIG, Z_TRIG, 0, 0, 0, 0, 0 } },
-    { unlockCheatWeaponRevolver, 6, { R_JPAD, A_BUTTON, R_TRIG, Z_TRIG, B_BUTTON, A_BUTTON, 0, 0, 0, 0, 0 } },
-    { unlockCheatWeaponClaw12, 6, { B_BUTTON, Z_TRIG, Z_TRIG, A_BUTTON, Z_TRIG, L_TRIG, 0, 0, 0, 0, 0 } },
-    { unlockCheatWeapon3030, 6, { U_CBUTTONS, D_CBUTTONS, L_CBUTTONS, R_CBUTTONS, L_TRIG, R_TRIG, 0, 0, 0, 0, 0 } },
-    { unlockCheatWeaponSawedOff, 6, { B_BUTTON, A_BUTTON, D_CBUTTONS, Z_TRIG, L_TRIG, L_CBUTTONS, 0, 0, 0, 0, 0 } },
-    { unlockCheatWeaponVoltCannon, 6, { L_TRIG, Z_TRIG, Z_TRIG, A_BUTTON, Z_TRIG, R_TRIG, 0, 0, 0, 0, 0 } },
-    { unlockCheatWeaponGattlingGun, 6, { R_CBUTTONS, R_TRIG, R_JPAD, Z_TRIG, B_BUTTON, A_BUTTON, 0, 0, 0, 0, 0 } },
-    { unlockCheatWeaponGammaCannon, 6, { U_CBUTTONS, D_JPAD, A_BUTTON, A_BUTTON, L_CBUTTONS, R_TRIG, 0, 0, 0, 0, 0 } },
-    { unlockCheatWeaponAll, 10, { D_JPAD, A_BUTTON, U_JPAD, L_TRIG, Z_TRIG, R_TRIG, U_CBUTTONS, D_CBUTTONS, B_BUTTON, L_CBUTTONS, 0 } },
-    { toggleDebugMenu, 10, { U_CBUTTONS, U_JPAD, L_CBUTTONS, R_JPAD, D_CBUTTONS, D_JPAD, R_CBUTTONS, R_TRIG, A_BUTTON, B_BUTTON, 0 } },
+    { _unlockSkinEnforcers, 7, { A_BUTTON, L_TRIG, R_TRIG, L_JPAD, B_BUTTON, D_JPAD, U_JPAD, 0, 0, 0, 0 } },
+    { _unlockSkinPigs, 5, { B_BUTTON, A_BUTTON, A_BUTTON, R_TRIG, L_TRIG, 0, 0, 0, 0, 0, 0 } },
+    { _unlockSkinDukes, 7, { L_TRIG, L_TRIG, U_JPAD, D_JPAD, R_TRIG, B_BUTTON, A_BUTTON, 0, 0, 0, 0 } },
+    { _unlockSkinWomen, 6, { B_BUTTON, B_BUTTON, B_BUTTON, R_TRIG, L_JPAD, A_BUTTON, 0, 0, 0, 0, 0 } },
+    { _unlockSkinBrothersNukem, 6, { R_JPAD, B_BUTTON, L_JPAD, L_TRIG, A_BUTTON, Z_TRIG, 0, 0, 0, 0, 0 } },
+    { _unlockSkinSoldiers, 6, { U_JPAD, D_JPAD, B_BUTTON, A_BUTTON, A_BUTTON, L_JPAD, 0, 0, 0, 0, 0 } },
+    { _unlockCheatFirstPerson, 10, { D_JPAD, U_JPAD, L_TRIG, B_BUTTON, Z_TRIG, L_JPAD, U_CBUTTONS, R_CBUTTONS, L_CBUTTONS, Z_TRIG, 0 } },
+    { _unlockCheatBigHeadMode, 8, { B_BUTTON, U_JPAD, D_JPAD, D_JPAD, A_BUTTON, Z_TRIG, A_BUTTON, R_JPAD, 0, 0, 0 } },
+    { _unlockCheatFlatShading, 7, { D_JPAD, U_JPAD, L_JPAD, L_JPAD, A_BUTTON, R_JPAD, D_JPAD, 0, 0, 0, 0 } },
+    { _unlockCheatWeather, 7, { Z_TRIG, A_BUTTON, L_TRIG, B_BUTTON, D_JPAD, U_JPAD, R_TRIG, 0, 0, 0, 0 } },
+    { _unlockCheatBigGun, 7, { U_CBUTTONS, L_CBUTTONS, Z_TRIG, B_BUTTON, L_TRIG, Z_TRIG, A_BUTTON, 0, 0, 0, 0 } },
+    { _unlockCheatIceSkin, 7, { B_BUTTON, Z_TRIG, U_JPAD, L_TRIG, A_BUTTON, R_CBUTTONS, A_BUTTON, 0, 0, 0, 0 } },
+    { _unlockCheatActionNukem, 7, { D_JPAD, D_JPAD, A_BUTTON, Z_TRIG, Z_TRIG, L_JPAD, A_BUTTON, 0, 0, 0, 0 } },
+    { _unlockCheatSelectSkin, 8, { L_CBUTTONS, R_TRIG, L_JPAD, U_JPAD, D_JPAD, B_BUTTON, A_BUTTON, Z_TRIG, 0, 0, 0 } },
+    { _unlockCheatFastZombies, 7, { A_BUTTON, A_BUTTON, Z_TRIG, A_BUTTON, R_TRIG, D_CBUTTONS, B_BUTTON, 0, 0, 0, 0 } },
+    { _unlockCheatWeaponSmg, 6, { L_TRIG, B_BUTTON, B_BUTTON, R_TRIG, Z_TRIG, A_BUTTON, 0, 0, 0, 0, 0 } },
+    { _unlockCheatWeaponBlaster, 6, { B_BUTTON, L_JPAD, A_BUTTON, R_TRIG, R_TRIG, B_BUTTON, 0, 0, 0, 0, 0 } },
+    { _unlockCheatWeaponSniper, 6, { L_JPAD, R_JPAD, U_JPAD, B_BUTTON, D_JPAD, A_BUTTON, 0, 0, 0, 0, 0 } },
+    { _unlockCheatWeaponFreezer, 6, { D_JPAD, U_JPAD, A_BUTTON, L_TRIG, R_TRIG, Z_TRIG, 0, 0, 0, 0, 0 } },
+    { _unlockCheatWeaponRevolver, 6, { R_JPAD, A_BUTTON, R_TRIG, Z_TRIG, B_BUTTON, A_BUTTON, 0, 0, 0, 0, 0 } },
+    { _unlockCheatWeaponClaw12, 6, { B_BUTTON, Z_TRIG, Z_TRIG, A_BUTTON, Z_TRIG, L_TRIG, 0, 0, 0, 0, 0 } },
+    { _unlockCheatWeapon3030, 6, { U_CBUTTONS, D_CBUTTONS, L_CBUTTONS, R_CBUTTONS, L_TRIG, R_TRIG, 0, 0, 0, 0, 0 } },
+    { _unlockCheatWeaponSawedOff, 6, { B_BUTTON, A_BUTTON, D_CBUTTONS, Z_TRIG, L_TRIG, L_CBUTTONS, 0, 0, 0, 0, 0 } },
+    { _unlockCheatWeaponVoltCannon, 6, { L_TRIG, Z_TRIG, Z_TRIG, A_BUTTON, Z_TRIG, R_TRIG, 0, 0, 0, 0, 0 } },
+    { _unlockCheatWeaponGattlingGun, 6, { R_CBUTTONS, R_TRIG, R_JPAD, Z_TRIG, B_BUTTON, A_BUTTON, 0, 0, 0, 0, 0 } },
+    { _unlockCheatWeaponGammaCannon, 6, { U_CBUTTONS, D_JPAD, A_BUTTON, A_BUTTON, L_CBUTTONS, R_TRIG, 0, 0, 0, 0, 0 } },
+    { _unlockCheatWeaponAll, 10, { D_JPAD, A_BUTTON, U_JPAD, L_TRIG, Z_TRIG, R_TRIG, U_CBUTTONS, D_CBUTTONS, B_BUTTON, L_CBUTTONS, 0 } },
+    { _toggleDebugMenu, 10, { U_CBUTTONS, U_JPAD, L_CBUTTONS, R_JPAD, D_CBUTTONS, D_JPAD, R_CBUTTONS, R_TRIG, A_BUTTON, B_BUTTON, 0 } },
 };
 
 /*801C73CC*/
@@ -3947,7 +3947,7 @@ static void func_801C8650(void)
 
     for (i = 0; gMapChapter[i].chapter != DUKEMATCH; i++);
 
-    gpDukematchMapChapter = &gMapChapter[i];
+    _pDukematchMapChapter = &gMapChapter[i];
     func_8007F050();
     setCameraPosition(0.0f, 0.0f, -90.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     func_8007FD8C(&D_800E064C[0], 15);
@@ -3984,7 +3984,7 @@ static void func_801C8650(void)
     D_801CE5DC = MAP_MEAN_STREETS;
     D_801CDA88 = 0;
     D_801CDB20 = 0;
-    D_801CC8B0 = func_8007FE2C(gpDukematchMapChapter->mapname, gScreenWidth / 2, (gScreenHeight / 2) + 100, 64, 1, 0);
+    D_801CC8B0 = func_8007FE2C(_pDukematchMapChapter->mapname, gScreenWidth / 2, (gScreenHeight / 2) + 100, 64, 1, 0);
     D_8010554C = 1;
 }
 
@@ -4020,7 +4020,7 @@ void func_801C899C(void)
 
         D_801CDA28[D_801CE5DC]->unk10 = 0xFF;
         D_801CDB20 = 0;
-        D_801CC8B0->unk70 = gpDukematchMapChapter[D_801CE5DC].mapname;
+        D_801CC8B0->unk70 = _pDukematchMapChapter[D_801CE5DC].mapname;
     }
 
     if (D_801CDB20 == 0)
@@ -4123,11 +4123,11 @@ static char *D_801CBCA8[16] = {
 };
 
 /*801C8DE0*/
-static void menuControllerConfig(void)
+static void _menuControllerConfig(void)
 {
     s32 i, j;
 
-    menuEnter();
+    _menuEnter();
     j = -110;
     for (i = 0; i < ARRAY_COUNT(D_801CE558); i++)
     {
@@ -4324,7 +4324,7 @@ static void func_801C959C(void)
 }
 
 /*801C97A8*/
-static void menuLoadGame(void)
+static void _menuLoadGame(void)
 {
     *D_801CE5A8->unkC = D_801CE5A0;
     D_800FE3FC = 0;

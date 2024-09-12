@@ -151,9 +151,9 @@ static s16 func_8006CDE0(s16 playernum, s32 *arg1, s32 *arg2, s32 *arg3)
         if (func_8004D7D8(i) != 0)
         {
             ang = getAngle(spr->x - x1, spr->y - y1);
-            delta = getAngleDelta(ang, gPlayer[playernum].unk38);
-            if (((delta > 0) && (getAngleDelta(ang, gPlayer[playernum].unk38)) < 384) ||
-                ((delta <= 0) && (-getAngleDelta(ang, gPlayer[playernum].unk38) < 384)))
+            delta = getAngleDelta(ang, gPlayer[playernum].ang);
+            if (((delta > 0) && (getAngleDelta(ang, gPlayer[playernum].ang)) < 384) ||
+                ((delta <= 0) && (-getAngleDelta(ang, gPlayer[playernum].ang) < 384)))
             {
                 if (canSee(x1, y1, z1, sectnum, spr->x, spr->y, spr->z, spr->sectnum) != 0)
                 {
@@ -212,7 +212,7 @@ void func_8006D0E4(s16 playernum)
 {
     s16 i;
     for (i = 0; i < ARRAY_COUNT(D_8011A680[playernum]); i++)
-        Bmemset(&D_8011A680[playernum][i], 0, 20);
+        Bmemset(&D_8011A680[playernum][i], 0, sizeof(D_8011A680[playernum][i]));
 
     func_8007AD30();
 }
@@ -328,7 +328,7 @@ label1:
         if ((arg1 != 23) & (arg1 != 26))
             zs += 0x1000;
 
-        ang = gPlayer[j].unk38;
+        ang = gPlayer[j].ang;
         f1 = (gPlayer[j].unk3E * (PI/1024));
         f2 = sinf(f1) / cosf(f1);
         o = f2 * 16384.0f * 16.0f;
@@ -1706,7 +1706,7 @@ label1:
                     setSprite(ret, hitx, hity, hitz);
                     if (j >= 0)
                     {
-                        if (gPlayer[j].unk32 != -69)
+                        if (gPlayer[j].cursectnum != -69)
                         {
                             if (D_8011A680[j][arg1][0] & 4)
                                 spr->picnum = 1844;

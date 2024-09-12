@@ -9,13 +9,13 @@ void loadMap(s32 mapnum);
 void func_80008E3C(void);
 s32 getDisplayListVertexUsagePercentage(void);
 void func_8000A070(void);
-void func_8000B570(s16);
+void drawTriangles(s16);
 void func_8000B6A8(s16);
 void func_8000B830(s16);
-void func_8000BDB0(s16 tileid);
-void func_8000C0D0(s16 tilenum);
-void func_8000C3E4(s16 tilenum);
-void func_8000C76C(void);
+void func_8000BDB0(s16 tilenum);
+void func_8000C0D0(s16 tileid);
+void func_8000C3E4(s16 tileid);
+void initVertexList(void);
 void func_8000DBDC(u8, s16);
 void func_8000DCF0(s32 x, s32 y, s32 z, s16 sectnum);
 void func_8000E04C(void);
@@ -23,10 +23,10 @@ void func_8000EA0C(u8 playernum, s16 r, s16 g, s16 b, s16 a);
 void func_8000EB4C(u8 playernum, s16 r, s16 g, s16 b, s16 a);
 void func_8000EB90(u8 playernum, s16 r, s16 g, s16 b, s16 a);
 s16 func_8000EBD4(u8 playernum);
-u16 getTileNum(u16 tileid);
-u8 *loadTile(u16 tilenum);
-s32 tileMasks(u16);
-s32 tileMaskt(u16);
+u16 getTileId(u16 tilenum);
+u8 *loadTile(u16 tileid);
+s32 tileMasks(u16 tileid);
+s32 tileMaskt(u16 tileid);
 
 typedef struct
 {

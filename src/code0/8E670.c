@@ -249,12 +249,12 @@ void func_8008E04C(s16 playernum)
     func_8006D0E4(playernum);
     D_8011A680[playernum][0][0] |= 1;
     func_80095390(playernum);
-    ptr->unk99 = D_8012F6E4[gPlayer[playernum].unk4C].unk8;
+    ptr->unk99 = D_8012F6E4[gPlayer[playernum].skin].unk8;
     gPlayer[playernum].unk70 = ptr->unk99;
     D_8011A680[playernum][ptr->unk99][0] |= 1;
     D_8011A680[playernum][ptr->unk99][1] = D_800DF1D0[ptr->unk99][1] * 2;
 
-    switch (D_8012F6E4[gPlayer[playernum].unk4C].picnum)
+    switch (D_8012F6E4[gPlayer[playernum].skin].picnum)
     {
     case ENFORCER:
     case ENFORCERCAPTAIN:
@@ -276,10 +276,10 @@ void func_8008E04C(s16 playernum)
     }
 
     ptr->unk7E = D_8010A940[playernum].unkA[0];
-    gPlayer[playernum].unk46 = D_8012F6E4[gPlayer[playernum].unk4C].unk9;
+    gPlayer[playernum].unk46 = D_8012F6E4[gPlayer[playernum].skin].unk9;
     gPlayer[playernum].unk48 = gPlayer[playernum].unk46;
     ptr->unk8 = gPlayer[playernum].unk46;
 
-    if (D_8012F6E4[gPlayer[playernum].unk4C].unkB == 5)
+    if (D_8012F6E4[gPlayer[playernum].skin].unkB == 5)
         gPlayer[playernum].unk48 = 0;
 }

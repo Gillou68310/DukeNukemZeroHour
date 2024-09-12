@@ -955,7 +955,7 @@ void func_80017268(s16 spritenum)
     else
     {
         if (gPlayer[i].unk59 == 0)
-            D_80119A30[i] &= 0xF3;
+            D_80119A30[i] &= ~0xC;
 
         if ((j == 0) || (j == 13) || (j == 12) || (j == 14) || (j == 10) || (j == 11))
         {

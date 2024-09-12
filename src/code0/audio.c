@@ -284,24 +284,24 @@ static s16 _multiplier[21] = {
 
 /*.comm*/
 /*800FEA98*/ audioUnkStruct1 D_800FEA98[32] ALIGNED(8);
-/*8010A9C0*/ u8 gSfxBankBuffer[SFX_BANK_SIZE] ALIGNED(16);
-/*80129810*/ u8 gMusicBuffer[MUSIC_BUFFER_SIZE] ALIGNED(16);
+/*8010A9C0*/ u8 _sfxBankBuffer[SFX_BANK_SIZE] ALIGNED(16);
+/*80129810*/ u8 _musicBuffer[MUSIC_BUFFER_SIZE] ALIGNED(16);
 /*80138608*/ s16 gMusicNum;
-/*8013F960*/ u8 gSfxPbankBuffer[SFX_PBANK_SIZE] ALIGNED(16);
-/*8016D190*/ u8 gAudioMemory[AUDIO_HEAP_SIZE] ALIGNED(16);
-/*80195190*/ u8 gAmbientBuffer[AMBIENT_BUFFER_SIZE] ALIGNED(16);
-/*80197D54*/ s32 gMasterVolume;
+/*8013F960*/ u8 _sfxPbankBuffer[SFX_PBANK_SIZE] ALIGNED(16);
+/*8016D190*/ u8 _audioMemory[AUDIO_HEAP_SIZE] ALIGNED(16);
+/*80195190*/ u8 _ambientBuffer[AMBIENT_BUFFER_SIZE] ALIGNED(16);
+/*80197D54*/ s32 _masterVolume;
 /*80199754*/ s32 gMusicVolume;
-/*8019A9A0*/ u8 gAmbientPbankBuffer[AMBIENT_PBANK_SIZE] ALIGNED(16);
-/*801A2840*/ u8 gMusicPbankBuffer[MUSIC_PBANK_SIZE] ALIGNED(16);
+/*8019A9A0*/ u8 _ambientPbankBuffer[AMBIENT_PBANK_SIZE] ALIGNED(16);
+/*801A2840*/ u8 _musicPbankBuffer[MUSIC_PBANK_SIZE] ALIGNED(16);
 /*801AC8D4*/ s16 D_801AC8D4[4];
-/*801B0D3C*/ u16 gSfxCount;
+/*801B0D3C*/ u16 _sfxCount;
 
 /*.text*/
-static void audio_80006E60(void);
-static void audio_80006F08(void);
-static musHandle audio_800075EC(u16 sfxnum, s16 spritenum, u8);
-static void audio_80007FF4(void);
+static void func_80006E60(void);
+static void func_80006F08(void);
+static musHandle func_800075EC(u16 sfxnum, s16 spritenum, u8);
+static void func_80007FF4(void);
 
 static inline musHandle get_D_800BD61C(s32 i)
 {
@@ -331,15 +331,15 @@ void dmaRomToRam(u8 *rom, u8 *ram, s32 size)
 }
 
 /*800066A8*/
-static void initMusicDriver(void)
+static void _initMusicDriver(void)
 {
     musConfig config;
 
-    dmaRomToRam(PBANK0_START, gSfxPbankBuffer, (PBANK0_END - PBANK0_START));
+    dmaRomToRam(PBANK0_START, _sfxPbankBuffer, (PBANK0_END - PBANK0_START));
     config.sched = &gScheduler;
     config.heap_length = AUDIO_HEAP_SIZE;
     config.thread_priority = 39;
-    config.heap = gAudioMemory;
+    config.heap = _audioMemory;
     config.control_flag = 0;
     config.ptr = NULL;
     config.wbk = NULL;
@@ -356,22 +356,22 @@ static void initMusicDriver(void)
 }
 
 /*80006760*/
-static void initBank(u8 *pbank_rom, s32 size, u8 *wbank, u8 *pbank_ram)
+static void _initBank(u8 *pbank_rom, s32 size, u8 *wbank, u8 *pbank_ram)
 {
     readRom(pbank_ram, pbank_rom, size);
     MusPtrBankInitialize(pbank_ram, wbank);
 }
 
 /*800067B4*/
-static void initSfxBank(u8 *sfx_bank_rom, s32 size)
+static void _initSfxBank(u8 *sfx_bank_rom, s32 size)
 {
-    readRom(gSfxBankBuffer, sfx_bank_rom, size);
-    MusFxBankInitialize(gSfxBankBuffer);
-    gSfxCount = MusFxBankNumberOfEffects(gSfxBankBuffer);
+    readRom(_sfxBankBuffer, sfx_bank_rom, size);
+    MusFxBankInitialize(_sfxBankBuffer);
+    _sfxCount = MusFxBankNumberOfEffects(_sfxBankBuffer);
 }
 
 /*80006808*/
-static void readMusic(u8 *rom, s32 size, u8 *ram)
+static void _readMusic(u8 *rom, s32 size, u8 *ram)
 {
     readRom(ram, rom, size);
 }
@@ -380,7 +380,7 @@ static void readMusic(u8 *rom, s32 size, u8 *ram)
 void setVolume(u32 musicvol, u32 mastervol)
 {
     gMusicVolume = musicvol;
-    gMasterVolume = mastervol;
+    _masterVolume = mastervol;
     MusSetMasterVolume(1, (mastervol * 32767) / 100);
 
     if (gMusicNum != -1)
@@ -393,13 +393,13 @@ void setVolume(u32 musicvol, u32 mastervol)
 /*80006938*/
 void initAudio(void)
 {
-    initMusicDriver();
+    _initMusicDriver();
     MusSetMasterVolume(MUSFLAG_EFFECTS | MUSFLAG_SONGS, 32767);
     setVolume(50, 100);
-    initBank(PBANK0_START, (PBANK0_END - PBANK0_START), WBANK0_START, gSfxPbankBuffer);
-    initSfxBank(SFX_BANK_START, (SFX_BANK_END - SFX_BANK_START));
-    MusPtrBankSetCurrent(gMusicPbankBuffer);
-    MusFxBankSetPtrBank(gSfxBankBuffer, gSfxPbankBuffer);
+    _initBank(PBANK0_START, (PBANK0_END - PBANK0_START), WBANK0_START, _sfxPbankBuffer);
+    _initSfxBank(SFX_BANK_START, (SFX_BANK_END - SFX_BANK_START));
+    MusPtrBankSetCurrent(_musicPbankBuffer);
+    MusFxBankSetPtrBank(_sfxBankBuffer, _sfxPbankBuffer);
 }
 
 /*800069D8*/
@@ -419,21 +419,21 @@ void playMusic(s32 musicnum)
         {
             if (_music.music[musicnum].pbank_start)
             {
-                initBank(_music.music[musicnum].pbank_start,
-                        _music.music[musicnum].pbank_end - _music.music[musicnum].pbank_start,
-                        _music.music[musicnum].wbank_start, gMusicPbankBuffer);
-                readMusic(_music.music[musicnum].music_start,
-                        _music.music[musicnum].music_end - _music.music[musicnum].music_start,
-                        gMusicBuffer);
-                MusPtrBankSetSingle(gMusicPbankBuffer);
-                gMusicHandle = MusStartSong(gMusicBuffer);
+                _initBank(_music.music[musicnum].pbank_start,
+                          _music.music[musicnum].pbank_end - _music.music[musicnum].pbank_start,
+                          _music.music[musicnum].wbank_start, _musicPbankBuffer);
+                _readMusic(_music.music[musicnum].music_start,
+                           _music.music[musicnum].music_end - _music.music[musicnum].music_start,
+                           _musicBuffer);
+                MusPtrBankSetSingle(_musicPbankBuffer);
+                gMusicHandle = MusStartSong(_musicBuffer);
             }
             else
             {
-                readMusic(_music.music[musicnum].music_start,
-                        _music.music[musicnum].music_end - _music.music[musicnum].music_start,
-                        gMusicBuffer);
-                gMusicHandle = MusStartSong(gMusicBuffer);
+                _readMusic(_music.music[musicnum].music_start,
+                           _music.music[musicnum].music_end - _music.music[musicnum].music_start,
+                           _musicBuffer);
+                gMusicHandle = MusStartSong(_musicBuffer);
             }
 
             volume = (gMusicVolume * 128) / 100U;
@@ -453,18 +453,18 @@ void playAmbient(s32 ambientnum)
         gAmbientHandle = 0;
     else
     {
-        initBank(
+        _initBank(
           _music.ambient[ambientnum].pbank_start,
           _music.ambient[ambientnum].pbank_end - _music.ambient[ambientnum].pbank_start,
           _music.ambient[ambientnum].wbank_start,
-          gAmbientPbankBuffer);
-        readMusic(
+          _ambientPbankBuffer);
+        _readMusic(
           _music.ambient[ambientnum].music_start,
           _music.ambient[ambientnum].music_end - _music.ambient[ambientnum].music_start,
-          gAmbientBuffer);
-        MusPtrBankSetSingle(gAmbientPbankBuffer);
-        gAmbientHandle = MusStartSong(gAmbientBuffer);
-        MusHandleSetVolume(gAmbientHandle, (gMasterVolume * 128) / 100U);
+          _ambientBuffer);
+        MusPtrBankSetSingle(_ambientPbankBuffer);
+        gAmbientHandle = MusStartSong(_ambientBuffer);
+        MusHandleSetVolume(gAmbientHandle, (_masterVolume * 128) / 100U);
     }
 }
 
@@ -477,7 +477,7 @@ void audio_80006CC0(void)
     {
         if (D_800BD618 == 0)
         {
-            audio_80006E60();
+            func_80006E60();
             D_800BD618 = 1;
         }
     }
@@ -485,7 +485,7 @@ void audio_80006CC0(void)
     {
         if (D_800BD618 == 1)
         {
-            audio_80006F08();
+            func_80006F08();
             D_800BD618 = 0;
         }
     }
@@ -534,7 +534,7 @@ void audio_80006CC0(void)
 }
 
 /*80006E60*/
-static void audio_80006E60(void)
+static void func_80006E60(void)
 {
     s16 i;
 
@@ -551,7 +551,7 @@ static void audio_80006E60(void)
 }
 
 /*80006F08*/
-static void audio_80006F08(void)
+static void func_80006F08(void)
 {
     s16 i;
     s16 volume;
@@ -560,7 +560,7 @@ static void audio_80006F08(void)
     {
         if (D_8012C470 == 1)
         {
-            gMasterVolume = 0;
+            _masterVolume = 0;
             MusSetMasterVolume(1, 0);
             return;
         }
@@ -569,10 +569,10 @@ static void audio_80006F08(void)
     for (i = 0; i < ARRAY_COUNT(D_800FEA98); i++)
     {
         if (D_800FEA98[i].handle)
-            MusHandleSetVolume(D_800FEA98[i].handle, (gMasterVolume * 128) / 100U);
+            MusHandleSetVolume(D_800FEA98[i].handle, (_masterVolume * 128) / 100U);
     }
 
-    MusHandleSetVolume(gAmbientHandle, (gMasterVolume * 128) / 100U);
+    MusHandleSetVolume(gAmbientHandle, (_masterVolume * 128) / 100U);
     volume = (gMusicVolume * 128) / 100U;
     volume = volume * _multiplier[gMusicNum] / 100;
     MusHandleSetVolume(gMusicHandle, volume);
@@ -625,7 +625,7 @@ musHandle playSfx(u16 sfxnum)
 
     if (sfxnum != 0)
     {
-        if (sfxnum < gSfxCount)
+        if (sfxnum < _sfxCount)
         {
             i = func_80007084(sfxnum);
             if (i != -1)
@@ -649,7 +649,7 @@ musHandle playSfx2(u16 sfxnum, s16 volume, s16 pan, u8 restartflag, s16 priority
 
     if (sfxnum != 0)
     {
-        if (sfxnum < gSfxCount)
+        if (sfxnum < _sfxCount)
         {
             i = func_80007084(sfxnum);
             if (i != -1)
@@ -666,7 +666,7 @@ musHandle playSfx2(u16 sfxnum, s16 volume, s16 pan, u8 restartflag, s16 priority
 }
 
 /*8000730C*/
-static musHandle audio_8000730C(u16 arg0, u32 arg1, s32 pan, u8 restartflag)
+static musHandle func_8000730C(u16 arg0, u32 arg1, s32 pan, u8 restartflag)
 {
     s32 volume;
 
@@ -683,7 +683,7 @@ static musHandle audio_8000730C(u16 arg0, u32 arg1, s32 pan, u8 restartflag)
 }
 
 /*80007418*/
-static musHandle audio_80007418(musHandle handle, s32 arg1, s32 pan)
+static musHandle func_80007418(musHandle handle, s32 arg1, s32 pan)
 {
     s32 volume;
 
@@ -728,7 +728,7 @@ u8 audio_80007510(s32 x, s32 y)
 }
 
 /*800075EC*/
-static musHandle audio_800075EC(u16 sfxnum, s16 spritenum, u8 restartflag)
+static musHandle func_800075EC(u16 sfxnum, s16 spritenum, u8 restartflag)
 {
     s32 pan;
     s16 playernum;
@@ -762,19 +762,19 @@ static musHandle audio_800075EC(u16 sfxnum, s16 spritenum, u8 restartflag)
 
         pan = pan >> 2;
     }
-    return audio_8000730C(sfxnum, spritenum2, pan, restartflag);
+    return func_8000730C(sfxnum, spritenum2, pan, restartflag);
 }
 
 /*800077F4*/
 musHandle audio_800077F4(u16 sfxnum, s16 spritenum)
 {
-    return audio_800075EC(sfxnum, spritenum, 0);
+    return func_800075EC(sfxnum, spritenum, 0);
 }
 
 /*80007820*/
 musHandle audio_80007820(u16 sfxnum, s16 spritenum)
 {
-    return audio_800075EC(sfxnum, spritenum, 1);
+    return func_800075EC(sfxnum, spritenum, 1);
 }
 
 /*8000784C*/
@@ -812,7 +812,7 @@ musHandle audio_8000784C(musHandle handle, s16 spritenum)
 
         pan = pan >> 2;
     }
-    return audio_80007418(handle, spritenum2, pan);
+    return func_80007418(handle, spritenum2, pan);
 }
 
 /*80007A44*/
@@ -843,7 +843,7 @@ void audio_80007AB8(void)
 
     u8 j, k, l, m, n;
 
-    audio_80007FF4();
+    func_80007FF4();
     n = 0;
     m = 0;
     l = 0;
@@ -863,7 +863,7 @@ void audio_80007AB8(void)
                 k = 2;
         }
 
-        if (D_8012F6E4[gPlayer[i].unk4C].unkB != 5)
+        if (D_8012F6E4[gPlayer[i].skin].unkB != 5)
         {
             if ((D_8010A940[i].unk2[1] != 0) || (D_8010A940[i].unk2[6] != 0))
                 l = 1;
@@ -880,7 +880,7 @@ void audio_80007AB8(void)
         if (get_D_800BD61C(0) == 0)
             D_800BD61C[0] = playSfx(15);
 
-        MusHandleSetVolume(gAmbientHandle, (gMasterVolume << 6) / 100U);
+        MusHandleSetVolume(gAmbientHandle, (_masterVolume << 6) / 100U);
     }
     else
     {
@@ -889,7 +889,7 @@ void audio_80007AB8(void)
             MusHandleStop(get_D_800BD61C(0), 10);
             D_800BD61C[0] = 0;
         }
-        MusHandleSetVolume(gAmbientHandle, (gMasterVolume << 7) / 100U);
+        MusHandleSetVolume(gAmbientHandle, (_masterVolume << 7) / 100U);
     }
 
     if (k != 0)
@@ -981,7 +981,7 @@ void audio_80007AB8(void)
 }
 
 /*80007FF4*/
-static void audio_80007FF4(void)
+static void func_80007FF4(void)
 {
     s16 i;
     for (i = 0; i < D_8012C470; i++)
@@ -1023,9 +1023,9 @@ void audio_800080E0(s16 playernum, u16 arg1)
             else
                 i = 0;
 
-            if (D_8012F6E4[gPlayer[playernum].unk4C].unkB != 0)
+            if (D_8012F6E4[gPlayer[playernum].skin].unkB != 0)
             {
-                switch (D_8012F6E4[gPlayer[playernum].unk4C].unkB)
+                switch (D_8012F6E4[gPlayer[playernum].skin].unkB)
                 {
                 case 1:
                     if (arg1 == 3)
@@ -1065,7 +1065,7 @@ void audio_800080E0(s16 playernum, u16 arg1)
                 }
             }
 
-            if (D_8012F6E4[gPlayer[playernum].unk4C].picnum == EVILDUKE)
+            if (D_8012F6E4[gPlayer[playernum].skin].picnum == EVILDUKE)
             {
                 if (arg1 == 3)
                     arg1 = 30;

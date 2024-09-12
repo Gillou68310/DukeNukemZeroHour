@@ -132,7 +132,7 @@ void func_8001DE9C(void)
     s32 a, b, c, d, e, f, g, h, j, k;
     s32 x, y, z;
     s16 i;
-    s32 tilenum;
+    s32 tileid;
     u16 sizex, sizey;
     s32 dimy, dimx, dimx1, dimy1;
 
@@ -154,7 +154,7 @@ void func_8001DE9C(void)
     {
         if (ptr->unk0 != 0)
         {
-            tilenum = getTileNum(ptr->unk1C);
+            tileid = getTileId(ptr->unk1C);
 
             fx = ptr->unk4 / 4.0;
             fy = ptr->unk8 / 4.0;
@@ -177,17 +177,17 @@ void func_8001DE9C(void)
 
                     gDPSetPrimDepth(gpDisplayList++, f12, 0);
                     f7 = (-f7 + 1.0f);
-                    func_8000C76C();
+                    initVertexList();
                     f13 = f7 * 16.0f;
                     func_8000BDB0(ptr->unk1C);
 
-                    dimy = gpTileInfo[tilenum].dimy;
+                    dimy = gpTileInfo[tileid].dimy;
                     dimy1 = 0;
-                    dimx = gpTileInfo[tilenum].dimx;
+                    dimx = gpTileInfo[tileid].dimx;
                     dimx1 = 0;
 
-                    sizex = (f13 *  (gpTileInfo[tilenum].sizex * ptr->unk1E)) / 16.0f;
-                    sizey = (f13 * (gpTileInfo[tilenum].sizey * ptr->unk1E)) / 16.0f;
+                    sizex = (f13 *  (gpTileInfo[tileid].sizex * ptr->unk1E)) / 16.0f;
+                    sizey = (f13 * (gpTileInfo[tileid].sizey * ptr->unk1E)) / 16.0f;
 
                     k = (ptr->unk20 << 5) & 0xFFE0;
                     f8 = sins(k) / 32768.0;
@@ -369,7 +369,7 @@ void func_8001EB2C(void)
                                   (-fy_ * D_801A1980) + D_801A2684,
                                   f5,
                                   f6,
-                                  getTileNum(D_801AE538[i].unk8),
+                                  getTileId(D_801AE538[i].unk8),
                                   D_801AE538[i].unkA);
                 }
             }

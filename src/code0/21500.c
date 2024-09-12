@@ -19,28 +19,28 @@
 /*80138814*/ f32 _globalWallV3;
 /*80168CA0*/ f32 _globalWallV2;
 /*80168D00*/ f32 _globalWallVoffset;
-/*80168D14*/ u16 _globalTilenum;
+/*80168D14*/ u16 _globalTileId;
 /*80199104*/ f32 _globalYpanning;
 /*80199568*/ f32 _globalTileSizeY;
 /*801A1984*/ s32 _wallPolyCount;
 /*801ACBE4*/ f32 _globalWallV1;
 
 /*.text*/
-static s32 wallCalcSlope(s32 sectnum, s32 wallnum);
-static s32 wallCalcNoSlope(s32 sectnum, s32 wallnum);
+static s32 _wallCalcSlope(s32 sectnum, s32 wallnum);
+static s32 _wallCalcNoSlope(s32 sectnum, s32 wallnum);
 
 /*80020900*/
-static void setTileGlobals(u16 tileid)
+static void _setTileGlobals(u16 tilenum)
 {
     f32 sizex, dimx, sizey, dimy;
-    u16 tilenum;
+    u16 tileid;
 
-    tilenum = getTileNum(tileid);
-    sizex = gpTileInfo[tilenum].sizex;
-    dimx = gpTileInfo[tilenum].dimx;
-    sizey = gpTileInfo[tilenum].sizey;
-    dimy = gpTileInfo[tilenum].dimy;
-    _globalTilenum = tilenum;
+    tileid = getTileId(tilenum);
+    sizex = gpTileInfo[tileid].sizex;
+    dimx = gpTileInfo[tileid].dimx;
+    sizey = gpTileInfo[tileid].sizey;
+    dimy = gpTileInfo[tileid].dimy;
+    _globalTileId = tileid;
     _globalTileSizeX = sizex;
     _globalTileDimX = dimx;
     _globalTileSizeY = sizey;
@@ -50,7 +50,7 @@ static void setTileGlobals(u16 tileid)
 }
 
 /*800209BC*/
-static void setWallGlobals(u16 wallnum, s16 cstat)
+static void _setWallGlobals(u16 wallnum, s16 cstat)
 {
     _globalXrepeat = gpWall[wallnum].xrepeat / _globalTileScaleX;
     _globalXpanning = gpWall[wallnum].xpanning / _globalTileScaleX;
@@ -80,7 +80,7 @@ static void setWallGlobals(u16 wallnum, s16 cstat)
 }
 
 /*80020BA0*/
-static void setWallGlobals2(u16 wallnum, s16 cstat)
+static void _setWallGlobals2(u16 wallnum, s16 cstat)
 {
     _globalXrepeat = gpWall[wallnum].xrepeat / _globalTileScaleX;
     _globalXpanning = gpWall[gpWall[wallnum].nextwall].xpanning / _globalTileScaleX;
@@ -110,7 +110,7 @@ static void setWallGlobals2(u16 wallnum, s16 cstat)
 }
 
 /*80020DC4*/
-static void handleWallCstatSlope(s16 cstat)
+static void _handleWallCstatSlope(s16 cstat)
 {
     f32 f1, prev;
     s32 adjust;
@@ -144,7 +144,7 @@ static void handleWallCstatSlope(s16 cstat)
 }
 
 /*800211D0*/
-static void handleWallCstat(s32 cstat)
+static void _handleWallCstat(s32 cstat)
 {
     f32 f1, prev;
     s32 adjust;
@@ -194,15 +194,15 @@ u8 wallCalc(s32 sectnum, s32 wallnum)
     }
 
     if (!(cstat & 2))
-        ret = wallCalcNoSlope(sectnum, wallnum);
+        ret = _wallCalcNoSlope(sectnum, wallnum);
     else
-        ret = wallCalcSlope(sectnum, wallnum);
+        ret = _wallCalcSlope(sectnum, wallnum);
 
     return ret;
 }
 
 /*80021464*/
-static s32 wallCalcSlope(s32 sectnum, s32 wallnum)
+static s32 _wallCalcSlope(s32 sectnum, s32 wallnum)
 {
     s32 x2, y1, y2, x1;
     s32 z, z1, z2, z3, z4;
@@ -234,14 +234,14 @@ static s32 wallCalcSlope(s32 sectnum, s32 wallnum)
         else
             z = gpSector[sectnum].ceilingz >> 4;
 
-        setTileGlobals(gpWall[wallnum].picnum);
-        setWallGlobals(wallnum, gpWall[wallnum].cstat);
+        _setTileGlobals(gpWall[wallnum].picnum);
+        _setWallGlobals(wallnum, gpWall[wallnum].cstat);
         ret |= 8;
         _globalWallV1 = ((z - z1) * _globalYrepeat) + _globalWallVoffset;
         _globalWallV2 = ((z - z2) * _globalYrepeat) + _globalWallVoffset;
         _globalWallV3 = ((z - z3) * _globalYrepeat) + _globalWallVoffset;
         _globalWallV4 = ((z - z4) * _globalYrepeat) + _globalWallVoffset;
-        handleWallCstatSlope(gpWall[wallnum].cstat);
+        _handleWallCstatSlope(gpWall[wallnum].cstat);
 
         gWallVertex[i].ob[0] = x1 >> 1;
         gWallVertex[i].ob[2] = z1 >> 1;
@@ -306,14 +306,14 @@ static s32 wallCalcSlope(s32 sectnum, s32 wallnum)
                     z = gpSector[gpWall[wallnum].nextsector].ceilingz >> 4;
                 }
 
-                setTileGlobals(gpWall[wallnum].picnum);
-                setWallGlobals(wallnum, cstat);
+                _setTileGlobals(gpWall[wallnum].picnum);
+                _setWallGlobals(wallnum, cstat);
                 ret |= 1;
                 _globalWallV1 = ((z - z1) * _globalYrepeat) + _globalWallVoffset;
                 _globalWallV2 = ((z - z2) * _globalYrepeat) + _globalWallVoffset;
                 _globalWallV3 = ((z - z3) * _globalYrepeat) + _globalWallVoffset;
                 _globalWallV4 = ((z - z4) * _globalYrepeat) + _globalWallVoffset;
-                handleWallCstatSlope(cstat);
+                _handleWallCstatSlope(cstat);
 
                 gWallVertex[i].ob[0] = x1 >> 1;
                 gWallVertex[i].ob[2] = z1 >> 1;
@@ -373,19 +373,19 @@ static s32 wallCalcSlope(s32 sectnum, s32 wallnum)
 
                 if (gpWall[wallnum].cstat & 2)
                 {
-                    setTileGlobals(gpWall[gpWall[wallnum].nextwall].picnum);
+                    _setTileGlobals(gpWall[gpWall[wallnum].nextwall].picnum);
 
                     if (gpWall[gpWall[wallnum].nextwall].cstat & 4)
                     {
                         cstat = gpWall[wallnum].cstat;
                         z = gpSector[sectnum].ceilingz >> 4;
-                        setWallGlobals2(wallnum, gpWall[gpWall[wallnum].nextwall].cstat & ~4);
+                        _setWallGlobals2(wallnum, gpWall[gpWall[wallnum].nextwall].cstat & ~4);
                     }
                     else
                     {
                         cstat = gpWall[wallnum].cstat;
                         z = gpSector[gpWall[wallnum].nextsector].floorz >> 4;
-                        setWallGlobals2(wallnum, gpWall[gpWall[wallnum].nextwall].cstat & ~4);
+                        _setWallGlobals2(wallnum, gpWall[gpWall[wallnum].nextwall].cstat & ~4);
                     }
                 }
                 else
@@ -400,14 +400,14 @@ static s32 wallCalcSlope(s32 sectnum, s32 wallnum)
                         z = gpSector[gpWall[wallnum].nextsector].floorz >> 4;
                         cstat = gpWall[wallnum].cstat & ~4;
                     }
-                    setTileGlobals(gpWall[wallnum].picnum);
-                    setWallGlobals(wallnum, cstat);
+                    _setTileGlobals(gpWall[wallnum].picnum);
+                    _setWallGlobals(wallnum, cstat);
                 }
                 _globalWallV1 = ((z - z1) * _globalYrepeat) + _globalWallVoffset;
                 _globalWallV2 = ((z - z2) * _globalYrepeat) + _globalWallVoffset;
                 _globalWallV3 = ((z - z3) * _globalYrepeat) + _globalWallVoffset;
                 _globalWallV4 = ((z - z4) * _globalYrepeat) + _globalWallVoffset;
-                handleWallCstatSlope(cstat);
+                _handleWallCstatSlope(cstat);
 
                 gWallVertex[i].ob[0] = x1 >> 1;
                 gWallVertex[i].ob[2] = z1 >> 1;
@@ -465,14 +465,14 @@ static s32 wallCalcSlope(s32 sectnum, s32 wallnum)
             cstat = gpWall[wallnum].cstat & ~4;
         }
 
-        setTileGlobals(gpWall[wallnum].overpicnum);
-        setWallGlobals(wallnum, cstat);
+        _setTileGlobals(gpWall[wallnum].overpicnum);
+        _setWallGlobals(wallnum, cstat);
         ret |= 4;
         _globalWallV1 = ((z - z1) * _globalYrepeat) + _globalWallVoffset;
         _globalWallV2 = ((z - z2) * _globalYrepeat) + _globalWallVoffset;
         _globalWallV3 = ((z - z3) * _globalYrepeat) + _globalWallVoffset;
         _globalWallV4 = ((z - z4) * _globalYrepeat) + _globalWallVoffset;
-        handleWallCstatSlope(cstat);
+        _handleWallCstatSlope(cstat);
 
         gWallVertex[i].ob[0] = x1 >> 1;
         gWallVertex[i].ob[2] = z1 >> 1;
@@ -577,14 +577,14 @@ s32 drawMaskWall(u16 wallnum)
         cstat = gpWall[wallnum].cstat & ~4;
     }
 
-    setTileGlobals(gpWall[wallnum].overpicnum);
-    setWallGlobals(wallnum, cstat);
+    _setTileGlobals(gpWall[wallnum].overpicnum);
+    _setWallGlobals(wallnum, cstat);
     ret |= 4;
     _globalWallV1 = ((z1 - ceilz1) * _globalYrepeat) + _globalWallVoffset;
     _globalWallV2 = ((z1 - floorz1) * _globalYrepeat) + _globalWallVoffset;
     _globalWallV3 = ((z1 - floorz2) * _globalYrepeat) + _globalWallVoffset;
     _globalWallV4 = ((z1 - ceilz2) * _globalYrepeat) + _globalWallVoffset;
-    handleWallCstatSlope(cstat);
+    _handleWallCstatSlope(cstat);
 
     gWallVertex[i].ob[0] = x1 >> 1;
     gWallVertex[i].ob[2] = ceilz1 >> 1;
@@ -618,7 +618,7 @@ s32 drawMaskWall(u16 wallnum)
 }
 
 /*80022C30*/
-static s32 wallCalcNoSlope(s32 sectnum, s32 wallnum)
+static s32 _wallCalcNoSlope(s32 sectnum, s32 wallnum)
 {
     s32 x2, y2, z2;
     s32 x1, y1, z1;
@@ -651,11 +651,11 @@ static s32 wallCalcNoSlope(s32 sectnum, s32 wallnum)
         else
             z = z1;
 
-        setTileGlobals(gpWall[wallnum].picnum);
-        setWallGlobals(wallnum, gpWall[wallnum].cstat);
+        _setTileGlobals(gpWall[wallnum].picnum);
+        _setWallGlobals(wallnum, gpWall[wallnum].cstat);
         _globalWallV1 = ((z - z1) * _globalYrepeat) + _globalWallVoffset;
         _globalWallV2 = ((z - z2) * _globalYrepeat) + _globalWallVoffset;
-        handleWallCstat(gpWall[wallnum].cstat);
+        _handleWallCstat(gpWall[wallnum].cstat);
 
         gWallVertex[0].ob[0] = x1 >> 1;
         gWallVertex[0].ob[2] = z1 >> 1;
@@ -707,12 +707,12 @@ static s32 wallCalcNoSlope(s32 sectnum, s32 wallnum)
                 cstat = gpWall[wallnum].cstat | 4;
             }
 
-            setTileGlobals(gpWall[wallnum].picnum);
-            setWallGlobals(wallnum, cstat);
+            _setTileGlobals(gpWall[wallnum].picnum);
+            _setWallGlobals(wallnum, cstat);
             ret |= 1;
             _globalWallV1 = ((z - z1) * _globalYrepeat) + _globalWallVoffset;
             _globalWallV2 = ((z - z2) * _globalYrepeat) + _globalWallVoffset;
-            handleWallCstat(cstat);
+            _handleWallCstat(cstat);
 
             gWallVertex[i].ob[0] = x1 >> 1;
             gWallVertex[i].ob[2] = z1 >> 1;
@@ -757,19 +757,19 @@ static s32 wallCalcNoSlope(s32 sectnum, s32 wallnum)
             y2 = gpWall[gpWall[wallnum].point2].y;
             if (gpWall[wallnum].cstat & 2)
             {
-                setTileGlobals(gpWall[gpWall[wallnum].nextwall].picnum);
+                _setTileGlobals(gpWall[gpWall[wallnum].nextwall].picnum);
 
                 if (gpWall[gpWall[wallnum].nextwall].cstat & 4)
                 {
                     cstat = gpWall[wallnum].cstat;
                     z = gpSector[sectnum].ceilingz >> 4;
-                    setWallGlobals2(wallnum, gpWall[gpWall[wallnum].nextwall].cstat & ~4);
+                    _setWallGlobals2(wallnum, gpWall[gpWall[wallnum].nextwall].cstat & ~4);
                 }
                 else
                 {
                     cstat = gpWall[wallnum].cstat;
                     z = gpSector[gpWall[wallnum].nextsector].floorz >> 4;
-                    setWallGlobals2(wallnum, gpWall[gpWall[wallnum].nextwall].cstat & ~4);
+                    _setWallGlobals2(wallnum, gpWall[gpWall[wallnum].nextwall].cstat & ~4);
                 }
             }
             else
@@ -781,13 +781,13 @@ static s32 wallCalcNoSlope(s32 sectnum, s32 wallnum)
                 else
                     z = z1;
 
-                setTileGlobals(gpWall[wallnum].picnum);
-                setWallGlobals(wallnum, cstat);
+                _setTileGlobals(gpWall[wallnum].picnum);
+                _setWallGlobals(wallnum, cstat);
             }
 
             _globalWallV1 = ((z - z1) * _globalYrepeat) + _globalWallVoffset;
             _globalWallV2 = ((z - z2) * _globalYrepeat) + _globalWallVoffset;
-            handleWallCstat(cstat);
+            _handleWallCstat(cstat);
             ret |= 2;
 
             gWallVertex[i].ob[0] = x1 >> 1;
@@ -841,12 +841,12 @@ static s32 wallCalcNoSlope(s32 sectnum, s32 wallnum)
             cstat = gpWall[wallnum].cstat & ~4;
         }
 
-        setTileGlobals(gpWall[wallnum].overpicnum);
-        setWallGlobals(wallnum, cstat);
+        _setTileGlobals(gpWall[wallnum].overpicnum);
+        _setWallGlobals(wallnum, cstat);
         ret |= 4;
         _globalWallV1 = ((z - z1) * _globalYrepeat) + _globalWallVoffset;
         _globalWallV2 = ((z - z2) * _globalYrepeat) + _globalWallVoffset;
-        handleWallCstat(cstat);
+        _handleWallCstat(cstat);
 
         gWallVertex[i].ob[0] = x1 >> 1;
         gWallVertex[i].ob[2] = z1 >> 1;

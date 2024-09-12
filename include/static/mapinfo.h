@@ -57,7 +57,7 @@ typedef struct
     /*0x20*/ s32 xpos;
     /*0x24*/ s32 ypos;
     /*0x28*/ s32 zpos;
-    /*0x2C*/ s32 unk2C;
+    /*0x2C*/ s32 ang;
     /*0x30*/ f32 skytop_r;
     /*0x34*/ f32 skytop_g;
     /*0x38*/ f32 skytop_b;

@@ -42,14 +42,14 @@ static Lights2 _light2 = {
 
 /*.text*/
 static f32 func_80011410(ModelInfo *model);
-static void executeModelDisplayCmd(u8 *cmd, code0UnkStruct18 *vtx, ModelLight *light);
+static void _executeModelDisplayCmd(u8 *cmd, code0UnkStruct18 *vtx, ModelLight *light);
 static void func_800124EC(s16);
 static void func_80012630(void);
 
 /*8000F1E0*/
 void func_8000F1E0(void)
 {
-    func_8000C76C();
+    initVertexList();
     D_8010A9AC = 0;
     D_801A2688 = 0;
     D_8019956C = 0;
@@ -222,7 +222,7 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
             gDPSetEnvColor(gpDisplayList++, 0xFF, 0xFF, 0xFF, D_8012FD86);
         }
 
-        func_8000C76C();
+        initVertexList();
         if (gpSprite[spritenum].statnum == 55)
         {
             r = 0x80;
@@ -421,7 +421,7 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
         {
             if ((gpSprite[spritenum].cstat & 0x30) == 0x20)
             {
-                o = klabs((D_80199640 - z));
+                o = klabs((gGlobalPosZ - z));
                 if (z == gpSector[gpSprite[spritenum].sectnum].ceilingz)
                 {
                     z += ((o+16) / 32);
@@ -522,7 +522,7 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
 }
 
 /*80011148*/
-static f32 dotProduct(Vec4f vec1, Vec4f vec2)
+static f32 _dotProduct(Vec4f vec1, Vec4f vec2)
 {
     return (vec1[0] * vec2[0]) + (vec1[1] * vec2[1]) + (vec1[2] * vec2[2]) + vec1[3];
 }
@@ -558,8 +558,8 @@ void func_80011180(void)
     f5 = cosf(D_8016A15C);
     f14 = f5;
     f6 = sinf(D_8016A15C);
-    f7 = cosf(-D_801AEA10);
-    f8 = sinf(-D_801AEA10);
+    f7 = cosf(-gGlobalAng);
+    f8 = sinf(-gGlobalAng);
 
     for (i = 0; i < 4; i++)
     {
@@ -637,7 +637,7 @@ static s32 func_800115E0(ModelInfo *model)
 
     for (i = 0, ptr = D_80197DF0; i < 4; i++, ptr++)
     {
-        if (dotProduct(*ptr, vec) < -f)
+        if (_dotProduct(*ptr, vec) < -f)
             return 0;
     }
     return 1;
@@ -660,11 +660,11 @@ void drawModel(ModelInfo *model)
     gpModelTextureInfo = (ModelTextureInfo *)(model->ramaddr + model->texture_info_off);
 
     if ((D_800BD788 == 0) || (func_800115E0(model) != 0))
-        executeModelDisplayCmd(cmd, vtx, light);
+        _executeModelDisplayCmd(cmd, vtx, light);
 }
 
 /*800117A4*/
-static void executeModelDisplayCmd(u8 *cmd, code0UnkStruct18 *vtx, ModelLight *light)
+static void _executeModelDisplayCmd(u8 *cmd, code0UnkStruct18 *vtx, ModelLight *light)
 {
     s16 pixel;
     s16 cond;
@@ -1181,7 +1181,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
                     playernum = gpSprite[D_801AE8F4].unk16;
                     model1 = arg0->model_list[arg1];
                     model2 = NULL;
-                    if (D_8012F6E4[gPlayer[playernum].unk4C].unkB == 0)
+                    if (D_8012F6E4[gPlayer[playernum].skin].unkB == 0)
                     {
                         switch (arg1)
                         {
@@ -1238,7 +1238,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
                         }
                     }
 
-                    if ((D_8012F6E4[gPlayer[playernum].unk4C].unkB == 3) && (arg1 == 1))
+                    if ((D_8012F6E4[gPlayer[playernum].skin].unkB == 3) && (arg1 == 1))
                     {
                         switch (gpSprite[D_801AE8F4].picnum)
                         {
@@ -1631,7 +1631,7 @@ static void func_80014C24(void)
 }
 
 /*80014C34*/
-static void copyMatrix(Matrix4f dst, Matrix4f src)
+static void _copyMatrix(Matrix4f dst, Matrix4f src)
 {
     s32 i, j;
 
@@ -1735,11 +1735,11 @@ static void func_80014D6C(_FDE0UnkStruct2 *arg0, s16 arg1)
     if (arg0->unk0 == 11)
     {
         if (arg1 == 12)
-            copyMatrix(D_80199578, D_801B0830[D_801ACC60]);
+            _copyMatrix(D_80199578, D_801B0830[D_801ACC60]);
         if (arg1 == 13)
-            copyMatrix(D_800FF3A0, D_801B0830[D_801ACC60]);
+            _copyMatrix(D_800FF3A0, D_801B0830[D_801ACC60]);
         if (arg1 == 4)
-            copyMatrix(D_801AE9D0, D_801B0830[D_801ACC60]);
+            _copyMatrix(D_801AE9D0, D_801B0830[D_801ACC60]);
     }
 
     for (i = 0; i < arg0->unk2; i++)
@@ -1915,7 +1915,7 @@ static void func_80015458(_FDE0UnkStruct2 *arg0, s16 arg1)
     func_80014D04(mf5);
 
     if (arg1 == 15)
-        copyMatrix(D_801AFDE0, D_801B0830[D_801ACC60]);
+        _copyMatrix(D_801AFDE0, D_801B0830[D_801ACC60]);
 
     for (i = 0; i <arg0->unk2; i++)
     {

@@ -5,25 +5,25 @@
 /*.text*/
 
 /*80035190*/
-s16 getTileSizeX(u16 tileid)
+s16 getTileSizeX(u16 tilenum)
 {
-    if ((getTileNum(tileid)) != 1)
-        return gpTileInfo[getTileNum(tileid)].sizex;
+    if ((getTileId(tilenum)) != 1)
+        return gpTileInfo[getTileId(tilenum)].sizex;
     else
         return 0;
 }
 
 /*800351F4*/
-s16 getTileSizeY(u16 tileid)
+s16 getTileSizeY(u16 tilenum)
 {
-    if ((getTileNum(tileid)) != 1)
-        return gpTileInfo[getTileNum(tileid)].sizey;
+    if ((getTileId(tilenum)) != 1)
+        return gpTileInfo[getTileId(tilenum)].sizey;
     else
         return 0;
 }
 
 /*80035258*/
-s32 getTilePicanm(u16 tileid)
+s32 getTilePicanm(u16 tilenum)
 {
-    return gpTileInfo[getTileNum(tileid)].picanm;
+    return gpTileInfo[getTileId(tilenum)].picanm;
 }

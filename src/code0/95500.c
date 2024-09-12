@@ -153,7 +153,7 @@ u8 D_800E17F0[32*7] = {
 /*.text*/
 
 /*80094900*/
-static _95500UnkStruct1 *func_80094900(s32 x, s32 y, s32 z, s16 arg3)
+static _95500UnkStruct1 *func_80094900(s32 x, s32 y, s32 z, s16 sectnum)
 {
     _95500UnkStruct1 *ptr;
     s32 i;
@@ -167,7 +167,7 @@ static _95500UnkStruct1 *func_80094900(s32 x, s32 y, s32 z, s16 arg3)
             ptr->unk4 = x;
             ptr->unk8 = y;
             ptr->unkC = z;
-            ptr->unk12 = arg3;
+            ptr->unk12 = sectnum;
             return ptr;
         }
     }
@@ -191,19 +191,19 @@ void func_80094958(void)
 static void func_80094984(void)
 {
     s32 x, y, z;
-    u16 unk32;
+    u16 sectnum;
 
     z = gPlayer[0].zpos;
     x = gPlayer[0].xpos;
     y = gPlayer[0].ypos;
-    unk32 = gPlayer[0].unk32;
+    sectnum = gPlayer[0].cursectnum;
 
     x += (((krand() & 0x3FF) - 512) * 10);
     y += (((krand() & 0x3FF) - 512) * 10);
     z -= 0x3900;
     z -= ((krand() & 0x1FFF) * 10);
 
-    if (func_80094900(x, y, z, unk32) != NULL)
+    if (func_80094900(x, y, z, sectnum) != NULL)
         D_800E1770++;
 }
 
@@ -220,7 +220,7 @@ void func_80094A60(void)
     gSPSetGeometryMode(gpDisplayList++, G_ZBUFFER | G_SHADE | G_SHADING_SMOOTH);
     gDPSetRenderMode(gpDisplayList++, G_RM_ZB_XLU_SURF, G_RM_ZB_XLU_SURF2);
     gDPSetTextureLUT(gpDisplayList++, G_TT_NONE);
-    func_8000C76C();
+    initVertexList();
     func_8000BDB0(5769);
 
     gDPSetPrimColor(gpDisplayList++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -296,7 +296,7 @@ void func_80094D18(void)
     }
 
     j = MIN(ARRAY_COUNT(D_801AEE40) - D_800E1770, 20);
-    if ((j > 0) && (gpSector[gPlayer[0].unk32].ceilingstat & 1))
+    if ((j > 0) && (gpSector[gPlayer[0].cursectnum].ceilingstat & 1))
     {
         for (i = 0; i < j; i++)
             func_80094984();
@@ -313,7 +313,7 @@ static void func_80094E98(void)
     z = gPlayer[0].zpos;
     x = gPlayer[0].xpos;
     y = gPlayer[0].ypos;
-    unk32 = gPlayer[0].unk32;
+    unk32 = gPlayer[0].cursectnum;
 
     x += (((krand() & 0x3FF) - 512) * 10);
     y += (((krand() & 0x3FF) - 512) * 10);
@@ -341,7 +341,7 @@ void func_80094F7C(void)
     gSPSetGeometryMode(gpDisplayList++, G_ZBUFFER | G_SHADE | G_SHADING_SMOOTH);
     gDPSetRenderMode(gpDisplayList++, G_RM_ZB_XLU_SURF, G_RM_ZB_XLU_SURF2);
     gDPSetTextureLUT(gpDisplayList++, G_TT_NONE);
-    func_8000C76C();
+    initVertexList();
     func_8000BDB0(5972);
 
     gDPSetPrimColor(gpDisplayList++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -406,7 +406,7 @@ void func_80095220(void)
     }
 
     j = MIN((ARRAY_COUNT(D_801AEE40) - D_800E1770), 20);
-    if ((j > 0) && (gpSector[gPlayer[0].unk32].ceilingstat & 1))
+    if ((j > 0) && (gpSector[gPlayer[0].cursectnum].ceilingstat & 1))
     {
         for (i = 0; i < j; i++)
             func_80094E98();
@@ -444,7 +444,7 @@ void func_8009542C(void)
     {
         ptr2 = &D_8010A940[i];
 
-        if (D_8012F6E4[gPlayer[i].unk4C].unkB == 5)
+        if (D_8012F6E4[gPlayer[i].skin].unkB == 5)
         {
             ptr2->unk2[5] = 0;
             ptr2->unk2[6] = 0;
@@ -540,7 +540,7 @@ void func_8009542C(void)
             if (ptr2->unkA[ptr2->unk0] == 0)
                 ptr2->unk0 = func_8003B31C(i, 1);
         }
-        if (D_8012F6E4[gPlayer[i].unk4C].unkB == 5)
+        if (D_8012F6E4[gPlayer[i].skin].unkB == 5)
         {
             ptr2->unk2[5] = 1;
             ptr2->unk2[6] = 1;

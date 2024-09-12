@@ -9,10 +9,10 @@
 
 /*Skip following declaration so it defaults to s32*/
 /*#include "code0/9410.h"*/
-/*u16 getTileNum(u16 tileid);*/
-/*s32 tileMasks(u16);*/
-/*s32 tileMaskt(u16);*/
-u8 *loadTile(u16 tilenum);
+/*u16 getTileId(u16 tilenum);*/
+/*s32 tileMasks(u16 tileid);*/
+/*s32 tileMaskt(u16 tileid);*/
+u8 *loadTile(u16 tileid);
 
 /*.text*/
 
@@ -40,11 +40,11 @@ void loadModelTexturePalette(u8 arg0)
         }
         else if (D_8010A9AC == 1)
         {
-            gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(getTileNum(5741)));
+            gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(getTileId(5741)));
         }
         else
         {
-            gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(getTileNum(3328)));
+            gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(getTileId(3328)));
         }
     }
 }
@@ -133,7 +133,7 @@ void loadModelTexture(u8 arg0)
             {
                 tilenum = 6050;
                 tilenum += animateOffs(6050, 0);
-                pTile = (intptr_t)loadTile(getTileNum(tilenum));
+                pTile = (intptr_t)loadTile(getTileId(tilenum));
             }
             gDPLoadTextureBlock_4b(gpDisplayList++, pTile+32, G_IM_FMT_I,
                                    dimx, dimy, 0, 0, 0,
@@ -149,7 +149,7 @@ void loadModelTexture(u8 arg0)
     else
     {
         /*FAKEMATCH?*/
-        pTile = getTileNum(5741);
+        pTile = getTileId(5741);
         gDPLoadTextureBlock_4b(gpDisplayList++, loadTile(pTile)+32, G_IM_FMT_CI,
                                gpTileInfo[pTile].dimx, gpTileInfo[pTile].dimy, 0, 0, 0,
                                tileMasks(pTile), tileMaskt(pTile), 0, 0);

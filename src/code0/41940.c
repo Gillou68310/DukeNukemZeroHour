@@ -272,7 +272,7 @@ static s32 _unused10 = 0; /*TODO: File split?*/
 /*800FE9D4*/ s32 D_800FE9D4;
 /*800FEA94*/ s32 D_800FEA94;
 /*80137DF0*/ s16 D_80137DF0[1024] ALIGNED(16); /*spritenum array*/
-/*80138718*/ intptr_t *gpInst;
+/*80138718*/ intptr_t *_pInst;
 /*80138794*/ intptr_t *D_80138794;
 /*80138820*/ s16 D_80138820[8] ALIGNED(8); /*sectornum array*/
 /*80168CF8*/ s32 D_80168CF8;
@@ -426,7 +426,7 @@ static void func_80040EF0(s32 spritenum, s16 playernum, s32 arg2)
 
         D_8010A918 = arg2;
         D_800FE400 = spritenum;
-        gpInst = D_80137DE0->unkC;
+        _pInst = D_80137DE0->unkC;
         D_80118248 = &gpSprite[spritenum];
         D_8012F6E8 = func_8005A240(spritenum);
         D_801A2628 = playernum;
@@ -461,12 +461,12 @@ static void func_80040EF0(s32 spritenum, s16 playernum, s32 arg2)
         {
             while (j == 0)
             {
-                j = D_800DEF3C[*gpInst & 0x7FFFFFFF](spritenum);
+                j = D_800DEF3C[*_pInst & 0x7FFFFFFF](spritenum);
                 if (j != -1)
                 {
                     D_80138794 = D_80137DE0->unkC;
-                    D_80137DE0->unkC = gpInst;
-                    D_800DF08C = (u8 *)((intptr_t)gpInst - (intptr_t)D_0100F1E0_STATIC);
+                    D_80137DE0->unkC = _pInst;
+                    D_800DF08C = (u8 *)((intptr_t)_pInst - (intptr_t)D_0100F1E0_STATIC);
                 }
                 else
                     return;
@@ -662,15 +662,15 @@ static s32 func_80041968(s32 spritenum)
     s32 i, j;
     s16 ang;
 
-    gpInst++;
-    i = getVar(spritenum, *gpInst++);
+    _pInst++;
+    i = getVar(spritenum, *_pInst++);
     if (i == 0x4000002D)
     {
         if (D_80137DE0->unk38 != -1)
         {
             ang = getAngle(D_80137DE0->unk38 - D_80118248->x,
                            D_80137DE0->unk3C - D_80118248->y);
-            j = *gpInst;
+            j = *_pInst;
             ang = getAngleDelta(D_80118248->ang, ang);
             ang >>= j;
             D_80118248->ang += ang;
@@ -685,7 +685,7 @@ static s32 func_80041968(s32 spritenum)
     label4:
         ang = getAngle(gPlayer[D_801A2628].xpos - D_80118248->x,
                        gPlayer[D_801A2628].ypos - D_80118248->y);
-        j = *gpInst;
+        j = *_pInst;
         ang = getAngleDelta(D_80118248->ang, ang);
         ang >>= j;
         D_80118248->ang += ang;
@@ -696,7 +696,7 @@ static s32 func_80041968(s32 spritenum)
     {
         ang = getAngle(gPlayer[D_801A2628].xpos - D_80118248->x,
                        gPlayer[D_801A2628].ypos - D_80118248->y);
-        j = *gpInst;
+        j = *_pInst;
         ang = getAngleDelta(D_80118248->ang, (ang + 1024) & 0x7FF);
         ang >>= j;
         D_80118248->ang += ang;
@@ -712,12 +712,12 @@ static s32 func_80041968(s32 spritenum)
     D_80137DE0->unk30 = i;
     if (i == 0)
     {
-        gpInst += 3;
+        _pInst += 3;
         return 0;
     }
-    D_80118248->unk18 = getVar(spritenum, *gpInst++);
-    D_80118248->unk1A = getVar(spritenum, *gpInst++);
-    i = getVar(spritenum, *gpInst++);
+    D_80118248->unk18 = getVar(spritenum, *_pInst++);
+    D_80118248->unk1A = getVar(spritenum, *_pInst++);
+    i = getVar(spritenum, *_pInst++);
 
     if (D_80137DE0->unk0 & 2)
         D_80118248->unk1C += i;
@@ -735,11 +735,11 @@ static s32 func_80041D10(s32 spritenum)
     s32 d;
     s32 cond;
 
-    gpInst++;
-    i = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
-    k = getVar(spritenum, *gpInst++);
-    l = *gpInst++;
+    _pInst++;
+    i = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
+    k = getVar(spritenum, *_pInst++);
+    l = *_pInst++;
 
     cond = 0;
     if (j & 0x80)
@@ -839,7 +839,7 @@ static s32 func_80041D10(s32 spritenum)
     }
 
     if (cond == 1)
-        gpInst = &gpInst[l];
+        _pInst = &_pInst[l];
 
     return 0;
 }
@@ -848,9 +848,9 @@ static s32 func_80041D10(s32 spritenum)
 static s32 func_8004201C(s32 spritenum)
 {
     s32 i;
-    gpInst++;
-    i = *gpInst++;
-    gpInst = &gpInst[i];
+    _pInst++;
+    i = *_pInst++;
+    _pInst = &_pInst[i];
     return 0;
 }
 
@@ -859,12 +859,12 @@ static s32 func_8004204C(s32 spritenum)
 {
     s32 i;
 
-    gpInst++;
-    i = *gpInst++;
+    _pInst++;
+    i = *_pInst++;
     if (D_80137DE0->unk1C == NULL)
     {
-        D_80137DE0->unk1C = gpInst;
-        gpInst = &gpInst[i];
+        D_80137DE0->unk1C = _pInst;
+        _pInst = &_pInst[i];
         return 0;
     }
     else
@@ -874,8 +874,8 @@ static s32 func_8004204C(s32 spritenum)
 /*80042094*/
 static s32 func_80042094(s32 spritenum)
 {
-    gpInst++;
-    gpInst = D_80137DE0->unk1C;
+    _pInst++;
+    _pInst = D_80137DE0->unk1C;
     D_80137DE0->unk1C = NULL;
     return 0;
 }
@@ -885,8 +885,8 @@ static s32 func_800420C8(s32 spritenum)
 {
     s32 result;
 
-    gpInst++;
-    result = getVar(spritenum, *gpInst++);
+    _pInst++;
+    result = getVar(spritenum, *_pInst++);
     if (result != D_80137DE0->unk88)
     {
         D_80137DE0->unk86 = result | 0x8000;
@@ -922,8 +922,8 @@ s32 func_80042140(s32 spritenum)
 /*80042178*/
 static s32 func_80042178(s32 spritenum)
 {
-    gpInst++;
-    gpInst = D_80137DE0->unk18;
+    _pInst++;
+    _pInst = D_80137DE0->unk18;
     if (!(D_80137DE0->unk0 & 0x4000))
     {
         D_80137DE0->unk30 = D_80137DE0->unk34;
@@ -945,14 +945,14 @@ static s32 func_80042178(s32 spritenum)
 /*80042210*/
 static s32 func_80042210(s32 spritenum)
 {
-    gpInst++;
-    gpInst = D_80137DE0->unk24;
+    _pInst++;
+    _pInst = D_80137DE0->unk24;
     if (!(D_80137DE0->unk0 & 0x4000))
     {
         D_80137DE0->unk24 = NULL;
         D_80137DE0->unk30 = D_80137DE0->unk2A;
         D_80137DE0->unk80 = D_80137DE0->unk2C;
-        D_80137DE0->unk4 &= 0xFFFCBFF7;
+        D_80137DE0->unk4 &= ~0x34008;
 
         if (D_80137DE0->unk92 != 8)
             D_80137DE0->unk92 = D_80137DE0->unk93;
@@ -971,16 +971,16 @@ static s32 func_800422BC(s32 spritenum)
 {
     s32 i, j, result;
 
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
 
     if (i < 0)
         j += 2;
 
     if ((krand() >> 8) < (0xFF - result))
     {
-        gpInst += j;
+        _pInst += j;
         if ((i && i) && i) {} /*FAKEMATCH*/
         return 0;
     }
@@ -992,16 +992,16 @@ static s32 func_80042380(s32 spritenum)
 {
     s32 i, j, result;
 
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
 
     if (i < 0)
         j += 2;
 
     if (result >= (krand() & 0x1F))
     {
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
         return 0;
     }
     return 0;
@@ -1012,10 +1012,10 @@ static s32 func_80042434(s32 spritenum)
 {
     s32 i, j, result, result2, result3;
 
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
-    result2 = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
+    result2 = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
 
     if (i < 0)
         j += 2;
@@ -1028,7 +1028,7 @@ static s32 func_80042434(s32 spritenum)
         result3 = 1;
 
     if (result3 == 0)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
 
     return 0;
 }
@@ -1041,11 +1041,11 @@ static s32 func_80042598(s32 spritenum)
     s32 d;
     s32 cond;
 
-    i = *gpInst++;
-    j = getVar(spritenum, *gpInst++);
-    k = *gpInst++;
+    i = *_pInst++;
+    j = getVar(spritenum, *_pInst++);
+    k = *_pInst++;
     l = getVar(spritenum, k);
-    m = *gpInst++;
+    m = *_pInst++;
 
     if (i < 0)
         m += 2;
@@ -1121,7 +1121,7 @@ static s32 func_80042598(s32 spritenum)
         cond = 1;
 
     if (cond == 0)
-        gpInst = &gpInst[m];
+        _pInst = &_pInst[m];
 
     return 0;
 }
@@ -1131,16 +1131,16 @@ static s32 ifVarVarN(s32 spritenum)
 {
     s32 i, j, result, result2;
 
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
-    result2 = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
+    result2 = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
 
     if (i < 0)
         j += 2;
 
     if (result != result2)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
 
     return 0;
 }
@@ -1150,16 +1150,16 @@ static s32 ifNotVarAnd(s32 spritenum)
 {
     s32 i, j, k, result;
 
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
-    k = *gpInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
+    k = *_pInst++;
 
     if (i < 0)
         k += 2;
 
     if (!(result & j))
-        gpInst = &gpInst[k];
+        _pInst = &_pInst[k];
 
     return 0;
 }
@@ -1169,16 +1169,16 @@ static s32 ifVarVarE(s32 spritenum)
 {
     s32 i, j, result, result2;
 
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
-    result2 = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
+    result2 = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
 
     if (i < 0)
         j += 2;
 
     if (result == result2)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
 
     return 0;
 }
@@ -1188,8 +1188,8 @@ static s32 func_80042A6C(s32 spritenum)
 {
     s32 i, j, k;
 
-    i = *gpInst++;
-    j = *gpInst++;
+    i = *_pInst++;
+    j = *_pInst++;
     if (i < 0)
         j += 2;
 
@@ -1198,7 +1198,7 @@ static s32 func_80042A6C(s32 spritenum)
         k = D_8010A918 > D_80137DE0->unk64; /*TODO: addr or integer?*/
 
     if (k == 0)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
     return 0;
 }
 
@@ -1207,12 +1207,12 @@ static s32 func_80042AE4(s32 spritenum)
 {
     s32 i, j;
 
-    i = *gpInst++;
-    j = *gpInst++;
+    i = *_pInst++;
+    j = *_pInst++;
     if (i < 0)
         j += 2;
     if (!D_80137DE0->unk8C)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
     return 0;
 }
 
@@ -1221,12 +1221,12 @@ static s32 func_80042B40(s32 spritenum)
 {
     s32 i, j;
 
-    i = *gpInst++;
-    j = *gpInst++;
+    i = *_pInst++;
+    j = *_pInst++;
     if (i < 0)
         j += 2;
     if (!gPlayer[0].unk45)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
     return 0;
 }
 
@@ -1235,12 +1235,12 @@ static s32 func_80042B98(s32 spritenum)
 {
     s32 i, j;
 
-    i = *gpInst++;
-    j = *gpInst++;
+    i = *_pInst++;
+    j = *_pInst++;
     if (i < 0)
         j += 2;
     if (func_80042C98(spritenum) == 0)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
 
     return 0;
 }
@@ -1250,12 +1250,12 @@ static s32 func_80042C18(s32 spritenum)
 {
     s32 i, j;
 
-    i = *gpInst++;
-    j = *gpInst++;
+    i = *_pInst++;
+    j = *_pInst++;
     if (i < 0)
         j += 2;
     if (func_800433D4(spritenum) == 0)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
 
     return 0;
 }
@@ -1522,9 +1522,9 @@ static s32 func_8004364C(s32 arg0)
 /*800437F4*/
 static s32 func_800437F4(s32 spritenum)
 {
-    gpInst++;
-    D_80118248->xrepeat = getVar(spritenum, *gpInst++);
-    D_80118248->yrepeat = getVar(spritenum, *gpInst++);
+    _pInst++;
+    D_80118248->xrepeat = getVar(spritenum, *_pInst++);
+    D_80118248->yrepeat = getVar(spritenum, *_pInst++);
     return 0;
 }
 
@@ -1536,17 +1536,17 @@ static s32 func_80043870(s32 spritenum)
 /*80043878*/
 static s32 func_80043878(s32 spritenum)
 {
-    gpInst++;
+    _pInst++;
     return 2;
 }
 
 /*80043894*/
 static s32 func_80043894(s32 spritenum)
 {
-    gpInst++;
+    _pInst++;
     if (D_80137DE0->unk80 == 0)
     {
-        D_80137DE0->unk80 = getVar(spritenum, *gpInst);
+        D_80137DE0->unk80 = getVar(spritenum, *_pInst);
         func_8004201C(spritenum);
     }
     else
@@ -1555,7 +1555,7 @@ static s32 func_80043894(s32 spritenum)
         if ((D_80137DE0->unk80) != 0)
             func_8004201C(spritenum);
         else
-            gpInst += 2;
+            _pInst += 2;
     }
     return 0;
 }
@@ -1565,15 +1565,15 @@ static s32 func_80043938(s32 spritenum)
 {
     s32 i, j, result;
 
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
 
     if (i < 0)
         j += 2;
 
     if (result != D_80137DE0->unk84)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
 
     return 0;
 }
@@ -1583,15 +1583,15 @@ static s32 func_800439D0(s32 spritenum)
 {
     s32 i, j, chapter;
 
-    i = *gpInst++;
-    chapter = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
+    i = *_pInst++;
+    chapter = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
 
     if (i < 0)
         j += 2;
 
     if (gMapChapter[gMapNum].chapter != chapter)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
 
     return 0;
 }
@@ -1601,15 +1601,15 @@ static s32 func_80043A74(s32 spritenum)
 {
     s32 i, j, result;
 
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
 
     if (i < 0)
         j += 2;
 
     if (result <= D_8010A918)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
 
     return 0;
 }
@@ -1619,15 +1619,15 @@ static s32 func_80043B10(s32 spritenum)
 {
     s32 i, j, result;
 
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
 
     if (i < 0)
         j += 2;
 
     if (result >= D_8010A918)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
 
     return 0;
 }
@@ -1637,18 +1637,18 @@ static s32 func_80043BAC(s32 spritenum)
 {
     s32 i, j, result, result2, result3;
 
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
-    result2 = getVar(spritenum, *gpInst++);
-    result3 = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
+    result2 = getVar(spritenum, *_pInst++);
+    result3 = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
 
     if (i < 0)
         j += 2;
 
     result = result-result2;
     if (klabs(result) >= result3)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
 
     return 0;
 }
@@ -1658,16 +1658,16 @@ static s32 ifVarVarLE(s32 spritenum)
 {
     s32 i, j, result, result2;
 
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
-    result2 = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
+    result2 = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
 
     if (i < 0)
         j += 2;
 
     if (result <= result2)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
 
     return 0;
 }
@@ -1677,8 +1677,8 @@ static s32 func_80043D64(s32 spritenum)
 {
     s32 result;
 
-    gpInst++;
-    result = getVar(spritenum, *gpInst++);
+    _pInst++;
+    result = getVar(spritenum, *_pInst++);
     if (result == 0)
         D_80137DE0->unk9B = 0;
     if (result == 1)
@@ -1693,15 +1693,15 @@ static s32 func_80043DE4(s32 spritenum)
 {
     s32 i, j, result;
 
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
 
     if (i < 0)
         j += 2;
 
     if (D_80137DE0->unk86 != result)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
 
     return 0;
 }
@@ -1713,17 +1713,17 @@ static s32 func_80043E7C(s32 spritenum)
     code0unkStruct8 *ptr;
 
     ptr = &D_80197E40[D_80106D50[spritenum]];
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
 
     if (i < 0)
         j += 2;
 
     if (ptr->unkE)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
     else if ((ptr->unk0 != result))
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
 
     return 0;
 }
@@ -1735,17 +1735,17 @@ static s32 func_80043F3C(s32 spritenum)
     code0unkStruct8 *ptr;
 
     ptr = &D_80197E40[D_80106D50[spritenum]];
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
 
     if (i < 0)
         j += 2;
 
     if (ptr->unkE)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
     else if ((ptr->unk0 < result))
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
 
     return 0;
 }
@@ -1755,10 +1755,10 @@ static s32 func_80044000(s32 spritenum)
 {
     s32 i, j, result, result2, result3;
 
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
-    result2 = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
+    result2 = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
 
     if (i < 0)
         j += 2;
@@ -1775,7 +1775,7 @@ static s32 func_80044000(s32 spritenum)
 
     if (result3 == 0)
     {
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
         return 0;
     }
     return 0;
@@ -1786,10 +1786,10 @@ static s32 func_80044120(s32 spritenum)
 {
     s32 i, j, result, result2, result3;
 
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
-    result2 = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
+    result2 = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
 
     if (i < 0)
         j += 2;
@@ -1806,7 +1806,7 @@ static s32 func_80044120(s32 spritenum)
 
     if (result3 == 0)
     {
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
         return 0;
     }
     return 0;
@@ -1817,15 +1817,15 @@ static s32 func_8004423C(s32 spritenum)
 {
     s32 i, j, result;
 
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
 
     if (i < 0)
         j += 2;
 
     if (D_80137DE0->unk8E < result)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
 
     return 0;
 }
@@ -1835,16 +1835,16 @@ static s32 ifVarVarAE(s32 spritenum)
 {
     s32 i, j, result, result2;
 
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
-    result2 = getVar(spritenum, *gpInst++);
-    j = *gpInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
+    result2 = getVar(spritenum, *_pInst++);
+    j = *_pInst++;
 
     if (i < 0)
         j += 2;
 
     if (result >= result2)
-        gpInst = &gpInst[j];
+        _pInst = &_pInst[j];
 
     return 0;
 }
@@ -1855,12 +1855,12 @@ static s32 func_80044394(s32 spritenum)
     s16 ang;
     s32 i, j, k, l, m, n;
 
-    gpInst++;
-    D_80137DE0->unk30 = getVar(spritenum, *gpInst++);
-    i = *gpInst++;
-    j = getVar(spritenum, *gpInst++);
-    k = getVar(spritenum, *gpInst++);
-    l = getVar(spritenum, *gpInst++);
+    _pInst++;
+    D_80137DE0->unk30 = getVar(spritenum, *_pInst++);
+    i = *_pInst++;
+    j = getVar(spritenum, *_pInst++);
+    k = getVar(spritenum, *_pInst++);
+    l = getVar(spritenum, *_pInst++);
 
     if (D_80137DE0->unk84 >= 38 && D_80137DE0->unk84 < 44)
     {
@@ -1868,7 +1868,7 @@ static s32 func_80044394(s32 spritenum)
         k *= 2;
     }
 
-    m = getVar(spritenum, *gpInst++);
+    m = getVar(spritenum, *_pInst++);
     n = getVar(spritenum, i);
     switch (n)
     {
@@ -1943,9 +1943,9 @@ static s32 setVarVar(s32 spritenum)
 {
     s32 i, result;
 
-    gpInst++;
-    i = *gpInst++;
-    result = getVar(spritenum, *gpInst++);
+    _pInst++;
+    i = *_pInst++;
+    result = getVar(spritenum, *_pInst++);
     setVar(spritenum, i, result);
     return 0;
 }
@@ -1956,10 +1956,10 @@ static s32 addVarVar(s32 spritenum)
     s32 i;
     s32 result;
 
-    gpInst++;
-    i = *gpInst++;
+    _pInst++;
+    i = *_pInst++;
     result = getVar(spritenum, i);
-    result += getVar(spritenum, *gpInst++);
+    result += getVar(spritenum, *_pInst++);
     setVar(spritenum, i, result);
     return 0;
 }
@@ -1970,10 +1970,10 @@ static s32 subVarVar(s32 spritenum)
     s32 i;
     s32 result;
 
-    gpInst++;
-    i = *gpInst++;
+    _pInst++;
+    i = *_pInst++;
     result = getVar(spritenum, i);
-    result -= getVar(spritenum, *gpInst++);
+    result -= getVar(spritenum, *_pInst++);
     setVar(spritenum, i, result);
     return 0;
 }
@@ -1984,10 +1984,10 @@ static s32 multVarVar(s32 spritenum)
     s32 i;
     s32 result;
 
-    gpInst++;
-    i = *gpInst++;
+    _pInst++;
+    i = *_pInst++;
     result = getVar(spritenum, i);
-    result *= getVar(spritenum, *gpInst++);
+    result *= getVar(spritenum, *_pInst++);
     setVar(spritenum, i, result);
     return 0;
 }
@@ -1998,10 +1998,10 @@ static s32 divVarVar(s32 spritenum)
     s32 i;
     s32 result;
 
-    gpInst++;
-    i = *gpInst++;
+    _pInst++;
+    i = *_pInst++;
     result = getVar(spritenum, i);
-    result /= getVar(spritenum, *gpInst++);
+    result /= getVar(spritenum, *_pInst++);
     setVar(spritenum, i, result);
     return 0;
 }
@@ -2012,14 +2012,14 @@ static s32 func_80044B38(s32 spritenum)
     s32 ang, ang1, ang2, ang3;
     s32 i, j, k, l, m, n;
 
-    gpInst++;
-    D_80137DE0->unk30 = getVar(spritenum, *gpInst++);
-    n = *gpInst++;
+    _pInst++;
+    D_80137DE0->unk30 = getVar(spritenum, *_pInst++);
+    n = *_pInst++;
     i = getVar(spritenum, n);
-    j = getVar(spritenum, *gpInst++);
-    k = getVar(spritenum, *gpInst++);
-    l = getVar(spritenum, *gpInst++);
-    m = getVar(spritenum, *gpInst++);
+    j = getVar(spritenum, *_pInst++);
+    k = getVar(spritenum, *_pInst++);
+    l = getVar(spritenum, *_pInst++);
+    m = getVar(spritenum, *_pInst++);
 
     if (i == 0x40000008)
     {
@@ -2058,7 +2058,7 @@ static s32 func_80044B38(s32 spritenum)
     else
         ang = D_80118248->ang;
 
-    i = getVar(spritenum, *gpInst++);
+    i = getVar(spritenum, *_pInst++);
     j = (j * gpSinTable[(ang + 512) & 0x7FF]) >> 14;
     l = (l * gpSinTable[i & 0x7FF]) >> 14;
     k = (k * gpSinTable[ang & 0x7FF]) >> 14;
@@ -2079,12 +2079,12 @@ static s32 func_80044F9C(s32 spritenum)
 {
     s32 x, y, z, a, b;
 
-    gpInst++;
-    x = getVar(spritenum, *gpInst++);
-    y = getVar(spritenum, *gpInst++);
-    z = getVar(spritenum, *gpInst++);
-    a = getVar(spritenum, *gpInst++);
-    b = getVar(spritenum, *gpInst++);
+    _pInst++;
+    x = getVar(spritenum, *_pInst++);
+    y = getVar(spritenum, *_pInst++);
+    z = getVar(spritenum, *_pInst++);
+    a = getVar(spritenum, *_pInst++);
+    b = getVar(spritenum, *_pInst++);
     x += D_80118248->x;
     y += D_80118248->y;
     z += D_80118248->z;
@@ -2097,12 +2097,12 @@ static s32 func_800450E0(s32 spritenum)
 {
     s32 x, y, z, a, b;
 
-    gpInst++;
-    x = getVar(spritenum, *gpInst++);
-    y = getVar(spritenum, *gpInst++);
-    z = getVar(spritenum, *gpInst++);
-    a = getVar(spritenum, *gpInst++);
-    b = getVar(spritenum, *gpInst++);
+    _pInst++;
+    x = getVar(spritenum, *_pInst++);
+    y = getVar(spritenum, *_pInst++);
+    z = getVar(spritenum, *_pInst++);
+    a = getVar(spritenum, *_pInst++);
+    b = getVar(spritenum, *_pInst++);
     x += D_80118248->x;
     y += D_80118248->y;
     z += D_80118248->z;
@@ -2115,12 +2115,12 @@ static s32 func_80045228(s32 spritenum)
 {
     s32 x, y, z, ang, b, c, d, e, spritenum_;
 
-    gpInst++;
-    ang = getVar(spritenum, *gpInst++);
-    b = getVar(spritenum, *gpInst++);
-    c = getVar(spritenum, *gpInst++);
-    d = getVar(spritenum, *gpInst++);
-    e = getVar(spritenum, *gpInst++);
+    _pInst++;
+    ang = getVar(spritenum, *_pInst++);
+    b = getVar(spritenum, *_pInst++);
+    c = getVar(spritenum, *_pInst++);
+    d = getVar(spritenum, *_pInst++);
+    e = getVar(spritenum, *_pInst++);
 
     ang += gpSprite[spritenum].ang;
     x = ((b * gpSinTable[(ang + 512) & 0x7FF]) >> 14);
@@ -2156,10 +2156,10 @@ static s32 andVarVar(s32 spritenum)
     s32 i;
     s32 result;
 
-    gpInst++;
-    i = *gpInst++;
+    _pInst++;
+    i = *_pInst++;
     result = getVar(spritenum, i);
-    result &= getVar(spritenum, *gpInst++);
+    result &= getVar(spritenum, *_pInst++);
     setVar(spritenum, i, result);
     return 0;
 }
@@ -2170,10 +2170,10 @@ static s32 modVarVar(s32 spritenum)
     s32 i;
     s32 result;
 
-    gpInst++;
-    i = *gpInst++;
+    _pInst++;
+    i = *_pInst++;
     result = getVar(spritenum, i);
-    result %= getVar(spritenum, *gpInst++);
+    result %= getVar(spritenum, *_pInst++);
     setVar(spritenum, i, result);
     return 0;
 }
@@ -2184,10 +2184,10 @@ static s32 orVarVar(s32 spritenum)
     s32 i;
     s32 result;
 
-    gpInst++;
-    i = *gpInst++;
+    _pInst++;
+    i = *_pInst++;
     result = getVar(spritenum, i);
-    result |= getVar(spritenum, *gpInst++);
+    result |= getVar(spritenum, *_pInst++);
     setVar(spritenum, i, result);
     return 0;
 }
@@ -2195,8 +2195,8 @@ static s32 orVarVar(s32 spritenum)
 /*80045690*/
 static s32 func_80045690(s32 spritenum)
 {
-    gpInst++;
-    D_8013B2D0[spritenum].unk2 = (D_80118248->unk1C >> 0xC) >> getVar(spritenum, *gpInst++);
+    _pInst++;
+    D_8013B2D0[spritenum].unk2 = (D_80118248->unk1C >> 0xC) >> getVar(spritenum, *_pInst++);
     return 0;
 }
 
@@ -2205,9 +2205,9 @@ static s32 func_80045704(s32 spritenum)
 {
     s32 sfxnum, result;
 
-    gpInst++;
-    sfxnum = getVar(spritenum, *gpInst++);
-    result = getVar(spritenum, *gpInst++);
+    _pInst++;
+    sfxnum = getVar(spritenum, *_pInst++);
+    result = getVar(spritenum, *_pInst++);
 
     if (MusHandleAsk(D_80137DE0->unk6C) == 0)
     {
@@ -2222,9 +2222,9 @@ static s32 func_800457BC(s32 spritenum)
 {
     s32 sfxnum, result;
 
-    gpInst++;
-    sfxnum = getVar(spritenum, *gpInst++);
-    result = getVar(spritenum, *gpInst++);
+    _pInst++;
+    sfxnum = getVar(spritenum, *_pInst++);
+    result = getVar(spritenum, *_pInst++);
 
     if (MusHandleAsk(D_80137DE0->unk6C) == 0)
     {
@@ -2240,7 +2240,7 @@ static s32 func_8004587C(s32 spritenum)
     musHandle handle;
 
     handle = D_80137DE0->unk6C;
-    gpInst++;
+    _pInst++;
     if (handle)
     {
         MusHandleStop(handle, 0);
@@ -2254,9 +2254,9 @@ static s32 func_800458D0(s32 spritenum)
 {
     s32 sfxnum, result;
 
-    gpInst++;
-    sfxnum = getVar(spritenum, *gpInst++);
-    result = getVar(spritenum, *gpInst++);
+    _pInst++;
+    sfxnum = getVar(spritenum, *_pInst++);
+    result = getVar(spritenum, *_pInst++);
 
     if (MusHandleAsk(D_80137DE0->unk70) == 0)
     {
@@ -2271,9 +2271,9 @@ static s32 func_80045988(s32 spritenum)
 {
     s32 sfxnum, result;
 
-    gpInst++;
-    sfxnum = getVar(spritenum, *gpInst++);
-    result = getVar(spritenum, *gpInst++);
+    _pInst++;
+    sfxnum = getVar(spritenum, *_pInst++);
+    result = getVar(spritenum, *_pInst++);
 
     if (MusHandleAsk(D_80137DE0->unk70) == 0)
     {
@@ -2289,7 +2289,7 @@ static s32 func_80045A48(s32 spritenum)
     musHandle handle;
 
     handle = D_80137DE0->unk70;
-    gpInst++;
+    _pInst++;
     if (handle)
     {
         MusHandleStop(handle, 0);
@@ -2303,8 +2303,8 @@ static s32 absVarVar(s32 spritenum)
 {
     s32 i, result;
 
-    gpInst++;
-    i = *(gpInst++);
+    _pInst++;
+    i = *(_pInst++);
     result = getVar(spritenum, i);
     setVar(spritenum, i, klabs(result));
     return 0;
@@ -2315,8 +2315,8 @@ static s32 negVarVar(s32 spritenum)
 {
     s32 i, result;
 
-    gpInst++;
-    i = *gpInst++;
+    _pInst++;
+    i = *_pInst++;
     result = getVar(spritenum, i);
     setVar(spritenum, i, -result);
     return 0;
@@ -2327,11 +2327,11 @@ static s32 func_80045B64(s32 spritenum)
 {
     s32 a, b, c, d;
 
-    gpInst++;
-    a = getVar(spritenum, *gpInst++);
-    b = getVar(spritenum, *gpInst++);
-    c = getVar(spritenum, *gpInst++);
-    d = getVar(spritenum, *gpInst++);
+    _pInst++;
+    a = getVar(spritenum, *_pInst++);
+    b = getVar(spritenum, *_pInst++);
+    c = getVar(spritenum, *_pInst++);
+    d = getVar(spritenum, *_pInst++);
     func_8006D3B8(spritenum, a, b, c, d);
     return 0;
 }
@@ -2341,9 +2341,9 @@ static s32 func_80045C44(s32 spritenum)
 {
     intptr_t *ptr;
 
-    gpInst++;
+    _pInst++;
     ptr = D_0100F1E0_STATIC;
-    ptr = &ptr[getVar(spritenum, *gpInst++)];
+    ptr = &ptr[getVar(spritenum, *_pInst++)];
     D_80137DE0->unk10 = ptr;
     return 0;
 }
@@ -2353,9 +2353,9 @@ static s32 func_80045CB8(s32 spritenum)
 {
     intptr_t *ptr;
 
-    gpInst++;
+    _pInst++;
     ptr = D_0100F1E0_STATIC;
-    ptr = &ptr[getVar(spritenum, *gpInst++)];
+    ptr = &ptr[getVar(spritenum, *_pInst++)];
     D_80137DE0->unk20 = ptr;
     D_80137DE0->unk2A = 0;
     D_80137DE0->unk2C = 0;
@@ -2367,9 +2367,9 @@ static s32 func_80045D34(s32 spritenum)
 {
     intptr_t *ptr;
 
-    gpInst++;
+    _pInst++;
     ptr = D_0100F1E0_STATIC;
-    ptr = &ptr[getVar(spritenum, *gpInst++)];
+    ptr = &ptr[getVar(spritenum, *_pInst++)];
     D_80137DE0->unk14 = ptr;
     return 0;
 }
@@ -2380,10 +2380,10 @@ static s32 func_80045DA8(s32 spritenum)
     intptr_t *ptr;
     SpriteType *spr;
 
-    gpInst++;
+    _pInst++;
     ptr = D_0100F1E0_STATIC;
     spr = &gpSprite[spritenum];
-    ptr = &ptr[getVar(spritenum, *gpInst++)];
+    ptr = &ptr[getVar(spritenum, *_pInst++)];
     *(intptr_t *)&spr->hitag = (intptr_t)ptr; /*TODO: addr or integer?*/
     spr->lotag = 0;
     return 0;
@@ -2635,8 +2635,8 @@ s32 setVar(s32 spritenum, s32 id, s32 value)
 /*80046494*/
 static s32 func_80046494(s32 spritenum)
 {
-    gpInst++;
-    switch ((s32)*gpInst++)
+    _pInst++;
+    switch ((s32)*_pInst++)
     {
     case 0x40000000:
     case 0x40000001:
@@ -2698,7 +2698,7 @@ static s32 func_80046494(s32 spritenum)
         break;
     }
 
-    switch ((s32)*gpInst++)
+    switch ((s32)*_pInst++)
     {
     case 0x40000000:
     case 0x40000001:
@@ -2795,7 +2795,7 @@ static void func_80046540(void)
     i = gHeadSpriteStat[53];
     while (i >= 0)
     {
-        gpSprite[i].cstat &= 0xFEFE;
+        gpSprite[i].cstat &= ~0x101;
         nexti = gNextSpriteStat[i];
         func_80017268(i);
         D_800FE400 = i;
@@ -3593,7 +3593,7 @@ label2:
                 changeSpriteStat(spritenum2, 0);
                 audio_80007A44(1323, spritenum2, 30000);
                 gpSprite[spritenum2].picnum = 5214;
-                gpSprite[spritenum2].cstat &= 0xFEFE;
+                gpSprite[spritenum2].cstat &= ~0x101;
                 k = krand() & 3;
                 for (j = 0; j < (k); j++)
                     func_80057540(&gpSprite[spritenum2], 1781, 1, 0);
@@ -4365,8 +4365,8 @@ static s32 func_8004B440(s32 spritenum)
 {
     s32 i, j, k, l, m;
 
-    i = *gpInst++;
-    j = *gpInst++;
+    i = *_pInst++;
+    j = *_pInst++;
 
     switch (j)
     {
@@ -4492,7 +4492,7 @@ static s32 func_8004B440(s32 spritenum)
         break;
     }
 
-    k = *gpInst++;
+    k = *_pInst++;
     m = j;
     switch (k)
     {
@@ -4618,11 +4618,11 @@ static s32 func_8004B440(s32 spritenum)
         break;
     }
 
-    l = *gpInst++;
+    l = *_pInst++;
     if (i < 0)
         l += 2;
     if (func_8004BC24(m, k) < 0)
-        gpInst = &gpInst[l];
+        _pInst = &_pInst[l];
     return 0;
 }
 
@@ -4720,9 +4720,9 @@ static s32 func_8004BE48(s32 spritenum)
 {
     _41940UnkFuncPointer1 func;
 
-    gpInst++;
-    func = (_41940UnkFuncPointer1)*gpInst++;
-    func(spritenum, *gpInst++);
+    _pInst++;
+    func = (_41940UnkFuncPointer1)*_pInst++;
+    func(spritenum, *_pInst++);
     return 0;
 }
 
@@ -5034,7 +5034,7 @@ void func_8004BFDC(s32 spritenum, s32 arg1, s32 z, s32 arg3)
             {
                 j = func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 65, 0);
                 if (j != -1)
-                    gpSprite[j].cstat &= 0xFBFF;
+                    gpSprite[j].cstat &= ~0x400;
             }
             break;
         case 8:
@@ -7160,7 +7160,7 @@ static u8 func_80052358(s16 playernum, s16 arg1)
     if (D_8010A940[playernum].unkA[arg1] >= D_800E17E0[arg1])
         return 0;
 
-    switch (D_8012F6E4[gPlayer[playernum].unk4C].unkB)
+    switch (D_8012F6E4[gPlayer[playernum].skin].unkB)
     {
     case 3:
         if (arg1 == 1)
@@ -7283,7 +7283,7 @@ static u8 func_8005259C(s16 playernum, s16 arg1, u32 arg2, s16 spritenum) /*Pick
             i -= krand() % (i / 2);
 
         if (arg1 == 5)
-            i &= 0xFFFE;
+            i &= ~1;
 
         if (j & 8)
         {
@@ -8110,12 +8110,12 @@ void func_800539A8(s32 picnum, s32 spritenum)
         {
             spr->x += (gpSinTable[(spr->ang + 0x200) & 0x7FF] * 25) >> 13;
             spr->y += (gpSinTable[spr->ang & 0x7FF] * 25) >> 13;
-            gPlayer[0].unk38 = (spr->ang - 0x400) & 0x7FF;
+            gPlayer[0].ang = (spr->ang - 0x400) & 0x7FF;
             gPlayer[0].xpos = spr->x;
             gPlayer[0].ypos = spr->y;
             gPlayer[0].zpos = spr->z;
             gPlayer[0].unk3E = 0;
-            gPlayer[0].unk32 = -69;
+            gPlayer[0].cursectnum = -69;
             unk4A = gPlayer[0].unk4A;
             i = insertSprite(spr->sectnum, 10);
             if (i != -1)
@@ -8540,7 +8540,7 @@ void func_800539A8(s32 picnum, s32 spritenum)
 
     case 2401:
         if (spr->unk25 == 1)
-            spr->cstat &= 0xFEFE;
+            spr->cstat &= ~0x101;
         break;
 
     case 2568:
@@ -9845,10 +9845,10 @@ static s32 func_80058468(s32 spritenum)
     s16 a, b;
     s32 c;
 
-    gpInst++;
-    a = getVar(spritenum, *gpInst++);
-    b = getVar(spritenum, *gpInst++);
-    c = getVar(spritenum, *gpInst++);
+    _pInst++;
+    a = getVar(spritenum, *_pInst++);
+    b = getVar(spritenum, *_pInst++);
+    c = getVar(spritenum, *_pInst++);
 
     return func_80057540(&gpSprite[spritenum], a, b, c);
 }
