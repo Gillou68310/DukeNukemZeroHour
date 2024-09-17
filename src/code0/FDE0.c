@@ -175,8 +175,8 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
         else
         {
             j = 0;
-            if (D_80106D50[spritenum] != -1)
-                j = D_8019B940[D_80106D50[spritenum]].unk0 & 0x40;
+            if (gActorSpriteMap[spritenum] != -1)
+                j = gActor[gActorSpriteMap[spritenum]].flag & 0x40;
 
             if (gCheatIceSkinConfig != CONFIG_OFF)
                 j = 1;
@@ -259,7 +259,7 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
             sectnum = gpSprite[spritenum].sectnum;
             if (j != 0xFF)
             {
-                if ((D_80106D50[spritenum] == -1) || ((D_8019B940[D_80106D50[spritenum]].unk0 & 0x10) == 0))
+                if ((gActorSpriteMap[spritenum] == -1) || ((gActor[gActorSpriteMap[spritenum]].flag & 0x10) == 0))
                 {
                     k = gpSector[sectnum].unk26;
                     if (gMapNum == MAP_ZERO_HOUR)
@@ -283,12 +283,12 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
             g = D_800FE410;
             b = D_80138680;
             D_80119A38 = 0;
-            if ((D_80106D50[spritenum] != -1) && (D_8019B940[D_80106D50[spritenum]].unk0 & 0x100))
+            if ((gActorSpriteMap[spritenum] != -1) && (gActor[gActorSpriteMap[spritenum]].flag & 0x100))
             {
                 if (gpSprite[spritenum].statnum != 10)
-                    D_8019B940[D_80106D50[spritenum]].unk0 &= ~0x100;
+                    gActor[gActorSpriteMap[spritenum]].flag &= ~0x100;
 
-                l = D_800D6964[D_8019B940[D_80106D50[spritenum]].unk99];
+                l = D_800D6964[gActor[gActorSpriteMap[spritenum]].unk99];
                 if (l != -1)
                 {
                     D_80119A38 = 1;
@@ -502,7 +502,7 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
                 drawModel(model);
                 if ((gpSprite[spritenum].picnum == SENTRYDRONE) && (D_80119A38 != 0) && (D_8010A9AC == 0))
                 {
-                    func_800124EC(D_800D6964[D_8019B940[D_80106D50[spritenum]].unk99]);
+                    func_800124EC(D_800D6964[gActor[gActorSpriteMap[spritenum]].unk99]);
                     drawModel(&D_800D06C0);
                     func_80012630();
                 }
@@ -972,7 +972,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
     f2 = 0.0f;
     f1 = 0.0f;
     f3 = 0.0f;
-    ptr = &D_80197E40[D_80106D50[D_801AE8F4]];
+    ptr = &D_80197E40[gActorSpriteMap[D_801AE8F4]];
     if (D_801A6D80 < 0x100)
     {
         if (ptr->unk8 == NULL)
@@ -1036,7 +1036,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
                         f5 = 0.0f;
                 }
                 else
-                    f5 = (D_8019B940[D_80106D50[D_801AE8F4]].unk7C << 5);
+                    f5 = (gActor[gActorSpriteMap[D_801AE8F4]].unk7C << 5);
 
                 if (cond3 != 0)
                 {
@@ -1091,7 +1091,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
         if (arg0->unk0 == 6)
         {
             if (arg1 == 1)
-                f1 = (D_8019B940[D_80106D50[D_801AE8F4]].unk7C << 5);
+                f1 = (gActor[gActorSpriteMap[D_801AE8F4]].unk7C << 5);
         }
 
         if (arg0->unk0 == 8)
@@ -1120,13 +1120,13 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
                 f1 = (gpSprite[D_801AE8F4].unk22 << 5);
 
             if ((arg0->unk0 == 2) && (arg1 == arg0->unk0))
-                f3 = (D_8019B940[D_80106D50[D_801AE8F4]].unk7C << 5);
+                f3 = (gActor[gActorSpriteMap[D_801AE8F4]].unk7C << 5);
         }
 
         if (arg0->unk0 == 7)
         {
             if (arg1 == 1)
-                f3 = (D_8019B940[D_80106D50[D_801AE8F4]].unk7C << 5);
+                f3 = (gActor[gActorSpriteMap[D_801AE8F4]].unk7C << 5);
         }
 
         if (arg0->unk8[arg1].unk18 != -1)
@@ -1173,8 +1173,8 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
 
         if (arg0->model_list[arg1] != NULL)
         {
-            m = D_80106D50[D_801AE8F4];
-            if (!(D_8019B940[m].unk68 & (1 << arg1)))
+            m = gActorSpriteMap[D_801AE8F4];
+            if (!(gActor[m].unk68 & (1 << arg1)))
             {
                 if ((gpSprite[D_801AE8F4].statnum == 10) && (D_8012C470 == 1))
                 {
@@ -1186,7 +1186,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
                         switch (arg1)
                         {
                         case 8:
-                            if (D_8019B940[m].unk7E > 0)
+                            if (gActor[m].unk7E > 0)
                             {
                                 /*BulletproofBustModel*/
                                 switch (gMapChapter[gMapNum].chapter)
@@ -1222,14 +1222,14 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
                             }
                             break;
                         case 10:
-                            if (D_8019B940[m].unk7E > 0)
+                            if (gActor[m].unk7E > 0)
                             {
                                 if ((gMapChapter[gMapNum].chapter < WESTERN) || (gMapChapter[gMapNum].chapter >= FINAL))
                                     model1 = &D_800C439C;
                             }
                             break;
                         case 13:
-                            if (D_8019B940[m].unk7E > 0)
+                            if (gActor[m].unk7E > 0)
                             {
                                 if ((gMapChapter[gMapNum].chapter < WESTERN) || (gMapChapter[gMapNum].chapter >= FINAL))
                                     model1 = &D_800C43D8;
@@ -1283,9 +1283,9 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
 
         if ((arg0->unk0 == 0) && ((arg1 == 12) || (arg1 == 15)))
         {
-            cond2 = D_8019B940[D_80106D50[D_801AE8F4]].unk0;
+            cond2 = gActor[gActorSpriteMap[D_801AE8F4]].flag;
             cond2 >>= 7;
-            l = D_8019B940[D_80106D50[D_801AE8F4]].unk99;
+            l = gActor[gActorSpriteMap[D_801AE8F4]].unk99;
             playernum2 = -1;
             if (gpSprite[D_801AE8F4].statnum == 10)
             {
@@ -1337,7 +1337,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
 
         if ((arg0->unk0 == 6) && (arg1 == 1))
         {
-            unk99 = D_8019B940[D_80106D50[D_801AE8F4]].unk99;
+            unk99 = gActor[gActorSpriteMap[D_801AE8F4]].unk99;
             if ((D_80119A38 != 0) && (D_8010A9AC == 0))
             {
                 func_800124EC(D_800D6964[unk99]);
@@ -1360,7 +1360,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
         if ((arg0->unk0 >= 2 && arg0->unk0 < 4) && (arg1 == 1))
         {
             func_800124EC(35);
-            if (D_8019B940[D_80106D50[D_801AE8F4]].unk0 & 0x4000)
+            if (gActor[gActorSpriteMap[D_801AE8F4]].flag & 0x4000)
                 n = 6;
             else
                 n = 3;
@@ -1382,7 +1382,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
 
         if ((arg0->unk0 == 3) && (arg1 == 0))
         {
-            unk99 = D_8019B940[D_80106D50[D_801AE8F4]].unk99;
+            unk99 = gActor[gActorSpriteMap[D_801AE8F4]].unk99;
             if ((D_80119A38 != 0) && (D_8010A9AC == 0))
             {
                 func_800124EC(D_800D6964[unk99]);
@@ -1392,7 +1392,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
         }
         if ((arg0->unk0 == 2) && (arg1 == 2))
         {
-            unk99 = D_8019B940[D_80106D50[D_801AE8F4]].unk99;
+            unk99 = gActor[gActorSpriteMap[D_801AE8F4]].unk99;
             if ((D_80119A38 != 0) && (D_8010A9AC == 0))
             {
                 func_800124EC(D_800D6964[unk99]);
@@ -1415,7 +1415,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
 /*80013FFC*/
 void func_80013FFC(_FDE0UnkStruct2 *arg0)
 {
-    if (D_80106D50[D_801AE8F4] != -1)
+    if (gActorSpriteMap[D_801AE8F4] != -1)
         func_8001270C(arg0, 0);
 }
 
@@ -1673,7 +1673,7 @@ static void func_80014D6C(_FDE0UnkStruct2 *arg0, s16 arg1)
     f32 f7;
     s16 i, j, k;
 
-    ptr = &D_80197E40[D_80106D50[D_801AE8F4]];
+    ptr = &D_80197E40[gActorSpriteMap[D_801AE8F4]];
 
     f1 = 0.0f;
     f2 = 0.0f;
@@ -1784,7 +1784,7 @@ static void func_80015458(_FDE0UnkStruct2 *arg0, s16 arg1)
 
     s16 i, j, k;
 
-    ptr = &D_80197E40[D_80106D50[D_801AE8F4]];
+    ptr = &D_80197E40[gActorSpriteMap[D_801AE8F4]];
 
     f2 = 0.0f;
     f1 = 0.0f;
@@ -1936,7 +1936,7 @@ void func_80015DE0(s32 spritenum)
     s32 i, nexti;
 
     D_801AE8F4 = spritenum;
-    if (D_80106D50[D_801AE8F4] != -1)
+    if (gActorSpriteMap[D_801AE8F4] != -1)
     {
         ptr = &D_8013B2D0[spritenum];
         spr = &gpSprite[spritenum];

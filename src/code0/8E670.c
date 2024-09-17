@@ -243,16 +243,16 @@ void func_8008E01C(s16 arg0, s32 arg1)
 /*8008E04C*/
 void func_8008E04C(s16 playernum)
 {
-    code0UnkStruct3 *ptr;
+    Actor *actor;
 
-    ptr = &D_8019B940[D_80106D50[gPlayer[playernum].unk4A]];
+    actor = &gActor[gActorSpriteMap[gPlayer[playernum].unk4A]];
     func_8006D0E4(playernum);
     D_8011A680[playernum][0][0] |= 1;
     func_80095390(playernum);
-    ptr->unk99 = D_8012F6E4[gPlayer[playernum].skin].unk8;
-    gPlayer[playernum].unk70 = ptr->unk99;
-    D_8011A680[playernum][ptr->unk99][0] |= 1;
-    D_8011A680[playernum][ptr->unk99][1] = D_800DF1D0[ptr->unk99][1] * 2;
+    actor->unk99 = D_8012F6E4[gPlayer[playernum].skin].unk8;
+    gPlayer[playernum].unk70 = actor->unk99;
+    D_8011A680[playernum][actor->unk99][0] |= 1;
+    D_8011A680[playernum][actor->unk99][1] = D_800DF1D0[actor->unk99][1] * 2;
 
     switch (D_8012F6E4[gPlayer[playernum].skin].picnum)
     {
@@ -260,7 +260,7 @@ void func_8008E04C(s16 playernum)
     case ENFORCERCAPTAIN:
     case BATTLEENFORCER:
     case CUSTER:
-        D_8011A680[playernum][ptr->unk99][0] |= 2;
+        D_8011A680[playernum][actor->unk99][0] |= 2;
         break;
 
     case MARINE:
@@ -275,10 +275,10 @@ void func_8008E04C(s16 playernum)
         break;
     }
 
-    ptr->unk7E = D_8010A940[playernum].unkA[0];
+    actor->unk7E = D_8010A940[playernum].unkA[0];
     gPlayer[playernum].unk46 = D_8012F6E4[gPlayer[playernum].skin].unk9;
     gPlayer[playernum].unk48 = gPlayer[playernum].unk46;
-    ptr->unk8 = gPlayer[playernum].unk46;
+    actor->unk8 = gPlayer[playernum].unk46;
 
     if (D_8012F6E4[gPlayer[playernum].skin].unkB == 5)
         gPlayer[playernum].unk48 = 0;

@@ -94,7 +94,7 @@ static void _spawn(s16 spritenum)
     if ((spr->picnum > 48) && (spr->lotag == 66))
         spr->cstat |= 0x100;
 
-    func_800539A8(spr->picnum, spritenum);
+    spawnActor(spr->picnum, spritenum);
     func_800533C4(spr->picnum, spritenum);
 
     if (spr->picnum == 1688)
@@ -147,18 +147,18 @@ static void _spawn(s16 spritenum)
             func_80058A14(spritenum, &hitsprite, &hitx, &hity);
             i = func_80058934(spr->x, spr->y, spr->z - 0x300, spr->sectnum, 4);
             spr->unk22 = i;
-            D_80106D50[i] = func_8004BE90();
+            gActorSpriteMap[i] = allocActor();
             gpSprite[i].lotag = 101;
             gpSprite[i].hitag = spritenum;
             gpSprite[i].cstat = 0x8000;
             gpSprite[i].unk25 = 1;
             gpSprite[i].unk18 = func_8007AE50();
             gpSprite[i].unk22 = 0;
-            D_8019B940[D_80106D50[i]].unk44 = hitx;
-            D_8019B940[D_80106D50[i]].unk48 = hity;
-            D_8019B940[D_80106D50[i]].unk4C = spr->x;
-            D_8019B940[D_80106D50[i]].unk50 = spr->y;
-            D_8019B940[D_80106D50[i]].unkC = 0;
+            gActor[gActorSpriteMap[i]].unk44 = hitx;
+            gActor[gActorSpriteMap[i]].unk48 = hity;
+            gActor[gActorSpriteMap[i]].unk4C = spr->x;
+            gActor[gActorSpriteMap[i]].unk50 = spr->y;
+            gActor[gActorSpriteMap[i]].exec_ptr = NULL;
             break;
         case 2432:
         case 1527:
@@ -1278,7 +1278,7 @@ void func_80062950(s16 playernum, u8 arg1)
         spritenum = insertSprite(gPlayer[playernum].cursectnum, 10);
         gPlayer[playernum].unk4A = spritenum;
         gpSprite[spritenum].unk16 = playernum;
-        D_80106D50[spritenum] = func_8004BE90();
+        gActorSpriteMap[spritenum] = allocActor();
     }
     else
     {
@@ -1336,8 +1336,8 @@ void func_80062950(s16 playernum, u8 arg1)
     D_8013B2D0[spritenum].unk0 = 0;
     D_8013B2D0[spritenum].unk4 = 0;
     D_8013B2D0[spritenum].unk6 = 0;
-    D_8019B940[D_80106D50[spritenum]].unk68 = 0;
-    D_8019B940[D_80106D50[spritenum]].unk0 = 1;
+    gActor[gActorSpriteMap[spritenum]].unk68 = 0;
+    gActor[gActorSpriteMap[spritenum]].flag = 1;
     func_8006D0E4(playernum);
 
     if ((D_8012C470 == 1) && (gMapNum < MAP_THE_END))
@@ -1391,9 +1391,9 @@ void func_80062950(s16 playernum, u8 arg1)
     if (D_8012C470 == 1)
         gPlayer[playernum].unk48 = 100;
 
-    D_8019B940[D_80106D50[spritenum]].unk99 = gPlayer[playernum].unk70;
-    D_8019B940[D_80106D50[spritenum]].unk8 = gPlayer[playernum].unk46;
-    D_8019B940[D_80106D50[spritenum]].unk7E = D_8010A940[playernum].unkA[0];
+    gActor[gActorSpriteMap[spritenum]].unk99 = gPlayer[playernum].unk70;
+    gActor[gActorSpriteMap[spritenum]].unk8 = gPlayer[playernum].unk46;
+    gActor[gActorSpriteMap[spritenum]].unk7E = D_8010A940[playernum].unkA[0];
 
     if (arg1)
     {

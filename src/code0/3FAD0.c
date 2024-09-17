@@ -239,7 +239,7 @@ void func_8003FD5C(void)
     else
         gPlayer[D_801B0820].unk4E = 0;
 
-    if (D_8019B940[D_80106D50[gPlayer[D_801B0820].unk4A]].unk9E == 253)
+    if (gActor[gActorSpriteMap[gPlayer[D_801B0820].unk4A]].unk9E == 253)
         gPlayer[D_801B0820].unk4E += 3;
 
     if ((gPlayer[D_801B0820].unk45 != 0) && (gPlayer[D_801B0820].unk4E > 1000))

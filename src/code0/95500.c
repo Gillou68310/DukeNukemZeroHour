@@ -451,7 +451,7 @@ void func_8009542C(void)
         }
 
         unk2 = ptr2->unk2[1];
-        ptr2->unkA[0] = D_8019B940[D_80106D50[gPlayer[i].unk4A]].unk7E;
+        ptr2->unkA[0] = gActor[gActorSpriteMap[gPlayer[i].unk4A]].unk7E;
         ptr2->unk2[1] = 0;
 
         if ((gPlayer[i].unk54 != 0) && (ptr2->unkA[1] > 0))
@@ -554,14 +554,14 @@ void func_8009584C(s16 playernum)
     char buffer[32];
     char **ptr;
     code0UnkStruct2 *ptr1;
-    code0UnkStruct3 *ptr2;
+    Actor *actor;
     s16 unk0, min;
     s8 cond;
 
     cond = -1;
     ptr = D_800E1780;
     ptr1 = &D_8010A940[playernum];
-    ptr2 = &D_8019B940[D_80106D50[gPlayer[playernum].unk4A]];
+    actor = &gActor[gActorSpriteMap[gPlayer[playernum].unk4A]];
 
     if ((gMapChapter[gMapNum].chapter == WESTERN) || (gMapChapter[gMapNum].chapter == VICTORIAN))
         ptr = D_800E17A0;
@@ -610,10 +610,10 @@ void func_8009584C(s16 playernum)
     case 2:
         if (ptr1->unkA[4] > 0)
         {
-            if (ptr2->unk8 < gPlayer[playernum].unk48)
+            if (actor->unk8 < gPlayer[playernum].unk48)
             {
-                min = MIN(ptr1->unkA[4], (gPlayer[playernum].unk48 - ptr2->unk8));
-                ptr2->unk8 += min;
+                min = MIN(ptr1->unkA[4], (gPlayer[playernum].unk48 - actor->unk8));
+                actor->unk8 += min;
                 ptr1->unkA[4] -= min;
                 cond = 1;
                 audio_800080E0(playernum, 5);

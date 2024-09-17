@@ -200,7 +200,7 @@ static void func_800642CC(s16 spritenum1, s16 spritenum2)
             z -= 1440;
     }
 
-    if ((gpSprite[spritenum1].statnum != 1) || (D_8019B940[D_80106D50[spritenum1]].unk84 != 5))
+    if ((gpSprite[spritenum1].statnum != 1) || (gActor[gActorSpriteMap[spritenum1]].unk84 != 5))
     {
         unk18 = gpSector[sectnum2].unk18;
         if (unk18 == 1)
@@ -253,7 +253,7 @@ static void func_800642CC(s16 spritenum1, s16 spritenum2)
             {
                 if (gpSprite[spritenum1].statnum == 1)
                 {
-                    switch (D_8019B940[D_80106D50[spritenum1]].unk84)
+                    switch (gActor[gActorSpriteMap[spritenum1]].unk84)
                     {
                     case 1:
                     case 9:
@@ -1674,7 +1674,7 @@ void moveEffectors(void)
             if (a == -1)
             {
                 func_800365C0(k);
-                D_8019B940[D_80106D50[gPlayer[k].unk4A]].unk8 = 0;
+                gActor[gActorSpriteMap[gPlayer[k].unk4A]].unk8 = 0;
             }
         }
     }
@@ -1848,7 +1848,7 @@ void func_80069160(void)
                     if ((gpSprite[j].statnum == 1) &&
                         (gpSprite[j].picnum >= 49))
                     {
-                        if ((D_8019B940[D_80106D50[j]].unk0 & 0x100000) == 0)
+                        if ((gActor[gActorSpriteMap[j]].flag & 0x100000) == 0)
                         {
                             cond = 1;
                             break;

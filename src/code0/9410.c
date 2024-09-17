@@ -314,7 +314,7 @@ void func_80008E3C(void)
     gVertexN64Size = ((uintptr_t)gpVertexN64 - (uintptr_t)gVertexN64[gGfxTaskIndex]) / sizeof(Vtx);
 
     for (playernum = 0; playernum < D_8012C470; playernum++)
-        D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk0 &= ~0x100;
+        gActor[gActorSpriteMap[gPlayer[playernum].unk4A]].flag &= ~0x100;
 
     func_80040B70(3);
 }

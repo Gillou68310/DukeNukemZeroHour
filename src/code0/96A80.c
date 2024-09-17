@@ -300,7 +300,7 @@ void func_800965F8(s32 spritenum)
     SpriteType *spr2;
     SpriteType *spr3;
 
-    code0UnkStruct3 *ptr;
+    Actor *actor;
     code0UnkStruct5 *ptr2;
 
     s32 i, j, k, l, m, n, o;
@@ -316,7 +316,7 @@ void func_800965F8(s32 spritenum)
     xpos = gPlayer[0].xpos;
     ypos = gPlayer[0].ypos;
     z = gpSprite[gPlayer[0].unk4A].z;
-    ptr = &D_8019B940[D_80106D50[spritenum]];
+    actor = &gActor[gActorSpriteMap[spritenum]];
     ptr2 = &D_8013B2D0[spritenum];
 
     if (i == 302)
@@ -382,7 +382,7 @@ void func_800965F8(s32 spritenum)
         {
             spr->unk2B = 10;
             playSfx(1358);
-            func_80042124(ptr, 165);
+            func_80042124(actor, 165);
             func_80017268(spritenum);
             break;
         }
@@ -416,7 +416,7 @@ void func_800965F8(s32 spritenum)
         }
         break;
     case 2597:
-        if (ptr->unk8 < 4)
+        if (actor->unk8 < 4)
         {
             if (D_800DEEA0 != 0)
             {
@@ -600,7 +600,7 @@ void func_800965F8(s32 spritenum)
                             gpSprite[l].unk2B = 2;
                             D_8013B2D0[l].unk6 = 0xFF;
                             audio_80007820(704, l);
-                            D_8019B940[D_80106D50[l]].unk0 |= 0x01000000;
+                            gActor[gActorSpriteMap[l]].flag |= 0x01000000;
                             break;
                         }
                     }
@@ -683,7 +683,7 @@ void func_800965F8(s32 spritenum)
 
         break;
     case 2533:
-        if (ptr->unk8 < 4)
+        if (actor->unk8 < 4)
         {
             audio_80007A44(((krand() % 3) + 538), spritenum, 40000);
             func_80058E44(spritenum);
@@ -922,7 +922,7 @@ void func_800965F8(s32 spritenum)
                 func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 47, 0);
                 func_80045400(spr->x, spr->y, spr->z - 16000, spr->sectnum, 0, spr->ang, 44, 130);
                 func_80045400(spr->x, spr->y, spr->z - 8000, spr->sectnum, 0, spr->ang, 44, 130);
-                func_800574A4(spritenum);
+                freeActor(spritenum);
                 break;
             }
             func_80045400(spr->x, spr->y, spr->z - 8000, spr->sectnum, 0, spr->ang, 44, 130);
@@ -952,7 +952,7 @@ void func_800965F8(s32 spritenum)
                 spr->z += 13000;
                 audio_800077F4(1056, spritenum);
                 func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 44, 2);
-                func_800574A4(spritenum);
+                freeActor(spritenum);
                 spr->unk2B = 2;
             }
         }
@@ -1239,7 +1239,7 @@ void func_800965F8(s32 spritenum)
                 spr->cstat &= ~0x101;
                 audio_800077F4((krand() & 1) + 1249, spritenum);
                 func_80056600(spritenum);
-                ptr->unk99 = 0;
+                actor->unk99 = 0;
 
                 if (!(spr->unk25 & 0x7F))
                 {
@@ -1248,20 +1248,20 @@ void func_800965F8(s32 spritenum)
                     {
                     default:
                     case 0:
-                        func_80042124(ptr, 54);
+                        func_80042124(actor, 54);
                         break;
                     case 1:
-                        func_80042124(ptr, 48);
+                        func_80042124(actor, 48);
                         break;
                     case 2:
-                        func_80042124(ptr, 46);
+                        func_80042124(actor, 46);
                         break;
                     case 3:
-                        func_80042124(ptr, 55);
+                        func_80042124(actor, 55);
                         break;
                     case 4:
                     case 5:
-                        func_80042124(ptr, 6);
+                        func_80042124(actor, 6);
                         break;
                     }
 
@@ -1296,9 +1296,9 @@ void func_800965F8(s32 spritenum)
                 break;
             case 10:
                 if ((krand() & 0x7FFF) < 0x2000)
-                    func_80042124(ptr, 144);
+                    func_80042124(actor, 144);
                 else
-                    func_80042124(ptr, 161);
+                    func_80042124(actor, 161);
 
                 spr->unk2B++;
                 break;
@@ -1306,10 +1306,10 @@ void func_800965F8(s32 spritenum)
                 if (!(D_8012FD88 & 0x3F) && ((krand() & 0xFF) > 200))
                     spr->unk2B--;
 
-                ptr->unk8 = 101;
+                actor->unk8 = 101;
                 break;
             case 12:
-                func_80042124(ptr, 143);
+                func_80042124(actor, 143);
                 audio_800086B0(0);
                 spr->unk2B++;
                 break;
@@ -1318,11 +1318,11 @@ void func_800965F8(s32 spritenum)
                     spr->unk2B = 10;
                 break;
             case 20:
-                func_80042124(ptr, 135);
+                func_80042124(actor, 135);
                 spr->unk2B++;
                 break;
             case 25:
-                func_80042124(ptr, 143);
+                func_80042124(actor, 143);
                 audio_800086B0(1);
                 spr->unk2A = 1;
                 spr->unk2B++;
@@ -1332,7 +1332,7 @@ void func_800965F8(s32 spritenum)
                     spr->unk2B = 20;
                 break;
             case 35:
-                func_80042124(ptr, 143);
+                func_80042124(actor, 143);
                 audio_800086B0(1);
                 spr->unk2A = 1;
                 spr->unk2B++;
@@ -1340,20 +1340,20 @@ void func_800965F8(s32 spritenum)
             case 36:
                 if (func_80042140(spritenum) == 89)
                 {
-                    func_80042124(ptr, 133);
+                    func_80042124(actor, 133);
                     spr->unk2B = 0;
                     spr->unk22 = 0;
                 }
-                if (ptr->unk8 < 0)
+                if (actor->unk8 < 0)
                     spr->unk2B = 1;
 
                 break;
             case 40:
-                func_80042124(ptr, 162);
+                func_80042124(actor, 162);
                 spr->unk2B++;
                 break;
             case 45:
-                func_80042124(ptr, 143);
+                func_80042124(actor, 143);
                 audio_800086B0(1);
                 spr->unk2A = 1;
                 spr->unk2B++;
@@ -1364,7 +1364,7 @@ void func_800965F8(s32 spritenum)
                 break;
             }
         }
-        else if (ptr->unk8 >= 0)
+        else if (actor->unk8 >= 0)
         {
             if ((spr->unk25 & 0x80) ||
                 (canSee(spr->x, spr->y, spr->z - 8000, spr->sectnum, xpos, ypos, z, gpSprite[gPlayer[0].unk4A].sectnum) != 0))
@@ -1374,7 +1374,7 @@ void func_800965F8(s32 spritenum)
                 {
                     if (((krand() & 0x7FFF) < 1000) && (func_8009614C(spritenum) != -1))
                     {
-                        func_80042124(ptr, 134);
+                        func_80042124(actor, 134);
                         spr->unk22 = (krand() % 3) + 1;
                     }
                 }
@@ -1398,7 +1398,7 @@ void func_800965F8(s32 spritenum)
                         spr->unk22--;
 
                         if (spr->unk22 == 0)
-                            func_80042124(ptr, 133);
+                            func_80042124(actor, 133);
                     }
                 }
             }
@@ -1413,7 +1413,7 @@ void func_800965F8(s32 spritenum)
         if (spr->unk2B == 1)
         {
             func_8004BC64(spr->x, spr->y, spr->z, spr->sectnum, BROODLING, 0, 0);
-            func_800574A4(spritenum);
+            freeActor(spritenum);
         }
         break;
     case 2208:
@@ -1424,7 +1424,7 @@ void func_800965F8(s32 spritenum)
             if (a != -1)
                 gpSprite[a].unk25 = spr->unk25;
 
-            func_800574A4(spritenum);
+            freeActor(spritenum);
         }
         break;
     case 2437:
@@ -1432,7 +1432,7 @@ void func_800965F8(s32 spritenum)
         if (spr->unk2B == 1)
         {
             func_8008E3E0(spr->x, spr->y, (spr->z - 4000), spr->sectnum, 44, 1);
-            func_800574A4(spritenum);
+            freeActor(spritenum);
         }
         break;
     case 1346:
@@ -1444,7 +1444,7 @@ void func_800965F8(s32 spritenum)
             else
                 func_8004AB6C(spritenum, 8000, 200, 400, 600, 800, 0);
 
-            func_800574A4(spritenum);
+            freeActor(spritenum);
         }
         break;
     case 1405:
@@ -1569,7 +1569,7 @@ void func_800965F8(s32 spritenum)
                         gpSprite[a].unk22 = 0;
                     }
                 }
-                func_800574A4(spritenum);
+                freeActor(spritenum);
             }
             break;
         }
@@ -1665,7 +1665,7 @@ void func_800965F8(s32 spritenum)
             spr->z -= 9000;
             spr->xrepeat--;
             if (!(spr->xrepeat))
-                func_800574A4(spritenum);
+                freeActor(spritenum);
             break;
         }
         break;
@@ -1721,7 +1721,7 @@ void func_800965F8(s32 spritenum)
                 func_80047820(spritenum, (i + 0x4000) & 0xFFFF, 50);
                 audio_800077F4(215, spritenum);
                 func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 44, 2);
-                func_800574A4(spritenum);
+                freeActor(spritenum);
                 break;
             }
             spr->unk1A += 400;
@@ -1732,7 +1732,7 @@ void func_800965F8(s32 spritenum)
             block_603:
                 audio_800077F4(215, spritenum);
                 func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 44, 2);
-                func_800574A4(spritenum);
+                freeActor(spritenum);
             }
             break;
         }
@@ -1968,11 +1968,11 @@ void func_8009A1A0(s32 spritenum)
         l = func_8009A020(spritenum, unk16);
         if (l != 0)
         {
-            if (D_80106D50[l] != -1)
+            if (gActorSpriteMap[l] != -1)
             {
-                if ((D_8019B940[D_80106D50[l]].unk84 != 2) &&
-                    (D_8019B940[D_80106D50[l]].unk84 != 5) &&
-                    !(D_8019B940[D_80106D50[l]].unk0 & 0x2000))
+                if ((gActor[gActorSpriteMap[l]].unk84 != 2) &&
+                    (gActor[gActorSpriteMap[l]].unk84 != 5) &&
+                    !(gActor[gActorSpriteMap[l]].flag & 0x2000))
                 {
                     func_80057540(&gpSprite[l], 1500, 1, 0);
                     func_800494DC(l, 10, spritenum, 0);
@@ -1987,20 +1987,20 @@ void func_8009A1A0(s32 spritenum)
 void func_8009A43C(s32 spritenum)
 {
     SpriteType *spr;
-    code0UnkStruct3 *ptr;
+    Actor *actor;
     s32 i;
     s32 spritenum1, spritenum2, spritenum3;
 
-    ptr = &D_8019B940[D_80106D50[spritenum]];
+    actor = &gActor[gActorSpriteMap[spritenum]];
     spr = &gpSprite[spritenum];
     if (spr->unk22 != 123)
     {
-        ptr->unk84 = -1;
+        actor->unk84 = -1;
         spr->unk22 = 123;
         D_801A1958.enemies_killed++;
         if (D_80118250 != 0)
         {
-            ptr->unk68 |= 0x1C0000;
+            actor->unk68 |= 0x1C0000;
             spritenum1 = func_8008E3E0(spr->x, spr->y, spr->z - 2048, spr->sectnum, 41, 32);
             if (spritenum1 != -1)
             {
@@ -2015,7 +2015,7 @@ void func_8009A43C(s32 spritenum)
 
         if (D_801AE9C4 != 0)
         {
-            ptr->unk68 |= 0x38000;
+            actor->unk68 |= 0x38000;
             spritenum2 = func_8008E3E0(spr->x, spr->y, spr->z - 2048, spr->sectnum, 41, 32);
             if (spritenum2 != -1)
             {
@@ -2028,11 +2028,11 @@ void func_8009A43C(s32 spritenum)
             func_8008E3E0(gpSprite[spritenum2].x, gpSprite[spritenum2].y, gpSprite[spritenum2].z, spr->sectnum, 60, 1);
         }
 
-        func_80042124(ptr, 153);
-        if (ptr->unk70 != 0)
+        func_80042124(actor, 153);
+        if (actor->unk70 != 0)
         {
-            MusHandleStop(ptr->unk70, 0);
-            ptr->unk70 = 0;
+            MusHandleStop(actor->unk70, 0);
+            actor->unk70 = 0;
         }
 
         i = gHeadSpriteStat[302];
@@ -2072,13 +2072,13 @@ void func_8009A9F0(s32 spritenum)
 {
     s16 sectnum;
     SpriteType *spr;
-    code0UnkStruct3 *ptr;
+    Actor *actor;
     s32 d1, d2;
     s32 x, y, z, x1, y1;
     s32 i, j, k;
     s32 ang, spritenum_;
 
-    ptr = &D_8019B940[D_80106D50[spritenum]];
+    actor = &gActor[gActorSpriteMap[spritenum]];
     spr = &gpSprite[spritenum];
     if (spr->unk2B != 0)
     {
@@ -2178,7 +2178,7 @@ void func_8009A9F0(s32 spritenum)
                     if (D_80118250 == 0)
                     {
                     block_32:
-                        ptr->unk68 |= 0x1C0000;
+                        actor->unk68 |= 0x1C0000;
                         spritenum_ = func_8008E3E0(spr->x, spr->y, spr->z - 0x800, spr->sectnum, 41, 32);
                         if (spritenum_ != -1)
                         {
@@ -2198,7 +2198,7 @@ void func_8009A9F0(s32 spritenum)
                     if (D_801AE9C4 == 0)
                     {
                     block_37:
-                        ptr->unk68 |= 0x38000;
+                        actor->unk68 |= 0x38000;
                         spritenum_ = func_8008E3E0(spr->x, spr->y, spr->z - 0x800, spr->sectnum, 41, 32);
                         if (spritenum_ != -1)
                         {
@@ -2220,16 +2220,16 @@ void func_8009A9F0(s32 spritenum)
             switch (D_8019964C)
             {
             case 1:
-                if ((func_80042140(spritenum) == 30) && (ptr->unk70 == 0))
-                    ptr->unk70 = playSfx(1074);
+                if ((func_80042140(spritenum) == 30) && (actor->unk70 == 0))
+                    actor->unk70 = playSfx(1074);
 
                 if (func_80042140(spritenum) == 59)
                 {
-                    if (ptr->unk70 != 0)
+                    if (actor->unk70 != 0)
                     {
-                        MusHandleStop(ptr->unk70, 0);
+                        MusHandleStop(actor->unk70, 0);
                         playSfx(1075);
-                        ptr->unk70 = 0;
+                        actor->unk70 = 0;
                     }
                 }
 
@@ -2249,9 +2249,9 @@ void func_8009A9F0(s32 spritenum)
             case 2:
             case 3:
             case 4:
-                if ((func_80042140(spritenum) == 35) && (ptr->unk70 == 0))
+                if ((func_80042140(spritenum) == 35) && (actor->unk70 == 0))
                 {
-                    ptr->unk70 = playSfx(705);
+                    actor->unk70 = playSfx(705);
                     switch (D_8019964C)
                     {
                     case 2:
@@ -2279,7 +2279,7 @@ void func_8009A9F0(s32 spritenum)
         else
         {
             if (gPlayer[0].unk45 != 0)
-                func_80042124(ptr, 83);
+                func_80042124(actor, 83);
             else
             {
                 d2 = getAngleDelta(spr->ang, ang);
@@ -2320,34 +2320,34 @@ void func_8009A9F0(s32 spritenum)
                     updateSector(spr->x + (x1 * 15), spr->y + (y1 * 15), &sectnum);
                     if (sectnum == spr->sectnum)
                     {
-                        func_80042124(ptr, 85);
+                        func_80042124(actor, 85);
                         func_8004E5F8(spritenum, x1 * 8, y1 * 8, 0);
                     }
                     else
                     {
                         goto block_1; /*FAKEMATCH?*/
                     }
-                    /*else if ((ptr->unk86 & 0x7FFF) != 83) {
+                    /*else if ((actor->unk86 & 0x7FFF) != 83) {
                         audio_80007A44(1412, spritenum, 40000);
-                        func_80042124(ptr, 83);
+                        func_80042124(actor, 83);
                     }*/
                 }
                 else
                 {
                     if ((d2 >> 5) != 0)
-                        func_80042124(ptr, 85);
+                        func_80042124(actor, 85);
                     else
                     {
                     block_1:
-                        if ((ptr->unk86 & 0x7FFF) != 83)
+                        if ((actor->unk86 & 0x7FFF) != 83)
                         {
                             audio_80007A44(1412, spritenum, 40000);
-                            func_80042124(ptr, 83);
+                            func_80042124(actor, 83);
                         }
                     }
                 }
 
-                if (((ptr->unk86 & 0x7FFF) == 85) && ((func_80042140(spritenum) == 1) || (func_80042140(spritenum) == 20)))
+                if (((actor->unk86 & 0x7FFF) == 85) && ((func_80042140(spritenum) == 1) || (func_80042140(spritenum) == 20)))
                     audio_80007A44(1412, spritenum, 40000);
 
                 if ((D_8019964C == 0))
@@ -2356,9 +2356,9 @@ void func_8009A9F0(s32 spritenum)
                     {
                         if ((krand() & 0x3FF) < 0x200)
                         {
-                            ptr->unk70 = 0;
+                            actor->unk70 = 0;
                             D_8019964C = 1;
-                            func_80042124(ptr, 84);
+                            func_80042124(actor, 84);
                         }
                         else
                         {
@@ -2367,28 +2367,28 @@ void func_8009A9F0(s32 spritenum)
                             {
                                 if ((D_801AE9C4 != 0) && (D_80118250 != 0))
                                 {
-                                    ptr->unk70 = 0;
+                                    actor->unk70 = 0;
                                     D_8019964C = 2;
                                     playSfx((krand() & 1) + 1569);
-                                    func_80042124(ptr, 88);
+                                    func_80042124(actor, 88);
                                 }
                             }
                             else if ((k >= 340) && (k < 680))
                             {
                                 if (D_801AE9C4 != 0)
                                 {
-                                    ptr->unk70 = 0;
+                                    actor->unk70 = 0;
                                     D_8019964C = 4;
                                     playSfx((krand() & 1) + 1569);
-                                    func_80042124(ptr, 89);
+                                    func_80042124(actor, 89);
                                 }
                             }
                             else if (D_80118250 != 0)
                             {
-                                ptr->unk70 = 0;
+                                actor->unk70 = 0;
                                 D_8019964C = 3;
                                 playSfx((krand() & 1) + 1569);
-                                func_80042124(ptr, 90);
+                                func_80042124(actor, 90);
                             }
                         }
                     }
@@ -2396,7 +2396,7 @@ void func_8009A9F0(s32 spritenum)
             }
         }
         D_80118248 = spr;
-        D_80137DE0 = ptr;
+        gpActor = actor;
         D_800FE400 = spritenum;
         D_8012F6E8 = func_8005A240(spritenum);
         func_8004D884();
@@ -2421,10 +2421,10 @@ void func_8009B838(s32 spritenum)
 void func_8009B8A4(s32 spritenum)
 {
     SpriteType *spr;
-    code0UnkStruct3 *ptr;
+    Actor *actor;
 
     spr = &gpSprite[spritenum];
-    ptr = &D_8019B940[D_80106D50[spritenum]];
+    actor = &gActor[gActorSpriteMap[spritenum]];
     if (D_8012FD74 == 0)
     {
         D_801AE8F8 = 90;
@@ -2433,9 +2433,9 @@ void func_8009B8A4(s32 spritenum)
         D_80199564 = 0;
         spr->unk2B = 0;
         spr->unk22 = 0;
-        func_80042124(ptr, 75);
+        func_80042124(actor, 75);
         D_801A1958.enemies_killed++;
-        ptr->unk84 = -1;
+        actor->unk84 = -1;
     }
 }
 
@@ -2444,19 +2444,19 @@ static void func_8009B974(s32 spritenum)
 {
     SpriteType *spr;
     SpriteType *spr2;
-    code0UnkStruct3 *ptr;
+    Actor *actor;
     s32 i, j, k;
     s32 x1, y1, z1;
     s32 x2, y2, z2;
     s32 ang;
 
-    ptr = &D_8019B940[D_80106D50[spritenum]];
+    actor = &gActor[gActorSpriteMap[spritenum]];
     spr = &gpSprite[spritenum];
     switch (spr->unk2B)
     {
     case 0:
         D_80119A34 = gpSprite[gPlayer[0].unk4A].z - 64000;
-        func_80042124(ptr, 75);
+        func_80042124(actor, 75);
         spr->unk2B = 1;
         break;
     case 1:
@@ -2467,7 +2467,7 @@ static void func_8009B974(s32 spritenum)
         {
             D_801B081C = 0;
             spr->unk22 = 123;
-            func_80042124(ptr, 150);
+            func_80042124(actor, 150);
             spr->unk2B = 6;
             i = gHeadSpriteStat[7];
             while (i >= 0)
@@ -2587,7 +2587,7 @@ void func_8009C248(s32 spritenum)
     code0UnkStruct5 *ptr2;
     SpriteType *spr;
     SpriteType *spr2;
-    code0UnkStruct3 *ptr;
+    Actor *actor;
     f32 f1, f2, f3, f4, f5;
     s32 z, z1, z2, z3, z4, z5, z6;
     s32 sectnum;
@@ -2598,7 +2598,7 @@ void func_8009C248(s32 spritenum)
     s32 i, j, k, l, m;
     s16 ang;
 
-    ptr = &D_8019B940[D_80106D50[spritenum]];
+    actor = &gActor[gActorSpriteMap[spritenum]];
     spr = &gpSprite[spritenum];
     spr->xrepeat = 0x52;
     spr->yrepeat = 0x52;
@@ -2617,7 +2617,7 @@ void func_8009C248(s32 spritenum)
         return;
     }
 
-    if ((D_801ACBE0 == 0) && (ptr->unk8 < 5000))
+    if ((D_801ACBE0 == 0) && (actor->unk8 < 5000))
     {
         audio_80008574(0, 1258);
         D_801ACBE0 = 1;
@@ -2697,7 +2697,7 @@ void func_8009C248(s32 spritenum)
 
     if ((spr->unk22 == 3) && (func_80042140(spritenum) == 49))
     {
-        func_80042124(ptr, 75);
+        func_80042124(actor, 75);
         spr->unk22 = 0;
     }
 
@@ -2755,7 +2755,7 @@ void func_8009C248(s32 spritenum)
                         spr->unk2B = 1;
                         if (func_80040D40(spr->x, spr->y, D_801AE530, D_80138698) > 10000)
                         {
-                            func_80042124(ptr, 80);
+                            func_80042124(actor, 80);
                             spr->unk22 = 1;
                             D_800FE9E8 = 1200;
                         }
@@ -2846,7 +2846,7 @@ void func_8009C248(s32 spritenum)
 
                         if (func_80040D40(spr->x, spr->y, D_801AE530, D_80138698) > 10000)
                         {
-                            func_80042124(ptr, 80);
+                            func_80042124(actor, 80);
                             spr->unk22 = 1;
                             D_800FE9E8 = 1200;
                         }
@@ -2894,7 +2894,7 @@ void func_8009C248(s32 spritenum)
             D_80119A34 -= 1500;
             if (func_80042140(spritenum) == 39)
             {
-                func_80042124(ptr, 81);
+                func_80042124(actor, 81);
                 spr->unk22 = 2;
                 D_800FE9E8 = 1220;
             }
@@ -2908,7 +2908,7 @@ void func_8009C248(s32 spritenum)
         {
             if (spr->unk22 == 2)
             {
-                func_80042124(ptr, 82);
+                func_80042124(actor, 82);
                 spr->unk22 = 3;
             }
         }
@@ -2955,7 +2955,7 @@ void func_8009C248(s32 spritenum)
                 }
                 else
                 {
-                    func_80042124(ptr, 82);
+                    func_80042124(actor, 82);
                     spr->unk22 = 3;
                 }
             }
@@ -2975,7 +2975,7 @@ void func_8009C248(s32 spritenum)
                 if (z4 < spr->z)
                 {
                     spr->z = z4;
-                    func_80042124(ptr, 77);
+                    func_80042124(actor, 77);
                     spr->unk2B = 4;
                     spr->unk22 = 0;
                     D_801B081C = 0;
@@ -2996,7 +2996,7 @@ void func_8009C248(s32 spritenum)
             spr->unk1C -= 500;
             if (spr->unk1C < -7500)
             {
-                func_80042124(ptr, 76);
+                func_80042124(actor, 76);
                 spr->unk22 = 5;
             }
             break;
@@ -3014,7 +3014,7 @@ void func_8009C248(s32 spritenum)
 
                 playSfx(1580);
                 func_8001F7B4(12, 12);
-                func_80042124(ptr, 77);
+                func_80042124(actor, 77);
                 spr->unk2B = 4;
                 spr->unk22 = 0;
             }
@@ -3036,7 +3036,7 @@ void func_8009C248(s32 spritenum)
             if (klabs(delta) < 32)
             {
                 spr->unk22 = 11;
-                func_80042124(ptr, 163);
+                func_80042124(actor, 163);
             }
             break;
         case 11:
@@ -3048,7 +3048,7 @@ void func_8009C248(s32 spritenum)
 
             if (func_80042140(spritenum) == 49)
             {
-                func_80042124(ptr, 75);
+                func_80042124(actor, 75);
                 spr->unk2B = 0;
                 spr->unk22 = 0;
             }
@@ -3092,7 +3092,7 @@ void func_8009C248(s32 spritenum)
 
             playSfx(1580);
             func_8001F7B4(12, 12);
-            func_80042124(ptr, 77);
+            func_80042124(actor, 77);
             spr->unk2B = 4;
             spr->unk22 = 0;
             D_801B081C = 0;
@@ -3101,7 +3101,7 @@ void func_8009C248(s32 spritenum)
     case 6:
         if (((spritenum1 != -1) && (spr->sectnum != sectnum)) || ((++D_8011BC58 >= 6) && (krand() & 0x7FFF) < 24000))
         {
-            func_80042124(ptr, 117);
+            func_80042124(actor, 117);
             audio_80007A44(1607, spritenum, 40000);
             spr->unk2B = 0xA;
             spr->unk22 = 0;
@@ -3119,7 +3119,7 @@ void func_8009C248(s32 spritenum)
                 if ((krand() & 0x7FFF) < 8000)
                 {
                     spr->unk2B = 8;
-                    func_80042124(ptr, 78);
+                    func_80042124(actor, 78);
                 }
                 else
                 {
@@ -3146,7 +3146,7 @@ void func_8009C248(s32 spritenum)
                     y4 = (y2 - y1) * (krand() & 0xFF) / 255;
                     D_801AE530 = x1 + x4;
                     D_80138698 = y1 + y4;
-                    func_80042124(ptr, 106);
+                    func_80042124(actor, 106);
                     D_801AC8DC = 5;
                     D_80199560 = 0;
                     spr->unk2B = 7;
@@ -3154,11 +3154,11 @@ void func_8009C248(s32 spritenum)
             }
             else
             {
-                ptr->unk44 = gPlayer[0].xpos;
-                ptr->unk48 = gPlayer[0].ypos;
-                ptr->unk4C = gpSprite[gPlayer[0].unk4A].z - 0x1C80;
+                actor->unk44 = gPlayer[0].xpos;
+                actor->unk48 = gPlayer[0].ypos;
+                actor->unk4C = gpSprite[gPlayer[0].unk4A].z - 0x1C80;
                 spr->unk2B = 9;
-                func_80042124(ptr, 110);
+                func_80042124(actor, 110);
                 break;
             }
         }
@@ -3172,11 +3172,11 @@ void func_8009C248(s32 spritenum)
         l = func_80040D40(spr->x, spr->y, D_801AE530, D_80138698);
         if ((krand() & 0x7FFF) < 21000)
         {
-            ptr->unk44 = gPlayer[0].xpos;
-            ptr->unk48 = gPlayer[0].ypos;
-            ptr->unk4C = gpSprite[gPlayer[0].unk4A].z - 0x1C80;
+            actor->unk44 = gPlayer[0].xpos;
+            actor->unk48 = gPlayer[0].ypos;
+            actor->unk4C = gpSprite[gPlayer[0].unk4A].z - 0x1C80;
             spr->unk2B = 9;
-            func_80042124(ptr, 110);
+            func_80042124(actor, 110);
             break;
         }
         D_80199560++;
@@ -3279,7 +3279,7 @@ void func_8009C248(s32 spritenum)
 
         if (func_80042140(spritenum) == 59)
         {
-            func_80042124(ptr, 75);
+            func_80042124(actor, 75);
             spr->unk2B = 0;
         }
         break;
@@ -3297,7 +3297,7 @@ void func_8009C248(s32 spritenum)
 
         if ((spr->unk22 == 1) && (func_80042140(spritenum) == 39))
         {
-            func_80042124(ptr, 81);
+            func_80042124(actor, 81);
             spr->unk22 = 2;
             D_800FE9E8 = 1220;
         }
@@ -3310,7 +3310,7 @@ void func_8009C248(s32 spritenum)
         {
             if (spr->unk22 == 2)
             {
-                func_80042124(ptr, 82);
+                func_80042124(actor, 82);
                 spr->unk22 = 3;
             }
         }
@@ -3329,7 +3329,7 @@ void func_8009C248(s32 spritenum)
             D_801B081C = 0;
             if (spr->unk22 == 2)
             {
-                func_80042124(ptr, 82);
+                func_80042124(actor, 82);
                 spr->unk22 = 3;
             }
         }
@@ -3349,7 +3349,7 @@ void func_8009C248(s32 spritenum)
             if (z4 < spr->z)
             {
                 spr->z = z4;
-                func_80042124(ptr, 77);
+                func_80042124(actor, 77);
                 spr->unk2B = 4;
                 spr->unk22 = 0;
                 D_801B081C = 0;
@@ -3421,9 +3421,9 @@ void func_8009C248(s32 spritenum)
             {
                 m = krand() & 1;
                 if (m == 0)
-                    func_80042124(ptr, 163);
+                    func_80042124(actor, 163);
                 else
-                    func_80042124(ptr, 164);
+                    func_80042124(actor, 164);
                 spr->unk22 = m + 11;
             }
             break;
@@ -3436,7 +3436,7 @@ void func_8009C248(s32 spritenum)
             }
             if (func_80042140(spritenum) == 49)
             {
-                func_80042124(ptr, 75);
+                func_80042124(actor, 75);
                 spr->unk2B = 20;
                 spr->unk22 = 0;
             }
@@ -3449,7 +3449,7 @@ void func_8009C248(s32 spritenum)
             }
             if (func_80042140(spritenum) == 49)
             {
-                func_80042124(ptr, 75);
+                func_80042124(actor, 75);
                 spr->unk2B = 20;
                 spr->unk22 = 0;
             }
@@ -3465,35 +3465,35 @@ void func_8009C248(s32 spritenum)
 /*8009E5B0*/
 void func_8009E5B0(s32 spritenum)
 {
-    code0UnkStruct3 *ptr;
+    Actor *actor;
 
-    ptr = &D_8019B940[D_80106D50[spritenum]];
+    actor = &gActor[gActorSpriteMap[spritenum]];
     D_801AC594 = 0;
     D_80199964 = 0;
     D_80199948 = 0;
     D_80105540 = 0;
     D_8011A66C = 650;
-    ptr->unk68 |= 0x3010;
-    func_80042124(ptr, 71);
+    actor->unk68 |= 0x3010;
+    func_80042124(actor, 71);
 }
 
 /*8009E638*/
 void func_8009E638(s32 spritenum)
 {
     SpriteType *spr;
-    code0UnkStruct3 *ptr;
+    Actor *actor;
 
     spr = &gpSprite[spritenum];
-    ptr = &D_8019B940[D_80106D50[spritenum]];
+    actor = &gActor[gActorSpriteMap[spritenum]];
     if (D_80199948 == 0)
     {
         MusHandleStop(D_8013B2D0[spritenum].handle, 0);
         audio_80007A44((krand() & 1) | 1422, spritenum, 32768);
         spr->unk2B = 20;
         D_80199948 = 1;
-        func_80042124(ptr, 67);
+        func_80042124(actor, 67);
         D_801A1958.enemies_killed++;
-        ptr->unk84 = -1;
+        actor->unk84 = -1;
     }
 }
 
@@ -3553,7 +3553,7 @@ void func_8009E8C8(s32 spritenum)
 {
     SpriteType *spr;
     SpriteType *spr2;
-    code0UnkStruct3 *ptr;
+    Actor *actor;
     code0UnkStruct5 *ptr2;
 
     s16 ang;
@@ -3569,7 +3569,7 @@ void func_8009E8C8(s32 spritenum)
     s2 = -1;
     s3 = -1;
 
-    ptr = &D_8019B940[D_80106D50[spritenum]];
+    actor = &gActor[gActorSpriteMap[spritenum]];
     spr = &gpSprite[spritenum];
     ptr2 = &D_8013B2D0[spritenum];
 
@@ -3637,13 +3637,13 @@ void func_8009E8C8(s32 spritenum)
         y = gPlayer[0].ypos;
         z = gpSprite[gPlayer[0].unk4A].z;
 
-        if (ptr->unk8 < 3750)
+        if (actor->unk8 < 3750)
         {
             z1 = 0x1000;
-            if (ptr->unk8 < 2500)
+            if (actor->unk8 < 2500)
                 z1 = 0x2000;
 
-            if (ptr->unk8 < 1250)
+            if (actor->unk8 < 1250)
                 z1 = 0x4000;
 
             if ((D_8012FD88 & 3) && ((krand() & 0x7FFF) < z1))
@@ -3674,19 +3674,19 @@ void func_8009E8C8(s32 spritenum)
                 if (D_80105540 != 0)
                 {
                     D_80105540 = 0;
-                    func_80042124(ptr, 70);
+                    func_80042124(actor, 70);
                 }
                 else if ((krand() & 0x7FFF) < 10000)
                 {
-                    func_80042124(ptr, 66);
+                    func_80042124(actor, 66);
                 }
             }
 
-            if (((ptr->unk86 & 0x7FFF) == 70) && (func_80042140(spritenum) == 21))
-                func_80042124(ptr, 71);
+            if (((actor->unk86 & 0x7FFF) == 70) && (func_80042140(spritenum) == 21))
+                func_80042124(actor, 71);
 
-            if (((ptr->unk86 & 0x7FFF) == 66) && (func_80042140(spritenum) == 60))
-                func_80042124(ptr, 71);
+            if (((actor->unk86 & 0x7FFF) == 66) && (func_80042140(spritenum) == 60))
+                func_80042124(actor, 71);
 
 
             ang2 = getAngleDelta(spr->ang, getAngle(gpSprite[j].x - spr->x, gpSprite[j].y - spr->y));
@@ -3734,7 +3734,7 @@ void func_8009E8C8(s32 spritenum)
                 if ((m >= 0xC000) && (gpSprite[(m + 0x4000) & 0xFFFF].statnum == 10))
                     func_800365C0(0);
 
-                if ((ptr->unk86 & 0x7FFF) == 71)
+                if ((actor->unk86 & 0x7FFF) == 71)
                 {
                     D_801AC594++;
                     if (D_801AC594 > 32)
@@ -3781,26 +3781,26 @@ void func_8009E8C8(s32 spritenum)
             spr->ang = GET_ANGLE(spr->ang, i, 12);
             if (klabs(i) < 24)
             {
-                if ((ptr->unk86 & 0x7FFF) != 71)
+                if ((actor->unk86 & 0x7FFF) != 71)
                     playSfx(((krand() % 3) + 1071));
 
-                func_80042124(ptr, 71);
+                func_80042124(actor, 71);
                 spr->unk2B = 0;
             }
             else if (i < 0)
             {
-                if ((ptr->unk86 & 0x7FFF) != 68)
+                if ((actor->unk86 & 0x7FFF) != 68)
                     playSfx(((krand() % 3) + 1071));
 
-                func_80042124(ptr, 68);
+                func_80042124(actor, 68);
             }
             else
             {
-                if ((ptr->unk86 & 0x7FFF) != 69)
+                if ((actor->unk86 & 0x7FFF) != 69)
                 {
                     playSfx(((krand() % 3) + 1071));
                 }
-                func_80042124(ptr, 69);
+                func_80042124(actor, 69);
             }
             break;
         case 20:
@@ -3852,26 +3852,26 @@ static void func_8009F71C(s32 spritenum)
 {
     SpriteType *spr;
     SpriteType *spr2;
-    code0UnkStruct3 *ptr;
+    Actor *actor;
     s32 i, j, k, l;
     u16 m;
 
     spr2 = gpSprite; /*FAKEMATCH?*/
-    ptr = &D_8019B940[D_80106D50[spritenum]];
+    actor = &gActor[gActorSpriteMap[spritenum]];
     spr = &spr2[spritenum];
 
     if (spr->unk2B == 1)
     {
-        if (ptr->unk6C == 0)
-            ptr->unk6C = audio_80007A44(150, spritenum, 40000);
+        if (actor->unk6C == 0)
+            actor->unk6C = audio_80007A44(150, spritenum, 40000);
 
         spr->unk1A = 0;
         spr->unk2B = 2;
         spr->cstat &= 0x7FFF;
     }
 
-    if (ptr->unk6C != 0)
-        audio_80007A80(ptr->unk6C, spritenum, 40000);
+    if (actor->unk6C != 0)
+        audio_80007A80(actor->unk6C, spritenum, 40000);
 
     if (spr->unk2B != 0xFF)
     {
@@ -3881,8 +3881,8 @@ static void func_8009F71C(s32 spritenum)
             if (spr->unk25 != 0)
                 playSfx(1446);
 
-            if (ptr->unk6C != 0)
-                MusHandleStop(ptr->unk6C, 0);
+            if (actor->unk6C != 0)
+                MusHandleStop(actor->unk6C, 0);
 
             spr->unk2B = 0xFF;
         }
@@ -3893,7 +3893,7 @@ static void func_8009F71C(s32 spritenum)
 
             i = getAngleDelta(spr->ang, getAngle(gpSprite[i].x - spr->x, gpSprite[i].y - spr->y)) << 11;
             spr->ang = GET_ANGLE(spr->ang, i, 0);
-            ptr->unk7C = GET_ANGLE(ptr->unk7C, i, 0);
+            actor->unk7C = GET_ANGLE(actor->unk7C, i, 0);
 
             j = (gpSinTable[(spr->ang + 0x200) & 0x7FF] * 5) >> 8;
             k = (gpSinTable[spr->ang & 0x7FF] * 5) >> 8;
@@ -3921,15 +3921,15 @@ static void func_8009F71C(s32 spritenum)
 
     if (i != -1)
     {
-        ptr->unk44 = i;
-        ptr->unk7C = func_80095FCC(ptr->unk7C,
+        actor->unk44 = i;
+        actor->unk7C = func_80095FCC(actor->unk7C,
                                    getAngleDelta(getAngle(gpSprite[i].x - spr->x, gpSprite[i].y - spr->y), spr->ang) & 0x7FF, 5);
         spr->unk22++;
         if (spr->unk22 > 32)
         {
             spr->unk22 = 0;
             audio_80007A44(217, spritenum, 40000);
-            func_8006D3B8(spritenum, 37, -ptr->unk7C, 310, 0);
+            func_8006D3B8(spritenum, 37, -actor->unk7C, 310, 0);
         }
     }
 

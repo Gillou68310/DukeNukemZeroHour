@@ -130,7 +130,7 @@ static u16 D_800DF8E0[24][2] = {
 };
 
 /*.comm*/
-/*80197DEC*/ code0UnkStruct3 *D_80197DEC;
+/*80197DEC*/ Actor *_pActor;
 /*801B0810*/ s16 *D_801B0810;
 /*801A19E0*/ s16 D_801A19E0[MAXPLAYERS];
 
@@ -212,13 +212,13 @@ void func_80079830(void)
 /*80079C20*/
 void func_80079C20(s16 spritenum)
 {
-    code0UnkStruct3 *ptr;
+    Actor *actor;
     u16 sfxnum;
 
-    ptr = &D_8019B940[D_80106D50[spritenum]];
-    MusHandleStop(ptr->unk70, 0);
-    ptr->unk70 = 0;
-    sfxnum = D_800DF680[ptr->unk99][1];
+    actor = &gActor[gActorSpriteMap[spritenum]];
+    MusHandleStop(actor->unk70, 0);
+    actor->unk70 = 0;
+    sfxnum = D_800DF680[actor->unk99][1];
     if (sfxnum != 0)
         audio_800077F4(sfxnum, spritenum);
 }
@@ -329,30 +329,30 @@ static void func_80079F60(s32 playernum)
     (void)pad;
     temp2 = gPlayer[playernum].unk4A;
     D_800FE9D8[playernum] = 0;
-    D_80197DEC = &D_8019B940[D_80106D50[gPlayer[playernum].unk4A]];
+    _pActor = &gActor[gActorSpriteMap[gPlayer[playernum].unk4A]];
     unk4A = gPlayer[playernum].unk4A;
-    D_801B0810 = D_8011A680[playernum][D_80197DEC->unk99];
-    temp = D_8011A680[playernum][D_80197DEC->unk99][0] & 2;
+    D_801B0810 = D_8011A680[playernum][_pActor->unk99];
+    temp = D_8011A680[playernum][_pActor->unk99][0] & 2;
     cond = temp != 0;
-    j = D_80197DEC->unk99;
+    j = _pActor->unk99;
     cond = (gPlayer[playernum].unk54 == 0) ? cond : 0;
-    ptr = &D_80197E40[D_80106D50[temp2]];
+    ptr = &D_80197E40[gActorSpriteMap[temp2]];
 
     if (gPlayer[playernum].unk54 != 0)
     {
-        if (D_80197DEC->unk99 == 4)
+        if (_pActor->unk99 == 4)
             j = 31;
-        if (D_80197DEC->unk99 == 7)
+        if (_pActor->unk99 == 7)
             j = 32;
-        if (D_80197DEC->unk99 == 10)
+        if (_pActor->unk99 == 10)
             j = 33;
-        if (D_80197DEC->unk99 == 12)
+        if (_pActor->unk99 == 12)
             j = 33;
-        if (D_80197DEC->unk99 == 13)
+        if (_pActor->unk99 == 13)
             j = 33;
     }
 
-    if ((D_80197DEC->unk99 == 4) && (D_801B0810[0] & 4))
+    if ((_pActor->unk99 == 4) && (D_801B0810[0] & 4))
         j = 30;
 
     a = D_800DF740[j][1];
@@ -363,16 +363,16 @@ static void func_80079F60(s32 playernum)
 
     if (D_801B0810[3] != 0)
     {
-        if (D_80197DEC->unk99 == 2)
+        if (_pActor->unk99 == 2)
         {
             if (ptr->unk0 == 19)
                 func_8007AC6C(2, unk4A, 1);
 
             if ((cond != 0) && (ptr->unk0 == 36))
-                func_8007AC6C(D_80197DEC->unk99, unk4A, 1);
+                func_8007AC6C(_pActor->unk99, unk4A, 1);
         }
 
-        if (D_80197DEC->unk99 == 3)
+        if (_pActor->unk99 == 3)
         {
             if (cond == 0)
             {
@@ -385,7 +385,7 @@ static void func_80079F60(s32 playernum)
                     func_8007AC6C(3, unk4A, 1);
 
                 if (ptr->unk0 == 25)
-                    func_8007AC6C(D_80197DEC->unk99, unk4A, 1);
+                    func_8007AC6C(_pActor->unk99, unk4A, 1);
             }
         }
         D_8016A154[playernum] = 1;
@@ -407,7 +407,7 @@ static void func_80079F60(s32 playernum)
                     D_801B0810[9] = 0;
                     D_801B0810[8] = 0;
 
-                    if (D_80197DEC->unk70 != 0)
+                    if (_pActor->unk70 != 0)
                         func_80079C20(unk4A);
 
                     return;
@@ -420,7 +420,7 @@ static void func_80079F60(s32 playernum)
                     D_801B0810[9] = 0;
                     D_801B0810[8] = 0;
 
-                    if (D_80197DEC->unk70 != 0)
+                    if (_pActor->unk70 != 0)
                         func_80079C20(unk4A);
 
                     D_80199970[playernum] = 0;
@@ -432,7 +432,7 @@ static void func_80079F60(s32 playernum)
             return;
     }
 
-    i = D_80197DEC->unk99;
+    i = _pActor->unk99;
     if (((D_801B0810[1] == 0) && (i != 0)) && (!(D_801B0810[0] & 4) || (D_801B0810[7] == 0) || (i == 4)))
     {
         func_80079F24(playernum, i);
@@ -448,7 +448,7 @@ static void func_80079F60(s32 playernum)
         {
             if (func_80079CB4(playernum, i) && func_80079DE8(playernum, i))
             {
-                D_80197DEC->unk99 = i;
+                _pActor->unk99 = i;
 
                 D_8011A680[playernum][i][6] = 15;
                 D_8011A680[playernum][i][9] = 0;
@@ -523,35 +523,35 @@ static void func_80079F60(s32 playernum)
 block_80:
     D_80199970[playernum] = 1;
 
-    if ((D_80197DEC->unk99 == 4) || (D_80197DEC->unk99 == 5))
+    if ((_pActor->unk99 == 4) || (_pActor->unk99 == 5))
     {
-        func_8006D3B8(gPlayer[playernum].unk4A, D_80197DEC->unk99, 0, 0, 0);
-        func_8006D3B8(gPlayer[playernum].unk4A, D_80197DEC->unk99, 0, 0, 0);
-        func_8006D3B8(gPlayer[playernum].unk4A, D_80197DEC->unk99, 0, 0, 0);
-        func_8006D3B8(gPlayer[playernum].unk4A, D_80197DEC->unk99, 0, 0, 0);
-        func_8006D3B8(gPlayer[playernum].unk4A, D_80197DEC->unk99, 0, 0, 0);
+        func_8006D3B8(gPlayer[playernum].unk4A, _pActor->unk99, 0, 0, 0);
+        func_8006D3B8(gPlayer[playernum].unk4A, _pActor->unk99, 0, 0, 0);
+        func_8006D3B8(gPlayer[playernum].unk4A, _pActor->unk99, 0, 0, 0);
+        func_8006D3B8(gPlayer[playernum].unk4A, _pActor->unk99, 0, 0, 0);
+        func_8006D3B8(gPlayer[playernum].unk4A, _pActor->unk99, 0, 0, 0);
 
-        if (D_80197DEC->unk99 == 5)
+        if (_pActor->unk99 == 5)
         {
             func_8006D3B8(gPlayer[playernum].unk4A, 5, 0, 0, 0);
-            func_8006D3B8(gPlayer[playernum].unk4A, D_80197DEC->unk99, 0, 0, 0);
-            func_8006D3B8(gPlayer[playernum].unk4A, D_80197DEC->unk99, 0, 0, 0);
-            func_8006D3B8(gPlayer[playernum].unk4A, D_80197DEC->unk99, 0, 0, 0);
-            func_8006D3B8(gPlayer[playernum].unk4A, D_80197DEC->unk99, 0, 0, 0);
+            func_8006D3B8(gPlayer[playernum].unk4A, _pActor->unk99, 0, 0, 0);
+            func_8006D3B8(gPlayer[playernum].unk4A, _pActor->unk99, 0, 0, 0);
+            func_8006D3B8(gPlayer[playernum].unk4A, _pActor->unk99, 0, 0, 0);
+            func_8006D3B8(gPlayer[playernum].unk4A, _pActor->unk99, 0, 0, 0);
         }
     }
     else
     {
-        j = D_80197DEC->unk99;
+        j = _pActor->unk99;
         if ((j == 3) && (D_801B0810[0] & 4))
             j = 22;
 
         if ((j == 18) && (D_801B0810[0] & 4))
             j = 19;
 
-        d = D_800DF850[D_80197DEC->unk99][0];
-        e = D_800DF850[D_80197DEC->unk99][1];
-        f = D_800DF850[D_80197DEC->unk99][2];
+        d = D_800DF850[_pActor->unk99][0];
+        e = D_800DF850[_pActor->unk99][1];
+        f = D_800DF850[_pActor->unk99][2];
 
         if (j == 14)
         {
@@ -574,10 +574,10 @@ block_80:
             func_8006D3B8(gPlayer[playernum].unk4A, j, d, e, f);
     }
 
-    if (D_80197DEC->unk99 != 0)
+    if (_pActor->unk99 != 0)
     {
-        func_8007AC6C(D_80197DEC->unk99, unk4A, 0);
-        if (D_80197DEC->unk99 != 0)
+        func_8007AC6C(_pActor->unk99, unk4A, 0);
+        if (_pActor->unk99 != 0)
         {
             if (D_801B0810[0] & 4)
             {
@@ -585,23 +585,23 @@ block_80:
                 if (D_801B0810[7] == 0)
                     D_801B0810[0] &= ~4;
 
-                if (D_80197DEC->unk99 == 4)
+                if (_pActor->unk99 == 4)
                     D_801B0810[1]--;
             }
             else
             {
-                if (D_80197DEC->unk99 == 5)
+                if (_pActor->unk99 == 5)
                     D_801B0810[1] -= 2;
                 else
                     D_801B0810[1]--;
             }
 
-            if ((D_80197DEC->unk99 != 0) && (D_801B0810[1] == 0))
+            if ((_pActor->unk99 != 0) && (D_801B0810[1] == 0))
             {
-                if (D_80197DEC->unk70 != 0)
+                if (_pActor->unk70 != 0)
                 {
-                    MusHandleStop(D_80197DEC->unk70, 0);
-                    D_80197DEC->unk70 = 0;
+                    MusHandleStop(_pActor->unk70, 0);
+                    _pActor->unk70 = 0;
                 }
             }
         }
@@ -612,7 +612,7 @@ block_80:
         n = D_801B0810[1];
         if (D_801B0810[0] & 4)
         {
-            if (D_80197DEC->unk99 != 4)
+            if (_pActor->unk99 != 4)
                 n = D_801B0810[7];
         }
 
@@ -628,7 +628,7 @@ block_80:
             {
                 if (D_801B0810[0] & 2)
                 {
-                    if (D_80197DEC->unk99 == 2)
+                    if (_pActor->unk99 == 2)
                         D_801B0810[3] = 40;
                     else
                         D_801B0810[3] = 30;
@@ -648,19 +648,19 @@ block_132:
     if ((c != -1) && (c & 0x8000))
     {
         if (a == D_801B0810[8])
-            func_8007AC6C(D_80197DEC->unk99, unk4A, 1);
+            func_8007AC6C(_pActor->unk99, unk4A, 1);
 
         if (b == D_801B0810[8])
-            func_8007AC6C(D_80197DEC->unk99, unk4A, 1);
+            func_8007AC6C(_pActor->unk99, unk4A, 1);
     }
     else
     {
         if (a == k)
-            func_8007AC6C(D_80197DEC->unk99, unk4A, 1);
+            func_8007AC6C(_pActor->unk99, unk4A, 1);
 
         if (b == k)
         {
-            func_8007AC6C(D_80197DEC->unk99, unk4A, 1);
+            func_8007AC6C(_pActor->unk99, unk4A, 1);
             D_8016A154[playernum] = 1;
         }
     }
@@ -669,15 +669,15 @@ block_132:
 /*8007AC6C*/
 static void func_8007AC6C(s32 arg0, s32 arg1, s32 arg2)
 {
-    code0UnkStruct3 *ptr;
+    Actor *actor;
 
-    ptr = &D_8019B940[D_80106D50[arg1]];
+    actor = &gActor[gActorSpriteMap[arg1]];
     if (arg2 == 0)
     {
         if (D_800DF680[arg0][1] != 0)
         {
-            if (ptr->unk70 == 0)
-                ptr->unk70 = audio_800077F4(D_800DF680[arg0][0], arg1);
+            if (actor->unk70 == 0)
+                actor->unk70 = audio_800077F4(D_800DF680[arg0][0], arg1);
         }
         else
             audio_800077F4(D_800DF680[arg0][0], arg1);

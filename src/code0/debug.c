@@ -597,7 +597,7 @@ void debugMenu(void)
 
         if (gButton[_debugPlayerNum] & L_TRIG)
         {
-            D_8019B940[D_80106D50[gPlayer[0].unk4A]].unk7E = 100;
+            gActor[gActorSpriteMap[gPlayer[0].unk4A]].unk7E = 100;
             for (j = 0; j < ARRAY_COUNT(D_8010A940[0].unkA); j++)
                 D_8010A940[0].unkA[j] = D_800E17E0[j];
         }
@@ -613,9 +613,9 @@ void debugMenu(void)
                 audio_80008574(0, 945);
                 gInvulnerability ^= 1;
                 if (gInvulnerability != 0)
-                    D_8019B940[D_80106D50[gPlayer[0].unk4A]].unk8 = 999;
+                    gActor[gActorSpriteMap[gPlayer[0].unk4A]].unk8 = 999;
                 else
-                    D_8019B940[D_80106D50[gPlayer[0].unk4A]].unk8 = gPlayer[0].unk48;
+                    gActor[gActorSpriteMap[gPlayer[0].unk4A]].unk8 = gPlayer[0].unk48;
                 _cmdButtonPressed = TRUE;
             }
         }

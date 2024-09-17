@@ -563,7 +563,7 @@ static void func_80001038(void)
             func_8000EB4C(playernum, 0, 0, 0, 0);
             func_8000EA0C(playernum, D_800DF1AC[playernum], D_800DF1AC[playernum], D_800DF1AC[playernum], D_800DF1AC[playernum]);
 
-            if (D_8019B940[D_80106D50[gPlayer[playernum].unk4A]].unk0 & 0x40)
+            if (gActor[gActorSpriteMap[gPlayer[playernum].unk4A]].flag & 0x40)
                 func_8000EA0C(playernum, 0, 0xFF, 0xFF, 0x80);
             else if (D_8010A940[playernum].unk2[5] != 0)
                 func_8000EA0C(playernum, 0, 0xFF, 0, 0x80);

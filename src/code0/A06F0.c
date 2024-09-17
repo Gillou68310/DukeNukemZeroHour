@@ -668,7 +668,7 @@ void drawHud(void)
             else
                 o = 20;
 
-            k = MAX(D_8019B940[D_80106D50[gPlayer[D_801B0820].unk4A]].unk8, 0);
+            k = MAX(gActor[gActorSpriteMap[gPlayer[D_801B0820].unk4A]].unk8, 0);
             if (k >= 31)
             {
                 p = 0;
@@ -704,7 +704,7 @@ void drawHud(void)
                 }
             }
 
-            k = D_8019B940[D_80106D50[gPlayer[D_801B0820].unk4A]].unk99;
+            k = gActor[gActorSpriteMap[gPlayer[D_801B0820].unk4A]].unk99;
             if (k == 11)
                 k = 10;
 
@@ -883,7 +883,7 @@ void drawHud(void)
                     }
                 }
                 else
-                    k = D_8019B940[D_80106D50[n]].unk8;
+                    k = gActor[gActorSpriteMap[n]].unk8;
 
                 k = CLAMP_MIN(k, 0);
                 switch (gpSprite[n].picnum)
@@ -990,7 +990,7 @@ void drawHud(void)
 
             gSPSetLights2(gpDisplayList++, D_800E18D0);
 
-            ptr = &D_800D683C[D_8019B940[D_80106D50[gPlayer[D_801B0820].unk4A]].unk99];
+            ptr = &D_800D683C[gActor[gActorSpriteMap[gPlayer[D_801B0820].unk4A]].unk99];
             if (*ptr != NULL)
             {
                 ModelInfo *temp;
@@ -1091,7 +1091,7 @@ void func_800A3688(void)
     s16 hitsect, hitwall, hitsprite;
     s32 hitx, hity, hitz;
 
-    code0UnkStruct3 *ptr;
+    Actor *actor;
     f32 fx, fy, fz;
     f32 f1, f2, f5, f6, f7;
     s32 x, y, z;
@@ -1101,8 +1101,8 @@ void func_800A3688(void)
 
     if ((gPlayer[D_801B0820].unk45 == 0) && gNotPlayback)
     {
-        ptr = &D_8019B940[D_80106D50[gPlayer[D_801B0820].unk4A]];
-        l = D_800E1934[ptr->unk99];
+        actor = &gActor[gActorSpriteMap[gPlayer[D_801B0820].unk4A]];
+        l = D_800E1934[actor->unk99];
 
         if (gConfig.crosshair[D_801B0820] != 0)
             l = D_800E1964[gConfig.crosshair[D_801B0820]];
@@ -1175,7 +1175,7 @@ void func_800A3688(void)
             else
             {
                 hitsprite = func_8004CE58(&gpSprite[gPlayer[D_801B0820].unk4A],
-                                          D_8013F920[ptr->unk99], ptr->unk99);
+                                          D_8013F920[actor->unk99], actor->unk99);
                 if (hitsprite < 0)
                 {
                     f1 = (gPlayer[D_801B0820].ang * (PI/1024));

@@ -60,7 +60,7 @@ void func_8006A0A0(s16 spritenum)
 
     if (playernum >= 0)
     {
-        unk99 = D_8019B940[D_80106D50[spritenum]].unk99;
+        unk99 = gActor[gActorSpriteMap[spritenum]].unk99;
         if (unk99 == 10)
             func_8006CD38(playernum);
 
@@ -116,9 +116,9 @@ void func_8006A0A0(s16 spritenum)
             {
                 if (func_80040D40(gpSprite[i].x, gpSprite[i].y, gpSprite[spritenum].x, gpSprite[spritenum].y) < neartagrange)
                 {
-                    if (D_8019B940[D_80106D50[spritenum]].unk8 < gPlayer[playernum].unk48)
+                    if (gActor[gActorSpriteMap[spritenum]].unk8 < gPlayer[playernum].unk48)
                     {
-                        D_8019B940[D_80106D50[spritenum]].unk8++;
+                        gActor[gActorSpriteMap[spritenum]].unk8++;
                         if ((krand() & 0x3FF) < 0x100)
                             audio_80008574(playernum, 1527);
                     }
@@ -672,8 +672,8 @@ static void func_8006B384(s32 spritenum)
         }
         if (i != -1)
         {
-            D_8019B940[D_80106D50[spritenum]].unk64 = D_800FF528[D_8019B940[D_80106D50[spritenum]].unk84];
-            D_8019B940[D_80106D50[spritenum]].unk4 |= 0x40;
+            gActor[gActorSpriteMap[spritenum]].unk64 = D_800FF528[gActor[gActorSpriteMap[spritenum]].unk84];
+            gActor[gActorSpriteMap[spritenum]].unk4 |= 0x40;
             gpSprite[spritenum].unk16 = i;
         }
     }
@@ -703,7 +703,7 @@ void func_8006B4E4(s16 arg0)
 /*8006B590*/
 void func_8006B590(s16 arg0)
 {
-    code0UnkStruct3 *ptr;
+    Actor *actor;
     s16 i, j, k, l;
     s16 nexti;
     u8 cond;
@@ -726,7 +726,7 @@ void func_8006B590(s16 arg0)
         {
             nexti = gNextSpriteStat[i];
             if (gpSprite[i].hitag == arg0)
-                D_8019B940[D_80106D50[i]].unk0 |= 0x400000;
+                gActor[gActorSpriteMap[i]].flag |= 0x400000;
 
             if ((gpSprite[i].lotag == arg0) &&
                 ((gpSprite[i].picnum == CERBERUSTURRETS) || (gpSprite[i].picnum == GORGONTURRETS) ||
@@ -751,17 +751,17 @@ void func_8006B590(s16 arg0)
             {
                 if (gpSprite[i].unk25 == 1)
                 {
-                    ptr = &D_8019B940[D_80106D50[i]];
-                    if (ptr->unk70 != 0)
+                    actor = &gActor[gActorSpriteMap[i]];
+                    if (actor->unk70 != 0)
                     {
-                        MusHandleStop(ptr->unk70, 0);
-                        ptr->unk70 = 0;
+                        MusHandleStop(actor->unk70, 0);
+                        actor->unk70 = 0;
                     }
 
-                    if (ptr->unk6C != 0)
+                    if (actor->unk6C != 0)
                     {
-                        MusHandleStop(ptr->unk6C, 0);
-                        ptr->unk6C = 0;
+                        MusHandleStop(actor->unk6C, 0);
+                        actor->unk6C = 0;
                     }
                     changeSpriteStat(i, 72);
                     cond = 1;

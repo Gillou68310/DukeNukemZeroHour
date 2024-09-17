@@ -1476,7 +1476,7 @@ s32 func_8008FE88(s32 spritenum)
 
             deleteSprite(spritenum);
         }
-        else if (D_8019B940[D_80106D50[unk22]].unk9D >= 16)
+        else if (gActor[gActorSpriteMap[unk22]].unk9D >= 16)
         {
             D_8013B2D0[spritenum].unk6 += 8;
             if (D_8013B2D0[spritenum].unk6 >= 256)
@@ -1546,8 +1546,8 @@ s32 func_8008FE88(s32 spritenum)
             {
                 if (x != -1)
                 {
-                    if (D_80106D50[x] != -1)
-                        D_8019B940[D_80106D50[x]].unk95--;
+                    if (gActorSpriteMap[x] != -1)
+                        gActor[gActorSpriteMap[x]].unk95--;
                 }
                 deleteSprite(spritenum);
             }

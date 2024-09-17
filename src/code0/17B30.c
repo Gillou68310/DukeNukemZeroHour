@@ -21,7 +21,7 @@ void func_80016F30(void)
 {
     s16 i;
 
-    for (i = 0; i < ARRAY_COUNT(D_80197E40); i++)
+    for (i = 0; i < MAXACTORS; i++)
     {
         (&D_80197E40[i])->unk4 = NULL; /*FAKEMATCH*/
         D_80197E40[i].unk8 = NULL;
@@ -152,10 +152,10 @@ void func_80017268(s16 spritenum)
     u8 m;
 
     m = 0;
-    ptr = &D_80197E40[D_80106D50[spritenum]];
+    ptr = &D_80197E40[gActorSpriteMap[spritenum]];
     i = gpSprite[spritenum].unk16;
-    j = D_8019B940[D_80106D50[spritenum]].unk99;
-    cond1 = (D_8019B940[D_80106D50[spritenum]].unk0&0xFF) >> 7;
+    j = gActor[gActorSpriteMap[spritenum]].unk99;
+    cond1 = (gActor[gActorSpriteMap[spritenum]].flag&0xFF) >> 7;
 
     if (gpSprite[spritenum].statnum == 10)
     {
@@ -165,7 +165,7 @@ void func_80017268(s16 spritenum)
     else
         i = -1;
 
-    if ((D_80106D50[spritenum] == -1) || (D_8019B940[D_80106D50[spritenum]].unk0 & 0x40))
+    if ((gActorSpriteMap[spritenum] == -1) || (gActor[gActorSpriteMap[spritenum]].flag & 0x40))
         return;
 
     if (ptr->unk8 == NULL)
@@ -237,11 +237,11 @@ void func_80017268(s16 spritenum)
 
     if (gpSprite[spritenum].statnum != 10)
     {
-        k = D_8019B940[D_80106D50[spritenum]].unk86;
+        k = gActor[gActorSpriteMap[spritenum]].unk86;
         if (k & 0x8000)
         {
             l = k - 0x8000;
-            D_8019B940[D_80106D50[spritenum]].unk86 = l;
+            gActor[gActorSpriteMap[spritenum]].unk86 = l;
             switch (l)
             {
             case 0x0:
@@ -892,7 +892,7 @@ void func_80017268(s16 spritenum)
             func_80017090(ptr, ptr3, 10);
         }
     }
-    else if (D_8019B940[D_80106D50[spritenum]].unk8 <= 0)
+    else if (gActor[gActorSpriteMap[spritenum]].unk8 <= 0)
     {
         if (gPlayer[i].unk45 == 1)
         {
@@ -901,7 +901,7 @@ void func_80017268(s16 spritenum)
                 ptr4 = &D_800D8E58;
             else
             {
-                switch (D_8019B940[D_80106D50[gPlayer[i].unk4A]].unk9E)
+                switch (gActor[gActorSpriteMap[gPlayer[i].unk4A]].unk9E)
                 {
                 case 0xFD:
                     ptr4 = &D_800D8E34;
@@ -1248,7 +1248,7 @@ void func_80017268(s16 spritenum)
         {
             ptr7 = &D_800D9A04;
             ptr6 = &D_800D9A04;
-            D_8019B940[D_80106D50[spritenum]].unk99 = 0;
+            gActor[gActorSpriteMap[spritenum]].unk99 = 0;
         }
         if (D_800DEEB8 == 2)
         {
@@ -1265,7 +1265,7 @@ void func_80017268(s16 spritenum)
             ptr7 = &D_800D9710;
             ptr6 = &D_800D9710;
 
-            D_8019B940[D_80106D50[spritenum]].unk99 = 5;
+            gActor[gActorSpriteMap[spritenum]].unk99 = 5;
             if (D_8012FD88 >= (D_800DEEBC + 705))
             {
                 ptr7 = &D_800D9974;

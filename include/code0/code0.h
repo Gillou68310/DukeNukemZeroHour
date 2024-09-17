@@ -8,6 +8,7 @@
 #include "code0/data/D8D20.h"
 
 #define MAXKEYS 17
+#define MAXACTORS 150
 
 #if VERSION_US
 #define D_8012FCB0_SIZE 48
@@ -105,11 +106,11 @@ typedef struct
 
 typedef struct
 {
-    /*0x00*/ s32 unk0;
+    /*0x00*/ s32 flag;
     /*0x04*/ s32 unk4;
     /*0x08*/ s16 unk8;
     /*0x0A*/ u16 unkA;
-    /*0x0C*/ intptr_t *unkC;
+    /*0x0C*/ intptr_t *exec_ptr;
     /*0x10*/ intptr_t *unk10;
     /*0x14*/ intptr_t *unk14;
     /*0x18*/ intptr_t *unk18;
@@ -170,7 +171,7 @@ typedef struct
     /*0xA1*/ u8 unkA1;
     /*0xA2*/ u8 unkA2;
     /*0xA3*/ u8 unkA3;
-} code0UnkStruct3;
+} Actor;
 
 typedef struct
 {
@@ -434,7 +435,7 @@ typedef struct
 /*80105720*/ _extern s16 D_80105720;
 /*80105730*/ _extern s32 gOriginsY[1024] ALIGNED(16);
 /*80106D30*/ _extern u8 D_80106D30[MAXPLAYERS];
-/*80106D50*/ _extern s16 D_80106D50[MAXSPRITES] ALIGNED(16);
+/*80106D50*/ _extern s16 gActorSpriteMap[MAXSPRITES] ALIGNED(16);
 /*8010A914*/ _extern Vertex *gpSectorVertex;
 /*8010A918*/ _extern s32 D_8010A918;
 /*8010A938*/ _extern u8 *D_8010A938; /*edlHandle*/
@@ -485,7 +486,7 @@ typedef struct
 /*8012FD80*/ _extern s32 gAlertAliens;
 /*8012FD88*/ _extern s32 D_8012FD88;
 /*8012FD8C*/ _extern code0UnkStruct16 *D_8012FD8C;
-/*80137DE0*/ _extern code0UnkStruct3 *D_80137DE0;
+/*80137DE0*/ _extern Actor *gpActor;
 /*80138610*/ _extern s32 D_80138610[MAXPLAYERS] ALIGNED(8);
 /*80138620*/ _extern u8 D_80138620;
 /*80138678*/ _extern s32 D_80138678;
@@ -522,7 +523,7 @@ typedef struct
 /*80197DCC*/ _extern s16 gSkyTopB;
 /*80197DD4*/ _extern s16 gVertexNumber;
 /*80197DE8*/ _extern s16 *D_80197DE8;
-/*80197E40*/ _extern code0unkStruct8 D_80197E40[150] ALIGNED(16);
+/*80197E40*/ _extern code0unkStruct8 D_80197E40[MAXACTORS] ALIGNED(16);
 /*80199110*/ _extern f32 D_80199110;
 /*80199114*/ _extern Vtx *gpVertexList;
 /*80199524*/ _extern s32 D_80199524;
@@ -532,7 +533,7 @@ typedef struct
 /*80199640*/ _extern s32 gGlobalPosZ;
 /*80199942*/ _extern s16 D_80199942;
 /*80199970*/ _extern s32 D_80199970[MAXPLAYERS] ALIGNED(8);
-/*8019B940*/ _extern code0UnkStruct3 D_8019B940[150] ALIGNED(16);
+/*8019B940*/ _extern Actor gActor[MAXACTORS] ALIGNED(16);
 /*801A1958*/ _extern code0UnkStruct4 D_801A1958 ALIGNED(8);
 /*801A1970*/ _extern s32 D_801A1970;
 /*801A1980*/ _extern f32 D_801A1980;
@@ -566,7 +567,7 @@ typedef struct
 /*801AE528*/ _extern s32 D_801AE528;
 /*801AE538*/ _extern code0UnkStruct13 D_801AE538[32] ALIGNED(8);
 /*801AE8F0*/ _extern s16 *D_801AE8F0;
-/*801AE8F4*/ _extern u16 D_801AE8F4;
+/*801AE8F4*/ _extern u16 D_801AE8F4; /*spritenum*/
 /*801AE904*/ _extern s32 gCloudAng[2];
 /*801AE910*/ _extern s32 D_801AE910;
 /*801AE914*/ _extern s32 D_801AE914;
