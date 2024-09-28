@@ -91,7 +91,7 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
     s32 size;
     s16 playernum;
     s16 sectnum;
-    u16 i;
+    u16 pal;
     u16 r, g, b;
     u8 k;
     u8 cond1, cond2;
@@ -152,25 +152,25 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
         {
             D_8010A9AC = 0;
             D_8019956C = 0;
-            i = gpSprite[spritenum].unk25;
-            D_80168810 = i;
+            pal = gpSprite[spritenum].unk25;
+            D_80168810 = pal;
 
-            if (i == 31)
+            if (pal == 31)
                 D_80105718 = 1;
 
             if (gpSprite[spritenum].picnum == 2253)
                 D_80105718 = 1;
 
-            gDPSetPrimColor(gpDisplayList++, 0, 0, gpAlphaPalette[i].primary.r,
-                                                   gpAlphaPalette[i].primary.g,
-                                                   gpAlphaPalette[i].primary.b,
+            gDPSetPrimColor(gpDisplayList++, 0, 0, gpAlphaPalette[pal].primary.r,
+                                                   gpAlphaPalette[pal].primary.g,
+                                                   gpAlphaPalette[pal].primary.b,
                                                    D_8012FD86);
 
-            gDPSetEnvColor(gpDisplayList++, gpAlphaPalette[i].env.r,
-                                            gpAlphaPalette[i].env.g,
-                                            gpAlphaPalette[i].env.b,
+            gDPSetEnvColor(gpDisplayList++, gpAlphaPalette[pal].env.r,
+                                            gpAlphaPalette[pal].env.g,
+                                            gpAlphaPalette[pal].env.b,
                                             D_8012FD86);
-            D_80119A9C = i;
+            D_80119A9C = pal;
         }
         else
         {
@@ -261,7 +261,7 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
             {
                 if ((gActorSpriteMap[spritenum] == -1) || ((gActor[gActorSpriteMap[spritenum]].flag & 0x10) == 0))
                 {
-                    k = gpSector[sectnum].unk26;
+                    k = gpSector[sectnum].floorshade;
                     if (gMapNum == MAP_ZERO_HOUR)
                         k = 200;
 
@@ -270,13 +270,13 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
                     if (j > 254)
                         j = 254;
                 }
-                func_8000DBDC(gpSector[sectnum].unk27, j);
+                func_8000DBDC(gpSector[sectnum].floorpal, j);
                 gpSprite[spritenum].unk24 = j;
             }
             else
             {
                 cond1 = 1;
-                func_8000DBDC(gpSector[sectnum].unk27, gpSector[sectnum].unk26);
+                func_8000DBDC(gpSector[sectnum].floorpal, gpSector[sectnum].floorshade);
             }
 
             r = D_8016A148;

@@ -74,7 +74,7 @@ static void _spawn(s16 spritenum)
     s32 z;
     s16 l;
     u8 cond;
-    u8 unk24, unk25;
+    u8 shade, pal;
 
     spr = &gpSprite[spritenum];
     sec = &gpSector[spr->sectnum];
@@ -246,24 +246,24 @@ static void _spawn(s16 spritenum)
             }
             break;
         case 4:
-            spr->unk1A = sec->unk26;
-            spr->unk1C = sec->unk27;
+            spr->unk1A = sec->floorshade;
+            spr->unk1C = sec->floorpal;
             break;
         case 12:
             spr->clipdist = 0;
             if (spr->ang < 0x400)
             {
-                unk25 = spr->unk25;
-                unk24 = spr->unk24;
-                spr->unk25 = sec->unk27;
-                spr->unk24 = sec->unk26;
-                sec->unk27 = unk25;
-                sec->unk26 = unk24;
+                pal = spr->unk25;
+                shade = spr->unk24;
+                spr->unk25 = sec->floorpal;
+                spr->unk24 = sec->floorshade;
+                sec->floorpal = pal;
+                sec->floorshade = shade;
                 spr->clipdist = 1;
             }
-            spr->unk1A = sec->unk26;
-            spr->unk1C = sec->unk27;
-            func_80064DE0(sec, sec->unk26, sec->unk27);
+            spr->unk1A = sec->floorshade;
+            spr->unk1C = sec->floorpal;
+            func_80064DE0(sec, sec->floorshade, sec->floorpal);
             spr->unk2B = 0;
             break;
         case 13:
@@ -302,9 +302,9 @@ static void _spawn(s16 spritenum)
             break;
         case 8:
             spr->clipdist = 0;
-            spr->unk1A = sec->unk26;
-            spr->unk1C = sec->unk27;
-            func_80064DE0(sec, sec->unk26, sec->unk27);
+            spr->unk1A = sec->floorshade;
+            spr->unk1C = sec->floorpal;
+            func_80064DE0(sec, sec->floorshade, sec->floorpal);
             spr->unk2B = 0;
             break;
         case 10:
@@ -646,11 +646,11 @@ static void _spawn(s16 spritenum)
         deleteSprite(spritenum);
         break;
     case 27:
-        sec->unk27 = spr->unk25;
-        sec->unk23 = spr->unk25;
+        sec->floorpal = spr->unk25;
+        sec->ceilingpal = spr->unk25;
 
         for (i = sec->wallptr; i < (sec->wallptr + sec->wallnum); i++)
-            gpWall[i].unk21 = spr->unk25;
+            gpWall[i].pal = spr->unk25;
 
         deleteSprite(spritenum);
         break;
@@ -754,7 +754,7 @@ static void _spawn(s16 spritenum)
             {
                 if ((spr->x == gpSprite[i].x) && (spr->y == gpSprite[i].y))
                 {
-                    gpSprite[i].x = (spr->x + (spr->lotag * cosf((spr->ang * (PI/1024)))));
+                    gpSprite[i].x = (gpSprite[i].x + (spr->lotag * cosf((spr->ang * (PI/1024)))));
                     gpSprite[i].y = (gpSprite[i].y + (spr->lotag * sinf((spr->ang * (PI/1024)))));
                     gpSprite[i].z = (gpSprite[i].z + (spr->hitag * 16));
                 }
@@ -1316,7 +1316,7 @@ void func_80062950(s16 playernum, u8 arg1)
     gpSprite[spritenum].cstat = 0x1101;
     gpSprite[spritenum].xrepeat = 64;
     gpSprite[spritenum].yrepeat = 64;
-    gpSprite[spritenum].unk24 = gpSector[gPlayer[playernum].cursectnum].unk26;
+    gpSprite[spritenum].unk24 = gpSector[gPlayer[playernum].cursectnum].floorshade;
     setSprite(spritenum, gPlayer[playernum].xpos, gPlayer[playernum].ypos, gPlayer[playernum].zpos + gPlayer[playernum].unk40);
     gpSprite[spritenum].ang = gPlayer[playernum].ang;
     gpSprite[spritenum].unk25 = 0;

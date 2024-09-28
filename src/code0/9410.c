@@ -770,7 +770,7 @@ static void func_8000A634(void)
                     gSPTexture(gpDisplayList++, 0x7FC0, 0x7FC0, 0, G_TX_RENDERTILE, G_ON);
                 }
                 initVertexList();
-                func_8000DBDC(gpWall[wallnum].unk21, gpWall[wallnum].unk1C);
+                func_8000DBDC(gpWall[wallnum].pal, gpWall[wallnum].shade);
                 setLight1Ligth2Color(0, 0, 0, D_8016A148, D_800FE410, D_80138680);
             }
             else if (D_800BD74B == 1)
@@ -879,18 +879,18 @@ static void _drawWall(u16 wallnum)
     if (gpWall[wallnum].unk14 == 4)
     {
         sectnum = gpWall[wallnum].sectnum;
-        func_8000DBDC(gpSector[sectnum].unk27, gpSector[sectnum].unk26);
+        func_8000DBDC(gpSector[sectnum].floorpal, gpSector[sectnum].floorshade);
         d = D_8016A148;
         e = D_800FE410;
         f = D_80138680;
-        func_8000DBDC(gpSector[sectnum].unk23, gpSector[sectnum].unk22);
+        func_8000DBDC(gpSector[sectnum].ceilingpal, gpSector[sectnum].ceilingshade);
         a = D_8016A148;
         b = D_800FE410;
         c = D_80138680;
     }
     else
     {
-        func_8000DBDC(gpWall[wallnum].unk21, gpWall[wallnum].unk1C);
+        func_8000DBDC(gpWall[wallnum].pal, gpWall[wallnum].shade);
         d = D_8016A148;
         e = D_800FE410;
         f = D_80138680;
@@ -907,7 +907,7 @@ static void _drawWall(u16 wallnum)
                 w = point2;
         }
 
-        func_8000DBDC(gpWall[w].unk21, gpWall[w].unk1C);
+        func_8000DBDC(gpWall[w].pal, gpWall[w].shade);
         a = D_8016A148;
         b = D_800FE410;
         c = D_80138680;
@@ -1251,7 +1251,7 @@ static s32 func_8000CC54(s32 wallnum)
 
     gDPSetEnvColor(gpDisplayList++, 0xFF, 0xFF, 0xFF, alpha);
 
-    func_8000DBDC(gpWall[wallnum].unk21, gpWall[wallnum].unk1C);
+    func_8000DBDC(gpWall[wallnum].pal, gpWall[wallnum].shade);
 
     if (D_800BD74B != 0)
     {
@@ -1332,7 +1332,7 @@ static void _floorVtxToN64(s32 sectnum)
     _floorCeilingVertexCount = 0;
     _floorCeilingVertexCounter = 0;
     vtx = &gpSectorVertex[gpSector[sectnum].floorvtxptr];
-    func_8000DBDC(gpSector[sectnum].unk27, gpSector[sectnum].unk26);
+    func_8000DBDC(gpSector[sectnum].floorpal, gpSector[sectnum].floorshade);
 
     for (i = 0; i < gpSector[sectnum].floorvtxnum; i++)
     {
@@ -1384,7 +1384,7 @@ static void _floorVtxToN64Z(s32 sectnum, s32 z)
     _floorCeilingVertexCount = 0;
     _floorCeilingVertexCounter = 0;
     vtx = &gpSectorVertex[gpSector[sectnum].floorvtxptr];
-    func_8000DBDC(gpSector[sectnum].unk27, gpSector[sectnum].unk26);
+    func_8000DBDC(gpSector[sectnum].floorpal, gpSector[sectnum].floorshade);
 
     for (i = 0; i < gpSector[sectnum].floorvtxnum; i++)
     {
@@ -1433,7 +1433,7 @@ static void _ceilingVtxToN64(s32 sectnum)
     _floorCeilingVertexCount = 0;
     _floorCeilingVertexCounter = 0;
     vtx = &gpSectorVertex[gpSector[sectnum].ceilingvtxptr];
-    func_8000DBDC(gpSector[sectnum].unk23, gpSector[sectnum].unk22);
+    func_8000DBDC(gpSector[sectnum].ceilingpal, gpSector[sectnum].ceilingshade);
 
     for (i = 0; i < gpSector[sectnum].ceilingvtxnum; i++)
     {
@@ -1477,11 +1477,11 @@ static void _ceilingVtxToN64(s32 sectnum)
 }
 
 /*8000DBDC*/
-void func_8000DBDC(u8 arg0, s16 arg1)
+void func_8000DBDC(u8 pal, s16 shade)
 {
-    D_8016A148 = (arg1 * gpGlobalPalette[arg0].r) >> 8;
-    D_800FE410 = (arg1 * gpGlobalPalette[arg0].g) >> 8;
-    D_80138680 = (arg1 * gpGlobalPalette[arg0].b) >> 8;
+    D_8016A148 = (shade * gpGlobalPalette[pal].r) >> 8;
+    D_800FE410 = (shade * gpGlobalPalette[pal].g) >> 8;
+    D_80138680 = (shade * gpGlobalPalette[pal].b) >> 8;
 
     if (D_8010A940[D_801B0820].unk2[5] != 0)
     {

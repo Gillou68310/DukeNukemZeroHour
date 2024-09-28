@@ -38,35 +38,21 @@ typedef struct
     /*0x12*/ s16 ceilingheinum;
     /*0x14*/ s16 floorpicnum;
     /*0x16*/ s16 floorheinum;
-    /*0x18*/ s16 unk18;
-    /*0x1A*/ s16 unk1A;
-    /*0x1C*/ s16 unk1C;
+    /*0x18*/ s16 unk18; /*lotag?*/
+    /*0x1A*/ s16 unk1A; /*hitag?*/
+    /*0x1C*/ s16 unk1C; /*extra?*/
     /*0x1E*/ u16 floorvtxptr;
     /*0x20*/ u16 ceilingvtxptr;
-    /*0x22*/ u8 unk22;
-    /*0x23*/ u8 unk23;
+    /*0x22*/ u8 ceilingshade;
+    /*0x23*/ u8 ceilingpal;
     /*0x24*/ u8 pad[2];
-    /*0x26*/ u8 unk26;
-    /*0x27*/ u8 unk27;
+    /*0x26*/ u8 floorshade;
+    /*0x27*/ u8 floorpal;
     /*0x28*/ u8 pad2[2];
     /*0x2A*/ u8 unk2A;
     /*0x2B*/ u8 floorvtxnum;
     /*0x2C*/ u8 ceilingvtxnum;
     /*0x2D*/ u8 pad3[3];
-
-    //signed char ceilingshade;
-    //char ceilingpal;
-    //char ceilingxpanning;
-    //char ceilingypanning;
-    //signed char floorshade;
-    //char floorpal;
-    //char floorxpanning;
-    //char floorypanning;
-    //char visibility;
-    //char filler;
-    //s16 lotag;
-    //s16 hitag;
-    //s16 extra;
 } SectorType;
 
 //cstat:
@@ -92,27 +78,21 @@ typedef struct
     /*0x0E*/ s16 cstat;
     /*0x10*/ s16 picnum;
     /*0x12*/ s16 overpicnum;
-    /*0x14*/ s16 unk14;
-    /*0x16*/ s16 unk16;
-    /*0x18*/ s16 unk18;
+    /*0x14*/ s16 unk14; /*lotag?*/
+    /*0x16*/ s16 unk16; /*hitag?*/
+    /*0x18*/ s16 unk18; /*extra?*/
     /*0x1A*/ u16 sectnum;
-    /*0x1C*/ u8 unk1C;
+    /*0x1C*/ u8 shade;
     /*0x1D*/ u8 unk1D;
     /*0x1E*/ u8 unk1E;
     /*0x1F*/ u8 unk1F;
     /*0x20*/ u8 unk20;
-    /*0x21*/ u8 unk21;
+    /*0x21*/ u8 pal;
     /*0x22*/ u8 xrepeat;
     /*0x23*/ u8 yrepeat;
     /*0x24*/ u8 xpanning;
     /*0x25*/ u8 ypanning;
     /*0x26*/ u8 pad3[2];
-
-    //s8 shade;
-    //char pal;
-    //s16 lotag;
-    //s16 hitag;
-    //s16 extra;
 } WallType;
 
 //cstat:
@@ -140,28 +120,13 @@ typedef struct
     /*0x10*/ s16 sectnum;
     /*0x12*/ s16 statnum;
     /*0x14*/ s16 ang;
-
-    /*0x16*/ s16 unk16; /*spritenum? / playernum?*/
-
-    /*union{
-        struct {
-            s16 x;
-            s16 y;
-            s16 z;
-        }vel;
-        struct {
-            s16 r;
-            s16 g;
-            s16 b;
-        }col;
-    }*/
-    /*0x18*/ s16 unk18;
-    /*0x1A*/ s16 unk1A;
-    /*0x1C*/ s16 unk1C;
-
+    /*0x16*/ s16 unk16; /*owner?*/
+    /*0x18*/ s16 unk18; /*xvel?*/
+    /*0x1A*/ s16 unk1A; /*yvel?*/
+    /*0x1C*/ s16 unk1C; /*zvel?*/
     /*0x1E*/ s16 lotag;
     /*0x20*/ s16 hitag;
-    /*0x22*/ s16 unk22;
+    /*0x22*/ s16 unk22; /*extra?*/
     /*0x24*/ u8 unk24;
     /*0x25*/ u8 unk25;
     /*0x26*/ u8 clipdist;
@@ -170,20 +135,6 @@ typedef struct
     /*0x29*/ u8 unk29;
     /*0x2A*/ u8 unk2A;
     /*0x2B*/ u8 unk2B;
-
-    //s8 shade;
-    //char pal;
-    //char clipdist;
-    //char filler;
-    //s8 xoffset;
-    //s8 yoffset;
-    //s16 owner;
-    //s16 xvel;
-    //s16 yvel;
-    //s16 zvel;
-    //s16 lotag
-    //s16 hitag;
-    //s16 extra;
 } SpriteType;
 
 /*clipinsidebox(long x, long y, short wallnum, long walldist)

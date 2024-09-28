@@ -16,9 +16,9 @@
 
 /*.comm*/
 /*8010A9A8*/ SpriteType *_pSprite;
-/*80119A9C*/ s16 D_80119A9C;
+/*80119A9C*/ s16 D_80119A9C; /*palette*/
 /*801385F0*/ s8 D_801385F0;
-/*80168810*/ s16 D_80168810;
+/*80168810*/ s16 D_80168810; /*palette*/
 /*801A689C*/ u8 D_801A689C;
 
 /*.text*/
@@ -144,7 +144,7 @@ void drawSprite(s32 spritenum, u16 sectnum, s32 distance)
             }
             else
             {
-                func_8000DBDC(gpSector[_pSprite->sectnum].unk27, gpSector[_pSprite->sectnum].unk26);
+                func_8000DBDC(gpSector[_pSprite->sectnum].floorpal, gpSector[_pSprite->sectnum].floorshade);
                 i = D_8016A148;
                 j = D_800FE410;
                 k = D_80138680;

@@ -149,7 +149,7 @@ void func_8001A1A4(void)
     f32 f1, f2, f3, f4, f5, f6;
     s16 i, spritenum;
     s32 vx, vy, vz;
-    s32 unk25;
+    s32 pal;
     u16 cstat;
 
     if ((D_80105720 != 0) && (D_8012C470 < 2) && (D_800DEEA0 != 0))
@@ -185,15 +185,15 @@ void func_8001A1A4(void)
 
             if (gpSprite[spritenum].unk22 > 0)
             {
-                unk25 = gpSprite[spritenum].unk25;
-                gDPSetPrimColor(gpDisplayList++, 0, 0, gpAlphaPalette[unk25].primary.r,
-                                                       gpAlphaPalette[unk25].primary.g,
-                                                       gpAlphaPalette[unk25].primary.b,
+                pal = gpSprite[spritenum].unk25;
+                gDPSetPrimColor(gpDisplayList++, 0, 0, gpAlphaPalette[pal].primary.r,
+                                                       gpAlphaPalette[pal].primary.g,
+                                                       gpAlphaPalette[pal].primary.b,
                                                        gpSprite[spritenum].unk22);
 
-                gDPSetEnvColor(gpDisplayList++, gpAlphaPalette[unk25].env.r,
-                                                gpAlphaPalette[unk25].env.g,
-                                                gpAlphaPalette[unk25].env.b,
+                gDPSetEnvColor(gpDisplayList++, gpAlphaPalette[pal].env.r,
+                                                gpAlphaPalette[pal].env.g,
+                                                gpAlphaPalette[pal].env.b,
                                                 gpSprite[spritenum].unk22);
 
                 fx = gpSprite[spritenum].x / 4.0;

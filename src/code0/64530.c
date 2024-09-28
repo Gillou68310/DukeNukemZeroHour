@@ -381,19 +381,19 @@ static void func_80064D30(s16 *arg0, s16 *arg1, s16 sectnum)
 }
 
 /*80064DE0*/
-void func_80064DE0(SectorType *sec, s16 x, s16 y)
+void func_80064DE0(SectorType *sec, s16 shade, s16 pal)
 {
     s16 i;
 
-    sec->unk27 = y;
-    sec->unk23 = y;
-    sec->unk26 = x;
-    sec->unk22 = x;
+    sec->floorpal = pal;
+    sec->ceilingpal = pal;
+    sec->floorshade = shade;
+    sec->ceilingshade = shade;
 
     for (i = sec->wallptr; i < (sec->wallptr + sec->wallnum); i++)
     {
-        gpWall[i].unk21 = y;
-        gpWall[i].unk1C = x;
+        gpWall[i].pal = pal;
+        gpWall[i].shade = shade;
     }
 }
 
@@ -549,7 +549,7 @@ void moveEffectors(void)
                         y2 = spr->unk25;
                     }
 
-                    m = sec->unk26 + (x2 - sec->unk26) / 4;
+                    m = sec->floorshade + (x2 - sec->floorshade) / 4;
 
                     if (m < x2)
                         m++;

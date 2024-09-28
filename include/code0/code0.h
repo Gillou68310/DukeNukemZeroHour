@@ -484,7 +484,7 @@ typedef struct
 /*8012FCA0*/ _extern s16 D_8012FCA0[MAXPLAYERS];
 /*8012FCB0*/ _extern char D_8012FCB0[MAXPLAYERS][D_8012FCB0_SIZE] ALIGNED(8);
 /*8012FD80*/ _extern s32 gAlertAliens;
-/*8012FD88*/ _extern s32 D_8012FD88;
+/*8012FD88*/ _extern s32 D_8012FD88; /*ang*/
 /*8012FD8C*/ _extern code0UnkStruct16 *D_8012FD8C;
 /*80137DE0*/ _extern Actor *gpActor;
 /*80138610*/ _extern s32 D_80138610[MAXPLAYERS] ALIGNED(8);
