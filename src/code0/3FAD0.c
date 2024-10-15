@@ -90,7 +90,6 @@ static s16 func_8003F29C(void)
         return 0;
 }
 
-#ifdef NON_MATCHING
 /*8003F340*/
 void func_8003F340(void)
 {
@@ -128,21 +127,24 @@ void func_8003F340(void)
         return;
     }
 
-    if ((gPlayer[D_801B0820].unk54 == 0) && (gPlayer[D_801B0820].unk59 == 0) && (gPlayer[D_801B0820].unk56 == 0))
+    if (gPlayer[D_801B0820].unk54 == 0)
     {
-        if (gPlayer[D_801B0820].unk44 != 0)
-        {
-            if (gPlayer[D_801B0820].zvect > 0)
-                D_801A2790[D_801B0820].unkC = MAX(-((gPlayer[D_801B0820].unk40 - 0x400) / 2), D_801A2790[D_801B0820].unkC - 0x100);
+       if ((gPlayer[D_801B0820].unk59 != 0) || (gPlayer[D_801B0820].unk56 != 0))
+           D_801A2790[D_801B0820].unkC += (-D_801A2790[D_801B0820].unkC / 2);
+       else
+       {
+            if (gPlayer[D_801B0820].unk44 != 0)
+            {
+                if (gPlayer[D_801B0820].zvect > 0)
+                    D_801A2790[D_801B0820].unkC = MAX(-((gPlayer[D_801B0820].unk40 - 0x400) / 2), D_801A2790[D_801B0820].unkC - 0x100);
 
-            if (gPlayer[D_801B0820].zvect < 0)
-                D_801A2790[D_801B0820].unkC = MIN((gPlayer[D_801B0820].unk40 - 0x400) / 2, D_801A2790[D_801B0820].unkC + 0x100);
+                if (gPlayer[D_801B0820].zvect < 0)
+                    D_801A2790[D_801B0820].unkC = MIN((gPlayer[D_801B0820].unk40 - 0x400) / 2, D_801A2790[D_801B0820].unkC + 0x100);
+            }
         }
     }
     else
-    {
         D_801A2790[D_801B0820].unkC += (-D_801A2790[D_801B0820].unkC / 2);
-    }
 
     if (!gPlayer[D_801B0820].third_person)
     {
@@ -163,7 +165,7 @@ void func_8003F340(void)
         sp28 = -sinf(D_800FF4E8) / cosf(D_800FF4E8);
         grNormalize(&sp20, &sp24, &sp28);
         cstat = gpSprite[i].cstat;
-        gpSprite[i].cstat = cstat & 0xFEFE;
+        gpSprite[i].cstat = cstat & ~0x101;
         f1 = func_8003EED0(0.0f, 0.0f);
         sp10[0] = func_8003EED0((PI/24), 0.0f);
         sp10[1] = func_8003EED0(-(PI/24), 0.0f);
@@ -209,10 +211,6 @@ void func_8003F340(void)
         gPlayer[D_801B0820].unk6A += j / 4;
     }
 }
-#else
-/*8003F340*/
-INCLUDE_ASM("src/code0/3FAD0", func_8003F340);
-#endif
 
 /*8003FD5C*/
 void func_8003FD5C(void)

@@ -144,7 +144,7 @@ void func_8003671C(s16 playernum, u16 arg1, s16 arg2, s16 arg3)
 {
     char buf[48];
     Actor *actor;
-    s32 m, n, o;
+    s32 m, n;
     s16 playernum2;
     s16 i, j;
     u8 r, g, b;
@@ -194,9 +194,7 @@ void func_8003671C(s16 playernum, u16 arg1, s16 arg2, s16 arg3)
                         if (actor->unk7E > 0)
                         {
                             m = (arg1 * actor->unk7E) / 100;
-                            n = 1;
-                            if (m > 0)
-                                n = m;
+                            n = (m > 0) ? n = m : 1;
 
                             arg1 -= n;
                             actor->unk7E -= n;
@@ -225,8 +223,7 @@ void func_8003671C(s16 playernum, u16 arg1, s16 arg2, s16 arg3)
                     r = 0;
                     g = 0xFF;
                     b = 0xFF;
-                    o = func_801C0FDC(100);
-                    if (actor->unk8 < o)
+                    if (func_801C0FDC(100) > actor->unk8)
                         actor->unk8 = 0;
                     break;
                 case 20:
@@ -363,7 +360,7 @@ static void func_80036FEC(void)
         D_800DD448 = 1;
 
     cstat = gpSprite[gPlayer[D_801B0820].unk4A].cstat;
-    gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & 0xFEFE;
+    gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & ~0x101;
 
     getzRange(gPlayer[D_801B0820].xpos,
               gPlayer[D_801B0820].ypos,
@@ -380,7 +377,7 @@ static void func_80036FEC(void)
 
     cond = 1;
     if (gpSector[gPlayer[D_801B0820].cursectnum].ceilingstat & 1)
-        cond = D_801AE9C0 > 0xBFFF;
+        cond = D_801AE9C0 >= 0xC000;
 
     if (cond && (gPlayer[D_801B0820].unk45 == 0) &&
         (D_80106D30[D_801B0820] == 0) &&
@@ -407,7 +404,7 @@ static void func_80036FEC(void)
         gPlayer[D_801B0820].unk36 = D_800FCBE0 + 0x5000;
         spritenum = D_800FCBE0 + 0x4000;
         if ((gPlayer[D_801B0820].unk59) && (gpSprite[spritenum].statnum == 1))
-            gActor[gActorSpriteMap[spritenum]].unk94 |= 1u;
+            gActor[gActorSpriteMap[spritenum]].unk94 |= 1;
     }
 
     gPlayer[D_801B0820].unk56 = 0;
@@ -524,7 +521,7 @@ static void func_80037B84(void)
     s32 i, j, k, l, m, n, o;
     s32 x1, y1, x2, y2;
     s32 ang;
-    s16 a, b;
+    s16 a;
 
     D_80119A30[D_801B0820] = 0;
     i = 0;
@@ -705,8 +702,8 @@ static void func_80037B84(void)
                 m += 0x800;
 
             gPlayer[D_801B0820].ang = (gPlayer[D_801B0820].ang + (m / 2)) & 0x7FF;
-            x1 = x1 + ((a * gpSinTable[(l + 0x200) & 0x7FF]) >> 14);
-            y1 = y1 + ((a * gpSinTable[l]) >> 14);
+            x1 += ((a * gpSinTable[(l + 0x200) & 0x7FF]) >> 14);
+            y1 += ((a * gpSinTable[l]) >> 14);
             gPlayer[D_801B0820].xpos += ((x1 - gPlayer[D_801B0820].xpos) / 2);
             gPlayer[D_801B0820].ypos += ((y1 - gPlayer[D_801B0820].ypos) / 2);
         }
@@ -832,9 +829,8 @@ static void func_80037B84(void)
     l = (i * gpSinTable[gPlayer[D_801B0820].ang & 0x7FF]);
     gPlayer[D_801B0820].xvect += o;
     gPlayer[D_801B0820].yvect += l;
-    b = gPlayer[D_801B0820].ang;
-    o = j * gpSinTable[b & 0x7FF];
-    l = j * gpSinTable[(b-0x200) & 0x7FF];
+    o = j * gpSinTable[gPlayer[D_801B0820].ang & 0x7FF];
+    l = j * gpSinTable[(gPlayer[D_801B0820].ang-0x200) & 0x7FF];
     gPlayer[D_801B0820].xvect += o;
     gPlayer[D_801B0820].yvect += l;
 }
@@ -1230,7 +1226,7 @@ static void func_8003A910(void)
     s32 flordist;
 
     cstat = gpSprite[gPlayer[D_801B0820].unk4A].cstat;
-    gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & 0xFEFE;
+    gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & ~0x101;
     walldist = 164;
 
     if (gpSprite[gPlayer[D_801B0820].unk4A].cstat & 0x1000)

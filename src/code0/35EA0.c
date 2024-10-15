@@ -123,7 +123,6 @@ void func_800356EC(void)
 /*80035794*/
 void func_80035794(s16 playernum)
 {
-
     switch (gPlayer[playernum].unk80 & 1)
     {
     case 0:

@@ -1202,7 +1202,7 @@ void func_800A3688(void)
                 }
 
                 cstat = gpSprite[gPlayer[D_801B0820].unk4A].cstat;
-                gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & 0xFEFE;
+                gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & ~0x101;
 
                 hitScan(gPlayer[D_801B0820].xpos,
                         gPlayer[D_801B0820].ypos,

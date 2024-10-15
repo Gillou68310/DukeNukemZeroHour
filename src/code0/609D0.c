@@ -1048,7 +1048,7 @@ static void _spawn(s16 spritenum)
 
     if ((spr->picnum == 1417) && (gMapNum == MAP_THE_RACK))
     {
-        spr->cstat = (spr->cstat & 0xFEFE) | 0x8000;
+        spr->cstat = (spr->cstat & ~0x101) | 0x8000;
         changeSpriteStat(spritenum, 123);
     }
 }

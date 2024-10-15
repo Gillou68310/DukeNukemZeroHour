@@ -91,7 +91,7 @@ static void func_80095B20(s32 spritenum, s32 arg1, f32 x, f32 y, f32 z, s32 arg5
     oy = (oy * (spr->xrepeat / 64.0));
     oz = (oz * (spr->xrepeat / 64.0));
     cstat = spr->cstat;
-    spr->cstat = cstat & 0xFEFE;
+    spr->cstat = cstat & ~0x101;
 
     spritenum_ = func_8004BC64(spr->x - ((s32)ox * 4),
                                spr->y - ((s32)oy * 4),
@@ -201,7 +201,7 @@ static s32 func_80096240(SpriteType *spr)
     u16 cstat;
 
     cstat = spr->cstat;
-    spr->cstat = cstat & 0xFEFE;
+    spr->cstat = cstat & ~0x101;
     getzRange(spr->x,
               spr->y,
               spr->z,
@@ -221,7 +221,7 @@ static s32 func_800962D0(SpriteType *spr, s32 walldist)
     u16 cstat;
 
     cstat = spr->cstat;
-    spr->cstat = cstat & 0xFEFE;
+    spr->cstat = cstat & ~0x101;
     getzRange(spr->x,
               spr->y,
               spr->z,
@@ -3747,7 +3747,7 @@ void func_8009E8C8(s32 spritenum)
                             D_801AC594 = 0;
                             playSfx(1594);
                             cstat = spr->cstat;
-                            spr->cstat = cstat & 0xFEFE;
+                            spr->cstat = cstat & ~0x101;
                             func_80095B20(s3, 36, 0.0f, -35.0f, -215.0f, 0x400);
                             spr->cstat = cstat;
                         }
@@ -3759,7 +3759,7 @@ void func_8009E8C8(s32 spritenum)
                             {
                                 playSfx(705);
                                 cstat = spr->cstat;
-                                spr->cstat = cstat & 0xFEFE;
+                                spr->cstat = cstat & ~0x101;
                                 func_80095B20(s2, 47, -210.0f, 0.0f, 16.0f, 0x200);
                                 spr->cstat = cstat;
                             }
@@ -3767,7 +3767,7 @@ void func_8009E8C8(s32 spritenum)
                             {
                                 playSfx(705);
                                 cstat = spr->cstat;
-                                spr->cstat = cstat & 0xFEFE;
+                                spr->cstat = cstat & ~0x101;
                                 func_80095B20(s1, 47, 210.0f, 0.0f, 16.0f, -0x200);
                                 spr->cstat = cstat;
                             }

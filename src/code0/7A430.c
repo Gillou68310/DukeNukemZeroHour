@@ -226,25 +226,22 @@ void func_80079C20(s16 spritenum)
 /*80079CB4*/
 static u8 func_80079CB4(s16 playernum, s16 arg1)
 {
-    s16 i;
-
-    i = arg1 - 8;
-    switch (i)
+    switch (arg1)
     {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
+    case 8:
+    case 9:
     case 10:
     case 11:
+    case 12:
     case 13:
-    case 15:
+    case 14:
+    case 18:
+    case 19:
+    case 21:
+    case 23:
         return 0;
     default:
-        return ((gPlayer[playernum].unk54 != 0) && (arg1 == 20)) ^ 1;
+        return ((gPlayer[playernum].unk54 != 0) && (arg1 == 20)) == 0;
     }
 }
 

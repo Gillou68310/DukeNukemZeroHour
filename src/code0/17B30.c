@@ -23,8 +23,7 @@ void func_80016F30(void)
 
     for (i = 0; i < MAXACTORS; i++)
     {
-        (&D_80197E40[i])->unk4 = NULL; /*FAKEMATCH*/
-        D_80197E40[i].unk8 = NULL;
+        D_80197E40[i].unk8 = D_80197E40[i].unk4 = NULL;
     }
 }
 
@@ -147,7 +146,7 @@ void func_80017268(s16 spritenum)
     _D8D20UnkStruct2 *ptr6;
 
     s32 r;
-    s16 i, j, k, l;
+    s16 i, j, k;
     u8 cond1, cond2, cond3, cond4;
     u8 m;
 
@@ -240,9 +239,9 @@ void func_80017268(s16 spritenum)
         k = gActor[gActorSpriteMap[spritenum]].unk86;
         if (k & 0x8000)
         {
-            l = k - 0x8000;
-            gActor[gActorSpriteMap[spritenum]].unk86 = l;
-            switch (l)
+            k -= 0x8000;
+            gActor[gActorSpriteMap[spritenum]].unk86 = k;
+            switch (k)
             {
             case 0x0:
             default:
@@ -1290,35 +1289,29 @@ void func_80017268(s16 spritenum)
 
         if (gPlayer[i].unk4E >= 450)
         {
-            if (gPlayer[i].unk54 == 0)
+            if ((gPlayer[i].unk54 == 0) && (gPlayer[i].unk56 == 0) && (gPlayer[i].unk58 == 0))
             {
-                if (gPlayer[i].unk56 == 0)
-                {
-                    if (gPlayer[i].unk58 == 0)
-                    {
-                        if (gPlayer[i].unk4E == 450)
-                            func_800171D0(ptr, &D_800D8804, 10);
+                if (gPlayer[i].unk4E == 450)
+                    func_800171D0(ptr, &D_800D8804, 10);
 
-                        if (ptr->unk8 == &D_800D896C)
-                        {
-                            if (ptr->unk2 == 10)
-                                playSfx(1434);
-                            if (ptr->unk2 >= (ptr->unk8->unk14 - 10))
-                                func_800171D0(ptr, &D_800D8804, 10);
-                        }
-                        else
-                        {
-                            if (!(D_8012FD88 & 0x3F))
-                            {
-                                r = krand() & 0x7FF;
-                                if (r < 0x40)
-                                    func_800171D0(ptr, &D_800D896C, 10);
-                                else if (r < 0x240)
-                                    func_800171D0(ptr, &D_800D8804, 10);
-                                else if (r < 0x340)
-                                    func_800171D0(ptr, ptr7, 10);
-                            }
-                        }
+                if (ptr->unk8 == &D_800D896C)
+                {
+                    if (ptr->unk2 == 10)
+                        playSfx(1434);
+                    if (ptr->unk2 >= (ptr->unk8->unk14 - 10))
+                        func_800171D0(ptr, &D_800D8804, 10);
+                }
+                else
+                {
+                    if (!(D_8012FD88 & 0x3F))
+                    {
+                        r = krand() & 0x7FF;
+                        if (r < 0x40)
+                            func_800171D0(ptr, &D_800D896C, 10);
+                        else if (r < 0x240)
+                            func_800171D0(ptr, &D_800D8804, 10);
+                        else if (r < 0x340)
+                            func_800171D0(ptr, ptr7, 10);
                     }
                 }
             }

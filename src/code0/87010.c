@@ -162,12 +162,11 @@ void func_800867CC(s16 spritenum, s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2
     }
 }
 
-#ifdef NON_MATCHING
 /*80086A24*/
 void func_80086A24(void)
 {
     _87010UnkStruct2 *ptr;
-    s32 tc1;
+    s16 tc1;
     s16 tc2;
     s32 k;
     s16 i, j;
@@ -204,9 +203,10 @@ void func_80086A24(void)
 
             for (j = 0; j < ARRAY_COUNT(ptr->unk0)-1; j++)
             {
-                tc1 = k & 0xFFF;
-                k += func_80040D94(ptr->unk0[j].x, ptr->unk0[j].y, ptr->unk0[j].z,
+                s32 res = func_80040D94(ptr->unk0[j].x, ptr->unk0[j].y, ptr->unk0[j].z,
                                         ptr->unk0[j + 1].x, ptr->unk0[j + 1].y, ptr->unk0[j + 1].z);
+                tc1 = k & 0xFFF;
+                k += res;
                 tc2 = k & 0xFFF;
                 if (tc2 < tc1)
                     tc2 |= 0x1000;
@@ -307,10 +307,6 @@ void func_80086A24(void)
     }
     func_8008736C();
 }
-#else
-/*80086A24*/
-INCLUDE_ASM("src/code0/87010", func_80086A24);
-#endif
 
 /*80087174*/
 void func_80087174(s16 spritenum, s32 x1, s32 y1, s32 z1, s32 x2, s32 y2, s32 z2, s16 arg7, u8 arg8)

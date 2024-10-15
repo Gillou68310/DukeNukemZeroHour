@@ -1242,25 +1242,29 @@ static void func_8002935C(s16 spritenum)
             else
                 func_8000C0D0(_spriteTileId);
 
-            dimy1 = 0;
             if (_pSprite->cstat & 8)
+            {
                 dimy = gpTileInfo[_spriteTileId].dimy;
+                dimy1 = 0;
+            }
             else
             {
                 dimy = 0;
                 dimy1 = gpTileInfo[_spriteTileId].dimy;
             }
 
-            dimx1 = 0;
             if (_pSprite->cstat & 4)
+            {
                 dimx = gpTileInfo[_spriteTileId].dimx;
+                dimx1 = 0;
+            }
             else
             {
                 dimx = 0;
                 dimx1 = gpTileInfo[_spriteTileId].dimx;
             }
 
-            f7 = f7 * 16.0f;
+            f7 *= 16.0f;
             sizex = (f7 * (gpTileInfo[_spriteTileId].sizex * _pSprite->xrepeat)) / 16.0f;
             sizey = (f7 * (gpTileInfo[_spriteTileId].sizey * _pSprite->yrepeat)) / 16.0f;
 

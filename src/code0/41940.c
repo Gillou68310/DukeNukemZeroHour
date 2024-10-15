@@ -1314,7 +1314,7 @@ static s32 func_80042C98(s32 spritenum)
     }
 
     cstat = spr->cstat;
-    spr->cstat = cstat & 0xFEFE;
+    spr->cstat = cstat & ~0x101;
     hitScan(spr->x, spr->y, spr->z - (j /2), spr->sectnum, vx, vy, vz,
             &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x01000040);
     ret = 0;
@@ -1361,7 +1361,7 @@ static s32 func_80042C98(s32 spritenum)
     {
         cstat = spr->cstat;
         vz = (spr2->z - (spr->z - j)) - 0x3100;
-        spr->cstat = cstat & 0xFEFE;
+        spr->cstat = cstat & ~0x101;
 
         hitScan(spr->x, spr->y, (spr->z - (0x400 + j)), spr->sectnum, vx, vy, vz,
                 &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x01000040);
@@ -1431,7 +1431,7 @@ static s32 func_800433D4(s32 spritenum)
     vy = spr2->y - spr->y;
     z1 = (spr->z - D_801B0D30) + 0x3500;
     vz = spr2->z - z1;
-    spr->cstat = cstat & 0xFEFE;
+    spr->cstat = cstat & ~0x101;
     z2 = (spr->z - 0x400);
 
     hitScan(spr->x,
@@ -1452,7 +1452,7 @@ static s32 func_800433D4(s32 spritenum)
     cstat = spr->cstat;
     z3 = ((spr->z - (D_801B0D30 / 2)) + 0x1E80);
     vz = spr2->z - z3;
-    spr->cstat = cstat & 0xFEFE;
+    spr->cstat = cstat & ~0x101;
 
     hitScan(spr->x,
         spr->y,
@@ -4964,97 +4964,95 @@ void func_8004BFDC(s32 spritenum, s32 arg1, s32 z, s32 arg3)
             cond = D_800DEEA0 != 0;
     }
 
-    if (i >= 0 && i < 13)
+    switch (i)
     {
-        switch (i)
+    case 0:
+    case 12:
+        k = 75;
+        l = 1780;
+        break;
+    case 1:
+        k = 150;
+        l = 2000;
+        break;
+    case 2:
+        k = 75;
+        sp3E = 8;
+        l = 1000;
+        break;
+    case 3:
+        k = 200;
+        l = 2500;
+        if (cond)
         {
-        case 0:
-        case 12:
-            k = 75;
-            l = 1780;
-            break;
-        case 1:
-            k = 150;
-            l = 2000;
-            break;
-        case 2:
-            k = 75;
-            sp3E = 8;
-            l = 1000;
-            break;
-        case 3:
-            k = 200;
-            l = 2500;
-            if (cond)
-            {
-                if (sp37 != 0)
-                    func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 12, 0);
-                else
-                    func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 65, 0);
-            }
-            break;
-        case 4:
-            l = 3000;
-            k = 200;
-            if (cond)
-            {
-                func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 26, 0);
-                if (sp37 == 0)
-                    func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 26, 1);
-
-                func_80057540(&gpSprite[spritenum], 5700, (krand() & 3) + 1, 0);
-            }
-            break;
-        case 5:
-            k = 200;
-            l = 2500;
-            if (cond)
-            {
-                if (sp37 != 0)
-                    func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 12, 0);
-                else
-                    func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 65, 0);
-            }
-            break;
-        case 6:
-            l = 3000;
-            k = 200;
-            if (cond)
-            {
-                if (sp37 != 0)
-                    func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 12, 0);
-                else
-                    func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 65, 0);
-            }
-            break;
-        case 7:
-            l = 4880;
-            k = 200;
-            if (cond)
-            {
-                j = func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 65, 0);
-                if (j != -1)
-                    gpSprite[j].cstat &= ~0x400;
-            }
-            break;
-        case 8:
-            l = 1780;
-            k = 25;
-            break;
-        case 9:
-            l = 3000;
-            k = 200;
-            break;
-        case 10:
-            k = 40;
-            l = 2000;
-            break;
-        case 11:
-            k = 50;
-            l = 1000;
-            break;
+            if (sp37 != 0)
+                func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 12, 0);
+            else
+                func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 65, 0);
         }
+        break;
+    case 4:
+        l = 3000;
+        k = 200;
+        if (cond)
+        {
+            func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 26, 0);
+            if (sp37 == 0)
+                func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 26, 1);
+
+            func_80057540(&gpSprite[spritenum], 5700, (krand() & 3) + 1, 0);
+        }
+        break;
+    case 5:
+        k = 200;
+        l = 2500;
+        if (cond)
+        {
+            if (sp37 != 0)
+                func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 12, 0);
+            else
+                func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 65, 0);
+        }
+        break;
+    case 6:
+        l = 3000;
+        k = 200;
+        if (cond)
+        {
+            if (sp37 != 0)
+                func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 12, 0);
+            else
+                func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 65, 0);
+        }
+        break;
+    case 7:
+        l = 4880;
+        k = 200;
+        if (cond)
+        {
+            j = func_8008E3E0(x1, y1, z1, gpSprite[spritenum].sectnum, 65, 0);
+            if (j != -1)
+                gpSprite[j].cstat &= ~0x400;
+        }
+        break;
+    case 8:
+        l = 1780;
+        k = 25;
+        break;
+    case 9:
+        l = 3000;
+        k = 200;
+        break;
+    case 10:
+        k = 40;
+        l = 2000;
+        break;
+    case 11:
+        k = 50;
+        l = 1000;
+        break;
     }
+
     func_8001F7B4(12, 8);
     if (arg3 != 9999)
         func_8004AB6C(spritenum, l, k >> 2, k >> 1, k - (k >> 2), k, 0);
@@ -5077,14 +5075,12 @@ INCLUDE_ASM("src/code0/41940", func_8004BFDC);
 /*8004CB3C*/
 s32 func_8004CB3C(s32 wallnum)
 {
-    s16 overpicnum;
     s32 wallnum_;
 
     wallnum_ = wallnum & 0x7FFF;
     if (gpWall[wallnum_].cstat & 0x10)
     {
-        overpicnum = gpWall[wallnum_].overpicnum;
-        switch (overpicnum)
+        switch (gpWall[wallnum_].overpicnum)
         {
         case 3185:
         case 3172:
@@ -5101,7 +5097,7 @@ s32 func_8004CB3C(s32 wallnum)
             gpWall[wallnum_].cstat &= ~0x41;
             if (gpWall[wallnum_].nextwall != -1)
             {
-                if (gpWall[gpWall[wallnum_].nextwall].overpicnum == overpicnum)
+                if (gpWall[gpWall[wallnum_].nextwall].overpicnum == 3759)
                     gpWall[gpWall[wallnum_].nextwall].overpicnum = 3678;
 
                 gpWall[gpWall[wallnum_].nextwall].cstat &= ~0x41;
@@ -5401,7 +5397,7 @@ void func_8004D884(void)
     u16 cstat;
 
     cstat = D_80118248->cstat;
-    D_80118248->cstat = cstat & 0xFEFE;
+    D_80118248->cstat = cstat & ~0x101;
     getzRange(D_80118248->x, D_80118248->y, D_80118248->z - 2048, D_80118248->sectnum,
               &D_801A1998, &D_801AE9C0, &D_80138860, &D_800FCBE0, 64, 0x10001);
     D_80118248->cstat = cstat;
@@ -6063,7 +6059,7 @@ s32 func_8004F4A0(s32 spritenum)
 
     cstat = gpSprite[spritenum].cstat;
     ang = (gpSprite[spritenum].ang - 1024) & 0x7FF;
-    gpSprite[spritenum].cstat = cstat & 0xFEFE;
+    gpSprite[spritenum].cstat = cstat & ~0x101;
 
     hitScan(gpSprite[spritenum].x,
             gpSprite[spritenum].y,
@@ -7181,31 +7177,30 @@ static u8 func_80052358(s16 playernum, s16 arg1)
 /*800524BC*/
 static void func_800524BC(s16 playernum, s16 arg1, s16 arg2)
 {
-    s16 i, j;
+    s16 i;
 
     if (arg2 != 0)
     {
-        i = arg1 - 3;
-        j = 0;
-        switch (i)
+        i = 0;
+        switch (arg1)
         {
-        case 1:
-            j = 24;
+        case 4:
+            i = 24;
             break;
-        case 15:
-            j = 6;
+        case 18:
+            i = 6;
             break;
-        case 0:
-        case 11:
-        case 20:
-            j = 12;
+        case 3:
+        case 14:
+        case 23:
+            i = 12;
             break;
         }
 
-        if (j != 0)
+        if (i != 0)
         {
             D_8011A680[playernum][arg1][0] |= 4;
-            D_8011A680[playernum][arg1][7] = MIN(j, D_8011A680[playernum][arg1][7]+arg2);
+            D_8011A680[playernum][arg1][7] = MIN(i, D_8011A680[playernum][arg1][7]+arg2);
         }
     }
 }
@@ -10060,7 +10055,6 @@ static s32 func_80058DE0(SpriteType *spr, s32 *arg1)
     return 0;
 }
 
-#ifdef NON_MATCHING
 /*80058E44*/
 void func_80058E44(s32 spritenum)
 {
@@ -10069,8 +10063,7 @@ void func_80058E44(s32 spritenum)
     s32 i;
 
     actor = &gActor[gActorSpriteMap[spritenum]];
-    unk84 = actor->unk84;
-    if ((unk84 == 0) || (unk84 == 11) || (unk84 == 8) || (unk84 == 18))
+    if ((actor->unk84 == 0) || (actor->unk84 == 11) || (actor->unk84 == 8) || (actor->unk84 == 18))
     {
         i = 36;
         if (D_800DEEA0 != 0)
@@ -10099,11 +10092,15 @@ void func_80058E44(s32 spritenum)
         }
     }
 
-    if ((krand() & 3) == 3)
-        func_8008E3E0(gpSprite[spritenum].x, gpSprite[spritenum].y,
-                      gpSprite[spritenum].z, gpSprite[spritenum].sectnum, i, 0);
+    /*FAKEMATCH*/
+    do {
+        if ((krand() & 3) == 3)
+            func_8008E3E0(gpSprite[spritenum].x, gpSprite[spritenum].y,
+                          gpSprite[spritenum].z, gpSprite[spritenum].sectnum, i, 0);
 
-    unk84 = actor->unk84;
+        do{unk84 = actor->unk84;} while (0);
+    } while (0);
+    
     if (D_801C0D70[unk84].unk0 != -1)
     {
         if (func_8005A240(spritenum) != 2)
@@ -10115,10 +10112,6 @@ void func_80058E44(s32 spritenum)
     }
     audio_800077F4(538, spritenum);
 }
-#else
-/*80058E44*/
-INCLUDE_ASM("src/code0/41940", func_80058E44);
-#endif
 
 #if VERSION_FR
 /*hack for wrong rodata aligment*/

@@ -286,11 +286,11 @@ void func_8001DE9C(void)
 void func_8001EB2C(void)
 {
     f32 fx, fy, fz;
-    f32 f1, f2, f3, f4, f5, f6, f7;
+    f32 f1, f2, f3, f4, f5, f6;
     f32 fx_, fy_, fz_;
     s16 primr, primg, primb;
     s16 envr, envg, envb;
-    s32 a, prima, enva;
+    s32 prima, enva;
     s16 i, j;
 
     D_801A2688 = 0;
@@ -331,11 +331,9 @@ void func_8001EB2C(void)
 
                 if (!(fx_ < -2.0f) && !(fy_ < -2.0f) && !(fx_ > 2.0f) && !(fy_ > 2.0f) && !(fz_ < 0.0f) && !(fz_ > 1.0f))
                 {
-                    f7 = ((fz_ * 511.0f) + 511.0f) * 32.0f;
-                    gDPSetPrimDepth(gpDisplayList++, f7, 0);
+                    gDPSetPrimDepth(gpDisplayList++, (((fz_ * 511.0f) + 511.0f) * 32.0f), 0);
                     enva = (D_801AE538[i].unk14 * D_800DCA40[D_801AE538[i].unk1].unkC);
-                    a = (enva - 0x80) * 2;
-                    j = CLAMP_MIN(a, 0);
+                    j = CLAMP_MIN(((enva - 0x80) * 2), 0);
                     fz_ = (-fz_ + 1.0f);
 
                     primr = gpAlphaPalette[D_801AE538[i].unk19].primary.r +

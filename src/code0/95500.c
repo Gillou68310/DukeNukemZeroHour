@@ -555,7 +555,7 @@ void func_8009584C(s16 playernum)
     char **ptr;
     code0UnkStruct2 *ptr1;
     Actor *actor;
-    s16 unk0, min;
+    s16 min;
     s8 cond;
 
     cond = -1;
@@ -566,10 +566,9 @@ void func_8009584C(s16 playernum)
     if ((gMapChapter[gMapNum].chapter == WESTERN) || (gMapChapter[gMapNum].chapter == VICTORIAN))
         ptr = D_800E17A0;
 
-    unk0 = ptr1->unk0 - 2;
-    switch (unk0)
+    switch (ptr1->unk0)
     {
-    case 0:
+    case 2:
         if (ptr1->unkA[2] > 0)
         {
             if (ptr1->unk2[2] == 0)
@@ -583,7 +582,7 @@ void func_8009584C(s16 playernum)
             ptr1->unk2[2] = 0;
 
         break;
-    case 3:
+    case 5:
         if (ptr1->unkA[5] > 0)
         {
             cond = ptr1->unk2[5] == 0;
@@ -597,7 +596,7 @@ void func_8009584C(s16 playernum)
         else
             playSfx(1322);
         break;
-    case 4:
+    case 6:
         if (ptr1->unkA[6] > 0)
         {
             cond = ptr1->unk2[6] == 0;
@@ -607,7 +606,7 @@ void func_8009584C(s16 playernum)
             ptr1->unk2[6] = 0;
 
         break;
-    case 2:
+    case 4:
         if (ptr1->unkA[4] > 0)
         {
             if (actor->unk8 < gPlayer[playernum].unk48)
@@ -620,7 +619,7 @@ void func_8009584C(s16 playernum)
             }
         }
         break;
-    case 5:
+    case 7:
         ptr1->unk2[7] = ptr1->unk2[7] == 0;
         if (ptr1->unk2[7])
         {

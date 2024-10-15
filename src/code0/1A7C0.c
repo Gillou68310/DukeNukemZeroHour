@@ -160,7 +160,7 @@ void func_8001A1A4(void)
         cstat = gpSprite[gPlayer[D_801B0820].unk4A].cstat;
 
         if ((gPlayer[D_801B0820].unk6A < 0xFF) || (!gPlayer[D_801B0820].third_person))
-            gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & 0xFEFE;
+            gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & ~0x101;
 
         for (i = 0; i < D_80105720; i++)
         {
@@ -269,7 +269,7 @@ static void func_8001AAEC(void)
         cstat = gpSprite[gPlayer[D_801B0820].unk4A].cstat;
 
         if ((gPlayer[D_801B0820].unk6A < 255) || (!gPlayer[D_801B0820].third_person))
-            gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & 0xFEFE;
+            gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & ~0x101;
 
         hitScan(gGlobalPosX,
                 gGlobalPosY,
@@ -572,7 +572,7 @@ void drawSky(void)
 /*8001BC74*/
 static u8 func_8001BC74(s16 arg0, s16 arg1)
 {
-    if (((arg0 == 0) || (arg0 == 4) || (arg1 == 0) || (arg1 == 4)))
+    if ((arg0 == 0) || (arg0 == 4) || (arg1 == 0) || (arg1 == 4))
         return 0;
     else
         return ((arg0 == 2) && (arg1 == 2)) ? 0xFF : 0xC8;

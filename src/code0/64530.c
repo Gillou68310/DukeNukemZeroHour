@@ -1663,7 +1663,7 @@ void moveEffectors(void)
         {
             s16 a;
             cstat = gpSprite[gPlayer[k].unk4A].cstat;
-            gpSprite[gPlayer[k].unk4A].cstat = cstat & 0xFEFE;
+            gpSprite[gPlayer[k].unk4A].cstat = cstat & ~0x101;
             x2 = CLAMP_MIN((gPlayer[k].unk40 - 0x1200), 0x400);
             a = pushMove(&gPlayer[k].xpos,
                                   &gPlayer[k].ypos,

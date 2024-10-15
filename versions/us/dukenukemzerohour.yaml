@@ -34,6 +34,7 @@ options:
   ld_wildcard_sections: True
   asm_emit_size_directive: False
   ld_discard_section: False
+  ld_generate_symbol_per_data_segment: True
   auto_link_sections: [".data", ".rodata", ".bss"]
   ld_sections_denylist:
     - .text

@@ -1569,7 +1569,7 @@ s32 func_8008FE88(s32 spritenum)
         else
         {
             cstat = spr1->cstat;
-            spr1->cstat = cstat & 0xFEFE;
+            spr1->cstat = cstat & ~0x101;
             getzRange(spr1->x, spr1->y, spr1->z - 0x200, spr1->sectnum,
                       &ceilz, &ceilhit, &florz, &florhit, 64, 0x10001);
             spr1->cstat = cstat;
@@ -1983,7 +1983,7 @@ s32 func_8008FE88(s32 spritenum)
         D_8013B2D0[spritenum].unk2 += spr1->unk2A;
         D_8013B2D0[spritenum].unk0 += spr1->unk2A;
         cstat = spr1->cstat;
-        spr1->cstat = cstat & 0xFEFE;
+        spr1->cstat = cstat & ~0x101;
 
         getzRange(spr1->x, spr1->y, spr1->z - 0x200, spr1->sectnum,
                   &ceilz, &ceilhit, &florz, &florhit, 0x40, 0x10001);

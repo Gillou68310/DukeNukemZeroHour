@@ -216,7 +216,7 @@ void func_8001FD60(u8 arg0, u8 arg1)
         {
             f1 = 0.0018310547f;
             if (gPlayer[arg0].unk82 < 30)
-                f1 = (gPlayer[arg0].unk82 * 0.0018310547f) / 30.0f;
+                f1 = (gPlayer[arg0].unk82 * f1) / 30.0f;
 
             D_801995B8[arg0][0].vp.vscale[0] += 2.0f * ((gpSinTable[D_801A2790[arg0].unk12] + 0x4000) * f1);
             D_801995B8[arg0][0].vp.vscale[1] += (gpSinTable[(D_801A2790[arg0].unk12 + 0x2AB) & 0x7FF] + 0x4000) * f1;

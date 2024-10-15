@@ -1413,7 +1413,7 @@ void func_8005CBC4(s32 spritenum, s32 arg1)
 
     ang = gpActor->unk5C;
     cstat = D_80118248->cstat;
-    D_80118248->cstat = cstat & 0xFEFE;
+    D_80118248->cstat = cstat & ~0x101;
     sectnum = D_80118248->sectnum;
     f4 = gpActor->unk60 * (PI/1024);
     f5 = sinf(f4) / cosf(f4) * 16384.0f * 16.0f;
@@ -1602,7 +1602,7 @@ void func_8005D5D4(s32 spritenum, s32 arg1)
 
     cstat = gpSprite[spritenum].cstat;
     ang = gpSprite[spritenum].ang;
-    gpSprite[spritenum].cstat = cstat & 0xFEFE;
+    gpSprite[spritenum].cstat = cstat & ~0x101;
     hitScan(gpSprite[spritenum].x,
             gpSprite[spritenum].y,
             gpSprite[spritenum].z - 0x1000,
@@ -1653,7 +1653,7 @@ void func_8005D83C(s32 spritenum, s32 arg1)
     for (i = 0; i < 16; i++, ang += 256)
     {
         cstat = gpSprite[spritenum].cstat;
-        gpSprite[spritenum].cstat = cstat & 0xFEFE;
+        gpSprite[spritenum].cstat = cstat & ~0x101;
 
         hitScan(gpSprite[spritenum].x,
                 gpSprite[spritenum].y,
@@ -1706,7 +1706,7 @@ void func_8005DA18(s32 spritenum, s32 arg1)
     for (i = 0; i < 16; i++, ang += 256)
     {
         cstat = gpSprite[spritenum].cstat;
-        gpSprite[spritenum].cstat = cstat & 0xFEFE;
+        gpSprite[spritenum].cstat = cstat & ~0x101;
         hitScan(gpSprite[spritenum].x,
                 gpSprite[spritenum].y,
                 gpSprite[spritenum].z - 0x1000,

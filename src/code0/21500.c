@@ -285,9 +285,7 @@ static s32 _wallCalcSlope(s32 sectnum, s32 wallnum)
         z3 = getCeilzOfSlope(gpWall[wallnum].nextsector, x2, y2) >> 4;
         z4 = getCeilzOfSlope(sectnum, x2, y2) >> 4;
 
-        if ((z2 < z1) && (z3 < z4))
-            ;
-        else
+        if (((z2 < z1) && (z3 < z4)) == 0)
         {
             if ((z1 != z2) || (z3 != z4))
             {
@@ -359,9 +357,7 @@ static s32 _wallCalcSlope(s32 sectnum, s32 wallnum)
         z3 = getFlorzOfSlope(sectnum, x2, y2) >> 4;
         z4 = getFlorzOfSlope(gpWall[wallnum].nextsector, x2, y2) >> 4;
 
-        if (((z2 < z1) && (z3 < z4)))
-            ;
-        else
+        if (((z2 < z1) && (z3 < z4)) == 0)
         {
             if (((z1 != z2) || (z3 != z4)))
             {

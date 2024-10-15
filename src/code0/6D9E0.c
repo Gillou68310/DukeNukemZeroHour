@@ -461,7 +461,7 @@ label1:
                 zs -= 0xD00;
         }
         cstat = spr->cstat;
-        spr->cstat = cstat & 0xFEFE;
+        spr->cstat = cstat & ~0x101;
         D_80199638 = 1;
 
         hitScan(xs, ys, zs, sectnum,
@@ -1407,7 +1407,7 @@ label1:
         break;
     case 10:
         cstat = spr->cstat;
-        spr->cstat = cstat & 0xFEFE;
+        spr->cstat = cstat & ~0x101;
 
         hitScan(xs, ys, zs, sectnum,
             gpSinTable[(ang + 0x200) & 0x7FF],
@@ -1436,7 +1436,7 @@ label1:
         if (j >= 0)
         {
             cstat = spr->cstat;
-            spr->cstat = cstat & 0xFEFE;
+            spr->cstat = cstat & ~0x101;
 
             hitScan(xs, ys, zs, sectnum,
                 gpSinTable[(ang + 0x200) & 0x7FF],
@@ -1648,7 +1648,7 @@ label1:
         break;
     case 14:
         cstat = gpSprite[gPlayer[j].unk4A].cstat;
-        gpSprite[gPlayer[j].unk4A].cstat = cstat & 0xFEFE;
+        gpSprite[gPlayer[j].unk4A].cstat = cstat & ~0x101;
         zs -= 0x800;
 
         hitScan(xs, ys, zs, sectnum,
@@ -3472,7 +3472,7 @@ static void func_80076C14(s32 spritenum)
 
         D_8013B2D0[spritenum].unk0 = krand() & 0x7FF;
         cstat = spr->cstat;
-        spr->cstat = cstat & 0xFEFE;
+        spr->cstat = cstat & ~0x101;
         getzRange(spr->x, spr->y, (spr->z - 512), spr->sectnum,
                   &ceilz, &ceilhit, &florz, &florhit, 64, 0x01000040);
 
