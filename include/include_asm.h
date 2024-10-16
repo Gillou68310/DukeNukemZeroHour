@@ -20,11 +20,11 @@
         ".end"#NAME":\n" \
         "\t.size\t"#NAME",.end"#NAME"-"#NAME \
     )
-#endif
 #if VERSION_US
 #define INCLUDE_ASM(FOLDER, NAME) __INCLUDE_ASM__("asm/us/nonmatchings/"FOLDER, NAME)
 #elif VERSION_FR
 #define INCLUDE_ASM(FOLDER, NAME) __INCLUDE_ASM__("asm/fr/nonmatchings/"FOLDER, NAME)
+#endif
 #endif
 #ifndef INCLUDE_RODATA
 #define __INCLUDE_RODATA__(FOLDER, NAME) \
@@ -39,10 +39,14 @@
 #define INCLUDE_RODATA(FOLDER, NAME) __INCLUDE_RODATA__("asm/fr/nonmatchings/"FOLDER, NAME)
 #endif
 #endif
+#ifndef FORCE_ASM
+#define FORCE_ASM(A) __asm__(A)
+#endif
 __asm__(".include \"include/macro.inc\"\n");
 #else
 #define INCLUDE_ASM(FOLDER, NAME)
 #define INCLUDE_RODATA(FOLDER, NAME)
+#define FORCE_ASM(A)
 #endif
 
 

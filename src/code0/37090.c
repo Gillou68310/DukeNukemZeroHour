@@ -194,7 +194,9 @@ void func_8003671C(s16 playernum, u16 arg1, s16 arg2, s16 arg3)
                         if (actor->unk7E > 0)
                         {
                             m = (arg1 * actor->unk7E) / 100;
-                            n = (m > 0) ? n = m : 1;
+                            n = 1;
+                            if (m > 0)
+                                n = m;
 
                             arg1 -= n;
                             actor->unk7E -= n;
