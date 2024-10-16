@@ -4493,12 +4493,12 @@ static void func_801C9C18(void)
     }
 }
 
-#ifdef NON_MATCHING
 /*801C9D68*/
 void func_801C9D68(void)
 {
-    s32 i, j;
-    u8 k, l, m;
+    s32 i;
+    u32 l;
+    u8 j, m, k;
     s8 **ptr;
 
     for (i = 0; i < D_801CC8CA; i++)
@@ -4511,7 +4511,7 @@ void func_801C9D68(void)
         }
     }
 
-    l = *D_801CDC68;
+    l = k = D_801CDC68[0];
     if ((l == 0) || (gPlayer[0].unk45 != 0))
     {
         func_8008E01C(30, 5);
@@ -4519,33 +4519,33 @@ void func_801C9D68(void)
     }
     else
     {
-        k = *D_801CDC68;
+        j = k & 3;
         m = D_801CDC68[1];
-        if ((k&3) < 2)
+        if (j < 2)
         {
-            do { j = k >> 2; } while (0); /*FAKE*/
+            if (j == 0)
+            {
+                l = l >> 2;
+            }
+            else
+            {
+                l = l >> 2;
+                l += (m << 6);
+            }
 
-            if ((k&3) != 0)
-                j += (m << 6);
-
-            if (D_801CDB0C < j)
+            if (D_801CDB0C < (s32)l)
             {
                 D_801CDB0C++;
                 return;
             }
-
             D_801CDB0C = 0;
-            k = (k&3) + 1;
+            l = j + 1;
             ptr = &D_801CDC68;
-            D_801CDC68 = &(*ptr)[k];
+            D_801CDC68 = &(*ptr)[l];
         }
         func_801C9C18();
     }
 }
-#else
-/*801C9D68*/
-INCLUDE_ASM("src/code1/EB300", func_801C9D68);
-#endif
 
 /*801C9E7C*/
 void func_801C9E7C(void)
