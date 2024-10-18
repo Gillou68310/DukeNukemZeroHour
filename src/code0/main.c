@@ -1195,7 +1195,7 @@ static void mainLoop(void *arg)
         D_801B0815 = 1;
         break;
     }
-#elif VERSION_FR
+#elif defined(VERSION_FR) || defined(VERSION_EU)
     switch (osTvType)
     {
     case OS_TV_PAL:

@@ -12,10 +12,8 @@
 
 #if VERSION_US
 #define D_8012FCB0_SIZE 48
-#elif VERSION_FR
+#elif defined(VERSION_FR) || defined(VERSION_EU)
 #define D_8012FCB0_SIZE 64
-#elif VERSION_EU
-#define D_8012FCB0_SIZE 48
 #endif
 
 typedef struct

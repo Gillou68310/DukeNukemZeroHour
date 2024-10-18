@@ -9,7 +9,7 @@ options:
   header_encoding: ASCII
   platform: n64
   create_undefined_funcs_auto: False
-  create_undefined_syms_auto: False
+  create_undefined_syms_auto: True
   undefined_funcs_auto_path: linker_scripts/eu/undefined_funcs_auto.txt
   undefined_syms_auto_path: linker_scripts/eu/undefined_syms_auto.txt
   symbol_addrs_path: "versions/eu/symbol_addrs.txt"
@@ -67,21 +67,21 @@ segments:
     subsegments:
     #.text section
       - [0x1000,  hasm,     src/code0/entrypoint]
-      - [0x1050,  asm,      src/code0/main]
+      - [0x1050,  c,        src/code0/main]
       - [0x4590,  asm,      src/code0/code0]
       - [0xBC090, bin,      ucode/rspboot.text]
       - [0xBC160, bin,      ucode/gspF3DEX2.NoN.fifo.text]
       - [0xBD4F0, bin,      ucode/aspMain.text]
     #.data section
-      - [0xBE310, data,     src/code0/main]
+      - [0xBE310, .data,    src/code0/main]
       - [0xBE370, data,     src/code0/code0]
       - [0xE4CA0, bin,      ucode/gspF3DEX2.NoN.fifo.data]
       - [0xE50C0, bin,      ucode/aspMain.data]
     #.rodata section
-      - [0xE5380, rodata,   src/code0/main]
+      - [0xE5380, .rodata,  src/code0/main]
       - [0xE5400, rodata,   src/code0/code0]
     #.bss section
-      - {start: 0xEB6A0, type: bss, vram: 0x800EAAA0, name: src/code0/main}
+      - {start: 0xEB6A0, type: .bss, vram: 0x800EAAA0, name: src/code0/main}
       - {start: 0xEB6A0, type: bss, vram: 0x800F73E0, name: src/code0/code0}
 
   - name: code1
