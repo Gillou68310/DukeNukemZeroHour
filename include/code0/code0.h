@@ -10,9 +10,9 @@
 #define MAXKEYS 17
 #define MAXACTORS 150
 
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
 #define D_8012FCB0_SIZE 48
-#elif defined(VERSION_FR) || defined(VERSION_EU)
+#elif VERSION_FR
 #define D_8012FCB0_SIZE 64
 #endif
 

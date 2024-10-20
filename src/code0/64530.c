@@ -2153,7 +2153,7 @@ void func_80069E50(void)
             }
 
             changeSpriteStat(i, 0);
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
             func_800A419C(0, "BABE SAVED!");
 #elif VERSION_FR
             func_800A419C(0, "GONZESSE SAUVEE!");

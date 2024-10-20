@@ -33,7 +33,7 @@ typedef struct {
 
 /*801CA14C*/
 MapChapter gMapChapter[MAP_NUM+1] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { PRESENT_DAY, "MEAN STREETS" },
     { PRESENT_DAY, "LIBERTY OR DEATH" },
     { PRESENT_DAY, "NUCLEAR WINTER" },
@@ -878,7 +878,7 @@ void func_801C1950(void)
                 D_801CC914->unk34 = D_801CC928;
                 D_801CE5E4->unk38 = D_801CE5A4;
                 D_801CC914->unk38 = D_801CC7F8;
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
                 D_801CE5E0 = func_8007FE2C("PRESS START", gScreenWidth / 2, gScreenHeight - 48, 64, 1, 0);
 #elif VERSION_FR
                 D_801CE5E0 = func_8007FE2C("APPUYER SUR START", gScreenWidth / 2, gScreenHeight - 48, 64, 1, 0);
@@ -1044,7 +1044,7 @@ static void _menuExit(void)
 
 /*801CA3D8*/
 static code1UnkStruct5 D_801CA3D8[5] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 1, 0, "IF RUMBLE PAKS ARE", NULL, NULL, NULL, NULL },
     { 1, -1, 1, 0, "TO BE USED, PLEASE", NULL, NULL, NULL, NULL },
     { 1, -1, 1, 0, "INSERT THEM INTO", NULL, NULL, NULL, NULL },
@@ -1195,7 +1195,7 @@ void func_801C3524(void)
 
 /*801CA474*/
 static code1UnkStruct5 D_801CA474[3] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, 280, 0, 0, "2", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "3", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "4", NULL, NULL, NULL, NULL },
@@ -1210,7 +1210,7 @@ static code1UnkStruct5 D_801CA474[3] = {
 
 /*801CA4D8*/
 static code1UnkStruct5 D_801CA4D8[11] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, 280, 0, 0, "DEFAULT", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "a", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "b", NULL, NULL, NULL, NULL },
@@ -1241,7 +1241,7 @@ static code1UnkStruct5 D_801CA4D8[11] = {
 
 /*801CA61C*/
 static code1UnkStruct5 D_801CA61C[3] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, 280, 0, 0, "LOW", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "MEDIUM", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "HIGH", NULL, NULL, NULL, NULL },
@@ -1256,7 +1256,7 @@ static code1UnkStruct5 D_801CA61C[3] = {
 
 /*801CA680*/
 static code1UnkStruct5 D_801CA680[8] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, 280, 0, 0, "DUKE", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "ATOMIC", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "SHAKEN", NULL, NULL, NULL, NULL },
@@ -1281,7 +1281,7 @@ static code1UnkStruct5 D_801CA680[8] = {
 
 /*801CA770*/
 static code1UnkStruct5 D_801CA770[2] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, 280, 0, 0, "OFF", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "ON", NULL, NULL, NULL, NULL },
 #elif VERSION_FR
@@ -1303,7 +1303,7 @@ static code1UnkStruct6 _ouiNon = {ARRAY_COUNT(_ouiNonElmt), _ouiNonElmt, 0, 0, N
 
 /*801CA7B8*/
 static code1UnkStruct5 D_801CA7B8[2] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, 280, 0, 0, "HORZ", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "VERT", NULL, NULL, NULL, NULL },
 #elif VERSION_FR
@@ -1316,7 +1316,7 @@ static code1UnkStruct5 D_801CA7B8[2] = {
 
 /*801CA800*/
 static code1UnkStruct5 D_801CA800[2] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, 280, 0, 0, "EQUAL", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "FULL", NULL, NULL, NULL, NULL },
 #elif VERSION_FR
@@ -1329,7 +1329,7 @@ static code1UnkStruct5 D_801CA800[2] = {
 
 /*801CA848*/
 static code1UnkStruct5 D_801CA848[2] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, 280, 0, 0, "MONO", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "STEREO", NULL, NULL, NULL, NULL },
 #elif VERSION_FR
@@ -1342,7 +1342,7 @@ static code1UnkStruct5 D_801CA848[2] = {
 
 /*801CA890*/
 static code1UnkStruct5 D_801CA890[8] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 0, 332, 0, 0, "^OFF", NULL, NULL, NULL, NULL },
     { 0, 332, 0, 0, "~}|", NULL, NULL, NULL, NULL },
     { 0, 332, 0, 0, "~}}|", NULL, NULL, NULL, NULL },
@@ -1367,7 +1367,7 @@ static code1UnkStruct5 D_801CA890[8] = {
 
 /*801CA980*/
 static code1UnkStruct5 D_801CA980[3] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, 280, 0, 0, "NORMAL", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "MEDIUM", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "HIGHRES", NULL, NULL, NULL, NULL },
@@ -1382,7 +1382,7 @@ static code1UnkStruct5 D_801CA980[3] = {
 
 /*801CA9E4*/
 static code1UnkStruct5 D_801CA9E4[2] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 1, 0, "CONFIGURATION", NULL, NULL, NULL, NULL },
     { 0, 16, 0, 0, "PRESET", NULL, NULL, &D_801CA760, gConfig.controller_preset },
 #elif VERSION_FR
@@ -1395,7 +1395,7 @@ static code1UnkStruct5 D_801CA9E4[2] = {
 
 /*801CAA2C*/
 static code1UnkStruct5 D_801CAA2C[5] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 1, 0, "PLAYER SETUP", NULL, NULL, NULL, NULL },
     { 1, -1, 0, 0, "CONTROL CONFIGURATION", _menuControllerConfig, &D_801CAA1C, NULL, NULL, },
     { 0, 0, 0, 0, "CROSSHAIR", NULL, NULL, &D_801CA60C, gConfig.crosshair },
@@ -1414,7 +1414,7 @@ static code1UnkStruct5 D_801CAA2C[5] = {
 
 /*801CAAC8*/
 static code1UnkStruct5 D_801CAAC8[4] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 0, 0, "PLAYER ONE", _menuSelectPlayer, &D_801CAAB8, NULL, NULL },
     { 1, -1, 0, 0, "PLAYER TWO", _menuSelectPlayer, &D_801CAAB8, NULL, NULL },
     { 1, -1, 0, 0, "PLAYER THREE", _menuSelectPlayer, &D_801CAAB8, NULL, NULL },
@@ -1431,7 +1431,7 @@ static code1UnkStruct5 D_801CAAC8[4] = {
 
 /*801CAB48*/
 static code1UnkStruct5 D_801CAB48[8] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 1, 0, "OPTIONS", NULL, NULL, NULL, NULL },
     { 0, 0, 0, 0, "SFX VOLUME", NULL, NULL, &D_801CA970, &gConfig.mastervol },
     { 0, 0, 0, 0, "MUSIC VOLUME", NULL, NULL, &D_801CA970, &gConfig.musicvol },
@@ -1456,7 +1456,7 @@ static code1UnkStruct5 D_801CAB48[8] = {
 
 /*801CAC38*/
 static code1UnkStruct5 D_801CAC38[12] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, 280, 0, 0, "OFF", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "5", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "10", NULL, NULL, NULL, NULL },
@@ -1489,7 +1489,7 @@ static code1UnkStruct5 D_801CAC38[12] = {
 
 /*801CAD98*/
 static code1UnkStruct5 D_801CAD98[8] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, 280, 0, 0, "OFF", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "5", NULL, NULL, NULL, NULL },
     { 1, 280, 0, 0, "10", NULL, NULL, NULL, NULL },
@@ -1514,7 +1514,7 @@ static code1UnkStruct5 D_801CAD98[8] = {
 
 /*801CAE88*/
 static code1UnkStruct5 D_801CAE88[6] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 1, 0, "SELECT GAME TYPE", NULL, NULL, NULL, NULL },
     { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
     { 1, -1, 0, 0, "DUKEMATCH", _menuMultiplayerSelectLevel, NULL, NULL, NULL },
@@ -1535,7 +1535,7 @@ static code1UnkStruct5 D_801CAE88[6] = {
 
 /*801CAF40*/
 static code1UnkStruct5 D_801CAF40[9] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 1, 0, "MULTIPLAYER OPTIONS", NULL, NULL, NULL, NULL },
     { 0, 0, 0, 0, "PLAYERS", NULL, NULL, &D_801CA4C8, &gConfig.multiplayer.players },
     { 0, 0, 0, 0, "TIME LIMIT", NULL, NULL, &D_801CAE78, &gConfig.multiplayer.time_limit },
@@ -1562,7 +1562,7 @@ static code1UnkStruct5 D_801CAF40[9] = {
 
 /*801CB04C*/
 static code1UnkStruct5 D_801CB04C[4] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 1, 0, "SELECT DIFFICULTY", NULL, NULL, NULL, NULL },
     { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
     { 1, -1, 0, 0, "NORMAL", _menuSelectDifficulty, NULL, NULL, NULL },
@@ -1579,7 +1579,7 @@ static code1UnkStruct5 D_801CB04C[4] = {
 
 /*801CB0CC*/
 static code1UnkStruct5 D_801CB0CC[4] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 1, 0, "SELECT", NULL, NULL, NULL, NULL },
     { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
     { 1, -1, 0, 0, "SINGLE PLAYER", _menuEnter, &D_801CB0BC, NULL, NULL },
@@ -1596,7 +1596,7 @@ static code1UnkStruct5 D_801CB0CC[4] = {
 
 /*801CB14C*/
 static code1UnkStruct5 D_801CB14C[12] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 0, -16, 2, 0, "SMG", NULL, NULL, &D_801CA7A8, &gCheatWeaponSmgConfig },
     { 0, -16, 2, 0, "BLASTER", NULL, NULL, &D_801CA7A8, &gCheatWeaponBlasterConfig },
     { 0, -16, 2, 0, "SNIPER", NULL, NULL, &D_801CA7A8, &gCheatWeaponSniperConfig },
@@ -1629,7 +1629,7 @@ static code1UnkStruct5 D_801CB14C[12] = {
 
 /*801CB2AC*/
 static code1UnkStruct5 D_801CB2AC[4] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 0, -16, 2, 0, "FIRST PERSON", NULL, NULL, &D_801CA7A8, &gCheatFirstPersonConfig },
     { 0, -16, 2, 0, "ACTION NUKEM", NULL, NULL, &D_801CA7A8, &gCheatActionNukemConfig },
     { 0, -16, 2, 0, "SELECT SKIN", NULL, NULL, &D_801CA7A8, &gCheatSelectSkinConfig },
@@ -1646,7 +1646,7 @@ static code1UnkStruct5 D_801CB2AC[4] = {
 
 /*801CB32C*/
 static code1UnkStruct5 D_801CB32C[7] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 0, -16, 2, 0, "BIG HEAD MODE", NULL, NULL, &D_801CA7A8, &gCheatBigHeadModeConfig },
     { 0, -16, 2, 0, "FLAT SHADING", NULL, NULL, &D_801CA7A8, &gCheatFlatShadingConfig },
     { 0, -16, 2, 0, "WEATHER", NULL, NULL, &D_801CA7A8, &gCheatWeatherConfig },
@@ -1669,7 +1669,7 @@ static code1UnkStruct5 D_801CB32C[7] = {
 
 /*801CB400*/
 static code1UnkStruct5 D_801CB400[5] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 1, 0, "CHEATS", NULL, NULL, NULL, NULL },
     { 1, -1, 0, 0, "WEAPONS", _menuEnter, &D_801CB29C, NULL, NULL },
     { 1, -1, 0, 0, "GAME TYPE", _menuEnter, &D_801CB31C, NULL, NULL },
@@ -1688,7 +1688,7 @@ static code1UnkStruct5 D_801CB400[5] = {
 
 /*801CB49C*/
 static code1UnkStruct5 D_801CB49C[5] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 1, 0, D_801CDBB0, NULL, NULL, NULL, NULL },
     { 1, -1, 0, 0, "START GAME", _menuEnter, &D_801CB13C, NULL, NULL },
     { 1, -1, 0, 0, "LOAD GAME", _menuLoadGame, NULL, NULL, NULL },
@@ -1707,7 +1707,7 @@ static code1UnkStruct5 D_801CB49C[5] = {
 
 /*801CB538*/
 code1UnkStruct5 D_801CB538[9] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 0, -16, 0, 0, "SFX VOLUME", NULL, NULL, &D_801CA970, &gConfig.mastervol },
     { 0, -16, 0, 0, "MUSIC VOLUME", NULL, NULL, &D_801CA970, &gConfig.musicvol },
     { 0, -16, 0, 0, "SOUND", NULL, NULL, &D_801CA880, &gConfig.sound },
@@ -1734,7 +1734,7 @@ code1UnkStruct5 D_801CB538[9] = {
 
 /*801CB644*/
 static code1UnkStruct5 D_801CB644[3] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 1, 0, "QUIT GAME?", NULL, NULL, NULL, NULL },
     { 1, -1, 0, 0, "NO", _menuBack, NULL, NULL, NULL },
     { 1, -1, 0, 0, "YES", func_801C3874, NULL, NULL, NULL },
@@ -1749,7 +1749,7 @@ static code1UnkStruct5 D_801CB644[3] = {
 
 /*801CB6A8*/
 static code1UnkStruct5 D_801CB6A8[2] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 0, 0, "CONTINUE GAME", func_801C392C, NULL, NULL, NULL },
     { 1, -1, 0, 0, "RESTART LEVEL", func_801C38DC, NULL, NULL, NULL },
 #elif VERSION_FR
@@ -1762,7 +1762,7 @@ static code1UnkStruct5 D_801CB6A8[2] = {
 
 /*801CB6F0*/
 static code1UnkStruct5 D_801CB6F0[2] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 0, 0, "REPLAY SAVED GAME", func_801C399C, NULL, NULL, NULL },
     { 1, -1, 0, 0, "RESTART LEVEL", func_801C3974, NULL, NULL, NULL },
 #elif VERSION_FR
@@ -1775,7 +1775,7 @@ static code1UnkStruct5 D_801CB6F0[2] = {
 
 /*801CB738*/
 static code1UnkStruct5 D_801CB738[3] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 1, 0, "RESTART LEVEL?", NULL, NULL, NULL, NULL },
     { 1, -1, 0, 0, "NO", _menuBack, NULL, NULL, NULL },
     { 1, -1, 0, 0, "YES", _menuEnter, &D_801CB728, NULL, NULL },
@@ -1790,7 +1790,7 @@ static code1UnkStruct5 D_801CB738[3] = {
 
 /*801CB79C*/
 static code1UnkStruct5 D_801CB79C[3] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 1, 0, "RESTART LEVEL?", NULL, NULL, NULL, NULL },
     { 1, -1, 0, 0, "NO", _menuBack, NULL, NULL, NULL },
     { 1, -1, 0, 0, "YES", func_801C38DC, NULL, NULL, NULL },
@@ -1805,7 +1805,7 @@ static code1UnkStruct5 D_801CB79C[3] = {
 
 /*801CB800*/
 static code1UnkStruct5 D_801CB800[4] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 0, 0, "CONTINUE", _menuBack, NULL, NULL, NULL },
     { 1, -1, 0, 0, "OPTIONS", _menuEnter, &D_801CB634, NULL, NULL },
     { 1, -1, 0, 0, "RESTART", _menuEnter, &D_801CB78C, NULL, NULL },
@@ -1822,7 +1822,7 @@ static code1UnkStruct5 D_801CB800[4] = {
 
 /*801CB880*/
 static code1UnkStruct5 D_801CB880[4] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 0, 0, "CONTINUE", _menuBack, NULL, NULL, NULL },
     { 1, -1, 0, 0, "OPTIONS", _menuEnter, &D_801CB634, NULL, NULL },
     { 1, -1, 0, 0, "RESTART", _menuEnter, &D_801CB7F0, NULL, NULL },
@@ -1839,7 +1839,7 @@ static code1UnkStruct5 D_801CB880[4] = {
 
 /*801CB900*/
 static code1UnkStruct5 D_801CB900[2] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 0, 0, "SAVE", _menuSaveGame, NULL, NULL, NULL },
     { 1, -1, 0, 0, "CONTINUE WITHOUT SAVING", func_801C39C4, NULL, NULL, NULL },
 #elif VERSION_FR
@@ -2673,7 +2673,7 @@ void func_801C542C(void)
         D_801CC88C = -1;
         D_801CF6E0[0] = func_800802C0(gMapChapter[gMapNum].mapname, gScreenWidth / 2, -12, 180, 1);
         func_801C14C4(D_801CF6E0[0], 32, 0xFF, 32);
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
         D_801CF6E0[1] = func_800802C0("TIME TAKEN:", 0, 65, 200, 0);
         D_801CF6E0[2] = func_800802C0("KILLS:", 0, 87, 200, 0);
         D_801CF6E0[3] = func_800802C0("BABES:", 0, 109, 200, 0);
@@ -2714,7 +2714,7 @@ void func_801C542C(void)
 
         if (_cheatAwarded)
         {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
             D_801CF6E0[6] = func_8007FE2C("CHEAT AWARDED", gScreenWidth/2, 128, 200, 1, 0);
 #elif VERSION_FR
             D_801CF6E0[6] = func_8007FE2C("TRUC OFFERT", gScreenWidth/2, 128, 200, 1, 0);
@@ -2727,7 +2727,7 @@ void func_801C542C(void)
             if (gTimeMachinePart & (1 << gMapNum))
             {
                 D_801CE59C = 1;
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
                 D_801CF6E0[7] = func_8007FE2C("TIME MACHINE PART FOUND",
                                               gScreenWidth / 2, (gScreenHeight / 2) + 96, 200, 1, 0);
 #elif VERSION_FR
@@ -2737,7 +2737,7 @@ void func_801C542C(void)
             }
             else
             {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
                 D_801CF6E0[7] = func_8007FE2C("TIME MACHINE PART NOT FOUND",
                                               gScreenWidth / 2, (gScreenHeight / 2) + 96, 200, 1, 0);
 #elif VERSION_FR
@@ -2823,7 +2823,7 @@ void func_801C542C(void)
 }
 
 /*801CB960*/ static char *D_801CB960[4] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     "PLAYER 1 WINS",
     "PLAYER 2 WINS",
     "PLAYER 3 WINS",
@@ -2842,7 +2842,7 @@ typedef struct {
 } _EB300UnkStruct3;
 
 /*801CB970*/ static _EB300UnkStruct3 D_801CB970 = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     {"PLAYER 1", "PLAYER 2", "PLAYER 3", "PLAYER 4"},
     {"BLUE", "RED"},
 #elif VERSION_FR
@@ -2881,7 +2881,7 @@ static void func_801C5C68(void)
     D_801CC88C = -1;
     D_801CF6E0[0] = func_800802C0(gMapChapter[gMapNum].mapname, gScreenWidth / 2, 24, 200, 1);
     func_801C14C4(D_801CF6E0[0], 32, 0xFF, 32);
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     D_801CF6E0[1] = func_800802C0("PRESS START TO ENTER", gScreenWidth/2, 186, 200, 1);
 #elif VERSION_FR
     D_801CF6E0[1] = func_800802C0("APPUYEZ SUR START POUR", gScreenWidth/2, 186, 200, 1);
@@ -2933,7 +2933,7 @@ static void func_801C5C68(void)
             D_801CF6E0[3] = func_800802C0(D_801CB960[n], gScreenWidth/2, 102, 200, 1);
         else
         {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
             D_801CF6E0[3] = func_800802C0("DRAW", gScreenWidth/2, 102, 200, 1);
 #elif VERSION_FR
             D_801CF6E0[3] = func_800802C0("MATCH NUL", gScreenWidth/2, 102, 200, 1);
@@ -3074,7 +3074,7 @@ void func_801C66D8(void)
                         func_801C1114();
                         func_801C1158(0, 0, 0, 0xFF);
                         D_801CC88C = -1;
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
                         func_8007FE2C("EXPANSION PAK FOUND", gScreenWidth / 2, (gScreenHeight / 2) + 150, 0, i, 0);
 #elif VERSION_FR
                         func_8007FE2C("PACK D'EXTENSION DETECTE", gScreenWidth / 2, (gScreenHeight / 2) + 150, 0, i, 0);
@@ -3698,7 +3698,7 @@ void func_801C764C(void)
         D_800E0F58 = 1;
         func_8007FD8C(&D_800DFB08[0], 11);
         func_8007FD8C(&D_800E047C[0], 14);
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
         func_800802C0("SELECT LEVEL", gScreenWidth/2, 24, 64, 1);
 #elif VERSION_FR
         func_800802C0("CHOISIR NIVEAU", gScreenWidth/2, 24, 64, 1);
@@ -3727,7 +3727,7 @@ void func_801C764C(void)
         D_801CA3D4 = gScreenHeight/2 + 100;
         D_801CC8B0 = func_8007FE2C(gMapChapter[D_801CE5DC].mapname, gScreenWidth / 2, D_801CA3D4, 64, 1, 0);
         D_801CA3D4 += 12;
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
         D_801CF6E0[1] = func_8007FE2C("TIME TAKEN:", 48, D_801CA3D4 + 12, 64, 0, 0);
         D_801CF6E0[2] = func_8007FE2C("KILLS:", 48, D_801CA3D4 + 24, 64, 0, 0);
         D_801CF6E0[3] = func_8007FE2C("BABES:", 48, D_801CA3D4 + 36, 64, 0, 0);
@@ -3760,7 +3760,7 @@ void func_801C764C(void)
         if ((D_801CE5DC == MAP_WETWORLD) || (D_801CE5DC == MAP_BOSS_HOG) ||
             (D_801CE5DC == MAP_CYBORG_SCORPION) || (D_801CE5DC >= MAP_THE_RACK))
         {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
             sprintf(D_801CDB58[5], "NONE");
 #elif VERSION_FR
             sprintf(D_801CDB58[5], "AUCUN");
@@ -3846,7 +3846,7 @@ void func_801C764C(void)
                 if ((D_801CE5DC == MAP_WETWORLD) || (D_801CE5DC == MAP_BOSS_HOG) ||
                     (D_801CE5DC == MAP_CYBORG_SCORPION) || (D_801CE5DC >= MAP_THE_RACK))
                 {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
                     sprintf(D_801CDB58[5], "NONE");
 #elif VERSION_FR
                     sprintf(D_801CDB58[5], "AUCUN");
@@ -3965,7 +3965,7 @@ static void func_801C8650(void)
         func_80083700(1, &D_801CE5E8[i], 0, 0);
 
     D_800E0F58 = 1;
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     func_800802C0("SELECT LEVEL", (gScreenWidth / 2), 24, 64, 1);
 #elif VERSION_FR
     func_800802C0("CHOISIR NIVEAU", (gScreenWidth / 2), 24, 64, 1);
@@ -4085,7 +4085,7 @@ void func_801C899C(void)
 
 /*801CBCA8*/
 static char *D_801CBCA8[16] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     "TURN LEFT",
     "TURN RIGHT",
     "MOVE FORWARD",

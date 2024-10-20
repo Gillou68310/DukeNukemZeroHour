@@ -6868,7 +6868,7 @@ static u8 func_80051684(s16 sectnum)
 
 /*800DF1C0*/
 static char *D_800DF1C0[4] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     "TNT BARREL",
     "FUSE WIRE",
     "PLUNGER BOX",
@@ -10114,7 +10114,7 @@ void func_80058E44(s32 spritenum)
     audio_800077F4(538, spritenum);
 }
 
-#if VERSION_FR
+#if defined(VERSION_FR) || defined(VERSION_EU)
 /*hack for wrong rodata aligment*/
 static const f64 _force_rodata_alignment = 0;
 #endif

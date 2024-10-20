@@ -52,7 +52,7 @@ static u8 D_800E0994[96] = {
 
 /*800E09F4*/
 static u8 D_800E09F4[96] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
     9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
     9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
@@ -87,7 +87,7 @@ static u8 D_800E0A54[96] = {
 
 /*800E0AB4*/
 static u8 D_800E0AB4[96] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     0x0C, 0x05, 0x01, 0x0F, 0x01, 0x13, 0x0E, 0x05, 0x07, 0x07, 0x01, 0x09,
     0x06, 0x06, 0x05, 0x0C, 0x11, 0x0C, 0x11, 0x11, 0x12, 0x11, 0x11, 0x0F,
     0x13, 0x12, 0x05, 0x01, 0x01, 0x09, 0x01, 0x0D, 0x12, 0x15, 0x15, 0x12,
@@ -306,7 +306,7 @@ code0UnkStruct16 *func_8007FE2C(char *arg0, s32 arg1, s32 arg2, s32 arg3, s32 ar
     ptr->unk70 = arg0;
 #if VERSION_US
     ptr->unk11 = 0xFF;
-#elif VERSION_FR
+#elif defined(VERSION_FR) || defined(VERSION_EU)
     ptr->unk11 = 0x96;
 #endif
     ptr->unk14 = 0;

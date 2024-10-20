@@ -126,7 +126,6 @@ else ifeq ($(VERSION),fr)
     CPPFLAGS += -DVERSION_FR=1
 else ifeq ($(VERSION),eu)
     CPPFLAGS += -DVERSION_EU=1
-    LDFLAGS += -T $(LINKER_DIR)/undefined_syms_auto.txt #TODO: remove
 else
 $(error Invalid VERSION variable detected. Please use either 'us' or 'fr' or 'eu')
 endif

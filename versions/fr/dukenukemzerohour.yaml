@@ -121,7 +121,6 @@ segments:
       - [0xAA0C0, c,        libs/libmus/src/aud_thread]
       - [0xAA380, c,        libs/libmus/src/lib_memory]
       - [0xAA4C0, c,        libs/libmus/src/aud_samples]
-      - [0xAA580, c,        libs/libultra/src/os/kdebugserver]
       - [0xAA580, hasm,     libs/libultra/src/gu/sqrtf]
       - [0xAA590, c,        libs/libultra/src/gu/cosf]
       - [0xAA6E0, c,        libs/libultra/src/gu/coss]
@@ -214,7 +213,7 @@ segments:
       - [0xB50C0, c,        libs/libultra/src/io/viswapcontext]
       - [0xB53D0, c,        libs/libultra/src/os/afterprenmi]
       - [0xB53F0, hasm,     libs/libultra/src/os/exceptasm]
-      - [0xB53F0, hasm,     libs/libultra/src/gu/libm_vals]
+      - [auto,    hasm,     libs/libultra/src/gu/libm_vals]
       - [0xB5D60, c,        libs/libultra/src/os/initialize]
       - [0xB6040, hasm,     libs/libultra/src/os/interrupt]
       - [0xB60D0, c,        libs/libultra/src/os/seteventmesg]
@@ -280,7 +279,6 @@ segments:
       - [0xBA740, c,        libs/libultra/src/libc/xlitob]
       - [0xBA990, c,        libs/libultra/src/libc/xldtob]
       - [0xBB410, c,        libs/libultra/src/libc/ldiv]
-      - [0xBB5D0, c,        libs/libkmc/src/errno]
       - [0xBB5D0, c,        libs/libkmc/src/sqrt]
       - [0xBB7F0, c,        libs/libkmc/src/strcmp]
       - [0xBB900, c,        libs/libkmc/src/strcpy]
@@ -470,6 +468,8 @@ segments:
       - {start: 0xEB820, type: .bss, vram: 0x800FD060, name: libs/libultra/src/io/sptask}
       - {start: 0xEB820, type: .bss, vram: 0x800FD0A0, name: libs/libultra/src/io/siacs}
       - {start: 0xEB820, type: .bss, vram: 0x800FD0B0, name: libs/libultra/src/io/piacs}
+      - {start: 0xEB820, type: .bss, vram: 0x800FD0C0, name: libs/libultra/src/os/kdebugserver}
+      - {start: 0xEB820, type: .bss, vram: 0x800FD0C0, name: libs/libkmc/src/errno}
       - {start: 0xEB820, type: .bss, vram: 0x800FD0C0, name: src/code0/code0}
       - {start: 0xEB820, type:  bss, vram: 0x800FD0C0, name: src/code0/common}
 
@@ -499,20 +499,20 @@ segments:
     vram: 0x01000000
     subalign: 4 #Is it?
     subsegments:
-    - {start: 0xF7490,  type:  .data,   vram: 0x01000000, name: src/static/F6D70}
-    - {start: 0xF8CF0,  type:  .data,   vram: 0x01001860, name: src/static/spinit}
-    - {start: 0xF8E50,  type:  .data,   vram: 0x010019C0, name: src/static/tileinfo}
-    - {start: 0x106670, type:  .data,   vram: 0x0100F1E0, name: src/static/105F50}
-    - {start: 0x1189F0, type:  .data,   vram: 0x01021560, name: src/static/strinfo_fr}
-    - {start: 0x1199A0, type:  .data,   vram: 0x01022510, name: src/static/119280}
-    - {start: 0x11A020, type:  .data,   vram: 0x01022B90, name: src/static/sintable}
-    - {start: 0x11B020, type:  .data,   vram: 0x01023B90, name: src/static/radarang}
-    - {start: 0x11BA20, type:  .data,   vram: 0x01024590, name: src/static/11B300}
-    - {start: 0x11D190, type:  .data,   vram: 0x01025D00, name: src/static/mapinfo}
-    - {start: 0x11DC40, type:  .data,   vram: 0x010267B0, name: src/static/11D520}
-    - {start: 0x11DEA0, type:  .rodata, vram: 0x01026A10, name: src/static/strinfo_fr}
-    - {start: 0x120618, type:  .rodata, vram: 0x01029188, name: src/static/119280}
-    - {start: 0x12077C, type:  .rodata, vram: 0x010292EC, name: src/static/11B300}
+      - {start: 0xF7490,  type: .data,   vram: 0x01000000, name: src/static/F6D70}
+      - {start: 0xF8CF0,  type: .data,   vram: 0x01001860, name: src/static/spinit}
+      - {start: 0xF8E50,  type: .data,   vram: 0x010019C0, name: src/static/tileinfo}
+      - {start: 0x106670, type: .data,   vram: 0x0100F1E0, name: src/static/105F50}
+      - {start: 0x1189F0, type: .data,   vram: 0x01021560, name: src/static/strinfo_fr}
+      - {start: 0x1199A0, type: .data,   vram: 0x01022510, name: src/static/119280}
+      - {start: 0x11A020, type: .data,   vram: 0x01022B90, name: src/static/sintable}
+      - {start: 0x11B020, type: .data,   vram: 0x01023B90, name: src/static/radarang}
+      - {start: 0x11BA20, type: .data,   vram: 0x01024590, name: src/static/11B300}
+      - {start: 0x11D190, type: .data,   vram: 0x01025D00, name: src/static/mapinfo}
+      - {start: 0x11DC40, type: .data,   vram: 0x010267B0, name: src/static/11D520}
+      - {start: 0x11DEA0, type: .rodata, vram: 0x01026A10, name: src/static/strinfo_fr}
+      - {start: 0x120618, type: .rodata, vram: 0x01029188, name: src/static/119280}
+      - {start: 0x12077C, type: .rodata, vram: 0x010292EC, name: src/static/11B300}
 
   #tiles
   - name: tiles

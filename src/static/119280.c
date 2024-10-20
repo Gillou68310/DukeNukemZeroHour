@@ -109,7 +109,7 @@ u8 D_01022790[512] = {
 
 /*01022990*/
 ControlMapping gControlPreset[8] = {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     {
         {
             "CONTROL STICK LEFT",

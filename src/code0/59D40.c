@@ -2520,7 +2520,7 @@ void func_8005FC20(s32 spritenum, s32 arg1)
 /*8005FC34*/
 void func_8005FC34(s32 spritenum, s32 arg1)
 {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
     func_800A419C(0, "BABE SAVED!");
 #elif VERSION_FR
     func_800A419C(0, "GONZESSE SAUVEE!");

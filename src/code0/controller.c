@@ -23,7 +23,7 @@
 #if VERSION_US
 #define __C__ 0xFF
 #define GAMECODE 0x4E445A45 /*NDZE*/
-#elif VERSION_FR
+#elif defined(VERSION_FR) || defined(VERSION_EU)
 #define __C__ 0xC8
 #define GAMECODE 0x4E445A50 /*NDZP*/
 #endif
@@ -44,7 +44,7 @@ typedef struct {
 
 /*.data*/
 /*800E0F60*/ static char D_800E0F60[67] = "                0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#'*+,-./:=?@";
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_EU)
 /*800E0FA4*/ static char D_800E0FA4[30] = "If Rumble Paks are to be used";
 /*800E0FC4*/ static char D_800E0FC4[24] = "please insert them into";
 /*800E0FDC*/ static char D_800E0FDC[17] = "the Controllers.";
@@ -53,8 +53,13 @@ typedef struct {
 /*800E101C*/ static char D_800E101C[7] = "A = No";
 /*800E1024*/ static char D_800E1024[8] = "B = Yes";
 /*800E102C*/ static char D_800E102C[10] = "Z = Retry";
+#if VERSION_EU
+/*800E1038*/ static char D_800E1038[19] = "B = Attempt repair";
+/*800E1040*/ static char D_800E1040[30] = "Z = Insert new controller pak";
+#elif VERSION_US
 /*800E1038*/ static char D_800E1038[8] = "B = Yes";
 /*800E1040*/ static char D_800E1040[10] = "Z = Retry";
+#endif
 /*800E104C*/ static char D_800E104C[26] = "Controller Pak exchanged.";
 /*800E1068*/ static char D_800E1068[21] = "Data checksum error.";
 /*800E1080*/ static char D_800E1080[24] = "Controller reset error.";
@@ -100,8 +105,15 @@ typedef struct {
 /*800E145C*/ static char D_800E145C[25] = "insert a Controller Pak.";
 /*800E1478*/ static char D_800E1478[27] = "No Controller Pak present.";
 /*800E1494*/ static char D_800E1494[33] = "A valid Controller Pak is needed";
+#if VERSION_EU
+static char D_800E1818_E2418[19] = "to save game data.";
+static char D_800E182C_E242C[27] = "If you would like to use a";
+static char D_800E1848_E2448[29] = "Controller Pak insert it now";
+static char D_800E1868_E2468[28] = "or continue without saving.";
+#elif VERSION_US
 /*800E14B8*/ static char D_800E14B8[34] = "to save game data. Press START to";
 /*800E14DC*/ static char D_800E14DC[25] = "continue without saving.";
+#endif
 /*800E14F8*/ static char D_800E14F8[24] = "Damaged Controller Pak.";
 /*800E1510*/ static char D_800E1510[35] = "Would you like to manage your Pak?";
 /*800E1534*/ static char D_800E1534[14] = "Note deleted.";
@@ -907,7 +919,7 @@ static u8 func_80088910(void)
         func_8007FF94(D_800E14B8, __C__);
         func_8007FF94(D_800E14DC, __C__);
         D_800E1685 = 11;
-#elif VERSION_FR
+#elif defined(VERSION_FR) || defined(VERSION_EU)
         func_8007FF94(D_800E1330, __C__);
         func_8007FF94(D_800E1350, __C__);
         func_8007FF94(D_800E11CC, __C__);
@@ -963,7 +975,7 @@ static u8 func_80088910(void)
                 func_8008A370(CONTROLLER_PFS_REPAIR_ID, (intptr_t)&_contPfs[_channel], 0, 0, 0, 0, 0, 0);
 #if VERSION_US
                 D_800E1685 = 5;
-#elif VERSION_FR
+#elif defined(VERSION_FR) || defined(VERSION_EU)
                 D_800E1685 = 47;
 #endif
             }
@@ -1085,7 +1097,7 @@ static u8 func_80088910(void)
                 func_8008A370(CONTROLLER_PFS_REPAIR_ID, (intptr_t)&_contPfs[_channel], 0, 0, 0, 0, 0, 0);
 #if VERSION_US
                 D_800E1685 = 5;
-#elif VERSION_FR
+#elif defined(VERSION_FR) || defined(VERSION_EU)
                 D_800E1685 = 47;
 #endif
             }
@@ -1112,7 +1124,7 @@ static u8 func_80088910(void)
             }
         }
         break;
-#if VERSION_FR
+#if defined(VERSION_FR) || defined(VERSION_EU)
     case 47:
         if (D_80119A70 == 0)
         {
@@ -1174,6 +1186,15 @@ static u8 func_80088FEC(void)
             func_8007FF94(D_800E194C_E254C, __C__);
             func_8007FF94(D_800E11CC, __C__);
             func_8007FF94(D_800E1218, __C__);
+#elif VERSION_EU
+            func_8007FF94(D_800E1478, __C__);
+            func_8007FF94(D_800E1494, __C__);
+            func_8007FF94(D_800E1818_E2418, __C__);
+            func_8007FF94(D_800E182C_E242C, __C__);
+            func_8007FF94(D_800E1848_E2448, __C__);
+            func_8007FF94(D_800E1868_E2468, __C__);
+            func_8007FF94(D_800E11CC, __C__);
+            func_8007FF94(D_800E1218, __C__);
 #endif
             D_800FE408 = -1;
             D_800E1686 = 9;
@@ -1207,6 +1228,11 @@ static u8 func_80088FEC(void)
             func_8007FF94(D_800E18C0_E24C0, __C__);
             func_8007FF94(D_800E18E8_E24E8, __C__);
             func_8007FF94(D_800E194C_E254C, __C__);
+#elif VERSION_EU
+            func_8007FF94(D_800E14F8, __C__);
+            func_8007FF94(D_800E1494, __C__);
+            func_8007FF94(D_800E1818_E2418, __C__);
+            func_8007FF94(D_800E1868_E2468, __C__);
 #endif
             D_800FE408 = -1;
             D_800E1686 = 9;
@@ -1286,7 +1312,7 @@ static u8 func_80088FEC(void)
         func_8007FF94(D_800E14DC, __C__);
         D_800FE408 = -1;
         D_800E1686 = 9;
-#elif VERSION_FR
+#elif defined(VERSION_FR) || defined(VERSION_EU)
         func_8007FF94(D_800E1330, __C__);
         func_8007FF94(D_800E1350, __C__);
         func_8007FF94(D_800E11CC, __C__);
@@ -1330,7 +1356,7 @@ static u8 func_80088FEC(void)
                 func_8008A370(CONTROLLER_PFS_REPAIR_ID, (intptr_t)&_contPfs[_channel], 0, 0, 0, 0, 0, 0);
 #if VERSION_US
                 D_800E1686 = 5;
-#elif VERSION_FR
+#elif defined(VERSION_FR) || defined(VERSION_EU)
                 D_800E1686 = 47;
 #endif
             }
@@ -1420,7 +1446,7 @@ static u8 func_80088FEC(void)
                 func_8007FF94(D_800E1330, __C__);
                 func_8007FF94(D_800E1350, __C__);
                 D_800E1686 = 8;
-#elif VERSION_FR
+#elif defined(VERSION_FR) || defined(VERSION_EU)
                 D_800E1686 = 48;
 #endif
             }
@@ -1455,7 +1481,7 @@ static u8 func_80088FEC(void)
                 func_8008A370(CONTROLLER_PFS_REPAIR_ID, (intptr_t)&_contPfs[_channel], 0, 0, 0, 0, 0, 0);
 #if VERSION_US
                 D_800E1686 = 5;
-#elif VERSION_FR
+#elif defined(VERSION_FR) || defined(VERSION_EU)
                 D_800E1686 = 47;
 #endif
             }
@@ -1482,7 +1508,7 @@ static u8 func_80088FEC(void)
             }
         }
         break;
-#if VERSION_FR
+#if defined(VERSION_FR) || defined(VERSION_EU)
     case 47:
         if (D_80119A70 == 0)
         {
@@ -2318,6 +2344,15 @@ u8 controller_8008AEF0(void)
                     func_8007FF94(D_800E194C_E254C, __C__);
                     func_8007FF94(D_800E11CC, __C__);
                     func_8007FF94(D_800E1218, __C__);
+#elif VERSION_EU
+                    func_8007FF94(D_800E1478, __C__);
+                    func_8007FF94(D_800E1494, __C__);
+                    func_8007FF94(D_800E1818_E2418, __C__);
+                    func_8007FF94(D_800E182C_E242C, __C__);
+                    func_8007FF94(D_800E1848_E2448, __C__);
+                    func_8007FF94(D_800E1868_E2468, __C__);
+                    func_8007FF94(D_800E11CC, __C__);
+                    func_8007FF94(D_800E1218, __C__);
 #endif
                     D_800FA31C = 7200;
                     D_800E168A = 4;
@@ -2907,6 +2942,15 @@ static u8 func_8008B8B0(void)
                 func_8007FF94(D_800E1908_E2508, __C__);
                 func_8007FF94(D_800E1924_E2524, __C__);
                 func_8007FF94(D_800E194C_E254C, __C__);
+                func_8007FF94(D_800E11CC, __C__);
+                func_8007FF94(D_800E1218, __C__);
+#elif VERSION_EU
+                func_8007FF94(D_800E1478, __C__);
+                func_8007FF94(D_800E1494, __C__);
+                func_8007FF94(D_800E1818_E2418, __C__);
+                func_8007FF94(D_800E182C_E242C, __C__);
+                func_8007FF94(D_800E1848_E2448, __C__);
+                func_8007FF94(D_800E1868_E2468, __C__);
                 func_8007FF94(D_800E11CC, __C__);
                 func_8007FF94(D_800E1218, __C__);
 #endif
