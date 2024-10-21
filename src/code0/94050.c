@@ -17,28 +17,28 @@ typedef struct {
     /*0x00*/ s32 x[3];
     /*0x0C*/ s32 y[3];
     /*0x18*/ s32 z[3];
-} _943B0UnkStruct2;
+} _94050UnkStruct2;
 
 typedef struct {
     /*0x00*/ u8 unk0;
     /*0x02*/ u16 unk2;
-    /*0x04*/ _943B0UnkStruct2 unk4;
+    /*0x04*/ _94050UnkStruct2 unk4;
     /*0x28*/ s32 unk28;
     /*0x2C*/ s32 unk2C;
-} _943B0UnkStruct1;
+} _94050UnkStruct1;
 
 /*.comm*/
-/*80106730*/ _943B0UnkStruct1 D_80106730[32] ALIGNED(16);
+/*80106730*/ _94050UnkStruct1 D_80106730[32] ALIGNED(16);
 /*80139870*/ s32 D_80139870;
-/*80197D20*/ _943B0UnkStruct2 D_80197D20 ALIGNED(8);
-/*801A19F8*/ _943B0UnkStruct2 D_801A19F8 ALIGNED(8);
+/*80197D20*/ _94050UnkStruct2 D_80197D20 ALIGNED(8);
+/*801A19F8*/ _94050UnkStruct2 D_801A19F8 ALIGNED(8);
 
 /*.text*/
 
 /*80093450*/
-static s32 func_80093450(s32 x, s32 y, s32 z, s32 sectnum, _943B0UnkStruct2 *arg4)
+static s32 func_80093450(s32 x, s32 y, s32 z, s32 sectnum, _94050UnkStruct2 *arg4)
 {
-    _943B0UnkStruct1 *ptr;
+    _94050UnkStruct1 *ptr;
     s32 i, j, spritenum;
 
     ptr = D_80106730;
@@ -76,7 +76,7 @@ static s32 func_80093450(s32 x, s32 y, s32 z, s32 sectnum, _943B0UnkStruct2 *arg
 /*80093670*/
 static s32 func_80093670(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
 {
-    _943B0UnkStruct2 *ptr;
+    _94050UnkStruct2 *ptr;
 
     ptr = &D_801A19F8;
     if ((krand() & 0xFFF) < 0x800)
@@ -253,7 +253,7 @@ void func_80093BB0(u16 wallnum)
 /*80094278*/
 void func_80094278(void)
 {
-    _943B0UnkStruct1 *ptr;
+    _94050UnkStruct1 *ptr;
     s32 i;
 
     gSPClearGeometryMode(gpDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN |
