@@ -843,7 +843,11 @@ void func_801C1950(void)
             }
             break;
         case 5:
+#if VERSION_PROTO
+            func_8007FE2C("@", gScreenWidth - 30, 60, 64, 1, 0);
+#else
             func_8007FE2C("^", gScreenWidth - 30, 60, 64, 1, 0);
+#endif
             D_801CDB04++;
             break;
         case 6:
@@ -1749,8 +1753,11 @@ static code1UnkStruct5 D_801CB644[3] = {
 
 /*801CB6A8*/
 static code1UnkStruct5 D_801CB6A8[2] = {
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 0, 0, "CONTINUE GAME", func_801C392C, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "RESTART LEVEL", func_801C38DC, NULL, NULL, NULL },
+#elif VERSION_PROTO
+    { 1, -1, 0, 0, "LOAD SAVED GAME", func_801C392C, NULL, NULL, NULL },
     { 1, -1, 0, 0, "RESTART LEVEL", func_801C38DC, NULL, NULL, NULL },
 #elif VERSION_FR
     { 1, -1, 0, 0, "CHARGER PARTIE ENREGIS.", func_801C392C, NULL, NULL, NULL },
@@ -1762,8 +1769,11 @@ static code1UnkStruct5 D_801CB6A8[2] = {
 
 /*801CB6F0*/
 static code1UnkStruct5 D_801CB6F0[2] = {
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
+#if defined(VERSION_US) || defined(VERSION_EU)
     { 1, -1, 0, 0, "REPLAY SAVED GAME", func_801C399C, NULL, NULL, NULL },
+    { 1, -1, 0, 0, "RESTART LEVEL", func_801C3974, NULL, NULL, NULL },
+#elif VERSION_PROTO
+    { 1, -1, 0, 0, "LOAD SAVED GAME", func_801C399C, NULL, NULL, NULL },
     { 1, -1, 0, 0, "RESTART LEVEL", func_801C3974, NULL, NULL, NULL },
 #elif VERSION_FR
     { 1, -1, 0, 0, "CHARGER PARTIE ENREGIS.", func_801C399C, NULL, NULL, NULL },
@@ -3088,7 +3098,9 @@ void func_801C66D8(void)
                         func_801C10C8();
                         func_8007FD8C(&D_800DFB08[0], 11);
                         func_8007FD8C(&D_800E0404[0], 13);
+#ifndef VERSION_PROTO
                         D_800BD3F8 = 1;
+#endif
                         func_801C1114();
                         func_8007FC08(&D_800E0404[0], NULL, 0, 0, 500);
                         func_801C1158(0, 0, 0, 0xFF);
@@ -3131,7 +3143,9 @@ void func_801C66D8(void)
                     func_801C10C8();
                     func_8007FD8C(&D_800DFB08[0], 11);
                     func_8007FD8C(&D_800E0404[0], 13);
+#ifndef VERSION_PROTO
                     D_800BD3F8 = 1;
+#endif
                     func_801C1114();
                     func_8007FC08(&D_800E0404[0], NULL, 0, 0, 500);
                     func_801C1158(0, 0, 0, 0xFF);
@@ -4064,7 +4078,7 @@ void func_801C899C(void)
         playSfx(748);
         func_801C0EDC(0x4000);
 
-#ifdef TARGET_N64
+#if defined(TARGET_N64) && !defined(VERSION_PROTO)
         prev = D_800FE9E0;
         while (prev == D_800FE9E0);
 #else

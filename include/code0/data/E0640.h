@@ -3,6 +3,12 @@
 
 #include "common.h"
 
+#if VERSION_PROTO
+#define D_800DFB08_SIZE 0x3B
+#else
+#define D_800DFB08_SIZE 0x3D
+#endif
+
 typedef struct
 {
     /*0x00*/ u8 *texture;
@@ -18,7 +24,7 @@ extern _E0640UnkStruct D_800DFA68[2];
 extern _E0640UnkStruct D_800DFA90[2];
 extern _E0640UnkStruct D_800DFAB8[2];
 extern _E0640UnkStruct D_800DFAE0[2];
-extern _E0640UnkStruct D_800DFB08[61];
+extern _E0640UnkStruct D_800DFB08[D_800DFB08_SIZE];
 extern _E0640UnkStruct D_800DFFCC[54];
 extern _E0640UnkStruct D_800E0404[4];
 extern _E0640UnkStruct D_800E0454[2];

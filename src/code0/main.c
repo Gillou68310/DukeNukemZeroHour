@@ -511,7 +511,7 @@ static void func_80001038(void)
     if (D_801AE914 != 0)
     {
 #if VERSION_PROTO
-        controller_8008A654();
+        controller_8008A5E0();
 #else
         if (D_800BD42C != 0)
         {
@@ -1381,7 +1381,11 @@ static void _viLoop(void *arg)
             main_80000450();
             osAfterPreNMI();
             MusStop(3, 0);
+#if VERSION_PROTO
+            controller_8008A5E0();
+#else
             controller_8008A654();
+#endif
 
             while (1)
                 controller_8008A724();

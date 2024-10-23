@@ -15,7 +15,10 @@ typedef struct {
 u8 controller_8008A070(void);
 void controller_8008A3EC(char *, code1UnkStruct3 *, s32);
 void controller_8008A4C4(u8 playernum, u16, u8);
+#ifndef VERSION_PROTO
 void controller_8008A654(void);
+#endif
+void controller_8008A5E0(void);
 void controller_8008A724(void);
 u8 controller_8008AD94(void);
 u8 controller_8008AEF0(void);

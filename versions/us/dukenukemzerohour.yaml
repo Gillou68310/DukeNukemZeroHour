@@ -4775,7 +4775,7 @@ segments:
   - [0x1A7E270, bin, sounds/sfx.bfx]
 
   - [0x1A8B5D0, bin, sounds/training_base]
-  
+
   - [0x1A8BEF0, bin, sounds/bank1.ptr]
   - [0x1A8DC60, bin, sounds/bank1.wbk]
   - [0x1B066D0, bin, sounds/western1]

@@ -919,7 +919,11 @@ s32 D_01022098 = 0x20000000;
 
 /*0102209C*/
 char *gLicenceStrInfo[35] = {
+#if VERSION_PROTO
+    "DUKE NUKEM@ ZERO HOUR@ (C)1998",
+#else
     "DUKE NUKEM^ ZERO HOUR^ (C)1999",
+#endif
     "3D REALMS ENTERTAINMENT.",
     "ALL RIGHTS RESERVED.",
     (char *)&D_01022098,

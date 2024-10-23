@@ -34,7 +34,7 @@ _E0640UnkStruct D_800DFAE0[2] = {
 };
 
 /*800DFB08*/
-_E0640UnkStruct D_800DFB08[0x3D] = {
+_E0640UnkStruct D_800DFB08[D_800DFB08_SIZE] = {
     { NULL, NULL, 0x200, 0, 0x10, 0xC },
     { NULL, NULL, 0x2C0, 0, 0x10, 0xC },
     { NULL, NULL, 0x380, 0, 0x10, 0xC },
@@ -93,8 +93,10 @@ _E0640UnkStruct D_800DFB08[0x3D] = {
     { NULL, NULL, 0x2B40, 0, 0x10, 0xC },
     { NULL, NULL, 0x2C00, 0, 0x10, 0xC },
     { NULL, NULL, 0x2CC0, 0, 0x10, 0xC },
+#ifndef VERSION_PROTO
     { NULL, NULL, 0x2D80, 0, 0x10, 0xC },
     { NULL, NULL, 0x2E40, 0, 0x10, 0xC },
+#endif
     { (u8 *)-1, (u8 *)-1, -1, -1, -1, -1 },
 };
 

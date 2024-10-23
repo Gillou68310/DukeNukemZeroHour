@@ -40492,7 +40492,11 @@ ModelInfo D_800D5274 = {
     0x5A,
 };
 
+#if VERSION_PROTO
+/*800D52A4*/ static ModelVertexInfo D_800D52A4 = {(s32)models_50FC40_bin+0xA3A8, NULL, 0, 0x486};
+#else
 /*800D52A4*/ static ModelVertexInfo D_800D52A4 = {(s32)models_CCDAC0_bin+0xA3A8, NULL, 0, 0x486};
+#endif
 
 /*800D52B0*/
 ModelInfo D_800D52B0 = {
