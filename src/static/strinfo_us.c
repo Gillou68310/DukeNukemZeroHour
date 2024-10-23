@@ -2,7 +2,7 @@
 #include "code0/code0.h"
 #include "static/strinfo.h"
 
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
 /*.data*/
 
 /*01021560*/

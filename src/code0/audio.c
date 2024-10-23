@@ -504,7 +504,7 @@ void audio_80006CC0(void)
         }
     }
 
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_PROTO)
     if (gMapNum == MAP_PROBING_THE_DEPTHS)
     {
         if (gPlayer[0].unk50 != -1)

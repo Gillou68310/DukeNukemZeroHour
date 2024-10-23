@@ -201,7 +201,7 @@ void func_8006A0A0(s16 spritenum)
                     ptr = gpKeyStrInfo[gMapNum][spr2->unk25-1];
                     if (*ptr != 0)
                     {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
                         sprintf(sp40, "%s REQUIRED", ptr);
 #elif VERSION_FR
                         sprintf(sp40, "%s", ptr);
@@ -296,7 +296,7 @@ void func_8006A0A0(s16 spritenum)
                             if (spr1->statnum == 10)
                             {
                                 char sp60[32];
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
                                 sprintf(sp60, "PULL SWITCHES TOGETHER");
 #elif VERSION_FR
                                 sprintf(sp60, "ACTIVEZ INTERRUPTEURS ENSEMBLE");
@@ -682,7 +682,7 @@ static void func_8006B384(s32 spritenum)
 /*8006B4E4*/
 void func_8006B4E4(s16 arg0)
 {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
     func_800A419C(0, "OBJECTIVE COMPLETED");
 #elif VERSION_FR
     func_800A419C(0, "OBJECTIF ATTEINT");
@@ -789,7 +789,7 @@ void func_8006B590(s16 arg0)
             }
         }
 
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
         if (cond == 1)
             func_800A419C(0, "DEFENSE SYSTEMS INACTIVE");
         if (cond == 2)
@@ -1038,7 +1038,7 @@ void func_8006B590(s16 arg0)
 
                         if (gpSprite[i].lotag != k)
                         {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
                             func_800A419C(0, "NEW OBJECTIVE");
 #elif VERSION_FR
                             func_800A419C(0, "NOUVEL OBJECTIF");
@@ -1059,7 +1059,7 @@ void func_8006B590(s16 arg0)
                     D_800E192C = -1;
                     if (gMapNum == MAP_NUCLEAR_WINTER)
                     {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
                         func_800A419C(0, "NEW OBJECTIVE");
 #elif VERSION_FR
                         func_800A419C(0, "NOUVEL OBJECTIF");

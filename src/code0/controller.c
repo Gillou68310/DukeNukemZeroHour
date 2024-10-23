@@ -20,7 +20,7 @@
 #define CONTROLLER_GET_STATUS 13
 #define COMPANY_CODE 0x3458 /*4X*/
 
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_PROTO)
 #define __C__ 0xFF
 #define GAMECODE 0x4E445A45 /*NDZE*/
 #elif defined(VERSION_FR) || defined(VERSION_EU)
@@ -44,7 +44,7 @@ typedef struct {
 
 /*.data*/
 /*800E0F60*/ static char D_800E0F60[67] = "                0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#'*+,-./:=?@";
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
 /*800E0FA4*/ static char D_800E0FA4[30] = "If Rumble Paks are to be used";
 /*800E0FC4*/ static char D_800E0FC4[24] = "please insert them into";
 /*800E0FDC*/ static char D_800E0FDC[17] = "the Controllers.";
@@ -56,7 +56,7 @@ typedef struct {
 #if VERSION_EU
 /*800E1038*/ static char D_800E1038[19] = "B = Attempt repair";
 /*800E1040*/ static char D_800E1040[30] = "Z = Insert new controller pak";
-#elif VERSION_US
+#elif defined(VERSION_US) || defined(VERSION_PROTO)
 /*800E1038*/ static char D_800E1038[8] = "B = Yes";
 /*800E1040*/ static char D_800E1040[10] = "Z = Retry";
 #endif
@@ -110,7 +110,7 @@ static char D_800E1818_E2418[19] = "to save game data.";
 static char D_800E182C_E242C[27] = "If you would like to use a";
 static char D_800E1848_E2448[29] = "Controller Pak insert it now";
 static char D_800E1868_E2468[28] = "or continue without saving.";
-#elif VERSION_US
+#elif defined(VERSION_US) || defined(VERSION_PROTO)
 /*800E14B8*/ static char D_800E14B8[34] = "to save game data. Press START to";
 /*800E14DC*/ static char D_800E14DC[25] = "continue without saving.";
 #endif
@@ -900,7 +900,7 @@ static u8 func_80088910(void)
         {
             if (D_800FE408 != 0)
             {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_PROTO)
                 func_8007FF94(D_800E1330, __C__);
                 func_8007FF94(D_800E1350, __C__);
 #endif
@@ -914,7 +914,7 @@ static u8 func_80088910(void)
         }
         break;
     case 8:
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_PROTO)
         func_8007FF94(D_800E1494, __C__);
         func_8007FF94(D_800E14B8, __C__);
         func_8007FF94(D_800E14DC, __C__);
@@ -973,7 +973,7 @@ static u8 func_80088910(void)
                 func_8007FF94(D_800E1398, __C__);
                 func_8007FF94(D_800E11CC, __C__);
                 func_8008A370(CONTROLLER_PFS_REPAIR_ID, (intptr_t)&_contPfs[_channel], 0, 0, 0, 0, 0, 0);
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_PROTO)
                 D_800E1685 = 5;
 #elif defined(VERSION_FR) || defined(VERSION_EU)
                 D_800E1685 = 47;
@@ -1060,7 +1060,7 @@ static u8 func_80088910(void)
         {
             if (D_800FE408 != 0)
             {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_PROTO)
                 func_8007FF94(D_800E1330, __C__);
                 func_8007FF94(D_800E1350, __C__);
 #endif
@@ -1095,7 +1095,7 @@ static u8 func_80088910(void)
                 func_8007FF94(D_800E1398, __C__);
                 func_8007FF94(D_800E11CC, __C__);
                 func_8008A370(CONTROLLER_PFS_REPAIR_ID, (intptr_t)&_contPfs[_channel], 0, 0, 0, 0, 0, 0);
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_PROTO)
                 D_800E1685 = 5;
 #elif defined(VERSION_FR) || defined(VERSION_EU)
                 D_800E1685 = 47;
@@ -1172,7 +1172,7 @@ static u8 func_80088FEC(void)
         switch (D_800FE408)
         {
         case 1:
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_PROTO)
             func_8007FF94(D_800E1478, __C__);
             func_8007FF94(D_800E1494, __C__);
             func_8007FF94(D_800E14B8, __C__);
@@ -1218,7 +1218,7 @@ static u8 func_80088FEC(void)
         case 4:
         case 5:
         case 6:
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_PROTO)
             func_8007FF94(D_800E14F8, __C__);
             func_8007FF94(D_800E1494, __C__);
             func_8007FF94(D_800E14B8, __C__);
@@ -1291,7 +1291,7 @@ static u8 func_80088FEC(void)
         {
             if (D_800FE408 != 0)
             {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_PROTO)
                 func_8007FF94(D_800E1330, __C__);
                 func_8007FF94(D_800E1350, __C__);
 #endif
@@ -1306,7 +1306,7 @@ static u8 func_80088FEC(void)
         }
         break;
     case 8:
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_PROTO)
         func_8007FF94(D_800E1494, __C__);
         func_8007FF94(D_800E14B8, __C__);
         func_8007FF94(D_800E14DC, __C__);
@@ -1354,7 +1354,7 @@ static u8 func_80088FEC(void)
                 func_8007FF94(D_800E1398, __C__);
                 func_8007FF94(D_800E11CC, __C__);
                 func_8008A370(CONTROLLER_PFS_REPAIR_ID, (intptr_t)&_contPfs[_channel], 0, 0, 0, 0, 0, 0);
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_PROTO)
                 D_800E1686 = 5;
 #elif defined(VERSION_FR) || defined(VERSION_EU)
                 D_800E1686 = 47;
@@ -1442,7 +1442,7 @@ static u8 func_80088FEC(void)
         {
             if (D_800FE408 != 0)
             {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_PROTO)
                 func_8007FF94(D_800E1330, __C__);
                 func_8007FF94(D_800E1350, __C__);
                 D_800E1686 = 8;
@@ -1479,7 +1479,7 @@ static u8 func_80088FEC(void)
                 func_8007FF94(D_800E1398, __C__);
                 func_8007FF94(D_800E11CC, __C__);
                 func_8008A370(CONTROLLER_PFS_REPAIR_ID, (intptr_t)&_contPfs[_channel], 0, 0, 0, 0, 0, 0);
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_PROTO)
                 D_800E1686 = 5;
 #elif defined(VERSION_FR) || defined(VERSION_EU)
                 D_800E1686 = 47;
@@ -2330,7 +2330,7 @@ u8 controller_8008AEF0(void)
                 if (_channel < 0)
                 {
                     func_800800A8(6);
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_PROTO)
                     func_8007FF94(D_800E1478, __C__);
                     func_8007FF94(D_800E1494, __C__);
                     func_8007FF94(D_800E14B8, __C__);
@@ -2930,7 +2930,7 @@ static u8 func_8008B8B0(void)
         {
             if (D_800FA2FA != 0)
             {
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_PROTO)
                 func_8007FF94(D_800E1478, __C__);
                 func_8007FF94(D_800E1494, __C__);
                 func_8007FF94(D_800E14B8, __C__);

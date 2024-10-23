@@ -291,7 +291,7 @@ void func_8003671C(s16 playernum, u16 arg1, s16 arg2, s16 arg3)
                                     }
                                 }
 
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
                                 sprintf(buf, "KILLED PLAYER %d\n", playernum + 1);
                                 func_800A419C(playernum2, buf);
                                 sprintf(buf, "KILLED BY PLAYER %d", playernum2 + 1);
@@ -2325,7 +2325,7 @@ static void func_8003E8D0(void)
 
         if (gpSector[j].floorstat & 0x100)
         {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
             func_800A419C(D_801B0820, "SECRET AREA");
 #elif VERSION_FR
             func_800A419C(D_801B0820, "ZONE SECRETE");

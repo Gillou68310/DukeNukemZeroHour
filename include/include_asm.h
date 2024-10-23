@@ -26,6 +26,8 @@
 #define INCLUDE_ASM(FOLDER, NAME) __INCLUDE_ASM__("asm/fr/nonmatchings/"FOLDER, NAME)
 #elif VERSION_EU
 #define INCLUDE_ASM(FOLDER, NAME) __INCLUDE_ASM__("asm/eu/nonmatchings/"FOLDER, NAME)
+#elif VERSION_PROTO
+#define INCLUDE_ASM(FOLDER, NAME) __INCLUDE_ASM__("asm/proto/nonmatchings/"FOLDER, NAME)
 #endif
 #endif
 #ifndef INCLUDE_RODATA
@@ -41,6 +43,8 @@
 #define INCLUDE_RODATA(FOLDER, NAME) __INCLUDE_RODATA__("asm/fr/nonmatchings/"FOLDER, NAME)
 #elif VERSION_EU
 #define INCLUDE_RODATA(FOLDER, NAME) __INCLUDE_RODATA__("asm/eu/nonmatchings/"FOLDER, NAME)
+#elif VERSION_PROTO
+#define INCLUDE_RODATA(FOLDER, NAME) __INCLUDE_RODATA__("asm/proto/nonmatchings/"FOLDER, NAME)
 #endif
 #endif
 #ifndef FORCE_ASM

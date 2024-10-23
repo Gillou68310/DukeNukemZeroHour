@@ -229,7 +229,7 @@ static void func_800A0014(void)
     {
         cond = 0;
         func_80029238(200, 200, 200, 0x80, 0x80, 0x80, D_80106D40);
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
         drawString2(x, y, "KEYS");
 #elif VERSION_FR
         drawString2(x, y, "TOUCHES");
@@ -248,7 +248,7 @@ static void func_800A0014(void)
         }
         if (!cond)
         {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
             drawString2(x, y, "NONE");
 #elif VERSION_FR
             drawString2(x, y, "AUCUN");
@@ -257,7 +257,7 @@ static void func_800A0014(void)
         }
         func_80029238(200, 200, 200, 0x80, 0x80, 0x80, D_80106D40);
         y += 10;
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
         drawString2(x, y, "TIME MACHINE PARTS");
 #elif VERSION_FR
         drawString2(x, y, "MACHINE REMONT. TPS");
@@ -268,7 +268,7 @@ static void func_800A0014(void)
         if ((gMapNum == MAP_WETWORLD) || (gMapNum == MAP_BOSS_HOG) ||
             (gMapNum == MAP_CYBORG_SCORPION) || (gMapNum >= MAP_THE_RACK))
         {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
             drawString2(x, y, "NONE DETECTED");
 #elif VERSION_FR
             drawString2(x, y, "RIEN DECELE");
@@ -276,7 +276,7 @@ static void func_800A0014(void)
         }
         else if (gTimeMachinePart & (1 << gMapNum))
         {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
             drawString2(x, y, "PART COLLECTED");
 #elif VERSION_FR
             drawString2(x, y, "PIECE PRISE");
@@ -284,7 +284,7 @@ static void func_800A0014(void)
         }
         else
         {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
             drawString2(x, y, "PART NOT FOUND");
 #elif VERSION_FR
             drawString2(x, y, "PIECE NON TROUVEE");
@@ -294,7 +294,7 @@ static void func_800A0014(void)
     else
     {
         func_80029238(200, 200, 200, 0x80, 0x80, 0x80, D_80106D40);
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
         drawString2(x, y, "PRIMARY GOAL");
 #elif VERSION_FR
         drawString2(x, y, "MISSION PRINCIPALE");
@@ -307,7 +307,7 @@ static void func_800A0014(void)
         {
             y += 10;
             func_80029238(200, 200, 200, 0x80, 0x80, 0x80, D_80106D40);
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
             drawString2(x, y, "CURRENT OBJECTIVES");
 #elif VERSION_FR
             drawString2(x, y, "OBJECTIFS EN COURS");
@@ -331,13 +331,13 @@ static void func_800A0014(void)
             k++;
     }
 
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
     sprintf(sp20, "TIME MACHINE PARTS %d:%d", k, 13);
 #elif VERSION_FR
     sprintf(sp20, "MACHINE REMONT. TPS %d:%d", k, 13);
 #endif
     drawString2((D_80119A94 + 80), (D_80199944 + 135), sp20);
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
     sprintf(sp20, "SECRETS %d:%d   BABES %d:%d", D_801A1958.secrets_found,
             D_801A1958.secrets_total, D_801A1958.babes_saved, D_801A1958.babes_total);
 #elif VERSION_FR
@@ -526,7 +526,7 @@ void drawHud(void)
                 func_800A34CC(270, 160, 6070, 4);
                 func_800A34CC(50, 60, 6070, 8);
                 func_800A34CC(270, 60, 6070, 12);
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
                 drawString2(90, 150, "TEMPORAL LINK ESTABLISHED");
                 drawString2(90, 160, "TRANSMISSION SOURCE:");
                 drawString2(90, 170, "LONDON, ENGLAND 1888 AD");
@@ -627,7 +627,7 @@ void drawHud(void)
                 drawString(-1, 200, D_8012F6E4[gPlayer[D_801B0820].skin].actor);
             else if (D_800E16A0[D_801B0820] != 0)
             {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
                 drawString(-1, 200, "RED TEAM");
 #elif VERSION_FR
                 drawString(-1, 200, "EQUIPE ROUGE");
@@ -635,7 +635,7 @@ void drawHud(void)
             }
             else
             {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
                 drawString(-1, 200, "BLUE TEAM");
 #elif VERSION_FR
                 drawString(-1, 200, "EQUIPE BLEUE");
@@ -1292,7 +1292,7 @@ static void func_800A42A4(s16 playernum)
                 {
                     a = CLAMP_MAX((D_80138858[i] * 8), 0xFF);
                     func_80029238(D_8012DF04[playernum].r, D_8012DF04[playernum].g, D_8012DF04[playernum].b, 0, 0, 0, a);
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
                     drawString(-1, (72 - (i * 12)), D_8012FCB0[i]);
 #elif VERSION_FR
                     drawString(-1, (84 - (i * 12)), D_8012FCB0[i]);
@@ -1307,7 +1307,7 @@ static void func_800A42A4(s16 playernum)
         {
             a = CLAMP_MAX((D_80138858[playernum] * 8), 0xFF);
             func_80029238(D_8012DF04[playernum].r, D_8012DF04[playernum].g, D_8012DF04[playernum].b, 0, 0, 0, a);
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
             drawString(-1, 78, D_8012FCB0[playernum]);
 #elif VERSION_FR
             drawString(-1, 90, D_8012FCB0[playernum]);
@@ -1344,7 +1344,7 @@ void func_800A4478(void)
                 {
                     if (gPlayer[i].unk4E > 90)
                     {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
                         func_800A419C(i, "PRESS START");
 #elif VERSION_FR
                         func_800A419C(i, "APPUYER SUR START");

@@ -4,7 +4,7 @@
 #include "code0/82480.h"
 #include "code0/code0.h"
 
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
 #define D_801A6D90_SIZE 128
 #elif VERSION_FR
 #define D_801A6D90_SIZE 400

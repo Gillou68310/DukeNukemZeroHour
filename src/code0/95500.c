@@ -39,7 +39,7 @@ static s32 _unused[3] = {0};
 
 /*800E1780*/
 static char *D_800E1780[8] = {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
     "ARMOR",
     "SCUBA GEAR",
     "VITAMIN X",
@@ -62,7 +62,7 @@ static char *D_800E1780[8] = {
 
 /*800E17A0*/
 static char *D_800E17A0[8] = {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
     "ARMOR",
     "DIVING HELMET",
     "VITAMIN X",
@@ -85,7 +85,7 @@ static char *D_800E17A0[8] = {
 
 /*800E17C0*/
 static char *D_800E17C0[8] = {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
     "",
     "ON",
     "USED",
@@ -465,7 +465,7 @@ void func_8009542C(void)
             if (ptr2->unk2[1] != 0)
             {
                 ptr2->unk0 = 1;
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
                 sprintf(sp10, "%s ON", ptr[1]);
 #elif VERSION_FR
                 sprintf(sp10, "%s ACTIVE", ptr[1]);
@@ -473,7 +473,7 @@ void func_8009542C(void)
             }
             else
             {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
                 sprintf(sp10, "%s OFF", ptr[1]);
 #elif VERSION_FR
                 sprintf(sp10, "%s DESACTIVE", ptr[1]);
@@ -495,7 +495,7 @@ void func_8009542C(void)
             if (ptr2->unkA[5] <= 0)
             {
                 ptr2->unk2[5] = 0;
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
                 sprintf(sp10, "%s OFF", ptr[5]);
 #elif VERSION_FR
                 sprintf(sp10, "%s DESACTIVE", ptr[5]);
@@ -513,7 +513,7 @@ void func_8009542C(void)
             if (ptr2->unkA[6] <= 0)
             {
                 ptr2->unk2[6] = 0;
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
                 sprintf(sp10, "%s OFF", ptr[6]);
 #elif VERSION_FR
                 sprintf(sp10, "%s DESACTIVE", ptr[6]);
@@ -638,7 +638,7 @@ void func_8009584C(s16 playernum)
             sprintf(buffer, "%s %s", ptr[ptr1->unk0], D_800E17C0[ptr1->unk0]);
         else
         {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
             sprintf(buffer, "%s OFF", ptr[ptr1->unk0]);
 #elif VERSION_FR
             sprintf(buffer, "%s DESACTIVE", ptr[ptr1->unk0]);

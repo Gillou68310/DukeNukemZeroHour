@@ -560,7 +560,7 @@ static s32 _unused = 0;
 
 /*01025BA0*/
 _11B300UnkStruct1 D_01025BA0[0x1D] = {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
     { DUKENUKEM, 0x3B7, "DUKE NUKEM", 2, 0x64, 0x50, 0 },
     { APOCALYPSEDUKE, 0x3A5, "APOCALYPSE DUKE", 2, 0x64, 0x50, 0 },
     { COWBOYDUKE, 0x4B2, "COWBOY DUKE", 2, 0x64, 0x50, 0 },

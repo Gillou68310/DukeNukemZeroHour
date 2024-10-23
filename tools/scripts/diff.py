@@ -219,7 +219,7 @@ def objdump(file, section):
     return o1,o2
 
 if __name__ == "__main__":
-    VERSION = 'eu'
+    VERSION = 'proto'
     name_max_size = 0
     source_file=sys.argv[1]
 

@@ -6868,7 +6868,7 @@ static u8 func_80051684(s16 sectnum)
 
 /*800DF1C0*/
 static char *D_800DF1C0[4] = {
-#if defined(VERSION_US) || defined(VERSION_EU)
+#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
     "TNT BARREL",
     "FUSE WIRE",
     "PLUNGER BOX",

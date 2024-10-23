@@ -1182,7 +1182,7 @@ static void mainLoop(void *arg)
     configInitialize();
     controller_8008AD94();
     controller_8008A3EC("DUKE ZERO HOUR.A", &D_801CC930.unk0, sizeof(code1UnkStruct3));
-#if VERSION_US
+#if defined(VERSION_US) || defined(VERSION_PROTO)
     switch (osTvType)
     {
     case OS_TV_PAL:
