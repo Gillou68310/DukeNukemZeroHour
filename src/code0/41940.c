@@ -10114,7 +10114,7 @@ void func_80058E44(s32 spritenum)
     audio_800077F4(538, spritenum);
 }
 
-#if defined(VERSION_FR) || defined(VERSION_EU)
+#if defined(VERSION_FR) || defined(VERSION_EU) || defined(VERSION_PROTO)
 /*hack for wrong rodata aligment*/
 static const f64 _force_rodata_alignment = 0;
 #endif

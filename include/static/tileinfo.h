@@ -3,7 +3,11 @@
 
 #include "common.h"
 
+#if VERSION_PROTO
+#define TILENUM 1979
+#else
 #define TILENUM 1976
+#endif
 
 typedef struct
 {
