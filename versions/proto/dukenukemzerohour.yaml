@@ -67,18 +67,22 @@ segments:
     subsegments:
     #.text section
       - [0x1000,  hasm,     src/code0/entrypoint]
-      - [0x1050,  asm,      src/code0/code0]
+      - [0x1050,  c,        src/code0/main]
+      - [0x44F0, asm, src/code0/code0]
       - [0xBBE80, bin,      ucode/rspboot.text]
       - [0xBBF50, bin,      ucode/gspF3DEX2.NoN.fifo.text]
       - [0xBD2E0, bin,      ucode/aspMain.text]
     #.data section
-      - [0xBE100, data,     src/code0/code0]
+      - [0xBE100, .data,    src/code0/main]
+      - [0xBE160, data, src/code0/code0]
       - [0xE49B0, bin,      ucode/gspF3DEX2.NoN.fifo.data]
       - [0xE4DD0, bin,      ucode/aspMain.data]
     #.rodata section
-      - [0xE5090, rodata,   src/code0/code0]
+      - [0xE5090, .rodata,  src/code0/main]
+      - [0xE5110, rodata, src/code0/code0]
     #.bss section
-      - {start: 0xEB390, type: bss, vram: 0x800EA790, name: src/code0/code0}
+      - {start: 0xEB390, type: .bss, vram: 0x800EA790, name: src/code0/main}
+      - {start: 0xEB390, type: bss, vram: 0x800F70D0, name: src/code0/code0}
 
   - name: code1
     type: code

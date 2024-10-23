@@ -97,14 +97,18 @@ DECL_STATIC_SEG_SYM(D_01026910);
 /*800BD3EE*/ static u8 _blue = 0;
 /*800BD3F0*/ static s32 D_800BD3F0 = 0;
 /*800BD3F4*/ static s32 D_800BD3F4 = 0;
+#ifndef VERSION_PROTO
 /*800BD3F8*/ u8 D_800BD3F8 = 0;
+#endif
 /*800BD3F9*/ s8 D_800BD3F9 = 1;
 /*800BD3FC*/ static s32 D_800BD3FC = 0;
 /*800BD400*/ static OSScMsg _replyMsg = {2, {0}};
 /*800BD420*/ static s32 _framebufferIndex = 0;
 /*800BD424*/ s32 gGfxTaskIndex = 0;
 /*800BD428*/ static s32 D_800BD428 = 0;
+#ifndef VERSION_PROTO
 /*800BD42C*/ static u8 D_800BD42C = 1;
+#endif
 /*800BD42D*/ static u8 D_800BD42D = 0;
 /*800BD42E*/ static s16 D_800BD42E = 0;
 
@@ -205,6 +209,14 @@ void main_80000450(void)
 /*80000508*/
 static void func_80000508(void)
 {
+#if VERSION_PROTO
+    D_8012E158 = &osViModeTable[OS_VI_PAL_LAF1];
+    osViModeTable[OS_VI_PAL_LAF1].fldRegs[0].yScale = 0x6D1;
+    osViModeTable[OS_VI_PAL_LAF1].fldRegs[1].yScale = 0x6D1;
+    D_8012E158 = &osViModeTable[OS_VI_PAL_LAN1];
+    osViModeTable[OS_VI_PAL_LAN1].fldRegs[0].yScale = 0x35C;
+    osViModeTable[OS_VI_PAL_LAN1].fldRegs[1].yScale = 0x35C;
+#else
     D_8012E158 = &osViModeTable[OS_VI_PAL_LAF1];
     osViModeTable[OS_VI_PAL_LAF1].fldRegs[0].vStart = 0x2D0237;
     osViModeTable[OS_VI_PAL_LAF1].fldRegs[1].vStart = 0x2F0239;
@@ -214,6 +226,7 @@ static void func_80000508(void)
     D_8012E158 = &osViModeTable[OS_VI_PAL_LAN1];
     osViModeTable[OS_VI_PAL_LAN1].fldRegs[0].yScale = 0x37B;
     osViModeTable[OS_VI_PAL_LAN1].fldRegs[1].yScale = 0x37B;
+#endif
     D_8012E158 = &osViModeTable[OS_VI_NTSC_HAF1];
     osViModeTable[OS_VI_NTSC_HAF1].fldRegs[0].yScale = 0x66C;
     osViModeTable[OS_VI_NTSC_HAF1].fldRegs[1].yScale = 0x66C;
@@ -225,6 +238,16 @@ static void func_80000508(void)
     osViModeTable[OS_VI_MPAL_HAF1].fldRegs[1].yScale = 0x66C;
 }
 
+#if VERSION_PROTO
+/*80000610*/
+void main_80000610(void) {
+    if (osTvType == OS_TV_PAL) {
+        D_800BD3F4 = 1;
+    }
+    else
+        D_800BD3F4 = 2;
+}
+#else
 /*800005D8*/
 static void func_800005D8(void)
 {
@@ -238,6 +261,7 @@ void main_80000610(void)
 {
     D_800BD3F4 = 1;
 }
+#endif
 
 /*80000624*/
 void main_80000624(ProcPointer proc)
@@ -486,11 +510,15 @@ static void func_80001038(void)
     audio_80006CC0();
     if (D_801AE914 != 0)
     {
+#if VERSION_PROTO
+        controller_8008A654();
+#else
         if (D_800BD42C != 0)
         {
             controller_8008A654();
             D_800BD42C = 0;
         }
+#endif
         func_801C4B34();
 
         for (playernum = 0; playernum < D_8012C470; playernum++)
@@ -498,7 +526,9 @@ static void func_80001038(void)
     }
     else
     {
+#ifndef VERSION_PROTO
         D_800BD42C = 1;
+#endif
         if ((D_80199524 != 0) && controller_8008A070())
             D_80199524 = 0;
 
@@ -873,11 +903,13 @@ void allocMemory(s32 width, s32 height, s32 dlist_size, s32 vertex_size)
 
     plock = &gCacheLock[1];
     main_80000450();
+#ifndef VERSION_PROTO
     if ((D_800BD3F8 == 0))
     {
         if (height == SCREEN_HEIGHT*2)
             height = 512;
     }
+#endif
 
     if (osMemSize == 0x400000)
         _framebufferCount = 2;
@@ -971,6 +1003,10 @@ void main_80002390(void)
         }
         break;
     }
+#if VERSION_PROTO
+    osViSetMode(&osViModeTable[_viMode]);
+    main_80000450();
+#endif
 }
 
 /*80002494*/
@@ -1327,11 +1363,16 @@ static void _viLoop(void *arg)
                 D_800BD3F4--;
                 if (D_800BD3F4 == 0)
                 {
+#if VERSION_PROTO
+                    osViBlack(0);
+                    func_80000508();
+#else
                     if (D_800BD3F8 != 0)
                         func_80000508();
                     else
                         func_800005D8();
                     osViSetMode(&osViModeTable[_viMode]);
+#endif
                     osViSetSpecialFeatures(OS_VI_GAMMA_OFF | OS_VI_DITHER_FILTER_ON);
                 }
             }
