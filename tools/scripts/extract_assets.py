@@ -2,6 +2,7 @@
 
 from splat.scripts import split
 from n64img.image import CI4
+import argparse
 import operator
 import shutil
 import struct
@@ -13,11 +14,13 @@ def get_segment(segname, segments):
     for segment in segments:
         if segment.name == segname:
             return segment
+    return None
         
 def get_subsegment(subsegname, segment):
     for subsegment in segment.subsegments:
         if subsegment.name == subsegname:
             return subsegment
+    return None
         
 def get_symbols_from_subsegment(subsegname, type, segment):
     symbols = []
@@ -35,6 +38,12 @@ def get_symbols_from_subsegment(subsegname, type, segment):
                     symbols.append(syms)
             break
     return symbols
+
+def get_symbol(symbols, name):
+    for symbol in symbols:
+        if symbol.name == name:
+            return symbol
+    return None
 
 class TileInfo:
     def __init__(self, data, num):
@@ -72,8 +81,10 @@ def extract_models(rom, path):
     symbols = get_symbols_from_subsegment('modelinfo', 'data', segment)
 
     models = []
+    end = get_symbol(symbols, 'gModelList')
+
     for symbol in symbols:
-        if symbol.vram_start < 0x800D52E0 and symbol.size == 0x30:
+        if symbol.vram_start < end.vram_start and symbol.size == 0x30:
             models.append(ModelInfo(rom[symbol.rom:symbol.rom_end], \
                                     symbol.vram_start))
     
@@ -224,22 +235,6 @@ def extract_maps(rom, path):
 
     maps = sorted(maps, key=operator.attrgetter('rom_start'))
 
-    # Generate maps yaml info
-    #f = open(os.path.join(maps_dir, 'mapinfo.txt'), 'w')
-    #for map in maps:
-    #    f.write('  - type: group\n')
-    #    f.write('    dir: maps/map'+str(map.num)+'\n')
-    #    f.write('    vram: 0\n')
-    #    f.write('    start: 0x'+format(map.rom_start, '06X')+'\n')
-    #    f.write('    subalign: 4\n')
-    #    f.write('    subsegments:\n')
-    #    f.write('    - [0x'+format(map.rom_start, '06X')+', bin, vertex]\n')
-    #    f.write('    - [0x'+format(map.rom_start+map.wall_offset, '06X')+', bin, walls]\n')
-    #    f.write('    - [0x'+format(map.rom_start+map.sector_offset, '06X')+', bin, sectors]\n')
-    #    f.write('    - [0x'+format(map.rom_start+map.sprite_offset, '06X')+', bin, sprites]\n')
-    #    f.write('\n')
-    #f.close()
-
     # Create maps folder
     maps_dir = os.path.join(path, 'maps')
     os.mkdir(maps_dir)
@@ -281,8 +276,10 @@ def extract_maps(rom, path):
         extract_map(sprites_data, os.path.join(map_dir, 'sprites.bin'))
 
 if __name__ == '__main__':
-    VERSION = 'us'
-    yaml = 'versions/'+VERSION+'/dukenukemzerohour.yaml'
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-v', '--version', type=str, default='us', help='game version')
+    args = parser.parse_args()
+    yaml = 'versions/'+args.version+'/dukenukemzerohour.yaml'
     with open(yaml) as f:
         config = split.yaml.load(f.read(), Loader=split.yaml.SafeLoader)
     config['options']['base_path'] = '.'
@@ -291,11 +288,11 @@ if __name__ == '__main__':
     split.disassembler_instance.create_disassembler_instance(skip_version_check=True, splat_version='')
     split.symbols.initialize(all_segments)
 
-    f = open('baserom.'+VERSION+'.z64', 'rb')
+    f = open('baserom.'+args.version+'.z64', 'rb')
     rom_data = f.read()
     f.close()
 
-    path = os.path.join('extracted', VERSION)
+    path = os.path.join('extracted', args.version)
     shutil.rmtree(path, ignore_errors=True)
     os.makedirs(path, exist_ok=True)
 
