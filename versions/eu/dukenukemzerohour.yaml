@@ -32,7 +32,10 @@ options:
   generated_c_preamble: "#include \"common.h\"\n\n/*.text*/"
   use_legacy_include_asm: False
   ld_wildcard_sections: True
-  asm_emit_size_directive: False
+  asm_emit_size_directive: True
+  asm_function_macro: glabel
+  asm_jtbl_label_macro: jlabel
+  asm_data_macro: dlabel
   ld_discard_section: False
   symbol_name_format: $VRAM_$ROM
   ld_generate_symbol_per_data_segment: True

@@ -202,16 +202,16 @@ $(BUILD_DIR)/%.c.o: %.c
 	@$(PRINT)$(GREEN)Compiling C file: $(ENDGREEN)$(BLUE)$<$(ENDBLUE)$(ENDLINE)
 	@mkdir -p $(shell dirname $@)
 ifeq ($(CHECK),1)
-	@$(CC_HOST) $(CFLAGS_CHECK) $(CHECK_WARNINGS) $(CPPFLAGS) -MMD -MP -MT $@ -MF $@.d $<
+	@$(CC_HOST) $(CFLAGS_CHECK) $(CHECK_WARNINGS) $(CPPFLAGS) $<
 endif
-	$(V)$(CPP) $(CFLAGS) $(CPPFLAGS) -ffreestanding -U__mips -D__FILE__=\"$(notdir $<)\" -Wno-builtin-macro-redefined $< -o $@.i
+	$(V)$(CPP) $(CFLAGS) $(CPPFLAGS) -ffreestanding -U__mips -D__FILE__=\"$(notdir $<)\" -Wno-builtin-macro-redefined -MMD -MP -MT $@ -MF $@.d $< -o $@.i
 	$(V)$(CC) $(OPTFLAGS) $(CFLAGS) -c -o $@ $@.i
 
 # Compile .s files with kmc as but preprocessed by modern gnu cpp
 $(BUILD_DIR)/%.s.o: %.s
 	@$(PRINT)$(GREEN)Assembling asm file: $(ENDGREEN)$(BLUE)$<$(ENDBLUE)$(ENDLINE)
 	@mkdir -p $(shell dirname $@)
-	$(V)$(CPP) $(ASFLAGS) $(CPPFLAGS) -U_LANGUAGE_C $< -o $@.i
+	$(V)$(CPP) $(CPPFLAGS) -U_LANGUAGE_C $< -o $@.i
 	$(V)$(AS) $(ASFLAGS) -o $@ $@.i
 
 # Create .o files from .bin files.
