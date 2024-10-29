@@ -1053,14 +1053,11 @@ static void _spawn(s16 spritenum)
     }
 }
 
-#ifdef NON_MATCHING
 /*80062300*/
 void func_80062300(void)
 {
     s32 i, j, k, l;
-    u8 pad[2]; /*FAKE*/
 
-    (void)pad;
     func_8004F31C();
     func_80016F30();
     _tempWallPtr = 0;
@@ -1080,9 +1077,9 @@ void func_80062300(void)
             {
                 if (gpSprite[i].unk25 != 0)
                 {
-                    j = gpSector[gpSprite[gpSprite[i].unk16].sectnum].floorz - gpSector[gpSprite[i].sectnum].floorz;
-                    gpSector[gpSprite[i].sectnum].floorz = gpSector[gpSprite[gpSprite[i].unk16].sectnum].floorz;
-                    gpSector[gpSprite[i].sectnum].ceilingz += j;
+                    l = gpSector[gpSprite[gpSprite[i].unk16].sectnum].floorz - gpSector[gpSprite[i].sectnum].floorz;
+                    gpSector[gpSprite[i].sectnum].floorz += l;
+                    gpSector[gpSprite[i].sectnum].ceilingz += l;
                 }
             }
         }
@@ -1132,9 +1129,7 @@ void func_80062300(void)
                 j = gHeadSpriteSect[gpSprite[i].sectnum];
                 while (j >= 0)
                 {
-                    l = gpSprite[j].picnum; /*FAKE*/
-
-                    if ((l == 1) || (l == 3) || (l == 28))
+                    if ((gpSprite[j].picnum == 1) || (gpSprite[j].picnum == 3) || (gpSprite[j].picnum == 28))
                         gpSprite[j].cstat |= 0x8000;
 
                     j = gNextSpriteSect[j];
@@ -1149,10 +1144,6 @@ void func_80062300(void)
 
     func_80016218();
 }
-#else
-/*80062300*/
-INCLUDE_ASM("src/code0/609D0", func_80062300);
-#endif
 
 /*80062688*/
 static s16 func_80062688(s16 arg0)

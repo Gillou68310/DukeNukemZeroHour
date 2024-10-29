@@ -132,7 +132,6 @@ void func_800171D0(code0unkStruct8 *arg0, _D8D20UnkStruct2 *arg1, s16 arg2)
     arg0->unk8 = arg1;
 }
 
-#ifdef NON_MATCHING
 /*80017268*/
 void func_80017268(s16 spritenum)
 {
@@ -164,8 +163,13 @@ void func_80017268(s16 spritenum)
     else
         i = -1;
 
+    /*FAKEMATCH*/
+    do {
+    do {
     if ((gActorSpriteMap[spritenum] == -1) || (gActor[gActorSpriteMap[spritenum]].flag & 0x40))
         return;
+    } while (0);
+    } while (0);
 
     if (ptr->unk8 == NULL)
     {
@@ -1490,10 +1494,6 @@ void func_80017268(s16 spritenum)
             ptr->unk14 = 0;
     }
 }
-#else
-/*80017268*/
-INCLUDE_ASM("src/code0/17B30", func_80017268);
-#endif
 
 /*800195DC*/
 void func_800195DC(s16 spritenum)
