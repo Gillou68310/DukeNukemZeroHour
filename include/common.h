@@ -31,6 +31,7 @@
 #include "PR/ultratypes.h"
 #else
 #include "ultra64.h"
+#include "port.h"
 #endif
 #include "macros.h"
 
