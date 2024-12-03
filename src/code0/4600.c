@@ -214,7 +214,11 @@ void scanSectors(s32 posx, s32 posy, s32 posz, f32 ang, s16 sectnum)
     s32 i, j;
 
     D_8012FC40 = 1;
+#ifdef TARGET_N64
     viewrange = (klabs(gGlobalViewHorizAng) * 0.7999999999999999)/*(4.0/5.0)*/ + DEG2RAD(36.0f);
+#else
+    viewrange = DEG2RAD(90.f);
+#endif
 
     if (sinf(D_801AC8E0) > 0.0f)
         f2 = sinf(D_801AC8E0);

@@ -629,6 +629,7 @@ static s32 _isModelVisible(ModelInfo *model)
     f32 radius;
     s32 i;
 
+#ifdef TARGET_N64
     radius = _computeModelBoundingSphereRadius(model);
     grMtxL2F(mtx, &gpDynamic->mtx3[D_801A6D80-1]);
     vec[0] = mtx[3][0] - gMapXpos * 0.5;
@@ -640,6 +641,7 @@ static s32 _isModelVisible(ModelInfo *model)
         if (_dotProduct(*ptr, vec) < -radius)
             return 0;
     }
+#endif
     return 1;
 }
 

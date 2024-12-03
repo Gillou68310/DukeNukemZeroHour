@@ -12,8 +12,11 @@
 
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGHT 240
-#define ASPECT_RATIO (4.0f / 3.0f)
 #define BORDER_SIZE 12
+
+#ifdef TARGET_N64
+#define ASPECT_RATIO (4.0f / 3.0f)
+#endif
 
 #define GFX_TASKS 2
 #define DISPLAY_LIST_SIZE 0x1400
