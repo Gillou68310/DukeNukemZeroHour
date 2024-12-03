@@ -533,8 +533,14 @@ void func_80011180(void)
 {
     f32 f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14;
     s32 i;
+#ifdef WIDESCREEN
+    /*TODO: understand magic value*/
+    f1 = sinf(0.75f);
+    f2 = cosf(0.75f);
+#else
     f1 = sinf(0.61086524f);
     f2 = cosf(0.61086524f);
+#endif
     f3 = ((SCREEN_WIDTH / 2.f) - 1.f) / (f1 / f2);
     f5 = ((SCREEN_HEIGHT / 2.f) - 1.f);
     f4 = 1.0 / sqrt(SQ(f3) + SQ(f5));
