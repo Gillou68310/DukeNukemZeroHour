@@ -891,8 +891,8 @@ static void func_80039344(void)
     else
         i2 = gpSector[gPlayer[D_801B0820].unk36].unk2A;
 
-    f1 = sqrtf(((f64)gPlayer[D_801B0820].xvect * (f64)gPlayer[D_801B0820].xvect) +
-               ((f64)gPlayer[D_801B0820].yvect * (f64)gPlayer[D_801B0820].yvect));
+    f1 = sqrtf(SQ((f64)gPlayer[D_801B0820].xvect) +
+               SQ((f64)gPlayer[D_801B0820].yvect));
 
     if (f1 != 0.0)
     {
@@ -1146,7 +1146,7 @@ void func_80039774(void)
             if (gPlayer[D_801B0820].unk5E >= 0x1000)
             {
                 k = gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].z -
-                    (gModelList[gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].picnum-MODELLIST]->unk28 *
+                    (gModelList[gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].picnum-MODELLIST]->zmin *
                      (gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].yrepeat << 6) / 64) -
                     gPlayer[D_801B0820].unk40;
             }
@@ -1177,7 +1177,7 @@ void func_80039774(void)
             else
             {
                 l = gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].z -
-                    ((gModelList[gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].picnum-MODELLIST]->unk2E *
+                    ((gModelList[gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].picnum-MODELLIST]->zmax *
                         (gpSprite[(s16)(gPlayer[D_801B0820].unk5E - 0x1000)].yrepeat << 6)) / 64);
             }
 
@@ -1234,7 +1234,7 @@ static void func_8003A910(void)
     if (gpSprite[gPlayer[D_801B0820].unk4A].cstat & 0x1000)
     {
         model = gModelList[gpSprite[gPlayer[D_801B0820].unk4A].picnum-MODELLIST];
-        walldist = ((model->unk2A - model->unk24) *
+        walldist = ((model->xmax - model->xmin) *
                     gpSprite[gPlayer[D_801B0820].unk4A].xrepeat / 64);
         walldist *= 2;
     }

@@ -435,8 +435,8 @@ static void func_80040EF0(s32 spritenum, s16 playernum, s32 arg2)
         if (D_80118248->cstat & 0x1000)
         {
             ptr = gModelList[D_80118248->picnum-MODELLIST];
-            D_801B0D30 = (ptr->unk2E - ptr->unk28) << 6;
-            if (ptr->unk28 < 0)
+            D_801B0D30 = (ptr->zmax - ptr->zmin) << 6;
+            if (ptr->zmin < 0)
                 D_80197E30 = 1;
             else
                 D_80197E30 = 0;
@@ -2803,7 +2803,7 @@ static void func_80046540(void)
         D_80118248 = &gpSprite[i];
         D_8012F6E8 = func_8005A240(i);
         gpActor = &gActor[gActorSpriteMap[i]];
-        z = (gModelList[gpSprite[i].picnum-MODELLIST]->unk2E - gModelList[gpSprite[i].picnum-MODELLIST]->unk28) << 6;
+        z = (gModelList[gpSprite[i].picnum-MODELLIST]->zmax - gModelList[gpSprite[i].picnum-MODELLIST]->zmin) << 6;
 
         if ((D_8012F6E8 == 1) && (D_80118248->picnum == CYBORGENFORCER))
         {
@@ -3207,8 +3207,8 @@ label2:
     if ((gActorSpriteMap[spritenum2] != -1) && (gpSprite[spritenum2].cstat & 0x1000))
     {
         s32 a, b;
-        b = (gModelList[gpSprite[spritenum2].picnum-MODELLIST]->unk2E -
-             gModelList[gpSprite[spritenum2].picnum-MODELLIST]->unk28) << 6;
+        b = (gModelList[gpSprite[spritenum2].picnum-MODELLIST]->zmax -
+             gModelList[gpSprite[spritenum2].picnum-MODELLIST]->zmin) << 6;
         a = klabs((gpSprite[spritenum1].z - gpSprite[spritenum2].z));
         a *= 100;
         if (b != 0)
@@ -4762,8 +4762,6 @@ s32 allocActor(void)
     }
 }
 
-#ifdef NON_MATCHING
-/*8004BFDC*/
 void func_8004BFDC(s32 spritenum, s32 arg1, s32 z, s32 arg3)
 {
     s32 sp2C;
@@ -4783,128 +4781,128 @@ void func_8004BFDC(s32 spritenum, s32 arg1, s32 z, s32 arg3)
     switch (arg1)
     {
     case 0x40000000:
-        arg1 = gpActor->unk44;
+        i = gpActor->unk44;
         break;
     case 0x40000001:
-        arg1 = gpActor->unk48;
+        i = gpActor->unk48;
         break;
     case 0x40000002:
-        arg1 = gpActor->unk4C;
+        i = gpActor->unk4C;
         break;
     case 0x40000003:
-        arg1 = gpActor->unk50;
+        i = gpActor->unk50;
         break;
     case 0x40000004:
-        arg1 = gpActor->unk54;
+        i = gpActor->unk54;
         break;
     case 0x40000005:
-        arg1 = gpActor->unk58;
+        i = gpActor->unk58;
         break;
     case 0x40000006:
-        arg1 = gpActor->unk5C;
+        i = gpActor->unk5C;
         break;
     case 0x40000007:
-        arg1 = gpActor->unk60;
+        i = gpActor->unk60;
         break;
     case 0x4000000C:
-        arg1 = krand();
+        i = krand();
         break;
     case 0x4000000D:
-        arg1 = gpActor->unk2E;
+        i = gpActor->unk2E;
         break;
     case 0x4000000E:
-        arg1 = D_8013B2D0[spritenum].unk2;
+        i = D_8013B2D0[spritenum].unk2;
         break;
     case 0x4000000A:
-        arg1 = gpActor->flag;
+        i = gpActor->flag;
         break;
     case 0x40000034:
-        arg1 = gpActor->unk4;
+        i = gpActor->unk4;
         break;
     case 0x40000011:
-        arg1 = D_8013B2D0[spritenum].unk0;
+        i = D_8013B2D0[spritenum].unk0;
         break;
     case 0x40000020:
-        arg1 = D_8013B2D0[spritenum].unk4;
+        i = D_8013B2D0[spritenum].unk4;
         break;
     case 0x40000010:
         arg1 = 0x1C80;
-        arg1 = ((gPlayer[D_801A2628].zpos - (D_80118248->z - arg1)) - (D_801B0D30 / 2)) >> 8;
+        i = ((gPlayer[D_801A2628].zpos - (D_80118248->z - arg1)) - (D_801B0D30 / 2)) >> 8;
         break;
     case 0x40000009:
-        arg1 = D_80118248->ang;
+        i = D_80118248->ang;
         break;
     case 0x40000012:
-        arg1 = D_80118248->unk25;
+        i = D_80118248->unk25;
         break;
     case 0x40000016:
-        arg1 = gpActor->unkA1;
+        i = gpActor->unkA1;
         break;
     case 0x40000015:
-        arg1 = D_8013B2D0[spritenum].unk6;
+        i = D_8013B2D0[spritenum].unk6;
         break;
     case 0x40000017:
-        arg1 = D_8012FD88;
+        i = D_8012FD88;
         break;
     case 0x4000001B:
-        arg1 = D_80118248->cstat;
+        i = D_80118248->cstat;
         break;
     case 0x40000018:
-        arg1 = gpActor->unk8;
+        i = gpActor->unk8;
         break;
     case 0x4000001E:
-        arg1 = gpActor->unk9A;
+        i = gpActor->unk9A;
         break;
     case 0x40000013:
     case 0x40000019:
-        arg1 = D_80118248->unk1C;
+        i = D_80118248->unk1C;
         break;
     case 0x40000022:
-        arg1 = gpActor->unk99;
+        i = gpActor->unk99;
         break;
     case 0x40000023:
     case 0x40000024:
-        arg1 = gpActor->unk8C;
+        i = gpActor->unk8C;
         break;
     case 0x40000025:
-        arg1 = gpActor->unk98;
+        i = gpActor->unk98;
         break;
     case 0x40000027:
-        arg1 = gpActor->unk7C;
+        i = gpActor->unk7C;
         break;
     case 0x40000028:
-        arg1 = gAiDebugGvar1;
+        i = gAiDebugGvar1;
         break;
     case 0x40000029:
-        arg1 = gAiDebugGvar2;
+        i = gAiDebugGvar2;
         break;
     case 0x4000002A:
-        arg1 = gAiDebugGvar3;
+        i = gAiDebugGvar3;
         break;
     case 0x4000002B:
-        arg1 = D_80118248->lotag;
+        i = D_80118248->lotag;
         break;
     case 0x4000002C:
-        arg1 = D_80118248->hitag;
+        i = D_80118248->hitag;
         break;
     case 0x40000031:
-        arg1 = D_80118248->unk22;
+        i = D_80118248->unk22;
         break;
     case 0x40000026:
-        arg1 = gpActor->unk68;
+        i = gpActor->unk68;
         break;
     case 0x40000030:
-        arg1 = gpActor->unk9F;
+        i = gpActor->unk9F;
         break;
     case 0x40000032:
-        arg1 = gpActor->unk94;
+        i = gpActor->unk94;
         break;
     case 0x40000035:
-        arg1 = gpActor->unk92;
+        i = gpActor->unk92;
         break;
     }
 
-    i = arg1;
+    arg1 = i;
     x1 = D_80118248->x;
     y1 = D_80118248->y;
     z1 = D_80118248->z;
@@ -4965,7 +4963,7 @@ void func_8004BFDC(s32 spritenum, s32 arg1, s32 z, s32 arg3)
             cond = D_800DEEA0 != 0;
     }
 
-    switch (i)
+    switch (arg1)
     {
     case 0:
     case 12:
@@ -5068,10 +5066,6 @@ void func_8004BFDC(s32 spritenum, s32 arg1, s32 z, s32 arg3)
         func_8001DCD0(x1/2, y1/2, z1/32, 6);
     }
 }
-#else
-/*8004BFDC*/
-INCLUDE_ASM("src/code0/41940", func_8004BFDC);
-#endif
 
 /*8004CB3C*/
 s32 func_8004CB3C(s32 wallnum)
@@ -5550,7 +5544,7 @@ static s32 func_8004DE60(s32 spritenum, s32 arg1)
 
     if (gpSprite[spritenum].cstat & 0x1000)
     {
-        i = gModelList[gpSprite[spritenum].picnum-MODELLIST]->unk2E << 6;
+        i = gModelList[gpSprite[spritenum].picnum-MODELLIST]->zmax << 6;
         i = i - (i >> 2);
     }
     else
@@ -5562,7 +5556,7 @@ static s32 func_8004DE60(s32 spritenum, s32 arg1)
     if (gpSprite[spritenum].cstat & 0x1000)
     {
         ptr = gModelList[gpSprite[spritenum].picnum-MODELLIST];
-        walldist = ((ptr->unk2A - ptr->unk24) * gpSprite[spritenum].xrepeat / 64);
+        walldist = ((ptr->xmax - ptr->xmin) * gpSprite[spritenum].xrepeat / 64);
         walldist *= 2;
     }
     else
@@ -5675,7 +5669,7 @@ static s32 func_8004DE60(s32 spritenum, s32 arg1)
             if (spritenum_ > 0)
             {
                 if (gpSprite[spritenum_].cstat & 0x1000)
-                    j = gModelList[gpSprite[spritenum_].picnum-MODELLIST]->unk2E << 6;
+                    j = gModelList[gpSprite[spritenum_].picnum-MODELLIST]->zmax << 6;
                 else
                     j = getTileSizeY(gpSprite[spritenum_].picnum) * gpSprite[spritenum_].yrepeat * 4;
 
@@ -5715,8 +5709,8 @@ s32 func_8004E5F8(s16 spritenum, s32 xvect, s32 yvect, s32 zvect)
     if ((gpSprite[spritenum].cstat & 0x1000))
     {
         picnum = gpSprite[spritenum].picnum;
-        walldist = (gModelList[picnum-MODELLIST]->unk2A
-                  - gModelList[picnum-MODELLIST]->unk24)
+        walldist = (gModelList[picnum-MODELLIST]->xmax
+                  - gModelList[picnum-MODELLIST]->xmin)
             * gpSprite[spritenum].xrepeat
             / 64;
 
@@ -9494,7 +9488,7 @@ s32 func_80057540(SpriteType *spr, s16 picnum, s16 arg2, s32 arg3)
     {
         model = gModelList[spr->picnum-MODELLIST];
         if (model != NULL)
-            sizey = (model->unk2E - model->unk28) << 6;
+            sizey = (model->zmax - model->zmin) << 6;
     }
     else
         sizey = getTileSizeY(spr->picnum) * spr->yrepeat * 4;
@@ -9886,7 +9880,7 @@ s32 func_80058600(s32 spritenum)
         model = gModelList[gpSprite[spritenum].picnum-MODELLIST];
         if (model != NULL)
         {
-            ret = (model->unk2E - model->unk28) * 32;
+            ret = (model->zmax - model->zmin) * 32;
             i = gpSprite[spritenum].xrepeat * ret;
             ret = i / 64;
         }

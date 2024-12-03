@@ -64,7 +64,7 @@ static void func_8008196C(code0UnkStruct21 *arg0)
     if (f4 == 0.0f)
         f4 = 1.0f;
 
-    f5 = (f2 * f2) + (f3 * f3) + (f4 * f4);
+    f5 = SQ(f2) + SQ(f3) + SQ(f4);
     if (!(f5 < 0.01))
         f1 = (126.0 / sqrtf(f5));
 
@@ -101,9 +101,9 @@ static void func_80081AEC(s32 arg0)
             f3 = (f32)(D_80118168.unk34[i].unk8 + D_800FF3E0[arg0].unk8);
             f4 = 0.0f;
 
-            if (_fabs(f1) > 1.0f) f4 = f1 * f1;
-            if (_fabs(f2) > 1.0f) f4 += f2 * f2;
-            if (_fabs(f3) > 1.0f) f4 += f3 * f3;
+            if (_fabs(f1) > 1.0f) f4 = SQ(f1);
+            if (_fabs(f2) > 1.0f) f4 += SQ(f2);
+            if (_fabs(f3) > 1.0f) f4 += SQ(f3);
             if (f4 >= 1.0f) f5 = (126.0 / sqrtf(f4));
             else f5 = 126.0f;
 
@@ -421,7 +421,7 @@ static f32 func_800829BC(code0UnkStruct21 *arg0, code0UnkStruct21 *arg1)
     f1 = func_80082958(arg1, arg1);
     f2 = 2.0f * func_80082958(arg1, arg0);
     f3 = func_80082958(arg0, arg0) - 4000000.0f;
-    f4 = (f2 * f2) - (f1 * 4.0f * f3);
+    f4 = SQ(f2) - (f1 * 4.0f * f3);
     if (f4 >= 0.0f)
     {
         f4 = sqrtf(f4);
@@ -502,7 +502,7 @@ static void func_80082BA0(void)
     f2 = -f2;
     f1 = (f32)(i * n) - (f32)(k * l);
     f3 = (f32)(j * l) - (f32)(i * m);
-    f4 = (f1 * f1) + (f2 * f2) + (f3 * f3);
+    f4 = SQ(f1) + SQ(f2) + SQ(f3);
     f5 = 8000.0f / sqrtf(f4);
 
     sp20.unk0 = (f1 * f5);

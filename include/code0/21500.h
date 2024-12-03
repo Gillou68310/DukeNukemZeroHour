@@ -6,6 +6,6 @@
 u8 wallCalc(s32 sectnum, s32 wallnum);
 s32 drawMaskWall(u16 wallnum);
 
-VertexC gWallVertex[12];
+extern VertexC gWallVertex[12];
 
 #endif

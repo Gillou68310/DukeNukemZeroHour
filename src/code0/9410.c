@@ -1307,7 +1307,7 @@ static s32 func_8000CC54(s32 wallnum)
                 }
                 f1 = (gpSinTable[(ang2 + 512) & 0x7FF] * 0x7F) >> 14;
                 f2 = (gpSinTable[ang2 & 0x7FF] * 0x7F) >> 14;
-                f4 = 127.0 / sqrtf((f1 * f1) + (f2 * f2) + (f3 * f3));
+                f4 = 127.0 / sqrtf(SQ(f1) + SQ(f2) + SQ(f3));
                 f1 *= f4;
                 gpVertexN64->v.cn[0] = (s32)f1;
                 f2 *= f4;
@@ -1735,7 +1735,7 @@ static void _setupMatrix(void)
     grPerspectiveF(projection,
                    &perspNorm,
                    (15360.0 / gPlayer[D_801B0820].unk6E),
-                   (4.0f / 3.0f),
+                   ASPECT_RATIO,
                    ((gPlayer[D_801B0820].unk6E * 5) / 256.0),
                    16384.0f,
                    (256.0 / gPlayer[D_801B0820].unk6E));
@@ -1743,7 +1743,7 @@ static void _setupMatrix(void)
     grPerspective(&gpDynamic->mtx1[D_801B0820],
                   &perspNorm,
                   (15360.0 / gPlayer[D_801B0820].unk6E),
-                  (4.0f / 3.0f),
+                  ASPECT_RATIO,
                   ((gPlayer[D_801B0820].unk6E * 5) / 256.0),
                   16384.0f,
                   (256.0 / gPlayer[D_801B0820].unk6E));

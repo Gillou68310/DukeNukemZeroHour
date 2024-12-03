@@ -4,14 +4,14 @@
 /*.text*/
 
 /*800161F0*/
-static void func_800161F0(ModelInfo *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6)
+static void func_800161F0(ModelInfo *model, s32 xmin, s32 ymin, s32 zmin, s32 xmax, s32 ymax, s32 zmax)
 {
-    arg0->unk24 = arg1;
-    arg0->unk26 = arg2;
-    arg0->unk28 = arg3;
-    arg0->unk2A = arg4;
-    arg0->unk2C = arg5;
-    arg0->unk2E = arg6;
+    model->xmin = xmin;
+    model->ymin = ymin;
+    model->zmin = zmin;
+    model->xmax = xmax;
+    model->ymax = ymax;
+    model->zmax = zmax;
 }
 
 /*80016218*/

@@ -528,7 +528,7 @@ s32 canSee(s32 x1, s32 y1, s32 z1, s16 sect1, s32 x2, s32 y2, s32 z2, s16 sect2)
 s32 hitScan(s32 xs, s32 ys, s32 zs, s16 sectnum, s32 vx, s32 vy, s32 vz,
             s16 *hitsect, s16 *hitwall, s16 *hitsprite, s32 *hitx, s32 *hity, s32 *hitz, u32 cliptype)
 {
-    ModelInfo *ptr;
+    ModelInfo *model;
     SectorType *sec;
     WallType *wal, *wal2;
     SpriteType *spr;
@@ -594,7 +594,7 @@ s32 hitScan(s32 xs, s32 ys, s32 zs, s16 sectnum, s32 vx, s32 vy, s32 vz,
             dax = wal2->x - wal->x;
             day = wal2->y - wal->y;
 
-            i = nsqrtasm((dax * dax) + (day * day));
+            i = nsqrtasm(SQ(dax) + SQ(day));
             if (i == 0) continue;
 
             i = divscale15(sec->ceilingheinum, i);
@@ -639,7 +639,7 @@ s32 hitScan(s32 xs, s32 ys, s32 zs, s16 sectnum, s32 vx, s32 vy, s32 vz,
         {
             wal = &gpWall[sec->wallptr]; wal2 = &gpWall[wal->point2];
             dax = wal2->x-wal->x; day = wal2->y-wal->y;
-            i = nsqrtasm(dax*dax+day*day); if (i == 0) continue;
+            i = nsqrtasm(SQ(dax)+SQ(day)); if (i == 0) continue;
             i = divscale15(sec->floorheinum, i);
             dax *= i; day *= i;
 
@@ -720,20 +720,20 @@ s32 hitScan(s32 xs, s32 ys, s32 zs, s16 sectnum, s32 vx, s32 vy, s32 vz,
 
             if (cstat & 0x1000)
             {
-                ptr = gModelList[spr->picnum-MODELLIST];
-                if (ptr != NULL)
+                model = gModelList[spr->picnum-MODELLIST];
+                if (model != NULL)
                 {
                     s32 intx2, inty2, intz2;
                     s32 x_[4];
                     s32 y_[4];
 
-                    daz = (z1 - (((ptr->unk28 * (spr->yrepeat << 6)) / 64) * 0.95));
-                    daz2 = (spr->z - (((ptr->unk2E * (spr->yrepeat << 6)) / 64) * 0.95));
+                    daz = (z1 - (((model->zmin * (spr->yrepeat << 6)) / 64) * 0.95));
+                    daz2 = (spr->z - (((model->zmax * (spr->yrepeat << 6)) / 64) * 0.95));
 
-                    x_[0] = (spr->x + (((ptr->unk24 * (spr->xrepeat << 2)) / 64) * 0.95));
-                    x_[2] = (spr->x + (((ptr->unk2A * (spr->xrepeat << 2)) / 64) * 0.95));
-                    y_[0] = (spr->y - (((ptr->unk26 * (spr->xrepeat << 2)) / 64) * 0.95));
-                    y_[2] = (spr->y - (((ptr->unk2C * (spr->xrepeat << 2)) / 64) * 0.95));
+                    x_[0] = (spr->x + (((model->xmin * (spr->xrepeat << 2)) / 64) * 0.95));
+                    x_[2] = (spr->x + (((model->xmax * (spr->xrepeat << 2)) / 64) * 0.95));
+                    y_[0] = (spr->y - (((model->ymin * (spr->xrepeat << 2)) / 64) * 0.95));
+                    y_[2] = (spr->y - (((model->ymax * (spr->xrepeat << 2)) / 64) * 0.95));
 
                     x_[1] = x_[2];
                     y_[1] = y_[0];
@@ -1014,7 +1014,7 @@ s32 hitScan(s32 xs, s32 ys, s32 zs, s16 sectnum, s32 vx, s32 vy, s32 vz,
 /*8002F1B4*/
 s32 nearTag(s32 xs, s32 ys, s32 zs, s16 sectnum, s16 ange, s16 *neartagsector, s16 *neartagwall, s16 *neartagsprite, s32 *neartaghitdist, s32 neartagrange, u8 tagsearch)
 {
-    ModelInfo *ptr;
+    ModelInfo *model;
     WallType *wal2;
     WallType *wall;
     SpriteType *spr;
@@ -1140,12 +1140,12 @@ s32 nearTag(s32 xs, s32 ys, s32 zs, s16 sectnum, s16 ange, s16 *neartagsector, s
                 neartagrange2 = func_80040D40(spr->x, spr->y, xs, ys);
                 if (spr->cstat & 0x1000)
                 {
-                    ptr = gModelList[spr->picnum-MODELLIST];
-                    if (ptr == NULL)
+                    model = gModelList[spr->picnum-MODELLIST];
+                    if (model == NULL)
                         continue;
 
-                    i = ((ptr->unk2A - ptr->unk24) * spr->xrepeat) / 16;
-                    j = ((ptr->unk2C - ptr->unk26) * spr->xrepeat) / 16;
+                    i = ((model->xmax - model->xmin) * spr->xrepeat) / 16;
+                    j = ((model->ymax - model->ymin) * spr->xrepeat) / 16;
                     k = (i + j) / 4;
                     neartagrange2 = CLAMP_MIN((neartagrange2 - k), 0);
                 }
@@ -1154,9 +1154,9 @@ s32 nearTag(s32 xs, s32 ys, s32 zs, s16 sectnum, s16 ange, s16 *neartagsector, s
                 {
                     if (spr->cstat & 0x1000)
                     {
-                        l = (ptr->unk2E * (spr->yrepeat << 6)) / 64;
+                        l = (model->zmax * (spr->yrepeat << 6)) / 64;
                         z1 = spr->z - l;
-                        m = (ptr->unk28 * (spr->yrepeat << 6)) / 64;
+                        m = (model->zmin * (spr->yrepeat << 6)) / 64;
                         z2 = spr->z - m;
                     }
                     else
@@ -1312,7 +1312,7 @@ static s16 _lastWall(s16 point)
 s32 clipMove(s32 *x, s32 *y, s32 *z, s16 *sectnum, s32 xvect,
              s32 yvect, s32 walldist, s32 ceildist, s32 flordist, u32 cliptype)
 {
-    ModelInfo *ptr;
+    ModelInfo *model;
     WallType *wal, *wal2;
     SpriteType *spr;
     SectorType *sec;
@@ -1346,7 +1346,7 @@ s32 clipMove(s32 *x, s32 *y, s32 *z, s16 *sectnum, s32 xvect,
     gx = goalx - *x;
     gy = goaly - *y;
 
-    rad = nsqrtasm(gx*gx + gy*gy) + MAXCLIPDIST + walldist + 8;
+    rad = nsqrtasm(SQ(gx) + SQ(gy)) + MAXCLIPDIST + walldist + 8;
     xmin = cx - rad;
     ymin = cy - rad;
     xmax = cx + rad;
@@ -1466,25 +1466,25 @@ s32 clipMove(s32 *x, s32 *y, s32 *z, s16 *sectnum, s32 xvect,
             y1 = spr->y;
             if (cstat & 0x1000)
             {
-                ptr = gModelList[spr->picnum-MODELLIST];
-                if (ptr != NULL)
+                model = gModelList[spr->picnum-MODELLIST];
+                if (model != NULL)
                 {
-                    a = (ptr->unk28 * (spr->yrepeat << 6)) / 64;
+                    a = (model->zmin * (spr->yrepeat << 6)) / 64;
                     daz = spr->z - a;
-                    b = (ptr->unk2E * (spr->yrepeat << 6)) / 64;
+                    b = (model->zmax * (spr->yrepeat << 6)) / 64;
                     daz += ceildist;
                     daz2 = spr->z - b;
                     daz2 -= flordist;
 
                     if ((*z < daz) && (daz2 < *z))
                     {
-                        c = (ptr->unk24 * (spr->xrepeat << 2)) / 64;
+                        c = (model->xmin * (spr->xrepeat << 2)) / 64;
                         x1_ = (spr->x + c) - walldist;
-                        d = (ptr->unk2A * (spr->xrepeat << 2)) / 64;
+                        d = (model->xmax * (spr->xrepeat << 2)) / 64;
                         x3_ = spr->x + d + walldist;
-                        e = (ptr->unk26 * (spr->xrepeat << 2)) / 64;
+                        e = (model->ymin * (spr->xrepeat << 2)) / 64;
                         y1_ = (spr->y - e) + walldist;
-                        f = (ptr->unk2C * (spr->xrepeat << 2)) / 64;
+                        f = (model->ymax * (spr->xrepeat << 2)) / 64;
                         y3_ = (spr->y - f) - walldist;
 
                         x2_ = x3_;
@@ -2059,7 +2059,7 @@ s32 krand(void)
 /*8003331C*/
 void getzRange(s32 x, s32 y, s32 z, s16 sectnum, s32 *ceilz, s32 *ceilhit, s32 *florz, s32 *florhit, s32 walldist, u32 cliptype)
 {
-    ModelInfo *ptr;
+    ModelInfo *model;
     SectorType *sec;
     WallType *wall, *wal2;
     SpriteType *spr;
@@ -2209,19 +2209,19 @@ void getzRange(s32 x, s32 y, s32 z, s16 sectnum, s32 *ceilz, s32 *ceilhit, s32 *
                 clipyou = 0;
                 if (cstat & 0x1000)
                 {
-                    ptr = gModelList[spr->picnum-MODELLIST];
-                    if (ptr != NULL)
+                    model = gModelList[spr->picnum-MODELLIST];
+                    if (model != NULL)
                     {
                         s32 x_[4];
                         s32 y_[4];
 
-                        n = (ptr->unk24 * (spr->xrepeat << 2)) / 64;
+                        n = (model->xmin * (spr->xrepeat << 2)) / 64;
                         x_[0] = (x1 + n) - 164;
-                        q = (ptr->unk2A * (spr->xrepeat << 2)) / 64;
+                        q = (model->xmax * (spr->xrepeat << 2)) / 64;
                         x_[2] = spr->x + q + 164;
-                        r = (ptr->unk26 * (spr->xrepeat << 2)) / 64;
+                        r = (model->ymin * (spr->xrepeat << 2)) / 64;
                         y_[0] = (spr->y - r) + 164;
-                        o = ptr->unk2C * (spr->xrepeat << 2) / 64;
+                        o = model->ymax * (spr->xrepeat << 2) / 64;
                         y_[2] = (spr->y - o) - 164;
 
                         x_[1] = x_[2];
@@ -2240,9 +2240,9 @@ void getzRange(s32 x, s32 y, s32 z, s16 sectnum, s32 *ceilz, s32 *ceilhit, s32 *
                             rotatePoint(spr->x, spr->y, x_[3], y_[3], ((spr->ang + 0x600) & 0x7FF), &t, &u);
                             x_[3] = t; y_[3] = u;
                         }
-                        s = (ptr->unk28 * (spr->yrepeat << 6)) / 64;
+                        s = (model->zmin * (spr->yrepeat << 6)) / 64;
                         daz = spr->z - s;
-                        p = (ptr->unk2E * (spr->yrepeat << 6)) / 64;
+                        p = (model->zmax * (spr->yrepeat << 6)) / 64;
                         daz2 = spr->z - p;
 
                         for (k = 0; k < 4; k++)
@@ -2409,7 +2409,7 @@ s32 getCeilzOfSlope(s16 sectnum, s32 dax, s32 day)
     if (!(gpSector[sectnum].ceilingstat&2)) return(gpSector[sectnum].ceilingz);
     wal = &gpWall[gpSector[sectnum].wallptr];
     dx = gpWall[wal->point2].x-wal->x; dy = gpWall[wal->point2].y-wal->y;
-    i = (nsqrtasm(dx*dx+dy*dy)<<5); if (i == 0) return(gpSector[sectnum].ceilingz);
+    i = (nsqrtasm(SQ(dx)+SQ(dy))<<5); if (i == 0) return(gpSector[sectnum].ceilingz);
     j = dmulscale3(dx, day-wal->y, -dy, dax-wal->x);
     return(gpSector[sectnum].ceilingz+scale(gpSector[sectnum].ceilingheinum, j, i));
 }
@@ -2423,7 +2423,7 @@ s32 getFlorzOfSlope(s16 sectnum, s32 dax, s32 day)
     if (!(gpSector[sectnum].floorstat&2)) return(gpSector[sectnum].floorz);
     wal = &gpWall[gpSector[sectnum].wallptr];
     dx = gpWall[wal->point2].x-wal->x; dy = gpWall[wal->point2].y-wal->y;
-    i = (nsqrtasm(dx*dx+dy*dy)<<5); if (i == 0) return(gpSector[sectnum].floorz);
+    i = (nsqrtasm(SQ(dx)+SQ(dy))<<5); if (i == 0) return(gpSector[sectnum].floorz);
     j = dmulscale3(dx, day-wal->y, -dy, dax-wal->x);
     return(gpSector[sectnum].floorz+scale(gpSector[sectnum].floorheinum, j, i));
 }
@@ -2441,7 +2441,7 @@ void getzsOfSlope(s16 sectnum, s32 dax, s32 day, s32 *ceilz, s32 *florz)
     {
         wal = &gpWall[sec->wallptr]; wal2 = &gpWall[wal->point2];
         dx = wal2->x-wal->x; dy = wal2->y-wal->y;
-        i = (nsqrtasm(dx*dx+dy*dy)<<5); if (i == 0) return;
+        i = (nsqrtasm(SQ(dx)+SQ(dy))<<5); if (i == 0) return;
         j = dmulscale3(dx, day-wal->y, -dy, dax-wal->x);
         if (sec->ceilingstat&2) *ceilz = (*ceilz)+scale(sec->ceilingheinum, j, i);
         if (sec->floorstat&2) *florz = (*florz)+scale(sec->floorheinum, j, i);
@@ -2460,7 +2460,7 @@ void alignFlorSlope(s16 dasect, s32 x, s32 y, s32 z)
 
     i = (y-wal->y)*dax - (x-wal->x)*day; if (i == 0) return;
     gpSector[dasect].floorheinum = scale((z-gpSector[dasect].floorz)<<8,
-                                                  nsqrtasm(dax*dax+day*day), i);
+                                                  nsqrtasm(SQ(dax)+SQ(day)), i);
 
     if (gpSector[dasect].floorheinum == 0) gpSector[dasect].floorstat &= ~2;
     else gpSector[dasect].floorstat |= 2;
@@ -2478,7 +2478,7 @@ void alignCeilSlope(s16 dasect, s32 x, s32 y, s32 z)
 
     i = (y-wal->y)*dax - (x-wal->x)*day; if (i == 0) return;
     gpSector[dasect].ceilingheinum = scale((z-gpSector[dasect].ceilingz)<<8,
-                                                     nsqrtasm(dax*dax+day*day), i);
+                                                     nsqrtasm(SQ(dax)+SQ(day)), i);
 
     if (gpSector[dasect].ceilingheinum == 0) gpSector[dasect].ceilingstat &= ~2;
     else gpSector[dasect].ceilingstat |= 2;
@@ -2487,11 +2487,11 @@ void alignCeilSlope(s16 dasect, s32 x, s32 y, s32 z)
 /*800350A8*/
 s32 findDistance2D(s32 dx, s32 dy)
 {
-    return sqrtf(((f32)dx * (f32)dx) + ((f32)dy * (f32)dy));
+    return sqrtf(SQ((f32)dx) + SQ((f32)dy));
 }
 
 /*80035110*/
 s32 findDistance3D(s32 dx, s32 dy, s32 dz)
 {
-    return sqrtf(((f32)dx * (f32)dx) + ((f32)dy * (f32)dy) + ((f32)dz * (f32)dz));
+    return sqrtf(SQ((f32)dx) + SQ((f32)dy) + SQ((f32)dz));
 }

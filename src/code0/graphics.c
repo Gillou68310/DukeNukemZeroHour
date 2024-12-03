@@ -98,7 +98,7 @@ void grNormalize(f32 *x, f32 *y, f32 *z)
 {
     f32 m;
 
-    m = 1 / sqrtf((*x) * (*x) + (*y) * (*y) + (*z) * (*z));
+    m = 1 / sqrtf(SQ(*x) + SQ(*y) + SQ(*z));
     *x *= m;
     *y *= m;
     *z *= m;
@@ -250,7 +250,7 @@ void grLookAtF(f32 mf[4][4], f32 xEye, f32 yEye, f32 zEye,
     zLook = zAt - zEye;
 
     /* Negate because positive Z is behind us: */
-    len = -1.0 / sqrtf(xLook * xLook + yLook * yLook + zLook * zLook);
+    len = -1.0 / sqrtf(SQ(xLook) + SQ(yLook) + SQ(zLook));
     xLook *= len;
     yLook *= len;
     zLook *= len;
@@ -260,7 +260,7 @@ void grLookAtF(f32 mf[4][4], f32 xEye, f32 yEye, f32 zEye,
     xRight = yUp * zLook - zUp * yLook;
     yRight = zUp * xLook - xUp * zLook;
     zRight = xUp * yLook - yUp * xLook;
-    len = 1.0 / sqrtf(xRight * xRight + yRight * yRight + zRight * zRight);
+    len = 1.0 / sqrtf(SQ(xRight) + SQ(yRight) + SQ(zRight));
     xRight *= len;
     yRight *= len;
     zRight *= len;
@@ -270,7 +270,7 @@ void grLookAtF(f32 mf[4][4], f32 xEye, f32 yEye, f32 zEye,
     xUp = yLook * zRight - zLook * yRight;
     yUp = zLook * xRight - xLook * zRight;
     zUp = xLook * yRight - yLook * xRight;
-    len = 1.0 / sqrtf(xUp * xUp + yUp * yUp + zUp * zUp);
+    len = 1.0 / sqrtf(SQ(xUp) + SQ(yUp) + SQ(zUp));
     xUp *= len;
     yUp *= len;
     zUp *= len;
@@ -310,7 +310,7 @@ void grLookAtReflectF(f32 mf[4][4], LookAt *l,
     zLook = zAt - zEye;
 
     /* Negate because positive Z is behind us: */
-    len = -1.0 / sqrtf(xLook * xLook + yLook * yLook + zLook * zLook);
+    len = -1.0 / sqrtf(SQ(xLook) + SQ(yLook) + SQ(zLook));
     xLook *= len;
     yLook *= len;
     zLook *= len;
@@ -320,7 +320,7 @@ void grLookAtReflectF(f32 mf[4][4], LookAt *l,
     xRight = yUp * zLook - zUp * yLook;
     yRight = zUp * xLook - xUp * zLook;
     zRight = xUp * yLook - yUp * xLook;
-    len = 1.0 / sqrtf(xRight * xRight + yRight * yRight + zRight * zRight);
+    len = 1.0 / sqrtf(SQ(xRight) + SQ(yRight) + SQ(zRight));
     xRight *= len;
     yRight *= len;
     zRight *= len;
@@ -330,7 +330,7 @@ void grLookAtReflectF(f32 mf[4][4], LookAt *l,
     xUp = yLook * zRight - zLook * yRight;
     yUp = zLook * xRight - xLook * zRight;
     zUp = xLook * yRight - yLook * xRight;
-    len = 1.0 / sqrtf(xUp * xUp + yUp * yUp + zUp * zUp);
+    len = 1.0 / sqrtf(SQ(xUp) + SQ(yUp) + SQ(zUp));
     xUp *= len;
     yUp *= len;
     zUp *= len;

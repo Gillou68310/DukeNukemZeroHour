@@ -73,7 +73,7 @@ static f32 func_8003EED0(f32 arg0, f32 arg1)
     fx = hitx - D_801A2790[D_801B0820].x;
     fy = hity - D_801A2790[D_801B0820].y;
     fz = (hitz - D_801A2790[D_801B0820].z) / 16.0;
-    return CLAMP_MIN((sqrtf((fx * fx) + (fy * fy) + (fz * fz)) - 64.0), 0.0);
+    return CLAMP_MIN((sqrtf(SQ(fx) + SQ(fy) + SQ(fz)) - 64.0), 0.0);
 }
 
 /*8003F29C*/

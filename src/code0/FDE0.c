@@ -31,9 +31,9 @@ static Lights2 _light2 = {
 /*.comm*/
 /*800FE414*/ u8 D_800FE414;
 /*800FF3A0*/ Matrix4f D_800FF3A0 ALIGNED(8);
-/*80106D3C*/ f32 D_80106D3C;
-/*8012E154*/ u16 D_8012E154;
-/*8012EB48*/ f32 D_8012EB48;
+/*80106D3C*/ f32 D_80106D3C; /*unused*/
+/*8012E154*/ u16 D_8012E154; /*unused*/
+/*8012EB48*/ f32 D_8012EB48; /*unused*/
 /*8012FD86*/ s16 D_8012FD86; /*alpha*/
 /*80197DF0*/ Matrix4f D_80197DF0 ALIGNED(8);
 /*80199578*/ Matrix4f D_80199578 ALIGNED(8);
@@ -133,7 +133,8 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
                                                    0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
                 gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_XLU_SURF2);
             }
-        } if (!(gpSprite[spritenum].cstat & 0x800))
+        }
+		if (!(gpSprite[spritenum].cstat & 0x800))
         {
             if (D_801A2688 == 1)
             {
@@ -415,7 +416,7 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
         x = gpSprite[spritenum].x;
         y = gpSprite[spritenum].y;
         z = gpSprite[spritenum].z;
-        arg1 = arg1 + 180.0f;
+        arg1 += 180.0f;
 
         if (gpSprite[spritenum].cstat & 0x4000)
         {
@@ -435,9 +436,9 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
             if ((gpSprite[spritenum].cstat & 0x30) == 0x10)
             {
                 o = (func_80040D40(gGlobalPosX,
-                    gGlobalPosY,
-                    gpSprite[spritenum].x,
-                    gpSprite[spritenum].y) << 8) / (gPlayer[D_801B0820].unk6E * 60);
+                                   gGlobalPosY,
+                                   gpSprite[spritenum].x,
+                                   gpSprite[spritenum].y) << 8) / (gPlayer[D_801B0820].unk6E * 60);
 
                 if (o < 8)
                     o = 8;
@@ -460,13 +461,13 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
         if (p == 0)
         {
             grPosition(&gpDynamic->mtx3[D_801A6D80],
-                arg2,
-                arg1,
-                arg3,
-                gpSprite[spritenum].xrepeat / 64.0,
-                x / 4.0,
-                y / 4.0,
-                z / 64.0);
+                       arg2,
+                       arg1,
+                       arg3,
+                       gpSprite[spritenum].xrepeat / 64.0,
+                       x / 4.0,
+                       y / 4.0,
+                       z / 64.0);
         }
         else
         {
@@ -478,10 +479,10 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
             guRotateRPY(&mtx4, 0.0f, 0.0f, f1);
 
             grPosition(&mtx5, 0.0f, 0.0f, 0.0f,
-                gpSprite[spritenum].xrepeat / 64.0,
-                x / 4.0,
-                y / 4.0,
-                z / 64.0);
+                       gpSprite[spritenum].xrepeat / 64.0,
+                       x / 4.0,
+                       y / 4.0,
+                       z / 64.0);
 
             grMtxCatL(&mtx4, &mtx1, &gpDynamic->mtx3[D_801A6D80]);
             grMtxCatL(&gpDynamic->mtx3[D_801A6D80], &mtx2, &gpDynamic->mtx3[D_801A6D80]);
@@ -534,9 +535,9 @@ void func_80011180(void)
     s32 i;
     f1 = sinf(0.61086524f);
     f2 = cosf(0.61086524f);
-    f3 = 159.0f / (f1 / f2);
-    f5 = 119.0f;
-    f4 = 1.0 / sqrt((f3 * f3) + 14161.0f);
+    f3 = ((SCREEN_WIDTH / 2.f) - 1.f) / (f1 / f2);
+    f5 = ((SCREEN_HEIGHT / 2.f) - 1.f);
+    f4 = 1.0 / sqrt(SQ(f3) + SQ(f5));
     D_80197DF0[0][0] = f2;
     D_80197DF0[0][1] = 0.0f;
     D_80197DF0[0][2] = f1;
@@ -547,16 +548,15 @@ void func_80011180(void)
     D_80197DF0[1][3] = 0.0f;
     D_80197DF0[2][0] = 0.0f;
     D_80197DF0[2][1] = f3 * f4;
-    D_80197DF0[2][2] = f4 * 119.0f;
+    D_80197DF0[2][2] = f4 * f5;
     D_80197DF0[2][3] = 0.0f;
     D_80197DF0[3][0] = 0.0f;
     D_80197DF0[3][1] = -(f3 * f4);
-    D_80197DF0[3][2] = f4 * 119.0f;
+    D_80197DF0[3][2] = f4 * f5;
     D_80197DF0[3][3] = 0.0f;
     D_80106D3C = 0.18310827f;
     D_8012EB48 = (f3 * 65536.0) * (1.0 / 12000.0);
-    f5 = cosf(D_8016A15C);
-    f14 = f5;
+    f14 = cosf(D_8016A15C);
     f6 = sinf(D_8016A15C);
     f7 = cosf(-gGlobalAng);
     f8 = sinf(-gGlobalAng);
@@ -578,42 +578,42 @@ void func_80011180(void)
 /*80011410*/
 static f32 func_80011410(ModelInfo *model)
 {
-    f32 f1, f2, f5, f3, f4, f6, f7, f8;
+    f32 xmin, ymin, ymax, zmin, xmax, zmax, f7, f8;
 
-    f1 = model->unk24;
-    f2 = model->unk26;
-    f3 = model->unk28;
-    f4 = model->unk2A;
-    f5 = model->unk2C;
-    f6 = model->unk2E;
+    xmin = model->xmin;
+    ymin = model->ymin;
+    zmin = model->zmin;
+    xmax = model->xmax;
+    ymax = model->ymax;
+    zmax = model->zmax;
 
-    f7 = (f1 * f1) + (f5 * f5) + (f3 * f3);
+    f7 = SQ(xmin) + SQ(ymax) + SQ(zmin);
 
-    f8 = (f4 * f4) + (f5 * f5) + (f3 * f3);
+    f8 = SQ(xmax) + SQ(ymax) + SQ(zmin);
     if (f7 < f8)
         f7 = f8;
 
-    f8 = (f4 * f4) + (f2 * f2) + (f3 * f3);
+    f8 = SQ(xmax) + SQ(ymin) + SQ(zmin);
     if (f7 < f8)
         f7 = f8;
 
-    f8 = (f1 * f1) + (f2 * f2) + (f3 * f3);
+    f8 = SQ(xmin) + SQ(ymin) + SQ(zmin);
     if (f7 < f8)
         f7 = f8;
 
-    f8 = (f1 * f1) + (f5 * f5) + (f6 * f6);
+    f8 = SQ(xmin) + SQ(ymax) + SQ(zmax);
     if (f7 < f8)
         f7 = f8;
 
-    f8 = (f4 * f4) + (f5 * f5) + (f6 * f6);
+    f8 = SQ(xmax) + SQ(ymax) + SQ(zmax);
     if (f7 < f8)
         f7 = f8;
 
-    f8 = (f4 * f4) + (f2 * f2) + (f6 * f6);
+    f8 = SQ(xmax) + SQ(ymin) + SQ(zmax);
     if (f7 < f8)
         f7 = f8;
 
-    f8 = (f1 * f1) + (f2 * f2) + (f6 * f6);
+    f8 = SQ(xmin) + SQ(ymin) + SQ(zmax);
     if (f7 < f8)
         f7 = f8;
 
@@ -874,9 +874,9 @@ void func_80012174(void)
         if ((gpSprite[spritenum].statnum != 10) || (gpSprite[spritenum].unk16 != D_801B0820))
         {
             func_8000F474(spritenum,
-                         ((D_8013B2D0[spritenum].unk0 * 180) / 1024.0),
-                         ((D_8013B2D0[spritenum].unk2 * 180) / 1024.0),
-                         ((((gpSprite[spritenum].ang + D_8013B2D0[spritenum].unk4) * 180) / 1024.0) + 90.0));
+                          ((D_8013B2D0[spritenum].unk0 * 180) / 1024.0),
+                          ((D_8013B2D0[spritenum].unk2 * 180) / 1024.0),
+                          ((((gpSprite[spritenum].ang + D_8013B2D0[spritenum].unk4) * 180) / 1024.0) + 90.0));
         }
     }
 }
@@ -889,9 +889,9 @@ void func_80012318(void)
         func_8000F1E0();
         D_8013B2D0[gPlayer[D_801B0820].unk4A].unk6 = 255 - gPlayer[D_801B0820].unk6A;
         func_8000F474(gPlayer[D_801B0820].unk4A,
-                     ((D_8013B2D0[gPlayer[D_801B0820].unk4A].unk0 * 180) / 1024.0),
-                     ((D_8013B2D0[gPlayer[D_801B0820].unk4A].unk2 * 180) / 1024.0),
-                     ((((gpSprite[gPlayer[D_801B0820].unk4A].ang + D_8013B2D0[gPlayer[D_801B0820].unk4A].unk4) * 180) / 1024.0) + 90.0));
+                      ((D_8013B2D0[gPlayer[D_801B0820].unk4A].unk0 * 180) / 1024.0),
+                      ((D_8013B2D0[gPlayer[D_801B0820].unk4A].unk2 * 180) / 1024.0),
+                      ((((gpSprite[gPlayer[D_801B0820].unk4A].ang + D_8013B2D0[gPlayer[D_801B0820].unk4A].unk4) * 180) / 1024.0) + 90.0));
     }
 }
 
@@ -1075,7 +1075,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
                     ftemp = ptr->unk8->unk18[ptr->unk2].unk4;
                     fy += ftemp;
                     fz = (ptr->unk8->unk18[ptr->unk2].unk2 * (1.0f - f4)) +
-                        (ptr->unk1C->unk18[ptr->unk16].unk2 * f4);
+                         (ptr->unk1C->unk18[ptr->unk16].unk2 * f4);
                 }
                 else
                 {
@@ -1882,7 +1882,7 @@ static void func_80015458(_FDE0UnkStruct2 *arg0, s16 arg1)
                 ftemp = ptr->unk8->unk18[ptr->unk2].unk4;
                 fy += ftemp;
                 fz = (ptr->unk8->unk18[ptr->unk2].unk2 * (1.0f - f4)) +
-                    (ptr->unk1C->unk18[ptr->unk16].unk2 * f4);
+                     (ptr->unk1C->unk18[ptr->unk16].unk2 * f4);
             }
             else
             {
@@ -1917,7 +1917,7 @@ static void func_80015458(_FDE0UnkStruct2 *arg0, s16 arg1)
     if (arg1 == 15)
         _copyMatrix(D_801AFDE0, D_801B0830[D_801ACC60]);
 
-    for (i = 0; i <arg0->unk2; i++)
+    for (i = 0; i < arg0->unk2; i++)
     {
         if (arg0->unk8[i].unk18 == arg1)
             func_80015458(arg0, i);

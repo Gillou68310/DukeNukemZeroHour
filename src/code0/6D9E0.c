@@ -256,7 +256,7 @@ static void func_8006D1F4(SpriteType *spr, s32 x, s32 y, s32 z, s32 arg4, s32 ar
 
         f4 = (dist * 8) / f3;
         f5 = (z_ / f3) - ((arg5 * f3) / 2.0f);
-        f6 = sqrtf((f4 * f4) + (f5 * f5));
+        f6 = sqrtf(SQ(f4) + SQ(f5));
 
         if (f2 < f6)
         {

@@ -1402,7 +1402,7 @@ static void func_800034F4(void)
         &gpDynamic->projection,
         &gPerspNorm,
         37.0,
-        (4.0f / 3.0f),
+        ASPECT_RATIO,
         10.0,
         5600.0,
         1.0);

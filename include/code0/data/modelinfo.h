@@ -31,12 +31,12 @@ typedef struct {
     /*0x1C*/ u8 pad3[4];
     /*0x20*/ s8 lock;
     /*0x21*/ u8 pad4[3];
-    /*0x24*/ s16 unk24;
-    /*0x26*/ s16 unk26;
-    /*0x28*/ s16 unk28;
-    /*0x2A*/ s16 unk2A;
-    /*0x2C*/ s16 unk2C;
-    /*0x2E*/ s16 unk2E;
+    /*0x24*/ s16 xmin;
+    /*0x26*/ s16 ymin;
+    /*0x28*/ s16 zmin;
+    /*0x2A*/ s16 xmax;
+    /*0x2C*/ s16 ymax;
+    /*0x2E*/ s16 zmax;
 } ModelInfo;
 
 typedef struct {

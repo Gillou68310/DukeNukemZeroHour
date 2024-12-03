@@ -59,4 +59,6 @@ typedef s32 intptr_t;
 
 #define PI 3.14159265359
 
+#define SQ(x) ((x) * (x))
+
 #endif
