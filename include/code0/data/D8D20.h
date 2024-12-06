@@ -21,9 +21,9 @@ typedef struct {
     /*0x00*/ s32 fileoff;
     /*0x04*/ u8 *ramaddr;
     /*0x08*/ s8 lock;
-    /*0x0C*/ s32 unkC;
-    /*0x10*/ s32 unk10;
-    /*0x14*/ s16 unk14;
+    /*0x0C*/ s32 dsize;
+    /*0x10*/ s32 csize;
+    /*0x14*/ s16 unk14; /*count of unk18*/
     /*0x18*/ _D8D20UnkStruct3 *unk18;
     /*0x1C*/ _D8D20UnkStruct1 *unk1C;
     /*0x20*/ s16 unk20;

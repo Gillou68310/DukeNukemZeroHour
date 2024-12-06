@@ -4200,15 +4200,10 @@ static void func_8004A590(s32 spritenum)
     }
 }
 
-typedef struct {
-    u16 unk0[16];
-} _41940UnkStruct4;
-static const _41940UnkStruct4 D_800E5618 = {1,2,58,64,65,66,67,70,71,72,10,120,302,4,305,301};
-
 /*8004AB6C*/
 void func_8004AB6C(s32 spritenum, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6)
 {
-    _41940UnkStruct4 sp20;
+    u16 stat[16] = {1,2,58,64,65,66,67,70,71,72,10,120,302,4,305,301};
     s16 sectnum;
     s16 spritenum_;
     s16 i, j, k, l;
@@ -4220,7 +4215,6 @@ void func_8004AB6C(s32 spritenum, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 ar
     s32 m, n;
     s32 temp;
 
-    sp20 = D_800E5618;
     sectnum = gpSprite[spritenum].sectnum;
     hitag = gpSprite[spritenum].hitag;
     lotag = gpSprite[spritenum].lotag;
@@ -4234,9 +4228,9 @@ void func_8004AB6C(s32 spritenum, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 ar
         spr1->hitag = hitag;
         spr1->lotag = lotag;
 
-        for (j = 0; j < ARRAY_COUNT(sp20.unk0); j++)
+        for (j = 0; j < ARRAY_COUNT(stat); j++)
         {
-            i = gHeadSpriteStat[sp20.unk0[j]];
+            i = gHeadSpriteStat[stat[j]];
             while (i >= 0)
             {
                 spr2 = &gpSprite[i];
@@ -4244,7 +4238,7 @@ void func_8004AB6C(s32 spritenum, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 ar
                 m = dist(spr1, spr2);
                 n = arg5;
 
-                if (sp20.unk0[j] == 305)
+                if (stat[j] == 305)
                     m = m / 2;
 
                 /*FAKEMATCH*/
@@ -5137,25 +5131,17 @@ s32 ldist(SpriteType *s1, SpriteType *s2)
     return findDistance2D((s1->x - s2->x), (s1->y - s2->y)) + 1;
 }
 
-typedef struct
-{
-    /*0x00*/ s16 unk0[3];
-} _41940UnkStruct3;
-
-static const _41940UnkStruct3 D_800E58F4 = {1, 10, 305};
-
 /*8004CE58*/
 s16 func_8004CE58(SpriteType *spr, s16 arg1, s16 arg2)
 {
     s32 a, b, c, d, e, ret, f, g, h;
-    _41940UnkStruct3 stat;
+    s16 stat[3] = {1, 10, 305};
     s32 x, y;
     s32 i, m;
     s16 cond1, cond2;
     s16 j;
     s32 temp;
 
-    stat = D_800E58F4;
     if (spr->statnum == 10)
     {
         i = spr->unk16;
@@ -5190,9 +5176,9 @@ s16 func_8004CE58(SpriteType *spr, s16 arg1, s16 arg2)
     else
         f = 0;
 
-    for (i = 0; i < ARRAY_COUNT(stat.unk0); i++)
+    for (i = 0; i < ARRAY_COUNT(stat); i++)
     {
-        j = gHeadSpriteStat[stat.unk0[i]];
+        j = gHeadSpriteStat[stat[i]];
         while (j >= 0)
         {
             if (spr != &gpSprite[j])
@@ -5236,16 +5222,14 @@ s32 func_8004D304(SpriteType *arg0, s16 arg1, s16 arg2)
 {
     SpriteType *spr;
     s32 a, b, c, d, e, f, g, ret;
-    _41940UnkStruct3 stat;
+    s16 stat[3] = {1, 10, 305};
     s32 x, y;
     s16 i;
     s32 j, m;
     s16 cond;
+    s32 temp;
 
-    if (arg1)
-        stat = D_800E58F4;
-    else
-        stat = D_800E58F4;
+    if(temp) ret = -1; /*FAKEMATCH*/
 
     ret = -1;
     g = ~0x80000000;
@@ -5257,9 +5241,9 @@ s32 func_8004D304(SpriteType *arg0, s16 arg1, s16 arg2)
     e = gpSinTable[(arg0->ang + 512) & 0x7FF];
     f = gpSinTable[arg0->ang & 0x7FF];
 
-    for (j = 0; j < ARRAY_COUNT(stat.unk0); j++)
+    for (j = 0; j < ARRAY_COUNT(stat); j++)
     {
-        i = gHeadSpriteStat[stat.unk0[j]];
+        i = gHeadSpriteStat[stat[j]];
         while (i >= 0)
         {
             spr = &gpSprite[i];
@@ -7600,25 +7584,17 @@ static s32 func_80052AB0(s16 playernum, s16 arg1, s32 spritenum)
     return ret;
 }
 
-typedef struct
-{
-    /*0x00*/ s32 unk0[3];
-} _41940UnkStruct2;
-
-static const _41940UnkStruct2 D_800E5CDC = {15, 45, 67};
-
 /*800533C4*/
 void func_800533C4(s32 picnum, s32 spritenum)
 {
-    _41940UnkStruct2 sp10;
     SpriteType *spr;
-    s32 i, j, k;
+    s32 i = 0;
+    s32 k = 0;
+    s32 sp10[3] = {15, 45, 67};
+    s32 j;
     s32 spritenum_;
 
-    i = 0;
-    k = 0;
     j = -1;
-    sp10 = D_800E5CDC;
     spr = &gpSprite[spritenum];
     spritenum_ = spritenum;
 
@@ -7814,19 +7790,19 @@ void func_800533C4(s32 picnum, s32 spritenum)
         {
             changeSpriteStat(spritenum_, 65);
             spr->unk22 = j;
-            spr->unk18 = sp10.unk0[j % 3];
+            spr->unk18 = sp10[j % 3];
         }
 
         if ((j == -1) && (i != 0))
         {
             changeSpriteStat(spritenum_, 65);
             spr->unk22 = -1;
-            spr->unk18 = sp10.unk0[0];
+            spr->unk18 = sp10[0];
         }
         spr->unk2B = i;
 
         if (i == 2)
-            spr->unk18 = sp10.unk0[2];
+            spr->unk18 = sp10[2];
     }
     func_80053650(picnum, spritenum);
 }

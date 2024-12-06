@@ -1742,17 +1742,10 @@ void func_80068E0C(s16 sectnum)
     }
 }
 
-typedef struct {
-    s16 unk0[8];
-} _64530UnkStruct1;
-
-static const _64530UnkStruct1 D_800E8954 = {1,2,20,21,22,53,59,65};
-
 /*80068E9C*/
 void func_80068E9C(void)
 {
-    _64530UnkStruct1 sp10;
-    s16 i, j, k, l;
+    s16 i, j, k;
     s16 nexti;
 
     i = gHeadSpriteStat[106];
@@ -1779,11 +1772,12 @@ void func_80068E9C(void)
         }
         if (gpSprite[i].picnum == 9)
         {
-            l = 0;
-            sp10 = D_800E8954;
-            for (j = 0; j < ARRAY_COUNT(sp10.unk0); j++)
+            s16 l = 0;
+            s16 stat[8] = {1,2,20,21,22,53,59,65};
+
+            for (j = 0; j < ARRAY_COUNT(stat); j++)
             {
-                k = gHeadSpriteStat[sp10.unk0[j]];
+                k = gHeadSpriteStat[stat[j]];
                 while (k >= 0)
                 {
                     if ((gpSprite[k].picnum >= 49) && (gpSprite[i].lotag == gpSprite[k].hitag))
