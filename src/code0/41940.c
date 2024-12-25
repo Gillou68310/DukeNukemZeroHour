@@ -7212,21 +7212,14 @@ s16 D_800DF1D0[24][3] = {
     { 30, 5, 5 },
 };
 
-#ifdef NON_MATCHING
 /*8005259C*/
-static u8 func_8005259C(s16 playernum, s16 arg1, u32 arg2, s16 spritenum) /*Pickup Ammo+weapon?*/
+static u8 func_8005259C(s16 playernum, s16 arg1, s16 arg2, s16 spritenum)
 {
-    u8 cond;
     s16 i;
-    u32 j;
-    s16 spritenum_;
-
-    j = arg2;
-    arg2 &= 1;
-    spritenum_ = spritenum;
+    u8 cond;
 
     cond = (D_8011A680[playernum][arg1][1] >= D_800DF1D0[arg1][0]);
-    if (arg2)
+    if (arg2 & 1)
     {
         cond = ((D_8011A680[playernum][arg1][0] & 1) ? cond : 0);
 
@@ -7237,7 +7230,7 @@ static u8 func_8005259C(s16 playernum, s16 arg1, u32 arg2, s16 spritenum) /*Pick
     if (cond)
         return 0;
 
-    if (j & 1)
+    if (arg2 & 1)
     {
         if ((arg1 == 2) ||(arg1 == 3) || (arg1 == 6))
         {
@@ -7253,41 +7246,35 @@ static u8 func_8005259C(s16 playernum, s16 arg1, u32 arg2, s16 spritenum) /*Pick
         }
         i = D_800DF1D0[arg1][1];
 
-        if (((j >> 2) & 1) && (i >= 3))
+        if ((arg2 & 4) && (i >= 3))
             i -= krand() % (i / 2);
 
         if (arg1 == 5)
             i &= ~1;
 
-        if (j & 8)
+        if (arg2 & 8)
         {
-            i = gpSprite[spritenum_].lotag;
-
-            if (gpSprite[spritenum_].hitag != 0)
-                func_800524BC(playernum, arg1, gpSprite[spritenum_].hitag);
+            i = gpSprite[spritenum].lotag;
+            if (gpSprite[spritenum].hitag != 0)
+                func_800524BC(playernum, arg1, gpSprite[spritenum].hitag);
         }
         D_8011A680[playernum][arg1][1] = MIN(D_800DF1D0[arg1][0], (D_8011A680[playernum][arg1][1] + i));
     }
 
-    if (j & 2)
+    if (arg2 & 2)
     {
         if ((arg1 == 10) || (arg1 == 12) || (arg1 == 13) || (arg1 == 14))
             D_8011A680[playernum][arg1][0] |= 1;
 
         i = D_800DF1D0[arg1][2];
 
-        if (((j >> 2) & 1) && (i >= 3))
+        if ((arg2 & 4) && (i >= 3))
             i -= krand() % (i / 2);
 
         D_8011A680[playernum][arg1][1] = MIN(D_800DF1D0[arg1][0], (D_8011A680[playernum][arg1][1] + i));
     }
     return 1;
 }
-#else
-/*8005259C*/
-STATIC u8 func_8005259C(s16 playernum, s16 arg1, u32 arg2, s16 spritenum);
-INCLUDE_ASM("src/code0/41940", func_8005259C);
-#endif
 
 /*80052AB0*/
 static s32 func_80052AB0(s16 playernum, s16 arg1, s32 spritenum)
@@ -8990,7 +8977,6 @@ static s32 D_800DF260[32] = {
     -1, 32768, -1, -1, -1, -1, -1, 512, 512, 512, 512, 512, 512, 512, 0, 0,
 };
 
-#ifdef NON_MATCHING
 /*80055EC0*/
 void func_80055EC0(s32 spritenum, s32 arg1)
 {
@@ -9079,15 +9065,14 @@ void func_80055EC0(s32 spritenum, s32 arg1)
             {
                 if ((gpActor->unk98 != 0xFF))
                 {
-                    s16 tmp;
-                    tmp = gpActor->unk84;
+                    s32 tmp = (u16)gpActor->unk84 << 16;
                     if ((gpActor->unk98 < 19))
                     {
-                        arg1 = D_800DF260[tmp];
-                        if (arg1 != -1)
+                        s32 tmp2 = D_800DF260[tmp >> 16];
+                        if (tmp2 != -1)
                         {
                             gpActor->unk44 = 1;
-                            gpActor->unk48 = arg1;
+                            gpActor->unk48 = tmp2;
                         }
                     }
                 }
@@ -9105,10 +9090,6 @@ void func_80055EC0(s32 spritenum, s32 arg1)
         }
     }
 }
-#else
-/*80055EC0*/
-INCLUDE_ASM("src/code0/41940", func_80055EC0);
-#endif
 
 /*800563D4*/
 void func_800563D4(s32 spritenum, s32 arg1)
