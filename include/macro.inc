@@ -13,3 +13,6 @@
     .global \label
     \label:
 .endm
+
+.macro nonmatching label, size=1
+.endm

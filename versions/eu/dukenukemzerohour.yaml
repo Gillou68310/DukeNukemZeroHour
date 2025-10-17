@@ -10,6 +10,7 @@ options:
   platform: n64
   create_undefined_funcs_auto: False
   create_undefined_syms_auto: False
+  generate_asm_macros_files: False
   undefined_funcs_auto_path: linker_scripts/eu/undefined_funcs_auto.txt
   undefined_syms_auto_path: linker_scripts/eu/undefined_syms_auto.txt
   symbol_addrs_path: "versions/eu/symbol_addrs.txt"

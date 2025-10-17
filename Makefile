@@ -104,7 +104,7 @@ CPPFLAGS       := -I include -I gen/$(VERSION) -I $(LIBULTRA_DIR)/include/2.0I -
 LDFLAGS        := -T $(VERSION_DIR)/undefined_syms.txt -T $(VERSION_DIR)/undefined_funcs.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(LD_MAP) --no-check-sections
 CHECK_WARNINGS := -Wall -Wextra -Wno-missing-braces -Wno-format-security -Wno-unused-parameter -Wno-unused-variable -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -Wno-unused-function
 CFLAGS_CHECK   := -m32 -fsyntax-only -funsigned-char -nostdinc -fno-builtin -std=gnu90
-CFLAGS_MODERN  := -mabi=32 -march=vr4300 -mfix4300 -mno-abicalls -fno-pic -fno-exceptions -fno-stack-protector -fno-zero-initialized-in-bss -fno-builtin -mno-gpopt -fno-toplevel-reorder -DMODERN
+CFLAGS_MODERN  := -mabi=32 -march=vr4300 -mfix4300 -mno-abicalls -fno-pic -fno-exceptions -fno-stack-protector -fno-zero-initialized-in-bss -fno-builtin -mno-gpopt -fno-toplevel-reorder -fcommon -DMODERN
 
 ifeq ($(EXTERN),1)
 CPPFLAGS += -DEXTERN_DATA=extern -DEXTERN_BSS=extern -DSTATIC=
