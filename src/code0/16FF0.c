@@ -10,8 +10,6 @@
 /*Skip following declaration so it defaults to s32*/
 /*#include "code0/9410.h"*/
 /*u16 getTileId(u16 tilenum);*/
-/*s32 tileMasks(u16 tileid);*/
-/*s32 tileMaskt(u16 tileid);*/
 u8 *loadTile(u16 tileid);
 
 /*.text*/

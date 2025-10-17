@@ -25,8 +25,6 @@ void func_8000EB90(u8 playernum, s16 r, s16 g, s16 b, s16 a);
 s16 func_8000EBD4(u8 playernum);
 u16 getTileId(u16 tilenum);
 u8 *loadTile(u16 tileid);
-s32 tileMasks(u16 tileid);
-s32 tileMaskt(u16 tileid);
 
 typedef struct
 {

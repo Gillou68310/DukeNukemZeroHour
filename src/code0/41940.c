@@ -5229,7 +5229,7 @@ s32 func_8004D304(SpriteType *arg0, s16 arg1, s16 arg2)
     s16 cond;
     s32 temp;
 
-    if(temp) ret = -1; /*FAKEMATCH*/
+    if (temp) ret = -1; /*FAKEMATCH*/
 
     ret = -1;
     g = ~0x80000000;
@@ -9018,7 +9018,7 @@ void func_80055EC0(s32 spritenum, s32 arg1)
         gpActor->unk99 = 0;
         i = func_8005A240(spritenum);
         unk9E = gpActor->unk9E;
-        if ((unk9E != 15) & (unk9E != 9))
+        if ((unk9E != 15) && (unk9E != 9))
         {
             if (!(gpActor->flag & 0x20000))
                 func_8006D3B8(spritenum, 100, 0, 0, 0);
@@ -10045,14 +10045,15 @@ void func_80058E44(s32 spritenum)
     }
 
     /*FAKEMATCH*/
-    do {
+    do
+    {
         if ((krand() & 3) == 3)
             func_8008E3E0(gpSprite[spritenum].x, gpSprite[spritenum].y,
                           gpSprite[spritenum].z, gpSprite[spritenum].sectnum, i, 0);
 
-        do{unk84 = actor->unk84;} while (0);
+        do { unk84 = actor->unk84; } while (0);
     } while (0);
-    
+
     if (D_801C0D70[unk84].unk0 != -1)
     {
         if (func_8005A240(spritenum) != 2)

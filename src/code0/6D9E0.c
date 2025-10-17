@@ -325,7 +325,7 @@ label1:
         ys = gPlayer[j].ypos;
         zs = gPlayer[j].zpos;
 
-        if ((arg1 != 23) & (arg1 != 26))
+        if ((arg1 != 23) && (arg1 != 26))
             zs += 0x1000;
 
         ang = gPlayer[j].ang;
@@ -2888,8 +2888,8 @@ static void func_80075380(s32 spritenum)
 
     ang = (gpSinTable[(spr->ang + 512) & 0x7FF] * 225) >> 10;
     num = func_8004E5F8(spritenum,
-				        ang,
-				        (gpSinTable[spr->ang & 0x7FF] * 225) >> 10, spr->unk1C);
+                        ang,
+                        (gpSinTable[spr->ang & 0x7FF] * 225) >> 10, spr->unk1C);
 
     D_8013B2D0[spritenum].unk0 += 64;
 
@@ -3918,9 +3918,9 @@ static void func_80077E80(s32 spritenum)
     spr = &gpSprite[spritenum];
     ang = (gpSinTable[(spr->ang + 512) & 0x7FF] * 125) >> 10;
     num = func_8004E5F8(spritenum,
-				        ang,
-				        (gpSinTable[spr->ang & 0x7FF] * 125) >> 10,
-				        spr->unk1C);
+                        ang,
+                        (gpSinTable[spr->ang & 0x7FF] * 125) >> 10,
+                        spr->unk1C);
 
     func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 33, 0);
 

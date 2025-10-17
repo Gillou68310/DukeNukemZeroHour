@@ -101,6 +101,8 @@ static s32 _unused3 = 0;
 /*800BD750*/ static u32 D_800BD750 = 0;
 
 /*.text*/
+s32 tileMasks(u16 tileid);
+s32 tileMaskt(u16 tileid);
 static void _initTiles(void);
 static u8 _isDisplayListFull(void);
 static void _floorVtxToN64(s32 sectnum);
