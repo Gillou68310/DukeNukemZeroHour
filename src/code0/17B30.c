@@ -50,7 +50,7 @@ void func_80016F7C(_D8D20UnkStruct2 *arg0)
 
         suckCache(&D_80138854);
         arg0->unk18 = (_D8D20UnkStruct3 *)arg0->ramaddr;
-        arg0->unk1C = &((_D8D20UnkStruct3 *)arg0->ramaddr)[arg0->unk14];
+        arg0->unk1C = &((_D8D20UnkStruct1 *)arg0->ramaddr)[arg0->unk14];
     }
 }
 
