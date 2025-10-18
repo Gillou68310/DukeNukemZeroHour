@@ -7,7 +7,7 @@
 
 s32 func_801C0FDC(s16);
 f32 func_801C1024(f32);
-f32 tanf(f32 angle);
+f32 tangentf(f32 angle);
 void func_801C10C8(void);
 void setCameraPosition(f32 xEye, f32 yEye, f32 zEye, f32 xAt, f32 yAt, f32 zAt, f32 xUp, f32 yUp, f32 zUp);
 void func_801C146C(void);

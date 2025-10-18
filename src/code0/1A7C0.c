@@ -130,7 +130,7 @@ void func_80019BC0(void)
             D_801AE90C = gpSprite[i].unk25 == 0;
             D_80105714 = (cosf((gpSprite[i].ang * (PI/1024))) * 10240.0f);
             D_8010570C = (sinf((gpSprite[i].ang * (PI/1024))) * 10240.0f);
-            D_8013860C = (tanf((gpSprite[i].hitag * (PI/1024))) * 10240.0f * -16.0f);
+            D_8013860C = (tangentf((gpSprite[i].hitag * (PI/1024))) * 10240.0f * -16.0f);
             break;
         }
         deleteSprite(i);
