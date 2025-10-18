@@ -343,7 +343,7 @@ s32 func_801C0FDC(s16 arg0)
 }
 
 /*801C1024*/
-f32 tanf(f32 angle)
+f32 tangentf(f32 angle)
 {
     f32 sin;
     f32 cos;
@@ -644,7 +644,7 @@ void func_801C1950(void)
             {
                 D_801CF70C->unk50 = -(D_801CF70C->unk3C + 530.0f) * 0.01;
                 D_801CF70C->unk3C += 13.0f;
-                D_801CDBFC->unk34 = tanf(D_801CF70C->unk50) * (D_801CDBFC->unk3C - D_801CF70C->unk3C);
+                D_801CDBFC->unk34 = tangentf(D_801CF70C->unk50) * (D_801CDBFC->unk3C - D_801CF70C->unk3C);
                 D_801CDBFC->unk40 = ((400.0f - D_801CF70C->unk3C) / 500.0) + 1.0;
 
                 if ((D_801CDBFC->unk34 < 5000.0f) && (D_801CDBFC->unk34 > -5000.0f))
