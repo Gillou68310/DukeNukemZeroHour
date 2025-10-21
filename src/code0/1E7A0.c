@@ -206,14 +206,14 @@ void func_8001DE9C(void)
                     d = ((sizex * f9) + (-sizey * f8));
                     h = ((sizey * f9) + (sizex * f8));
 
-                    a = (((a * 4) * D_80199110) / (SCREEN_WIDTH/2.f)) + f10;
-                    b = (((b * 4) * D_80199110) / (SCREEN_WIDTH/2.f)) + f10;
-                    c = (((c * 4) * D_80199110) / (SCREEN_WIDTH/2.f)) + f10;
-                    d = (((d * 4) * D_80199110) / (SCREEN_WIDTH/2.f)) + f10;
-                    e = (((e * 4) * D_801A1980) / (SCREEN_HEIGHT/2.f)) + f11;
-                    f = (((f * 4) * D_801A1980) / (SCREEN_HEIGHT/2.f)) + f11;
-                    g = (((g * 4) * D_801A1980) / (SCREEN_HEIGHT/2.f)) + f11;
-                    h = (((h * 4) * D_801A1980) / (SCREEN_HEIGHT/2.f)) + f11;
+                    a = (((a * 4) * D_80199110) / (SCREEN_WIDTH/2.0f)) + f10;
+                    b = (((b * 4) * D_80199110) / (SCREEN_WIDTH/2.0f)) + f10;
+                    c = (((c * 4) * D_80199110) / (SCREEN_WIDTH/2.0f)) + f10;
+                    d = (((d * 4) * D_80199110) / (SCREEN_WIDTH/2.0f)) + f10;
+                    e = (((e * 4) * D_801A1980) / (SCREEN_HEIGHT/2.0f)) + f11;
+                    f = (((f * 4) * D_801A1980) / (SCREEN_HEIGHT/2.0f)) + f11;
+                    g = (((g * 4) * D_801A1980) / (SCREEN_HEIGHT/2.0f)) + f11;
+                    h = (((h * 4) * D_801A1980) / (SCREEN_HEIGHT/2.0f)) + f11;
 
                     if (gVertexNumber == 0)
                     {
@@ -361,8 +361,8 @@ void func_8001EB2C(void)
                     gDPSetPrimColor(gpDisplayList++, 0, 0, primr, primg, primb, prima);
                     gDPSetEnvColor(gpDisplayList++, envr, envg, envb, enva);
 
-                    f5 = (fz_ * D_801AE538[i].unk10 * 4.0f * gPlayer[D_801B0820].unk6E * D_80199110) / 40960.0;
-                    f6 = (fz_ * D_801AE538[i].unk10 * 4.0f * gPlayer[D_801B0820].unk6E * D_801A1980) / 30720.0;
+                    f5 = (fz_ * D_801AE538[i].unk10 * 4.0f * gPlayer[D_801B0820].unk6E * D_80199110) / (160.0*256.0);
+                    f6 = (fz_ * D_801AE538[i].unk10 * 4.0f * gPlayer[D_801B0820].unk6E * D_801A1980) / (120.0*256.0);
                     func_80027C18((fx_ * D_80199110) + D_80168C9C,
                                   (-fy_ * D_801A1980) + D_801A2684,
                                   f5,

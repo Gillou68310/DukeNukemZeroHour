@@ -8,7 +8,7 @@
 #include "code0/FDE0.h"
 #include "code0/17B30.h"
 #include "code0/1E7A0.h"
-#include "code0/2ABE0.h"
+#include "code0/getangle.h"
 #include "code0/36410.h"
 #include "code0/37090.h"
 #include "code0/41940.h"
@@ -2798,7 +2798,7 @@ void func_8009C248(s32 spritenum)
                         f1 = func_80040D40(spr->x, spr->y, xpos, ypos);
                         z2 = (z1 + 20000);
                         z2 -= spr->z;
-                        f5 = (getAngleF((z2 / 16), f1) * 325.9493234521802);
+                        f5 = (getAngleF((z2 / 16), f1) * (1024.0f/PI));
 
                         if (klabs(f5) < 256.0f)
                         {
@@ -2877,7 +2877,7 @@ void func_8009C248(s32 spritenum)
                 f2 = func_80040D40(spr->x, spr->y, xpos, ypos);
                 z3 = (z1 + 20000);
                 z3 -= spr->z;
-                f5 = (getAngleF((z3 / 16), f2) * 325.9493234521802);
+                f5 = (getAngleF((z3 / 16), f2) * (1024.0f/PI));
 
                 if (klabs(f5) < 256.0f)
                 {
@@ -3028,7 +3028,7 @@ void func_8009C248(s32 spritenum)
             f3 = func_80040D40(spr->x, spr->y, xpos, ypos);
             z5 = (z1 + 20000);
             z5 -= spr->z;
-            f5 = (getAngleF((z5 /16), f3) * 325.9493234521802);
+            f5 = (getAngleF((z5 /16), f3) * (1024.0f/PI));
             ptr2->unk2 = f5;
             delta = getAngleDelta(spr->ang, getAngle(xpos - spr->x, ypos - spr->y));
             spr->ang = GET_ANGLE(spr->ang, delta, 13);
@@ -3413,7 +3413,7 @@ void func_8009C248(s32 spritenum)
             f4 = func_80040D40(spr->x, spr->y, xpos, ypos);
             z6 = (z1 + 20000);
             z6 -= spr->z;
-            f5 = (getAngleF((z6 / 16), f4) * 325.9493234521802);
+            f5 = (getAngleF((z6 / 16), f4) * (1024.0f/PI));
             ptr2->unk2 = f5;
             delta = getAngleDelta(spr->ang, getAngle(xpos - spr->x, ypos - spr->y));
             spr->ang = GET_ANGLE(spr->ang, delta, 13);
@@ -3923,7 +3923,7 @@ static void func_8009F71C(s32 spritenum)
     {
         actor->unk44 = i;
         actor->unk7C = func_80095FCC(actor->unk7C,
-                                   getAngleDelta(getAngle(gpSprite[i].x - spr->x, gpSprite[i].y - spr->y), spr->ang) & 0x7FF, 5);
+                                     getAngleDelta(getAngle(gpSprite[i].x - spr->x, gpSprite[i].y - spr->y), spr->ang) & 0x7FF, 5);
         spr->unk22++;
         if (spr->unk22 > 32)
         {

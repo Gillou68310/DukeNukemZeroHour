@@ -1109,7 +1109,7 @@ void func_800A3688(void)
 
         func_8000A070();
 
-        if ((u16)gPlayer[D_801B0820].unk52 < 0x800)
+        if ((gPlayer[D_801B0820].unk52 >= 0) && (gPlayer[D_801B0820].unk52 < 0x800))
         {
             if (gpSprite[gPlayer[D_801B0820].unk52].picnum == 1423)
             {
@@ -1160,7 +1160,7 @@ void func_800A3688(void)
                         drawString2(0x98, 0xAA, buffer);
                         k = ((gPlayer[D_801B0820].unk3E & 0x7FF) * (45.0/256));
                         if (k > 180)
-                            k = k - 360;
+                            k -= 360;
 
                         sprintf(buffer, "%d", klabs(k));
                         drawString2(220, 107, buffer);

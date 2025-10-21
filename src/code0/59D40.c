@@ -3,7 +3,7 @@
 #include "code0/pragmas.h"
 #include "code0/audio.h"
 #include "code0/1E7A0.h"
-#include "code0/2ABE0.h"
+#include "code0/getangle.h"
 #include "code0/37090.h"
 #include "code0/41940.h"
 #include "code0/59D40.h"
@@ -310,7 +310,7 @@ void func_80059C48(s32 spritenum, s32 arg1)
     z = (gpSprite[spritenum].z - 0x1200);
     f1 = (gPlayer[0].zpos - z) / 16;
     f2 = func_80040D40(gPlayer[0].xpos, gPlayer[0].ypos, gpSprite[spritenum].x, gpSprite[spritenum].y);
-    f3 = getAngleF(f1, f2) * 325.9493234521802;
+    f3 = getAngleF(f1, f2) * (1024.0f/PI);
 
     if (D_8013B2D0[spritenum].unk2 != (s16)f3)
     {
@@ -1010,7 +1010,7 @@ void func_8005BB88(s32 spritenum, s32 arg1)
     z = (gpSprite[spritenum].z - 0x2000);
     f1 = (gPlayer[0].zpos - z) / 16;
     f2 = func_80040D40(gPlayer[0].xpos, gPlayer[0].ypos, gpSprite[spritenum].x, gpSprite[spritenum].y);
-    f3 = getAngleF(f1, f2) * 325.9493234521802;
+    f3 = getAngleF(f1, f2) * (1024.0f/PI);
 
     if (gpActor->unk7C != (s16)f3)
     {
@@ -1060,7 +1060,7 @@ void func_8005BD28(s32 spritenum, s32 arg1)
 
         f2 = func_80040D40(gPlayer[0].xpos, gPlayer[0].ypos, gpSprite[spritenum].x, gpSprite[spritenum].y);
     }
-    f3 = getAngleF(f1, f2) * 325.9493234521802;
+    f3 = getAngleF(f1, f2) * (1024.0f/PI);
 
     if (f3 >= 480.0f)
         f3 = 480.0f;
@@ -1460,7 +1460,7 @@ void func_8005CBC4(s32 spritenum, s32 arg1)
             z2 = (gpSprite[spritenum].z - 23552);
             f1 = ((gPlayer[0].zpos - z2) - 8192) / 16;
             f2 = func_80040D40(gPlayer[0].xpos, gPlayer[0].ypos, gpSprite[spritenum].x, gpSprite[spritenum].y);
-            f3 = getAngleF(f1, f2) * 325.9493234521802;
+            f3 = getAngleF(f1, f2) * (1024.0f/PI);
         }
         else
         {
@@ -1468,7 +1468,7 @@ void func_8005CBC4(s32 spritenum, s32 arg1)
             z2 = (gpSprite[spritenum].z - 23552);
             f1 = ((unk50 - z2) - 8192) / 16;
             f2 = func_80040D40(gpActor->unk48, gpActor->unk4C, gpSprite[spritenum].x, gpSprite[spritenum].y);
-            f3 = getAngleF(f1, f2) * 325.9493234521802;
+            f3 = getAngleF(f1, f2) * (1024.0f/PI);
         }
 
         if (arg1 == 0)
@@ -1527,7 +1527,7 @@ void func_8005D268(s32 spritenum, s32 arg1)
     z = (gPlayer[0].zpos - z) - 0x2000;
     f1 = z / 16;
     f2 = func_80040D40(gPlayer[0].xpos, gPlayer[0].ypos, gpSprite[spritenum].x, gpSprite[spritenum].y);
-    f3 = getAngleF(f1, f2) * 325.9493234521802;
+    f3 = getAngleF(f1, f2) * (1024.0f/PI);
     ang += ((krand() & 0x1F) - 0x20);
     unk60 = f3;
     unk60 -= ((krand() & 0x3F) - 0x3F);
@@ -2256,7 +2256,7 @@ void func_8005F0F0(s32 spritenum, s32 arg1)
                        gpActor->unk48,
                        D_80118248->x,
                        D_80118248->y);
-    f3 = getAngleF(f1, f2) * 325.9493234521802;
+    f3 = getAngleF(f1, f2) * (1024.0f/PI);
 
     ang = gPlayer[0].ang;
     gPlayer[0].ang = i;

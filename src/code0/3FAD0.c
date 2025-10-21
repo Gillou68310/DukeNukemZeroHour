@@ -3,7 +3,7 @@
 #include "code0/audio.h"
 #include "code0/graphics.h"
 #include "code0/4590.h"
-#include "code0/2ABE0.h"
+#include "code0/getangle.h"
 #include "code0/37090.h"
 #include "code0/41940.h"
 #include "code1/code1.h"
@@ -129,10 +129,10 @@ void func_8003F340(void)
 
     if (gPlayer[D_801B0820].unk54 == 0)
     {
-       if ((gPlayer[D_801B0820].unk59 != 0) || (gPlayer[D_801B0820].unk56 != 0))
-           D_801A2790[D_801B0820].unkC += (-D_801A2790[D_801B0820].unkC / 2);
-       else
-       {
+        if ((gPlayer[D_801B0820].unk59 != 0) || (gPlayer[D_801B0820].unk56 != 0))
+            D_801A2790[D_801B0820].unkC += (-D_801A2790[D_801B0820].unkC / 2);
+        else
+        {
             if (gPlayer[D_801B0820].unk44 != 0)
             {
                 if (gPlayer[D_801B0820].zvect > 0)
@@ -279,7 +279,7 @@ void func_8003FD5C(void)
             ang = (D_8013B2D0[spritenum].unk4 + getAngle(x, y)) & 0x7FF;
             D_801A2790[D_801B0820].unk16 = (ang + 512) & 0x7FF;
             z = (gpSprite[D_800DEF1C].z - gpSprite[spritenum].z) / 16;
-            ang = (getAngleF(z, findDistance2D(x, y)) * 325.9493234521802);
+            ang = (getAngleF(z, findDistance2D(x, y)) * (1024.0f/PI));
             D_801A2790[D_801B0820].unk18 = (ang + D_8013B2D0[spritenum].unk2) & 0x7FF;
             D_801A2790[D_801B0820].unk1A = 0;
         }

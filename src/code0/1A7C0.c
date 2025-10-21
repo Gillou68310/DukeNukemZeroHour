@@ -170,7 +170,7 @@ void func_8001A1A4(void)
             vy = gpSprite[spritenum].y - gGlobalPosY;
             vz = gpSprite[spritenum].z - gGlobalPosZ;
 
-            hitScan(gGlobalPosX, gGlobalPosY, gGlobalPosZ, D_8012F6F4, vx, vy, vz,
+            hitScan(gGlobalPosX, gGlobalPosY, gGlobalPosZ, gGlobalSectnum, vx, vy, vz,
                     &hitsect, &hitwall, &hitsprite, &hitx, &hity, &hitz, 0x10001);
 
             if ((klabs((hitx - gGlobalPosX)) + klabs((hity - gGlobalPosY))) < (klabs(vx) + klabs(vy)) &&
@@ -274,7 +274,7 @@ static void func_8001AAEC(void)
         hitScan(gGlobalPosX,
                 gGlobalPosY,
                 gGlobalPosZ,
-                D_8012F6F4,
+                gGlobalSectnum,
                 D_8012F910,
                 D_80197DD8,
                 D_80105548,
@@ -309,7 +309,7 @@ static void func_8001AAEC(void)
     else if (canSee(gGlobalPosX,
         gGlobalPosY,
         gGlobalPosZ,
-        D_8012F6F4,
+        gGlobalSectnum,
         D_8012F910,
         D_80197DD8,
         D_80105548,
@@ -535,8 +535,8 @@ static void func_8001B740(void)
 
             D_8013F954 = f5 * D_80199110;
             D_801ACBDC = -f4 * D_801A1980;
-            fy = ((gPlayer[D_801B0820].unk6E * 2) * D_80199110) / 40960.0;
-            fx = ((gPlayer[D_801B0820].unk6E * 2) * D_801A1980) / 30720.0;
+            fy = ((gPlayer[D_801B0820].unk6E * 2) * D_80199110) / (160.0*256.0);
+            fx = ((gPlayer[D_801B0820].unk6E * 2) * D_801A1980) / (120.0*256.0);
 
             if (gMapNum == MAP_ZERO_HOUR)
             {
@@ -719,8 +719,8 @@ static void func_8001C490(s16 tilenum)
         for (i = 0; i < 16; i++)
         {
             func_8000C0D0(getTileId(tilenum+i));
-            f1 = (360 * i / 16) * (PI / 180);
-            f2 = (360 * (i+1) / 16) * (PI / 180);
+            f1 = DEG2RAD(360 * i / 16);
+            f2 = DEG2RAD(360 * (i+1) / 16);
             x1 = cosf(f1) * 1024.0f;
             x2 = cosf(f2) * 1024.0f;
             y1 = sinf(f1) * 1024.0f;

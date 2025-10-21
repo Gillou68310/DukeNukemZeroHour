@@ -1,5 +1,5 @@
-#ifndef _2ABE0_H_
-#define _2ABE0_H_
+#ifndef _GETANGLE_H_
+#define _GETANGLE_H_
 
 #include "common.h"
 

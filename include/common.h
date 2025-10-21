@@ -60,5 +60,6 @@ typedef s32 intptr_t;
 #define PI 3.14159265359
 
 #define SQ(x) ((x) * (x))
+#define DEG2RAD(x) ((x) * (PI / 180.f))
 
 #endif

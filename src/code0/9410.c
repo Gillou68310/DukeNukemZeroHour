@@ -171,8 +171,8 @@ void loadMap(s32 mapnum)
 
     for (i = 0; i < gNumSectors; i++)
     {
-        func_80004B60(i);
-        func_80004A3C(i);
+        updateCeilZ(i);
+        floorUpdateZ(i);
     }
 
     audio_80008710(gMapNum);
@@ -467,9 +467,9 @@ static void func_80009A14(u8 playernum)
     updateSector(gPlayer[playernum].xpos, gPlayer[playernum].ypos, &gPlayer[playernum].cursectnum);
     func_8003DACC();
     _setupMatrix();
-    func_80011180();
+    computeFrustumPlanes();
     D_80117D48 = osGetTime();
-    scanSectors(gGlobalPosX, gGlobalPosY, gGlobalPosZ, gGlobalAng, D_8012F6F4);
+    scanSectors(gGlobalPosX, gGlobalPosY, gGlobalPosZ, gGlobalAng, gGlobalSectnum);
     D_80117E38 = osGetTime();
     gDPPipeSync(gpDisplayList++);
     gSPDisplayList(gpDisplayList++, D_01001900);
@@ -1180,7 +1180,7 @@ static void _drawFloorCeiling(void)
         {
             if (D_800DF2F4[sectnum] & 1)
             {
-                func_80004A3C(sectnum);
+                floorUpdateZ(sectnum);
                 D_800DF2F4[sectnum]--;
             }
             _floorVtxToN64(sectnum);
@@ -1196,7 +1196,7 @@ static void _drawFloorCeiling(void)
         {
             if (D_800DF2F4[sectnum] & 2)
             {
-                func_80004B60(sectnum);
+                updateCeilZ(sectnum);
                 D_800DF2F4[sectnum] -= 2;
             }
             _ceilingVtxToN64(sectnum);
@@ -1732,11 +1732,11 @@ static void _setupMatrix(void)
 
     xAt = sinf(gGlobalAng) * 512.0;
     yAt = cosf(gGlobalAng) * -512.0;
-    zAt = (sinf(D_8016A15C) * 512.0) / cosf(D_8016A15C);
+    zAt = (sinf(gGlobalViewHorizAng) * 512.0) / cosf(gGlobalViewHorizAng);
 
     grPerspectiveF(projection,
                    &perspNorm,
-                   (15360.0 / gPlayer[D_801B0820].unk6E),
+                   ((60.0*256.0) / gPlayer[D_801B0820].unk6E),
                    ASPECT_RATIO,
                    ((gPlayer[D_801B0820].unk6E * 5) / 256.0),
                    16384.0f,
@@ -1744,7 +1744,7 @@ static void _setupMatrix(void)
 
     grPerspective(&gpDynamic->mtx1[D_801B0820],
                   &perspNorm,
-                  (15360.0 / gPlayer[D_801B0820].unk6E),
+                  ((60.0*256.0) / gPlayer[D_801B0820].unk6E),
                   ASPECT_RATIO,
                   ((gPlayer[D_801B0820].unk6E * 5) / 256.0),
                   16384.0f,

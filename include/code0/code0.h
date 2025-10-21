@@ -475,7 +475,7 @@ typedef struct
 /*8012EB4C*/ _extern s32 D_8012EB4C;
 /*8012F6E8*/ _extern s32 D_8012F6E8;
 /*8012F6F0*/ _extern u8 D_8012F6F0[MAXPLAYERS];
-/*8012F6F4*/ _extern s16 D_8012F6F4; /*sectnum*/
+/*8012F6F4*/ _extern s16 gGlobalSectnum;
 /*8012F908*/ _extern s32 D_8012F908;
 /*8012F914*/ _extern s16 D_8012F914[MAXPLAYERS];
 /*8012FC40*/ _extern u8 D_8012FC40;
@@ -517,7 +517,7 @@ typedef struct
 /*8016A14C*/ _extern s32 D_8016A14C; /*lighty*/
 /*8016A150*/ _extern s32 D_8016A150;
 /*8016A154*/ _extern u8 D_8016A154[MAXPLAYERS];
-/*8016A15C*/ _extern f32 D_8016A15C;
+/*8016A15C*/ _extern f32 gGlobalViewHorizAng;
 /*8016D174*/ _extern u8 D_8016D174[MAXPLAYERS];
 /*8016D180*/ _extern u16 D_8016D180;
 /*80197DCC*/ _extern s16 gSkyTopB;

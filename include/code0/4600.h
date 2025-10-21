@@ -3,9 +3,9 @@
 
 #include "common.h"
 
-void scanSectors(s32 posx, s32 posy, s32 posz, f32, s16 sectnum);
-void func_80004A3C(u16 sectnum);
-void func_80004B60(u16);
+void scanSectors(s32 posx, s32 posy, s32 posz, f32 ang, s16 sectnum);
+void floorUpdateZ(u16 sectnum);
+void updateCeilZ(u16 sectnum);
 void moveSectReset(void);
 void moveSectAdd(u16 sectnum, s32 x, s32 y);
 void moveSectUpdate(u16 sectnum, s16 ang, s32 x, s32 y);

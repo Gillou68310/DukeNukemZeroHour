@@ -1188,14 +1188,14 @@ static void func_8002935C(s16 spritenum)
             g = (sizey * f9) + (-sizex * f8);
             d = (sizex * f9) + (-sizey * f8);
             h = (sizey * f9) + (sizex * f8);
-            a = (((a * 4) * D_80199110) / (SCREEN_WIDTH/2.f)) + f10;
-            b = (((b * 4) * D_80199110) / (SCREEN_WIDTH/2.f)) + f10;
-            c = (((c * 4) * D_80199110) / (SCREEN_WIDTH/2.f)) + f10;
-            d = (((d * 4) * D_80199110) / (SCREEN_WIDTH/2.f)) + f10;
-            e = (((e * 4) * D_801A1980) / (SCREEN_HEIGHT/2.f)) + f11;
-            f = (((f * 4) * D_801A1980) / (SCREEN_HEIGHT/2.f)) + f11;
-            g = (((g * 4) * D_801A1980) / (SCREEN_HEIGHT/2.f)) + f11;
-            h = (((h * 4) * D_801A1980) / (SCREEN_HEIGHT/2.f)) + f11;
+            a = (((a * 4) * D_80199110) / (SCREEN_WIDTH/2.0f)) + f10;
+            b = (((b * 4) * D_80199110) / (SCREEN_WIDTH/2.0f)) + f10;
+            c = (((c * 4) * D_80199110) / (SCREEN_WIDTH/2.0f)) + f10;
+            d = (((d * 4) * D_80199110) / (SCREEN_WIDTH/2.0f)) + f10;
+            e = (((e * 4) * D_801A1980) / (SCREEN_HEIGHT/2.0f)) + f11;
+            f = (((f * 4) * D_801A1980) / (SCREEN_HEIGHT/2.0f)) + f11;
+            g = (((g * 4) * D_801A1980) / (SCREEN_HEIGHT/2.0f)) + f11;
+            h = (((h * 4) * D_801A1980) / (SCREEN_HEIGHT/2.0f)) + f11;
 
             if (gVertexNumber == 0)
             {

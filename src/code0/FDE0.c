@@ -35,13 +35,13 @@ static Lights2 _light2 = {
 /*8012E154*/ u16 D_8012E154; /*unused*/
 /*8012EB48*/ f32 D_8012EB48; /*unused*/
 /*8012FD86*/ s16 D_8012FD86; /*alpha*/
-/*80197DF0*/ Matrix4f D_80197DF0 ALIGNED(8);
+/*80197DF0*/ Vec4f _frustumPlanes[4] ALIGNED(8);
 /*80199578*/ Matrix4f D_80199578 ALIGNED(8);
 /*801AE9D0*/ Matrix4f D_801AE9D0 ALIGNED(8);
 /*801AFDE0*/ Matrix4f D_801AFDE0 ALIGNED(8);
 
 /*.text*/
-static f32 func_80011410(ModelInfo *model);
+static f32 _computeModelBoundingSphereRadius(ModelInfo *model);
 static void _executeModelDisplayCmd(u8 *cmd, code0UnkStruct18 *vtx, ModelLight *light);
 static void func_800124EC(s16);
 static void func_80012630(void);
@@ -134,7 +134,7 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
                 gDPSetRenderMode(gpDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_XLU_SURF2);
             }
         }
-		if (!(gpSprite[spritenum].cstat & 0x800))
+        if (!(gpSprite[spritenum].cstat & 0x800))
         {
             if (D_801A2688 == 1)
             {
@@ -529,54 +529,54 @@ static f32 _dotProduct(Vec4f vec1, Vec4f vec2)
 }
 
 /*80011180*/
-void func_80011180(void)
+void computeFrustumPlanes(void)
 {
     f32 f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14;
     s32 i;
-    f1 = sinf(0.61086524f);
-    f2 = cosf(0.61086524f);
-    f3 = ((SCREEN_WIDTH / 2.f) - 1.f) / (f1 / f2);
-    f5 = ((SCREEN_HEIGHT / 2.f) - 1.f);
+    f1 = sinf(DEG2RAD(35.0f));
+    f2 = cosf(DEG2RAD(35.0f));
+    f3 = ((SCREEN_WIDTH / 2.0f) - 1.0f) / (f1 / f2);
+    f5 = ((SCREEN_HEIGHT / 2.0f) - 1.0f);
     f4 = 1.0 / sqrt(SQ(f3) + SQ(f5));
-    D_80197DF0[0][0] = f2;
-    D_80197DF0[0][1] = 0.0f;
-    D_80197DF0[0][2] = f1;
-    D_80197DF0[0][3] = 0.0f;
-    D_80197DF0[1][0] = -f2;
-    D_80197DF0[1][1] = 0.0f;
-    D_80197DF0[1][2] = f1;
-    D_80197DF0[1][3] = 0.0f;
-    D_80197DF0[2][0] = 0.0f;
-    D_80197DF0[2][1] = f3 * f4;
-    D_80197DF0[2][2] = f4 * f5;
-    D_80197DF0[2][3] = 0.0f;
-    D_80197DF0[3][0] = 0.0f;
-    D_80197DF0[3][1] = -(f3 * f4);
-    D_80197DF0[3][2] = f4 * f5;
-    D_80197DF0[3][3] = 0.0f;
+    _frustumPlanes[0][0] = f2;
+    _frustumPlanes[0][1] = 0.0f;
+    _frustumPlanes[0][2] = f1;
+    _frustumPlanes[0][3] = 0.0f;
+    _frustumPlanes[1][0] = -f2;
+    _frustumPlanes[1][1] = 0.0f;
+    _frustumPlanes[1][2] = f1;
+    _frustumPlanes[1][3] = 0.0f;
+    _frustumPlanes[2][0] = 0.0f;
+    _frustumPlanes[2][1] = f3 * f4;
+    _frustumPlanes[2][2] = f4 * f5;
+    _frustumPlanes[2][3] = 0.0f;
+    _frustumPlanes[3][0] = 0.0f;
+    _frustumPlanes[3][1] = -(f3 * f4);
+    _frustumPlanes[3][2] = f4 * f5;
+    _frustumPlanes[3][3] = 0.0f;
     D_80106D3C = 0.18310827f;
     D_8012EB48 = (f3 * 65536.0) * (1.0 / 12000.0);
-    f14 = cosf(D_8016A15C);
-    f6 = sinf(D_8016A15C);
+    f14 = cosf(gGlobalViewHorizAng);
+    f6 = sinf(gGlobalViewHorizAng);
     f7 = cosf(-gGlobalAng);
     f8 = sinf(-gGlobalAng);
 
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < ARRAY_COUNT(_frustumPlanes); i++)
     {
-        f9 = D_80197DF0[i][0];
-        f10 = D_80197DF0[i][1];
-        f11 = D_80197DF0[i][2];
+        f9 = _frustumPlanes[i][0];
+        f10 = _frustumPlanes[i][1];
+        f11 = _frustumPlanes[i][2];
         f12 = (f10 * f14) - (f11 * f6);
         f13 = (f10 * f6) + (f11 * f14);
-        D_80197DF0[i][0] = (f9 * f7) - (f13 * f8);
-        D_80197DF0[i][1] = f12;
+        _frustumPlanes[i][0] = (f9 * f7) - (f13 * f8);
+        _frustumPlanes[i][1] = f12;
         f13 = (f9 * f8) + (f13 * f7);
-        D_80197DF0[i][2] = f13;
+        _frustumPlanes[i][2] = f13;
     }
 }
 
 /*80011410*/
-static f32 func_80011410(ModelInfo *model)
+static f32 _computeModelBoundingSphereRadius(ModelInfo *model)
 {
     f32 xmin, ymin, ymax, zmin, xmax, zmax, f7, f8;
 
@@ -621,23 +621,23 @@ static f32 func_80011410(ModelInfo *model)
 }
 
 /*800115E0*/
-static s32 func_800115E0(ModelInfo *model)
+static s32 _isModelVisible(ModelInfo *model)
 {
     Matrix4f mtx;
     Vec4f vec;
     Vec4f *ptr;
-    f32 f;
+    f32 radius;
     s32 i;
 
-    f = func_80011410(model);
+    radius = _computeModelBoundingSphereRadius(model);
     grMtxL2F(mtx, &gpDynamic->mtx3[D_801A6D80-1]);
     vec[0] = mtx[3][0] - gMapXpos * 0.5;
     vec[2] = -(mtx[3][1] - gMapYpos * 0.5);
     vec[1] = -(mtx[3][2] - gMapZpos * 0.5);
 
-    for (i = 0, ptr = D_80197DF0; i < 4; i++, ptr++)
+    for (i = 0, ptr = _frustumPlanes; i < ARRAY_COUNT(_frustumPlanes); i++, ptr++)
     {
-        if (_dotProduct(*ptr, vec) < -f)
+        if (_dotProduct(*ptr, vec) < -radius)
             return 0;
     }
     return 1;
@@ -659,7 +659,7 @@ void drawModel(ModelInfo *model)
     gpModelTexture = model->ramaddr;
     gpModelTextureInfo = (ModelTextureInfo *)(model->ramaddr + model->texture_info_off);
 
-    if ((D_800BD788 == 0) || (func_800115E0(model) != 0))
+    if ((D_800BD788 == 0) || (_isModelVisible(model) != 0))
         _executeModelDisplayCmd(cmd, vtx, light);
 }
 

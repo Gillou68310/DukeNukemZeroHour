@@ -1,5 +1,5 @@
-#ifndef _35D90_H_
-#define _35D90_H_
+#ifndef _TILE_H_
+#define _TILE_H_
 
 #include "common.h"
 

@@ -1,5 +1,5 @@
 #include "common.h"
-#include "code0/2ABE0.h"
+#include "code0/getangle.h"
 #include "code0/4600.h"
 #include "code0/pragmas.h"
 #include "code0/code0.h"
@@ -84,7 +84,7 @@ static f32 getAngleDeltaF(f32 a1, f32 a2)
 /*80003B00*/
 static f32 _getAngleF(f32 x1, f32 y1, f32 x2, f32 y2)
 {
-    return -getAngleF(y2 - y1, x2 - x1) + 4.712388980385/*(PI*1.5)*/;
+    return -getAngleF(y2 - y1, x2 - x1) + DEG2RAD(270.0f);
 }
 
 /*80003B4C*/
@@ -179,7 +179,10 @@ static void scanSector(f32 lx, f32 rx, s32 sectnum)
             k += 1;
 
             if (_visWallCnt >= 0x200)
+            {
+                printf("AngleCount exceeded 512\n");
                 return;
+            }
         }
     }
 
@@ -204,14 +207,14 @@ static s8 visWallCheck(s32 w, f32 f1, f32 f2)
 }
 
 /*800043F4*/
-void scanSectors(s32 posx, s32 posy, s32 posz, f32 arg3, s16 sectnum)
+void scanSectors(s32 posx, s32 posy, s32 posz, f32 ang, s16 sectnum)
 {
     f32 viewrange, f2, viewangle, viewangler2, viewangler1;
     s16 sectnum_;
     s32 i, j;
 
     D_8012FC40 = 1;
-    viewrange = (klabs(D_8016A15C) * 0.7999999999999999)/*(1/1.25)*/ + 0.6283185307179999/*(PI/5)*/;
+    viewrange = (klabs(gGlobalViewHorizAng) * 0.7999999999999999)/*(4.0/5.0)*/ + DEG2RAD(36.0f);
 
     if (sinf(D_801AC8E0) > 0.0f)
         f2 = sinf(D_801AC8E0);
@@ -223,7 +226,7 @@ void scanSectors(s32 posx, s32 posy, s32 posz, f32 arg3, s16 sectnum)
     else
         viewrange *= (f2 - cosf(D_801AC8E0));
 
-    viewangle = angleModF((PI - arg3));
+    viewangle = angleModF((PI - ang));
     _viewAngle = viewangle;
     _globalPosX = posx;
     _globalPosY = posy;
@@ -374,7 +377,7 @@ void Bmemset(void *dst, u8 value, u32 size)
 }
 
 /*80004A3C*/
-void func_80004A3C(u16 sectnum)
+void floorUpdateZ(u16 sectnum)
 {
     Vertex *vtx;
     s32 floorz;
@@ -407,7 +410,7 @@ void func_80004A3C(u16 sectnum)
 }
 
 /*80004B60*/
-void func_80004B60(u16 sectnum)
+void updateCeilZ(u16 sectnum)
 {
     Vertex *vtx;
     s32 ceilingz;
@@ -484,7 +487,7 @@ static void _moveSectAdd(u16 sectnum)
 
     if (_moveSectListCnt > MOVESECTNUM)
     {
-        printf("_moveSectListCnt: %d\n", _moveSectListCnt);
+        printf("Maximum number of moving sectors (%d) exceeded (%d)\n", _moveSectListCnt, MOVESECTNUM);
         exit(0);
     }
 
@@ -496,7 +499,7 @@ static void _moveSectAdd(u16 sectnum)
         _moveSectVtxCnt++;
         if (_moveSectVtxCnt > MOVESECTVTXNUM)
         {
-            printf("_moveSectVtxCnt: %d\n", _moveSectVtxCnt);
+            printf("Maximum number of moving points (%d) exceeded (%d)\n", _moveSectVtxCnt, MOVESECTVTXNUM);
             exit(0);
         }
     }
