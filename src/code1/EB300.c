@@ -529,6 +529,11 @@ void func_801C15CC(void)
 {
     s32 i;
 
+#ifndef TARGET_N64
+    if(configSkipIntro)
+        D_800BD3F8 = 1;
+#endif
+
     D_801CE5D8 = 0x25252525;
     allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT*2, DISPLAY_LIST_SIZE*2, 0);
     setCameraPosition(0.0f, 0.0f, -500.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
