@@ -299,6 +299,13 @@ static void func_800006B4(void)
         }
 
         D_801CC8CA = i;
+#ifndef TARGET_N64
+        if(configSkipIntro)
+        {
+            main_80000624(&func_801C15CC);
+            return;
+        }
+#endif
         main_80000624(&func_801C6560);
     }
 }
