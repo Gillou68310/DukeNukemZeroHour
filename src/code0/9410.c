@@ -1914,6 +1914,10 @@ static void func_8000EBF0(u8 playernum, u8 arg1)
 
         f1 = (D_80199110 / (SCREEN_WIDTH/2.0) * 60.0);
         f2 = (D_801A1980 / (SCREEN_HEIGHT/2.0) * 46.875);
+#ifndef TARGET_N64
+        if(configNoBorder)
+            f2 = (D_801A1980 / (SCREEN_HEIGHT/2.0) * 60.0);
+#endif
         if (playernum >= 4)
         {
             func_80027C18((gScreenWidth/2), (gScreenHeight / 2), f1, f2, getTileId(5948), 0);
@@ -1928,6 +1932,13 @@ static void func_8000EBF0(u8 playernum, u8 arg1)
         {
             f1 = (D_80199110 / (SCREEN_WIDTH/2.0) * 13.875);
             f2 = (D_801A1980 / (SCREEN_HEIGHT/2.0) * 10.40625);
+#ifndef TARGET_N64
+            if(configNoBorder)
+            {
+                f1 = (D_80199110 / (SCREEN_WIDTH/2.0) * 15.0);
+                f2 = (D_801A1980 / (SCREEN_HEIGHT/2.0) * 11.875);
+            }
+#endif
 
             alpha = CLAMP_MIN(CLAMP_MAX(D_8013F930[playernum].a, 255), 0);
 

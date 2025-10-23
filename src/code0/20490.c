@@ -49,10 +49,18 @@ void func_8001F928(s32 arg0, s32 arg1)
     s16 k, l, m, n;
 
     i = (arg0 * 12) / SCREEN_WIDTH;
+#ifndef TARGET_N64
+    if(configNoBorder)
+        i = 0;
+#endif
     l = ((arg0 / 2) + i) * 2;
     k = ((arg0 - i) + (arg0 / 2)) * 2;
 
     j = arg1 / 20;
+#ifndef TARGET_N64
+    if(configNoBorder)
+        j = 0;
+#endif
     n = ((arg1 / 2) + j) * 2;
     m = ((arg1 - j) + (arg1 / 2)) * 2;
 
@@ -255,6 +263,11 @@ static void func_80020350(s16 arg0, s16 arg1, s16 arg2, s16 arg3)
 /*80020510*/
 void func_80020510(void)
 {
+#ifndef TARGET_N64
+    if(configNoBorder)
+        return;
+#endif
+
     func_8000A070();
     gDPSetScissor(gpDisplayList++, G_SC_NON_INTERLACE, 0, 0, gScreenWidth, gScreenHeight);
     gDPSetRenderMode(gpDisplayList++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
