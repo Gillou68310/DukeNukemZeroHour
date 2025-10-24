@@ -11,7 +11,7 @@ Note: To use this repository, you must already own a copy of the game.
 
 ## Dependencies
 
-The build instructions assume that you will be using Ubuntu 20.04; either natively or via WSL2.
+The build instructions assume that you will be using Ubuntu 22.04; either natively or via WSL2.
 
 Package requirements can be install via:
 
@@ -20,7 +20,7 @@ sudo apt update
 sudo apt install make git build-essential binutils-mips-linux-gnu cpp-mips-linux-gnu python3 python3-pip
 ```
 
-Tools requires Python 3.8+. Package requirements can be installed via:
+Tools requires Python 3.9+. Package requirements can be installed via:
 
 ```sh
 pip3 install --upgrade pip
