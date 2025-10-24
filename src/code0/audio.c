@@ -402,8 +402,11 @@ void playMusic(s32 musicnum)
     if (gMusicVolume != 0)
     {
         MusHandleStop(gMusicHandle, 0);
+        while (MusHandleAsk(gMusicHandle))
 #ifdef TARGET_N64
-        while (MusHandleAsk(gMusicHandle));
+            ;
+#else
+            audio_task();
 #endif
 
         if (musicnum < 0)
@@ -443,8 +446,11 @@ void playMusic(s32 musicnum)
 void playAmbient(s32 ambientnum)
 {
     MusHandleStop(gAmbientHandle, 0);
+    while (MusHandleAsk(gAmbientHandle))
 #ifdef TARGET_N64
-    while (MusHandleAsk(gAmbientHandle));
+        ;
+#else
+        audio_task();
 #endif
 
     if (ambientnum < 0)
