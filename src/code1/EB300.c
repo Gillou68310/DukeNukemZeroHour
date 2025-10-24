@@ -29,7 +29,7 @@ typedef struct {
 /*.data*/
 /*801CA140*/ static s32 D_801CA140 = 2048;
 /*801CA144*/ f32 D_801CA144 = 0.0f;
-/*801CA148*/ static char D_801CA148 = ' ';
+/*801CA148*/ static char D_801CA148[] = " ";
 
 /*801CA14C*/
 MapChapter gMapChapter[MAP_NUM+1] = {
@@ -1520,14 +1520,14 @@ static code1UnkStruct5 D_801CAD98[8] = {
 static code1UnkStruct5 D_801CAE88[6] = {
 #if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
     { 1, -1, 1, 0, "SELECT GAME TYPE", NULL, NULL, NULL, NULL },
-    { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, D_801CA148, NULL, NULL, NULL, NULL },
     { 1, -1, 0, 0, "DUKEMATCH", _menuMultiplayerSelectLevel, NULL, NULL, NULL },
     { 1, -1, 0, 0, "LAST MAN STANDING", _menuMultiplayerSelectLevel, NULL, NULL, NULL },
     { 1, -1, 0, 0, "KING OF THE HILL", _menuMultiplayerSelectLevel, NULL, NULL, NULL },
     { 1, -1, 0, 0, "TEAM DUKEMATCH", _menuMultiplayerSelectLevel, NULL, NULL, NULL },
 #elif VERSION_FR
     { 1, -1, 1, 0, "CHOISIR TYPE DE PARTIE", NULL, NULL, NULL, NULL },
-    { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, D_801CA148, NULL, NULL, NULL, NULL },
     { 1, -1, 0, 0, "DUKEMATCH", _menuMultiplayerSelectLevel, NULL, NULL, NULL },
     { 1, -1, 0, 0, "LE SURVIVANT", _menuMultiplayerSelectLevel, NULL, NULL, NULL },
     { 1, -1, 0, 0, "LE ROI DE LA MONTAGNE", _menuMultiplayerSelectLevel, NULL, NULL, NULL },
@@ -1568,12 +1568,12 @@ static code1UnkStruct5 D_801CAF40[9] = {
 static code1UnkStruct5 D_801CB04C[4] = {
 #if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
     { 1, -1, 1, 0, "SELECT DIFFICULTY", NULL, NULL, NULL, NULL },
-    { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, D_801CA148, NULL, NULL, NULL, NULL },
     { 1, -1, 0, 0, "NORMAL", _menuSelectDifficulty, NULL, NULL, NULL },
     { 1, -1, 0, 0, "HARD", _menuSelectDifficulty, NULL, NULL, NULL },
 #elif VERSION_FR
     { 1, -1, 1, 0, "CHOISIR NIVEAU DIFFIC.", NULL, NULL, NULL, NULL },
-    { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, D_801CA148, NULL, NULL, NULL, NULL },
     { 1, -1, 0, 0, "NORMAL", _menuSelectDifficulty, NULL, NULL, NULL },
     { 1, -1, 0, 0, "DIFFICILE", _menuSelectDifficulty, NULL, NULL, NULL },
 #endif
@@ -1585,12 +1585,12 @@ static code1UnkStruct5 D_801CB04C[4] = {
 static code1UnkStruct5 D_801CB0CC[4] = {
 #if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
     { 1, -1, 1, 0, "SELECT", NULL, NULL, NULL, NULL },
-    { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, D_801CA148, NULL, NULL, NULL, NULL },
     { 1, -1, 0, 0, "SINGLE PLAYER", _menuEnter, &D_801CB0BC, NULL, NULL },
     { 1, -1, 0, 0, "MULTI-PLAYER", _menuEnter, &D_801CB03C, NULL, NULL },
 #elif VERSION_FR
     { 1, -1, 1, 0, "SELECT", NULL, NULL, NULL, NULL },
-    { 1, -1, 1, 0, &D_801CA148, NULL, NULL, NULL, NULL },
+    { 1, -1, 1, 0, D_801CA148, NULL, NULL, NULL, NULL },
     { 1, -1, 0, 0, "UN SEUL JOUEUR", _menuEnter, &D_801CB0BC, NULL, NULL },
     { 1, -1, 0, 0, "MULTIJOUEUR", _menuEnter, &D_801CB03C, NULL, NULL },
 #endif
