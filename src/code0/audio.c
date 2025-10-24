@@ -572,7 +572,10 @@ static void func_80006F08(void)
 
     MusHandleSetVolume(gAmbientHandle, (_masterVolume * 128) / 100U);
     volume = (gMusicVolume * 128) / 100U;
-    volume = volume * _multiplier[gMusicNum] / 100;
+#ifdef AVOID_UB
+    if (gMusicNum != -1)
+#endif
+        volume = volume * _multiplier[gMusicNum] / 100;
     MusHandleSetVolume(gMusicHandle, volume);
 }
 

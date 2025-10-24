@@ -166,6 +166,9 @@ static void _decodeEDL0(EDLInfo *info)
 #define GET_BITS2(OUTVAR,BITCOUNT) GET_BITS_(OUTVAR,BITCOUNT,one)
 
 /*80080968*/
+#ifdef _MSC_VER
+__declspec(no_sanitize_address)
+#endif
 static void _decodeEDL1(EDLInfo *info)
 {
     u32 number[0x21];

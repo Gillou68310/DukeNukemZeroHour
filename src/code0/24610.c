@@ -126,15 +126,25 @@ void drawSprite(s32 spritenum, u16 sectnum, s32 distance)
                 }
             }
 
-            gDPSetPrimColor(gpDisplayList++, 0, 0, gpAlphaPalette[D_80168810].primary.r,
-                                                   gpAlphaPalette[D_80168810].primary.g,
-                                                   gpAlphaPalette[D_80168810].primary.b,
-                                                   alpha);
+#ifdef AVOID_UB
+            if(D_80168810 == -1)
+            {
+                gDPSetPrimColor(gpDisplayList++, 0, 0, 0, 0, 0,alpha);
+                gDPSetEnvColor(gpDisplayList++, 0, 0, 0, alpha);
+            }
+            else
+#endif
+            {
+                gDPSetPrimColor(gpDisplayList++, 0, 0, gpAlphaPalette[D_80168810].primary.r,
+                                                       gpAlphaPalette[D_80168810].primary.g,
+                                                       gpAlphaPalette[D_80168810].primary.b,
+                                                       alpha);
 
-            gDPSetEnvColor(gpDisplayList++, gpAlphaPalette[D_80168810].env.r,
-                                            gpAlphaPalette[D_80168810].env.g,
-                                            gpAlphaPalette[D_80168810].env.b,
-                                            alpha);
+                gDPSetEnvColor(gpDisplayList++, gpAlphaPalette[D_80168810].env.r,
+                                                gpAlphaPalette[D_80168810].env.g,
+                                                gpAlphaPalette[D_80168810].env.b,
+                                                alpha);
+            }
 
             if (_pSprite->cstat & 0x800)
             {

@@ -672,7 +672,10 @@ static void func_8006B384(s32 spritenum)
         }
         if (i != -1)
         {
-            gActor[gActorSpriteMap[spritenum]].unk64 = D_800FF528[gActor[gActorSpriteMap[spritenum]].unk84];
+#ifdef AVOID_UB
+            if(gActor[gActorSpriteMap[spritenum]].unk84 >= 0)
+#endif
+                gActor[gActorSpriteMap[spritenum]].unk64 = D_800FF528[gActor[gActorSpriteMap[spritenum]].unk84];
             gActor[gActorSpriteMap[spritenum]].unk4 |= 0x40;
             gpSprite[spritenum].unk16 = i;
         }
