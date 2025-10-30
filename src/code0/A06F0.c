@@ -11,7 +11,7 @@
 #include "code0/17B30.h"
 #include "code0/1A7C0.h"
 #include "code0/1E7A0.h"
-#include "code0/20490.h"
+#include "code0/viewport.h"
 #include "code0/24610.h"
 #include "code0/37090.h"
 #include "code0/3FAD0.h"
@@ -221,7 +221,7 @@ static void func_800A0014(void)
     s16 i, j, k;
     u8 cond;
 
-    func_8000A070();
+    setDrawMode2D();
     x = D_80119A94 + 80;
     y = D_80199944 + 35;
 
@@ -371,7 +371,7 @@ static void func_800A0698(void)
     gSPSetLights2(gpDisplayList++, D_800E18F8);
     c = 0xFF;
 
-    for (i = 0; i < D_8012C470; i++)
+    for (i = 0; i < gPlayerCount; i++)
     {
         if (i != D_801B0820)
         {
@@ -483,7 +483,7 @@ void func_800A0E74(void)
     D_801AC9F8 = 0;
     D_80106D40 = 0;
 
-    for (i = 0; i < D_8012C470; i++)
+    for (i = 0; i < gPlayerCount; i++)
         D_8012FD70[i] = 0;
 }
 
@@ -500,8 +500,8 @@ void drawHud(void)
     s32 *ptr2;
     s16 *ptr3;
 
-    func_8000A070();
-    func_8001FD60(D_801B0820, 1);
+    setDrawMode2D();
+    setPlayerViewport(D_801B0820, 1);
     gDPPipeSync(gpDisplayList++);
 
     if (D_8016A140 > 0)
@@ -581,7 +581,7 @@ void drawHud(void)
         gDPSetRenderMode(gpDisplayList++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
         gDPSetCombineMode(gpDisplayList++, G_CC_PRIMITIVE, G_CC_PASS2);
         gDPSetPrimColor(gpDisplayList++, 0, 0, 0x00, 0x00, 0x00, 0xFF);
-        gSPTextureRectangle(gpDisplayList++, xl1*4, yl1*4, xh1*4, yh1*4, 0, 0, 0, 1, 1);
+        gSPTextureRectangle(gpDisplayList++, xl1*4, yl1*4, xh1*4, yh1*4, G_TX_RENDERTILE, 0, 0, 1, 1);
 
         xl1 = 0;
         yl1 = 194;
@@ -589,7 +589,7 @@ void drawHud(void)
         xh1 = SCREEN_WIDTH;
         yh1 = SCREEN_HEIGHT;
         func_8001D128(&xh1, &yh1);
-        gSPTextureRectangle(gpDisplayList++, xl1*4, yl1*4, xh1*4, yh1*4, 0, 0, 0, 1, 1);
+        gSPTextureRectangle(gpDisplayList++, xl1*4, yl1*4, xh1*4, yh1*4, G_TX_RENDERTILE, 0, 0, 1, 1);
         return;
     }
 
@@ -620,7 +620,7 @@ void drawHud(void)
         if (D_80106D30[D_801B0820] != 0)
         {
             func_800A0698();
-            func_8000A070();
+            setDrawMode2D();
             func_80029130(D_8012DF04[D_801B0820].r, D_8012DF04[D_801B0820].g, D_8012DF04[D_801B0820].b, 0, 0, 0);
 
             if (D_80106D30[D_801B0820] == 1)
@@ -658,9 +658,9 @@ void drawHud(void)
         func_800A42A4(D_801B0820);
         if (gPlayer[D_801B0820].unk45 == 0)
         {
-            func_8000A070();
+            setDrawMode2D();
 
-            if (D_8012C470 == 1)
+            if (gPlayerCount == 1)
             {
                 func_8001D238(D_80119A94 + 20, D_80199944 + 200, 5692);
                 o = 36;
@@ -683,7 +683,7 @@ void drawHud(void)
             func_80029130(p, n, 0, 0, 0, 0);
             sprintf(sp20, "%d", k);
 
-            if (D_8012C470 == 1)
+            if (gPlayerCount == 1)
                 drawNumberString((o + D_80119A94), (D_80199944 + 200), sp20);
             else
                 drawString((o + D_80119A94), (D_80199944 + 200), sp20);
@@ -697,7 +697,7 @@ void drawHud(void)
                     p = (D_8010A940[D_801B0820].unkA[c] * 100) / D_800E17E0[c];
                     sprintf(sp20, "%d", p);
 
-                    if (D_8012C470 == 1)
+                    if (gPlayerCount == 1)
                         drawNumberString((D_80119A94 + 30), (D_80199944 + 60), sp20);
                     else
                         drawString((D_80119A94 + 30), (D_80199944 + 60), sp20);
@@ -739,13 +739,13 @@ void drawHud(void)
                 if (ptr3[0] & 4)
                     func_80029130(0xFF, 0, 0, 0, 0, 0);
 
-                if (D_8012C470 >= 2)
+                if (gPlayerCount >= 2)
                     k = 0xFE;
                 else
                     k = 0x101;
 
                 sprintf(sp20, "%3d", p);
-                if (D_8012C470 == 1)
+                if (gPlayerCount == 1)
                     drawNumberString((k + D_80119A94), (D_80199944 + 60), sp20);
                 else
                     drawString((k + D_80119A94), (D_80199944 + 60), sp20);
@@ -757,9 +757,9 @@ void drawHud(void)
                     p = MIN(p, q);
                     p = (D_8016A154[D_801B0820] == 0) ? p : 0;
                     sprintf(sp20, "%3d", p);
-                    b = (D_8012C470 >= 2) ? 43 : 35;
+                    b = (gPlayerCount >= 2) ? 43 : 35;
 
-                    if (D_8012C470 == 1)
+                    if (gPlayerCount == 1)
                         drawNumberString((D_80119A94 + (k - b)), (D_80199944 + 60), sp20);
                     else
                         drawString((D_80119A94 + (k - b)), (D_80199944 + 60), sp20);
@@ -853,7 +853,7 @@ void drawHud(void)
                 gDPSetRenderMode(gpDisplayList++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
                 gDPSetCombineMode(gpDisplayList++, G_CC_PRIMITIVE, G_CC_PASS2);
                 gDPSetPrimColor(gpDisplayList++, 0, 0, 0x00, 0xFF, 0xFF, D_8012FD70[D_801B0820]);
-                gSPTextureRectangle(gpDisplayList++, xl2*4, yl2*4, xh2*4, yh2*4, 0, 0, 0, 1, 1);
+                gSPTextureRectangle(gpDisplayList++, xl2*4, yl2*4, xh2*4, yh2*4, G_TX_RENDERTILE, 0, 0, 1, 1);
             }
 
             n = gHeadSpriteStat[305];
@@ -916,7 +916,7 @@ void drawHud(void)
                 gDPSetRenderMode(gpDisplayList++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
                 gDPSetCombineMode(gpDisplayList++, G_CC_PRIMITIVE, G_CC_PASS2);
                 gDPSetPrimColor(gpDisplayList++, 0, 0, 0x00, 0x00, 0x00, 0x80);
-                gSPTextureRectangle(gpDisplayList++, xl3*4, yl3*4, xh3*4, yh3*4, 0, 0, 0, 1, 1);
+                gSPTextureRectangle(gpDisplayList++, xl3*4, yl3*4, xh3*4, yh3*4, G_TX_RENDERTILE, 0, 0, 1, 1);
 
                 if (k > 0)
                 {
@@ -941,10 +941,10 @@ void drawHud(void)
                     {
                         gDPSetPrimColor(gpDisplayList++, 0, 0, 0xFF, 0xFF, 0x00, 0xC0);
                     }
-                    gSPTextureRectangle(gpDisplayList++, xl3*4, yl3*4, xh3*4, yh3*4, 0, 0, 0, 1, 1);
+                    gSPTextureRectangle(gpDisplayList++, xl3*4, yl3*4, xh3*4, yh3*4, G_TX_RENDERTILE, 0, 0, 1, 1);
                 }
             }
-            if (D_8012C470 >= 2)
+            if (gPlayerCount >= 2)
             {
                 l = D_800FF4F0[D_801B0820].unk0 - D_800FF4F0[D_801B0820].unk2;
                 l = CLAMP_MAX(l, 999);
@@ -956,7 +956,7 @@ void drawHud(void)
 
                 if (gConfig.multiplayer.radar != CONFIG_OFF)
                 {
-                    for (p = 0; p < D_8012C470; p++)
+                    for (p = 0; p < gPlayerCount; p++)
                     {
                         if (p != D_801B0820)
                         {
@@ -1060,28 +1060,28 @@ void drawHud(void)
 static void func_800A34CC(s32 x, s32 y, u16 tilenum, s16 arg3)
 {
     func_8001D128(&x, &y);
-    func_80027C18(x,
-                  y,
-                  (D_80199110 * 3.0f) / (SCREEN_WIDTH / 2.0),
-                  (D_801A1980 * 3.0f) / (SCREEN_HEIGHT / 2.0),
-                  getTileId(tilenum),
-                  arg3);
+    drawTileScaled(x,
+                   y,
+                   (gViewportScaleX * 3.0f) / (SCREEN_WIDTH / 2.0),
+                   (gViewportScaleY * 3.0f) / (SCREEN_HEIGHT / 2.0),
+                   getTileId(tilenum),
+                   arg3);
 }
 
 /*800A359C*/
 static void func_800A359C(s32 x, s32 y, s16 tilenum, s16 arg3)
 {
-    f32 f1, f2;
+    f32 scalex, scaley;
 
     func_8001D128(&x, &y);
-    f1 = (gScreenWidth * 3) / (f64)SCREEN_WIDTH;
-    f2 = (gScreenHeight * 3) / (f64)SCREEN_HEIGHT;
-    func_80027C18(x,
-                  y,
-                  f1,
-                  f2,
-                  getTileId(tilenum),
-                  arg3);
+    scalex = (gScreenWidth * 3) / (f64)SCREEN_WIDTH;
+    scaley = (gScreenHeight * 3) / (f64)SCREEN_HEIGHT;
+    drawTileScaled(x,
+                   y,
+                   scalex,
+                   scaley,
+                   getTileId(tilenum),
+                   arg3);
 }
 
 /*800A3688*/
@@ -1107,7 +1107,7 @@ void func_800A3688(void)
         if (gConfig.crosshair[D_801B0820] != 0)
             l = D_800E1964[gConfig.crosshair[D_801B0820]];
 
-        func_8000A070();
+        setDrawMode2D();
 
         if ((gPlayer[D_801B0820].unk52 >= 0) && (gPlayer[D_801B0820].unk52 < 0x800))
         {
@@ -1154,7 +1154,7 @@ void func_800A3688(void)
                     drawString(190, 160, "X");
                     sprintf(buffer, "%d", gPlayer[D_801B0820].unk6E / 256);
                     drawNumberString(200, 160, buffer);
-                    if (D_8012C470 == 1)
+                    if (gPlayerCount == 1)
                     {
                         sprintf(buffer, "%03d", (s16)((gPlayer[D_801B0820].ang & 0x7FF) * (45.0/256)));
                         drawString2(0x98, 0xAA, buffer);
@@ -1242,10 +1242,10 @@ void func_800A3688(void)
                     else
                     {
                         func_80028F04(0xFF, 0, 0, 0xFF, 0, 0);
-                        func_80027C18((f6 * D_80199110) + D_80168C9C,
-                                      (-f7 * D_801A1980) + D_801A2684,
-                                      ((D_80199110 * 3.0f) / (SCREEN_WIDTH/2.0)),
-                                      ((D_801A1980 * 3.0f) / (SCREEN_HEIGHT/2.0)),
+                        drawTileScaled((f6 * gViewportScaleX) + gViewportTransX,
+                                      (-f7 * gViewportScaleY) + gViewportTransY,
+                                      ((gViewportScaleX * 3.0f) / (SCREEN_WIDTH/2.0)),
+                                      ((gViewportScaleY * 3.0f) / (SCREEN_HEIGHT/2.0)),
                                       getTileId(l), 0);
                     }
                 }
@@ -1259,7 +1259,7 @@ void func_800A419C(s16 playernum, char *arg1)
 {
     s16 i;
 
-    if (D_8012C470 == 1)
+    if (gPlayerCount == 1)
     {
         for (i = ARRAY_COUNT(D_80138858)-1; i > 0; i--)
         {
@@ -1282,7 +1282,7 @@ static void func_800A42A4(s16 playernum)
     s16 i;
     u8 a;
 
-    if (D_8012C470 == 1)
+    if (gPlayerCount == 1)
     {
         for (i = 0; i < ARRAY_COUNT(D_80138858); i++)
         {
@@ -1324,7 +1324,7 @@ void func_800A4478(void)
     s16 nextj;
     s32 a, b;
 
-    for (i = 0; i < D_8012C470; i++)
+    for (i = 0; i < gPlayerCount; i++)
     {
         if ((gPlayer[i].unk54 != 0) || (D_8011814A[i] < 600))
             D_8012FD70[i] = 0x80;
@@ -1336,7 +1336,7 @@ void func_800A4478(void)
         else
             D_80106D40 = 0;
 
-        if (D_8012C470 >= 2)
+        if (gPlayerCount >= 2)
         {
             if (D_801AD470 != 2)
             {
@@ -1373,7 +1373,7 @@ void func_800A4478(void)
     D_80119A94 = 0;
     D_80199944 = 0;
 
-    if ((D_8012C470 == 1) && (D_801AC9F8 > 0))
+    if ((gPlayerCount == 1) && (D_801AC9F8 > 0))
     {
         D_801AC9F8--;
         D_80119A94 = krand() & 3;

@@ -1212,7 +1212,7 @@ void func_80017268(s16 spritenum)
                         ptr7 = &D_800D857C;
                         ptr6 = &D_800D857C;
 
-                        if ((D_8012C470 == 1))
+                        if ((gPlayerCount == 1))
                         {
                             gPlayer[i].yvect = 0;
                             gPlayer[i].xvect = 0;
@@ -1360,7 +1360,7 @@ void func_80017268(s16 spritenum)
                         func_80017090(ptr, &D_800D857C, 10);
 
                     func_80017180(ptr, &D_800D857C, 10);
-                    if (D_8012C470 == 1)
+                    if (gPlayerCount == 1)
                     {
                         gPlayer[i].yvect = 0;
                         gPlayer[i].xvect = 0;
@@ -1377,7 +1377,7 @@ void func_80017268(s16 spritenum)
                         func_80017090(ptr, &D_800D857C, 10);
 
                     func_80017180(ptr, &D_800D857C, 10);
-                    if (D_8012C470 == 1)
+                    if (gPlayerCount == 1)
                     {
                         gPlayer[i].yvect = 0;
                         gPlayer[i].xvect = 0;

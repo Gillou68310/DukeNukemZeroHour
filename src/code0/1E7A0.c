@@ -194,8 +194,8 @@ void func_8001DE9C(void)
                     j = (ptr->unk20 << 5) & 0xFFE0;
                     f9 = coss(j) / 32768.0;
 
-                    f10 = (f5 * 4.0f * D_80199110) + (D_80168C9C * 4.0f);
-                    f11 = (-f6 * 4.0f * D_801A1980) + (D_801A2684 * 4.0f);
+                    f10 = (f5 * 4.0f * gViewportScaleX) + (gViewportTransX * 4.0f);
+                    f11 = (-f6 * 4.0f * gViewportScaleY) + (gViewportTransY * 4.0f);
 
                     a = ((sizex * f9) + (sizey * f8));
                     e = ((-sizey * f9) + (sizex * f8));
@@ -206,14 +206,14 @@ void func_8001DE9C(void)
                     d = ((sizex * f9) + (-sizey * f8));
                     h = ((sizey * f9) + (sizex * f8));
 
-                    a = (((a * 4) * D_80199110) / (SCREEN_WIDTH/2.0f)) + f10;
-                    b = (((b * 4) * D_80199110) / (SCREEN_WIDTH/2.0f)) + f10;
-                    c = (((c * 4) * D_80199110) / (SCREEN_WIDTH/2.0f)) + f10;
-                    d = (((d * 4) * D_80199110) / (SCREEN_WIDTH/2.0f)) + f10;
-                    e = (((e * 4) * D_801A1980) / (SCREEN_HEIGHT/2.0f)) + f11;
-                    f = (((f * 4) * D_801A1980) / (SCREEN_HEIGHT/2.0f)) + f11;
-                    g = (((g * 4) * D_801A1980) / (SCREEN_HEIGHT/2.0f)) + f11;
-                    h = (((h * 4) * D_801A1980) / (SCREEN_HEIGHT/2.0f)) + f11;
+                    a = (((a * 4) * gViewportScaleX) / (SCREEN_WIDTH/2.0f)) + f10;
+                    b = (((b * 4) * gViewportScaleX) / (SCREEN_WIDTH/2.0f)) + f10;
+                    c = (((c * 4) * gViewportScaleX) / (SCREEN_WIDTH/2.0f)) + f10;
+                    d = (((d * 4) * gViewportScaleX) / (SCREEN_WIDTH/2.0f)) + f10;
+                    e = (((e * 4) * gViewportScaleY) / (SCREEN_HEIGHT/2.0f)) + f11;
+                    f = (((f * 4) * gViewportScaleY) / (SCREEN_HEIGHT/2.0f)) + f11;
+                    g = (((g * 4) * gViewportScaleY) / (SCREEN_HEIGHT/2.0f)) + f11;
+                    h = (((h * 4) * gViewportScaleY) / (SCREEN_HEIGHT/2.0f)) + f11;
 
                     if (gVertexNumber == 0)
                     {
@@ -286,7 +286,7 @@ void func_8001DE9C(void)
 void func_8001EB2C(void)
 {
     f32 fx, fy, fz;
-    f32 f1, f2, f3, f4, f5, f6;
+    f32 f1, f2, f3, f4, scalex, scaley;
     f32 fx_, fy_, fz_;
     s16 primr, primg, primb;
     s16 envr, envg, envb;
@@ -361,19 +361,19 @@ void func_8001EB2C(void)
                     gDPSetPrimColor(gpDisplayList++, 0, 0, primr, primg, primb, prima);
                     gDPSetEnvColor(gpDisplayList++, envr, envg, envb, enva);
 
-                    f5 = (fz_ * D_801AE538[i].unk10 * 4.0f * gPlayer[D_801B0820].unk6E * D_80199110) / (160.0*256.0);
-                    f6 = (fz_ * D_801AE538[i].unk10 * 4.0f * gPlayer[D_801B0820].unk6E * D_801A1980) / (120.0*256.0);
-                    func_80027C18((fx_ * D_80199110) + D_80168C9C,
-                                  (-fy_ * D_801A1980) + D_801A2684,
-                                  f5,
-                                  f6,
+                    scalex = (fz_ * D_801AE538[i].unk10 * 4.0f * gPlayer[D_801B0820].unk6E * gViewportScaleX) / ((SCREEN_WIDTH/2.0)*256.0);
+                    scaley = (fz_ * D_801AE538[i].unk10 * 4.0f * gPlayer[D_801B0820].unk6E * gViewportScaleY) / ((SCREEN_HEIGHT/2.0)*256.0);
+                    drawTileScaled((fx_ * gViewportScaleX) + gViewportTransX,
+                                  (-fy_ * gViewportScaleY) + gViewportTransY,
+                                  scalex,
+                                  scaley,
                                   getTileId(D_801AE538[i].unk8),
                                   D_801AE538[i].unkA);
                 }
             }
         }
     }
-    func_8000A070();
+    setDrawMode2D();
     gDPSetDepthSource(gpDisplayList++, G_ZS_PIXEL);
 }
 
@@ -453,7 +453,7 @@ void func_8001F7B4(s32 arg0, s32 arg1)
     D_800DEE88 = arg0;
     D_800DEE8C = arg1;
 
-    for (playernum = 0; playernum < D_8012C470; playernum++)
+    for (playernum = 0; playernum < gPlayerCount; playernum++)
     {
         if (gPlayer[playernum].unk45 == 0)
             func_801C363C(playernum, arg0, CLAMP_MAX(arg1*16, 255));

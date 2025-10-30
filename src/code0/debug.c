@@ -79,13 +79,13 @@ void debugMenu(void)
     u8 i;
     u32 j;
 
-    if (D_8012C470 == 4)
+    if (gPlayerCount == 4)
         return;
 
     if ((!gDebugMenu) && (gCheatWeatherConfig == CONFIG_OFF))
         return;
 
-    _debugPlayerNum = CLAMP_MAX(D_8012C470, 3);
+    _debugPlayerNum = CLAMP_MAX(gPlayerCount, 3);
     if (gButton[_debugPlayerNum] & START_BUTTON)
     {
         if (!_screenSelectButtonPressed)

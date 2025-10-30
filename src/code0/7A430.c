@@ -147,7 +147,7 @@ static inline u16 *get_D_800DF8E0(s32 i, s32 j)
 /*80079830*/
 void func_80079830(void)
 {
-    for (D_801B0820 = 0; D_801B0820 < D_8012C470; D_801B0820++)
+    for (D_801B0820 = 0; D_801B0820 < gPlayerCount; D_801B0820++)
     {
         func_80079F60(D_801B0820);
         if (gCheatWeaponSmgConfig != CONFIG_OFF)
@@ -473,7 +473,7 @@ static void func_80079F60(s32 playernum)
     if (i == 10)
     {
         g = 3;
-        if (D_8012C470 == 1)
+        if (gPlayerCount == 1)
             g = 5;
 
         if (func_80079D38(playernum, 10) >= g)

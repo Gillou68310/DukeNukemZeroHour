@@ -11,7 +11,7 @@
 #include "code0/FDE0.h"
 #include "code0/1A7C0.h"
 #include "code0/1E7A0.h"
-#include "code0/20490.h"
+#include "code0/viewport.h"
 #include "code0/21500.h"
 #include "code0/24610.h"
 #include "code0/37090.h"
@@ -273,17 +273,17 @@ void func_80008E3C(void)
     D_8012F6F0[3] = 0;
     D_801B0820 = 0;
 
-    for (; D_801B0820 < D_8012C470; D_801B0820++)
+    for (; D_801B0820 < gPlayerCount; D_801B0820++)
     {
-        func_8001FD60(D_801B0820, 0);
+        setPlayerViewport(D_801B0820, 0);
         func_80009A14(D_801B0820);
     }
 
-    func_8000A070();
-    D_80199110 = (f32)(gScreenWidth / 2);
-    D_80168C9C = (f32)(gScreenWidth / 2);
-    D_801A1980 = (f32)(gScreenHeight / 2);
-    D_801A2684 = (f32)(gScreenHeight / 2);
+    setDrawMode2D();
+    gViewportScaleX = (f32)(gScreenWidth / 2);
+    gViewportTransX = (f32)(gScreenWidth / 2);
+    gViewportScaleY = (f32)(gScreenHeight / 2);
+    gViewportTransY = (f32)(gScreenHeight / 2);
     gDPSetScissor(gpDisplayList++, G_SC_NON_INTERLACE, 0, 0, gScreenWidth, gScreenHeight);
 
     if (D_80199558 > 0)
@@ -293,7 +293,7 @@ void func_80008E3C(void)
         sprintf(buffer, "%02d:%02d", value / 60, value % 60);
 
         func_80029130(255, 128, 0, 0, 0, 0);
-        if ((D_8012C470 == 3) && (D_800DCBD5 == 0))
+        if ((gPlayerCount == 3) && (g3pSplitFull == 0))
             drawNumberString(207, 164, buffer);
         else
             drawString(-1, 112, buffer);
@@ -301,11 +301,11 @@ void func_80008E3C(void)
 
     if (!_isDisplayListFull() && gNotPlayback)
     {
-        func_8000A070();
+        setDrawMode2D();
         debugMenu();
     }
 
-    func_80020510();
+    drawViewportLines();
 
     if (D_801AE914 != 0)
         func_8000EB4C(4, 0, 0, 0, 196);
@@ -315,7 +315,7 @@ void func_80008E3C(void)
     gDisplayListSize = ((uintptr_t)gpDisplayList - (uintptr_t)gDisplayList[gGfxTaskIndex]) / sizeof(Gfx);
     gVertexN64Size = ((uintptr_t)gpVertexN64 - (uintptr_t)gVertexN64[gGfxTaskIndex]) / sizeof(Vtx);
 
-    for (playernum = 0; playernum < D_8012C470; playernum++)
+    for (playernum = 0; playernum < gPlayerCount; playernum++)
         gActor[gActorSpriteMap[gPlayer[playernum].unk4A]].flag &= ~0x100;
 
     func_80040B70(3);
@@ -574,7 +574,7 @@ static void func_80009A14(u8 playernum)
     func_8001A1A4();
     func_8001B2D0();
 
-    if (D_8012C470 == 1)
+    if (gPlayerCount == 1)
     {
         cond = D_8010A940[playernum].unk2[5] != 0;
         if (gPlayer[playernum].unk52 >= 0)
@@ -604,7 +604,7 @@ static void func_80009A14(u8 playernum)
 }
 
 /*8000A070*/
-void func_8000A070(void)
+void setDrawMode2D(void)
 {
     gDPPipeSync(gpDisplayList++);
     gSPClearGeometryMode(gpDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING |
@@ -1822,13 +1822,19 @@ s16 func_8000EBD4(u8 playernum)
     return D_80138798[playernum].a;
 }
 
+#define SCALE_TO_SCREEN_WIDTH(TILE_SIZEX, OFFSET) (gViewportScaleX / (SCREEN_WIDTH/2.0) * \
+                                                  (((SCREEN_WIDTH/2.0)+OFFSET)*6/TILE_SIZEX))
+
+#define SCALE_TO_SCREEN_HEIGHT(TILE_SIZEY, OFFSET) (gViewportScaleY / (SCREEN_HEIGHT/2.0) * \
+                                                   (((SCREEN_HEIGHT/2.0)+OFFSET)*6/TILE_SIZEY))
+
 /*8000EBF0*/
 static void func_8000EBF0(u8 playernum, u8 arg1)
 {
     s16 alpha;
-    f32 f1, f2;
+    f32 scalex, scaley;
 
-    func_8000A070();
+    setDrawMode2D();
     if (playernum == 4)
     {
         gDPSetAlphaDither(gpDisplayList++, G_AD_DISABLE);
@@ -1908,29 +1914,28 @@ static void func_8000EBF0(u8 playernum, u8 arg1)
         }
         gDPSetPrimColor(gpDisplayList++, 0, 0, D_80138798[playernum].r, D_80138798[playernum].g, D_80138798[playernum].b, alpha);
 
-        f1 = (D_80199110 / (SCREEN_WIDTH/2.0) * 60.0);
-        f2 = (D_801A1980 / (SCREEN_HEIGHT/2.0) * 46.875);
+        scalex = SCALE_TO_SCREEN_WIDTH(16, 0);
+        scaley = SCALE_TO_SCREEN_HEIGHT(16, 5);
         if (playernum >= 4)
         {
-            func_80027C18((gScreenWidth/2), (gScreenHeight / 2), f1, f2, getTileId(5948), 0);
+            drawTileScaled((gScreenWidth/2), (gScreenHeight / 2), scalex, scaley, getTileId(5948), 0);
             return;
         }
-        func_80027C18(D_80168C9C, D_801A2684, f1, f2, getTileId(5948), 0);
+        drawTileScaled(gViewportTransX, gViewportTransY, scalex, scaley, getTileId(5948), 0);
     }
 
     if (playernum < 4)
     {
         if (D_8013F930[playernum].a > 0)
         {
-            f1 = (D_80199110 / (SCREEN_WIDTH/2.0) * 13.875);
-            f2 = (D_801A1980 / (SCREEN_HEIGHT/2.0) * 10.40625);
-
+            scalex = SCALE_TO_SCREEN_WIDTH(64, -BORDER_SIZE);
+            scaley = SCALE_TO_SCREEN_HEIGHT(64, -BORDER_SIZE/ASPECT_RATIO);
             alpha = CLAMP_MIN(CLAMP_MAX(D_8013F930[playernum].a, 255), 0);
 
             func_8002900C(D_8013F930[playernum].r, D_8013F930[playernum].g, D_8013F930[playernum].b,
                           D_8013F930[playernum].r, D_8013F930[playernum].g, D_8013F930[playernum].b, alpha);
 
-            func_80027C18(D_80168C9C, D_801A2684, f1, f2, getTileId(5983), 0);
+            drawTileScaled(gViewportTransX, gViewportTransY, scalex, scaley, getTileId(5983), 0);
             D_8013F930[playernum].a = CLAMP_MIN((D_8013F930[playernum].a - 8), 0);
         }
     }

@@ -6,7 +6,7 @@
 #include "code0/4600.h"
 #include "code0/17B30.h"
 #include "code0/1E7A0.h"
-#include "code0/20490.h"
+#include "code0/viewport.h"
 #include "code0/cache1d.h"
 #include "code0/engine.h"
 #include "code0/35EA0.h"
@@ -240,8 +240,10 @@ static void func_80000508(void)
 
 #if VERSION_PROTO
 /*80000610*/
-void main_80000610(void) {
-    if (osTvType == OS_TV_PAL) {
+void main_80000610(void)
+{
+    if (osTvType == OS_TV_PAL)
+    {
         D_800BD3F4 = 1;
     }
     else
@@ -441,7 +443,7 @@ void main_80000C74(void)
     gDPSetRenderMode(gpDisplayList++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
     gDPSetColorImage(gpDisplayList++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gScreenWidth, OS_K0_TO_PHYSICAL(gDepthBuffer));
     gDPSetFillColor(gpDisplayList++, GPACK_ZDZ(G_MAXFBZ, 0) << 16 | GPACK_ZDZ(G_MAXFBZ, 0));
-    gDPFillRectangle(gpDisplayList++, 12, 12, gScreenWidth - 12, gScreenHeight - 12);
+    gDPFillRectangle(gpDisplayList++, BORDER_SIZE, BORDER_SIZE, gScreenWidth - BORDER_SIZE, gScreenHeight - BORDER_SIZE);
     gDPPipeSync(gpDisplayList++);
     gDPSetColorImage(gpDisplayList++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gScreenWidth, OS_K0_TO_PHYSICAL(_framebuffer[_framebufferIndex]));
     gDPSetCycleType(gpDisplayList++, G_CYC_2CYCLE);
@@ -521,7 +523,7 @@ static void func_80001038(void)
 #endif
         func_801C4B34();
 
-        for (playernum = 0; playernum < D_8012C470; playernum++)
+        for (playernum = 0; playernum < gPlayerCount; playernum++)
             func_80000F68(playernum);
     }
     else
@@ -560,7 +562,7 @@ static void func_80001038(void)
         func_800504F4();
         func_8005087C();
 
-        for (playernum = 0; playernum < D_8012C470; playernum++)
+        for (playernum = 0; playernum < gPlayerCount; playernum++)
             func_80017268(gPlayer[playernum].unk4A);
 
         func_80069E50();
@@ -588,7 +590,7 @@ static void func_80001038(void)
 
         func_80040B70(2);
 
-        for (playernum = 0; playernum < D_8012C470; playernum++)
+        for (playernum = 0; playernum < gPlayerCount; playernum++)
         {
             func_8000EB4C(playernum, 0, 0, 0, 0);
             func_8000EA0C(playernum, D_800DF1AC[playernum], D_800DF1AC[playernum], D_800DF1AC[playernum], D_800DF1AC[playernum]);
@@ -825,12 +827,12 @@ static void func_80001D44(void)
         height = 384;
         break;
     }
-    D_8012C470 = D_801CDC64.unk1;
+    gPlayerCount = D_801CDC64.unk1;
     if (D_801CDC64.unk1 == 0)
     {
-        D_8012C470 = 1;
+        gPlayerCount = 1;
     }
-    for (i = 0; i < D_8012C470; i++)
+    for (i = 0; i < gPlayerCount; i++)
     {
         func_80000F68(i);
         func_80095390(i);
@@ -842,7 +844,7 @@ static void func_80001D44(void)
         gDisplayListMaxSize = 0xA000;
         gVertexN64MaxSize = 0x6000;
     }
-    else if (D_8012C470 < 2)
+    else if (gPlayerCount < 2)
     {
         gDisplayListMaxSize = DISPLAY_LIST_SIZE*2;
         gVertexN64MaxSize = 0x1800;
@@ -853,7 +855,7 @@ static void func_80001D44(void)
         gVertexN64MaxSize = 0x2400;
     }
     allocMemory(width, height, gDisplayListMaxSize, gVertexN64MaxSize);
-    func_8001F928(width, height);
+    updateViewport(width, height);
     _red = 0;
     _green = 0;
     _blue = 0;
@@ -942,14 +944,14 @@ void allocMemory(s32 width, s32 height, s32 dlist_size, s32 vertex_size)
         remaining_size -= (vertex_size * sizeof(Vtx) * GFX_TASKS);
         gVertexN64[1] = &gVertexN64[0][vertex_size];
 
-        alloCache(&D_801297E0[0][0], (D_8012C470 * 1600 * sizeof(Gfx) * GFX_TASKS), &gCacheLock[0]);
+        alloCache(&D_801297E0[0][0], (gPlayerCount * 1600 * sizeof(Gfx) * GFX_TASKS), &gCacheLock[0]);
         D_801297E0[0][1] = D_801297E0[0][0] + 1600;
-        for (i = 1; i < D_8012C470; i++)
+        for (i = 1; i < gPlayerCount; i++)
         {
             D_801297E0[i][0] = D_801297E0[i-1][1] + 1600;
             D_801297E0[i][1] = D_801297E0[i][0] + 1600;
         }
-        remaining_size -= (D_8012C470 * 1600 * sizeof(Gfx) * GFX_TASKS);
+        remaining_size -= (gPlayerCount * 1600 * sizeof(Gfx) * GFX_TASKS);
     }
 
     alloCache(&handler, remaining_size, plock);
@@ -966,7 +968,7 @@ void allocMemory(s32 width, s32 height, s32 dlist_size, s32 vertex_size)
 /*80002390*/
 void main_80002390(void)
 {
-    func_8001F928(gScreenWidth, gScreenHeight);
+    updateViewport(gScreenWidth, gScreenHeight);
     switch (osTvType)
     {
     case OS_TV_NTSC:
@@ -1443,7 +1445,7 @@ static void func_800034F4(void)
 /*800036DC*/
 static void func_800036DC(void)
 {
-    gSPViewport(gpDisplayList++, &D_800DCB10[0]);
+    gSPViewport(gpDisplayList++, &gViewport[0]);
     guMtxIdent(&gpDynamic->identity);
     guScale(&gpDynamic->scale, 0.25, 0.25, 0.25);
     D_801AE528 = 0;

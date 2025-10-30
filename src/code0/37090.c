@@ -270,7 +270,7 @@ void func_8003671C(s16 playernum, u16 arg1, s16 arg2, s16 arg3)
                                 D_800FF4F0[playernum2].unk4[playernum]++;
                                 if (D_801AD470 == 4)
                                 {
-                                    for (i = 0; i < D_8012C470; i++)
+                                    for (i = 0; i < gPlayerCount; i++)
                                     {
                                         if (D_800E16A0[i] == D_800E16A0[playernum2])
                                         {
@@ -315,7 +315,7 @@ void func_8003671C(s16 playernum, u16 arg1, s16 arg2, s16 arg3)
                     D_800FF4F0[playernum].unk2++;
                     if (D_801AD470 == 4)
                     {
-                        for (j = 0; j < D_8012C470; j++)
+                        for (j = 0; j < gPlayerCount; j++)
                         {
                             if ((D_800E16A0[j] == D_800E16A0[playernum]) && (j != playernum))
                                 D_800FF4F0[j].unk2++;
@@ -1610,7 +1610,7 @@ static void func_8003B5F8(void)
                     c = 0;
                     if (D_80106D30[D_801B0820] == 1)
                     {
-                        for (j = 0; j < D_8012C470; j++)
+                        for (j = 0; j < gPlayerCount; j++)
                         {
                             if (j != D_801B0820)
                             {
@@ -1626,7 +1626,7 @@ static void func_8003B5F8(void)
                     {
                         a = 0;
                         b = 0;
-                        for (k = 0; k < D_8012C470; k++)
+                        for (k = 0; k < gPlayerCount; k++)
                         {
                             if ((D_80106D30[k] == 0) || (k == D_801B0820))
                             {
@@ -1637,12 +1637,12 @@ static void func_8003B5F8(void)
                             }
                         }
 
-                        if (a == D_8012C470)
+                        if (a == gPlayerCount)
                         {
                             d = 0;
                             c = 1;
                         }
-                        else if (b == D_8012C470)
+                        else if (b == gPlayerCount)
                         {
                             c = 1;
                         }
@@ -1661,7 +1661,7 @@ static void func_8003B5F8(void)
                         playSfx(D_8012F6E4[gPlayer[D_801B0820].skin].sfxnum);
                         D_80106D30[D_801B0820] = 0;
                         gpSprite[spritenum].cstat = (gpSprite[spritenum].cstat & 0x7FFF) | 0x101;
-                        if (D_8012C470 == 1)
+                        if (gPlayerCount == 1)
                             D_8010554C = 0;
                     }
                 }
@@ -1824,7 +1824,7 @@ static void func_8003B5F8(void)
             D_800DEDD4[D_801B0820] = 1;
         }
 
-        if (D_8012C470 == 1)
+        if (gPlayerCount == 1)
         {
             if ((gPlayer[D_801B0820].unk54 != 0) && (func_8000EBD4(D_801B0820) >= 0xFF))
                 cond2 = 1;
@@ -1839,9 +1839,9 @@ static void func_8003B5F8(void)
         {
             D_800DF585 = 1;
             D_800DEDD4[D_801B0820] = 1;
-            m = D_8012C470;
+            m = gPlayerCount;
 
-            if (D_8012C470 == 1)
+            if (gPlayerCount == 1)
             {
                 D_801CD986[D_801B0820] &= ~0x1000;
                 func_8007F050();
@@ -2112,7 +2112,7 @@ void func_8003DACC(void)
 /*8003DD54*/
 void func_8003DD54(void)
 {
-    for (D_801B0820 = 0; D_801B0820 < D_8012C470; D_801B0820++)
+    for (D_801B0820 = 0; D_801B0820 < gPlayerCount; D_801B0820++)
         func_8003B5F8();
 }
 
@@ -2126,7 +2126,7 @@ static void func_8003DDB8(void)
     code0unkStruct8 *ptr;
     s32 unk18;
 
-    if (D_8012C470 < 2)
+    if (gPlayerCount < 2)
     {
         if (((gPlayer[D_801B0820].unk58 == 0) && (D_801A6AD4[D_801B0820] != 1)) ||
             ((gPlayer[D_801B0820].unk58 != 0) && (gPlayer[D_801B0820].zvect != 0)))

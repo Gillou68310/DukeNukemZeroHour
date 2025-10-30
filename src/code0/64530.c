@@ -497,7 +497,7 @@ void moveEffectors(void)
                 k++;
             }
 
-            for (k = 0; k < D_8012C470; k++)
+            for (k = 0; k < gPlayerCount; k++)
             {
                 if (gPlayer[k].unk59 != 0)
                 {
@@ -662,7 +662,7 @@ void moveEffectors(void)
 
             if ((spr->cstat & 8) == 0)
             {
-                for (k = 0; k < D_8012C470; k++)
+                for (k = 0; k < gPlayerCount; k++)
                 {
                     if (gPlayer[k].unk59 != 0)
                     {
@@ -769,7 +769,7 @@ void moveEffectors(void)
                 if (spr->unk1C < 0)
                     spr->unk1C = MAX(spr->unk1C, (spr->z - sec->floorz));
 
-                for (k = 0; k < D_8012C470; k++)
+                for (k = 0; k < gPlayerCount; k++)
                 {
                     if (gPlayer[k].cursectnum == spr->sectnum)
                         gPlayer[k].zpos += spr->unk1C;
@@ -827,7 +827,7 @@ void moveEffectors(void)
                 if (spr->unk1C < 0)
                     spr->unk1C = MAX(spr->unk1C, (spr->z - sec->floorz));
 
-                for (k = 0; k < D_8012C470; k++)
+                for (k = 0; k < gPlayerCount; k++)
                 {
                     if (gPlayer[k].cursectnum == spr->sectnum)
                         gPlayer[k].zpos += spr->unk1C;
@@ -892,7 +892,7 @@ void moveEffectors(void)
                 if (spr->unk1C < 0)
                     spr->unk1C = MAX(spr->unk1C, (spr->z - sec->floorz));
 
-                for (k = 0; k < D_8012C470; k++)
+                for (k = 0; k < gPlayerCount; k++)
                 {
                     if (gPlayer[k].cursectnum == spr->sectnum)
                         gPlayer[k].zpos += spr->unk1C;
@@ -985,7 +985,7 @@ void moveEffectors(void)
                     }
                 }
 
-                for (k = 0; k < D_8012C470; k++)
+                for (k = 0; k < gPlayerCount; k++)
                 {
                     if (gPlayer[k].cursectnum == spr->sectnum)
                     {
@@ -1090,7 +1090,7 @@ void moveEffectors(void)
                 if (spr->unk1C < 0)
                     spr->unk1C = MAX(spr->unk1C, (spr->z - y2));
 
-                for (k = 0; k < D_8012C470; k++)
+                for (k = 0; k < gPlayerCount; k++)
                 {
                     if (y2 >= gPlayer[k].zpos)
                     {
@@ -1179,7 +1179,7 @@ void moveEffectors(void)
 
                         if (a == 1)
                         {
-                            for (k = 0; k < D_8012C470; k++)
+                            for (k = 0; k < gPlayerCount; k++)
                             {
                                 if (gPlayer[k].cursectnum == spr->sectnum)
                                 {
@@ -1404,7 +1404,7 @@ void moveEffectors(void)
                     o = gNextSpriteSect[o];
                 }
 
-                for (k = 0; k < D_8012C470; k++)
+                for (k = 0; k < gPlayerCount; k++)
                 {
                     if ((gPlayer[k].unk59 != 0) && (gPlayer[k].cursectnum == spr->sectnum))
                     {
@@ -1471,7 +1471,7 @@ void moveEffectors(void)
                     k++;
                 }
 
-                for (k = 0; k < D_8012C470; k++)
+                for (k = 0; k < gPlayerCount; k++)
                 {
                     if ((gPlayer[k].unk59 != 0) && (gPlayer[k].cursectnum == spr->sectnum))
                     {
@@ -1549,7 +1549,7 @@ void moveEffectors(void)
         case 24:
             if (spr->unk2B != 0)
             {
-                for (k = 0; k < D_8012C470; k++)
+                for (k = 0; k < gPlayerCount; k++)
                 {
                     if (gPlayer[k].cursectnum == spr->sectnum)
                     {
@@ -1594,7 +1594,7 @@ void moveEffectors(void)
     }
     D_800DF2F0 = 1;
 
-    for (k = 0; k < D_8012C470; k++)
+    for (k = 0; k < gPlayerCount; k++)
     {
         sec = &gpSector[gPlayer[k].cursectnum];
         i = gHeadSpriteSect[gPlayer[k].cursectnum];
@@ -1657,7 +1657,7 @@ void moveEffectors(void)
 
     D_800DF2F0 = 0;
 
-    for (k = 0; k < D_8012C470; k++)
+    for (k = 0; k < gPlayerCount; k++)
     {
         if (gPlayer[k].unk45 == 0)
         {
@@ -1814,7 +1814,7 @@ void func_80069160(void)
             switch (spr->unk25)
             {
             case 0:
-                for (j = 0; j < D_8012C470; j++)
+                for (j = 0; j < gPlayerCount; j++)
                 {
                     if (gPlayer[j].cursectnum == spr->sectnum)
                     {
@@ -1852,7 +1852,7 @@ void func_80069160(void)
                 }
                 break;
             case 3:
-                for (j = 0; j < D_8012C470; j++)
+                for (j = 0; j < gPlayerCount; j++)
                 {
                     if ((gPlayer[j].cursectnum == spr->sectnum) && (gPlayer[j].keys[spr->ang]))
                     {
@@ -1876,7 +1876,7 @@ void func_80069160(void)
             case 5:
                 if (D_800DF585 == 0)
                 {
-                    for (j = 0; j < D_8012C470; j++)
+                    for (j = 0; j < gPlayerCount; j++)
                     {
                         if (gPlayer[j].cursectnum == spr->sectnum)
                         {
@@ -1918,7 +1918,7 @@ void func_80069160(void)
         if ((gpSprite[i].hitag == 0) && (gpSprite[i].picnum == 29))
         {
             cond = 0;
-            for (j = 0; j < D_8012C470; j++)
+            for (j = 0; j < gPlayerCount; j++)
             {
                 if (gPlayer[j].cursectnum == gpSprite[i].sectnum)
                     cond = 1;
@@ -2016,7 +2016,7 @@ void func_800698E8(void)
             {
                 if (spr->unk1C == 1)
                 {
-                    for (j = 0; j < D_8012C470; j++)
+                    for (j = 0; j < gPlayerCount; j++)
                     {
                         if (gPlayer[j].cursectnum == spr->sectnum)
                         {
@@ -2051,7 +2051,7 @@ void func_800698E8(void)
                 }
                 else
                 {
-                    for (j = 0; j < D_8012C470; j++)
+                    for (j = 0; j < gPlayerCount; j++)
                     {
                         l = func_80040D94(gpSprite[gPlayer[j].unk4A].x,
                                           gpSprite[gPlayer[j].unk4A].y,

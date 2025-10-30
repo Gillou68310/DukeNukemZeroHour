@@ -32,7 +32,7 @@ s32 func_8008E3E0(s32 x, s32 y, s32 z, s32 sectnum, s32 arg4, s32 arg5)
     switch (arg4)
     {
     case 58:
-        if (D_8012C470 == 1)
+        if (gPlayerCount == 1)
             i = 50;
         break;
     case 8:
@@ -1184,7 +1184,7 @@ s32 func_8008FE88(s32 spritenum)
         if ((spr1->unk18 == 1) || (spr1->unk18 == 128))
         {
             func_8008E3E0(spr1->x, spr1->y, spr1->z, spr1->sectnum, 19, spr1->unk25);
-            for (b = 0; b < D_8012C470; b++)
+            for (b = 0; b < gPlayerCount; b++)
             {
                 if (gPlayer[b].unk52 == -1)
                 {
@@ -1215,7 +1215,7 @@ s32 func_8008FE88(s32 spritenum)
 
         if (spr1->unk18 == 1)
         {
-            for (b = 0; b < D_8012C470; b++)
+            for (b = 0; b < gPlayerCount; b++)
             {
                 if (gPlayer[b].unk52 == -1)
                 {
@@ -1273,7 +1273,7 @@ s32 func_8008FE88(s32 spritenum)
     case 58:
         if ((gpSprite[spr1->unk22].statnum != 0x400) && (gpSprite[spr1->unk22].unk16 == 57))
         {
-            if (D_8012C470 == 1)
+            if (gPlayerCount == 1)
                 func_800586B0(spritenum, spr1->unk2A, 0xFF, 0xFF, 0xFF, 32, 0xF);
 
             spr1->x = gpSprite[spr1->unk22].x;
@@ -1365,7 +1365,7 @@ s32 func_8008FE88(s32 spritenum)
         spr1->unk18++;
         if (spr1->unk18 == 7)
         {
-            for (b = 0; b < D_8012C470; b++)
+            for (b = 0; b < gPlayerCount; b++)
             {
                 if (gPlayer[b].unk52 == -1)
                 {
@@ -1383,12 +1383,12 @@ s32 func_8008FE88(s32 spritenum)
         if (spr1->unk18 == 12)
             func_8008E3E0(spr1->x, spr1->y, spr1->z - 0x400, spr1->sectnum, 20, spr1->unk22);
 
-        if ((spr1->unk18 == 17) && (D_8012C470 == 1))
+        if ((spr1->unk18 == 17) && (gPlayerCount == 1))
             func_8008E3E0(spr1->x, spr1->y, spr1->z - 0x400, spr1->sectnum, 20, spr1->unk22);
 
         if (spr1->unk18 < 64)
         {
-            if (D_8012C470 == 1)
+            if (gPlayerCount == 1)
             {
                 if (D_800DEEA0 != 0)
                 {

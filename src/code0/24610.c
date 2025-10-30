@@ -904,7 +904,7 @@ static void func_800273EC(s16 spritenum, s32 distance)
 }
 
 /*80027C18*/
-void func_80027C18(f32 x1, f32 y1, f32 x2, f32 y2, u16 tilenum, u32 arg5)
+void drawTileScaled(f32 x, f32 y, f32 scalex, f32 scaley, u16 tilenum, u32 arg5)
 {
     f32 fdsdx, fdtdy;
     f32 s, t;
@@ -917,30 +917,30 @@ void func_80027C18(f32 x1, f32 y1, f32 x2, f32 y2, u16 tilenum, u32 arg5)
     s32 temp;
 
     t = 0.0;
-    x1 = x1 * 4.0f;
-    x2 = x2 * 4.0f;
-    y2 = y2 * 4.0f;
-    y1 = y1 * 4.0f;
+    x = x * 4.0f;
+    scalex = scalex * 4.0f;
+    scaley = scaley * 4.0f;
+    y = y * 4.0f;
 
     temp = (gpTileInfo[tilenum].picanm >> 8) & 0xff;
     f6 = (s8)temp;
-    f6 = (f6 * x2) / 6.0f;
+    f6 = (f6 * scalex) / 6.0f;
 
     cond = (arg5 >> 3) & 1;
     if (((arg5 & 4) == 4) && ((arg5 & 4) != 0))
         f6 = -f6;
 
-    fwidth = (gpTileInfo[tilenum].sizex * x2) / 6.0f;
-    fheight = (gpTileInfo[tilenum].sizey * y2) / 6.0f;
-    x1 -= (2.0f * f6);
+    fwidth = (gpTileInfo[tilenum].sizex * scalex) / 6.0f;
+    fheight = (gpTileInfo[tilenum].sizey * scaley) / 6.0f;
+    x -= (2.0f * f6);
 
     if ((fwidth < 4.0f) && (fheight < 4.0f))
         return;
 
-    fxl = x1 - fwidth;
-    fxh = x1 + fwidth;
-    fyl = y1 - fheight;
-    fyh = y1 + fheight;
+    fxl = x - fwidth;
+    fxh = x + fwidth;
+    fyl = y - fheight;
+    fyh = y + fheight;
 
     fwidth = gpTileInfo[tilenum].dimx;
     fheight = gpTileInfo[tilenum].dimy;
@@ -965,7 +965,7 @@ void func_80027C18(f32 x1, f32 y1, f32 x2, f32 y2, u16 tilenum, u32 arg5)
         f7++;
 
     pTile = loadTile(tilenum) + 0x20;
-    f3 = (gpTileInfo[tilenum].sizey * y2) / 3.0f;
+    f3 = (gpTileInfo[tilenum].sizey * scaley) / 3.0f;
     f5 = gpTileInfo[tilenum].dimy;
     f2 = fyl;
 
@@ -978,8 +978,7 @@ void func_80027C18(f32 x1, f32 y1, f32 x2, f32 y2, u16 tilenum, u32 arg5)
     f1 = f3 / fheight;
     f4 = f4 * 4.0f;
     f5 = f5 * 4.0f;
-    fheight = (fheight * 4.0f) / f3;
-    f7 = fheight; /*FAKEMATCH*/
+    f7 = (fheight * 4.0f) / f3;
     t = 0.0;
 
     if (cond)
@@ -1056,7 +1055,6 @@ void func_80027C18(f32 x1, f32 y1, f32 x2, f32 y2, u16 tilenum, u32 arg5)
         } while (1);
     }
 }
-
 
 /*80028F04*/
 void func_80028F04(u8 r1, u8 g1, u8 b1, u8 r2, u8 g2, u8 b2)
@@ -1178,8 +1176,8 @@ static void func_8002935C(s16 spritenum)
             j = (D_8013B2D0[spritenum].unk0 << 5) & 0xFFE0;
             f9 = coss(j) / 32768.0;
 
-            f10 = (f5 * 4.0f * D_80199110) + (D_80168C9C * 4.0f);
-            f11 = (-f6 * 4.0f * D_801A1980) + (D_801A2684 * 4.0f);
+            f10 = (f5 * 4.0f * gViewportScaleX) + (gViewportTransX * 4.0f);
+            f11 = (-f6 * 4.0f * gViewportScaleY) + (gViewportTransY * 4.0f);
             a = (sizex * f9) + (sizey * f8);
             e = (-sizey * f9) + (sizex * f8);
             b = (-sizex * f9) + (sizey * f8);
@@ -1188,14 +1186,14 @@ static void func_8002935C(s16 spritenum)
             g = (sizey * f9) + (-sizex * f8);
             d = (sizex * f9) + (-sizey * f8);
             h = (sizey * f9) + (sizex * f8);
-            a = (((a * 4) * D_80199110) / (SCREEN_WIDTH/2.0f)) + f10;
-            b = (((b * 4) * D_80199110) / (SCREEN_WIDTH/2.0f)) + f10;
-            c = (((c * 4) * D_80199110) / (SCREEN_WIDTH/2.0f)) + f10;
-            d = (((d * 4) * D_80199110) / (SCREEN_WIDTH/2.0f)) + f10;
-            e = (((e * 4) * D_801A1980) / (SCREEN_HEIGHT/2.0f)) + f11;
-            f = (((f * 4) * D_801A1980) / (SCREEN_HEIGHT/2.0f)) + f11;
-            g = (((g * 4) * D_801A1980) / (SCREEN_HEIGHT/2.0f)) + f11;
-            h = (((h * 4) * D_801A1980) / (SCREEN_HEIGHT/2.0f)) + f11;
+            a = (((a * 4) * gViewportScaleX) / (SCREEN_WIDTH/2.0f)) + f10;
+            b = (((b * 4) * gViewportScaleX) / (SCREEN_WIDTH/2.0f)) + f10;
+            c = (((c * 4) * gViewportScaleX) / (SCREEN_WIDTH/2.0f)) + f10;
+            d = (((d * 4) * gViewportScaleX) / (SCREEN_WIDTH/2.0f)) + f10;
+            e = (((e * 4) * gViewportScaleY) / (SCREEN_HEIGHT/2.0f)) + f11;
+            f = (((f * 4) * gViewportScaleY) / (SCREEN_HEIGHT/2.0f)) + f11;
+            g = (((g * 4) * gViewportScaleY) / (SCREEN_HEIGHT/2.0f)) + f11;
+            h = (((h * 4) * gViewportScaleY) / (SCREEN_HEIGHT/2.0f)) + f11;
 
             if (gVertexNumber == 0)
             {

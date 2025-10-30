@@ -417,7 +417,7 @@ void func_80095220(void)
 void func_80095390(s16 playernum)
 {
     Bmemset(&D_8010A940[playernum], 0, sizeof(code0UnkStruct2));
-    if (D_8012C470 == 1)
+    if (gPlayerCount == 1)
     {
         D_8010A940[playernum].unk0 = 7;
         D_8010A940[playernum].unkA[7] = 0x1000;
@@ -440,7 +440,7 @@ void func_8009542C(void)
     else
         ptr = D_800E1780;
 
-    for (i = 0; i < D_8012C470; i++)
+    for (i = 0; i < gPlayerCount; i++)
     {
         ptr2 = &D_8010A940[i];
 
@@ -521,7 +521,7 @@ void func_8009542C(void)
                 func_800A419C(i, sp10);
             }
         }
-        if (D_8012C470 == 1)
+        if (gPlayerCount == 1)
         {
             if (ptr2->unk0 != 7)
             {

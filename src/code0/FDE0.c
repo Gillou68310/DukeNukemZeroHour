@@ -313,7 +313,7 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
             }
         }
 
-        if (D_8012C470 >= 2)
+        if (gPlayerCount >= 2)
         {
             if (gpSprite[spritenum].statnum == 10)
             {
@@ -1176,7 +1176,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
             m = gActorSpriteMap[D_801AE8F4];
             if (!(gActor[m].unk68 & (1 << arg1)))
             {
-                if ((gpSprite[D_801AE8F4].statnum == 10) && (D_8012C470 == 1))
+                if ((gpSprite[D_801AE8F4].statnum == 10) && (gPlayerCount == 1))
                 {
                     playernum = gpSprite[D_801AE8F4].unk16;
                     model1 = arg0->model_list[arg1];

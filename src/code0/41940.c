@@ -3813,7 +3813,7 @@ s32 func_800494DC(s32 spritenum1, s32 arg1, s32 spritenum2, s32 arg3)
 
     if ((gpSprite[spritenum1].statnum == 10) && (arg3 == 0))
     {
-        if (D_8012C470 == 1)
+        if (gPlayerCount == 1)
         {
             k = D_801AD474[D_80197DE8[lotag2]];
             arg1 = (arg1 * k) / 100;
@@ -3838,7 +3838,7 @@ s32 func_800494DC(s32 spritenum1, s32 arg1, s32 spritenum2, s32 arg3)
         func_8003671C(gpSprite[spritenum1].unk16, arg1, gpSprite[spritenum2].hitag, gpSprite[spritenum2].lotag);
         D_800FEA94 = actor->unk8;
         D_801AC8D0 = actor->unk7E;
-        if (D_8012C470 >= 2)
+        if (gPlayerCount >= 2)
         {
             lotag1 = gpSprite[spritenum2].lotag;
             if (((lotag1 == 3 || lotag1 == 4) || (lotag1 == 16) || (lotag1 == 5) ||
@@ -4953,7 +4953,7 @@ void func_8004BFDC(s32 spritenum, s32 arg1, s32 z, s32 arg3)
     cond = 0;
     if (sp2C == 0)
     {
-        if (D_8012C470 == 1)
+        if (gPlayerCount == 1)
             cond = D_800DEEA0 != 0;
     }
 
@@ -5846,7 +5846,7 @@ void func_8004EC38(void)
 {
     s16 i;
 
-    for (i = 0; i < D_8012C470; i++)
+    for (i = 0; i < gPlayerCount; i++)
     {
         if (D_800DEEE4[i])
         {
@@ -7031,7 +7031,7 @@ static void func_800519AC(void)
         i = nexti;
     }
 
-    for (j = 0; j < D_8012C470; j++)
+    for (j = 0; j < gPlayerCount; j++)
     {
         if (gPlayer[j].unk45 == 0)
         {
@@ -7055,7 +7055,7 @@ static void func_800519AC(void)
                             if (!(func_800516EC(i)) &&
                                  (func_80052AB0(j, (gpSprite[i].picnum - 1792), i)))
                             {
-                                if ((D_8012C470 == 1) || (gpSprite[i].unk22 == 22136))
+                                if ((gPlayerCount == 1) || (gpSprite[i].unk22 == 22136))
                                     deleteSprite(i);
                                 else
                                 {

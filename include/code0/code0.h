@@ -460,7 +460,7 @@ typedef struct
 /*8012B948*/ _extern Matrix4f D_8012B948 ALIGNED(8); /*viewing*/
 /*8012BBCC*/ _extern u16 D_8012BBCC;
 /*8012BC70*/ _extern MaskDraw gMaskDrawList[256] ALIGNED(16);
-/*8012C470*/ _extern s16 D_8012C470; /*playernum?*/
+/*8012C470*/ _extern s16 gPlayerCount;
 /*8012C478*/ _extern Gfx *D_8012C478[200] ALIGNED(8);
 /*8012C798*/ _extern s32 D_8012C798;
 /*8012C989*/ _extern u8 D_8012C989;
@@ -506,7 +506,7 @@ typedef struct
 /*8013B2D0*/ _extern code0UnkStruct5 D_8013B2D0[MAXSPRITES] ALIGNED(16);
 /*8013F920*/ _extern s16 *D_8013F920;
 /*8013F950*/ _extern s32 D_8013F950;
-/*80168C9C*/ _extern f32 D_80168C9C;
+/*80168C9C*/ _extern f32 gViewportTransX;
 /*80168D0C*/ _extern s16 D_80168D0C;
 /*80168D08*/ _extern s32 gTimeMachinePart;
 /*80168D18*/ _extern s32 D_80168D18;
@@ -524,7 +524,7 @@ typedef struct
 /*80197DD4*/ _extern s16 gVertexNumber;
 /*80197DE8*/ _extern s16 *D_80197DE8;
 /*80197E40*/ _extern code0unkStruct8 D_80197E40[MAXACTORS] ALIGNED(16);
-/*80199110*/ _extern f32 D_80199110;
+/*80199110*/ _extern f32 gViewportScaleX;
 /*80199114*/ _extern Vtx *gpVertexList;
 /*80199524*/ _extern s32 D_80199524;
 /*80199558*/ _extern s32 D_80199558;
@@ -536,7 +536,7 @@ typedef struct
 /*8019B940*/ _extern Actor gActor[MAXACTORS] ALIGNED(16);
 /*801A1958*/ _extern code0UnkStruct4 D_801A1958 ALIGNED(8);
 /*801A1970*/ _extern s32 D_801A1970;
-/*801A1980*/ _extern f32 D_801A1980;
+/*801A1980*/ _extern f32 gViewportScaleY;
 /*801A198C*/ _extern s16 gSkyBottomG;
 /*801A1994*/ _extern s32 D_801A1994;
 /*801A1998*/ _extern s32 D_801A1998; /*ceilz*/
@@ -545,7 +545,7 @@ typedef struct
 /*801A19F4*/ _extern s32 D_801A19F4;
 /*801A2620*/ _extern s16 gVertexBufferIndex;
 /*801A2628*/ _extern s16 D_801A2628; /*playernum?*/
-/*801A2684*/ _extern f32 D_801A2684;
+/*801A2684*/ _extern f32 gViewportTransY;
 /*801A2688*/ _extern s8 D_801A2688;
 /*801A2790*/ _extern code0UnkStruct17 D_801A2790[MAXPLAYERS] ALIGNED(8);
 /*801A68D0*/ _extern u16 D_801A68D0[256] ALIGNED(8);

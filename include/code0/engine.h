@@ -121,9 +121,9 @@ typedef struct
     /*0x12*/ s16 statnum;
     /*0x14*/ s16 ang;
     /*0x16*/ s16 unk16; /*owner?*/
-    /*0x18*/ s16 unk18; /*xvel?*/
-    /*0x1A*/ s16 unk1A; /*yvel?*/
-    /*0x1C*/ s16 unk1C; /*zvel?*/
+    /*0x18*/ s16 unk18;
+    /*0x1A*/ s16 unk1A;
+    /*0x1C*/ s16 unk1C;
     /*0x1E*/ s16 lotag;
     /*0x20*/ s16 hitag;
     /*0x22*/ s16 unk22; /*extra?*/

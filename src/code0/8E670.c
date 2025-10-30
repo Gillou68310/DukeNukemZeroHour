@@ -1,7 +1,7 @@
 #include "common.h"
 #include "code0/main.h"
 #include "code0/4600.h"
-#include "code0/20490.h"
+#include "code0/viewport.h"
 #include "code0/41940.h"
 #include "code0/6ACA0.h"
 #include "code0/6D9E0.h"
@@ -139,7 +139,7 @@ void func_8008DC24(void)
 {
     s16 i;
 
-    if (D_8012C470 == 1)
+    if (gPlayerCount == 1)
     {
         D_80199558 = -1;
         D_801AD470 = 0;
@@ -147,21 +147,21 @@ void func_8008DC24(void)
         return;
     }
 
-    for (i = 0; i < D_8012C470; i++)
+    for (i = 0; i < gPlayerCount; i++)
         gPlayer[i].third_person = FALSE;
 
     Bmemset(D_800FF4F0, 0, sizeof(D_800FF4F0));
     D_80119A64 = 0;
-    D_800DCBD4 = 0;
-    D_800DCBD5 = 0;
+    g2pSplitHorz = FALSE;
+    g3pSplitFull = 0;
     D_80199558 = D_800E16A4[gConfig.multiplayer.time_limit] * 1800;
     D_8019963C = D_800E16A4[gConfig.multiplayer.frag_count];
 
-    if (D_8012C470 == 2)
-        D_800DCBD4 = gConfig.multiplayer.split_2P == CONFIG_2P_SPLIT_HORZ;
+    if (gPlayerCount == 2)
+        g2pSplitHorz = gConfig.multiplayer.split_2P == CONFIG_2P_SPLIT_HORZ;
 
-    if (D_8012C470 == 3)
-        D_800DCBD5 = gConfig.multiplayer.split_3P;
+    if (gPlayerCount == 3)
+        g3pSplitFull = gConfig.multiplayer.split_3P;
 
     switch (D_801CDC64.unk2)
     {
@@ -193,7 +193,7 @@ void func_8008DE14(void)
     if (D_800E1748 <= 0)
     {
         j = 0;
-        for (i = 0; i < D_8012C470; i++)
+        for (i = 0; i < gPlayerCount; i++)
         {
             if (D_80106D30[i] != 0)
                 j++;
@@ -210,7 +210,7 @@ void func_8008DE14(void)
         }
         if (D_8019963C > 0)
         {
-            for (i = 0; i < D_8012C470; i++)
+            for (i = 0; i < gPlayerCount; i++)
             {
                 if ((D_800FF4F0[i].unk0 - D_800FF4F0[i].unk2) >= D_8019963C)
                     func_8008E01C(60, 1);
@@ -219,7 +219,7 @@ void func_8008DE14(void)
         if (D_801AD470 == 2)
         {
             k = 0;
-            for (i = 0; i<D_8012C470; i++)
+            for (i = 0; i<gPlayerCount; i++)
             {
                 if (gPlayer[i].unk45 == 0)
                     k++;

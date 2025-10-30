@@ -30,7 +30,7 @@ static u8 D_800DCA04[9][3] = {
 /*80105548*/ s32 D_80105548; /*vz*/
 /*8010570C*/ s32 D_8010570C;
 /*80105714*/ s32 D_80105714;
-/*8012EB44*/ s16 D_8012EB44;
+/*8012EB44*/ s16 D_8012EB44; /*cloud picnum?*/
 /*8012F910*/ s32 D_8012F910; /*vx*/
 /*8013860C*/ s32 D_8013860C;
 /*8013867C*/ u8 D_8013867C;
@@ -41,7 +41,7 @@ static u8 D_800DCA04[9][3] = {
 /*801A1990*/ f32 D_801A1990;
 /*801ACBDC*/ f32 D_801ACBDC;
 /*801AE90C*/ u8 D_801AE90C;
-/*801AE91C*/ s16 D_801AE91C;
+/*801AE91C*/ s16 D_801AE91C; /*sky picnum?*/
 /*801B0D34*/ s16 D_801B0D34;
 
 /*.text*/
@@ -146,15 +146,15 @@ void func_8001A1A4(void)
     s16 hitsprite;
     s32 hitx, hity, hitz;
     f32 fx, fy, fz;
-    f32 f1, f2, f3, f4, f5, f6;
+    f32 f1, f2, f3, f4, scaley, scalex;
     s16 i, spritenum;
     s32 vx, vy, vz;
     s32 pal;
     u16 cstat;
 
-    if ((D_80105720 != 0) && (D_8012C470 < 2) && (D_800DEEA0 != 0))
+    if ((D_80105720 != 0) && (gPlayerCount < 2) && (D_800DEEA0 != 0))
     {
-        func_8000A070();
+        setDrawMode2D();
         func_80028F04(0xFF, 0xFF, 0xFF, 0xFF, 0x80, 0);
 
         cstat = gpSprite[gPlayer[D_801B0820].unk4A].cstat;
@@ -213,17 +213,17 @@ void func_8001A1A4(void)
 
                     if ((fy > -2.0f) && (fy < 2.0f) && (fx > -2.0f) && (fx < 2.0f) && (fz > 0.0f) && (fz < 1.0f))
                     {
-                        fx = fx * D_80199110;
-                        fy = -fy * D_801A1980;
+                        fx = fx * gViewportScaleX;
+                        fy = -fy * gViewportScaleY;
                         fz = (1.0f - fz);
-                        f6 = ((fz * gpSprite[spritenum].xrepeat * 4.0f) * (D_80199110 / (SCREEN_WIDTH/2.0)));
-                        f5 = ((fz * gpSprite[spritenum].xrepeat * 4.0f) * (D_801A1980 / (SCREEN_HEIGHT/2.0)));
-                        func_80027C18(fx + D_80168C9C,
-                                      fy + D_801A2684,
-                                      f6,
-                                      f5,
-                                      getTileId(gpSprite[spritenum].picnum),
-                                      0);
+                        scalex = ((fz * gpSprite[spritenum].xrepeat * 4.0f) * (gViewportScaleX / (SCREEN_WIDTH/2.0)));
+                        scaley = ((fz * gpSprite[spritenum].xrepeat * 4.0f) * (gViewportScaleY / (SCREEN_HEIGHT/2.0)));
+                        drawTileScaled(fx + gViewportTransX,
+                                       fy + gViewportTransY,
+                                       scalex,
+                                       scaley,
+                                       getTileId(gpSprite[spritenum].picnum),
+                                       0);
                     }
                 }
             }
@@ -248,11 +248,11 @@ static void func_8001A8EC(s16 arg0, s16 arg1, s32 tilenum, s16 arg3, u8 arg4)
 #else
     gDPSetEnvColor(gpDisplayList++, D_800DCA04[arg4][3], D_800DCA04[arg4][4], D_800DCA04[arg4][5], alpha);
 #endif
-    func_80027C18(f1 + D_80168C9C,
-                  f2 + D_801A2684,
-                  (arg1 * (D_80199110 / (SCREEN_WIDTH / 2.0))),
-                  (arg1 * (D_801A1980 / (SCREEN_HEIGHT / 2.0))),
-                  getTileId(tilenum), 0);
+    drawTileScaled(f1 + gViewportTransX,
+                   f2 + gViewportTransY,
+                   (arg1 * (gViewportScaleX / (SCREEN_WIDTH / 2.0))),
+                   (arg1 * (gViewportScaleY / (SCREEN_HEIGHT / 2.0))),
+                   getTileId(tilenum), 0);
 }
 
 /*8001AAEC*/
@@ -320,7 +320,7 @@ static void func_8001AAEC(void)
 
     if (D_800DCA00 > 0)
     {
-        func_8000A070();
+        setDrawMode2D();
         func_80028F04(255, 255, 255, 255, 128, 0);
         func_8001A8EC(328, 1, 5539, 128, 0);
         func_8001A8EC(292, 1, 5539, 128, 0);
@@ -383,8 +383,8 @@ static void func_8001B0E0(s32 x, s32 y, s32 z, f32 *fx, f32 *fy)
         }
         else
         {
-            fx_ *= D_80199110;
-            fy_ *= -D_801A1980;
+            fx_ *= gViewportScaleX;
+            fy_ *= -gViewportScaleY;
         }
     }
     else
@@ -406,7 +406,7 @@ void func_8001B2D0(void)
     s32 y1, y2, y3;
     s32 z1, z2, z3;
 
-    if ((D_8012C470 < 2) && (D_800DEEA0 != 0))
+    if ((gPlayerCount < 2) && (D_800DEEA0 != 0))
     {
         if ((D_801AE90C != 0) && (D_8012FC40 == 0))
         {
@@ -492,7 +492,7 @@ static void func_8001B740(void)
 {
     f32 fx, fy, fz, f1, f2, f3, f4, f5;
 
-    if ((D_801AE91C != -1) && (D_8012C470 < 2) && (D_8012FC40 == 0))
+    if ((D_801AE91C != -1) && (gPlayerCount < 2) && (D_8012FC40 == 0))
     {
         fx = gGlobalPosX + D_80105714;
         fy = gGlobalPosY + D_8010570C;
@@ -527,23 +527,23 @@ static void func_8001B740(void)
             if ((f4 < -2.0f) || (f4 > 2.0f) || (f5 < -2.0f) || (f5 > 2.0f))
                 return;
 
-            func_8000A070();
+            setDrawMode2D();
             if (D_801AE90C)
                 func_80028F04(255, 255, 255, 255, 128, 0);
             else
                 func_80028F04(255, 255, 255, 255, 255, 255);
 
-            D_8013F954 = f5 * D_80199110;
-            D_801ACBDC = -f4 * D_801A1980;
-            fy = ((gPlayer[D_801B0820].unk6E * 2) * D_80199110) / (160.0*256.0);
-            fx = ((gPlayer[D_801B0820].unk6E * 2) * D_801A1980) / (120.0*256.0);
+            D_8013F954 = f5 * gViewportScaleX;
+            D_801ACBDC = -f4 * gViewportScaleY;
+            fy = ((gPlayer[D_801B0820].unk6E * 2) * gViewportScaleX) / ((SCREEN_WIDTH/2.0)*256.0);
+            fx = ((gPlayer[D_801B0820].unk6E * 2) * gViewportScaleY) / ((SCREEN_HEIGHT/2.0)*256.0);
 
             if (gMapNum == MAP_ZERO_HOUR)
             {
                 fy *= 2.0f;
                 fx *= 2.0f;
             }
-            func_80027C18(D_8013F954 + D_80168C9C, D_801ACBDC + D_801A2684, fy, fx, getTileId(D_801AE91C), 0);
+            drawTileScaled(D_8013F954 + gViewportTransX, D_801ACBDC + gViewportTransY, fy, fx, getTileId(D_801AE91C), 0);
         }
     }
 }
@@ -553,7 +553,7 @@ void drawSky(void)
 {
     if (D_8012FC40 == 0)
     {
-        func_8000A070();
+        setDrawMode2D();
         func_80028F04(gSkyBottomR,
                       gSkyBottomG,
                       gSkyBottomB,
@@ -584,7 +584,7 @@ void drawClouds(void)
     Mtx mtx1;
     Mtx mtx2;
 
-    if ((D_8012C470 < 2) && (D_8012FC40 == 0)
+    if ((gPlayerCount < 2) && (D_8012FC40 == 0)
         && ((gCloud[0].picnum != -1) || (gCloud[1].picnum != gCloud[0].picnum) || (D_8012EB44 != gCloud[1].picnum)))
     {
         gCloud[0].unk0 += gCloud[0].unk8;
@@ -707,7 +707,7 @@ static void func_8001C490(s16 tilenum)
 
     color = &gFog[D_801B0820].color[0];
 
-    if ((tilenum != -1) && (D_8012C470 < 2) && (D_8012FC40 == 0))
+    if ((tilenum != -1) && (gPlayerCount < 2) && (D_8012FC40 == 0))
     {
         gDPSetRenderMode(gpDisplayList++, G_RM_FOG_PRIM_A, G_RM_AA_XLU_SURF2);
         gDPSetFogColor(gpDisplayList++, color->r, color->g, color->b, D_80199942);
@@ -819,7 +819,7 @@ void drawNumberString(s16 x, s16 y, char *string)
     y_ = y;
     D_801A2688 = 1;
 
-    if ((D_8012C470 == 1) || (D_801B0820 == D_8012C470))
+    if ((gPlayerCount == 1) || (D_801B0820 == gPlayerCount))
         f1 = 1.0f;
     else
         f1 = 1.5f;
@@ -865,7 +865,7 @@ void drawString(s16 x, s16 y, char *string)
     y_ = y;
     D_801A2688 = 1;
 
-    if ((D_8012C470 == 1) || (D_801B0820 == D_8012C470))
+    if ((gPlayerCount == 1) || (D_801B0820 == gPlayerCount))
         f1 = 1.0f;
     else
         f1 = 1.5f;
@@ -1033,7 +1033,7 @@ void drawString2(s16 x, s16 y, char *string)
     y_ = y;
     D_801A2688 = 1;
 
-    if ((D_8012C470 == 1) || (D_801B0820 == D_8012C470))
+    if ((gPlayerCount == 1) || (D_801B0820 == gPlayerCount))
         f1 = 1.0f;
     else
         f1 = 1.5f;
@@ -1153,14 +1153,14 @@ void func_8001D128(s32 *x, s32 *y)
 
     x_ = *x;
     x_ -= (SCREEN_WIDTH / 2);
-    x_ *= (D_80199110 / (SCREEN_WIDTH / 2));
+    x_ *= (gViewportScaleX / (SCREEN_WIDTH / 2));
     y_ = *y;
     y_ -= (SCREEN_HEIGHT / 2);
-    y_ *= (D_801A1980 / (SCREEN_HEIGHT / 2));
+    y_ *= (gViewportScaleY / (SCREEN_HEIGHT / 2));
     x_ += (gScreenWidth / 2);
     y_ += (gScreenHeight / 2);
-    x_ += (D_80168C9C - (gScreenWidth / 2));
-    y_ += (D_801A2684 - (gScreenHeight / 2));
+    x_ += (gViewportTransX - (gScreenWidth / 2));
+    y_ += (gViewportTransY - (gScreenHeight / 2));
 
     *x = x_;
     *y = y_;
@@ -1184,15 +1184,15 @@ void func_8001D238(s32 x, s32 y, u16 tilenum)
     if (tileid != 1)
     {
         width = gpTileInfo[tileid].dimx;
-        if ((D_8012C470 == 1) || (D_801B0820 == D_8012C470))
+        if ((gPlayerCount == 1) || (D_801B0820 == gPlayerCount))
             f1 = 1.0f;
         else
             f1 = 1.5f;
 
         func_8001D128(&x, &y);
         f2 = SCREEN_HEIGHT/2.0f;
-        f3 = gpTileInfo[tileid].sizex * f1 * D_80199110;
-        f4 = (gpTileInfo[tileid].sizey * f1 * D_801A1980);
+        f3 = gpTileInfo[tileid].sizex * f1 * gViewportScaleX;
+        f4 = (gpTileInfo[tileid].sizey * f1 * gViewportScaleY);
 
         xl = x;
         xh = (xl + (f3 / 160.0f));
@@ -1206,7 +1206,7 @@ void func_8001D238(s32 x, s32 y, u16 tilenum)
         k = gpTileInfo[tileid].dimy / j;
         l = gpTileInfo[tileid].dimy;
 
-        m = (((gpTileInfo[tileid].sizey * 4) * f1) * D_801A1980) / f2;
+        m = (((gpTileInfo[tileid].sizey * 4) * f1) * gViewportScaleY) / f2;
         n = m / j;
         o = m;
 

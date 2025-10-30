@@ -13,6 +13,7 @@
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGHT 240
 #define ASPECT_RATIO (4.0f / 3.0f)
+#define BORDER_SIZE 12
 
 #define GFX_TASKS 2
 #define DISPLAY_LIST_SIZE 0x1400
@@ -20,11 +21,10 @@
 void main_80000450(void);
 void main_80000610(void);
 void main_80000624(ProcPointer proc);
-void main_80000C74(void);
 void boot(void);
 void readRom(u8 *segStart, u8 *romStart, s32 size);
-void main_80000A94(void);
 void main_80000C74(void);
+void main_80000A94(void);
 void main_80001CFC(void);
 void main_80001F40(void);
 void main_80001FAC(void);

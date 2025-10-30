@@ -546,7 +546,7 @@ static void func_80006E60(void)
 
     MusHandleSetVolume(gAmbientHandle, 0);
 
-    if ((gPlayer[0].unk45 == 0) || (D_8012C470 >= 2))
+    if ((gPlayer[0].unk45 == 0) || (gPlayerCount >= 2))
         MusHandleSetVolume(gMusicHandle, 0);
 }
 
@@ -558,7 +558,7 @@ static void func_80006F08(void)
 
     if (gPlayer[0].unk45 != 0)
     {
-        if (D_8012C470 == 1)
+        if (gPlayerCount == 1)
         {
             _masterVolume = 0;
             MusSetMasterVolume(1, 0);
@@ -715,7 +715,7 @@ u8 audio_80007510(s32 x, s32 y)
     playernum_ = 0;
     D_8013871C = 0x40000000;
 
-    for (playernum = 0; playernum < D_8012C470; playernum++)
+    for (playernum = 0; playernum < gPlayerCount; playernum++)
     {
         value = func_80040D40(gPlayer[playernum].xpos, gPlayer[playernum].ypos, x, y);
         if (value < D_8013871C)
@@ -850,7 +850,7 @@ void audio_80007AB8(void)
     k = 0;
     j = 0;
 
-    for (i = 0; i < D_8012C470; i++)
+    for (i = 0; i < gPlayerCount; i++)
     {
         if (gPlayer[i].unk55 != 0)
             j = 1;
@@ -984,7 +984,7 @@ void audio_80007AB8(void)
 static void func_80007FF4(void)
 {
     s16 i;
-    for (i = 0; i < D_8012C470; i++)
+    for (i = 0; i < gPlayerCount; i++)
     {
         if (D_800BD644[i])
         {
@@ -1013,7 +1013,7 @@ void audio_800080E0(s16 playernum, u16 arg1)
         ((MusHandleAsk(D_800BD634[playernum]) == 0) && (gPlayer[playernum].unk45 == 0)))
     {
         temp = 0;
-        if ((D_8012C470 < 2) ||
+        if ((gPlayerCount < 2) ||
             (((arg1 != 3) && (arg1 != 8)) == 0) ||
             ((arg1 == 9) || (arg1 == 10)))
         {

@@ -678,12 +678,12 @@ label1:
                 {
                     if (func_8004CB3C(hitwall) == 0)
                     {
-                        if (D_8012C470 == 1)
+                        if (gPlayerCount == 1)
                         {
                             if (arg1 == 2)
                             {
                                 s32 a;
-                                a = func_80045400(hitx, hity, hitz, hitsect, 5, n, 7, D_8012C470);
+                                a = func_80045400(hitx, hity, hitz, hitsect, 5, n, 7, gPlayerCount);
                                 if (a >= 0)
                                     func_80056A54(a);
                             }
@@ -735,7 +735,7 @@ label1:
         }
         else
         {
-            if (D_8012C470 == 1)
+            if (gPlayerCount == 1)
             {
                 if (gpSprite[spritenum].statnum == 10)
                 {
@@ -991,7 +991,7 @@ label1:
         if (ret != -1)
         {
             spr = &gpSprite[ret];
-            if (D_8012C470 == 1)
+            if (gPlayerCount == 1)
                 spr->cstat = 0x8000;
             else
                 spr->cstat = 0x8B0;
@@ -1252,7 +1252,7 @@ label1:
             ret = spritenum2;
             D_8013B2D0[ret].unk0 = krand() & 0x7FF;
 
-            if (D_8012C470 >= 2)
+            if (gPlayerCount >= 2)
             {
                 spr->ang = ang;
                 spr->unk18 = 0;
@@ -1839,7 +1839,7 @@ static void func_800724B4(s32 spritenum)
 
     if (!(D_8012FD88 & 3))
     {
-        if (D_8012C470 == 1)
+        if (gPlayerCount == 1)
         {
             for (i = 0; i < 3; i++)
                 func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 76, 0);
@@ -1973,7 +1973,7 @@ static void func_80072ABC(s32 spritenum)
 
     if (!(D_8012FD88 & 3))
     {
-        if (D_8012C470 == 1)
+        if (gPlayerCount == 1)
         {
             for (i = 0; i < 3; i++)
                 func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 76, 0);
@@ -2106,7 +2106,7 @@ static void func_800730CC(s32 spritenum)
 
     if ((D_8012FD88 & 1))
     {
-        if (D_8012C470 == 1)
+        if (gPlayerCount == 1)
         {
             if (func_8004EFB4(spritenum))
                 func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 1, 0);
@@ -2262,7 +2262,7 @@ static void func_80073670(s32 spritenum)
         {
             if ((D_8012FD88 & 1))
             {
-                if (D_8012C470 == 1)
+                if (gPlayerCount == 1)
                 {
                     if (func_8004EFB4(spritenum))
                         func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 1, 0);
@@ -2763,7 +2763,7 @@ static void func_80074C70(s32 spritenum)
                             spr->ang = (ang - ang2) & 0x7FF;
                         }
                         spr->unk1C = -spr->unk1C;
-                        if ((D_8012C470 == 1) && (D_800DEEA0 != 0))
+                        if ((gPlayerCount == 1) && (D_800DEEA0 != 0))
                             func_8008E3E0(spr->x, spr->y, florz, spr->sectnum, 61, 0);
                         audio_800077F4(1568, spritenum);
                     }
@@ -2788,7 +2788,7 @@ static void func_80074C70(s32 spritenum)
                                 spr->ang = (ang - ang2) & 0x7FF;
                             }
                             spr->unk1C = -spr->unk1C;
-                            if ((D_8012C470 == 1) && (D_800DEEA0 != 0))
+                            if ((gPlayerCount == 1) && (D_800DEEA0 != 0))
                                 func_8008E3E0(spr->x, spr->y, ceilz, spr->sectnum, 61, 0);
                             audio_800077F4(1568, spritenum);
                         }
@@ -2803,9 +2803,9 @@ static void func_80074C70(s32 spritenum)
                         if (gpSprite[spritenum].hitag != num)
                         {
                             func_80047820(spritenum, num, (krand() % 5) + 10);
-                            if ((D_8012C470 == 1) && (D_800DEEA0 != 0))
+                            if ((gPlayerCount == 1) && (D_800DEEA0 != 0))
                             {
-                                num2 = func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 61, D_8012C470);
+                                num2 = func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 61, gPlayerCount);
                                 if (num2 != -1)
                                     gpSprite[num2].ang = spr->ang;
                             }
@@ -2835,9 +2835,9 @@ static void func_80074C70(s32 spritenum)
                                     ang2 = getAngleDelta(ang, (spr->ang + 1024) & 0x7FF);
                                     spr->ang = (ang - ang2) & 0x7FF;
 
-                                    if ((D_8012C470 == 1) && (D_800DEEA0 != 0))
+                                    if ((gPlayerCount == 1) && (D_800DEEA0 != 0))
                                     {
-                                        num2 = func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 61, D_8012C470);
+                                        num2 = func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 61, gPlayerCount);
                                         if (num2 != -1)
                                             gpSprite[num2].ang = ang;
                                     }
@@ -3328,11 +3328,11 @@ static void func_80076364(s32 spritenum)
         if (D_8012FD88 & 1)
             func_800586B0(spritenum, spr->unk1A, 0xFF, 0xFF, 0xFF, 64, 42);
 
-        if ((D_8012C470 == 1) && !(D_8012FD88 & 1) && (D_800DEEA0 != 0))
+        if ((gPlayerCount == 1) && !(D_8012FD88 & 1) && (D_800DEEA0 != 0))
             func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 4, 0);
     }
-    else if ((D_8012C470 == 1) && (D_800DEEA0 != 0))
-        func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, D_8012C470, 0);
+    else if ((gPlayerCount == 1) && (D_800DEEA0 != 0))
+        func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, gPlayerCount, 0);
 }
 
 /*8007675C*/
@@ -3425,11 +3425,11 @@ static void func_8007675C(s32 spritenum)
         if (D_8012FD88 & 1)
             func_800586B0(spritenum, spr->unk1A, 0xFF, 0xFF, 0xFF, 64, 40);
 
-        if ((D_8012C470 == 1) && !(D_8012FD88 & 1) && (D_800DEEA0 != 0))
+        if ((gPlayerCount == 1) && !(D_8012FD88 & 1) && (D_800DEEA0 != 0))
             func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 4, 0);
     }
-    else if ((D_8012C470 == 1) && (D_800DEEA0 != 0))
-        func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, D_8012C470, 0);
+    else if ((gPlayerCount == 1) && (D_800DEEA0 != 0))
+        func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, gPlayerCount, 0);
 }
 
 /*80076C14*/
@@ -3461,7 +3461,7 @@ static void func_80076C14(s32 spritenum)
             return;
         }
 
-        if (D_8012C470 == 1)
+        if (gPlayerCount == 1)
         {
             func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 66, 31);
             func_8008E3E0(spr->x, spr->y, spr->z, spr->sectnum, 15, 31);
@@ -3537,7 +3537,7 @@ static void func_80076C14(s32 spritenum)
 
             if (spr->unk1A == 1)
             {
-                if (D_8012C470 == 1)
+                if (gPlayerCount == 1)
                 {
                     ang = krand() & 0x7FF;
                     x2 = gpSprite[spritenum].x;

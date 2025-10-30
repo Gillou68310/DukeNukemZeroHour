@@ -838,13 +838,13 @@ static void _spawn(s16 spritenum)
         }
         break;
     case 5773:
-        if (D_8012C470 == 1)
+        if (gPlayerCount == 1)
             func_8008E3E0(spr->x, spr->y, gpSector[spr->sectnum].floorz, spr->sectnum, 64, 358);
 
         deleteSprite(spritenum);
         break;
     case 5774:
-        if (D_8012C470 == 1)
+        if (gPlayerCount == 1)
             func_8008E3E0(spr->x, spr->y, gpSector[spr->sectnum].floorz, spr->sectnum, 74, 358);
 
         deleteSprite(spritenum);
@@ -1139,7 +1139,7 @@ void func_80062300(void)
         i = gNextSpriteStat[i];
     }
 
-    for (i = 0; i < D_8012C470; i++)
+    for (i = 0; i < gPlayerCount; i++)
         func_80062950(i, 1);
 
     func_80016218();
@@ -1158,7 +1158,7 @@ static s16 func_80062688(s16 arg0)
     for (i = 0; i < D_80107908; i++)
     {
         d2 = 0x400000;
-        for (j = 0; j < D_8012C470; j++)
+        for (j = 0; j < gPlayerCount; j++)
         {
             if (j != arg0)
             {
@@ -1244,7 +1244,7 @@ void func_80062950(s16 playernum, u8 arg1)
 
     if (D_80107908 > 0)
     {
-        if (D_8012C470 == 1)
+        if (gPlayerCount == 1)
             i = 0;
         else if ((playernum == 0) && (arg1))
             i = krand() % D_80107908;
@@ -1277,7 +1277,7 @@ void func_80062950(s16 playernum, u8 arg1)
         changeSpriteSect(gPlayer[playernum].unk4A, gPlayer[playernum].cursectnum);
     }
 
-    if (D_8012C470 >= 2)
+    if (gPlayerCount >= 2)
     {
         if (arg1)
             gpSprite[spritenum].picnum = playernum + VICTORIANDUKE;
@@ -1312,7 +1312,7 @@ void func_80062950(s16 playernum, u8 arg1)
     gpSprite[spritenum].ang = gPlayer[playernum].ang;
     gpSprite[spritenum].unk25 = 0;
 
-    if ((!(D_8012C470 < 2)) && !(arg1))
+    if ((!(gPlayerCount < 2)) && !(arg1))
     {
         func_8008E3E0(gPlayer[playernum].xpos,
                       gPlayer[playernum].ypos,
@@ -1331,10 +1331,10 @@ void func_80062950(s16 playernum, u8 arg1)
     gActor[gActorSpriteMap[spritenum]].flag = 1;
     func_8006D0E4(playernum);
 
-    if ((D_8012C470 == 1) && (gMapNum < MAP_THE_END))
+    if ((gPlayerCount == 1) && (gMapNum < MAP_THE_END))
         func_801C936C();
 
-    if ((func_800627F8() != 0) || (D_801A1994 == 1) || (D_8012C470 >= 2) ||
+    if ((func_800627F8() != 0) || (D_801A1994 == 1) || (gPlayerCount >= 2) ||
         (gMapNum == MAP_BASE) || (gMapNum == MAP_MEAN_STREETS) || (gMapNum == MAP_NUCLEAR_WINTER) ||
         (gMapNum == MAP_DRY_TOWN) || (gMapNum == MAP_JAIL_BREAK) ||
         (gMapNum == MAP_THE_WHITECHAPEL_KILLINGS) || (gMapNum == MAP_THE_BROTHERS_NUKEM))
@@ -1372,14 +1372,14 @@ void func_80062950(s16 playernum, u8 arg1)
         }
         gPlayer[playernum].unk46 = 100;
 
-        if (D_8012C470 >= 2)
+        if (gPlayerCount >= 2)
             func_8008E04C(playernum);
     }
 
     if (D_8010A940[playernum].unkA[2] < D_800E17E0[2])
         D_8010A940[playernum].unkA[2] = 0;
 
-    if (D_8012C470 == 1)
+    if (gPlayerCount == 1)
         gPlayer[playernum].unk48 = 100;
 
     gActor[gActorSpriteMap[spritenum]].unk99 = gPlayer[playernum].unk70;
@@ -1407,7 +1407,7 @@ void func_80062950(s16 playernum, u8 arg1)
     gpSprite[spritenum].unk25 = 7;
     D_8013B2D0[spritenum].unk6 = 0;
 
-    if ((D_8012C470 >= 2) || (gCheatFirstPersonConfig != CONFIG_OFF))
+    if ((gPlayerCount >= 2) || (gCheatFirstPersonConfig != CONFIG_OFF))
     {
         gPlayer[playernum].unk61 = 0;
         gPlayer[playernum].third_person = FALSE;
@@ -1453,7 +1453,7 @@ void func_80062950(s16 playernum, u8 arg1)
     func_8000EB90(playernum & 0xFF, 0, 0, 0, 0);
     D_80106D30[playernum] = 0;
 
-    if ((D_8012C470 >= 2) || (gCheatSelectSkinConfig != CONFIG_OFF))
+    if ((gPlayerCount >= 2) || (gCheatSelectSkinConfig != CONFIG_OFF))
     {
         if (arg1 != 0)
         {

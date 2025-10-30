@@ -2,6 +2,10 @@
     "[c]": {
         "editor.formatOnSave": true
     },
+    "search.useIgnoreFiles": false,
+    "search.exclude": {
+        "build": true
+    },
     "C_Cpp.exclusionPolicy": "checkFilesAndFolders",
     "C_Cpp.files.exclude": {
         "ida_ctx.c": true,

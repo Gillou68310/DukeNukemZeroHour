@@ -1,11 +1,11 @@
 #include "common.h"
-#include "code0/20490.h"
+#include "code0/viewport.h"
 
 /*.data*/
 
 /*01001860*/
 Gfx gRspInitDl[] = {
-    gsSPViewport(D_800DCB10),
+    gsSPViewport(&gViewport[0]),
     gsSPClearGeometryMode(G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH),
     gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
     gsSPSetGeometryMode(G_SHADE | G_SHADING_SMOOTH),
