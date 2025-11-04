@@ -360,7 +360,7 @@ static void func_8000071C(void)
 /*8000090C*/
 void boot(void)
 {
-#if (defined (MODERN) || defined (NON_MATCHING)) && defined (TARGET_N64)
+#if defined (TARGET_N64) && defined (MODERN)
     if ((code0_ROM_END - code0_ROM_START) > 0x100000)
     {
         Bmemcpy(code0_VRAM+0x100000,

@@ -4,23 +4,15 @@ VERSION      ?= us
 BASEROM      := baserom.$(VERSION).z64
 TARGET       := dukenukemzerohour
 COMPARE      ?= 1
-NON_MATCHING ?= 0
 CHECK        ?= 1
 VERBOSE      ?= 0
 BUILD_DIR    ?= build/$(VERSION)
-EXTERN       ?= 1
 MODERN       ?= 0
 AVOID_UB     ?= 0
 
 # Fail early if baserom does not exist
 ifeq ($(wildcard $(BASEROM)),)
 $(error Baserom `$(BASEROM)' not found.)
-endif
-
-# NON_MATCHING=1 implies COMPARE=0
-ifeq ($(NON_MATCHING),1)
-override COMPARE=0
-override AVOID_UB=1
 endif
 
 # MODERN=1 implies COMPARE=0
@@ -106,16 +98,6 @@ CHECK_WARNINGS := -Wall -Wextra -Wno-missing-braces -Wno-format-security -Wno-un
 CFLAGS_CHECK   := -m32 -fsyntax-only -funsigned-char -nostdinc -fno-builtin -std=gnu90
 CFLAGS_MODERN  := -mabi=32 -march=vr4300 -mfix4300 -mno-abicalls -fno-pic -fno-exceptions -fno-stack-protector -fno-zero-initialized-in-bss -fno-builtin -mno-gpopt -fno-toplevel-reorder -fcommon -DMODERN
 
-ifeq ($(EXTERN),1)
-CPPFLAGS += -DEXTERN_DATA=extern -DEXTERN_BSS=extern -DSTATIC=
-else
-CPPFLAGS += -DEXTERN_DATA= -DEXTERN_BSS= -D__CTX__ -DSTATIC=
-endif
-
-ifeq ($(NON_MATCHING),1)
-CPPFLAGS += -DNON_MATCHING
-endif
-
 ifeq ($(AVOID_UB),1)
 CPPFLAGS += -DAVOID_UB
 endif
@@ -147,10 +129,8 @@ CFLAGS += $(CFLAGS_MODERN) $(CHECK_WARNINGS)
 CC := $(CROSS)gcc
 endif
 
-ifneq ($(NON_MATCHING),1)
 ifneq ($(MODERN),1)
 $(BUILD_DIR)/src/%.o: CPPFLAGS += -DNDEBUG
-endif
 endif
 
 $(BUILD_DIR)/src/%.o: CPPFLAGS += -I $(LIBKMC_DIR)/include -I $(LIBMUS_DIR)/include

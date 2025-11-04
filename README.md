@@ -67,11 +67,6 @@ This repository has support for the French versions of the game too.
 
 To build this version, place your ROM in the root of the repo and rename it to baserom.fr.z64. Pass VERSION=fr to the above make commands.
 
-### Building NON_MATCHING Version
-
-Functions can be decompiled to a state where they are functionally equivalent, but are not a byte-perfect match.
-In order to build/test the non-matching, add NON_MATCHING=1 argument to the make commands.
-
 ## Docker
 
 A Docker image containing all dependencies can be built and ran as follows:

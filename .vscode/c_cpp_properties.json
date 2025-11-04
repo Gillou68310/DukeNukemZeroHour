@@ -22,11 +22,6 @@
                 "_MIPS_SZLONG=32",
                 "_FINALROM",
                 "TARGET_N64",
-                "EXTERN_DATA=extern",
-                "EXTERN_BSS=extern",
-                "STATIC=",
-                "NON_MATCHING",
-                "__CTX__",
                 "AVOID_UB",
                 "VERSION_US=1"
             ],

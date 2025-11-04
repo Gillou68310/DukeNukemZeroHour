@@ -48,9 +48,6 @@ jobs:
     - name: Build Duke Nukem Zero Hour (MATCHING)
       run: make -j $(nproc) VERSION=${{ matrix.version }}
       
-    - name: Build Duke Nukem Zero Hour (NON_MATCHING)
-      run: make -j $(nproc) VERSION=${{ matrix.version }} NON_MATCHING=1 BUILD_DIR=build_non_matching/${{ matrix.version }}
-      
     - name: Build Duke Nukem Zero Hour (MODERN GCC)
       run: make -j $(nproc) VERSION=${{ matrix.version }} MODERN=1 BUILD_DIR=build_modern/${{ matrix.version }}
 

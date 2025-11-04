@@ -202,7 +202,7 @@ static void _decompressMap(void)
 
     addr = (u8 *)(gpMapInfo[gMapNum].sector_offset + (intptr_t)_pMapBuffer);
 
-#ifdef NON_MATCHING
+#ifndef TARGET_N64
     if (decompressEDL(addr, gpSector) != 0)
         Bmemcpy(gpSector, addr, gNumSectors * sizeof(SectorType));
 #else
@@ -210,7 +210,7 @@ static void _decompressMap(void)
 #endif
 
     addr = (u8 *)(gpMapInfo[gMapNum].wall_offset + (intptr_t)_pMapBuffer);
-#ifdef NON_MATCHING
+#ifndef TARGET_N64
     if (decompressEDL(addr, gpWall) != 0)
         Bmemcpy(gpWall, addr, gNumWalls * sizeof(WallType));
 #else
@@ -218,7 +218,7 @@ static void _decompressMap(void)
 #endif
 
     addr = (u8 *)(gpMapInfo[gMapNum].sprite_offset + (intptr_t)_pMapBuffer);
-#ifdef NON_MATCHING
+#ifndef TARGET_N64
     if (decompressEDL(addr, gpSprite) != 0)
         Bmemcpy(gpSprite, addr, gNumSprites * sizeof(SpriteType));
 #else
@@ -234,7 +234,7 @@ static void _decompressMap(void)
 
     count *= 3;
     alloCache(&gpSectorVertex, (count * sizeof(Vertex)), &_vertexLock);
-#ifdef NON_MATCHING
+#ifndef TARGET_N64
     if (decompressEDL(&_pMapBuffer[0], gpSectorVertex) != 0)
         Bmemcpy(gpSectorVertex, &_pMapBuffer[0], count * sizeof(Vertex));
 #else
