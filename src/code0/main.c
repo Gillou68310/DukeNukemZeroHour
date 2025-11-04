@@ -181,7 +181,7 @@ DECL_STATIC_SEG_SYM(D_01026910);
 s32 osAfterPreNMI(void);
 void func_80000000(s8 *, s32);
 static void _idleLoop(void *);
-static void mainLoop(void *);
+void mainLoop(void *);
 static void _viLoop(void *);
 static void func_800036DC(void);
 
@@ -918,7 +918,9 @@ void allocMemory(s32 width, s32 height, s32 dlist_size, s32 vertex_size)
     else
         _framebufferCount = 3;
 
+#ifdef TARGET_N64
     gCacheMemEnd = (u8 *)(osMemSize - 0x80000000);
+#endif
     initCache(gCacheMemStart, (gCacheMemEnd - gCacheMemStart));
 
     fb_size = width * height * 2;
@@ -1026,19 +1028,22 @@ static void func_80002494(void)
 }
 
 /*80002548*/
-static void mainLoop(void *arg)
+void mainLoop(void *arg)
 {
-    s16 i, j;
     s16 *count;
     s16 count2;
+#ifdef TARGET_N64
+    s16 i, j;
     intptr_t *addr_;
     s32 size;
     ObjectiveStrInfo *msg_;
     intptr_t offset_;
     u8 *temp;
+#endif
 
     osCreateMesgQueue(&gDmaMessageQ, _dmaMessages, NUM_DMA_MSGS);
 
+#ifdef TARGET_N64
     D_80197D4C = code1_VRAM;
     D_8010571C = (u8 *)main_80000450;
     D_80138818 = (u32)(code1_VRAM - (u8 *)main_80000450) >> 10;
@@ -1050,6 +1055,7 @@ static void mainLoop(void *arg)
     readRom(code1_VRAM, code1_ROM_START, code1_ROM_END - code1_ROM_START);
     Bmemset(code1_BSS_START, 0, code1_BSS_END - code1_BSS_START);
     readRom(code1_VRAM_END, static_ROM_START, size);
+#endif
 
     gpTileInfo = (TileInfo *)GET_STATIC_SEG_SYM(gTileInfo);
     gpKeyStrInfo = (char ***)GET_STATIC_SEG_SYM(gKeyStrInfo);
@@ -1260,8 +1266,15 @@ static void mainLoop(void *arg)
     func_80002494();
     gLoadMapNum = 0;
 
+#ifdef TARGET_N64
     do
     {
+#else
+}
+void game_loop_one_iteration(void)
+{
+    {
+#endif
         if (D_800DEDE0)
         {
             if (D_800DEDE0 == 2)
@@ -1319,12 +1332,17 @@ static void mainLoop(void *arg)
             _createGfxTask();
             D_800BD3FC = 1;
             D_800BD428 = gGfxTaskIndex;
+#ifdef TARGET_N64
             gGfxTaskIndex ^= 1;
             _framebufferIndex++;
             if (_framebufferIndex == _framebufferCount)
                 _framebufferIndex = 0;
         }
-    } while (1);
+	} while (1);
+#else
+        }
+    }
+#endif
 }
 
 /*800031F8*/

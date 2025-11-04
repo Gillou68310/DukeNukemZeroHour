@@ -10,9 +10,6 @@
 #include "include_asm.h"
 #include "libc/assert.h"
 
-typedef u32 uintptr_t;
-typedef s32 intptr_t;
-
 #define SYS_ENDIAN SYS_BIG_ENDIAN
 
 #define printf(ARGS...)
@@ -30,7 +27,12 @@ typedef s32 intptr_t;
 #include <stdint.h>
 #include <string.h>
 #include <assert.h>
+#ifdef LIBEDL
+#include "PR/ultratypes.h"
+#else
 #include "ultra64.h"
+#include "port.h"
+#endif
 #include "macros.h"
 
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__

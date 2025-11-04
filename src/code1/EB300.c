@@ -343,7 +343,7 @@ s32 func_801C0FDC(s16 arg0)
 }
 
 /*801C1024*/
-f32 tanf(f32 angle)
+f32 tangentf(f32 angle)
 {
     f32 sin;
     f32 cos;
@@ -644,7 +644,7 @@ void func_801C1950(void)
             {
                 D_801CF70C->unk50 = -(D_801CF70C->unk3C + 530.0f) * 0.01;
                 D_801CF70C->unk3C += 13.0f;
-                D_801CDBFC->unk34 = tanf(D_801CF70C->unk50) * (D_801CDBFC->unk3C - D_801CF70C->unk3C);
+                D_801CDBFC->unk34 = tangentf(D_801CF70C->unk50) * (D_801CDBFC->unk3C - D_801CF70C->unk3C);
                 D_801CDBFC->unk40 = ((400.0f - D_801CF70C->unk3C) / 500.0) + 1.0;
 
                 if ((D_801CDBFC->unk34 < 5000.0f) && (D_801CDBFC->unk34 > -5000.0f))
@@ -664,7 +664,11 @@ void func_801C1950(void)
                 }
                 else if (D_801CF630 == 254)
                 {
+#ifdef TARGET_N64
                     func_8007FE04(D_800DFA40, 1, D_801CDA94);
+#else
+                    func_8007FD8C(&D_800DFA40[0], 1);
+#endif
                     D_801CF630--;
                 }
                 else
@@ -4438,7 +4442,7 @@ void func_801C9B28(void)
 }
 
 /*801CBCE8*/
-static u8 *D_801CBCE8[12] = {
+u8 *D_801CBCE8[12] = {
     files_1003A60_ROM_START,
     files_1004260_ROM_START,
     files_1004A60_ROM_START,

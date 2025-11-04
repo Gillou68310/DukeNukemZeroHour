@@ -2013,6 +2013,7 @@ void controller_8008A3EC(char *arg0, code1UnkStruct3 *arg1, s32 arg2)
     char *ptr;
     s32 i;
 
+    assert(arg2 == 0x103c);
     _fileBuffer = arg1;
     i = arg2 + 0xFF;
 

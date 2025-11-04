@@ -16,21 +16,6 @@
 #define AMBIENT_PBANK_SIZE 3836
 #define AMBIENT_BUFFER_SIZE 10000
 
-typedef struct
-{
-    u8 *wbank_start;
-    u8 *pbank_start;
-    u8 *pbank_end;
-    u8 *music_start;
-    u8 *music_end;
-} MusicInfo;
-
-typedef struct
-{
-    MusicInfo music[MUSIC_COUNT];
-    MusicInfo ambient[AMBIENT_COUNT];
-} Music;
-
 typedef struct {
     musHandle handle;
     u16 unk4; /*sfxnum?*/
@@ -50,17 +35,10 @@ typedef struct
 #define SFX_BANK_START sounds_sfx_bfx_ROM_START
 #define SFX_BANK_END sounds_sfx_bfx_ROM_END
 
-extern u8 PBANK0_START[];
-extern u8 PBANK0_END[];
-extern u8 WBANK0_START[];
-extern u8 WBANK0_END[];
-extern u8 SFX_BANK_START[];
-extern u8 SFX_BANK_END[];
-
 /*data*/
 
 /*800BD460*/
-static Music _music = {
+Music gMusic = {
     {
         {
             sounds_bank3_wbk_ROM_START,
@@ -366,6 +344,7 @@ static void _initBank(u8 *pbank_rom, s32 size, u8 *wbank, u8 *pbank_ram)
 static void _initSfxBank(u8 *sfx_bank_rom, s32 size)
 {
     readRom(_sfxBankBuffer, sfx_bank_rom, size);
+    assert(size <= sizeof(_sfxBankBuffer));
     MusFxBankInitialize(_sfxBankBuffer);
     _sfxCount = MusFxBankNumberOfEffects(_sfxBankBuffer);
 }
@@ -396,6 +375,7 @@ void initAudio(void)
     _initMusicDriver();
     MusSetMasterVolume(MUSFLAG_EFFECTS | MUSFLAG_SONGS, 32767);
     setVolume(50, 100);
+    assert((PBANK0_END - PBANK0_START) <= sizeof(_sfxPbankBuffer));
     _initBank(PBANK0_START, (PBANK0_END - PBANK0_START), WBANK0_START, _sfxPbankBuffer);
     _initSfxBank(SFX_BANK_START, (SFX_BANK_END - SFX_BANK_START));
     MusPtrBankSetCurrent(_musicPbankBuffer);
@@ -411,28 +391,36 @@ void playMusic(s32 musicnum)
     if (gMusicVolume != 0)
     {
         MusHandleStop(gMusicHandle, 0);
-        while (MusHandleAsk(gMusicHandle));
+        while (MusHandleAsk(gMusicHandle))
+#ifdef TARGET_N64
+            ;
+#else
+            audio_task();
+#endif
 
         if (musicnum < 0)
             gMusicHandle = 0;
         else
         {
-            if (_music.music[musicnum].pbank_start)
+            if (gMusic.music[musicnum].pbank_start)
             {
-                _initBank(_music.music[musicnum].pbank_start,
-                          _music.music[musicnum].pbank_end - _music.music[musicnum].pbank_start,
-                          _music.music[musicnum].wbank_start, _musicPbankBuffer);
-                _readMusic(_music.music[musicnum].music_start,
-                           _music.music[musicnum].music_end - _music.music[musicnum].music_start,
-                           _musicBuffer);
+                _initBank(gMusic.music[musicnum].pbank_start,
+                         gMusic.music[musicnum].pbank_end - gMusic.music[musicnum].pbank_start,
+                         gMusic.music[musicnum].wbank_start, _musicPbankBuffer);
+                assert((gMusic.music[musicnum].pbank_end - gMusic.music[musicnum].pbank_start) <= sizeof(_musicPbankBuffer));
+                _readMusic(gMusic.music[musicnum].music_start,
+                          gMusic.music[musicnum].music_end - gMusic.music[musicnum].music_start,
+                          _musicBuffer);
+                assert((gMusic.music[musicnum].music_end - gMusic.music[musicnum].music_start) <= sizeof(_musicBuffer));
                 MusPtrBankSetSingle(_musicPbankBuffer);
                 gMusicHandle = MusStartSong(_musicBuffer);
             }
             else
             {
-                _readMusic(_music.music[musicnum].music_start,
-                           _music.music[musicnum].music_end - _music.music[musicnum].music_start,
-                           _musicBuffer);
+                _readMusic(gMusic.music[musicnum].music_start,
+                          gMusic.music[musicnum].music_end - gMusic.music[musicnum].music_start,
+                          _musicBuffer);
+                assert((gMusic.music[musicnum].music_end - gMusic.music[musicnum].music_start) <= sizeof(_musicBuffer));
                 gMusicHandle = MusStartSong(_musicBuffer);
             }
 
@@ -447,21 +435,26 @@ void playMusic(s32 musicnum)
 void playAmbient(s32 ambientnum)
 {
     MusHandleStop(gAmbientHandle, 0);
-    while (MusHandleAsk(gAmbientHandle));
+    while (MusHandleAsk(gAmbientHandle))
+#ifdef TARGET_N64
+        ;
+#else
+        audio_task();
+#endif
 
     if (ambientnum < 0)
         gAmbientHandle = 0;
     else
     {
-        _initBank(
-          _music.ambient[ambientnum].pbank_start,
-          _music.ambient[ambientnum].pbank_end - _music.ambient[ambientnum].pbank_start,
-          _music.ambient[ambientnum].wbank_start,
-          _ambientPbankBuffer);
-        _readMusic(
-          _music.ambient[ambientnum].music_start,
-          _music.ambient[ambientnum].music_end - _music.ambient[ambientnum].music_start,
-          _ambientBuffer);
+        _initBank(gMusic.ambient[ambientnum].pbank_start,
+                 gMusic.ambient[ambientnum].pbank_end - gMusic.ambient[ambientnum].pbank_start,
+                 gMusic.ambient[ambientnum].wbank_start,
+                 _ambientPbankBuffer);
+        assert((gMusic.ambient[ambientnum].pbank_end - gMusic.ambient[ambientnum].pbank_start) <= sizeof(_ambientPbankBuffer));
+        _readMusic(gMusic.ambient[ambientnum].music_start,
+                  gMusic.ambient[ambientnum].music_end - gMusic.ambient[ambientnum].music_start,
+                  _ambientBuffer);
+        assert((gMusic.ambient[ambientnum].music_end - gMusic.ambient[ambientnum].music_start) <= sizeof(_ambientBuffer));
         MusPtrBankSetSingle(_ambientPbankBuffer);
         gAmbientHandle = MusStartSong(_ambientBuffer);
         MusHandleSetVolume(gAmbientHandle, (_masterVolume * 128) / 100U);

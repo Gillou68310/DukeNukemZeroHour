@@ -1,6 +1,6 @@
 #include "common.h"
-#include "ld_symbols.h"
 #ifndef LIBEDL
+#include "ld_symbols.h"
 #include "code0/main.h"
 #include "code0/4600.h"
 #include "code0/cache1d.h"
@@ -619,6 +619,13 @@ void edl_80081688(void *handle, s32 id)
     edlUnkStruct1 *info;
 
     info = &D_800E0D18[id];
+#ifndef TARGET_N64
+    if((info->handle != NULL) && (*info->handle != NULL))
+    {
+        *(u8**)handle = *info->handle;
+        return;
+    }
+#endif
     size = info->romend - info->romstart;
     if (size > EDL_FILE_MAX_SIZE)
     {

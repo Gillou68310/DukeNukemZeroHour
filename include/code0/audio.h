@@ -29,6 +29,21 @@
 #define MUSIC_AMBIENT9 8
 #define AMBIENT_COUNT 9
 
+typedef struct
+{
+    u8 *wbank_start;
+    u8 *pbank_start;
+    u8 *pbank_end;
+    u8 *music_start;
+    u8 *music_end;
+} MusicInfo;
+
+typedef struct
+{
+    MusicInfo music[MUSIC_COUNT];
+    MusicInfo ambient[AMBIENT_COUNT];
+} Music;
+
 void dmaRomToRam(u8 *rom, u8 *ram, s32 size);
 void initAudio(void);
 void setVolume(u32 musicvol, u32 mastervol);
@@ -55,5 +70,6 @@ extern musHandle gAmbientHandle;
 extern s16 gMusicNum;
 extern s32 gMusicVolume;
 extern s16 D_800BD61A;
+extern Music gMusic;
 
 #endif
