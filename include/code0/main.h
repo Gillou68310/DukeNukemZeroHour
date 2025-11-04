@@ -12,9 +12,9 @@
 
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGHT 240
-#define BORDER_SIZE 12
 
 #ifdef TARGET_N64
+#define BORDER_SIZE 12
 #define ASPECT_RATIO (4.0f / 3.0f)
 #endif
 

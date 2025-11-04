@@ -992,7 +992,11 @@ void drawTileScaled(f32 x, f32 y, f32 scalex, f32 scaley, u16 tilenum, u32 arg5)
     gDPLoadTLUT_pal16(gpDisplayList++, 0, loadTile(tilenum));
 
     f4 = (s32)(4096.0f / fwidth);
+#ifdef TARGET_N64
     if (((s32)f4 % 2) == 0)
+#else
+    if (((s32)f4 % 2) != 0)
+#endif
         f4 -= 1.0f;
 
     f1 = f3 / fheight;
@@ -1009,7 +1013,13 @@ void drawTileScaled(f32 x, f32 y, f32 scalex, f32 scaley, u16 tilenum, u32 arg5)
         do
         {
             height = MIN(f5, f4);
+#ifdef TARGET_N64
             f5 -= height - 4.0f;
+#define FYL (f2 - (((height * f1) / 4.0f) - f1))
+#else
+            f5 -= height;
+#define FYL (f2 - ((height * f1) / 4.0f))
+#endif
 
             if (D_801A2688 != 0)
             {
@@ -1024,18 +1034,24 @@ void drawTileScaled(f32 x, f32 y, f32 scalex, f32 scaley, u16 tilenum, u32 arg5)
                                        G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
             }
 
-            t = ((f2 - (((height * f1) / 4.0f) - f1)) * 8.0f);
+            t = (FYL * 8.0f);
             t = ((s32)t & 0x1F);
             t = ((s32)t ^ 0x1F);
             t *= f7;
 
-            gSPScisTextureRectangle(gpDisplayList++, fxl, (f2 - (((height * f1) / 4.0f) - f1)), \
+            gSPScisTextureRectangle(gpDisplayList++, fxl, FYL, \
                                     fxh, f2, 0, s, (((height - 8.0f) * 8.0f) - t), (s16)fdsdx, (s16)fdtdy);
 
             if (f5 <= 4.0f)
+            {
+#ifndef TARGET_N64
+                assert(f5 == 0);
+                assert((s32)FYL == (s32)fyl);
+#endif
                 break;
+            }
 
-            f2 -= ((height * f1) / 4.0f) - f1;
+            f2 = FYL;
             pTile += ((gpTileInfo[tilenum].dimx * (s32)((height / 4.0f) - 1.0f)) /8) * 4;
         } while (1);
     }
@@ -1044,7 +1060,13 @@ void drawTileScaled(f32 x, f32 y, f32 scalex, f32 scaley, u16 tilenum, u32 arg5)
         do
         {
             height = MIN(f5, f4);
+#ifdef TARGET_N64
             f5 -= height - 4.0f;
+#define FYH (f2 + (((height * f1) / 4.0f) - f1))
+#else
+            f5 -= height;
+#define FYH (f2 + ((height * f1) / 4.0f))
+#endif
 
             if (D_801A2688 != 0)
             {
@@ -1064,13 +1086,19 @@ void drawTileScaled(f32 x, f32 y, f32 scalex, f32 scaley, u16 tilenum, u32 arg5)
             t = ((s32)t ^ 0x1F);
             t *= f7;
 
-            gSPScisTextureRectangle(gpDisplayList++, fxl, f2, fxh, (f2 + (((height * f1) / 4.0f) - f1)), \
+            gSPScisTextureRectangle(gpDisplayList++, fxl, f2, fxh, FYH, \
                                     0, s, t, (s16)fdsdx, (s16)fdtdy);
 
             if (f5 <= 4.0f)
+            {
+#ifndef TARGET_N64
+                assert(f5==0);
+                assert((s32)FYH == (s32)fyh);
+#endif
                 break;
+            }
 
-            f2 += ((height * f1) / 4.0f) - f1;
+            f2 = FYH;
             pTile += ((gpTileInfo[tilenum].dimx * (s32)((height / 4.0f) - 1.0f)) /8) * 4;
         } while (1);
     }
