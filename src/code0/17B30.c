@@ -174,11 +174,13 @@ void func_80017268(s16 spritenum)
         i = -1;
 
     /*FAKEMATCH*/
-    do {
-    do {
-    if ((gActorSpriteMap[spritenum] == -1) || (gActor[gActorSpriteMap[spritenum]].flag & 0x40))
-        return;
-    } while (0);
+    do
+    {
+        do
+        {
+            if ((gActorSpriteMap[spritenum] == -1) || (gActor[gActorSpriteMap[spritenum]].flag & 0x40))
+                return;
+        } while (0);
     } while (0);
 
     if (ptr->unk8 == NULL)
@@ -929,7 +931,7 @@ void func_80017268(s16 spritenum)
                     ptr4 = &D_800D8168;
                     break;
                 default:
-                    switch (func_801C0FDC(7))
+                    switch (random(7))
                     {
                     case 0:
                     default:

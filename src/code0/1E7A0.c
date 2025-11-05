@@ -361,8 +361,8 @@ void func_8001EB2C(void)
                     gDPSetPrimColor(gpDisplayList++, 0, 0, primr, primg, primb, prima);
                     gDPSetEnvColor(gpDisplayList++, envr, envg, envb, enva);
 
-                    scalex = (fz_ * D_801AE538[i].unk10 * 4.0f * gPlayer[D_801B0820].unk6E * gViewportScaleX) / ((SCREEN_WIDTH/2.0)*256.0);
-                    scaley = (fz_ * D_801AE538[i].unk10 * 4.0f * gPlayer[D_801B0820].unk6E * gViewportScaleY) / ((SCREEN_HEIGHT/2.0)*256.0);
+                    scalex = (fz_ * D_801AE538[i].unk10 * 4.0f * gPlayer[gPlayerNum].unk6E * gViewportScaleX) / ((SCREEN_WIDTH/2.0)*256.0);
+                    scaley = (fz_ * D_801AE538[i].unk10 * 4.0f * gPlayer[gPlayerNum].unk6E * gViewportScaleY) / ((SCREEN_HEIGHT/2.0)*256.0);
                     drawTileScaled((fx_ * gViewportScaleX) + gViewportTransX,
                                   (-fy_ * gViewportScaleY) + gViewportTransY,
                                   scalex,

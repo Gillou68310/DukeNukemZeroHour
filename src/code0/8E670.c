@@ -141,7 +141,7 @@ void func_8008DC24(void)
 
     if (gPlayerCount == 1)
     {
-        D_80199558 = -1;
+        gMultiplayerTimeLimit = -1;
         D_801AD470 = 0;
         D_8019963C = -1;
         return;
@@ -151,10 +151,10 @@ void func_8008DC24(void)
         gPlayer[i].third_person = FALSE;
 
     Bmemset(D_800FF4F0, 0, sizeof(D_800FF4F0));
-    D_80119A64 = 0;
+    gMultiplayerElapsedTime = 0;
     g2pSplitHorz = FALSE;
     g3pSplitFull = 0;
-    D_80199558 = D_800E16A4[gConfig.multiplayer.time_limit] * 1800;
+    gMultiplayerTimeLimit = D_800E16A4[gConfig.multiplayer.time_limit] * 1800;
     D_8019963C = D_800E16A4[gConfig.multiplayer.frag_count];
 
     if (gPlayerCount == 2)
@@ -171,7 +171,7 @@ void func_8008DC24(void)
         break;
     case 3:
         D_801AD470 = 2;
-        D_80199558 = -1;
+        gMultiplayerTimeLimit = -1;
         D_8019963C = -1;
         break;
     case 4:
@@ -202,10 +202,10 @@ void func_8008DE14(void)
         if (j == 0)
             D_8010554C = 0;
 
-        if ((D_80199558 > 0) && (D_8010554C == 0))
+        if ((gMultiplayerTimeLimit > 0) && (D_8010554C == 0))
         {
-            D_80119A64++;
-            if (D_80119A64 >= D_80199558)
+            gMultiplayerElapsedTime++;
+            if (gMultiplayerElapsedTime >= gMultiplayerTimeLimit)
                 func_8008E01C(60, 1);
         }
         if (D_8019963C > 0)

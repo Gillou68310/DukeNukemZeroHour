@@ -5,7 +5,7 @@
 #include "code0/audio.h"
 #include "code0/cache1d.h"
 #include "code0/1A7C0.h"
-#include "code0/416A0.h"
+#include "code0/timer.h"
 #include "code0/41940.h"
 #include "code0/8E670.h"
 #include "code0/95500.h"
@@ -300,13 +300,13 @@ void debugMenu(void)
         drawDebugString(25, 40, buffer);
         sprintf(buffer, "GFX TIME %d", gGfxTime);
         drawDebugString(25, 50, buffer);
-        j = func_80040C08(3);
+        j = getTimerElapsedTime(DRAW_TIMER);
         sprintf(buffer, "DRAW TIME %d", j);
         drawDebugString(25, 60, buffer);
-        j = func_80040C08(1);
+        j = getTimerElapsedTime(MOVE1_TIMER);
         sprintf(buffer, "MOVE1 TIME %d", j);
         drawDebugString(25, 70, buffer);
-        j = func_80040C08(2);
+        j = getTimerElapsedTime(MOVE2_TIMER);
         sprintf(buffer, "MOVE2 TIME %d", j);
         drawDebugString(25, 80, buffer);
         sprintf(buffer, "CACHE %d/%d", getRemainingCacheSize(), gCacheNum);

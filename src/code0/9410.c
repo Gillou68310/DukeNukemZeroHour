@@ -15,7 +15,7 @@
 #include "code0/21500.h"
 #include "code0/24610.h"
 #include "code0/37090.h"
-#include "code0/416A0.h"
+#include "code0/timer.h"
 #include "code0/7BA50.h"
 #include "code0/8E670.h"
 #include "code0/609D0.h"
@@ -109,7 +109,7 @@ static void _floorVtxToN64(s32 sectnum);
 static void _floorVtxToN64Z(s32 sectnum, s32 z);
 static void _ceilingVtxToN64(s32 sectnum);
 static void _decompressMap(void);
-static void func_80009A14(u8 playernum); /*drawRoom?*/
+static void renderPlayerScene(u8 playernum); /*drawRoom?*/
 static void func_8000A938(u16 wallnum);
 static void _drawWall(u16 wallnum);
 static void func_8000B9C0(s16 tilenum);
@@ -175,7 +175,7 @@ void loadMap(s32 mapnum)
         floorUpdateZ(i);
     }
 
-    audio_80008710(gMapNum);
+    playMapAudio(gMapNum);
     func_8000EB4C(4, 0, 0, 0, 288);
     func_80094958();
     func_8007AEB4();
@@ -260,23 +260,23 @@ static void _decompressMap(void)
 void func_80008E3C(void)
 {
     char buffer[8];
-    s32 value;
+    s32 difftime;
     s32 playernum;
 
-    func_80040AA0(3, "DR");
-    func_80040B2C(3);
+    initTimer(DRAW_TIMER, "DR");
+    startTimer(DRAW_TIMER);
     D_801A6D80 = 0;
     D_8012BBCC = 0;
     D_8012F6F0[0] = 0;
     D_8012F6F0[1] = 0;
     D_8012F6F0[2] = 0;
     D_8012F6F0[3] = 0;
-    D_801B0820 = 0;
+    gPlayerNum = 0;
 
-    for (; D_801B0820 < gPlayerCount; D_801B0820++)
+    for (; gPlayerNum < gPlayerCount; gPlayerNum++)
     {
-        setPlayerViewport(D_801B0820, 0);
-        func_80009A14(D_801B0820);
+        setPlayerViewport(gPlayerNum, 0);
+        renderPlayerScene(gPlayerNum);
     }
 
     setDrawMode2D();
@@ -286,11 +286,11 @@ void func_80008E3C(void)
     gViewportTransY = (f32)(gScreenHeight / 2);
     gDPSetScissor(gpDisplayList++, G_SC_NON_INTERLACE, 0, 0, gScreenWidth, gScreenHeight);
 
-    if (D_80199558 > 0)
+    if (gMultiplayerTimeLimit > 0)
     {
-        value = (D_80199558 - D_80119A64) / 30;
-        value = (value < 0) ? 0 : value;
-        sprintf(buffer, "%02d:%02d", value / 60, value % 60);
+        difftime = (gMultiplayerTimeLimit - gMultiplayerElapsedTime) / 30;
+        difftime = CLAMP_MIN(difftime, 0);
+        sprintf(buffer, "%02d:%02d", difftime / 60, difftime % 60);
 
         func_80029130(255, 128, 0, 0, 0, 0);
         if ((gPlayerCount == 3) && (g3pSplitFull == 0))
@@ -318,7 +318,7 @@ void func_80008E3C(void)
     for (playernum = 0; playernum < gPlayerCount; playernum++)
         gActor[gActorSpriteMap[gPlayer[playernum].unk4A]].flag &= ~0x100;
 
-    func_80040B70(3);
+    stopTimer(DRAW_TIMER);
 }
 
 /*8000921C*/
@@ -460,7 +460,7 @@ static u8 _isDisplayListFull(void)
 }
 
 /*80009A14*/
-static void func_80009A14(u8 playernum)
+static void renderPlayerScene(u8 playernum)
 {
     u8 cond;
 
@@ -569,7 +569,6 @@ static void func_80009A14(u8 playernum)
     if (_isDisplayListFull())
         return;
 
-
     cond = 0;
     func_8001A1A4();
     func_8001B2D0();
@@ -584,8 +583,8 @@ static void func_80009A14(u8 playernum)
 
             if (gMapNum == MAP_BASE)
             {
-                if ((gpSprite[gPlayer[D_801B0820].unk52 & 0x7FF].hitag == 400) ||
-                    (gpSprite[gPlayer[D_801B0820].unk52 & 0x7FF].hitag == 402))
+                if ((gpSprite[gPlayer[gPlayerNum].unk52 & 0x7FF].hitag == 400) ||
+                    (gpSprite[gPlayer[gPlayerNum].unk52 & 0x7FF].hitag == 402))
                     cond = 1;
             }
 
@@ -1485,7 +1484,7 @@ void func_8000DBDC(u8 pal, s16 shade)
     D_800FE410 = (shade * gpGlobalPalette[pal].g) >> 8;
     D_80138680 = (shade * gpGlobalPalette[pal].b) >> 8;
 
-    if (D_8010A940[D_801B0820].unk2[5] != 0)
+    if (D_8010A940[gPlayerNum].unk2[5] != 0)
     {
         D_800FE410 = MAX(D_800FE410, D_8016A148);
         D_800FE410 = MAX(D_800FE410, D_80138680);
@@ -1543,7 +1542,7 @@ void func_8000DCF0(s32 x, s32 y, s32 z, s16 sectnum)
     if (D_80138680 > 0xFF)
         D_80138680 = 0xFF;
 
-    if (D_8010A940[D_801B0820].unk2[5] != 0)
+    if (D_8010A940[gPlayerNum].unk2[5] != 0)
     {
         D_800FE410 = MAX(D_800FE410, D_8016A148);
         D_800FE410 = MAX(D_800FE410, D_80138680);
@@ -1740,19 +1739,19 @@ static void _setupMatrix(void)
 
     grPerspectiveF(projection,
                    &perspNorm,
-                   ((60.0*256.0) / gPlayer[D_801B0820].unk6E),
+                   ((60.0*256.0) / gPlayer[gPlayerNum].unk6E),
                    ASPECT_RATIO,
-                   ((gPlayer[D_801B0820].unk6E * 5) / 256.0),
+                   ((gPlayer[gPlayerNum].unk6E * 5) / 256.0),
                    16384.0f,
-                   (256.0 / gPlayer[D_801B0820].unk6E));
+                   (256.0 / gPlayer[gPlayerNum].unk6E));
 
-    grPerspective(&gpDynamic->mtx1[D_801B0820],
+    grPerspective(&gpDynamic->mtx1[gPlayerNum],
                   &perspNorm,
-                  ((60.0*256.0) / gPlayer[D_801B0820].unk6E),
+                  ((60.0*256.0) / gPlayer[gPlayerNum].unk6E),
                   ASPECT_RATIO,
-                  ((gPlayer[D_801B0820].unk6E * 5) / 256.0),
+                  ((gPlayer[gPlayerNum].unk6E * 5) / 256.0),
                   16384.0f,
-                  (256.0 / gPlayer[D_801B0820].unk6E));
+                  (256.0 / gPlayer[gPlayerNum].unk6E));
 
     D_801385F2 = perspNorm;
 
@@ -1771,8 +1770,8 @@ static void _setupMatrix(void)
               yUp,
               zUp);
 
-    grLookAtReflect(&gpDynamic->mtx2[D_801B0820],
-                    &gpDynamic->lookat[D_801B0820][0],
+    grLookAtReflect(&gpDynamic->mtx2[gPlayerNum],
+                    &gpDynamic->lookat[gPlayerNum][0],
                     gMapXpos * 0.5f,
                     gMapYpos * 0.5f,
                     gMapZpos * 0.5f,
@@ -1783,11 +1782,11 @@ static void _setupMatrix(void)
                     yUp,
                     zUp);
 
-    gSPLookAtX(gpDisplayList++, &gpDynamic->lookat[D_801B0820][0].l[0]);
-    gSPLookAtY(gpDisplayList++, &gpDynamic->lookat[D_801B0820][0].l[1]);
-    gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx1[D_801B0820]),
+    gSPLookAtX(gpDisplayList++, &gpDynamic->lookat[gPlayerNum][0].l[0]);
+    gSPLookAtY(gpDisplayList++, &gpDynamic->lookat[gPlayerNum][0].l[1]);
+    gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx1[gPlayerNum]),
                                G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx2[D_801B0820]),
+    gSPMatrix(gpDisplayList++, OS_K0_TO_PHYSICAL(&gpDynamic->mtx2[gPlayerNum]),
                                G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
     gSPPerspNormalize(gpDisplayList++, perspNorm);
     grMtxCatF(viewing, projection, D_8012B948);
@@ -1853,12 +1852,12 @@ static void func_8000EBF0(u8 playernum, u8 arg1)
         switch (D_800BD74A)
         {
         case 0:
-            if (func_801C0FDC(1000) >= 985)
+            if (random(1000) >= 985)
                 D_800BD74A = 1;
             break;
         case 1:
             D_800BD748 = CLAMP_MAX((D_800BD748 + 4), 255);
-            if (func_801C0FDC(1000) >= 934)
+            if (random(1000) >= 934)
                 D_800BD74A = 2;
             break;
         case 2:

@@ -1478,7 +1478,7 @@ void func_80062950(s16 playernum, u8 arg1)
     Bmemset(&D_801A2790[playernum], 0, sizeof(code0UnkStruct17));
     D_801A2790[playernum].unk16 = gPlayer[playernum].ang;
     D_801A2790[playernum].unk24 = 1524;
-    D_801B0820 = playernum;
+    gPlayerNum = playernum;
     func_8003F340();
     func_8003FD5C();
 }

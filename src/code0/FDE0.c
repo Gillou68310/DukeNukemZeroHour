@@ -319,15 +319,15 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
             {
                 if (D_801AD470 == 4)
                 {
-                    if (D_800E16A0[gpSprite[spritenum].unk16] == D_800E16A0[D_801B0820])
+                    if (D_800E16A0[gpSprite[spritenum].unk16] == D_800E16A0[gPlayerNum])
                     {
                         cond1 = 1;
                         D_80138680 = 0;
                         D_800FE410 = 0;
                         D_8016A148 = 0;
-                        r = D_8012DF04[D_801B0820].r;
-                        g = D_8012DF04[D_801B0820].g;
-                        b = D_8012DF04[D_801B0820].b;
+                        r = D_8012DF04[gPlayerNum].r;
+                        g = D_8012DF04[gPlayerNum].g;
+                        b = D_8012DF04[gPlayerNum].b;
                     }
                 }
 
@@ -436,9 +436,9 @@ static void func_8000F474(s16 spritenum, f32 arg1, f32 arg2, f32 arg3)
             if ((gpSprite[spritenum].cstat & 0x30) == 0x10)
             {
                 o = (func_80040D40(gGlobalPosX,
-                                   gGlobalPosY,
-                                   gpSprite[spritenum].x,
-                                   gpSprite[spritenum].y) << 8) / (gPlayer[D_801B0820].unk6E * 60);
+                    gGlobalPosY,
+                    gpSprite[spritenum].x,
+                    gpSprite[spritenum].y) << 8) / (gPlayer[gPlayerNum].unk6E * 60);
 
                 if (o < 8)
                     o = 8;
@@ -830,9 +830,9 @@ void func_80011DA8(void)
     func_8000F1E0();
     for (i = 0; i < D_8012DEFA; i++)
     {
-        if ((gpSprite[D_801A68D0[i]].statnum != 10) || (gpSprite[D_801A68D0[i]].unk16 != D_801B0820))
+        if ((gpSprite[D_801A68D0[i]].statnum != 10) || (gpSprite[D_801A68D0[i]].unk16 != gPlayerNum))
         {
-            if (D_801A68D0[i] != gPlayer[D_801B0820].unk52)
+            if (D_801A68D0[i] != gPlayer[gPlayerNum].unk52)
             {
                 func_8000F474(D_801A68D0[i],
                     ((D_8013B2D0[D_801A68D0[i]].unk0 * 180) / 1024.0),
@@ -843,22 +843,22 @@ void func_80011DA8(void)
         }
     }
 
-    if (gPlayer[D_801B0820].third_person)
+    if (gPlayer[gPlayerNum].third_person)
     {
-        if (gPlayer[D_801B0820].unk52 == -1)
+        if (gPlayer[gPlayerNum].unk52 == -1)
             func_800A3688();
     }
 
-    if ((gPlayer[D_801B0820].unk52 != -1) ||
-        (gPlayer[D_801B0820].third_person && (gPlayer[D_801B0820].unk6A >= 0xFF)))
+    if ((gPlayer[gPlayerNum].unk52 != -1) ||
+        (gPlayer[gPlayerNum].third_person && (gPlayer[gPlayerNum].unk6A >= 0xFF)))
     {
         func_8000F1E0();
-        D_8013B2D0[gPlayer[D_801B0820].unk4A].unk6 = 0;
-        func_8000F474(gPlayer[D_801B0820].unk4A,
-            ((D_8013B2D0[gPlayer[D_801B0820].unk4A].unk0 * 180) / 1024.0),
-            ((D_8013B2D0[gPlayer[D_801B0820].unk4A].unk2 * 180) / 1024.0),
-            ((((gpSprite[gPlayer[D_801B0820].unk4A].ang +
-                D_8013B2D0[gPlayer[D_801B0820].unk4A].unk4) * 180) / 1024.0) + 90.0));
+        D_8013B2D0[gPlayer[gPlayerNum].unk4A].unk6 = 0;
+        func_8000F474(gPlayer[gPlayerNum].unk4A,
+            ((D_8013B2D0[gPlayer[gPlayerNum].unk4A].unk0 * 180) / 1024.0),
+            ((D_8013B2D0[gPlayer[gPlayerNum].unk4A].unk2 * 180) / 1024.0),
+            ((((gpSprite[gPlayer[gPlayerNum].unk4A].ang +
+                D_8013B2D0[gPlayer[gPlayerNum].unk4A].unk4) * 180) / 1024.0) + 90.0));
     }
 }
 
@@ -873,7 +873,7 @@ void func_80012174(void)
     for (i = 0; i < D_8016D180; i++)
     {
         spritenum = D_801AC8E8[i];
-        if ((gpSprite[spritenum].statnum != 10) || (gpSprite[spritenum].unk16 != D_801B0820))
+        if ((gpSprite[spritenum].statnum != 10) || (gpSprite[spritenum].unk16 != gPlayerNum))
         {
             func_8000F474(spritenum,
                           ((D_8013B2D0[spritenum].unk0 * 180) / 1024.0),
@@ -886,14 +886,14 @@ void func_80012174(void)
 /*80012318*/
 void func_80012318(void)
 {
-    if ((gPlayer[D_801B0820].third_person) && (gPlayer[D_801B0820].unk6A < 255) && (gPlayer[D_801B0820].unk52 < 0))
+    if ((gPlayer[gPlayerNum].third_person) && (gPlayer[gPlayerNum].unk6A < 255) && (gPlayer[gPlayerNum].unk52 < 0))
     {
         func_8000F1E0();
-        D_8013B2D0[gPlayer[D_801B0820].unk4A].unk6 = 255 - gPlayer[D_801B0820].unk6A;
-        func_8000F474(gPlayer[D_801B0820].unk4A,
-                      ((D_8013B2D0[gPlayer[D_801B0820].unk4A].unk0 * 180) / 1024.0),
-                      ((D_8013B2D0[gPlayer[D_801B0820].unk4A].unk2 * 180) / 1024.0),
-                      ((((gpSprite[gPlayer[D_801B0820].unk4A].ang + D_8013B2D0[gPlayer[D_801B0820].unk4A].unk4) * 180) / 1024.0) + 90.0));
+        D_8013B2D0[gPlayer[gPlayerNum].unk4A].unk6 = 255 - gPlayer[gPlayerNum].unk6A;
+        func_8000F474(gPlayer[gPlayerNum].unk4A,
+                      ((D_8013B2D0[gPlayer[gPlayerNum].unk4A].unk0 * 180) / 1024.0),
+                      ((D_8013B2D0[gPlayer[gPlayerNum].unk4A].unk2 * 180) / 1024.0),
+                      ((((gpSprite[gPlayer[gPlayerNum].unk4A].ang + D_8013B2D0[gPlayer[gPlayerNum].unk4A].unk4) * 180) / 1024.0) + 90.0));
     }
 }
 
@@ -1077,7 +1077,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
                     ftemp = ptr->unk8->unk18[ptr->unk2].unk4;
                     fy += ftemp;
                     fz = (ptr->unk8->unk18[ptr->unk2].unk2 * (1.0f - f4)) +
-                         (ptr->unk1C->unk18[ptr->unk16].unk2 * f4);
+                        (ptr->unk1C->unk18[ptr->unk16].unk2 * f4);
                 }
                 else
                 {
@@ -1367,7 +1367,7 @@ static void func_8001270C(_FDE0UnkStruct2 *arg0, s16 arg1)
             else
                 n = 3;
 
-            switch (func_801C0FDC(-1) % n)
+            switch (random(-1) % n)
             {
             case 0:
                 drawModel(&D_800D051C);
@@ -1884,7 +1884,7 @@ static void func_80015458(_FDE0UnkStruct2 *arg0, s16 arg1)
                 ftemp = ptr->unk8->unk18[ptr->unk2].unk4;
                 fy += ftemp;
                 fz = (ptr->unk8->unk18[ptr->unk2].unk2 * (1.0f - f4)) +
-                     (ptr->unk1C->unk18[ptr->unk16].unk2 * f4);
+                    (ptr->unk1C->unk18[ptr->unk16].unk2 * f4);
             }
             else
             {

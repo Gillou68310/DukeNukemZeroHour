@@ -37,7 +37,7 @@ typedef struct
 {
     s8 musicnum;
     s8 ambientnum;
-} audioUnkStruct2;
+} MapAudio;
 
 #define PBANK0_START sounds_bank0_ptr_ROM_START
 #define PBANK0_END sounds_bank0_ptr_ROM_END
@@ -213,56 +213,55 @@ static s32 _unused = 0;
 /*800BD61C*/ static musHandle D_800BD61C[6] = {0};
 /*800BD634*/ static musHandle D_800BD634[MAXPLAYERS] = {0};
 /*800BD644*/ static u16 D_800BD644[MAXPLAYERS] = {0};
-/*800BD64C*/ static u16 D_800BD64C[8] = {1279, 1625, 1280, 1281, 1626, 1627, 1628, 0};
-/*800BD65C*/ static u16 D_800BD65C[8] = {1283, 1629, 1287, 1630, 1631, 1288, 1632, 0};
-/*800BD66C*/ static u16 D_800BD66C[8] = {1294, 1298, 1633, 1300, 1301, 1302, 1304, 0};
-/*800BD67C*/ static u16 D_800BD67C[4] = {1660, 1661, 1664, 0};
+/*800BD64C*/ static u16 D_800BD64C[7] = {1279, 1625, 1280, 1281, 1626, 1627, 1628};
+/*800BD65C*/ static u16 D_800BD65C[7] = {1283, 1629, 1287, 1630, 1631, 1288, 1632};
+/*800BD66C*/ static u16 D_800BD66C[7] = {1294, 1298, 1633, 1300, 1301, 1302, 1304};
+/*800BD67C*/ static u16 D_800BD67C[3] = {1660, 1661, 1664};
 /*800BD684*/ static u16 D_800BD684[6] = {1660, 1661, 1662, 1663, 1664, 1665};
 
 /*800BD690*/
-static audioUnkStruct2 D_800BD690[42] = {
-    { 1, 0 },
-    { 0, -1 },
-    { -1, 6 },
-    { -1, 5 },
+static MapAudio _mapAudio[MAP_NUM+3] = {
+    { MUSIC_PRESENT_DAY1, MUSIC_AMBIENT1 },
+    { MUSIC_PRESENT_DAY2, -1 },
+    { -1, MUSIC_AMBIENT7 },
+    { -1, MUSIC_AMBIENT6 },
     { -1, -1 },
-    { 1, -1 },
-    { 10, -1 },
-    { 3, 2 },
-    { -1, 2 },
-    { 4, 4 },
-    { -1, 2 },
+    { MUSIC_PRESENT_DAY1, -1 },
+    { MUSIC_PRESENT_DAY_BOSS_HOG, -1 },
+    { MUSIC_WESTERN1, MUSIC_AMBIENT3 },
+    { -1, MUSIC_AMBIENT3 },
+    { MUSIC_WESTERN2, MUSIC_AMBIENT5 },
+    { -1, MUSIC_AMBIENT3 },
     { -1, -1 },
-    { 9, -1 },
-    { 6, 3 },
-    { -1, 3 },
-    { 7, 8 },
-    { 7, 1 },
-    { 6, -1 },
-    { 9, -1 },
-    { 1, -1 },
-    { 8, -1 },
-    { 9, 7 },
-    { 2, -1 },
-    { 11, -1 },
-    { 0, -1 },
-    { 7, -1 },
-    { 6, -1 },
-    { 1, -1 },
-    { 8, -1 },
-    { 3, -1 },
-    { 4, -1 },
-    { 2, -1 },
-    { 8, -1 },
-    { 6, -1 },
-    { 1, -1 },
-    { 0, -1 },
-    { 9, -1 },
-    { 7, -1 },
+    { MUSIC_BOSS, -1 },
+    { MUSIC_VICTORIAN1, MUSIC_AMBIENT4 },
+    { -1, MUSIC_AMBIENT4 },
+    { MUSIC_VICTORIAN2, MUSIC_AMBIENT9 },
+    { MUSIC_VICTORIAN2, MUSIC_AMBIENT2 },
+    { MUSIC_VICTORIAN1, -1 },
+    { MUSIC_BOSS, -1 },
+    { MUSIC_PRESENT_DAY1, -1 },
+    { MUSIC_FINAL_ALIEN_MOTHER, -1 },
+    { MUSIC_BOSS, MUSIC_AMBIENT8 },
+    { MUSIC_TITLE_SCREEN, -1 },
+    { MUSIC_TRAINING_BASE, -1 },
+    { MUSIC_PRESENT_DAY2, -1 },
+    { MUSIC_VICTORIAN2, -1 },
+    { MUSIC_VICTORIAN1, -1 },
+    { MUSIC_PRESENT_DAY1, -1 },
+    { MUSIC_FINAL_ALIEN_MOTHER, -1 },
+    { MUSIC_WESTERN1, -1 },
+    { MUSIC_WESTERN2, -1 },
+    { MUSIC_TITLE_SCREEN, -1 },
+    { MUSIC_FINAL_ALIEN_MOTHER, -1 },
+    { MUSIC_VICTORIAN1, -1 },
+    { MUSIC_PRESENT_DAY1, -1 },
+    { MUSIC_PRESENT_DAY2, -1 },
+    { MUSIC_BOSS, -1 },
+    { MUSIC_VICTORIAN2, -1 },
     { -1, -1 },
     { -1, -1 },
     { -1, -1 },
-    { 0, 0 },
 };
 
 /*800BD6E4*/
@@ -508,7 +507,7 @@ void audio_80006CC0(void)
         }
     }
 
-#if defined(VERSION_US) || defined(VERSION_PROTO)
+#if VERSION_US || VERSION_PROTO
     if (gMapNum == MAP_PROBING_THE_DEPTHS)
     {
         if (gPlayer[0].unk50 != -1)
@@ -1083,7 +1082,7 @@ void audio_800080E0(s16 playernum, u16 arg1)
             if (arg1 != 0xFFFF)
             {
                 ptr = &D_801ACBD8[arg1];
-                if (func_801C0FDC(100) < ptr->unk6)
+                if (random(100) < ptr->unk6)
                 {
                     do
                     {
@@ -1098,7 +1097,7 @@ void audio_800080E0(s16 playernum, u16 arg1)
                             if ((gMapNum < MAP_NUCLEAR_WINTER) || (gMapNum >= MAP_BOSS_HOG))
                                 k--;
                         }
-                        l = func_801C0FDC(k);
+                        l = random(k);
                         j = ptr->unk0[l];
                     } while (j == D_801AC8D4[playernum]);
 
@@ -1108,7 +1107,7 @@ void audio_800080E0(s16 playernum, u16 arg1)
                             j = 1101;
 
                         if ((arg1 == 8) || (arg1 == 9) || (arg1 == 10))
-                            j = func_801C0FDC(5) + 1684;
+                            j = random(5) + 1684;
                     }
 
                     D_801AC8D4[playernum] = j;
@@ -1137,13 +1136,13 @@ musHandle audio_80008604(void)
     switch (gMapChapter[gMapNum].chapter)
     {
     case WESTERN:
-        sfxnum = D_800BD65C[func_801C0FDC(7)];
+        sfxnum = D_800BD65C[random(ARRAY_COUNT(D_800BD65C))];
         break;
     case VICTORIAN:
-        sfxnum = D_800BD64C[func_801C0FDC(7)];
+        sfxnum = D_800BD64C[random(ARRAY_COUNT(D_800BD64C))];
         break;
     default:
-        sfxnum = D_800BD66C[func_801C0FDC(7)];
+        sfxnum = D_800BD66C[random(ARRAY_COUNT(D_800BD66C))];
         break;
     }
     return playSfx(sfxnum);
@@ -1155,24 +1154,24 @@ void audio_800086B0(u16 arg0)
     u16 sfxnum;
 
     if (!arg0)
-        sfxnum = D_800BD67C[func_801C0FDC(3)];
+        sfxnum = D_800BD67C[random(ARRAY_COUNT(D_800BD67C))];
     else
-        sfxnum = D_800BD684[func_801C0FDC(6)];
+        sfxnum = D_800BD684[random(ARRAY_COUNT(D_800BD684))];
 
     playSfx(sfxnum);
 }
 
 /*80008710*/
-void audio_80008710(s16 arg0)
+void playMapAudio(s16 mapnum)
 {
     setVolume((gConfig.musicvol * 100) / 7, (gConfig.mastervol * 100) / 7);
-    if (arg0 == -1)
+    if (mapnum == -1)
     {
         playMusic(2);
     }
     else
     {
-        playMusic(D_800BD690[arg0].musicnum);
-        playAmbient(D_800BD690[arg0].ambientnum);
+        playMusic(_mapAudio[mapnum].musicnum);
+        playAmbient(_mapAudio[mapnum].ambientnum);
     }
 }

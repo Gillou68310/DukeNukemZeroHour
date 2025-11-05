@@ -157,10 +157,10 @@ void func_8001A1A4(void)
         setDrawMode2D();
         func_80028F04(0xFF, 0xFF, 0xFF, 0xFF, 0x80, 0);
 
-        cstat = gpSprite[gPlayer[D_801B0820].unk4A].cstat;
+        cstat = gpSprite[gPlayer[gPlayerNum].unk4A].cstat;
 
-        if ((gPlayer[D_801B0820].unk6A < 0xFF) || (!gPlayer[D_801B0820].third_person))
-            gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & ~0x101;
+        if ((gPlayer[gPlayerNum].unk6A < 0xFF) || (!gPlayer[gPlayerNum].third_person))
+            gpSprite[gPlayer[gPlayerNum].unk4A].cstat = cstat & ~0x101;
 
         for (i = 0; i < D_80105720; i++)
         {
@@ -228,7 +228,7 @@ void func_8001A1A4(void)
                 }
             }
         }
-        gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat;
+        gpSprite[gPlayer[gPlayerNum].unk4A].cstat = cstat;
     }
 }
 
@@ -266,10 +266,10 @@ static void func_8001AAEC(void)
     cond = 0;
     if ((klabs(D_801A1990) < 200.0f) && (klabs(D_801387C0) < 200.0f))
     {
-        cstat = gpSprite[gPlayer[D_801B0820].unk4A].cstat;
+        cstat = gpSprite[gPlayer[gPlayerNum].unk4A].cstat;
 
-        if ((gPlayer[D_801B0820].unk6A < 255) || (!gPlayer[D_801B0820].third_person))
-            gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat & ~0x101;
+        if ((gPlayer[gPlayerNum].unk6A < 255) || (!gPlayer[gPlayerNum].third_person))
+            gpSprite[gPlayer[gPlayerNum].unk4A].cstat = cstat & ~0x101;
 
         hitScan(gGlobalPosX,
                 gGlobalPosY,
@@ -286,7 +286,7 @@ static void func_8001AAEC(void)
                 &hitz,
                 0x01000040);
 
-        gpSprite[gPlayer[D_801B0820].unk4A].cstat = cstat;
+        gpSprite[gPlayer[gPlayerNum].unk4A].cstat = cstat;
 
         if ((hitwall == -1) && (hitsprite == -1))
         {
@@ -341,7 +341,7 @@ static void func_8001AAEC(void)
             if (hitx > 0)
             {
                 hitx = CLAMP_MAX(hitx, 255);
-                func_8000EA0C(D_801B0820, 255, 255, 255, hitx);
+                func_8000EA0C(gPlayerNum, 255, 255, 255, hitx);
             }
         }
     }
@@ -535,8 +535,8 @@ static void func_8001B740(void)
 
             D_8013F954 = f5 * gViewportScaleX;
             D_801ACBDC = -f4 * gViewportScaleY;
-            fy = ((gPlayer[D_801B0820].unk6E * 2) * gViewportScaleX) / ((SCREEN_WIDTH/2.0)*256.0);
-            fx = ((gPlayer[D_801B0820].unk6E * 2) * gViewportScaleY) / ((SCREEN_HEIGHT/2.0)*256.0);
+            fy = ((gPlayer[gPlayerNum].unk6E * 2) * gViewportScaleX) / ((SCREEN_WIDTH/2.0)*256.0);
+            fx = ((gPlayer[gPlayerNum].unk6E * 2) * gViewportScaleY) / ((SCREEN_HEIGHT/2.0)*256.0);
 
             if (gMapNum == MAP_ZERO_HOUR)
             {
@@ -705,7 +705,7 @@ static void func_8001C490(s16 tilenum)
     f32 f1, f2, x1, x2, y1, y2;
     s16 i;
 
-    color = &gFog[D_801B0820].color[0];
+    color = &gFog[gPlayerNum].color[0];
 
     if ((tilenum != -1) && (gPlayerCount < 2) && (D_8012FC40 == 0))
     {
@@ -819,7 +819,7 @@ void drawNumberString(s16 x, s16 y, char *string)
     y_ = y;
     D_801A2688 = 1;
 
-    if ((gPlayerCount == 1) || (D_801B0820 == gPlayerCount))
+    if ((gPlayerCount == 1) || (gPlayerNum == gPlayerCount))
         f1 = 1.0f;
     else
         f1 = 1.5f;
@@ -865,7 +865,7 @@ void drawString(s16 x, s16 y, char *string)
     y_ = y;
     D_801A2688 = 1;
 
-    if ((gPlayerCount == 1) || (D_801B0820 == gPlayerCount))
+    if ((gPlayerCount == 1) || (gPlayerNum == gPlayerCount))
         f1 = 1.0f;
     else
         f1 = 1.5f;
@@ -1042,7 +1042,7 @@ void drawString2(s16 x, s16 y, char *string)
     y_ = y;
     D_801A2688 = 1;
 
-    if ((gPlayerCount == 1) || (D_801B0820 == gPlayerCount))
+    if ((gPlayerCount == 1) || (gPlayerNum == gPlayerCount))
         f1 = 1.0f;
     else
         f1 = 1.5f;
@@ -1193,7 +1193,7 @@ void func_8001D238(s32 x, s32 y, u16 tilenum)
     if (tileid != 1)
     {
         width = gpTileInfo[tileid].dimx;
-        if ((gPlayerCount == 1) || (D_801B0820 == gPlayerCount))
+        if ((gPlayerCount == 1) || (gPlayerNum == gPlayerCount))
             f1 = 1.0f;
         else
             f1 = 1.5f;

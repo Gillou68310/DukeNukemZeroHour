@@ -1336,7 +1336,7 @@ s32 func_8008FE88(s32 spritenum)
         m = f12 + (x * cosf(l * (PI/1024)));
         f6 = spr1->y;
         y = f6 + (x * sinf(l * (PI/1024)));
-        if (func_801C0FDC(0x64) < spr1->unk18)
+        if (random(0x64) < spr1->unk18)
         {
             x = func_8008E3E0(m, y, spr1->z, spr1->sectnum, 35, 13);
             if (x >= 0)

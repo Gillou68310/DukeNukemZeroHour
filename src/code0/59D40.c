@@ -2322,12 +2322,12 @@ void func_8005F38C(s32 spritenum, s32 arg1)
         else
         {
             func_8008E3E0(D_80118248->x, D_80118248->y, D_80118248->z, D_80118248->sectnum, 41, 32);
-            audio_80007A44((func_801C0FDC(6) + 559), spritenum, 40000);
+            audio_80007A44((random(6) + 559), spritenum, 40000);
         }
         D_80118248->x = x;
         D_80118248->y = y;
         D_80118248->z = z;
-        audio_80007A44((func_801C0FDC(6) + 559), spritenum, 40000);
+        audio_80007A44((random(6) + 559), spritenum, 40000);
         func_8001F7B4(4, 4);
     }
 }
@@ -2520,10 +2520,10 @@ void func_8005FC20(s32 spritenum, s32 arg1)
 /*8005FC34*/
 void func_8005FC34(s32 spritenum, s32 arg1)
 {
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-    func_800A419C(0, "BABE SAVED!");
-#elif VERSION_FR
+#if VERSION_FR
     func_800A419C(0, "GONZESSE SAUVEE!");
+#else
+    func_800A419C(0, "BABE SAVED!");
 #endif
     D_801A1958.babes_saved++;
     audio_800077F4(704, spritenum);

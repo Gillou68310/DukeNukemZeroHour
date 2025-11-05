@@ -2,6 +2,7 @@
 
 from splat.scripts import split
 from n64img.image import CI4
+from pathlib import Path
 import argparse
 import operator
 import shutil
@@ -279,11 +280,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-v', '--version', type=str, default='us', help='game version')
     args = parser.parse_args()
-    yaml = 'versions/'+args.version+'/dukenukemzerohour.yaml'
-    with open(yaml) as f:
-        config = split.yaml.load(f.read(), Loader=split.yaml.SafeLoader)
-    config['options']['base_path'] = '.'
-    split.options.initialize(config, yaml, None, None)
+    path = Path("versions") / args.version / "dukenukemzerohour.yaml"
+    config = split.conf.load([path])
+    split.options.initialize(config, [path])
     all_segments = split.initialize_segments(config["segments"])
     split.disassembler_instance.create_disassembler_instance(skip_version_check=True, splat_version='')
     split.symbols.initialize(all_segments)

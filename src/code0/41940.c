@@ -3839,15 +3839,15 @@ s32 func_800494DC(s32 spritenum1, s32 arg1, s32 spritenum2, s32 arg3)
                 if (gpSprite[spritenum2].hitag < MAXSPRITES)
 #endif
                 {
-                if (gpSprite[spritenum2].hitag >= 0)
-                {
-                    m = gActorSpriteMap[gpSprite[spritenum2].hitag];
-                    if (m >= 0)
+                    if (gpSprite[spritenum2].hitag >= 0)
                     {
-                        k = D_80105550[gActor[m].unk84];
-                        arg1 = (arg1 * k) / 100;
+                        m = gActorSpriteMap[gpSprite[spritenum2].hitag];
+                        if (m >= 0)
+                        {
+                            k = D_80105550[gActor[m].unk84];
+                            arg1 = (arg1 * k) / 100;
+                        }
                     }
-                }
                 }
             }
 
@@ -4000,19 +4000,19 @@ s32 func_800494DC(s32 spritenum1, s32 arg1, s32 spritenum2, s32 arg3)
                     switch (func_8005A240(spritenum1))
                     {
                     case 1:
-                        if (func_801C0FDC(100) < 25)
+                        if (random(100) < 25)
                             audio_800080E0(0, 14);
                         else
                             audio_800080E0(0, 6);
                         break;
                     case 0:
-                        if (func_801C0FDC(100) < 50)
+                        if (random(100) < 50)
                             audio_800080E0(0, 13);
                         else
                             audio_800080E0(0, 6);
                         break;
                     case 2:
-                        if (func_801C0FDC(100) < 5)
+                        if (random(100) < 5)
                             audio_800080E0(0, 12);
                         else
                             audio_800080E0(0, 6);
@@ -4020,7 +4020,7 @@ s32 func_800494DC(s32 spritenum1, s32 arg1, s32 spritenum2, s32 arg3)
                     default:
                         if (gpSprite[spritenum1].picnum == PARAPSYCHE)
                         {
-                            if (func_801C0FDC(100) < 15)
+                            if (random(100) < 15)
                                 audio_800080E0(0, 15);
                             else
                                 audio_800080E0(0, 6);
@@ -5076,7 +5076,7 @@ void func_8004BFDC(s32 spritenum, s32 arg1, s32 z, s32 arg3)
         func_8004AB6C(spritenum, l, k >> 2, k >> 1, k - (k >> 2), k, 0);
 
     if (arg3 != 0)
-        audio_80007A44((func_801C0FDC(6) + 559), spritenum, 40000);
+        audio_80007A44((random(6) + 559), spritenum, 40000);
 
     a = sp3E;
     if (cond && (a != 0))
@@ -6879,16 +6879,16 @@ static u8 func_80051684(s16 sectnum)
 
 /*800DF1C0*/
 static char *D_800DF1C0[4] = {
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-    "TNT BARREL",
-    "FUSE WIRE",
-    "PLUNGER BOX",
-    "TIME MACHINE PART"
-#elif VERSION_FR
+#if VERSION_FR
     "BARIL DE DYNAMITE",
     "MECHE",
     "DETONATEUR A MANETTE",
     "MACHINE REMONT. TPS"
+#else
+    "TNT BARREL",
+    "FUSE WIRE",
+    "PLUNGER BOX",
+    "TIME MACHINE PART"
 #endif
 };
 
@@ -10099,7 +10099,7 @@ void func_80058E44(s32 spritenum)
     audio_800077F4(538, spritenum);
 }
 
-#if defined(VERSION_FR) || defined(VERSION_EU) || defined(VERSION_PROTO)
+#ifndef VERSION_US
 /*hack for wrong rodata aligment*/
 static const f64 _force_rodata_alignment = 0;
 #endif

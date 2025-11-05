@@ -212,7 +212,7 @@ typedef struct _code1UnkStruct6
 /*801CE5AC*/ _extern u16 gGraphicsOption;
 /*801CE5B0*/ _extern Position gPosition ALIGNED(8);
 /*801CE5D4*/ _extern char **gpCreditStrInfo;
-/*801CE5D8*/ _extern s32 D_801CE5D8;
+/*801CE5D8*/ _extern s32 gRngSeed;
 /*801CE5E8*/ _extern _119280UnkStruct1 *D_801CE5E8;
 /*801CE5F0*/ _extern code1UnkStruct3 D_801CE5F0 ALIGNED(16);
 /*801CF634*/ _extern u16 gCheatWeaponFreezerConfig;

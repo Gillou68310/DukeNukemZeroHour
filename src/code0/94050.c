@@ -161,7 +161,7 @@ void func_80093BB0(u16 wallnum)
         floorz2 = z2;
     }
 
-#if defined (TARGET_N64) && !defined (MODERN)
+#if TARGET_N64 && !MODERN
     FORCE_ASM("lui $v0, %hi(gpWall)\n\t"
                "lw $v0, %lo(gpWall) ($v0)\n\t"
                "addu $a0,$s1,$v0\n\t");

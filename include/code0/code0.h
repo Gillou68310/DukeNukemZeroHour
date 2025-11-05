@@ -10,12 +10,6 @@
 #define MAXKEYS 17
 #define MAXACTORS 150
 
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-#define D_8012FCB0_SIZE 48
-#elif VERSION_FR
-#define D_8012FCB0_SIZE 64
-#endif
-
 typedef struct
 {
     /*0x0000*/ Mtx mtx1[MAXPLAYERS];
@@ -450,7 +444,7 @@ typedef struct
 /*80118260*/ _extern char D_80118260[6096] ALIGNED(16);
 /*80119A30*/ _extern u8 D_80119A30[MAXPLAYERS];
 /*80119A38*/ _extern u8 D_80119A38;
-/*80119A64*/ _extern s32 D_80119A64;
+/*80119A64*/ _extern s32 gMultiplayerElapsedTime;
 /*8011A680*/ _extern s16 D_8011A680[MAXPLAYERS][24][10] ALIGNED(16);
 /*8011BC40*/ _extern code0UnkStruct16 *D_8011BC40;
 /*8011BC48*/ _extern s32 D_8011BC48;
@@ -463,7 +457,7 @@ typedef struct
 /*8012C470*/ _extern s16 gPlayerCount;
 /*8012C478*/ _extern Gfx *D_8012C478[200] ALIGNED(8);
 /*8012C798*/ _extern s32 D_8012C798;
-/*8012C989*/ _extern u8 D_8012C989;
+/*8012C989*/ _extern u8 gTerminalPage;
 /*8012D218*/ _extern u32 D_8012D218[MAXPLAYERS][18] ALIGNED(8);
 /*8012D338*/ _extern s8 D_8012D338; /*angle*/
 /*8012DEFA*/ _extern u16 D_8012DEFA;
@@ -482,7 +476,11 @@ typedef struct
 /*8012FC48*/ _extern Cloud gCloud[2] ALIGNED(8);
 /*8012FC90*/ _extern s32 D_8012FC90;
 /*8012FCA0*/ _extern s16 D_8012FCA0[MAXPLAYERS];
-/*8012FCB0*/ _extern char D_8012FCB0[MAXPLAYERS][D_8012FCB0_SIZE] ALIGNED(8);
+#if VERSION_FR
+/*8012FCB0*/ _extern char D_8012FCB0[MAXPLAYERS][64] ALIGNED(8);
+#else
+/*8012FCB0*/ _extern char D_8012FCB0[MAXPLAYERS][48] ALIGNED(8);
+#endif
 /*8012FD80*/ _extern s32 gAlertAliens;
 /*8012FD88*/ _extern s32 D_8012FD88; /*ang*/
 /*8012FD8C*/ _extern code0UnkStruct16 *D_8012FD8C;
@@ -527,7 +525,7 @@ typedef struct
 /*80199110*/ _extern f32 gViewportScaleX;
 /*80199114*/ _extern Vtx *gpVertexList;
 /*80199524*/ _extern s32 D_80199524;
-/*80199558*/ _extern s32 D_80199558;
+/*80199558*/ _extern s32 gMultiplayerTimeLimit;
 /*8019956C*/ _extern u8 D_8019956C;
 /*80199638*/ _extern s32 D_80199638;
 /*80199640*/ _extern s32 gGlobalPosZ;
@@ -578,7 +576,7 @@ typedef struct
 /*801AEA30*/ _extern s16 gSkyBottomR;
 /*801B080C*/ _extern s32 D_801B080C; /*lightx*/
 /*801B0815*/ _extern u8 D_801B0815;
-/*801B0820*/ _extern u8 D_801B0820; /*playernum?*/
+/*801B0820*/ _extern u8 gPlayerNum;
 /*801B0830*/ _extern Matrix4f D_801B0830[20] ALIGNED(16);
 /*801B0D30*/ _extern s32 D_801B0D30;
 /*801C0D5C*/ _extern s16 gSkyTopR;

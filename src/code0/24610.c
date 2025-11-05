@@ -326,7 +326,7 @@ static void func_8002433C(s16 spritenum, s32 distance)
         ang = (_pSprite->ang * (PI/1024));
         if (_pSprite->cstat & 0x4000)
         {
-            m = MAX(((distance << 8) / ((gPlayer[D_801B0820].unk6E) * 120)), 4);
+            m = MAX(((distance << 8) / ((gPlayer[gPlayerNum].unk6E) * 120)), 4);
             x1 += (sinf((ang + (PI/2))) * m);
             y1 -= (cosf((ang + (PI/2))) * m);
         }

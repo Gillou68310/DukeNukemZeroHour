@@ -5,7 +5,7 @@
 /*800B5970*/
 void __assert(const char *msg, const char *file, int line)
 {
-#if defined (TARGET_N64) && defined(MODERN)
+#if TARGET_N64 && MODERN
     while (1);
 #endif
 }

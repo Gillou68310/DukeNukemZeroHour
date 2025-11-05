@@ -424,7 +424,7 @@ label1:
                     if (sp134 >= 0)
                     {
                         func_80058600(sp134);
-                        ldist(&gpSprite[gPlayer[D_801B0820].unk4A], &gpSprite[sp134]);
+                        ldist(&gpSprite[gPlayer[gPlayerNum].unk4A], &gpSprite[sp134]);
                         ang = getAngle(gpSprite[sp134].x - xs, gpSprite[sp134].y - ys);
                     }
                 }
@@ -2676,7 +2676,7 @@ static void func_800749A8(s32 spritenum)
     u16 cstat;
 
     spr = &gpSprite[spritenum];
-    gpActor = &gActor[gActorSpriteMap[gPlayer[D_801B0820].unk4A]];
+    gpActor = &gActor[gActorSpriteMap[gPlayer[gPlayerNum].unk4A]];
 
     num = func_8004E5F8(spritenum, (gpSinTable[(spr->ang + 512) & 0x7FF] * 125) >> 10,
                      (gpSinTable[spr->ang & 0x7FF] * 125) >> 10,

@@ -66,7 +66,7 @@ void func_8006A0A0(s16 spritenum)
 
         if (D_8010A940[playernum].unkA[7] == 0x6000)
         {
-            D_8012C989 = D_8012C989 == 0;
+            gTerminalPage = !gTerminalPage;
             playSfx(1433);
         }
 
@@ -201,10 +201,10 @@ void func_8006A0A0(s16 spritenum)
                     ptr = gpKeyStrInfo[gMapNum][spr2->unk25-1];
                     if (*ptr != 0)
                     {
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-                        sprintf(sp40, "%s REQUIRED", ptr);
-#elif VERSION_FR
+#if VERSION_FR
                         sprintf(sp40, "%s", ptr);
+#else
+                        sprintf(sp40, "%s REQUIRED", ptr);
 #endif
                     }
                 }
@@ -296,10 +296,10 @@ void func_8006A0A0(s16 spritenum)
                             if (spr1->statnum == 10)
                             {
                                 char sp60[32];
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-                                sprintf(sp60, "PULL SWITCHES TOGETHER");
-#elif VERSION_FR
+#if VERSION_FR
                                 sprintf(sp60, "ACTIVEZ INTERRUPTEURS ENSEMBLE");
+#else
+                                sprintf(sp60, "PULL SWITCHES TOGETHER");
 #endif
                                 func_800A419C(playernum, sp60);
                             }
@@ -673,7 +673,7 @@ static void func_8006B384(s32 spritenum)
         if (i != -1)
         {
 #ifdef AVOID_UB
-            if(gActor[gActorSpriteMap[spritenum]].unk84 >= 0)
+            if (gActor[gActorSpriteMap[spritenum]].unk84 >= 0)
 #endif
                 gActor[gActorSpriteMap[spritenum]].unk64 = D_800FF528[gActor[gActorSpriteMap[spritenum]].unk84];
             gActor[gActorSpriteMap[spritenum]].unk4 |= 0x40;
@@ -685,10 +685,10 @@ static void func_8006B384(s32 spritenum)
 /*8006B4E4*/
 void func_8006B4E4(s16 arg0)
 {
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-    func_800A419C(0, "OBJECTIVE COMPLETED");
-#elif VERSION_FR
+#if VERSION_FR
     func_800A419C(0, "OBJECTIF ATTEINT");
+#else
+    func_800A419C(0, "OBJECTIVE COMPLETED");
 #endif
     D_801AE91E[arg0] = 68;
 
@@ -792,16 +792,16 @@ void func_8006B590(s16 arg0)
             }
         }
 
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-        if (cond == 1)
-            func_800A419C(0, "DEFENSE SYSTEMS INACTIVE");
-        if (cond == 2)
-            func_800A419C(0, "DEFENSE SYSTEMS ACTIVE");
-#elif VERSION_FR
+#if VERSION_FR
         if (cond == 1)
             func_800A419C(0, "SYSTEMES DE DEFENSE DESACTIVES");
         if (cond == 2)
             func_800A419C(0, "SYSTEMES DE DEFENSE ACTIVES");
+#else
+        if (cond == 1)
+            func_800A419C(0, "DEFENSE SYSTEMS INACTIVE");
+        if (cond == 2)
+            func_800A419C(0, "DEFENSE SYSTEMS ACTIVE");
 #endif
 
         i = gHeadSpriteStat[4];
@@ -1041,10 +1041,10 @@ void func_8006B590(s16 arg0)
 
                         if (gpSprite[i].lotag != k)
                         {
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-                            func_800A419C(0, "NEW OBJECTIVE");
-#elif VERSION_FR
+#if VERSION_FR
                             func_800A419C(0, "NOUVEL OBJECTIF");
+#else
+                            func_800A419C(0, "NEW OBJECTIVE");
 #endif
                         }
                         D_801AE91E[gpSprite[i].lotag] = 67;
@@ -1062,10 +1062,10 @@ void func_8006B590(s16 arg0)
                     D_800E192C = -1;
                     if (gMapNum == MAP_NUCLEAR_WINTER)
                     {
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-                        func_800A419C(0, "NEW OBJECTIVE");
-#elif VERSION_FR
+#if VERSION_FR
                         func_800A419C(0, "NOUVEL OBJECTIF");
+#else
+                        func_800A419C(0, "NEW OBJECTIVE");
 #endif
                         D_801AE91E[2] = 67;
                         D_801AE91E[3] = 67;

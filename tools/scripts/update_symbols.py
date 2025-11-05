@@ -10,6 +10,7 @@ import sys
 import tqdm
 from splat.scripts import split
 from multiprocessing import Pool
+from pathlib import Path
 
 class SYMBOL:
     def __init__(self, splat: split.symbols.Symbol = None, ignore: bool = False, \
@@ -249,15 +250,14 @@ if __name__ == '__main__':
 
     symbols = SYMBOLS()
     forced = []
-    BUILD_DIR = os.path.join('tmp', args.version)
+    BUILD_DIR = os.path.join('build', args.version)
 
     # Initialize splat symbols
     yaml = 'versions/'+args.version+'/dukenukemzerohour.yaml'
+    path = Path("versions") / args.version / "dukenukemzerohour.yaml"
     symbol_addrs = 'versions/'+args.version+'/symbol_addrs.txt'
-    with open(yaml) as f:
-        config = split.yaml.load(f.read(), Loader=split.yaml.SafeLoader)
-    config['options']['base_path'] = '.'
-    split.options.initialize(config, yaml, None, None)
+    config = split.conf.load([path])
+    split.options.initialize(config, [path])
     all_segments = split.initialize_segments(config["segments"])
     split.disassembler_instance.create_disassembler_instance(skip_version_check=True, splat_version='')
     split.symbols.initialize(all_segments)
@@ -282,7 +282,7 @@ if __name__ == '__main__':
             parse_addrs_from_source(file, v.coord, symbols, forced)
 
     # Build source files
-    subprocess.run(['make', 'objects', '-j12', ('BUILD_DIR=' + BUILD_DIR), 'EXTERN=0', ('VERSION=' + args.version)])
+    subprocess.run(['make', '-j12', ('BUILD_DIR=' + BUILD_DIR), ('VERSION=' + args.version)])
     o_files = [y for x in os.walk((BUILD_DIR + '/src')) for y in glob.glob(os.path.join(x[0], '*.o'))]
     o_files += [y for x in os.walk((BUILD_DIR + '/libs')) for y in glob.glob(os.path.join(x[0], '*.o'))]
 
@@ -292,8 +292,6 @@ if __name__ == '__main__':
 
     for sym in forced:
         symbols.update(sym)
-
-    #subprocess.run(['make', 'clean', ('BUILD_DIR=' + BUILD_DIR), 'EXTERN=0', ('VERSION=' + args.version)])
 
     # Sort symbols
     symbols.symbols.sort()

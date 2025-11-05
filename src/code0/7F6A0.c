@@ -4,12 +4,6 @@
 #include "code0/82480.h"
 #include "code0/code0.h"
 
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-#define D_801A6D90_SIZE 128
-#elif VERSION_FR
-#define D_801A6D90_SIZE 400
-#endif
-
 /*.data*/
 /*800DF9A0*/
 static ProcPointer D_800DF9A0[12] = {
@@ -57,7 +51,11 @@ static ProcPointer D_800DFA10[12] = {
 /*80138870*/ s16 D_80138870[2048] ALIGNED(16);
 /*8016D17C*/ s32 D_8016D17C;
 /*80199990*/ s16 D_80199990[2048+2] ALIGNED(16);
-/*801A6D90*/ code0UnkStruct16 D_801A6D90[D_801A6D90_SIZE] ALIGNED(16);
+#if VERSION_FR
+/*801A6D90*/ code0UnkStruct16 D_801A6D90[400] ALIGNED(16);
+#else
+/*801A6D90*/ code0UnkStruct16 D_801A6D90[128] ALIGNED(16);
+#endif
 
 /*.text*/
 

@@ -147,65 +147,65 @@ static inline u16 *get_D_800DF8E0(s32 i, s32 j)
 /*80079830*/
 void func_80079830(void)
 {
-    for (D_801B0820 = 0; D_801B0820 < gPlayerCount; D_801B0820++)
+    for (gPlayerNum = 0; gPlayerNum < gPlayerCount; gPlayerNum++)
     {
-        func_80079F60(D_801B0820);
+        func_80079F60(gPlayerNum);
         if (gCheatWeaponSmgConfig != CONFIG_OFF)
         {
-            D_8011A680[D_801B0820][6][1] = 500;
-            D_8011A680[D_801B0820][6][0] |= 1;
+            D_8011A680[gPlayerNum][6][1] = 500;
+            D_8011A680[gPlayerNum][6][0] |= 1;
         }
         if (gCheatWeaponBlasterConfig != CONFIG_OFF)
         {
-            D_8011A680[D_801B0820][2][1] = 280;
-            D_8011A680[D_801B0820][2][0] |= 1;
+            D_8011A680[gPlayerNum][2][1] = 280;
+            D_8011A680[gPlayerNum][2][0] |= 1;
         }
         if (gCheatWeaponSniperConfig != CONFIG_OFF)
         {
-            D_8011A680[D_801B0820][23][1] = 30;
-            D_8011A680[D_801B0820][23][0] |= 1;
+            D_8011A680[gPlayerNum][23][1] = 30;
+            D_8011A680[gPlayerNum][23][0] |= 1;
         }
         if (gCheatWeaponFreezerConfig != CONFIG_OFF)
         {
-            D_8011A680[D_801B0820][15][1] = 600;
-            D_8011A680[D_801B0820][15][0] |= 1;
+            D_8011A680[gPlayerNum][15][1] = 600;
+            D_8011A680[gPlayerNum][15][0] |= 1;
         }
         if (gCheatWeaponRevolverConfig != CONFIG_OFF)
         {
-            D_8011A680[D_801B0820][3][1] = 96;
-            D_8011A680[D_801B0820][3][0] |= 1;
+            D_8011A680[gPlayerNum][3][1] = 96;
+            D_8011A680[gPlayerNum][3][0] |= 1;
         }
         if (gCheatWeaponClaw12Config != CONFIG_OFF)
         {
-            D_8011A680[D_801B0820][4][1] = 96;
-            D_8011A680[D_801B0820][4][0] |= 1;
+            D_8011A680[gPlayerNum][4][1] = 96;
+            D_8011A680[gPlayerNum][4][0] |= 1;
         }
         if (gCheatWeapon3030Config != CONFIG_OFF)
         {
-            D_8011A680[D_801B0820][7][1] = 100;
-            D_8011A680[D_801B0820][7][0] |= 1;
+            D_8011A680[gPlayerNum][7][1] = 100;
+            D_8011A680[gPlayerNum][7][0] |= 1;
         }
         if (gCheatWeaponSawedOffConfig != CONFIG_OFF)
         {
-            D_8011A680[D_801B0820][5][1] = 60;
-            D_8011A680[D_801B0820][5][0] |= 1;
+            D_8011A680[gPlayerNum][5][1] = 60;
+            D_8011A680[gPlayerNum][5][0] |= 1;
         }
         if (gCheatWeaponVoltCannonConfig != CONFIG_OFF)
         {
-            D_8011A680[D_801B0820][20][1] = 2400;
-            D_8011A680[D_801B0820][20][0] |= 1;
+            D_8011A680[gPlayerNum][20][1] = 2400;
+            D_8011A680[gPlayerNum][20][0] |= 1;
         }
         if (gCheatWeaponGattlingGunConfig != CONFIG_OFF)
         {
-            D_8011A680[D_801B0820][16][1] = 500;
-            D_8011A680[D_801B0820][16][0] |= 1;
+            D_8011A680[gPlayerNum][16][1] = 500;
+            D_8011A680[gPlayerNum][16][0] |= 1;
         }
         if (gCheatWeaponGammaCannonConfig != CONFIG_OFF)
         {
-            D_8011A680[D_801B0820][17][1] = 750;
-            D_8011A680[D_801B0820][17][0] |= 1;
+            D_8011A680[gPlayerNum][17][1] = 750;
+            D_8011A680[gPlayerNum][17][0] |= 1;
         }
-        func_8007ADBC(D_801B0820);
+        func_8007ADBC(gPlayerNum);
     }
 }
 

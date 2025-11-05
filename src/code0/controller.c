@@ -20,10 +20,10 @@
 #define CONTROLLER_GET_STATUS 13
 #define COMPANY_CODE 0x3458 /*4X*/
 
-#if defined(VERSION_US) || defined(VERSION_PROTO)
+#if VERSION_US || VERSION_PROTO
 #define __C__ 0xFF
 #define GAMECODE 0x4E445A45 /*NDZE*/
-#elif defined(VERSION_FR) || defined(VERSION_EU)
+#else
 #define __C__ 0xC8
 #define GAMECODE 0x4E445A50 /*NDZP*/
 #endif
@@ -44,7 +44,7 @@ typedef struct {
 
 /*.data*/
 /*800E0F60*/ static char D_800E0F60[67] = "                0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#'*+,-./:=?@";
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
+#ifndef VERSION_FR
 /*800E0FA4*/ static char D_800E0FA4[30] = "If Rumble Paks are to be used";
 /*800E0FC4*/ static char D_800E0FC4[24] = "please insert them into";
 /*800E0FDC*/ static char D_800E0FDC[17] = "the Controllers.";
@@ -58,7 +58,7 @@ typedef struct {
 #if VERSION_EU
 /*800E1038*/ static char D_800E1038[19] = "B = Attempt repair";
 /*800E1040*/ static char D_800E1040[30] = "Z = Insert new controller pak";
-#elif defined(VERSION_US)
+#elif VERSION_US
 /*800E1038*/ static char D_800E1038[8] = "B = Yes";
 /*800E1040*/ static char D_800E1040[10] = "Z = Retry";
 #endif
@@ -114,7 +114,7 @@ static char D_800E1818_E2418[19] = "to save game data.";
 static char D_800E182C_E242C[27] = "If you would like to use a";
 static char D_800E1848_E2448[29] = "Controller Pak insert it now";
 static char D_800E1868_E2468[28] = "or continue without saving.";
-#elif defined(VERSION_US) || defined(VERSION_PROTO)
+#else
 /*800E14B8*/ static char D_800E14B8[34] = "to save game data. Press START to";
 /*800E14DC*/ static char D_800E14DC[25] = "continue without saving.";
 #endif
@@ -136,7 +136,7 @@ static char D_800E1868_E2468[28] = "or continue without saving.";
 /*800E1650*/ static char D_800E1650[5] = "EXIT";
 /*800E1658*/ static char D_800E1658[14] = "NEW SAVE SLOT";
 /*800E1668*/ static char D_800E1668[24] = "CONTINUE WITHOUT SAVING";
-#elif VERSION_FR
+#else
 static char D_800E0FA4[0x21] = "SI VOUS UTILISEZ DES RUMBLE PAKS";
 static char D_800E0FC4[0x1A] = "VEUILLEZ LES INSERER DANS";
 static char D_800E0FDC[0xD] = "LES MANETTES";
@@ -444,12 +444,12 @@ static void func_80087E78(char *arg0, u8 *arg1, u8 arg2)
     i = arg2;
     arg0[i] = 0;
 
-    while (i--) {
-        if (arg1[i] < ARRAY_COUNT(D_800E0F60)-1) {
+    while (i--)
+    {
+        if (arg1[i] < ARRAY_COUNT(D_800E0F60)-1)
             arg0[i] = D_800E0F60[arg1[i]];
-        } else {
+        else
             arg0[i] = ' ';
-        }
     }
 #else
     char *ptr;
@@ -925,7 +925,7 @@ static u8 func_80088910(void)
         {
             if (D_800FE408 != 0)
             {
-#if defined(VERSION_US) || defined(VERSION_PROTO)
+#if VERSION_US || VERSION_PROTO
                 func_8007FF94(D_800E1330, __C__);
                 func_8007FF94(D_800E1350, __C__);
 #endif
@@ -939,12 +939,12 @@ static u8 func_80088910(void)
         }
         break;
     case 8:
-#if defined(VERSION_US) || defined(VERSION_PROTO)
+#if VERSION_US || VERSION_PROTO
         func_8007FF94(D_800E1494, __C__);
         func_8007FF94(D_800E14B8, __C__);
         func_8007FF94(D_800E14DC, __C__);
         D_800E1685 = 11;
-#elif defined(VERSION_FR) || defined(VERSION_EU)
+#else
         func_8007FF94(D_800E1330, __C__);
         func_8007FF94(D_800E1350, __C__);
         func_8007FF94(D_800E11CC, __C__);
@@ -998,9 +998,9 @@ static u8 func_80088910(void)
                 func_8007FF94(D_800E1398, __C__);
                 func_8007FF94(D_800E11CC, __C__);
                 func_8008A370(CONTROLLER_PFS_REPAIR_ID, (intptr_t)&_contPfs[_channel], 0, 0, 0, 0, 0, 0);
-#if defined(VERSION_US) || defined(VERSION_PROTO)
+#if VERSION_US || VERSION_PROTO
                 D_800E1685 = 5;
-#elif defined(VERSION_FR) || defined(VERSION_EU)
+#else
                 D_800E1685 = 47;
 #endif
             }
@@ -1091,7 +1091,7 @@ static u8 func_80088910(void)
         {
             if (D_800FE408 != 0)
             {
-#if defined(VERSION_US) || defined(VERSION_PROTO)
+#if VERSION_US || VERSION_PROTO
                 func_8007FF94(D_800E1330, __C__);
                 func_8007FF94(D_800E1350, __C__);
 #endif
@@ -1126,9 +1126,9 @@ static u8 func_80088910(void)
                 func_8007FF94(D_800E1398, __C__);
                 func_8007FF94(D_800E11CC, __C__);
                 func_8008A370(CONTROLLER_PFS_REPAIR_ID, (intptr_t)&_contPfs[_channel], 0, 0, 0, 0, 0, 0);
-#if defined(VERSION_US) || defined(VERSION_PROTO)
+#if VERSION_US || VERSION_PROTO
                 D_800E1685 = 5;
-#elif defined(VERSION_FR) || defined(VERSION_EU)
+#else
                 D_800E1685 = 47;
 #endif
             }
@@ -1155,7 +1155,7 @@ static u8 func_80088910(void)
             }
         }
         break;
-#if defined(VERSION_FR) || defined(VERSION_EU)
+#if VERSION_FR || VERSION_EU
     case 47:
         if (D_80119A70 == 0)
         {
@@ -1203,7 +1203,7 @@ static u8 func_80088FEC(void)
         switch (D_800FE408)
         {
         case 1:
-#if defined(VERSION_US) || defined(VERSION_PROTO)
+#if VERSION_US || VERSION_PROTO
             func_8007FF94(D_800E1478, __C__);
             func_8007FF94(D_800E1494, __C__);
             func_8007FF94(D_800E14B8, __C__);
@@ -1249,7 +1249,7 @@ static u8 func_80088FEC(void)
         case 4:
         case 5:
         case 6:
-#if defined(VERSION_US) || defined(VERSION_PROTO)
+#if VERSION_US || VERSION_PROTO
             func_8007FF94(D_800E14F8, __C__);
             func_8007FF94(D_800E1494, __C__);
             func_8007FF94(D_800E14B8, __C__);
@@ -1328,7 +1328,7 @@ static u8 func_80088FEC(void)
         {
             if (D_800FE408 != 0)
             {
-#if defined(VERSION_US) || defined(VERSION_PROTO)
+#if VERSION_US || VERSION_PROTO
                 func_8007FF94(D_800E1330, __C__);
                 func_8007FF94(D_800E1350, __C__);
 #endif
@@ -1343,13 +1343,13 @@ static u8 func_80088FEC(void)
         }
         break;
     case 8:
-#if defined(VERSION_US) || defined(VERSION_PROTO)
+#if VERSION_US || VERSION_PROTO
         func_8007FF94(D_800E1494, __C__);
         func_8007FF94(D_800E14B8, __C__);
         func_8007FF94(D_800E14DC, __C__);
         D_800FE408 = -1;
         D_800E1686 = 9;
-#elif defined(VERSION_FR) || defined(VERSION_EU)
+#else
         func_8007FF94(D_800E1330, __C__);
         func_8007FF94(D_800E1350, __C__);
         func_8007FF94(D_800E11CC, __C__);
@@ -1391,9 +1391,9 @@ static u8 func_80088FEC(void)
                 func_8007FF94(D_800E1398, __C__);
                 func_8007FF94(D_800E11CC, __C__);
                 func_8008A370(CONTROLLER_PFS_REPAIR_ID, (intptr_t)&_contPfs[_channel], 0, 0, 0, 0, 0, 0);
-#if defined(VERSION_US) || defined(VERSION_PROTO)
+#if VERSION_US || VERSION_PROTO
                 D_800E1686 = 5;
-#elif defined(VERSION_FR) || defined(VERSION_EU)
+#else
                 D_800E1686 = 47;
 #endif
             }
@@ -1485,11 +1485,11 @@ static u8 func_80088FEC(void)
         {
             if (D_800FE408 != 0)
             {
-#if defined(VERSION_US) || defined(VERSION_PROTO)
+#if VERSION_US || VERSION_PROTO
                 func_8007FF94(D_800E1330, __C__);
                 func_8007FF94(D_800E1350, __C__);
                 D_800E1686 = 8;
-#elif defined(VERSION_FR) || defined(VERSION_EU)
+#else
                 D_800E1686 = 48;
 #endif
             }
@@ -1522,9 +1522,9 @@ static u8 func_80088FEC(void)
                 func_8007FF94(D_800E1398, __C__);
                 func_8007FF94(D_800E11CC, __C__);
                 func_8008A370(CONTROLLER_PFS_REPAIR_ID, (intptr_t)&_contPfs[_channel], 0, 0, 0, 0, 0, 0);
-#if defined(VERSION_US) || defined(VERSION_PROTO)
+#if VERSION_US || VERSION_PROTO
                 D_800E1686 = 5;
-#elif defined(VERSION_FR) || defined(VERSION_EU)
+#else
                 D_800E1686 = 47;
 #endif
             }
@@ -1551,7 +1551,7 @@ static u8 func_80088FEC(void)
             }
         }
         break;
-#if defined(VERSION_FR) || defined(VERSION_EU)
+#if VERSION_FR || VERSION_EU
     case 47:
         if (D_80119A70 == 0)
         {
@@ -2376,7 +2376,7 @@ u8 controller_8008AEF0(void)
                 if (_channel < 0)
                 {
                     func_800800A8(6);
-#if defined(VERSION_US) || defined(VERSION_PROTO)
+#if VERSION_US || VERSION_PROTO
                     func_8007FF94(D_800E1478, __C__);
                     func_8007FF94(D_800E1494, __C__);
                     func_8007FF94(D_800E14B8, __C__);
@@ -2750,22 +2750,26 @@ static u8 func_8008B8B0(void)
             else if (_channel < 0)
             {
 #if VERSION_PROTO
-                s8 j,k,l;
+                s8 j, k, l;
                 k = l = 0;
-                for(j = 0; j < 4; j++) {
+                for (j = 0; j < 4; j++)
+                {
                     if (D_8016D174[j] != 0)
                         k += 1;
                     if (D_80197D44[j] != 0)
                         l += 1;
                 }
-                if (k != l) {
+                if (k != l)
+                {
                     func_800800A8(7);
                     func_8007FF94(D_800E1260, __C__);
                     func_8007FF94(D_800E127C, __C__);
                     func_8007FF94(D_800E10C4, __C__);
                     func_8007FF94(D_800E10E0, __C__);
                     D_800E168E = 4;
-                } else {
+                }
+                else
+                {
                     func_8007FF94(D_800E13FC, __C__);
                     func_8007FF94(D_800E1420, __C__);
                     D_800E168E = 4;
@@ -3005,7 +3009,7 @@ static u8 func_8008B8B0(void)
         {
             if (D_800FA2FA != 0)
             {
-#if defined(VERSION_US) || defined(VERSION_PROTO)
+#if VERSION_US || VERSION_PROTO
                 func_8007FF94(D_800E1478, __C__);
                 func_8007FF94(D_800E1494, __C__);
                 func_8007FF94(D_800E14B8, __C__);
@@ -3096,22 +3100,26 @@ static s32 func_8008C0C8(void)
             else if (_channel < 0)
             {
 #if VERSION_PROTO
-                s8 j,k,l;
+                s8 j, k, l;
                 k = l = 0;
-                for(j = 0; j < 4; j++) {
+                for (j = 0; j < 4; j++)
+                {
                     if (D_8016D174[j] != 0)
                         k += 1;
                     if (D_80197D44[j] != 0)
                         l += 1;
                 }
-                if (k != l) {
+                if (k != l)
+                {
                     func_800800A8(7);
                     func_8007FF94(D_800E1260, __C__);
                     func_8007FF94(D_800E127C, __C__);
                     func_8007FF94(D_800E10C4, __C__);
                     func_8007FF94(D_800E10E0, __C__);
                     D_800E168F = 4;
-                } else {
+                }
+                else
+                {
                     func_8007FF94(D_800E13FC, __C__);
                     func_8007FF94(D_800E1420, __C__);
                     D_800E168F = 4;
@@ -3414,22 +3422,26 @@ u8 controller_8008C8DC(void)
             else if (_channel < 0)
             {
 #if VERSION_PROTO
-                s8 j,k,l;
+                s8 j, k, l;
                 k = l = 0;
-                for(j = 0; j < 4; j++) {
+                for (j = 0; j < 4; j++)
+                {
                     if (D_8016D174[j] != 0)
                         k += 1;
                     if (D_80197D44[j] != 0)
                         l += 1;
                 }
-                if (k != l) {
+                if (k != l)
+                {
                     func_800800A8(7);
                     func_8007FF94(D_800E1260, __C__);
                     func_8007FF94(D_800E127C, __C__);
                     func_8007FF94(D_800E10C4, __C__);
                     func_8007FF94(D_800E10E0, __C__);
                     D_800E1690 = 4;
-                } else {
+                }
+                else
+                {
                     func_8007FF94(D_800E13FC, __C__);
                     func_8007FF94(D_800E1420, __C__);
                     D_800E1690 = 4;
@@ -3845,22 +3857,26 @@ u8 controller_8008D354(void)
             else if (_channel < 0)
             {
 #if VERSION_PROTO
-                s8 j,k,l;
+                s8 j, k, l;
                 k = l = 0;
-                for(j = 0; j < 4; j++) {
+                for (j = 0; j < 4; j++)
+                {
                     if (D_8016D174[j] != 0)
                         k += 1;
                     if (D_80197D44[j] != 0)
                         l += 1;
                 }
-                if (k != l) {
+                if (k != l)
+                {
                     func_800800A8(7);
                     func_8007FF94(D_800E1260, __C__);
                     func_8007FF94(D_800E127C, __C__);
                     func_8007FF94(D_800E10C4, __C__);
                     func_8007FF94(D_800E10E0, __C__);
                     D_800E1691 = 4;
-                } else {
+                }
+                else
+                {
                     func_8007FF94(D_800E143C, __C__);
                     func_8007FF94(D_800E145C, __C__);
                     D_800E1691 = 4;

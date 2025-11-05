@@ -39,16 +39,7 @@ static s32 _unused[3] = {0};
 
 /*800E1780*/
 static char *D_800E1780[8] = {
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-    "ARMOR",
-    "SCUBA GEAR",
-    "VITAMIN X",
-    "PROTECTIVE BOOTS",
-    "MEDKIT",
-    "NIGHT VISION",
-    "GAS MASK",
-    "COMPUTER",
-#elif VERSION_FR
+#if VERSION_FR
     "ARMURE",
     "TUBA",
     "VITAMINE X",
@@ -57,21 +48,21 @@ static char *D_800E1780[8] = {
     "LUNETTES",
     "MASQUE A GAZ",
     "COMPUTER",
+#else
+    "ARMOR",
+    "SCUBA GEAR",
+    "VITAMIN X",
+    "PROTECTIVE BOOTS",
+    "MEDKIT",
+    "NIGHT VISION",
+    "GAS MASK",
+    "COMPUTER",
 #endif
 };
 
 /*800E17A0*/
 static char *D_800E17A0[8] = {
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-    "ARMOR",
-    "DIVING HELMET",
-    "VITAMIN X",
-    "PROTECTIVE BOOTS",
-    "DOCTOR'S BAG",
-    "NIGHT VISION",
-    "GAS MASK",
-    "COMPUTER",
-#elif VERSION_FR
+#if VERSION_FR
     "ARMURE",
     "CASQUE DE SCAPHANDRE",
     "VITAMINE X",
@@ -80,21 +71,21 @@ static char *D_800E17A0[8] = {
     "LUNETTES",
     "MASQUE A GAZ",
     "COMPUTER",
+#else
+    "ARMOR",
+    "DIVING HELMET",
+    "VITAMIN X",
+    "PROTECTIVE BOOTS",
+    "DOCTOR'S BAG",
+    "NIGHT VISION",
+    "GAS MASK",
+    "COMPUTER",
 #endif
 };
 
 /*800E17C0*/
 static char *D_800E17C0[8] = {
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-    "",
-    "ON",
-    "USED",
-    "",
-    "USED",
-    "ACTIVATED",
-    "ON",
-    "",
-#elif VERSION_FR
+#if VERSION_FR
     "",
     "ACTIVE",
     "UTILISEES",
@@ -102,6 +93,15 @@ static char *D_800E17C0[8] = {
     "UTILISEES",
     "ACTIVEES",
     "ACTIVE",
+    "",
+#else
+    "",
+    "ON",
+    "USED",
+    "",
+    "USED",
+    "ACTIVATED",
+    "ON",
     "",
 #endif
 };
@@ -465,18 +465,18 @@ void func_8009542C(void)
             if (ptr2->unk2[1] != 0)
             {
                 ptr2->unk0 = 1;
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-                sprintf(sp10, "%s ON", ptr[1]);
-#elif VERSION_FR
+#if VERSION_FR
                 sprintf(sp10, "%s ACTIVE", ptr[1]);
+#else
+                sprintf(sp10, "%s ON", ptr[1]);
 #endif
             }
             else
             {
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-                sprintf(sp10, "%s OFF", ptr[1]);
-#elif VERSION_FR
+#if VERSION_FR
                 sprintf(sp10, "%s DESACTIVE", ptr[1]);
+#else
+                sprintf(sp10, "%s OFF", ptr[1]);
 #endif
             }
 
@@ -495,10 +495,10 @@ void func_8009542C(void)
             if (ptr2->unkA[5] <= 0)
             {
                 ptr2->unk2[5] = 0;
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-                sprintf(sp10, "%s OFF", ptr[5]);
-#elif VERSION_FR
+#if VERSION_FR
                 sprintf(sp10, "%s DESACTIVE", ptr[5]);
+#else
+                sprintf(sp10, "%s OFF", ptr[5]);
 #endif
                 func_800A419C(i, sp10);
             }
@@ -513,10 +513,10 @@ void func_8009542C(void)
             if (ptr2->unkA[6] <= 0)
             {
                 ptr2->unk2[6] = 0;
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-                sprintf(sp10, "%s OFF", ptr[6]);
-#elif VERSION_FR
+#if VERSION_FR
                 sprintf(sp10, "%s DESACTIVE", ptr[6]);
+#else
+                sprintf(sp10, "%s OFF", ptr[6]);
 #endif
                 func_800A419C(i, sp10);
             }
@@ -620,10 +620,10 @@ void func_8009584C(s16 playernum)
         }
         break;
     case 7:
-        ptr1->unk2[7] = ptr1->unk2[7] == 0;
+        ptr1->unk2[7] = !ptr1->unk2[7];
         if (ptr1->unk2[7])
         {
-            D_8012C989 = 0;
+            gTerminalPage = 0;
             playSfx(1433);
         }
         else
@@ -638,10 +638,10 @@ void func_8009584C(s16 playernum)
             sprintf(buffer, "%s %s", ptr[ptr1->unk0], D_800E17C0[ptr1->unk0]);
         else
         {
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-            sprintf(buffer, "%s OFF", ptr[ptr1->unk0]);
-#elif VERSION_FR
+#if VERSION_FR
             sprintf(buffer, "%s DESACTIVE", ptr[ptr1->unk0]);
+#else
+            sprintf(buffer, "%s OFF", ptr[ptr1->unk0]);
 #endif
         }
 

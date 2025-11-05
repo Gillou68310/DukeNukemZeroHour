@@ -63,7 +63,7 @@ void audio_800080E0(s16 playernum, u16);
 void audio_80008574(s16 playernum, u16 sfxnum);
 musHandle audio_80008604(void);
 void audio_800086B0(u16);
-void audio_80008710(s16);
+void playMapAudio(s16 mapnum);
 
 extern musHandle gMusicHandle;
 extern musHandle gAmbientHandle;

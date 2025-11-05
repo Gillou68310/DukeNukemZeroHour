@@ -12,7 +12,7 @@
 #include "code0/35EA0.h"
 #include "code0/37090.h"
 #include "code0/3FAD0.h"
-#include "code0/416A0.h"
+#include "code0/timer.h"
 #include "code0/41940.h"
 #include "code0/64530.h"
 #include "code0/6ACA0.h"
@@ -300,13 +300,13 @@ static void func_800006B4(void)
 
         D_801CC8CA = i;
 #ifndef TARGET_N64
-        if(configSkipIntro)
+        if (configSkipIntro)
         {
-            main_80000624(&func_801C15CC);
+            main_80000624(func_801C15CC);
             return;
         }
 #endif
-        main_80000624(&func_801C6560);
+        main_80000624(func_801C6560);
     }
 }
 
@@ -367,7 +367,7 @@ static void func_8000071C(void)
 /*8000090C*/
 void boot(void)
 {
-#if defined (TARGET_N64) && defined (MODERN)
+#if TARGET_N64 && MODERN
     if ((code0_ROM_END - code0_ROM_START) > 0x100000)
     {
         Bmemcpy(code0_VRAM+0x100000,
@@ -541,8 +541,8 @@ static void func_80001038(void)
         if ((D_80199524 != 0) && controller_8008A070())
             D_80199524 = 0;
 
-        func_80040AA0(1, "SM");
-        func_80040B2C(1);
+        initTimer(MOVE1_TIMER, "SM");
+        startTimer(MOVE1_TIMER);
         gTotalClockLock += 4;
         D_80168D0C = RAND(0x7FFF);
         D_801A1958.unkC++;
@@ -574,9 +574,9 @@ static void func_80001038(void)
 
         func_80069E50();
         func_8009FAF0();
-        func_80040B70(1);
-        func_80040AA0(2, "SW");
-        func_80040B2C(2);
+        stopTimer(MOVE1_TIMER);
+        initTimer(MOVE2_TIMER, "SW");
+        startTimer(MOVE2_TIMER);
         func_8004F044();
         func_8007B4CC();
         func_800879E8();
@@ -595,7 +595,7 @@ static void func_80001038(void)
         if (gMapNum == MAP_NUCLEAR_WINTER)
             func_80095220();
 
-        func_80040B70(2);
+        stopTimer(MOVE2_TIMER);
 
         for (playernum = 0; playernum < gPlayerCount; playernum++)
         {
@@ -1025,7 +1025,7 @@ static void func_80002494(void)
 {
     allocMemory(SCREEN_WIDTH, SCREEN_HEIGHT*2, DISPLAY_LIST_SIZE*2, 0);
     func_801C10C8();
-    setCameraPosition(0.0f, 0.0f, -500.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+    func_801C1218(0.0f, 0.0f, -500.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     func_8007FD8C(&D_800DFB08[0], 11);
     func_8007FD8C(&D_800DFA90[0], 2);
     D_800BD3F9 = 0;
@@ -1233,7 +1233,7 @@ void mainLoop(void *arg)
     configInitialize();
     controller_8008AD94();
     controller_8008A3EC("DUKE ZERO HOUR.A", &D_801CC930.unk0, sizeof(code1UnkStruct3));
-#if defined(VERSION_US) || defined(VERSION_PROTO)
+#if VERSION_US || VERSION_PROTO
     switch (osTvType)
     {
     case OS_TV_PAL:
@@ -1246,7 +1246,7 @@ void mainLoop(void *arg)
         D_801B0815 = 1;
         break;
     }
-#elif defined(VERSION_FR) || defined(VERSION_EU)
+#else
     switch (osTvType)
     {
     case OS_TV_PAL:
@@ -1258,7 +1258,7 @@ void mainLoop(void *arg)
     case OS_TV_MPAL:
         D_801B0815 = 0;
         break;
-}
+    }
 #endif
     osCreateMesgQueue(&D_8010A920, &D_801C0D64, 1);
     osCreateMesgQueue(&_retraceMsgQ, _retraceMessages, NUM_DMA_MSGS);
@@ -1277,7 +1277,7 @@ void mainLoop(void *arg)
     do
     {
 #else
-}
+    }
 void game_loop_one_iteration(void)
 {
     {
@@ -1302,7 +1302,7 @@ void game_loop_one_iteration(void)
 
         D_80138788 = D_800FE9E0;
         D_800BD3E0 += D_800FE9E0 - D_801AE498;
-        D_801CE5D8 += D_800FE9E0 - D_801AE498;
+        gRngSeed += D_800FE9E0 - D_801AE498;
 
         if (D_800BD3E0 > 8LL)
             D_800BD3E0 = 8LL;
@@ -1345,10 +1345,10 @@ void game_loop_one_iteration(void)
             if (_framebufferIndex == _framebufferCount)
                 _framebufferIndex = 0;
         }
-	} while (1);
+    } while (1);
 #else
-        }
-    }
+}
+}
 #endif
 }
 

@@ -2,14 +2,15 @@
     "[c]": {
         "editor.formatOnSave": true
     },
-    "search.useIgnoreFiles": false,
-    "search.exclude": {
-        "build": true
+    "files.exclude": {
+        "**/**.i": true,
+        "**/**.d": true,
     },
+    "search.useIgnoreFiles": false,
     "C_Cpp.exclusionPolicy": "checkFilesAndFolders",
     "C_Cpp.files.exclude": {
         "ida_ctx.c": true,
-        "**.i": true
+        "**/**.i": true,
     },
     "terminal.integrated.env.windows": {
         "PATH": "${env:PATH}"

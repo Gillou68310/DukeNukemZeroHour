@@ -2147,10 +2147,10 @@ void func_80069E50(void)
             }
 
             changeSpriteStat(i, 0);
-#if defined(VERSION_US) || defined(VERSION_EU) || defined(VERSION_PROTO)
-            func_800A419C(0, "BABE SAVED!");
-#elif VERSION_FR
+#if VERSION_FR
             func_800A419C(0, "GONZESSE SAUVEE!");
+#else
+            func_800A419C(0, "BABE SAVED!");
 #endif
             func_800533C4(gpSprite[i].picnum, i);
             D_801A1958.babes_saved++;

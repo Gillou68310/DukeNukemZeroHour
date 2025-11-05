@@ -8,6 +8,7 @@ import operator
 import subprocess
 from splat.scripts import split
 from dataclasses import dataclass
+from pathlib import Path
 
 @dataclass
 class Instruction():
@@ -226,10 +227,9 @@ if __name__ == "__main__":
     # Get list of symbols from config file
     yaml = 'versions/'+VERSION+'/dukenukemzerohour.yaml'
     symbol_addrs = 'versions/'+VERSION+'/symbol_addrs.txt'
-    with open(yaml) as f:
-        config = split.yaml.load(f.read(), Loader=split.yaml.SafeLoader)
-    config['options']['base_path'] = '.'
-    split.options.initialize(config, yaml, None, None)
+    path = Path("versions") / VERSION / "dukenukemzerohour.yaml"
+    config = split.conf.load([path])
+    split.options.initialize(config, [path])
     all_segments = split.initialize_segments(config["segments"])
     split.disassembler_instance.create_disassembler_instance(skip_version_check=True, splat_version='')
     split.symbols.initialize(all_segments)

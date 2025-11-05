@@ -520,7 +520,7 @@ void func_800965F8(s32 spritenum)
                             if (gpSprite[i].hitag == spr->hitag)
                             {
                                 k = i;
-                                if (func_801C0FDC(10000) < 5000)
+                                if (random(10000) < 5000)
                                     goto block_159;
                             }
                             i = gNextSpriteStat[i];
@@ -1941,7 +1941,7 @@ void func_8009A1A0(s32 spritenum)
     spr = &gpSprite[spritenum];
     if (spr->unk2B == 0)
     {
-        if (func_801C0FDC(0x800) < spr->ang)
+        if (random(0x800) < spr->ang)
         {
             i = gHeadSpriteStat[303];
             while (i >= 0)
@@ -1952,7 +1952,7 @@ void func_8009A1A0(s32 spritenum)
                 {
                     if (spr->hitag == spr2->hitag)
                     {
-                        k = func_801C0FDC(10000);
+                        k = random(10000);
                         j = i;
                         if (k < 5000)
                             goto label1;
